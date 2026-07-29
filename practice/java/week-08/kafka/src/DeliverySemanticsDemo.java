@@ -11,7 +11,13 @@ import java.util.Properties;
 /**
  * T-704 -- delivery semantics, observed rather than asserted.
  *
- * Same 18-record "orders" topic, same consumer group used twice:
+ * Ensures the "orders" topic exists (4 partitions) regardless of run order,
+ * but the illustrative "18 records" backlog referenced below comes from
+ * ProducerPartitionKeyDemo -- run that first in the same broker session for
+ * the numbers to match; the duplicate/loss BEHAVIOR is real either way,
+ * just against whatever backlog is actually present.
+ *
+ * Same "orders" topic, same consumer group used twice per scenario:
  *   Run A ("process-then-commit"): commit offsets only AFTER processing
  *                                   completes -> a crash before commit
  *                                   redelivers the batch (at-least-once).
@@ -26,6 +32,7 @@ import java.util.Properties;
  */
 public class DeliverySemanticsDemo {
     public static void main(String[] args) throws Exception {
+        KafkaSupport.ensureTopic("localhost:9092", "orders", 4);
         atLeastOnce();
         System.out.println();
         atMostOnce();

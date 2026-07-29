@@ -2,6 +2,8 @@
 
 Three real demos against a live single-broker Kafka cluster (KRaft mode, no ZooKeeper), plain `kafka-clients` jar from Maven Central (no Spring/Maven build), same no-framework approach as Weeks 3 and 7's internals demos.
 
+**Run in order, same broker session: 1 -> 2 -> 3.** Each demo ensures the `orders` topic exists with 4 partitions on its own, so none of them will fail if run standalone -- but demos 2 and 3 read whatever records are actually on the topic, and the "18 records" / specific offsets quoted in `study-packs/week-08/`'s chapters come from demo 1 having produced them first in the same session. Running 2 or 3 against a topic demo 1 hasn't touched yet still demonstrates the real rebalance/commit mechanics, just against an empty log.
+
 ## Setup
 
 ```bash

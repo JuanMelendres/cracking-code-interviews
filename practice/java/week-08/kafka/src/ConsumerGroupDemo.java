@@ -15,8 +15,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * T-703 -- consumer groups: partition assignment splits across group
  * members, and a member that leaves triggers a rebalance onto the
- * survivor(s). Topic "orders" has 4 partitions (created by
- * ProducerPartitionKeyDemo) and already has 18 records on it from that run.
+ * survivor(s). Self-sufficient: ensures the "orders" topic exists with 4
+ * partitions regardless of run order. Run ProducerPartitionKeyDemo first
+ * to have real records on it (otherwise "processed" counts are 0 -- the
+ * rebalance/assignment behavior is still real, just against an empty log).
  */
 public class ConsumerGroupDemo {
     static final String TOPIC = "orders";
@@ -24,6 +26,8 @@ public class ConsumerGroupDemo {
     static final String GROUP = "order-processors-" + System.currentTimeMillis();
 
     public static void main(String[] args) throws Exception {
+        KafkaSupport.ensureTopic("localhost:9092", TOPIC, 4);
+
         System.out.println("== consumer-1 joins group '" + GROUP + "' alone -> gets all 4 partitions ==");
         AtomicInteger c1Count = new AtomicInteger();
         AtomicInteger c2Count = new AtomicInteger();

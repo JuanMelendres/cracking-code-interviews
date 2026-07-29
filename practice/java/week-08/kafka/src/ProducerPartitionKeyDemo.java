@@ -1,14 +1,10 @@
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 
 /**
  * T-702 / T-705 -- producer fundamentals + partition-key routing.
@@ -24,11 +20,7 @@ public class ProducerPartitionKeyDemo {
         String topic = "orders";
         String bootstrap = "localhost:9092";
 
-        try (AdminClient admin = AdminClient.create(adminProps(bootstrap))) {
-            admin.createTopics(List.of(new NewTopic(topic, 4, (short) 1))).all().get();
-        } catch (ExecutionException e) {
-            if (!e.getMessage().contains("already exists")) throw e;
-        }
+        KafkaSupport.ensureTopic(bootstrap, topic, 4);
 
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap);
@@ -61,11 +53,5 @@ public class ProducerPartitionKeyDemo {
                 System.out.printf("key=null value=unkeyed-%d -> partition=%d offset=%d%n", i, md.partition(), md.offset());
             }
         }
-    }
-
-    private static Properties adminProps(String bootstrap) {
-        Properties p = new Properties();
-        p.put(org.apache.kafka.clients.admin.AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap);
-        return p;
     }
 }
