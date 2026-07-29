@@ -1,0 +1,58 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Java / build
+target/
+build/
+.gradle/
+*.class
+*.jar
+!templates/**/*.jar
+
+# Env / secrets
+.env
+.env.*
+*.pem
+*.key
+!templates/**/*.key.example
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+.cache/
+
+# Archives (extracted contents are what's tracked, not the zip itself)
+*.zip
+*.tar.gz
+*.7z
+
+# Recordings (mock interviews, narration drills — large, frequently unsanitised)
+recordings/
+*.m4a
+*.mp3
+*.mp4
+*.mov
+*.wav
+
+# Local-only escape hatch (see CONTRIBUTING.md § Privacy)
+**/local/
+*.private.md
+
+# Python (validation tooling)
+__pycache__/
+*.pyc
+.venv/
+
+# Node (if any tooling ends up here)
+node_modules/
+
+# --- explicitly NOT ignored (documented for clarity, no-op lines) ---
+# *.md, *.java, *.sql, *.yml, *.yaml, *.json, *.mmd — always tracked
