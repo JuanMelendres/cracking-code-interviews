@@ -1,0 +1,47 @@
+--- The trap: a plain many-to-many join table has nowhere to put "quantity" ---
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+Attempting to record "3 units of product 1 on order 1" — there is no column for quantity:
+          Table "public.order_products_naive"
+   Column   |  Type   | Collation | Nullable | Default 
+------------+---------+-----------+----------+---------
+ order_id   | integer |           | not null | 
+ product_id | integer |           | not null | 
+Indexes:
+    "order_products_naive_pkey" PRIMARY KEY, btree (order_id, product_id)
+Foreign-key constraints:
+    "order_products_naive_order_id_fkey" FOREIGN KEY (order_id) REFERENCES customer_orders(id)
+    "order_products_naive_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)
+
+
+--- The fix: an explicit join ENTITY (OrderLine), not just a join TABLE ---
+CREATE TABLE
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+Now every fact a real order line needs has somewhere to live:
+ id |  name  | quantity | unit_price_at_order_time | line_total 
+----+--------+----------+--------------------------+------------
+  1 | Widget |        3 |                     9.99 |      29.97
+(1 row)
+
+
+--- Why the explicit entity matters even without quantity: price history ---
+The naive join table has no unit_price_at_order_time. If the product price
+changes later, every historical order silently "changes price" too when
+joined against the current products table -- a real, silent data-integrity bug.
+UPDATE 1
+Naive approach (join table, no locked price) would now report the WRONG historical total:
+  name  | current_price_wrongly_used_for_history 
+--------+----------------------------------------
+ Widget |                                  12.99
+(1 row)
+
+Explicit order_lines entity still reports the CORRECT historical total:
+ id |  name  | quantity | unit_price_at_order_time | line_total 
+----+--------+----------+--------------------------+------------
+  1 | Widget |        3 |                     9.99 |      29.97
+(1 row)
+
