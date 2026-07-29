@@ -26,10 +26,10 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 
 | | |
 |---|---|
-| **Phase** | **Plan A complete (Weeks 1–6). Rolling into Plan B, Week 7.** |
-| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-06`, in full** |
-| **In progress** | Plan B, Week 7 (Spring depth + security) |
-| **Not started** | Plan B Weeks 8–12 · handbook chapters · interview playbook (beyond what's embedded in study packs) |
+| **Phase** | **Plan A complete (Weeks 1–6). Plan B underway, Week 7 done.** |
+| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-07`, in full** |
+| **In progress** | Plan B, Week 8 (Kafka semantics) |
+| **Not started** | Plan B Weeks 9–12 · handbook chapters · interview playbook (beyond what's embedded in study packs) |
 | **Topic register** | 198 topics scored across 16 domains |
 | **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the full register |
 
@@ -55,7 +55,8 @@ cracking-code-interviews/
 ├── 00-project/             Audit, blueprint, corrections, roadmap  (the "why")
 ├── study-packs/            Week-by-week execution material         (the "do this week")
 │   ├── week-01..06/        Plan A — complete
-│   └── week-07../          Plan B — in progress
+│   ├── week-07/            Plan B — complete
+│   └── week-08../          Plan B — in progress
 ├── handbook/               Durable technical reference by domain   (the "look it up")
 ├── interview-playbook/     How to communicate answers              (the "say it well")
 ├── practice/               Runnable Java, SQL, design exercises    (the "do it")
