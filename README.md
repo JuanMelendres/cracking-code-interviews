@@ -26,13 +26,25 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 
 | | |
 |---|---|
-| **Phase** | Planning complete — execution not started |
-| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (all four in `00-project/`) |
-| **Not started** | Study packs (all 6 weeks) · handbook chapters · interview playbook · practice exercises |
+| **Phase** | **Plan A complete (Weeks 1–6). Rolling into Plan B, Week 7.** |
+| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-06`, in full** |
+| **In progress** | Plan B, Week 7 (Spring depth + security) |
+| **Not started** | Plan B Weeks 8–12 · handbook chapters · interview playbook (beyond what's embedded in study packs) |
 | **Topic register** | 198 topics scored across 16 domains |
 | **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the full register |
 
-`study-packs/`, `handbook/`, `interview-playbook/`, and `practice/` are **scaffolded but empty**. No placeholder content has been invented in any of them — see `CHANGELOG.md` for why that distinction matters here specifically.
+Weeks 1–6 total **~60,400 words** across 74 chapter files, with every technical claim backed by real, executed code rather than description alone:
+
+| Week | Real Java | Real SQL / other |
+|---|---|---|
+| 1 | 18/18 assertions (LRU errata reproduced + fixed) | PostgreSQL index lab (seq scan → index scan → index-only scan) |
+| 2 | 21/21 assertions (monotonic-stack errata) | Query-plan lab (3 diagnoses) + many-to-many price-history bug |
+| 3 | 11/11 tree assertions + 6 real Spring transaction demos | Write-skew reproduced (REPEATABLE READ) and prevented (SERIALIZABLE) |
+| 4 | 14/14 graph assertions + retry-storm, cache-stampede, fencing-token demos | Pagination lab (OFFSET ~3,000x slower than keyset at depth) |
+| 5 | 23/23 assertions (Circular Queue errata fix) + idempotency-key mechanism | — |
+| 6 | Consolidation — no new technical claims (by design) | — |
+
+`handbook/` and `interview-playbook/` remain scaffolded but empty — the durable-reference extraction from study packs into `handbook/` is planned work, not yet done. See `CHANGELOG.md` for the full history and the archived-vs-real content distinction from initialization.
 
 ---
 
@@ -42,7 +54,8 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 cracking-code-interviews/
 ├── 00-project/             Audit, blueprint, corrections, roadmap  (the "why")
 ├── study-packs/            Week-by-week execution material         (the "do this week")
-│   └── week-01..06/        (scaffolded, empty — not yet generated)
+│   ├── week-01..06/        Plan A — complete
+│   └── week-07../          Plan B — in progress
 ├── handbook/               Durable technical reference by domain   (the "look it up")
 ├── interview-playbook/     How to communicate answers              (the "say it well")
 ├── practice/               Runnable Java, SQL, design exercises    (the "do it")
@@ -104,14 +117,14 @@ All three ship in 10h/20h/30h weekly variants that change **depth of treatment**
 
 ---
 
-## Starting Week 1
-
-**The Week 1 study pack does not exist yet** — see `CHANGELOG.md` for why this line is explicit rather than assumed. Until it's generated (Phase 4, not yet started), you can still run the diagnostic and read the plan directly from `00-project/`:
+## Starting the programme
 
 1. Read [`00-project/learning-roadmap.md`](00-project/learning-roadmap.md) §1 — the Day 0 diagnostic. Three hours, before reading anything else. Without a baseline the Week 6 delta is unmeasurable.
-2. Read §3 "Plan A — Week 1" in the same document for the full topic list, required reading, and exit criteria — this is the content that will become `study-packs/week-01/` once generated.
+2. Start `study-packs/week-01/README.md` and proceed week by week. Each week's `MANIFEST.md` states exactly what's verified and how to reproduce it.
+3. Week 6 (`study-packs/week-06/07-interview-readiness-rubric.md`) is Plan A's gate — it tells you whether to treat upcoming interviews as the target or as calibration, and how to roll into Plan B if you're not on an urgent timeline.
+4. Plan B picks up at `study-packs/week-07/` — identical scope through Week 6, then broadens into Spring depth/security, Kafka, concurrency/JVM, distributed data/resilience, and testing/observability.
 
-Prerequisites once study packs exist: JDK 17+, a JUnit 5 project, Docker (for PostgreSQL labs), and a voice recorder.
+Prerequisites: JDK 17+ (JDK 21 used throughout so far), Docker (for every PostgreSQL lab), and a voice recorder. No Maven/Gradle install is required — every Java pack that needs a library beyond the JDK ships its own `fetch-deps.sh` pulling plain jars from Maven Central.
 
 ---
 
@@ -148,8 +161,9 @@ STAR stories will be the highest-risk content in this repository once written. S
 |---|---|
 | `00-project/` documents | Exist, read in full, checked for secrets/PII before commit — see `00-project/file-mapping.md` |
 | Notion audit methodology | Read-only; all counts and category distributions are direct SQL aggregation over the live workspace, not estimates (stated in the audit doc's own integrity section) |
-| Study-pack code (Java/SQL) | **None exists yet.** No "executed" or "verified" claim should be made about it until it is actually written and run — see `CHANGELOG.md` for why this line exists |
-| Interview statistics | None invented anywhere in `00-project/` — frequency estimates are explicitly labelled `[H]` heuristic, not measured |
+| Study-pack code (Java/SQL), Weeks 1–5 | **Executed.** Every assertion count and every `EXPLAIN` block quoted in a chapter is real output from that week's `practice/` directory — see the per-week table above and each week's `MANIFEST.md` for exact reproduce commands |
+| Week 6 | Deliberately has no executed code — consolidation only, stated explicitly in its `MANIFEST.md` rather than fabricating a demo that doesn't belong |
+| Interview statistics | None invented anywhere in this repository — frequency estimates are explicitly labelled `[H]` heuristic, not measured |
 
 ---
 

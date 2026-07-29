@@ -7,9 +7,25 @@ All notable changes to this repository are documented here. Format follows [Keep
 ## [Unreleased]
 
 ### Planned
-- Phase 4 — generate the Week 1 study pack (does not exist yet; see "Known gap" below)
-- Extraction of durable reference material into `handbook/` as study packs are produced
+- Plan B, Weeks 8–12 (Kafka semantics, concurrency/JVM, distributed data/resilience, testing/observability, full loop simulation)
+- Extraction of durable reference material into `handbook/` from the now-complete study packs
 - `fix/normalize-cross-references` — the four Phase 1–3 documents cross-reference each other by their pre-normalization filenames in prose (inside backticks, not Markdown links, so nothing is broken, but the names no longer match)
+
+---
+
+## [2026-07-29] — Plan A complete (Weeks 1–6), rolling into Plan B
+
+### Added
+- `study-packs/week-01/` through `week-06/` — full Plan A sprint, 74 chapter files, ~60,400 words total
+- `practice/java/week-01/` through `week-05/`, `practice/sql/week-01/` through `week-04/` — every technical claim in Weeks 1–5 backed by real, executed Java (OpenJDK 21.0.12) or PostgreSQL 16 (via Docker), not description alone. Highlights: a live-reproduced LRU cache eviction bug (Week 1), a real write-skew anomaly reproduced at `REPEATABLE READ` and prevented at `SERIALIZABLE` (Week 3), a real cache-stampede/retry-storm/fencing-token trio (Week 4), a real idempotency-key mechanism under genuine concurrency (Week 5)
+- Week 6: consolidation only, per the roadmap's own "no new topics" instruction — full 72-card flashcard retrieval pass, weak-list repair, two cross-week mocks, verbatim D1–D4 diagnostic re-run, and the final Interview-Readiness rubric (Delta-vs-Day-0)
+
+### Corrected (see Errata register below for full status)
+- Errata #1 (LRU cache eviction bug) — fixed and verified, Week 1
+- Errata #6 (monotonic-stack diagram/code contradiction) — corrected and explained as a structural impossibility (a values-only stack cannot recover the index the answer requires), Week 2
+
+### Known gap
+- Errata #7 (topological-sort diagram depicting a cycle) was scheduled for Week 4 in the original register, but Week 4's actual deliverable (LC 210, Kahn's algorithm) implemented topological sort correctly without explicitly calling out or correcting the specific diagram defect from the audit. Left open below rather than marked fixed, since the specific documentation error was not directly addressed.
 
 ---
 
@@ -62,13 +78,13 @@ Source: `~/Downloads/Java-Interview-Handbook/` — the only location these were 
 
 | # | Defect | Status |
 |---|---|---|
-| 1 | LRU cache `put()` evicts a valid entry on key update | Open — scheduled Week 1 |
+| 1 | LRU cache `put()` evicts a valid entry on key update | ✅ Fixed and verified — Week 1 (`study-packs/week-01/07-java-coding-practice.md`) |
 | 2 | Top-K relies on unspecified `PriorityQueue` iteration order | Open — scheduled Week 10 (Plan B) |
-| 3 | Backtracking `permute` uses `contains()`, wrong on duplicate inputs | Open — scheduled Plan B Week 7 |
+| 3 | Backtracking `permute` uses `contains()`, wrong on duplicate inputs | In progress — Plan B Week 7 |
 | 4 | Greedy comparator `a[1]-b[1]` integer-subtraction overflow | Open |
 | 5 | Suffix array presented as efficient without an O(n² log n) caveat | Open — deferred |
-| 6 | Monotonic stack diagram (indices) contradicts code (values) | Open — scheduled Week 2 |
-| 7 | Topological-sort diagram depicts a cycle while asserting a valid order exists | Open — scheduled Week 4 |
+| 6 | Monotonic stack diagram (indices) contradicts code (values) | ✅ Fixed and explained — Week 2 (`study-packs/week-02/07-java-coding-practice.md`) |
+| 7 | Topological-sort diagram depicts a cycle while asserting a valid order exists | **Still open** — Week 4 implemented topological sort correctly (LC 210) but did not explicitly correct this specific documentation defect; corrected here rather than silently marked done |
 
 Also open: incorrect thread-lifecycle states (missing `TIMED_WAITING`), `volatile` reduced to "prevents caching" instead of happens-before, CMS listed without noting removal in JDK 14, inverted `Set` hierarchy diagram, `NavigableSet` miscategorized as a peer implementation, correlated-hash Bloom filter.
 
