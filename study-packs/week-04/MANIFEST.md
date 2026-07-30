@@ -7,7 +7,7 @@ last_reviewed: 2026-07-29
 # Week 4 Study Pack — Manifest
 
 **Topics:** T-804, T-909, T-803, T-1504, T-1207 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 11 (+ this manifest) · **Total words:** 9,911 (real count, `wc -w` over all 11 files)
+**Files:** 11 (+ this manifest) · **Total words:** 6,233 (real count, `wc -w` over all 11 files; updated 2026-07-30 after T-804, T-909, and T-803 were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
 
 ---
 
@@ -16,9 +16,9 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 688 |
-| 2 | `01-caching-strategies.md` | T-804 — full chapter, real cache-stampede reproduction | 2,196 |
-| 3 | `02-distributed-failure-modes.md` | T-909 — full chapter, real retry-storm and fencing-token reproductions | 1,979 |
-| 4 | `03-api-design.md` | T-803 — full chapter, real OFFSET-vs-keyset pagination measurement | 1,508 |
+| 2 | `01-caching-strategies.md` | T-804 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/caching-strategies-and-invalidation.md` | 667 |
+| 3 | `02-distributed-failure-modes.md` | T-909 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/distributed-systems-failure-modes.md` | 730 |
+| 4 | `03-api-design.md` | T-803 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/api-design.md` | 615 |
 | 5 | `04-java-coding-practice.md` | 5 graph problems, all compiled and run | 938 |
 | 6 | `05-flashcards.md` | 16 cards | 466 |
 | 7 | `06-failure-modes-deliverable.md` | `failure-modes.md` template + fully worked example | 604 |

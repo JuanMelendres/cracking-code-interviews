@@ -48,9 +48,9 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-caching-strategies.md` | T-804 — full chapter, 2 real executed demos (cache stampede, and pagination as a caching-adjacent read-scaling technique) |
-| 3 | `02-distributed-failure-modes.md` | T-909 — full chapter, 2 real executed demos (retry storm, fencing tokens) |
-| 4 | `03-api-design.md` | T-803 — full chapter |
+| 2 | `01-caching-strategies.md` | T-804 — summary + link; full chapter now canonical at `handbook/system-design/caching-strategies-and-invalidation.md` |
+| 3 | `02-distributed-failure-modes.md` | T-909 — summary + link; full chapter now canonical at `handbook/system-design/distributed-systems-failure-modes.md` |
+| 4 | `03-api-design.md` | T-803 — summary + link; full chapter now canonical at `handbook/system-design/api-design.md` |
 | 5 | `04-java-coding-practice.md` | 5 graph problems, all compiled and run, Union-Find and topological sort from scratch |
 | 6 | `05-flashcards.md` | 16 cards |
 | 7 | `06-failure-modes-deliverable.md` | The `failure-modes.md` template + a fully worked example |
