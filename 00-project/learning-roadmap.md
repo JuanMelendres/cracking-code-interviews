@@ -1,6 +1,6 @@
 # 00 · Learning Roadmap
 ### Java-Interview-Handbook · Phase 3
-**Built on:** `00-Knowledge-Base-Audit-Report.md` · `01-Knowledge-Architecture-Blueprint.md` · `Blueprint-v1.1-Corrections.md`
+**Built on:** `knowledge-base-audit.md` · `knowledge-architecture-blueprint.md` · `blueprint-v1.1-corrections.md`
 **Optimized for:** an engineer **actively interviewing now** for Senior Java Backend roles
 **Date:** 28 July 2026
 
@@ -771,7 +771,7 @@ Every week produces artifacts. This is how progress is measured rather than felt
 
 ## Phase 3 Complete — Awaiting Approval
 
-**Deliverables:** `Blueprint-v1.1-Corrections.md` · `00-Roadmap.md`
+**Deliverables:** `blueprint-v1.1-corrections.md` · `learning-roadmap.md`
 
 **Proposed Phase 4:** begin handbook chapters, in Week 1 dependency order — `07-Architecture/01-clean-hexagonal.md` (T-901) and `08-Database/03-index-structures.md` (T-609) first, since those are what Week 1 requires.
 

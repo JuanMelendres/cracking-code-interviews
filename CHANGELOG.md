@@ -139,10 +139,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-11/01-test-strategy-and-test-doubles.md` through `05-performance-methodology-and-slo-error-budgets.md` — slimmed to a per-section summary + link to their new canonical chapters, numbered headings kept stable because `MANIFEST.md` cites `02-integration-testing-against-real-dependencies.md` §4 directly.
 - `study-packs/week-11/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (13,357 → 7,635 total words, verified; all five Week 11 T-topics now summary + canonical-link).
 
+### Fixed
+- `00-project/knowledge-architecture-blueprint.md`, `blueprint-v1.1-corrections.md`, `learning-roadmap.md` — the six navigational self-references among the four Phase 1–3 documents (`Foundation document:`, `Supersedes:`, `Built on:`, `Deliverables:`, and two "structure it implements"/"proceed to" mentions) updated from their pre-normalization filenames (`00-Knowledge-Base-Audit-Report.md`, `01-Knowledge-Architecture-Blueprint.md`, `Blueprint-v1.1-Corrections.md`, `00-Roadmap.md`) to the real, current kebab-case filenames (`knowledge-base-audit.md`, `knowledge-architecture-blueprint.md`, `blueprint-v1.1-corrections.md`, `learning-roadmap.md`). `knowledge-architecture-blueprint.md` §9's proposed-TOC narrative (its old `00-Roadmap.md`/`01-Java-Core/`-style structure diagram, explicitly retained in full as historical record) and `learning-roadmap.md`'s old-folder-scheme chapter-path preview (`07-Architecture/01-clean-hexagonal.md`) were deliberately left untouched, per `CLAUDE.md`'s own instruction to interpret pre-normalization folder names conceptually rather than rewrite historical planning artifacts.
+
 ### Planned
 - Next Phase 5 chapter group: TBD
 - Next Phase 5 chapter group: TBD
-- `fix/normalize-cross-references` — the four Phase 1–3 documents cross-reference each other by their pre-normalization filenames in prose (inside backticks, not Markdown links, so nothing is broken, but the names no longer match)
 
 ---
 

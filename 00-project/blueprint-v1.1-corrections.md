@@ -1,6 +1,6 @@
 # Blueprint v1.1 — Corrections
 ### Java-Interview-Handbook · Amendments to Phase 2
-**Supersedes:** relevant sections of `01-Knowledge-Architecture-Blueprint.md`
+**Supersedes:** relevant sections of `knowledge-architecture-blueprint.md`
 **Date:** 28 July 2026
 **Method:** all figures recomputed programmatically; no hand-derived rankings
 
@@ -190,7 +190,7 @@ This is documented rather than silently discarded because the negative result is
 | **1 · Mandatory Core** | Ranked by **Weighted IWI** (`IWI × Gap`), cost-blind | Must appear in the plan regardless of expense |
 | **2 · Efficiency Fill** | Ranked by **Readiness RoS** | Fills remaining capacity; maximises value per residual hour |
 
-Magnitude decides *inclusion*. Efficiency decides *ordering within available time*. This mirrors standard knapsack practice — take the mandatory items, then fill by density — and it is the structure `00-Roadmap.md` implements.
+Magnitude decides *inclusion*. Efficiency decides *ordering within available time*. This mirrors standard knapsack practice — take the mandatory items, then fill by density — and it is the structure `learning-roadmap.md` implements.
 
 ### 2.4 Mandatory Core — top 20 by Weighted IWI
 
@@ -368,4 +368,4 @@ Bands are now expressed as **ordinal likelihood**, not percentages:
 
 ---
 
-**Blueprint v1.1 complete.** Proceed to `00-Roadmap.md`.
+**Blueprint v1.1 complete.** Proceed to `learning-roadmap.md`.

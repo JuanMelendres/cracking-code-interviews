@@ -1,6 +1,6 @@
 # Knowledge Architecture Blueprint
 ### Java-Interview-Handbook — Phase 2
-**Foundation document:** `00-Knowledge-Base-Audit-Report.md`
+**Foundation document:** `knowledge-base-audit.md`
 **Date:** 28 July 2026
 **Target calibration:** Senior Backend Engineer (L5) / Staff Engineer (L6)
 **Status:** Blueprint only — no chapters generated
