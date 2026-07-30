@@ -86,6 +86,8 @@ Source: `~/Downloads/Java-Interview-Handbook/` — the only location these were 
 | 6 | Monotonic stack diagram (indices) contradicts code (values) | ✅ Fixed and explained — Week 2 (`study-packs/week-02/07-java-coding-practice.md`) |
 | 7 | Topological-sort diagram depicts a cycle while asserting a valid order exists | **Still open** — Week 4 implemented topological sort correctly (LC 210) but did not explicitly correct this specific documentation defect; corrected here rather than silently marked done |
 
-Also open: incorrect thread-lifecycle states (missing `TIMED_WAITING`), `volatile` reduced to "prevents caching" instead of happens-before, CMS listed without noting removal in JDK 14, inverted `Set` hierarchy diagram, `NavigableSet` miscategorized as a peer implementation, correlated-hash Bloom filter.
+Also open: CMS listed without noting removal in JDK 14, inverted `Set` hierarchy diagram, `NavigableSet` miscategorized as a peer implementation, correlated-hash Bloom filter.
 
-None of these are fixed yet — they are documented so the wrong versions get explicitly unlearned when each topic is written, per the audit's recommendation.
+✅ Fixed — Week 9 (`study-packs/week-09/01-java-memory-model-and-volatile.md`, `03-deadlock-races-and-thread-diagnostics.md`): incorrect thread-lifecycle states (missing `TIMED_WAITING`) and `volatile` reduced to "prevents caching" instead of happens-before. Both corrected with real, executed evidence — the real six-value `Thread.State` enum printed from a running JVM, and a reliably-reproducing (3/3 runs) visibility-failure demonstration showing what "prevents caching" gets wrong about the actual mechanism (compiler/JIT reordering, not CPU cache coherence).
+
+The remaining items above are not fixed yet — they are documented so the wrong versions get explicitly unlearned when each topic is written, per the audit's recommendation.
