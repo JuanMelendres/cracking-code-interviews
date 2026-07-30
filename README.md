@@ -26,10 +26,10 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 
 | | |
 |---|---|
-| **Phase** | **Plan A complete (Weeks 1–6). Plan B underway, Week 11 done.** |
-| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-11`, in full** |
-| **In progress** | Plan B, Week 12 (Full Loop Simulation — no new topics, final readiness assessment) |
-| **Not started** | Handbook chapters · interview playbook (beyond what's embedded in study packs) |
+| **Phase** | **Plan A and Plan B complete (Weeks 1–12). Study-pack sprint done — final readiness self-assessment pending in `study-packs/week-12/06-final-readiness-assessment.md`.** |
+| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-12`, in full** |
+| **In progress** | Phase 5 (per `CLAUDE.md`): canonical `handbook/` chapters for the full 198-topic register |
+| **Not started** | Interview playbook, Architecture Atlas, Production Cookbook, Behavioral Handbook (beyond what's embedded in study packs) |
 | **Topic register** | 198 topics scored across 16 domains |
 | **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the full register |
 
@@ -54,10 +54,9 @@ Weeks 1–6 total **~60,400 words** across 74 chapter files, with every technica
 cracking-code-interviews/
 ├── 00-project/             Audit, blueprint, corrections, roadmap  (the "why")
 ├── study-packs/            Week-by-week execution material         (the "do this week")
-│   ├── week-01..06/        Plan A — complete
-│   ├── week-07..11/        Plan B — complete
-│   └── week-12../          Plan B — in progress (final)
-├── handbook/               Durable technical reference by domain   (the "look it up")
+│   └── week-01..12/        Plan A + Plan B — complete
+├── handbook/               Durable technical reference by domain   (the "look it up",
+│                           Phase 5 — canonical chapters, next up)
 ├── interview-playbook/     How to communicate answers              (the "say it well")
 ├── practice/               Runnable Java, SQL, design exercises    (the "do it")
 ├── flashcards/             Spaced-repetition cards
