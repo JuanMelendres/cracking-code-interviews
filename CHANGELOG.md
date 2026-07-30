@@ -110,6 +110,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-10/02-sharding-and-partitioning-strategies.md`, `04-resilience-patterns.md`, `05-zero-downtime-migration.md` — slimmed to a per-section summary + link to their new canonical chapters, numbered headings kept stable because `10-design-exercise-distributed-cache.md` cites `04-resilience-patterns.md` §5's bulkhead discussion directly.
 - `study-packs/week-10/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (12,453 → 8,807 total words, verified; all five Week 10 T-topics now summary + canonical-link).
 
+- Thirteenth Phase 5 chapter group — completes Week 2's remaining topics:
+  - `handbook/databases/data-modelling-and-explicit-join-tables.md` (T-605/T-608, IWI 5.20) — the naive-vs-explicit-join-entity trap, the precise "as of formation time" trigger, and a real measured price-history data-integrity bug
+  - `handbook/architecture/ddd-tactical-design-aggregates.md` (T-903, IWI 7.25) — aggregate root/boundary, the sizing rule, repository-per-aggregate, aggregate boundaries as future service boundaries
+  - `handbook/system-design/storage-selection-tradeoffs.md` (T-617/T-811, IWI 6.90) — the access-pattern method, relational/document/key-value/wide-column trade-offs, polyglot persistence as a cost/benefit call
+  - `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` (T-1505/T-916, IWI 8.10, the highest-IWI single item in the interview-feedback register) — the four-beat trade-off structure and ADRs as its written form; the first entry in `interview-playbook/technical-answers/`
+  - All four cross-linked to each other and to prior chapters (data modelling ↔ aggregates, storage selection ↔ consistent hashing)
+
+### Changed (continued)
+- `study-packs/week-02/02-data-modelling-join-tables.md`, `03-ddd-tactical-aggregates.md`, `04-storage-selection-tradeoffs.md`, `05-trade-off-narration-and-adrs.md` — slimmed to a per-section summary + link to their new canonical chapters, numbered headings kept stable because `06-answer-frameworks.md` cites §3 of the first and last directly, and `week-03/08-design-exercise-ride-hailing.md` cites §3 of the third.
+- `study-packs/week-02/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (11,303 → 7,908 total words, verified; all six Week 2 T-topics now summary + canonical-link).
+
 ### Planned
 - Next Phase 5 chapter group: TBD
 - Next Phase 5 chapter group: TBD

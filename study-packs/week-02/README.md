@@ -52,10 +52,10 @@ graph LR
 |---|---|---|
 | 1 | `README.md` | This file |
 | 2 | `01-query-planning-and-explain.md` | T-610 — full chapter, 3 real diagnosed query plans |
-| 3 | `02-data-modelling-join-tables.md` | T-605/T-608 — full chapter, real executed many-to-many demonstration |
-| 4 | `03-ddd-tactical-aggregates.md` | T-903 — full chapter |
-| 5 | `04-storage-selection-tradeoffs.md` | T-617/T-811 — full chapter |
-| 6 | `05-trade-off-narration-and-adrs.md` | T-1505/T-916 — the four-beat structure |
+| 3 | `02-data-modelling-join-tables.md` | T-605/T-608 — summary + link; full chapter now canonical at `handbook/databases/data-modelling-and-explicit-join-tables.md` |
+| 4 | `03-ddd-tactical-aggregates.md` | T-903 — summary + link; full chapter now canonical at `handbook/architecture/ddd-tactical-design-aggregates.md` |
+| 5 | `04-storage-selection-tradeoffs.md` | T-617/T-811 — summary + link; full chapter now canonical at `handbook/system-design/storage-selection-tradeoffs.md` |
+| 6 | `05-trade-off-narration-and-adrs.md` | T-1505/T-916 — summary + link; full chapter now canonical at `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` |
 | 7 | `06-answer-frameworks.md` | Nine-layer treatment for this week's Deep topics |
 | 8 | `07-java-coding-practice.md` | 8 problems, all compiled and run, plus the monotonic-stack errata |
 | 9 | `08-flashcards.md` | 14 cards for this week's Deep topics |
