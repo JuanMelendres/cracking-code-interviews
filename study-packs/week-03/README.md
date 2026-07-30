@@ -56,7 +56,7 @@ graph LR
 | 1 | `README.md` | This file |
 | 2 | `01-transactions-and-propagation.md` | T-503/504/505 — full chapter, 5 real executed Spring demos |
 | 3 | `02-isolation-levels-and-write-skew.md` | T-611 — full chapter, real write-skew reproduction and prevention |
-| 4 | `03-system-design-method.md` | T-801/802 — the six-phase procedure and estimation math |
+| 4 | `03-system-design-method.md` | T-801/802 — summary + link; full chapter now canonical at `handbook/system-design/system-design-method-and-estimation.md` |
 | 5 | `04-java-coding-practice.md` | 6 tree problems, all compiled and run |
 | 6 | `05-flashcards.md` | 16 cards |
 | 7 | `06-week-3-checkpoint-mock.md` | The 60-minute combined technical/design checkpoint round |

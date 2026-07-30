@@ -8,7 +8,7 @@ last_reviewed: 2026-07-29
 # Week 3 Study Pack — Manifest
 
 **Topics:** T-503, T-504, T-505, T-611, T-801, T-802 · **Plan:** A (Interview Emergency Sprint) · default workload 20h · **⚑ Checkpoint week**
-**Files:** 11 (+ this manifest) · **Total words:** 11,412 (real count, `wc -w` over all 11 files)
+**Files:** 11 (+ this manifest) · **Total words:** 7,203 (real count, `wc -w` over all 11 files; updated 2026-07-30 after `01-transactions-and-propagation.md`, `02-isolation-levels-and-write-skew.md`, and `03-system-design-method.md` were slimmed to summaries + canonical-chapter links — see `CHANGELOG.md`)
 
 ---
 
@@ -17,9 +17,9 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, checkpoint summary, exit criteria | 867 |
-| 2 | `01-transactions-and-propagation.md` | T-503/504/505 — full chapter, 6 real executed Spring demos | 2,601 |
-| 3 | `02-isolation-levels-and-write-skew.md` | T-611 — full chapter, real write-skew reproduction and prevention | 1,966 |
-| 4 | `03-system-design-method.md` | T-801/802 — six-phase method, worked estimation | 1,840 |
+| 2 | `01-transactions-and-propagation.md` | T-503/504/505 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/spring/transactional-proxy-mechanics-and-propagation.md` | 894 |
+| 3 | `02-isolation-levels-and-write-skew.md` | T-611 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/isolation-levels-and-concurrency-anomalies.md` | 708 |
+| 4 | `03-system-design-method.md` | T-801/802 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/system-design-method-and-estimation.md` | 596 |
 | 5 | `04-java-coding-practice.md` | 6 tree problems, all compiled and run | 1,033 |
 | 6 | `05-flashcards.md` | 16 cards | 421 |
 | 7 | `06-week-3-checkpoint-mock.md` | 60-min combined checkpoint round | 489 |
