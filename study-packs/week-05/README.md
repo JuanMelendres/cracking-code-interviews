@@ -49,9 +49,9 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-microservice-decomposition.md` | T-907/908 — full chapter |
-| 3 | `02-idempotency.md` | T-809 — full chapter, real executed idempotency-key mechanism against PostgreSQL |
-| 4 | `03-cap-and-consistency.md` | T-807 — full chapter |
+| 2 | `01-microservice-decomposition.md` | T-907/908 — summary + link; full chapter now canonical at `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md` |
+| 3 | `02-idempotency.md` | T-809 — summary + link; full chapter now canonical at `handbook/system-design/idempotency.md` |
+| 4 | `03-cap-and-consistency.md` | T-807 — summary + link; full chapter now canonical at `handbook/system-design/cap-theorem-and-consistency-models.md` |
 | 5 | `04-java-coding-practice.md` | LC 380, 706, 622 — all compiled and run, including the exact audited Circular Queue errata fix |
 | 6 | `05-flashcards.md` | 14 cards |
 | 7 | `06-decomposition-analysis-deliverable.md` | `decomposition-analysis.md` template + worked example, counter-argument included |

@@ -7,7 +7,7 @@ last_reviewed: 2026-07-29
 # Week 5 Study Pack — Manifest
 
 **Topics:** T-907, T-908, T-809, T-807, T-1503 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 12 (+ this manifest) · **Total words:** 9,853 (real count, `wc -w` over all 12 files)
+**Files:** 12 (+ this manifest) · **Total words:** 6,584 (real count, `wc -w` over all 12 files; updated 2026-07-30 after T-907/908, T-809, and T-807 were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
 
 ---
 
@@ -16,9 +16,9 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 725 |
-| 2 | `01-microservice-decomposition.md` | T-907/908 — full chapter | 1,812 |
-| 3 | `02-idempotency.md` | T-809 — full chapter, real executed mechanism against PostgreSQL | 1,610 |
-| 4 | `03-cap-and-consistency.md` | T-807 — full chapter | 1,653 |
+| 2 | `01-microservice-decomposition.md` | T-907/908 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md` | 599 |
+| 3 | `02-idempotency.md` | T-809 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/idempotency.md` | 617 |
+| 4 | `03-cap-and-consistency.md` | T-807 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/cap-theorem-and-consistency-models.md` | 590 |
 | 5 | `04-java-coding-practice.md` | LC 380, 706, 622, all compiled and run | 674 |
 | 6 | `05-flashcards.md` | 14 cards | 377 |
 | 7 | `06-decomposition-analysis-deliverable.md` | Template + worked example with genuine counter-argument | 827 |
