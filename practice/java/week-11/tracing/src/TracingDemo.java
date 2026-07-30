@@ -43,7 +43,7 @@ public class TracingDemo {
             // propagates up through both spans' status
             Span payment = tracer.spanBuilder("payment-service.charge").startSpan();
             try (Scope s = payment.makeCurrent()) {
-                Span dbCall = tracer.spanBuilder("payment-db.insert").setParent(io.opentelemetry.context.Context.current()).startSpan();
+                Span dbCall = tracer.spanBuilder("payment-db.insert").startSpan(); // parent is implicit: payment's Scope is current
                 try (Scope dbScope = dbCall.makeCurrent()) {
                     Thread.sleep(8);
                     dbCall.setStatus(StatusCode.ERROR, "connection pool exhausted");
