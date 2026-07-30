@@ -1,7 +1,7 @@
 # Week 1 Study Pack — Manifest
 
 **Topics:** T-901, T-609, T-1601, T-1501, T-1419 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 13 (+ this manifest) · **Total words:** 11,788 (real count, `wc -w` over all 13 files, run at commit time)
+**Files:** 13 (+ this manifest) · **Total words:** 9,428 (real count, `wc -w` over all 13 files, re-run 2026-07-30 after both T-609 and T-901 were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`. The previously-flagged stale count on row 2 is resolved as part of this pass: `01-clean-hexagonal-architecture.md` is now itself a slimmed file with a freshly counted word total, not the old, never-corrected 1,972 figure)
 
 ---
 
@@ -10,8 +10,8 @@
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, daily schedule, 10/20/30h variants, exit criteria, recording protocol | 901 |
-| 2 | `01-clean-hexagonal-architecture.md` | T-901 — full chapter | 1,972 |
-| 3 | `02-database-index-fundamentals.md` | T-609 — full chapter, real executed PostgreSQL lab embedded | 2,204 |
+| 2 | `01-clean-hexagonal-architecture.md` | T-901 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/architecture/clean-hexagonal-architecture.md` | 934 |
+| 3 | `02-database-index-fundamentals.md` | T-609 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/index-structures-btree-composite-covering.md` | 882 |
 | 4 | `03-technical-answer-framework.md` | T-1601 — nine-layer stack, worked in full for T-901 | 1,080 |
 | 5 | `04-coding-interview-communication.md` | T-1419 — six-phase protocol + 3 annotated failure transcripts | 718 |
 | 6 | `05-star-story-workbook.md` | T-1501 — structure + blank worksheets, no invented stories | 713 |
@@ -30,7 +30,7 @@
 | Item | Status |
 |---|---|
 | Java code | **Executed.** OpenJDK 21.0.12 (Homebrew). `18/18` assertions pass, including a live reproduction of the LRU errata bug. Source: `practice/java/week-01/src/*.java`. Full output: `practice/java/week-01/README.md`. Reproduce: `cd practice/java/week-01 && mkdir -p out && javac -d out src/*.java && java -cp out Main` |
-| SQL / PostgreSQL lab | **Executed.** PostgreSQL 16 via Docker, disposable container, 300,000-row seeded `orders` table. Every `EXPLAIN (ANALYZE, BUFFERS)` block quoted in `02-database-index-fundamentals.md` is real, not illustrative. Source: `practice/sql/week-01/index-lab.sql`. Full output: `practice/sql/week-01/index-lab-output.txt`. Reproduce: see `practice/sql/week-01/README.md` |
+| SQL / PostgreSQL lab | **Executed.** PostgreSQL 16 via Docker, disposable container, 300,000-row seeded `orders` table. Every `EXPLAIN (ANALYZE, BUFFERS)` block quoted (now in the canonical chapter, `handbook/databases/index-structures-btree-composite-covering.md`) is real, not illustrative. Source: `practice/sql/week-01/index-lab.sql`. Full output: `practice/sql/week-01/index-lab-output.txt`. Reproduce: see `practice/sql/week-01/README.md` |
 | Interview statistics | **None invented.** No frequency percentages, benchmark numbers, or company-specific claims anywhere in this pack |
 | Production examples | Supplied as templates with extraction prompts (`01-…` §6, `06-…` §1) — never fabricated as if real |
 | Personal experience / STAR stories | **Not invented.** `05-star-story-workbook.md` is blank worksheets only |

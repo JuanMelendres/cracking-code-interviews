@@ -31,7 +31,7 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-clean-hexagonal-architecture.md` | T-901 — full chapter: concept, internals, trade-offs, interview Q&A, exercises |
+| 2 | `01-clean-hexagonal-architecture.md` | T-901 — summary + link; full chapter now canonical at `handbook/architecture/clean-hexagonal-architecture.md` |
 | 3 | `02-database-index-fundamentals.md` | T-609 — full chapter, with a real, executed PostgreSQL `EXPLAIN` lab |
 | 4 | `03-technical-answer-framework.md` | T-1601 — the nine-layer answer stack, worked in full for T-901 |
 | 5 | `04-coding-interview-communication.md` | T-1419 — six-phase narration protocol |
