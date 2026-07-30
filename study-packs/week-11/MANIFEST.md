@@ -8,7 +8,7 @@ last_reviewed: 2026-07-29
 # Week 11 Study Pack — Manifest
 
 **Topics:** T-1101, T-1103, T-1104, T-1201, T-1204, T-1205, T-1206 · **Plan:** B, Testing, Observability, Performance
-**Files:** 12 (+ this manifest) · **Total words:** 13,357 (real count, `wc -w` over all 12 files)
+**Files:** 12 (+ this manifest) · **Total words:** 7,635 (real count, `wc -w` over all 12 files; updated 2026-07-30 after all five T-topics were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
 
 ---
 
@@ -17,11 +17,11 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 719 |
-| 2 | `01-test-strategy-and-test-doubles.md` | T-1101/1103 — full chapter, real Mockito unit test | 1,726 |
-| 3 | `02-integration-testing-against-real-dependencies.md` | T-1104 — full chapter, real Postgres integration test | 1,644 |
-| 4 | `03-percentiles-tail-latency-and-coordinated-omission.md` | T-1204 — full chapter, real closed-loop vs. open-loop measurement | 1,622 |
-| 5 | `04-logging-metrics-tracing-and-opentelemetry.md` | T-1205 — full chapter, real 4-span OpenTelemetry trace | 1,701 |
-| 6 | `05-performance-methodology-and-slo-error-budgets.md` | T-1201/1206 — full chapter, real 30-day error-budget simulation | 1,963 |
+| 2 | `01-test-strategy-and-test-doubles.md` | T-1101/1103 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/testing/test-strategy-and-test-doubles.md` | 567 |
+| 3 | `02-integration-testing-against-real-dependencies.md` | T-1104 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/testing/integration-testing-against-real-dependencies.md` | 617 |
+| 4 | `03-percentiles-tail-latency-and-coordinated-omission.md` | T-1204 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` | 580 |
+| 5 | `04-logging-metrics-tracing-and-opentelemetry.md` | T-1205 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/performance/logging-metrics-tracing-and-opentelemetry.md` | 550 |
+| 6 | `05-performance-methodology-and-slo-error-budgets.md` | T-1201/1206 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/performance/performance-methodology-and-slo-error-budgets.md` | 620 |
 | 7 | `06-java-coding-practice.md` | 15-problem mixed review, all compiled and run | 1,020 |
 | 8 | `07-flashcards.md` | 16 cards | 525 |
 | 9 | `08-week-11-mock-behavioral.md` | 45-min behavioral mock, full 6-question set + retrofit checklist | 621 |

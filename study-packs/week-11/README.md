@@ -50,11 +50,11 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-test-strategy-and-test-doubles.md` | T-1101/1103 — full chapter, real Mockito unit test |
-| 3 | `02-integration-testing-against-real-dependencies.md` | T-1104 — full chapter, real Postgres integration test |
-| 4 | `03-percentiles-tail-latency-and-coordinated-omission.md` | T-1204 — full chapter, real closed-loop vs. open-loop measurement |
-| 5 | `04-logging-metrics-tracing-and-opentelemetry.md` | T-1205 — full chapter, real 4-span OpenTelemetry trace |
-| 6 | `05-performance-methodology-and-slo-error-budgets.md` | T-1201/1206 — full chapter, real 30-day error-budget simulation |
+| 2 | `01-test-strategy-and-test-doubles.md` | T-1101/1103 — summary + link; full chapter now canonical at `handbook/testing/test-strategy-and-test-doubles.md` |
+| 3 | `02-integration-testing-against-real-dependencies.md` | T-1104 — summary + link; full chapter now canonical at `handbook/testing/integration-testing-against-real-dependencies.md` |
+| 4 | `03-percentiles-tail-latency-and-coordinated-omission.md` | T-1204 — summary + link; full chapter now canonical at `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` |
+| 5 | `04-logging-metrics-tracing-and-opentelemetry.md` | T-1205 — summary + link; full chapter now canonical at `handbook/performance/logging-metrics-tracing-and-opentelemetry.md` |
+| 6 | `05-performance-methodology-and-slo-error-budgets.md` | T-1201/1206 — summary + link; full chapter now canonical at `handbook/performance/performance-methodology-and-slo-error-budgets.md` |
 | 7 | `06-java-coding-practice.md` | 15-problem mixed review, all compiled and run |
 | 8 | `07-flashcards.md` | 16 cards |
 | 9 | `08-week-11-mock-behavioral.md` | 45-min behavioral mock, full 6-question set + retrofit checklist |

@@ -127,6 +127,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-01/01-clean-hexagonal-architecture.md` — slimmed to a per-section summary + link to its new canonical chapter, numbered headings kept stable (17 sections, same order) because `03-technical-answer-framework.md`, `06-domain-purity-exercise.md`, `09-week-1-mock-interview.md`, `11-week-1-checklist.md`, and `README.md` all cite §1, §3, §4, and §7 directly.
 - `study-packs/week-01/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (11,811 → 9,428 total words, verified). This also resolves the previously-flagged stale word count on this file (was 1,972, silently out of date against the file's actual 3,317 pre-slim word count) — the row now reflects a freshly counted, correct total for the slimmed file. Both of Week 1's technical-domain T-topics (T-901, T-609) are now summary + canonical-link; the remaining three (T-1601, T-1501, T-1419) are interview-craft/behavioral framework content with no separate deeper duplicate elsewhere, so they are left as their own primary source rather than hollowed out.
 
+- Fourteenth Phase 5 chapter group — opens the `handbook/testing/` and `handbook/performance/` domains from Week 11:
+  - `handbook/testing/test-strategy-and-test-doubles.md` (T-1101/T-1103, IWI 7.00/6.40) — a mock verifying interaction not just outcome, the pyramid vs. the ice-cream-cone anti-pattern, coverage as diagnostic not target
+  - `handbook/testing/integration-testing-against-real-dependencies.md` (T-1104, IWI 6.50) — a real Postgres-backed integration test, the Testcontainers-vs-manual-orchestration scoping note, flaky-test diagnosis via shared state
+  - `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` (T-1204, IWI 6.70) — real closed-loop-vs-open-loop measurement (p99 500ms → 830ms from correcting methodology alone), why average latency is close to useless
+  - `handbook/performance/logging-metrics-tracing-and-opentelemetry.md` (T-1205, IWI 6.90) — a real 4-span OpenTelemetry trace, the shared-`traceId` reconstruction mechanism, why logs/metrics/traces are complementary not redundant
+  - `handbook/performance/performance-methodology-and-slo-error-budgets.md` (T-1201/T-1206, IWI 6.90/6.80) — USE/RED applied retroactively to Week 9's GC log and Week 8's Kafka consumer group, a real 30-day error-budget simulation showing one incident consuming ~14% of a month's budget
+  - All five cross-linked to each other and to prior chapters (Clean/Hexagonal Architecture, GC log analysis, Kafka consumer groups, resilience patterns, executor sizing); all traces verified against `practice/java/week-11/` real executed output
+
+### Changed (continued)
+- `study-packs/week-11/01-test-strategy-and-test-doubles.md` through `05-performance-methodology-and-slo-error-budgets.md` — slimmed to a per-section summary + link to their new canonical chapters, numbered headings kept stable because `MANIFEST.md` cites `02-integration-testing-against-real-dependencies.md` §4 directly.
+- `study-packs/week-11/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (13,357 → 7,635 total words, verified; all five Week 11 T-topics now summary + canonical-link).
+
 ### Planned
 - Next Phase 5 chapter group: TBD
 - Next Phase 5 chapter group: TBD
