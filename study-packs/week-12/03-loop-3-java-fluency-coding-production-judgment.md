@@ -78,6 +78,18 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 
 ---
 
+## Pass / borderline / fail signals — Loop 3 overall
+
+**Pass:** all three rounds ≥4/5; Round 3's connection server dead server failure mode surfaces before the interviewer has to push for it.
+**Borderline:** Round 1 or Round 2 solid (≥4) but Round 3 only names failure modes when directly asked — a real gap between HAVING the production-judgment knowledge and VOLUNTEERING it, which is specifically what §8.6's scoring distinguishes between a 3 and a 4.
+**Fail:** Round 1 shows syntax hesitation or unjustified collection/concurrency choices (§8.5's own 1-2 band), or Round 2 fails to reach a working solution on either problem within time.
+
+## Remediation recommendations
+
+- **Round 1 weak:** these are fluency questions, not conceptual ones — the fix is repetition under time pressure (redo the same three questions again tomorrow, cold), not re-reading the source chapters.
+- **Round 2 weak:** if LC 973's heap-capped-at-k pattern didn't transfer from Week 10's LC 215/347, that's a real signal the PATTERN wasn't internalized, only the specific problem — redo both old and new problems back to back.
+- **Round 3 weak:** the message-durability failure mode is the same "outbox row persists until published" idea from Week 10 — if it didn't transfer to a new domain (chat) unprompted, re-read `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md` once, then redo Round 3 without notes.
+
 ## Debrief
 
 | Dimension | Score (1-5) | Evidence |

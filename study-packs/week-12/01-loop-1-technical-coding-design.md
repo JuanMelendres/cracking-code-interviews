@@ -84,6 +84,18 @@ Real, compiled reference solutions and full assertion output: `practice/java/wee
 
 ---
 
+## Pass / borderline / fail signals — Loop 1 overall
+
+**Pass:** all three rounds ≥4/5; distributed-enforcement trade-off in Round 3 named unprompted, not only after the interviewer's push.
+**Borderline:** 2 of 3 rounds ≥4, but the third stalls at 3 — most commonly Round 3's Round-3 distributed-enforcement question, which most first-time candidates hand-wave. Re-run this loop's Round 3 alone before moving on.
+**Fail:** any round ≤2 — a happy-path-only design, a coding solution that never compiles, or a technical answer that collapses at the first follow-up. Do not proceed to Loop 2 until the specific failed round is remediated (see below), since Loop 2 assumes this loop's baseline.
+
+## Remediation recommendations
+
+- **Round 1 weak:** re-read the specific cited chapter section (not the whole chapter) for the question that stalled, then redo that ONE question cold before moving on — don't re-study everything.
+- **Round 2 weak:** the deficit is almost always speed or narration, not correctness — redo the same problem narrating out loud, timed, before attempting a new one.
+- **Round 3 weak:** redo Round 3 alone, this exact prompt, before attempting Loop 2 — a rate-limiter redo with the distributed-enforcement answer prepared in advance confirms whether the gap was knowledge or delivery-under-pressure.
+
 ## Debrief
 
 Fill in immediately after, not from memory later:

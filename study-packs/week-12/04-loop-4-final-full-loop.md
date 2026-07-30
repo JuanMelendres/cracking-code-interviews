@@ -92,6 +92,21 @@ Push once, hard, on whichever beat is weakest live — a real interviewer does n
 
 ---
 
+## Pass / borderline / fail signals — Loop 4 overall
+
+**Pass:** all six §8 dimensions ≥4/5 — this IS the §8.7 final-loop bar; nothing else this pack produces matters more.
+**Borderline:** five of six ≥4, one dimension at exactly 3 — close enough that a single targeted re-run of the specific weak round (not the whole loop) is the right next step, not a full retake.
+**Fail:** two or more dimensions below 4, or any single dimension at 1-2 — treat this as genuine, useful signal that a real interview loop right now would likely not clear the bar, and prioritize the named gaps over attempting more mock loops.
+
+## Remediation recommendations
+
+- **§8.1/§8.5 (Round 1) weak:** identify which of the 3 chosen questions stalled and re-read ONLY that chapter's Interview Questions section — the goal is fixing the specific gap, not a general review pass.
+- **§8.2 (Round 2) weak:** if the bidirectional-BFS follow-up on LC 127 wasn't even attempted, that's an advanced-extension gap, not a base-solution gap — the base solution passing is still real progress; note the distinction in the scorecard's evidence column rather than treating the whole round as failed.
+- **§8.3/§8.6 (Round 3) weak:** the booking-Saga's per-step compensating actions are the single highest-value thing to re-drill — redo just that one sub-question (not the full six-phase design) until each step's compensation can be named without hesitation.
+- **§8.4 (Round 4) weak:** see Loop 2's Round 4 remediation — almost always rehearsal, not content, once a story is already built.
+
+---
+
 ## §8.7 Final scorecard
 
 This is the actual checkpoint artifact — fill in immediately, honestly, from THIS loop only:

@@ -100,6 +100,18 @@ Deliver ONE story, 4-beat structure (situation, task/decision, action, result), 
 
 ---
 
+## Pass / borderline / fail signals — Loop 2 overall
+
+**Pass:** all four rounds ≥4/5; Round 4's story cites the exact retrofitted number (an error-budget percentage or a specific percentile), not a rounded qualitative claim.
+**Borderline:** 3 of 4 rounds ≥4, with the weak round being Round 4 specifically going qualitative under pressure despite having the retrofitted version ready on paper — a delivery gap, not a knowledge gap, and the cheapest one to fix before Loop 3.
+**Fail:** Round 3's design collapses without the celebrity/hot-key-equivalent skew consideration ever surfacing even after the direct follow-up, or Round 1 fails to connect any answer back to its real measured evidence (treating Weeks 8-10's numbers as if they were never learned).
+
+## Remediation recommendations
+
+- **Round 1 weak:** these three questions each cite a specific real number from a specific prior chapter — if the number can't be recalled, that's a retrieval-practice gap, not a re-study gap; drill flashcards for that topic before re-attempting.
+- **Round 3 weak:** redo the web-crawler prompt alone, this time writing the domain-partitioning decision down BEFORE starting the six-phase narration, to separate "doesn't know the technique" from "doesn't apply it under time pressure."
+- **Round 4 weak:** re-deliver the exact same story once more, out loud, timed to 2 minutes — this is almost always a rehearsal gap, not a content gap, once the story itself is already built and retrofitted.
+
 ## Debrief
 
 | Dimension | Score (1-5) | Evidence |
