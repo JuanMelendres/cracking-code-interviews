@@ -94,6 +94,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-09/02-executors-and-thread-pool-sizing.md`, `04-virtual-threads.md`, `05-gc-fundamentals-and-log-analysis.md` — slimmed to a per-section summary + link to their new canonical `handbook/concurrency/` and `handbook/jvm/` chapters, numbered headings kept stable (no other Week 9 file cites specific §N sections of these three, only whole-file references).
 - `study-packs/week-09/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (11,816 → 8,526 total words, verified; all five Week 9 T-topics now summary + canonical-link).
 
+- Twelfth Phase 5 chapter group — completes Week 10's remaining topics:
+  - `handbook/databases/table-partitioning-and-sharding-strategies.md` (T-614, IWI 7.60) — real partition-pruning `EXPLAIN` measurement (0.727ms pruned vs. 2.667ms unpruned), shard-key-as-one-way-door, Postgres HASH partitioning's identical repartitioning cost to naive `hash % N`
+  - `handbook/system-design/resilience-patterns.md` (T-515, IWI 7.60) — real three-state circuit breaker cycle with measured latency savings, real retry-jitter-vs-no-jitter synchronized-storm demonstration, timeout-from-percentile and bulkhead framing; explicitly cross-linked to (and distinguished from) Distributed Systems Failure Modes' retry-amplification measurement
+  - `handbook/databases/zero-downtime-schema-migration.md` (T-616, IWI 7.30) — real 1943ms-vs-84ms blocking-vs-`CONCURRENTLY` index creation measurement, expand-contract for column/type changes, the dual-write phase's inherited atomicity hazard
+  - All three cross-linked to each other and to prior chapters (consistent hashing, executor sizing, distributed transactions/outbox); all traces verified against `practice/sql/week-10/sharding/`, `practice/java/week-10/resilience/`, and `practice/sql/week-10/zero-downtime-migration/` real executed output
+
+### Changed (continued)
+- `study-packs/week-10/02-sharding-and-partitioning-strategies.md`, `04-resilience-patterns.md`, `05-zero-downtime-migration.md` — slimmed to a per-section summary + link to their new canonical chapters, numbered headings kept stable because `10-design-exercise-distributed-cache.md` cites `04-resilience-patterns.md` §5's bulkhead discussion directly.
+- `study-packs/week-10/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (12,453 → 8,807 total words, verified; all five Week 10 T-topics now summary + canonical-link).
+
 ### Planned
 - Next Phase 5 chapter group: TBD
 - Next Phase 5 chapter group: TBD
