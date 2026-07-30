@@ -8,7 +8,7 @@ last_reviewed: 2026-07-29
 # Week 8 Study Pack — Manifest
 
 **Topics:** T-701, T-702, T-703, T-704, T-705 · **Plan:** B, first messaging-systems week
-**Files:** 12 (+ this manifest) · **Total words:** 10,798 (real count, `wc -w` over all 12 files)
+**Files:** 12 (+ this manifest) · **Total words:** 7,008 (real count, `wc -w` over all 12 files; updated 2026-07-30 after all four T-701/702/703/704/705 chapters were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
 
 ---
 
@@ -17,10 +17,10 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 665 |
-| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — full chapter, real partition-routing trace | 1,590 |
-| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — full chapter, real `acks`/idempotence + key trace | 1,534 |
-| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — full chapter, real rebalance trace | 1,350 |
-| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — full chapter, real at-least/at-most-once traces | 1,641 |
+| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/kafka-architecture-fundamentals.md` | 590 |
+| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/producer-semantics-and-partition-keys.md` | 578 |
+| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/consumer-groups-and-rebalancing.md` | 558 |
+| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/delivery-semantics-and-exactly-once.md` | 599 |
 | 6 | `05-java-coding-practice.md` | LC 70, 198, 322, 300, all compiled and run | 858 |
 | 7 | `06-flashcards.md` | 14 cards | 479 |
 | 8 | `07-kafka-guarantees-deliverable.md` | Guarantee table + full worked exit-criteria answers | 871 |

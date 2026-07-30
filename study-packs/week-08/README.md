@@ -50,10 +50,10 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — full chapter, real partition-routing trace against a live broker |
-| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — full chapter, real `acks`/idempotence config + partition-key trace |
-| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — full chapter, real consumer-group rebalance trace |
-| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — full chapter, real at-least-once/at-most-once traces |
+| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — summary + link; full chapter now canonical at `handbook/kafka/kafka-architecture-fundamentals.md` |
+| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — summary + link; full chapter now canonical at `handbook/kafka/producer-semantics-and-partition-keys.md` |
+| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — summary + link; full chapter now canonical at `handbook/kafka/consumer-groups-and-rebalancing.md` |
+| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — summary + link; full chapter now canonical at `handbook/kafka/delivery-semantics-and-exactly-once.md` |
 | 6 | `05-java-coding-practice.md` | LC 70, 198, 322, 300 (T-1411 DP part 1), all compiled and run |
 | 7 | `06-flashcards.md` | 14 cards |
 | 8 | `07-kafka-guarantees-deliverable.md` | `kafka-guarantees.md` template + full worked answers |
