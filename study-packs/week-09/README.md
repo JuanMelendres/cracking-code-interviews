@@ -52,11 +52,11 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-java-memory-model-and-volatile.md` | T-401/402 — full chapter, real reproducible visibility-failure demo, errata corrected |
-| 3 | `02-executors-and-thread-pool-sizing.md` | T-406 — full chapter, real unbounded-queue-trap and bounded-queue-with-rejection measurements |
-| 4 | `03-deadlock-races-and-thread-diagnostics.md` | T-409 — full chapter, real deadlock detection + measured race-condition loss, errata corrected |
-| 5 | `04-virtual-threads.md` | T-410 — full chapter, real scale (18x) and pinning (10x) measurements |
-| 6 | `05-gc-fundamentals-and-log-analysis.md` | T-303/306 — full chapter, real captured and read GC log |
+| 2 | `01-java-memory-model-and-volatile.md` | T-401/402 — summary + link; full chapter now canonical at `handbook/concurrency/java-memory-model-and-volatile.md` |
+| 3 | `02-executors-and-thread-pool-sizing.md` | T-406 — summary + link; full chapter now canonical at `handbook/concurrency/executors-and-thread-pool-sizing.md` |
+| 4 | `03-deadlock-races-and-thread-diagnostics.md` | T-409 — summary + link; full chapter now canonical at `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
+| 5 | `04-virtual-threads.md` | T-410 — summary + link; full chapter now canonical at `handbook/concurrency/virtual-threads.md` |
+| 6 | `05-gc-fundamentals-and-log-analysis.md` | T-303/306 — summary + link; full chapter now canonical at `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
 | 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 (concurrency) + LC 62/1143/416/5 (DP part 2), all compiled and run |
 | 8 | `07-flashcards.md` | 16 cards |
 | 9 | `08-week-9-checkpoint.md` | Full 3-round loop + the roadmap's own checkpoint scorecard |
