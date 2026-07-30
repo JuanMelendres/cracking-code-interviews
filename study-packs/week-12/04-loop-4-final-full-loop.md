@@ -16,7 +16,7 @@ rounds: 4
 
 1. [Round 1 — Technical depth + Java fluency (25 min)](#round-1--technical-depth--java-fluency-25-min)
 2. [Round 2 — Coding (20 min)](#round-2--coding-20-min)
-3. [Round 3 — System design + production judgment: payment processing (30 min)](#round-3--system-design--production-judgment-payment-processing-30-min)
+3. [Round 3 — System design + production judgment: hotel booking system (30 min)](#round-3--system-design--production-judgment-hotel-booking-system-30-min)
 4. [Round 4 — Behavioral (15 min)](#round-4--behavioral-15-min)
 5. [§8.7 Final scorecard](#87-final-scorecard)
 
@@ -58,23 +58,23 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 
 **Scoring:** §8.2, 1-5. **5 (Staff-adjacent bar):** discusses the bidirectional-BFS optimization for LC 127 unprompted when the follow-up is asked.
 
-## Round 3 — System design + production judgment: payment processing (30 min)
+## Round 3 — System design + production judgment: hotel booking system (30 min)
 
 ### Candidate section
 
-**Design a payment processing system** handling charge, refund, and payout flows across multiple payment providers, with strict no-double-charge and no-lost-payment guarantees. Full six-phase method — this is deliberately the week's most demanding design prompt, drawing directly on Weeks 8 and 10's material.
+**Design a hotel booking system** — search availability, hold a room, confirm the booking (payment + inventory decrement), with strict no-double-booking and no-lost-booking guarantees. Full six-phase method — this is deliberately the week's most demanding design prompt, drawing directly on Weeks 8 and 10's material.
 
 ### Interviewer section
 
 **Expected phase coverage:**
-- **Clarify:** synchronous charge confirmation required, or async-acceptable with a webhook/callback? Idempotency requirement on the client side (a retried charge request must not double-charge).
-- **Estimate:** peak charges/second; the ratio of charges to refunds/payouts (usually charges dominate heavily) should shape where the design invests most.
-- **Data:** a `payments` table + a transactional outbox (direct reuse of `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`) so "payment recorded" and "payment-event published to downstream systems (fraud check, ledger, notification)" are atomic — expect this named explicitly, not reinvented from scratch.
-- **Idempotency:** an idempotency key supplied by the CALLER (not generated server-side) so a network-retried charge request is recognized as a duplicate and returns the original result rather than double-charging — direct reuse of Week 5's idempotency material plus Week 10's outbox-consumer-must-be-idempotent lesson.
-- **Distributed transaction across providers:** if a single logical payment must debit one provider and credit another (a transfer), this is a Saga (`week-10/01` §5), with a named, concrete compensating action for a mid-sequence failure — NOT a 2PC across two external providers you don't control the internals of.
-- **Failure mode, pushed hardest:** the provider confirms the charge but the confirmation response is lost (network failure after the charge succeeded on the provider's side). Expect: this is EXACTLY the dual-write hazard shape, and the fix is the same family — a reconciliation job that queries the provider's own charge-status API for any payment left in an ambiguous state past a timeout, rather than assuming failure and double-charging.
+- **Clarify:** a booking is a MULTI-STEP flow across at least two resources (room inventory, payment) owned by different services — this is the central design fork, distinct from a single payment charge in isolation.
+- **Estimate:** peak search QPS vs. peak booking-confirmation QPS (search dominates heavily; the booking-confirmation path is lower volume but far higher consistency requirement).
+- **Data:** a room-inventory hold with a short TTL (reserve, don't commit, on search-to-cart) plus a transactional outbox (direct reuse of `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`) so "booking confirmed" and "booking-event published to downstream systems (confirmation email, loyalty points, partner notification)" are atomic — expect this named explicitly, not reinvented from scratch.
+- **Idempotency:** an idempotency key supplied by the CALLER on the confirm-booking call, so a network-retried confirmation is recognized as a duplicate and returns the original result rather than double-booking or double-charging — direct reuse of Week 5's idempotency material plus Week 10's outbox-consumer-must-be-idempotent lesson.
+- **Saga across services:** confirming a booking is exactly a Saga (`week-10/01` §5) — reserve room, charge payment, confirm booking; if the charge fails, the compensating action is releasing the room hold (a forward action, not a "rollback" of the reservation); if confirmation itself fails after a successful charge, the compensating action is a refund. Expect a named, concrete compensating action for EACH step, not one generic "roll it back."
+- **Failure mode, pushed hardest:** the payment provider confirms the charge but the confirmation response is lost before the booking service marks it charged. Expect: this is EXACTLY the dual-write hazard shape, and the fix is the same family — a reconciliation job querying the provider's own charge-status API for any booking left in an ambiguous state past a timeout, rather than assuming failure and re-charging.
 
-**Common weak answer:** doesn't distinguish "no double charge" (idempotency) from "no lost payment" (outbox/durability) as two separate guarantees needing two separate mechanisms.
+**Common weak answer:** treats the booking flow as one atomic operation rather than a Saga with per-step compensating actions, or doesn't distinguish "no double booking" (inventory hold + idempotency) from "no lost booking" (outbox/durability) as two separate guarantees needing two separate mechanisms.
 
 **Scoring:** §8.3 System Design AND §8.6 Production Judgment, both from this round. **4 (Senior bar) on 8.6 specifically:** names the ambiguous-confirmation failure mode unprompted, not only after the interviewer's push.
 

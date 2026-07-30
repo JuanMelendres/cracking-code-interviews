@@ -16,7 +16,7 @@ rounds: 3
 
 1. [Round 1 — Java fluency (18 min)](#round-1--java-fluency-18-min)
 2. [Round 2 — Coding (20 min)](#round-2--coding-20-min)
-3. [Round 3 — System design with production-judgment emphasis: news feed (22 min)](#round-3--system-design-with-production-judgment-emphasis-news-feed-22-min)
+3. [Round 3 — System design with production-judgment emphasis: real-time chat (22 min)](#round-3--system-design-with-production-judgment-emphasis-real-time-chat-22-min)
 4. [Debrief](#debrief)
 
 ---
@@ -57,20 +57,20 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 
 **Scoring:** §8.2, 1-5.
 
-## Round 3 — System design with production-judgment emphasis: news feed (22 min)
+## Round 3 — System design with production-judgment emphasis: real-time chat (22 min)
 
 ### Candidate section
 
-**Design a social media news feed** (like Twitter's home timeline) for 200M daily active users. Full six-phase method, but the interviewer will spend disproportionate time on Phase 6 (Bottlenecks) — prioritize accordingly if time is short.
+**Design a real-time chat/messaging system** (like WhatsApp — 1:1 and group messaging, delivery receipts, online presence) for 500M daily active users. Full six-phase method, but the interviewer will spend disproportionate time on Phase 6 (Bottlenecks) — prioritize accordingly if time is short.
 
 ### Interviewer section
 
 **Expected phase coverage:**
-- **Clarify:** push (fan-out-on-write, precompute each follower's feed) vs. pull (fan-out-on-read, compute at request time) — the central design fork.
-- **Estimate:** average follower count drives the fan-out cost; a small number of accounts with millions of followers ("celebrities") breaks the naive push model's assumptions.
-- **Architecture:** hybrid — push for most users, pull (merge at read time) for celebrity accounts, to avoid a single post fanning out to millions of precomputed feeds.
-- **Failure mode, pushed hard (this round's actual point):** what happens when the fan-out worker fleet falls behind during a viral event — is a delayed feed acceptable (probably yes, feeds aren't strictly real-time) versus a delayed payment (Week 10's Saga chapter) or a lost order event (Week 10's outbox chapter)? Expect the candidate to draw this exact contrast unprompted for a 5: not every system needs the same durability/timeliness guarantee, and design should reflect what's ACTUALLY required, not apply the strongest guarantee everywhere by default.
-- **Monitoring:** feed staleness (time since a followed account's post should have appeared) as the actual SLI here — a direct application of Week 11's RED "Duration" concept to a signal that isn't literally HTTP latency.
+- **Clarify:** message ordering requirement per conversation (must be strict); delivery guarantee (at-least-once acceptable, duplicates handled client-side by message ID, versus attempting exactly-once); group chat fan-out size limits.
+- **Estimate:** peak concurrent connections (long-lived, not request/response — this drives the connection-handling architecture choice, not just message volume) versus messages/second.
+- **Architecture:** a message queue per recipient (or per conversation) is the natural fit — directly the same delivery-semantics reasoning as `study-packs/week-08/04-delivery-semantics-and-exactly-once.md`: commit-after-delivery-confirmation risks duplicates (acceptable, dedupe by message ID), commit-before-delivery risks silent loss (not acceptable for a chat app) — expect the candidate to explicitly choose at-least-once and name the client-side dedupe mechanism, not accidentally default to at-most-once.
+- **Failure mode, pushed hard (this round's actual point):** a recipient's connection server goes down mid-conversation. What happens to messages sent to them in that window? Expect: they queue durably (not held only in the dead server's memory) and deliver on reconnect — the same "outbox row persists until published" durability principle as `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`, applied to a per-user message queue instead of a business-event outbox.
+- **Monitoring:** message delivery latency (send to recipient-ack) as the actual SLI here — a direct application of Week 11's RED "Duration" concept to a signal that isn't literally HTTP latency.
 
 **Common weak answer:** applies one fan-out strategy uniformly without addressing the celebrity-account skew, or names failure modes only when explicitly asked rather than volunteering them.
 

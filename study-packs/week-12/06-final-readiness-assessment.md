@@ -61,7 +61,7 @@ Per Plan B's own targets (`00-project/learning-roadmap.md` §0.3): 104 topics, 1
 | Behavioral stories built | 12-14 | | |
 | Mock interviews completed | 14 | | |
 
-**Design-problem tally, for reference** (weeks 7-11 alone contributed 5; add Weeks 1-6's and this week's 4 loop-design-rounds to your own count): authentication service (W7), notification system (W8), distributed job scheduler (W9), distributed cache (W10), metrics/monitoring system (W11), rate limiter / web crawler / news feed / payment processing (W12, this week's 4 loops).
+**Design-problem tally, verified against the actual inventory of design-exercise files across the program** — 8 prior + this week's 4 = 12, matching Plan B's own target exactly: ride-hailing dispatch (W3), news feed (W4), payment processing (W5), authentication service (W7), notification system (W8), distributed job scheduler (W9), distributed cache (W10), metrics/monitoring system (W11), rate limiter / web crawler / real-time chat / hotel booking (W12, this week's 4 loops — deliberately distinct from every prior week's own prompt, including the two above that sound similar).
 
 ## Diagnostic delta summary
 

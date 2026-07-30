@@ -8,7 +8,7 @@ last_reviewed: 2026-07-30
 # Week 12 Study Pack — Manifest
 
 **Topics:** none (capstone — full loop simulation) · **Plan:** B, final week
-**Files:** 9 (+ this manifest) · **Total words:** 7,514 (real count, `wc -w` over all 9 files)
+**Files:** 9 (+ this manifest) · **Total words:** 7,674 (real count, `wc -w` over all 9 files)
 
 ---
 
@@ -16,15 +16,15 @@ last_reviewed: 2026-07-30
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Study Pack Standard front matter + full weekly structure | 820 |
+| 1 | `README.md` | Study Pack Standard front matter + full weekly structure | 862 |
 | 2 | `01-loop-1-technical-coding-design.md` | Loop 1 — 60 min, 3 rounds | 860 |
 | 3 | `02-loop-2-technical-coding-design-behavioral.md` | Loop 2 — 75 min, 4 rounds | 903 |
-| 4 | `03-loop-3-java-fluency-coding-production-judgment.md` | Loop 3 — 60 min, 3 rounds | 873 |
-| 5 | `04-loop-4-final-full-loop.md` | Loop 4 — 90 min, 4 rounds, the §8.7-scored loop | 1,098 |
+| 4 | `03-loop-3-java-fluency-coding-production-judgment.md` | Loop 3 — 60 min, 3 rounds | 888 |
+| 5 | `04-loop-4-final-full-loop.md` | Loop 4 — 90 min, 4 rounds, the §8.7-scored loop | 1,167 |
 | 6 | `05-diagnostic-rerun.md` | Verbatim D1-D4 re-run, three-point comparison template | 602 |
-| 7 | `06-final-readiness-assessment.md` | The capstone go/no-go artifact | 714 |
+| 7 | `06-final-readiness-assessment.md` | The capstone go/no-go artifact | 746 |
 | 8 | `07-java-coding-practice.md` | 8 problems, all compiled and run | 1,380 |
-| 9 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 264 |
+| 9 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 266 |
 
 ---
 
@@ -45,6 +45,8 @@ None. `CHANGELOG.md`'s errata register has no open items scoped to this week (no
 ## A real bug this pack's own review caught
 
 The first draft of `practice/java/week-12/final-loop-coding/src/Main.java`'s LC 56 (Merge Intervals) test asserted `[[1,3],[6,10],[15,18]]` as the expected merged result for input `[[1,3],[2,6],[8,10],[15,18]]`. Running it surfaced the real correct answer, `[[1,6],[8,10],[15,18]]` — intervals `[1,3]` and `[2,6]` genuinely overlap and merge. The ALGORITHM was correct throughout; the TEST's hand-computed expected value was wrong. Fixed by correcting the test, re-verified. Documented in `07-java-coding-practice.md`'s Verification section as a live example of why running code beats re-reading it.
+
+**Second finding, caught in review before merge:** the first draft's Loop 3 and Loop 4 system-design prompts ("news feed" and "payment processing system") were claimed as fresh but actually duplicated `study-packs/week-04/08-design-exercise-news-feed.md` and `study-packs/week-05/09-design-exercise-payment-processing.md` respectively — an oversight from not cross-checking the full design-exercise inventory before writing. Fixed by replacing them with genuinely new prompts (real-time chat/messaging for Loop 3, a hotel booking system for Loop 4) that preserve the same teaching content (delivery guarantees, Saga compensating actions) without repeating a prior week's exact problem. All cross-references (README, resources.md, the design-problem tally in `06-final-readiness-assessment.md`) updated accordingly.
 
 ## Integrity note
 

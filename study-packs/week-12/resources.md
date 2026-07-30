@@ -20,8 +20,8 @@ Classified by authority: **PRIMARY**, **BOOK**, **TOOL**, **SECONDARY**. No new 
 | Loop 2 R3 (web crawler design) | `study-packs/week-10/03-consistent-hashing.md`, `week-10/04-resilience-patterns.md` |
 | Loop 2 R4 (behavioral retrofit) | `study-packs/week-11/08-week-11-mock-behavioral.md` |
 | Loop 3 R1 (thread pools, atomics, virtual threads) | `study-packs/week-09/02-...`, `week-09/03-...`, `week-09/04-...` |
-| Loop 3 R3 (news feed design) | `study-packs/week-11/05-performance-methodology-and-slo-error-budgets.md` (RED Duration as an SLI) |
-| Loop 4 R1/R3 (mixed, payment processing) | `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`, `week-05` idempotency material |
+| Loop 3 R3 (real-time chat design) | `study-packs/week-08/04-delivery-semantics-and-exactly-once.md`, `week-10/01-...`, `week-11/05-...` (RED Duration as an SLI) |
+| Loop 4 R1/R3 (mixed, hotel booking) | `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`, `week-05` idempotency material |
 
 ## Standard reference
 
