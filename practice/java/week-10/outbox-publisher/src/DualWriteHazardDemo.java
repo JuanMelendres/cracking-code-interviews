@@ -1,7 +1,14 @@
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.Duration;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -17,8 +24,8 @@ public class DualWriteHazardDemo {
     public static void main(String[] args) throws Exception {
         System.out.println("== dual write, no outbox: DB commit succeeds, then \"crash\" before the Kafka publish ==");
 
+        long orderId;
         try (Connection conn = pgConnection()) {
-            long orderId;
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO orders (customer_id, amount_cents) VALUES (?, ?) RETURNING id")) {
                 ps.setString(1, "dual-write-hazard-customer");
@@ -46,8 +53,34 @@ public class DualWriteHazardDemo {
             rs.next();
             System.out.println("orders rows for this customer: " + rs.getInt(1) + " (the business write DID survive)");
         }
-        System.out.println("Kafka topic 'order-events': 0 messages for this order (nothing ever published it -- "
+        int actualMessageCount = countMessagesForKey(String.valueOf(orderId));
+        System.out.println("Kafka topic 'order-events': " + actualMessageCount + " messages with key=" + orderId
+                + " (actually queried Kafka, not asserted -- nothing ever published it, "
                 + "there is no mechanism in this design that could have retried it)");
+    }
+
+    /** Actually queries Kafka rather than asserting the count -- consumes order-events
+     * from the beginning and counts messages keyed to this specific order. */
+    static int countMessagesForKey(String key) {
+        Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9093");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "dual-write-verify-" + System.currentTimeMillis());
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
+            consumer.subscribe(List.of("order-events"));
+            int count = 0;
+            long deadline = System.currentTimeMillis() + 5000;
+            while (System.currentTimeMillis() < deadline) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
+                for (var r : records) {
+                    if (key.equals(r.key())) count++;
+                }
+            }
+            return count;
+        }
     }
 
     static Connection pgConnection() throws Exception {

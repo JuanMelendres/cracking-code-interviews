@@ -8,7 +8,7 @@ last_reviewed: 2026-07-29
 # Week 10 Study Pack — Manifest
 
 **Topics:** T-618, T-614, T-806, T-515, T-616 · **Plan:** B, Distributed Data + Resilience
-**Files:** 13 (+ this manifest) · **Total words:** 15,106 (real count, `wc -w` over all 13 files)
+**Files:** 13 (+ this manifest) · **Total words:** 15,110 (real count, `wc -w` over all 13 files)
 
 ---
 
@@ -17,7 +17,7 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 747 |
-| 2 | `01-saga-outbox-and-distributed-transactions.md` | T-618 — full chapter, real dual-write hazard + working outbox crash recovery | 2,359 |
+| 2 | `01-saga-outbox-and-distributed-transactions.md` | T-618 — full chapter, real dual-write hazard + working outbox crash recovery | 2,363 |
 | 3 | `02-sharding-and-partitioning-strategies.md` | T-614 — full chapter, real partition-pruning EXPLAIN measurement | 1,685 |
 | 4 | `03-consistent-hashing.md` | T-806 — full chapter, real 92.5%-vs-9.2% redistribution measurement | 1,656 |
 | 5 | `04-resilience-patterns.md` | T-515 — full chapter, real circuit-breaker + retry-jitter measurements | 2,031 |

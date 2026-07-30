@@ -59,7 +59,7 @@ Simulating a crash HERE -- before any Kafka publish call is even attempted.
 
 == verifying the order exists but no event was ever published anywhere ==
 orders rows for this customer: 1 (the business write DID survive)
-Kafka topic 'order-events': 0 messages for this order (nothing ever published it -- there is no mechanism in this design that could have retried it)
+Kafka topic 'order-events': 0 messages with key=1 (actually queried Kafka, not asserted -- nothing ever published it, there is no mechanism in this design that could have retried it)
 ```
 
 **This is the entire problem in one measurement**: the order row is durable and correct, but the event that was supposed to notify the rest of the system about it simply never existed anywhere retryable. No amount of Kafka producer configuration (`acks=all`, idempotence, retries) helps here, because the failure happened **before the producer was ever called** — there's nothing to retry because nothing recorded that a retry was owed.

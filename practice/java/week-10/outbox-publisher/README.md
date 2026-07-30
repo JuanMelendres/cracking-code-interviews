@@ -47,7 +47,7 @@ Simulating a crash HERE -- before any Kafka publish call is even attempted.
 
 == verifying the order exists but no event was ever published anywhere ==
 orders rows for this customer: 1 (the business write DID survive)
-Kafka topic 'order-events': 0 messages for this order (nothing ever published it -- there is no mechanism in this design that could have retried it)
+Kafka topic 'order-events': 0 messages with key=1 (actually queried Kafka, not asserted -- nothing ever published it, there is no mechanism in this design that could have retried it)
 ```
 
 ## 2. The working outbox, with crash recovery
