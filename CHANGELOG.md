@@ -81,6 +81,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-07/02-spring-security-filter-chain.md`, `03-oauth2-oidc-and-jwt.md` — slimmed to a per-section summary + link to their new canonical chapters, numbered headings kept stable because `06-security-chain-trace-deliverable.md` and `08-design-exercise-authentication-service.md` reference the former's scenarios/principle and the latter's §4 directly.
 - `study-packs/week-07/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (8,292 → 6,626 total words, verified).
 
+- `handbook/spring/auto-configuration-and-bean-lifecycle.md` (T-506/T-501, IWI 7.30) — completes Week 7's Spring cluster: the real observed bean lifecycle order (constructor → `BeanPostProcessor.before` → `@PostConstruct` → `InitializingBean` → custom init → `BeanPostProcessor.after`), the exact hook that creates a `@Transactional` proxy, `@ConditionalOnMissingBean`'s ordering guarantee, and the measured `@Async`+`@Transactional` gotcha (12ms return, no visible exception, correct silent rollback). Cross-linked to Transactional Proxy Mechanics and the Spring Security filter chain; traces verified against `practice/java/week-07/spring-internals/` real executed output.
+
+### Changed (continued)
+- `study-packs/week-07/01-spring-auto-configuration-and-lifecycle.md` — slimmed to a per-section summary + link to its new canonical chapter, numbered headings kept stable because `09-week-7-checklist.md` cites §1–4 directly.
+- `study-packs/week-07/MANIFEST.md`, `README.md` — word counts and purpose descriptions updated to match (6,626 → 5,644 total words, verified; all three Week 7 T-topics now summary + canonical-link).
+
 - Tenth Phase 5 chapter group — completes the `handbook/concurrency/` domain (4 of 4 Week 9 concurrency topics now covered):
   - `handbook/concurrency/executors-and-thread-pool-sizing.md` (T-406, IWI 7.15) — the unbounded-default-queue trap, measured (496/500 tasks silently queued); bounded queue + rejection policy backpressure; Little's Law sizing
   - `handbook/concurrency/virtual-threads.md` (T-410, IWI 6.75) — measured 18× IO-bound scale improvement, measured ~10× pinning regression from `synchronized`, why pooling virtual threads is an anti-pattern

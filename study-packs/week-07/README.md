@@ -49,9 +49,9 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — full chapter, real observed bean lifecycle order + the `@Async`+`@Transactional` gotcha |
-| 3 | `02-spring-security-filter-chain.md` | T-511 — full chapter, real filter-chain trace across 3 scenarios |
-| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — full chapter, real HMAC-SHA256 JWT sign/verify/tamper/expiry |
+| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — summary + link; full chapter now canonical at `handbook/spring/auto-configuration-and-bean-lifecycle.md` |
+| 3 | `02-spring-security-filter-chain.md` | T-511 — summary + link; full chapter now canonical at `handbook/spring/security-filter-chain.md` |
+| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — summary + link; full chapter now canonical at `handbook/security/oauth2-oidc-and-jwt.md` |
 | 5 | `04-java-coding-practice.md` | LC 46, 78, 39, 22 — all compiled and run, including the errata #3 fix |
 | 6 | `05-flashcards.md` | 14 cards |
 | 7 | `06-security-chain-trace-deliverable.md` | `security-chain-trace.md` template + worked example |

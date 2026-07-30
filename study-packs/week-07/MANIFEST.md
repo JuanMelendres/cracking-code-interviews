@@ -8,7 +8,7 @@ last_reviewed: 2026-07-29
 # Week 7 Study Pack — Manifest
 
 **Topics:** T-506, T-501, T-511, T-512, T-513 · **Plan:** B (first week beyond Plan A's 6-week sprint)
-**Files:** 11 (+ this manifest) · **Total words:** 8,292 (real count, `wc -w` over all 11 files)
+**Files:** 11 (+ this manifest) · **Total words:** 5,644 (real count, `wc -w` over all 11 files; updated 2026-07-30 after all three T-topics were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
 
 ---
 
@@ -17,9 +17,9 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 737 |
-| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — full chapter, real lifecycle + async/tx demos | 1,643 |
-| 3 | `02-spring-security-filter-chain.md` | T-511 — full chapter, real filter-chain trace | 1,209 |
-| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — full chapter, real HMAC-SHA256 JWT demo | 1,616 |
+| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/spring/auto-configuration-and-bean-lifecycle.md` | 657 |
+| 3 | `02-spring-security-filter-chain.md` | T-511 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/spring/security-filter-chain.md` | 502 |
+| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/security/oauth2-oidc-and-jwt.md` | 657 |
 | 5 | `04-java-coding-practice.md` | LC 46 (errata #3 fix), 78, 39, 22, all compiled and run | 826 |
 | 6 | `05-flashcards.md` | 14 cards | 387 |
 | 7 | `06-security-chain-trace-deliverable.md` | Template + worked example | 520 |
