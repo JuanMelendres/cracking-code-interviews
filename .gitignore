@@ -15,6 +15,7 @@ build/
 *.class
 *.jar
 !templates/**/*.jar
+*.hprof
 
 # Env / secrets
 .env

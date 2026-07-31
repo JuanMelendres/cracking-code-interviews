@@ -16,6 +16,9 @@ estimated_reading_minutes: 30
 prerequisites: []
 related:
   - ../concurrency/java-memory-model-and-volatile.md
+  - g1-remembered-sets-and-write-barriers.md
+  - memory-leak-diagnosis-and-heap-dump-analysis.md
+  - jvm-memory-layout-and-runtime-regions.md
   - ../../study-packs/week-09/05-gc-fundamentals-and-log-analysis.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html
