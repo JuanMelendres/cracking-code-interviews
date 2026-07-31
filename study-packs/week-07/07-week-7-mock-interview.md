@@ -1,7 +1,7 @@
 ---
 title: "Week 7 Mock — Spring Technical (45 min)"
 week: 7
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 7 Mock — Spring Technical
@@ -26,8 +26,8 @@ last_reviewed: 2026-07-29
 
 ## Part B — Interviewer script
 
-1. On the lifecycle question, ask specifically: "Which callback does the transactional proxy get created in, and why does it have to be that one and not `@PostConstruct`?"
+1. On lifecycle: ask "Which callback does the transactional proxy get created in, and why that one and not `@PostConstruct`?"
 2. On `@Async`+`@Transactional`: interrupt if the candidate claims the transaction itself is broken — redirect to "is the transaction wrong, or is something else wrong?"
 3. On the filter chain: ask for a specific rejection scenario, not just the happy path.
-4. On JWT revocation: if the candidate says "yes, you can revoke it" without qualification, push: "how, exactly — walk me through what changes at verification time?"
+4. On JWT revocation: if the candidate says "yes, you can revoke it" without qualification, push: "how, exactly — what changes at verification time?"
 5. Score using `study-packs/week-01/10-week-1-evaluation-rubric.md`'s Technical Depth and Production Judgment dimensions.

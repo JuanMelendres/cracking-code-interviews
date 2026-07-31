@@ -1,7 +1,7 @@
 ---
 title: "Java Coding Practice — Week 8"
 week: 8
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Java Coding Practice — Week 8
@@ -33,7 +33,7 @@ static int climbStairs(int n) {
 }
 ```
 
-**Invariant:** `dp[i] = dp[i-1] + dp[i-2]` — reaching step `i` means arriving from `i-1` (a 1-step) or `i-2` (a 2-step); those are the only two ways in, so the count is the sum. It's the Fibonacci recurrence wearing a different problem statement — recognizing that shape is the actual skill being tested. **Complexity:** O(n) time, O(1) space with rolling variables (no need for a full `dp[]` array).
+**Invariant:** `dp[i] = dp[i-1] + dp[i-2]` — reaching step `i` means arriving from `i-1` (a 1-step) or `i-2` (a 2-step), the only two ways in. It's the Fibonacci recurrence wearing a different problem statement — recognizing that shape is the actual skill tested. **Complexity:** O(n) time, O(1) space with rolling variables.
 
 ## LC 198 — House Robber
 
@@ -49,7 +49,7 @@ static int rob(int[] nums) {
 }
 ```
 
-**Invariant:** `dp[i] = max(dp[i-1], dp[i-2] + nums[i])` — at house `i`, either skip it (carry forward the best through `i-1`) or rob it (best through `i-2`, plus this house's value); adjacency is the only constraint, so the recurrence only ever needs to look two steps back. **Complexity:** O(n) time, O(1) space.
+**Invariant:** `dp[i] = max(dp[i-1], dp[i-2] + nums[i])` — at house `i`, either skip it (carry forward the best through `i-1`) or rob it (best through `i-2` plus this house's value); adjacency is the only constraint, so the recurrence only looks two steps back. **Complexity:** O(n) time, O(1) space.
 
 ## LC 322 — Coin Change
 
@@ -67,7 +67,7 @@ static int coinChange(int[] coins, int amount) {
 }
 ```
 
-**Invariant:** bottom-up unbounded knapsack — `dp[a]` is the fewest coins to make amount `a`, built from smaller amounts already solved; iterating amounts in the OUTER loop and coins in the inner loop (rather than the reverse) is what allows unlimited reuse of each coin denomination. The `amount + 1` sentinel value is larger than any valid answer (max coins needed is `amount` itself, using all 1s), so it safely signals "unreached" without a separate boolean array. **Complexity:** O(amount · coins.length) time, O(amount) space.
+**Invariant:** bottom-up unbounded knapsack — `dp[a]` is the fewest coins to make amount `a`, built from smaller amounts already solved; amounts in the OUTER loop, coins in the inner loop (not the reverse) is what allows unlimited reuse of each denomination. The `amount + 1` sentinel is larger than any valid answer (max coins needed is `amount` itself, all 1s), so it safely signals "unreached" without a separate boolean array. **Complexity:** O(amount · coins.length) time, O(amount) space.
 
 ## LC 300 — Longest Increasing Subsequence
 
@@ -88,7 +88,7 @@ static int lengthOfLIS(int[] nums) {
 }
 ```
 
-**Invariant:** `tails[k]` holds the smallest possible tail value of any increasing subsequence of length `k+1` seen so far — NOT a real subsequence, just the best (smallest) ending value for each length, which is what makes binary search over it valid (the array is maintained sorted by construction). Each new number either extends the longest run (`lo == len`) or replaces an existing tail with a smaller one, improving future extensibility without changing `len`. This is a materially different algorithm from the textbook O(n²) `dp[i] = max(dp[j] + 1)` formulation — same problem, different state representation, one order of magnitude faster. **Complexity:** O(n log n) time, O(n) space.
+**Invariant:** `tails[k]` holds the smallest possible tail value of any increasing subsequence of length `k+1` seen so far — NOT a real subsequence, just the best ending value per length, which is what makes binary search over it valid (the array stays sorted by construction). Each new number either extends the longest run (`lo == len`) or replaces an existing tail with a smaller one, improving future extensibility without changing `len`. Materially different from the textbook O(n²) `dp[i] = max(dp[j] + 1)` formulation — same problem, different state representation, one order of magnitude faster. **Complexity:** O(n log n) time, O(n) space.
 
 ## Verification — real, not asserted
 

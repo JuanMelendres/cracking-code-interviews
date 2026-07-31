@@ -4,14 +4,14 @@ week: 11
 plan: B
 topics: [T-1101, T-1103, T-1104, T-1201, T-1204, T-1205, T-1206]
 prerequisites: []
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 11 Study Pack — Testing, Observability, Performance
 
 **Plan B, Week 11.** See `00-project/learning-roadmap.md` §4, Week 11.
 **Topics:** T-1101 (Test strategy) · T-1103 (Mockito) · T-1104 (Testcontainers) · T-1205 (Tracing/OTel) · T-1206 (SLI/SLO) · T-1201 (USE/RED) · T-1204 (Percentiles)
-**Why now:** these topics supply the vocabulary that makes an incident or scaling story credible — scheduled deliberately late because they're most valuable as a **retrofit onto stories that already exist**, not new material studied in isolation. No new behavioral story is introduced this week; Stories 3, 7, and 11 (production incident, cross-team influence, scaling/performance) get retrofitted with this week's precision instead.
+**Why now:** these topics supply the vocabulary that makes an incident or scaling story credible — scheduled deliberately late because they're most valuable as a **retrofit onto stories that already exist**, not new material studied in isolation. No new behavioral story this week; Stories 3, 7, and 11 (production incident, cross-team influence, scaling/performance) get retrofitted with this week's precision instead.
 
 ## Table of Contents
 
@@ -26,11 +26,11 @@ last_reviewed: 2026-07-29
 
 ## Objective
 
-Build genuine testing and observability skills — a real Mockito-based unit test, a real integration test against live Postgres, a real distributed trace, a measured coordinated-omission gap, a real 30-day error-budget simulation — and use all five to retrofit precision onto incident/scaling stories already built in earlier weeks, per this week's own explicit instruction.
+Build genuine testing and observability skills — a real Mockito-based unit test, a real integration test against live Postgres, a real distributed trace, a measured coordinated-omission gap, a real 30-day error-budget simulation — and use all five to retrofit precision onto incident/scaling stories already built in earlier weeks, per this week's explicit instruction.
 
 ## Why this week, in this order
 
-Test strategy and doubles (T-1101/T-1103) come first because integration testing (T-1104) is defined in direct contrast to what a mock verifies. Percentiles (T-1204) come before tracing (T-1205) because tracing's value proposition — localizing WHERE in a call chain time went — only matters once percentiles have established THAT the tail is worth caring about in the first place. Performance methodology and error budgets (T-1201/T-1206) close the week because they're the vocabulary layer that ties everything — GC logs from Week 9, Kafka consumer lag from Week 8, the resilience patterns from Week 10 — into one coherent diagnostic and decision-making frame.
+Test strategy and doubles (T-1101/T-1103) come first because integration testing (T-1104) is defined in direct contrast to what a mock verifies. Percentiles (T-1204) come before tracing (T-1205) because tracing's value proposition — localizing WHERE in a call chain time went — only matters once percentiles have established THAT the tail is worth caring about. Performance methodology and error budgets (T-1201/T-1206) close the week as the vocabulary layer tying everything — GC logs from Week 9, Kafka consumer lag from Week 8, resilience patterns from Week 10 — into one coherent diagnostic and decision-making frame.
 
 ## Dependency graph
 

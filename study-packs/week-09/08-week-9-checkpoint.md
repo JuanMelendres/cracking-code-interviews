@@ -1,12 +1,12 @@
 ---
 title: "Week 9 Checkpoint — Full 3-Round Loop"
 week: 9
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 9 Checkpoint — Full 3-Round Loop
 
-**Format:** the full simulated loop per `00-project/learning-roadmap.md` §4, Week 9 — this is the first checkpoint gate since Week 6, and the first to span the entire register (W1–W9), not just the current week.
+**Format:** the full simulated loop per `00-project/learning-roadmap.md` §4, Week 9 — the first checkpoint gate since Week 6, and the first to span the entire register (W1–W9), not just the current week.
 
 ## Table of Contents
 
@@ -32,10 +32,10 @@ last_reviewed: 2026-07-29
 
 **Interviewer script:**
 
-1. On `volatile`: if the candidate says "prevents caching," stop and redirect — this is the checkpoint's named failure mode, don't let it pass.
-2. On the deep W1–W9 topic: pick genuinely at random from any prior week's chapter; push for 5+ follow-ups regardless of how strong the first answer is — depth under sustained pressure is what's being measured, not the first answer alone.
+1. On `volatile`: if the candidate says "prevents caching," stop and redirect — the checkpoint's named failure mode, don't let it pass.
+2. On the deep W1–W9 topic: pick genuinely at random from any prior week's chapter; push for 5+ follow-ups regardless of how strong the first answer is — depth under sustained pressure is what's measured, not the first answer alone.
 3. On the unbounded queue: if the candidate says "increase heap/memory" instead of naming the queue policy, redirect to "what SPECIFICALLY is unbounded here?"
-4. On the GC log: give no context beyond the raw log lines. A candidate who asks "what was the workload doing / what's the heap size" before diagnosing is doing this correctly — note it as a strength, not a stall.
+4. On the GC log: give no context beyond the raw log lines. A candidate who asks "what was the workload doing / what's the heap size" before diagnosing is doing this correctly — a strength, not a stall.
 5. Score using `study-packs/week-01/10-week-1-evaluation-rubric.md`'s full rubric, all dimensions.
 
 ## Round 2 — Coding (45 min)
@@ -51,7 +51,7 @@ last_reviewed: 2026-07-29
 
 **Problem:** *Design a distributed job scheduler.* Full six-phase method — see `09-design-exercise-distributed-job-scheduler.md` for the worked reference; do the live round cold, without the worked notes, then compare afterward.
 
-**Interviewer script:** introduce a mid-round change after Phase 4 (e.g., "jobs now need exactly-once execution guarantees, not at-least-once") and observe whether the candidate revises the existing design coherently or bolts on a patch without reconsidering earlier decisions — this is the unseen-problem-handling criterion from the checkpoint table below, not a separate skill.
+**Interviewer script:** introduce a mid-round change after Phase 4 (e.g., "jobs now need exactly-once execution guarantees, not at-least-once") and observe whether the candidate revises the design coherently or bolts on a patch without reconsidering earlier decisions — the unseen-problem-handling criterion from the checkpoint table below, not a separate skill.
 
 ## Checkpoint scorecard
 
@@ -68,9 +68,9 @@ Per `00-project/learning-roadmap.md` §4, Week 9's own pass table — fill in ho
 
 ## If you don't pass a dimension
 
-This checkpoint is diagnostic, not a gate that blocks the rest of Plan B — but a failed dimension should change what gets prioritized in Week 10 rather than being carried forward silently:
+This checkpoint is diagnostic, not a gate blocking the rest of Plan B — but a failed dimension should change what gets prioritized in Week 10 rather than being carried forward silently:
 
-- **Technical depth or Java fluency fail** → revisit `01-java-memory-model-and-volatile.md` and `03-deadlock-races-and-thread-diagnostics.md` before starting Week 10; these are exactly the errata topics this week existed to correct.
+- **Technical depth or Java fluency fail** → revisit `01-java-memory-model-and-volatile.md` and `03-deadlock-races-and-thread-diagnostics.md` before Week 10; exactly the errata topics this week existed to correct.
 - **Coding fail** → the deficit is almost always volume, not concept — schedule extra daily coding sessions rather than re-studying.
 - **System design fail** → redo `09-design-exercise-distributed-job-scheduler.md` cold a second time before Week 10's design exercise, specifically practicing the mid-round-change response.
-- **Behavioral fail** → this is the one dimension where the fix is time, not effort — a rushed story portfolio reads as rushed; don't try to compress it into a single extra session.
+- **Behavioral fail** → the one dimension where the fix is time, not effort — a rushed story portfolio reads as rushed; don't compress it into a single extra session.

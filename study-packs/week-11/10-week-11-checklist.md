@@ -1,7 +1,7 @@
 ---
 title: "Week 11 Checklist"
 week: 11
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 11 Checklist
@@ -51,5 +51,5 @@ Day-by-day, matching `README.md`'s schedule. This week retrofits vocabulary onto
 
 1. The Stories 3/7/11 retrofit — this week's entire structural point, don't skip it even if everything else is compressed
 2. The behavioral mock
-3. The coordinated-omission and error-budget demo reproductions — the two chapters whose entire argument rests on a specific measured number, not prose alone
-4. The testing and tracing reading/reproductions — defer full depth if truly short on time, but reproduce both demos regardless
+3. The coordinated-omission and error-budget demo reproductions — the two chapters whose argument rests on a specific measured number, not prose alone
+4. Testing and tracing reading/reproductions — defer full depth if truly short on time, but reproduce both demos regardless

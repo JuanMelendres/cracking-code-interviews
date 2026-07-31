@@ -1,7 +1,7 @@
 ---
 title: "Week 8 Mock — Messaging Deep-Dive (45 min)"
 week: 8
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 8 Mock — Messaging Deep-Dive
@@ -28,7 +28,7 @@ last_reviewed: 2026-07-29
 
 1. On ordering: if the candidate says "Kafka guarantees ordering" without qualification, push: "across the whole topic, or something narrower?"
 2. On `acks=all`: if the candidate says it's fully durable on its own, ask "what if the ISR only has one member when the write lands?"
-3. On rebalancing: don't accept "network issue" as a complete answer — ask "what specifically times out, and why would a live process get evicted?"
+3. On rebalancing: don't accept "network issue" as a complete answer — ask "what specifically times out, and why does a live process get evicted?"
 4. On exactly-once: if the candidate claims Kafka is exactly-once end-to-end without qualification, redirect: "your consumer also writes to Postgres. Now what?"
 5. On the hot partition: push past "add more partitions" — ask "does that fix a single hot customer, or does it change everyone's ordering?"
 6. Score using `study-packs/week-01/10-week-1-evaluation-rubric.md`'s Technical Depth and Production Judgment dimensions.

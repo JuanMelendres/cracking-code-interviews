@@ -1,12 +1,12 @@
 ---
 title: "Diagnostic Re-Run — D1–D4 Verbatim"
 week: 6
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Diagnostic Re-Run
 
-**Repeat D1–D4 from `00-project/learning-roadmap.md` §1 exactly as originally run, before Week 1.** This is not a new exercise — it is the same six-hour-old questions, same time limits, same format. The comparison only means something if the instrument didn't change between the two measurements.
+**Repeat D1–D4 from `00-project/learning-roadmap.md` §1 exactly as originally run, before Week 1.** Same questions, same time limits, same format — the comparison only means something if the instrument didn't change between measurements.
 
 ## Table of Contents
 
@@ -29,19 +29,19 @@ last_reviewed: 2026-07-29
 5. How do you model many-to-many?
 6. Why did you choose that design?
 
-**Do not consciously "prepare" answers before recording** — the value of this re-run is measuring what's actually retrievable under the same cold-start conditions as Day 0, not a rehearsed improvement.
+**Do not consciously "prepare" answers before recording** — the value here is measuring what's actually retrievable under the same cold-start conditions as Day 0, not a rehearsed improvement.
 
 ## D2 — LC 146, narrated
 
-Solve LC 146 (LRU Cache) in Java, narrating aloud, 35-minute limit — identical to the Day 0 instrument. The Day 0 baseline noted (per the roadmap's own stated expectation `[H]`) that this would likely reproduce the buggy version from the source material. Compare directly: is the correct, from-scratch implementation now automatic, and is the specific bug (Week 1's errata) something you can name unprompted if asked?
+Solve LC 146 (LRU Cache) in Java, narrating aloud, 35-minute limit — identical to Day 0. Day 0's baseline (per the roadmap's stated expectation `[H]`) likely reproduced the buggy version from the source material. Compare: is the correct, from-scratch implementation now automatic, and can you name the specific bug (Week 1's errata) unprompted?
 
 ## D3 — URL shortener design
 
-30-minute design, on paper, timed — same problem as Day 0. Compare: does the six-phase method (learned in Week 3) now structure the attempt from the start, versus Day 0's likely jump straight to components?
+30-minute design, on paper, timed — same problem as Day 0. Compare: does the six-phase method (Week 3) now structure the attempt from the start, versus Day 0's likely jump straight to components?
 
 ## D4 — STAR story cold
 
-Write one STAR story cold, 400 words: *a technical decision you made and why.* Compare directly against the Day 0 version — same prompt. Does the Week 5 four-beat trade-off structure and scope-reframing instinct show up even when not explicitly asked for?
+Write one STAR story cold, 400 words: *a technical decision you made and why.* Same prompt as Day 0. Does the Week 5 four-beat trade-off structure and scope-reframing instinct show up unprompted?
 
 ## Comparison table
 
@@ -57,4 +57,4 @@ Write one STAR story cold, 400 words: *a technical decision you made and why.* C
 | D3 URL shortener design | | | |
 | D4 STAR story | | | |
 
-Fill this table honestly from both recordings before writing `06-week-6-assessment-deliverable.md` — the assessment's entire credibility rests on this comparison being real, not asserted.
+Fill this table honestly from both recordings before writing `06-week-6-assessment-deliverable.md` — the assessment's credibility rests on this comparison being real, not asserted.

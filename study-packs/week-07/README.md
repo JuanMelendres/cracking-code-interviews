@@ -4,7 +4,7 @@ week: 7
 plan: B
 topics: [T-506, T-501, T-511, T-512, T-513]
 prerequisites: [T-503, T-504, T-505]
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 7 Study Pack — Spring Depth + Security
@@ -26,11 +26,11 @@ last_reviewed: 2026-07-29
 
 ## Objective
 
-Extend Week 3's proxy-mechanics foundation into two directions that both depend on it: how Spring assembles a bean (lifecycle, auto-configuration) and how a security filter chain — itself a pipeline of proxied/wrapped components — processes a request. This is Plan B's first genuinely new-topic week after Plan A's 6-week sprint and Week 6's consolidation.
+Extend Week 3's proxy-mechanics foundation into two directions that both depend on it: how Spring assembles a bean (lifecycle, auto-configuration) and how a security filter chain — itself a pipeline of proxied/wrapped components — processes a request. Plan B's first genuinely new-topic week after Plan A's 6-week sprint and Week 6's consolidation.
 
 ## Why this week, in this order
 
-Auto-configuration internals are unusable without Week 3's `T-503` proxy mechanics — conditional bean creation and the proxying that wraps the result are two different mechanisms that interact, and understanding one without the other produces exactly the kind of surface-level answer this programme exists to avoid. The security filter chain is a pipeline whose ordering only makes sense once the container lifecycle (this week's own `T-501`) is understood — a filter is itself a bean, subject to the same lifecycle and potential proxying as anything else in the container.
+Auto-configuration internals are unusable without Week 3's `T-503` proxy mechanics — conditional bean creation and the proxying that wraps the result are two different mechanisms that interact, and understanding one without the other produces exactly the surface-level answer this programme exists to avoid. The security filter chain's ordering only makes sense once the container lifecycle (this week's `T-501`) is understood — a filter is itself a bean, subject to the same lifecycle and potential proxying as anything else in the container.
 
 ## Dependency graph
 

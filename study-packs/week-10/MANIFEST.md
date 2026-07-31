@@ -2,13 +2,13 @@
 title: "Week 10 Study Pack — Manifest"
 week: 10
 plan: B
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 10 Study Pack — Manifest
 
 **Topics:** T-618, T-614, T-806, T-515, T-616 · **Plan:** B, Distributed Data + Resilience
-**Files:** 13 (+ this manifest) · **Total words:** 8,807 (real count, `wc -w` over all 13 files; updated 2026-07-30 after all five T-topics were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
+**Files:** 13 (+ this manifest) · **Total words:** 8,668 (real count, `wc -w` over all 13 files; updated 2026-07-31 — files 06, 08, 09, 10, 11, README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/mock/deliverable/checklist content, not duplicated topic explanation)
 
 ---
 
@@ -16,18 +16,18 @@ last_reviewed: 2026-07-29
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 747 |
+| 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 751 |
 | 2 | `01-saga-outbox-and-distributed-transactions.md` | T-618 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/distributed-transactions-saga-and-outbox.md` | 754 |
 | 3 | `02-sharding-and-partitioning-strategies.md` | T-614 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/table-partitioning-and-sharding-strategies.md` | 608 |
 | 4 | `03-consistent-hashing.md` | T-806 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/data-partitioning-and-consistent-hashing.md` | 608 |
 | 5 | `04-resilience-patterns.md` | T-515 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/resilience-patterns.md` | 681 |
 | 6 | `05-zero-downtime-migration.md` | T-616 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/zero-downtime-schema-migration.md` | 611 |
-| 7 | `06-java-coding-practice.md` | LC 215/347/23/295 (heaps), all compiled and run | 855 |
+| 7 | `06-java-coding-practice.md` | LC 215/347/23/295 (heaps), all compiled and run | 840 |
 | 8 | `07-flashcards.md` | 16 cards | 556 |
-| 9 | `08-outbox-implementation-deliverable.md` | The week's named deliverable — full working outbox walkthrough | 1,089 |
+| 9 | `08-outbox-implementation-deliverable.md` | The week's named deliverable — full working outbox walkthrough | 1,059 |
 | 10 | `09-week-10-mock-architecture-round.md` | 60-min architecture round | 412 |
-| 11 | `10-design-exercise-distributed-cache.md` | Full six-phase design | 1,214 |
-| 12 | `11-week-10-checklist.md` | Day-by-day checklist | 292 |
+| 11 | `10-design-exercise-distributed-cache.md` | Full six-phase design | 1,120 |
+| 12 | `11-week-10-checklist.md` | Day-by-day checklist | 290 |
 | 13 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 378 |
 
 ---

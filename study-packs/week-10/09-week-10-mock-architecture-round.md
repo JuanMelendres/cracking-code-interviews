@@ -1,7 +1,7 @@
 ---
 title: "Week 10 Mock — Architecture Round (60 min)"
 week: 10
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 10 Mock — Architecture Round
@@ -28,7 +28,7 @@ last_reviewed: 2026-07-29
 ## Part B — Interviewer script
 
 1. On the outbox proof: if the candidate proposes "just retry the Kafka call" without addressing that a crash before the call means nothing exists to retry, push: "what retries the retry?"
-2. On payment compensation: if the candidate says "roll back the charge," stop and redirect — there's no cross-service rollback; ask "what ACTUAL API call reverses a completed charge?"
+2. On payment compensation: if the candidate says "roll back the charge," stop and redirect — no cross-service rollback exists; ask "what ACTUAL API call reverses a completed charge?"
 3. On the wrong shard key: if the candidate proposes a quick reconfiguration, push: "the data physically lives on the wrong shards right now — walk me through what actually has to happen."
 4. On consistent hashing: if the candidate names it without a number, ask "roughly what fraction, and why not more?"
 5. On the distributed-cache design: introduce a mid-round change after Phase 4 (e.g., "the cache must now survive a full node failure without a cold-start latency spike") and observe whether the candidate revises the existing design coherently — same unseen-problem-handling criterion as Week 9's checkpoint Round 3.

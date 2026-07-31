@@ -3,7 +3,7 @@ title: "Code Review Exercise — Spot the Five Java Core Antipatterns"
 week: 13
 document_type: study-pack-exercise
 status: draft
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Code Review Exercise — Spot the Five Java Core Antipatterns
@@ -87,7 +87,7 @@ Breaks: `cart.getItems().add(new Item(...))` silently mutates the cart's own int
 Fix: `return List.copyOf(items);`.
 
 **(D) — `Collectors.toMap()` with no merge function on data that can contain duplicate keys (T-107, Streams).**
-Breaks: if two `Item`s share the same `sku` (e.g., the same product added twice, or a data error upstream), this throws `IllegalStateException` at runtime, in production, on real cart data — not a hypothetical.
+Breaks: if two `Item`s share the same `sku` (same product added twice, or a data error upstream), this throws `IllegalStateException` in production, on real cart data — not a hypothetical.
 Fix: `Collectors.toMap(Item::sku, Item::price, (a, b) -> b)` (or whatever merge semantics are actually correct — e.g., summing, or preferring the first).
 
 **(E) — Exception wrapped without chaining the cause (T-105, Exception Design).**

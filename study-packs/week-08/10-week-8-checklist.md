@@ -1,7 +1,7 @@
 ---
 title: "Week 8 Checklist"
 week: 8
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 8 Checklist
@@ -47,6 +47,6 @@ Day-by-day, matching `README.md`'s schedule.
 ## If you fall behind — priority order
 
 1. `kafka-guarantees.md` and the mock — highest-value artifacts this week
-2. The delivery-semantics demo reproductions (at-least-once and at-most-once) — run them even if surrounding reading is deferred; this is the highest-IWI topic in the week (T-704, 8.00)
+2. The delivery-semantics demo reproductions (at-least-once and at-most-once) — run them even if reading is deferred; this is the week's highest-IWI topic (T-704, 8.00)
 3. Story 11
-4. The architecture and consumer-group reading — defer full depth to later revision if truly short on time, but reproduce the partition-key and rebalance demos regardless
+4. Architecture and consumer-group reading — defer full depth if truly short on time, but reproduce the partition-key and rebalance demos regardless

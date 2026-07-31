@@ -1,7 +1,7 @@
 ---
 title: "Week 10 Checklist"
 week: 10
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 10 Checklist
@@ -47,6 +47,6 @@ Day-by-day, matching `README.md`'s schedule.
 ## If you fall behind — priority order
 
 1. `outbox-implementation.md` — this week's named deliverable, and the highest-IWI-adjacent topic (T-618 is the convergence point of three earlier weeks)
-2. The outbox crash-recovery reproduction specifically — it's the one demo that directly proves this week's central claim (at-least-once, zero loss)
+2. The outbox crash-recovery reproduction specifically — the one demo that directly proves this week's central claim (at-least-once, zero loss)
 3. The 60-min architecture mock
-4. The sharding, consistent-hashing, resilience, and zero-downtime-migration reading — defer full depth if truly short on time, but reproduce all five demos regardless; every chapter this week leans on a specific measured number, not prose alone
+4. Sharding, consistent-hashing, resilience, and zero-downtime-migration reading — defer full depth if truly short on time, but reproduce all five demos regardless; every chapter this week leans on a specific measured number, not prose alone

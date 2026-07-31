@@ -1,7 +1,7 @@
 ---
 title: "Design Exercise — Authentication Service"
 week: 7
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Design Exercise — Authentication Service
@@ -62,13 +62,13 @@ graph TD
     Downstream -->|verifies signature locally,<br/>NO call to Auth Service| Downstream
 ```
 
-**Justified against Phase 2's numbers:** the 700x validation-to-issuance ratio is exactly why downstream services verify the JWT's signature *locally* (using a shared secret or the auth service's public key) rather than calling back to the auth service on every request — a synchronous validation call at 50,000 QPS would make the auth service a availability-critical bottleneck for the entire platform, whereas local signature verification is a pure CPU operation with no network dependency at all.
+**Justified against Phase 2's numbers:** the 700x validation-to-issuance ratio is why downstream services verify the JWT's signature *locally* (shared secret or the auth service's public key) rather than calling back on every request — a synchronous validation call at 50,000 QPS would make the auth service an availability-critical bottleneck for the whole platform, whereas local signature verification is pure CPU with no network dependency.
 
 ## Phase 6 — Bottlenecks
 
-1. **Refresh-token store becomes a bottleneck at scale.** Mitigation: this is comparatively low volume (one refresh per access-token expiry window, not per request), so a standard relational store with an index on the token easily handles it — worth stating explicitly that not every component needs the same scaling treatment.
-2. **Revocation gap.** Per `03-oauth2-oidc-and-jwt.md` §4, a compromised access token remains valid until it expires — mitigated by keeping access-token expiry short (minutes) and only doing the expensive, revocable check (refresh token validity) at the much-lower-volume refresh step.
-3. **Key rotation.** If the signing key is ever compromised, every downstream service verifying locally needs the new key distributed before old tokens signed with the compromised key can be rejected — this is a real operational bottleneck (key distribution latency) worth naming, not something the JWT format itself solves.
+1. **Refresh-token store at scale.** Comparatively low volume (one refresh per expiry window, not per request), so a standard relational store with an index on the token handles it easily — not every component needs the same scaling treatment.
+2. **Revocation gap.** Per `03-oauth2-oidc-and-jwt.md` §4, a compromised access token stays valid until expiry — mitigated by short access-token expiry (minutes), with the expensive revocable check (refresh-token validity) only at the much-lower-volume refresh step.
+3. **Key rotation.** If the signing key is compromised, every downstream service verifying locally needs the new key distributed before old-key-signed tokens can be rejected — a real operational bottleneck (key distribution latency), not something the JWT format itself solves.
 
 ## Exit check
 

@@ -2,13 +2,13 @@
 title: "Week 13 Study Pack — Manifest"
 week: 13
 plan: B
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Week 13 Study Pack — Manifest
 
 **Topics:** T-107, T-101, T-104, T-105, T-103 · **Plan:** B, Java Core (Phase 4/5 — first Java Core week; domain previously had zero study-pack coverage)
-**Files:** 12 (+ this manifest) · **Total words:** 7,021 (real count, `wc -w` over all 12 files)
+**Files:** 12 (+ this manifest) · **Total words:** 7,012 (real count, `wc -w` over all 12 files; checked 2026-07-31 for slimming — this week was already authored lean, post-dating the study-pack slimming convention, so only trivial prose tightening in `08`/`09`/README applied; 01–05 already summary+link, `06`/`07`/`10`/`resources.md` had no cuttable fat)
 
 ---
 
@@ -16,7 +16,7 @@ last_reviewed: 2026-07-30
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Objective, schedule, exit criteria | 572 |
+| 1 | `README.md` | Objective, schedule, exit criteria | 570 |
 | 2 | `01-streams-and-collectors.md` | T-107 — summary + link; full chapter canonical at `handbook/java-core/streams-and-collectors.md` | 545 |
 | 3 | `02-equals-hashcode-and-comparable-contracts.md` | T-101 — summary + link; full chapter canonical at `handbook/java-core/equals-hashcode-and-comparable-contracts.md` | 575 |
 | 4 | `03-generics-erasure-and-pecs.md` | T-104 — summary + link; full chapter canonical at `handbook/java-core/generics-erasure-and-pecs.md` | 616 |
@@ -24,8 +24,8 @@ last_reviewed: 2026-07-30
 | 6 | `05-immutability-and-defensive-copying.md` | T-103 — summary + link; full chapter canonical at `handbook/java-core/immutability-and-defensive-copying.md` | 545 |
 | 7 | `06-java-coding-practice.md` | 4 problems, all compiled and run, 12/12 assertions pass | 404 |
 | 8 | `07-flashcards.md` | 15 cards | 943 |
-| 9 | `08-week-13-mock-interview.md` | 45-min Java Core technical round | 917 |
-| 10 | `09-code-review-exercise.md` | 7 defects across 5 topics in one class, with worked solution | 780 |
+| 9 | `08-week-13-mock-interview.md` | 45-min Java Core technical round | 914 |
+| 10 | `09-code-review-exercise.md` | 7 defects across 5 topics in one class, with worked solution | 776 |
 | 11 | `10-week-13-checklist.md` | Day-by-day checklist | 280 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK | 257 |
 

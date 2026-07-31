@@ -1,7 +1,7 @@
 ---
 title: "outbox-implementation.md Deliverable"
 week: 10
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # `outbox-implementation.md` Deliverable
@@ -65,7 +65,7 @@ CREATE TABLE outbox (
 CREATE INDEX idx_outbox_unpublished ON outbox (id) WHERE published = false;
 ```
 
-The partial index on `published = false` keeps the poller's `SELECT ... WHERE published = false` query cheap regardless of how large the fully-published history grows — a small, deliberate detail worth naming: without it, the poller's own query would slow down over the table's entire lifetime, not just its unpublished backlog.
+The partial index on `published = false` keeps the poller's query cheap regardless of how large the fully-published history grows — without it, the poller's own query would slow down over the table's entire lifetime, not just its unpublished backlog.
 
 ## 3. The three components
 
@@ -143,15 +143,15 @@ Poller pass complete: 3 row(s) published this pass.
 Total messages ever published to order-events: 4
 ```
 
-**3 orders written. 4 messages delivered. 0 lost.** The duplicate (order 1's event, delivered twice) is the direct, measured cost of the one window this implementation does not make atomic — Kafka-ack to DB-mark — and is exactly why the downstream consumer of `order-events` must be idempotent (dedupe by `aggregate_id` + `event_type`, or by a dedicated event UUID in a production version) to be safe. The control case, `DualWriteHazardDemo.java`, shows the alternative: without the outbox, the equivalent crash produces a REAL, unrecoverable loss (the order exists, no event for it ever exists anywhere), not a recoverable duplicate.
+**3 orders written. 4 messages delivered. 0 lost.** The duplicate (order 1's event, delivered twice) is the direct, measured cost of the one window this implementation doesn't make atomic — Kafka-ack to DB-mark — and is exactly why a downstream consumer of `order-events` must be idempotent (dedupe by `aggregate_id` + `event_type`, or a dedicated event UUID in production) to be safe. The control case, `DualWriteHazardDemo.java`, shows the alternative: without the outbox, the equivalent crash produces a REAL, unrecoverable loss (the order exists, no event for it ever exists), not a recoverable duplicate.
 
 ## 6. Known limitations of this implementation
 
 Stated explicitly, per this repository's own integrity convention (see `MANIFEST.md`) — not glossed over:
 
-- **Polling, not CDC.** This implementation polls on-demand rather than using change-data-capture (e.g., Debezium reading Postgres's WAL) — CDC would eliminate polling latency and load entirely, at the cost of real operational complexity (a CDC connector to run and monitor) that was out of scope for this pack's time budget. The roadmap's own deliverable spec explicitly allows either.
-- **Single poller, no lease/lock.** With multiple poller instances, this implementation would double-publish far more than the single-crash scenario above — a production version needs the same claim-with-a-lease mechanism as Week 9's distributed-job-scheduler design (`study-packs/week-09/09-design-exercise-distributed-job-scheduler.md` Phase 4), not demonstrated here.
-- **No dead-letter handling.** A poison outbox row (one that permanently fails to publish, e.g., a malformed payload Kafka's serializer rejects) would block the poller indefinitely in this implementation's simple `while (rs.next())` loop — a production version needs a retry-count column and a dead-letter path, matching the same poison-message concern named in `T-707` from Week 8's Kafka material.
+- **Polling, not CDC.** Polls on-demand rather than using change-data-capture (e.g., Debezium reading Postgres's WAL) — CDC eliminates polling latency and load entirely, at the cost of real operational complexity (a CDC connector to run and monitor) out of scope for this pack's time budget. The roadmap's deliverable spec allows either.
+- **Single poller, no lease/lock.** With multiple poller instances, this would double-publish far more than the single-crash scenario above — production needs the same claim-with-a-lease mechanism as Week 9's distributed-job-scheduler design (`study-packs/week-09/09-design-exercise-distributed-job-scheduler.md` Phase 4), not demonstrated here.
+- **No dead-letter handling.** A poison outbox row (one that permanently fails to publish, e.g., a malformed payload Kafka's serializer rejects) would block the poller indefinitely in this implementation's simple `while (rs.next())` loop — production needs a retry-count column and a dead-letter path, matching the poison-message concern named in `T-707` from Week 8's Kafka material.
 
 ## 7. Exit check
 

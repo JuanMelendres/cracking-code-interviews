@@ -2,13 +2,13 @@
 title: "Week 12 Study Pack — Manifest"
 week: 12
 plan: B
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Week 12 Study Pack — Manifest
 
 **Topics:** none (capstone — full loop simulation) · **Plan:** B, final week
-**Files:** 9 (+ this manifest) · **Total words:** 8,588 (real count, `wc -w` over all 9 files)
+**Files:** 9 (+ this manifest) · **Total words:** 8,510 (real count, `wc -w` over all 9 files; updated 2026-07-31 — trimmed redundant prose in the loop files' Round 3 justification bullets and pass/fail prose plus `07`'s invariants; no canonical-chapter link applicable, these files are the primary mock-interview deliverable content itself, not duplicated topic explanation, so cuts stayed shallow)
 
 ---
 
@@ -16,14 +16,14 @@ last_reviewed: 2026-07-30
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Study Pack Standard front matter + full weekly structure | 862 |
-| 2 | `01-loop-1-technical-coding-design.md` | Loop 1 — 60 min, 3 rounds | 1,066 |
-| 3 | `02-loop-2-technical-coding-design-behavioral.md` | Loop 2 — 75 min, 4 rounds | 1,138 |
-| 4 | `03-loop-3-java-fluency-coding-production-judgment.md` | Loop 3 — 60 min, 3 rounds | 1,105 |
-| 5 | `04-loop-4-final-full-loop.md` | Loop 4 — 90 min, 4 rounds, the §8.7-scored loop | 1,423 |
+| 1 | `README.md` | Study Pack Standard front matter + full weekly structure | 859 |
+| 2 | `01-loop-1-technical-coding-design.md` | Loop 1 — 60 min, 3 rounds | 1,050 |
+| 3 | `02-loop-2-technical-coding-design-behavioral.md` | Loop 2 — 75 min, 4 rounds | 1,129 |
+| 4 | `03-loop-3-java-fluency-coding-production-judgment.md` | Loop 3 — 60 min, 3 rounds | 1,098 |
+| 5 | `04-loop-4-final-full-loop.md` | Loop 4 — 90 min, 4 rounds, the §8.7-scored loop | 1,410 |
 | 6 | `05-diagnostic-rerun.md` | Verbatim D1-D4 re-run, three-point comparison template | 602 |
-| 7 | `06-final-readiness-assessment.md` | The capstone go/no-go artifact | 746 |
-| 8 | `07-java-coding-practice.md` | 8 problems, all compiled and run | 1,380 |
+| 7 | `06-final-readiness-assessment.md` | The capstone go/no-go artifact | 742 |
+| 8 | `07-java-coding-practice.md` | 8 problems, all compiled and run | 1,354 |
 | 9 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 266 |
 
 ---

@@ -3,7 +3,7 @@ title: "Code Review Exercise — Spot the Five Collections Antipatterns"
 week: 14
 document_type: study-pack-exercise
 status: draft
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Code Review Exercise — Spot the Five Collections Antipatterns
@@ -54,7 +54,7 @@ Fix: `new ConcurrentHashMap<>()`.
 
 **(B) — An `ArrayList` accessed from many concurrent threads, in addition to being the wrong structure for its actual usage (T-201/T-205, T-202).**
 Breaks: `ArrayList` isn't thread-safe either — concurrent `add()` calls can corrupt its internal array, or throw `ArrayIndexOutOfBoundsException`/`ConcurrentModificationException` depending on the exact interleaving.
-Fix: at minimum, wrap in `Collections.synchronizedList(new ArrayList<>())` or use a `CopyOnWriteArrayList` if reads vastly outnumber writes; better still, reconsider the design entirely — see (E) below, which shows this list is also the wrong *type* for its access pattern regardless of thread-safety.
+Fix: at minimum, wrap in `Collections.synchronizedList(new ArrayList<>())` or use `CopyOnWriteArrayList` if reads vastly outnumber writes; better, reconsider the design entirely — see (E) below, which shows this list is also the wrong *type* for its access pattern regardless of thread-safety.
 
 **(C) — An unbounded `LinkedList`-backed `Queue` (T-207).**
 Breaks: `pendingWrites` never rejects a write; if whatever drains it (a background writer, presumably) ever falls behind — exactly the scenario this week's `BlockingQueueDemo` production scenario describes — memory grows without limit until an eventual `OutOfMemoryError`.
@@ -65,8 +65,8 @@ Breaks: even after fixing (A) to use `ConcurrentHashMap`, this specific incremen
 Fix: `requestCounts.merge(path, 1, Integer::sum);` — one atomic call, no separate get/put.
 
 **(E) — `ArrayList.add(0, path)` on every single request (T-202).**
-Breaks: every call shifts every existing element in `recentPaths` one slot to the right — O(n) per call, meaning the *total* cost of tracking N recent paths this way is O(n²), not O(n). Measured directly in this week's chapter: front-insertion on `ArrayList` was ~117x slower than the `LinkedList.addFirst()` equivalent at just 20,000 insertions — and this cache presumably handles far more requests than that over its lifetime.
-Fix: use a `LinkedList` (or `ArrayDeque`) and call `addFirst(path)` instead — O(1) per call regardless of size — or, if only a bounded number of "recent" paths need to be retained, use a fixed-size structure that evicts the oldest entry instead of growing forever in the first place.
+Breaks: every call shifts every existing element in `recentPaths` one slot right — O(n) per call, so the *total* cost of tracking N recent paths this way is O(n²), not O(n). Measured directly in this week's chapter: front-insertion on `ArrayList` was ~117x slower than the `LinkedList.addFirst()` equivalent at just 20,000 insertions — and this cache presumably handles far more requests than that over its lifetime.
+Fix: use a `LinkedList` (or `ArrayDeque`) and call `addFirst(path)` instead — O(1) per call regardless of size — or, if only a bounded number of "recent" paths need retaining, use a fixed-size structure that evicts the oldest entry instead of growing forever.
 
 ## Self-Check
 

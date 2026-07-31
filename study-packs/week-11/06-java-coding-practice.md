@@ -1,7 +1,7 @@
 ---
 title: "Java Coding Practice — Week 11"
 week: 11
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Java Coding Practice — Week 11
@@ -38,10 +38,10 @@ last_reviewed: 2026-07-29
 
 ## Pattern map
 
-This week's drill is deliberately organized by PATTERN, not by problem number, because the actual skill being reviewed is pattern recognition under time pressure — given an unseen problem, which of these ~10 shapes does it resemble, not "have I seen this exact problem before." Two pairs worth noting explicitly:
+This week's drill is organized by PATTERN, not problem number, because the actual skill reviewed is pattern recognition under time pressure — given an unseen problem, which of these ~10 shapes does it resemble, not "have I seen this exact problem before." Two pairs worth noting:
 
-- **LC 704 and LC 33 are the same skeleton** (binary search), but LC 33 requires one extra decision per iteration (which half is sorted) before the LC 704 logic applies — recognizing "this is binary search, PLUS one wrinkle" is faster than re-deriving from scratch.
-- **LC 53 and LC 121 are structurally identical** (track a running extreme value, derive an answer from the current element relative to it) despite looking like different domains (subarray sum vs. stock price) — both are "single pass, track one running value" problems wearing different costumes.
+- **LC 704 and LC 33 are the same skeleton** (binary search), but LC 33 adds one extra decision per iteration (which half is sorted) before the LC 704 logic applies — recognizing "binary search, plus one wrinkle" is faster than re-deriving from scratch.
+- **LC 53 and LC 121 are structurally identical** (track a running extreme value, derive an answer from the current element relative to it) despite looking like different domains (subarray sum vs. stock price) — both are "single pass, track one running value" wearing different costumes.
 
 ## Verification — real, not asserted
 

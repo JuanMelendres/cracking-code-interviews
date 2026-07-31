@@ -4,7 +4,7 @@ week: 6
 plan: A
 topics: [T-1603, T-1514]
 prerequisites: [T-901, T-609, T-610, T-611, T-503, T-504, T-505, T-801, T-802, T-804, T-909, T-803, T-907, T-908, T-809, T-807]
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 6 Study Pack — Consolidation and Full Loop Simulation
@@ -25,11 +25,11 @@ last_reviewed: 2026-07-29
 
 ## Objective
 
-Convert five weeks of accumulated knowledge into measured performance. Retrieval practice under simulated pressure produces more interview-day improvement than any new topic could at this point — Week 6 exists to prove that, not just assert it, by re-running the exact Day 0 diagnostic from `00-project/learning-roadmap.md` §1 and measuring the delta.
+Convert five weeks of accumulated knowledge into measured performance. Retrieval practice under simulated pressure produces more interview-day improvement than any new topic could at this point — Week 6 proves that, not just asserts it, by re-running the exact Day 0 diagnostic from `00-project/learning-roadmap.md` §1 and measuring the delta.
 
 ## Why this week looks different from Weeks 1–5
 
-Every prior week added new technical chapters with real executed code and SQL. This week deliberately adds **zero new technical claims** — the roadmap's own instruction is "no new topics," and sprint plans that keep adding material through the last week are a known failure mode this week specifically exists to avoid. What's genuinely new this week is process: a full flashcard retrieval pass across all 72 cards from Weeks 1–5, two full mock rounds, and a verbatim re-run of the Day 0 diagnostic to produce a measured, not felt, before/after comparison.
+Every prior week added new technical chapters with real executed code and SQL. This week adds **zero new technical claims** — the roadmap's instruction is "no new topics," and sprint plans that keep adding material through the last week are a known failure mode this week exists to avoid. What's new is process: a full flashcard retrieval pass across all 72 cards, two full mock rounds, and a verbatim Day 0 re-run producing a measured, not felt, before/after comparison.
 
 ## Files in this pack
 
@@ -61,7 +61,7 @@ Every prior week added new technical chapters with real executed code and SQL. T
 
 ## The Week 6 Interview-Readiness Assessment
 
-This is the programme's final gate for Plan A. Full rubric and pass targets: `07-interview-readiness-rubric.md`. Unlike Week 3's checkpoint, there is no "stop and consolidate further" branch here — Week 6 *is* the consolidation. The output is a measured readiness picture and a prioritized list of what's still weak going into real interviews, not a pass/fail gate to another study week.
+The programme's final gate for Plan A. Full rubric and pass targets: `07-interview-readiness-rubric.md`. Unlike Week 3's checkpoint, there's no "stop and consolidate further" branch — Week 6 *is* the consolidation. The output is a measured readiness picture and a prioritized list of what's still weak, not a pass/fail gate to another study week.
 
 ## Exit criteria
 

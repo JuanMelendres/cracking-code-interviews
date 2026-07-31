@@ -1,7 +1,7 @@
 ---
 title: "kafka-guarantees.md Deliverable"
 week: 8
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # `kafka-guarantees.md` Deliverable
@@ -35,11 +35,11 @@ last_reviewed: 2026-07-29
 
 ### Why doesn't `acks=all` alone prevent loss?
 
-`acks=all` means the producer waits for every replica **currently in the ISR** to acknowledge the write — not every replica configured by `replication.factor`. The ISR is a dynamic set: a follower that falls behind (slow disk, network partition, GC pause) is dropped from it automatically. If two of three replicas have been dropped from the ISR, `acks=all` is satisfied by a single replica acking — indistinguishable, from the producer's perspective, from `acks=1`. If that single replica then fails before the dropped followers catch back up, the acknowledged write is gone. `min.insync.replicas` closes this gap by making the producer's write **fail loudly** (`NotEnoughReplicasException`) whenever the current ISR is smaller than the configured minimum, converting a silent durability gap into a visible availability trade-off the caller must handle.
+`acks=all` waits for every replica **currently in the ISR**, not every replica configured by `replication.factor`. The ISR is dynamic — a follower that falls behind (slow disk, network partition, GC pause) is dropped automatically. If two of three replicas drop out, `acks=all` is satisfied by one replica acking — indistinguishable from `acks=1`. If that replica then fails before the others catch up, the acknowledged write is gone. `min.insync.replicas` closes the gap by making the write **fail loudly** (`NotEnoughReplicasException`) whenever the current ISR is smaller than the configured minimum, converting a silent durability gap into a visible availability trade-off.
 
 ### Why doesn't exactly-once extend to an external database write?
 
-Kafka's exactly-once guarantee is implemented via a transaction coordinator that spans Kafka's own consumer-offset topic and Kafka's own output-topic writes — both are Kafka-internal state, so Kafka can make them atomic as one unit. An external database has no part in that transaction protocol; from Kafka's perspective, a write to Postgres inside a consumer's processing loop is just an opaque side effect that happens to occur somewhere between polling and committing. There is no mechanism by which "the Postgres row committed" and "the Kafka offset committed" can be made to succeed or fail together, because they are two independent systems with two independent commit protocols and nothing coordinating between them. The two available fixes both work by removing the need for cross-system atomicity rather than inventing it: the **transactional outbox** writes the DB row and the outbound event to the SAME database, in the SAME local transaction, and a separate publisher relays the outbox to Kafka afterward (moving the coordination problem to a single-system transaction, which databases already solve); an **idempotent consumer** instead accepts that redelivery will happen and makes the external write safe to repeat (e.g., an upsert keyed by record ID), sidestepping the need for exactly-once delivery at all.
+Kafka's exactly-once guarantee runs through a transaction coordinator spanning Kafka's own consumer-offset topic and output-topic writes — both Kafka-internal state, atomic as one unit. An external database has no part in that protocol; a write to Postgres inside a consumer's processing loop is just an opaque side effect between polling and committing. Nothing coordinates "the Postgres row committed" with "the Kafka offset committed" — two independent systems, two independent commit protocols. Both fixes work by removing the need for cross-system atomicity rather than inventing it: the **transactional outbox** writes the DB row and the outbound event to the SAME database in the SAME local transaction, with a separate publisher relaying the outbox to Kafka afterward; an **idempotent consumer** instead accepts redelivery and makes the external write safe to repeat (e.g., an upsert keyed by record ID), sidestepping the need for exactly-once delivery entirely.
 
 ## 3. Exit check
 

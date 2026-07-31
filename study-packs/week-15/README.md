@@ -14,7 +14,7 @@ By the end of this week you can explain, defend, and reproduce with real artifac
 
 ## Why This Week Matters
 
-Cloud & Infrastructure is the third domain that had zero prior study-pack coverage in this program. T-1003 (Kubernetes resource limits, probes, and JVM sizing) is explicitly named in the blueprint as the highest-value entry in this domain — the intersection of JVM memory management (already covered in Week 9) and container resource limits, closing a real gap for candidates who know each half separately but not how they interact.
+Cloud & Infrastructure is the third domain that had zero prior study-pack coverage in this program. T-1003 (Kubernetes resource limits, probes, and JVM sizing) is named in the blueprint as the highest-value entry in this domain — the intersection of JVM memory management (already covered in Week 9) and container resource limits, closing a real gap for candidates who know each half separately but not how they interact.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Week 9's GC Fundamentals and Log Analysis chapter (JVM memory concepts this week
 
 ## A note on this week's evidence
 
-Unlike prior weeks, this domain is infrastructure-shaped rather than algorithm-shaped. Where a live Kubernetes cluster or AWS account isn't available, this pack uses the strongest available real substitute and states the scoping choice explicitly: real Docker containers with real cgroup memory limits (the same mechanism a Kubernetes pod's resource limit ultimately configures) for the JVM-sizing chapter, and real, syntax-validated Kubernetes/GitHub Actions YAML manifests (validated via a YAML parser, not applied against a live API server) for the objects/scheduling and CI/CD chapters. This is the same honesty convention this repository applies elsewhere (see `study-packs/week-11/02-integration-testing-against-real-dependencies.md` §4 for the same pattern with Testcontainers).
+Unlike prior weeks, this domain is infrastructure-shaped rather than algorithm-shaped. Where a live Kubernetes cluster or AWS account isn't available, this pack uses the strongest available real substitute and states the scoping choice explicitly: real Docker containers with real cgroup memory limits (the same mechanism a Kubernetes pod's resource limit ultimately configures) for the JVM-sizing chapter, and real, syntax-validated Kubernetes/GitHub Actions YAML manifests (validated via a YAML parser, not applied against a live API server) for the objects/scheduling and CI/CD chapters — the same honesty convention this repository applies elsewhere (see `study-packs/week-11/02-integration-testing-against-real-dependencies.md` §4 for the same pattern with Testcontainers).
 
 ## Schedule
 

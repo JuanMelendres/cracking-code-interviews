@@ -1,12 +1,12 @@
 ---
 title: "Week 6 Checklist"
 week: 6
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 6 Checklist
 
-Day-by-day, matching `README.md`'s schedule. No catch-up priority-order section this week — unlike Weeks 1–5, there is no next week to defer anything into; if you fall behind this week, cut scope within the week itself (see the note at the bottom) rather than pushing items forward.
+Day-by-day, matching `README.md`'s schedule. No catch-up priority-order section this week — unlike Weeks 1–5, there's no next week to defer into; if you fall behind, cut scope within the week itself (see note below) rather than pushing items forward.
 
 ---
 
@@ -38,4 +38,4 @@ Day-by-day, matching `README.md`'s schedule. No catch-up priority-order section 
 
 ## If time is genuinely short this week
 
-Protect, in order: (1) the weak-list repair — an unrepaired weak list makes everything after it less meaningful; (2) the D1–D4 re-run — without it there is no measurement, which is this week's entire purpose; (3) at least one full mock, technical+coding preferred over design+behavioral if only one fits. The Saturday assessment write-up can be shortened to the comparison table alone if truly out of time, but should not be skipped entirely — an unmeasured week defeats the point of Plan A ending here.
+Protect, in order: (1) weak-list repair — unrepaired, everything after is less meaningful; (2) the D1–D4 re-run — without it there's no measurement, this week's entire purpose; (3) at least one full mock, technical+coding preferred if only one fits. The Saturday write-up can shorten to the comparison table alone if truly out of time, but shouldn't be skipped — an unmeasured week defeats the point of Plan A ending here.

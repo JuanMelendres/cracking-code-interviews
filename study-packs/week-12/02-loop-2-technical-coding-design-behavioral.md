@@ -68,8 +68,8 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 
 **Expected phase coverage:**
 - **Clarify:** breadth-first vs. priority-based crawl order; freshness requirements (how often re-crawl); politeness (rate limit per domain, not just globally).
-- **Estimate:** 1B pages, average page size, crawl rate needed to complete a full pass in a target window — this should drive the fetcher fleet size.
-- **Architecture:** a URL frontier (queue) partitioned per-domain (this is a direct reuse of `study-packs/week-10/03-consistent-hashing.md`'s domain-key partitioning idea, applied to crawl politeness rather than cache sharding) so one domain's rate limit doesn't block crawling every other domain — expect this connection to be made explicitly, unprompted, for a 5.
+- **Estimate:** 1B pages, average page size, crawl rate needed to complete a full pass in a target window — should drive the fetcher fleet size.
+- **Architecture:** a URL frontier (queue) partitioned per-domain (a direct reuse of `study-packs/week-10/03-consistent-hashing.md`'s domain-key partitioning idea, applied to crawl politeness rather than cache sharding) so one domain's rate limit doesn't block crawling every other domain — expect this connection made explicitly, unprompted, for a 5.
 - **Dedup:** a Bloom filter or a distributed hash set of seen-URL fingerprints, to avoid re-queuing already-crawled/queued URLs — memory-vs-false-positive trade-off worth naming.
 - **Failure mode:** a single slow/hanging domain must not stall the whole crawl — same bulkhead-isolation principle as `study-packs/week-10/04-resilience-patterns.md`.
 
@@ -103,8 +103,8 @@ Deliver ONE story, 4-beat structure (situation, task/decision, action, result), 
 ## Pass / borderline / fail signals — Loop 2 overall
 
 **Pass:** all four rounds ≥4/5; Round 4's story cites the exact retrofitted number (an error-budget percentage or a specific percentile), not a rounded qualitative claim.
-**Borderline:** 3 of 4 rounds ≥4, with the weak round being Round 4 specifically going qualitative under pressure despite having the retrofitted version ready on paper — a delivery gap, not a knowledge gap, and the cheapest one to fix before Loop 3.
-**Fail:** Round 3's design collapses without the celebrity/hot-key-equivalent skew consideration ever surfacing even after the direct follow-up, or Round 1 fails to connect any answer back to its real measured evidence (treating Weeks 8-10's numbers as if they were never learned).
+**Borderline:** 3 of 4 rounds ≥4, with the weak round being Round 4 going qualitative under pressure despite having the retrofitted version ready on paper — a delivery gap, not a knowledge gap, the cheapest one to fix before Loop 3.
+**Fail:** Round 3's design collapses without the celebrity/hot-key-equivalent skew consideration ever surfacing even after the direct follow-up, or Round 1 fails to connect any answer back to its real measured evidence (treating Weeks 8-10's numbers as if never learned).
 
 ## Remediation recommendations
 

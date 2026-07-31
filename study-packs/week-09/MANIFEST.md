@@ -2,13 +2,13 @@
 title: "Week 9 Study Pack — Manifest"
 week: 9
 plan: B
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 9 Study Pack — Manifest
 
 **Topics:** T-401, T-402, T-406, T-409, T-410, T-303, T-306 · **Plan:** B, first checkpoint since Week 6
-**Files:** 12 (+ this manifest) · **Total words:** 8,526 (real count, `wc -w` over all 12 files; updated 2026-07-30 after all five T-topics were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
+**Files:** 12 (+ this manifest) · **Total words:** 8,359 (real count, `wc -w` over all 12 files; updated 2026-07-31 — files 06, 08, 09, 10, README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/checkpoint/checklist content, not duplicated topic explanation)
 
 ---
 
@@ -16,17 +16,17 @@ last_reviewed: 2026-07-29
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 738 |
+| 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 733 |
 | 2 | `01-java-memory-model-and-volatile.md` | T-401/402 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/java-memory-model-and-volatile.md` | 667 |
 | 3 | `02-executors-and-thread-pool-sizing.md` | T-406 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/executors-and-thread-pool-sizing.md` | 578 |
 | 4 | `03-deadlock-races-and-thread-diagnostics.md` | T-409 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` | 641 |
 | 5 | `04-virtual-threads.md` | T-410 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/virtual-threads.md` | 609 |
 | 6 | `05-gc-fundamentals-and-log-analysis.md` | T-303/306 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/jvm/gc-fundamentals-and-log-analysis.md` | 652 |
-| 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 + LC 62/1143/416/5, all compiled and run | 1,403 |
+| 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 + LC 62/1143/416/5, all compiled and run | 1,369 |
 | 8 | `07-flashcards.md` | 16 cards | 507 |
-| 9 | `08-week-9-checkpoint.md` | Full 3-round loop + roadmap's own scorecard | 886 |
-| 10 | `09-design-exercise-distributed-job-scheduler.md` | Full six-phase design | 1,131 |
-| 11 | `10-week-9-checklist.md` | Day-by-day checklist | 371 |
+| 9 | `08-week-9-checkpoint.md` | Full 3-round loop + roadmap's own scorecard | 867 |
+| 10 | `09-design-exercise-distributed-job-scheduler.md` | Full six-phase design | 1,025 |
+| 11 | `10-week-9-checklist.md` | Day-by-day checklist | 367 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 344 |
 
 ---

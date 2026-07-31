@@ -4,7 +4,7 @@ week: 10
 plan: B
 topics: [T-618, T-614, T-806, T-515, T-616]
 prerequisites: [T-504, T-505, T-809, T-704]
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 10 Study Pack — Distributed Data + Resilience
@@ -26,11 +26,11 @@ last_reviewed: 2026-07-29
 
 ## Objective
 
-Build a genuinely working transactional outbox (this week's named deliverable) rather than describing the pattern, and connect four supporting Staff-tier topics — sharding, consistent hashing, resilience patterns, zero-downtime migration — that all share one underlying discipline: reasoning precisely about what breaks, and by how much, when a distributed system's topology changes or a dependency fails, backed by real measured numbers rather than qualitative descriptions.
+Build a genuinely working transactional outbox (this week's named deliverable) rather than describing the pattern, and connect four supporting Staff-tier topics — sharding, consistent hashing, resilience patterns, zero-downtime migration — that share one underlying discipline: reasoning precisely about what breaks, and by how much, when a distributed system's topology changes or a dependency fails, backed by real measured numbers rather than qualitative descriptions.
 
 ## Why this week, in this order
 
-T-618 (Saga/Outbox) comes first because it's the week's centerpiece deliverable and because it directly closes a gap two earlier weeks explicitly left open. Sharding (T-614) and consistent hashing (T-806) are grouped next as one data-distribution thread — the same underlying question (how does data map to nodes, and what happens when node count changes) at two different layers, a database's own partitions and a general hashing scheme. Resilience patterns (T-515) and zero-downtime migration (T-616) close the week as two different flavors of "how do you keep serving correctly while something around you is failing or changing" — one for a downstream dependency, one for your own schema.
+T-618 (Saga/Outbox) comes first because it's the week's centerpiece deliverable and directly closes a gap two earlier weeks explicitly left open. Sharding (T-614) and consistent hashing (T-806) are grouped next as one data-distribution thread — the same underlying question (how does data map to nodes, and what happens when node count changes) at two layers, a database's own partitions and a general hashing scheme. Resilience patterns (T-515) and zero-downtime migration (T-616) close the week as two flavors of "how do you keep serving correctly while something around you is failing or changing" — one for a downstream dependency, one for your own schema.
 
 ## Dependency graph
 

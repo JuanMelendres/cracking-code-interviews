@@ -1,7 +1,7 @@
 ---
 title: "Week 9 Checklist"
 week: 9
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 9 Checklist
@@ -50,6 +50,6 @@ Day-by-day, matching `README.md`'s schedule. This is a checkpoint week — Sunda
 ## If you fall behind — priority order
 
 1. The Sunday checkpoint loop and scorecard — this week's entire structural point is the diagnostic gate, don't skip it even if everything else is compressed
-2. The `volatile`/happens-before and deadlock-diagnostics demo reproductions — these are the two named errata topics, run them even if surrounding reading is deferred
+2. The `volatile`/happens-before and deadlock-diagnostics demo reproductions — the two named errata topics, run them even if reading is deferred
 3. Story 12
-4. The executor-sizing, virtual-threads, and GC-log reading — defer full depth if truly short on time, but reproduce all demos regardless; this week's chapters lean unusually heavily on "the number is the point," not the prose around it
+4. Executor-sizing, virtual-threads, and GC-log reading — defer full depth if truly short on time, but reproduce all demos regardless; this week's chapters lean unusually heavily on "the number is the point," not the prose around it

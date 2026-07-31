@@ -2,13 +2,13 @@
 title: "Week 14 Study Pack — Manifest"
 week: 14
 plan: B
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Week 14 Study Pack — Manifest
 
 **Topics:** T-201, T-205, T-207, T-202, T-209 · **Plan:** B, Collections (Phase 4/5 — second new-domain week; Collections previously had zero study-pack coverage)
-**Files:** 12 (+ this manifest) · **Total words:** 6,227 (real count, `wc -w` over all 12 files)
+**Files:** 12 (+ this manifest) · **Total words:** 6,216 (real count, `wc -w` over all 12 files; checked 2026-07-31 for slimming — this week was already authored lean, post-dating the study-pack slimming convention, so only trivial prose tightening in `09`/README applied; 01–05 already summary+link, `06`/`07`/`08`/`10`/`resources.md` had no cuttable fat)
 
 ---
 
@@ -16,7 +16,7 @@ last_reviewed: 2026-07-30
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Objective, schedule, exit criteria | 567 |
+| 1 | `README.md` | Objective, schedule, exit criteria | 566 |
 | 2 | `01-hashmap-internals.md` | T-201 — summary + link; full chapter canonical at `handbook/collections/hashmap-internals.md` | 590 |
 | 3 | `02-concurrenthashmap-internals.md` | T-205 — summary + link; full chapter canonical at `handbook/collections/concurrenthashmap-internals.md` | 531 |
 | 4 | `03-blockingqueue-family.md` | T-207 — summary + link; full chapter canonical at `handbook/collections/blockingqueue-family.md` | 518 |
@@ -25,7 +25,7 @@ last_reviewed: 2026-07-30
 | 7 | `06-java-coding-practice.md` | 3 problems, all compiled and run, 6/6 assertions pass | 298 |
 | 8 | `07-flashcards.md` | 15 cards | 957 |
 | 9 | `08-week-14-mock-interview.md` | 45-min Collections technical round | 679 |
-| 10 | `09-code-review-exercise.md` | 5 defects across 5 topics in one class, with worked solution | 669 |
+| 10 | `09-code-review-exercise.md` | 5 defects across 5 topics in one class, with worked solution | 659 |
 | 11 | `10-week-14-checklist.md` | Day-by-day checklist | 280 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK | 126 |
 

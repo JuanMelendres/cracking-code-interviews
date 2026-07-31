@@ -14,7 +14,7 @@ By the end of this week you can explain, defend, and reproduce with real code fi
 
 ## Why This Week Matters
 
-Java Core, Collections, and Cloud & Infrastructure were the three domains with zero prior coverage in this program (Weeks 1–12 covered architecture, databases, Spring, Kafka, concurrency, JVM, system design, testing, and performance, but never the language fundamentals interviewers assume are already solid). This week closes the five highest-weighted-IWI gaps in Java Core specifically — topics candidates are expected to have cold, not to reason through live for the first time in an interview.
+Java Core, Collections, and Cloud & Infrastructure were the three domains with zero prior coverage in this program (Weeks 1–12 covered architecture, databases, Spring, Kafka, concurrency, JVM, system design, testing, and performance, but never the language fundamentals interviewers assume are already solid). This week closes the five highest-weighted-IWI gaps in Java Core — topics candidates are expected to have cold, not reason through live for the first time in an interview.
 
 ## Prerequisites
 

@@ -67,7 +67,7 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 
 **Expected phase coverage:**
 - **Clarify:** message ordering requirement per conversation (must be strict); delivery guarantee (at-least-once acceptable, duplicates handled client-side by message ID, versus attempting exactly-once); group chat fan-out size limits.
-- **Estimate:** peak concurrent connections (long-lived, not request/response — this drives the connection-handling architecture choice, not just message volume) versus messages/second.
+- **Estimate:** peak concurrent connections (long-lived, not request/response — drives the connection-handling architecture choice, not just message volume) versus messages/second.
 - **Architecture:** a message queue per recipient (or per conversation) is the natural fit — directly the same delivery-semantics reasoning as `study-packs/week-08/04-delivery-semantics-and-exactly-once.md`: commit-after-delivery-confirmation risks duplicates (acceptable, dedupe by message ID), commit-before-delivery risks silent loss (not acceptable for a chat app) — expect the candidate to explicitly choose at-least-once and name the client-side dedupe mechanism, not accidentally default to at-most-once.
 - **Failure mode, pushed hard (this round's actual point):** a recipient's connection server goes down mid-conversation. What happens to messages sent to them in that window? Expect: they queue durably (not held only in the dead server's memory) and deliver on reconnect — the same "outbox row persists until published" durability principle as `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`, applied to a per-user message queue instead of a business-event outbox.
 - **Monitoring:** message delivery latency (send to recipient-ack) as the actual SLI here — a direct application of Week 11's RED "Duration" concept to a signal that isn't literally HTTP latency.
@@ -80,9 +80,9 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 
 ## Pass / borderline / fail signals — Loop 3 overall
 
-**Pass:** all three rounds ≥4/5; Round 3's connection server dead server failure mode surfaces before the interviewer has to push for it.
-**Borderline:** Round 1 or Round 2 solid (≥4) but Round 3 only names failure modes when directly asked — a real gap between HAVING the production-judgment knowledge and VOLUNTEERING it, which is specifically what §8.6's scoring distinguishes between a 3 and a 4.
-**Fail:** Round 1 shows syntax hesitation or unjustified collection/concurrency choices (§8.5's own 1-2 band), or Round 2 fails to reach a working solution on either problem within time.
+**Pass:** all three rounds ≥4/5; Round 3's dead-connection-server failure mode surfaces before the interviewer has to push for it.
+**Borderline:** Round 1 or Round 2 solid (≥4) but Round 3 only names failure modes when directly asked — a real gap between HAVING the production-judgment knowledge and VOLUNTEERING it, exactly what §8.6's scoring distinguishes between a 3 and a 4.
+**Fail:** Round 1 shows syntax hesitation or unjustified collection/concurrency choices (§8.5's 1-2 band), or Round 2 fails to reach a working solution on either problem within time.
 
 ## Remediation recommendations
 

@@ -1,12 +1,12 @@
 ---
 title: "security-chain-trace.md Deliverable"
 week: 7
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # `security-chain-trace.md` Deliverable
 
-**Trace one authenticated request through every filter, for a real or realistic system.** Use `02-spring-security-filter-chain.md`'s three real scenarios as the mechanical template; this deliverable applies the same tracing discipline to a specific, concrete endpoint rather than the generic demo.
+**Trace one authenticated request through every filter, for a real or realistic system.** Use `02-spring-security-filter-chain.md`'s three real scenarios as the mechanical template, applied to a specific, concrete endpoint rather than the generic demo.
 
 ## Table of Contents
 
@@ -51,32 +51,30 @@ doesn't follow the cheapest-first principle from 02-spring-security-filter-chain
 4. MethodSecurityFilter (@PreAuthorize("hasRole('CUSTOMER')")) -- role check
 
 ## Trace: successful request
-A request arrives from an allowed origin, under the rate limit, with a
-valid, unexpired JWT for a user with role CUSTOMER. CorsFilter passes.
-RateLimitFilter increments the counter, still under threshold, passes.
-JwtAuthenticationFilter verifies the signature (real HMAC-SHA256 check,
-per 03-oauth2-oidc-and-jwt.md), confirms not expired, sets principal =
-the JWT's `sub` claim. MethodSecurityFilter checks the principal's role
-against @PreAuthorize's required role, matches, request proceeds to the
-controller.
+Request from an allowed origin, under the rate limit, valid unexpired JWT
+for a CUSTOMER user. CorsFilter passes. RateLimitFilter's counter is
+still under threshold, passes. JwtAuthenticationFilter verifies the
+signature (real HMAC-SHA256 check, per 03-oauth2-oidc-and-jwt.md),
+confirms not expired, sets principal = the JWT's `sub` claim.
+MethodSecurityFilter matches the principal's role against
+@PreAuthorize's required role, request proceeds to the controller.
 
 ## Trace: a request that should be rejected -- at what point, and why
-Same client, but their 101st request within the current minute. CorsFilter
-passes (same origin). RateLimitFilter's counter is now over threshold --
-SHORT-CIRCUITS here, returns 429 Too Many Requests. The JWT is never even
-parsed, because the rate-limit check is cheaper and should run first --
-this endpoint's actual filter order gets this right.
+Same client, 101st request this minute. CorsFilter passes (same origin).
+RateLimitFilter's counter is over threshold -- SHORT-CIRCUITS, returns
+429 Too Many Requests. The JWT is never parsed, because the rate-limit
+check is cheaper and runs first -- this endpoint's filter order gets
+this right.
 
 ## Gaps found
-The chain has no CSRF filter, which is correct for this specific endpoint
-(a stateless, Bearer-token-authenticated API, not cookie-session-based --
-CSRF specifically targets cookie-based session riding, which doesn't apply
-here). This is a case where a MISSING filter is the right call, not a gap
--- worth stating explicitly rather than assuming every chain needs every
-filter type uniformly.
+No CSRF filter -- correct for this endpoint (stateless, Bearer-token-
+authenticated, not cookie-session-based; CSRF targets cookie-based
+session riding, which doesn't apply here). A MISSING filter is the
+right call here, not a gap -- worth stating explicitly rather than
+assuming every chain needs every filter type uniformly.
 ```
 
-**Why this is a complete deliverable:** it identifies a case where a filter is deliberately *absent* and explains why that's correct rather than treating filter-chain completeness as "more filters is always better" — the same judgment discipline as every other "argue against your own proposal"-style exercise in this programme.
+**Why this is complete:** identifies a case where a filter is deliberately *absent* and explains why, rather than treating completeness as "more filters is always better" — the same judgment discipline as every "argue against your own proposal" exercise in this programme.
 
 ## 3. Exit check
 

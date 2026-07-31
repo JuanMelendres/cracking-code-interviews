@@ -67,12 +67,12 @@ Reference solutions: `practice/java/week-12/final-loop-coding/`.
 ### Interviewer section
 
 **Expected phase coverage:**
-- **Clarify:** a booking is a MULTI-STEP flow across at least two resources (room inventory, payment) owned by different services — this is the central design fork, distinct from a single payment charge in isolation.
+- **Clarify:** a booking is a MULTI-STEP flow across at least two resources (room inventory, payment) owned by different services — the central design fork, distinct from a single payment charge in isolation.
 - **Estimate:** peak search QPS vs. peak booking-confirmation QPS (search dominates heavily; the booking-confirmation path is lower volume but far higher consistency requirement).
 - **Data:** a room-inventory hold with a short TTL (reserve, don't commit, on search-to-cart) plus a transactional outbox (direct reuse of `study-packs/week-10/01-saga-outbox-and-distributed-transactions.md`) so "booking confirmed" and "booking-event published to downstream systems (confirmation email, loyalty points, partner notification)" are atomic — expect this named explicitly, not reinvented from scratch.
 - **Idempotency:** an idempotency key supplied by the CALLER on the confirm-booking call, so a network-retried confirmation is recognized as a duplicate and returns the original result rather than double-booking or double-charging — direct reuse of Week 5's idempotency material plus Week 10's outbox-consumer-must-be-idempotent lesson.
 - **Saga across services:** confirming a booking is exactly a Saga (`week-10/01` §5) — reserve room, charge payment, confirm booking; if the charge fails, the compensating action is releasing the room hold (a forward action, not a "rollback" of the reservation); if confirmation itself fails after a successful charge, the compensating action is a refund. Expect a named, concrete compensating action for EACH step, not one generic "roll it back."
-- **Failure mode, pushed hardest:** the payment provider confirms the charge but the confirmation response is lost before the booking service marks it charged. Expect: this is EXACTLY the dual-write hazard shape, and the fix is the same family — a reconciliation job querying the provider's own charge-status API for any booking left in an ambiguous state past a timeout, rather than assuming failure and re-charging.
+- **Failure mode, pushed hardest:** the payment provider confirms the charge but the confirmation response is lost before the booking service marks it charged. Expect: this is EXACTLY the dual-write hazard shape, and the fix is the same family — a reconciliation job querying the provider's own charge-status API for any booking left ambiguous past a timeout, rather than assuming failure and re-charging.
 
 **Common weak answer:** treats the booking flow as one atomic operation rather than a Saga with per-step compensating actions, or doesn't distinguish "no double booking" (inventory hold + idempotency) from "no lost booking" (outbox/durability) as two separate guarantees needing two separate mechanisms.
 
@@ -96,13 +96,13 @@ Push once, hard, on whichever beat is weakest live — a real interviewer does n
 
 **Pass:** all six §8 dimensions ≥4/5 — this IS the §8.7 final-loop bar; nothing else this pack produces matters more.
 **Borderline:** five of six ≥4, one dimension at exactly 3 — close enough that a single targeted re-run of the specific weak round (not the whole loop) is the right next step, not a full retake.
-**Fail:** two or more dimensions below 4, or any single dimension at 1-2 — treat this as genuine, useful signal that a real interview loop right now would likely not clear the bar, and prioritize the named gaps over attempting more mock loops.
+**Fail:** two or more dimensions below 4, or any single dimension at 1-2 — genuine, useful signal that a real interview loop right now would likely not clear the bar; prioritize the named gaps over attempting more mock loops.
 
 ## Remediation recommendations
 
-- **§8.1/§8.5 (Round 1) weak:** identify which of the 3 chosen questions stalled and re-read ONLY that chapter's Interview Questions section — the goal is fixing the specific gap, not a general review pass.
+- **§8.1/§8.5 (Round 1) weak:** identify which of the 3 chosen questions stalled and re-read ONLY that chapter's Interview Questions section — fix the specific gap, not a general review pass.
 - **§8.2 (Round 2) weak:** if the bidirectional-BFS follow-up on LC 127 wasn't even attempted, that's an advanced-extension gap, not a base-solution gap — the base solution passing is still real progress; note the distinction in the scorecard's evidence column rather than treating the whole round as failed.
-- **§8.3/§8.6 (Round 3) weak:** the booking-Saga's per-step compensating actions are the single highest-value thing to re-drill — redo just that one sub-question (not the full six-phase design) until each step's compensation can be named without hesitation.
+- **§8.3/§8.6 (Round 3) weak:** the booking-Saga's per-step compensating actions are the highest-value thing to re-drill — redo just that one sub-question (not the full six-phase design) until each step's compensation can be named without hesitation.
 - **§8.4 (Round 4) weak:** see Loop 2's Round 4 remediation — almost always rehearsal, not content, once a story is already built.
 
 ---

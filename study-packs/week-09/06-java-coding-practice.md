@@ -1,7 +1,7 @@
 ---
 title: "Java Coding Practice — Week 9"
 week: 9
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Java Coding Practice — Week 9
@@ -44,7 +44,7 @@ public class PrintInOrder {
 }
 ```
 
-**Invariant:** two semaphores, each starting at 0 permits (locked), gate `second` and `third` respectively. `first()` always runs immediately (nothing gates it) and releases `secondReady`; `second()` blocks on `secondReady.acquire()` until that release happens, regardless of what order the three threads were *started* in. This is the general pattern for "enforce an order on unpredictably-scheduled threads": one semaphore per downstream step, released only by the step that must precede it.
+**Invariant:** two semaphores, each starting at 0 permits (locked), gate `second` and `third`. `first()` runs immediately (nothing gates it) and releases `secondReady`; `second()` blocks on `secondReady.acquire()` until that release happens, regardless of what order the three threads were *started* in. General pattern for "enforce order on unpredictably-scheduled threads": one semaphore per downstream step, released only by the step that must precede it.
 
 ## LC 1115 — Print FooBar Alternately
 
@@ -66,7 +66,7 @@ public class FooBar {
 }
 ```
 
-**Invariant:** two semaphores acting as a strict ping-pong baton — `fooTurn` starts with 1 permit (so `foo` can go first), `barTurn` starts with 0. Each side releases the other's semaphore after printing, so the two threads can never both hold "the turn" simultaneously, guaranteeing strict alternation regardless of OS thread scheduling.
+**Invariant:** two semaphores acting as a strict ping-pong baton — `fooTurn` starts with 1 permit (so `foo` goes first), `barTurn` starts with 0. Each side releases the other's semaphore after printing, so both threads can never hold "the turn" simultaneously, guaranteeing strict alternation regardless of OS thread scheduling.
 
 ## LC 1116 — Print Zero Even Odd
 
@@ -87,7 +87,7 @@ public class ZeroEvenOdd {
 }
 ```
 
-**Invariant:** a three-way baton, where `zero` alone decides which of `even`/`odd` goes next based on the parity of the number about to be printed — the coordination logic lives entirely in the `zero` thread, and `even`/`odd` are symmetric, simple consumers of their respective semaphore.
+**Invariant:** a three-way baton where `zero` alone decides which of `even`/`odd` goes next, based on the parity of the number about to print — coordination logic lives entirely in the `zero` thread; `even`/`odd` are symmetric, simple consumers of their own semaphore.
 
 ## LC 62 — Unique Paths
 
@@ -104,7 +104,7 @@ static int uniquePaths(int rows, int cols) {
 }
 ```
 
-**Invariant:** `dp[r][c] = dp[r-1][c] + dp[r][c-1]` (only two ways into any cell: from above or from the left), collapsed to a 1D rolling array since row `r` only ever needs row `r-1`'s values — `dp[c]` on the right of `+=` still holds the previous row's value at the moment it's read, before being overwritten. **Complexity:** O(rows × cols) time, O(cols) space.
+**Invariant:** `dp[r][c] = dp[r-1][c] + dp[r][c-1]` (only two ways into any cell: above or left), collapsed to a 1D rolling array since row `r` only needs row `r-1`'s values — `dp[c]` on the right of `+=` still holds the previous row's value at the moment it's read, before being overwritten. **Complexity:** O(rows × cols) time, O(cols) space.
 
 ## LC 1143 — Longest Common Subsequence
 
@@ -140,7 +140,7 @@ static boolean canPartition(int[] nums) {
 }
 ```
 
-**Invariant:** 0/1 knapsack — can some subset of `nums` sum exactly to `target`? Iterating the target **downward** for each number is what makes this 0/1 (each number usable at most once) rather than unbounded — the mirror image of `05-java-coding-practice.md`'s (Week 8) Coin Change, which iterates upward specifically to allow reuse. Same recurrence shape, opposite iteration direction, opposite reuse semantics — this pairing is worth internalizing as a single fact, not two separate ones. **Complexity:** O(n × target) time, O(target) space.
+**Invariant:** 0/1 knapsack — can some subset of `nums` sum exactly to `target`? Iterating the target **downward** for each number is what makes this 0/1 (each number usable once) rather than unbounded — the mirror image of Week 8's Coin Change (`05-java-coding-practice.md`), which iterates upward to allow reuse. Same recurrence shape, opposite iteration direction, opposite reuse semantics — worth internalizing as one fact, not two. **Complexity:** O(n × target) time, O(target) space.
 
 ## LC 5 — Longest Palindromic Substring
 
@@ -159,7 +159,7 @@ static String longestPalindrome(String s) {
 }
 ```
 
-**Invariant:** interval DP — `dp[i][j]` depends on `dp[i+1][j-1]`, a strictly shorter interval, so the loop must fill by increasing interval length, not by row or column index the way LC 1143's DP does. This is the key structural difference between "2D DP over two independent sequences" (LC 1143) and "interval DP over one sequence" (LC 5) — the fill order is dictated by the dependency direction, and getting it backwards reads uninitialized state. **Complexity:** O(n²) time, O(n²) space.
+**Invariant:** interval DP — `dp[i][j]` depends on `dp[i+1][j-1]`, a strictly shorter interval, so the loop must fill by increasing interval length, not by row or column index like LC 1143. Key structural difference between "2D DP over two independent sequences" (LC 1143) and "interval DP over one sequence" (LC 5) — fill order is dictated by dependency direction; getting it backwards reads uninitialized state. **Complexity:** O(n²) time, O(n²) space.
 
 ## Verification — real, not asserted
 

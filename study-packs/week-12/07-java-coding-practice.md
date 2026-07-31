@@ -1,7 +1,7 @@
 ---
 title: "Java Coding Practice — Week 12 (Final Loop Set)"
 week: 12
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Java Coding Practice — Week 12 (Final Loop Set)
@@ -40,7 +40,7 @@ static int lengthOfLongestSubstring(String s) {
 }
 ```
 
-**Invariant:** the `>= left` check is what prevents a stale last-seen index (from before the current window started) from incorrectly shrinking the window — without it, a repeated character whose earlier occurrence already fell out of the window would wrongly jump `left` backward. **Complexity:** O(n) time, O(min(n, charset)) space.
+**Invariant:** the `>= left` check prevents a stale last-seen index (from before the current window started) from incorrectly shrinking the window — without it, a repeated character whose earlier occurrence already fell out of the window would wrongly jump `left` backward. **Complexity:** O(n) time, O(min(n, charset)) space.
 
 ## LC 207 — Course Schedule
 
@@ -59,7 +59,7 @@ static boolean canFinish(int numCourses, int[][] prerequisites) {
 }
 ```
 
-**Invariant:** if a cycle exists, every course in that cycle keeps a nonzero indegree forever (nothing outside the cycle can ever complete to unblock it), so `visited` ends up strictly less than `numCourses` — the cycle is detected by ABSENCE (of full traversal), not by explicit cycle-tracking. **Complexity:** O(V+E) time and space.
+**Invariant:** if a cycle exists, every course in it keeps a nonzero indegree forever (nothing outside the cycle can complete to unblock it), so `visited` ends up strictly less than `numCourses` — the cycle is detected by ABSENCE (of full traversal), not explicit cycle-tracking. **Complexity:** O(V+E) time and space.
 
 ## LC 56 — Merge Intervals
 
@@ -78,7 +78,7 @@ static int[][] mergeIntervals(int[][] intervals) {
 }
 ```
 
-**Invariant:** sorting by start first is what makes a single linear pass sufficient — once sorted, an interval can only possibly overlap the MOST RECENTLY merged interval, never an earlier one, so only the last element of `merged` ever needs checking. **Complexity:** O(n log n) time (sort-dominated), O(n) space.
+**Invariant:** sorting by start first is what makes a single linear pass sufficient — once sorted, an interval can only overlap the MOST RECENTLY merged interval, never an earlier one, so only the last element of `merged` ever needs checking. **Complexity:** O(n log n) time (sort-dominated), O(n) space.
 
 ## LC 139 — Word Break
 
@@ -96,7 +96,7 @@ static boolean wordBreak(String s, List<String> wordDict) {
 }
 ```
 
-**Invariant:** `dp[i]` = can `s[0..i)` be segmented; the inner loop tries every possible LAST word ending at position `i`, only succeeding if both the prefix up to the candidate word's start is ALREADY known-breakable (`dp[j]`) and the candidate substring itself is in the dictionary. **Complexity:** O(n²) time (n² substrings, each a substring-extraction + set lookup), O(n) space for the DP array.
+**Invariant:** `dp[i]` = can `s[0..i)` be segmented; the inner loop tries every possible LAST word ending at position `i`, succeeding only if both the prefix up to the candidate word's start is ALREADY known-breakable (`dp[j]`) and the candidate substring is in the dictionary. **Complexity:** O(n²) time (n² substrings, each a substring-extraction + set lookup), O(n) space for the DP array.
 
 ## LC 128 — Longest Consecutive Sequence
 
@@ -114,7 +114,7 @@ static int longestConsecutive(int[] nums) {
 }
 ```
 
-**Invariant:** the `set.contains(n-1)` skip is what keeps this O(n) instead of O(n²) — without it, every element of every run would restart the counting walk, redoing work; with it, each run's elements are visited exactly twice total (once to skip, once inside the one true start's inner while loop). **Complexity:** O(n) time, O(n) space.
+**Invariant:** the `set.contains(n-1)` skip keeps this O(n) instead of O(n²) — without it, every element of every run would restart the counting walk, redoing work; with it, each run's elements are visited exactly twice total (once to skip, once inside the true start's inner while loop). **Complexity:** O(n) time, O(n) space.
 
 ## LC 973 — K Closest Points to Origin
 
@@ -130,7 +130,7 @@ static int[][] kClosest(int[][] points, int k) {
 }
 ```
 
-**Invariant:** the exact same "heap capped at size k, evict the extreme" shape as Week 10's LC 215/347 — here a MAX-heap (evict the FARTHEST point when over capacity) rather than a min-heap, because we want to keep the k SMALLEST distances. **Complexity:** O(n log k) time, O(k) space.
+**Invariant:** the same "heap capped at size k, evict the extreme" shape as Week 10's LC 215/347 — here a MAX-heap (evict the FARTHEST point when over capacity) rather than a min-heap, since we want to keep the k SMALLEST distances. **Complexity:** O(n log k) time, O(k) space.
 
 ## LC 55 — Jump Game
 
@@ -145,7 +145,7 @@ static boolean canJump(int[] nums) {
 }
 ```
 
-**Invariant:** `furthest` is a monotonically non-decreasing high-water mark of the farthest index reachable using any jump seen so far; if the loop ever reaches an index `i` beyond that high-water mark, no sequence of jumps could have reached `i` at all. **Complexity:** O(n) time, O(1) space.
+**Invariant:** `furthest` is a monotonically non-decreasing high-water mark of the farthest index reachable using any jump seen so far; if the loop ever reaches an index `i` beyond that mark, no sequence of jumps could have reached `i` at all. **Complexity:** O(n) time, O(1) space.
 
 ## LC 127 — Word Ladder
 
@@ -168,7 +168,7 @@ static int ladderLength(String beginWord, String endWord, List<String> wordList)
 }
 ```
 
-**Invariant:** BFS (not DFS) is what guarantees the FIRST time `endWord` is dequeued, `steps` holds the SHORTEST transformation length — DFS would find A path but not necessarily the shortest one, the same BFS-for-shortest-path principle as Week 11's LC 102 level-order traversal, applied to an implicit graph (words as nodes, one-letter-difference as edges) instead of an explicit tree. **Complexity:** O(n × 26 × L) where n = word count, L = word length (each word tried against 26 letters at each of L positions).
+**Invariant:** BFS (not DFS) guarantees the FIRST time `endWord` is dequeued, `steps` holds the SHORTEST transformation length — DFS would find A path but not necessarily the shortest, the same BFS-for-shortest-path principle as Week 11's LC 102 level-order traversal, applied to an implicit graph (words as nodes, one-letter-difference as edges) instead of an explicit tree. **Complexity:** O(n × 26 × L) where n = word count, L = word length.
 
 ## Verification — real, not asserted
 

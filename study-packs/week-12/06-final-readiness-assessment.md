@@ -79,7 +79,7 @@ List every dimension/topic that did NOT hit its target bar across the week's fou
 2. _______________
 3. _______________
 
-For each: is it a genuine knowledge gap (needs more study) or a performance-under-pressure gap (knows it cold untimed, falls apart live)? The fix is different for each — see `study-packs/week-09/08-week-9-checkpoint.md`'s "if you don't pass a dimension" guidance for the pattern, extended here to the full six.
+For each: is it a genuine knowledge gap (needs more study) or a performance-under-pressure gap (knows it cold untimed, falls apart live)? The fix differs for each — see `study-packs/week-09/08-week-9-checkpoint.md`'s "if you don't pass a dimension" guidance, extended here to the full six.
 
 ## Go/no-go
 

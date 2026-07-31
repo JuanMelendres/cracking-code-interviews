@@ -1,7 +1,7 @@
 ---
 title: "Flashcards — Week 8"
 week: 8
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Flashcards — Week 8

@@ -1,12 +1,12 @@
 ---
 title: "Full Flashcard Review — Weeks 1–5"
 week: 6
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Full Flashcard Review — Weeks 1–5
 
-**72 cards, consolidated.** For each, cover the answer, answer aloud from memory, then check. Mark ✅ or ❌ in the Result column. Every ❌ goes onto `02-weak-list-repair.md` — don't re-read the answer and move on; the whole point of this pass is finding what didn't stick.
+**72 cards, consolidated.** For each, cover the answer, answer aloud from memory, then check. Mark ✅ or ❌ in the Result column. Every ❌ goes onto `02-weak-list-repair.md` — don't re-read the answer and move on; the point of this pass is finding what didn't stick.
 
 ## Table of Contents
 

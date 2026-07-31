@@ -14,7 +14,7 @@ Four complete, timed, multi-round mock-interview loops (no new topics), a verbat
 
 ## Why This Week Matters
 
-Every prior week added topics or vocabulary; this week adds nothing new and instead tests whether everything learned across Weeks 1-11 holds up under real interview pressure — timed, multi-round, cold, with follow-ups pushed hard. The roadmap's own framing: Week 6 asked "are you survivable," Week 9 asked "is the checkpoint diagnostic clean," Week 12 asks the final, honest question — "ready for a real loop, or not, and specifically where not."
+Every prior week added topics or vocabulary; this week adds nothing new and instead tests whether everything learned across Weeks 1-11 holds up under real interview pressure — timed, multi-round, cold, with follow-ups pushed hard. The roadmap's framing: Week 6 asked "are you survivable," Week 9 asked "is the checkpoint diagnostic clean," Week 12 asks the final, honest question — "ready for a real loop, or not, and specifically where not."
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ Embedded in each loop file's Round 1 (technical depth) and Round 3 (system desig
 
 ## System Design Exercise
 
-Four fresh design prompts, one per loop, verified against every prior week's own design-exercise inventory to avoid repeating a problem already built (Weeks 3/4/5/7/8/9/10/11 collectively cover ride-hailing, news feed, payment processing, authentication, notification, job scheduling, distributed caching, and metrics/monitoring): rate limiter (Loop 1), web crawler (Loop 2), real-time chat/messaging (Loop 3), hotel booking system (Loop 4) — the last drawing directly on Week 10's Saga/Outbox and Week 5's idempotency material, applied to a genuinely different domain than either week's own design exercise.
+Four fresh design prompts, one per loop, verified against every prior week's own design-exercise inventory to avoid repeating a problem already built (Weeks 3/4/5/7/8/9/10/11 collectively cover ride-hailing, news feed, payment processing, authentication, notification, job scheduling, distributed caching, and metrics/monitoring): rate limiter (Loop 1), web crawler (Loop 2), real-time chat/messaging (Loop 3), hotel booking system (Loop 4) — the last drawing directly on Week 10's Saga/Outbox and Week 5's idempotency material, applied to a genuinely different domain than either week's exercise.
 
 ## Behavioral Exercise
 

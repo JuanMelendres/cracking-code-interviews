@@ -70,11 +70,11 @@ Real, compiled reference solutions and full assertion output: `practice/java/wee
 ### Interviewer section
 
 **Expected phase coverage, compressed:**
-- **Clarify:** per-user vs. global vs. per-endpoint scope; hard reject vs. throttle; what response on limit exceeded (429 + `Retry-After`).
+- **Clarify:** per-user vs. global vs. per-endpoint scope; hard reject vs. throttle; response on limit exceeded (429 + `Retry-After`).
 - **Estimate:** peak QPS, number of distinct rate-limit keys (users × endpoints), memory footprint per key.
 - **Algorithm choice:** token bucket vs. sliding window log vs. sliding window counter — expect a stated trade-off (token bucket allows bursts; sliding window log is exact but memory-heavy; sliding window counter approximates cheaply).
-- **Distributed enforcement:** the hard part — local per-instance counting under-enforces the global limit; needs a shared store (Redis) with atomic increment, or accepts approximate enforcement for lower coordination cost. **This is the single most likely place a candidate hand-waves — push here.**
-- **Failure mode:** what happens if the shared counter store is down — fail open (allow, risk overload) or fail closed (reject everything, risk false denial)? Either answer is acceptable if justified.
+- **Distributed enforcement:** the hard part — local per-instance counting under-enforces the global limit; needs a shared store (Redis) with atomic increment, or accepts approximate enforcement for lower coordination cost. **The single most likely place a candidate hand-waves — push here.**
+- **Failure mode:** shared counter store down — fail open (allow, risk overload) or fail closed (reject everything, risk false denial)? Either is acceptable if justified.
 
 **Common weak answer:** proposes a per-instance in-memory counter without acknowledging it under-enforces the limit by up to `N_instances`x.
 
@@ -87,8 +87,8 @@ Real, compiled reference solutions and full assertion output: `practice/java/wee
 ## Pass / borderline / fail signals — Loop 1 overall
 
 **Pass:** all three rounds ≥4/5; distributed-enforcement trade-off in Round 3 named unprompted, not only after the interviewer's push.
-**Borderline:** 2 of 3 rounds ≥4, but the third stalls at 3 — most commonly Round 3's Round-3 distributed-enforcement question, which most first-time candidates hand-wave. Re-run this loop's Round 3 alone before moving on.
-**Fail:** any round ≤2 — a happy-path-only design, a coding solution that never compiles, or a technical answer that collapses at the first follow-up. Do not proceed to Loop 2 until the specific failed round is remediated (see below), since Loop 2 assumes this loop's baseline.
+**Borderline:** 2 of 3 rounds ≥4, but the third stalls at 3 — most commonly Round 3's distributed-enforcement question, which most first-time candidates hand-wave. Re-run Round 3 alone before moving on.
+**Fail:** any round ≤2 — a happy-path-only design, a coding solution that never compiles, or a technical answer collapsing at the first follow-up. Don't proceed to Loop 2 until the failed round is remediated (below), since Loop 2 assumes this loop's baseline.
 
 ## Remediation recommendations
 

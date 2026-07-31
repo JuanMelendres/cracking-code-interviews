@@ -8,7 +8,7 @@ last_reviewed: 2026-07-31
 # Week 15 Study Pack — Manifest
 
 **Topics:** T-1003, T-1002, T-1007, T-1009, T-1006 · **Plan:** B, Cloud & Infrastructure (Phase 4/5 — third new-domain week; Cloud & Infrastructure previously had zero study-pack coverage)
-**Files:** 12 (+ this manifest) · **Total words:** 6,696 (real count, `wc -w` over all 12 files)
+**Files:** 12 (+ this manifest) · **Total words:** 6,673 (real count, `wc -w` over all 12 files; checked 2026-07-31 for slimming — this week was already authored lean, post-dating the study-pack slimming convention, so only trivial prose tightening in `09`/README applied; 01–05 already summary+link, `06`/`07`/`08`/`10`/`resources.md` had no cuttable fat)
 
 ---
 
@@ -16,7 +16,7 @@ last_reviewed: 2026-07-31
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Objective, schedule, exit criteria, evidence-scoping note | 699 |
+| 1 | `README.md` | Objective, schedule, exit criteria, evidence-scoping note | 697 |
 | 2 | `01-kubernetes-resource-limits-probes-and-jvm-sizing.md` | T-1003 — summary + link; full chapter canonical at `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` | 582 |
 | 3 | `02-kubernetes-objects-scheduling-and-networking.md` | T-1002 — summary + link; full chapter canonical at `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` | 504 |
 | 4 | `03-cloud-cost-and-scaling-economics.md` | T-1007 — summary + link; full chapter canonical at `handbook/cloud/cloud-cost-and-scaling-economics.md` | 504 |
@@ -25,7 +25,7 @@ last_reviewed: 2026-07-31
 | 7 | `06-hands-on-lab.md` | 5 labs, all real and reproducible | 442 |
 | 8 | `07-flashcards.md` | 15 cards | 1,072 |
 | 9 | `08-week-15-mock-interview.md` | 45-min Cloud & Infrastructure technical round | 676 |
-| 10 | `09-design-exercise-deployment-infrastructure.md` | Full infrastructure/deployment design, worked reference solution | 803 |
+| 10 | `09-design-exercise-deployment-infrastructure.md` | Full infrastructure/deployment design, worked reference solution | 782 |
 | 11 | `10-week-15-checklist.md` | Day-by-day checklist | 241 |
 | 12 | `resources.md` | Sources classified PRIMARY/SECONDARY | 155 |
 

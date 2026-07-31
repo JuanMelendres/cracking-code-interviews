@@ -1,7 +1,7 @@
 ---
 title: "Week 6 Resources"
 week: 6
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 6 Resources

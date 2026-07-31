@@ -1,12 +1,12 @@
 ---
 title: "Week 11 Mock — Behavioral, Full 6-Question Set (45 min)"
 week: 11
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 11 Mock — Behavioral, Full 6-Question Set
 
-**Format:** 45 minutes, per `00-project/learning-roadmap.md` §4 Week 11. This week's own instruction is explicit: **retrofit this week's observability vocabulary (percentiles, RED, error budgets) into Stories 3, 7, and 11** rather than write new stories — no new story is introduced this week. This mock draws 6 questions from the full 12-story bank built across Weeks 1–9, with the three retrofit targets included.
+**Format:** 45 minutes, per `00-project/learning-roadmap.md` §4 Week 11. This week's instruction is explicit: **retrofit this week's observability vocabulary (percentiles, RED, error budgets) into Stories 3, 7, and 11** rather than write new stories — no new story is introduced this week. This mock draws 6 questions from the full 12-story bank built across Weeks 1–9, with the three retrofit targets included.
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ Each answer: four-beat structure (situation, task/decision, action, result — w
 ## Part B — Interviewer script
 
 1. On Story 1: probe for a genuine alternative that was seriously considered and rejected, not a strawman.
-2. On Story 3 (retrofit target): if the candidate describes severity only qualitatively ("it was pretty bad"), push explicitly: "quantify that — what fraction of your error budget did it consume, and over what window?" This is the specific gap this week's material exists to close.
+2. On Story 3 (retrofit target): if the candidate describes severity only qualitatively ("it was pretty bad"), push: "quantify that — what fraction of your error budget did it consume, and over what window?" The specific gap this week's material exists to close.
 3. On Story 7 (retrofit target): if the case for change was originally vague, ask directly: "what number would have made that argument land faster?"
 4. On Story 11 (retrofit target): if the candidate cites an average rather than a percentile, redirect: "what did the tail look like, specifically — and how was it measured?" (testing for awareness of `03`'s coordinated-omission gap without leading the witness).
 5. On Story 6: if the ending is too neat (no real cost, no real behavior change), push: "what would you do differently if the exact same situation happened again tomorrow?"

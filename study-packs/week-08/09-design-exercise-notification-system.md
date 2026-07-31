@@ -1,7 +1,7 @@
 ---
 title: "Design Exercise — Notification System"
 week: 8
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Design Exercise — Notification System
@@ -22,7 +22,7 @@ last_reviewed: 2026-07-29
 
 ## Phase 1 — Clarify
 
-**In scope:** accept a notification event from any internal service (order shipped, password changed, comment reply), fan it out to the channels the user has enabled (push, email, SMS), respect per-user preferences and rate limits. **Out of scope:** the actual push/email/SMS provider integrations themselves (treated as external APIs), rich templating engine. **Core action:** this is fundamentally a fan-out and delivery-guarantee problem, not a storage problem — the interesting decisions are almost entirely about how events flow, not schema design.
+**In scope:** accept a notification event from any internal service (order shipped, password changed, comment reply), fan it out to the channels the user has enabled (push, email, SMS), respect per-user preferences and rate limits. **Out of scope:** the actual push/email/SMS provider integrations (treated as external APIs), rich templating engine. **Core action:** a fan-out and delivery-guarantee problem, not a storage problem — the interesting decisions are about how events flow, not schema design.
 
 ## Phase 2 — Estimate
 
@@ -54,7 +54,7 @@ PUT /users/{id}/notification-preferences {channels enabled per type}
 
 ## Phase 4 — Data
 
-**User preferences:** relational or key-value, read on every event (high read volume, low write volume — cache aggressively). **Delivery log:** append-only, one row per (notificationId, channel) attempt, used for the status endpoint and for idempotency checks on retry (§Phase 6). **The event stream itself is not "stored" as a queryable table** — Kafka topics are the transport, not the system of record for delivery state; the delivery log is.
+**User preferences:** relational or key-value, read on every event (high read, low write — cache aggressively). **Delivery log:** append-only, one row per (notificationId, channel) attempt, used for the status endpoint and idempotency checks on retry (§Phase 6). **The event stream itself is not "stored" as a queryable table** — Kafka topics are the transport, not the system of record for delivery state; the delivery log is.
 
 ## Phase 5 — Architecture
 
@@ -76,16 +76,16 @@ graph TD
 
 **Justified against this week's topics:**
 
-- **Partition key = `userId`, throughout every topic in the pipeline** (T-705). This guarantees one user's notifications are processed in order relative to each other, which matters — a "password changed" notification must never be delivered after a later "password change reverted" one for the same user, even under retries and rebalances.
-- **A per-channel topic downstream of a single fan-out consumer** (T-701/T-703), rather than one worker doing all three deliveries inline, isolates a slow/down channel (e.g., the SMS provider is degraded) from the other two — the push and email consumer groups keep draining their topics independently, and only the SMS consumer group backs up.
-- **Delivery is at-least-once, deliberately** (T-704): each worker commits its offset AFTER a provider call succeeds, not before, meaning a worker crash mid-delivery redelivers the notification. This trades an occasional duplicate push notification (annoying) for never silently dropping one (unacceptable for something like "your payment failed") — the same commit-after-processing default named in `04-delivery-semantics-and-exactly-once.md`.
-- **The delivery log doubles as the idempotency boundary** (T-704 §4, T-809): each worker checks `(notificationId, channel)` against the delivery log before calling the provider, so at-least-once redelivery from Kafka doesn't translate into an actually-duplicate SMS to the user — the dedupe check converts a non-idempotent action (sending an SMS) into an idempotent one from the pipeline's perspective.
+- **Partition key = `userId`, throughout every topic in the pipeline** (T-705). Guarantees one user's notifications process in order relative to each other — a "password changed" notification must never be delivered after a later "password change reverted" for the same user, even under retries and rebalances.
+- **A per-channel topic downstream of a single fan-out consumer** (T-701/T-703), rather than one worker doing all three deliveries inline, isolates a slow/down channel (e.g., a degraded SMS provider) from the other two — push and email consumer groups keep draining independently, only SMS backs up.
+- **Delivery is at-least-once, deliberately** (T-704): each worker commits its offset AFTER a provider call succeeds, not before, so a crash mid-delivery redelivers the notification. Trades an occasional duplicate push (annoying) for never silently dropping one (unacceptable for "your payment failed") — the same commit-after-processing default from `04-delivery-semantics-and-exactly-once.md`.
+- **The delivery log doubles as the idempotency boundary** (T-704 §4, T-809): each worker checks `(notificationId, channel)` against the log before calling the provider, so at-least-once redelivery from Kafka doesn't become an actually-duplicate SMS — the dedupe check converts a non-idempotent action into an idempotent one.
 
 ## Phase 6 — Bottlenecks
 
-1. **A single hot user is not the risk here — a single hot event TYPE is.** A mass-triggering event (e.g., a security incident forcing 5M simultaneous password-reset notifications) doesn't concentrate on one partition the way a single busy customer would (Phase 2's spike scenario) — it's spread across all users' keys already. The real bottleneck is downstream: the push/email/SMS provider's own rate limits, which the worker groups must respect via a token-bucket limiter (T-808) rather than the partitioning scheme.
-2. **Preference-DB read load.** Every event triggers a preferences lookup in the fan-out consumer; at 2,100 events/s peak this is a straightforward cache-in-front-of-DB problem, but worth naming as the one place a slow dependency directly throttles the whole pipeline's consumer lag.
-3. **Consumer lag as an SLO, not just a metric** (T-707, named explicitly in this week's blueprint entry): a growing lag on the SMS topic during a provider outage is expected and should page differently than a growing lag on the fan-out topic itself, which would mean the whole pipeline is falling behind — the alerting has to distinguish "one channel is degraded" from "the pipeline is degraded."
+1. **A single hot user isn't the risk here — a single hot event TYPE is.** A mass-triggering event (e.g., a security incident forcing 5M simultaneous password-reset notifications) doesn't concentrate on one partition the way a busy customer would (Phase 2's spike scenario) — it's already spread across all users' keys. The real bottleneck is downstream: the push/email/SMS provider's own rate limits, which worker groups must respect via a token-bucket limiter (T-808) rather than the partitioning scheme.
+2. **Preference-DB read load.** Every event triggers a preferences lookup in the fan-out consumer; at 2,100 events/s peak this is a straightforward cache-in-front-of-DB problem, worth naming as the one place a slow dependency directly throttles the pipeline's consumer lag.
+3. **Consumer lag as an SLO, not just a metric** (T-707): a growing lag on the SMS topic during a provider outage is expected and should page differently than a growing lag on the fan-out topic itself, which means the whole pipeline is falling behind — alerting has to distinguish "one channel degraded" from "the pipeline degraded."
 
 ## Exit check
 

@@ -3,7 +3,7 @@ title: "Week 13 Mock — Java Core Technical Round (45 min)"
 week: 13
 document_type: study-pack-mock
 status: draft
-last_reviewed: 2026-07-30
+last_reviewed: 2026-07-31
 ---
 
 # Week 13 Mock — Java Core Technical Round (45 min)
@@ -28,7 +28,7 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 
 ### Question 1 — parallel() regression
 
-**Ideal answer outline:** names fork/join coordination overhead as the likely cause for small/cheap-per-element work; proposes a properly warmed-up benchmark (not a single `nanoTime()` call) comparing sequential vs. parallel on realistic data size before drawing conclusions.
+**Ideal answer outline:** names fork/join coordination overhead as the likely cause for small/cheap-per-element work; proposes a properly warmed-up benchmark (not a single `nanoTime()` call) comparing sequential vs. parallel on realistic data before drawing conclusions.
 **Common weak answers:** "parallel should always be faster," or no verification method proposed at all.
 **Pass signal:** names the coordination-cost-vs-workload-size trade-off and proposes real measurement.
 **Borderline signal:** identifies overhead exists but can't explain the measurement methodology.
@@ -44,7 +44,7 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 
 ### Question 3 — ClassCastException far from its cause
 
-**Ideal answer outline:** explains that generics are compile-time only; an unchecked cast lets an incompatible value in with no immediate check, and the failure surfaces later at the point the declared type is relied upon (e.g., `get()`).
+**Ideal answer outline:** generics are compile-time only; an unchecked cast lets an incompatible value in with no immediate check, and the failure surfaces later, at the point the declared type is relied upon (e.g., `get()`).
 **Common weak answers:** assumes some runtime generic checking exists that should have caught it earlier.
 **Pass signal:** correctly explains the read-time failure mechanism with a concrete example.
 **Borderline signal:** knows it's related to generics/casting but can't explain the timing.

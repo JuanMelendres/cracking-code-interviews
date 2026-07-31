@@ -4,7 +4,7 @@ week: 9
 plan: B
 topics: [T-401, T-402, T-406, T-409, T-410, T-303, T-306]
 prerequisites: [T-503, T-504, T-505]
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 9 Study Pack — Concurrency + JVM · Checkpoint
@@ -26,11 +26,11 @@ last_reviewed: 2026-07-29
 
 ## Objective
 
-Correct two verified-wrong pieces of memorized material (the errata above) while building the deepest technical topic in the register (JMM/happens-before) and adding the two concurrency/JVM skills the blueprint calls genuinely demonstrable rather than recitable: reading a GC log, and reasoning about virtual-thread pinning. This is also the first full checkpoint since Week 6 — the exit gate spans the entire W1–W9 register, not just this week's material.
+Correct two verified-wrong pieces of memorized material (the errata above) while building the deepest technical topic in the register (JMM/happens-before) and adding the two concurrency/JVM skills the blueprint calls genuinely demonstrable rather than recitable: reading a GC log, and reasoning about virtual-thread pinning. Also the first full checkpoint since Week 6 — the exit gate spans the entire W1–W9 register, not just this week's material.
 
 ## Why this week, in this order
 
-The JMM (T-401) has to come first because `volatile` (T-402), the deadlock/thread-diagnostics chapter (T-409), and even the virtual-threads pinning discussion (T-410) are all specific claims about happens-before and visibility — none of them are independently comprehensible without it. Thread pool sizing (T-406) comes next because virtual threads (T-410) are best understood as the answer to the specific IO-bound sizing problem T-406 exposes. GC (T-303/T-306) is deliberately last and semi-independent — it shares the "JVM" domain but not a direct dependency chain with the concurrency topics, and closes the week with the "diagnose from an artifact" skill the checkpoint itself tests.
+The JMM (T-401) comes first because `volatile` (T-402), the deadlock/thread-diagnostics chapter (T-409), and even the virtual-threads pinning discussion (T-410) are all specific claims about happens-before and visibility — none independently comprehensible without it. Thread pool sizing (T-406) comes next because virtual threads (T-410) are best understood as the answer to the specific IO-bound sizing problem T-406 exposes. GC (T-303/T-306) is deliberately last and semi-independent — it shares the "JVM" domain but not a direct dependency chain with the concurrency topics, and closes the week with the "diagnose from an artifact" skill the checkpoint itself tests.
 
 ## Dependency graph
 

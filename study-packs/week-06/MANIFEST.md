@@ -1,13 +1,13 @@
 ---
 title: "Week 6 Study Pack — Manifest"
 week: 6
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 6 Study Pack — Manifest
 
 **Topics:** Revision only (all of Weeks 1–5), T-1603, T-1514 · **Plan:** A (Interview Emergency Sprint) · 6h study + 14h practice
-**Files:** 9 (+ this manifest) · **Total words:** 4,764 (real count, `wc -w` over all 9 files)
+**Files:** 9 (+ this manifest) · **Total words:** 4,420 (real count, `wc -w` over all 9 files, post-slim)
 
 ---
 
@@ -15,15 +15,15 @@ last_reviewed: 2026-07-29
 
 | # | File | Purpose | Words |
 |---|---|---|---|
-| 1 | `README.md` | Objective, why this week differs, schedule, exit criteria | 717 |
-| 2 | `01-full-flashcard-review.md` | All 72 cards from Weeks 1–5, consolidated with fail-tracking | 1,211 |
-| 3 | `02-weak-list-repair.md` | Repair template + worked example | 342 |
-| 4 | `03-week-6-mock-technical-coding.md` | 60-min technical + 45-min coding, cross-week | 341 |
-| 5 | `04-week-6-mock-design-behavioral.md` | 60-min design (unseen) + 45-min behavioral | 315 |
-| 6 | `05-diagnostic-rerun.md` | D1–D4 verbatim re-run instructions + comparison table | 458 |
-| 7 | `06-week-6-assessment-deliverable.md` | `week-6-assessment.md` template + worked example | 621 |
-| 8 | `07-interview-readiness-rubric.md` | Final six-dimension assessment, Delta-vs-Day-0 | 389 |
-| 9 | `08-week-6-checklist.md` | Day-by-day checklist | 284 |
+| 1 | `README.md` | Objective, why this week differs, schedule, exit criteria | 694 |
+| 2 | `01-full-flashcard-review.md` | All 72 cards from Weeks 1–5, consolidated with fail-tracking | 1,210 |
+| 3 | `02-weak-list-repair.md` | Repair template + worked example | 297 |
+| 4 | `03-week-6-mock-technical-coding.md` | 60-min technical + 45-min coding, cross-week | 318 |
+| 5 | `04-week-6-mock-design-behavioral.md` | 60-min design (unseen) + 45-min behavioral | 282 |
+| 6 | `05-diagnostic-rerun.md` | D1–D4 verbatim re-run instructions + comparison table | 418 |
+| 7 | `06-week-6-assessment-deliverable.md` | `week-6-assessment.md` template + worked example | 500 |
+| 8 | `07-interview-readiness-rubric.md` | Final six-dimension assessment, Delta-vs-Day-0 | 352 |
+| 9 | `08-week-6-checklist.md` | Day-by-day checklist | 263 |
 | 10 | `resources.md` | Pointers to prior weeks — no new sources | 86 |
 
 ---

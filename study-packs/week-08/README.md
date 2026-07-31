@@ -4,7 +4,7 @@ week: 8
 plan: B
 topics: [T-701, T-702, T-703, T-704, T-705]
 prerequisites: [T-809]
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 8 Study Pack — Kafka Semantics
@@ -26,11 +26,11 @@ last_reviewed: 2026-07-29
 
 ## Objective
 
-Move Kafka coverage from API vocabulary (what the original knowledge base had: 15 rows averaging ~117 characters) to **semantics under failure** — what each guarantee actually costs, and precisely where it breaks. The four topics beyond T-701 are, per the blueprint, "effectively one competence": what guarantees exist, what they cost, and where they break — this week treats them as one connected cluster rather than four independent chapters.
+Move Kafka coverage from API vocabulary (the original knowledge base: 15 rows averaging ~117 characters) to **semantics under failure** — what each guarantee actually costs, and precisely where it breaks. The four topics beyond T-701 are, per the blueprint, "effectively one competence": what guarantees exist, what they cost, and where they break — treated here as one connected cluster rather than four independent chapters.
 
 ## Why this week, in this order
 
-T-701 (architecture: topics, partitions, brokers, the ISR) has to come first because everything else in the cluster is stated in terms of it — "ordering" (T-705), "durability" (T-702), and "exactly-once" (T-704) are all specific claims about partition and replica behavior, not free-standing facts. T-703 (consumer groups) depends on T-701's partition model directly (assignment is partition-to-consumer). T-704 (delivery semantics) comes last because it's the synthesis point — the blueprint calls it the highest-IWI topic in the cluster (8.00) precisely because getting it right requires the producer-side (T-702) and consumer-side (T-703) mechanics already in place.
+T-701 (architecture: topics, partitions, brokers, the ISR) comes first because everything else in the cluster is stated in terms of it — "ordering" (T-705), "durability" (T-702), and "exactly-once" (T-704) are all specific claims about partition and replica behavior, not free-standing facts. T-703 (consumer groups) depends directly on T-701's partition model (assignment is partition-to-consumer). T-704 (delivery semantics) comes last as the synthesis point — the blueprint calls it the cluster's highest-IWI topic (8.00) precisely because getting it right requires the producer-side (T-702) and consumer-side (T-703) mechanics already in place.
 
 ## Dependency graph
 

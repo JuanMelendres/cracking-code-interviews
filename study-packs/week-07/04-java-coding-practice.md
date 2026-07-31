@@ -1,7 +1,7 @@
 ---
 title: "Java Coding Practice — Week 7"
 week: 7
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Java Coding Practice — Week 7
@@ -27,7 +27,7 @@ Buggy (value-based temp.contains()):  0 permutations found: []
 Fixed (index-based used[] array):     6 permutations found
 ```
 
-**This is a total failure, not just under-counting:** with a value-based check, once *any* `1` is placed, `temp.contains(1)` is true regardless of which array index a later `1` would come from — so a second `1` can never be placed, and no permutation of length 3 is ever completed at all.
+**Total failure, not under-counting:** with a value-based check, once *any* `1` is placed, `temp.contains(1)` is true regardless of which index a later `1` would come from — a second `1` can never be placed, so no length-3 permutation ever completes.
 
 ```java
 // FIXED — index-based used[] array distinguishes array SLOTS, not just values
@@ -59,7 +59,7 @@ static void subsetsBacktrack(int[] nums, int start, List<Integer> temp, List<Lis
 }
 ```
 
-**Invariant:** recording the current `temp` at the *start* of every call (not just at a "complete" state) is what generates all 2ⁿ subsets, including the empty one — unlike LC 46, there's no single terminal condition; every node in the recursion tree is itself a valid answer. **Complexity:** O(n · 2ⁿ) time, O(n) space for recursion.
+**Invariant:** recording `temp` at the *start* of every call (not just at completion) generates all 2ⁿ subsets, including the empty one — unlike LC 46, there's no single terminal condition; every recursion-tree node is itself a valid answer. **Complexity:** O(n · 2ⁿ) time, O(n) space.
 
 ## LC 39 — Combination Sum
 
@@ -75,7 +75,7 @@ static void combSumBacktrack(int[] candidates, int remaining, int start, List<In
 }
 ```
 
-**Invariant:** passing `i` (not `i + 1`) to the recursive call is what allows the same candidate to be reused arbitrarily many times — the single-character difference from LC 78's `i + 1` is the entire distinction between "each element once" and "each element reusable." **Complexity:** exponential in the worst case, bounded by `target / min(candidates)` recursion depth.
+**Invariant:** passing `i` (not `i + 1`) allows the same candidate to be reused arbitrarily many times — the single-character difference from LC 78's `i + 1` is the entire distinction between "each element once" and "reusable." **Complexity:** exponential worst case, bounded by `target / min(candidates)` recursion depth.
 
 ## LC 22 — Generate Parentheses
 
@@ -87,7 +87,7 @@ static void genParenBacktrack(int n, int open, int close, StringBuilder sb, List
 }
 ```
 
-**Invariant:** tracking `open`/`close` counts directly and only ever appending a valid next character prunes every invalid branch immediately — no need to generate a full string and validate it afterward. **Complexity:** O(4ⁿ / √n) time (the Catalan-number bound), far better than generating and filtering all 2^(2n) raw strings.
+**Invariant:** tracking `open`/`close` counts and only appending a valid next character prunes every invalid branch immediately — no generate-then-validate pass needed. **Complexity:** O(4ⁿ / √n) (Catalan-number bound), far better than generating and filtering all 2^(2n) raw strings.
 
 ## Verification — real, not asserted
 

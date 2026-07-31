@@ -1,7 +1,7 @@
 ---
 title: "Week 7 Checklist"
 week: 7
-last_reviewed: 2026-07-29
+last_reviewed: 2026-07-31
 ---
 
 # Week 7 Checklist
@@ -48,6 +48,6 @@ Day-by-day, matching `README.md`'s schedule.
 ## If you fall behind — priority order
 
 1. `security-chain-trace.md` and the mock — highest-value artifacts this week
-2. The `@Async`+`@Transactional` and JWT demo reproductions — run them even if surrounding reading is deferred
+2. The `@Async`+`@Transactional` and JWT demo reproductions — run them even if reading is deferred
 3. Stories 9–10
-4. The bean-lifecycle and filter-chain reading — defer full depth to later revision if truly short on time, but reproduce both demos regardless
+4. Bean-lifecycle and filter-chain reading — defer full depth if truly short on time, but reproduce both demos regardless

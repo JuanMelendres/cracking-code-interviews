@@ -14,7 +14,7 @@ By the end of this week you can explain, defend, and reproduce with real code th
 
 ## Why This Week Matters
 
-HashMap internals (T-201) is explicitly the single most-asked Java data structure question and carries the highest IWI in the entire Collections domain despite being Foundation-tier — Phase 1 confirmed this topic was previously entirely absent from this program's coverage, the same gap this week closes for four related topics.
+HashMap internals (T-201) is the single most-asked Java data structure question and carries the highest IWI in the entire Collections domain despite being Foundation-tier — Phase 1 confirmed this topic was previously entirely absent from this program's coverage, the same gap this week closes for four related topics.
 
 ## Prerequisites
 
