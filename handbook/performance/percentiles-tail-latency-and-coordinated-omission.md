@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - logging-metrics-tracing-and-opentelemetry.md
   - performance-methodology-and-slo-error-budgets.md
+  - ../testing/performance-and-load-testing-methodology.md
   - ../../study-packs/week-11/03-percentiles-tail-latency-and-coordinated-omission.md
 official_references:
   - https://www.infoq.com/presentations/latency-response-time/
