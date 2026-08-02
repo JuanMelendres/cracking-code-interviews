@@ -16,6 +16,8 @@ prerequisites: []
 related:
   - gc-fundamentals-and-log-analysis.md
   - memory-leak-diagnosis-and-heap-dump-analysis.md
+  - object-layout-headers-and-compressed-oops.md
+  - native-memory-direct-buffers-and-off-heap.md
   - ../../study-packs/week-16/03-jvm-memory-layout-and-runtime-regions.md
 official_references:
   - https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html#jvms-2.5

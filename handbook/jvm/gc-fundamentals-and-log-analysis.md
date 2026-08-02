@@ -19,6 +19,8 @@ related:
   - g1-remembered-sets-and-write-barriers.md
   - memory-leak-diagnosis-and-heap-dump-analysis.md
   - jvm-memory-layout-and-runtime-regions.md
+  - gc-roots-reachability-and-reference-strength.md
+  - zgc-and-shenandoah-concurrent-collection.md
   - ../../study-packs/week-09/05-gc-fundamentals-and-log-analysis.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html

@@ -15,6 +15,8 @@ prerequisites:
   - jvm-memory-layout-and-runtime-regions.md
 related:
   - jvm-memory-layout-and-runtime-regions.md
+  - safepoints-and-stop-the-world-mechanics.md
+  - escape-analysis-and-scalar-replacement.md
   - ../../study-packs/week-16/05-jit-tiered-compilation-and-deoptimization.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/vm/java-hotspot-virtual-machine-performance-enhancements.html
