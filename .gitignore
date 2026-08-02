@@ -22,6 +22,8 @@ build/
 .env.*
 *.pem
 *.key
+*.p12
+*.jks
 !templates/**/*.key.example
 
 # Logs / temp

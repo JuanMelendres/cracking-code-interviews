@@ -18,6 +18,8 @@ related:
   - ../spring/security-filter-chain.md
   - ../system-design/caching-strategies-and-invalidation.md
   - ../system-design/cap-theorem-and-consistency-models.md
+  - owasp-top-10-for-backend-services.md
+  - authn-authz-rbac-vs-abac.md
   - ../../study-packs/week-07/03-oauth2-oidc-and-jwt.md
 official_references:
   - https://www.rfc-editor.org/rfc/rfc6749

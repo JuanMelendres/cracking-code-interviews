@@ -16,6 +16,7 @@ prerequisites:
   - jvm-memory-layout-and-runtime-regions.md
 related:
   - jvm-memory-layout-and-runtime-regions.md
+  - ../security/supply-chain-security-sbom-and-dependency-risk.md
   - ../../study-packs/week-15/01-kubernetes-resource-limits-probes-and-jvm-sizing.md
   - ../../study-packs/week-16/04-jvm-flags-and-container-ergonomics.md
 official_references:
