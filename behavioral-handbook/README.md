@@ -11,7 +11,9 @@ Canonical home for behavioral-interview methodology — STAR delivery mechanics,
 
 ## A note on scope
 
-Twelve of fifteen chapters now exist (T-1501 through T-1512 of the behavioral taxonomy in `00-project/knowledge-architecture-blueprint.md`) — the three mechanics chapters (STAR, portfolio design, scope framing) plus nine story-category frameworks. Built across two bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Three topics remain open, all qualitatively different from the story-framework chapters above (company-specific rubric adaptation, a question bank, and negotiation advice — not story structures): company-specific leadership-principle framing (T-1513), questions to ask the interviewer (T-1514), and offer negotiation (T-1515).
+**All fifteen chapters of the behavioral taxonomy in `00-project/knowledge-architecture-blueprint.md` are now complete** — the three mechanics chapters (STAR, portfolio design, scope framing), nine story-category frameworks, and three closing "meta" chapters (company-framework reframing, questions to ask, offer evaluation and negotiation). Built across three bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation.
+
+**What's still genuinely open, honestly:** this deliverable covers the *methodology* — how to structure, select, and tell a story, not the stories themselves. Building dedicated fill-in worksheets (matching `study-packs/week-01/05-star-story-workbook.md`'s format) for the informally-numbered Stories 3–13 (see [Story Portfolio Design](02-story-portfolio-design.md)'s cross-mapping table) remains an open, worthwhile follow-up — those worksheets don't exist yet, and this repository correctly does not fabricate their contents, per `CLAUDE.md`'s prohibition on inventing the reader's personal history.
 
 **Important finding from the pre-work audit for this batch:** the "13 behavioral stories" repeatedly referenced in this program's CHANGELOG (Weeks 20-25) turned out, on inspection, to be **blank worksheet slots**, not written narratives — there is no fabricated or invented personal-experience content anywhere in this repository, consistent with `CLAUDE.md`'s explicit prohibition on inventing the reader's personal history. What existed to build on was the *system* (STAR structure, the story-inventory method, the scope-reframing lens, a 13-slot competency list referenced piecemeal across Weeks 1-12's mocks and checklists) — not story prose. This batch consolidates that system into the canonical chapters below and is honest, in [Story Portfolio Design](02-story-portfolio-design.md)'s "Coverage Gaps" section, about exactly which worksheets still don't exist yet.
 
@@ -31,6 +33,9 @@ Twelve of fifteen chapters now exist (T-1501 through T-1512 of the behavioral ta
 | 10 | [Migrations and Large Technical Change](10-migrations-and-large-technical-change.md) | T-1510 | Sequencing and risk-management judgment, preparing the rollback follow-up in advance |
 | 11 | [Technical Debt Advocacy](11-technical-debt-advocacy.md) | T-1511 | Translating a technical concern into a business-legible cost |
 | 12 | [Design Reviews and RFCs](12-design-reviews-and-rfcs.md) | T-1512 | The specific intervention that shaped a decision, from either the author's or reviewer's seat |
+| 13 | [Company-Specific Leadership Frameworks](13-company-specific-frameworks.md) | T-1513 | Reframing existing stories for a named rubric (e.g. Amazon's LPs) — a lens, not new stories |
+| 14 | [Questions to Ask Your Interviewer](14-questions-to-ask-your-interviewer.md) | T-1514 | Real diligence tailored to who's asking, not a ritual |
+| 15 | [Offer Evaluation and Negotiation](15-offer-evaluation-and-negotiation.md) | T-1515 | Holistic evaluation beyond base comp, negotiation mechanics, ethical use of competing offers |
 
 ## How this connects to the rest of the program
 

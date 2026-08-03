@@ -211,10 +211,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `behavioral-handbook/README.md` — index updated; 12 of 15 topics now closed, only T-1513/T-1514/T-1515 (company-specific rubric framing, questions to ask, negotiation — qualitatively different content types, not story frameworks) remain.
 - All internal cross-links across all twelve chapters verified to resolve to real files (scripted check, not just visual inspection) before commit.
 
+### Added (Behavioral Handbook, closing batch — T-1513–T-1515, 15/15 FULL CLOSURE)
+- Three closing chapters, completing the entire fifteen-topic behavioral taxonomy: `13-company-specific-frameworks.md` (T-1513 — company-specific rubrics like Amazon's Leadership Principles framed explicitly as a *lens* applied to the existing story portfolio, not a prompt for new stories; the "two stories per principle" norm; bar-raiser calibration; a worked example reframing the same [Technical Debt Advocacy](behavioral-handbook/11-technical-debt-advocacy.md) story for two different principles to demonstrate the technique concretely), `14-questions-to-ask-your-interviewer.md` (T-1514 — reframes the "any questions for me?" moment as genuine two-way diligence, with a question bank tailored by interviewer type: peer engineer, prospective manager, skip-level, recruiter), `15-offer-evaluation-and-negotiation.md` (T-1515 — holistic offer evaluation beyond base compensation, what's typically negotiable vs. fixed, ethical use of genuine competing offers, negotiation mechanics, and always confirming verbal agreements in the final written offer; explicitly scoped as general career-preparation knowledge, not financial/legal/tax advice).
+- **All 15 chapters of `behavioral-handbook/` are now complete.** `behavioral-handbook/02-story-portfolio-design.md`'s competency matrix links every chapter directly. What remains open, named honestly rather than left implicit: dedicated fill-in worksheets (matching `study-packs/week-01/05-star-story-workbook.md`'s format) for the informally-numbered Stories 3–13 — this deliverable covers the methodology, not the reader's own story content, which this repository correctly does not fabricate.
+- `behavioral-handbook/README.md` — updated to reflect full closure and the remaining honestly-scoped worksheet gap.
+- All internal cross-links across all fifteen chapters re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
-- Behavioral Handbook: 12 of 15 topics closed (T-1501–T-1512). Remaining: company-specific leadership-principle framing (T-1513), questions to ask the interviewer (T-1514), offer negotiation (T-1515) — a short closing batch, qualitatively different from the story-framework chapters already built. Also open: building dedicated fill-in worksheets (matching `study-packs/week-01/05-star-story-workbook.md`'s format) for Stories 3–13, which currently have no worksheet file at all.
-- Phase 6's other four complementary deliverables (interview-playbook, cheat-sheets, architecture-atlas, production-cookbook) remain completely untouched.
+- Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
+- Phase 6's other four complementary deliverables (interview-playbook, cheat-sheets, architecture-atlas, production-cookbook) remain completely untouched — the clear next priority.
 
 ---
 
