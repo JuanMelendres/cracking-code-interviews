@@ -22,9 +22,9 @@ last_reviewed: 2026-07-29
 
 The same event, told at Senior scope, typically ends at "the decision was adopted for our service." Told at Staff scope, it continues: who else was affected by the decision, who had to be convinced (and what was their strongest counter-argument), and what changed beyond the immediate team. This is not embellishment — it's surfacing detail that was true of the original event but wasn't part of the Senior-scope telling. Doing this rewrite now, after 8 stories already exist (Weeks 1, 2, 4), means there's real material to mine rather than constructing scope artificially.
 
-## 2. The reframing lens
+The full reframing lens, mental model, worked example, and a dedicated "when there's genuinely no broader scope" section are now canonical at [`behavioral-handbook/03-scope-impact-and-influence-framing.md`](../../behavioral-handbook/03-scope-impact-and-influence-framing.md) — read that chapter before doing the reframes in §4 below.
 
-For each story, answer:
+## 2. The reframing lens (summary)
 
 | Question | What it surfaces |
 |---|---|
@@ -33,13 +33,9 @@ For each story, answer:
 | What changed as a result, beyond the original problem being solved? | Downstream impact |
 | Would you make the same call again, knowing what you know now? | Judgment, not just execution |
 
-## 3. Worked example
+## 3. Worked example (summary)
 
-**Story 1 (architecture decision), Senior-scope version (from Week 1):** *"We chose hexagonal architecture for the order service because we needed to swap persistence technology later without a rewrite. It cost us mapping code but paid off when we actually did the swap."*
-
-**Same story, Staff-scope reframe:** *"Two other teams consumed the order service's internal domain model directly at the time — a dependency that would have made any refactor risky. Convincing the platform lead to invest in the port/adapter boundary meant first convincing those two teams to go through the new port interface instead of the internals directly, which they resisted because it meant short-term rework on their side for a benefit they wouldn't see for months. The strongest argument against me was fair: 'we're slowing down two teams today for a benefit that's speculative.' The boundary held anyway; six months later, when the persistence swap happened, the two consuming teams didn't need to change anything, and one of them independently adopted the same port/adapter pattern for their own service afterward — an org-wide practice shift that outlasted the original technical reason for asking."*
-
-**What changed in the reframe:** the same facts, but now visible: two other teams affected, a real objection represented fairly, and a downstream consequence (a practice adopted elsewhere) beyond the original service.
+The canonical chapter's worked example reframes a Week 1-style architecture-decision story ("we chose hexagonal architecture for persistence flexibility") from a Senior-scope telling into a Staff-scope one that surfaces two consuming teams affected, a fairly-represented objection, and a downstream practice adopted elsewhere — see [`behavioral-handbook/03-scope-impact-and-influence-framing.md` § Worked Example](../../behavioral-handbook/03-scope-impact-and-influence-framing.md#worked-example) for the full text.
 
 ## 4. Your four reframes
 

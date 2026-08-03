@@ -8,15 +8,9 @@
 
 ## 1. The structure
 
-**S — Situation.** One or two sentences of context: what system, what team, what constraint. Anonymized per `CONTRIBUTING.md` § Privacy — `a logistics platform`, not the company name.
+The full S/T/A/R breakdown, the STAR-L/STAR-R extensions, the three-length-variant delivery system, and the Mid/Senior/Staff failure-mode table are now canonical at [`behavioral-handbook/01-star-framework-and-delivery.md`](../../behavioral-handbook/01-star-framework-and-delivery.md) — read that chapter before starting §2 below if this is your first pass through STAR.
 
-**T — Task.** What specifically was your responsibility, distinct from the team's responsibility. "We needed to fix latency" is a team task; "I was asked to find why p99 had tripled" is your task.
-
-**A — Action.** What *you* did, in enough technical detail that a Staff interviewer can ask a real follow-up. Not "we decided to add caching" — who proposed it, what alternatives were considered, why this one.
-
-**R — Result.** Quantified wherever possible. "Improved performance" is not a result; "p99 dropped from 800ms to 140ms over two weeks" is.
-
-The most common failure at Mid level is a story that stays in "we" throughout — no distinguishable individual action. The most common failure at Senior level is a result with no number. The most common failure at Staff level is a result scoped to one's own team with no visible influence beyond it (see §4).
+**In short:** Situation (1-2 sentences, anonymized per `CONTRIBUTING.md` § Privacy), Task (*your* specific responsibility, not the team's), Action (what *you* did, in enough detail to support a real follow-up), Result (quantified). The most common failure at Mid level is a story that stays in "we" throughout; at Senior level, a result with no number; at Staff level, a result scoped to one's own team with no visible influence beyond it (see §4, and the canonical [Scope, Impact, and Influence Framing](../../behavioral-handbook/03-scope-impact-and-influence-framing.md) chapter).
 
 ## 2. Story inventory (do this first, Week 1 Saturday)
 
@@ -58,7 +52,7 @@ Before writing any story in full, brain-dump **20+ candidate situations** from t
 
 ## 4. Scope reframing (used from Week 5 onward — preview only)
 
-The same event can be told at different scopes. Story 1, told at Senior scope, ends at "the decision was adopted for our service." Told at Staff scope, it asks: who else was affected by this decision, who did you have to convince, what changed beyond your own team. Don't do this rewrite yet — Week 5's `T-1503` exercise revisits Stories 1, 4, 7, and 8 specifically for this — but note it here now while gathering the raw material, since a detail worth keeping for the Staff-scope version (an affected downstream team, a cross-team reviewer) is easy to lose if not captured at inventory time.
+The same event can be told at different scopes. Story 1, told at Senior scope, ends at "the decision was adopted for our service." Told at Staff scope, it asks: who else was affected by this decision, who did you have to convince, what changed beyond your own team. Don't do this rewrite yet — Week 5's `T-1503` exercise revisits Stories 1, 4, 7, and 8 specifically for this, using the full reframing lens now canonical at [`behavioral-handbook/03-scope-impact-and-influence-framing.md`](../../behavioral-handbook/03-scope-impact-and-influence-framing.md) — but note it here now while gathering the raw material, since a detail worth keeping for the Staff-scope version (an affected downstream team, a cross-team reviewer) is easy to lose if not captured at inventory time.
 
 ## 5. Common mistakes
 

@@ -1,7 +1,7 @@
 # Week 1 Study Pack — Manifest
 
 **Topics:** T-901, T-609, T-1601, T-1501, T-1419 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 13 (+ this manifest) · **Total words:** 9,428 (real count, `wc -w` over all 13 files, re-run 2026-07-30 after both T-609 and T-901 were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`. The previously-flagged stale count on row 2 is resolved as part of this pass: `01-clean-hexagonal-architecture.md` is now itself a slimmed file with a freshly counted word total, not the old, never-corrected 1,972 figure)
+**Files:** 13 (+ this manifest) · **Total words:** 9,379 (real count, `wc -w` over all 13 files, re-run 2026-08-03 after `05-star-story-workbook.md` §1 was slimmed to a summary + canonical-chapter link, per the new `behavioral-handbook/01-star-framework-and-delivery.md` — see `CHANGELOG.md`. §2 and §3 numbering deliberately kept stable, unchanged: `09-week-1-mock-interview.md` and `11-week-1-checklist.md` cite them directly)
 
 ---
 
@@ -14,7 +14,7 @@
 | 3 | `02-database-index-fundamentals.md` | T-609 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/index-structures-btree-composite-covering.md` | 882 |
 | 4 | `03-technical-answer-framework.md` | T-1601 — nine-layer stack, worked in full for T-901 | 1,080 |
 | 5 | `04-coding-interview-communication.md` | T-1419 — six-phase protocol + 3 annotated failure transcripts | 718 |
-| 6 | `05-star-story-workbook.md` | T-1501 — structure + blank worksheets, no invented stories | 713 |
+| 6 | `05-star-story-workbook.md` | T-1501 — §1 slimmed to a summary + link to `behavioral-handbook/01-star-framework-and-delivery.md`; §2-§6 (worksheets, exercise) unchanged, no invented stories | 664 |
 | 7 | `06-domain-purity-exercise.md` | Deliverable template + worked example + documented counter-case | 668 |
 | 8 | `07-java-coding-practice.md` | 7 problems + LRU errata drill, all compiled and run | 1,246 |
 | 9 | `08-flashcards.md` | 12 cards, each naming the misconception it catches | 413 |
