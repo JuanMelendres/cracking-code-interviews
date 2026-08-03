@@ -58,18 +58,18 @@ Fifteen distinct competencies recur across Senior and Staff behavioral loops. Th
 | T-1501 | STAR structure and delivery mechanics | Mechanics, not a slot — see [chapter 1](01-star-framework-and-delivery.md) |
 | T-1502 | Story portfolio design (this chapter) | Mechanics, not a slot |
 | T-1503 | Scope, impact, and influence framing | A *lens* applied to other stories, not its own slot — see [chapter 3](03-scope-impact-and-influence-framing.md) |
-| T-1504 | Production incident diagnosed and resolved | Slot |
-| T-1505 | Architecture or technical trade-off decision | Slot |
-| T-1506 | Conflict or technical disagreement | Slot |
-| T-1507 | Mentoring another engineer | Slot |
-| T-1508 | A failure owned, with a real lesson | Slot |
-| T-1509 | Cross-team influence without direct authority | Slot |
-| T-1510 | A migration or large technical change led | Slot |
-| T-1511 | Technical debt advocacy — arguing for unglamorous work | Slot |
-| T-1512 | A design review or RFC you drove or shaped | Slot |
-| — | Scaling or performance work under real constraints | Slot |
-| — | Navigating genuine ambiguity or incomplete information | Slot |
-| — | Project or initiative recovery after it went off track | Slot |
+| T-1504 | Production incident diagnosed and resolved | Slot — see [Production Incident Narratives](04-production-incident-narratives.md) |
+| T-1505 | Architecture or technical trade-off decision | Slot — see [Architecture Trade-off Narration](05-architecture-trade-off-narration.md) |
+| T-1506 | Conflict or technical disagreement | Slot — see [Conflict and Technical Disagreement](06-conflict-and-technical-disagreement.md) |
+| T-1507 | Mentoring another engineer | Slot — see [Mentoring and Developing Others](07-mentoring-and-developing-others.md) |
+| T-1508 | A failure owned, with a real lesson | Slot — see [Failure and Learning Narratives](08-failure-and-learning-narratives.md) |
+| T-1509 | Cross-team influence without direct authority | Slot — see [Cross-Team Influence Without Authority](09-cross-team-influence-without-authority.md) |
+| T-1510 | A migration or large technical change led | Slot — see [Migrations and Large Technical Change](10-migrations-and-large-technical-change.md) |
+| T-1511 | Technical debt advocacy — arguing for unglamorous work | Slot — see [Technical Debt Advocacy](11-technical-debt-advocacy.md) |
+| T-1512 | A design review or RFC you drove or shaped | Slot — see [Design Reviews and RFCs](12-design-reviews-and-rfcs.md) |
+| — | Scaling or performance work under real constraints | Slot — no dedicated chapter yet; the closest existing framework is [Production Incident Narratives](04-production-incident-narratives.md), though a scaling story is often proactive rather than incident-driven |
+| — | Navigating genuine ambiguity or incomplete information | Slot — no dedicated chapter yet |
+| — | Project or initiative recovery after it went off track | Slot — no dedicated chapter yet |
 
 That's thirteen story-worthy competency slots — within the 10-14 target range. Two additional register topics exist alongside these but are *not* story slots: T-1513 (company-specific leadership-principle framing, e.g. Amazon's LPs — a lens for adapting existing stories to a specific company's rubric, not new material) and T-1514/T-1515 (questions to ask the interviewer, and offer negotiation — genuinely different content types, covered separately, not part of the story portfolio itself).
 

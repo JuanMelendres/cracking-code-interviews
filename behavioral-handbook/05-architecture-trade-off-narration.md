@@ -16,6 +16,7 @@ prerequisites:
   - behavioral-handbook/03-scope-impact-and-influence-framing.md
 related:
   - handbook/system-design/system-design-method-and-estimation.md
+  - interview-playbook/technical-answers/trade-off-narration-and-adrs.md
 official_references: []
 ---
 
@@ -109,3 +110,4 @@ An architecture-decision behavioral story is evaluated on the reasoning process,
 - [STAR Framework and Delivery Mechanics](01-star-framework-and-delivery.md) — the base structure this chapter specializes for architecture-decision narratives.
 - [Scope, Impact, and Influence Framing](03-scope-impact-and-influence-framing.md) — applies directly to architecture stories, since "who had to be convinced" is exactly the influence dimension that chapter's reframing lens surfaces.
 - [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md) — the canonical technical chapter covering the actual trade-off vocabulary and estimation method; this behavioral chapter is about narrating a real decision, not re-teaching the technical trade-offs themselves.
+- [Trade-off Narration and Architecture Decision Records](../interview-playbook/technical-answers/trade-off-narration-and-adrs.md) — a related but distinct skill: that chapter's four-beat structure (Context, Options, Decision criterion, Cost) is the general-purpose skill for explaining *any* technical trade-off in an interview answer, including hypothetical or whiteboard trade-offs that never happened as a real personal event. This chapter is narrower and more personal — it's specifically about telling the *story* of a real architecture decision you made, under real organizational constraints, for a behavioral round. The two share the same T-1505 topic ID in this program's register (that chapter predates this one and originally covered the full scope alone); use the four-beat structure to *explain* the trade-off technically within Action, and this chapter's narrative discipline (a real tempting alternative, a genuine constraint, who had to be convinced, an honest cost) to shape the *story* around it.

@@ -11,7 +11,7 @@ Canonical home for behavioral-interview methodology — STAR delivery mechanics,
 
 ## A note on scope
 
-Six chapters exist so far (T-1501 through T-1506 of the fifteen-topic behavioral taxonomy in `00-project/knowledge-architecture-blueprint.md`) — the mechanics chapters (STAR, portfolio design, scope framing) plus the three highest-frequency story categories (production incidents, architecture decisions, conflict). This is a deliberately bounded first batch, not the complete deliverable — per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Nine more topics remain open: mentoring (T-1507), failure/learning (T-1508), cross-team influence (T-1509), migrations (T-1510), technical debt advocacy (T-1511), design reviews/RFCs (T-1512), company-specific leadership-principle framing (T-1513), questions to ask the interviewer (T-1514), and offer negotiation (T-1515).
+Twelve of fifteen chapters now exist (T-1501 through T-1512 of the behavioral taxonomy in `00-project/knowledge-architecture-blueprint.md`) — the three mechanics chapters (STAR, portfolio design, scope framing) plus nine story-category frameworks. Built across two bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Three topics remain open, all qualitatively different from the story-framework chapters above (company-specific rubric adaptation, a question bank, and negotiation advice — not story structures): company-specific leadership-principle framing (T-1513), questions to ask the interviewer (T-1514), and offer negotiation (T-1515).
 
 **Important finding from the pre-work audit for this batch:** the "13 behavioral stories" repeatedly referenced in this program's CHANGELOG (Weeks 20-25) turned out, on inspection, to be **blank worksheet slots**, not written narratives — there is no fabricated or invented personal-experience content anywhere in this repository, consistent with `CLAUDE.md`'s explicit prohibition on inventing the reader's personal history. What existed to build on was the *system* (STAR structure, the story-inventory method, the scope-reframing lens, a 13-slot competency list referenced piecemeal across Weeks 1-12's mocks and checklists) — not story prose. This batch consolidates that system into the canonical chapters below and is honest, in [Story Portfolio Design](02-story-portfolio-design.md)'s "Coverage Gaps" section, about exactly which worksheets still don't exist yet.
 
@@ -25,6 +25,12 @@ Six chapters exist so far (T-1501 through T-1506 of the fifteen-topic behavioral
 | 4 | [Production Incident Narratives](04-production-incident-narratives.md) | T-1504 | Diagnosis-first incident story structure, mitigation vs. permanent fix |
 | 5 | [Architecture Trade-off Narration](05-architecture-trade-off-narration.md) | T-1505 | Decision-process storytelling, distinguished from a system-design interview answer |
 | 6 | [Conflict and Technical Disagreement](06-conflict-and-technical-disagreement.md) | T-1506 | The "strongest form" discipline, disagree-and-commit |
+| 7 | [Mentoring and Developing Others](07-mentoring-and-developing-others.md) | T-1507 | Centering the mentee's growth, distinguishing mentoring from one-off help |
+| 8 | [Failure and Learning Narratives](08-failure-and-learning-narratives.md) | T-1508 | The STAR-L structure, choosing a real failure without disguised strengths or excessive self-blame |
+| 9 | [Cross-Team Influence Without Authority](09-cross-team-influence-without-authority.md) | T-1509 | Naming a real influence mechanism — de-risking artifacts, incentive alignment, incremental trust |
+| 10 | [Migrations and Large Technical Change](10-migrations-and-large-technical-change.md) | T-1510 | Sequencing and risk-management judgment, preparing the rollback follow-up in advance |
+| 11 | [Technical Debt Advocacy](11-technical-debt-advocacy.md) | T-1511 | Translating a technical concern into a business-legible cost |
+| 12 | [Design Reviews and RFCs](12-design-reviews-and-rfcs.md) | T-1512 | The specific intervention that shaped a decision, from either the author's or reviewer's seat |
 
 ## How this connects to the rest of the program
 
