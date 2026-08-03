@@ -11,7 +11,7 @@ One-page-equivalent rapid-review documents, one per canonical `handbook/` chapte
 
 ## A note on scope
 
-Thirteen cheat sheets exist so far, covering the thirteen highest-IWI (interview-weight-index) canonical chapters in the entire 75-chapter handbook, per `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register — built across two bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 62 chapters remain uncovered.
+Eighteen cheat sheets exist so far, covering the eighteen highest-IWI (interview-weight-index) canonical chapters in the entire 75-chapter handbook, per `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register — built across three bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 57 chapters remain uncovered.
 
 Every fact in every cheat sheet below (definitions, decision tables, measured numbers, production incidents) was extracted directly from its canonical chapter — nothing here was written from memory or general knowledge. Extraction was done via a dedicated read-and-report pass per chapter before any cheat sheet was drafted, consistent with this repository's no-fabrication discipline.
 
@@ -32,6 +32,11 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 11 | [Query Planning and EXPLAIN ANALYZE](query-planning-and-explain-analyze.md) | T-610 | 7.90 | databases | `handbook/databases/query-planning-and-explain-analyze.md` |
 | 12 | [Idempotency at System Edges](idempotency.md) | T-809 | 7.85 | system-design | `handbook/system-design/idempotency.md` |
 | 13 | [Java Memory Model and volatile](java-memory-model-and-volatile.md) | T-401 | 7.75 | concurrency | `handbook/concurrency/java-memory-model-and-volatile.md` |
+| 14 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 7.70 | system-design | `handbook/system-design/data-partitioning-and-consistent-hashing.md` |
+| 15 | [Distributed Transactions: Saga and Outbox](distributed-transactions-saga-and-outbox.md) | T-618 | 7.65 | system-design | `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
+| 16 | [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md) | T-614 | 7.60 | databases | `handbook/databases/table-partitioning-and-sharding-strategies.md` |
+| 17 | [Resilience Patterns](resilience-patterns.md) | T-515 | 7.60 | system-design | `handbook/system-design/resilience-patterns.md` |
+| 18 | [Consumer Groups and Rebalancing](consumer-groups-and-rebalancing.md) | T-703 | 7.50 | kafka | `handbook/kafka/consumer-groups-and-rebalancing.md` |
 
 ## How this relates to `flashcards/`
 
@@ -39,4 +44,4 @@ Cheat sheets and flashcards serve different grain sizes and different moments, a
 
 ## Selection method
 
-The top chapters by IWI (interview-weight-index) score, per the Master Topic Register in `00-project/knowledge-architecture-blueprint.md` — highest-value chapters get the rapid-review pass first. Built across two batches (top 8, then the next 5), spanning 6 domains so far (system-design, architecture, databases, spring, kafka, concurrency) rather than front-loading one. Remaining high-IWI chapters not yet covered, for a natural next batch: `handbook/system-design/data-partitioning-and-consistent-hashing.md` (7.70), `handbook/system-design/distributed-transactions-saga-and-outbox.md` (7.65), `handbook/databases/table-partitioning-and-sharding-strategies.md` (7.60), `handbook/system-design/resilience-patterns.md` (7.60), `handbook/kafka/consumer-groups-and-rebalancing.md` (7.50).
+Chapters are ranked by the IWI each canonical chapter states in its own "Topic register" line — this is more reliable than `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register table, which predates several newer system-design/T-8xx/T-9xx chapters and does not list them at all (a known staleness gap; see the flagged coverage-audit refresh task). Built across three batches (top 8, then the next 5, then the next 5), spanning 6 domains so far (system-design, architecture, databases, spring, kafka, concurrency) rather than front-loading one. Verified next candidates by IWI, for a future batch: `handbook/collections/hashmap-internals.md` (T-201, 7.4), `handbook/jvm/gc-fundamentals-and-log-analysis.md` (T-306, 7.35), `handbook/databases/zero-downtime-schema-migration.md` (T-616, 7.30), `handbook/spring/auto-configuration-and-bean-lifecycle.md` (T-501, 7.30), `handbook/architecture/ddd-tactical-design-aggregates.md` (T-903, 7.25) or `handbook/architecture/clean-hexagonal-architecture.md` (T-901, 7.25, tied).
