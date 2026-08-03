@@ -217,10 +217,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `behavioral-handbook/README.md` — updated to reflect full closure and the remaining honestly-scoped worksheet gap.
 - All internal cross-links across all fifteen chapters re-verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, first batch — Phase 6)
+- `cheat-sheets/` — new top-level deliverable, 8 one-page-equivalent rapid-review documents per `CLAUDE.md`'s Cheat Sheet Standard (core mental model, essential definitions, decision table, key numbers, common pitfalls, interview answer skeleton, production warning signs, related links). A dedicated scoping audit found the handbook has grown to **75 canonical chapters across 13 domains** (all of CLAUDE.md's target structure now exists and is populated) and identified the top 8 by IWI (interview-weight-index) score from the Master Topic Register: `system-design-method-and-estimation.md` (T-801, 8.65), `distributed-systems-failure-modes.md` (T-909, 8.45), `caching-strategies-and-invalidation.md` (T-804, 8.45), `microservice-decomposition-and-monolith-tradeoff.md` (T-907, 8.40), `index-structures-btree-composite-covering.md` (T-609, 8.30), `transactional-proxy-mechanics-and-propagation.md` (T-504, 8.15), `delivery-semantics-and-exactly-once.md` (T-704, 8.00), `isolation-levels-and-concurrency-anomalies.md` (T-611, 7.95) — spanning 5 domains rather than front-loading one.
+- Every fact in every cheat sheet (definitions, decision tables, measured numbers, production incidents) was extracted from its canonical chapter via a dedicated read-and-report pass — 8 parallel extraction agents, one per chapter, each returning only real content actually present in the source — before any cheat-sheet prose was drafted, avoiding both fabrication and the cost of reading all 8 full chapters (each several thousand words) directly into this session's context.
+- `cheat-sheets/README.md` — index, explicit about the 8/75 scope, the flashcards/ non-duplication note, and the next-batch candidates by IWI.
+- All internal and canonical-chapter cross-links across all 8 cheat sheets verified to resolve to real files (scripted check) before commit.
+- **Correction surfaced in passing (not fixed here, spun off separately):** `00-project/coverage-audit-2026-07-31.md` is now stale — it reports 62/198 topics with Security at 0/7, but Security was fully closed in Week 17 and the handbook has grown to 75 chapters since. Flagged as a separate background task rather than fixed inline, since recomputing the full audit is out of scope for a cheat-sheet batch.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Phase 6's other four complementary deliverables (interview-playbook, cheat-sheets, architecture-atlas, production-cookbook) remain completely untouched — the clear next priority.
+- Cheat Sheets: 8 of 75 handbook chapters covered (the top 8 by IWI). 67 remain; natural next batch by IWI: `cap-theorem-and-consistency-models.md` (7.90), `api-design.md` (7.90), `query-planning-and-explain-analyze.md` (7.90), `idempotency.md` (7.85), `java-memory-model-and-volatile.md` (7.75).
+- Phase 6's other three complementary deliverables (interview-playbook, architecture-atlas, production-cookbook) remain completely untouched.
 
 ---
 
