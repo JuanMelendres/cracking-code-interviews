@@ -224,10 +224,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All internal and canonical-chapter cross-links across all 8 cheat sheets verified to resolve to real files (scripted check) before commit.
 - **Correction surfaced in passing (not fixed here, spun off separately):** `00-project/coverage-audit-2026-07-31.md` is now stale — it reports 62/198 topics with Security at 0/7, but Security was fully closed in Week 17 and the handbook has grown to 75 chapters since. Flagged as a separate background task rather than fixed inline, since recomputing the full audit is out of scope for a cheat-sheet batch.
 
+### Added (Cheat Sheets, second batch)
+- 5 more cheat sheets, same parallel-extraction methodology as the first batch: `cap-theorem-and-consistency-models.md` (T-807, 7.90 — the partition-only framing of CAP, CP-vs-AP per-data-type decision table), `api-design.md` (T-803, 7.90 — the real ~3,000x OFFSET-vs-keyset pagination measurement, 0.028ms→86.006ms at depth), `query-planning-and-explain-analyze.md` (T-610, 7.90 — three real EXPLAIN ANALYZE scenarios explicitly framed as "unglamorous" 1.02x/3.7x/1.4x wins, contrasted with the index chapter's dramatic 52x, since most real tuning looks like the former), `idempotency.md` (T-809, 7.85 — the real concurrent-duplicate-charge trace showing exactly 1 charge for 2 simultaneous requests, plus TTL crash-recovery), `java-memory-model-and-volatile.md` (T-401, 7.75 — the real 3-run-reproduced visibility failure, non-volatile flag never observed after JIT hoisting vs. `volatile` observed at 0ms).
+- **Total now 13 of 75 handbook chapters covered**, spanning 6 domains (system-design, architecture, databases, spring, kafka, concurrency).
+- `cheat-sheets/README.md` — updated index and next-batch candidates by IWI.
+- All cross-links across all 13 cheat sheets re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 8 of 75 handbook chapters covered (the top 8 by IWI). 67 remain; natural next batch by IWI: `cap-theorem-and-consistency-models.md` (7.90), `api-design.md` (7.90), `query-planning-and-explain-analyze.md` (7.90), `idempotency.md` (7.85), `java-memory-model-and-volatile.md` (7.75).
+- Cheat Sheets: 13 of 75 handbook chapters covered. 62 remain; natural next batch by IWI: `data-partitioning-and-consistent-hashing.md` (7.70), `distributed-transactions-saga-and-outbox.md` (7.65), `table-partitioning-and-sharding-strategies.md` (7.60), `resilience-patterns.md` (7.60), `consumer-groups-and-rebalancing.md` (7.50).
 - Phase 6's other three complementary deliverables (interview-playbook, architecture-atlas, production-cookbook) remain completely untouched.
 
 ---
