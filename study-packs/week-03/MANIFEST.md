@@ -8,7 +8,7 @@ last_reviewed: 2026-07-29
 # Week 3 Study Pack — Manifest
 
 **Topics:** T-503, T-504, T-505, T-611, T-801, T-802 · **Plan:** A (Interview Emergency Sprint) · default workload 20h · **⚑ Checkpoint week**
-**Files:** 11 (+ this manifest) · **Total words:** 7,203 (real count, `wc -w` over all 11 files; updated 2026-07-30 after `01-transactions-and-propagation.md`, `02-isolation-levels-and-write-skew.md`, and `03-system-design-method.md` were slimmed to summaries + canonical-chapter links — see `CHANGELOG.md`)
+**Files:** 11 (+ this manifest) · **Total words:** 6,717 (real count, `wc -w` over all 11 files; updated 2026-08-04 after `08-design-exercise-ride-hailing.md` was slimmed to a per-phase summary + canonical-entry links, per the new `architecture-atlas/ride-hailing-dispatch-system.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -24,7 +24,7 @@ last_reviewed: 2026-07-29
 | 6 | `05-flashcards.md` | 16 cards | 421 |
 | 7 | `06-week-3-checkpoint-mock.md` | 60-min combined checkpoint round | 489 |
 | 8 | `07-week-3-checkpoint-rubric.md` | Six-dimension pass/fail rubric | 735 |
-| 9 | `08-design-exercise-ride-hailing.md` | Full six-phase method applied, worked | 882 |
+| 9 | `08-design-exercise-ride-hailing.md` | Slimmed to a per-phase summary + link; full worked exercise now canonical at `architecture-atlas/ride-hailing-dispatch-system.md` | 393 |
 | 10 | `09-week-3-checklist.md` | Day-by-day checklist | 350 |
 | 11 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 228 |
 

@@ -6,7 +6,9 @@ last_reviewed: 2026-07-29
 
 # Design Exercise — Ride-Hailing Dispatch System
 
-**45 minutes, timed, full six-phase method from `03-system-design-method.md`.** Do this yourself, on paper or a whiteboard, before reading the worked notes below — they're a calibration reference, not a script to follow.
+**45 minutes, timed, full six-phase method from `03-system-design-method.md`.** Do this yourself, on paper or a whiteboard, before reading the worked notes — they're a calibration reference, not a script to follow.
+
+**Canonical location:** [Architecture Atlas: Ride-Hailing Dispatch System](../../architecture-atlas/ride-hailing-dispatch-system.md). This file is the Week 3 study-pack entry point; the full worked exercise (all six phases, the mermaid diagram, bottleneck mitigations, and Staff-level discussion) is now canonical there.
 
 ## Table of Contents
 
@@ -22,71 +24,27 @@ last_reviewed: 2026-07-29
 
 ## Phase 1 — Clarify
 
-**In scope:** a rider requests a ride; the system finds and dispatches a nearby available driver; both parties track the ride to completion. **Out of scope for this session:** payment processing, surge pricing algorithm details, driver onboarding/verification. **Core action:** a location-driven matching problem — write-heavy on location updates, read-heavy on "find nearby drivers."
+A location-driven matching problem: rider requests a ride, system finds and dispatches a nearby driver, both track it to completion. Payment, surge pricing, and driver onboarding are explicitly out of scope. Full statement: canonical entry [§ Problem Statement](../../architecture-atlas/ride-hailing-dispatch-system.md#problem-statement) and [§ Constraints](../../architecture-atlas/ride-hailing-dispatch-system.md#constraints).
 
 ## Phase 2 — Estimate
 
-```
-Assumption: 5M daily active riders, 500K daily active drivers
-Assumption: each active driver sends a location update every 4 seconds while online,
-            averaging 6 online hours/day
-Location updates/driver/day = (6 × 3600) / 4 = 5,400
-Total location writes/day = 500,000 × 5,400 = 2.7 billion/day
-Average write QPS = 2.7B / 86,400 ≈ 31,250 writes/s
-
-Assumption: peak-to-average ratio of 2x for driver location updates (drivers
-            online during a ride are already captured; this is a steadier
-            signal than rider-initiated request volume)
-Peak location-write QPS ≈ 62,500/s
-
-Assumption: 2M ride requests/day, peak-to-average ratio of 4x (concentrated
-            in commute hours, unlike the steadier location-update stream)
-Average ride-request QPS = 2,000,000 / 86,400 ≈ 23/s
-Peak ride-request QPS ≈ 93/s
-```
-
-**Why two different peak-to-average ratios were used deliberately:** location updates are a continuous background stream from already-online drivers, while ride requests concentrate sharply around commute windows — using the same ratio for both would understate one or overstate the other. This distinction is exactly the kind of thing a Staff-level candidate states unprompted.
+5M daily riders, 500K daily drivers → ~62,500 peak location-write QPS, ~93 peak ride-request QPS — a ~700x volume gap that drives the architecture split in Phase 5. Full worked math: canonical entry [§ Capacity Assumptions](../../architecture-atlas/ride-hailing-dispatch-system.md#capacity-assumptions).
 
 ## Phase 3 — API
 
-```
-POST /rides/request          {riderId, pickup: {lat, lng}, dropoff: {lat, lng}}
-  -> {rideId, status: "MATCHING"}
-
-GET  /rides/{rideId}         -> {status, driverId?, driverLocation?}
-
-POST /drivers/{driverId}/location   {lat, lng, timestamp}
-  -> 202 Accepted (fire-and-forget, high volume, no client wait needed)
-
-POST /rides/{rideId}/accept  {driverId}   -- driver-side acceptance
-```
+Full endpoint set: canonical entry [§ APIs](../../architecture-atlas/ride-hailing-dispatch-system.md#apis).
 
 ## Phase 4 — Data
 
-**Rides:** relational (PostgreSQL) — a ride has strong consistency needs (exactly one driver assigned, a clear state machine `REQUESTED → MATCHING → ACCEPTED → IN_PROGRESS → COMPLETED`), and the volume (2M/day) is well within relational scale. **Driver location:** *not* relational at this write volume — a purpose-built structure. The access pattern is "find all drivers within radius R of point P, updated within the last N seconds" — this is a geospatial index problem specifically, matching Week 2's storage-selection method (§3 of `04-storage-selection-tradeoffs.md`): work from the access pattern, not from reputation. A geospatial-indexed store (PostgreSQL with PostGIS, or Redis with its geospatial commands for the hottest, most time-sensitive tier) fits; a plain relational table with a naive `WHERE lat BETWEEN ... AND lng BETWEEN ...` does not scale to 62,500 writes/s with useful query latency.
+Rides in PostgreSQL (strong consistency, state machine); driver location in a geospatial store (PostGIS/Redis GEO), not relational, matching the access-pattern method. Full reasoning: canonical entry [§ Data Model](../../architecture-atlas/ride-hailing-dispatch-system.md#data-model).
 
 ## Phase 5 — Architecture
 
-```mermaid
-graph TD
-    Rider[Rider App] -->|POST /rides/request| API[Ride Request Service]
-    Driver[Driver App] -->|POST location, high volume| LocIngest[Location Ingest Service]
-    LocIngest --> GeoStore[(Geospatial store<br/>Redis GEO or PostGIS)]
-    API --> Matcher[Dispatch/Matching Service]
-    Matcher -->|find nearby drivers| GeoStore
-    Matcher -->|assign, state transition| RideDB[(PostgreSQL: rides)]
-    Matcher -->|notify| Driver
-    RideDB --> Notify[Notification Service]
-    Notify --> Rider
-```
-
-**Justified against Phase 2's numbers:** the location-ingest path is architecturally separate from the ride-request path specifically because its write volume (62,500/s peak) is roughly 700x the ride-request volume (93/s peak) — collapsing them into one service would force the low-volume, strongly-consistent ride-state logic to scale alongside the high-volume, more-tolerant-of-staleness location stream, which is the wrong coupling.
+Location-ingest and ride-request are separate services, justified by the ~700x volume gap from Phase 2. Full diagram and justification: canonical entry [§ Architecture Diagram](../../architecture-atlas/ride-hailing-dispatch-system.md#architecture-diagram).
 
 ## Phase 6 — Bottlenecks
 
-1. **Geospatial store as a single point of contention.** At 62,500 writes/s, a single-node geospatial store becomes the bottleneck. Mitigation: shard by geographic region (a driver's location updates only need to be visible to a match search in the same region), which also bounds the "nearby drivers" query to a single shard in the common case.
-2. **Race condition: two ride requests matched to the same driver simultaneously.** Mitigation: the assignment step must be a single atomic operation (a conditional update — "assign this driver only if still unassigned" — the same class of guard as Week 3's write-skew lesson: an unguarded read-then-write here reproduces exactly the write-skew anomaly from `02-isolation-levels-and-write-skew.md`, just in application logic instead of SQL).
-3. **Stale location data leading to a bad match.** A driver who went offline 30 seconds ago but whose last location update is still in the geospatial store could be matched and then fail to accept. Mitigation: a TTL on location entries (matching the ~4-second update interval from Phase 2 with some slack, e.g., 15 seconds) so stale entries age out of match candidacy automatically.
+Three named with mitigations: geospatial store contention (regional sharding), double-assignment race (atomic conditional update, same anomaly class as SQL write-skew), stale location data (TTL). Full detail: canonical entry [§ Scaling Strategy](../../architecture-atlas/ride-hailing-dispatch-system.md#scaling-strategy) and [§ Reliability Strategy](../../architecture-atlas/ride-hailing-dispatch-system.md#reliability-strategy).
 
 ## Exit check
 

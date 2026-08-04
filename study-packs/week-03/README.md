@@ -61,7 +61,7 @@ graph LR
 | 6 | `05-flashcards.md` | 16 cards |
 | 7 | `06-week-3-checkpoint-mock.md` | The 60-minute combined technical/design checkpoint round |
 | 8 | `07-week-3-checkpoint-rubric.md` | Six-dimension pass/fail rubric for the checkpoint |
-| 9 | `08-design-exercise-ride-hailing.md` | Full six-phase method applied to a ride-hailing dispatch system |
+| 9 | `08-design-exercise-ride-hailing.md` | Summary + link; full six-phase exercise now canonical at `architecture-atlas/ride-hailing-dispatch-system.md` |
 | 10 | `09-week-3-checklist.md` | Day-by-day checklist |
 | 11 | `resources.md` | Sources classified by authority |
 | — | `MANIFEST.md` | Every file, verification status, real checksums |

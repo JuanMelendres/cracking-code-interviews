@@ -291,12 +291,22 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — updated index (38 rows) and selection-method section; tie-break history condensed to a running summary rather than repeating every prior batch's full detail, to keep the section from growing unbounded.
 - All cross-links across all 38 cheat sheets re-verified to resolve to real files before commit.
 
+### Added (Architecture Atlas, first entry)
+- `architecture-atlas/ride-hailing-dispatch-system.md` — the first entry in a new Phase 6 deliverable, per `CLAUDE.md`'s Architecture Atlas Standard (problem statement, constraints, functional/non-functional requirements, capacity assumptions, architecture diagram, data model, APIs, request flow, consistency model, scaling strategy, reliability strategy, security/observability/cost, trade-offs, alternatives, Staff-level discussion, interview presentation sequence). Elevated from `study-packs/week-03/08-design-exercise-ride-hailing.md`, the programme's first fully-worked design exercise, tied to T-801/T-802 (System Design Method and Estimation), the highest-IWI topic in the entire register.
+- Central content: the real, measured ~700x volume gap between driver-location writes (62,500/s peak) and ride-request writes (93/s peak) that drives the architecture split, the geospatial-vs-relational storage decision cross-linked to Storage Selection Trade-offs, and the double-assignment-race mitigation explicitly named as the same anomaly class as SQL write-skew (cross-linked to Isolation Levels and Concurrency Anomalies).
+- **Honest scope note, not fabrication:** the source exercise never addressed security, observability, cost, or a migration path (it was scoped to the core matching problem in a 45-minute session) — these are stated explicitly as gaps in the new entry's "Security, Observability, and Cost" section rather than invented to fill out the template's full field list.
+- `architecture-atlas/README.md` — new index for the deliverable, naming the 7 remaining classic system-design-style exercises across Weeks 4–11 as natural next candidates, and explicitly deprioritizing the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) as differently-shaped domain-specific content rather than classic system-design problems.
+- `study-packs/week-03/08-design-exercise-ride-hailing.md` — slimmed to a per-phase summary + links to the new canonical entry; phase numbering and the Exit Check kept in full.
+- `study-packs/week-03/MANIFEST.md`, `README.md` — word counts re-run and corrected (7,203 → 6,717 total, verified via `wc -w`).
+- All cross-links across all new/touched files re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
-- Phase 6's other two complementary deliverables (architecture-atlas, production-cookbook) remain completely untouched.
+- Architecture Atlas: 1 entry. 7 more classic system-design-style exercises remain as natural elevation candidates (news feed, payment processing, authentication service, notification system, distributed job scheduler, distributed cache, metrics/monitoring system — Weeks 4–11); the Weeks 15–19 exercises are lower priority as differently-shaped content.
+- Phase 6's last remaining untouched deliverable is production-cookbook.
 
 ---
 
