@@ -8,7 +8,7 @@ last_reviewed: 2026-07-31
 # Week 10 Study Pack — Manifest
 
 **Topics:** T-618, T-614, T-806, T-515, T-616 · **Plan:** B, Distributed Data + Resilience
-**Files:** 13 (+ this manifest) · **Total words:** 8,668 (real count, `wc -w` over all 13 files; updated 2026-07-31 — files 06, 08, 09, 10, 11, README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/mock/deliverable/checklist content, not duplicated topic explanation)
+**Files:** 13 (+ this manifest) · **Total words:** 7,909 (real count, `wc -w` over all 13 files; updated 2026-08-04 after `10-design-exercise-distributed-cache.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/distributed-cache.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -26,7 +26,7 @@ last_reviewed: 2026-07-31
 | 8 | `07-flashcards.md` | 16 cards | 556 |
 | 9 | `08-outbox-implementation-deliverable.md` | The week's named deliverable — full working outbox walkthrough | 1,059 |
 | 10 | `09-week-10-mock-architecture-round.md` | 60-min architecture round | 412 |
-| 11 | `10-design-exercise-distributed-cache.md` | Full six-phase design | 1,120 |
+| 11 | `10-design-exercise-distributed-cache.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/distributed-cache.md` | 361 |
 | 12 | `11-week-10-checklist.md` | Day-by-day checklist | 290 |
 | 13 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 378 |
 

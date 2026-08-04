@@ -58,7 +58,7 @@ graph LR
 | 7 | `06-java-coding-practice.md` | 15-problem mixed review, all compiled and run |
 | 8 | `07-flashcards.md` | 16 cards |
 | 9 | `08-week-11-mock-behavioral.md` | 45-min behavioral mock, full 6-question set + retrofit checklist |
-| 10 | `09-design-exercise-metrics-monitoring-system.md` | Full six-phase design |
+| 10 | `09-design-exercise-metrics-monitoring-system.md` | Summary + link; full design now canonical at `architecture-atlas/metrics-monitoring-system.md` |
 | 11 | `10-week-11-checklist.md` | Day-by-day checklist |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 

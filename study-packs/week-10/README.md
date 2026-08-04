@@ -61,7 +61,7 @@ graph LR
 | 8 | `07-flashcards.md` | 16 cards |
 | 9 | `08-outbox-implementation-deliverable.md` | The week's named deliverable — full working outbox walkthrough |
 | 10 | `09-week-10-mock-architecture-round.md` | 60-min architecture round |
-| 11 | `10-design-exercise-distributed-cache.md` | Full six-phase design |
+| 11 | `10-design-exercise-distributed-cache.md` | Summary + link; full design now canonical at `architecture-atlas/distributed-cache.md` |
 | 12 | `11-week-10-checklist.md` | Day-by-day checklist |
 | 13 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 

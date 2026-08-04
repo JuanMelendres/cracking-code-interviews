@@ -309,12 +309,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-04/MANIFEST.md`/`README.md`, `week-05/MANIFEST.md`/`README.md`, `week-07/MANIFEST.md`/`README.md` — word counts re-run and corrected (week-04: 6,233 → 5,844; week-05: 6,451 → 6,073; week-07: 5,496 → 5,242), verified via `wc -w`.
 - All cross-links across all new/touched files re-verified to resolve to real files before commit.
 
+### Added (Architecture Atlas, third batch)
+- 3 more entries: `distributed-job-scheduler.md` (companion to Executors and Thread Pool Sizing — the p50/p99 execution-time spread driving a two-pool worker architecture, lease-based claiming instead of a distributed lock), `distributed-cache.md` (companion to Data Partitioning and Consistent Hashing / Resilience Patterns — the real measured ~9.2% vs. ~92.5% remap cost, per-node circuit breakers, three distinct failure shapes each needing its own mitigation), `metrics-monitoring-system.md` (companion to Percentiles, Tail Latency, and Coordinated Omission — histogram sketches instead of raw samples, an isolated alert-evaluation read path, and cardinality explosion named as a distinct failure mode from raw ingestion volume). Elevated from `study-packs/week-09/09-…`, `week-10/10-…`, `week-11/09-…` design exercises.
+- **Correction, caught and stated honestly rather than glossed over:** this batch was meant to close the "final 3" remaining classic system-design exercises, but the candidate set actually had 4 remaining after batch 2 (notification system, distributed job scheduler, distributed cache, metrics/monitoring system) — `notification-system.md` (Week 8) was mistakenly left out of this batch's scope. `architecture-atlas/README.md`'s scope note now states this plainly and names it as the one classic exercise still open, rather than silently treating the classic set as fully closed.
+- Same honest-gap discipline as all prior entries: security/observability/cost stated as explicit source gaps in all three new entries.
+- `architecture-atlas/README.md` — entries table now has 7 rows; scope note corrected per the note above.
+- `study-packs/week-09/09-design-exercise-distributed-job-scheduler.md`, `week-10/10-design-exercise-distributed-cache.md`, `week-11/09-design-exercise-metrics-monitoring-system.md` — slimmed to per-phase summaries + links; phase numbering and each file's Exit Check kept in full.
+- `study-packs/week-09/MANIFEST.md`/`README.md`, `week-10/MANIFEST.md`/`README.md`, `week-11/MANIFEST.md`/`README.md` — word counts re-run and corrected (week-09: 8,359 → 7,684; week-10: 8,668 → 7,909; week-11: 7,573 → 6,826), verified via `wc -w`.
+- All cross-links across all new/touched files re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
-- Architecture Atlas: 4 entries. 3 more classic system-design-style exercises remain as natural elevation candidates (distributed job scheduler, distributed cache, metrics/monitoring system — Weeks 9–11); the Weeks 15–19 exercises are lower priority as differently-shaped content.
+- Architecture Atlas: 7 entries. `notification-system.md` (Week 8) is the one remaining classic system-design exercise not yet elevated — a genuine oversight in batch 3's scoping, now the clear next candidate. The Weeks 15–19 exercises remain lower priority as differently-shaped content.
 - Phase 6's last remaining untouched deliverable is production-cookbook.
 
 ---

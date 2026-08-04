@@ -8,7 +8,7 @@ last_reviewed: 2026-07-31
 # Week 11 Study Pack — Manifest
 
 **Topics:** T-1101, T-1103, T-1104, T-1201, T-1204, T-1205, T-1206 · **Plan:** B, Testing, Observability, Performance
-**Files:** 12 (+ this manifest) · **Total words:** 7,573 (real count, `wc -w` over all 12 files; updated 2026-07-31 — files 06, 08, 09, 10, README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/mock/design/checklist content, not duplicated topic explanation)
+**Files:** 12 (+ this manifest) · **Total words:** 6,826 (real count, `wc -w` over all 12 files; updated 2026-08-04 after `09-design-exercise-metrics-monitoring-system.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/metrics-monitoring-system.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -25,7 +25,7 @@ last_reviewed: 2026-07-31
 | 7 | `06-java-coding-practice.md` | 15-problem mixed review, all compiled and run | 1,013 |
 | 8 | `07-flashcards.md` | 16 cards | 525 |
 | 9 | `08-week-11-mock-behavioral.md` | 45-min behavioral mock, full 6-question set + retrofit checklist | 617 |
-| 10 | `09-design-exercise-metrics-monitoring-system.md` | Full six-phase design | 1,104 |
+| 10 | `09-design-exercise-metrics-monitoring-system.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/metrics-monitoring-system.md` | 357 |
 | 11 | `10-week-11-checklist.md` | Day-by-day checklist | 323 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 334 |
 

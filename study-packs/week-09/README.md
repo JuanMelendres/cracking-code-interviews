@@ -60,7 +60,7 @@ graph LR
 | 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 (concurrency) + LC 62/1143/416/5 (DP part 2), all compiled and run |
 | 8 | `07-flashcards.md` | 16 cards |
 | 9 | `08-week-9-checkpoint.md` | Full 3-round loop + the roadmap's own checkpoint scorecard |
-| 10 | `09-design-exercise-distributed-job-scheduler.md` | Full six-phase design |
+| 10 | `09-design-exercise-distributed-job-scheduler.md` | Summary + link; full design now canonical at `architecture-atlas/distributed-job-scheduler.md` |
 | 11 | `10-week-9-checklist.md` | Day-by-day checklist |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 

@@ -8,7 +8,7 @@ last_reviewed: 2026-07-31
 # Week 9 Study Pack — Manifest
 
 **Topics:** T-401, T-402, T-406, T-409, T-410, T-303, T-306 · **Plan:** B, first checkpoint since Week 6
-**Files:** 12 (+ this manifest) · **Total words:** 8,359 (real count, `wc -w` over all 12 files; updated 2026-07-31 — files 06, 08, 09, 10, README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/checkpoint/checklist content, not duplicated topic explanation)
+**Files:** 12 (+ this manifest) · **Total words:** 7,684 (real count, `wc -w` over all 12 files; updated 2026-08-04 after `09-design-exercise-distributed-job-scheduler.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/distributed-job-scheduler.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -25,7 +25,7 @@ last_reviewed: 2026-07-31
 | 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 + LC 62/1143/416/5, all compiled and run | 1,369 |
 | 8 | `07-flashcards.md` | 16 cards | 507 |
 | 9 | `08-week-9-checkpoint.md` | Full 3-round loop + roadmap's own scorecard | 867 |
-| 10 | `09-design-exercise-distributed-job-scheduler.md` | Full six-phase design | 1,025 |
+| 10 | `09-design-exercise-distributed-job-scheduler.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/distributed-job-scheduler.md` | 350 |
 | 11 | `10-week-9-checklist.md` | Day-by-day checklist | 367 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 344 |
 
