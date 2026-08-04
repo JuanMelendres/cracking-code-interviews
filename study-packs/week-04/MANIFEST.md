@@ -7,7 +7,7 @@ last_reviewed: 2026-07-29
 # Week 4 Study Pack — Manifest
 
 **Topics:** T-804, T-909, T-803, T-1504, T-1207 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 11 (+ this manifest) · **Total words:** 6,233 (real count, `wc -w` over all 11 files; updated 2026-07-30 after T-804, T-909, and T-803 were slimmed to a summary + canonical-chapter link — see `CHANGELOG.md`)
+**Files:** 11 (+ this manifest) · **Total words:** 5,844 (real count, `wc -w` over all 11 files; updated 2026-08-04 after `08-design-exercise-news-feed.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/news-feed-system.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -23,7 +23,7 @@ last_reviewed: 2026-07-29
 | 6 | `05-flashcards.md` | 16 cards | 466 |
 | 7 | `06-failure-modes-deliverable.md` | `failure-modes.md` template + fully worked example | 604 |
 | 8 | `07-week-4-mock-interview.md` | 45-min full design round | 257 |
-| 9 | `08-design-exercise-news-feed.md` | Full six-phase design, caching + fan-out mandatory | 720 |
+| 9 | `08-design-exercise-news-feed.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/news-feed-system.md` | 324 |
 | 10 | `09-week-4-checklist.md` | Day-by-day checklist | 318 |
 | 11 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 237 |
 

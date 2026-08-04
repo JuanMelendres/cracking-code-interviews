@@ -8,6 +8,8 @@ last_reviewed: 2026-07-31
 
 **45 minutes, timed, full six-phase method.** Do this yourself before reading the worked notes below.
 
+**Canonical location:** [Architecture Atlas: Authentication Service](../../architecture-atlas/authentication-service.md). This file is the Week 7 study-pack entry point; the full worked exercise is now canonical there.
+
 ## Table of Contents
 
 1. [Phase 1 — Clarify](#phase-1--clarify)
@@ -22,53 +24,27 @@ last_reviewed: 2026-07-31
 
 ## Phase 1 — Clarify
 
-**In scope:** issue access/refresh tokens after credential verification, validate tokens for other services, support logout. **Out of scope:** social login providers, MFA implementation details. **Core action:** token issuance is low-volume (one per login); token *validation* is extremely high-volume (every request to every downstream service).
+Issue/validate tokens, support logout — social login and MFA internals explicitly out of scope. Issuance is low-volume; validation is extremely high-volume. Full statement: canonical entry [§ Problem Statement](../../architecture-atlas/authentication-service.md#problem-statement).
 
 ## Phase 2 — Estimate
 
-```
-Assumption: 2M logins/day -> token issuance average QPS ~= 23/s, peak (3x) ~= 69/s
-Assumption: every downstream request validates a token; total platform
-            traffic is ~50,000 QPS peak (matching Week 4's news-feed estimate)
-Token VALIDATION load ~= 50,000/s -- roughly 700x the issuance load.
-
-This asymmetry is the single number that should drive the whole design:
-issuance can afford a database round-trip; validation cannot.
-```
+2M logins/day → ~69 peak issuance QPS vs. ~50,000 peak validation QPS — a ~700x asymmetry that drives the whole design. Full worked math: canonical entry [§ Capacity Assumptions](../../architecture-atlas/authentication-service.md#capacity-assumptions).
 
 ## Phase 3 — API
 
-```
-POST /auth/login        {username, password} -> {accessToken, refreshToken}
-POST /auth/refresh       {refreshToken} -> {accessToken}
-POST /auth/logout        {refreshToken} -> 204
-(validation is NOT a network call downstream services make per-request --
-see Phase 5)
-```
+Validation is not a network call downstream services make per-request. Full endpoint set: canonical entry [§ APIs](../../architecture-atlas/authentication-service.md#apis).
 
 ## Phase 4 — Data
 
-**Users/credentials:** relational, strongly consistent. **Refresh tokens:** relational or key-value, with the ability to invalidate on logout (this is exactly the stateful check idempotency and JWT revocation both need, per Weeks 5 and 7). **Access tokens:** not stored at all — per `03-oauth2-oidc-and-jwt.md`, a JWT's whole design point is that validating it requires no storage lookup.
+Users/credentials relational; refresh tokens revocable; access tokens (JWTs) not stored at all. Full reasoning: canonical entry [§ Data Model](../../architecture-atlas/authentication-service.md#data-model).
 
 ## Phase 5 — Architecture
 
-```mermaid
-graph TD
-    Client -->|POST /auth/login| AuthSvc[Auth Service]
-    AuthSvc --> UserDB[(Users DB)]
-    AuthSvc --> RefreshDB[(Refresh Token Store)]
-    AuthSvc -->|issues| JWT[Signed JWT access token]
-    Client -->|attaches JWT| Downstream[Any downstream service]
-    Downstream -->|verifies signature locally,<br/>NO call to Auth Service| Downstream
-```
-
-**Justified against Phase 2's numbers:** the 700x validation-to-issuance ratio is why downstream services verify the JWT's signature *locally* (shared secret or the auth service's public key) rather than calling back on every request — a synchronous validation call at 50,000 QPS would make the auth service an availability-critical bottleneck for the whole platform, whereas local signature verification is pure CPU with no network dependency.
+Local JWT signature verification, no call back to the Auth Service, justified by the 700x asymmetry. Full diagram: canonical entry [§ Architecture Diagram](../../architecture-atlas/authentication-service.md#architecture-diagram).
 
 ## Phase 6 — Bottlenecks
 
-1. **Refresh-token store at scale.** Comparatively low volume (one refresh per expiry window, not per request), so a standard relational store with an index on the token handles it easily — not every component needs the same scaling treatment.
-2. **Revocation gap.** Per `03-oauth2-oidc-and-jwt.md` §4, a compromised access token stays valid until expiry — mitigated by short access-token expiry (minutes), with the expensive revocable check (refresh-token validity) only at the much-lower-volume refresh step.
-3. **Key rotation.** If the signing key is compromised, every downstream service verifying locally needs the new key distributed before old-key-signed tokens can be rejected — a real operational bottleneck (key distribution latency), not something the JWT format itself solves.
+Refresh-token store scale, the revocation gap, and key rotation — three named with mitigations. Full detail: canonical entry [§ Reliability Strategy](../../architecture-atlas/authentication-service.md#reliability-strategy).
 
 ## Exit check
 

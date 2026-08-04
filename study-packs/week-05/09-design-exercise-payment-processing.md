@@ -8,6 +8,8 @@ last_reviewed: 2026-07-29
 
 **45 minutes, timed, full six-phase method.** Idempotency and exactly-once semantics are mandatory discussion points. Do this yourself before reading the worked notes below.
 
+**Canonical location:** [Architecture Atlas: Payment Processing System](../../architecture-atlas/payment-processing-system.md). This file is the Week 5 study-pack entry point; the full worked exercise is now canonical there.
+
 ## Table of Contents
 
 1. [Phase 1 — Clarify](#phase-1--clarify)
@@ -22,67 +24,27 @@ last_reviewed: 2026-07-29
 
 ## Phase 1 — Clarify
 
-**In scope:** accept a payment request, charge via an external payment provider, record the result durably, notify the initiating service. **Out of scope:** fraud detection, multi-currency conversion logic, refunds. **Core action:** low volume relative to a feed or messaging system, but every single request has direct financial consequences — correctness matters more than raw throughput here.
+Accept, charge, record, notify — fraud detection, currency conversion, and refunds explicitly out of scope. Low volume, high financial consequence per request. Full statement: canonical entry [§ Problem Statement](../../architecture-atlas/payment-processing-system.md#problem-statement).
 
 ## Phase 2 — Estimate
 
-```
-Assumption: 500,000 payment attempts/day across the platform
-Average QPS = 500,000 / 86,400 ≈ 5.8/s
-Peak (3x, concentrated around specific sale events) ≈ 17/s
-
-This is a LOW-QPS, HIGH-CONSEQUENCE system -- worth stating explicitly,
-since it inverts the usual "estimate to justify scale-driven
-architecture" pattern from Weeks 3-4. The architecture here is driven
-by correctness requirements, not throughput.
-```
+500,000 payments/day → ~17 peak QPS, a low-QPS/high-consequence system that inverts the usual scale-driven architecture pattern. Full worked math: canonical entry [§ Capacity Assumptions](../../architecture-atlas/payment-processing-system.md#capacity-assumptions).
 
 ## Phase 3 — API
 
-```
-POST /payments   {orderId, amount, idempotencyKey}
-  -> {paymentId, status: "PENDING" | "COMPLETED" | "FAILED"}
-
-GET  /payments/{paymentId}   -> {status, confirmationId?}
-```
-
-**The idempotency key is part of the API contract from the start** — not retrofitted later — because this endpoint's entire design center is "what happens on a retry," per `02-idempotency.md`.
+Idempotency key in the API contract from the start, not retrofitted. Full endpoint set: canonical entry [§ APIs](../../architecture-atlas/payment-processing-system.md#apis).
 
 ## Phase 4 — Data
 
-**Payments table:** relational (PostgreSQL), strongly consistent — this is exactly the kind of data Week 5's CAP chapter (`03-cap-and-consistency.md` §5) identifies as warranting CP behavior, not AP: a payment record must not be lost or duplicated, ever, even at the cost of rejecting a request during a partition. **Idempotency keys table:** the exact mechanism from `02-idempotency.md` §3 — a `UNIQUE` key column, status, result, TTL.
+Payments table and idempotency-keys table both CP, strongly consistent. Full reasoning: canonical entry [§ Data Model](../../architecture-atlas/payment-processing-system.md#data-model).
 
 ## Phase 5 — Architecture
 
-```mermaid
-sequenceDiagram
-    participant Client as Order Service
-    participant PaySvc as Payment Service
-    participant IdemStore as Idempotency Store
-    participant Provider as External Payment Provider
-    participant DB as Payments DB
-
-    Client->>PaySvc: POST /payments {idempotencyKey}
-    PaySvc->>IdemStore: INSERT key (unique constraint)
-    alt key is new
-        PaySvc->>Provider: charge()
-        Provider-->>PaySvc: confirmation
-        PaySvc->>DB: record COMPLETED
-        PaySvc->>IdemStore: update result
-        PaySvc-->>Client: {status: COMPLETED}
-    else key already exists
-        PaySvc->>IdemStore: read stored result
-        PaySvc-->>Client: same result, no re-charge
-    end
-```
-
-**Justified against Phase 2's numbers:** at only ~17 peak QPS, this system is not architected for throughput (no need for sharding, aggressive caching, or async fan-out) — every architectural choice here is in service of the correctness requirement from Phase 1, which is the honest, stated reason this design looks different in shape from Weeks 3–4's high-QPS designs.
+The idempotency-key insert-or-read-stored-result sequence. Full diagram: canonical entry [§ Architecture Diagram](../../architecture-atlas/payment-processing-system.md#architecture-diagram).
 
 ## Phase 6 — Bottlenecks
 
-1. **The external payment provider itself is slow or degraded.** Per `02-distributed-failure-modes.md` §3, naive retries here would amplify load on an already-struggling provider *and* risk a double charge without the idempotency mechanism already designed in. Mitigation: the idempotency key (already in the design) plus exponential backoff with jitter for the provider call specifically.
-2. **Exactly-once is not actually achievable end-to-end without care at the boundary.** The payment service can guarantee it processes its own logic exactly once (via the idempotency key), but the call to the *external* provider is still an at-least-once-delivery problem from the payment service's perspective — the provider itself must also be idempotent-request-aware (most real providers, including Stripe, require and support this) for true end-to-end exactly-once behavior. Stating this limitation explicitly, rather than claiming "exactly-once" as an unqualified guarantee, is the Staff-level answer here.
-3. **The idempotency store itself is a new single point of failure for every payment.** Mitigation: it needs the same CP treatment as the payments table itself — this is not a component that can be relaxed to eventual consistency without reintroducing the exact race the whole design exists to prevent.
+Slow/degraded provider, the honest limits of end-to-end "exactly-once," and the idempotency store as a new CP single point of failure — three named with mitigations. Full detail: canonical entry [§ Reliability Strategy](../../architecture-atlas/payment-processing-system.md#reliability-strategy).
 
 ## Exit check
 

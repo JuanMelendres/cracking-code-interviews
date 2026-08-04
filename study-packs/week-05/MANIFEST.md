@@ -7,7 +7,7 @@ last_reviewed: 2026-07-29
 # Week 5 Study Pack — Manifest
 
 **Topics:** T-907, T-908, T-809, T-807, T-1503 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 12 (+ this manifest) · **Total words:** 6,451 (real count, `wc -w` over all 12 files; updated 2026-08-03 after `07-story-scope-reframing.md` §2-§3 were slimmed to a summary + canonical-chapter link, per the new `behavioral-handbook/03-scope-impact-and-influence-framing.md` — see `CHANGELOG.md`. §1, §4, §5 kept largely intact; no cross-references cite specific section numbers of this file, so numbering was free to adjust, but was kept stable anyway for consistency)
+**Files:** 12 (+ this manifest) · **Total words:** 6,073 (real count, `wc -w` over all 12 files; updated 2026-08-04 after `09-design-exercise-payment-processing.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/payment-processing-system.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -24,7 +24,7 @@ last_reviewed: 2026-07-29
 | 7 | `06-decomposition-analysis-deliverable.md` | Template + worked example with genuine counter-argument | 827 |
 | 8 | `07-story-scope-reframing.md` | T-1503 — theory slimmed to a summary + link to `behavioral-handbook/03-scope-impact-and-influence-framing.md`; reframe worksheets for Stories 1, 4, 7, 8 unchanged | 565 |
 | 9 | `08-week-5-behavioral-mock.md` | 45-min, 6-question behavioral round | 297 |
-| 10 | `09-design-exercise-payment-processing.md` | Full six-phase design, idempotency + exactly-once mandatory | 733 |
+| 10 | `09-design-exercise-payment-processing.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/payment-processing-system.md` | 340 |
 | 11 | `10-week-5-checklist.md` | Day-by-day checklist | 266 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 181 |
 

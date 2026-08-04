@@ -55,7 +55,7 @@ graph LR
 | 6 | `05-flashcards.md` | 16 cards |
 | 7 | `06-failure-modes-deliverable.md` | The `failure-modes.md` template + a fully worked example |
 | 8 | `07-week-4-mock-interview.md` | 45-min full system-design round |
-| 9 | `08-design-exercise-news-feed.md` | Full six-phase design of a news feed; caching and fan-out mandatory |
+| 9 | `08-design-exercise-news-feed.md` | Summary + link; full design now canonical at `architecture-atlas/news-feed-system.md` |
 | 10 | `09-week-4-checklist.md` | Day-by-day checklist |
 | 11 | `resources.md` | Sources classified by authority |
 | — | `MANIFEST.md` | Every file, verification status, real checksums |

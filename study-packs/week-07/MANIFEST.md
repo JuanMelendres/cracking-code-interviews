@@ -8,7 +8,7 @@ last_reviewed: 2026-07-31
 # Week 7 Study Pack — Manifest
 
 **Topics:** T-506, T-501, T-511, T-512, T-513 · **Plan:** B (first week beyond Plan A's 6-week sprint)
-**Files:** 11 (+ this manifest) · **Total words:** 5,496 (real count, `wc -w` over all 11 files; updated 2026-07-31 — files 04–09 and README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/mock/checklist content, not duplicated topic explanation)
+**Files:** 11 (+ this manifest) · **Total words:** 5,242 (real count, `wc -w` over all 11 files; updated 2026-08-04 after `08-design-exercise-authentication-service.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/authentication-service.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -24,7 +24,7 @@ last_reviewed: 2026-07-31
 | 6 | `05-flashcards.md` | 14 cards | 387 |
 | 7 | `06-security-chain-trace-deliverable.md` | Template + worked example | 478 |
 | 8 | `07-week-7-mock-interview.md` | 45-min Spring technical round | 251 |
-| 9 | `08-design-exercise-authentication-service.md` | Full six-phase design | 578 |
+| 9 | `08-design-exercise-authentication-service.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/authentication-service.md` | 324 |
 | 10 | `09-week-7-checklist.md` | Day-by-day checklist | 243 |
 | 11 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 230 |
 

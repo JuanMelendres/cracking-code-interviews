@@ -57,7 +57,7 @@ graph LR
 | 7 | `06-decomposition-analysis-deliverable.md` | `decomposition-analysis.md` template + worked example, counter-argument included |
 | 8 | `07-story-scope-reframing.md` | T-1503 — rewrite Stories 1, 4, 7, 8 for scope and influence |
 | 9 | `08-week-5-behavioral-mock.md` | 45-min behavioral round, 6 questions |
-| 10 | `09-design-exercise-payment-processing.md` | Full six-phase design; idempotency and exactly-once mandatory |
+| 10 | `09-design-exercise-payment-processing.md` | Summary + link; full design now canonical at `architecture-atlas/payment-processing-system.md` |
 | 11 | `10-week-5-checklist.md` | Day-by-day checklist |
 | 12 | `resources.md` | Sources classified by authority |
 | — | `MANIFEST.md` | Every file, verification status, real checksums |

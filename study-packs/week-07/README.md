@@ -56,7 +56,7 @@ graph LR
 | 6 | `05-flashcards.md` | 14 cards |
 | 7 | `06-security-chain-trace-deliverable.md` | `security-chain-trace.md` template + worked example |
 | 8 | `07-week-7-mock-interview.md` | 45-min Spring technical round |
-| 9 | `08-design-exercise-authentication-service.md` | Full six-phase design of an authentication service |
+| 9 | `08-design-exercise-authentication-service.md` | Summary + link; full design now canonical at `architecture-atlas/authentication-service.md` |
 | 10 | `09-week-7-checklist.md` | Day-by-day checklist |
 | 11 | `resources.md` | Sources classified by authority |
 | — | `MANIFEST.md` | Every file, verification status, real checksums |

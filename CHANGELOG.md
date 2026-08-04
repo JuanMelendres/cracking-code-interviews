@@ -300,12 +300,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-03/MANIFEST.md`, `README.md` — word counts re-run and corrected (7,203 → 6,717 total, verified via `wc -w`).
 - All cross-links across all new/touched files re-verified to resolve to real files before commit.
 
+### Added (Architecture Atlas, second batch)
+- 3 more entries, same elevation methodology as the first: `news-feed-system.md` (companion to Caching Strategies and Invalidation — the celebrity-case fan-out split driven by a real 200:1 read:write ratio), `payment-processing-system.md` (companion to Idempotency at System Edges / CAP Theorem — idempotency designed into the API contract from Phase 3, and the honest, explicitly-stated limit of end-to-end "exactly-once" depending on the external provider's own idempotency support), `authentication-service.md` (companion to OAuth2/OIDC/JWT — the real ~700x issuance-to-validation asymmetry that justifies local JWT signature verification with no callback to the Auth Service). Elevated from `study-packs/week-04/08-design-exercise-news-feed.md`, `week-05/09-design-exercise-payment-processing.md`, `week-07/08-design-exercise-authentication-service.md`.
+- Same honest-gap discipline as the first entry: each new entry's "Security, Observability, and Cost" section states explicitly what the source 45-minute exercise never addressed, rather than inventing content to fill out the template's full field list.
+- Bounded to 3 of the 7 remaining classic system-design exercises for this batch, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation — distributed job scheduler, distributed cache, and metrics/monitoring system (Weeks 9–11, the three longest source files) remain for a future batch.
+- `architecture-atlas/README.md` — updated entries table (4 rows) and scope note.
+- `study-packs/week-04/08-design-exercise-news-feed.md`, `week-05/09-design-exercise-payment-processing.md`, `week-07/08-design-exercise-authentication-service.md` — slimmed to per-phase summaries + links; phase numbering and each file's Exit Check kept in full.
+- `study-packs/week-04/MANIFEST.md`/`README.md`, `week-05/MANIFEST.md`/`README.md`, `week-07/MANIFEST.md`/`README.md` — word counts re-run and corrected (week-04: 6,233 → 5,844; week-05: 6,451 → 6,073; week-07: 5,496 → 5,242), verified via `wc -w`.
+- All cross-links across all new/touched files re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
-- Architecture Atlas: 1 entry. 7 more classic system-design-style exercises remain as natural elevation candidates (news feed, payment processing, authentication service, notification system, distributed job scheduler, distributed cache, metrics/monitoring system — Weeks 4–11); the Weeks 15–19 exercises are lower priority as differently-shaped content.
+- Architecture Atlas: 4 entries. 3 more classic system-design-style exercises remain as natural elevation candidates (distributed job scheduler, distributed cache, metrics/monitoring system — Weeks 9–11); the Weeks 15–19 exercises are lower priority as differently-shaped content.
 - Phase 6's last remaining untouched deliverable is production-cookbook.
 
 ---
