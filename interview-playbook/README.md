@@ -11,7 +11,7 @@ The Interview Playbook owns interview-craft content: reusable structures for *de
 
 ## A note on scope
 
-Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. Only `technical-answers/` has content so far — `system-design/`, `coding/`, and `behavioral/` are placeholders (`.gitkeep` only). This is the first batch of this Phase 6 deliverable.
+Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. `technical-answers/` and `coding/` have content so far — `system-design/` and `behavioral/` are placeholders (`.gitkeep` only). This deliverable is being built in bounded batches.
 
 ## technical-answers/
 
@@ -22,9 +22,15 @@ Four subdirectories exist per `CLAUDE.md`'s target repository structure: `techni
 
 These two entries are deliberately cross-linked: the nine-layer framework is the general shape of a technical answer; trade-off narration is a dedicated deep-dive on that framework's layer 6, because it's the specific layer named interview feedback identified as most commonly missing.
 
-## system-design/, coding/, behavioral/
+## coding/
 
-Not yet started. `coding/` and `behavioral/` interview delivery already have substantial coverage elsewhere in the repository — `practice/java/` for coding problems and `behavioral-handbook/` for behavioral story structure and delivery — so entries here, when built, should be genuinely playbook-shaped (delivery method, interview-day logistics, question-pattern recognition) rather than duplicating that existing canonical content.
+| Entry | Topic ID | What it's about |
+|---|---|---|
+| [Coding Interview Communication Protocol](coding/coding-interview-communication-protocol.md) | T-1419 | The six-phase narration protocol (Clarify → Re-state complexity) for live coding interviews — runs every coding session. Elevated from `study-packs/week-01/04-coding-interview-communication.md`. |
+
+## system-design/, behavioral/
+
+Not yet started. `behavioral/` interview delivery already has substantial coverage in `behavioral-handbook/` (STAR structure and delivery method), so an entry here, when built, should be genuinely playbook-shaped (interview-day logistics, question-pattern recognition across companies) rather than duplicating that existing canonical content. `system-design/` has no equivalent existing coverage and is a clean gap.
 
 ## How this relates to other deliverables
 

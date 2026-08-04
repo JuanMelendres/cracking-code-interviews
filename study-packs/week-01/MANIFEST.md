@@ -1,7 +1,7 @@
 # Week 1 Study Pack — Manifest
 
 **Topics:** T-901, T-609, T-1601, T-1501, T-1419 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 13 (+ this manifest) · **Total words:** 8,774 (real count, `wc -w` over all 13 files, re-run 2026-08-04 after `03-technical-answer-framework.md` §2-§4 were slimmed to summaries + canonical-chapter links, per the new `interview-playbook/technical-answers/technical-answer-framework.md` — see `CHANGELOG.md`. §1 and §3 numbering deliberately kept stable, unchanged: `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite them directly)
+**Files:** 13 (+ this manifest) · **Total words:** 8,322 (real count, `wc -w` over all 13 files, re-run 2026-08-04 after `03-technical-answer-framework.md` and `04-coding-interview-communication.md` were both slimmed to summaries + canonical-chapter links, per the new `interview-playbook/technical-answers/technical-answer-framework.md` and `interview-playbook/coding/coding-interview-communication-protocol.md` — see `CHANGELOG.md`. Section numbering kept stable throughout, unchanged: `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite them directly)
 
 ---
 
@@ -13,7 +13,7 @@
 | 2 | `01-clean-hexagonal-architecture.md` | T-901 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/architecture/clean-hexagonal-architecture.md` | 934 |
 | 3 | `02-database-index-fundamentals.md` | T-609 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/index-structures-btree-composite-covering.md` | 882 |
 | 4 | `03-technical-answer-framework.md` | T-1601 — slimmed to a per-section summary + link; full nine-layer stack now canonical at `interview-playbook/technical-answers/technical-answer-framework.md` | 474 |
-| 5 | `04-coding-interview-communication.md` | T-1419 — six-phase protocol + 3 annotated failure transcripts | 718 |
+| 5 | `04-coding-interview-communication.md` | T-1419 — slimmed to a per-section summary + link; full six-phase protocol now canonical at `interview-playbook/coding/coding-interview-communication-protocol.md` | 265 |
 | 6 | `05-star-story-workbook.md` | T-1501 — §1 slimmed to a summary + link to `behavioral-handbook/01-star-framework-and-delivery.md`; §2-§6 (worksheets, exercise) unchanged, no invented stories | 664 |
 | 7 | `06-domain-purity-exercise.md` | Deliverable template + worked example + documented counter-case | 668 |
 | 8 | `07-java-coding-practice.md` | 7 problems + LRU errata drill, all compiled and run | 1,246 |

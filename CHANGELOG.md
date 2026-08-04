@@ -268,11 +268,20 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-02/06-answer-frameworks.md` — its reference to the week-1 file updated to point at the new canonical chapter instead, since it applies the now-elevated framework to that week's own topics.
 - All cross-links across all touched/new files re-verified to resolve to real files before commit.
 
+### Added (Interview Playbook, second entry)
+- `interview-playbook/coding/coding-interview-communication-protocol.md` — T-1419 ("runs every coding session, all six weeks"), the six-phase live-coding narration protocol (Clarify → State the invariant → Complexity upfront → Narrate while coding → Test before declaring done → Re-state complexity against the actual code). Elevated from `study-packs/week-01/04-coding-interview-communication.md`, including its three illustrative failure patterns (explicitly labeled illustrative, not real transcripts), now with new Staff-Level Discussion, two full Interview Question entries, and a Cheat Sheet/Flashcards set matching the established playbook template.
+- This is the first entry in `interview-playbook/coding/` — the subdirectory previously held only a `.gitkeep`.
+- Cross-linked to `interview-playbook/technical-answers/technical-answer-framework.md`'s `related:` list, since both are foundational delivery protocols (one for any technical answer, one specifically for live coding).
+- `interview-playbook/README.md` — updated to add the `coding/` section; scope note corrected (`technical-answers/` and `coding/` now have content; `system-design/` and `behavioral/` remain placeholders, with `behavioral/` noted as lower-priority since `behavioral-handbook/` already covers behavioral delivery method).
+- `study-packs/week-01/04-coding-interview-communication.md` — slimmed §2 (six-phase protocol), §3 (illustrative failure patterns), and §5 (common mistakes) to summaries + links to the new canonical chapter; §1, §4, §6 kept in full (genuinely week-1-specific application and exercise).
+- `study-packs/week-01/MANIFEST.md`, `README.md` — word counts re-run and corrected (8,774 → 8,322 total, verified via `wc -w`).
+- All cross-links across all touched/new files re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 33 of 75 handbook chapters covered. 42 remain; top verified candidate for the next batch is `deadlock-race-conditions-and-thread-diagnostics.md` (T-409, IWI 6.70, the sixth batch's tie-break loser) — re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the rest of the batch, since the ranking shifts as chapters get covered.
-- Interview Playbook: 2 entries in `technical-answers/`. `system-design/`, `coding/`, `behavioral/` subdirectories not yet started — next steps should be genuinely playbook-shaped content (delivery method, question-pattern recognition, interview-day logistics), not a restatement of `practice/java/` or `behavioral-handbook/`'s existing coverage.
+- Interview Playbook: 3 entries total (2 in `technical-answers/`, 1 in `coding/`). `system-design/` is a clean, unstarted gap; `behavioral/` is lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future `behavioral/` entry should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Phase 6's other two complementary deliverables (architecture-atlas, production-cookbook) remain completely untouched.
 
 ---

@@ -16,6 +16,7 @@ estimated_reading_minutes: 20
 prerequisites: []
 related:
   - trade-off-narration-and-adrs.md
+  - ../coding/coding-interview-communication-protocol.md
   - ../../handbook/architecture/clean-hexagonal-architecture.md
   - ../../handbook/databases/index-structures-btree-composite-covering.md
   - ../../study-packs/week-01/03-technical-answer-framework.md
