@@ -11,7 +11,7 @@ One-page-equivalent rapid-review documents, one per canonical `handbook/` chapte
 
 ## A note on scope
 
-Eighteen cheat sheets exist so far, covering the eighteen highest-IWI (interview-weight-index) canonical chapters in the entire 75-chapter handbook, per `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register — built across three bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 57 chapters remain uncovered.
+Twenty-three cheat sheets exist so far, ranked by each canonical chapter's own stated IWI (interview-weight-index) — built across four bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 52 chapters remain uncovered.
 
 Every fact in every cheat sheet below (definitions, decision tables, measured numbers, production incidents) was extracted directly from its canonical chapter — nothing here was written from memory or general knowledge. Extraction was done via a dedicated read-and-report pass per chapter before any cheat sheet was drafted, consistent with this repository's no-fabrication discipline.
 
@@ -37,6 +37,11 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 16 | [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md) | T-614 | 7.60 | databases | `handbook/databases/table-partitioning-and-sharding-strategies.md` |
 | 17 | [Resilience Patterns](resilience-patterns.md) | T-515 | 7.60 | system-design | `handbook/system-design/resilience-patterns.md` |
 | 18 | [Consumer Groups and Rebalancing](consumer-groups-and-rebalancing.md) | T-703 | 7.50 | kafka | `handbook/kafka/consumer-groups-and-rebalancing.md` |
+| 19 | [HashMap Internals](hashmap-internals.md) | T-201 | 7.4 | collections | `handbook/collections/hashmap-internals.md` |
+| 20 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 7.35 | jvm | `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
+| 21 | [Zero-Downtime Schema Migration](zero-downtime-schema-migration.md) | T-616 | 7.30 | databases | `handbook/databases/zero-downtime-schema-migration.md` |
+| 22 | [Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md) | T-501 | 7.30 | spring | `handbook/spring/auto-configuration-and-bean-lifecycle.md` |
+| 23 | [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) | T-901 | 7.25 | architecture | `handbook/architecture/clean-hexagonal-architecture.md` |
 
 ## How this relates to `flashcards/`
 
@@ -44,4 +49,4 @@ Cheat sheets and flashcards serve different grain sizes and different moments, a
 
 ## Selection method
 
-Chapters are ranked by the IWI each canonical chapter states in its own "Topic register" line — this is more reliable than `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register table, which predates several newer system-design/T-8xx/T-9xx chapters and does not list them at all (a known staleness gap; see the flagged coverage-audit refresh task). Built across three batches (top 8, then the next 5, then the next 5), spanning 6 domains so far (system-design, architecture, databases, spring, kafka, concurrency) rather than front-loading one. Verified next candidates by IWI, for a future batch: `handbook/collections/hashmap-internals.md` (T-201, 7.4), `handbook/jvm/gc-fundamentals-and-log-analysis.md` (T-306, 7.35), `handbook/databases/zero-downtime-schema-migration.md` (T-616, 7.30), `handbook/spring/auto-configuration-and-bean-lifecycle.md` (T-501, 7.30), `handbook/architecture/ddd-tactical-design-aggregates.md` (T-903, 7.25) or `handbook/architecture/clean-hexagonal-architecture.md` (T-901, 7.25, tied).
+Chapters are ranked by the IWI each canonical chapter states in its own "Topic register" line — this is more reliable than `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register table, which predates several newer system-design/T-8xx/T-9xx chapters and does not list them at all (a known staleness gap; see the flagged coverage-audit refresh task). Built across four batches (top 8, then 5, then 5, then 5), spanning 8 domains so far (system-design, architecture, databases, spring, kafka, concurrency, collections, jvm) rather than front-loading one. `handbook/architecture/ddd-tactical-design-aggregates.md` (T-903, IWI 7.25) was the fourth batch's tie-break loser against Clean/Hexagonal Architecture (chosen for having 2x the cross-repository reference count) and remains the top verified candidate for a future batch, alongside whatever the next scripted IWI scan surfaces below it — re-run the scan rather than trusting a stale list here.

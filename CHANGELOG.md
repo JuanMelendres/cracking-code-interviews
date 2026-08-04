@@ -238,10 +238,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — updated index (18 rows), scope note, and selection-method section.
 - All cross-links across all 18 cheat sheets re-verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, fourth batch)
+- 5 more cheat sheets, same parallel-extraction methodology as the prior three batches: `hashmap-internals.md` (T-201, 7.4 — the real measured ~3,076x lookup slowdown from a constant-hash collision, and the exact resize trace: threshold 12, 13th entry triggers 16→32), `gc-fundamentals-and-log-analysis.md` (T-306, 7.35 — a real captured GC log, four sub-millisecond young collections under `-Xmx64m`), `zero-downtime-schema-migration.md` (T-616, 7.30 — the real 1943ms-blocked vs. 84ms `CONCURRENTLY` index-build comparison, ~23x), `auto-configuration-and-bean-lifecycle.md` (T-501, 7.30 — the real `@Async`+`@Transactional` trace showing a correctly-rolled-back transaction the caller never sees), `clean-hexagonal-architecture.md` (T-901, 7.25 — the two-weeks-estimated/three-months-actual ORM migration scenario, the one chapter in this batch with no runtime benchmark since the pattern is explicitly compile-time/organizational, not runtime).
+- **Total now 23 of 75 handbook chapters covered**, spanning 8 domains (system-design, architecture, databases, spring, kafka, concurrency, collections, jvm — collections and jvm newly represented this batch).
+- **Tie-break decision recorded:** `clean-hexagonal-architecture.md` (T-901) and `ddd-tactical-design-aggregates.md` (T-903) tied at IWI 7.25 for the fifth slot. Resolved by cross-repository reference count (`grep -rl`) rather than arbitrarily: Clean/Hexagonal Architecture is referenced by 16 other files vs. DDD Tactical's 8, so it was chosen; DDD Tactical carries forward as the top candidate for the next batch.
+- `cheat-sheets/README.md` — updated index (23 rows) and selection-method section; the section now explicitly tells the next session to re-run the scripted IWI scan rather than trust a hardcoded candidate list, since that list goes stale after every batch.
+- All cross-links across all 23 cheat sheets re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 18 of 75 handbook chapters covered. 57 remain; verified next batch by IWI (sourced from each chapter's own Topic register line): `hashmap-internals.md` (7.4), `gc-fundamentals-and-log-analysis.md` (7.35), `zero-downtime-schema-migration.md` (7.30), `auto-configuration-and-bean-lifecycle.md` (7.30), `ddd-tactical-design-aggregates.md` or `clean-hexagonal-architecture.md` (tied 7.25).
+- Cheat Sheets: 23 of 75 handbook chapters covered. 52 remain; top verified candidate for the next batch is `ddd-tactical-design-aggregates.md` (T-903, IWI 7.25, the fourth batch's tie-break loser) — re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the rest of the batch, since the ranking shifts as chapters get covered.
 - Phase 6's other three complementary deliverables (interview-playbook, architecture-atlas, production-cookbook) remain completely untouched.
 
 ---
