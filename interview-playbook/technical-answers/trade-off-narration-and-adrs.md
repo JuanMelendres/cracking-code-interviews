@@ -15,6 +15,7 @@ target_levels:
 estimated_reading_minutes: 15
 prerequisites: []
 related:
+  - technical-answer-framework.md
   - ../../handbook/system-design/storage-selection-tradeoffs.md
   - ../../study-packs/week-02/05-trade-off-narration-and-adrs.md
   - ../../study-packs/week-02/10-adr-exercise.md
@@ -48,7 +49,7 @@ official_references:
 
 ## Why This Exists
 
-Named interview feedback specifically included "communicating why a decision was selected" and "explaining alternatives and trade-offs." This is the highest-IWI single item in the feedback block (8.10) precisely because it's not about any one technical topic — it's the structural skill underneath every technical answer this entire programme produces. Every technical chapter ends with trade-offs; this entry is where that gets turned into something rehearsed and deliverable under pressure, rather than assembled ad hoc each time.
+Named interview feedback specifically included "communicating why a decision was selected" and "explaining alternatives and trade-offs." This is the highest-IWI single item in the feedback block (8.10) precisely because it's not about any one technical topic — it's the structural skill underneath every technical answer this entire programme produces. Every technical chapter ends with trade-offs; this entry is where that gets turned into something rehearsed and deliverable under pressure, rather than assembled ad hoc each time. It is, specifically, a dedicated deep-dive on layer 6 of [The Technical Answer Framework](technical-answer-framework.md)'s nine-layer stack — the single most commonly skipped layer.
 
 ## The Four-Beat Structure
 

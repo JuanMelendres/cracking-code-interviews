@@ -6,7 +6,7 @@ last_reviewed: 2026-07-29
 
 # Week 2 Answer Frameworks
 
-Applying the nine-layer stack from `study-packs/week-01/03-technical-answer-framework.md` §2 to this week's Deep topics: T-610, T-605, T-1505, per `00-project/learning-roadmap.md` §7.4's coverage schedule.
+Applying the nine-layer stack from [`interview-playbook/technical-answers/technical-answer-framework.md`](../../interview-playbook/technical-answers/technical-answer-framework.md) (elevated from `study-packs/week-01/03-technical-answer-framework.md` §2) to this week's Deep topics: T-610, T-605, T-1505, per `00-project/learning-roadmap.md` §7.4's coverage schedule.
 
 ## Table of Contents
 

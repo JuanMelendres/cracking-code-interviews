@@ -259,11 +259,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — updated index (33 rows) and selection-method section, recording the tie-break history to date and the next candidate.
 - All cross-links across all 33 cheat sheets re-verified to resolve to real files before commit.
 
+### Added (Interview Playbook, first entry)
+- `interview-playbook/technical-answers/technical-answer-framework.md` — T-1601 (IWI 7.30, Core tier, named "the multiplier on all other work," scheduled Week 1 because every subsequent week's output depends on it), the nine-layer answer structure (Opening → Senior answer → Deep dive → Whiteboard → Production example → Trade-offs → Traps → Follow-up chain → Staff extension) that every `handbook/` chapter's own per-chapter "Interview Answer Framework" section already follows. Elevated from `study-packs/week-01/03-technical-answer-framework.md`, which had carried this as informal week-1 study-pack content since Plan A, never given canonical treatment despite being cited by name from Week 1 through Week 6.
+- `interview-playbook/README.md` — new index for the deliverable, honest about scope: only `technical-answers/` has content (2 entries), `system-design/`, `coding/`, `behavioral/` remain `.gitkeep` placeholders. Explicitly distinguishes this deliverable's purpose (the *shared delivery method*, documented once) from `handbook/`'s per-chapter Interview Answer Framework sections (which *use* the method) and from `cheat-sheets/` (one-page review of a single chapter's *content*).
+- Cross-linked the new entry to the pre-existing `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` (T-1505/T-916) in both directions: the new framework entry names trade-off narration as its layer 6; the pre-existing trade-off entry now states explicitly that it's a dedicated deep-dive on that layer, not a separate skill.
+- `study-packs/week-01/03-technical-answer-framework.md` — slimmed §2 (the nine-layer stack), §3 (the T-901 worked example), and §4 (weekly build cadence) to summaries + links to the new canonical chapter; §1 and §5-§6 (the T-609 application and exercise, genuinely week-1-specific) kept in full. Section numbering kept stable — `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite §2/§3 directly.
+- `study-packs/week-01/MANIFEST.md`, `README.md` — word counts re-run and corrected (9,379 → 8,774 total, verified via `wc -w`).
+- `study-packs/week-02/06-answer-frameworks.md` — its reference to the week-1 file updated to point at the new canonical chapter instead, since it applies the now-elevated framework to that week's own topics.
+- All cross-links across all touched/new files re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 33 of 75 handbook chapters covered. 42 remain; top verified candidate for the next batch is `deadlock-race-conditions-and-thread-diagnostics.md` (T-409, IWI 6.70, the sixth batch's tie-break loser) — re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the rest of the batch, since the ranking shifts as chapters get covered.
-- Phase 6's other three complementary deliverables (interview-playbook, architecture-atlas, production-cookbook) remain completely untouched.
+- Interview Playbook: 2 entries in `technical-answers/`. `system-design/`, `coding/`, `behavioral/` subdirectories not yet started — next steps should be genuinely playbook-shaped content (delivery method, question-pattern recognition, interview-day logistics), not a restatement of `practice/java/` or `behavioral-handbook/`'s existing coverage.
+- Phase 6's other two complementary deliverables (architecture-atlas, production-cookbook) remain completely untouched.
 
 ---
 
