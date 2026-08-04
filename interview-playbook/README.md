@@ -11,7 +11,7 @@ The Interview Playbook owns interview-craft content: reusable structures for *de
 
 ## A note on scope
 
-Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. `technical-answers/` and `coding/` have content so far — `system-design/` and `behavioral/` are placeholders (`.gitkeep` only). This deliverable is being built in bounded batches.
+Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. `technical-answers/`, `coding/`, and `system-design/` have content so far — `behavioral/` remains a placeholder (`.gitkeep` only). This deliverable is being built in bounded batches.
 
 ## technical-answers/
 
@@ -28,9 +28,15 @@ These two entries are deliberately cross-linked: the nine-layer framework is the
 |---|---|---|
 | [Coding Interview Communication Protocol](coding/coding-interview-communication-protocol.md) | T-1419 | The six-phase narration protocol (Clarify → Re-state complexity) for live coding interviews — runs every coding session. Elevated from `study-packs/week-01/04-coding-interview-communication.md`. |
 
-## system-design/, behavioral/
+## system-design/
 
-Not yet started. `behavioral/` interview delivery already has substantial coverage in `behavioral-handbook/` (STAR structure and delivery method), so an entry here, when built, should be genuinely playbook-shaped (interview-day logistics, question-pattern recognition across companies) rather than duplicating that existing canonical content. `system-design/` has no equivalent existing coverage and is a clean gap.
+| Entry | Companion topic | What it's about |
+|---|---|---|
+| [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](system-design/time-boxing-and-mid-round-changes.md) | T-801/T-802 (System Design Method and Estimation) | Two live-delivery skills distinct from the six-phase method itself: running the method inside a fixed clock, and responding to an interviewer-injected requirement change mid-round by revising the specific earlier decision it invalidates rather than bolting on a patch. Synthesized from real, recurring patterns across this programme's own Week 9–10 mock-interview scripts, not elevated from a single source file. |
+
+## behavioral/
+
+Not yet started. `behavioral/` interview delivery already has substantial coverage in `behavioral-handbook/` (STAR structure and delivery method), so an entry here, when built, should be genuinely playbook-shaped (interview-day logistics, question-pattern recognition across companies) rather than duplicating that existing canonical content.
 
 ## How this relates to other deliverables
 
