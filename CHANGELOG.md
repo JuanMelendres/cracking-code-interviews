@@ -284,10 +284,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `interview-playbook/README.md` — updated to add the `system-design/` section; scope note corrected (`technical-answers/`, `coding/`, `system-design/` now have content; only `behavioral/` remains a placeholder).
 - All cross-links across the new file re-verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, seventh batch)
+- 5 more cheat sheets, same parallel-extraction methodology as the prior six batches: `deadlock-race-conditions-and-thread-diagnostics.md` (T-409, 6.70 — the real 838,094-of-1,000,000 lost-update measurement, 83.8%, plain `int++` vs. `AtomicInteger`), `concurrenthashmap-internals.md` (T-205, 6.65 — the real HashMap-corrupts-silently-at-68,683-of-160,000-expected trace, plus the get-then-put lost-update fix via `merge()`), `integration-testing-against-real-dependencies.md` (T-1104, 6.50 — the real 154ms Testcontainers Postgres round-trip, and the CI-flakiness-traced-to-shared-container-state incident), `kubernetes-objects-scheduling-and-networking.md` (T-1002, 6.5 — the real rollout capacity math and the maxUnavailable-guarantees-count-not-performance incident), `kafka-architecture-fundamentals.md` (T-701, 6.40 — the real 4-partition producer trace showing per-key ordering and the partition-count-resize-silently-remaps-keys incident).
+- **Total now 38 of 75 handbook chapters covered**, spanning 10 domains (no new domain this batch — the 5 topics landed in concurrency, collections, testing, cloud, and kafka, all already represented).
+- **No tie-break needed this batch** — the top 5 by IWI (6.70/6.65/6.50/6.5/6.40) had no ties among them, unlike batches 4–6.
+- `cheat-sheets/README.md` — updated index (38 rows) and selection-method section; tie-break history condensed to a running summary rather than repeating every prior batch's full detail, to keep the section from growing unbounded.
+- All cross-links across all 38 cheat sheets re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 33 of 75 handbook chapters covered. 42 remain; top verified candidate for the next batch is `deadlock-race-conditions-and-thread-diagnostics.md` (T-409, IWI 6.70, the sixth batch's tie-break loser) — re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the rest of the batch, since the ranking shifts as chapters get covered.
+- Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Phase 6's other two complementary deliverables (architecture-atlas, production-cookbook) remain completely untouched.
 
