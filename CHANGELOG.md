@@ -252,10 +252,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — updated index (28 rows) and selection-method section, recording both tie-break decisions and the next candidate.
 - All cross-links across all 28 cheat sheets re-verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, sixth batch)
+- 5 more cheat sheets, same parallel-extraction methodology as the prior five batches: `performance-methodology-and-slo-error-budgets.md` (T-1206, 6.90 — the real 30-day error-budget simulation showing a single 40-minute incident consuming ~14% of the monthly budget while the aggregate SLO still showed "met"), `logging-metrics-tracing-and-opentelemetry.md` (T-1205, 6.90, tied — the real 4-span OpenTelemetry trace with a propagated error from `payment-db.insert` through to the root span), `kubernetes-resource-limits-probes-and-jvm-sizing.md` (T-1003, 6.8 — the real measured contrast between `OutOfMemoryError`/exit 1 and `OOMKilled`/exit 137 across two Docker container scenarios), `virtual-threads.md` (T-410, 6.75 — the real 18x scale measurement and the real ~10x `synchronized`-pinning regression), `percentiles-tail-latency-and-coordinated-omission.md` (T-1204, 6.70 — the real closed-loop-vs-open-loop measurement showing p99 500ms vs. 830ms on identical underlying service behavior).
+- **Total now 33 of 75 handbook chapters covered**, spanning 10 domains (system-design, architecture, databases, spring, kafka, concurrency, collections, jvm, testing, cloud — cloud newly represented this batch).
+- **Tie-breaks this round:** T-1206 and T-1205 tied at IWI 6.90 needed no tie-break — both fit naturally within batch 6's top 5. A tie at IWI 6.70 for the batch's 5th slot, between `percentiles-tail-latency-and-coordinated-omission.md` (T-1204) and `deadlock-race-conditions-and-thread-diagnostics.md` (T-409), was resolved by cross-repository reference count (14 vs. 10) — Percentiles won; Deadlock/Race-Conditions carries forward as the next batch's top candidate.
+- `cheat-sheets/README.md` — updated index (33 rows) and selection-method section, recording the tie-break history to date and the next candidate.
+- All cross-links across all 33 cheat sheets re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 28 of 75 handbook chapters covered. 47 remain; top verified candidate for the next batch is `performance-methodology-and-slo-error-budgets.md` (T-1206, IWI 6.90, the fifth batch's tie-break loser) — re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the rest of the batch, since the ranking shifts as chapters get covered.
+- Cheat Sheets: 33 of 75 handbook chapters covered. 42 remain; top verified candidate for the next batch is `deadlock-race-conditions-and-thread-diagnostics.md` (T-409, IWI 6.70, the sixth batch's tie-break loser) — re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the rest of the batch, since the ranking shifts as chapters get covered.
 - Phase 6's other three complementary deliverables (interview-playbook, architecture-atlas, production-cookbook) remain completely untouched.
 
 ---
