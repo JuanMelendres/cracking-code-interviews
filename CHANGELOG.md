@@ -398,13 +398,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 28 rows; scope note updated to reflect 28/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, eighth batch)
+- `stale-flag-read-exposed-by-a-jvm-upgrades-jit-timing.md` — companion to Java Memory Model and Volatile. A routine JVM minor-version upgrade exposes a latent visibility bug on a non-`volatile` polled field by reaching the JIT's optimizing tier sooner — the bug existed all along, only its manifestation was environment-dependent.
+- `silent-data-loss-from-a-shrunk-isr-without-min-insync-replicas.md` — companion to Producer Semantics and Partition Keys. `acks=all` without a matching `min.insync.replicas` silently acknowledges writes against a single replica once the ISR shrinks, losing every record acknowledged in that window with no error at write time.
+- `silently-swallowed-async-exception-hiding-weeks-of-failures.md` — companion to Auto-Configuration and Bean Lifecycle. A `void`-returning `@Async` method makes the caller's try/catch structurally incapable of ever observing the exception, letting a real, recurring processing failure hide for weeks despite every individual component behaving correctly.
+- `broken-equals-hashcode-contract-letting-duplicates-through.md` — companion to equals/hashCode and Comparable Contracts. An IDE regenerating `equals()` without its paired `hashCode()` silently breaks a `HashSet`-based deduplication pipeline, with no exception anywhere — only a downstream data-quality symptom.
+- Third entry each for concurrency, kafka, spring, and java-core, distinct in scenario type from each domain's prior entries. 32 of 72 candidate `Production Scenarios` sections now elevated; 40 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches.
+- `production-cookbook/README.md` — entries table grown to 32 rows; scope note updated to reflect 32/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 28 of 72 candidate `Production Scenarios` sections elevated. 44 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 32 of 72 candidate `Production Scenarios` sections elevated. 40 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
