@@ -518,10 +518,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — table re-ranked with all 5 new entries inserted at their correct IWI position; scope note, selection-method tie-break history, and domain-coverage list updated.
 - All cross-links across all five new entries verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, ninth batch)
+- `streams-and-collectors.md` (T-107, IWI 6.2) — lazy/short-circuiting execution model, `toMap()` duplicate-key handling, real measured `ArrayList` corruption under `parallel().forEach()` and a real 6.6x parallel-overhead slowdown after JIT warmup.
+- `authn-authz-rbac-vs-abac.md` (T-1302, IWI 6.0) — the AuthN/AuthZ front-desk-and-doors mental model, RBAC's static-role limitation, real `RbacVsAbacDemo` traces showing identical roles producing correct, differentiated ABAC outcomes by ownership/team/time.
+- `equals-hashcode-and-comparable-contracts.md` (T-101, IWI 5.9) — the equals/hashCode contract, real `HashSet` corruption from a partial IDE regeneration, real `TreeSet` silent-drop from a `Comparable` inconsistent with `equals()`.
+- `performance-and-load-testing-methodology.md` (T-1106, IWI 5.9) — load/stress/soak as three release-process-placement questions, real load-test trace (mean 12.45ms vs. p95 150.54ms exposing a 1-in-20 injected slow path).
+- `cloud-cost-and-scaling-economics.md` (T-1007, IWI 5.9) — the commitment-spectrum mental model, real worked arithmetic showing reserving peak demand costs $3,212/year more than correctly autoscaling on-demand.
+- Selected via a fresh scripted IWI scan across all 75 handbook chapters' own Topic register lines, filtered to the 32 not yet covered. Top 2 slots (streams-and-collectors, authn-authz-rbac-vs-abac) were unambiguous; a genuine three-way tie at IWI 5.9 filled the remaining 3 slots exactly, needing no elimination — ordered for documentation purposes only via cross-repository reference count and each chapter's own stated interview-frequency label.
+- 48 of 75 handbook chapters now covered — first cheat sheets in the java-core domain. 27 remain, plus the same 5 jvm chapters excluded from the scan for lacking a stated IWI in the scanned format (not fabricated).
+- `cheat-sheets/README.md` — table extended to 48 rows in strict IWI-descending order; scope note, selection-method tie-break history, and domain-coverage list updated.
+- All cross-links across all five new entries verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 43 of 75 handbook chapters covered. 32 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
+- Cheat Sheets: 48 of 75 handbook chapters covered. 27 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
