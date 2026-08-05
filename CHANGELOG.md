@@ -408,13 +408,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 32 rows; scope note updated to reflect 32/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, ninth batch)
+- `rolling-update-latency-spike-despite-maxunavailable-zero.md` — companion to Kubernetes Objects, Scheduling, and Networking. `maxUnavailable: 0` guarantees Pod count, not Pod performance — a newly-Ready Pod receives traffic before its JIT-compiled code paths warm up, producing a real latency spike the configuration was assumed to prevent.
+- `over-sized-aggregate-causing-system-wide-lock-contention.md` — companion to DDD Tactical Design: Aggregates. `Customer` and `Order` modeled as one aggregate by object composition, not genuine invariant, serializes every concurrent order on a shared row lock — and blocks unrelated customer-profile updates from the same customers.
+- `unbounded-blockingqueue-losing-backpressure-into-an-oom.md` — companion to BlockingQueue Family. An unbounded `LinkedBlockingQueue` removes backpressure entirely, silently absorbing a growing backlog during a downstream slowdown until the ingesting service crashes with `OutOfMemoryError`.
+- `error-budget-aggregate-hiding-a-climbing-daily-trend.md` — companion to Performance Methodology and SLO Error Budgets. A monthly error-budget aggregate showing 60% headroom hides a two-week climbing daily failure trend, and a moderately risky migration shipped on that false confidence tips the trend into a real SLO breach.
+- Third entry each for cloud, architecture, collections, and performance, distinct in scenario type from each domain's prior entries. 36 of 72 candidate `Production Scenarios` sections now elevated — exactly half — 36 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches.
+- `production-cookbook/README.md` — entries table grown to 36 rows; scope note updated to reflect 36/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 32 of 72 candidate `Production Scenarios` sections elevated. 40 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 36 of 72 candidate `Production Scenarios` sections elevated (halfway). 36 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
