@@ -388,13 +388,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 24 rows; scope note updated to reflect 24/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, seventh batch)
+- `cross-tenant-data-leak-via-a-superuser-analytics-role.md` — companion to Multi-Tenancy Isolation Models. A correctly configured RLS isolation policy is bypassed entirely by an out-of-band analytics job using a superuser-equivalent database role — tenant isolation is a property of every access path, not just the application's own code. Source is this chapter's narrative-format scenario rather than the usual itemized template; hypotheses reconstructed honestly from what the text directly states was checked and ruled out.
+- `mocked-repository-tests-masking-a-real-schema-migration-break.md` — companion to Test Strategy and Test Doubles. A fully mocked repository test suite passes at 100% while a real column rename breaks every production write, because no test in the suite ever sent real SQL to a real schema.
+- `index-regression-from-an-orm-generated-cast-expression.md` — companion to Index Structures: B-Tree, Composite, Covering. A routine Hibernate minor-version upgrade silently changes generated SQL to wrap a column in `CAST`, defeating an existing index with no schema change and no code review to catch it.
+- `retry-amplification-cascading-into-a-multi-service-outage.md` — companion to Distributed Systems Failure Modes. Jitter-free, fixed-count retries from several independent callers turn one downstream service's contained slowdown into a compounding, multi-service cascade within minutes.
+- Second entry for security and testing (previously single-entry domains); third entry for databases and system-design, each a distinct scenario type from prior entries in the same domain. 28 of 72 candidate `Production Scenarios` sections now elevated; 44 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches.
+- `production-cookbook/README.md` — entries table grown to 28 rows; scope note updated to reflect 28/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 24 of 72 candidate `Production Scenarios` sections elevated. 48 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 28 of 72 candidate `Production Scenarios` sections elevated. 44 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
