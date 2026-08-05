@@ -418,13 +418,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 36 rows; scope note updated to reflect 36/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, tenth batch)
+- `zgc-migration-p99-regression-from-undersized-heap-headroom.md` — companion to ZGC and Shenandoah Concurrent Collection. A collector migration meant to improve tail latency initially makes it worse, because heap headroom was still sized for the previous collector's evacuation-pause model rather than a concurrent collector's continuous-reclamation needs.
+- `kms-outage-exposing-a-missing-key-version-fallback.md` — companion to Secrets Management and Key Rotation. A signing implementation with no key-version tracking has no fallback to a still-valid previous key during a KMS outage, turning a temporary dependency unavailability into a full capability outage.
+- `boundary-condition-bug-behind-a-95-percent-coverage-figure.md` — companion to Mutation and Property-Based Testing. A pricing module's 95% line coverage is real but its assertions are too weak to catch a boundary-shifted defect — mutation testing retrospectively finds the exact surviving mutants where the shipped bug occurred.
+- `partition-count-increase-silently-breaking-per-customer-ordering.md` — companion to Kafka Architecture Fundamentals. A routine partition-count increase to relieve a hot broker remaps every key, silently splitting a subset of customers' ordered event history across two partitions with no ordering relationship between them.
+- Third entry each for jvm, security, and testing (previously stalled at two); fourth entry for kafka. The jvm, security, and testing entries are drawn from narrative-format source sections rather than the itemized template, as in batch seven — hypotheses reconstructed honestly from what the source directly states was investigated. 40 of 72 candidate `Production Scenarios` sections now elevated; 32 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches.
+- `production-cookbook/README.md` — entries table grown to 40 rows; scope note updated to reflect 40/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 36 of 72 candidate `Production Scenarios` sections elevated (halfway). 36 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 40 of 72 candidate `Production Scenarios` sections elevated. 32 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
