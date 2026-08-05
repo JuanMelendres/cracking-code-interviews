@@ -11,7 +11,7 @@ The Interview Playbook owns interview-craft content: reusable structures for *de
 
 ## A note on scope
 
-Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. `technical-answers/`, `coding/`, and `system-design/` have content so far — `behavioral/` remains a placeholder (`.gitkeep` only). This deliverable is being built in bounded batches.
+Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. All four now have content. This deliverable was built in bounded batches.
 
 ## technical-answers/
 
@@ -36,7 +36,9 @@ These two entries are deliberately cross-linked: the nine-layer framework is the
 
 ## behavioral/
 
-Not yet started. `behavioral/` interview delivery already has substantial coverage in `behavioral-handbook/` (STAR structure and delivery method), so an entry here, when built, should be genuinely playbook-shaped (interview-day logistics, question-pattern recognition across companies) rather than duplicating that existing canonical content.
+| Entry | Topic ID | IWI | What it's about |
+|---|---|---|---|
+| [Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition](behavioral/company-loop-structures-and-question-pattern-recognition.md) | T-1604 | 6.50 | The delivery-logistics layer `behavioral-handbook/` deliberately doesn't cover: recognizing which of three question shapes a prompt is asking (retrospective/STAR, hypothetical/live-judgment, values-worded/reframed) before selecting a story, and a live, day-of story-usage tracking grid that prevents accidentally repeating the same story across a multi-round loop. Elevated from `00-project/knowledge-architecture-blueprint.md`'s previously-unelevated T-1604 (Company loop structures & calibration). Genuinely playbook-shaped — no restatement of STAR mechanics, story-portfolio design, or the per-principle reframing lens, all of which stay in `behavioral-handbook/`. |
 
 ## How this relates to other deliverables
 

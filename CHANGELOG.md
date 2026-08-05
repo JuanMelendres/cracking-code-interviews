@@ -581,11 +581,19 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — table extended to 70 rows; scope note rewritten to declare closure against the IWI criterion and record the user's explicit decision to leave the 5 no-IWI jvm chapters open.
 - All cross-links across both new entries verified to resolve to real files before commit.
 
+### Added (Interview Playbook, behavioral/ — closes the last unstarted Playbook subdirectory)
+- `interview-playbook/behavioral/company-loop-structures-and-question-pattern-recognition.md` (T-1604, IWI 6.50) — elevated from `00-project/knowledge-architecture-blueprint.md`'s previously-unelevated "Company loop structures & calibration" topic. Two genuinely playbook-shaped skills `behavioral-handbook/` deliberately doesn't cover: recognizing which of three question shapes a prompt is asking (retrospective/STAR, hypothetical/live-judgment, values-worded/reframed) before selecting a story or answer structure, and a lightweight, live story-usage tracking grid preventing an accidental story repeat across a multi-round loop.
+- Cross-links verified against `behavioral-handbook/01`, `02`, `13`, and `interview-playbook/technical-answers/trade-off-narration-and-adrs.md`; no restatement of STAR mechanics, story-portfolio design, or the per-principle reframing lens, all of which remain owned by `behavioral-handbook/`.
+- Removed `interview-playbook/behavioral/.gitkeep`, no longer needed now the directory has content.
+- `interview-playbook/README.md` — `behavioral/` section filled in with the new entry's table row; scope note updated to reflect all four Playbook subdirectories now having content.
+- `behavioral-handbook/README.md` — cross-reference to `interview-playbook/behavioral/` updated from "currently empty" to point at the new entry.
+- **This closes the Interview Playbook deliverable's last unstarted subdirectory** — all four (`technical-answers/`, `coding/`, `system-design/`, `behavioral/`) now have content.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: **closed against its IWI-based selection criterion, 70/75.** Every chapter stating an IWI is covered; the remaining 5 jvm chapters state no IWI at all (confirmed by direct inspection) and are left open per the user's explicit 2026-08-05 decision — closing them would require the user to specify an alternative, non-IWI selection method.
-- Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
+- Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 
