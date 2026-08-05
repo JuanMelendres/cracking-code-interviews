@@ -368,13 +368,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 16 rows; scope note updated to reflect 16/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, fifth batch)
+- `cache-cluster-failover-triggering-a-full-database-outage.md` — companion to Caching Strategies and Invalidation. Routine cache maintenance takes the cache briefly fully unavailable, and a full-working-set stampede — not a single hot key — exhausts a database sized assuming the cache would always be present.
+- `canary-promotion-shipping-a-regression-with-no-human-gate.md` — companion to CI/CD Pipeline Design and Deployment Strategies. A visually obvious latency regression stays within the numeric alert threshold and reaches full production traffic, because the promotion gate had no human review step to catch what the threshold wasn't designed for.
+- `gradual-latency-degradation-from-an-unbounded-cache-and-growing-old-generation.md` — companion to GC Fundamentals and Log Analysis. An unbounded in-memory cache grows the old generation over days, making mixed collections both more frequent and individually slower — a GC log reading problem that resolves to an application-level bug, not a tuning fix.
+- `hashmap-bucket-overload-from-a-poor-hashcode-distribution.md` — companion to HashMap Internals. A hand-rolled XOR `hashCode()` produces a narrow hash range for production-shaped keys, concentrating entries into a few overloaded buckets, invisible to synthetic unit tests and visible only against real key distributions.
+- Second entry each for system-design, cloud, jvm, and collections, distinct in scenario type from each domain's first entry (cache stampede vs. retry storm; deployment-gate design vs. OOMKill; GC/heap-growth diagnosis vs. deadlock diagnosis vs. memory-leak diagnosis; hash-distribution corruption vs. concurrent-map lost-update). 20 of 72 candidate `Production Scenarios` sections now elevated; 52 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches.
+- `production-cookbook/README.md` — entries table grown to 20 rows; scope note updated to reflect 20/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 16 of 72 candidate `Production Scenarios` sections elevated. 56 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 20 of 72 candidate `Production Scenarios` sections elevated. 52 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
