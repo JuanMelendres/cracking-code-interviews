@@ -551,10 +551,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — table extended to 58 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
 - All cross-links across all five new entries verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, twelfth batch)
+- `secrets-management-and-key-rotation.md` (T-1304, IWI 5.5) — envelope encryption, real AES-256-GCM zero-downtime key rotation, a real demo of the retirement-before-re-encryption-sweep failure mode.
+- `exception-design-and-hierarchy-strategy.md` (T-105, IWI 5.5) — cause-chaining vs. cause-swallowing measured directly (`getCause() == null`), real try-with-resources suppressed-exception behavior vs. a manual `finally` block's silent exception replacement.
+- `zgc-and-shenandoah-concurrent-collection.md` (T-305, IWI 5.4) — concurrent relocation vs. G1's evacuation pauses, real measured 1-40μs ZGC safepoints against G1's 0.748ms max pause, and the real 218-allocation-stall/22%-fewer-allocations trade-off on the same workload.
+- `immutability-and-defensive-copying.md` (T-103, IWI 5.4) — the two leak points (constructor, getter), real measured mutation of a supposedly-immutable object via both leaks, and `List.copyOf()`'s stronger mutation-rejection guarantee.
+- `data-modelling-and-explicit-join-tables.md` (T-605/T-608, IWI 5.20) — the "as of formation time" trigger for promoting a join table to an entity, real PostgreSQL evidence of a naive join table silently reporting the wrong historical order total after a price change.
+- Selected via a fresh scripted IWI scan across all 75 handbook chapters' own Topic register lines, filtered to the 17 not yet covered. Two clean two-way ties (IWI 5.5, then IWI 5.4) closed in sequence with no elimination needed, followed by one unambiguous next chapter (IWI 5.20) as the batch's fifth slot.
+- 63 of 75 handbook chapters now covered. 12 remain, plus the same 5 jvm chapters excluded from the scan for lacking a stated IWI in the scanned format (not fabricated).
+- `cheat-sheets/README.md` — table extended to 63 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
+- All cross-links across all five new entries verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 58 of 75 handbook chapters covered. 17 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
+- Cheat Sheets: 63 of 75 handbook chapters covered. 12 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
