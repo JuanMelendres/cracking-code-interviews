@@ -348,13 +348,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 8 rows; scope note updated to reflect 8/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, third batch)
+- `premature-microservice-decomposition-doubling-on-call-burden.md` — companion to Microservice Decomposition and the Monolith Trade-off. A four-person team's five-way split increases on-call load and slows delivery with no realized benefit, because the organizational precondition — separately-scheduled sub-teams — never existed; a measurable "always co-deployed" signal is the evidence a Staff-level answer is expected to reach for.
+- `shared-mutable-config-corrupted-by-a-live-reference-getter.md` — companion to Immutability and Defensive Copying. A getter handing out a live, mutable `Map` reference lets one subsystem's local override silently become global state corruption for every other holder of the same `Config` instance — no concurrency involved at all.
+- `flaky-ci-integration-tests-from-shared-container-state.md` — companion to Integration Testing Against Real Dependencies. Parallel tests racing against the same shared Postgres container and hardcoded IDs produce a roughly-1-in-10 CI flake rate, resolved by per-test-class schema isolation rather than disabling parallelism permanently.
+- `lost-update-in-a-get-then-put-counter-increment.md` — companion to ConcurrentHashMap Internals. A `get()`-then-`put()` increment silently undercounts a request metric specifically under peak load — the moment accuracy matters most — fixed with `merge()` at no performance cost.
+- Domain spread for this batch: architecture, java-core, testing, collections — none previously covered. 12 of 72 candidate `Production Scenarios` sections now elevated; 60 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches: every Interview Story section framed as a representative scenario to adapt.
+- `production-cookbook/README.md` — entries table grown to 12 rows; scope note updated to reflect 12/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 8 of 72 candidate `Production Scenarios` sections elevated. 64 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 12 of 72 candidate `Production Scenarios` sections elevated. 60 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
