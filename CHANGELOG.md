@@ -448,13 +448,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 48 rows; scope note updated to reflect 48/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, thirteenth batch)
+- `rbac-separation-of-duties-violation-in-a-financial-approval-workflow.md` — companion to AuthN/AuthZ: RBAC vs. ABAC. A self-approval violates a compliance rule RBAC structurally cannot express — "not the same person who did X" is a relationship to a specific resource's history, not a property of a role, and no implementation fix closes the gap without ABAC.
+- `cp-configuration-store-causing-a-regional-outage-during-a-network-blip.md` — companion to CAP Theorem and Consistency Models. A shared config store correctly refuses to serve during a brief partition, exactly per its CP design, cascading into a full regional outage no one had explicitly decided every consumer needed to tolerate.
+- `reserved-capacity-purchase-increasing-cloud-spend.md` — companion to Cloud Cost and Scaling Economics. A reservation sized to peak instance count pays for capacity the workload only needs 4 of 24 hours a day, producing a real spend increase despite a correctly priced per-unit discount.
+- `price-drift-from-a-join-table-without-a-locked-historical-price.md` — companion to Data Modelling and Explicit Join Tables. A naive `Order`-to-`Product` join table re-fetches live product price on every read, silently corrupting historical order totals the moment a product's price changes after the order was placed.
+- Fourth entry for security; sixth entry for system-design; fourth entry for cloud; sixth entry for databases (databases' last remaining candidate chapter, now fully exhausted alongside architecture, kafka, performance, and spring). 52 of 72 candidate `Production Scenarios` sections now elevated; 20 remain, concentrated in security, testing, jvm, system-design, cloud, and java-core.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches. The security entry is drawn from a narrative-format source section, as in batches seven and ten.
+- `production-cookbook/README.md` — entries table grown to 52 rows; scope note updated to reflect 52/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 48 of 72 candidate `Production Scenarios` sections elevated (two-thirds). 24 remain, concentrated in security, testing, cloud, and a handful of remaining thin/narrative jvm, system-design, databases, and java-core chapters (architecture, kafka, performance, and spring are fully exhausted) — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 52 of 72 candidate `Production Scenarios` sections elevated. 20 remain, concentrated in security, testing, jvm, and a handful of remaining chapters in system-design, cloud, and java-core (architecture, kafka, performance, spring, and databases are all fully exhausted) — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
