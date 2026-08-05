@@ -478,13 +478,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 60 rows; scope note updated to reflect 60/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, sixteenth batch)
+- `like-clause-sql-injection-surviving-an-automated-scan.md` — companion to Injection, Input Validation, and Output Encoding. A search feature's SQL injection vulnerability passes an automated scanner cleanly because the scanner never tests the specific `LIKE`-wildcard embedding context it requires — automated scanning is incomplete, and only architectural parameterization closes the whole class.
+- `full-suite-blocking-every-commit-fixed-via-junit5-tag-filtering.md` — companion to JUnit 5 Architecture and Advanced Features. A growing mix of fast and slow tests gates every commit on the slow tests' runtime; tag-based filtering decouples "runs on every commit" from "runs at all" without restructuring the codebase. A prevention/resolution entry rather than a failure incident.
+- `direct-buffer-oom-invisible-to-heap-monitoring.md` — companion to Native Memory, Direct Buffers, and Off-Heap. A networking library's internal direct-buffer usage crashes the service with `OutOfMemoryError: Direct buffer memory` while heap histograms, dumps, and `-Xmx` alerting show nothing — heap tooling is structurally blind to non-heap memory.
+- `document-store-blocking-a-later-cross-order-transaction-need.md` — companion to Storage Selection Trade-offs. A document store correctly chosen for schema flexibility can't support a later cross-order atomic reconciliation feature — the same access-pattern-mismatch lesson as the DynamoDB entry, arriving in a different storage technology.
+- Sixth entry for security; fifth entry for testing; seventh entry for jvm; ninth entry for system-design. 64 of 72 candidate `Production Scenarios` sections now elevated; 8 remain, concentrated in security, jvm, and system-design.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches. The security entry (injection) uses the itemized template; the testing entry documents a genuine near-miss resolution, following the same convention as the collections "three known-bad patterns" entry in batch 11.
+- `production-cookbook/README.md` — entries table grown to 64 rows; scope note updated to reflect 64/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 60 of 72 candidate `Production Scenarios` sections elevated. 12 remain, concentrated in security, testing, jvm, and system-design (architecture, kafka, performance, spring, databases, cloud, and java-core are all fully exhausted) — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 64 of 72 candidate `Production Scenarios` sections elevated. 8 remain, concentrated in security, jvm, and system-design (architecture, kafka, performance, spring, databases, cloud, java-core, and testing are all fully exhausted) — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
