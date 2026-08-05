@@ -338,13 +338,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — new index, cross-linked to `handbook/`, `architecture-atlas/`, and `behavioral-handbook/04-production-incident-narratives.md`.
 - All cross-links across all four new entries and the index verified to resolve to real files before commit.
 
+### Added (Production Cookbook, second batch)
+- `query-plan-regression-from-an-unindexed-filter.md` — companion to Query Planning and EXPLAIN ANALYZE. A seemingly small, additive filter on a hot-path dashboard query triples p95 latency because it's a new, highly selective query shape with no supporting index — not an incremental tweak to an already-verified plan.
+- `connection-pool-exhaustion-from-an-http-call-in-a-transaction.md` — companion to Transactional Proxy Mechanics and Propagation. A synchronous HTTP call inside a `@Transactional` boundary holds a pooled database connection for its full duration, so a slow downstream dependency exhausts the shared connection pool for every unrelated endpoint, not just the one calling it.
+- `jwt-revocation-gap-after-account-suspension.md` — companion to OAuth2, OIDC, and JWT. A correctly implemented suspension flag doesn't stop API access for hours, because stateless JWT verification is a pure signature check that never consults it — the token behaves exactly as its design specifies; the gap is in never having explicitly bounded the resulting exposure window.
+- `kubernetes-oomkill-with-no-application-logs.md` — companion to Kubernetes Resource Limits, Probes, and JVM Sizing. A dependency upgrade quietly grows off-heap memory past a container's cgroup limit; the kernel-level OOMKill leaves zero application logs, misleading on-call toward an application-level crash hypothesis until `kubectl describe pod` is checked directly.
+- Domain spread for this batch: databases, Spring, security, cloud — none previously covered by the first batch (concurrency, JVM, system design, messaging). 8 of 72 candidate `Production Scenarios` sections now elevated; 64 remain.
+- Same honest-gap and no-fabricated-personal-experience discipline as batch one: every Interview Story section framed as a representative scenario to adapt.
+- `production-cookbook/README.md` — entries table grown to 8 rows; scope note updated to reflect 8/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 4 of 72 candidate `Production Scenarios` sections elevated. 68 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 8 of 72 candidate `Production Scenarios` sections elevated. 64 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
