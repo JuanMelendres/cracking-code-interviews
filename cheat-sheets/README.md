@@ -11,7 +11,7 @@ One-page-equivalent rapid-review documents, one per canonical `handbook/` chapte
 
 ## A note on scope
 
-Thirty-eight cheat sheets exist so far, ranked by each canonical chapter's own stated IWI (interview-weight-index) — built across seven bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 37 chapters remain uncovered.
+Forty-three cheat sheets exist so far, ranked by each canonical chapter's own stated IWI (interview-weight-index) — built across eight bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 32 chapters remain uncovered.
 
 Every fact in every cheat sheet below (definitions, decision tables, measured numbers, production incidents) was extracted directly from its canonical chapter — nothing here was written from memory or general knowledge. Extraction was done via a dedicated read-and-report pass per chapter before any cheat sheet was drafted, consistent with this repository's no-fabrication discipline.
 
@@ -36,27 +36,32 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 15 | [Distributed Transactions: Saga and Outbox](distributed-transactions-saga-and-outbox.md) | T-618 | 7.65 | system-design | `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
 | 16 | [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md) | T-614 | 7.60 | databases | `handbook/databases/table-partitioning-and-sharding-strategies.md` |
 | 17 | [Resilience Patterns](resilience-patterns.md) | T-515 | 7.60 | system-design | `handbook/system-design/resilience-patterns.md` |
-| 18 | [Consumer Groups and Rebalancing](consumer-groups-and-rebalancing.md) | T-703 | 7.50 | kafka | `handbook/kafka/consumer-groups-and-rebalancing.md` |
-| 19 | [HashMap Internals](hashmap-internals.md) | T-201 | 7.4 | collections | `handbook/collections/hashmap-internals.md` |
-| 20 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 7.35 | jvm | `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
-| 21 | [Zero-Downtime Schema Migration](zero-downtime-schema-migration.md) | T-616 | 7.30 | databases | `handbook/databases/zero-downtime-schema-migration.md` |
-| 22 | [Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md) | T-501 | 7.30 | spring | `handbook/spring/auto-configuration-and-bean-lifecycle.md` |
-| 23 | [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) | T-901 | 7.25 | architecture | `handbook/architecture/clean-hexagonal-architecture.md` |
-| 24 | [DDD Tactical Design: Aggregates](ddd-tactical-design-aggregates.md) | T-903 | 7.25 | architecture | `handbook/architecture/ddd-tactical-design-aggregates.md` |
-| 25 | [Spring Security Filter Chain](security-filter-chain.md) | T-511 | 7.20 | spring | `handbook/spring/security-filter-chain.md` |
-| 26 | [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) | T-406 | 7.15 | concurrency | `handbook/concurrency/executors-and-thread-pool-sizing.md` |
-| 27 | [Test Strategy and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 7.00 | testing | `handbook/testing/test-strategy-and-test-doubles.md` |
-| 28 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 6.90 | system-design | `handbook/system-design/storage-selection-tradeoffs.md` |
-| 29 | [Performance Methodology and SLO Error Budgets](performance-methodology-and-slo-error-budgets.md) | T-1206 | 6.90 | performance | `handbook/performance/performance-methodology-and-slo-error-budgets.md` |
-| 30 | [Logging, Metrics, Tracing, and OpenTelemetry](logging-metrics-tracing-and-opentelemetry.md) | T-1205 | 6.90 | performance | `handbook/performance/logging-metrics-tracing-and-opentelemetry.md` |
-| 31 | [Kubernetes Resource Limits, Probes, and JVM Sizing](kubernetes-resource-limits-probes-and-jvm-sizing.md) | T-1003 | 6.8 | cloud | `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
-| 32 | [Virtual Threads](virtual-threads.md) | T-410 | 6.75 | concurrency | `handbook/concurrency/virtual-threads.md` |
-| 33 | [Percentiles, Tail Latency, and Coordinated Omission](percentiles-tail-latency-and-coordinated-omission.md) | T-1204 | 6.70 | performance | `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` |
-| 34 | [Deadlock, Race Conditions, and Thread Diagnostics](deadlock-race-conditions-and-thread-diagnostics.md) | T-409 | 6.70 | concurrency | `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
-| 35 | [ConcurrentHashMap Internals](concurrenthashmap-internals.md) | T-205 | 6.65 | collections | `handbook/collections/concurrenthashmap-internals.md` |
-| 36 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 6.50 | testing | `handbook/testing/integration-testing-against-real-dependencies.md` |
-| 37 | [Kubernetes Objects, Scheduling, and Networking](kubernetes-objects-scheduling-and-networking.md) | T-1002 | 6.5 | cloud | `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` |
-| 38 | [Kafka Architecture Fundamentals](kafka-architecture-fundamentals.md) | T-701 | 6.40 | kafka | `handbook/kafka/kafka-architecture-fundamentals.md` |
+| 18 | [Kafka Producer Semantics: acks, Idempotence, Partition Keys](producer-semantics-and-partition-keys.md) | T-702/T-705 | 7.55 | kafka | `handbook/kafka/producer-semantics-and-partition-keys.md` |
+| 19 | [Consumer Groups and Rebalancing](consumer-groups-and-rebalancing.md) | T-703 | 7.50 | kafka | `handbook/kafka/consumer-groups-and-rebalancing.md` |
+| 20 | [HashMap Internals](hashmap-internals.md) | T-201 | 7.4 | collections | `handbook/collections/hashmap-internals.md` |
+| 21 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 7.35 | jvm | `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
+| 22 | [Zero-Downtime Schema Migration](zero-downtime-schema-migration.md) | T-616 | 7.30 | databases | `handbook/databases/zero-downtime-schema-migration.md` |
+| 23 | [Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md) | T-501 | 7.30 | spring | `handbook/spring/auto-configuration-and-bean-lifecycle.md` |
+| 24 | [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) | T-901 | 7.25 | architecture | `handbook/architecture/clean-hexagonal-architecture.md` |
+| 25 | [DDD Tactical Design: Aggregates](ddd-tactical-design-aggregates.md) | T-903 | 7.25 | architecture | `handbook/architecture/ddd-tactical-design-aggregates.md` |
+| 26 | [Spring Security Filter Chain](security-filter-chain.md) | T-511 | 7.20 | spring | `handbook/spring/security-filter-chain.md` |
+| 27 | [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) | T-406 | 7.15 | concurrency | `handbook/concurrency/executors-and-thread-pool-sizing.md` |
+| 28 | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md) | T-512/T-513 | 7.15 | security | `handbook/security/oauth2-oidc-and-jwt.md` |
+| 29 | [Test Strategy and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 7.00 | testing | `handbook/testing/test-strategy-and-test-doubles.md` |
+| 30 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 6.90 | system-design | `handbook/system-design/storage-selection-tradeoffs.md` |
+| 31 | [Performance Methodology and SLO Error Budgets](performance-methodology-and-slo-error-budgets.md) | T-1206 | 6.90 | performance | `handbook/performance/performance-methodology-and-slo-error-budgets.md` |
+| 32 | [Logging, Metrics, Tracing, and OpenTelemetry](logging-metrics-tracing-and-opentelemetry.md) | T-1205 | 6.90 | performance | `handbook/performance/logging-metrics-tracing-and-opentelemetry.md` |
+| 33 | [GC Roots, Reachability, and Reference Strength](gc-roots-reachability-and-reference-strength.md) | T-303 | 6.9 | jvm | `handbook/jvm/gc-roots-reachability-and-reference-strength.md` |
+| 34 | [Kubernetes Resource Limits, Probes, and JVM Sizing](kubernetes-resource-limits-probes-and-jvm-sizing.md) | T-1003 | 6.8 | cloud | `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
+| 35 | [Virtual Threads](virtual-threads.md) | T-410 | 6.75 | concurrency | `handbook/concurrency/virtual-threads.md` |
+| 36 | [Percentiles, Tail Latency, and Coordinated Omission](percentiles-tail-latency-and-coordinated-omission.md) | T-1204 | 6.70 | performance | `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` |
+| 37 | [Deadlock, Race Conditions, and Thread Diagnostics](deadlock-race-conditions-and-thread-diagnostics.md) | T-409 | 6.70 | concurrency | `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
+| 38 | [ConcurrentHashMap Internals](concurrenthashmap-internals.md) | T-205 | 6.65 | collections | `handbook/collections/concurrenthashmap-internals.md` |
+| 39 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 6.50 | testing | `handbook/testing/integration-testing-against-real-dependencies.md` |
+| 40 | [Kubernetes Objects, Scheduling, and Networking](kubernetes-objects-scheduling-and-networking.md) | T-1002 | 6.5 | cloud | `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` |
+| 41 | [Kafka Architecture Fundamentals](kafka-architecture-fundamentals.md) | T-701 | 6.40 | kafka | `handbook/kafka/kafka-architecture-fundamentals.md` |
+| 42 | [OWASP Top 10 for Backend Services](owasp-top-10-for-backend-services.md) | T-1301 | 6.35 | security | `handbook/security/owasp-top-10-for-backend-services.md` |
+| 43 | [Applied Cryptography: Hashing, Signing, TLS](applied-cryptography-hashing-signing-tls.md) | T-1303 | 6.2 | security | `handbook/security/applied-cryptography-hashing-signing-tls.md` |
 
 ## How this relates to `flashcards/`
 
@@ -64,4 +69,4 @@ Cheat sheets and flashcards serve different grain sizes and different moments, a
 
 ## Selection method
 
-Chapters are ranked by the IWI each canonical chapter states in its own "Topic register" line — this is more reliable than `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register table, which predates several newer system-design/T-8xx/T-9xx chapters and does not list them at all (a known staleness gap; see the flagged coverage-audit refresh task). Built across seven batches (top 8, then 5 x 6), spanning 10 domains so far (system-design, architecture, databases, spring, kafka, concurrency, collections, jvm, testing, cloud) rather than front-loading one. Tie-break history: Clean/Hexagonal Architecture over DDD Tactical Design in batch 4 (DDD Tactical closed batch 5); Storage Selection Trade-offs over Performance Methodology/SLO Error Budgets in batch 5 (Performance Methodology closed batch 6); Percentiles/Tail Latency over Deadlock/Race-Conditions/Thread-Diagnostics in batch 6 (Deadlock/Race-Conditions closed batch 7, no tie this round — the next 5 by IWI had no ties at all). Next candidate for a future batch: re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the batch, since the ranking shifts as chapters get covered — do not trust a hardcoded list here.
+Chapters are ranked by the IWI each canonical chapter states in its own "Topic register" line — this is more reliable than `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register table, which predates several newer system-design/T-8xx/T-9xx chapters and does not list them at all (a known staleness gap; see the flagged coverage-audit refresh task). Built across eight batches (top 8, then 5 x 7), spanning 11 domains so far (system-design, architecture, databases, spring, kafka, concurrency, collections, jvm, testing, cloud, security) rather than front-loading one. Tie-break history: Clean/Hexagonal Architecture over DDD Tactical Design in batch 4 (DDD Tactical closed batch 5); Storage Selection Trade-offs over Performance Methodology/SLO Error Budgets in batch 5 (Performance Methodology closed batch 6); Percentiles/Tail Latency over Deadlock/Race-Conditions/Thread-Diagnostics in batch 6 (Deadlock/Race-Conditions closed batch 7, no tie); Applied Cryptography over Streams and Collectors in batch 8, both IWI 6.2 — resolved via cross-repository reference count (12 refs vs. 10). Not every chapter carries an individually stated IWI line in a matching format — 5 jvm chapters (`g1-remembered-sets-and-write-barriers.md`, `jit-tiered-compilation-and-deoptimization.md`, `jvm-flags-and-container-ergonomics.md`, `jvm-memory-layout-and-runtime-regions.md`, `memory-leak-diagnosis-and-heap-dump-analysis.md`) were excluded from the batch-8 ranking scan for this reason; no IWI value was invented for them. Next candidate for a future batch: re-run the scripted IWI scan across all 75 chapters' own Topic register lines before selecting the batch, since the ranking shifts as chapters get covered — do not trust a hardcoded list here.

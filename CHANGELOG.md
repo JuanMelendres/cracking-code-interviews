@@ -507,10 +507,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 70 rows (final); scope note rewritten to declare full closure rather than remaining-candidate tracking.
 - All cross-links across every entry and the index re-verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, eighth batch)
+- `producer-semantics-and-partition-keys.md` (T-702/T-705, IWI 7.55) — acks/idempotence/partition-key mechanics, real sticky-partitioner and idempotent-producer-config traces.
+- `oauth2-oidc-and-jwt.md` (T-512/T-513, IWI 7.15) — OAuth2-vs-OIDC distinction, PKCE mechanics, real HMAC-SHA256 JWT sign/verify/tamper/expiry/revocation-gap traces.
+- `gc-roots-reachability-and-reference-strength.md` (T-303, IWI 6.9) — GC roots, tracing-vs-reference-counting, the four-reference-strength hierarchy, real `ReferenceStrengthDemo` traces distinguishing weak from soft clearing.
+- `owasp-top-10-for-backend-services.md` (T-1301, IWI 6.35) — the three-failure-shape mental model, real IDOR and SSRF demo traces, per-category deep-dive routing table.
+- `applied-cryptography-hashing-signing-tls.md` (T-1303, IWI 6.2) — the hashing/signing/TLS three-box model, real PBKDF2 cost-scaling, EC signature tamper-detection, and TLS 1.3 handshake traces.
+- Selected via a fresh scripted IWI scan across all 75 handbook chapters' own Topic register lines, filtered to the 37 not yet covered, since the ranking shifts as chapters get covered (no hardcoded candidate list). Tie at IWI 6.2 between Applied Cryptography and Streams and Collectors resolved via cross-repository reference count (12 vs. 10), per this deliverable's established tie-break convention.
+- 43 of 75 handbook chapters now covered — first cheat sheet in the security domain. 32 remain, plus 5 jvm chapters excluded from this scan for lacking an individually stated IWI in the scanned format (not fabricated).
+- `cheat-sheets/README.md` — table re-ranked with all 5 new entries inserted at their correct IWI position; scope note, selection-method tie-break history, and domain-coverage list updated.
+- All cross-links across all five new entries verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
+- Cheat Sheets: 43 of 75 handbook chapters covered. 32 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
