@@ -529,10 +529,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — table extended to 48 rows in strict IWI-descending order; scope note, selection-method tie-break history, and domain-coverage list updated.
 - All cross-links across all five new entries verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, tenth batch)
+- `generics-erasure-and-pecs.md` (T-104, IWI 5.85) — erasure as a compiler-only illusion, real `getClass()` equality proof, a real `ClassCastException` surfacing at read time not insert time, a real reflection-verified bridge method, PECS applied and violated.
+- `blockingqueue-family.md` (T-207, IWI 5.8) — bounded capacity as deliberate backpressure, real measured `WAITING`-state block/unblock traces for `ArrayBlockingQueue` and `SynchronousQueue`.
+- `cicd-pipeline-design-and-deployment-strategies.md` (T-1009, IWI 5.8) — rolling/blue-green/canary risk-bounding mechanisms, a real syntax-validated three-stage GitHub Actions pipeline with an explicit human approval gate.
+- `writing-tests-live-in-an-interview.md` (T-1108, IWI 5.8) — the narrated red-green-refactor loop, a real four-step captured TDD cycle (run-length-encoding kata) with actual pass/fail console output at each stage.
+- `injection-input-validation-output-encoding.md` (T-1305, IWI 5.7) — injection as one recurring failure shape, a real SQL-injection authentication bypass against live PostgreSQL fixed with a parameterized query, a real stored-XSS payload neutralized by output encoding.
+- Selected via a fresh scripted IWI scan across all 75 handbook chapters' own Topic register lines, filtered to the 27 not yet covered. Top slot (generics-erasure-and-pecs) was unambiguous; a three-way tie at IWI 5.8 filled the next 3 slots exactly, needing no elimination; the final slot required resolving a genuine three-way tie at IWI 5.7 via cross-repository reference count (Injection at 11 refs winning over Collection Selection Decision Matrix at 10 and Contract Testing for Services at 7, both carried over uncovered).
+- 53 of 75 handbook chapters now covered. 22 remain, plus the same 5 jvm chapters excluded from the scan for lacking a stated IWI in the scanned format (not fabricated).
+- `cheat-sheets/README.md` — table extended to 53 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
+- All cross-links across all five new entries verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 48 of 75 handbook chapters covered. 27 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
+- Cheat Sheets: 53 of 75 handbook chapters covered. 22 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
