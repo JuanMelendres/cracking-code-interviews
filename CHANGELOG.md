@@ -428,13 +428,23 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 40 rows; scope note updated to reflect 40/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, eleventh batch)
+- `double-refund-from-a-same-row-read-then-write-race.md` — companion to Isolation Levels and Concurrency Anomalies. A refund-eligibility check and its update run as two unlocked statements at READ COMMITTED, letting two concurrent requests both read "not yet refunded" and both act — a same-row race, correctly fixed with `FOR UPDATE`, not SERIALIZABLE.
+- `in-memory-idempotency-map-breaking-under-horizontal-scaling.md` — companion to Idempotency at System Edges. An idempotency check backed by an in-memory map works perfectly on one instance and silently breaks the moment the service scales to three, since each instance's map is invisible to the others.
+- `three-known-bad-collection-patterns-caught-in-one-review.md` — companion to Collection Selection Decision Matrix. One review question — "what's the access pattern for this collection?" — catches an unbounded queue, an unsynchronized shared map, and an O(n)-indexed `LinkedList` in the same pull request, each a distinct known incident class. A prevention/near-miss entry rather than a failure incident — Initial Hypotheses and Investigation Timeline are marked not applicable honestly rather than fabricated.
+- `virtual-thread-migration-regression-from-synchronized-block-pinning.md` — companion to Virtual Threads. A migration to virtual threads delivers no throughput benefit because a legacy `synchronized` block around a blocking call pins each virtual thread to its carrier, silently reproducing the old platform-thread-pool bottleneck.
+- Fourth entry each for databases and system-design; fourth entry for collections; fourth entry for concurrency. All 13 domains now have at least three entries. 44 of 72 candidate `Production Scenarios` sections now elevated; 28 remain. Remaining fully-exhausted domains (architecture, kafka, performance, spring — all candidate chapters now elevated) noted for future-batch planning.
+- Same honest-gap and no-fabricated-personal-experience discipline as prior batches.
+- `production-cookbook/README.md` — entries table grown to 44 rows; scope note updated to reflect 44/72 elevated.
+- All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 40 of 72 candidate `Production Scenarios` sections elevated. 32 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
+- Production Cookbook: 44 of 72 candidate `Production Scenarios` sections elevated. 28 remain, concentrated in jvm, security, system-design, databases, testing, cloud, and java-core (architecture, kafka, performance, and spring are fully exhausted) — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
