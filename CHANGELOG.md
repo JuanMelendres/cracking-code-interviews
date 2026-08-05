@@ -498,13 +498,22 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `production-cookbook/README.md` — entries table grown to 68 rows; scope note updated to reflect 68/72 elevated.
 - All cross-links across all four new entries and the updated index re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, closing batch — FULL CLOSURE, 70/70)
+- `feature-flag-rollout-triggering-a-deoptimization-latency-spike.md` — companion to JIT Tiered Compilation and Deoptimization. A feature flag introduces a second implementation type at a previously monomorphic hot call site, triggering a real, brief JIT deoptimization-and-recompilation cost with no GC event or deploy to explain it.
+- `hot-mutable-cache-driving-g1-pause-growth-via-rset-pressure.md` — companion to G1 Remembered Sets and Write Barriers. A frequently mutated cache's cross-region writes drive remembered-set merge/scan cost independent of heap occupancy — "GC pauses got worse but heap didn't grow" points at write-barrier pressure, not sizing.
+- **Production Cookbook is now complete: 70 entries across all 13 handbook domains, elevated from every `handbook/` chapter that carries a `## Production Scenarios` section.** No further batches are planned for this deliverable; a new entry would only be added if a future handbook chapter is written with its own new production scenario.
+- Ninth entry for jvm, closing the domain and the deliverable simultaneously — jvm was the last domain with any remaining candidate chapters.
+- Same honest-gap and no-fabricated-personal-experience discipline as all 18 batches.
+- `production-cookbook/README.md` — entries table grown to 70 rows (final); scope note rewritten to declare full closure rather than remaining-candidate tracking.
+- All cross-links across every entry and the index re-verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Production Cookbook: 68 of 72 candidate `Production Scenarios` sections elevated. Only 2 candidate chapters remain, both in jvm (`jit-tiered-compilation-and-deoptimization`, `g1-remembered-sets-and-write-barriers`) — every other domain is fully exhausted. One final small batch closes the deliverable at 72/72 (or whatever the true final count turns out to be, since both remaining sections are thin/narrative-format with a single scenario each).
+- Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 
 ---
 
