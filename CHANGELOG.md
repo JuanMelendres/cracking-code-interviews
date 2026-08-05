@@ -589,12 +589,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `behavioral-handbook/README.md` — cross-reference to `interview-playbook/behavioral/` updated from "currently empty" to point at the new entry.
 - **This closes the Interview Playbook deliverable's last unstarted subdirectory** — all four (`technical-answers/`, `coding/`, `system-design/`, `behavioral/`) now have content.
 
+### Added (Architecture Atlas, Weeks 15–19 closure batch 1 of 2)
+- `deployment-infrastructure-for-a-payments-notification-service.md` — companion to CI/CD Pipeline Design and Deployment Strategies / Cloud Cost and Scaling Economics. Elevated from `study-packs/week-15/09-design-exercise-deployment-infrastructure.md`.
+- `jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service.md` — companion to JVM Flags and Container Ergonomics / G1 Remembered Sets and Write Barriers. Elevated from `study-packs/week-16/09-design-exercise-jvm-sizing-and-diagnostics-playbook.md`.
+- `jvm-tuning-playbook-for-a-market-data-service.md` — companion to ZGC and Shenandoah / Native Memory, Direct Buffers, and Off-Heap. Elevated from `study-packs/week-19/10-design-exercise-jvm-tuning-for-a-market-data-service.md`.
+- These 3 entries are the first bounded batch of the 5 remaining Weeks 15–19 exercises, which are differently shaped than the 8 already-elevated classic system designs (deployment strategies, operational playbooks, and reviews rather than full request/response systems). Each entry uses an explicitly adapted Atlas template — no data model, API surface, or consistency-model sections, since none apply — and states the adaptation in its own opening line.
+- `architecture-atlas/README.md` — scope note rewritten to describe the adapted template and record 3-of-5 progress; 3 new rows added to the entries table.
+- All cross-links across all three new entries verified to resolve to real files before commit.
+- Remaining for a second, closing batch: the security review (Week 17) and the test-strategy design (Week 18).
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: **closed against its IWI-based selection criterion, 70/75.** Every chapter stating an IWI is covered; the remaining 5 jvm chapters state no IWI at all (confirmed by direct inspection) and are left open per the user's explicit 2026-08-05 decision — closing them would require the user to specify an alternative, non-IWI selection method.
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
-- Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
+- Architecture Atlas: 11 entries — all 8 classic system-design exercises, plus 3 of the 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks). The security review (Week 17) and test-strategy design (Week 18) remain for a second, closing batch.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 
 ---
