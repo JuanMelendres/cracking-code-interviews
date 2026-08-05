@@ -540,10 +540,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — table extended to 53 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
 - All cross-links across all five new entries verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, eleventh batch)
+- `collection-selection-decision-matrix.md` (T-209, IWI 5.7) — the synthesis decision framework across List/Map/Queue selection, tying together this week's other four collections chapters' own measured evidence into one coherent process.
+- `contract-testing-for-services.md` (T-1105, IWI 5.7) — the three-tier confidence/cost model (unit, contract, end-to-end), a real passing/precisely-failing verification test against a compliant and a breaking provider.
+- `arraylist-and-linkedlist-internals.md` (T-202, IWI 5.6) — real reflection-verified ~1.5x growth factor, a real 320x random-access slowdown and 117x front-insertion slowdown.
+- `aws-core-services-for-backend-engineers.md` (T-1006, IWI 5.6) — compute/storage/database/messaging service clusters via the same access-pattern-first method applied to cloud services, a real-shaped DynamoDB access-pattern-mismatch scenario.
+- `multi-tenancy-isolation-models.md` (T-1307, IWI 5.6) — silo/pool/bridge isolation trade-offs, a real PostgreSQL RLS demonstration including the critical superuser/`BYPASSRLS` bypass caveat.
+- Selected via a fresh scripted IWI scan across all 75 handbook chapters' own Topic register lines, filtered to the 22 not yet covered. Both carried-over IWI-5.7 chapters from batch 10's tiebreak (Collection Selection Decision Matrix, Contract Testing for Services) closed at their established rank; the final 3 slots filled a genuine three-way tie at IWI 5.6 exactly, needing no elimination.
+- 58 of 75 handbook chapters now covered. 17 remain, plus the same 5 jvm chapters excluded from the scan for lacking a stated IWI in the scanned format (not fabricated).
+- `cheat-sheets/README.md` — table extended to 58 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
+- All cross-links across all five new entries verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 53 of 75 handbook chapters covered. 22 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
+- Cheat Sheets: 58 of 75 handbook chapters covered. 17 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
