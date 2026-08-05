@@ -327,13 +327,24 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `study-packs/week-08/MANIFEST.md`, `README.md` — word counts re-run and corrected (6,826 → 6,283), verified via `wc -w`.
 - All cross-links across all new/touched files re-verified to resolve to real files before commit.
 
+### Added (Production Cookbook, first batch — new deliverable)
+- `production-cookbook/` created — the last previously-untouched Phase 6 deliverable. Every entry is elevated from an existing `## Production Scenarios` section already present in a canonical `handbook/` chapter (72 chapters currently carry one), expanded into the Cookbook's full incident-report template (`CLAUDE.md`'s Production Cookbook Standard: context, symptoms, impact, hypotheses, evidence, investigation timeline, root cause, mitigation, fix, alternatives, trade-offs, prevention, monitoring, interview story, Staff-level discussion) rather than inventing new incidents.
+- `lock-ordering-deadlock-under-peak-load.md` — companion to Deadlock, Race Conditions, and Thread Diagnostics. Two code paths acquiring the same two locks in opposite order deadlock only often enough to matter under peak load; `ThreadMXBean.findDeadlockedThreads()` turns a raw thread dump into a mechanical diagnosis rather than visual inspection.
+- `unconditional-heap-growth-and-memory-leak-diagnosis.md` — companion to Memory Leak Diagnosis and Heap Dump Analysis. A slow, monotonic, days-long heap-growth trend with no deploy correlation is the signature of an unconditional leak; coarse `jmap -histo:live` sampling before a targeted heap dump finds the specific reference chain.
+- `synchronized-retry-storm-without-jitter.md` — companion to Resilience Patterns. Jitter-free exponential backoff synchronizes every caller's retry onto the same instant, turning a 2-second blip into a multi-minute self-inflicted outage on a service that had already recovered.
+- `kafka-consumer-group-rebalance-storm.md` — companion to Consumer Groups and Rebalancing. A synchronous call added inside the poll loop occasionally exceeds `max.poll.interval.ms`, triggering an eviction-and-rebalance cycle initially mistaken for a networking issue.
+- Chosen for domain spread (concurrency, JVM, system design, messaging), not any other ordering — 68 chapters with a `Production Scenarios` section remain as candidates for further batches.
+- Per `CLAUDE.md`'s explicit prohibition on fabricating personal experience, every entry's Interview Story section is framed as a representative scenario to adapt, not a claimed personal history — matching the convention already established in `behavioral-handbook/`.
+- `production-cookbook/README.md` — new index, cross-linked to `handbook/`, `architecture-atlas/`, and `behavioral-handbook/04-production-incident-narratives.md`.
+- All cross-links across all four new entries and the index verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: 38 of 75 handbook chapters covered. 37 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
-- Phase 6's last remaining untouched deliverable is production-cookbook.
+- Production Cookbook: 4 of 72 candidate `Production Scenarios` sections elevated. 68 remain — no candidate list hardcoded here, same reasoning as Cheat Sheets.
 
 ---
 
