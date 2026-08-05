@@ -8,7 +8,7 @@ last_reviewed: 2026-07-31
 # Week 8 Study Pack — Manifest
 
 **Topics:** T-701, T-702, T-703, T-704, T-705 · **Plan:** B, first messaging-systems week
-**Files:** 12 (+ this manifest) · **Total words:** 6,826 (real count, `wc -w` over all 12 files; updated 2026-07-31 — files 05–10 and README trimmed of redundant prose and worked-example padding, no canonical-chapter link applicable since they're practice/mock/checklist content, not duplicated topic explanation)
+**Files:** 12 (+ this manifest) · **Total words:** 6,283 (real count, `wc -w` over all 12 files; updated 2026-08-04 after `09-design-exercise-notification-system.md` was slimmed to a per-phase summary + link, per the new `architecture-atlas/notification-system.md` — see `CHANGELOG.md`)
 
 ---
 
@@ -25,7 +25,7 @@ last_reviewed: 2026-07-31
 | 7 | `06-flashcards.md` | 14 cards | 479 |
 | 8 | `07-kafka-guarantees-deliverable.md` | Guarantee table + full worked exit-criteria answers | 785 |
 | 9 | `08-week-8-mock-interview.md` | 45-min messaging deep-dive | 312 |
-| 10 | `09-design-exercise-notification-system.md` | Full six-phase design | 886 |
+| 10 | `09-design-exercise-notification-system.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/notification-system.md` | 343 |
 | 11 | `10-week-8-checklist.md` | Day-by-day checklist | 257 |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY | 292 |
 

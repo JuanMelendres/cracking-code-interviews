@@ -58,7 +58,7 @@ graph LR
 | 7 | `06-flashcards.md` | 14 cards |
 | 8 | `07-kafka-guarantees-deliverable.md` | `kafka-guarantees.md` template + full worked answers |
 | 9 | `08-week-8-mock-interview.md` | 45-min messaging deep-dive |
-| 10 | `09-design-exercise-notification-system.md` | Full six-phase design of a notification system |
+| 10 | `09-design-exercise-notification-system.md` | Summary + link; full design now canonical at `architecture-atlas/notification-system.md` |
 | 11 | `10-week-8-checklist.md` | Day-by-day checklist |
 | 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 
