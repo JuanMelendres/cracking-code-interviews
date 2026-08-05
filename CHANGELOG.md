@@ -562,10 +562,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `cheat-sheets/README.md` — table extended to 63 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
 - All cross-links across all five new entries verified to resolve to real files before commit.
 
+### Added (Cheat Sheets, thirteenth batch)
+- `junit5-architecture-and-advanced-features.md` (T-1102, IWI 5.0) — the three-module Platform/Jupiter/Vintage architecture, `@ParameterizedTest` vs. `@TestFactory`, a real 10-test executed run and real tag-filtering evidence selecting exactly 1-of-10 vs. 9-of-10.
+- `safepoints-and-stop-the-world-mechanics.md` (T-310, IWI 5.0) — safepoints as the general stop-all-threads mechanism, real measured "at safepoint" costs across three operation types showing a ~1,500x gap between a deadlock check and a full GC.
+- `supply-chain-security-sbom-and-dependency-risk.md` (T-1306, IWI 5.0) — the SBOM ingredient-list mental model, real `docker scout` evidence of 213 packages and a CRITICAL CVE in a transitive package no application code chose.
+- `object-layout-headers-and-compressed-oops.md` (T-302, IWI 4.9) — object header/compressed-oops mechanics, real measured ~42% memory-footprint difference (134MB vs. 191MB) for an identical 5-million-node object graph.
+- `native-memory-direct-buffers-and-off-heap.md` (T-311, IWI 4.7) — why `-Xmx` doesn't bound total process memory, real evidence of a 32MB-heap process allocating 256MB of direct memory before a distinct OOM, real NMT evidence of direct-buffer memory tracked entirely separately from Java Heap.
+- Selected via a fresh scripted IWI scan across all 75 handbook chapters' own Topic register lines, filtered to the 12 not yet covered. A clean three-way tie at IWI 5.0 closed with no elimination, followed by two unambiguous next chapters (IWI 4.9, IWI 4.7) as the batch's fourth and fifth slots.
+- 68 of 75 handbook chapters now covered. Only 7 remain: 2 with a stated IWI (Escape Analysis and Scalar Replacement, Mutation and Property-Based Testing) plus the same 5 jvm chapters excluded from the scan for lacking a stated IWI in the scanned format (not fabricated).
+- `cheat-sheets/README.md` — table extended to 68 rows in strict IWI-descending order; scope note, selection-method tie-break history, and batch count updated.
+- All cross-links across all five new entries verified to resolve to real files before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
-- Cheat Sheets: 63 of 75 handbook chapters covered. 12 remain — re-run the scripted IWI scan across all 75 chapters' own Topic register lines to pick the next batch; no candidate list is hardcoded here since the ranking shifts as chapters get covered.
+- Cheat Sheets: 68 of 75 handbook chapters covered. Only 7 remain — 2 with a stated IWI (Escape Analysis and Scalar Replacement, Mutation and Property-Based Testing) plus 5 jvm chapters with no stated IWI. Re-run the scripted IWI scan to confirm before the next batch; this is close enough to full closure that the next batch may finish this deliverable.
 - Interview Playbook: 4 entries total (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`). Only `behavioral/` remains unstarted, deliberately lower-priority since `behavioral-handbook/` already covers behavioral delivery method — any future entry there should be genuinely playbook-shaped (interview-day logistics, cross-company question patterns), not a restatement.
 - Architecture Atlas: 8 entries — all classic system-design exercises now elevated. Only the Weeks 15–19 exercises (deployment infra, JVM sizing/tuning, security review, test strategy) remain, deliberately lower priority as differently-shaped domain-specific content rather than classic system-design problems.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
