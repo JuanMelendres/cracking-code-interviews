@@ -92,7 +92,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 ## How this relates to `flashcards/`
 
-Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` is currently empty (not yet started as its own Phase 6 deliverable) — when it is built, individual cards should draw from the same canonical chapters these cheat sheets do, not restate a cheat sheet's content verbatim.
+Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` has begun (databases domain, batch 1 of its own bounded-batch build-out) — its individual cards draw from the same canonical chapters these cheat sheets do, not restated from a cheat sheet's content.
 
 ## Selection method
 

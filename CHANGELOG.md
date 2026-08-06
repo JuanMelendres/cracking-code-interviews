@@ -606,6 +606,21 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All cross-links in both new entries verified to resolve to real files before commit.
 - **This closes the Architecture Atlas deliverable** — all 13 real, worked design exercises across the programme (Weeks 3–19) are elevated: 8 under the classic system-design template, 5 under the adapted domain-specific template.
 
+### Added (Flashcards, first batch — new Phase 6 deliverable, databases domain)
+- `flashcards/` — a previously-empty, never-started deliverable (per `CLAUDE.md`'s Flashcard Standard and `00-project/learning-roadmap.md`'s "`flashcards/` — by topic ID, reviewed on the register's `Rev` intervals" spec). Built as an extraction pass, not new content: every card already existed inside its canonical chapter's own `## Flashcards` section — this deliverable promotes them to standalone, topic-ID-keyed files for spaced-repetition use, rewriting in-chapter anchor links to resolve from `flashcards/`'s own directory.
+- First bounded batch: all 6 `handbook/databases/` chapters, 22 cards total, all in the existing `### Card:` (Prompt/Answer/Why it matters/Common trap/Related) format:
+  - `index-structures-btree-composite-covering.md` (T-609, 5 cards)
+  - `isolation-levels-and-concurrency-anomalies.md` (T-611, 4 cards)
+  - `query-planning-and-explain-analyze.md` (T-610, 4 cards)
+  - `data-modelling-and-explicit-join-tables.md` (T-605/T-608, 3 cards)
+  - `table-partitioning-and-sharding-strategies.md` (T-614, 3 cards)
+  - `zero-downtime-schema-migration.md` (T-616, 3 cards)
+- Topic IDs sourced from each chapter's existing `cheat-sheets/` companion front matter, not re-derived.
+- `flashcards/README.md` — new index documenting scope, the two source-chapter card formats in use (the `### Card:` format used here, and a plainer `**Q:**`/`**A:**` format used in `jvm/`/`security/`/`testing/` chapters requiring light synthesis in a later batch), and the full 75-chapter/238-card remaining scope.
+- `flashcards/.gitkeep` removed, no longer needed now the directory has content.
+- `cheat-sheets/README.md` — its "currently empty" note about `flashcards/` updated to reflect batch 1.
+- All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 69 of 75 chapters, across `jvm/`, `security/`, `testing/`, and 10 other handbook domains not yet covered — future batches.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -613,6 +628,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
+- Flashcards: **6/75 chapters (databases domain, 22/238 cards).** A newly-started deliverable, extracting real existing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 69 chapters across 12 domains, including 23 chapters in the plainer `**Q:**`/`**A:**` source format requiring light synthesis of the "Why it matters"/"Common trap" fields.
 
 ---
 
