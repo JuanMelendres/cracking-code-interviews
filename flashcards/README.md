@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–8 cover the `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, and `architecture/` domains: 33 decks, 105 cards, all from the `### Card:` format** — eight bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Remaining domains are built in subsequent batches.
+**Batches 1–9 cover the `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, and `cloud/` domains: 38 decks, 120 cards, all from the `### Card:` format** — nine bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Remaining domains are built in subsequent batches.
 
 ## Decks
 
@@ -54,6 +54,11 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 31 | [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) | T-901 | 3 | `handbook/architecture/clean-hexagonal-architecture.md` |
 | 32 | [DDD Tactical Design — Aggregates](ddd-tactical-design-aggregates.md) | T-903 | 3 | `handbook/architecture/ddd-tactical-design-aggregates.md` |
 | 33 | [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md) | T-907 | 4 | `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md` |
+| 34 | [Kubernetes Objects, Scheduling, and Networking](kubernetes-objects-scheduling-and-networking.md) | T-1002 | 3 | `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` |
+| 35 | [Kubernetes Resource Limits, Probes, and JVM Sizing](kubernetes-resource-limits-probes-and-jvm-sizing.md) | T-1003 | 3 | `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
+| 36 | [AWS Core Services for Backend Engineers](aws-core-services-for-backend-engineers.md) | T-1006 | 3 | `handbook/cloud/aws-core-services-for-backend-engineers.md` |
+| 37 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 3 | `handbook/cloud/cloud-cost-and-scaling-economics.md` |
+| 38 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 3 | `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` |
 
 ## How this relates to other deliverables
 
