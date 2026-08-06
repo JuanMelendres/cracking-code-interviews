@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–12 cover every chapter using the `### Card:` source format: 52 decks, 169 cards, across `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, `cloud/`, `system-design/` in full, plus the 4 stragglers in `jvm/`, `security/`, and `testing/`.** Twelve bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. **This closes the mechanical-extraction portion of the deliverable.** Remaining: 23 chapters, all in the plainer `**Q:**`/`**A:**` source format (`jvm/` 11, `security/` 7, `testing/` 5), requiring light synthesis of the "Why it matters"/"Common trap" fields for each card — a genuinely different, slower kind of batch.
+**Batches 1–13 cover every chapter using the `### Card:` source format (52 decks, 169 cards) plus the first `**Q:**`/`**A:**`-format domain, `testing/` (5 more decks, 15 cards): 57 decks, 184 cards total.** Thirteen bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Cards drawn from the `**Q:**`/`**A:**` format required light, non-fabricated synthesis of the "Why it matters" and "Common trap" fields — grounded directly in each Q/A pair's own content, not invented — and their "Related" links point to the canonical chapter as a whole rather than a specific anchor, since the source format has no anchor-labeled subsections to link to. **`testing/` is now fully closed (12/12 chapters).** Remaining: 18 chapters across `jvm/` (11) and `security/` (7), both still in the `**Q:**`/`**A:**` format.
 
 ## Decks
 
@@ -73,6 +73,11 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 50 | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md) | T-512/T-513 | 4 | `handbook/security/oauth2-oidc-and-jwt.md` |
 | 51 | [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 3 | `handbook/testing/test-strategy-and-test-doubles.md` |
 | 52 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 3 | `handbook/testing/integration-testing-against-real-dependencies.md` |
+| 53 | [JUnit 5 Architecture and Advanced Features](junit5-architecture-and-advanced-features.md) | T-1102 | 3 | `handbook/testing/junit5-architecture-and-advanced-features.md` |
+| 54 | [Contract Testing for Services](contract-testing-for-services.md) | T-1105 | 3 | `handbook/testing/contract-testing-for-services.md` |
+| 55 | [Performance and Load Testing Methodology](performance-and-load-testing-methodology.md) | T-1106 | 3 | `handbook/testing/performance-and-load-testing-methodology.md` |
+| 56 | [Mutation and Property-Based Testing](mutation-and-property-based-testing.md) | T-1107 | 3 | `handbook/testing/mutation-and-property-based-testing.md` |
+| 57 | [Writing Tests Live in an Interview](writing-tests-live-in-an-interview.md) | T-1108 | 3 | `handbook/testing/writing-tests-live-in-an-interview.md` |
 
 ## How this relates to other deliverables
 

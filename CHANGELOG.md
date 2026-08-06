@@ -734,6 +734,19 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All cross-links and heading structure (1 H1 per file) verified before commit.
 - **This closes every chapter using the `### Card:` source format — the mechanical-extraction portion of the deliverable is done.** Remaining: 23 chapters, all in the plainer `**Q:**`/`**A:**` format (`jvm/` 11, `security/` 7, `testing/` 5), requiring light synthesis of the "Why it matters"/"Common trap" fields per card.
 
+### Added (Flashcards, thirteenth batch — testing domain, closes the first `**Q:**`/`**A:**`-format domain)
+- Thirteenth bounded batch: the 5 remaining `handbook/testing/` chapters, 15 cards total, converted from the `**Q:**`/`**A:**` source format:
+  - `junit5-architecture-and-advanced-features.md` (T-1102, 3 cards)
+  - `contract-testing-for-services.md` (T-1105, 3 cards)
+  - `performance-and-load-testing-methodology.md` (T-1106, 3 cards)
+  - `mutation-and-property-based-testing.md` (T-1107, 3 cards)
+  - `writing-tests-live-in-an-interview.md` (T-1108, 3 cards)
+- This is the deliverable's first `**Q:**`/`**A:**`-format batch: each card's "Why it matters" and "Common trap" fields required light, non-fabricated synthesis grounded directly in the Q/A pair's own content, since the source format has no such fields to extract verbatim. "Related" links point to the canonical chapter as a whole (no specific anchor), since the source format has no anchor-labeled subsections.
+- Topic IDs sourced from each chapter's existing `cheat-sheets/` companion front matter, as in prior batches.
+- `flashcards/README.md` — scope note and deck table updated: 57/75 decks, 184/238 cards; documents the format shift for this and future `**Q:**`/`**A:**` batches.
+- All cross-links and heading structure (1 H1 per file) verified before commit.
+- **This closes `testing/` (12/12 chapters).** Remaining: 18 chapters across `jvm/` (11) and `security/` (7), both in the `**Q:**`/`**A:**` format.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -741,7 +754,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
-- Flashcards: **52/75 chapters — every `### Card:`-format chapter now covered (10 domains in full, plus the 4 `### Card:` stragglers in jvm/security/testing), 169/238 cards.** Extracting real existing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 23 chapters, all in the plainer `**Q:**`/`**A:**` source format (`jvm/` 11, `security/` 7, `testing/` 5), requiring light synthesis of the "Why it matters"/"Common trap" fields per card.
+- Flashcards: **57/75 chapters — every `### Card:`-format chapter, plus `testing/` (the first `**Q:**`/`**A:**`-format domain, now fully closed), 184/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 18 chapters across `jvm/` (11) and `security/` (7), both in the `**Q:**`/`**A:**` format.
 
 ---
 
