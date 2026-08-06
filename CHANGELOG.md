@@ -747,6 +747,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All cross-links and heading structure (1 H1 per file) verified before commit.
 - **This closes `testing/` (12/12 chapters).** Remaining: 18 chapters across `jvm/` (11) and `security/` (7), both in the `**Q:**`/`**A:**` format.
 
+### Added (Flashcards, fourteenth batch — security domain, part 1 of 2)
+- Fourteenth bounded batch: the first 4 of 7 remaining `handbook/security/` chapters, 12 cards total, converted from the `**Q:**`/`**A:**` source format:
+  - `owasp-top-10-for-backend-services.md` (T-1301, 3 cards)
+  - `authn-authz-rbac-vs-abac.md` (T-1302, 3 cards)
+  - `applied-cryptography-hashing-signing-tls.md` (T-1303, 3 cards)
+  - `injection-input-validation-output-encoding.md` (T-1305, 3 cards)
+- `security/` (7 chapters) split across two batches given its size, consistent with `system-design/`'s earlier split.
+- "Why it matters"/"Common trap" fields lightly synthesized from each Q/A pair's own content; "Related" links point to the canonical chapter as a whole, as in the prior `**Q:**`/`**A:**` batch.
+- Topic IDs sourced from each chapter's existing `cheat-sheets/` companion front matter, as in prior batches.
+- `flashcards/README.md` — scope note and deck table updated: 61/75 decks, 196/238 cards.
+- All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 14 chapters — 3 more `security/` chapters, plus all 11 `jvm/` chapters.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -754,7 +766,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
-- Flashcards: **57/75 chapters — every `### Card:`-format chapter, plus `testing/` (the first `**Q:**`/`**A:**`-format domain, now fully closed), 184/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 18 chapters across `jvm/` (11) and `security/` (7), both in the `**Q:**`/`**A:**` format.
+- Flashcards: **61/75 chapters — every `### Card:`-format chapter, `testing/` in full, and half of `security/`, 196/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 14 chapters — 3 more `security/` chapters, plus all 11 `jvm/` chapters, both in the `**Q:**`/`**A:**` format.
 
 ---
 

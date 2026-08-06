@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–13 cover every chapter using the `### Card:` source format (52 decks, 169 cards) plus the first `**Q:**`/`**A:**`-format domain, `testing/` (5 more decks, 15 cards): 57 decks, 184 cards total.** Thirteen bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Cards drawn from the `**Q:**`/`**A:**` format required light, non-fabricated synthesis of the "Why it matters" and "Common trap" fields — grounded directly in each Q/A pair's own content, not invented — and their "Related" links point to the canonical chapter as a whole rather than a specific anchor, since the source format has no anchor-labeled subsections to link to. **`testing/` is now fully closed (12/12 chapters).** Remaining: 18 chapters across `jvm/` (11) and `security/` (7), both still in the `**Q:**`/`**A:**` format.
+**Batches 1–14 cover every chapter using the `### Card:` source format (52 decks, 169 cards) plus `testing/` in full and half of `security/` in the `**Q:**`/`**A:**` format (9 more decks, 27 cards): 61 decks, 196 cards total.** Fourteen bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Cards drawn from the `**Q:**`/`**A:**` format required light, non-fabricated synthesis of the "Why it matters" and "Common trap" fields — grounded directly in each Q/A pair's own content, not invented — and their "Related" links point to the canonical chapter as a whole rather than a specific anchor, since the source format has no anchor-labeled subsections to link to. **`testing/` is fully closed (12/12).** Remaining: 14 chapters — 3 more `security/` chapters, plus all 11 `jvm/` chapters, both still in the `**Q:**`/`**A:**` format.
 
 ## Decks
 
@@ -78,6 +78,10 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 55 | [Performance and Load Testing Methodology](performance-and-load-testing-methodology.md) | T-1106 | 3 | `handbook/testing/performance-and-load-testing-methodology.md` |
 | 56 | [Mutation and Property-Based Testing](mutation-and-property-based-testing.md) | T-1107 | 3 | `handbook/testing/mutation-and-property-based-testing.md` |
 | 57 | [Writing Tests Live in an Interview](writing-tests-live-in-an-interview.md) | T-1108 | 3 | `handbook/testing/writing-tests-live-in-an-interview.md` |
+| 58 | [OWASP Top 10 for Backend Services](owasp-top-10-for-backend-services.md) | T-1301 | 3 | `handbook/security/owasp-top-10-for-backend-services.md` |
+| 59 | [AuthN vs AuthZ, RBAC vs ABAC](authn-authz-rbac-vs-abac.md) | T-1302 | 3 | `handbook/security/authn-authz-rbac-vs-abac.md` |
+| 60 | [Applied Cryptography: Hashing, Signing, and TLS](applied-cryptography-hashing-signing-tls.md) | T-1303 | 3 | `handbook/security/applied-cryptography-hashing-signing-tls.md` |
+| 61 | [Injection, Input Validation, and Output Encoding](injection-input-validation-output-encoding.md) | T-1305 | 3 | `handbook/security/injection-input-validation-output-encoding.md` |
 
 ## How this relates to other deliverables
 
