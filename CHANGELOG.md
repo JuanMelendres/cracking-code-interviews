@@ -598,12 +598,20 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All cross-links across all three new entries verified to resolve to real files before commit.
 - Remaining for a second, closing batch: the security review (Week 17) and the test-strategy design (Week 18).
 
+### Added (Architecture Atlas, Weeks 15–19 closure batch 2 of 2 — closes the deliverable)
+- `security-review-of-a-multi-tenant-expense-approval-platform.md` — companion to OWASP Top 10 for Backend Services / Multi-Tenancy Isolation Models. Elevated from `study-packs/week-17/11-design-exercise-multi-tenant-expense-platform-security-review.md`. Covers 7 review dimensions across all 7 of that week's security topics: an IDOR-shaped fetch-by-ID gap, password hashing/TLS posture, an ABAC-necessary approval rule, parameterized search plus output encoding, RLS-based tenant isolation with an explicit `BYPASSRLS`/superuser audit, proactive payments-key rotation, and SBOM scanning on a shared base image.
+- `test-strategy-for-a-checkout-service.md` — companion to Mutation and Property-Based Testing / Contract Testing for Services. Elevated from `study-packs/week-18/09-design-exercise-test-strategy-for-a-checkout-service.md`. Covers 5 design dimensions across all 5 of that week's testing topics: coverage-as-necessary-not-sufficient, scoped mutation testing plus a property-based boundary sweep, consumer-driven contract testing for an independently-owned dependency, percentile-threshold load testing plus a stress test for a new payment provider, and a narratable test-first live-coding round.
+- These 2 entries are the second, closing batch of the 5 Weeks 15–19 exercises, using the same adapted Atlas template established in batch 1 (no data model, API surface, or consistency-model sections). Both entries state the adaptation in their own opening line.
+- `architecture-atlas/README.md` — scope note rewritten: all 5 Weeks 15–19 exercises now elevated; 2 new rows added to the entries table.
+- All cross-links in both new entries verified to resolve to real files before commit.
+- **This closes the Architecture Atlas deliverable** — all 13 real, worked design exercises across the programme (Weeks 3–19) are elevated: 8 under the classic system-design template, 5 under the adapted domain-specific template.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: **closed against its IWI-based selection criterion, 70/75.** Every chapter stating an IWI is covered; the remaining 5 jvm chapters state no IWI at all (confirmed by direct inspection) and are left open per the user's explicit 2026-08-05 decision — closing them would require the user to specify an alternative, non-IWI selection method.
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
-- Architecture Atlas: 11 entries — all 8 classic system-design exercises, plus 3 of the 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks). The security review (Week 17) and test-strategy design (Week 18) remain for a second, closing batch.
+- Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 
 ---
