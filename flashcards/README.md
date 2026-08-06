@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–9 cover the `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, and `cloud/` domains: 38 decks, 120 cards, all from the `### Card:` format** — nine bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Remaining domains are built in subsequent batches.
+**Batches 1–10 cover the `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, `cloud/`, and half of `system-design/`: 43 decks, 138 cards, all from the `### Card:` format** — ten bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. `system-design/` (10 chapters total) is split across two batches given its size; the remaining 5 chapters complete it, and 23 `**Q:**`/`**A:**`-format chapters across `jvm/`, `security/`, and `testing/` remain after that.
 
 ## Decks
 
@@ -59,6 +59,11 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 36 | [AWS Core Services for Backend Engineers](aws-core-services-for-backend-engineers.md) | T-1006 | 3 | `handbook/cloud/aws-core-services-for-backend-engineers.md` |
 | 37 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 3 | `handbook/cloud/cloud-cost-and-scaling-economics.md` |
 | 38 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 3 | `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` |
+| 39 | [API Design](api-design.md) | T-803 | 3 | `handbook/system-design/api-design.md` |
+| 40 | [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md) | T-804 | 4 | `handbook/system-design/caching-strategies-and-invalidation.md` |
+| 41 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 3 | `handbook/system-design/data-partitioning-and-consistent-hashing.md` |
+| 42 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 4 | `handbook/system-design/cap-theorem-and-consistency-models.md` |
+| 43 | [Distributed Systems Failure Modes](distributed-systems-failure-modes.md) | T-909 | 4 | `handbook/system-design/distributed-systems-failure-modes.md` |
 
 ## How this relates to other deliverables
 
