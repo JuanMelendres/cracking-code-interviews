@@ -643,6 +643,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `flashcards/README.md` — scope note and deck table updated: 16/75 decks, 52/238 cards.
 - All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 59 of 75 chapters.
 
+### Added (Flashcards, fourth batch — concurrency domain)
+- Fourth bounded batch: all 4 `handbook/concurrency/` chapters, 12 cards total, all in the `### Card:` format:
+  - `java-memory-model-and-volatile.md` (T-401, 3 cards)
+  - `executors-and-thread-pool-sizing.md` (T-406, 3 cards)
+  - `deadlock-race-conditions-and-thread-diagnostics.md` (T-409, 3 cards)
+  - `virtual-threads.md` (T-410, 3 cards)
+- Topic IDs sourced from each chapter's existing `cheat-sheets/` companion front matter, as in prior batches.
+- `flashcards/README.md` — scope note and deck table updated: 20/75 decks, 64/238 cards.
+- All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 55 of 75 chapters.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -650,7 +660,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
-- Flashcards: **16/75 chapters (databases + java-core + collections domains, 52/238 cards).** Extracting real existing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 59 chapters across 10 domains, including 23 chapters in the plainer `**Q:**`/`**A:**` source format requiring light synthesis of the "Why it matters"/"Common trap" fields.
+- Flashcards: **20/75 chapters (databases + java-core + collections + concurrency domains, 64/238 cards).** Extracting real existing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 55 chapters across 9 domains, including 23 chapters in the plainer `**Q:**`/`**A:**` source format requiring light synthesis of the "Why it matters"/"Common trap" fields.
 
 ---
 
