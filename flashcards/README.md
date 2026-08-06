@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–10 cover the `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, `cloud/`, and half of `system-design/`: 43 decks, 138 cards, all from the `### Card:` format** — ten bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. `system-design/` (10 chapters total) is split across two batches given its size; the remaining 5 chapters complete it, and 23 `**Q:**`/`**A:**`-format chapters across `jvm/`, `security/`, and `testing/` remain after that.
+**Batches 1–11 cover `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, `cloud/`, and `system-design/` in full: 48 decks, 156 cards, all from the `### Card:` format.** Eleven bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. **Remaining: 27 chapters.** 4 of these are still in the `### Card:` format (2 in `testing/`, 1 each in `jvm/` and `security/` — chapters in domains otherwise dominated by the other format) and can be extracted the same mechanical way; the other 23 use the plainer `**Q:**`/`**A:**` source format, requiring light synthesis of the "Why it matters"/"Common trap" fields for each card — a genuinely different, slower kind of batch.
 
 ## Decks
 
@@ -64,6 +64,11 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 41 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 3 | `handbook/system-design/data-partitioning-and-consistent-hashing.md` |
 | 42 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 4 | `handbook/system-design/cap-theorem-and-consistency-models.md` |
 | 43 | [Distributed Systems Failure Modes](distributed-systems-failure-modes.md) | T-909 | 4 | `handbook/system-design/distributed-systems-failure-modes.md` |
+| 44 | [System Design Method and Estimation](system-design-method-and-estimation.md) | T-801 | 4 | `handbook/system-design/system-design-method-and-estimation.md` |
+| 45 | [Idempotency at System Edges](idempotency.md) | T-809 | 4 | `handbook/system-design/idempotency.md` |
+| 46 | [Distributed Transactions: Saga, Outbox, and 2PC](distributed-transactions-saga-and-outbox.md) | T-618 | 4 | `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
+| 47 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 3 | `handbook/system-design/storage-selection-tradeoffs.md` |
+| 48 | [Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads](resilience-patterns.md) | T-515 | 3 | `handbook/system-design/resilience-patterns.md` |
 
 ## How this relates to other deliverables
 
