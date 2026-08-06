@@ -770,6 +770,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All cross-links and heading structure (1 H1 per file) verified before commit.
 - **This closes `security/` (8/8 chapters).** Remaining: all 11 `jvm/` chapters — the deliverable's last open domain, still in the `**Q:**`/`**A:**` format.
 
+### Added (Flashcards, sixteenth batch — jvm domain, part 1 of 3)
+- Sixteenth bounded batch: the first 4 of 11 `handbook/jvm/` chapters, 12 cards total, converted from the `**Q:**`/`**A:**` source format:
+  - `object-layout-headers-and-compressed-oops.md` (T-302, 3 cards)
+  - `gc-roots-reachability-and-reference-strength.md` (T-303, 3 cards)
+  - `memory-leak-diagnosis-and-heap-dump-analysis.md` (T-307, 3 cards)
+  - `escape-analysis-and-scalar-replacement.md` (T-309, 3 cards)
+- `jvm/` (11 chapters, the deliverable's last open domain) split across three batches given its size.
+- `memory-leak-diagnosis-and-heap-dump-analysis.md` has no `cheat-sheets/` companion (one of the 5 jvm chapters left open in that deliverable per the user's explicit 2026-08-05 decision) — its topic ID (T-307, IWI 6.75) was sourced from `00-project/knowledge-architecture-blueprint.md` instead of the usual cheat-sheet front matter.
+- "Why it matters"/"Common trap" fields lightly synthesized from each Q/A pair's own content; "Related" links point to the canonical chapter as a whole, as in prior `**Q:**`/`**A:**` batches.
+- `flashcards/README.md` — scope note and deck table updated: 68/75 decks, 217/238 cards.
+- All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 7 `jvm/` chapters.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -777,7 +789,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
-- Flashcards: **64/75 chapters — every `### Card:`-format chapter, plus `testing/` and `security/` in full, 205/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: all 11 `jvm/` chapters — the deliverable's last open domain, in the `**Q:**`/`**A:**` format.
+- Flashcards: **68/75 chapters — every `### Card:`-format chapter, `testing/` and `security/` in full, and 4 of 11 `jvm/` chapters, 217/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 7 `jvm/` chapters — the deliverable's final stretch.
 
 ---
 
