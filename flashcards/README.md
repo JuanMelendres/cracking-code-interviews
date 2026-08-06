@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–11 cover `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, `cloud/`, and `system-design/` in full: 48 decks, 156 cards, all from the `### Card:` format.** Eleven bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. **Remaining: 27 chapters.** 4 of these are still in the `### Card:` format (2 in `testing/`, 1 each in `jvm/` and `security/` — chapters in domains otherwise dominated by the other format) and can be extracted the same mechanical way; the other 23 use the plainer `**Q:**`/`**A:**` source format, requiring light synthesis of the "Why it matters"/"Common trap" fields for each card — a genuinely different, slower kind of batch.
+**Batches 1–12 cover every chapter using the `### Card:` source format: 52 decks, 169 cards, across `databases/`, `java-core/`, `collections/`, `concurrency/`, `spring/`, `kafka/`, `performance/`, `architecture/`, `cloud/`, `system-design/` in full, plus the 4 stragglers in `jvm/`, `security/`, and `testing/`.** Twelve bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. **This closes the mechanical-extraction portion of the deliverable.** Remaining: 23 chapters, all in the plainer `**Q:**`/`**A:**` source format (`jvm/` 11, `security/` 7, `testing/` 5), requiring light synthesis of the "Why it matters"/"Common trap" fields for each card — a genuinely different, slower kind of batch.
 
 ## Decks
 
@@ -69,6 +69,10 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 46 | [Distributed Transactions: Saga, Outbox, and 2PC](distributed-transactions-saga-and-outbox.md) | T-618 | 4 | `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
 | 47 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 3 | `handbook/system-design/storage-selection-tradeoffs.md` |
 | 48 | [Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads](resilience-patterns.md) | T-515 | 3 | `handbook/system-design/resilience-patterns.md` |
+| 49 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 3 | `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
+| 50 | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md) | T-512/T-513 | 4 | `handbook/security/oauth2-oidc-and-jwt.md` |
+| 51 | [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 3 | `handbook/testing/test-strategy-and-test-doubles.md` |
+| 52 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 3 | `handbook/testing/integration-testing-against-real-dependencies.md` |
 
 ## How this relates to other deliverables
 

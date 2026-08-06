@@ -723,6 +723,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `flashcards/README.md` — scope note and deck table updated: 48/75 decks, 156/238 cards.
 - All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 27 chapters — 4 still in the `### Card:` format (2 in `testing/`, 1 each in `jvm/` and `security/`, in domains otherwise dominated by the other format), plus 23 in the plainer `**Q:**`/`**A:**` format requiring light synthesis of the "Why it matters"/"Common trap" fields.
 
+### Added (Flashcards, twelfth batch — closes every `### Card:`-format chapter)
+- Twelfth bounded batch: the 4 remaining `### Card:`-format chapters, all in domains otherwise dominated by the plainer `**Q:**`/`**A:**` format, 13 cards total:
+  - `gc-fundamentals-and-log-analysis.md` (T-306, jvm, 3 cards)
+  - `oauth2-oidc-and-jwt.md` (T-512/T-513, security, 4 cards)
+  - `test-strategy-and-test-doubles.md` (T-1103, testing, 3 cards)
+  - `integration-testing-against-real-dependencies.md` (T-1104, testing, 3 cards)
+- Topic IDs sourced from each chapter's existing `cheat-sheets/` companion front matter, as in prior batches.
+- `flashcards/README.md` — scope note and deck table updated: 52/75 decks, 169/238 cards.
+- All cross-links and heading structure (1 H1 per file) verified before commit.
+- **This closes every chapter using the `### Card:` source format — the mechanical-extraction portion of the deliverable is done.** Remaining: 23 chapters, all in the plainer `**Q:**`/`**A:**` format (`jvm/` 11, `security/` 7, `testing/` 5), requiring light synthesis of the "Why it matters"/"Common trap" fields per card.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -730,7 +741,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
-- Flashcards: **48/75 chapters (databases + java-core + collections + concurrency + spring + kafka + performance + architecture + cloud + system-design domains, all in full, 156/238 cards).** Extracting real existing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 27 chapters — 4 still in the `### Card:` format (2 in `testing/`, 1 each in `jvm/` and `security/`), plus 23 in the plainer `**Q:**`/`**A:**` source format requiring light synthesis of the "Why it matters"/"Common trap" fields.
+- Flashcards: **52/75 chapters — every `### Card:`-format chapter now covered (10 domains in full, plus the 4 `### Card:` stragglers in jvm/security/testing), 169/238 cards.** Extracting real existing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 23 chapters, all in the plainer `**Q:**`/`**A:**` source format (`jvm/` 11, `security/` 7, `testing/` 5), requiring light synthesis of the "Why it matters"/"Common trap" fields per card.
 
 ---
 
