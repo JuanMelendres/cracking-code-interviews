@@ -759,6 +759,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `flashcards/README.md` — scope note and deck table updated: 61/75 decks, 196/238 cards.
 - All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 14 chapters — 3 more `security/` chapters, plus all 11 `jvm/` chapters.
 
+### Added (Flashcards, fifteenth batch — security domain, part 2 of 2 — closes security/)
+- Fifteenth bounded batch: the remaining 3 `handbook/security/` chapters, 9 cards total, converted from the `**Q:**`/`**A:**` source format:
+  - `secrets-management-and-key-rotation.md` (T-1304, 3 cards)
+  - `supply-chain-security-sbom-and-dependency-risk.md` (T-1306, 3 cards)
+  - `multi-tenancy-isolation-models.md` (T-1307, 3 cards)
+- "Why it matters"/"Common trap" fields lightly synthesized from each Q/A pair's own content; "Related" links point to the canonical chapter as a whole, as in prior `**Q:**`/`**A:**` batches.
+- Topic IDs sourced from each chapter's existing `cheat-sheets/` companion front matter, as in prior batches.
+- `flashcards/README.md` — scope note and deck table updated: 64/75 decks, 205/238 cards.
+- All cross-links and heading structure (1 H1 per file) verified before commit.
+- **This closes `security/` (8/8 chapters).** Remaining: all 11 `jvm/` chapters — the deliverable's last open domain, still in the `**Q:**`/`**A:**` format.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -766,7 +777,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
-- Flashcards: **61/75 chapters — every `### Card:`-format chapter, `testing/` in full, and half of `security/`, 196/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: 14 chapters — 3 more `security/` chapters, plus all 11 `jvm/` chapters, both in the `**Q:**`/`**A:**` format.
+- Flashcards: **64/75 chapters — every `### Card:`-format chapter, plus `testing/` and `security/` in full, 205/238 cards.** Extracting and, where needed, lightly synthesizing per-chapter cards into standalone, topic-ID-keyed files. Remaining: all 11 `jvm/` chapters — the deliverable's last open domain, in the `**Q:**`/`**A:**` format.
 
 ---
 

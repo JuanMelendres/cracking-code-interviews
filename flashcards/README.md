@@ -15,7 +15,7 @@ Every card in every deck below already existed, written into its canonical chapt
 
 Handbook chapters currently use one of two existing card formats: an explicit `### Card:` structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer `**Q:**`/`**A:**` format used in the newer `jvm/`, `security/`, and `testing/` chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.
 
-**Batches 1–14 cover every chapter using the `### Card:` source format (52 decks, 169 cards) plus `testing/` in full and half of `security/` in the `**Q:**`/`**A:**` format (9 more decks, 27 cards): 61 decks, 196 cards total.** Fourteen bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Cards drawn from the `**Q:**`/`**A:**` format required light, non-fabricated synthesis of the "Why it matters" and "Common trap" fields — grounded directly in each Q/A pair's own content, not invented — and their "Related" links point to the canonical chapter as a whole rather than a specific anchor, since the source format has no anchor-labeled subsections to link to. **`testing/` is fully closed (12/12).** Remaining: 14 chapters — 3 more `security/` chapters, plus all 11 `jvm/` chapters, both still in the `**Q:**`/`**A:**` format.
+**Batches 1–15 cover every chapter using the `### Card:` source format (52 decks, 169 cards) plus `testing/` and `security/` in full in the `**Q:**`/`**A:**` format (12 more decks, 36 cards): 64 decks, 205 cards total.** Fifteen bounded batches of 75 total chapters (238 real cards: 169 in `### Card:` format, 69 in `**Q:**` format) per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Cards drawn from the `**Q:**`/`**A:**` format required light, non-fabricated synthesis of the "Why it matters" and "Common trap" fields — grounded directly in each Q/A pair's own content, not invented — and their "Related" links point to the canonical chapter as a whole rather than a specific anchor, since the source format has no anchor-labeled subsections to link to. **`testing/` and `security/` are both fully closed.** Remaining: all 11 `jvm/` chapters, the deliverable's last open domain, still in the `**Q:**`/`**A:**` format.
 
 ## Decks
 
@@ -82,6 +82,9 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 59 | [AuthN vs AuthZ, RBAC vs ABAC](authn-authz-rbac-vs-abac.md) | T-1302 | 3 | `handbook/security/authn-authz-rbac-vs-abac.md` |
 | 60 | [Applied Cryptography: Hashing, Signing, and TLS](applied-cryptography-hashing-signing-tls.md) | T-1303 | 3 | `handbook/security/applied-cryptography-hashing-signing-tls.md` |
 | 61 | [Injection, Input Validation, and Output Encoding](injection-input-validation-output-encoding.md) | T-1305 | 3 | `handbook/security/injection-input-validation-output-encoding.md` |
+| 62 | [Secrets Management and Key Rotation](secrets-management-and-key-rotation.md) | T-1304 | 3 | `handbook/security/secrets-management-and-key-rotation.md` |
+| 63 | [Supply Chain Security, SBOM, and Dependency Risk](supply-chain-security-sbom-and-dependency-risk.md) | T-1306 | 3 | `handbook/security/supply-chain-security-sbom-and-dependency-risk.md` |
+| 64 | [Multi-Tenancy Isolation Models](multi-tenancy-isolation-models.md) | T-1307 | 3 | `handbook/security/multi-tenancy-isolation-models.md` |
 
 ## How this relates to other deliverables
 
