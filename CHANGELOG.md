@@ -814,6 +814,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `practice/mock-interviews/.gitkeep` removed, no longer needed now the directory has content.
 - All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 9 source files — 4 more Weeks 13–19 rounds (Week 16 GC/G1 diagnostics, Week 17 security, Week 18 testing, Week 19 concurrent-GC/native-memory), plus the 5 earlier-format rounds (Weeks 1, 2, 4, 7, 8) requiring conversion into the Standard's candidate/evaluator structure.
 
+### Added (Mock Interviews, second batch — closes the Weeks 13–19 pool, 7/7)
+- Second bounded batch: the remaining 4 Weeks 13–19 rounds, closing that pool of already-Standard-shaped source material:
+  - `jvm-internals-gc-diagnostics-round.md` — elevated from `study-packs/week-16/08-week-16-mock-interview.md` (G1 RSet diagnostics, memory-leak diagnosis, stack/heap independence, container heap sizing, deoptimization).
+  - `security-technical-round.md` — elevated from `study-packs/week-17/10-week-17-mock-interview.md` (IDOR, password hashing, RBAC-to-ABAC, SQL injection, Row-Level Security scope, envelope encryption).
+  - `testing-technical-round.md` — elevated from `study-packs/week-18/08-week-18-mock-interview.md` (percentile vs mean latency, performance-testing process, live test-first coding, contract testing, coverage vs. mutation testing, JUnit 5 architecture).
+  - `jvm-internals-concurrent-gc-native-memory-round.md` — elevated from `study-packs/week-19/09-week-19-mock-interview.md` (reference strength, ZGC/Shenandoah migration, safepoint logging, object-layout estimation, off-heap accounting, escape analysis).
+- The two JVM-internals rounds (Weeks 16 and 19) cover genuinely distinct topics (confirmed via direct diff of their question sets before elevation) — cross-linked to each other as companion rounds, not duplicates.
+- `practice/mock-interviews/README.md` — scope note and rounds table updated: 7/12 rounds. Remaining scope reframed: the 5 earlier-format Weeks 1/2/4/7/8 rounds require conversion into the Standard's evaluator structure, not mechanical elevation, since they lack inline per-question pass/fail signals.
+- All cross-links and heading structure (1 H1 per file) verified before commit.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -822,7 +832,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 - Flashcards: **closed, 75/75 chapters, 238/238 cards.** Every handbook chapter now has a standalone, topic-ID-keyed flashcard deck, extracted (169 cards) or lightly synthesized (69 cards, `**Q:**`/`**A:**`-format chapters) from that chapter's own existing `## Flashcards` section. No fabricated content; no further batches planned.
-- Mock Interviews: **3/12 rounds** (Weeks 13–15 of the 12 real source files across Weeks 1, 2, 4, 7, 8, 13–19). A newly-started deliverable, elevating real study-pack mock interviews into the Mock Interview Standard's full structure. Remaining: 4 more Weeks 13–19 rounds (already Standard-shaped, mechanical elevation) plus 5 earlier-format rounds (Weeks 1, 2, 4, 7, 8, requiring conversion from candidate-script/interviewer-script into candidate/evaluator structure).
+- Mock Interviews: **7/12 rounds — the entire Weeks 13–19 pool now closed.** Elevating real study-pack mock interviews into the Mock Interview Standard's full structure. Remaining: 5 earlier-format rounds (Weeks 1, 2, 4, 7, 8), requiring conversion from candidate-script/interviewer-script into candidate/evaluator structure with per-question pass/fail signals — a genuinely different, heavier kind of batch than the mechanical elevation done so far.
 
 ---
 
