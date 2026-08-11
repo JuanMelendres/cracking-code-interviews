@@ -804,6 +804,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - All cross-links and heading structure (1 H1 per file) verified before commit.
 - **This closes the Flashcards deliverable.** Started this session as a previously-empty, never-begun directory; built as a pure extraction (169 cards) and light-synthesis (69 cards) pass over real, pre-existing per-chapter content — no fabricated facts, every card traceable to its canonical chapter's own `## Flashcards` section. All 75 handbook chapters now have a standalone, topic-ID-keyed spaced-repetition deck.
 
+### Added (Mock Interviews, first batch — new deliverable, `practice/mock-interviews/`)
+- `practice/mock-interviews/` — a previously-empty, never-started deliverable (per `CLAUDE.md`'s Mock Interview Standard). The programme's study packs contain 12 real, already-written mock interview files across Weeks 1, 2, 4, 7, 8, and 13–19; this deliverable elevates each into a standalone, fully-specified round, adding a competencies table, an interviewer opening script, a debrief guide, and remediation recommendations pointing back to canonical `handbook/` chapters — fields the source files don't yet have — while keeping every question, ideal answer outline, and pass/borderline/fail signal exactly as the source states it.
+- First bounded batch: the 3 Weeks 13–15 rounds, closest to the Mock Interview Standard already (candidate/evaluator hard-separated, per-question pass/fail signals, scoring rubric):
+  - `java-core-technical-round.md` — elevated from `study-packs/week-13/08-week-13-mock-interview.md` (streams/parallel cost, equals/hashCode, generics/erasure, exception design, immutability).
+  - `collections-technical-round.md` — elevated from `study-packs/week-14/08-week-14-mock-interview.md` (HashMap internals, ConcurrentHashMap atomicity, BlockingQueue backpressure, ArrayList/LinkedList trade-offs).
+  - `cloud-infrastructure-round.md` — elevated from `study-packs/week-15/08-week-15-mock-interview.md` (Kubernetes diagnostics, requests/limits, rollout guarantees, cost economics, storage selection).
+- `practice/mock-interviews/README.md` — new index documenting scope (12 real source files across two structural generations — Weeks 1/2/4/7/8's candidate-script/interviewer-script format vs. Weeks 13–19's candidate/evaluator format with inline rubrics) and the 3-of-12 batch progress.
+- `practice/mock-interviews/.gitkeep` removed, no longer needed now the directory has content.
+- All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: 9 source files — 4 more Weeks 13–19 rounds (Week 16 GC/G1 diagnostics, Week 17 security, Week 18 testing, Week 19 concurrent-GC/native-memory), plus the 5 earlier-format rounds (Weeks 1, 2, 4, 7, 8) requiring conversion into the Standard's candidate/evaluator structure.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -812,6 +822,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 - Flashcards: **closed, 75/75 chapters, 238/238 cards.** Every handbook chapter now has a standalone, topic-ID-keyed flashcard deck, extracted (169 cards) or lightly synthesized (69 cards, `**Q:**`/`**A:**`-format chapters) from that chapter's own existing `## Flashcards` section. No fabricated content; no further batches planned.
+- Mock Interviews: **3/12 rounds** (Weeks 13–15 of the 12 real source files across Weeks 1, 2, 4, 7, 8, 13–19). A newly-started deliverable, elevating real study-pack mock interviews into the Mock Interview Standard's full structure. Remaining: 4 more Weeks 13–19 rounds (already Standard-shaped, mechanical elevation) plus 5 earlier-format rounds (Weeks 1, 2, 4, 7, 8, requiring conversion from candidate-script/interviewer-script into candidate/evaluator structure).
 
 ---
 
