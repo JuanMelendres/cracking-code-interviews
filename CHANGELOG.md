@@ -853,8 +853,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `practice/java/advanced-structures/README.md` — new, documenting all 3 problems with real code, complexity, and retrospectives, plus a verification table with real pass counts and the exact compile/run commands.
 - Brings T-1418 from 0/8 to 3/8. Remaining: 3 segment-tree problems, 2 rolling-hash problems, in later bounded batches. Coding-problem volume otherwise remains closed (167/150–170 from the core weekly arc); this batch is additive, optional polish, not a reopened gap.
 
+### Added (Advanced Structures, batch 2 of 3 — T-1418, segment tree sub-pattern, 6/8)
+- Second bounded batch: 3 segment tree problems, all compiled and executed against real assertions:
+  - LC 307 Range Sum Query - Mutable — static, iterative (bottom-up, flat-array) segment tree; point update, range sum query.
+  - LC 732 My Calendar III — dynamic segment tree with lazy propagation, nodes created on demand over the full `[0, 1e9]` domain since bookings arrive online and coordinate compression isn't available upfront.
+  - LC 218 The Skyline Problem — static segment tree over coordinate-compressed building edges, using a no-pushdown "store at the covering node, accumulate max on a single final top-down read pass" technique valid specifically because every leaf is read exactly once at the end.
+- **Errata, corrected before running the suite:** LC 218's third hand-derived test case (`[[0,5,7],[1,6,4]]`, a taller building partially overlapping a shorter one) initially expected only `[[0,7],[6,0]]`, omitting the intermediate `[5,4]` transition where the shorter building's height becomes visible past the taller one's right edge. Caught by re-deriving the expected output by hand before running, not by a test failure — documented in `README.md`'s Errata section as a correction to the batch's own test data, not the implementation.
+- `practice/java/advanced-structures/README.md` — extended with Batch 2's 3 problems (code, complexity, retrospectives), running verification table (25/25 across both batches), and updated coverage table.
+- Brings T-1418 from 3/8 to 6/8. Remaining: 2 rolling-hash problems, in a later bounded batch.
+
 ### Planned
-- Coding-problem volume gap: **closed** for the core weekly arc (167/150–170). T-1418 (Expert-tier Advanced Structures) now 3/8, in progress as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. Remaining: 3 segment-tree problems, 2 rolling-hash problems.
+- Coding-problem volume gap: **closed** for the core weekly arc (167/150–170). T-1418 (Expert-tier Advanced Structures) now 6/8, in progress as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. Remaining: 2 rolling-hash problems.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: **closed against its IWI-based selection criterion, 70/75.** Every chapter stating an IWI is covered; the remaining 5 jvm chapters state no IWI at all (confirmed by direct inspection) and are left open per the user's explicit 2026-08-05 decision — closing them would require the user to specify an alternative, non-IWI selection method.
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
