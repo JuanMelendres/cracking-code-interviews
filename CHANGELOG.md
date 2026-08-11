@@ -834,6 +834,15 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `practice/mock-interviews/README.md` — rounds table and scope note updated: 10/12 rounds.
 - All cross-links and heading structure (1 H1 per file) verified before commit. Remaining: the 2 Week 7 (Spring) and Week 8 (Kafka) rounds, same conversion approach as this batch.
 
+### Added (Mock Interviews, fourth batch — Weeks 7, 8 converted — closes the deliverable, 12/12)
+- Fourth and final bounded batch: the last 2 earlier-format rounds, closing the deliverable:
+  - `spring-technical-round.md` — elevated from `study-packs/week-07/07-week-7-mock-interview.md` (bean lifecycle order + exact `@Transactional` proxy-creation hook, the `@Async`+`@Transactional` visibility gotcha, security filter chain tracing with a rejection scenario, honest JWT revocation, PKCE vs. client secret, a design-review/technical-debt story).
+  - `kafka-messaging-technical-round.md` — elevated from `study-packs/week-08/08-week-8-mock-interview.md` (per-partition ordering and the partition-count one-way door, the `acks=all` ISR-shrink data-loss mechanism, repeated-rebalance diagnosis via `max.poll.interval.ms`, honest exactly-once scoping, hot-partition remediation via a compound key, a scaling/performance story).
+- Like batch 3, pass/borderline/fail signals for these 2 files were constructed, not sourced verbatim — grounded directly in the interviewer scripts' own "listening for"/push-back cues (e.g., "what if the ISR only has one member when the write lands?", "is the transaction wrong, or is something else wrong?") and in the real, measured content of the canonical `handbook/spring/`, `handbook/security/oauth2-oidc-and-jwt.md`, and `handbook/kafka/` chapters — each carries its own provenance note confirming its traces are real, executed output (Spring Framework 6.1.14, `javax.crypto`, a live KRaft cluster), not invented for this batch.
+- Both rounds are scored using the shared Week 1 rubric's Technical Depth and Production Judgment dimensions specifically, per each source mock's own instruction — narrower than the full six-dimension scoring used for the Weeks 1/2/4 rounds in batch 3.
+- `practice/mock-interviews/README.md` — rounds table and scope note updated to closure: 12/12 rounds, all batches complete.
+- All cross-links and heading structure (1 H1 per file) verified before commit. **This closes the Mock Interviews deliverable.** All 12 real study-pack mock interview files across the programme are now elevated into the Mock Interview Standard's full structure — 7 by mechanical elevation (batches 1–2), 5 by structural conversion (batches 3–4) — with every question, ideal answer, and evaluator signal traceable to real source material: the source scripts themselves, the shared evaluation rubric, or the canonical `handbook/` chapters' own measured content.
+
 ### Planned
 - Coding-problem volume gap: **closed.** Only T-1418 (Expert-tier Advanced Structures, 0/8) remains open, deliberately deprioritized throughout the Weeks 20–25 arc per the blueprint's own tier-priority guidance; no further bounded coding-volume batches are anticipated.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
@@ -842,7 +851,7 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Architecture Atlas: **closed, 13/13 entries** — all 8 classic system-design exercises plus all 5 Weeks 15–19 domain-specific exercises (deployment infrastructure, both JVM playbooks, the security review, the test-strategy design). Every real, worked design exercise across the programme (Weeks 3–19) is now elevated.
 - Production Cookbook: **closed, 70/70 candidate `Production Scenarios` sections elevated across all 13 handbook domains.** No further batches planned; a new entry would only be added if a future handbook chapter introduces its own new production scenario.
 - Flashcards: **closed, 75/75 chapters, 238/238 cards.** Every handbook chapter now has a standalone, topic-ID-keyed flashcard deck, extracted (169 cards) or lightly synthesized (69 cards, `**Q:**`/`**A:**`-format chapters) from that chapter's own existing `## Flashcards` section. No fabricated content; no further batches planned.
-- Mock Interviews: **10/12 rounds.** Weeks 13–19 pool closed (7/7); Weeks 1, 2, 4 converted (3/5 of the earlier-format pool). Remaining: Week 7 (Spring technical) and Week 8 (Kafka messaging), same conversion approach — evaluator signals constructed from the source's own rubric anchors and interviewer-script cues, not invented.
+- Mock Interviews: **closed, 12/12 rounds.** All 12 real study-pack mock interviews now elevated into the Mock Interview Standard's full structure. No further batches planned; a new round would only be added if a future study pack introduces its own new mock interview.
 
 ---
 
