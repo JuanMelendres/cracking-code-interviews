@@ -1,0 +1,16 @@
+Real javac output (OpenJDK 21.0.12), produced by removing the `case Triangle`
+branch from SealedTypesDemo's `area()` switch while leaving `permits Circle,
+Rectangle, Triangle` unchanged:
+
+$ javac Broken.java
+Broken.java:9: error: the switch expression does not cover all possible input values
+        return switch (shape) {
+               ^
+1 error
+
+This is compiler-enforced exhaustiveness, not a lint warning: the build fails.
+The compiler knows the full, closed set of Shape implementations from the
+sealed interface's `permits` clause, cross-checks it against the switch's
+case labels, and refuses to compile if any permitted subtype is unhandled and
+no `default` branch exists. Add the `Triangle` case back (or a `default`) and
+it compiles again -- verified by reverting the edit and recompiling clean.
