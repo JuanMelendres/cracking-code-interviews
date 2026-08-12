@@ -55,8 +55,12 @@ __pycache__/
 *.pyc
 .venv/
 
-# Node (if any tooling ends up here)
+# Node (frontend domain: practice/frontend/*)
 node_modules/
+dist/
+
+# Claude Code local/personal settings (permissions etc.), not project content
+.claude/settings.local.json
 
 # --- explicitly NOT ignored (documented for clarity, no-op lines) ---
 # *.md, *.java, *.sql, *.yml, *.yaml, *.json, *.mmd — always tracked
