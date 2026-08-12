@@ -2,7 +2,7 @@
 
 **Status:** optional supplement, not part of the numbered `study-packs/week-01`–`week-25` sequence. `00-project/learning-roadmap.md` §5 states Plan C **deliberately excludes** the entire Expert tier — T-1418 (Advanced Structures: segment tree, Fenwick/BIT, rolling hash) among it — as "the most common misallocation in senior interview prep." This directory exists because the user explicitly asked to close the gap anyway, not because the roadmap changed its recommendation. Treat this material as recognition-level polish on top of an already-complete core program, not a prerequisite for it.
 
-**8 problems total, split across the structure the register names: segment tree, Fenwick/BIT, rolling hash.** Brings T-1418 from 0/8 to 8/8 across 3 bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. Batches 1–2 (Fenwick/BIT, segment tree) are complete; rolling hash is the remaining batch.
+**8 problems total, split across the structure the register names: segment tree, Fenwick/BIT, rolling hash.** Brings T-1418 from 0/8 to 8/8 across 3 bounded batches, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. **All 3 batches are complete — T-1418 is fully closed.**
 
 ---
 
@@ -190,6 +190,70 @@ void collect(int node, int start, int end, int inherited, int[] result) {
 
 ---
 
+## Batch 3 — Rolling Hash (2 problems) — closes T-1418
+
+**All code below was compiled and executed — see `rolling-hash/` for the real source, and the Verification section below for the exact commands and real pass counts.**
+
+A **rolling hash** recomputes a fixed- or variable-length window's hash in O(1) as the window slides one position, instead of rehashing the whole window from scratch each time. The two problems below use it in two different shapes: a fixed 10-character window over a tiny 4-symbol alphabet (dense enough to bit-pack directly), and a variable-length window over a 26-letter alphabet sized by binary search, using a real polynomial rolling hash with an explicit collision guard.
+
+### Problem 7 — LC 187 Repeated DNA Sequences
+
+**Pattern:** find every 10-character DNA substring that occurs more than once. Since the alphabet is only 4 symbols (`A`, `C`, `G`, `T`), each base packs into 2 bits and a full 10-character window fits in 20 bits — sliding right by one character is a single shift-OR-mask, no need for modular arithmetic or a collision guard at all.
+
+```java
+static List<String> findRepeatedDnaSequences(String s) {
+    List<String> result = new ArrayList<>();
+    int n = s.length();
+    if (n < 10) return result;
+    int[] code = new int[26];
+    code['A' - 'A'] = 0; code['C' - 'A'] = 1; code['G' - 'A'] = 2; code['T' - 'A'] = 3;
+    int mask = (1 << 20) - 1;
+    int hash = 0;
+    Map<Integer, Integer> seen = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        hash = ((hash << 2) | code[s.charAt(i) - 'A']) & mask;
+        if (i >= 9) {
+            int count = seen.merge(hash, 1, Integer::sum);
+            if (count == 2) result.add(s.substring(i - 9, i + 1));
+        }
+    }
+    return result;
+}
+```
+
+**Retrospective:** because the packed 20-bit encoding is a lossless, exact representation of the 10-character window (not a lossy hash of a larger domain squeezed into fewer bits), there's no collision risk to guard against — two different windows can never produce the same 20-bit value. The `count == 2` check (not `count >= 1`) is what keeps each repeated sequence in the output exactly once, regardless of how many times it recurs beyond the second. **Complexity:** O(n) total — O(1) per character.
+
+### Problem 8 — LC 1044 Longest Duplicate Substring
+
+**Pattern:** find the longest substring that occurs at least twice anywhere in the string. The key structural insight: "does a length-`L` duplicate exist" is monotonic in `L` — if one exists at length `L`, one also exists at every shorter length (truncate it) — so binary search over `L` reduces the problem to one O(n) feasibility check per candidate length, each done with a real polynomial rolling hash (modular arithmetic, not bit-packing, since the alphabet no longer fits in a handful of bits) plus an explicit character-by-character comparison to rule out hash collisions before trusting a match.
+
+```java
+private static int search(int[] nums, int len) {
+    int n = nums.length;
+    long h = 0;
+    for (int i = 0; i < len; i++) h = (h * BASE + nums[i]) % MOD;
+    long highOrder = 1;
+    for (int i = 0; i < len - 1; i++) highOrder = (highOrder * BASE) % MOD;
+
+    Map<Long, List<Integer>> seen = new HashMap<>();
+    seen.computeIfAbsent(h, k -> new ArrayList<>()).add(0);
+
+    for (int start = 1; start + len <= n; start++) {
+        h = ((h - nums[start - 1] * highOrder % MOD + MOD) * BASE + nums[start + len - 1]) % MOD;
+        List<Integer> candidates = seen.get(h);
+        if (candidates != null) {
+            for (int idx : candidates) if (matches(nums, idx, start, len)) return start;
+        }
+        seen.computeIfAbsent(h, k -> new ArrayList<>()).add(start);
+    }
+    return -1;
+}
+```
+
+**Retrospective:** the collision guard (`matches`, a real O(len) character comparison) is not optional polish — a rolling hash over a 26-letter alphabet with a single modulus *will* collide occasionally on adversarial or even moderately long random inputs, and trusting the hash alone would silently return a wrong answer rather than crash, which is a much worse failure mode for an interview answer than a slower-but-correct one. Binary searching the length rather than trying every length directly is what turns an O(n²) or worse brute force into O(n) work per feasibility check times O(log n) binary-search steps. **Complexity:** O(n log n) expected.
+
+---
+
 ## Verification
 
 | Problem | Status | Real assertions |
@@ -200,7 +264,9 @@ void collect(int node, int start, int end, int inherited, int[] result) {
 | LC 307 Range Sum Query - Mutable | **Executed.** All passed on first run. | 4/4 pass |
 | LC 732 My Calendar III | **Executed.** All passed on first run. | 6/6 pass |
 | LC 218 The Skyline Problem | **Executed.** All passed on first run, including a hand-verified 2-building overlap case. | 3/3 pass |
-| **Running total (batches 1–2)** | | **25/25 pass** |
+| LC 187 Repeated DNA Sequences | **Executed.** All passed on first run. | 4/4 pass |
+| LC 1044 Longest Duplicate Substring | **Executed.** All passed on first run. | 4/4 pass |
+| **Final total (all 3 batches)** | | **33/33 pass** |
 
 ```
 cd practice/java/advanced-structures/fenwick
@@ -208,22 +274,27 @@ javac -d out src/*.java && java -cp out Main
 
 cd practice/java/advanced-structures/segment-tree
 javac -d out src/*.java && java -cp out Main
+
+cd practice/java/advanced-structures/rolling-hash
+javac -d out src/*.java && java -cp out Main
 ```
 
-Source: [`practice/java/advanced-structures/fenwick/`](fenwick/), [`practice/java/advanced-structures/segment-tree/`](segment-tree/)
+Source: [`practice/java/advanced-structures/fenwick/`](fenwick/), [`practice/java/advanced-structures/segment-tree/`](segment-tree/), [`practice/java/advanced-structures/rolling-hash/`](rolling-hash/)
 
 ## Coverage impact
 
-| Register item | Before batch 1 | After batch 1 | After batch 2 |
-|---|---|---|---|
-| T-1418 Advanced Structures | 0/8 | 3/8 (Fenwick/BIT) | 6/8 (+ segment tree) |
+| Register item | Before batch 1 | After batch 1 | After batch 2 | After batch 3 |
+|---|---|---|---|---|
+| T-1418 Advanced Structures | 0/8 | 3/8 (Fenwick/BIT) | 6/8 (+ segment tree) | **8/8 (+ rolling hash) — closed** |
 
-Remaining: 2 rolling-hash problems, in a later bounded batch.
+**T-1418 is now fully closed, 8/8.** No further batches planned for this directory.
 
 ## Errata addressed
 
 **Batch 1 — LC 493 Reverse Pairs:** the doubling condition's direction was initially implemented backwards (see Problem 2's retrospective above); caught by the test suite before being cited as passing, not by inspection.
 
 **Batch 2 — LC 218 The Skyline Problem:** the first hand-derived expected value for the "taller building masks a shorter overlapping one" test case (buildings `[[0,5,7],[1,6,4]]`) omitted the intermediate `[5,4]` transition point, incorrectly expecting only `[[0,7],[6,0]]`. Caught by re-deriving the expected output by hand before running the suite, not by the test failing — recorded here since it's a real correction to this batch's own test data, not just its implementation.
+
+**Batch 3:** none. Both problems passed on first run.
 
 Documented here per this project's standing rule to record real errata rather than silently fix and move on.

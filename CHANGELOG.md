@@ -862,8 +862,15 @@ All notable changes to this repository are documented here. Format follows [Keep
 - `practice/java/advanced-structures/README.md` — extended with Batch 2's 3 problems (code, complexity, retrospectives), running verification table (25/25 across both batches), and updated coverage table.
 - Brings T-1418 from 3/8 to 6/8. Remaining: 2 rolling-hash problems, in a later bounded batch.
 
+### Added (Advanced Structures, batch 3 of 3 — T-1418, rolling hash sub-pattern — closes the gap, 8/8)
+- Third and final bounded batch: 2 rolling-hash problems, both compiled and executed against real assertions, both passing on first run:
+  - LC 187 Repeated DNA Sequences — fixed 10-character window over the 4-symbol DNA alphabet, bit-packed into a 20-bit rolling hash (lossless, so no collision guard needed).
+  - LC 1044 Longest Duplicate Substring — binary search on substring length, each feasibility check a real polynomial (Rabin-Karp) rolling hash with an explicit character-comparison collision guard before trusting any hash match.
+- `practice/java/advanced-structures/README.md` — extended with Batch 3's 2 problems (code, complexity, retrospectives), final verification table (33/33 across all 3 batches), and closed coverage table.
+- **This closes T-1418 at 8/8 — the Advanced Structures directory is now complete.** All 3 sub-patterns (Fenwick/BIT, segment tree, rolling hash) covered with real, compiled, executed Java, including 2 caught-and-fixed errata (batch 1's reverse-pairs direction bug, batch 2's skyline test-data omission) documented rather than silently corrected. No further batches planned for this directory; it remains explicitly outside Plan C's core roadmap.
+
 ### Planned
-- Coding-problem volume gap: **closed** for the core weekly arc (167/150–170). T-1418 (Expert-tier Advanced Structures) now 6/8, in progress as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. Remaining: 2 rolling-hash problems.
+- Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
 - Behavioral Handbook: **closed, 15/15 topics.** Only the Stories 3–13 worksheet-file gap remains, which requires the reader's own real experience to fill in, not further chapter-writing.
 - Cheat Sheets: **closed against its IWI-based selection criterion, 70/75.** Every chapter stating an IWI is covered; the remaining 5 jvm chapters state no IWI at all (confirmed by direct inspection) and are left open per the user's explicit 2026-08-05 decision — closing them would require the user to specify an alternative, non-IWI selection method.
 - Interview Playbook: **closed, 5 entries total** (2 in `technical-answers/`, 1 in `coding/`, 1 in `system-design/`, 1 in `behavioral/`) — all four target subdirectories now have content.
