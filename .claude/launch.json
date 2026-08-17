@@ -18,6 +18,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-memo-and-context && npm run dev -- --port 5185 --strictPort"],
       "port": 5185
+    },
+    {
+      "name": "react-reducer-and-custom-hooks",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-reducer-and-custom-hooks && npm run dev -- --port 5186 --strictPort"],
+      "port": 5186
     }
   ]
 }
