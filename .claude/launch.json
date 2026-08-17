@@ -36,6 +36,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-reconciliation-and-fiber && npm run dev -- --port 5188 --strictPort"],
       "port": 5188
+    },
+    {
+      "name": "react-concurrent",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-concurrent && npm run dev -- --port 5189 --strictPort"],
+      "port": 5189
     }
   ]
 }

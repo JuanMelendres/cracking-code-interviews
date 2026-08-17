@@ -997,6 +997,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-component-patterns.md` (prerequisite) and `react-fundamentals-jsx-components-props-and-state.md` (the index-as-key bug is this chapter's DOM-node-reuse mechanism applied incorrectly).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/react-concurrent-rendering.md — F-113, seventh frontend chapter)
+- Continued the frontend register in sequence (F-113 is the next entry after F-112, no ambiguity, proceeded without an `AskUserQuestion` round). Third Advanced-tier chapter — the scheduling/priority half of Fiber that F-112 explicitly deferred here.
+- `handbook/frontend/react-concurrent-rendering.md` (F-113: transitions, `useDeferredValue`, `useTransition`, Suspense for data) — covers what makes rendering interruptible/prioritizable, building directly on F-112's Fiber structure.
+- **Real React 19.2.8 + Vite 8.2.1 app** — `practice/frontend/react-concurrent/`, 3 demo components. Verified live via browser automation, including a real observed Suspense fallback window. `npm run build` confirmed a clean production build.
+- **`useTransition` proven with a real `isPending` history, not a claim:** typing `"item-5"` into a 20,000-item filtered-list demo produced `pending log: pending: true -> pending: false`, direct evidence the low-priority filter update was deprioritized without blocking the urgent input.
+- **`useDeferredValue` proven the same way:** typing `"entry-5"` produced `stale log: stale: true -> stale: false`, with `query`/`deferredQuery` converging once the expensive filter caught up.
+- **Suspense + `use()` proven with an actually observed fallback window, not inferred from docs:** sequential browser-automation tool calls were slower than the original 800ms simulated fetch delay, so every check landed post-resolution — worked around by raising the delay to 3000ms and combining the click and DOM poll into one `javascript_exec` call. Real captured result: `+100ms → "Loading user..."`, `+3.2s → "Loaded: User 2 (id 2)"`.
+- Added a `react-concurrent` entry to `.claude/launch.json` (port 5189).
+- Cross-linked to `react-reconciliation-and-fiber.md` (prerequisite) and `react-usereducer-and-custom-hooks.md` (the stale-closure concern this chapter's batching-adjacent material is explicitly distinguished from).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
