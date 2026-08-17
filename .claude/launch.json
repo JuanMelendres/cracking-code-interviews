@@ -12,6 +12,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-hooks && npm run dev -- --port 5184 --strictPort"],
       "port": 5184
+    },
+    {
+      "name": "react-memo-and-context",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-memo-and-context && npm run dev -- --port 5185 --strictPort"],
+      "port": 5185
     }
   ]
 }
