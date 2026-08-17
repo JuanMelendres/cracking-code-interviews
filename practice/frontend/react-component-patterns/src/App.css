@@ -1,0 +1,70 @@
+.app-root {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: system-ui, sans-serif;
+  text-align: left;
+}
+
+.demo-block {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.demo-block pre {
+  background: #f5f5f5;
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.fake-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.counter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.two-lists {
+  display: flex;
+  gap: 24px;
+}
+
+.people-list {
+  flex: 1;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.person-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.person-name {
+  width: 70px;
+  font-weight: 600;
+}
+
+.tabs-list {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tabs-panel {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+}

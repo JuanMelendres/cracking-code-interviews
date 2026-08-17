@@ -24,6 +24,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-reducer-and-custom-hooks && npm run dev -- --port 5186 --strictPort"],
       "port": 5186
+    },
+    {
+      "name": "react-component-patterns",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-component-patterns && npm run dev -- --port 5187 --strictPort"],
+      "port": 5187
     }
   ]
 }
