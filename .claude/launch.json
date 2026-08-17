@@ -30,6 +30,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-component-patterns && npm run dev -- --port 5187 --strictPort"],
       "port": 5187
+    },
+    {
+      "name": "react-reconciliation-and-fiber",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-reconciliation-and-fiber && npm run dev -- --port 5188 --strictPort"],
+      "port": 5188
     }
   ]
 }
