@@ -42,6 +42,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-concurrent && npm run dev -- --port 5189 --strictPort"],
       "port": 5189
+    },
+    {
+      "name": "react-forms",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-forms && npm run dev -- --port 5190 --strictPort"],
+      "port": 5190
     }
   ]
 }
