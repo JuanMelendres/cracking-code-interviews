@@ -28,7 +28,11 @@ export default function PersistentHeader() {
         <Link href="/dashboard">Dashboard</Link> |{" "}
         <Link href="/dashboard/settings">Dashboard settings</Link> |{" "}
         <Link href="/pricing">Pricing (route group)</Link> |{" "}
-        <Link href="/server-vs-client">Server vs. Client</Link>
+        <Link href="/server-vs-client">Server vs. Client</Link> |{" "}
+        <Link href="/data-fetching/default">Fetch: default</Link> |{" "}
+        <Link href="/data-fetching/no-store">Fetch: no-store</Link> |{" "}
+        <Link href="/data-fetching/force-cache">Fetch: force-cache</Link> |{" "}
+        <Link href="/data-fetching/revalidate">Fetch: revalidate(5)</Link>
       </nav>
     </header>
   );

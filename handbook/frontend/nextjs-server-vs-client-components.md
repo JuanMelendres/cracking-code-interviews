@@ -304,6 +304,7 @@ Exercise 3: `.next/static` would still show zero matches for anything specific t
 ## Additional Reading
 
 - [Next.js App Router Fundamentals: Nested Layouts and Route Groups](nextjs-app-router-fundamentals.md) — this chapter's prerequisite; every `page.js`/`layout.js` written there was, by default, a Server Component, which this chapter now explains precisely.
+- [Data Fetching in the App Router: fetch Caching Semantics, revalidate, and cache: 'no-store'](nextjs-data-fetching-and-caching.md) — the next chapter in sequence (F-204); the `fetch()` calls it examines live inside Server Components exactly like the ones this chapter covers.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-203 of, flagged there as the single most-tested modern Next.js concept.
 
 ## Official References

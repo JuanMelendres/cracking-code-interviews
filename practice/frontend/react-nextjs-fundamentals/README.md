@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201, F-202, F-203)
+# Next.js Fundamentals demo app (F-201, F-202, F-203, F-204)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), and [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), and [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-204 note:** this app's `next.config.mjs` does NOT set `cacheComponents: true`, so it runs under this Next.js version's "Previous Model" of caching (`fetch`'s own `cache`/`next.revalidate`/`next.tags` options) — confirmed by reading `node_modules/next/dist/docs/01-app/02-guides/caching-without-cache-components.md` directly, since this is exactly the API surface the register's F-204 topic names. Version 16 also ships an entirely different, opt-in "Cache Components" model (`"use cache"`, `cacheLife`, `cacheTag`) — out of scope for this chapter, briefly noted for context only.
 
 > **F-203 note:** requires `.env.local` (gitignored, not committed) with `SERVER_SECRET_DEMO=SUPER_SECRET_VALUE_9f8e7d6c` for the Server-Component-secret demo to have a real value to read. Recreate it locally if cloning fresh — see the F-203 evidence section below for exactly what it proves.
 
@@ -31,6 +33,15 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/components/ServerSecretDemo.js` — a Server Component (no `"use client"`) reading a server-only env var directly.
 - `app/components/ClientCounter.js` — a Client Component (`"use client"`, `useState`, an `onClick` handler).
 - `app/server-vs-client/page.js` — renders both side by side.
+
+**F-204 (added):**
+- `app/data-fetching/default/page.js` — `fetch()` with no `cache` option.
+- `app/data-fetching/no-store/page.js` — `fetch(url, { cache: 'no-store' })`.
+- `app/data-fetching/force-cache/page.js` — `fetch(url, { cache: 'force-cache', next: { tags: [...] } })` + a real `RevalidateButton`.
+- `app/data-fetching/revalidate/page.js` — `fetch(url, { next: { revalidate: 5 } })`.
+- `app/actions.js` — a real Server Action calling `revalidateTag`.
+- `app/components/RevalidateButton.js` — a real Client Component invoking that Server Action.
+- All four fetch demos target `https://httpbin.org/uuid`, a real public endpoint returning a fresh random UUID on every real HTTP call it receives — used as an external, always-reachable "upstream" so build-time prerendering (see below) doesn't hit a chicken-and-egg problem with this app's own dev/start server not being up yet.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -160,11 +171,79 @@ module that was originally written for the server.
 
 Clicking the (visually rendered but broken) counter button triggered Next.js's real dev error overlay, pinpointing the exact `<ClientCounter />` line in `app/server-vs-client/page.js`. Reverted `ClientCounter` back to a synchronous function afterward; re-verified interactivity on a clean `next build` + `next start` production server (not dev mode, to rule out any HMR-related noise): clicking "+1" moved `Client count: 0` to `Client count: 1`, a genuine, working click-to-re-render cycle.
 
+## Captured evidence for F-204 (data fetching and caching)
+
+All of this section's evidence required `next build && next start` — this Next.js version's own docs state plainly: **"In Development, Pages are always rendered on-demand and are never cached."** Testing any of these caching claims against `next dev` would silently show nothing meaningful.
+
+### A real build-time discovery: `force-cache` fetches are attempted AT BUILD TIME
+
+The first build attempt used this app's own `/api/time` Route Handler as the fetch target for the `force-cache` demo. Real captured failure:
+
+```
+Error occurred prerendering page "/data-fetching/force-cache".
+[TypeError: fetch failed] { code: 'ECONNREFUSED', ... }
+Export encountered an error on /data-fetching/force-cache/page: /data-fetching/force-cache, exiting the build.
+```
+
+`cache: 'force-cache'` makes the route eligible for static generation, so Next genuinely attempts that fetch DURING `next build` — before this app's own server is running, a real chicken-and-egg failure. Fixed by switching all four data-fetching demos to a real external endpoint (`https://httpbin.org/uuid`, reachable during the build) instead of a same-server API route; the app's own `/api/time` route was removed as unnecessary once this fix was in place.
+
+### A real, decisive route manifest — with Revalidate/Expire columns
+
+```
+Route (app)                     Revalidate  Expire
+├ ○ /data-fetching/default
+├ ○ /data-fetching/force-cache
+├ ƒ /data-fetching/no-store
+├ ○ /data-fetching/revalidate           5s      1y
+```
+
+Note `default` is `○` (Static) — NOT `ƒ` (Dynamic) — despite this version's docs stating "fetch requests are not cached by default." This is the real, nuanced finding this chapter is built around; see the next section for the direct proof of what that actually means in practice.
+
+### The real, nuanced finding: "fetch is uncached by default" ≠ "the route is uncached by default"
+
+Real captured `curl` results against a clean `next start` production server, two requests per page:
+
+```
+default (no cache option):  450dc1ca-...  →  450dc1ca-...   SAME uuid both times
+no-store (explicit):        d327b050-...  →  1120d331-...   DIFFERENT uuid every time
+force-cache:                40ad35de-...  →  40ad35de-...   SAME uuid both times
+```
+
+`default` behaved EXACTLY like `force-cache`, not like `no-store` — a real, direct contradiction of a naive reading of "fetch requests are not cached by default." The precise, correct claim (confirmed by the route manifest's `○`/`ƒ` markers above): `fetch()`'s OWN default (no `cache` option) doesn't request HTTP-level caching, but if NOTHING else in the route forces dynamic rendering (no `cookies()`, no `headers()`, no explicit `cache: 'no-store'`), Next's separate ROUTE-level Full Route Cache still statically renders the page once and serves that same result to everyone — a different caching LAYER than `fetch`'s own option. Only an explicit `cache: 'no-store'` (or another Request-time API) reliably opts the whole route into per-request dynamic rendering.
+
+### Real, timed proof of `next: { revalidate: 5 }`
+
+Real captured `curl` results, precise real timestamps:
+
+```
+t=0s:  937f667a-...
+t=1s:  937f667a-...   (unchanged — within the 5s window)
+t=2s:  937f667a-...   (unchanged — within the 5s window)
+[sleep 7 real seconds]
+t=9s:  8f715caf-...   (changed — window expired)
+t=9s:  8f715caf-...   (unchanged again — freshly re-cached)
+```
+
+The revalidation window held exactly as documented: stable for 2 real seconds within the window, changed once 7 real seconds had elapsed (crossing the 5-second boundary), then stable again immediately afterward.
+
+### Real, on-demand proof of `revalidateTag`
+
+Real captured sequence: the `force-cache` page held a stable uuid (`40ad35de-...`) across repeated checks. A real click on the live `RevalidateButton` (a Client Component invoking a real Server Action, `revalidateTimeTag()`, which calls `revalidateTag('uuid-tag')`) was performed in a real browser session — no timer, no wait:
+
+```
+Before click:  40ad35de-...
+After click:   28f09c9d-...   (changed immediately)
+Re-check:      28f09c9d-...   (stable again — freshly re-cached)
+```
+
+On-demand revalidation via `revalidateTag` genuinely bypasses the time-based window entirely — the cached value changed the instant the Server Action ran, not on the next scheduled revalidation.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's and F-203's routes were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, and F-204's routes were added.
 - F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.
+- F-204: real `curl` requests (with precise real timestamps for the timed test) against a clean `next start` production server for all four fetch-caching strategies; a real deliberate build failure (an unreachable same-server API route during static prerendering), captured and fixed; a real browser click on a live `RevalidateButton` invoking a real Server Action.
