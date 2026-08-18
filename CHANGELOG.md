@@ -1079,6 +1079,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-testing.md` (prerequisite).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/react-state-management.md — F-120, fourteenth frontend chapter, closes D-F1)
+- Continued the frontend register in sequence (F-120 is the next entry after F-119, no ambiguity, proceeded without an `AskUserQuestion` round). This closes the D-F1 React Fundamentals section of the register; D-F2 Next.js is next.
+- `handbook/frontend/react-state-management.md` (F-120: Context vs. Redux Toolkit vs. Zustand vs. server state (TanStack Query) — decision framework, not just syntax).
+- **Real React 19.2.8 + Vite 8.2.1 app** — `practice/frontend/react-state-management/`, four demos (Context, Redux Toolkit, Zustand, TanStack Query) with real installed `@reduxjs/toolkit`, `react-redux`, `zustand`, `@tanstack/react-query`.
+- **Real, measured Context re-render evidence:** two consumers (count-only, name-only) sharing one bundled context value. Clicking a `count`-only update moved BOTH consumers' render counters from 2 to 4 (StrictMode doubling) — the name consumer re-rendered despite never reading `count`.
+- **Real, measured Redux Toolkit and Zustand selective-re-render evidence:** the identical two-slice setup rebuilt with `useSelector`/Zustand's selector hook. The same click moved only the count consumer's render counter (2→4); the name consumer's counter stayed unchanged at 2 in BOTH libraries.
+- **Real network-trace-confirmed TanStack Query cache deduplication:** two independently mounted `TodoViewer` components both querying `['todo', 1]` produced exactly ONE real `GET /api/todos/1` request, confirmed via `read_network_requests`.
+- Added a `react-state-management` entry to `.claude/launch.json` (port 5197).
+- Cross-linked to `react-typescript.md` and `react-usememo-usecallback-and-usecontext.md` (prerequisites).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

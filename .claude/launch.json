@@ -78,6 +78,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-typescript && npm run dev -- --port 5196 --strictPort"],
       "port": 5196
+    },
+    {
+      "name": "react-state-management",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-state-management && npm run dev -- --port 5197 --strictPort"],
+      "port": 5197
     }
   ]
 }
