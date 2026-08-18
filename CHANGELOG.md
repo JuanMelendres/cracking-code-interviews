@@ -1032,6 +1032,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-forms.md` (prerequisite) and `react-reconciliation-and-fiber.md` (the fiber-tree-walk and subtree-replacement mechanism this chapter's internals section builds on directly).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/react-accessibility.md — F-116, tenth frontend chapter)
+- Continued the frontend register in sequence (F-116 is the next entry after F-115, no ambiguity, proceeded without an `AskUserQuestion` round). Register flags this topic as frequently interview-relevant for Staff-level frontend.
+- `handbook/frontend/react-accessibility.md` (F-116: semantic HTML, ARIA, keyboard navigation, focus management).
+- **Real React 19.2.8 + Vite 8.2.1 app** — `practice/frontend/react-accessibility/`, 3 demo components. `npm run build` confirmed a clean production build.
+- **Real accessibility-tree role contrast + real keyboard-skip proof:** a real `<button>` exposed `role: button`; an identically-styled `<div onClick>` exposed only `role: generic`. A real keyboard trace (focus the button, press Tab, check `document.activeElement`) confirmed the div was skipped entirely — never received focus — while a direct mouse click on the same div still fired its handler, proving the gap is invisible to purely visual/mouse QA.
+- **Real, independently-verified focus-trap modal:** three separate behaviors each confirmed via `document.activeElement` — opening the modal moved focus to the first focusable element automatically; Tab from the last focusable wrapped back to the first (trap held, no escape to the page behind); Escape closed the modal AND returned focus to the exact trigger button, not `<body>`.
+- **Real, resolved `aria-invalid`/`aria-describedby` association:** typing an invalid value and blurring produced `aria-invalid="true"`, `aria-describedby="username-error"`, and resolving that id via `document.getElementById` returned the actual error text — confirmed as a real, resolvable relationship, not just visual proximity.
+- Added a `react-accessibility` entry to `.claude/launch.json` (port 5192).
+- Cross-linked to `react-error-boundaries.md` (prerequisite) and `react-forms.md` (this chapter's ARIA form-error demo directly extends that chapter's validation-timing material).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

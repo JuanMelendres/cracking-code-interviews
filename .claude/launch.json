@@ -54,6 +54,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-error-handling && npm run dev -- --port 5191 --strictPort"],
       "port": 5191
+    },
+    {
+      "name": "react-accessibility",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-accessibility && npm run dev -- --port 5192 --strictPort"],
+      "port": 5192
     }
   ]
 }
