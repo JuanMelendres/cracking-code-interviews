@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-207)
+# Next.js Fundamentals demo app (F-201–F-208)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), and [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), and [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-208 note — real, version-significant finding:** "Middleware" is deprecated as of Next.js 16; the current convention is `proxy.js` exporting a `proxy` function, and Proxy is hardcoded to the Node.js runtime (the Edge runtime is forbidden there outright — a real build error, not a warning). See the F-208 evidence section below for both real, contrasting captured build outputs.
 
 > **F-207 note:** `lib/widgets-store.js` is module-level, in-memory state, shared across requests only because this app runs as a single long-lived `next start` Node process — the framework's own Route Handler docs warn this pattern breaks on a lambda-style host, where each request can land on a different instance with its own copy.
 
@@ -66,6 +68,9 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/api/uuid-proxy/route.js` — a real Backend-for-Frontend proxy, server-side call to `httpbin.org/uuid`, reshaped before returning.
 - `app/api/echo/route.js` — `NextRequest.nextUrl` search params + header access.
 - `app/api-demo/page.js` + `app/api-demo/WidgetsClient.js` — a real Client Component driving all of the above via browser `fetch()`.
+
+**F-208 (added):**
+- `proxy.js` (project root) — the current, real `proxy.js`/`proxy` file convention (NOT `middleware.js`), with a header injection, a real redirect (`/legacy-about` → `/about`), a cookie-gated auth check on `/dashboard`, and a `matcher` excluding static assets.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -419,14 +424,79 @@ A second call, this time triggered by a real button click in the live `/api-demo
 
 Live session at `/api-demo`: submitted the add-widget form (name "Pliers", qty 4) — a real `POST /api/widgets` from the browser — and confirmed the new widget appeared in the list (live count 3) while `cached-count` stayed at its frozen build-time value of 2, matching the curl evidence above exactly.
 
+## Captured evidence for F-208 (Proxy, formerly Middleware, & the Edge Runtime)
+
+### "Middleware" is deprecated naming — the real build output leads with "Proxy"
+
+Real `npm run build` output with `proxy.js` present at the project root:
+
+```
+ƒ Proxy (Middleware)
+```
+
+The build tool's own summary names it "Proxy" first, keeping "(Middleware)" only as a parenthetical for the deprecated term.
+
+### Three real Proxy behaviors, proven with curl against a clean `next start` server
+
+```
+$ curl -i http://localhost:5198/ | grep -i "x-proxy-hit\|HTTP/1.1"
+HTTP/1.1 200 OK
+x-proxy-hit: true
+
+$ curl -i http://localhost:5198/legacy-about | grep -i "HTTP/1.1\|location"
+HTTP/1.1 307 Temporary Redirect
+location: /about
+
+$ curl -i http://localhost:5198/dashboard | grep -i "HTTP/1.1\|location"
+HTTP/1.1 307 Temporary Redirect
+location: /
+
+$ curl -i -b "session=abc" http://localhost:5198/dashboard | grep -i "HTTP/1.1\|x-proxy-hit"
+HTTP/1.1 200 OK
+x-proxy-hit: true
+```
+
+Notably, `/` is a fully static, prerendered page (confirmed `x-nextjs-cache: HIT` on the same response) and STILL carried `x-proxy-hit` — real proof Proxy runs before even a cached, static route is served.
+
+### A real, verified `matcher` exclusion
+
+```
+$ curl -i http://localhost:5198/favicon.ico | grep -i "x-proxy-hit"
+(no output -- header genuinely absent)
+```
+
+Every other route tested carried `x-proxy-hit`; `favicon.ico`, matched against the `matcher`'s negative-lookahead pattern, did not — real, direct proof the exclusion works, not just a description of the config's intent.
+
+### The central finding: two real, deliberately contrasted build outputs for the Edge Runtime
+
+Attempt 1 — `export const runtime = "edge";` added to `proxy.js`:
+
+```
+> Build error occurred
+Error: Route segment config is not allowed in Proxy file at "./proxy.js". Proxy always runs on Node.js runtime. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+```
+
+A real, hard, named build FAILURE. Reverted immediately after capture.
+
+Attempt 2 — the SAME line added to `app/api/echo/route.js` (an ordinary Route Handler, not Proxy):
+
+```
+⚠ The Edge Runtime is deprecated. You can use the "nodejs" runtime instead. Learn more: https://nextjs.org/docs/messages/edge-runtime-deprecated
+⚠ Using edge runtime on a page currently disables static generation for that page
+✓ Generating static pages using 9 workers (20/20) in 656ms
+```
+
+Two real WARNINGS only — the build succeeded, and the route still worked. Reverted immediately after capture. This precise contrast (hard error in Proxy specifically vs. a tolerated-but-warned-against option everywhere else) is the chapter's central, verified finding.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, and F-207's routes were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, and F-208's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-208: real curl sequence proving Proxy's header injection, redirect, cookie-gated auth check, and `matcher` exclusion against a clean `next start` server; a real, live browser navigation confirming the `/legacy-about` redirect independently of curl; two real, deliberately contrasted `next build` attempts (a hard error inside `proxy.js`, a warning-only on an ordinary Route Handler) proving the precise Edge Runtime distinction, both reverted immediately after capture.
 - F-207: real `curl` sequence covering the full CRUD lifecycle (200/201/400/404/204) against a clean `next start` server; a real live mutation proving a `force-static` Route Handler freezes at build time; real automatic `405`/`OPTIONS` proof; two real external network calls (one via curl, one via a real browser button click) to the Backend-for-Frontend proxy demo, confirming genuinely fresh server-side calls each time.
 - F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.
 - F-204: real `curl` requests (with precise real timestamps for the timed test) against a clean `next start` production server for all four fetch-caching strategies; a real deliberate build failure (an unreachable same-server API route during static prerendering), captured and fixed; a real browser click on a live `RevalidateButton` invoking a real Server Action.
