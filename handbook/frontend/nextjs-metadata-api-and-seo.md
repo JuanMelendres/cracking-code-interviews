@@ -320,6 +320,7 @@ Exercise 3: `curl http://localhost:5198/robots.txt` would show a real, updated `
 
 - [Streaming & Suspense Boundaries in the App Router](nextjs-streaming-and-suspense.md) — this chapter's prerequisite; its own bot-blocking finding was real but only partially exercised (static metadata only) — this chapter completes it with a genuinely slow, dynamic `generateMetadata` case.
 - [Route Handlers: Building a Backend-for-Frontend Layer in Next.js](nextjs-route-handlers.md) — `robots.js`/`sitemap.js` are documented as a special case of the Route Handler model this chapter covers in depth, including its caching defaults.
+- [Image and Font Optimization, and Core Web Vitals in Next.js](nextjs-image-font-optimization-and-web-vitals.md) — the next chapter in sequence (F-210); moves from `<head>` content to the two asset types most directly responsible for Core Web Vitals scores.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-209 of.
 
 ## Official References

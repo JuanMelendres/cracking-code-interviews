@@ -40,7 +40,8 @@ export default function PersistentHeader() {
         <Link href="/streaming/full-page">Streaming: full-page loading.js</Link> |{" "}
         <Link href="/api-demo">Route Handlers (API demo)</Link> |{" "}
         <Link href="/legacy-about">Legacy About (Proxy redirect)</Link> |{" "}
-        <Link href="/products/1">Product 1 (generateMetadata)</Link>
+        <Link href="/products/1">Product 1 (generateMetadata)</Link> |{" "}
+        <Link href="/media-optimization">Media Optimization (Image/Font)</Link>
       </nav>
     </header>
   );

@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-209)
+# Next.js Fundamentals demo app (F-201–F-210)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), and [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), and [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-210 note — a genuinely silent deprecation, unlike F-208's loud one:** the `priority` prop is deprecated in Next.js 16 in favor of `preload`, but real, direct testing (a real `next dev` console check and a full real `next build`) found ZERO warning anywhere for using the old prop — it just keeps working. Separately, `next.config.mjs`'s `remotePatterns`/`qualities` are real, hard-enforced allowlists at `/_next/image` (real `400`s captured before configuring them), while the `<Image>` component itself silently CLAMPS a disallowed `quality` instead of erroring. See the F-210 evidence section below.
 
 > **F-209 note — completes an open F-206 thread, plus an unplanned real finding:** F-206 found bot-blocking was scoped to `generateMetadata` but never actually tested a SLOW one. F-209 built one (a real 1200ms delay) and got the decisive contrast: normal requests stream content at +44ms; a `Twitterbot/1.0` request doesn't get response HEADERS until +1246ms. Separately, removing `metadataBase` did NOT produce the build error the docs describe — only a warning, plus a real WRONG fallback URL (`localhost:3000`) baked into static HTML. See the F-209 evidence section below.
 
@@ -79,6 +81,13 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/about/page.js` — a plain `title` string (proves template application) + a relative OG image (proves `metadataBase` resolution).
 - `app/products/[id]/page.js` — a real, artificially slow (1200ms) `generateMetadata`, `title.absolute`, `force-dynamic`.
 - `app/robots.js` + `app/sitemap.js` — real, code-generated `robots.txt`/`sitemap.xml`.
+
+**F-210 (added):**
+- `scripts/make-png.mjs` — a real, dependency-free PNG generator (Node's built-in `zlib` only) producing the two real, correctly-dimensioned demo images.
+- `app/images/profile.png` (400×300, static import) + `public/hero.png` (1200×630, local path) — real, generated images.
+- `app/media-optimization/page.js` — static-import, local-path, and remote `next/image` sources.
+- `app/layout.js` — `next/font/google` (`Geist`) self-hosting demo.
+- `next.config.mjs` — real `images.remotePatterns`/`images.qualities` configuration, added after this chapter's own real "before" failures were captured.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -583,14 +592,68 @@ $ curl -s http://localhost:5198/sitemap.xml
 
 Both routes showed `○` (Static) in the real build manifest, confirming this version's own docs' claim that they're a special, cached-by-default case of Route Handlers (F-207).
 
+## Captured evidence for F-210 (Image/Font Optimization & Core Web Vitals)
+
+### Three real image sources, real rendered `<img>` output
+
+```
+$ curl -s http://localhost:5198/media-optimization | grep -o "<img[^>]*>"
+<img alt="Static-imported profile" width="400" height="300" ... />
+<img alt="Local hero" loading="lazy" width="600" height="315" ... />
+<img alt="Remote unconfigured" loading="lazy" width="300" height="200" ... />
+```
+
+The static import got its `width="400" height="300"` read directly from the real, generated PNG — no props needed. The other two required explicit dimensions.
+
+### `remotePatterns`/`qualities`: real, exact 400s BEFORE configuration
+
+```
+$ curl -i "http://localhost:5198/_next/image?url=%2Fhero.png&w=1200&q=90"
+HTTP/1.1 400 Bad Request
+"q" parameter (quality) of 90 is not allowed
+
+$ curl -i "http://localhost:5198/_next/image?url=https%3A%2F%2Fhttpbin.org%2Fimage%2Fjpeg&w=640&q=75"
+HTTP/1.1 400 Bad Request
+"url" parameter is not allowed
+```
+
+Note the `<Image quality={90}>` component itself, rendered on the same page BEFORE this fix, showed `q=75` in its actual `src`/`srcSet` — silently clamped, never even attempting the disallowed value.
+
+### The same two requests, AFTER adding `images.remotePatterns`/`images.qualities`
+
+```
+$ curl -o /dev/null -w "HTTP %{http_code}\n" "http://localhost:5198/_next/image?url=%2Fhero.png&w=1200&q=90"
+HTTP 200
+
+$ curl -o /dev/null -w "HTTP %{http_code} content-type=%{content_type}\n" "http://localhost:5198/_next/image?url=https%3A%2F%2Fhttpbin.org%2Fimage%2Fjpeg&w=640&q=75"
+HTTP 200 content-type=image/jpeg
+```
+
+And the rendered `<Image quality={90}>` now genuinely shows `q=90` in its `src` — no more clamping, since `90` is now allowlisted.
+
+### `priority` vs. `preload`: a real, confirmed silent deprecation
+
+With the demo page's `preload` prop temporarily swapped for the deprecated `priority` prop: a real `next dev` browser console (`read_console_messages`) showed no mention of "priority" or "deprecated" anywhere; a full real `next build` likewise produced zero matching output. The prop still fully worked — a real `<link rel="preload" as="image">` was confirmed present via a direct DOM query. Reverted to `preload` immediately after capture.
+
+### `next/font`: a real, zero-Google-requests network trace
+
+A real `read_network_requests` call filtered to `google` against the live, production `/media-optimization` page returned **no matches**. The actual font file request:
+
+```
+GET http://localhost:5198/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2 → 200 OK
+```
+
+Same-origin, not `fonts.googleapis.com` or `fonts.gstatic.com`.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, and F-209's routes/files were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, and F-210's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-210: real, deliberate before/after `next.config.mjs` change (adding `images.remotePatterns`/`images.qualities`), with real `400` responses captured before and real `200` responses captured after, for both an unconfigured remote host and a disallowed image quality; a real `next dev` console check plus a full real `next build` confirmed zero deprecation warning for the `priority` prop, reverted to `preload` immediately after capture; a real `read_network_requests` trace confirmed zero requests to any Google domain for the self-hosted font.
 - F-209: reused `scripts/stream-observer.mjs` from F-206 for two real, contrasted traces (normal vs. `Twitterbot/1.0` User-Agent) against a genuinely slow `generateMetadata`, completing F-206's own earlier, only-partially-tested finding; a real, deliberate `metadataBase` removal and rebuild, capturing an unplanned warning-not-error finding and a real wrong URL baked into static HTML, `metadataBase` restored and re-verified immediately after capture.
 - F-208: real curl sequence proving Proxy's header injection, redirect, cookie-gated auth check, and `matcher` exclusion against a clean `next start` server; a real, live browser navigation confirming the `/legacy-about` redirect independently of curl; two real, deliberately contrasted `next build` attempts (a hard error inside `proxy.js`, a warning-only on an ordinary Route Handler) proving the precise Edge Runtime distinction, both reverted immediately after capture.
 - F-207: real `curl` sequence covering the full CRUD lifecycle (200/201/400/404/204) against a clean `next start` server; a real live mutation proving a `force-static` Route Handler freezes at build time; real automatic `405`/`OPTIONS` proof; two real external network calls (one via curl, one via a real browser button click) to the Backend-for-Frontend proxy demo, confirming genuinely fresh server-side calls each time.
