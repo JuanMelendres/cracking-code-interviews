@@ -304,6 +304,7 @@ Exercise 3: with `generateStaticParams` removed, any specific `/rendering-strate
 
 - [Data Fetching in the App Router: fetch Caching Semantics, revalidate, and cache: 'no-store'](nextjs-data-fetching-and-caching.md) — this chapter's prerequisite; its real timed and on-demand revalidation evidence IS this chapter's ISR proof, cited rather than re-derived.
 - [Caching Strategies and Invalidation](../system-design/caching-strategies-and-invalidation.md) — the backend-domain chapter this register topic is explicitly framed as a direct analogue of.
+- [Streaming & Suspense Boundaries in the App Router](nextjs-streaming-and-suspense.md) — the next chapter in sequence (F-206); builds on this chapter's WHEN-is-HTML-generated foundation to explain HOW different parts of one response can arrive at different times.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-205 of.
 
 ## Official References

@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201, F-202, F-203, F-204, F-205)
+# Next.js Fundamentals demo app (F-201–F-206)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), and [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), and [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-206 note:** verification for this chapter required a real chunk-timing observer script (`scripts/stream-observer.mjs`), not `curl`, per this Next.js version's own streaming docs — `curl`'s own buffering can hide real streaming behavior. Run it against a real `next start` server: `node scripts/stream-observer.mjs <url> [User-Agent]`.
 
 > **F-205 note:** deliberately does NOT re-demonstrate ISR — F-204's `app/data-fetching/revalidate/page.js` already proved that mechanism with a real timed test, and F-205's own chapter cites it directly rather than duplicating it. F-205's new evidence covers SSR (via `headers()`) and SSG (via `generateStaticParams`), the two rendering strategies F-204 didn't demonstrate.
 
@@ -48,6 +50,11 @@ Routes, all created purely by file location — no router config, no route regis
 **F-205 (added):**
 - `app/rendering-strategies/ssr/page.js` — reads `headers()` (a Request-time API), forcing genuine per-request SSR.
 - `app/rendering-strategies/ssg/[id]/page.js` — `generateStaticParams()` returning `["1", "2"]`, real SSG for those two ids; any other id (e.g. `999`) is generated on first real request, then cached (ISR-style fallback for unlisted params).
+
+**F-206 (added):**
+- `app/streaming/sibling-boundaries/page.js` — three sibling `<Suspense>` boundaries with genuinely different artificial delays (300ms, 1200ms, 2500ms).
+- `app/streaming/full-page/page.js` + `app/streaming/full-page/loading.js` — page-level streaming via the `loading.js` file convention.
+- `scripts/stream-observer.mjs` — a real chunk-timing observer script (fetch + `ReadableStream` reader), per this Next.js version's own recommended verification method.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -290,13 +297,55 @@ Real captured `curl` results, extracting the rendered build/generation timestamp
 
 `id=1` (explicitly returned by `generateStaticParams`) shows the SAME timestamp across requests — real proof it was rendered exactly once, at build time, and served as fixed static HTML ever since. `id=999` (never listed) shows a DIFFERENT timestamp from `id=1` (generated later, on its own first real request — `dynamicParams` defaults to `true`) but an IDENTICAL timestamp across its own two requests — real proof it was generated once, on demand, then cached for subsequent requests, exactly the ISR-style fallback behavior for unlisted dynamic params.
 
+## Captured evidence for F-206 (streaming and Suspense)
+
+### Sibling Suspense boundaries resolve independently — real chunk timestamps
+
+`app/streaming/sibling-boundaries/page.js` wraps three async components (300ms, 1200ms, 2500ms artificial delays) in three separate `<Suspense>` boundaries. Real captured output from `node scripts/stream-observer.mjs http://localhost:5198/streaming/sibling-boundaries` against a clean `next start` server:
+
+```
+chunk 0 (+71ms)   bytes=8850  markers=["layout-mount-count","fast-fallback","medium-fallback","slow-fallback"]
+chunk 2 (+352ms)  bytes=950   markers=["fast-widget"]
+chunk 4 (+1252ms) bytes=126   markers=["medium-widget"]
+chunk 6 (+2552ms) bytes=136   markers=["slow-widget"]
+stream done at +2553ms
+```
+
+The static shell (all three fallbacks) arrived in the FIRST chunk, at 71ms. Each widget's real HTML then arrived as its OWN separate chunk, at a timestamp matching its own artificial delay almost exactly (352ms ≈ 300ms delay + startup, 1252ms ≈ 1200ms delay + startup, 2552ms ≈ 2500ms delay + startup) — direct proof each boundary streams independently. Total stream time (2553ms) is close to the SLOWEST widget's delay alone, not the SUM of all three (which would be ~4000ms) — proof the three async operations ran in parallel, not sequentially.
+
+### Page-level streaming with `loading.js` — real proof
+
+`app/streaming/full-page/page.js` has a sibling `loading.js`, with no explicit `<Suspense>` written in the page itself. Real captured output:
+
+```
+chunk 0 (+44ms)   bytes=8286  markers=["layout-mount-count","full-page-loading"]
+chunk 2 (+1542ms) bytes=1263  markers=["full-page-content"]
+stream done at +1543ms
+```
+
+The `loading.js` fallback (`full-page-loading`) arrived instantly at 44ms; the real page content (`full-page-content`) streamed in at 1542ms, matching its 1500ms artificial delay — confirming `loading.js`'s mere presence genuinely wraps the whole page in a real `<Suspense>` boundary, with no explicit import needed in the page component.
+
+### A real, unexpected finding: a bot User-Agent did NOT block streaming for this page
+
+Based on a surface reading of "Next.js detects [bots] and waits for `generateMetadata` to resolve before streaming," a bot request was expected to block until the full page finished, then arrive in one chunk. Real captured result, same sibling-boundaries page, with `User-Agent: Twitterbot/1.0`:
+
+```
+chunk 0 (+42ms)   markers=["fast-fallback","medium-fallback","slow-fallback"]
+chunk 2 (+340ms)  markers=["fast-widget"]
+chunk 4 (+1240ms) markers=["medium-widget"]
+chunk 6 (+2541ms) markers=["slow-widget"]
+```
+
+Essentially IDENTICAL staggered timing to the non-bot request — the content streamed normally, contradicting the naive "bots always get one blocking response" reading. Re-reading the docs precisely resolves this: the blocking behavior is scoped specifically to `generateMetadata` resolution, not general Suspense/streaming content — this app's pages use only the root layout's static, synchronous metadata, so there was nothing for the bot-detection path to actually block on. A genuine, verified correction of an easy-to-overread claim, not a contradiction of the documented behavior once read precisely.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, and F-205's routes were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, and F-206's routes were added.
+- F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
 - F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.
 - F-204: real `curl` requests (with precise real timestamps for the timed test) against a clean `next start` production server for all four fetch-caching strategies; a real deliberate build failure (an unreachable same-server API route during static prerendering), captured and fixed; a real browser click on a live `RevalidateButton` invoking a real Server Action.
 - F-205: real `curl` requests with distinct `User-Agent` headers against a clean `next start` production server to prove genuine per-request SSR; real extracted render timestamps to prove SSG's build-time-fixed content versus on-demand generation for an unlisted dynamic param.

@@ -35,7 +35,9 @@ export default function PersistentHeader() {
         <Link href="/data-fetching/revalidate">Fetch: revalidate(5)</Link> |{" "}
         <Link href="/rendering-strategies/ssr">SSR (headers)</Link> |{" "}
         <Link href="/rendering-strategies/ssg/1">SSG (id=1)</Link> |{" "}
-        <Link href="/rendering-strategies/ssg/999">SSG (id=999, unknown)</Link>
+        <Link href="/rendering-strategies/ssg/999">SSG (id=999, unknown)</Link> |{" "}
+        <Link href="/streaming/sibling-boundaries">Streaming: sibling boundaries</Link> |{" "}
+        <Link href="/streaming/full-page">Streaming: full-page loading.js</Link>
       </nav>
     </header>
   );
