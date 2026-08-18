@@ -1020,6 +1020,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-concurrent-rendering.md` (prerequisite, per the register's sequential convention) and `react-reconciliation-and-fiber.md` (the controlled-input re-render mechanism is a direct application of that chapter's reconciliation model).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/react-error-boundaries.md — F-115, ninth frontend chapter)
+- Continued the frontend register in sequence (F-115 is the next entry after F-114, no ambiguity, proceeded without an `AskUserQuestion` round).
+- `handbook/frontend/react-error-boundaries.md` (F-115: error boundaries & error handling strategy).
+- **Real React 19.2.8 + Vite 8.2.1 app** — `practice/frontend/react-error-handling/`, 3 demo components plus a real, from-scratch class-component `ErrorBoundary` (no library — error boundaries have no hook equivalent as of React 19). `npm run build` confirmed a clean production build.
+- **Real render-phase crash, caught, and recovered:** incrementing a counter to a threshold triggered a genuine `throw` during render; the boundary's fallback showed the exact error message, and clicking "Reset" (key-remount) produced a genuinely fresh, recovered instance at count 0.
+- **A real, measured blast-radius contrast between granular and shared boundaries:** crashing one widget under its own boundary left two sibling widgets fully intact (`B: OK`, `C: OK`); crashing the same widget under a single shared boundary replaced the ENTIRE row — the unaffected siblings were not merely hidden, they were not rendered at all.
+- **Real, observed proof that error boundaries do NOT catch event-handler errors:** a `throw` inside `onClick` never triggered the wrapping boundary's fallback — a sibling paragraph stayed mounted throughout, and only a global `window` `'error'` listener captured the error (`Uncaught Error: Thrown from onClick, not from render`), directly confirming it escaped React's error-boundary mechanism. Contrasted with a correct, locally `try`/`catch`-handled version in the same demo.
+- Caught and corrected a non-standard front-matter field (`official_references_note`) during drafting, per the same discipline applied in F-111 — the explanatory content was moved into prose in the Official References section instead.
+- Added a `react-error-handling` entry to `.claude/launch.json` (port 5191).
+- Cross-linked to `react-forms.md` (prerequisite) and `react-reconciliation-and-fiber.md` (the fiber-tree-walk and subtree-replacement mechanism this chapter's internals section builds on directly).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

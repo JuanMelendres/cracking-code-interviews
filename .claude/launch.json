@@ -48,6 +48,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-forms && npm run dev -- --port 5190 --strictPort"],
       "port": 5190
+    },
+    {
+      "name": "react-error-handling",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-error-handling && npm run dev -- --port 5191 --strictPort"],
+      "port": 5191
     }
   ]
 }
