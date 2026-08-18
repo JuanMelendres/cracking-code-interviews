@@ -58,6 +58,9 @@ __pycache__/
 # Node (frontend domain: practice/frontend/*)
 node_modules/
 dist/
+test-results/
+playwright-report/
+blob-report/
 
 # Claude Code local/personal settings (permissions etc.), not project content
 .claude/settings.local.json
