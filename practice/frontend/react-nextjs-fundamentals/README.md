@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-206)
+# Next.js Fundamentals demo app (F-201–F-207)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), and [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), and [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-207 note:** `lib/widgets-store.js` is module-level, in-memory state, shared across requests only because this app runs as a single long-lived `next start` Node process — the framework's own Route Handler docs warn this pattern breaks on a lambda-style host, where each request can land on a different instance with its own copy.
 
 > **F-206 note:** verification for this chapter required a real chunk-timing observer script (`scripts/stream-observer.mjs`), not `curl`, per this Next.js version's own streaming docs — `curl`'s own buffering can hide real streaming behavior. Run it against a real `next start` server: `node scripts/stream-observer.mjs <url> [User-Agent]`.
 
@@ -55,6 +57,15 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/streaming/sibling-boundaries/page.js` — three sibling `<Suspense>` boundaries with genuinely different artificial delays (300ms, 1200ms, 2500ms).
 - `app/streaming/full-page/page.js` + `app/streaming/full-page/loading.js` — page-level streaming via the `loading.js` file convention.
 - `scripts/stream-observer.mjs` — a real chunk-timing observer script (fetch + `ReadableStream` reader), per this Next.js version's own recommended verification method.
+
+**F-207 (added):**
+- `lib/widgets-store.js` — in-memory data source shared across requests within this one server process.
+- `app/api/widgets/route.js` — `GET` (list, uncached) + `POST` (create, real 400 validation, 201 with `Location` header).
+- `app/api/widgets/[id]/route.js` — `GET`/`PATCH`/`DELETE` on a dynamic segment, real 200/404/204 outcomes.
+- `app/api/widgets/cached-count/route.js` — `export const dynamic = 'force-static'`, the real build-time-freeze demo.
+- `app/api/uuid-proxy/route.js` — a real Backend-for-Frontend proxy, server-side call to `httpbin.org/uuid`, reshaped before returning.
+- `app/api/echo/route.js` — `NextRequest.nextUrl` search params + header access.
+- `app/api-demo/page.js` + `app/api-demo/WidgetsClient.js` — a real Client Component driving all of the above via browser `fetch()`.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -338,14 +349,85 @@ chunk 6 (+2541ms) markers=["slow-widget"]
 
 Essentially IDENTICAL staggered timing to the non-bot request — the content streamed normally, contradicting the naive "bots always get one blocking response" reading. Re-reading the docs precisely resolves this: the blocking behavior is scoped specifically to `generateMetadata` resolution, not general Suspense/streaming content — this app's pages use only the root layout's static, synchronous metadata, so there was nothing for the bot-detection path to actually block on. A genuine, verified correction of an easy-to-overread claim, not a contradiction of the documented behavior once read precisely.
 
+## Captured evidence for F-207 (Route Handlers)
+
+### Route manifest: Route Handlers not cached by default, one explicit opt-in
+
+Real `npm run build` output, re-run after F-207's `app/api/*` routes were added:
+
+```
+├ ƒ /api/echo
+├ ƒ /api/uuid-proxy
+├ ƒ /api/widgets
+├ ƒ /api/widgets/[id]
+├ ○ /api/widgets/cached-count
+```
+
+Every handler shows `ƒ` (Dynamic — not cached) except `cached-count`, which carries `export const dynamic = 'force-static'` and shows `○` — the SAME marker this app's pages use for static rendering, confirming Route Handlers share one static/dynamic classification system with pages, not a separate one.
+
+### A real, live proof that a cached Route Handler freezes at build time
+
+Real `curl` sequence against a clean `next start` server:
+
+```
+$ curl http://localhost:5198/api/widgets/cached-count
+{"count":2,"note":"captured at build time"}
+
+$ curl -X POST http://localhost:5198/api/widgets -H "Content-Type: application/json" -d '{"name":"Screwdriver","qty":8}'
+{"id":"3","name":"Screwdriver","qty":8}      # 201, Location: /api/widgets/3
+
+$ curl http://localhost:5198/api/widgets
+[{"id":"1","name":"Wrench","qty":12},{"id":"2","name":"Hammer","qty":5},{"id":"3","name":"Screwdriver","qty":8}]
+
+$ curl http://localhost:5198/api/widgets/cached-count
+{"count":2,"note":"captured at build time"}   # STILL 2 -- frozen at build time, ignoring the mutation above
+```
+
+### Full real CRUD cycle over the `[id]` dynamic segment
+
+```
+GET  /api/widgets/1    -> 200 {"id":"1","name":"Wrench","qty":12}
+GET  /api/widgets/999  -> 404 {"error":"No widget with id 999"}
+PATCH /api/widgets/1   -> 200 {"id":"1","name":"Wrench","qty":99}   (body: {"qty":99})
+DELETE /api/widgets/2  -> 204 (empty body)
+POST /api/widgets      -> 400 {"error":"Body must include a non-empty string 'name' and a numeric 'qty'"}   (body: {"qty":3}, missing name)
+```
+
+### Automatic `405` and `OPTIONS` — no code written for either
+
+```
+$ curl -i -X PUT http://localhost:5198/api/widgets
+HTTP/1.1 405 Method Not Allowed
+
+$ curl -i -X OPTIONS http://localhost:5198/api/widgets
+HTTP/1.1 204 No Content
+allow: GET, HEAD, OPTIONS, POST
+```
+
+`app/api/widgets/route.js` exports only `GET` and `POST` — the `405` for `PUT` and the accurate `Allow` header for `OPTIONS` are both entirely framework-generated.
+
+### Backend-for-Frontend proxy: two real, genuinely different external calls
+
+```
+$ curl http://localhost:5198/api/uuid-proxy
+{"correlationId":"a530720b-02f1-45a9-808e-fe78b3ce81ac","source":"httpbin.org/uuid","reshapedBy":"app/api/uuid-proxy/route.js"}
+```
+
+A second call, this time triggered by a real button click in the live `/api-demo` browser session (not curl), returned a genuinely different `correlationId` (`6602717a-107e-4d7b-adeb-89cb9e653dc9`) — confirming a fresh real server-side call to `httpbin.org` on each client-initiated request, matching the handler's explicit `cache: 'no-store'`.
+
+### Real browser session: a Client Component driving Route Handlers end to end
+
+Live session at `/api-demo`: submitted the add-widget form (name "Pliers", qty 4) — a real `POST /api/widgets` from the browser — and confirmed the new widget appeared in the list (live count 3) while `cached-count` stayed at its frozen build-time value of 2, matching the curl evidence above exactly.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, and F-206's routes were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, and F-207's routes were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-207: real `curl` sequence covering the full CRUD lifecycle (200/201/400/404/204) against a clean `next start` server; a real live mutation proving a `force-static` Route Handler freezes at build time; real automatic `405`/`OPTIONS` proof; two real external network calls (one via curl, one via a real browser button click) to the Backend-for-Frontend proxy demo, confirming genuinely fresh server-side calls each time.
 - F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.
 - F-204: real `curl` requests (with precise real timestamps for the timed test) against a clean `next start` production server for all four fetch-caching strategies; a real deliberate build failure (an unreachable same-server API route during static prerendering), captured and fixed; a real browser click on a live `RevalidateButton` invoking a real Server Action.
 - F-205: real `curl` requests with distinct `User-Agent` headers against a clean `next start` production server to prove genuine per-request SSR; real extracted render timestamps to prove SSG's build-time-fixed content versus on-demand generation for an unlisted dynamic param.
