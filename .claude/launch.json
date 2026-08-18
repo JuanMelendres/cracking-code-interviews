@@ -60,6 +60,12 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": ["-c", "cd practice/frontend/react-accessibility && npm run dev -- --port 5192 --strictPort"],
       "port": 5192
+    },
+    {
+      "name": "react-performance",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd practice/frontend/react-performance && npm run dev -- --port 5193 --strictPort"],
+      "port": 5193
     }
   ]
 }

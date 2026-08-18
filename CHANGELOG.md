@@ -1043,6 +1043,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-error-boundaries.md` (prerequisite) and `react-forms.md` (this chapter's ARIA form-error demo directly extends that chapter's validation-timing material).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/react-performance.md — F-117, eleventh frontend chapter)
+- Continued the frontend register in sequence (F-117 is the next entry after F-116, no ambiguity, proceeded without an `AskUserQuestion` round). Returns to Advanced tier.
+- `handbook/frontend/react-performance.md` (F-117: profiling with React DevTools, memoization strategy, virtualization for large lists, code-splitting with `React.lazy`).
+- **Real React 19.2.8 + Vite 8.2.1 app** — `practice/frontend/react-performance/`, 3 demo components. `npm run build` confirmed a clean production build with a genuinely separate `HeavyPanel-....js` chunk.
+- **Real, measured DOM-node-count contrast for virtualization:** a from-scratch windowed list (no library) over the same 5,000-item array as a naive full-render list — direct DOM querying confirmed exactly `5000` row nodes naive vs. `15` virtualized. Scrolling to `scrollTop=2000` and re-querying confirmed the count stayed `15` but the rendered rows shifted to `Row 68`-`Row 82`, proving a genuine moving window, not a fixed first-N cap.
+- **Real, reproduced case of `React.memo` silently failing:** an inline object prop caused a memoized child's render count to keep climbing across repeated unrelated parent updates (2 → 4 → ... → 10); the identical setup with the prop stabilized via `useMemo` kept the child's render count frozen at 2 the entire time.
+- **Real code-splitting, verified two independent ways:** `npm run build` output showed `HeavyPanel` as its own separate chunk file; a live network trace confirmed zero request for `HeavyPanel.jsx` before a button click and a real `GET .../HeavyPanel.jsx → 200 OK` immediately after.
+- Added a `react-performance` entry to `.claude/launch.json` (port 5193).
+- Cross-linked to `react-accessibility.md` (prerequisite) and `react-concurrent-rendering.md` (the `use()`/Suspense mechanism `React.lazy` builds on directly).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
