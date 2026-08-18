@@ -1090,6 +1090,19 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-typescript.md` and `react-usememo-usecallback-and-usecontext.md` (prerequisites).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/nextjs-fundamentals.md — F-201, fifteenth frontend chapter, opens D-F2)
+- Continued the frontend register in sequence (F-201 is the next entry after F-120, no ambiguity, proceeded without an `AskUserQuestion` round). This opens the D-F2 Next.js section of the register.
+- `handbook/frontend/nextjs-fundamentals.md` (F-201: Next.js's role — file-based routing, why a meta-framework over plain React/Vite).
+- **Real Next.js 16.3.1 App Router app** — `practice/frontend/react-nextjs-fundamentals/`, four routes (`/`, `/about`, `/blog/[slug]`, plus the root layout) created purely by file location, zero router configuration.
+- This Next.js version shipped after this assistant's training cutoff: before writing any route code, `node_modules/next/dist/docs/01-app/01-getting-started/03-layouts-and-pages.md` (the version's own bundled docs, flagged via its auto-generated `AGENTS.md`) was read directly to confirm current App Router conventions — notably that `params` in a dynamic route is a `Promise` requiring `await`, not a plain object.
+- **Real captured route manifest:** `npm run build` produced a real `next build` route table (`○ /`, `○ /about`, `ƒ /blog/[slug]`) derived purely from file locations in `app/`, with no router import or route registration anywhere in the project.
+- **Real, measured layout-persistence evidence:** a `useRef`-based mount counter inside the root layout's `PersistentHeader.js` stayed unchanged across three real `<Link>`-driven navigations (Home → About → Blog), while each page's own content changed on every transition.
+- **Real Navigation Timing API confirmation:** `performance.getEntriesByType('navigation').length === 1` after three page transitions, confirming those transitions were genuinely client-side, not disguised full reloads.
+- **Real dynamic-segment resolution:** the same `app/blog/[slug]/page.js` file correctly resolved two different real URLs (`/blog/hello-world` → `params.slug = "hello-world"`, `/blog/file-based-routing` → `params.slug = "file-based-routing"`).
+- Added a `react-nextjs-fundamentals` entry to `.claude/launch.json` (port 5198).
+- Cross-linked to `react-state-management.md` (prerequisite, closes D-F1).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
