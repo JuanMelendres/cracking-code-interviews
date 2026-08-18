@@ -27,7 +27,8 @@ export default function PersistentHeader() {
         <Link href="/blog/file-based-routing">Blog: file-based-routing</Link> |{" "}
         <Link href="/dashboard">Dashboard</Link> |{" "}
         <Link href="/dashboard/settings">Dashboard settings</Link> |{" "}
-        <Link href="/pricing">Pricing (route group)</Link>
+        <Link href="/pricing">Pricing (route group)</Link> |{" "}
+        <Link href="/server-vs-client">Server vs. Client</Link>
       </nav>
     </header>
   );

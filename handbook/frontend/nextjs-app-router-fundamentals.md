@@ -300,6 +300,7 @@ Exercise 3: with an invalid `_layout.js` filename, the framework doesn't recogni
 ## Additional Reading
 
 - [Next.js's Role: File-Based Routing and Why a Meta-Framework Over Plain React/Vite](nextjs-fundamentals.md) — this chapter's prerequisite; establishes file-based routing, the root layout's persistence guarantee, and dynamic segments, all extended here rather than re-derived.
+- [Server Components vs. Client Components: The Actual Boundary](nextjs-server-vs-client-components.md) — the next chapter in sequence (F-203), explaining precisely what runs where for the `page.js`/`layout.js` files this chapter wrote (all Server Components by default).
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-202 of.
 
 ## Official References

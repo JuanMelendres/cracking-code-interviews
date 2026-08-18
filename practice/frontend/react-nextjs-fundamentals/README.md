@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201, F-202)
+# Next.js Fundamentals demo app (F-201, F-202, F-203)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201) and [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202). Extended in place rather than scaffolding a second Next.js project, since F-202's nested-layout and route-group demos are a direct continuation of F-201's same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), and [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-203 note:** requires `.env.local` (gitignored, not committed) with `SERVER_SECRET_DEMO=SUPER_SECRET_VALUE_9f8e7d6c` for the Server-Component-secret demo to have a real value to read. Recreate it locally if cloning fresh — see the F-203 evidence section below for exactly what it proves.
 
 ## Run it
 
@@ -24,6 +26,11 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/dashboard/layout.js` + `app/dashboard/page.js` + `app/dashboard/settings/page.js` — a NESTED layout, three levels deep (root → dashboard → settings), scoped only to `/dashboard/*`.
 - `app/(marketing)/layout.js` + `app/(marketing)/pricing/page.js` — a ROUTE GROUP: the `(marketing)` folder scopes a layout without adding a URL segment.
 - `app/components/MountCounter.js` — the generic version of `PersistentHeader`'s counter, reused at every layout level so each one's persistence can be measured independently.
+
+**F-203 (added):**
+- `app/components/ServerSecretDemo.js` — a Server Component (no `"use client"`) reading a server-only env var directly.
+- `app/components/ClientCounter.js` — a Client Component (`"use client"`, `useState`, an `onClick` handler).
+- `app/server-vs-client/page.js` — renders both side by side.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -109,10 +116,55 @@ window.location.pathname === "/pricing"
 
 `app/(marketing)/pricing/page.js` lives on disk inside a `(marketing)` folder, but the real, live URL is `/pricing` — confirmed both by the browser's own `window.location.pathname` and by the `next build` route manifest above, which lists `/pricing` with no `/marketing` segment anywhere. `MarketingLayout` (the route group's own scoped layout) mounted correctly for this route, exactly like `DashboardLayout` does for its own group.
 
+## Captured evidence for F-203 (Server vs. Client Components)
+
+### A server-only secret's CODE never reaches the client bundle — but its rendered OUTPUT does
+
+`ServerSecretDemo.js` (a Server Component) reads `process.env.SERVER_SECRET_DEMO` and renders it directly. Real captured grep results against the actual `next build` output:
+
+```
+$ grep -c "SUPER_SECRET_VALUE_9f8e7d6c" .next/server/app/server-vs-client.html
+1
+
+$ grep -rl "SUPER_SECRET_VALUE_9f8e7d6c" .next/static/ | wc -l
+0    (0 matches across all 15 files under .next/static — every file a browser could ever fetch)
+```
+
+The secret's VALUE appears once, in the prerendered HTML this page actually sends to a browser — expected, since the Server Component is explicitly rendering it. But the secret string appears in ZERO of the files under `.next/static`, the directory containing every JS chunk a browser can ever request. This is the precise, real distinction: a Server Component's CODE (and any literal it references) never ships as JavaScript to the client, but its RENDERED OUTPUT does become part of the page — "server-only" describes where the code runs, not whether its output reaches the browser.
+
+### A Server Component using a hook is a real, caught build error
+
+`ServerSecretDemo.js` was edited to add `import { useState } from "react"` and call it, with no `"use client"` directive. Real captured `next build` output:
+
+```
+Error: You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+  Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+Import trace:
+  Server Component:
+    ./app/components/ServerSecretDemo.js
+    ./app/server-vs-client/page.js
+```
+
+Reverted immediately after capturing this. The boundary isn't a convention — it's enforced by the build.
+
+### An async Client Component: a real, version-specific finding
+
+This Next.js version (16.3.1) shipped after this assistant's training cutoff. Based on older React docs, marking a Client Component's function `async` was expected to be a `next build`-time error. Real result: `npm run build` **succeeded** with `ClientCounter` marked `async function ClientCounter()`. The actual restriction still exists, but is enforced at RUNTIME, not build time, in this version — a real browser session against the dev server captured:
+
+```
+Console error: <ClientCounter> is an async Client Component. Only Server Components can be
+async at the moment. This error is often caused by accidentally adding "use client" to a
+module that was originally written for the server.
+```
+
+Clicking the (visually rendered but broken) counter button triggered Next.js's real dev error overlay, pinpointing the exact `<ClientCounter />` line in `app/server-vs-client/page.js`. Reverted `ClientCounter` back to a synchronous function afterward; re-verified interactivity on a clean `next build` + `next start` production server (not dev mode, to rule out any HMR-related noise): clicking "+1" moved `Client count: 0` to `Client count: 1`, a genuine, working click-to-re-render cycle.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's routes were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's and F-203's routes were added.
+- F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.
