@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-208)
+# Next.js Fundamentals demo app (F-201–F-209)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), and [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), and [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-209 note — completes an open F-206 thread, plus an unplanned real finding:** F-206 found bot-blocking was scoped to `generateMetadata` but never actually tested a SLOW one. F-209 built one (a real 1200ms delay) and got the decisive contrast: normal requests stream content at +44ms; a `Twitterbot/1.0` request doesn't get response HEADERS until +1246ms. Separately, removing `metadataBase` did NOT produce the build error the docs describe — only a warning, plus a real WRONG fallback URL (`localhost:3000`) baked into static HTML. See the F-209 evidence section below.
 
 > **F-208 note — real, version-significant finding:** "Middleware" is deprecated as of Next.js 16; the current convention is `proxy.js` exporting a `proxy` function, and Proxy is hardcoded to the Node.js runtime (the Edge runtime is forbidden there outright — a real build error, not a warning). See the F-208 evidence section below for both real, contrasting captured build outputs.
 
@@ -71,6 +73,12 @@ Routes, all created purely by file location — no router config, no route regis
 
 **F-208 (added):**
 - `proxy.js` (project root) — the current, real `proxy.js`/`proxy` file convention (NOT `middleware.js`), with a header injection, a real redirect (`/legacy-about` → `/about`), a cookie-gated auth check on `/dashboard`, and a `matcher` excluding static assets.
+
+**F-209 (added):**
+- `app/layout.js` — `metadataBase`, `title.default`/`title.template`.
+- `app/about/page.js` — a plain `title` string (proves template application) + a relative OG image (proves `metadataBase` resolution).
+- `app/products/[id]/page.js` — a real, artificially slow (1200ms) `generateMetadata`, `title.absolute`, `force-dynamic`.
+- `app/robots.js` + `app/sitemap.js` — real, code-generated `robots.txt`/`sitemap.xml`.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -488,14 +496,102 @@ Attempt 2 — the SAME line added to `app/api/echo/route.js` (an ordinary Route 
 
 Two real WARNINGS only — the build succeeded, and the route still worked. Reverted immediately after capture. This precise contrast (hard error in Proxy specifically vs. a tolerated-but-warned-against option everywhere else) is the chapter's central, verified finding.
 
+## Captured evidence for F-209 (Metadata API & SEO)
+
+### `title` merging: three real, distinct rendered outcomes
+
+```
+$ curl -s http://localhost:5198/ | grep -o "<title>[^<]*</title>"
+<title>React + Next.js Fundamentals — F-201</title>
+
+$ curl -s http://localhost:5198/about | grep -o "<title>[^<]*</title>"
+<title>About | Next.js Fundamentals Demo</title>
+
+$ curl -s http://localhost:5198/products/1 | grep -o "<title>[^<]*</title>"
+<title>Product 1 (absolute, no template)</title>
+```
+
+Home (no `title` of its own) gets `title.default` verbatim; About (`title: "About"`) gets the root layout's `title.template` applied; the product page (`title: { absolute: ... }`) bypasses the template entirely.
+
+### `metadataBase`: a real, correct resolution
+
+```
+$ curl -s http://localhost:5198/about | grep -o "<meta property=\"og:image\"[^>]*>"
+<meta property="og:image" content="http://localhost:5198/og/about.png"/>
+```
+
+### The unplanned finding: removing `metadataBase` is a real WARNING, not a build error — with a real, wrong fallback
+
+With `metadataBase` temporarily removed from `app/layout.js`:
+
+```
+$ npm run build
+...
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+✓ Compiled successfully
+```
+
+The build SUCCEEDED. The About page's actual baked static HTML:
+
+```
+$ grep -o "<meta property=\"og:image\"[^>]*>" .next/server/app/about.html
+<meta property="og:image" content="http://localhost:3000/og/about.png"/>
+```
+
+`localhost:3000` — the WRONG port for this app (which runs on 5198) — silently baked into production HTML, with no build failure. `metadataBase` restored and re-verified immediately after capture (see the correct-resolution output above).
+
+### The central finding: two real, contrasted chunk-timing traces, completing F-206's earlier open thread
+
+`app/products/[id]/page.js` has a real, artificial 1200ms delay inside `generateMetadata`. Real `node scripts/stream-observer.mjs` output against a clean `next start` server:
+
+```
+$ node scripts/stream-observer.mjs http://localhost:5198/products/2 "Mozilla/5.0 NormalBrowser/1.0"
+fetch() returned headers at +43ms
+chunk 0 (+44ms) bytes=7821 markers=["layout-mount-count","product-body"]
+chunk 1 (+1243ms) bytes=1275 markers=[]
+chunk 2 (+1244ms) bytes=1923 markers=[]
+stream done at +1244ms
+
+$ node scripts/stream-observer.mjs http://localhost:5198/products/2 "Twitterbot/1.0"
+fetch() returned headers at +1246ms
+chunk 0 (+1247ms) bytes=9483 markers=["layout-mount-count","product-body"]
+stream done at +1247ms
+```
+
+The normal request's page content streamed at +44ms, well before the 1200ms metadata delay resolved (the metadata-bearing chunks followed at +1243ms). The bot request didn't even receive response HEADERS until +1246ms — the entire response, content included, was held back until `generateMetadata` finished. This is the real, decisive test F-206 could only gesture at with static metadata.
+
+### `robots.js`/`sitemap.js`: real, generated output
+
+```
+$ curl -s http://localhost:5198/robots.txt
+User-Agent: *
+Allow: /
+Disallow: /dashboard/
+
+Sitemap: http://localhost:5198/sitemap.xml
+
+$ curl -s http://localhost:5198/sitemap.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://localhost:5198/</loc>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+...
+```
+
+Both routes showed `○` (Static) in the real build manifest, confirming this version's own docs' claim that they're a special, cached-by-default case of Route Handlers (F-207).
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, and F-208's routes/files were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, and F-209's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-209: reused `scripts/stream-observer.mjs` from F-206 for two real, contrasted traces (normal vs. `Twitterbot/1.0` User-Agent) against a genuinely slow `generateMetadata`, completing F-206's own earlier, only-partially-tested finding; a real, deliberate `metadataBase` removal and rebuild, capturing an unplanned warning-not-error finding and a real wrong URL baked into static HTML, `metadataBase` restored and re-verified immediately after capture.
 - F-208: real curl sequence proving Proxy's header injection, redirect, cookie-gated auth check, and `matcher` exclusion against a clean `next start` server; a real, live browser navigation confirming the `/legacy-about` redirect independently of curl; two real, deliberately contrasted `next build` attempts (a hard error inside `proxy.js`, a warning-only on an ordinary Route Handler) proving the precise Edge Runtime distinction, both reverted immediately after capture.
 - F-207: real `curl` sequence covering the full CRUD lifecycle (200/201/400/404/204) against a clean `next start` server; a real live mutation proving a `force-static` Route Handler freezes at build time; real automatic `405`/`OPTIONS` proof; two real external network calls (one via curl, one via a real browser button click) to the Backend-for-Frontend proxy demo, confirming genuinely fresh server-side calls each time.
 - F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.

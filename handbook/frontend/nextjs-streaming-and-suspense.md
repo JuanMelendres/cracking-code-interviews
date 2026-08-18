@@ -304,6 +304,7 @@ Exercise 3: adding an inner `<Suspense>` boundary inside a page ALREADY wrapped 
 - [Rendering Strategies: SSR, SSG, and ISR](nextjs-rendering-strategies.md) — this chapter's prerequisite; establishes WHEN a page's HTML is generated, which this chapter builds on to explain HOW different parts of that HTML can arrive at different times within a single response.
 - [Concurrent React: Transitions, Deferred Values, and Suspense for Data](react-concurrent-rendering.md) — the client-side `use()`/Suspense mechanics this chapter's server-side streaming builds on and connects to directly.
 - [Route Handlers: Building a Backend-for-Frontend Layer in Next.js](nextjs-route-handlers.md) — the next chapter in sequence (F-207); opens a new thread within D-F2, moving from how a single page's response streams to how this same app can serve its own public HTTP API.
+- [The Metadata API and SEO Fundamentals in Next.js](nextjs-metadata-api-and-seo.md) — F-209; completes this chapter's own bot-blocking finding, which this chapter's demos (static metadata only) could only partially exercise, with a genuinely slow, dynamic `generateMetadata` case.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-206 of.
 
 ## Official References

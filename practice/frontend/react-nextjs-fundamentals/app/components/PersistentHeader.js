@@ -39,7 +39,8 @@ export default function PersistentHeader() {
         <Link href="/streaming/sibling-boundaries">Streaming: sibling boundaries</Link> |{" "}
         <Link href="/streaming/full-page">Streaming: full-page loading.js</Link> |{" "}
         <Link href="/api-demo">Route Handlers (API demo)</Link> |{" "}
-        <Link href="/legacy-about">Legacy About (Proxy redirect)</Link>
+        <Link href="/legacy-about">Legacy About (Proxy redirect)</Link> |{" "}
+        <Link href="/products/1">Product 1 (generateMetadata)</Link>
       </nav>
     </header>
   );
