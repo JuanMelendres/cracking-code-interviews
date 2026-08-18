@@ -1067,6 +1067,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-forms.md` (prerequisite) and `../testing/test-strategy-and-test-doubles.md` (the backend chapter this one directly parallels, per the register's own note).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/react-typescript.md — F-119, thirteenth frontend chapter)
+- Continued the frontend register in sequence (F-119 is the next entry after F-118, no ambiguity, proceeded without an `AskUserQuestion` round).
+- `handbook/frontend/react-typescript.md` (F-119: typing props/state/hooks, generic components, discriminated unions for variant props).
+- **Real React 19.2.8 + Vite 8.2.1 + TypeScript app** — `practice/frontend/react-typescript/`, `npm run build` runs a real `tsc -b` compile check (not just a bundler pass) before `vite build`.
+- **Real captured discriminated-union error:** an `'error'`-variant `<Alert>` usage with `onRetry` deliberately omitted produced a real `error TS2322: ... Property 'onRetry' is missing in type '{ variant: "error"; message: string; }' but required in type '{ variant: "error"; message: string; onRetry: () => void; }'` — reverted after capture.
+- **Real captured generic cross-prop inference error:** mistyping `renderItem`'s parameter as `number` while `items` stayed `Task[]` produced a real two-part error (`Type 'Task[]' is not assignable to type 'number[]'`, `Property 'id' does not exist on type 'number'`), proving `T` is unified and checked across all three of `List<T>`'s props at one call site — reverted after capture.
+- **Real captured exhaustiveness-checking error:** adding a `{ type: 'double' }` member to `CounterAction` with no matching `case` in `counterReducer`'s switch produced a real `error TS2345: Argument of type '{ type: "double"; }' is not assignable to parameter of type 'never'` at the `assertNever(action)` default branch — reverted after capture.
+- Live browser check confirmed the exhaustiveness-checked `useReducer` genuinely runs at runtime (`Count: 0` → `Count: 1` on click) and all three real `Alert` variants render with correct classes/text.
+- Added a `react-typescript` entry to `.claude/launch.json` (port 5196).
+- Cross-linked to `react-testing.md` (prerequisite).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
