@@ -1103,6 +1103,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `react-state-management.md` (prerequisite, closes D-F1).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/frontend/nextjs-app-router-fundamentals.md — F-202, sixteenth frontend chapter)
+- Continued the frontend register in sequence (F-202 is the next entry after F-201, no ambiguity, proceeded without an `AskUserQuestion` round).
+- `handbook/frontend/nextjs-app-router-fundamentals.md` (F-202: App Router fundamentals — layouts, pages, nested routing, route groups).
+- **Extended the SAME real Next.js 16.3.1 app from F-201** (`practice/frontend/react-nextjs-fundamentals/`) in place rather than scaffolding a second project — added `app/dashboard/layout.js` (a nested layout, 3 levels deep with `app/dashboard/page.js` and `app/dashboard/settings/page.js`) and `app/(marketing)/layout.js` + `app/(marketing)/pricing/page.js` (a route group), plus a generic `MountCounter.js` reused at every layout level.
+- **Real, measured two-level layout-persistence evidence:** navigating `/dashboard` → `/dashboard/settings` left BOTH the root layout's AND the nested `DashboardLayout`'s mount counters unchanged.
+- **Real, measured layout-unmounting evidence:** navigating `/dashboard/settings` → `/about` made `document.querySelector('[data-testid="dashboard-layout"]')` go from a real DOM element to `null` — a direct DOM-presence proof of genuine unmounting, not inferred from a counter alone. Navigating back to `/dashboard` showed it remounted.
+- **Real route-group evidence, confirmed two independent ways:** `window.location.pathname === "/pricing"` in a live session, and a real re-run `next build` route manifest listing `/pricing` (not `/marketing/pricing`) for `app/(marketing)/pricing/page.js`, with `MarketingLayout` correctly applying.
+- Updated `react-nextjs-fundamentals`'s own README.md (shared by F-201 and F-202) with the new captured evidence sections; no `.claude/launch.json` change needed (same app, same port 5198).
+- Cross-linked to `nextjs-fundamentals.md` (prerequisite); added a forward cross-link from `nextjs-fundamentals.md`'s Additional Reading to this chapter.
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

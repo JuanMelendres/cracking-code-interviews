@@ -24,7 +24,10 @@ export default function PersistentHeader() {
       <nav>
         <Link href="/">Home</Link> | <Link href="/about">About</Link> |{" "}
         <Link href="/blog/hello-world">Blog: hello-world</Link> |{" "}
-        <Link href="/blog/file-based-routing">Blog: file-based-routing</Link>
+        <Link href="/blog/file-based-routing">Blog: file-based-routing</Link> |{" "}
+        <Link href="/dashboard">Dashboard</Link> |{" "}
+        <Link href="/dashboard/settings">Dashboard settings</Link> |{" "}
+        <Link href="/pricing">Pricing (route group)</Link>
       </nav>
     </header>
   );

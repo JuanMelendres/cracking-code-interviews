@@ -313,6 +313,7 @@ Exercise 3: the real logged value would be `"object"` — specifically, a `Promi
 ## Additional Reading
 
 - [React State Management Landscape: Context vs. Redux Toolkit vs. Zustand vs. Server State](react-state-management.md) — this chapter's prerequisite, closing the D-F1 React Fundamentals section this Next.js chapter now builds on.
+- [Next.js App Router Fundamentals: Nested Layouts and Route Groups](nextjs-app-router-fundamentals.md) — the next chapter in sequence (F-202), extending this same demo app with nested-layout scoping and route groups.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-201 of, and the opening chapter of the D-F2 Next.js section.
 
 ## Official References
