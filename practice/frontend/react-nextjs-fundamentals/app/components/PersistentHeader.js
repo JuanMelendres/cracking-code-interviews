@@ -32,7 +32,10 @@ export default function PersistentHeader() {
         <Link href="/data-fetching/default">Fetch: default</Link> |{" "}
         <Link href="/data-fetching/no-store">Fetch: no-store</Link> |{" "}
         <Link href="/data-fetching/force-cache">Fetch: force-cache</Link> |{" "}
-        <Link href="/data-fetching/revalidate">Fetch: revalidate(5)</Link>
+        <Link href="/data-fetching/revalidate">Fetch: revalidate(5)</Link> |{" "}
+        <Link href="/rendering-strategies/ssr">SSR (headers)</Link> |{" "}
+        <Link href="/rendering-strategies/ssg/1">SSG (id=1)</Link> |{" "}
+        <Link href="/rendering-strategies/ssg/999">SSG (id=999, unknown)</Link>
       </nav>
     </header>
   );

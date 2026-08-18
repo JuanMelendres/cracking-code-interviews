@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201, F-202, F-203, F-204)
+# Next.js Fundamentals demo app (F-201, F-202, F-203, F-204, F-205)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), and [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), and [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-205 note:** deliberately does NOT re-demonstrate ISR — F-204's `app/data-fetching/revalidate/page.js` already proved that mechanism with a real timed test, and F-205's own chapter cites it directly rather than duplicating it. F-205's new evidence covers SSR (via `headers()`) and SSG (via `generateStaticParams`), the two rendering strategies F-204 didn't demonstrate.
 
 > **F-204 note:** this app's `next.config.mjs` does NOT set `cacheComponents: true`, so it runs under this Next.js version's "Previous Model" of caching (`fetch`'s own `cache`/`next.revalidate`/`next.tags` options) — confirmed by reading `node_modules/next/dist/docs/01-app/02-guides/caching-without-cache-components.md` directly, since this is exactly the API surface the register's F-204 topic names. Version 16 also ships an entirely different, opt-in "Cache Components" model (`"use cache"`, `cacheLife`, `cacheTag`) — out of scope for this chapter, briefly noted for context only.
 
@@ -42,6 +44,10 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/actions.js` — a real Server Action calling `revalidateTag`.
 - `app/components/RevalidateButton.js` — a real Client Component invoking that Server Action.
 - All four fetch demos target `https://httpbin.org/uuid`, a real public endpoint returning a fresh random UUID on every real HTTP call it receives — used as an external, always-reachable "upstream" so build-time prerendering (see below) doesn't hit a chicken-and-egg problem with this app's own dev/start server not being up yet.
+
+**F-205 (added):**
+- `app/rendering-strategies/ssr/page.js` — reads `headers()` (a Request-time API), forcing genuine per-request SSR.
+- `app/rendering-strategies/ssg/[id]/page.js` — `generateStaticParams()` returning `["1", "2"]`, real SSG for those two ids; any other id (e.g. `999`) is generated on first real request, then cached (ISR-style fallback for unlisted params).
 
 ## Captured evidence (real browser session + real build output)
 
@@ -238,12 +244,59 @@ Re-check:      28f09c9d-...   (stable again — freshly re-cached)
 
 On-demand revalidation via `revalidateTag` genuinely bypasses the time-based window entirely — the cached value changed the instant the Server Action ran, not on the next scheduled revalidation.
 
+## Captured evidence for F-205 (rendering strategies)
+
+### A third real build-manifest marker: `●` (SSG) distinct from `○` (Static) and `ƒ` (Dynamic)
+
+```
+Route (app)                         Revalidate  Expire
+├   /rendering-strategies/ssg/[id]
+│ ├ ● /rendering-strategies/ssg/1
+│ └ ● /rendering-strategies/ssg/2
+├ ƒ /rendering-strategies/ssr
+...
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+```
+
+The real build output itself distinguishes SSG (routes generated via `generateStaticParams`) from plain static prerendering — a third category this chapter's own evidence surfaced, not something asserted from documentation.
+
+### SSR: real proof the page re-renders fresh per request
+
+Real captured `curl` results against a clean `next start` production server, two requests with different `User-Agent` headers:
+
+```
+Request 1 (User-Agent: FakeBrowserOne/1.0):  rendered "FakeBrowserOne/1.0"
+Request 2 (User-Agent: FakeBrowserTwo/2.0):  rendered "FakeBrowserTwo/2.0"
+```
+
+The page rendered the ACTUAL header value sent with each individual request — direct proof this route is genuinely re-executed server-side per request (SSR), not served from any prerendered shell, exactly because `headers()` is a Request-time API.
+
+### SSG: real proof of build-time-fixed content, plus real on-demand fallback for unlisted params
+
+Real captured `curl` results, extracting the rendered build/generation timestamp:
+
+```
+/rendering-strategies/ssg/1 (listed in generateStaticParams), two requests:
+  2026-08-18T18:46:17.287Z
+  2026-08-18T18:46:17.287Z          <- identical, fixed at build time
+
+/rendering-strategies/ssg/999 (NOT listed), two requests:
+  2026-08-18T18:46:57.042Z
+  2026-08-18T18:46:57.042Z          <- identical to EACH OTHER, but different
+                                        from id=1's timestamp
+```
+
+`id=1` (explicitly returned by `generateStaticParams`) shows the SAME timestamp across requests — real proof it was rendered exactly once, at build time, and served as fixed static HTML ever since. `id=999` (never listed) shows a DIFFERENT timestamp from `id=1` (generated later, on its own first real request — `dynamicParams` defaults to `true`) but an IDENTICAL timestamp across its own two requests — real proof it was generated once, on demand, then cached for subsequent requests, exactly the ISR-style fallback behavior for unlisted dynamic params.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, and F-204's routes were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, and F-205's routes were added.
 - F-203: real `grep` against actual `.next/server` and `.next/static` build artifacts to prove the server-secret code/output distinction; two deliberate build/runtime breakages (a hook in a Server Component, an async Client Component), each captured and reverted; interactivity re-verified on a clean production `next build` + `next start` server.
 - F-204: real `curl` requests (with precise real timestamps for the timed test) against a clean `next start` production server for all four fetch-caching strategies; a real deliberate build failure (an unreachable same-server API route during static prerendering), captured and fixed; a real browser click on a live `RevalidateButton` invoking a real Server Action.
+- F-205: real `curl` requests with distinct `User-Agent` headers against a clean `next start` production server to prove genuine per-request SSR; real extracted render timestamps to prove SSG's build-time-fixed content versus on-demand generation for an unlisted dynamic param.

@@ -304,6 +304,7 @@ Exercise 3: clicking the button with a nonexistent tag would NOT change the `for
 
 - [Server Components vs. Client Components: The Actual Boundary](nextjs-server-vs-client-components.md) — this chapter's prerequisite; the Server Components covered there are exactly where the `fetch()` calls in this chapter's demos live.
 - [Caching Strategies and Invalidation](../system-design/caching-strategies-and-invalidation.md) — the backend-domain chapter covering the same time-based-vs-on-demand invalidation trade-off this chapter applies specifically to Next.js's `fetch` layer.
+- [Rendering Strategies: SSR, SSG, and ISR](nextjs-rendering-strategies.md) — the next chapter in sequence (F-205); its ISR evidence cites this chapter's real timed and on-demand revalidation proofs directly rather than re-deriving them.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-204 of.
 
 ## Official References
