@@ -307,6 +307,7 @@ Exercise 3: with `proxy.js` renamed away (e.g., to `proxy.js.bak`), a real `next
 
 - [Route Handlers: Building a Backend-for-Frontend Layer in Next.js](nextjs-route-handlers.md) — this chapter's prerequisite; establishes the Route Handler layer this chapter explicitly contrasts Proxy against (real business logic belongs there, not in Proxy).
 - [AuthN/AuthZ: RBAC vs. ABAC](../security/authn-authz-rbac-vs-abac.md) — the backend-domain chapter covering the AUTHORITATIVE authorization check this chapter's Proxy-level gate is explicitly scoped as only a fast, optimistic complement to, never a replacement for.
+- [Authentication Patterns in Next.js: DAL, JWT Sessions, and unauthorized()](nextjs-authentication-patterns.md) — the next chapter in sequence (F-211); upgrades this chapter's own naive `.has('session')` demo check to real JWT verification, with a reproduced, real proof of the gap it closes.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-208 of.
 
 ## Official References

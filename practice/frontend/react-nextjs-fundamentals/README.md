@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-210)
+# Next.js Fundamentals demo app (F-201–F-211)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), and [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), and [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-211 note — upgrades F-208's own demo, with a real reproduced bypass:** `proxy.js`'s original naive `.has('session')` check (F-208) is upgraded to real JWT signature verification. A real, deliberately tampered token was tested against BOTH versions: the naive check let it through (real `x-proxy-hit` header present); the DAL caught it anyway (redirect to `/login`, not Proxy's `/`) — real, reproduced proof of defense-in-depth. Separately, the experimental `unauthorized()` primitive was tested three ways (no flag / flag+streaming / flag+Route-Handler) with three genuinely different real outcomes for the actual HTTP status. See the F-211 evidence section below.
 
 > **F-210 note — a genuinely silent deprecation, unlike F-208's loud one:** the `priority` prop is deprecated in Next.js 16 in favor of `preload`, but real, direct testing (a real `next dev` console check and a full real `next build`) found ZERO warning anywhere for using the old prop — it just keeps working. Separately, `next.config.mjs`'s `remotePatterns`/`qualities` are real, hard-enforced allowlists at `/_next/image` (real `400`s captured before configuring them), while the `<Image>` component itself silently CLAMPS a disallowed `quality` instead of erroring. See the F-210 evidence section below.
 
@@ -88,6 +90,18 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/media-optimization/page.js` — static-import, local-path, and remote `next/image` sources.
 - `app/layout.js` — `next/font/google` (`Geist`) self-hosting demo.
 - `next.config.mjs` — real `images.remotePatterns`/`images.qualities` configuration, added after this chapter's own real "before" failures were captured.
+
+**F-211 (added):**
+- `lib/session.js` — real `jose`-based JWT sign/verify, `httpOnly` cookie creation/deletion.
+- `lib/dal.js` — `getSession()`/`verifySession()`, `cache()`-wrapped.
+- `app/actions/auth.js` — real `login`/`logout` Server Actions.
+- `app/login/page.js` + `LoginForm.js` — a real, working login form.
+- `app/dashboard/page.js` — upgraded to a real, DAL-protected Server Component (was a static placeholder since F-202).
+- `proxy.js` — upgraded from F-208's naive `.has('session')` check to real JWT verification.
+- `app/account/page.js` + `unauthorized.js` — the real, three-way-tested `unauthorized()`/`authInterrupts` demo.
+- `app/api/profile/route.js` — a real, DAL-protected Route Handler.
+- `scripts/gen-session-token.mjs` — mints a real, valid (and tamperable) token for reproducible curl testing.
+- `next.config.mjs` — added `experimental.authInterrupts: true`.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -645,14 +659,86 @@ GET http://localhost:5198/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.
 
 Same-origin, not `fonts.googleapis.com` or `fonts.gstatic.com`.
 
+## Captured evidence for F-211 (Authentication Patterns)
+
+### A real, working login/logout cycle in a live browser
+
+Submitted the real `/login` form (demo credentials `demo`/`correct-horse`, pre-filled) — genuinely redirected to `/dashboard`, rendering `Signed in as: user-42`. Clicking the real `Log out` button genuinely redirected to `/`, and `/dashboard` was inaccessible again afterward (real redirect back to `/`).
+
+### `httpOnly` proven directly — not just asserted
+
+In the SAME authenticated browser session:
+
+```js
+document.cookie
+// => ""
+```
+
+Empty, despite an active, real, server-verified session (the dashboard rendered signed-in content). Real, direct proof the `httpOnly` flag works.
+
+### The central finding: a real, reproduced Proxy-vs-DAL bypass
+
+A real, tamperable token minted via `scripts/gen-session-token.mjs` (same secret/algorithm as `lib/session.js`), with its last character flipped:
+
+```
+$ curl -o /dev/null -w "HTTP %{http_code}\n" -b "session=$TAMPERED" http://localhost:5198/dashboard
+```
+
+**With the upgraded Proxy (real JWT verification):** `HTTP 307`, `location: /` — rejected by Proxy itself.
+
+**With Proxy reverted, live, to F-208's original naive `.has('session')` check, rebuilt:**
+
+```
+HTTP/1.1 307 Temporary Redirect
+x-proxy-hit: true
+location: /login
+```
+
+`x-proxy-hit: true` proves Proxy let the tampered token through — the redirect (to `/login`, NOT Proxy's own `/`) came from the DASHBOARD PAGE's own `verifySession()` DAL call instead. Proxy restored to the upgraded, real-verification version immediately after capture.
+
+### `unauthorized()`: three real, distinct outcomes
+
+**No `authInterrupts` flag:** `/account` without a session cookie returns a real `200`, a generic React error digest, no `noindex` tag, and the custom `unauthorized.js` UI never renders (stuck on the Suspense fallback).
+
+**Flag enabled, Suspense-wrapped (`/account`):**
+
+```
+$ curl -s http://localhost:5198/account | grep -o "noindex\|NEXT_HTTP_ERROR_FALLBACK;401"
+NEXT_HTTP_ERROR_FALLBACK;401
+noindex
+$ curl -o /dev/null -w "HTTP %{http_code}\n" http://localhost:5198/account
+HTTP 200
+```
+
+Real digest, real `noindex` meta tag, real custom UI in the payload — but the real HTTP status stays `200` (streaming had already started).
+
+**Flag enabled, Route Handler (`/api/profile`, not streamed):**
+
+```
+$ curl -o /dev/null -w "HTTP %{http_code}\n" http://localhost:5198/api/profile
+HTTP 401
+```
+
+A genuine real `401`.
+
+### DAL-protected surfaces, all real
+
+```
+$ curl -b "session=$TOKEN" http://localhost:5198/api/profile
+{"userId":"user-42"}
+```
+
+Real `200` with real session data for a valid token; real `401` with none.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
 - Confirmed genuine client-side routing via `performance.getEntriesByType('navigation').length`.
 - Confirmed nested-layout unmounting via direct DOM node presence/absence (`querySelector` returning `null`), not inferred from a counter alone.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
-- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, and F-210's routes/files were added.
+- `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, F-210's, and F-211's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-211: a real, live browser login/logout cycle (`document.cookie` checked directly to confirm `httpOnly`); a real, reproduced Proxy-vs-DAL bypass test using a deliberately tampered, `jose`-signed token against both the upgraded and (temporarily reverted, then restored) naive Proxy check; a real, three-way `unauthorized()`/`authInterrupts` test (no flag, flag+streaming, flag+Route-Handler) with distinct captured HTTP statuses for each.
 - F-210: real, deliberate before/after `next.config.mjs` change (adding `images.remotePatterns`/`images.qualities`), with real `400` responses captured before and real `200` responses captured after, for both an unconfigured remote host and a disallowed image quality; a real `next dev` console check plus a full real `next build` confirmed zero deprecation warning for the `priority` prop, reverted to `preload` immediately after capture; a real `read_network_requests` trace confirmed zero requests to any Google domain for the self-hosted font.
 - F-209: reused `scripts/stream-observer.mjs` from F-206 for two real, contrasted traces (normal vs. `Twitterbot/1.0` User-Agent) against a genuinely slow `generateMetadata`, completing F-206's own earlier, only-partially-tested finding; a real, deliberate `metadataBase` removal and rebuild, capturing an unplanned warning-not-error finding and a real wrong URL baked into static HTML, `metadataBase` restored and re-verified immediately after capture.
 - F-208: real curl sequence proving Proxy's header injection, redirect, cookie-gated auth check, and `matcher` exclusion against a clean `next start` server; a real, live browser navigation confirming the `/legacy-about` redirect independently of curl; two real, deliberately contrasted `next build` attempts (a hard error inside `proxy.js`, a warning-only on an ordinary Route Handler) proving the precise Edge Runtime distinction, both reverted immediately after capture.

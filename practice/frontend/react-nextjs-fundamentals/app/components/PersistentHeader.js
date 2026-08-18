@@ -41,7 +41,9 @@ export default function PersistentHeader() {
         <Link href="/api-demo">Route Handlers (API demo)</Link> |{" "}
         <Link href="/legacy-about">Legacy About (Proxy redirect)</Link> |{" "}
         <Link href="/products/1">Product 1 (generateMetadata)</Link> |{" "}
-        <Link href="/media-optimization">Media Optimization (Image/Font)</Link>
+        <Link href="/media-optimization">Media Optimization (Image/Font)</Link> |{" "}
+        <Link href="/login">Login (F-211)</Link> |{" "}
+        <Link href="/account">Account (unauthorized())</Link>
       </nav>
     </header>
   );
