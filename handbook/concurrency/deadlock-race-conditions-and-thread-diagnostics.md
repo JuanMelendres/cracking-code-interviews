@@ -17,6 +17,7 @@ prerequisites:
   - java-memory-model-and-volatile.md
 related:
   - java-memory-model-and-volatile.md
+  - reentrantlock-readwritelock-and-stampedlock.md
   - ../../study-packs/week-09/03-deadlock-races-and-thread-diagnostics.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.management/java/lang/management/ThreadMXBean.html
@@ -484,6 +485,7 @@ Assuming this kind of bug is rare or unlikely to matter in practice.
 ## Additional Reading
 
 - [java.lang.management.ThreadMXBean documentation](https://docs.oracle.com/en/java/javase/21/docs/api/java.management/java/lang/management/ThreadMXBean.html)
+- [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) — `tryLock()`'s timeout is a real deadlock-avoidance tool this chapter's `synchronized`-based scenarios cannot use.
 
 ## Official References
 
