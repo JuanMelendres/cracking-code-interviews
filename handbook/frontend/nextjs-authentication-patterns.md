@@ -316,6 +316,7 @@ Exercise 3: a real check placed directly in a page's body (not inside a `<Suspen
 - [Route Handlers: Building a Backend-for-Frontend Layer in Next.js](nextjs-route-handlers.md) — this chapter's prerequisite; `/api/profile`'s real DAL protection extends F-207's Route Handler model directly.
 - [OAuth 2.0, OIDC, and JWT](../security/oauth2-oidc-and-jwt.md) — the backend-domain chapter covering the JWT/token mechanics this chapter applies specifically inside a Next.js session cookie.
 - [AuthN/AuthZ: RBAC vs. ABAC](../security/authn-authz-rbac-vs-abac.md) — the backend-domain chapter covering the authentication-vs-authorization distinction this chapter's Route Handler role-check exercise (Practice Exercise 1) makes concrete in a Next.js context.
+- [Server Actions and Mutations in Next.js: No API Layer, Real Progressive Enhancement](nextjs-server-actions-and-mutations.md) — the next chapter in sequence (F-212); reuses this chapter's DAL directly, and finds a real, disk-verified case where a Server Action's OWN auth check matters even when the page's own DAL redirect also fires.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-211 of.
 
 ## Official References

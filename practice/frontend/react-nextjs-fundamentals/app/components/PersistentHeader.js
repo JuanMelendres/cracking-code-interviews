@@ -43,7 +43,8 @@ export default function PersistentHeader() {
         <Link href="/products/1">Product 1 (generateMetadata)</Link> |{" "}
         <Link href="/media-optimization">Media Optimization (Image/Font)</Link> |{" "}
         <Link href="/login">Login (F-211)</Link> |{" "}
-        <Link href="/account">Account (unauthorized())</Link>
+        <Link href="/account">Account (unauthorized())</Link> |{" "}
+        <Link href="/notes">Notes (F-212: Server Actions)</Link>
       </nav>
     </header>
   );

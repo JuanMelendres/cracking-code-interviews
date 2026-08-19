@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-211)
+# Next.js Fundamentals demo app (F-201–F-212)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), and [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211), and [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../../../handbook/frontend/nextjs-server-actions-and-mutations.md) (F-212). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-212 note — a mutation can commit even while the visible response looks like a rejection:** with `app/notes/actions.js`'s `addNote` auth check temporarily removed (restored immediately after capture), an anonymous, no-cookie curl POST directly to `/notes` wrote a real row to `data/notes.json` — confirmed by reading the file directly — even though the HTTP response was a plain `307` to `/login`, indistinguishable from every other rejected request. Separately, two real, contrasted forms on the same page proved `useOptimistic`'s progressive-enhancement cost directly: a raw bound action reference (`deleteNote.bind(null, id)`) renders real, working hidden fields and survives a raw multipart curl POST with no JavaScript at all; the same kind of action wrapped in a closure (so `useOptimistic` could run first) rendered a dead `action="javascript:throw ..."` placeholder instead. A real, deliberately mismatched `Origin` header also confirmed the framework's own CSRF protection, with an exact captured server log message. This chapter's own production build attempt hit a real, external `httpbin.org` outage (503s) unrelated to any of this — it was blocking F-204/F-205's pre-existing routes, not F-212's own code, which compiled cleanly. See the F-212 evidence section below.
 
 > **F-211 note — upgrades F-208's own demo, with a real reproduced bypass:** `proxy.js`'s original naive `.has('session')` check (F-208) is upgraded to real JWT signature verification. A real, deliberately tampered token was tested against BOTH versions: the naive check let it through (real `x-proxy-hit` header present); the DAL caught it anyway (redirect to `/login`, not Proxy's `/`) — real, reproduced proof of defense-in-depth. Separately, the experimental `unauthorized()` primitive was tested three ways (no flag / flag+streaming / flag+Route-Handler) with three genuinely different real outcomes for the actual HTTP status. See the F-211 evidence section below.
 
@@ -24,8 +26,9 @@ Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamen
 
 ```bash
 npm install
-npm run dev    # app at http://localhost:5198
-npm run build  # real next build — captures the real route manifest below
+PORT=5198 npm run dev    # app at http://localhost:5198 -- PORT is not persisted anywhere; set it per run
+npm run build            # real next build — captures the real route manifest below
+npm start                # or: PORT=5198 npm start, for a production server
 ```
 
 > This Next.js version (16.3.1) shipped after this assistant's training cutoff. Before writing any route code, the bundled docs at `node_modules/next/dist/docs/01-app/01-getting-started/03-layouts-and-pages.md` were read directly (per the auto-generated `AGENTS.md` this project scaffolds) to confirm current App Router conventions — notably that `params` in a dynamic route is a `Promise` that must be `await`ed.
@@ -102,6 +105,13 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/api/profile/route.js` — a real, DAL-protected Route Handler.
 - `scripts/gen-session-token.mjs` — mints a real, valid (and tamperable) token for reproducible curl testing.
 - `next.config.mjs` — added `experimental.authInterrupts: true`.
+
+**F-212 (added):**
+- `lib/notes-store.js` — a real, disk-backed JSON file store (`data/notes.json`, gitignored, re-seeded on first read if absent) — survives a server restart, unlike F-207's in-memory `widgets-store.js`.
+- `app/notes/actions.js` — real `addNote`/`deleteNote` Server Actions, DAL-protected, `revalidatePath`-driven, no Route Handler involved.
+- `app/notes/page.js` — a DAL-protected Server Component reading the store directly (no `fetch()`).
+- `app/notes/NotesClient.js` — `useActionState` + `useOptimistic`, a bound per-item delete action.
+- `app/components/SubmitButton.js` — a real, reusable `useFormStatus` consumer.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -730,6 +740,122 @@ $ curl -b "session=$TOKEN" http://localhost:5198/api/profile
 
 Real `200` with real session data for a valid token; real `401` with none.
 
+## Captured evidence for F-212 (Server Actions and mutations)
+
+### The single-roundtrip response model — a real captured network trace
+
+Real `read_network_requests` output after clicking the live "Add note" button once (JavaScript enabled):
+
+```
+GET  http://localhost:5198/notes → 200 OK   (page load)
+GET  http://localhost:5198/notes → 200 OK   (page load, after login redirect)
+POST http://localhost:5198/notes → 200 OK   (the ONE mutation request -- no follow-up GET)
+```
+
+The real response body for that single POST contained BOTH the action's own return value:
+
+```
+1:{"ok":true}
+```
+
+AND a freshly re-rendered RSC tree for the SAME response, already showing the new note:
+
+```
+...{"notes":[{"id":"2","text":"Second note (seeded)","authorId":"user-42"},
+{"id":"1787146571567","text":"Browser-typed note for F-212","authorId":"user-42"}],"userId":"user-42"}...
+```
+
+No client-side refetch was ever written for this to work — React commits the second payload as a seeded navigation.
+
+### Render-time gating is not authorization — a real, disk-verified bypass
+
+With `addNote`'s own `if (!session?.userId) return {error: ...}` check ACTIVE, an anonymous curl POST (no session cookie, built from the real hidden-field format a bound action reference renders) got a real `307` to `/login`, and `data/notes.json` was confirmed unchanged.
+
+With that check TEMPORARILY REMOVED (restored immediately after capture):
+
+```
+$ curl -s -i -F '$ACTION_REF_5=' -F '$ACTION_5:0={"id":"...","bound":"$@1"}' \
+       -F '$ACTION_5:1=[{"error":null,"ok":false}]' \
+       -F 'text=REAL BYPASS -- written with no session' \
+       http://localhost:5198/notes
+HTTP/1.1 307 Temporary Redirect
+```
+
+Same response shape as a normal rejection — but `data/notes.json`, read directly, gained a real new row:
+
+```json
+{ "id": "1787146688158", "text": "REAL BYPASS -- written with no session", "authorId": "anonymous-bypass-test" }
+```
+
+The write happens inside `addNote` itself; the `307` comes from a SEPARATE, later step — the page's own `verifySession()` running as part of the mandatory post-action re-render. The write already committed before that redirect fired. Both files restored immediately after capture; the bypass-test row removed from `data/notes.json` afterward.
+
+### The framework's own CSRF protection — a real captured rejection, with the exact log line
+
+```
+$ curl -s -i -H "Origin: https://evil.example.com" \
+       -F '$ACTION_REF_1=' -F '$ACTION_1:0={"id":"...","bound":"$@1"}' -F '$ACTION_1:1=["2"]' \
+       -b "session=$TOKEN" http://localhost:5198/notes
+HTTP/1.1 500 Internal Server Error
+```
+
+Real `next dev` server log, same request:
+
+```
+`x-forwarded-host` header with value `localhost:5198` does not match `origin` header with value `evil.example.com` from a forwarded Server Actions request. Aborting the action.
+⨯ Error: Invalid Server Actions request.
+```
+
+The targeted note was confirmed still present afterward — the mismatched-Origin request never reached `deleteNote`'s own code at all.
+
+### Progressive enhancement: two real forms, two real outcomes
+
+Real rendered HTML, delete form (`deleteNote.bind(null, note.id)`, a raw bound reference):
+
+```html
+<form action="" encType="multipart/form-data" method="POST">
+  <input type="hidden" name="$ACTION_REF_4"/>
+  <input type="hidden" name="$ACTION_4:0" value="{&quot;id&quot;:&quot;...&quot;,&quot;bound&quot;:&quot;$@1&quot;}"/>
+  <input type="hidden" name="$ACTION_4:1" value="[&quot;2&quot;]"/>
+  <button type="submit">Delete</button>
+</form>
+```
+
+A raw curl POST reproducing exactly those fields, with no JavaScript, no `fetch()`, no `Next-Action` header at all:
+
+```
+$ curl -s -i -b "session=$TOKEN" \
+  -F '$ACTION_REF_2=' -F '$ACTION_2:0={"id":"...","bound":"$@1"}' -F '$ACTION_2:1=["1"]' \
+  http://localhost:5198/notes
+HTTP/1.1 200 OK
+```
+
+Note "1" was genuinely deleted — confirmed by the freshly rendered HTML in that same response showing only the remaining note.
+
+Real rendered HTML, add-note form (wired through a `formAction` closure so `useOptimistic` can run first):
+
+```html
+<form action="javascript:throw new Error(&#x27;React form unexpectedly submitted.&#x27;)">
+  <input type="text" placeholder="New note" required="" name="text"/>
+  <button type="submit">Add note</button>
+</form>
+```
+
+A real, dead placeholder — this form does nothing at all with JavaScript disabled, unlike the delete form above.
+
+### `useOptimistic` + `useActionState` + `useFormStatus` — a real, captured mid-flight screenshot
+
+Real, live browser session: submitted a new note through the closure-wrapped add form. A screenshot captured DURING the artificial 800ms delay showed all three pending signals active at once:
+
+```
+First note (seeded)             [Delete]
+Second note (seeded)            [Delete]
+Optimistic UI race test                       <- dimmed, no Delete button yet (useOptimistic)
+[New note input, disabled]  [Working...]       <- useFormStatus's pending, on the button itself
+useActionState pending: true                   <- useActionState's own separate pending signal
+```
+
+A follow-up screenshot after the delay resolved showed the optimistic item replaced by the real, server-confirmed note, now with a working `Delete` button — React correctly reconciled the optimistic patch away once the real data arrived. `data/notes.json` confirmed the real write directly.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
@@ -738,6 +864,7 @@ Real `200` with real session data for a valid token; real `401` with none.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
 - `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, F-210's, and F-211's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-212: a real `read_network_requests` capture of the single-roundtrip response model (one POST, response body carrying both the action's return value and the re-rendered page); a real, disk-verified auth-bypass test (`addNote`'s own check temporarily removed, restored immediately after capture) proving a mutation can commit before a page-level redirect fires; a real, deliberately mismatched-`Origin` curl request capturing the framework's own CSRF rejection with its exact server log line; a real raw multipart curl POST (no JavaScript) reproducing a bound Server Action's own rendered hidden-field fallback, contrasted against a real, captured dead `javascript:` fallback for the SAME action wrapped in a closure for `useOptimistic`; a real, live browser screenshot captured mid-flight during a real 800ms artificial delay, showing `useOptimistic`, `useActionState`, and `useFormStatus`'s pending signals all active simultaneously.
 - F-211: a real, live browser login/logout cycle (`document.cookie` checked directly to confirm `httpOnly`); a real, reproduced Proxy-vs-DAL bypass test using a deliberately tampered, `jose`-signed token against both the upgraded and (temporarily reverted, then restored) naive Proxy check; a real, three-way `unauthorized()`/`authInterrupts` test (no flag, flag+streaming, flag+Route-Handler) with distinct captured HTTP statuses for each.
 - F-210: real, deliberate before/after `next.config.mjs` change (adding `images.remotePatterns`/`images.qualities`), with real `400` responses captured before and real `200` responses captured after, for both an unconfigured remote host and a disallowed image quality; a real `next dev` console check plus a full real `next build` confirmed zero deprecation warning for the `priority` prop, reverted to `preload` immediately after capture; a real `read_network_requests` trace confirmed zero requests to any Google domain for the self-hosted font.
 - F-209: reused `scripts/stream-observer.mjs` from F-206 for two real, contrasted traces (normal vs. `Twitterbot/1.0` User-Agent) against a genuinely slow `generateMetadata`, completing F-206's own earlier, only-partially-tested finding; a real, deliberate `metadataBase` removal and rebuild, capturing an unplanned warning-not-error finding and a real wrong URL baked into static HTML, `metadataBase` restored and re-verified immediately after capture.
