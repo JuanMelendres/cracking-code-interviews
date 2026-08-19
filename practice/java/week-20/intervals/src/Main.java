@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     static String show(int[][] a) {
@@ -25,6 +26,19 @@ public class Main {
         // LC 452
         Check.eq(2, Problems.findMinArrowShots(new int[][]{{10,16},{2,8},{1,6},{7,12}}), "LC452 findMinArrowShots(4 balloons) = 2 arrows");
         Check.eq(4, Problems.findMinArrowShots(new int[][]{{1,2},{3,4},{5,6},{7,8}}), "LC452 findMinArrowShots(no overlaps) = 4 arrows");
+
+        // Errata drill (Phase 1 audit, item #4): a[1]-b[1] comparator overflow, reproduced directly.
+        int[][] extremes = {{0, Integer.MIN_VALUE}, {0, Integer.MAX_VALUE}, {0, 0}};
+        int[][] naiveSorted = extremes.clone();
+        Arrays.sort(naiveSorted, (a, b) -> a[1] - b[1]);
+        int[][] safeSorted = extremes.clone();
+        Arrays.sort(safeSorted, Comparator.comparingLong(a -> (long) a[1]));
+        System.out.println("Errata drill -- naive (a[1]-b[1]) sort: " + show(naiveSorted));
+        System.out.println("Errata drill -- safe (comparingLong) sort: " + show(safeSorted));
+        Check.eq("[[0, -2147483648], [0, 0], [0, 2147483647]]", show(safeSorted),
+                "comparingLong correctly sorts MIN_VALUE < 0 < MAX_VALUE");
+        Check.isTrue(!show(naiveSorted).equals(show(safeSorted)),
+                "a[1]-b[1] overflow genuinely produces a DIFFERENT (wrong) order than comparingLong, reproduced live");
 
         // LC 986
         int[][] r3 = Problems.intervalIntersection(

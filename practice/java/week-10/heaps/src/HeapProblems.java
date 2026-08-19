@@ -13,7 +13,21 @@ public class HeapProblems {
         return minHeap.peek();
     }
 
-    /** LC 347: Top K Frequent Elements. Count, then min-heap of size k by frequency. */
+    /**
+     * LC 347: Top K Frequent Elements. Count, then min-heap of size k by frequency.
+     *
+     * ERRATA (Phase 1 audit): the source material presented this kind of result as
+     * if the heap's own output order were a specific, reliable sequence. It isn't --
+     * {@code PriorityQueue} guarantees only that {@code poll()} returns the smallest
+     * remaining element by the given comparator; it does NOT guarantee any particular
+     * order among elements that compare equal (here, elements tied on frequency), and
+     * its {@code iterator()} isn't sorted at all -- it walks the underlying binary-heap
+     * array, not heap order. Extracting via repeated {@code poll()} below IS
+     * deterministic for a given JDK and input, but callers should never assert on that
+     * incidental order; Main.java's own test sorts the result before comparing, and
+     * separately, directly demonstrates that {@code PriorityQueue.iterator()} does NOT
+     * yield sorted order, with a real, executed counter-example.
+     */
     static int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> freq = new HashMap<>();
         for (int n : nums) freq.merge(n, 1, Integer::sum);

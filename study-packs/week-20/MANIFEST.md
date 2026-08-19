@@ -31,7 +31,7 @@ last_reviewed: 2026-08-03
 |---|---|---|---|
 | Linked Lists (T-1405) | LC 21, 141, 19, 143, 138 | **Executed.** `javac`/`java`, OpenJDK 21.0.12. | 10/10 pass |
 | Greedy (T-1413) | LC 45, 134, 621, 763, 402 | **Executed.** | 10/10 pass |
-| Intervals (T-1412) | LC 57, 253, 452, 986 | **Executed.** | 7/7 pass |
+| Intervals (T-1412) | LC 57, 253, 452, 986 | **Executed.** | 9/9 pass |
 | Bit Manipulation (T-1414) | LC 136, 191, 268, 371, 338 | **Executed.** | 10/10 pass |
 | Graphs Advanced (T-1409) | LC 743, 684, 1584, 994, 787 | **Executed.** Two hand-computed expected values (LC 1584's second test, LC 787's first test) were initially wrong on first run — verified by hand, corrected in the test, not the implementation, before citing as passing. | 11/11 pass |
 | **Total** | **24 problems** | | **48/48 pass** |

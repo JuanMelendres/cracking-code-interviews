@@ -50,6 +50,8 @@ static int[] topKFrequent(int[] nums, int k) {
 
 **Invariant:** the exact same "min-heap capped at size k, evict the smallest" shape as LC 215, just ordered by frequency instead of value — recognizing this as the SAME pattern applied to a different comparator is the actual skill; frequency-counting beforehand is separate and incidental. **Complexity:** O(n log k) time, O(n) space (frequency map).
 
+**Errata (Phase 1 audit, item #2):** the source material presented this kind of result as if the heap's own output order were a specific, reliable sequence. It isn't — `PriorityQueue` guarantees only that `poll()` returns the smallest remaining element by the comparator; ties have no guaranteed order, and `iterator()` isn't sorted at all (it walks the underlying binary-heap array). Real, executed proof: iterating a `PriorityQueue<Integer>` built from `{5,3,8,1,9,2,7,4,6,0}` visits `[0, 1, 2, 4, 3, 8, 7, 5, 6, 9]` — genuinely unsorted — while repeated `poll()` on the same queue correctly yields `[0..9]`. `Main.java`'s own `topKFrequent` test sorts the result before comparing for exactly this reason.
+
 ## LC 23 — Merge K Sorted Lists
 
 ```java
@@ -102,6 +104,12 @@ class MedianFinder {
   PASS  topKFrequent([1,1,1,2,2,3], k=2) = [1,2] (sorted for comparison)
   PASS  topKFrequent([1], k=1) = [1]
 
+== Errata drill: PriorityQueue.iterator() is NOT sorted order ==
+  iterator() order: [0, 1, 2, 4, 3, 8, 7, 5, 6, 9]
+  PASS  PriorityQueue.iterator() order is genuinely unsorted (walks the heap array, not heap order)
+  repeated poll() order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  PASS  repeated poll() IS sorted -- the correct extraction method
+
 == LC 23: Merge K Sorted Lists ==
   PASS  mergeKLists([[1,4,5],[1,3,4],[2,6]]) = [1,1,2,3,4,4,5,6]
   PASS  mergeKLists([]) = []
@@ -112,7 +120,7 @@ class MedianFinder {
 
 == LC 295 cross-check: MedianFinder vs a sorted-list reference over 500 random insertions ==
   PASS  MedianFinder matches a sorted-list reference after every one of 500 random insertions
-Week 10 heaps suite: 9/9 assertions passed
+Week 10 heaps suite: 11/11 assertions passed
 ```
 
 Full source: `practice/java/week-10/heaps/src/`. Reproduce: `cd practice/java/week-10/heaps && javac -d out src/*.java && java -cp out Main`.

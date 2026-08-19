@@ -41,7 +41,7 @@ last_reviewed: 2026-07-31
 | Java — Consistent hashing | **Executed.** Real 10,000-key, 10-node measurement: naive `hash % N` remaps 92.5% of keys on a node removal; consistent hashing with 150 virtual nodes/node remaps 9.2%, close to the 10% theoretical ideal. Source: `practice/java/week-10/consistent-hashing/` |
 | Java — Resilience patterns | **Executed.** Real circuit breaker cycling all three states (CLOSED→OPEN→HALF_OPEN→CLOSED) against a genuinely recovering downstream; measured 5 of 20 calls converted from 200ms cost to ~0ms while open. Real retry-jitter measurement: 5 clients synchronized to the exact same delay without jitter, spread across the full window with it. Source: `practice/java/week-10/resilience/` |
 | SQL — Zero-downtime migration | **Executed.** Real 2-million-row Postgres table. Plain `CREATE INDEX` blocked a concurrent `INSERT` for 1943ms (the full build duration, confirmed by output ordering); `CREATE INDEX CONCURRENTLY` let the same `INSERT` complete in 84ms while the build was still running. Source: `practice/sql/week-10/zero-downtime-migration/` |
-| Java — coding (heaps) | **Executed.** `9/9` assertions pass, including a 500-trial randomized cross-check of `MedianFinder` against a sorted-list reference. Source: `practice/java/week-10/heaps/` |
+| Java — coding (heaps) | **Executed.** `11/11` assertions pass, including a 500-trial randomized cross-check of `MedianFinder` against a sorted-list reference and a real errata drill (Phase 1 audit item #2, `PriorityQueue.iterator()` order). Source: `practice/java/week-10/heaps/` |
 | Interview statistics | None invented anywhere in this pack |
 
 ## Errata / defects addressed this week

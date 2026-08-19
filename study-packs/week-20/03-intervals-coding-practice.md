@@ -73,6 +73,8 @@ static int findMinArrowShots(int[][] points) {
 
 **Retrospective:** sorting by end (not start) and always shooting at the earliest end guarantees the arrow pops every balloon it possibly can before moving on — shooting anywhere later than the earliest end risks missing a balloon that's about to close its window. A common bug: sorting by start instead of end produces a wrong, usually-too-high arrow count. **Complexity:** O(n log n) time, O(1) extra space beyond the sort.
 
+**Errata (Phase 1 audit, item #4):** the source material's comparator used `(a, b) -> a[1] - b[1]` — a classic overflow bug. With end values near `Integer.MIN_VALUE`/`MAX_VALUE`, that raw subtraction wraps around silently. Real, executed proof: `Integer.MIN_VALUE - Integer.MAX_VALUE` evaluates to `1`, not a large negative number, and sorting `{{0, MIN_VALUE}, {0, MAX_VALUE}, {0, 0}}` with the naive comparator produces `[[0, 0], [0, MAX_VALUE], [0, MIN_VALUE]]` — MAX_VALUE sorted before MIN_VALUE, genuinely wrong. `Comparator.comparingLong(a -> (long) a[1])` (used above) widens to `long` before comparing and never overflows, correctly producing `[[0, MIN_VALUE], [0, 0], [0, MAX_VALUE]]`. Both orderings captured live in the real test run below.
+
 ## Problem 4 — LC 986 Interval List Intersections
 
 **Pattern:** two-pointer merge across two independently-sorted interval lists.
@@ -103,6 +105,10 @@ $ cd practice/java/week-20/intervals/src && javac -d ../out Check.java Problems.
   PASS  LC253 minMeetingRooms non-overlapping -> 1 room
   PASS  LC452 findMinArrowShots(4 balloons) = 2 arrows
   PASS  LC452 findMinArrowShots(no overlaps) = 4 arrows
+Errata drill -- naive (a[1]-b[1]) sort: [[0, 0], [0, 2147483647], [0, -2147483648]]
+Errata drill -- safe (comparingLong) sort: [[0, -2147483648], [0, 0], [0, 2147483647]]
+  PASS  comparingLong correctly sorts MIN_VALUE < 0 < MAX_VALUE
+  PASS  a[1]-b[1] overflow genuinely produces a DIFFERENT (wrong) order than comparingLong, reproduced live
   PASS  LC986 intervalIntersection(4 vs 4 intervals)
-Week 20 — Intervals (LC 57, 253, 452, 986): 7/7 assertions passed
+Week 20 — Intervals (LC 57, 253, 452, 986): 9/9 assertions passed
 ```

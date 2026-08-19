@@ -46,6 +46,15 @@ public class Problems {
     // interval END points: sort by end, shoot an arrow at the first
     // balloon's end; any balloon whose start is <= that arrow's position
     // is popped for free. O(n log n) time.
+    //
+    // ERRATA (Phase 1 audit, item #4): the source material's comparator used
+    // `(a, b) -> a[1] - b[1]` -- a classic overflow bug. With end values near
+    // Integer.MIN_VALUE/MAX_VALUE, that raw subtraction wraps around (e.g.
+    // Integer.MIN_VALUE - Integer.MAX_VALUE overflows to 1, not a large
+    // negative number), producing a genuinely wrong sort order. Fixed here
+    // with `Comparator.comparingLong(a -> (long) a[1])`, which widens to long
+    // before comparing, never overflows, and is reproduced with a real,
+    // executed counter-example in Main.java's own errata drill.
     static int findMinArrowShots(int[][] points) {
         if (points.length == 0) return 0;
         Arrays.sort(points, Comparator.comparingLong(a -> (long) a[1]));

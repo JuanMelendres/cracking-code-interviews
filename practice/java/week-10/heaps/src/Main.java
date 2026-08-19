@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 public class Main {
@@ -13,6 +15,20 @@ public class Main {
         Arrays.sort(top2);
         Check.eq("[1, 2]", Arrays.toString(top2), "topKFrequent([1,1,1,2,2,3], k=2) = [1,2] (sorted for comparison)");
         Check.eq("[1]", Arrays.toString(HeapProblems.topKFrequent(new int[]{1}, 1)), "topKFrequent([1], k=1) = [1]");
+
+        System.out.println("\n== Errata drill: PriorityQueue.iterator() is NOT sorted order ==");
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int v : new int[]{5, 3, 8, 1, 9, 2, 7, 4, 6, 0}) pq.offer(v);
+        List<Integer> iterOrder = new ArrayList<>();
+        for (int x : pq) iterOrder.add(x);
+        boolean iterIsSorted = true;
+        for (int i = 1; i < iterOrder.size(); i++) if (iterOrder.get(i) < iterOrder.get(i - 1)) iterIsSorted = false;
+        System.out.println("  iterator() order: " + iterOrder);
+        Check.isTrue(!iterIsSorted, "PriorityQueue.iterator() order is genuinely unsorted (walks the heap array, not heap order)");
+        List<Integer> pollOrder = new ArrayList<>();
+        while (!pq.isEmpty()) pollOrder.add(pq.poll());
+        System.out.println("  repeated poll() order: " + pollOrder);
+        Check.eq("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", pollOrder.toString(), "repeated poll() IS sorted -- the correct extraction method");
 
         System.out.println("\n== LC 23: Merge K Sorted Lists ==");
         HeapProblems.ListNode[] lists = {
