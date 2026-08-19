@@ -68,3 +68,6 @@ blob-report/
 
 # --- explicitly NOT ignored (documented for clarity, no-op lines) ---
 # *.md, *.java, *.sql, *.yml, *.yaml, *.json, *.mmd — always tracked
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+graft/
