@@ -312,6 +312,7 @@ Exercise 3: the Vite app would show exactly ONE new request (`App.jsx`, freshly 
 
 - [CI/CD Pipeline Design and Deployment Strategies](../cloud/cicd-pipeline-design-and-deployment-strategies.md) — the backend-domain chapter covering where a real production build (this chapter's own `vite build`/`next build` output) fits into a broader deployment pipeline.
 - [Deployment Models in Next.js: Vercel-Native vs. Self-Hosting, Verified](nextjs-deployment-models.md) — F-213's own real `output: "standalone"` build size measurement is a direct, related example of inspecting real bundler output, applied to a deployment question instead of a tooling-comparison one.
+- [Styling Approaches: CSS Modules, Tailwind, and CSS-in-JS, Verified](nextjs-styling-approaches.md) — the next chapter in sequence (F-302); reuses this chapter's own Vite-based, real-build-output verification method for a styling question instead.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-301 of, and the first entry in D-F3.
 
 ## Official References
