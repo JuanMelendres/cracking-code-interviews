@@ -327,6 +327,7 @@ Exercise 3: a raw-bound `addNote` (no closure) would render real hidden fields a
 - [Authentication Patterns in Next.js: DAL, JWT Sessions, and unauthorized()](nextjs-authentication-patterns.md) — this chapter's prerequisite; `verifySession()`/`getSession()` protect every surface in this chapter exactly as they protected F-211's.
 - [Route Handlers: Building a Backend-for-Frontend Layer in Next.js](nextjs-route-handlers.md) — this chapter's prerequisite and its central contrast: when a real, independently-callable API resource is the right choice instead of a Server Action.
 - [OWASP Top 10 for Backend Services](../security/owasp-top-10-for-backend-services.md) — the backend-domain chapter covering CSRF and broken-access-control generally; this chapter applies both concretely inside Next.js's own Server Actions model.
+- [Deployment Models in Next.js: Vercel-Native vs. Self-Hosting, Verified](nextjs-deployment-models.md) — the next chapter in sequence (F-213); directly extends this chapter's own bound-action reference format into a real, decisive multi-instance portability test.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-212 of.
 
 ## Official References

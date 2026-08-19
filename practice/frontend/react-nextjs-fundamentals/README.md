@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-212)
+# Next.js Fundamentals demo app (F-201–F-213)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211), and [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../../../handbook/frontend/nextjs-server-actions-and-mutations.md) (F-212). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211), [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../../../handbook/frontend/nextjs-server-actions-and-mutations.md) (F-212), and [`handbook/frontend/nextjs-deployment-models.md`](../../../handbook/frontend/nextjs-deployment-models.md) (F-213). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-213 note — real, measured self-hosting mechanics, not marketing:** `output: "standalone"` measured a real ~13x smaller footprint (42MB vs. a naive 543MB `node_modules`+`.next`). Running the standalone `server.js` directly (no Docker) reproduced a real, common gotcha: static assets 404 until `public/`/`.next/static` are manually copied in — fixed and re-verified. A real, deliberately contrasted multi-instance test found the framework's own "shared Server Actions encryption key" requirement applies specifically to genuine closures — `app/notes/actions.js`'s plain, top-level `deleteNote` (`.bind()`-only, no closure) rendered the SAME action id across two independently-built instances and worked cross-instance with ZERO shared-key config, while a new, deliberately closure-capturing action (`app/deploy-test/`) rendered a real, visibly different encrypted field. A real `Cache-Control` header capture found one genuine mismatch against the framework's own documentation prose for static pages. A real `docker build`/`docker run` cycle was executed (the local Docker daemon was started specifically for this chapter, after an initial check found it unavailable). See the F-213 evidence section below.
 
 > **F-212 note — a mutation can commit even while the visible response looks like a rejection:** with `app/notes/actions.js`'s `addNote` auth check temporarily removed (restored immediately after capture), an anonymous, no-cookie curl POST directly to `/notes` wrote a real row to `data/notes.json` — confirmed by reading the file directly — even though the HTTP response was a plain `307` to `/login`, indistinguishable from every other rejected request. Separately, two real, contrasted forms on the same page proved `useOptimistic`'s progressive-enhancement cost directly: a raw bound action reference (`deleteNote.bind(null, id)`) renders real, working hidden fields and survives a raw multipart curl POST with no JavaScript at all; the same kind of action wrapped in a closure (so `useOptimistic` could run first) rendered a dead `action="javascript:throw ..."` placeholder instead. A real, deliberately mismatched `Origin` header also confirmed the framework's own CSRF protection, with an exact captured server log message. This chapter's own production build attempt hit a real, external `httpbin.org` outage (503s) unrelated to any of this — it was blocking F-204/F-205's pre-existing routes, not F-212's own code, which compiled cleanly. See the F-212 evidence section below.
 
@@ -112,6 +114,12 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/notes/page.js` — a DAL-protected Server Component reading the store directly (no `fetch()`).
 - `app/notes/NotesClient.js` — `useActionState` + `useOptimistic`, a bound per-item delete action.
 - `app/components/SubmitButton.js` — a real, reusable `useFormStatus` consumer.
+
+**F-213 (added):**
+- `next.config.mjs` — added `output: "standalone"`.
+- `app/deploy-test/page.js` — a real, inline, closure-capturing Server Action, deliberately contrasted against F-212's top-level `deleteNote`.
+- `Dockerfile` — a real, standard multi-stage build (deps → builder → runner) targeting the standalone output.
+- `.dockerignore` — excludes `node_modules`, `.next`, `data` from the build context.
 
 ## Captured evidence (real browser session + real build output)
 
@@ -856,6 +864,106 @@ useActionState pending: true                   <- useActionState's own separate 
 
 A follow-up screenshot after the delay resolved showed the optimistic item replaced by the real, server-confirmed note, now with a working `Delete` button — React correctly reconciled the optimistic patch away once the real data arrived. `data/notes.json` confirmed the real write directly.
 
+## Captured evidence for F-213 (Deployment models: Vercel-native vs. self-hosting)
+
+### `output: "standalone"` — a real, measured minimal footprint
+
+```
+$ du -sh node_modules .next
+435M	node_modules
+108M	.next
+
+$ du -sh .next/standalone .next/standalone/node_modules
+ 42M	.next/standalone
+ 38M	.next/standalone/node_modules
+```
+
+543MB (naive `node_modules` + `.next`) versus 42MB (`.next/standalone`) — roughly a 13x reduction.
+
+### The real, reproduced standalone gotcha
+
+```
+$ node .next/standalone/server.js &
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5199/
+200
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5199/_next/static/chunks/2h9qyi1_ur4wz.css
+404
+```
+
+After `cp -R public .next/standalone/public` and `cp -R .next/static .next/standalone/.next/static`, the SAME server (restarted) and the SAME asset request:
+
+```
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5199/_next/static/chunks/2h9qyi1_ur4wz.css
+200
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5199/favicon.ico
+200
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5199/notes
+307
+```
+
+The last line confirms F-211/F-212's DAL and Proxy protections work identically from the minimal standalone output, not only from a full `next start`.
+
+### Real, captured `Cache-Control` headers — three response types
+
+```
+$ curl -s -D - -o /dev/null http://localhost:5198/about | grep -i cache-control
+Cache-Control: s-maxage=31536000
+
+$ curl -s -D - -o /dev/null http://localhost:5198/rendering-strategies/ssr | grep -i cache-control
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+
+$ curl -s -D - -o /dev/null http://localhost:5198/_next/static/chunks/2h9qyi1_ur4wz.css | grep -i cache-control
+Cache-Control: public, max-age=31536000, immutable
+```
+
+The static page's header (`s-maxage=31536000`, no `public` keyword) does not match the self-hosting guide's own "Usage with CDNs" prose, which describes a fully static page as including `Cache-Control: public`.
+
+### The central, decisive multi-instance Server Actions finding
+
+`deleteNote` (top-level export, `.bind()`-only) rendered the SAME action id on two genuinely independent `next build` runs:
+
+```
+Instance A: {"id":"40e1e8888498a31341c98608873cf15f754eaa0b7a","bound":"$@1"}
+Instance B: {"id":"40e1e8888498a31341c98608873cf15f754eaa0b7a","bound":"$@1"}   -- IDENTICAL
+```
+
+A raw request built from Instance A's own rendered hidden fields, sent to Instance B (a different build, no shared `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY`), genuinely deleted the target note — real, cross-instance success with zero shared-key configuration.
+
+By contrast, `app/deploy-test/page.js`'s inline `echoClosure` (closes over `instanceLabel`) rendered a visibly different, real encrypted field:
+
+```
+$ACTION_1:0 = {"id":"60cf39ebef5aa1ac0ac8f25f218bedf625f34fae76","bound":"$@1"}
+$ACTION_1:1 = ["$@2"]
+$ACTION_1:2 = "WcQ9oPJotCoT8ZDkHvzw/vmg5oY4k6SetzGaLK2Vf11mQp3+JDXtSOSvKBXbgkdppuzAaMU8G8sZayF1iR9bnApcyxGSbnKWfR4e5Bput/Am7mJBJJ2jUVG0Sg=="
+```
+
+`$ACTION_1:2` — entirely absent from `deleteNote`'s rendering — is the real, visible fingerprint of the encrypted-closure mechanism the framework's own multi-server guide describes. A full cross-instance failure reproduction for this closure case was attempted via `curl -F`, a hand-rolled Python multipart body, and a real browser `fetch()`/`FormData` call; none cleanly replicated the framework's own undocumented wire format for this path (each either failed to parse or silently fell through to a plain page render). The documented consequence (a shared key is required, or decryption fails) is therefore cited here as documented framework behavior, not independently reproduced in this session.
+
+### A real, executed `docker build` / `docker run` cycle
+
+The Docker daemon was not running when this chapter's verification began; `open -a Docker` was used to start it, and `docker ps` succeeded roughly 60 seconds later. A real `docker build` on the FIRST attempt failed pulling the base image (`DeadlineExceeded: context deadline exceeded` on `node:22-alpine`) — a real, transient network issue, not a Dockerfile problem; the retry succeeded. A SECOND real failure then hit the same `httpbin.org` outage documented in F-212 (now occurring inside the container's own build step) — worked around the same way, by temporarily moving `app/data-fetching/` out of the build context, then restoring it immediately after a successful image build:
+
+```
+$ docker build -t f213-nextjs-fundamentals .
+...
+#16 naming to docker.io/library/f213-nextjs-fundamentals:latest done
+
+$ docker images | grep f213
+f213-nextjs-fundamentals:latest   298MB (disk)   74.4MB (content)
+
+$ docker run -d --name f213-container -p 3210:3000 f213-nextjs-fundamentals
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3210/
+200
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3210/notes
+307
+$ curl -s -D - -o /dev/null http://localhost:3210/about | grep -i cache-control
+Cache-Control: s-maxage=31536000
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3210/_next/static/chunks/2h9qyi1_ur4wz.css
+200
+```
+
+Every result matches the host-run evidence above exactly — the containerized deployment is functionally identical, not a separate code path. Container stopped and removed immediately after capture.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
@@ -864,6 +972,7 @@ A follow-up screenshot after the delay resolved showed the optimistic item repla
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
 - `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, F-210's, and F-211's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-213: a real `du -sh` measurement comparing a naive deployment (`node_modules` + `.next`, 543MB) against `output: "standalone"` (42MB); a real, reproduced standalone-server static-asset 404, fixed by manually copying `public/`/`.next/static`, re-verified with a real 200; a real `Cache-Control` header capture across three response types, including a genuine mismatch against the framework's own CDN documentation prose; a real, decisive two-independent-build multi-instance test showing a plain top-level bound Server Action (`deleteNote`) renders an identical action id and works cross-instance with zero shared-key config, contrasted against a real inline closure action (`echoClosure`) that renders a visibly different, real encrypted field; a real `docker build`/`docker run` cycle (Docker daemon started specifically for this chapter), including two real, transient failures (a base-image pull timeout, and the same `httpbin.org` outage from F-212 recurring inside the container build) each diagnosed and worked around, ending in a fully working containerized deployment verified with the same curl checks used on the host.
 - F-212: a real `read_network_requests` capture of the single-roundtrip response model (one POST, response body carrying both the action's return value and the re-rendered page); a real, disk-verified auth-bypass test (`addNote`'s own check temporarily removed, restored immediately after capture) proving a mutation can commit before a page-level redirect fires; a real, deliberately mismatched-`Origin` curl request capturing the framework's own CSRF rejection with its exact server log line; a real raw multipart curl POST (no JavaScript) reproducing a bound Server Action's own rendered hidden-field fallback, contrasted against a real, captured dead `javascript:` fallback for the SAME action wrapped in a closure for `useOptimistic`; a real, live browser screenshot captured mid-flight during a real 800ms artificial delay, showing `useOptimistic`, `useActionState`, and `useFormStatus`'s pending signals all active simultaneously.
 - F-211: a real, live browser login/logout cycle (`document.cookie` checked directly to confirm `httpOnly`); a real, reproduced Proxy-vs-DAL bypass test using a deliberately tampered, `jose`-signed token against both the upgraded and (temporarily reverted, then restored) naive Proxy check; a real, three-way `unauthorized()`/`authInterrupts` test (no flag, flag+streaming, flag+Route-Handler) with distinct captured HTTP statuses for each.
 - F-210: real, deliberate before/after `next.config.mjs` change (adding `images.remotePatterns`/`images.qualities`), with real `400` responses captured before and real `200` responses captured after, for both an unconfigured remote host and a disallowed image quality; a real `next dev` console check plus a full real `next build` confirmed zero deprecation warning for the `priority` prop, reverted to `preload` immediately after capture; a real `read_network_requests` trace confirmed zero requests to any Google domain for the self-hosted font.

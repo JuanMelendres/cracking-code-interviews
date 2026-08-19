@@ -44,7 +44,8 @@ export default function PersistentHeader() {
         <Link href="/media-optimization">Media Optimization (Image/Font)</Link> |{" "}
         <Link href="/login">Login (F-211)</Link> |{" "}
         <Link href="/account">Account (unauthorized())</Link> |{" "}
-        <Link href="/notes">Notes (F-212: Server Actions)</Link>
+        <Link href="/notes">Notes (F-212: Server Actions)</Link> |{" "}
+        <Link href="/deploy-test">Deploy Test (F-213: closures)</Link>
       </nav>
     </header>
   );

@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // F-213: produces .next/standalone -- a minimal, self-contained server
+  // directory (only the files actually needed at runtime, plus a
+  // server.js entrypoint) instead of requiring the full node_modules
+  // tree in a deployment image. This is the real technique the official
+  // Next.js Docker examples build on.
+  output: "standalone",
   experimental: {
     // Without this, unauthorized() throws a real, generic React error
     // (an error digest, not the custom unauthorized.js UI, and no real
