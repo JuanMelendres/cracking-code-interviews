@@ -1327,6 +1327,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `executors-and-thread-pool-sizing.md` (prerequisite; added a forward cross-link from that chapter's own Additional Reading and `related` front matter to this one) and `virtual-threads.md`.
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/concurrency/atomics-cas-and-the-aba-problem.md — T-405)
+- Continued the Master Topic Register survey (against current repo content, not the stale Phase 1 gap-status column) into the rest of the concurrency domain. `grep`-checked `handbook/` for `ABA problem`, `AtomicStampedReference`, `VarHandle`, `StampedLock`, and `ReadWriteLock` — all zero matches, confirming several concurrency topics genuinely have zero coverage. Picked **T-405 (Atomics, CAS, and the ABA problem, IWI 5.9)** as the highest-impact genuine gap remaining.
+- `handbook/concurrency/atomics-cas-and-the-aba-problem.md` (T-405).
+- **A new, real practice directory:** `practice/java/concurrency/atomics-cas-and-aba/` — three independent demos, all compiled and executed on OpenJDK 21.0.12.
+- **`CasVsSynchronizedDemo.java`, a real, measured throughput comparison:** 8 real threads x 500,000 increments each, both an `AtomicInteger` CAS retry loop and a `synchronized`-guarded counter produced the exact correct total (4,000,000, zero lost updates); the CAS loop measured ~70ms versus ~154ms for `synchronized` — a real, reproducible ~2x difference at this contention level.
+- **`AbaProblemDemo.java`, a real, deterministic (no thread race needed) reproduction of ABA corruption:** a lock-free Treiber stack built on plain `AtomicReference`, with a hand-interleaved pop/pop/push-back sequence reusing the same node object, produces a genuinely corrupted stack (`[B, C]` instead of the correct `[A, C]`) — a stale CAS succeeding purely because `top` was still reference-equal to the originally-read node.
+- **`AbaFixWithStampedReferenceDemo.java`, the identical interleaving with the real fix applied:** switching the same structure to `AtomicStampedReference` (stamp bumped on every mutation) causes the identical stale CAS to correctly fail (stamp moved 3→6 while the reference stayed identity-equal), leaving the stack in its correct, uncorrupted state.
+- Added `practice/java/concurrency/atomics-cas-and-aba/README.md` with all three captured evidence blocks.
+- Cross-linked to `java-memory-model-and-volatile.md` (prerequisite; forward link added there too, in both `related` front matter and Additional Reading) and `deadlock-race-conditions-and-thread-diagnostics.md`.
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

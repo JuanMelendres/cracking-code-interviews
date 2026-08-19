@@ -15,6 +15,7 @@ estimated_reading_minutes: 40
 prerequisites: []
 related:
   - deadlock-race-conditions-and-thread-diagnostics.md
+  - atomics-cas-and-the-aba-problem.md
   - ../../study-packs/week-09/01-java-memory-model-and-volatile.md
 official_references:
   - https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html#jls-17.4
@@ -462,6 +463,7 @@ Believing `synchronized` on the constructor block alone is sufficient without `v
 ## Additional Reading
 
 - [Java Language Specification §17.4 — Memory Model](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html#jls-17.4)
+- [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) — the CAS-based primitives built on top of the happens-before guarantees in this chapter.
 
 ## Official References
 
