@@ -83,6 +83,17 @@ GC tuning questions test diagnosis-from-artifact, not recitation. An interviewer
 
 Garbage collection reclaims memory occupied by objects no longer reachable from any live root (thread stacks, static fields). **G1** (the JVM's default collector since JDK 9, per [JEP 248](https://openjdk.org/jeps/248)) divides the heap into fixed-size **regions** rather than fixed contiguous generations, and collects the regions with the most garbage first ("Garbage First") — mostly young-generation regions holding short-lived objects, occasionally including old-generation regions in a mixed collection.
 
+G1 replaced **CMS** (Concurrent Mark Sweep) as the default specifically because CMS had no compaction phase of its own, leading to real, unavoidable heap fragmentation over time. CMS's own real history matters precisely, not just "it's old": deprecated in JDK 9 ([JEP 291](https://openjdk.org/jeps/291)), then genuinely REMOVED — not merely discouraged — in JDK 14 ([JEP 363](https://openjdk.org/jeps/363)). `-XX:+UseConcMarkSweepGC` is not a flag that silently falls back to something else on a modern JDK; real, captured proof on OpenJDK 21.0.12:
+
+```
+$ java -XX:+UseConcMarkSweepGC -version
+Unrecognized VM option 'UseConcMarkSweepGC'
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+```
+
+A hard startup failure, not a silent fallback to G1 or any other collector.
+
 Manual memory management is a major source of production defects (use-after-free, double-free, leaks); GC removes that entire class of bugs at the cost of pause time and CPU spent collecting. The skill this topic rewards is **diagnosis from an artifact** — a real GC log or latency graph — not reciting collector names.
 
 ## Core Concepts
