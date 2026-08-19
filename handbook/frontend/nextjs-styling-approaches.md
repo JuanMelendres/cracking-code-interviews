@@ -298,6 +298,7 @@ Exercise 3: styled-components computes a class name from the FULL resolved style
 ## Additional Reading
 
 - [Build Tooling: Vite vs. Next.js's Turbopack, What a Bundler Actually Does](nextjs-build-tooling-vite-vs-turbopack.md) — this chapter's prerequisite; the same Vite-based verification approach is applied here to a styling question instead of a bundling one.
+- [Monorepo and Full-Stack Repo Layout: Where Code Actually Lives, Verified](nextjs-monorepo-layout.md) — the next chapter in sequence (F-303), the final entry in the frontend register.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-302 of.
 
 ## Official References
