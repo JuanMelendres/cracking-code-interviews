@@ -18,6 +18,7 @@ prerequisites:
 related:
   - deadlock-race-conditions-and-thread-diagnostics.md
   - virtual-threads.md
+  - completablefuture-and-async-composition.md
   - ../../study-packs/week-09/02-executors-and-thread-pool-sizing.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html
@@ -365,6 +366,7 @@ Applying the same sizing rule to both workload types.
 ## Additional Reading
 
 - [java.util.concurrent.ThreadPoolExecutor documentation](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)
+- [CompletableFuture and Async Composition](completablefuture-and-async-composition.md) — sizing and supplying an executor to `*Async` methods builds directly on this chapter's Little's Law sizing.
 
 ## Official References
 
