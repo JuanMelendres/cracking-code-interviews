@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-213)
+# Next.js Fundamentals demo app (F-201–F-214)
 
-Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211), [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../../../handbook/frontend/nextjs-server-actions-and-mutations.md) (F-212), and [`handbook/frontend/nextjs-deployment-models.md`](../../../handbook/frontend/nextjs-deployment-models.md) (F-213). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211), [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../../../handbook/frontend/nextjs-server-actions-and-mutations.md) (F-212), [`handbook/frontend/nextjs-deployment-models.md`](../../../handbook/frontend/nextjs-deployment-models.md) (F-213), and [`handbook/frontend/nextjs-fullstack-integration.md`](../../../handbook/frontend/nextjs-fullstack-integration.md) (F-214). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-214 note — closes D-F2, with a real separate Spring Boot backend:** a genuinely separate process ([`practice/java/full-stack-integration-backend/`](../../java/full-stack-integration-backend/), port 8080) was stood up specifically for this chapter. A real, live browser `fetch()` to it with no CORS config produced an exact, captured `TypeError: Failed to fetch` plus the real browser-console CORS-policy message; fixed with a real, explicit origin allowlist and retested. A real, subtle finding: `curl -H "Origin: ..."` confirmed `Access-Control-Allow-Origin` genuinely present on the wire, but the SAME successful browser `fetch()`'s own `res.headers.get('access-control-allow-origin')` returned `null` — that header isn't JS-readable by default. The real BFF pattern (`app/api/backend-proxy/route.js`) was built and tested end to end: a real, live, authenticated browser session (httpOnly cookie confirmed empty, per F-211) retrieved the Spring backend's protected data via Next.js alone, while the backend's own shared-secret credential never once reached the browser. See the F-214 evidence section below.
 
 > **F-213 note — real, measured self-hosting mechanics, not marketing:** `output: "standalone"` measured a real ~13x smaller footprint (42MB vs. a naive 543MB `node_modules`+`.next`). Running the standalone `server.js` directly (no Docker) reproduced a real, common gotcha: static assets 404 until `public/`/`.next/static` are manually copied in — fixed and re-verified. A real, deliberately contrasted multi-instance test found the framework's own "shared Server Actions encryption key" requirement applies specifically to genuine closures — `app/notes/actions.js`'s plain, top-level `deleteNote` (`.bind()`-only, no closure) rendered the SAME action id across two independently-built instances and worked cross-instance with ZERO shared-key config, while a new, deliberately closure-capturing action (`app/deploy-test/`) rendered a real, visibly different encrypted field. A real `Cache-Control` header capture found one genuine mismatch against the framework's own documentation prose for static pages. A real `docker build`/`docker run` cycle was executed (the local Docker daemon was started specifically for this chapter, after an initial check found it unavailable). See the F-213 evidence section below.
 
@@ -120,6 +122,11 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/deploy-test/page.js` — a real, inline, closure-capturing Server Action, deliberately contrasted against F-212's top-level `deleteNote`.
 - `Dockerfile` — a real, standard multi-stage build (deps → builder → runner) targeting the standalone output.
 - `.dockerignore` — excludes `node_modules`, `.next`, `data` from the build context.
+
+**F-214 (added):**
+- `app/api/backend-proxy/route.js` — the real BFF Route Handler: checks F-211's DAL session, then calls the separate Spring backend server-to-server with a shared secret the browser never sees.
+- `.env.local` — added `INTERNAL_API_KEY` (matches the Spring backend's own expected value).
+- A real, separate Spring Boot backend: [`practice/java/full-stack-integration-backend/`](../../java/full-stack-integration-backend/) (its own README, its own captured evidence).
 
 ## Captured evidence (real browser session + real build output)
 
@@ -964,6 +971,52 @@ $ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3210/_next/static/ch
 
 Every result matches the host-run evidence above exactly — the containerized deployment is functionally identical, not a separate code path. Container stopped and removed immediately after capture.
 
+## Captured evidence for F-214 (Full-stack integration with a separate Spring backend)
+
+### A real, exact browser CORS failure
+
+Real browser console, `fetch('http://localhost:8080/api/public/greeting')` from `http://localhost:5198`, no CORS config on the Spring side:
+
+```
+Access to fetch at 'http://localhost:8080/api/public/greeting' from origin 'http://localhost:5198'
+has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+`fetch()` itself threw `TypeError: Failed to fetch`. Full detail, including the real fix and retest, in the backend's own [README.md](../../java/full-stack-integration-backend/README.md).
+
+### A real, subtle finding: CORS headers on the wire vs. JS-readable headers
+
+```
+$ curl -s -i -H "Origin: http://localhost:5198" http://localhost:8080/api/public/greeting | grep -i access-control
+Access-Control-Allow-Origin: http://localhost:5198
+```
+
+The SAME successful browser `fetch()` call:
+
+```js
+res.headers.get('access-control-allow-origin')  // => null
+```
+
+### The real BFF pattern, end to end
+
+```
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5198/api/backend-proxy
+401   -- unauthenticated, Spring never called
+
+$ TOKEN=$(node scripts/gen-session-token.mjs)
+$ curl -s -b "session=$TOKEN" http://localhost:5198/api/backend-proxy
+{"secret":"Only reachable with the real shared secret -- this backend never sees the browser's own Next.js session cookie."}
+```
+
+A real, live browser session (logged in via the actual `/login` form) confirmed the SAME result end to end:
+
+```js
+document.cookie                          // => ""  (httpOnly, per F-211)
+(await fetch('/api/backend-proxy')).status  // => 200
+```
+
+A real, direct browser `fetch()` to Spring's protected endpoint (bypassing Next.js) failed with the SAME `TypeError: Failed to fetch` as the unfixed public endpoint — that path was deliberately left off the CORS allowlist entirely, an independent layer of protection.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
@@ -972,6 +1025,7 @@ Every result matches the host-run evidence above exactly — the containerized d
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
 - `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, F-210's, and F-211's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-214: a real, separate Spring Boot backend stood up specifically for this chapter (its own JVM process, its own port); a real, live browser `fetch()` producing an exact, captured CORS failure and console error before any CORS config existed, then a real fix and retest; a real curl-vs-browser contrast showing `Access-Control-Allow-Origin` present on the wire but returning `null` from JavaScript's own `fetch()` `Headers` object; a real, live, authenticated browser session (login via the actual form) confirming the BFF pattern end to end, with `document.cookie` checked directly to reconfirm F-211's `httpOnly` proof; a real, independent CORS failure for a direct browser call to the backend's protected endpoint, confirming two separate, both-required protection layers.
 - F-213: a real `du -sh` measurement comparing a naive deployment (`node_modules` + `.next`, 543MB) against `output: "standalone"` (42MB); a real, reproduced standalone-server static-asset 404, fixed by manually copying `public/`/`.next/static`, re-verified with a real 200; a real `Cache-Control` header capture across three response types, including a genuine mismatch against the framework's own CDN documentation prose; a real, decisive two-independent-build multi-instance test showing a plain top-level bound Server Action (`deleteNote`) renders an identical action id and works cross-instance with zero shared-key config, contrasted against a real inline closure action (`echoClosure`) that renders a visibly different, real encrypted field; a real `docker build`/`docker run` cycle (Docker daemon started specifically for this chapter), including two real, transient failures (a base-image pull timeout, and the same `httpbin.org` outage from F-212 recurring inside the container build) each diagnosed and worked around, ending in a fully working containerized deployment verified with the same curl checks used on the host.
 - F-212: a real `read_network_requests` capture of the single-roundtrip response model (one POST, response body carrying both the action's return value and the re-rendered page); a real, disk-verified auth-bypass test (`addNote`'s own check temporarily removed, restored immediately after capture) proving a mutation can commit before a page-level redirect fires; a real, deliberately mismatched-`Origin` curl request capturing the framework's own CSRF rejection with its exact server log line; a real raw multipart curl POST (no JavaScript) reproducing a bound Server Action's own rendered hidden-field fallback, contrasted against a real, captured dead `javascript:` fallback for the SAME action wrapped in a closure for `useOptimistic`; a real, live browser screenshot captured mid-flight during a real 800ms artificial delay, showing `useOptimistic`, `useActionState`, and `useFormStatus`'s pending signals all active simultaneously.
 - F-211: a real, live browser login/logout cycle (`document.cookie` checked directly to confirm `httpOnly`); a real, reproduced Proxy-vs-DAL bypass test using a deliberately tampered, `jose`-signed token against both the upgraded and (temporarily reverted, then restored) naive Proxy check; a real, three-way `unauthorized()`/`authInterrupts` test (no flag, flag+streaming, flag+Route-Handler) with distinct captured HTTP statuses for each.

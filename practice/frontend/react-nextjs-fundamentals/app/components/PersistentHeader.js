@@ -45,7 +45,8 @@ export default function PersistentHeader() {
         <Link href="/login">Login (F-211)</Link> |{" "}
         <Link href="/account">Account (unauthorized())</Link> |{" "}
         <Link href="/notes">Notes (F-212: Server Actions)</Link> |{" "}
-        <Link href="/deploy-test">Deploy Test (F-213: closures)</Link>
+        <Link href="/deploy-test">Deploy Test (F-213: closures)</Link> |{" "}
+        <Link href="/api/backend-proxy">Backend Proxy (F-214: BFF)</Link>
       </nav>
     </header>
   );

@@ -327,6 +327,7 @@ Exercise 3: with a real, identical `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` set for 
 - [Server Actions and Mutations in Next.js: No API Layer, Real Progressive Enhancement](nextjs-server-actions-and-mutations.md) — this chapter's prerequisite; `deleteNote`'s real cross-instance portability directly extends F-212's own findings about how Server Action references work.
 - [Kubernetes: Objects, Scheduling, and Networking](../cloud/kubernetes-objects-scheduling-and-networking.md) — the backend-domain chapter covering multi-instance/multi-pod orchestration concerns this chapter's own multi-instance Server Actions finding applies directly to.
 - [Cloud Cost and Scaling Economics](../cloud/cloud-cost-and-scaling-economics.md) — the backend-domain chapter covering the cost side of the Vercel-vs-self-host decision this chapter deliberately left as a real, bounded engineering checklist rather than a cost argument.
+- [Full-Stack Integration: Next.js with a Separate Java/Spring Backend](nextjs-fullstack-integration.md) — the next chapter in sequence (F-214), closing D-F2; a real, separate deployment scenario this chapter's own self-hosting evidence applies to directly.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-213 of.
 
 ## Official References
