@@ -348,6 +348,7 @@ Exercise 3: with the DAL check removed, an anonymous curl request to `/api/backe
 - [Route Handlers: Building a Backend-for-Frontend Layer in Next.js](nextjs-route-handlers.md) — this chapter's prerequisite and direct foundation; `app/api/backend-proxy/route.js` is a real, second, more elaborate BFF example alongside F-207's own.
 - [OWASP Top 10 for Backend Services](../security/owasp-top-10-for-backend-services.md) — the backend-domain chapter covering broken access control generally; this chapter's own curl-bypasses-CORS finding is a concrete instance of "don't rely on client-enforced controls."
 - [AuthN/AuthZ: RBAC vs. ABAC](../security/authn-authz-rbac-vs-abac.md) — the backend-domain chapter this chapter's own shared-secret-vs-session distinction (service-to-service auth vs. user auth) connects to directly.
+- [Build Tooling: Vite vs. Next.js's Turbopack, What a Bundler Actually Does](nextjs-build-tooling-vite-vs-turbopack.md) — the next chapter in sequence (F-301), opening D-F3.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-214 of, and the final entry in D-F2.
 
 ## Official References

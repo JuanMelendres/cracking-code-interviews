@@ -1,6 +1,8 @@
-# Next.js Fundamentals demo app (F-201–F-214)
+# Next.js Fundamentals demo app (F-201–F-214, plus F-301)
 
 Real Next.js 16.3.1 (App Router) app backing [`handbook/frontend/nextjs-fundamentals.md`](../../../handbook/frontend/nextjs-fundamentals.md) (F-201), [`handbook/frontend/nextjs-app-router-fundamentals.md`](../../../handbook/frontend/nextjs-app-router-fundamentals.md) (F-202), [`handbook/frontend/nextjs-server-vs-client-components.md`](../../../handbook/frontend/nextjs-server-vs-client-components.md) (F-203), [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../../../handbook/frontend/nextjs-data-fetching-and-caching.md) (F-204), [`handbook/frontend/nextjs-rendering-strategies.md`](../../../handbook/frontend/nextjs-rendering-strategies.md) (F-205), [`handbook/frontend/nextjs-streaming-and-suspense.md`](../../../handbook/frontend/nextjs-streaming-and-suspense.md) (F-206), [`handbook/frontend/nextjs-route-handlers.md`](../../../handbook/frontend/nextjs-route-handlers.md) (F-207), [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../../../handbook/frontend/nextjs-proxy-and-edge-runtime.md) (F-208), [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../../../handbook/frontend/nextjs-metadata-api-and-seo.md) (F-209), [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../../../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md) (F-210), [`handbook/frontend/nextjs-authentication-patterns.md`](../../../handbook/frontend/nextjs-authentication-patterns.md) (F-211), [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../../../handbook/frontend/nextjs-server-actions-and-mutations.md) (F-212), [`handbook/frontend/nextjs-deployment-models.md`](../../../handbook/frontend/nextjs-deployment-models.md) (F-213), and [`handbook/frontend/nextjs-fullstack-integration.md`](../../../handbook/frontend/nextjs-fullstack-integration.md) (F-214). Extended in place rather than scaffolding a new Next.js project each time, since each chapter is a direct continuation of the same file-based-routing playground.
+
+> **F-301 note — Turbopack's own tree-shaking/code-splitting, plus the real dev-mode contrast against Vite:** the same real tree-shaking test as the new sibling app [`practice/frontend/build-tooling-comparison/`](../build-tooling-comparison/) (an unused export, real runtime markers, not comments) was reproduced here against a real Turbopack production build: the used function's marker survived, the unused one's did not. A `next/dynamic` lazy component landed in its own separate real chunk file, confirmed by grep. The central, decisive real contrast: a real `read_network_requests` capture of Vite's dev server shows every source file as its OWN separate native-ESM HTTP request (no app-code bundling in dev at all); the same capture against this app's own Turbopack dev server shows grouped, pre-bundled chunk files instead — Turbopack bundles even in dev, Vite doesn't. See the F-301 evidence section below.
 
 > **F-214 note — closes D-F2, with a real separate Spring Boot backend:** a genuinely separate process ([`practice/java/full-stack-integration-backend/`](../../java/full-stack-integration-backend/), port 8080) was stood up specifically for this chapter. A real, live browser `fetch()` to it with no CORS config produced an exact, captured `TypeError: Failed to fetch` plus the real browser-console CORS-policy message; fixed with a real, explicit origin allowlist and retested. A real, subtle finding: `curl -H "Origin: ..."` confirmed `Access-Control-Allow-Origin` genuinely present on the wire, but the SAME successful browser `fetch()`'s own `res.headers.get('access-control-allow-origin')` returned `null` — that header isn't JS-readable by default. The real BFF pattern (`app/api/backend-proxy/route.js`) was built and tested end to end: a real, live, authenticated browser session (httpOnly cookie confirmed empty, per F-211) retrieved the Spring backend's protected data via Next.js alone, while the backend's own shared-secret credential never once reached the browser. See the F-214 evidence section below.
 
@@ -127,6 +129,12 @@ Routes, all created purely by file location — no router config, no route regis
 - `app/api/backend-proxy/route.js` — the real BFF Route Handler: checks F-211's DAL session, then calls the separate Spring backend server-to-server with a shared secret the browser never sees.
 - `.env.local` — added `INTERNAL_API_KEY` (matches the Spring backend's own expected value).
 - A real, separate Spring Boot backend: [`practice/java/full-stack-integration-backend/`](../../java/full-stack-integration-backend/) (its own README, its own captured evidence).
+
+**F-301 (added):**
+- `lib/f301-math-utils.js` — the same real tree-shaking test as the sibling `build-tooling-comparison` app.
+- `app/components/F301LazyPanel.js` + `app/components/F301Demo.js` — a real `next/dynamic` code-splitting test.
+- `app/build-tooling-demo/page.js` — renders the demo.
+- A new sibling app: [`practice/frontend/build-tooling-comparison/`](../build-tooling-comparison/) (a real, minimal Vite + React app, its own README, its own captured evidence).
 
 ## Captured evidence (real browser session + real build output)
 
@@ -1017,6 +1025,54 @@ document.cookie                          // => ""  (httpOnly, per F-211)
 
 A real, direct browser `fetch()` to Spring's protected endpoint (bypassing Next.js) failed with the SAME `TypeError: Failed to fetch` as the unfixed public endpoint — that path was deliberately left off the CORS allowlist entirely, an independent layer of protection.
 
+## Captured evidence for F-301 (Build tooling: Vite vs. Turbopack)
+
+### Real dev-mode network trace — Turbopack bundles even in dev
+
+Real `read_network_requests` capture, this app's `/about` page, `next dev` (Turbopack):
+
+```
+GET /about
+GET /_next/static/chunks/[root-of-the-server]__068_is3._.css
+GET /_next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_....js
+GET /_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_....js
+GET /_next/static/chunks/node_modules_next_dist_compiled_react-dom_....js
+... (10 more grouped chunk files, no individual source file ever its own request)
+```
+
+Contrast against the sibling `build-tooling-comparison` app's Vite dev server, where `main.jsx`, `App.jsx`, and `mathUtils.js` each show up as their OWN separate real HTTP request (see that app's own README) — the real, decisive, mechanical difference this chapter is built around.
+
+### Real, decisive tree-shaking proof (Turbopack)
+
+```
+$ npm run build
+$ grep -rl "TREE_SHAKE_MARKER_ADD_KEPT" .next/static/chunks/
+.next/static/chunks/3ifmfarey59be.js
+
+$ grep -rl "TREE_SHAKE_MARKER_SUBTRACT_DEAD" .next/static/chunks/
+(no output -- genuinely absent)
+```
+
+`add` (imported, used) survives; `unusedSubtract` (exported, never imported) does not — identical real result to the Vite side.
+
+### Real, decisive code-splitting proof (`next/dynamic`)
+
+```
+$ grep -rl "LAZY_CHUNK_MARKER" .next/static/chunks/
+.next/static/chunks/3h89ht1zezblo.js
+```
+
+A genuinely SEPARATE chunk file from the one containing `TREE_SHAKE_MARKER_ADD_KEPT` — `next/dynamic`'s lazy-loaded component landed in its own real chunk, matching the Vite side's own `LazyPanel-*.js` result.
+
+### Real dev-server cold start
+
+```
+$ PORT=5198 npm run dev
+✓ Ready in 271ms
+```
+
+Against Vite's own `VITE v8.2.1  ready in 400 ms` (captured in the sibling app's README) — noted honestly as NOT a fair comparison on its own, since this app has 31 routes built up across F-201–F-214 versus the Vite app's 3 source files; both servers report "ready" once the process is listening, not once every route is compiled.
+
 ## Verification performed
 
 - Live browser session: clicked real `<Link>` navigation across every route (Home, About, Blog ×2, Dashboard, Dashboard settings, Pricing), read every layout level's mount counter and each page's route/slug markers via direct DOM queries before and after each navigation.
@@ -1025,6 +1081,7 @@ A real, direct browser `fetch()` to Spring's protected endpoint (bypassing Next.
 - Confirmed the route group's URL-stripping via both `window.location.pathname` in a live session and the real `next build` route manifest.
 - `npm run build` — real production build (Turbopack), captured the real route manifest above, re-run after F-202's, F-203's, F-204's, F-205's, F-206's, F-207's, F-208's, F-209's, F-210's, and F-211's routes/files were added.
 - F-206: real `node scripts/stream-observer.mjs` runs (fetch + `ReadableStream` reader) against a clean `next start` server, comparing sibling-boundary parallel resolution, page-level `loading.js` streaming, and a bot-User-Agent request — the doc-recommended verification method over `curl`, which has its own buffering.
+- F-301: a real, dual-tool comparison against a new, purpose-built Vite + React app (`build-tooling-comparison`) — a real `read_network_requests` capture contrasting Vite's per-module native-ESM dev requests against Turbopack's own grouped-chunk dev requests; the identical real tree-shaking test (an unused export, runtime markers not comments) run against a real production build of BOTH tools, with matching results; the identical real code-splitting test (`React.lazy()`/`next/dynamic`) run against both, each producing a genuinely separate chunk file, confirmed by grep.
 - F-214: a real, separate Spring Boot backend stood up specifically for this chapter (its own JVM process, its own port); a real, live browser `fetch()` producing an exact, captured CORS failure and console error before any CORS config existed, then a real fix and retest; a real curl-vs-browser contrast showing `Access-Control-Allow-Origin` present on the wire but returning `null` from JavaScript's own `fetch()` `Headers` object; a real, live, authenticated browser session (login via the actual form) confirming the BFF pattern end to end, with `document.cookie` checked directly to reconfirm F-211's `httpOnly` proof; a real, independent CORS failure for a direct browser call to the backend's protected endpoint, confirming two separate, both-required protection layers.
 - F-213: a real `du -sh` measurement comparing a naive deployment (`node_modules` + `.next`, 543MB) against `output: "standalone"` (42MB); a real, reproduced standalone-server static-asset 404, fixed by manually copying `public/`/`.next/static`, re-verified with a real 200; a real `Cache-Control` header capture across three response types, including a genuine mismatch against the framework's own CDN documentation prose; a real, decisive two-independent-build multi-instance test showing a plain top-level bound Server Action (`deleteNote`) renders an identical action id and works cross-instance with zero shared-key config, contrasted against a real inline closure action (`echoClosure`) that renders a visibly different, real encrypted field; a real `docker build`/`docker run` cycle (Docker daemon started specifically for this chapter), including two real, transient failures (a base-image pull timeout, and the same `httpbin.org` outage from F-212 recurring inside the container build) each diagnosed and worked around, ending in a fully working containerized deployment verified with the same curl checks used on the host.
 - F-212: a real `read_network_requests` capture of the single-roundtrip response model (one POST, response body carrying both the action's return value and the re-rendered page); a real, disk-verified auth-bypass test (`addNote`'s own check temporarily removed, restored immediately after capture) proving a mutation can commit before a page-level redirect fires; a real, deliberately mismatched-`Origin` curl request capturing the framework's own CSRF rejection with its exact server log line; a real raw multipart curl POST (no JavaScript) reproducing a bound Server Action's own rendered hidden-field fallback, contrasted against a real, captured dead `javascript:` fallback for the SAME action wrapped in a closure for `useOptimistic`; a real, live browser screenshot captured mid-flight during a real 800ms artificial delay, showing `useOptimistic`, `useActionState`, and `useFormStatus`'s pending signals all active simultaneously.
