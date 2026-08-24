@@ -1405,6 +1405,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `arraylist-and-linkedlist-internals.md` and `fail-fast-vs-weakly-consistent-iterators.md` (both prerequisites, forward links added to both).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md — T-204)
+- Continued the Master Topic Register survey against current repo content: `ArrayDeque` was only ever mentioned as a recommendation in passing, with no dedicated chapter covering its circular-buffer internals or the legacy `Stack`/`Vector` cost it's meant to replace. Picked **T-204 (ArrayDeque & the legacy Stack/Vector problem, IWI 4.8)** as the next highest-impact genuine gap.
+- `handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md` (T-204).
+- **A new, real practice directory:** `practice/java/collections/arraydeque-internals/` — two independent demos, all executed on OpenJDK 21.0.12.
+- **A real finding that corrects outdated, widely-repeated folklore:** `CapacityAndWraparoundDemo.java` reflectively measured `ArrayDeque`'s real actual capacity against six requested sizes (1, 3, 8, 9, 17, 100) — every result matched `requested + 1` exactly (`8`→`9`, `100`→`101`), directly disproving the common "ArrayDeque always rounds up to a power of two" claim as current JDK 21 behavior (real for older, bitmask-modulo implementations; not what this JDK actually does). Also captured real growth behavior (5→12→26) and real reflective proof of circular wraparound (`head=3 > tail=1` after mixed operations).
+- **`StackReplacementDemo.java`, real measured legacy-`Stack` cost:** 20,000,000 push+pop pairs measured `java.util.Stack` (legacy, synchronized) at 105-106ms versus `ArrayDeque` at 47ms — a real, reproducible ~2.26x speedup — with `LinkedList` also measurably slower than `ArrayDeque` for identical stack usage. Also captured a real, genuine behavioral gotcha: `ArrayDeque.addFirst(null)` throws real `NullPointerException` (null is its own internal empty-slot sentinel), while `LinkedList` accepts null without complaint.
+- Added `practice/java/collections/arraydeque-internals/README.md` with both captured evidence blocks.
+- Cross-linked to `arraylist-and-linkedlist-internals.md` (prerequisite, forward link added there too).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
