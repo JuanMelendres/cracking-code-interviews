@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - collection-selection-decision-matrix.md
   - fail-fast-vs-weakly-consistent-iterators.md
+  - copyonwritearraylist-and-copy-on-write-tradeoffs.md
   - ../../study-packs/week-14/04-arraylist-and-linkedlist-internals.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html
@@ -380,6 +381,7 @@ Assuming `add(k, x)` for an arbitrary `k` is O(1) on a `LinkedList`.
 
 - Joshua Bloch, *Effective Java*, Item 11 (indirectly relevant via hashCode-heavy structures) and the JDK's own `List` interface documentation for algorithmic complexity notes on each implementing class
 - [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) — T-208, the real `modCount` mechanism and its best-effort quirk, reproduced directly against `ArrayList`.
+- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](copyonwritearraylist-and-copy-on-write-tradeoffs.md) — T-206, the thread-safe `List` counterpart to this chapter's own `ArrayList`, with a real, measured O(n)-write-for-lock-free-read trade-off.
 
 ## Official References
 

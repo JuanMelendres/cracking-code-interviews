@@ -18,6 +18,7 @@ prerequisites:
 related:
   - concurrenthashmap-internals.md
   - collection-selection-decision-matrix.md
+  - copyonwritearraylist-and-copy-on-write-tradeoffs.md
   - ../../practice/java/collections/fail-fast-vs-weakly-consistent/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ConcurrentModificationException.html
@@ -392,6 +393,7 @@ Assuming all non-fail-fast collections behave identically under concurrent itera
 ## Additional Reading
 
 - [ConcurrentHashMap Internals](concurrenthashmap-internals.md) — the internal structure behind the weakly-consistent iteration guarantee measured in this chapter.
+- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](copyonwritearraylist-and-copy-on-write-tradeoffs.md) — T-206, the real, measured write-cost/read-benefit trade-off behind this chapter's `CopyOnWriteArrayList` fixed-snapshot iteration evidence.
 
 ## Official References
 

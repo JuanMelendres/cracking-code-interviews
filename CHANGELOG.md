@@ -1395,6 +1395,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `completablefuture-and-async-composition.md` and `structured-concurrency.md` (forward links added to both, in `related` front matter and Additional Reading).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md — T-206)
+- Continued the Master Topic Register survey against current repo content: `CopyOnWriteArrayList` was only ever mentioned in passing (inside the T-208 iterator chapter's weak-consistency example), with no dedicated chapter covering its actual copy-on-write cost model. Picked **T-206 (CopyOnWriteArrayList & copy-on-write trade-offs, IWI 4.9)** as the next highest-impact genuine gap. Deliberately did not re-demonstrate snapshot-isolation/iterator behavior, already covered with real evidence in T-208 — cross-linked to it instead, per the no-duplication rule.
+- `handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md` (T-206).
+- **A new, real practice directory:** `practice/java/collections/copyonwritearraylist-tradeoffs/` — two independent demos, both compiled and executed on OpenJDK 21.0.12.
+- **`WriteCostScalingDemo.java`, real, measured O(n) write cost vs. `ArrayList`'s real O(1):** `CopyOnWriteArrayList.add()`'s real average per-write cost grew from 0.37µs at 1,000 elements to 82.33µs at 500,000 elements (a real ~222x cost increase for a ~500x size increase) while `ArrayList.add()`'s real average cost stayed essentially flat (0.03–0.11µs) across the identical range.
+- **`ConcurrentReadThroughputDemo.java`, real, measured lock-free-read benefit:** 8 real reader threads x 2,000,000 reads each, zero writers — `CopyOnWriteArrayList` measured 13ms total versus `Collections.synchronizedList()`'s real 555-577ms, a real ~43-49x measured ratio across runs, direct proof of the lock-acquisition cost `synchronizedList()` pays on every single read even absent any writer.
+- Added `practice/java/collections/copyonwritearraylist-tradeoffs/README.md` with both captured evidence blocks.
+- Cross-linked to `arraylist-and-linkedlist-internals.md` and `fail-fast-vs-weakly-consistent-iterators.md` (both prerequisites, forward links added to both).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
