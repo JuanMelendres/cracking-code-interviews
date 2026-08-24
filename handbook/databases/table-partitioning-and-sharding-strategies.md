@@ -19,6 +19,7 @@ prerequisites:
 related:
   - ../system-design/data-partitioning-and-consistent-hashing.md
   - zero-downtime-schema-migration.md
+  - replication-read-replicas-and-replica-lag.md
   - ../../study-packs/week-10/02-sharding-and-partitioning-strategies.md
 official_references:
   - https://www.postgresql.org/docs/16/ddl-partitioning.html
@@ -390,6 +391,7 @@ Assuming a built-in database feature is automatically immune to a well-known dis
 ## Additional Reading
 
 - [PostgreSQL documentation — Table Partitioning](https://www.postgresql.org/docs/16/ddl-partitioning.html)
+- [Replication, Read Replicas, and Replica Lag](replication-read-replicas-and-replica-lag.md) — a related but distinct scaling strategy: copying the same data across nodes, versus this chapter's splitting data across nodes.
 
 ## Official References
 

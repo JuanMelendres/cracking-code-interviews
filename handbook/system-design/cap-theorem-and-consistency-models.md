@@ -17,6 +17,7 @@ prerequisites: []
 related:
   - idempotency.md
   - caching-strategies-and-invalidation.md
+  - ../databases/replication-read-replicas-and-replica-lag.md
   - ../../study-packs/week-05/03-cap-and-consistency.md
 official_references:
   - https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/
@@ -358,6 +359,7 @@ Choosing one consistency model for an entire system rather than per data type.
 ## Additional Reading
 
 - Eric Brewer, ["CAP Twelve Years Later: How the 'Rules' Have Changed"](https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/) — the original theorem's author revisiting and refining it
+- [Replication, Read Replicas, and Replica Lag](../databases/replication-read-replicas-and-replica-lag.md) — a real, concrete, PostgreSQL-specific instance of this chapter's CP-vs-AP trade-offs, measured directly rather than described abstractly.
 
 ## Official References
 
