@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - lambdas-and-functional-interfaces.md
   - streams-and-collectors.md
+  - serialization-hazards-and-alternatives.md
   - ../../practice/java/java-core/optional-and-null-strategy/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html
@@ -384,6 +385,7 @@ Using `of()` on a value whose nullability isn't actually guaranteed.
 ## Additional Reading
 
 - [Streams and Collectors](streams-and-collectors.md) — `Optional` shares its `map`/`filter`/`flatMap` vocabulary directly with the `Stream` API covered in that chapter.
+- [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) — the broader Java serialization hazard class this chapter's own `NotSerializableException` finding is one small example of.
 
 ## Official References
 
