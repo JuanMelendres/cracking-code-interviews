@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - streams-and-collectors.md
   - generics-erasure-and-pecs.md
+  - reflection-and-dynamic-proxies.md
   - ../../practice/java/lambdas-and-functional-interfaces/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/invoke/LambdaMetafactory.html
@@ -418,6 +419,7 @@ Assuming any extra method on the interface breaks `@FunctionalInterface`.
 ## Additional Reading
 
 - [Streams and Collectors](streams-and-collectors.md) — the primary real-world consumer of lambdas and method references covered in this chapter.
+- [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) — `invokedynamic`/`LambdaMetafactory`'s runtime-code-generation approach, contrasted directly against classic reflection's real, measured cost.
 
 ## Official References
 

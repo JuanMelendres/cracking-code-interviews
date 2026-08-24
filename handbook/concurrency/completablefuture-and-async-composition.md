@@ -412,6 +412,7 @@ Believing code "uses `CompletableFuture`" is sufficient for it to be concurrent.
 
 - [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) — sizing the executor you'd supply to `*Async` methods for blocking or CPU-heavy work.
 - [ForkJoinPool and Work-Stealing](forkjoinpool-and-work-stealing.md) — the real mechanism behind `ForkJoinPool.commonPool()`, the default `*Async` executor referenced throughout this chapter.
+- [Reflection and Dynamic Proxies](../java-core/reflection-and-dynamic-proxies.md) — a related runtime-code-generation mechanism (`Proxy`/`InvocationHandler`), contrasted against the `invokedynamic`/`LambdaMetafactory` approach behind every lambda in this chapter.
 
 ## Official References
 
