@@ -19,6 +19,7 @@ related:
   - concurrenthashmap-internals.md
   - collection-selection-decision-matrix.md
   - treemap-treeset-and-navigable-hierarchy.md
+  - fail-fast-vs-weakly-consistent-iterators.md
   - ../../study-packs/week-14/01-hashmap-internals.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html
@@ -383,6 +384,7 @@ Assuming a larger table always fixes slow HashMap lookups.
 
 - Joshua Bloch, *Effective Java*, Item 11 (hashCode contract, connects directly to bucket distribution)
 - [TreeMap/TreeSet & the Navigable Hierarchy](treemap-treeset-and-navigable-hierarchy.md) — T-203, the direct sorted-structure counterpart to this chapter's own hash-based one; contrasts this chapter's real, measured average-case O(1) against TreeMap's real, measured worst-case O(log n) guarantee.
+- [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) — T-208, the real `modCount` mechanism behind this map's own fail-fast iteration behavior.
 
 ## Official References
 

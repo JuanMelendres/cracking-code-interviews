@@ -16,6 +16,7 @@ prerequisites:
   - hashmap-internals.md
 related:
   - hashmap-internals.md
+  - fail-fast-vs-weakly-consistent-iterators.md
   - ../concurrency/executors-and-thread-pool-sizing.md
   - ../../study-packs/week-14/02-concurrenthashmap-internals.md
 official_references:
@@ -380,6 +381,7 @@ Using a manual get()/put() pair instead of the built-in atomic compound operatio
 ## Additional Reading
 
 - Brian Goetz et al., *Java Concurrency in Practice*, Ch. 5 ("Building Blocks")
+- [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) — T-208, the real, latch-forced concurrent-iteration proof behind this map's own weakly-consistent guarantee.
 
 ## Official References
 

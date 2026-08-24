@@ -17,6 +17,7 @@ prerequisites:
 related:
   - executors-and-thread-pool-sizing.md
   - java-memory-model-and-volatile.md
+  - structured-concurrency.md
   - ../../study-packs/week-09/04-virtual-threads.md
 official_references:
   - https://openjdk.org/jeps/444
@@ -464,6 +465,7 @@ Building a pool of virtual threads "to be safe," adding complexity for no benefi
 ## Additional Reading
 
 - [JEP 444: Virtual Threads](https://openjdk.org/jeps/444)
+- [Structured Concurrency](structured-concurrency.md) — the API built directly on top of virtual threads for coordinating fork/join subtask trees.
 
 ## Official References
 
