@@ -1437,6 +1437,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `streams-and-collectors.md` (shared `map`/`filter`/`flatMap` vocabulary, forward link added there too) and `lambdas-and-functional-interfaces.md`.
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/java-core/classloaders-and-class-initialization.md — T-114)
+- Continued the Master Topic Register survey against current repo content: `grep`-checked `handbook/` for `ClassLoader`/`classloader` — only one passing mention in the JVM memory-layout chapter, confirming zero dedicated coverage. Picked **T-114 (ClassLoaders & class initialization, IWI 4.6)** as the next highest-impact genuine gap.
+- `handbook/java-core/classloaders-and-class-initialization.md` (T-114).
+- **A new, real practice directory:** `practice/java/java-core/classloaders-and-class-initialization/` — three independent demos, all compiled and executed on OpenJDK 21.0.12.
+- **`HierarchyAndDelegationDemo.java`, real hierarchy and delegation:** walked the real, current JDK 9+ three-tier classloader chain (application → platform → bootstrap/`null`) directly via `getParent()`, and confirmed real parent-first delegation — asking the application classloader for `java.lang.String` returns the identical `Class` object bootstrap already loaded.
+- **`SameClassTwoLoadersDemo.java`, the classic classloader-identity gotcha, reproduced with a real `ClassCastException`:** the identical `Widget.class` bytecode loaded once normally and once via a custom, non-delegating classloader produced two genuinely distinct `Class` objects (`==` false, `instanceof` false), and casting one to the other threw a real, genuinely confusing `"class Widget cannot be cast to class Widget"` — disambiguated only by each side's defining loader.
+- **`InitializationTriggersDemo.java`, real JLS "active use" verification, trigger by trigger:** confirmed zero initializer output for a type reference, `Class.forName(..., initialize=false, ...)`, and a compile-time-constant field read; confirmed real initializer output for a non-constant static field read and for constructing an instance — including the notable real finding that a class's constant-field read earlier did NOT trigger its initializer, which ran only later at actual construction.
+- Added `practice/java/java-core/classloaders-and-class-initialization/README.md` with all three captured evidence blocks.
+- Cross-linked to `reflection-and-dynamic-proxies.md` (prerequisite, forward link added there too) and `jvm/jvm-memory-layout-and-runtime-regions.md` (forward link added there too).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

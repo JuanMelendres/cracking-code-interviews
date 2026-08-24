@@ -18,6 +18,7 @@ related:
   - memory-leak-diagnosis-and-heap-dump-analysis.md
   - object-layout-headers-and-compressed-oops.md
   - native-memory-direct-buffers-and-off-heap.md
+  - ../java-core/classloaders-and-class-initialization.md
   - ../../study-packs/week-16/03-jvm-memory-layout-and-runtime-regions.md
 official_references:
   - https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html#jvms-2.5
@@ -282,6 +283,7 @@ A: No — measured directly, recursion depth scaled from 1,479 to 413,005 purely
 ## Additional Reading
 
 - [Oracle — Troubleshooting Memory Leaks (Native Memory Tracking)](https://docs.oracle.com/en/java/javase/21/troubleshoot/diagnostic-tools.html)
+- [ClassLoaders and Class Initialization](../java-core/classloaders-and-class-initialization.md) — the real mechanism that defines a class's metadata before it ever occupies the memory regions covered in this chapter.
 
 ## Official References
 
