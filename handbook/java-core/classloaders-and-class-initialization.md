@@ -16,6 +16,7 @@ prerequisites:
   - reflection-and-dynamic-proxies.md
 related:
   - ../jvm/jvm-memory-layout-and-runtime-regions.md
+  - annotations-and-annotation-processing.md
   - ../../practice/java/java-core/classloaders-and-class-initialization/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html
@@ -383,6 +384,7 @@ Assuming it's a JVM bug or a build/version mismatch instead.
 ## Additional Reading
 
 - [JVM Memory Layout and Runtime Regions](../jvm/jvm-memory-layout-and-runtime-regions.md) — where a loaded class's metadata (method area/metaspace) actually lives once a classloader defines it.
+- [Annotations and Annotation Processing](annotations-and-annotation-processing.md) — a class's `RuntimeVisibleAnnotations` attribute is itself part of the class metadata this chapter's classloaders define.
 
 ## Official References
 

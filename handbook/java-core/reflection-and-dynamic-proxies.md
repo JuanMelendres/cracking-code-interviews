@@ -17,6 +17,7 @@ prerequisites:
 related:
   - ../concurrency/completablefuture-and-async-composition.md
   - classloaders-and-class-initialization.md
+  - annotations-and-annotation-processing.md
   - ../../practice/java/java-core/reflection-and-dynamic-proxies/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/reflect/package-summary.html
@@ -398,6 +399,7 @@ Assuming `@Transactional` "just works" regardless of how the method is called.
 
 - [CompletableFuture and Async Composition](../concurrency/completablefuture-and-async-composition.md) — another chapter whose real mechanism (JDK `invokedynamic`/`LambdaMetafactory`) is closely related to the runtime-code-generation ideas covered here.
 - [ClassLoaders and Class Initialization](classloaders-and-class-initialization.md) — the real class-identity mechanism (`(name, loader)` pairs) underneath the `$ProxyN` classes this chapter's `Proxy` demo synthesizes at runtime.
+- [Annotations and Annotation Processing](annotations-and-annotation-processing.md) — real, reflection-driven annotation scanning is one of the most common practical uses of the reflection mechanisms covered in this chapter.
 
 ## Official References
 

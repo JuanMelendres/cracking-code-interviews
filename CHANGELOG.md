@@ -1459,6 +1459,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `virtual-threads.md` and `structured-concurrency.md` (both prerequisites, forward links added to both).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/java-core/annotations-and-annotation-processing.md — T-112)
+- Continued the Master Topic Register survey against current repo content: `grep`-checked `handbook/` for `@Retention`/`@Target`/`AnnotationProcessor`/`RetentionPolicy`/`@interface` — zero matches anywhere. Picked **T-112 (Annotations & annotation processing, IWI 4.3)** as the next highest-impact genuine gap.
+- `handbook/java-core/annotations-and-annotation-processing.md` (T-112).
+- **A new, real practice directory:** `practice/java/java-core/annotations-and-processing/` — three independent demos plus real `javap` bytecode disassembly, all on OpenJDK 21.0.12.
+- **`RetentionPolicyDemo.java` + real `javap` disassembly:** confirmed via reflection that only `RUNTIME`-retention annotations are visible via `getAnnotations()`; confirmed via real bytecode disassembly *why* — `CLASS`-retention's annotation is genuinely present in `RuntimeInvisibleAnnotations` (which reflection never reads), `RUNTIME`-retention's is in `RuntimeVisibleAnnotations`, and `SOURCE`-retention's method carries zero annotation attributes at all.
+- **`ReflectiveProcessingDemo.java`, a real, working mini-ORM:** reflection scanning `User`'s fields for `@Column`, dynamically building a real `INSERT INTO users (user_id, full_name) VALUES (?, ?)` SQL statement purely from what's discovered at runtime — the actual mechanism behind JPA/Jackson.
+- **`InheritedGotchaDemo.java`, the real `@Inherited` limitation:** confirmed `@Inherited` genuinely works through class `extends` (real `true`), but genuinely does not propagate through interface `implements` even for an `@Inherited`-marked interface annotation (real `false`) — a documented but frequently-missed limitation.
+- Added `practice/java/java-core/annotations-and-processing/README.md` with all captured evidence, including the real `javap` output.
+- Cross-linked to `reflection-and-dynamic-proxies.md` (prerequisite, forward link added there too) and `classloaders-and-class-initialization.md` (forward link added there too).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
