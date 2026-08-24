@@ -16,6 +16,7 @@ estimated_reading_minutes: 25
 prerequisites: []
 related:
   - equals-hashcode-and-comparable-contracts.md
+  - strings-interning-compact-strings-and-builders.md
   - ../../interview-playbook/technical-answers/
 official_references:
   - https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html
@@ -435,6 +436,7 @@ Not recognizing this as a design smell to actively avoid in code review.
 ## Additional Reading
 
 - Joshua Bloch, *Effective Java*, Item 16 ("In public classes, use accessor methods, not public fields") and Item 19 ("Design and document for inheritance or else prohibit it")
+- [Strings: Interning, Compact Strings, and Builders](strings-interning-compact-strings-and-builders.md) — the compile-time-constant-folding rule this chapter's own `StringBuilder`-based construction was deliberately written to avoid.
 
 ## Official References
 
