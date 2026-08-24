@@ -19,6 +19,7 @@ prerequisites:
 related:
   - virtual-threads.md
   - deadlock-race-conditions-and-thread-diagnostics.md
+  - forkjoinpool-and-work-stealing.md
   - ../../practice/java/concurrency/completablefuture-internals/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html
@@ -410,6 +411,7 @@ Believing code "uses `CompletableFuture`" is sufficient for it to be concurrent.
 ## Additional Reading
 
 - [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) — sizing the executor you'd supply to `*Async` methods for blocking or CPU-heavy work.
+- [ForkJoinPool and Work-Stealing](forkjoinpool-and-work-stealing.md) — the real mechanism behind `ForkJoinPool.commonPool()`, the default `*Async` executor referenced throughout this chapter.
 
 ## Official References
 

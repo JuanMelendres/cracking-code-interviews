@@ -17,6 +17,7 @@ prerequisites:
   - executors-and-thread-pool-sizing.md
 related:
   - completablefuture-and-async-composition.md
+  - forkjoinpool-and-work-stealing.md
   - ../../practice/java/concurrency/structured-concurrency/README.md
 official_references:
   - https://openjdk.org/jeps/453
@@ -385,6 +386,7 @@ Assuming any documented JDK API is automatically production-stable.
 ## Additional Reading
 
 - [Virtual Threads](virtual-threads.md) — `StructuredTaskScope` forks each subtask onto its own virtual thread, making this chapter's real measurements cheap even under many concurrent subtasks.
+- [ForkJoinPool and Work-Stealing](forkjoinpool-and-work-stealing.md) — real, direct proof that virtual threads' carrier scheduler is a separate `ForkJoinPool` instance from `commonPool()`, not the pool shared by parallel streams and `CompletableFuture`.
 
 ## Official References
 
