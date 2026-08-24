@@ -16,6 +16,7 @@ estimated_reading_minutes: 30
 prerequisites: []
 related:
   - generics-erasure-and-pecs.md
+  - lambdas-and-functional-interfaces.md
   - ../concurrency/executors-and-thread-pool-sizing.md
   - ../../study-packs/week-13/01-streams-and-collectors.md
 official_references:
@@ -433,6 +434,7 @@ Assuming `parallel()` handles thread-safety of the stream's own side effects.
 ## Additional Reading
 
 - [Martin Fowler-adjacent] Oracle's own Streams tutorial: [The Java Tutorials — Aggregate Operations](https://docs.oracle.com/javase/tutorial/collections/streams/)
+- [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) — the mechanism (capture rules, `invokedynamic`, method references) underneath every lambda used throughout this chapter.
 
 ## Official References
 
