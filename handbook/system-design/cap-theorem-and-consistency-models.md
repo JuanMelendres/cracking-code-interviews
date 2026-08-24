@@ -18,6 +18,7 @@ related:
   - idempotency.md
   - caching-strategies-and-invalidation.md
   - ../databases/replication-read-replicas-and-replica-lag.md
+  - ../architecture/cqrs-read-write-separation.md
   - ../../study-packs/week-05/03-cap-and-consistency.md
 official_references:
   - https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/

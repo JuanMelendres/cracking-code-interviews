@@ -18,6 +18,7 @@ prerequisites:
 related:
   - ../databases/data-modelling-and-explicit-join-tables.md
   - microservice-decomposition-and-monolith-tradeoff.md
+  - cqrs-read-write-separation.md
   - ../../study-packs/week-02/03-ddd-tactical-aggregates.md
 official_references: []
 ---

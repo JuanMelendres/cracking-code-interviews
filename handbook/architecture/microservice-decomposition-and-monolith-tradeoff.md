@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - ../system-design/distributed-systems-failure-modes.md
   - ../system-design/cap-theorem-and-consistency-models.md
+  - cqrs-read-write-separation.md
   - ../../study-packs/week-05/01-microservice-decomposition.md
 official_references: []
 ---
