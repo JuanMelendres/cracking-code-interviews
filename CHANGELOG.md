@@ -1470,6 +1470,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `reflection-and-dynamic-proxies.md` (prerequisite, forward link added there too) and `classloaders-and-class-initialization.md` (forward link added there too).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/java-core/enums-enummap-and-enumset.md — T-111)
+- Continued the Master Topic Register survey against current repo content: `grep`-checked `handbook/` for `EnumMap`/`EnumSet` — zero matches anywhere. Picked **T-111 (Enums, EnumMap, EnumSet, IWI 4.2)** as the next highest-impact genuine gap.
+- `handbook/java-core/enums-enummap-and-enumset.md` (T-111).
+- **A new, real practice directory:** `practice/java/java-core/enums-enummap-enumset/` — three independent demos, all compiled and executed on OpenJDK 21.0.12.
+- **`EnumInternalsDemo.java`, real singleton identity and a real JVM-enforced reflection guard:** confirmed `==` identity across every enum access path; confirmed reflective construction of an enum instance throws a real, dedicated `IllegalArgumentException: Cannot reflectively create enum objects` (not merely an access-control failure); confirmed constant-specific method bodies are real, distinct anonymous subclasses (`Operation$1`, `Operation$2`, `Operation$3`), with `getDeclaringClass()` (not `getClass()`) as the correct way back to the enum type.
+- **`EnumMapVsHashMapDemo.java`, an honest, unexaggerated measurement:** real put+get throughput measured only a modest ~1.08-1.16x advantage for `EnumMap` over `HashMap` across repeated runs — reported honestly rather than assuming a dramatic multiple — alongside `EnumMap`'s real, unambiguous, guaranteed natural-iteration-order advantage, verified directly regardless of insertion order.
+- **`OrdinalDangerDemo.java`, a real, dramatic reproduction of the classic ordinal-persistence bug:** inserting one new constant in the middle of a declaration silently shifted every later constant's real ordinal value; a value persisted as `ordinal=2` (meaning `REJECTED` under the original order) resolved to the wrong constant (`APPROVED`) under the new order — zero exception, zero warning. `name()`/`valueOf()` confirmed real and stable across the identical reordering.
+- Added `practice/java/java-core/enums-enummap-enumset/README.md` with all captured evidence, including the honestly-reported modest performance number.
+- Cross-linked to `annotations-and-annotation-processing.md` (forward link added there too, since both chapters use reflection-based introspection as their core mechanism).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

@@ -17,6 +17,7 @@ prerequisites:
   - reflection-and-dynamic-proxies.md
 related:
   - classloaders-and-class-initialization.md
+  - enums-enummap-and-enumset.md
   - ../../practice/java/java-core/annotations-and-processing/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/annotation/package-summary.html
@@ -397,6 +398,7 @@ Assuming `@Inherited` works like general Java inheritance across any `extends`/`
 ## Additional Reading
 
 - [ClassLoaders and Class Initialization](classloaders-and-class-initialization.md) — the real class-metadata mechanism (`RuntimeVisibleAnnotations` lives in the same `.class` file structure) underneath the annotations covered in this chapter.
+- [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) — reflection-based scanning (this chapter's core mechanism) is the same general technique used there to probe enum internals.
 
 ## Official References
 
