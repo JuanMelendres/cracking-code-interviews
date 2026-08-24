@@ -1426,6 +1426,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `lambdas-and-functional-interfaces.md` (prerequisite, forward link added there too) and `completablefuture-and-async-composition.md` (related runtime-code-generation mechanism, forward link added there too).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/java-core/optional-and-null-strategy.md — T-109)
+- Continued the Master Topic Register survey against current repo content: `grep`-checked `handbook/` for `Optional<`/`Optional.of`/`Optional.empty`/`Optional.ofNullable` — the only match anywhere was one usage-example line in an unrelated architecture chapter, confirming zero dedicated coverage. Picked **T-109 (Optional & null strategy, IWI 4.7)** as the next highest-impact genuine gap.
+- `handbook/java-core/optional-and-null-strategy.md` (T-109).
+- **A new, real practice directory:** `practice/java/java-core/optional-and-null-strategy/` — three independent demos, all compiled and executed on OpenJDK 21.0.12.
+- **`OptionalBasicsDemo.java`, real construction/access contracts:** real captured `NullPointerException` from `Optional.of(null)`, real safe `Optional.ofNullable(null)`, real `NoSuchElementException` from `get()` on empty, and real `orElse`/`orElseGet`/`orElseThrow`/`map` output.
+- **`OrElseVsOrElseGetDemo.java`, a real, dramatically measured eager-vs-lazy gotcha:** with a genuinely expensive fallback computation and an already-present `Optional`, `orElse()` measured 3715ms versus `orElseGet()`'s 3ms across 5,000,000 calls — a real ~931-1238x measured cost difference across runs, direct proof `orElse()`'s argument is evaluated unconditionally on every call while `orElseGet()`'s `Supplier` is genuinely lazy.
+- **`OptionalAsFieldAntiPatternDemo.java`, a real, concrete consequence beyond style:** confirmed `Optional` does not implement `Serializable`, then captured a real `NotSerializableException` from attempting to serialize a class storing `Optional` directly as a field — contrasted against the correct pattern (plain nullable field, `Optional` only at the getter boundary), which serialized successfully.
+- Added `practice/java/java-core/optional-and-null-strategy/README.md` with all three captured evidence blocks.
+- Cross-linked to `streams-and-collectors.md` (shared `map`/`filter`/`flatMap` vocabulary, forward link added there too) and `lambdas-and-functional-interfaces.md`.
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

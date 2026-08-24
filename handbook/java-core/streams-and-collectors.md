@@ -17,6 +17,7 @@ prerequisites: []
 related:
   - generics-erasure-and-pecs.md
   - lambdas-and-functional-interfaces.md
+  - optional-and-null-strategy.md
   - ../concurrency/executors-and-thread-pool-sizing.md
   - ../../study-packs/week-13/01-streams-and-collectors.md
 official_references:
@@ -435,6 +436,7 @@ Assuming `parallel()` handles thread-safety of the stream's own side effects.
 
 - [Martin Fowler-adjacent] Oracle's own Streams tutorial: [The Java Tutorials — Aggregate Operations](https://docs.oracle.com/javase/tutorial/collections/streams/)
 - [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) — the mechanism (capture rules, `invokedynamic`, method references) underneath every lambda used throughout this chapter.
+- [Optional and Null Strategy](optional-and-null-strategy.md) — shares `map`/`filter`/`flatMap` vocabulary directly with the `Stream` API in this chapter.
 
 ## Official References
 
