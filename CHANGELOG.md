@@ -1448,6 +1448,17 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Cross-linked to `reflection-and-dynamic-proxies.md` (prerequisite, forward link added there too) and `jvm/jvm-memory-layout-and-runtime-regions.md` (forward link added there too).
 - All cross-links and heading structure (1 H1) verified before commit.
 
+### Added (handbook/concurrency/scoped-values-and-threadlocal-migration.md — T-412)
+- Continued the Master Topic Register survey against current repo content: `grep`-checked `handbook/` for `ScopedValue` — zero matches anywhere. Verified real version status before writing: `javac` on this repo's own OpenJDK 21.0.12 confirms it's a genuine preview API (JEP 446) — stated precisely in the chapter's front matter, distinct from `StructuredTaskScope`'s JEP 453 (careful not to conflate the two JEPs). Picked **T-412 (Scoped Values & ThreadLocal migration, IWI 4.5)** as the next highest-impact genuine gap.
+- `handbook/concurrency/scoped-values-and-threadlocal-migration.md` (T-412).
+- **A new, real practice directory:** `practice/java/concurrency/scoped-values-and-threadlocal/` — three independent demos, all compiled with `--release 21 --enable-preview` and executed with `--enable-preview` on OpenJDK 21.0.12.
+- **`ScopedValueBasicsDemo.java`, real binding/unbinding/shadowing:** real `NoSuchElementException` when read unbound, real `isBound()`/`get()` visibility inside `run()`'s dynamic extent (including from a nested method call with no parameter threading), real return to unbound state the instant `run()` returns, and real, correct nested-scope shadowing/restoration.
+- **`ThreadLocalLeakDemo.java`, the classic thread-pool-reuse leak, reproduced side by side:** on a real single-thread pool forcing physical thread reuse, a `ThreadLocal` set by Task 1 and never `remove()`d was genuinely still visible to an unrelated Task 2 on the same reused thread — a real, reproduced leak. The identical scenario with `ScopedValue` showed `isBound() == false` for Task 2 — real, structural immunity, since there's no cleanup step to forget.
+- **`InheritanceComparisonDemo.java`, real propagation differences:** a `ThreadLocal` set on the main thread was genuinely `null` on a manually-created child `Thread` (no automatic propagation); a `ScopedValue` bound on the parent was genuinely visible inside a real `StructuredTaskScope` subtask forked from within that binding.
+- Added `practice/java/concurrency/scoped-values-and-threadlocal/README.md` with all three captured evidence blocks.
+- Cross-linked to `virtual-threads.md` and `structured-concurrency.md` (both prerequisites, forward links added to both).
+- All cross-links and heading structure (1 H1) verified before commit.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.
