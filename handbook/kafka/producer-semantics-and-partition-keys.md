@@ -18,6 +18,7 @@ related:
   - kafka-architecture-fundamentals.md
   - consumer-groups-and-rebalancing.md
   - delivery-semantics-and-exactly-once.md
+  - schema-registry-and-compatibility-evolution.md
   - ../../study-packs/week-08/02-producer-semantics-and-partition-keys.md
 official_references:
   - https://kafka.apache.org/documentation/#producerconfigs

@@ -20,6 +20,7 @@ related:
   - ../system-design/distributed-transactions-saga-and-outbox.md
   - ../system-design/cap-theorem-and-consistency-models.md
   - ../databases/replication-read-replicas-and-replica-lag.md
+  - ../kafka/schema-registry-and-compatibility-evolution.md
   - ../../practice/java/architecture/cqrs-read-write-separation/README.md
 official_references:
   - https://martinfowler.com/bliki/CQRS.html
@@ -255,7 +256,7 @@ The table's last column matters for correcting the most common conflation on thi
 
 - **CQRS everywhere.** Applying the pattern uniformly across a whole system rather than to the one or two query paths that actually justify it — this is the same failure mode this program's [microservice decomposition chapter](microservice-decomposition-and-monolith-tradeoff.md) warns against for service boundaries: applying a powerful, costly pattern as a default instead of a targeted response to a specific, named pressure.
 - **A read model with no rebuild path.** If the read model cannot be reconstructed from the events (or from the write model) after data loss or a schema change, it has quietly become a second, independent source of truth rather than a derived, disposable projection — and now needs its own backup and consistency story.
-- **Silent schema drift between events and projectors.** Changing an event's shape without a compatibility plan for every consumer, on the assumption that "it's just an internal event" — the same lesson this program's [Kafka schema-evolution material](../kafka/delivery-semantics-and-exactly-once.md) covers for message contracts generally.
+- **Silent schema drift between events and projectors.** Changing an event's shape without a compatibility plan for every consumer, on the assumption that "it's just an internal event" — the same lesson this program's [Schema Registry and Compatibility Evolution](../kafka/schema-registry-and-compatibility-evolution.md) chapter covers for message contracts generally, including the real, evidence-backed rule for which changes are actually safe.
 
 ## Best Practices
 
