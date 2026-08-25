@@ -21,6 +21,7 @@ related:
   - ../system-design/cap-theorem-and-consistency-models.md
   - ../databases/replication-read-replicas-and-replica-lag.md
   - ../kafka/schema-registry-and-compatibility-evolution.md
+  - architecture-decision-records.md
   - ../../practice/java/architecture/cqrs-read-write-separation/README.md
 official_references:
   - https://martinfowler.com/bliki/CQRS.html

@@ -19,6 +19,7 @@ related:
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
   - locks-deadlocks-and-lock-escalation.md
+  - ../architecture/architecture-decision-records.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../../study-packs/week-03/02-isolation-levels-and-write-skew.md
 official_references:
@@ -350,7 +351,7 @@ A write-skew-style invariant violation can itself be a security-relevant bug whe
 - Prefer a single atomic `UPDATE ... SET x = x - ? WHERE ...` over a separate read-then-write whenever the logic allows it — it sidesteps the race entirely, at any isolation level.
 - Use `SELECT ... FOR UPDATE` for read-then-write patterns that can't be collapsed into one atomic statement, before reaching for a stronger isolation level.
 - Reserve SERIALIZABLE specifically for genuinely cross-row invariants, and pair it unconditionally with retry-on-serialization-failure in every code path that touches the protected data.
-- Treat isolation-level choice as an architectural decision made per invariant, documented (an ADR is appropriate here), not a connection-pool-wide default silently inherited by every query.
+- Treat isolation-level choice as an architectural decision made per invariant, documented (an [ADR](../architecture/architecture-decision-records.md) is appropriate here), not a connection-pool-wide default silently inherited by every query.
 - When reproducing or testing concurrency behavior, use two genuinely concurrent sessions (as in this chapter's verification), not a single-threaded simulation — the anomaly only exists under real interleaving.
 
 ## Interview Answer Framework
