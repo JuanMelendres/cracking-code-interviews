@@ -19,6 +19,7 @@ related:
   - cqrs-read-write-separation.md
   - ../system-design/multi-region-failover-and-disaster-recovery.md
   - ../kafka/schema-registry-and-compatibility-evolution.md
+  - modular-monolith-as-a-deliberate-choice.md
   - ../../practice/architecture/adr-examples/README.md
 official_references:
   - https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions

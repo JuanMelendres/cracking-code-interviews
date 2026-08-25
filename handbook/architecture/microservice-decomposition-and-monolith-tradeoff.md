@@ -18,6 +18,7 @@ related:
   - ../system-design/cap-theorem-and-consistency-models.md
   - cqrs-read-write-separation.md
   - architecture-decision-records.md
+  - modular-monolith-as-a-deliberate-choice.md
   - ../../study-packs/week-05/01-microservice-decomposition.md
 official_references: []
 ---

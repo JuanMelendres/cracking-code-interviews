@@ -18,6 +18,7 @@ related:
   - ddd-tactical-design-aggregates.md
   - microservice-decomposition-and-monolith-tradeoff.md
   - cqrs-read-write-separation.md
+  - modular-monolith-as-a-deliberate-choice.md
   - ../../study-packs/week-01/01-clean-hexagonal-architecture.md
 official_references:
   - https://alistair.cockburn.us/hexagonal-architecture/
