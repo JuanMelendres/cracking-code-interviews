@@ -1,0 +1,51 @@
+services:
+  region-primary:
+    image: postgres:16
+    container_name: dr-region-primary
+    environment:
+      POSTGRES_PASSWORD: primarypass
+      POSTGRES_USER: postgres
+      POSTGRES_DB: appdb
+    command: >
+      postgres
+      -c wal_level=replica
+      -c max_wal_senders=5
+      -c max_replication_slots=5
+      -c hot_standby=on
+      -c archive_mode=on
+      -c "archive_command=cp %p /archive/%f"
+      -c archive_timeout=3
+    ports:
+      - "55532:5432"
+    volumes:
+      - ./primary-init:/docker-entrypoint-initdb.d
+      - ./scripts:/scripts
+      - ./archive:/archive
+    networks:
+      - dr-net
+
+  region-standby:
+    image: postgres:16
+    container_name: dr-region-standby
+    depends_on:
+      - region-primary
+    environment:
+      POSTGRES_PASSWORD: primarypass
+    ports:
+      - "55533:5432"
+    entrypoint: ["/bin/bash", "/standby-entrypoint.sh"]
+    volumes:
+      - ./standby-entrypoint.sh:/standby-entrypoint.sh
+    # Deliberately CPU-throttled relative to the primary. This does not affect RPO —
+    # PostgreSQL always fully replays every byte of WAL it already received before a
+    # promotion completes, so replay speed cannot lose data, only delay how long
+    # promotion takes. It's here to keep RTO realistic: an under-provisioned standby
+    # (a common, real DR cost trade-off) takes real, measurably longer to catch up
+    # and promote than an identically-sized one would.
+    cpus: "0.15"
+    networks:
+      - dr-net
+
+networks:
+  dr-net:
+    driver: bridge

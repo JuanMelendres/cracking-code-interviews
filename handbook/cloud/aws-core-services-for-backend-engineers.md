@@ -18,6 +18,7 @@ related:
   - kubernetes-objects-scheduling-and-networking.md
   - cloud-cost-and-scaling-economics.md
   - ../system-design/storage-selection-tradeoffs.md
+  - ../system-design/multi-region-failover-and-disaster-recovery.md
   - ../../study-packs/week-15/05-aws-core-services-for-backend-engineers.md
 official_references:
   - https://docs.aws.amazon.com/

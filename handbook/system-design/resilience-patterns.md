@@ -17,6 +17,7 @@ prerequisites:
 related:
   - distributed-systems-failure-modes.md
   - ../concurrency/executors-and-thread-pool-sizing.md
+  - multi-region-failover-and-disaster-recovery.md
   - ../../study-packs/week-10/04-resilience-patterns.md
 official_references:
   - https://netflixtechblog.com/fault-tolerance-in-a-high-volume-distributed-system-91ab4faae74a

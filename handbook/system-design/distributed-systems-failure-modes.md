@@ -17,6 +17,7 @@ related:
   - caching-strategies-and-invalidation.md
   - system-design-method-and-estimation.md
   - ../databases/isolation-levels-and-concurrency-anomalies.md
+  - multi-region-failover-and-disaster-recovery.md
   - ../../study-packs/week-04/02-distributed-failure-modes.md
 official_references:
   - https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/
