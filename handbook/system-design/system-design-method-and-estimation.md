@@ -17,6 +17,7 @@ related:
   - api-design.md
   - caching-strategies-and-invalidation.md
   - distributed-systems-failure-modes.md
+  - load-balancing-service-discovery-and-health-checking.md
   - ../../study-packs/week-03/03-system-design-method.md
 official_references: []
 ---

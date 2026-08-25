@@ -21,6 +21,7 @@ related:
   - ../databases/replication-read-replicas-and-replica-lag.md
   - ../cloud/aws-core-services-for-backend-engineers.md
   - ../architecture/architecture-decision-records.md
+  - load-balancing-service-discovery-and-health-checking.md
   - ../../practice/sql/multi-region-failover-and-dr/README.md
 official_references:
   - https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-workloads-on-aws.html

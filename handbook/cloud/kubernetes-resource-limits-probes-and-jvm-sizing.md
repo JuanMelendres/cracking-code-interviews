@@ -16,6 +16,7 @@ prerequisites:
   - ../jvm/gc-fundamentals-and-log-analysis.md
 related:
   - kubernetes-objects-scheduling-and-networking.md
+  - ../system-design/load-balancing-service-discovery-and-health-checking.md
   - ../../study-packs/week-15/01-kubernetes-resource-limits-probes-and-jvm-sizing.md
 official_references:
   - https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
