@@ -18,6 +18,7 @@ prerequisites:
 related:
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
+  - locks-deadlocks-and-lock-escalation.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../../study-packs/week-03/02-isolation-levels-and-write-skew.md
 official_references:

@@ -18,6 +18,7 @@ prerequisites:
 related:
   - java-memory-model-and-volatile.md
   - reentrantlock-readwritelock-and-stampedlock.md
+  - ../databases/locks-deadlocks-and-lock-escalation.md
   - ../../study-packs/week-09/03-deadlock-races-and-thread-diagnostics.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.management/java/lang/management/ThreadMXBean.html
