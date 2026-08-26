@@ -16,6 +16,7 @@ estimated_reading_minutes: 30
 prerequisites: []
 related:
   - microservice-decomposition-and-monolith-tradeoff.md
+  - strangler-fig-and-migration-patterns.md
   - cqrs-read-write-separation.md
   - ../system-design/multi-region-failover-and-disaster-recovery.md
   - ../kafka/schema-registry-and-compatibility-evolution.md

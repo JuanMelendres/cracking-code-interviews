@@ -19,6 +19,7 @@ related:
   - clean-hexagonal-architecture.md
   - microservice-decomposition-and-monolith-tradeoff.md
   - event-driven-architecture-integration-styles.md
+  - strangler-fig-and-migration-patterns.md
   - ../../practice/java/architecture/ddd-bounded-contexts-and-context-mapping/README.md
 official_references:
   - https://martinfowler.com/bliki/BoundedContext.html

@@ -17,6 +17,7 @@ prerequisites: []
 related:
   - ddd-tactical-design-aggregates.md
   - ddd-strategic-bounded-contexts-and-context-mapping.md
+  - strangler-fig-and-migration-patterns.md
   - microservice-decomposition-and-monolith-tradeoff.md
   - cqrs-read-write-separation.md
   - modular-monolith-as-a-deliberate-choice.md
