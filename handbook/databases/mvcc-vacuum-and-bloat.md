@@ -20,6 +20,7 @@ related:
   - query-planning-and-explain-analyze.md
   - optimistic-vs-pessimistic-locking.md
   - connection-pooling-and-sizing.md
+  - ../system-design/messaging-patterns-and-change-data-capture.md
   - ../../practice/sql/mvcc-vacuum-and-bloat/README.md
 official_references:
   - https://www.postgresql.org/docs/current/mvcc.html

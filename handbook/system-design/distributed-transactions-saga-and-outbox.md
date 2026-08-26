@@ -18,6 +18,7 @@ prerequisites:
   - ../kafka/delivery-semantics-and-exactly-once.md
 related:
   - idempotency.md
+  - messaging-patterns-and-change-data-capture.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../kafka/delivery-semantics-and-exactly-once.md
   - ../architecture/cqrs-read-write-separation.md

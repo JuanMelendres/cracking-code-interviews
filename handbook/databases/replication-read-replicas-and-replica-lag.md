@@ -19,6 +19,7 @@ related:
   - ../system-design/cap-theorem-and-consistency-models.md
   - ../architecture/cqrs-read-write-separation.md
   - ../system-design/multi-region-failover-and-disaster-recovery.md
+  - ../system-design/messaging-patterns-and-change-data-capture.md
   - ../../practice/sql/replication-and-replica-lag/README.md
 official_references:
   - https://www.postgresql.org/docs/current/warm-standby.html

@@ -21,6 +21,7 @@ related:
   - producer-semantics-and-partition-keys.md
   - ../system-design/rate-limiting-and-throttling-algorithms.md
   - ../system-design/resilience-patterns.md
+  - ../system-design/messaging-patterns-and-change-data-capture.md
   - ../../practice/java/kafka/consumer-lag-backpressure-and-dlq-strategy/README.md
 official_references:
   - https://kafka.apache.org/documentation/#consumerconfigs

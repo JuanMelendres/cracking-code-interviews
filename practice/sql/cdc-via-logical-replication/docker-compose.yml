@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16
+    container_name: cdc-pg
+    environment:
+      POSTGRES_PASSWORD: cdctest
+      POSTGRES_USER: postgres
+      POSTGRES_DB: appdb
+    command: >
+      postgres
+      -c wal_level=logical
+      -c max_replication_slots=4
+      -c max_wal_senders=4
+    ports:
+      - "55635:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
