@@ -19,6 +19,7 @@ related:
   - idempotency.md
   - caching-strategies-and-invalidation.md
   - load-balancing-service-discovery-and-health-checking.md
+  - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
   - ../spring/security-filter-chain.md
   - ../concurrency/virtual-threads.md
   - ../../practice/java/system-design/rate-limiting-and-throttling/README.md

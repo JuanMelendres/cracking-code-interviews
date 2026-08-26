@@ -18,6 +18,7 @@ related:
   - kafka-architecture-fundamentals.md
   - producer-semantics-and-partition-keys.md
   - delivery-semantics-and-exactly-once.md
+  - consumer-lag-backpressure-and-dlq-strategy.md
   - ../../study-packs/week-08/03-consumer-groups-and-rebalancing.md
 official_references:
   - https://kafka.apache.org/documentation/#consumerconfigs
