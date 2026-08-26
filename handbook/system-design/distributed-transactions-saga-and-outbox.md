@@ -21,6 +21,7 @@ related:
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../kafka/delivery-semantics-and-exactly-once.md
   - ../architecture/cqrs-read-write-separation.md
+  - ../architecture/event-driven-architecture-integration-styles.md
   - ../../study-packs/week-10/01-saga-outbox-and-distributed-transactions.md
 official_references:
   - https://microservices.io/patterns/data/transactional-outbox.html

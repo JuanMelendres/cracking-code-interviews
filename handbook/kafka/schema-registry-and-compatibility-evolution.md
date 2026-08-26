@@ -19,6 +19,7 @@ related:
   - delivery-semantics-and-exactly-once.md
   - ../architecture/cqrs-read-write-separation.md
   - ../architecture/architecture-decision-records.md
+  - ../architecture/event-driven-architecture-integration-styles.md
   - ../../practice/java/kafka/schema-registry-and-compatibility-evolution/README.md
 official_references:
   - https://docs.confluent.io/platform/current/schema-registry/fundamentals/index.html

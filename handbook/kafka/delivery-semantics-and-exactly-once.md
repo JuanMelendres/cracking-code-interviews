@@ -20,6 +20,7 @@ related:
   - producer-semantics-and-partition-keys.md
   - consumer-groups-and-rebalancing.md
   - ../databases/isolation-levels-and-concurrency-anomalies.md
+  - ../architecture/event-driven-architecture-integration-styles.md
   - ../../study-packs/week-08/04-delivery-semantics-and-exactly-once.md
 official_references:
   - https://kafka.apache.org/documentation/#semantics

@@ -17,6 +17,7 @@ prerequisites:
   - ddd-tactical-design-aggregates.md
 related:
   - microservice-decomposition-and-monolith-tradeoff.md
+  - event-driven-architecture-integration-styles.md
   - ../system-design/distributed-transactions-saga-and-outbox.md
   - ../system-design/cap-theorem-and-consistency-models.md
   - ../databases/replication-read-replicas-and-replica-lag.md
