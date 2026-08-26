@@ -18,6 +18,7 @@ prerequisites:
 related:
   - isolation-levels-and-concurrency-anomalies.md
   - query-planning-and-explain-analyze.md
+  - optimistic-vs-pessimistic-locking.md
   - ../concurrency/deadlock-race-conditions-and-thread-diagnostics.md
   - ../../practice/sql/locks-deadlocks-and-lock-escalation/README.md
 official_references:

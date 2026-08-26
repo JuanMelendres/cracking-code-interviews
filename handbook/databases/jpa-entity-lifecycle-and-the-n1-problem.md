@@ -18,6 +18,7 @@ prerequisites:
 related:
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
+  - optimistic-vs-pessimistic-locking.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../java-core/polymorphism-and-dynamic-dispatch.md
 official_references:
