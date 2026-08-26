@@ -15,6 +15,7 @@ prerequisites:
   - gc-fundamentals-and-log-analysis.md
 related:
   - gc-fundamentals-and-log-analysis.md
+  - ../performance/profiling-jfr-and-flame-graphs.md
   - jvm-memory-layout-and-runtime-regions.md
   - ../../study-packs/week-16/02-memory-leak-diagnosis-and-heap-dump-analysis.md
 official_references:

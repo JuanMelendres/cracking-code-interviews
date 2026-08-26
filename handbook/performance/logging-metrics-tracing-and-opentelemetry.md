@@ -18,6 +18,7 @@ related:
   - percentiles-tail-latency-and-coordinated-omission.md
   - performance-methodology-and-slo-error-budgets.md
   - incident-response-and-blameless-postmortems.md
+  - profiling-jfr-and-flame-graphs.md
   - ../jvm/gc-fundamentals-and-log-analysis.md
   - ../../study-packs/week-11/04-logging-metrics-tracing-and-opentelemetry.md
 official_references:

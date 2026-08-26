@@ -18,6 +18,7 @@ related:
   - ../concurrency/java-memory-model-and-volatile.md
   - g1-remembered-sets-and-write-barriers.md
   - memory-leak-diagnosis-and-heap-dump-analysis.md
+  - ../performance/profiling-jfr-and-flame-graphs.md
   - jvm-memory-layout-and-runtime-regions.md
   - gc-roots-reachability-and-reference-strength.md
   - zgc-and-shenandoah-concurrent-collection.md

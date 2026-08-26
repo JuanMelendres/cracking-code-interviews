@@ -18,6 +18,7 @@ related:
   - percentiles-tail-latency-and-coordinated-omission.md
   - logging-metrics-tracing-and-opentelemetry.md
   - incident-response-and-blameless-postmortems.md
+  - profiling-jfr-and-flame-graphs.md
   - ../jvm/gc-fundamentals-and-log-analysis.md
   - ../kafka/consumer-groups-and-rebalancing.md
   - ../system-design/resilience-patterns.md
