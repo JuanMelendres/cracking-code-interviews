@@ -19,6 +19,7 @@ related:
   - ../concurrency/executors-and-thread-pool-sizing.md
   - multi-region-failover-and-disaster-recovery.md
   - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
+  - ../performance/incident-response-and-blameless-postmortems.md
   - load-balancing-service-discovery-and-health-checking.md
   - ../../study-packs/week-10/04-resilience-patterns.md
 official_references:
