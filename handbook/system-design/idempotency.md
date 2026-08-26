@@ -16,6 +16,7 @@ prerequisites:
   - distributed-systems-failure-modes.md
 related:
   - distributed-systems-failure-modes.md
+  - rate-limiting-and-throttling-algorithms.md
   - ../kafka/delivery-semantics-and-exactly-once.md
   - ../../study-packs/week-05/02-idempotency.md
 official_references:

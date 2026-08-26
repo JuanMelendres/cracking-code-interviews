@@ -17,6 +17,7 @@ prerequisites: []
 related:
   - transactional-proxy-mechanics-and-propagation.md
   - ../security/oauth2-oidc-and-jwt.md
+  - ../system-design/rate-limiting-and-throttling-algorithms.md
   - ../../study-packs/week-07/02-spring-security-filter-chain.md
 official_references:
   - https://docs.spring.io/spring-security/reference/servlet/architecture.html
