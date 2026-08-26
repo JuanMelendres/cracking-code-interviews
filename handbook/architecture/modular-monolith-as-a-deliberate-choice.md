@@ -19,6 +19,7 @@ related:
   - ddd-tactical-design-aggregates.md
   - clean-hexagonal-architecture.md
   - architecture-decision-records.md
+  - technical-debt-and-evolutionary-architecture.md
   - ../../practice/java/architecture/modular-monolith-boundary-enforcement/README.md
 official_references:
   - https://www.thoughtworks.com/radar/techniques/modular-monoliths

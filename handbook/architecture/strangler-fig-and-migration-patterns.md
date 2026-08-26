@@ -20,6 +20,7 @@ related:
   - clean-hexagonal-architecture.md
   - microservice-decomposition-and-monolith-tradeoff.md
   - architecture-decision-records.md
+  - technical-debt-and-evolutionary-architecture.md
   - ../../practice/java/architecture/strangler-fig-and-migration-patterns/README.md
 official_references:
   - https://martinfowler.com/bliki/StranglerFigApplication.html

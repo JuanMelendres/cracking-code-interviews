@@ -16,6 +16,7 @@ prerequisites:
   - behavioral-handbook/01-star-framework-and-delivery.md
 related:
   - behavioral-handbook/09-cross-team-influence-without-authority.md
+  - handbook/architecture/technical-debt-and-evolutionary-architecture.md
 official_references: []
 ---
 
