@@ -18,6 +18,7 @@ related:
   - index-structures-btree-composite-covering.md
   - isolation-levels-and-concurrency-anomalies.md
   - locks-deadlocks-and-lock-escalation.md
+  - mvcc-vacuum-and-bloat.md
   - ../../study-packs/week-02/01-query-planning-and-explain.md
 official_references:
   - https://www.postgresql.org/docs/current/using-explain.html
