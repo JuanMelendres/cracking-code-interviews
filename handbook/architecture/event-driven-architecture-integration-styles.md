@@ -16,6 +16,7 @@ prerequisites:
   - clean-hexagonal-architecture.md
 related:
   - cqrs-read-write-separation.md
+  - ddd-strategic-bounded-contexts-and-context-mapping.md
   - ../system-design/distributed-transactions-saga-and-outbox.md
   - ../kafka/delivery-semantics-and-exactly-once.md
   - ../kafka/schema-registry-and-compatibility-evolution.md

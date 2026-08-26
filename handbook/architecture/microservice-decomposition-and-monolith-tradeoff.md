@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - ../system-design/distributed-systems-failure-modes.md
   - ../system-design/cap-theorem-and-consistency-models.md
+  - ddd-strategic-bounded-contexts-and-context-mapping.md
   - cqrs-read-write-separation.md
   - architecture-decision-records.md
   - modular-monolith-as-a-deliberate-choice.md

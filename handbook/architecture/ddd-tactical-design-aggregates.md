@@ -17,6 +17,7 @@ prerequisites:
   - ../databases/data-modelling-and-explicit-join-tables.md
 related:
   - ../databases/data-modelling-and-explicit-join-tables.md
+  - ddd-strategic-bounded-contexts-and-context-mapping.md
   - microservice-decomposition-and-monolith-tradeoff.md
   - cqrs-read-write-separation.md
   - modular-monolith-as-a-deliberate-choice.md
