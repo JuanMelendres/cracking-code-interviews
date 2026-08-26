@@ -18,6 +18,7 @@ related:
   - producer-semantics-and-partition-keys.md
   - delivery-semantics-and-exactly-once.md
   - ../architecture/cqrs-read-write-separation.md
+  - ../architecture/event-sourcing-and-its-real-costs.md
   - ../architecture/architecture-decision-records.md
   - ../architecture/event-driven-architecture-integration-styles.md
   - ../../practice/java/kafka/schema-registry-and-compatibility-evolution/README.md
