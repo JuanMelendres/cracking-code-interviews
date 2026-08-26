@@ -21,6 +21,7 @@ related:
   - locks-deadlocks-and-lock-escalation.md
   - optimistic-vs-pessimistic-locking.md
   - mvcc-vacuum-and-bloat.md
+  - connection-pooling-and-sizing.md
   - ../architecture/architecture-decision-records.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../../study-packs/week-03/02-isolation-levels-and-write-skew.md

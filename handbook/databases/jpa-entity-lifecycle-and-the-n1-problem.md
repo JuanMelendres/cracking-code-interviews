@@ -19,6 +19,7 @@ related:
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
   - optimistic-vs-pessimistic-locking.md
+  - connection-pooling-and-sizing.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../java-core/polymorphism-and-dynamic-dispatch.md
 official_references:

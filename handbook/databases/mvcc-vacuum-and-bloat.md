@@ -19,6 +19,7 @@ related:
   - locks-deadlocks-and-lock-escalation.md
   - query-planning-and-explain-analyze.md
   - optimistic-vs-pessimistic-locking.md
+  - connection-pooling-and-sizing.md
   - ../../practice/sql/mvcc-vacuum-and-bloat/README.md
 official_references:
   - https://www.postgresql.org/docs/current/mvcc.html
