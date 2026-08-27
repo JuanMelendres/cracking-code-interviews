@@ -19,6 +19,7 @@ related:
   - transactional-proxy-mechanics-and-propagation.md
   - spring-cache-abstraction-and-pitfalls.md
   - auto-configuration-and-bean-lifecycle.md
+  - spring-testing-slices-and-context-caching.md
   - ../../practice/java/spring/spring-bean-scopes-and-proxy-modes/README.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html

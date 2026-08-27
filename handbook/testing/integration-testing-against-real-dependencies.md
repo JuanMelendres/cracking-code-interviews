@@ -17,6 +17,7 @@ prerequisites:
   - test-strategy-and-test-doubles.md
 related:
   - test-strategy-and-test-doubles.md
+  - ../spring/spring-testing-slices-and-context-caching.md
   - ../../study-packs/week-11/02-integration-testing-against-real-dependencies.md
 official_references:
   - https://testcontainers.com/

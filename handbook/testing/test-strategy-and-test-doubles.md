@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - integration-testing-against-real-dependencies.md
   - ../architecture/clean-hexagonal-architecture.md
+  - ../spring/spring-testing-slices-and-context-caching.md
   - ../../study-packs/week-11/01-test-strategy-and-test-doubles.md
 official_references:
   - https://martinfowler.com/bliki/TestPyramid.html
