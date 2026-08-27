@@ -18,6 +18,7 @@ prerequisites:
 related:
   - transactional-proxy-mechanics-and-propagation.md
   - spring-cache-abstraction-and-pitfalls.md
+  - spring-bean-scopes-and-proxy-modes.md
   - security-filter-chain.md
   - ../../study-packs/week-07/01-spring-auto-configuration-and-lifecycle.md
 official_references:

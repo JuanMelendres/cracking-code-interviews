@@ -19,6 +19,7 @@ related:
   - ../databases/index-structures-btree-composite-covering.md
   - ../databases/connection-pooling-and-sizing.md
   - spring-cache-abstraction-and-pitfalls.md
+  - spring-bean-scopes-and-proxy-modes.md
   - ../../study-packs/week-03/01-transactions-and-propagation.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/data-access/transaction.html

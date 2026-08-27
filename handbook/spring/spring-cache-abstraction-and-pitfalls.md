@@ -19,6 +19,7 @@ related:
   - transactional-proxy-mechanics-and-propagation.md
   - ../system-design/caching-strategies-and-invalidation.md
   - auto-configuration-and-bean-lifecycle.md
+  - spring-bean-scopes-and-proxy-modes.md
   - ../../practice/java/spring/spring-cache-abstraction-and-pitfalls/README.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/integration/cache.html
