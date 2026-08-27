@@ -22,6 +22,7 @@ related:
   - spring-bean-scopes-and-proxy-modes.md
   - ../testing/test-strategy-and-test-doubles.md
   - ../testing/integration-testing-against-real-dependencies.md
+  - spring-webflux-and-reactive-programming.md
   - ../../practice/java/spring/spring-testing-slices-and-context-caching/README.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html

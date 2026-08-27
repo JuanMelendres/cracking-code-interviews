@@ -21,6 +21,7 @@ related:
   - spring-cache-abstraction-and-pitfalls.md
   - spring-bean-scopes-and-proxy-modes.md
   - spring-testing-slices-and-context-caching.md
+  - spring-webflux-and-reactive-programming.md
   - ../../study-packs/week-03/01-transactions-and-propagation.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/data-access/transaction.html

@@ -20,6 +20,7 @@ related:
   - spring-cache-abstraction-and-pitfalls.md
   - auto-configuration-and-bean-lifecycle.md
   - spring-testing-slices-and-context-caching.md
+  - spring-webflux-and-reactive-programming.md
   - ../../practice/java/spring/spring-bean-scopes-and-proxy-modes/README.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html
