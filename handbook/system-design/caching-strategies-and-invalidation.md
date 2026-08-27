@@ -17,6 +17,7 @@ related:
   - distributed-systems-failure-modes.md
   - system-design-method-and-estimation.md
   - rate-limiting-and-throttling-algorithms.md
+  - ../spring/spring-cache-abstraction-and-pitfalls.md
   - ../databases/index-structures-btree-composite-covering.md
   - ../../study-packs/week-04/01-caching-strategies.md
 official_references:
