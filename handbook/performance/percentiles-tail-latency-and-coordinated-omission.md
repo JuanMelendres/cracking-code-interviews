@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - logging-metrics-tracing-and-opentelemetry.md
   - performance-methodology-and-slo-error-budgets.md
+  - capacity-planning-and-headroom.md
   - ../testing/performance-and-load-testing-methodology.md
   - ../../study-packs/week-11/03-percentiles-tail-latency-and-coordinated-omission.md
 official_references:

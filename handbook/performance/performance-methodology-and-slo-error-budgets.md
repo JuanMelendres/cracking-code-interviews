@@ -16,6 +16,7 @@ prerequisites:
   - percentiles-tail-latency-and-coordinated-omission.md
 related:
   - percentiles-tail-latency-and-coordinated-omission.md
+  - capacity-planning-and-headroom.md
   - logging-metrics-tracing-and-opentelemetry.md
   - incident-response-and-blameless-postmortems.md
   - profiling-jfr-and-flame-graphs.md
