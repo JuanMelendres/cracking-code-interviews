@@ -17,6 +17,7 @@ prerequisites:
   - structured-concurrency.md
 related:
   - completablefuture-and-async-composition.md
+  - threadlocal-mediated-classloader-leaks.md
   - ../../practice/java/concurrency/scoped-values-and-threadlocal/README.md
 official_references:
   - https://openjdk.org/jeps/446
