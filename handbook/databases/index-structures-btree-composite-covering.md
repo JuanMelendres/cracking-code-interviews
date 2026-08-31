@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - query-planning-and-explain-analyze.md
   - isolation-levels-and-concurrency-anomalies.md
+  - ../system-design/search-and-indexing-systems.md
   - ../../study-packs/week-01/02-database-index-fundamentals.md
 official_references:
   - https://www.postgresql.org/docs/current/indexes.html

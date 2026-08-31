@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:16
+    container_name: search-index-pg
+    environment:
+      POSTGRES_PASSWORD: searchtest
+      POSTGRES_USER: postgres
+      POSTGRES_DB: appdb
+    ports:
+      - "55644:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d

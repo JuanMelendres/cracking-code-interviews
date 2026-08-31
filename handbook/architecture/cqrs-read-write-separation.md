@@ -24,6 +24,7 @@ related:
   - ../databases/replication-read-replicas-and-replica-lag.md
   - ../kafka/schema-registry-and-compatibility-evolution.md
   - architecture-decision-records.md
+  - ../system-design/search-and-indexing-systems.md
   - ../../practice/java/architecture/cqrs-read-write-separation/README.md
 official_references:
   - https://martinfowler.com/bliki/CQRS.html

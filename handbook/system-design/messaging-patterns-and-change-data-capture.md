@@ -20,6 +20,7 @@ related:
   - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
   - ../databases/mvcc-vacuum-and-bloat.md
   - ../databases/replication-read-replicas-and-replica-lag.md
+  - search-and-indexing-systems.md
   - ../../practice/sql/cdc-via-logical-replication/README.md
   - ../../practice/java/kafka/messaging-patterns-point-to-point-vs-pubsub/README.md
 official_references:

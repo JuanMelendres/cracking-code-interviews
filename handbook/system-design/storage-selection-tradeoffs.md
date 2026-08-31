@@ -17,6 +17,7 @@ prerequisites: []
 related:
   - data-partitioning-and-consistent-hashing.md
   - ../databases/data-modelling-and-explicit-join-tables.md
+  - search-and-indexing-systems.md
   - ../../study-packs/week-02/04-storage-selection-tradeoffs.md
 official_references: []
 ---
