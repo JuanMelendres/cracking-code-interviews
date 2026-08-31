@@ -18,6 +18,7 @@ related:
   - atomics-cas-and-the-aba-problem.md
   - java-memory-model-and-volatile.md
   - threadlocal-mediated-classloader-leaks.md
+  - foreign-function-and-memory-api.md
   - ../../practice/java/concurrency/varhandles-and-unsafe/README.md
 official_references:
   - https://openjdk.org/jeps/193

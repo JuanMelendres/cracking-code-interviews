@@ -17,6 +17,7 @@ related:
   - jvm-memory-layout-and-runtime-regions.md
   - gc-roots-reachability-and-reference-strength.md
   - jvm-flags-and-container-ergonomics.md
+  - ../concurrency/foreign-function-and-memory-api.md
   - ../../study-packs/week-19/05-native-memory-direct-buffers-and-off-heap.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/ByteBuffer.html
