@@ -21,6 +21,7 @@ related:
   - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
   - ../performance/incident-response-and-blameless-postmortems.md
   - load-balancing-service-discovery-and-health-checking.md
+  - realtime-delivery-websocket-sse-and-long-polling.md
   - ../../study-packs/week-10/04-resilience-patterns.md
 official_references:
   - https://netflixtechblog.com/fault-tolerance-in-a-high-volume-distributed-system-91ab4faae74a

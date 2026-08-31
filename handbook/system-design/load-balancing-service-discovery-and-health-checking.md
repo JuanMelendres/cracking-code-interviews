@@ -22,6 +22,7 @@ related:
   - multi-region-failover-and-disaster-recovery.md
   - rate-limiting-and-throttling-algorithms.md
   - api-gateway-bff-and-edge-concerns.md
+  - realtime-delivery-websocket-sse-and-long-polling.md
   - ../cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md
   - ../../practice/java/system-design/load-balancing-and-health-checking/README.md
 official_references:

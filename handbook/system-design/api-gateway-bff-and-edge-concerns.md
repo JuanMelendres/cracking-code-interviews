@@ -21,6 +21,7 @@ related:
   - resilience-patterns.md
   - distributed-systems-failure-modes.md
   - ../spring/spring-webflux-and-reactive-programming.md
+  - realtime-delivery-websocket-sse-and-long-polling.md
   - ../../practice/java/system-design/api-gateway-bff-and-edge-concerns/README.md
 official_references:
   - https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends
