@@ -17,6 +17,7 @@ related:
   - applied-cryptography-hashing-signing-tls.md
   - owasp-top-10-for-backend-services.md
   - supply-chain-security-sbom-and-dependency-risk.md
+  - ../system-design/twelve-factor-config.md
   - ../../study-packs/week-17/06-secrets-management-and-key-rotation.md
 official_references:
   - https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final

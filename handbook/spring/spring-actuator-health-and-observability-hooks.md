@@ -21,6 +21,7 @@ related:
   - auto-configuration-and-bean-lifecycle.md
   - ../cloud/kubernetes-objects-scheduling-and-networking.md
   - ../performance/logging-metrics-tracing-and-opentelemetry.md
+  - ../system-design/twelve-factor-config.md
   - ../../practice/java/spring/spring-actuator-health-and-observability-hooks/README.md
 official_references:
   - https://docs.spring.io/spring-boot/reference/actuator/index.html

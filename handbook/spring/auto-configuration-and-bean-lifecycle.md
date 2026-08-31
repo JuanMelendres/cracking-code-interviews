@@ -22,6 +22,7 @@ related:
   - spring-testing-slices-and-context-caching.md
   - spring-actuator-health-and-observability-hooks.md
   - security-filter-chain.md
+  - ../system-design/twelve-factor-config.md
   - ../../study-packs/week-07/01-spring-auto-configuration-and-lifecycle.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html
