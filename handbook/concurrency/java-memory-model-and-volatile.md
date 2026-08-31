@@ -16,6 +16,7 @@ prerequisites: []
 related:
   - deadlock-race-conditions-and-thread-diagnostics.md
   - atomics-cas-and-the-aba-problem.md
+  - varhandles-and-unsafe.md
   - ../../study-packs/week-09/01-java-memory-model-and-volatile.md
 official_references:
   - https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html#jls-17.4

@@ -19,6 +19,7 @@ related:
   - deadlock-race-conditions-and-thread-diagnostics.md
   - executors-and-thread-pool-sizing.md
   - reentrantlock-readwritelock-and-stampedlock.md
+  - varhandles-and-unsafe.md
   - ../../practice/java/concurrency/atomics-cas-and-aba/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/atomic/AtomicInteger.html

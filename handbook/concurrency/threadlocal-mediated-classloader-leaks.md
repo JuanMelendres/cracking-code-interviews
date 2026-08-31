@@ -18,6 +18,7 @@ related:
   - scoped-values-and-threadlocal-migration.md
   - ../java-core/classloaders-and-class-initialization.md
   - ../jvm/memory-leak-diagnosis-and-heap-dump-analysis.md
+  - varhandles-and-unsafe.md
   - ../../practice/java/concurrency/threadlocal-classloader-leak/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ThreadLocal.html
