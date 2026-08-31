@@ -20,6 +20,7 @@ related:
   - spring-testing-slices-and-context-caching.md
   - ../concurrency/virtual-threads.md
   - spring-actuator-health-and-observability-hooks.md
+  - ../system-design/api-gateway-bff-and-edge-concerns.md
   - ../../practice/java/spring/spring-webflux-and-reactive-programming/README.md
 official_references:
   - https://docs.spring.io/spring-framework/reference/web/webflux.html
