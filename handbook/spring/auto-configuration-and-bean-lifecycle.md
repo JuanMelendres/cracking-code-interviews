@@ -20,6 +20,7 @@ related:
   - spring-cache-abstraction-and-pitfalls.md
   - spring-bean-scopes-and-proxy-modes.md
   - spring-testing-slices-and-context-caching.md
+  - spring-actuator-health-and-observability-hooks.md
   - security-filter-chain.md
   - ../../study-packs/week-07/01-spring-auto-configuration-and-lifecycle.md
 official_references:

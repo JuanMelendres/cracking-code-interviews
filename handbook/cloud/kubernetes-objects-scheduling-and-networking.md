@@ -18,6 +18,7 @@ prerequisites:
 related:
   - kubernetes-resource-limits-probes-and-jvm-sizing.md
   - cicd-pipeline-design-and-deployment-strategies.md
+  - ../spring/spring-actuator-health-and-observability-hooks.md
   - ../../study-packs/week-15/02-kubernetes-objects-scheduling-and-networking.md
 official_references:
   - https://kubernetes.io/docs/concepts/workloads/controllers/deployment/

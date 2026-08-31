@@ -20,6 +20,7 @@ related:
   - incident-response-and-blameless-postmortems.md
   - profiling-jfr-and-flame-graphs.md
   - ../jvm/gc-fundamentals-and-log-analysis.md
+  - ../spring/spring-actuator-health-and-observability-hooks.md
   - ../../study-packs/week-11/04-logging-metrics-tracing-and-opentelemetry.md
 official_references:
   - https://opentelemetry.io/docs/concepts/signals/traces/
