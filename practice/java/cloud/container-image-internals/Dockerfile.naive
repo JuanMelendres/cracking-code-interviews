@@ -1,0 +1,12 @@
+# Naive single-stage build: the final image IS the build image.
+# Everything used to build the jar (Maven, the JDK, the full local
+# .m2 dependency cache, and the original source tree) ships in the
+# image that actually runs in production.
+FROM maven:3.9-eclipse-temurin-21
+
+WORKDIR /build
+COPY app/pom.xml .
+COPY app/src ./src
+RUN mvn -q -DskipTests package
+
+CMD ["java", "-jar", "/build/target/container-image-internals-jar-with-dependencies.jar"]
