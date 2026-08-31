@@ -22,6 +22,7 @@ related:
   - connection-pooling-and-sizing.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../java-core/polymorphism-and-dynamic-dispatch.md
+  - hibernate-second-level-and-query-cache.md
 official_references:
   - https://jakarta.ee/specifications/persistence/3.1/
   - https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html
