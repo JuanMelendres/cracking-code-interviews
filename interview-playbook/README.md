@@ -33,6 +33,7 @@ These two entries are deliberately cross-linked: the nine-layer framework is the
 | Entry | Companion topic | What it's about |
 |---|---|---|
 | [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](system-design/time-boxing-and-mid-round-changes.md) | T-801/T-802 (System Design Method and Estimation) | Two live-delivery skills distinct from the six-phase method itself: running the method inside a fixed clock, and responding to an interviewer-injected requirement change mid-round by revising the specific earlier decision it invalidates rather than bolting on a patch. Synthesized from real, recurring patterns across this programme's own Week 9–10 mock-interview scripts, not elevated from a single source file. |
+| [System Design Narration and Whiteboard Discipline](system-design/system-design-narration-and-whiteboard-discipline.md) | T-1602 | A third, distinct live-delivery skill: how to actually draw and narrate the architecture itself (not the method's own meta-diagram, and not clock management) — diagram sequencing, notation discipline, signposting, and handling an interviewer's mid-diagram redirection by integrating it rather than defending against it. New entry; a genuine register gap confirmed absent everywhere else in the handbook. |
 
 ## behavioral/
 

@@ -17,6 +17,7 @@ prerequisites:
   - ../../handbook/system-design/system-design-method-and-estimation.md
 related:
   - ../technical-answers/technical-answer-framework.md
+  - system-design-narration-and-whiteboard-discipline.md
   - ../../study-packs/week-09/08-week-9-checkpoint.md
   - ../../study-packs/week-09/09-design-exercise-distributed-job-scheduler.md
   - ../../study-packs/week-10/09-week-10-mock-architecture-round.md
