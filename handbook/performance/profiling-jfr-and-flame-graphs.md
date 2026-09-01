@@ -19,6 +19,7 @@ related:
   - logging-metrics-tracing-and-opentelemetry.md
   - ../jvm/gc-fundamentals-and-log-analysis.md
   - ../jvm/memory-leak-diagnosis-and-heap-dump-analysis.md
+  - ../jvm/benchmarking-and-jmh-pitfalls.md
   - ../../practice/java/jvm/profiling-jfr-and-flame-graphs/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html
