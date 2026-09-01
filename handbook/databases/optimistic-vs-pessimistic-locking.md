@@ -21,6 +21,7 @@ related:
   - isolation-levels-and-concurrency-anomalies.md
   - mvcc-vacuum-and-bloat.md
   - hibernate-second-level-and-query-cache.md
+  - ../../architecture-atlas/ticket-and-event-booking-system.md
   - ../../practice/java/hibernate-jpa/optimistic-vs-pessimistic-locking/README.md
 official_references:
   - https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html#locking

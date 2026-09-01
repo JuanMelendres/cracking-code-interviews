@@ -19,6 +19,7 @@ related:
   - ../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
   - notification-system.md
   - distributed-cache.md
+  - ticket-and-event-booking-system.md
   - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
   - ../interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md
 official_references: []
