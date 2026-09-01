@@ -17,6 +17,7 @@ prerequisites:
   - ../handbook/system-design/resilience-patterns.md
 related:
   - ride-hailing-dispatch-system.md
+  - url-shortener-system.md
   - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-10/10-design-exercise-distributed-cache.md
 official_references: []
