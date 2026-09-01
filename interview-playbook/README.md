@@ -11,7 +11,7 @@ The Interview Playbook owns interview-craft content: reusable structures for *de
 
 ## A note on scope
 
-Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. All four now have content. This deliverable was built in bounded batches.
+Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. All four now have content. This deliverable was built in bounded batches. A fifth subdirectory, `frontend/`, was opened per the Scope Addendum in `CLAUDE.md` (2026-08-12) once the frontend domain's 37 canonical `handbook/frontend/` chapters were confirmed complete with zero corresponding interview-craft content of their own.
 
 ## technical-answers/
 
@@ -39,6 +39,12 @@ These two entries are deliberately cross-linked: the nine-layer framework is the
 | Entry | Topic ID | IWI | What it's about |
 |---|---|---|---|
 | [Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition](behavioral/company-loop-structures-and-question-pattern-recognition.md) | T-1604 | 6.50 | The delivery-logistics layer `behavioral-handbook/` deliberately doesn't cover: recognizing which of three question shapes a prompt is asking (retrospective/STAR, hypothetical/live-judgment, values-worded/reframed) before selecting a story, and a live, day-of story-usage tracking grid that prevents accidentally repeating the same story across a multi-round loop. Elevated from `00-project/knowledge-architecture-blueprint.md`'s previously-unelevated T-1604 (Company loop structures & calibration). Genuinely playbook-shaped — no restatement of STAR mechanics, story-portfolio design, or the per-principle reframing lens, all of which stay in `behavioral-handbook/`. |
+
+## frontend/
+
+| Entry | What it's about |
+|---|---|
+| [Frontend Live-Coding & Debugging Protocol](frontend/frontend-live-coding-and-debugging-protocol.md) | The two frontend-specific live round formats (build a feature; debug a given component) and a six-phase protocol adapted from `coding/coding-interview-communication-protocol.md` for what's actually different: component decomposition and state ownership instead of algorithmic invariants, and real-browser/DevTools verification of render behavior instead of hand-tracing an example. Not elevated from a study-pack source — a new entry closing the previously-empty `interview-playbook/frontend/` directory. |
 
 ## How this relates to other deliverables
 

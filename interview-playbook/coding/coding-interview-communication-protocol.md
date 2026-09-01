@@ -16,6 +16,7 @@ estimated_reading_minutes: 15
 prerequisites: []
 related:
   - ../technical-answers/technical-answer-framework.md
+  - ../frontend/frontend-live-coding-and-debugging-protocol.md
   - ../../study-packs/week-01/04-coding-interview-communication.md
 official_references: []
 ---
