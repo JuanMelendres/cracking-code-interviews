@@ -18,6 +18,7 @@ prerequisites:
 related:
   - jpa-entity-lifecycle-and-the-n1-problem.md
   - optimistic-vs-pessimistic-locking.md
+  - hibernate-flush-modes-and-batch-writes.md
   - ../spring/spring-cache-abstraction-and-pitfalls.md
   - ../../practice/java/hibernate-jpa/second-level-and-query-cache/README.md
 official_references:

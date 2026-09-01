@@ -20,6 +20,7 @@ related:
   - query-planning-and-explain-analyze.md
   - optimistic-vs-pessimistic-locking.md
   - connection-pooling-and-sizing.md
+  - hibernate-flush-modes-and-batch-writes.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
   - ../java-core/polymorphism-and-dynamic-dispatch.md
   - hibernate-second-level-and-query-cache.md
