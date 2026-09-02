@@ -2,7 +2,7 @@
 title: "Flashcards — Index"
 document_type: flashcard-index
 status: draft
-last_updated: 2026-09-01
+last_updated: 2026-09-02
 ---
 
 # Flashcards
@@ -17,7 +17,15 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 
 **91/91 decks, 283/283 cards.** This deliverable was originally closed at 75/75 decks, 238/238 cards (2026-08-06). Between that closure date and 2026-09-01, sixteen new handbook chapters were added — five in `handbook/spring/`, four in `handbook/system-design/`, three in `handbook/concurrency/`, one each in `handbook/databases/`, `handbook/cloud/`, `handbook/performance/`, and `handbook/jvm/` — every one of them with its own `## Flashcards` section, none of them ever getting a matching deck. This batch (2026-09-01) closed that backlog in one pass: 13 of the 16 new chapters actually use the `### Card:` structured format (Prompt/Answer/Why it matters/Common trap/Related, extracted directly — the same format 169 of the original 238 cards came from), and only 3 (`container-image-internals.md`, `capacity-planning-and-headroom.md`, `benchmarking-and-jmh-pitfalls.md`) use the plainer `**Q:**`/`**A:**` format requiring light, non-fabricated synthesis of "Why it matters"/"Common trap," grounded directly in each Q/A pair's own content. The 13 structured-format chapters use cross-chapter `[[wikilink]]`-style `Related` references (a first for this repository — no prior chapter used this exact notation); these were mechanically translated to relative Markdown links resolving from `flashcards/`'s own directory, using the same convention already established for cross-chapter references (chapter title as link text, no anchor) and self-references (the canonical-chapter link, matching the plainer-format convention). Every card across every domain was extracted from a chapter's own existing `## Flashcards` section — 205 cards from the `### Card:` format and 78 cards from the plainer `**Q:**`/`**A:**` format. Built across 18 bounded batches plus this one backlog-closing batch, per `CLAUDE.md`'s instruction against generating an entire deliverable in one operation. 5 chapters (`memory-leak-diagnosis-and-heap-dump-analysis.md`, `jvm-memory-layout-and-runtime-regions.md`, `g1-remembered-sets-and-write-barriers.md`, `jit-tiered-compilation-and-deoptimization.md`, `jvm-flags-and-container-ergonomics.md`) have no `cheat-sheets/` companion — the same 5 jvm chapters left open in that deliverable per the user's explicit 2026-08-05 decision — so their topic IDs were sourced from `00-project/knowledge-architecture-blueprint.md` instead of the usual cheat-sheet front matter. Given how quickly this sixteen-chapter backlog accumulated once, any future handbook chapter that adds its own `## Flashcards` section should get a matching deck in the same batch it lands, rather than allowing another backlog to build.
 
-**2026-09-02 correction — this "91/91" claim is now known stale.** While closing an identical, larger backlog in `cheat-sheets/` (see that deliverable's own README for the full audit method), the same diff-against-full-handbook-list check was run against this directory: **46 further chapters** — the same 46 closed in that `cheat-sheets/` batch — each carry their own `## Flashcards` section but have no deck here. This was verified mechanically (grep-confirmed `## Flashcards` presence in every one of the 46), not assumed. This is recorded honestly rather than silently left under the stale "91/91, complete" claim above: **the real count is 91/137, with a known 46-deck gap**, spanning the same domains as the `cheat-sheets/` gap (java-core, collections, concurrency, spring, databases, kafka, system-design, architecture, cloud, performance). Closing it is the next natural batch for this deliverable but was not done in this pass — flagged here for a future session rather than attempted as an unbounded add-on to an already-large turn.
+**137/137 decks, 419/419 cards (2026-09-02).** The "91/91" claim above was found stale while closing an identical, larger backlog in `cheat-sheets/` (see that deliverable's own README for the full audit method): the same diff-against-full-handbook-list check, run against this directory, found the same 46 chapters — java-core, collections, concurrency, spring, databases, kafka, system-design, architecture, cloud, performance — each carrying their own `## Flashcards` section with no deck here.
+
+Built via two parallel, independently-scoped 23-file background-agent batches, mirroring `flashcards/hashmap-internals.md`'s exact template. This remained an extraction pass, not new content generation, for 45 of the 46: every card's Prompt/Answer/Why it matters/Common trap text was copied verbatim from its chapter's own existing `## Flashcards` section — 22 chapters used the `### Card:` heading level, 9 used `## Card:` (converted to the deck template's `## Card:` level as a formatting-only change, not a content change). The sole exception, `hibernate-flush-modes-and-batch-writes.md`, uses the plainer `**Q:**`/`**A:**` format (like 3 of batch 15's chapters) and required light, non-fabricated synthesis of "Why it matters"/"Common trap" fields, grounded strictly in that chapter's own Q/A content and surrounding text — the same allowed pattern used for `container-image-internals.md`, `capacity-planning-and-headroom.md`, and `benchmarking-and-jmh-pitfalls.md` in batch 15.
+
+16 of the 46 chapters used `[[wikilink]]`-style self-references in their `Related` fields (a few also cross-referencing another chapter by wikilink); all were mechanically translated to relative Markdown links resolving from `flashcards/`'s own directory, using the same convention established in batch 15 (see `flashcards/spring-webflux-and-reactive-programming.md` for the reference pattern). `git-internals-and-collaboration-workflows.md` was included with `topic_id: —`, since its own chapter explicitly states it carries no blueprint T-code — matching the same convention already used for it in `cheat-sheets/`.
+
+Verified before merging: all 46 files' YAML parses; every deck has a matching Prompt/Answer/Why-it-matters/Common-trap/Related quintet per card (no missing fields); zero unresolved `[[wikilink]]` markers remain; two decks (`optimistic-vs-pessimistic-locking.md` and `hibernate-flush-modes-and-batch-writes.md`) were spot-checked line-by-line against their source chapters — both matched exactly, including the same "~1520ms against a 1500ms hold" figure already verified in the `cheat-sheets/` batch.
+
+This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliverables draw from different sections of each chapter (`## Flashcards` here vs. whole-chapter extraction there) and were built and verified independently — this closure does not imply the `production-cookbook/` gap (the third, still-open leg of the same discovery) is closed by association.
 
 ## Decks
 
@@ -114,6 +122,52 @@ Handbook chapters currently use one of two existing card formats: an explicit `#
 | 89 | [Containers & Image Internals](container-image-internals.md) | T-1001 | 3 | `handbook/cloud/container-image-internals.md` |
 | 90 | [Capacity Planning & Headroom](capacity-planning-and-headroom.md) | T-1208 | 3 | `handbook/performance/capacity-planning-and-headroom.md` |
 | 91 | [Benchmarking & JMH Pitfalls](benchmarking-and-jmh-pitfalls.md) | T-1203 | 3 | `handbook/jvm/benchmarking-and-jmh-pitfalls.md` |
+| 92 | [Rate Limiting and Throttling Algorithms](rate-limiting-and-throttling-algorithms.md) | T-808 | 3 | `handbook/system-design/rate-limiting-and-throttling-algorithms.md` |
+| 93 | [Event-Driven Architecture Integration Styles](event-driven-architecture-integration-styles.md) | T-906 | 3 | `handbook/architecture/event-driven-architecture-integration-styles.md` |
+| 94 | [DDD Strategic — Bounded Contexts and Context Mapping](ddd-strategic-bounded-contexts-and-context-mapping.md) | T-902 | 3 | `handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md` |
+| 95 | [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md) | T-912 | 3 | `handbook/architecture/strangler-fig-and-migration-patterns.md` |
+| 96 | [Technical Debt and Evolutionary Architecture](technical-debt-and-evolutionary-architecture.md) | T-913 | 3 | `handbook/architecture/technical-debt-and-evolutionary-architecture.md` |
+| 97 | [Consumer Lag, Backpressure, and DLQ Strategy](consumer-lag-backpressure-and-dlq-strategy.md) | T-707 | 3 | `handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md` |
+| 98 | [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md) | T-601/T-602 | 3 | `handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md` |
+| 99 | [Optimistic vs. Pessimistic Locking](optimistic-vs-pessimistic-locking.md) | T-604 | 3 | `handbook/databases/optimistic-vs-pessimistic-locking.md` |
+| 100 | [Incident Response and Blameless Postmortems](incident-response-and-blameless-postmortems.md) | T-1207 | 3 | `handbook/performance/incident-response-and-blameless-postmortems.md` |
+| 101 | [Spring Framework vs. Spring Boot](spring-framework-vs-spring-boot.md) | T-506/T-501 | 3 | `handbook/spring/spring-framework-vs-spring-boot.md` |
+| 102 | [MVCC, Vacuum, and Bloat](mvcc-vacuum-and-bloat.md) | T-612 | 3 | `handbook/databases/mvcc-vacuum-and-bloat.md` |
+| 103 | [Replication, Read Replicas, and Replica Lag](replication-read-replicas-and-replica-lag.md) | T-615 | 3 | `handbook/databases/replication-read-replicas-and-replica-lag.md` |
+| 104 | [CQRS Read/Write Separation](cqrs-read-write-separation.md) | T-904 | 3 | `handbook/architecture/cqrs-read-write-separation.md` |
+| 105 | [Multi-Region Failover and Disaster Recovery](multi-region-failover-and-disaster-recovery.md) | T-814 | 3 | `handbook/system-design/multi-region-failover-and-disaster-recovery.md` |
+| 106 | [Profiling, JFR, and Flame Graphs](profiling-jfr-and-flame-graphs.md) | T-1202 | 3 | `handbook/performance/profiling-jfr-and-flame-graphs.md` |
+| 107 | [Load Balancing, Service Discovery, and Health Checking](load-balancing-service-discovery-and-health-checking.md) | T-805 | 3 | `handbook/system-design/load-balancing-service-discovery-and-health-checking.md` |
+| 108 | [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md) | T-613 | 3 | `handbook/databases/locks-deadlocks-and-lock-escalation.md` |
+| 109 | [Schema Registry and Compatibility Evolution](schema-registry-and-compatibility-evolution.md) | T-708 | 3 | `handbook/kafka/schema-registry-and-compatibility-evolution.md` |
+| 110 | [CompletableFuture and Async Composition](completablefuture-and-async-composition.md) | T-407 | 3 | `handbook/concurrency/completablefuture-and-async-composition.md` |
+| 111 | [Connection Pooling and Sizing (HikariCP)](connection-pooling-and-sizing.md) | T-607 | 3 | `handbook/databases/connection-pooling-and-sizing.md` |
+| 112 | [Modular Monolith as a Deliberate Choice](modular-monolith-as-a-deliberate-choice.md) | T-910 | 3 | `handbook/architecture/modular-monolith-as-a-deliberate-choice.md` |
+| 113 | [Messaging Patterns and Change Data Capture](messaging-patterns-and-change-data-capture.md) | T-710 | 3 | `handbook/system-design/messaging-patterns-and-change-data-capture.md` |
+| 114 | [Architecture Decision Records](architecture-decision-records.md) | T-916 | 3 | `handbook/architecture/architecture-decision-records.md` |
+| 115 | [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) | T-905 | 3 | `handbook/architecture/event-sourcing-and-its-real-costs.md` |
+| 116 | [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) | T-405 | 3 | `handbook/concurrency/atomics-cas-and-the-aba-problem.md` |
+| 117 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 4 | `handbook/architecture/design-patterns-applied.md` |
+| 118 | [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) | T-404 | 3 | `handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
+| 119 | [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) | T-102 | 3 | `handbook/java-core/polymorphism-and-dynamic-dispatch.md` |
+| 120 | [Hibernate Flush Modes and Batch Writes](hibernate-flush-modes-and-batch-writes.md) | T-606 | 3 | `handbook/databases/hibernate-flush-modes-and-batch-writes.md` |
+| 121 | [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) | T-108 | 3 | `handbook/java-core/lambdas-and-functional-interfaces.md` |
+| 122 | [Structured Concurrency](structured-concurrency.md) | T-411 | 3 | `handbook/concurrency/structured-concurrency.md` |
+| 123 | [TreeMap, TreeSet, and the Navigable Hierarchy](treemap-treeset-and-navigable-hierarchy.md) | T-203 | 2 | `handbook/collections/treemap-treeset-and-navigable-hierarchy.md` |
+| 124 | [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) | T-208 | 3 | `handbook/collections/fail-fast-vs-weakly-consistent-iterators.md` |
+| 125 | [CopyOnWriteArrayList and Copy-on-Write Trade-offs](copyonwritearraylist-and-copy-on-write-tradeoffs.md) | T-206 | 3 | `handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md` |
+| 126 | [ForkJoinPool and Work-Stealing](forkjoinpool-and-work-stealing.md) | T-408 | 3 | `handbook/concurrency/forkjoinpool-and-work-stealing.md` |
+| 127 | [Strings: Interning, Compact Strings, and Builders](strings-interning-compact-strings-and-builders.md) | T-106 | 3 | `handbook/java-core/strings-interning-compact-strings-and-builders.md` |
+| 128 | [ArrayDeque Internals and the Legacy Stack/Vector Problem](arraydeque-internals-and-the-legacy-stack-problem.md) | T-204 | 3 | `handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md` |
+| 129 | [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) | T-113 | 3 | `handbook/java-core/reflection-and-dynamic-proxies.md` |
+| 130 | [Optional and Null Strategy](optional-and-null-strategy.md) | T-109 | 3 | `handbook/java-core/optional-and-null-strategy.md` |
+| 131 | [ClassLoaders and Class Initialization](classloaders-and-class-initialization.md) | T-114 | 3 | `handbook/java-core/classloaders-and-class-initialization.md` |
+| 132 | [Scoped Values and ThreadLocal Migration](scoped-values-and-threadlocal-migration.md) | T-412 | 3 | `handbook/concurrency/scoped-values-and-threadlocal-migration.md` |
+| 133 | [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md) | T-110 | 2 | `handbook/java-core/records-sealed-types-and-pattern-matching.md` |
+| 134 | [Annotations and Annotation Processing](annotations-and-annotation-processing.md) | T-112 | 3 | `handbook/java-core/annotations-and-annotation-processing.md` |
+| 135 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 3 | `handbook/java-core/enums-enummap-and-enumset.md` |
+| 136 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 3 | `handbook/java-core/serialization-hazards-and-alternatives.md` |
+| 137 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | 2 | `handbook/cloud/git-internals-and-collaboration-workflows.md` |
 
 ## How this relates to other deliverables
 
