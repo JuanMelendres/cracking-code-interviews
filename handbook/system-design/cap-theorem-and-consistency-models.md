@@ -18,6 +18,7 @@ related:
   - idempotency.md
   - caching-strategies-and-invalidation.md
   - ../databases/replication-read-replicas-and-replica-lag.md
+  - ../../architecture-atlas/distributed-key-value-store.md
   - ../architecture/cqrs-read-write-separation.md
   - multi-region-failover-and-disaster-recovery.md
   - ../../study-packs/week-05/03-cap-and-consistency.md

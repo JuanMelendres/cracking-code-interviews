@@ -270,7 +270,7 @@ Tiers describe **the nature of the knowledge**, not its priority. A Foundation t
 | T-810 | Search & indexing systems | ADV | 5.8 | 6 | 6 | Moderate | 4 | 2 | 8w | 🔴 |
 | T-811 | Storage selection & polyglot persistence | STF | 6.9 | 7 | 8 | High | 3 | 2 | 5w | 🔴 |
 | T-812 | Real-time delivery: WebSocket, SSE, long-poll, push | ADV | 5.9 | 6 | 6 | Moderate | 3 | 2 | 6w | 🔴 |
-| **T-813** | **Canonical design problems (12-problem set)** ⭐ | STF | **8.2** | **10** | **10** | Near-Certain | 8 | 24 | 2w | 🔴 |
+| **T-813** | **Canonical design problems (12-problem set)** ⭐ | STF | **8.2** | **10** | **10** | Near-Certain | 8 | 24 | 2w | 🟢 |
 | T-814 | Multi-region, failover, disaster recovery | STF | 6.7 | 7 | 7 | Moderate | 4 | 2 | 6w | 🔴 |
 
 ### D9 · Architecture
@@ -416,7 +416,7 @@ These 25 topics — **20% of the register** — account for the large majority o
 | 3= | T-909 | Distributed systems failure modes | **8.45** | STF | 🔴 |
 | 6 | T-907 | Microservice decomposition & boundaries | **8.40** | STF | 🔴 |
 | 7 | T-609 | Index structures: B+Tree, composite, covering | **8.30** | ADV | 🔴 |
-| 8 | T-813 | Canonical design problems | **8.20** | STF | 🔴 |
+| 8 | T-813 | Canonical design problems | **8.20** | STF | 🟢 |
 | 9 | T-504 | @Transactional semantics & self-invocation | **8.15** | ADV | 🔴 |
 | 10 | T-1505 | Architecture decision & trade-off narration | **8.10** | STF | 🔴 |
 | 11 | T-1501 | STAR structure & narrative construction | **8.00** | FDN | 🔴 |
@@ -997,7 +997,7 @@ Java-Interview-Handbook/
 ---
 
 **`06-SystemDesign/`** · 14 topics · 124h · avg IWI 7.4 — **highest-weight chapter**
-*Why it exists:* Zero coverage currently; two to three loop rounds. Structured as method (T-801) → components (T-802…T-812) → **twelve worked canonical problems (T-813)**. The method precedes the components deliberately: candidates fail from absent procedure more often than from absent components.
+*Why it exists:* Zero coverage at time of writing; two to three loop rounds. Structured as method (T-801) → components (T-802…T-812) → **twelve worked canonical problems (T-813)**. The method precedes the components deliberately: candidates fail from absent procedure more often than from absent components. *Status update, 2026-09-01:* T-813's Gap marker above is now 🟢 — the Architecture Atlas reached exactly 12 classic full-system-design entries, matching this row's stated count. This single cell was verified and updated directly; the rest of this register's Gap column predates this session's closure work across all 16 domains and was never swept for accuracy — treat `CHANGELOG.md`'s `### Planned` section as the current source of truth for what is actually closed, not this table.
 *Connects to:* ← 08 (data layer), ← 09 (async backbone), ← 07 (decomposition), → 16 (mock design rounds), → 14 (design decisions become architecture stories).
 
 ---

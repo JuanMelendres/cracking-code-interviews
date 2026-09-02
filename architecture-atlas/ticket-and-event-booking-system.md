@@ -27,7 +27,7 @@ official_references: []
 
 # Architecture Atlas: Ticket and Event Booking System
 
-> **Sourcing note:** like [Real-Time Chat System](real-time-chat-system.md), this entry is new, original content, not elevated from an existing study-pack exercise — none exists for this problem. It is added as a second, additional canonical design problem toward the Master Topic Register's T-813 (Canonical design problems) line, which names no fixed, enumerated list of twelve problems anywhere in this repository's project documents. This entry does not claim T-813 is closed.
+> **Sourcing note:** like [Real-Time Chat System](real-time-chat-system.md), this entry is new, original content, not elevated from an existing study-pack exercise — none exists for this problem. It is added as a second, additional canonical design problem toward the Master Topic Register's T-813 (Canonical design problems (12-problem set)) line. *Update:* two further additions after this one — [URL Shortener System](url-shortener-system.md) and [Distributed Key-Value Store](distributed-key-value-store.md) — brought the Atlas to exactly 12 classic full-system-design entries, matching T-813's stated count; see that last entry's sourcing note and the Architecture Atlas README for the full accounting.
 
 **Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
 

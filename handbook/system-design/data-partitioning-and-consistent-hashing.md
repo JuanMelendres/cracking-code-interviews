@@ -17,6 +17,7 @@ related:
   - distributed-transactions-saga-and-outbox.md
   - ../kafka/producer-semantics-and-partition-keys.md
   - load-balancing-service-discovery-and-health-checking.md
+  - ../../architecture-atlas/distributed-key-value-store.md
   - ../../study-packs/week-10/03-consistent-hashing.md
 official_references:
   - https://www.akamai.com/site/en/documents/technical-publication/consistent-hashing-and-random-trees-distributed-caching-protocols-for-relieving-hot-spots-on-the-world-wide-web-technical-publication.pdf
