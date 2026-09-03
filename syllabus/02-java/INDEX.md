@@ -1,0 +1,71 @@
+---
+title: "Java — Domain Index"
+document_type: syllabus-domain-index
+domain: 02-java
+status: scaffolding — Phase 1 (structure only; content migration is Phase 3, gap-filling is Phase 5)
+last_updated: 2026-09-03
+---
+
+# Java
+
+The primary specialization and deepest track: language core, collections, JVM internals, and concurrency. Existing `handbook/{java-core,collections,jvm,concurrency}/` content relocates here across four subdomains, each currently written at Senior/Staff depth (L3/L4) — Foundation (L1) and Working-Knowledge (L2) layers are additive work tracked per Section 7.6.
+
+> **Phase 1 scaffolding notice.** This is a structural placeholder created during Phase 1 of the approved `00-project/syllabus-transformation-plan.md`. No content has moved here yet — the topics listed below still live at their current `handbook/` path (right-hand column) until this domain's Phase 3 migration runs. This file will be rewritten as a real domain index once that happens.
+
+## Topics (planned — not yet migrated)
+
+| Topic ID | Title | New subdomain | Mastery levels covered today | Current location |
+|---|---|---|---|---|
+| T-201 | HashMap Internals | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/hashmap-internals.md` |
+| T-202 | ArrayList and LinkedList Internals | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/arraylist-and-linkedlist-internals.md` |
+| T-203 | TreeMap/TreeSet & the Navigable Hierarchy | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/treemap-treeset-and-navigable-hierarchy.md` |
+| T-204 | ArrayDeque Internals and the Legacy Stack/Vector Problem | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md` |
+| T-205 | ConcurrentHashMap Internals | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/concurrenthashmap-internals.md` |
+| T-206 | CopyOnWriteArrayList and Copy-on-Write Trade-offs | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md` |
+| T-207 | BlockingQueue Family and Producer-Consumer | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/blockingqueue-family.md` |
+| T-208 | Fail-Fast vs. Weakly-Consistent Iterators | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/fail-fast-vs-weakly-consistent-iterators.md` |
+| T-209 | Collection Selection Decision Matrix | `02-java/collections` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/collections/collection-selection-decision-matrix.md` |
+| T-401/T-402 | Java Memory Model and volatile | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/java-memory-model-and-volatile.md` |
+| T-404 | ReentrantLock, ReadWriteLock, and StampedLock | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
+| T-405 | Atomics, CAS, and the ABA Problem | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/atomics-cas-and-the-aba-problem.md` |
+| T-406 | Executors and Thread Pool Sizing | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/executors-and-thread-pool-sizing.md` |
+| T-407 | CompletableFuture and Async Composition | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/completablefuture-and-async-composition.md` |
+| T-408 | ForkJoinPool and Work-Stealing | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/forkjoinpool-and-work-stealing.md` |
+| T-409 | Deadlock, Race Conditions, and Thread Diagnostics | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
+| T-410 | Virtual Threads (Project Loom) | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/virtual-threads.md` |
+| T-411 | Structured Concurrency | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/structured-concurrency.md` |
+| T-412 | Scoped Values and ThreadLocal Migration | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/scoped-values-and-threadlocal-migration.md` |
+| T-413 | ThreadLocal-Mediated Classloader Leaks | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/threadlocal-mediated-classloader-leaks.md` |
+| T-415 | VarHandles, Unsafe, and Their Replacement | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/varhandles-and-unsafe.md` |
+| T-416/T-414 | Foreign Function & Memory API | `02-java/concurrency` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/concurrency/foreign-function-and-memory-api.md` |
+| T-302 | Object Layout, Headers, and Compressed Oops | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/object-layout-headers-and-compressed-oops.md` |
+| T-303 | GC Roots, Reachability, and Reference Strength | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/gc-roots-reachability-and-reference-strength.md` |
+| T-303/T-306/T-306/T-303 | GC Fundamentals and Log Analysis | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
+| T-305 | ZGC and Shenandoah: Concurrent Collection | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/zgc-and-shenandoah-concurrent-collection.md` |
+| T-309 | Escape Analysis and Scalar Replacement | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/escape-analysis-and-scalar-replacement.md` |
+| T-310 | Safepoints and Stop-the-World Mechanics | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/safepoints-and-stop-the-world-mechanics.md` |
+| T-311 | Native Memory, Direct Buffers, and Off-Heap | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/native-memory-direct-buffers-and-off-heap.md` |
+| — | G1 Internals: Remembered Sets and Write Barriers | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/g1-remembered-sets-and-write-barriers.md` |
+| — | JIT: Tiered Compilation, Inlining, and Deoptimization | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/jit-tiered-compilation-and-deoptimization.md` |
+| — | JVM Flags and Container Ergonomics | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/jvm-flags-and-container-ergonomics.md` |
+| — | JVM Memory Layout and Runtime Regions | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/jvm-memory-layout-and-runtime-regions.md` |
+| — | Memory Leak Diagnosis and Heap Dump Analysis | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md` |
+| T-101 | equals(), hashCode(), and Comparable Contracts | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/equals-hashcode-and-comparable-contracts.md` |
+| T-102 | Polymorphism and Dynamic Dispatch Mechanics | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/polymorphism-and-dynamic-dispatch.md` |
+| T-103 | Immutability and Defensive Copying | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/immutability-and-defensive-copying.md` |
+| T-104 | Generics: Erasure, Variance, and PECS | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/generics-erasure-and-pecs.md` |
+| T-105 | Exception Design and Hierarchy Strategy | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/exception-design-and-hierarchy-strategy.md` |
+| T-106 | Strings: Interning, Compact Strings, and Builders | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/strings-interning-compact-strings-and-builders.md` |
+| T-107 | Streams and Collectors | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/streams-and-collectors.md` |
+| T-108 | Lambdas and Functional Interfaces | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/lambdas-and-functional-interfaces.md` |
+| T-109 | Optional and Null Strategy | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/optional-and-null-strategy.md` |
+| T-110 | Records, Sealed Types, and Pattern Matching | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/records-sealed-types-and-pattern-matching.md` |
+| T-111 | Enums, EnumMap, and EnumSet | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/enums-enummap-and-enumset.md` |
+| T-112 | Annotations and Annotation Processing | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/annotations-and-annotation-processing.md` |
+| T-113 | Reflection and Dynamic Proxies | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/reflection-and-dynamic-proxies.md` |
+| T-114 | ClassLoaders and Class Initialization | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/classloaders-and-class-initialization.md` |
+| T-115 | Serialization Hazards and Alternatives | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/java-core/serialization-hazards-and-alternatives.md` |
+
+## Where this domain's boundary comes from
+
+See `00-project/syllabus-transformation-plan.md` Sections 3.2–3.3 for the full reasoning, and `00-project/migration-mapping.md` for the exhaustive, verified file-by-file mapping this index was generated from.
