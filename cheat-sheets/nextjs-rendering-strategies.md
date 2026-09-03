@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Rendering Strategies
 
-**Canonical chapter:** [`handbook/frontend/nextjs-rendering-strategies.md`](../handbook/frontend/nextjs-rendering-strategies.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-rendering-strategies.md`](../syllabus/21-frontend-web/nextjs-rendering-strategies.md)
 
 The topic register frames this as "a direct analogue to the backend's caching-strategies cheat sheet."
 
@@ -65,7 +65,7 @@ Every rendering strategy answers the same question — WHEN does this page's HTM
 
 ## Related
 
-- `handbook/frontend/nextjs-data-fetching-and-caching.md`
-- `handbook/frontend/nextjs-streaming-and-suspense.md`
-- `handbook/system-design/caching-strategies-and-invalidation.md`
+- `syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md`
+- `syllabus/21-frontend-web/nextjs-streaming-and-suspense.md`
+- `syllabus/11-system-design/caching-strategies-and-invalidation.md`
 - `00-project/frontend-topic-register.md`

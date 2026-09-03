@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Styling Approaches
 
-**Canonical chapter:** [`handbook/frontend/nextjs-styling-approaches.md`](../handbook/frontend/nextjs-styling-approaches.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-styling-approaches.md`](../syllabus/21-frontend-web/nextjs-styling-approaches.md)
 
 The register names the trap this chapter avoids: "trade-offs, not just preference." All three approaches built side by side in one real app and tested for actual, distinguishing mechanical behavior.
 
@@ -66,5 +66,5 @@ Three real, different places the same problem — "which CSS rule applies to thi
 
 ## Related
 
-- `handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md`
-- `handbook/frontend/nextjs-monorepo-layout.md`
+- `syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md`
+- `syllabus/21-frontend-web/nextjs-monorepo-layout.md`

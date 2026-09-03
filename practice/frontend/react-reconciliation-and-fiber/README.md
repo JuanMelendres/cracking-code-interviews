@@ -1,6 +1,6 @@
 # React Reconciliation & Fiber demo app (F-112)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-reconciliation-and-fiber.md`](../../../handbook/frontend/react-reconciliation-and-fiber.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-reconciliation-and-fiber.md`](../../../syllabus/21-frontend-web/react-reconciliation-and-fiber.md).
 
 ## Run it
 

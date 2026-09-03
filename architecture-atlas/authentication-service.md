@@ -13,8 +13,8 @@ target_levels:
   - staff
 estimated_reading_minutes: 15
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/security/oauth2-oidc-and-jwt.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/12-security/oauth2-oidc-and-jwt.md
 related:
   - ride-hailing-dispatch-system.md
   - news-feed-system.md
@@ -24,7 +24,7 @@ official_references: []
 
 # Architecture Atlas: Authentication Service
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -128,7 +128,7 @@ The core scaling decision is asymmetric: issuance (low volume) is allowed a data
 ## Reliability Strategy
 
 1. **Refresh-token store at scale.** Comparatively low volume (one refresh per expiry window, not per request), so a standard relational store with an index on the token handles it easily — not every component needs the same scaling treatment as the highest-volume path.
-2. **Revocation gap.** Per [OAuth2, OIDC, and JWT](../handbook/security/oauth2-oidc-and-jwt.md), a compromised access token stays valid until expiry — mitigated by short access-token expiry (minutes), with the expensive, revocable check (refresh-token validity) only at the much-lower-volume refresh step.
+2. **Revocation gap.** Per [OAuth2, OIDC, and JWT](../syllabus/12-security/oauth2-oidc-and-jwt.md), a compromised access token stays valid until expiry — mitigated by short access-token expiry (minutes), with the expensive, revocable check (refresh-token validity) only at the much-lower-volume refresh step.
 3. **Key rotation.** If the signing key is compromised, every downstream service verifying locally needs the new key distributed before old-key-signed tokens can be rejected — a real operational bottleneck (key distribution latency), not something the JWT format itself solves.
 
 ## Security, Observability, and Cost
@@ -154,4 +154,4 @@ The 700x issuance-to-validation asymmetry is the load-bearing number in this ent
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the issuance-vs-validation asymmetry stated explicitly and traced through to the local-verification architecture decision; the revocation gap named as a bottleneck, not glossed over; and key rotation named as a real operational bottleneck in its own right.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the issuance-vs-validation asymmetry stated explicitly and traced through to the local-verification architecture decision; the revocation gap named as a bottleneck, not glossed over; and key rotation named as a real operational bottleneck in its own right.

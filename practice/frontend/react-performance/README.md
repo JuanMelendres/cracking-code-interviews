@@ -1,6 +1,6 @@
 # React Performance demo app (F-117)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-performance.md`](../../../handbook/frontend/react-performance.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-performance.md`](../../../syllabus/21-frontend-web/react-performance.md).
 
 ## Run it
 

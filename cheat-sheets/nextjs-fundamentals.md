@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Fundamentals
 
-**Canonical chapter:** [`handbook/frontend/nextjs-fundamentals.md`](../handbook/frontend/nextjs-fundamentals.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-fundamentals.md`](../syllabus/21-frontend-web/nextjs-fundamentals.md)
 
 ## Core Mental Model
 
@@ -57,6 +57,6 @@ A meta-framework is React plus the decisions React deliberately doesn't make: ho
 
 ## Related
 
-- `handbook/frontend/react-state-management.md`
-- `handbook/frontend/nextjs-app-router-fundamentals.md`
+- `syllabus/21-frontend-web/react-state-management.md`
+- `syllabus/21-frontend-web/nextjs-app-router-fundamentals.md`
 - `00-project/frontend-topic-register.md`

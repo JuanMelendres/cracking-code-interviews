@@ -17,11 +17,11 @@ competencies:
   - Hot-partition remediation via compound key
   - Scaling/performance story
 related:
-  - ../../handbook/kafka/kafka-architecture-fundamentals.md
-  - ../../handbook/kafka/producer-semantics-and-partition-keys.md
-  - ../../handbook/kafka/consumer-groups-and-rebalancing.md
-  - ../../handbook/kafka/delivery-semantics-and-exactly-once.md
-  - ../../behavioral-handbook/04-production-incident-narratives.md
+  - ../../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md
+  - ../../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md
+  - ../../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
+  - ../../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
+  - ../../syllabus/20-interview-preparation/behavioral/04-production-incident-narratives.md
 source: ../../study-packs/week-08/08-week-8-mock-interview.md
 official_references: []
 ---
@@ -46,12 +46,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Per-partition ordering, partition-count one-way door | Q1 | [Kafka Architecture Fundamentals](../../handbook/kafka/kafka-architecture-fundamentals.md) |
-| `acks=all` data-loss mechanism (ISR shrink) | Q2 | [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../handbook/kafka/producer-semantics-and-partition-keys.md) |
-| Repeated-rebalance diagnosis | Q3 | [Kafka Consumer Groups, Rebalancing, and Offset Management](../../handbook/kafka/consumer-groups-and-rebalancing.md) |
-| Honest exactly-once scoping | Q4 | [Kafka Delivery Semantics and Exactly-Once Processing](../../handbook/kafka/delivery-semantics-and-exactly-once.md) |
-| Hot-partition remediation | Q5 | [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../handbook/kafka/producer-semantics-and-partition-keys.md) |
-| Scaling/performance story | Q6 | [Production Incident Narratives](../../behavioral-handbook/04-production-incident-narratives.md) |
+| Per-partition ordering, partition-count one-way door | Q1 | [Kafka Architecture Fundamentals](../../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md) |
+| `acks=all` data-loss mechanism (ISR shrink) | Q2 | [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md) |
+| Repeated-rebalance diagnosis | Q3 | [Kafka Consumer Groups, Rebalancing, and Offset Management](../../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md) |
+| Honest exactly-once scoping | Q4 | [Kafka Delivery Semantics and Exactly-Once Processing](../../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md) |
+| Hot-partition remediation | Q5 | [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md) |
+| Scaling/performance story | Q6 | [Production Incident Narratives](../../syllabus/20-interview-preparation/behavioral/04-production-incident-narratives.md) |
 
 ## Interviewer Opening Script
 
@@ -130,10 +130,10 @@ Walk the candidate through their scores, starting with the weakest. Questions 2 
 
 ## Remediation Recommendations
 
-- Weak Q1 → re-read [Kafka Architecture Fundamentals](../../handbook/kafka/kafka-architecture-fundamentals.md), specifically its real partition-routing trace.
-- Weak Q2 → re-read [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../handbook/kafka/producer-semantics-and-partition-keys.md), specifically its ISR-shrink production scenario.
-- Weak Q3 → re-read [Kafka Consumer Groups, Rebalancing, and Offset Management](../../handbook/kafka/consumer-groups-and-rebalancing.md), specifically its `max.poll.interval.ms` production scenario.
-- Weak Q4 → re-read [Kafka Delivery Semantics and Exactly-Once Processing](../../handbook/kafka/delivery-semantics-and-exactly-once.md), specifically its at-least-once/at-most-once real traces and the outbox/idempotent-consumer material.
-- Weak Q5 → re-read [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../handbook/kafka/producer-semantics-and-partition-keys.md)'s compound-key exercise.
-- Weak Q6 → re-read [Production Incident Narratives](../../behavioral-handbook/04-production-incident-narratives.md) — the closest-fit chapter for a scaling/performance story, since this competency has no dedicated behavioral-handbook chapter yet.
+- Weak Q1 → re-read [Kafka Architecture Fundamentals](../../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md), specifically its real partition-routing trace.
+- Weak Q2 → re-read [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md), specifically its ISR-shrink production scenario.
+- Weak Q3 → re-read [Kafka Consumer Groups, Rebalancing, and Offset Management](../../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md), specifically its `max.poll.interval.ms` production scenario.
+- Weak Q4 → re-read [Kafka Delivery Semantics and Exactly-Once Processing](../../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md), specifically its at-least-once/at-most-once real traces and the outbox/idempotent-consumer material.
+- Weak Q5 → re-read [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](../../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md)'s compound-key exercise.
+- Weak Q6 → re-read [Production Incident Narratives](../../syllabus/20-interview-preparation/behavioral/04-production-incident-narratives.md) — the closest-fit chapter for a scaling/performance story, since this competency has no dedicated behavioral-handbook chapter yet.
 - Any dimension scored below Senior (4) overall → retake this mock in full after remediation.

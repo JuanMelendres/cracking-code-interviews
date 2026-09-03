@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Reconciliation and the Fiber Architecture
 
-**Canonical chapter:** [`handbook/frontend/react-reconciliation-and-fiber.md`](../handbook/frontend/react-reconciliation-and-fiber.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-reconciliation-and-fiber.md`](../syllabus/21-frontend-web/react-reconciliation-and-fiber.md)
 
 ## Core Mental Model
 
@@ -72,6 +72,6 @@ React's rendering model has three distinct phases: render (call component functi
 
 ## Related
 
-- `handbook/frontend/react-fundamentals-jsx-components-props-and-state.md`
-- `handbook/frontend/react-component-patterns.md`
-- `handbook/frontend/react-concurrent-rendering.md`
+- `syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md`
+- `syllabus/21-frontend-web/react-component-patterns.md`
+- `syllabus/21-frontend-web/react-concurrent-rendering.md`

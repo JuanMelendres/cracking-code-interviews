@@ -2,25 +2,25 @@
 
 **IWI 7.30 · Runs every week (W1–W6) · This chapter builds the method; §2 applies it in full to T-901**
 
-**Canonical chapter:** [The Technical Answer Framework — Nine Layers](../../interview-playbook/technical-answers/technical-answer-framework.md). This file is the Week 1 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite §2 and §3 directly.
+**Canonical chapter:** [The Technical Answer Framework — Nine Layers](../../syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md). This file is the Week 1 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite §2 and §3 directly.
 
 ---
 
 ## 1. Why this exists
 
-Named interview feedback included "explain with greater depth" and "explain why you chose it" — a structure problem, not a knowledge problem: the audit's own finding was a mean answer length of ~110 characters, a single sentence, with no next layer to go to. Full reasoning and the fix: canonical chapter [§ Why This Exists](../../interview-playbook/technical-answers/technical-answer-framework.md#why-this-exists).
+Named interview feedback included "explain with greater depth" and "explain why you chose it" — a structure problem, not a knowledge problem: the audit's own finding was a mean answer length of ~110 characters, a single sentence, with no next layer to go to. Full reasoning and the fix: canonical chapter [§ Why This Exists](../../syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md#why-this-exists).
 
 ## 2. The nine-layer stack
 
-Every topic marked **Deep** in the roadmap gets all nine layers — Opening, Senior answer, Deep dive, Whiteboard, Production example, Trade-offs, Traps, Follow-up chain, Staff extension — built and rehearsed before the interview, not improvised during it. Full table with lengths, purposes, and common failures per layer: canonical chapter [§ The Nine-Layer Stack](../../interview-playbook/technical-answers/technical-answer-framework.md#the-nine-layer-stack).
+Every topic marked **Deep** in the roadmap gets all nine layers — Opening, Senior answer, Deep dive, Whiteboard, Production example, Trade-offs, Traps, Follow-up chain, Staff extension — built and rehearsed before the interview, not improvised during it. Full table with lengths, purposes, and common failures per layer: canonical chapter [§ The Nine-Layer Stack](../../syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md#the-nine-layer-stack).
 
 ## 3. Worked in full — T-901 Hexagonal Architecture
 
-The full nine-layer worked answer for T-901, built from `01-clean-hexagonal-architecture.md`, is elevated to the canonical chapter's own worked example rather than duplicated here: canonical chapter [§ Worked Example](../../interview-playbook/technical-answers/technical-answer-framework.md#worked-example).
+The full nine-layer worked answer for T-901, built from `01-clean-hexagonal-architecture.md`, is elevated to the canonical chapter's own worked example rather than duplicated here: canonical chapter [§ Worked Example](../../syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md#worked-example).
 
 ## 4. Weekly build cadence
 
-Six-day build schedule (Mon: L1–L2 written out, 45m · Tue: L5–L6 production example and trade-offs, 45m · Wed: L3 deep dive rehearsed aloud, 45m · Thu: L7–L8 traps and follow-up chain, 45m · Fri: record L1/L2/L6 for one topic and watch it back, 30m · Sat: L4 whiteboard + L9 Staff extension, 30m). The Friday recording step is not optional — full rationale: canonical chapter [§ Practice Cadence](../../interview-playbook/technical-answers/technical-answer-framework.md#practice-cadence).
+Six-day build schedule (Mon: L1–L2 written out, 45m · Tue: L5–L6 production example and trade-offs, 45m · Wed: L3 deep dive rehearsed aloud, 45m · Thu: L7–L8 traps and follow-up chain, 45m · Fri: record L1/L2/L6 for one topic and watch it back, 30m · Sat: L4 whiteboard + L9 Staff extension, 30m). The Friday recording step is not optional — full rationale: canonical chapter [§ Practice Cadence](../../syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md#practice-cadence).
 
 ## 5. Applying this to T-609 (this week's second Deep topic)
 

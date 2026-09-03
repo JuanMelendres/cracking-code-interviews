@@ -1,21 +1,19 @@
 ---
 title: "Interview Playbook — Index"
 document_type: playbook-index
-status: draft
-last_updated: 2026-08-04
+status: superseded — most content relocated to syllabus/20-interview-preparation/ and syllabus/21-frontend-web/ (Phase 3, 2026-09-03); company-prep/ remains here permanently
+last_updated: 2026-09-03
 ---
 
 # Interview Playbook
 
-The Interview Playbook owns interview-craft content: reusable structures for *delivering* a technical answer under interview conditions, as distinct from `handbook/`'s canonical explanations of *what* a concept is and `cheat-sheets/`'s one-page rapid-review of a chapter's content. Per `CLAUDE.md`'s Canonical Content Ownership rule, entries here reference canonical `handbook/` chapters rather than restating their explanations, and should not be confused with the per-chapter "Interview Answer Framework" section every `handbook/` chapter already has — this directory is where the *shared method* underlying every one of those per-chapter sections is documented once, not duplicated per chapter.
+**This directory's `technical-answers/`, `system-design/`, `coding/`, `behavioral/`, and `frontend/` subdirectories have physically relocated** to `syllabus/20-interview-preparation/` (the first four) and `syllabus/21-frontend-web/` (the frontend entry), per Phase 3 of `00-project/syllabus-transformation-plan.md` (2026-09-03) — see `syllabus/20-interview-preparation/INDEX.md` for the current, real index. The tables below are kept as a historical "what used to live here, and where it went" record, with links already updated to the new locations; this directory's only remaining live content is `company-prep/`, described below.
 
-## A note on scope
+Historically, this directory owned interview-craft content: reusable structures for *delivering* a technical answer under interview conditions, as distinct from `handbook/`'s canonical explanations of *what* a concept is and `cheat-sheets/`'s one-page rapid-review of a chapter's content. That role now belongs to `syllabus/20-interview-preparation/` (and `syllabus/21-frontend-web/` for the frontend entry).
 
-Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. All four now have content. This deliverable was built in bounded batches. A fifth subdirectory, `frontend/`, was opened per the Scope Addendum in `CLAUDE.md` (2026-08-12) once the frontend domain's 37 canonical `handbook/frontend/` chapters were confirmed complete with zero corresponding interview-craft content of their own.
+## company-prep/ — the only content that stays here
 
-A sixth subdirectory, `company-prep/`, was opened 2026-09-03 at explicit user request, ahead of a specific, named interview — per `CLAUDE.md`'s explicit allowance ("do not overfit content to any single company's interview process unless explicitly requested"), this is a company-specific exception, not a change to the programme's general company-agnostic scope. Entries here are personal, targeted prep guides, not full canonical chapters — they audit existing handbook coverage against a specific topic list, close any real gaps found directly in the relevant canonical chapter, and then link back to it rather than duplicating it.
-
-## company-prep/
+Opened 2026-09-03 at explicit user request, ahead of a specific, named interview — per `CLAUDE.md`'s explicit allowance ("do not overfit content to any single company's interview process unless explicitly requested"), this is a company-specific exception, not a change to the programme's general company-agnostic scope. Entries here are personal, targeted prep guides, not full canonical chapters — they audit existing handbook coverage against a specific topic list, close any real gaps found directly in the relevant canonical chapter, and then link back to it rather than duplicating it. **This subdirectory is permanently private and tooling-excluded from any public/commercial build** (plan Section 2.8, Section 14 open question 3, approved 2026-09-03) — it was deliberately not moved during Phase 3, per the plan's own Section 7.2 sample mapping ("not migrated by default").
 
 | Entry | What it's about |
 |---|---|
@@ -25,8 +23,8 @@ A sixth subdirectory, `company-prep/`, was opened 2026-09-03 at explicit user re
 
 | Entry | Topic ID | IWI | What it's about |
 |---|---|---|---|
-| [The Technical Answer Framework — Nine Layers](technical-answers/technical-answer-framework.md) | T-1601 | 7.30 | The nine-layer structure (Opening → Staff extension) every substantive technical answer in this programme follows. The multiplier skill — improves delivery of every other topic rather than adding isolated content of its own. Elevated from `study-packs/week-01/03-technical-answer-framework.md`. |
-| [Trade-off Narration and Architecture Decision Records](technical-answers/trade-off-narration-and-adrs.md) | T-1505/T-916 | 8.10 | The four-beat structure (Context → Options → Decision criterion → What it cost) for narrating any technical trade-off — this is layer 6 of the nine-layer framework above, given its own dedicated treatment since it's the single most commonly skipped beat. Elevated from `study-packs/week-02/05-trade-off-narration-and-adrs.md`. |
+| [The Technical Answer Framework — Nine Layers](../syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md) | T-1601 | 7.30 | The nine-layer structure (Opening → Staff extension) every substantive technical answer in this programme follows. The multiplier skill — improves delivery of every other topic rather than adding isolated content of its own. Elevated from `study-packs/week-01/03-technical-answer-framework.md`. |
+| [Trade-off Narration and Architecture Decision Records](../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md) | T-1505/T-916 | 8.10 | The four-beat structure (Context → Options → Decision criterion → What it cost) for narrating any technical trade-off — this is layer 6 of the nine-layer framework above, given its own dedicated treatment since it's the single most commonly skipped beat. Elevated from `study-packs/week-02/05-trade-off-narration-and-adrs.md`. |
 
 These two entries are deliberately cross-linked: the nine-layer framework is the general shape of a technical answer; trade-off narration is a dedicated deep-dive on that framework's layer 6, because it's the specific layer named interview feedback identified as most commonly missing.
 
@@ -34,30 +32,29 @@ These two entries are deliberately cross-linked: the nine-layer framework is the
 
 | Entry | Topic ID | What it's about |
 |---|---|---|
-| [Coding Interview Communication Protocol](coding/coding-interview-communication-protocol.md) | T-1419 | The six-phase narration protocol (Clarify → Re-state complexity) for live coding interviews — runs every coding session. Elevated from `study-packs/week-01/04-coding-interview-communication.md`. |
+| [Coding Interview Communication Protocol](../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md) | T-1419 | The six-phase narration protocol (Clarify → Re-state complexity) for live coding interviews — runs every coding session. Elevated from `study-packs/week-01/04-coding-interview-communication.md`. |
 
 ## system-design/
 
 | Entry | Companion topic | What it's about |
 |---|---|---|
-| [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](system-design/time-boxing-and-mid-round-changes.md) | T-801/T-802 (System Design Method and Estimation) | Two live-delivery skills distinct from the six-phase method itself: running the method inside a fixed clock, and responding to an interviewer-injected requirement change mid-round by revising the specific earlier decision it invalidates rather than bolting on a patch. Synthesized from real, recurring patterns across this programme's own Week 9–10 mock-interview scripts, not elevated from a single source file. |
-| [System Design Narration and Whiteboard Discipline](system-design/system-design-narration-and-whiteboard-discipline.md) | T-1602 | A third, distinct live-delivery skill: how to actually draw and narrate the architecture itself (not the method's own meta-diagram, and not clock management) — diagram sequencing, notation discipline, signposting, and handling an interviewer's mid-diagram redirection by integrating it rather than defending against it. New entry; a genuine register gap confirmed absent everywhere else in the handbook. |
+| [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) | T-801/T-802 (System Design Method and Estimation) | Two live-delivery skills distinct from the six-phase method itself: running the method inside a fixed clock, and responding to an interviewer-injected requirement change mid-round by revising the specific earlier decision it invalidates rather than bolting on a patch. Synthesized from real, recurring patterns across this programme's own Week 9–10 mock-interview scripts, not elevated from a single source file. |
+| [System Design Narration and Whiteboard Discipline](../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline.md) | T-1602 | A third, distinct live-delivery skill: how to actually draw and narrate the architecture itself (not the method's own meta-diagram, and not clock management) — diagram sequencing, notation discipline, signposting, and handling an interviewer's mid-diagram redirection by integrating it rather than defending against it. New entry; a genuine register gap confirmed absent everywhere else in the handbook. |
 
 ## behavioral/
 
 | Entry | Topic ID | IWI | What it's about |
 |---|---|---|---|
-| [Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition](behavioral/company-loop-structures-and-question-pattern-recognition.md) | T-1604 | 6.50 | The delivery-logistics layer `behavioral-handbook/` deliberately doesn't cover: recognizing which of three question shapes a prompt is asking (retrospective/STAR, hypothetical/live-judgment, values-worded/reframed) before selecting a story, and a live, day-of story-usage tracking grid that prevents accidentally repeating the same story across a multi-round loop. Elevated from `00-project/knowledge-architecture-blueprint.md`'s previously-unelevated T-1604 (Company loop structures & calibration). Genuinely playbook-shaped — no restatement of STAR mechanics, story-portfolio design, or the per-principle reframing lens, all of which stay in `behavioral-handbook/`. |
+| [Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition](../syllabus/20-interview-preparation/behavioral/company-loop-structures-and-question-pattern-recognition.md) | T-1604 | 6.50 | The delivery-logistics layer the rest of `syllabus/20-interview-preparation/behavioral/` (formerly `behavioral-handbook/`) deliberately doesn't cover: recognizing which of three question shapes a prompt is asking (retrospective/STAR, hypothetical/live-judgment, values-worded/reframed) before selecting a story, and a live, day-of story-usage tracking grid that prevents accidentally repeating the same story across a multi-round loop. Elevated from `00-project/knowledge-architecture-blueprint.md`'s previously-unelevated T-1604 (Company loop structures & calibration). Genuinely playbook-shaped — no restatement of STAR mechanics, story-portfolio design, or the per-principle reframing lens, all of which stay alongside it in `syllabus/20-interview-preparation/behavioral/`. |
 
 ## frontend/
 
 | Entry | What it's about |
 |---|---|
-| [Frontend Live-Coding & Debugging Protocol](frontend/frontend-live-coding-and-debugging-protocol.md) | The two frontend-specific live round formats (build a feature; debug a given component) and a six-phase protocol adapted from `coding/coding-interview-communication-protocol.md` for what's actually different: component decomposition and state ownership instead of algorithmic invariants, and real-browser/DevTools verification of render behavior instead of hand-tracing an example. Not elevated from a study-pack source — a new entry closing the previously-empty `interview-playbook/frontend/` directory. |
+| [Frontend Live-Coding & Debugging Protocol](../syllabus/21-frontend-web/frontend-live-coding-and-debugging-protocol.md) | The two frontend-specific live round formats (build a feature; debug a given component) and a six-phase protocol adapted from `coding/coding-interview-communication-protocol.md` for what's actually different: component decomposition and state ownership instead of algorithmic invariants, and real-browser/DevTools verification of render behavior instead of hand-tracing an example. Not elevated from a study-pack source — a new entry closing the previously-empty `interview-playbook/frontend/` directory. |
 
 ## How this relates to other deliverables
 
-- `handbook/` — canonical explanations of individual concepts, each with its own embedded per-chapter Interview Answer Framework section that follows the nine-layer method documented here.
+- `syllabus/` — the canonical home for everything this directory used to hold. `02-java` through `17-architecture` etc. carry the canonical concept explanations; `20-interview-preparation/` now carries the interview-craft/delivery method content that used to live here; `21-frontend-web/` carries the one frontend interview-craft entry.
 - `cheat-sheets/` — one-page rapid-review of a single canonical chapter's content, for the day before an interview.
-- `behavioral-handbook/` — the STAR-based structure and delivery method for behavioral (not technical) interview questions.
-- `interview-playbook/` (this directory) — the shared technical-answer-delivery method itself, referenced by every canonical chapter rather than restated in each one.
+- `company-prep/` (this directory) — the one piece of content that stays here permanently, private and tooling-excluded from any public/commercial build.

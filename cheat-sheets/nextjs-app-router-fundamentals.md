@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js App Router Fundamentals
 
-**Canonical chapter:** [`handbook/frontend/nextjs-app-router-fundamentals.md`](../handbook/frontend/nextjs-app-router-fundamentals.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-app-router-fundamentals.md`](../syllabus/21-frontend-web/nextjs-app-router-fundamentals.md)
 
 ## Core Mental Model
 
@@ -57,6 +57,6 @@ A layout's persistence is scoped to exactly the part of the route tree that actu
 
 ## Related
 
-- `handbook/frontend/nextjs-fundamentals.md`
-- `handbook/frontend/nextjs-server-vs-client-components.md`
+- `syllabus/21-frontend-web/nextjs-fundamentals.md`
+- `syllabus/21-frontend-web/nextjs-server-vs-client-components.md`
 - `00-project/frontend-topic-register.md`

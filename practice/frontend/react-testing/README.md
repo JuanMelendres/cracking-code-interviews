@@ -1,6 +1,6 @@
 # React Testing demo app (F-118)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-testing.md`](../../../handbook/frontend/react-testing.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-testing.md`](../../../syllabus/21-frontend-web/react-testing.md).
 
 ## Run it
 

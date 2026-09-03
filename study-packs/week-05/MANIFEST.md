@@ -16,13 +16,13 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 725 |
-| 2 | `01-microservice-decomposition.md` | T-907/908 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md` | 599 |
-| 3 | `02-idempotency.md` | T-809 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/idempotency.md` | 617 |
-| 4 | `03-cap-and-consistency.md` | T-807 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/cap-theorem-and-consistency-models.md` | 590 |
+| 2 | `01-microservice-decomposition.md` | T-907/908 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md` | 599 |
+| 3 | `02-idempotency.md` | T-809 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/11-system-design/idempotency.md` | 617 |
+| 4 | `03-cap-and-consistency.md` | T-807 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md` | 590 |
 | 5 | `04-java-coding-practice.md` | LC 380, 706, 622, all compiled and run | 674 |
 | 6 | `05-flashcards.md` | 14 cards | 377 |
 | 7 | `06-decomposition-analysis-deliverable.md` | Template + worked example with genuine counter-argument | 827 |
-| 8 | `07-story-scope-reframing.md` | T-1503 — theory slimmed to a summary + link to `behavioral-handbook/03-scope-impact-and-influence-framing.md`; reframe worksheets for Stories 1, 4, 7, 8 unchanged | 565 |
+| 8 | `07-story-scope-reframing.md` | T-1503 — theory slimmed to a summary + link to `syllabus/20-interview-preparation/behavioral/03-scope-impact-and-influence-framing.md`; reframe worksheets for Stories 1, 4, 7, 8 unchanged | 565 |
 | 9 | `08-week-5-behavioral-mock.md` | 45-min, 6-question behavioral round | 297 |
 | 10 | `09-design-exercise-payment-processing.md` | Slimmed to a per-phase summary + link; full design now canonical at `architecture-atlas/payment-processing-system.md` | 340 |
 | 11 | `10-week-5-checklist.md` | Day-by-day checklist | 266 |

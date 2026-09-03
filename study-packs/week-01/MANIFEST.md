@@ -1,7 +1,7 @@
 # Week 1 Study Pack — Manifest
 
 **Topics:** T-901, T-609, T-1601, T-1501, T-1419 · **Plan:** A (Interview Emergency Sprint) · default workload 20h
-**Files:** 13 (+ this manifest) · **Total words:** 8,322 (real count, `wc -w` over all 13 files, re-run 2026-08-04 after `03-technical-answer-framework.md` and `04-coding-interview-communication.md` were both slimmed to summaries + canonical-chapter links, per the new `interview-playbook/technical-answers/technical-answer-framework.md` and `interview-playbook/coding/coding-interview-communication-protocol.md` — see `CHANGELOG.md`. Section numbering kept stable throughout, unchanged: `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite them directly)
+**Files:** 13 (+ this manifest) · **Total words:** 8,322 (real count, `wc -w` over all 13 files, re-run 2026-08-04 after `03-technical-answer-framework.md` and `04-coding-interview-communication.md` were both slimmed to summaries + canonical-chapter links, per the new `syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md` and `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md` — see `CHANGELOG.md`. Section numbering kept stable throughout, unchanged: `11-week-1-checklist.md` and `study-packs/week-02/06-answer-frameworks.md` cite them directly)
 
 ---
 
@@ -10,11 +10,11 @@
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, daily schedule, 10/20/30h variants, exit criteria, recording protocol | 901 |
-| 2 | `01-clean-hexagonal-architecture.md` | T-901 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/architecture/clean-hexagonal-architecture.md` | 934 |
-| 3 | `02-database-index-fundamentals.md` | T-609 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/index-structures-btree-composite-covering.md` | 882 |
-| 4 | `03-technical-answer-framework.md` | T-1601 — slimmed to a per-section summary + link; full nine-layer stack now canonical at `interview-playbook/technical-answers/technical-answer-framework.md` | 474 |
-| 5 | `04-coding-interview-communication.md` | T-1419 — slimmed to a per-section summary + link; full six-phase protocol now canonical at `interview-playbook/coding/coding-interview-communication-protocol.md` | 265 |
-| 6 | `05-star-story-workbook.md` | T-1501 — §1 slimmed to a summary + link to `behavioral-handbook/01-star-framework-and-delivery.md`; §2-§6 (worksheets, exercise) unchanged, no invented stories | 664 |
+| 2 | `01-clean-hexagonal-architecture.md` | T-901 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/17-architecture/clean-hexagonal-architecture.md` | 934 |
+| 3 | `02-database-index-fundamentals.md` | T-609 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/06-databases/index-structures-btree-composite-covering.md` | 882 |
+| 4 | `03-technical-answer-framework.md` | T-1601 — slimmed to a per-section summary + link; full nine-layer stack now canonical at `syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md` | 474 |
+| 5 | `04-coding-interview-communication.md` | T-1419 — slimmed to a per-section summary + link; full six-phase protocol now canonical at `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md` | 265 |
+| 6 | `05-star-story-workbook.md` | T-1501 — §1 slimmed to a summary + link to `syllabus/20-interview-preparation/behavioral/01-star-framework-and-delivery.md`; §2-§6 (worksheets, exercise) unchanged, no invented stories | 664 |
 | 7 | `06-domain-purity-exercise.md` | Deliverable template + worked example + documented counter-case | 668 |
 | 8 | `07-java-coding-practice.md` | 7 problems + LRU errata drill, all compiled and run | 1,246 |
 | 9 | `08-flashcards.md` | 12 cards, each naming the misconception it catches | 413 |
@@ -30,7 +30,7 @@
 | Item | Status |
 |---|---|
 | Java code | **Executed.** OpenJDK 21.0.12 (Homebrew). `18/18` assertions pass, including a live reproduction of the LRU errata bug. Source: `practice/java/week-01/src/*.java`. Full output: `practice/java/week-01/README.md`. Reproduce: `cd practice/java/week-01 && mkdir -p out && javac -d out src/*.java && java -cp out Main` |
-| SQL / PostgreSQL lab | **Executed.** PostgreSQL 16 via Docker, disposable container, 300,000-row seeded `orders` table. Every `EXPLAIN (ANALYZE, BUFFERS)` block quoted (now in the canonical chapter, `handbook/databases/index-structures-btree-composite-covering.md`) is real, not illustrative. Source: `practice/sql/week-01/index-lab.sql`. Full output: `practice/sql/week-01/index-lab-output.txt`. Reproduce: see `practice/sql/week-01/README.md` |
+| SQL / PostgreSQL lab | **Executed.** PostgreSQL 16 via Docker, disposable container, 300,000-row seeded `orders` table. Every `EXPLAIN (ANALYZE, BUFFERS)` block quoted (now in the canonical chapter, `syllabus/06-databases/index-structures-btree-composite-covering.md`) is real, not illustrative. Source: `practice/sql/week-01/index-lab.sql`. Full output: `practice/sql/week-01/index-lab-output.txt`. Reproduce: see `practice/sql/week-01/README.md` |
 | Interview statistics | **None invented.** No frequency percentages, benchmark numbers, or company-specific claims anywhere in this pack |
 | Production examples | Supplied as templates with extraction prompts (`01-…` §6, `06-…` §1) — never fabricated as if real |
 | Personal experience / STAR stories | **Not invented.** `05-star-story-workbook.md` is blank worksheets only |

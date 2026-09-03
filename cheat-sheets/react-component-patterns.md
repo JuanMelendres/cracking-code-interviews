@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Component Patterns
 
-**Canonical chapter:** [`handbook/frontend/react-component-patterns.md`](../handbook/frontend/react-component-patterns.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-component-patterns.md`](../syllabus/21-frontend-web/react-component-patterns.md)
 
 ## Core Mental Model
 
@@ -75,6 +75,6 @@ Every pattern in this chapter solves one of two distinct problems, and confusing
 
 ## Related
 
-- `handbook/frontend/react-usereducer-and-custom-hooks.md`
-- `handbook/frontend/react-usememo-usecallback-and-usecontext.md`
-- `handbook/frontend/react-reconciliation-and-fiber.md`
+- `syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md`
+- `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md`
+- `syllabus/21-frontend-web/react-reconciliation-and-fiber.md`

@@ -16,10 +16,10 @@ competencies:
   - LRU cache implementation with narrated communication phases
   - Architecture trade-off story delivery (STAR, ≤2 min)
 related:
-  - ../../handbook/architecture/clean-hexagonal-architecture.md
-  - ../../handbook/databases/index-structures-btree-composite-covering.md
-  - ../../interview-playbook/coding/coding-interview-communication-protocol.md
-  - ../../behavioral-handbook/05-architecture-trade-off-narration.md
+  - ../../syllabus/17-architecture/clean-hexagonal-architecture.md
+  - ../../syllabus/06-databases/index-structures-btree-composite-covering.md
+  - ../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md
+  - ../../syllabus/20-interview-preparation/behavioral/05-architecture-trade-off-narration.md
 source: ../../study-packs/week-01/09-week-1-mock-interview.md
 official_references: []
 ---
@@ -44,11 +44,11 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Hexagonal architecture, cold + Staff-differentiator follow-up | Q1–Q2 | [Clean and Hexagonal Architecture](../../handbook/architecture/clean-hexagonal-architecture.md) |
-| B+Tree traversal, root to heap | Q3 | [Database Index Structures — B+Tree, Composite, Covering](../../handbook/databases/index-structures-btree-composite-covering.md) |
-| Index-added-query-slower diagnosis | Q4 | [Database Index Structures — B+Tree, Composite, Covering](../../handbook/databases/index-structures-btree-composite-covering.md) |
-| LRU cache, narrated implementation | Q5 | [Coding Interview Communication Protocol](../../interview-playbook/coding/coding-interview-communication-protocol.md) |
-| Architecture trade-off story | Q6 | [Architecture Trade-off Narration](../../behavioral-handbook/05-architecture-trade-off-narration.md) |
+| Hexagonal architecture, cold + Staff-differentiator follow-up | Q1–Q2 | [Clean and Hexagonal Architecture](../../syllabus/17-architecture/clean-hexagonal-architecture.md) |
+| B+Tree traversal, root to heap | Q3 | [Database Index Structures — B+Tree, Composite, Covering](../../syllabus/06-databases/index-structures-btree-composite-covering.md) |
+| Index-added-query-slower diagnosis | Q4 | [Database Index Structures — B+Tree, Composite, Covering](../../syllabus/06-databases/index-structures-btree-composite-covering.md) |
+| LRU cache, narrated implementation | Q5 | [Coding Interview Communication Protocol](../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md) |
+| Architecture trade-off story | Q6 | [Architecture Trade-off Narration](../../syllabus/20-interview-preparation/behavioral/05-architecture-trade-off-narration.md) |
 
 ## Interviewer Opening Script
 
@@ -62,7 +62,7 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 2. **(3 min)** Follow-up, interviewer's choice: *"Where do JPA entities live in this model?"* or *"Would you use this on every project?"*
 3. **(2 min)** "How does a B+Tree index actually find a row?" — walk it from root to heap, out loud.
 4. **(3 min)** "You added an index and the query got slower. Give two distinct mechanisms."
-5. **(5 min)** Implement an LRU cache (LeetCode 146), narrated per all six phases of the [Coding Interview Communication Protocol](../../interview-playbook/coding/coding-interview-communication-protocol.md). Mid-implementation, expect: *"What happens if I call `put` on a key that already exists, when the cache is already full?"*
+5. **(5 min)** Implement an LRU cache (LeetCode 146), narrated per all six phases of the [Coding Interview Communication Protocol](../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md). Mid-implementation, expect: *"What happens if I call `put` on a key that already exists, when the cache is already full?"*
 6. **(5 min)** Deliver a real architecture-decision story in under 2 minutes, then answer: *"What would you have done if the alternative had won instead?"*
 
 ## Evaluator Section
@@ -121,8 +121,8 @@ Walk the candidate through their six dimension scores, starting with the weakest
 
 ## Remediation Recommendations
 
-- Any Technical Depth score ≤ 2 → re-read [Clean and Hexagonal Architecture](../../handbook/architecture/clean-hexagonal-architecture.md), specifically its trade-off table and "every project" framing.
-- Weak Q3/Q4 answers → re-read [Database Index Structures — B+Tree, Composite, Covering](../../handbook/databases/index-structures-btree-composite-covering.md).
-- Weak Q5 answers, or the errata bug reproduced → re-read [Coding Interview Communication Protocol](../../interview-playbook/coding/coding-interview-communication-protocol.md) and compare against the fixed reference implementation at [`practice/java/week-01/src/LRUCacheFixed.java`](../../practice/java/week-01/src/LRUCacheFixed.java).
-- Weak Q6 answers → re-read [Architecture Trade-off Narration](../../behavioral-handbook/05-architecture-trade-off-narration.md).
+- Any Technical Depth score ≤ 2 → re-read [Clean and Hexagonal Architecture](../../syllabus/17-architecture/clean-hexagonal-architecture.md), specifically its trade-off table and "every project" framing.
+- Weak Q3/Q4 answers → re-read [Database Index Structures — B+Tree, Composite, Covering](../../syllabus/06-databases/index-structures-btree-composite-covering.md).
+- Weak Q5 answers, or the errata bug reproduced → re-read [Coding Interview Communication Protocol](../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md) and compare against the fixed reference implementation at [`practice/java/week-01/src/LRUCacheFixed.java`](../../practice/java/week-01/src/LRUCacheFixed.java).
+- Weak Q6 answers → re-read [Architecture Trade-off Narration](../../syllabus/20-interview-preparation/behavioral/05-architecture-trade-off-narration.md).
 - Any dimension scored below Senior (4) overall → retake this mock in full after remediation; this week has no formal pass bar, so use the retake to confirm the weakest dimension specifically improved.

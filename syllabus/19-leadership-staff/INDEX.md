@@ -8,7 +8,7 @@ last_updated: 2026-09-03
 
 # Leadership & Staff Engineering
 
-**New domain — no dedicated canonical chapters of its own yet.** References `behavioral-handbook/`'s mentoring, cross-team-influence, technical-debt-advocacy, and design-review/RFC chapters as source material for a new Level 1–4 knowledge ladder, per the Section 2.7 decision (approved 2026-09-03): referenced, never duplicated.
+**New domain — no dedicated canonical chapters of its own yet.** References `syllabus/20-interview-preparation/behavioral/`'s mentoring, cross-team-influence, technical-debt-advocacy, and design-review/RFC chapters (formerly `behavioral-handbook/`, relocated 2026-09-03) as source material for a new Level 1–4 knowledge ladder, per the Section 2.7 decision (approved 2026-09-03): referenced, never duplicated.
 
 > **Phase 1 scaffolding notice.** This is a structural placeholder created during Phase 1 of the approved `00-project/syllabus-transformation-plan.md`. No content has moved here yet — the topics listed below still live at their current `handbook/` path (right-hand column) until this domain's Phase 3 migration runs. This file will be rewritten as a real domain index once that happens.
 

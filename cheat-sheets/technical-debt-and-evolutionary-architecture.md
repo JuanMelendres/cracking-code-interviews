@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Technical Debt and Evolutionary Architecture
 
-**Canonical chapter:** [`handbook/architecture/technical-debt-and-evolutionary-architecture.md`](../handbook/architecture/technical-debt-and-evolutionary-architecture.md)
+**Canonical chapter:** [`syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md`](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ Technical debt, like financial debt, is not inherently bad — it's a deliberate
 
 ## Related
 
-- `handbook/architecture/strangler-fig-and-migration-patterns.md`
-- `handbook/architecture/modular-monolith-as-a-deliberate-choice.md`
-- `handbook/architecture/architecture-decision-records.md`
-- `behavioral-handbook/11-technical-debt-advocacy.md`
+- `syllabus/17-architecture/strangler-fig-and-migration-patterns.md`
+- `syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md`
+- `syllabus/17-architecture/architecture-decision-records.md`
+- `syllabus/20-interview-preparation/behavioral/11-technical-debt-advocacy.md`

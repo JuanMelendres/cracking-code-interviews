@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Vite vs. Turbopack Build Tooling
 
-**Canonical chapter:** [`handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md`](../handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md`](../syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md)
 
 First chapter in D-F3 (Tooling & Ecosystem). Verified against two real, independently-run dev servers and two real, independently-run production builds.
 
@@ -66,6 +66,6 @@ Two philosophically different answers to "how do I serve a JS app during develop
 
 ## Related
 
-- `handbook/frontend/nextjs-deployment-models.md`
-- `handbook/frontend/nextjs-styling-approaches.md`
-- `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md`
+- `syllabus/21-frontend-web/nextjs-deployment-models.md`
+- `syllabus/21-frontend-web/nextjs-styling-approaches.md`
+- `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md`

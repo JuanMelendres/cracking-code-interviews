@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Concurrent React (Transitions, Deferred Values, Suspense)
 
-**Canonical chapter:** [`handbook/frontend/react-concurrent-rendering.md`](../handbook/frontend/react-concurrent-rendering.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-concurrent-rendering.md`](../syllabus/21-frontend-web/react-concurrent-rendering.md)
 
 ## Core Mental Model
 
@@ -73,6 +73,6 @@ Concurrent rendering does not make React's rendering multi-threaded — it makes
 
 ## Related
 
-- `handbook/frontend/react-reconciliation-and-fiber.md`
-- `handbook/frontend/react-performance.md`
-- `handbook/frontend/react-usereducer-and-custom-hooks.md`
+- `syllabus/21-frontend-web/react-reconciliation-and-fiber.md`
+- `syllabus/21-frontend-web/react-performance.md`
+- `syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md`

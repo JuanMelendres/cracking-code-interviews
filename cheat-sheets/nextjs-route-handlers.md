@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Route Handlers
 
-**Canonical chapter:** [`handbook/frontend/nextjs-route-handlers.md`](../handbook/frontend/nextjs-route-handlers.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-route-handlers.md`](../syllabus/21-frontend-web/nextjs-route-handlers.md)
 
 Flagged in the register as relevant to a Java-backend-plus-Next.js full-stack setup — "where does logic live."
 
@@ -65,6 +65,6 @@ A Route Handler is a real, standalone HTTP endpoint — not a data-fetching help
 
 ## Related
 
-- `handbook/frontend/nextjs-data-fetching-and-caching.md`
-- `handbook/frontend/nextjs-proxy-and-edge-runtime.md`
+- `syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md`
+- `syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md`
 - `syllabus/07-api-design/api-design.md`

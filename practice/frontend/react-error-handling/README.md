@@ -1,6 +1,6 @@
 # React Error Handling demo app (F-115)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-error-boundaries.md`](../../../handbook/frontend/react-error-boundaries.md). Includes a real, from-scratch class-component `ErrorBoundary` (no library) — error boundaries have no hook equivalent as of React 19.
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-error-boundaries.md`](../../../syllabus/21-frontend-web/react-error-boundaries.md). Includes a real, from-scratch class-component `ErrorBoundary` (no library) — error boundaries have no hook equivalent as of React 19.
 
 ## Run it
 

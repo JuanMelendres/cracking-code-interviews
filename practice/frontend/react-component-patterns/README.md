@@ -1,6 +1,6 @@
 # React Component Patterns demo app (F-111)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-component-patterns.md`](../../../handbook/frontend/react-component-patterns.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-component-patterns.md`](../../../syllabus/21-frontend-web/react-component-patterns.md).
 
 ## Run it
 

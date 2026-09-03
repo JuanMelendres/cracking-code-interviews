@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Accessibility (Semantic HTML, ARIA, Keyboard, Focus)
 
-**Canonical chapter:** [`handbook/frontend/react-accessibility.md`](../handbook/frontend/react-accessibility.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-accessibility.md`](../syllabus/21-frontend-web/react-accessibility.md)
 
 ## Core Mental Model
 
@@ -72,6 +72,6 @@ Accessibility is not a single property you either have or don't — it's a set o
 
 ## Related
 
-- `handbook/frontend/react-error-boundaries.md`
-- `handbook/frontend/react-forms.md`
-- `handbook/frontend/react-performance.md`
+- `syllabus/21-frontend-web/react-error-boundaries.md`
+- `syllabus/21-frontend-web/react-forms.md`
+- `syllabus/21-frontend-web/react-performance.md`

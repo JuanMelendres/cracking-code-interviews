@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Hooks (useEffect and useRef)
 
-**Canonical chapter:** [`handbook/frontend/react-hooks-useeffect-and-useref.md`](../handbook/frontend/react-hooks-useeffect-and-useref.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md`](../syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md)
 
 ## Core Mental Model
 
@@ -74,6 +74,6 @@ An effect is React's answer to "run this after the DOM has updated, and clean up
 
 ## Related
 
-- `handbook/frontend/react-fundamentals-jsx-components-props-and-state.md`
-- `handbook/frontend/react-usememo-usecallback-and-usecontext.md`
+- `syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md`
+- `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md`
 - `00-project/frontend-topic-register.md`

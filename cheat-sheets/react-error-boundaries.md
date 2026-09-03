@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Error Boundaries and Error Handling Strategy
 
-**Canonical chapter:** [`handbook/frontend/react-error-boundaries.md`](../handbook/frontend/react-error-boundaries.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-error-boundaries.md`](../syllabus/21-frontend-web/react-error-boundaries.md)
 
 ## Core Mental Model
 
@@ -72,6 +72,6 @@ An error boundary is a component that wraps a subtree and, if any component with
 
 ## Related
 
-- `handbook/frontend/react-reconciliation-and-fiber.md`
-- `handbook/frontend/react-forms.md`
-- `handbook/frontend/react-accessibility.md`
+- `syllabus/21-frontend-web/react-reconciliation-and-fiber.md`
+- `syllabus/21-frontend-web/react-forms.md`
+- `syllabus/21-frontend-web/react-accessibility.md`

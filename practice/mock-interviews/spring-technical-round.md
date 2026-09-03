@@ -17,19 +17,19 @@ competencies:
   - PKCE vs. client secret, distinct attack surfaces
   - Design review/RFC or technical debt advocacy story
 related:
-  - ../../handbook/spring/auto-configuration-and-bean-lifecycle.md
-  - ../../handbook/spring/transactional-proxy-mechanics-and-propagation.md
-  - ../../handbook/spring/security-filter-chain.md
-  - ../../handbook/security/oauth2-oidc-and-jwt.md
-  - ../../behavioral-handbook/12-design-reviews-and-rfcs.md
-  - ../../behavioral-handbook/11-technical-debt-advocacy.md
+  - ../../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
+  - ../../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md
+  - ../../syllabus/05-spring/security-filter-chain.md
+  - ../../syllabus/12-security/oauth2-oidc-and-jwt.md
+  - ../../syllabus/20-interview-preparation/behavioral/12-design-reviews-and-rfcs.md
+  - ../../syllabus/20-interview-preparation/behavioral/11-technical-debt-advocacy.md
 source: ../../study-packs/week-07/07-week-7-mock-interview.md
 official_references: []
 ---
 
 # Mock Interview: Spring Technical Round
 
-**Target role:** Senior/Staff Backend Engineer · **Duration:** 45 minutes · **Format:** self-recorded or with a partner, candidate/evaluator sections hard-separated below. Elevated from `study-packs/week-07/07-week-7-mock-interview.md`. Like the Weeks 1/2/4 rounds, this source uses a `Part A — Candidate script` / `Part B — Interviewer script` structure with no inline per-question pass/fail signals; the Evaluator Section below constructs pass/borderline/fail signals grounded in the interviewer script's own cues and the real, measured content of the canonical `handbook/spring/` and `handbook/security/oauth2-oidc-and-jwt.md` chapters (both carry provenance notes stating their demos are real, executed Spring Framework 6.1.14 / `javax.crypto` output, not invented).
+**Target role:** Senior/Staff Backend Engineer · **Duration:** 45 minutes · **Format:** self-recorded or with a partner, candidate/evaluator sections hard-separated below. Elevated from `study-packs/week-07/07-week-7-mock-interview.md`. Like the Weeks 1/2/4 rounds, this source uses a `Part A — Candidate script` / `Part B — Interviewer script` structure with no inline per-question pass/fail signals; the Evaluator Section below constructs pass/borderline/fail signals grounded in the interviewer script's own cues and the real, measured content of the canonical `handbook/spring/` and `syllabus/12-security/oauth2-oidc-and-jwt.md` chapters (both carry provenance notes stating their demos are real, executed Spring Framework 6.1.14 / `javax.crypto` output, not invented).
 
 ## Table of Contents
 
@@ -47,12 +47,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Bean lifecycle order + proxy-creation hook | Q1 | [Spring Auto-Configuration and Bean Lifecycle](../../handbook/spring/auto-configuration-and-bean-lifecycle.md) |
-| `@Async` + `@Transactional` visibility gotcha | Q2 | [Spring Auto-Configuration and Bean Lifecycle](../../handbook/spring/auto-configuration-and-bean-lifecycle.md) |
-| Security filter chain trace + rejection scenario | Q3 | [Spring Security Filter Chain](../../handbook/spring/security-filter-chain.md) |
-| Honest JWT revocation | Q4 | [OAuth2, OIDC, and JWT](../../handbook/security/oauth2-oidc-and-jwt.md) |
-| PKCE vs. client secret | Q5 | [OAuth2, OIDC, and JWT](../../handbook/security/oauth2-oidc-and-jwt.md) |
-| Design review/technical debt story | Q6 | [Design Reviews and RFCs](../../behavioral-handbook/12-design-reviews-and-rfcs.md), [Technical Debt Advocacy](../../behavioral-handbook/11-technical-debt-advocacy.md) |
+| Bean lifecycle order + proxy-creation hook | Q1 | [Spring Auto-Configuration and Bean Lifecycle](../../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md) |
+| `@Async` + `@Transactional` visibility gotcha | Q2 | [Spring Auto-Configuration and Bean Lifecycle](../../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md) |
+| Security filter chain trace + rejection scenario | Q3 | [Spring Security Filter Chain](../../syllabus/05-spring/security-filter-chain.md) |
+| Honest JWT revocation | Q4 | [OAuth2, OIDC, and JWT](../../syllabus/12-security/oauth2-oidc-and-jwt.md) |
+| PKCE vs. client secret | Q5 | [OAuth2, OIDC, and JWT](../../syllabus/12-security/oauth2-oidc-and-jwt.md) |
+| Design review/technical debt story | Q6 | [Design Reviews and RFCs](../../syllabus/20-interview-preparation/behavioral/12-design-reviews-and-rfcs.md), [Technical Debt Advocacy](../../syllabus/20-interview-preparation/behavioral/11-technical-debt-advocacy.md) |
 
 ## Interviewer Opening Script
 
@@ -131,9 +131,9 @@ Walk the candidate through their scores, starting with the weakest. Questions 2 
 
 ## Remediation Recommendations
 
-- Weak Q1 → re-read [Spring Auto-Configuration and Bean Lifecycle](../../handbook/spring/auto-configuration-and-bean-lifecycle.md), specifically its real, executed lifecycle trace.
+- Weak Q1 → re-read [Spring Auto-Configuration and Bean Lifecycle](../../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md), specifically its real, executed lifecycle trace.
 - Weak Q2 → re-read the same chapter's `@Async`+`@Transactional` section and its real 12ms-return demo trace.
-- Weak Q3 → re-read [Spring Security Filter Chain](../../handbook/spring/security-filter-chain.md) and its real 401/403 traces.
-- Weak Q4 or Q5 → re-read [OAuth2, OIDC, and JWT](../../handbook/security/oauth2-oidc-and-jwt.md), specifically its JWT revocation and PKCE sections.
-- Weak Q6 → re-read [Design Reviews and RFCs](../../behavioral-handbook/12-design-reviews-and-rfcs.md) or [Technical Debt Advocacy](../../behavioral-handbook/11-technical-debt-advocacy.md), matching whichever story type was told.
+- Weak Q3 → re-read [Spring Security Filter Chain](../../syllabus/05-spring/security-filter-chain.md) and its real 401/403 traces.
+- Weak Q4 or Q5 → re-read [OAuth2, OIDC, and JWT](../../syllabus/12-security/oauth2-oidc-and-jwt.md), specifically its JWT revocation and PKCE sections.
+- Weak Q6 → re-read [Design Reviews and RFCs](../../syllabus/20-interview-preparation/behavioral/12-design-reviews-and-rfcs.md) or [Technical Debt Advocacy](../../syllabus/20-interview-preparation/behavioral/11-technical-debt-advocacy.md), matching whichever story type was told.
 - Any dimension scored below Senior (4) overall → retake this mock in full after remediation.

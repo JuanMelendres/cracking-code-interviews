@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React State Management Landscape
 
-**Canonical chapter:** [`handbook/frontend/react-state-management.md`](../handbook/frontend/react-state-management.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-state-management.md`](../syllabus/21-frontend-web/react-state-management.md)
 
 ## Core Mental Model
 
@@ -74,6 +74,6 @@ There are two fundamentally different kinds of state, and conflating them is the
 
 ## Related
 
-- `handbook/frontend/react-typescript.md`
-- `handbook/frontend/react-usememo-usecallback-and-usecontext.md`
-- `handbook/frontend/react-performance.md`
+- `syllabus/21-frontend-web/react-typescript.md`
+- `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md`
+- `syllabus/21-frontend-web/react-performance.md`

@@ -16,11 +16,11 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, variants, exit criteria | 858 |
-| 2 | `01-query-planning-and-explain.md` | T-610 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/query-planning-and-explain-analyze.md` | 732 |
-| 3 | `02-data-modelling-join-tables.md` | T-605/T-608 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/data-modelling-and-explicit-join-tables.md` | 663 |
-| 4 | `03-ddd-tactical-aggregates.md` | T-903 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/architecture/ddd-tactical-design-aggregates.md` | 537 |
-| 5 | `04-storage-selection-tradeoffs.md` | T-617/T-811 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/storage-selection-tradeoffs.md` | 484 |
-| 6 | `05-trade-off-narration-and-adrs.md` | T-1505/T-916 — slimmed to a per-section summary + link; full chapter now canonical at `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` | 543 |
+| 2 | `01-query-planning-and-explain.md` | T-610 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/06-databases/query-planning-and-explain-analyze.md` | 732 |
+| 3 | `02-data-modelling-join-tables.md` | T-605/T-608 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/06-databases/data-modelling-and-explicit-join-tables.md` | 663 |
+| 4 | `03-ddd-tactical-aggregates.md` | T-903 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/17-architecture/ddd-tactical-design-aggregates.md` | 537 |
+| 5 | `04-storage-selection-tradeoffs.md` | T-617/T-811 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/11-system-design/storage-selection-tradeoffs.md` | 484 |
+| 6 | `05-trade-off-narration-and-adrs.md` | T-1505/T-916 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md` | 543 |
 | 7 | `06-answer-frameworks.md` | Nine-layer treatment for T-610, T-605, T-1505 | 572 |
 | 8 | `07-java-coding-practice.md` | 8 problems + monotonic-stack errata, all compiled and run | 1,578 |
 | 9 | `08-flashcards.md` | 14 cards | 361 |

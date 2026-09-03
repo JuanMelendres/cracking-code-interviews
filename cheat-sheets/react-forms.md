@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Forms (Controlled vs. Uncontrolled, Validation, RHF/Zod)
 
-**Canonical chapter:** [`handbook/frontend/react-forms.md`](../handbook/frontend/react-forms.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-forms.md`](../syllabus/21-frontend-web/react-forms.md)
 
 ## Core Mental Model
 
@@ -75,6 +75,6 @@ A form input is "controlled" when React state is the single source of truth for 
 
 ## Related
 
-- `handbook/frontend/react-reconciliation-and-fiber.md`
-- `handbook/frontend/react-concurrent-rendering.md`
-- `handbook/frontend/react-error-boundaries.md`
+- `syllabus/21-frontend-web/react-reconciliation-and-fiber.md`
+- `syllabus/21-frontend-web/react-concurrent-rendering.md`
+- `syllabus/21-frontend-web/react-error-boundaries.md`

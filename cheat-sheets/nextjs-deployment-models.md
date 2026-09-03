@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Deployment Models
 
-**Canonical chapter:** [`handbook/frontend/nextjs-deployment-models.md`](../handbook/frontend/nextjs-deployment-models.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-deployment-models.md`](../syllabus/21-frontend-web/nextjs-deployment-models.md)
 
 The register itself names the trap this chapter avoids: "real trade-offs, not marketing." No Vercel account was used — every self-hosting claim was independently verified (real `docker build`/`docker run`, a real minimal `node server.js` run, real captured headers).
 
@@ -65,7 +65,7 @@ Self-hosting Next.js genuinely supports "all features" on a Node.js server or Do
 
 ## Related
 
-- `handbook/frontend/nextjs-server-actions-and-mutations.md`
-- `handbook/cloud/kubernetes-objects-scheduling-and-networking.md`
-- `handbook/cloud/cloud-cost-and-scaling-economics.md`
-- `handbook/frontend/nextjs-fullstack-integration.md`
+- `syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md`
+- `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`
+- `syllabus/15-cloud/cloud-cost-and-scaling-economics.md`
+- `syllabus/21-frontend-web/nextjs-fullstack-integration.md`

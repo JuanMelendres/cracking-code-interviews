@@ -1,6 +1,6 @@
 # React + TypeScript demo app (F-119)
 
-Real Vite + React 19 + TypeScript app backing [`handbook/frontend/react-typescript.md`](../../../handbook/frontend/react-typescript.md).
+Real Vite + React 19 + TypeScript app backing [`syllabus/21-frontend-web/react-typescript.md`](../../../syllabus/21-frontend-web/react-typescript.md).
 
 ## Run it
 

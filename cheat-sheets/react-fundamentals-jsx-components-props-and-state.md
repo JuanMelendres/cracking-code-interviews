@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Fundamentals (JSX, Components, Props, and State)
 
-**Canonical chapter:** [`handbook/frontend/react-fundamentals-jsx-components-props-and-state.md`](../handbook/frontend/react-fundamentals-jsx-components-props-and-state.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md`](../syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md)
 
 ## Core Mental Model
 
@@ -70,6 +70,6 @@ JSX is syntax sugar for building a tree of plain JavaScript objects describing w
 
 ## Related
 
-- `handbook/frontend/react-hooks-useeffect-and-useref.md`
-- `handbook/frontend/react-usememo-usecallback-and-usecontext.md`
+- `syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md`
+- `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md`
 - `00-project/frontend-topic-register.md`

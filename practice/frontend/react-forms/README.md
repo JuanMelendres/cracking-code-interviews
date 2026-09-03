@@ -1,6 +1,6 @@
 # React Forms demo app (F-114)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-forms.md`](../../../handbook/frontend/react-forms.md). Uses real `react-hook-form` 7.85.0 and `zod` 4.4.3, not hand-rolled approximations.
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-forms.md`](../../../syllabus/21-frontend-web/react-forms.md). Uses real `react-hook-form` 7.85.0 and `zod` 4.4.3, not hand-rolled approximations.
 
 ## Run it
 

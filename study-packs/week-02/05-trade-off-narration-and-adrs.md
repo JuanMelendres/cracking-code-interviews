@@ -15,7 +15,7 @@ canonical: ../../interview-playbook/technical-answers/trade-off-narration-and-ad
 
 **IWI 8.10 · Advanced tier · Runs every week from here on**
 
-**Canonical chapter:** [Trade-off Narration and Architecture Decision Records](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md). This file is the Week 2 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `06-answer-frameworks.md` cites §3 directly.
+**Canonical chapter:** [Trade-off Narration and Architecture Decision Records](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md). This file is the Week 2 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `06-answer-frameworks.md` cites §3 directly.
 
 ## Table of Contents
 
@@ -38,54 +38,54 @@ canonical: ../../interview-playbook/technical-answers/trade-off-narration-and-ad
 
 ## 1. Why this exists
 
-Named interview feedback specifically included "communicating why a decision was selected" and "explaining alternatives and trade-offs" — the highest-IWI single item in the feedback block (8.10), since it's the structural skill underneath every technical answer this programme produces. → [Why This Exists](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#why-this-exists).
+Named interview feedback specifically included "communicating why a decision was selected" and "explaining alternatives and trade-offs" — the highest-IWI single item in the feedback block (8.10), since it's the structural skill underneath every technical answer this programme produces. → [Why This Exists](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#why-this-exists).
 
 ## 2. The four-beat structure
 
-Context (the real constraint), Options (genuinely considered alternatives), Decision criterion (the specific reason this option won), What it cost (the real trade-off accepted — the beat named feedback was specifically about). → [The Four-Beat Structure](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#the-four-beat-structure).
+Context (the real constraint), Options (genuinely considered alternatives), Decision criterion (the specific reason this option won), What it cost (the real trade-off accepted — the beat named feedback was specifically about). → [The Four-Beat Structure](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#the-four-beat-structure).
 
 ## 3. Worked example
 
-A relational-vs-document-store decision for a catalog service, walked through all four beats: context (transactional needs with inventory/pricing), options (document store vs. EAV-pattern relational), decision criterion (transactional participation beat schema flexibility), cost (EAV query awkwardness requiring a query-builder abstraction). → [Worked Example](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#worked-example) has the full example.
+A relational-vs-document-store decision for a catalog service, walked through all four beats: context (transactional needs with inventory/pricing), options (document store vs. EAV-pattern relational), decision criterion (transactional participation beat schema flexibility), cost (EAV query awkwardness requiring a query-builder abstraction). → [Worked Example](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#worked-example) has the full example.
 
 ## 4. ADRs — the written form of the same skill
 
-An ADR is the four-beat structure, written down and dated: Context, Options Considered, Decision, Consequences. → [ADRs — the Written Form of the Same Skill](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#adrs--the-written-form-of-the-same-skill).
+An ADR is the four-beat structure, written down and dated: Context, Options Considered, Decision, Consequences. → [ADRs — the Written Form of the Same Skill](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#adrs--the-written-form-of-the-same-skill).
 
 ## 5. Interview questions
 
 1. Deliver a technical decision using the four-beat structure, unprompted.
 2. Why does beat 4 (cost) matter more than it seems?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#interview-questions).
 
 ## 6. Common mistakes
 
-Presenting a strawman alternative; skipping beat 4 entirely; writing an ADR as a post-hoc justification rather than a record of reasoning at the time. → [Common Mistakes](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#common-mistakes).
+Presenting a strawman alternative; skipping beat 4 entirely; writing an ADR as a post-hoc justification rather than a record of reasoning at the time. → [Common Mistakes](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#common-mistakes).
 
 ## 7. Staff-level discussion
 
-The four-beat structure is also the shape of a real design review conversation — a doc missing beat 4 reads as naive or as selling a decision rather than documenting it honestly. → [Staff-Level Discussion](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#staff-level-discussion).
+The four-beat structure is also the shape of a real design review conversation — a doc missing beat 4 reads as naive or as selling a decision rather than documenting it honestly. → [Staff-Level Discussion](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#staff-level-discussion).
 
 ## 8. Summary
 
-Every technical trade-off answer should hit four beats, ending with the most commonly skipped and most valuable one: what it actually cost. An ADR is the same structure, written down and dated. → [Summary](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#summary).
+Every technical trade-off answer should hit four beats, ending with the most commonly skipped and most valuable one: what it actually cost. An ADR is the same structure, written down and dated. → [Summary](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#summary).
 
 ## 9. Key Takeaways
 
-→ [Key Takeaways](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#key-takeaways).
 
 ## 10. Cheat Sheet
 
-→ [Cheat Sheet](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#cheat-sheet).
 
 ## 11. Flashcards
 
-→ [Flashcards](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#flashcards). Full week-level deck: `08-flashcards.md`.
+→ [Flashcards](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#flashcards). Full week-level deck: `08-flashcards.md`.
 
 ## 12. Practice Exercises
 
-→ [Practice Exercises](../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md#practice-exercises). This week's own deliverable — a real ADR filled from the template — is `10-adr-exercise.md`.
+→ [Practice Exercises](../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md#practice-exercises). This week's own deliverable — a real ADR filled from the template — is `10-adr-exercise.md`.
 
 ## 13. Additional Reading
 

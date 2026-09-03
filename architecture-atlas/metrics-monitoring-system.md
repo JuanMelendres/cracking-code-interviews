@@ -12,19 +12,19 @@ target_levels:
   - staff
 estimated_reading_minutes: 20
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md
 related:
-  - ../handbook/performance/logging-metrics-tracing-and-opentelemetry.md
-  - ../handbook/databases/table-partitioning-and-sharding-strategies.md
-  - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
+  - ../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
+  - ../syllabus/06-databases/table-partitioning-and-sharding-strategies.md
+  - ../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-11/09-design-exercise-metrics-monitoring-system.md
 official_references: []
 ---
 
 # Architecture Atlas: Metrics/Monitoring System
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -105,9 +105,9 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **Histogram sketches, not raw samples, for the write path:** follows directly from [Percentiles, Tail Latency, and Coordinated Omission](../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md)'s lesson that percentiles can't simply be averaged across instances/windows the way a sum or rate can — storing every raw latency observation from 50,000 instances indefinitely would collide with the ingestion volume within days; a mergeable sketch (HdrHistogram/t-digest) is the standard fix, trading small, bounded accuracy loss for genuinely feasible storage.
+- **Histogram sketches, not raw samples, for the write path:** follows directly from [Percentiles, Tail Latency, and Coordinated Omission](../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md)'s lesson that percentiles can't simply be averaged across instances/windows the way a sum or rate can — storing every raw latency observation from 50,000 instances indefinitely would collide with the ingestion volume within days; a mergeable sketch (HdrHistogram/t-digest) is the standard fix, trading small, bounded accuracy loss for genuinely feasible storage.
 - **A separate, fast alert-evaluation path, not the same query path as dashboards** (the resilience-pattern bulkhead principle): an ad-hoc, expensive percentile dashboard query must never slow down or starve alert evaluation, since a delayed alert during a real incident is directly worse than a slow dashboard — the same bulkhead-isolation reasoning applied to a monitoring system's own internal architecture, not just an external dependency.
-- **Time-based range partitioning for the hot store, not hash partitioning** (explicit contrast with [Table Partitioning and Sharding Strategies](../handbook/databases/table-partitioning-and-sharding-strategies.md)): time-series queries are almost always range queries over a time window ("last 1 hour," "last 7 days"), which range partitioning serves directly with pruning (skip partitions outside the queried range) — hash partitioning by time would destroy that locality, the same partitioning lesson applied to choosing the right scheme for this dominant access pattern.
+- **Time-based range partitioning for the hot store, not hash partitioning** (explicit contrast with [Table Partitioning and Sharding Strategies](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md)): time-series queries are almost always range queries over a time window ("last 1 hour," "last 7 days"), which range partitioning serves directly with pruning (skip partitions outside the queried range) — hash partitioning by time would destroy that locality, the same partitioning lesson applied to choosing the right scheme for this dominant access pattern.
 
 ## Data Model
 
@@ -171,4 +171,4 @@ The cardinality-explosion bottleneck is the sharpest Staff-level signal in this 
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; histogram-sketch storage justified explicitly against the percentile-computation lesson, not just asserted as a design choice; time-based range partitioning chosen and explicitly contrasted with a hash-partitioned alternative — the same underlying topic (partitioning), a different correct choice for this system's actual access pattern; and cardinality explosion named as a distinct failure mode from raw ingestion volume, with a different fix (bounded tags, not more scaling).
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; histogram-sketch storage justified explicitly against the percentile-computation lesson, not just asserted as a design choice; time-based range partitioning chosen and explicitly contrasted with a hash-partitioned alternative — the same underlying topic (partitioning), a different correct choice for this system's actual access pattern; and cardinality explosion named as a distinct failure mode from raw ingestion volume, with a different fix (bounded tags, not more scaling).

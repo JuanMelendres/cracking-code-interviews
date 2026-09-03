@@ -1,6 +1,6 @@
 # Styling approaches comparison (F-302)
 
-A real, minimal Vite + React app comparing three styling approaches side by side, backing [`handbook/frontend/nextjs-styling-approaches.md`](../../../handbook/frontend/nextjs-styling-approaches.md) (F-302): CSS Modules, Tailwind CSS (v4, via `@tailwindcss/vite`), and CSS-in-JS (styled-components v6).
+A real, minimal Vite + React app comparing three styling approaches side by side, backing [`syllabus/21-frontend-web/nextjs-styling-approaches.md`](../../../syllabus/21-frontend-web/nextjs-styling-approaches.md) (F-302): CSS Modules, Tailwind CSS (v4, via `@tailwindcss/vite`), and CSS-in-JS (styled-components v6).
 
 ## Run it
 

@@ -1,6 +1,6 @@
 # React Accessibility demo app (F-116)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-accessibility.md`](../../../handbook/frontend/react-accessibility.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-accessibility.md`](../../../syllabus/21-frontend-web/react-accessibility.md).
 
 ## Run it
 

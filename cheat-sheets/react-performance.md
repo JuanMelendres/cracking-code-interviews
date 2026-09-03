@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Performance (Profiling, Memoization, Virtualization, Code-Splitting)
 
-**Canonical chapter:** [`handbook/frontend/react-performance.md`](../handbook/frontend/react-performance.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-performance.md`](../syllabus/21-frontend-web/react-performance.md)
 
 ## Core Mental Model
 
@@ -72,6 +72,6 @@ Every technique here attacks a different cost: memoization reduces WORK PER REND
 
 ## Related
 
-- `handbook/frontend/react-accessibility.md`
-- `handbook/frontend/react-concurrent-rendering.md`
-- `handbook/frontend/react-reconciliation-and-fiber.md`
+- `syllabus/21-frontend-web/react-accessibility.md`
+- `syllabus/21-frontend-web/react-concurrent-rendering.md`
+- `syllabus/21-frontend-web/react-reconciliation-and-fiber.md`

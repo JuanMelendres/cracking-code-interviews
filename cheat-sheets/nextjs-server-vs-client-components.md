@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Server vs. Client Components
 
-**Canonical chapter:** [`handbook/frontend/nextjs-server-vs-client-components.md`](../handbook/frontend/nextjs-server-vs-client-components.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-server-vs-client-components.md`](../syllabus/21-frontend-web/nextjs-server-vs-client-components.md)
 
 Flagged in the topic register as **"the single most-tested modern Next.js concept."**
 
@@ -66,7 +66,7 @@ Flagged in the topic register as **"the single most-tested modern Next.js concep
 
 ## Related
 
-- `handbook/frontend/nextjs-app-router-fundamentals.md`
-- `handbook/frontend/nextjs-data-fetching-and-caching.md`
-- `handbook/frontend/react-testing.md`
+- `syllabus/21-frontend-web/nextjs-app-router-fundamentals.md`
+- `syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md`
+- `syllabus/21-frontend-web/react-testing.md`
 - `00-project/frontend-topic-register.md`

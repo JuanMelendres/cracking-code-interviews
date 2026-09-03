@@ -13,19 +13,19 @@ target_levels:
   - staff
 estimated_reading_minutes: 20
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/storage-selection-tradeoffs.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/storage-selection-tradeoffs.md
 related:
-  - ../handbook/databases/isolation-levels-and-concurrency-anomalies.md
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
-  - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
+  - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-03/08-design-exercise-ride-hailing.md
 official_references: []
 ---
 
 # Architecture Atlas: Ride-Hailing Dispatch System
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -116,7 +116,7 @@ graph TD
 
 **Rides:** relational (PostgreSQL) — a ride has strong consistency needs (exactly one driver assigned, a clear state machine `REQUESTED → MATCHING → ACCEPTED → IN_PROGRESS → COMPLETED`), and the volume (2M/day) is well within relational scale.
 
-**Driver location:** *not* relational at this write volume — a purpose-built structure. The access pattern is "find all drivers within radius R of point P, updated within the last N seconds," which is a geospatial index problem specifically, matching [Storage Selection Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md)'s access-pattern method: work from the access pattern, not from reputation. A geospatial-indexed store (PostgreSQL with PostGIS, or Redis with its geospatial commands for the hottest, most time-sensitive tier) fits; a plain relational table with a naive `WHERE lat BETWEEN ... AND lng BETWEEN ...` does not scale to 62,500 writes/s with useful query latency.
+**Driver location:** *not* relational at this write volume — a purpose-built structure. The access pattern is "find all drivers within radius R of point P, updated within the last N seconds," which is a geospatial index problem specifically, matching [Storage Selection Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md)'s access-pattern method: work from the access pattern, not from reputation. A geospatial-indexed store (PostgreSQL with PostGIS, or Redis with its geospatial commands for the hottest, most time-sensitive tier) fits; a plain relational table with a naive `WHERE lat BETWEEN ... AND lng BETWEEN ...` does not scale to 62,500 writes/s with useful query latency.
 
 ## APIs
 
@@ -146,11 +146,11 @@ POST /rides/{rideId}/accept  {driverId}   -- driver-side acceptance
 
 ## Scaling Strategy
 
-The geospatial store becomes the bottleneck at 62,500 writes/s on a single node. Mitigation: shard by geographic region — a driver's location updates only need to be visible to a match search in the same region, so regional sharding also bounds the "nearby drivers" query to a single shard in the common case, rather than requiring a scatter-gather across shards. This is the same reasoning as [Data Partitioning and Consistent Hashing](../handbook/system-design/data-partitioning-and-consistent-hashing.md)'s access-pattern-first approach to choosing a shard key.
+The geospatial store becomes the bottleneck at 62,500 writes/s on a single node. Mitigation: shard by geographic region — a driver's location updates only need to be visible to a match search in the same region, so regional sharding also bounds the "nearby drivers" query to a single shard in the common case, rather than requiring a scatter-gather across shards. This is the same reasoning as [Data Partitioning and Consistent Hashing](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md)'s access-pattern-first approach to choosing a shard key.
 
 ## Reliability Strategy
 
-1. **Double-assignment race.** Two ride requests matched to the same driver simultaneously is prevented by making the assignment step a single atomic conditional update ("assign this driver only if still unassigned"). An unguarded read-then-write here reproduces exactly the write-skew anomaly from [Isolation Levels and Concurrency Anomalies](../handbook/databases/isolation-levels-and-concurrency-anomalies.md) — just enforced in application logic instead of via a database transaction's isolation level.
+1. **Double-assignment race.** Two ride requests matched to the same driver simultaneously is prevented by making the assignment step a single atomic conditional update ("assign this driver only if still unassigned"). An unguarded read-then-write here reproduces exactly the write-skew anomaly from [Isolation Levels and Concurrency Anomalies](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md) — just enforced in application logic instead of via a database transaction's isolation level.
 2. **Stale location leading to a bad match.** A driver who went offline 30 seconds ago but whose last location update is still in the geospatial store could be matched, then fail to accept. Mitigation: a TTL on location entries (matching the ~4-second update interval with some slack, e.g., 15 seconds) so stale entries age out of match candidacy automatically, bounding how stale a match can be.
 
 ## Security, Observability, and Cost
@@ -172,8 +172,8 @@ Not addressed in this 45-minute exercise — the session was deliberately scoped
 
 ## Staff-Level Discussion
 
-The single most important modeling decision in this design is recognizing that "driver location" and "ride state" are not the same kind of data, even though they belong to the same conceptual entity (a driver, a ride). They have different volumes (700x apart at peak), different consistency requirements (staleness-tolerant vs. correctness-critical), and different natural storage technologies as a direct consequence — this is the same reasoning [Storage Selection Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md) generalizes: name the access pattern before naming the technology, per data type, not per system. A Staff engineer presented with this problem should split the architecture along this line early, in Phase 1 or 2, rather than arriving at it as an afterthought during bottleneck analysis — doing so signals the trade-off was reasoned about deliberately, not discovered under interviewer pressure.
+The single most important modeling decision in this design is recognizing that "driver location" and "ride state" are not the same kind of data, even though they belong to the same conceptual entity (a driver, a ride). They have different volumes (700x apart at peak), different consistency requirements (staleness-tolerant vs. correctness-critical), and different natural storage technologies as a direct consequence — this is the same reasoning [Storage Selection Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md) generalizes: name the access pattern before naming the technology, per data type, not per system. A Staff engineer presented with this problem should split the architecture along this line early, in Phase 1 or 2, rather than arriving at it as an afterthought during bottleneck analysis — doing so signals the trade-off was reasoned about deliberately, not discovered under interviewer pressure.
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget (Clarify 2–3 min, Estimate 3–5 min, API 2–3 min, Data 3–5 min, Architecture 10–15 min, Bottlenecks 5–10 min) — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; at least one architectural decision (the location/ride-state split) explicitly traced back to a capacity number (the 700x volume ratio); at least 3 reliability concerns named with real mitigations, not just labeled; and the double-assignment race recognized explicitly as the same anomaly class as SQL write-skew, not treated as an unrelated new concept.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget (Clarify 2–3 min, Estimate 3–5 min, API 2–3 min, Data 3–5 min, Architecture 10–15 min, Bottlenecks 5–10 min) — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; at least one architectural decision (the location/ride-state split) explicitly traced back to a capacity number (the 700x volume ratio); at least 3 reliability concerns named with real mitigations, not just labeled; and the double-assignment race recognized explicitly as the same anomaly class as SQL write-skew, not treated as an unrelated new concept.

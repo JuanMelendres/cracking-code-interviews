@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Metadata API and SEO
 
-**Canonical chapter:** [`handbook/frontend/nextjs-metadata-api-and-seo.md`](../handbook/frontend/nextjs-metadata-api-and-seo.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md`](../syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md)
 
 Completes an open thread from F-206 (Streaming), whose own bot-blocking finding used only static metadata and was never actually exercised against a slow `generateMetadata`.
 
@@ -65,6 +65,6 @@ Metadata resolution runs on the same two-lane system F-206 established for page 
 
 ## Related
 
-- `handbook/frontend/nextjs-streaming-and-suspense.md`
-- `handbook/frontend/nextjs-route-handlers.md`
-- `handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`
+- `syllabus/21-frontend-web/nextjs-streaming-and-suspense.md`
+- `syllabus/21-frontend-web/nextjs-route-handlers.md`
+- `syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md`

@@ -13,11 +13,11 @@ target_levels:
   - staff
 estimated_reading_minutes: 18
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/caching-strategies-and-invalidation.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
 related:
   - ../syllabus/07-api-design/api-design.md
-  - ../handbook/system-design/storage-selection-tradeoffs.md
+  - ../syllabus/11-system-design/storage-selection-tradeoffs.md
   - ride-hailing-dispatch-system.md
   - ../study-packs/week-04/08-design-exercise-news-feed.md
 official_references: []
@@ -25,7 +25,7 @@ official_references: []
 
 # Architecture Atlas: News Feed System
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method. Caching and fan-out are mandatory discussion points.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method. Caching and fan-out are mandatory discussion points.**
 
 ## Table of Contents
 
@@ -104,7 +104,7 @@ graph TD
 
 ## Data Model
 
-**Posts:** relational or wide-column, keyed by post ID, indexed by author + created_at. **Follow graph:** a dedicated store optimized for "who does X follow" and "who follows X" — at this scale, a graph-shaped access pattern, though often implemented on a relational store with the right indexes rather than a dedicated graph database, per [Storage Selection Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md)'s method: work from the access pattern, not technology reputation. **Feed cache:** a per-user precomputed list of post IDs, not full post content — content is fetched separately, keeping the feed cache small and fast to update.
+**Posts:** relational or wide-column, keyed by post ID, indexed by author + created_at. **Follow graph:** a dedicated store optimized for "who does X follow" and "who follows X" — at this scale, a graph-shaped access pattern, though often implemented on a relational store with the right indexes rather than a dedicated graph database, per [Storage Selection Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md)'s method: work from the access pattern, not technology reputation. **Feed cache:** a per-user precomputed list of post IDs, not full post content — content is fetched separately, keeping the feed cache small and fast to update.
 
 ## APIs
 
@@ -127,12 +127,12 @@ The feed is not required to be perfectly consistent in real time — a post appe
 
 ## Scaling Strategy
 
-The dominant scaling lever is the fan-out strategy split by follower count: fan-out-on-write for the ~99% of users with modest follower counts (bounded write amplification), fan-out-on-read for the ~1% celebrity case (bounded read cost, avoiding a catastrophic write spike). This directly reuses the reasoning from [Caching Strategies and Invalidation](../handbook/system-design/caching-strategies-and-invalidation.md): the right invalidation/precomputation strategy depends on the actual access pattern, not a single default applied everywhere.
+The dominant scaling lever is the fan-out strategy split by follower count: fan-out-on-write for the ~99% of users with modest follower counts (bounded write amplification), fan-out-on-read for the ~1% celebrity case (bounded read cost, avoiding a catastrophic write spike). This directly reuses the reasoning from [Caching Strategies and Invalidation](../syllabus/11-system-design/caching-strategies-and-invalidation.md): the right invalidation/precomputation strategy depends on the actual access pattern, not a single default applied everywhere.
 
 ## Reliability Strategy
 
 1. **Celebrity fan-out cost.** A post from a user with 10M followers, if fanned out on write, means 10M feed-cache writes for one post — a write amplification the read:write ratio doesn't justify for this specific case. Mitigation: hybrid fan-out — skip precomputation for high-follower-count authors, merging their posts into a follower's feed at read time instead, accepting slightly higher per-read cost for a rare case in exchange for avoiding a catastrophic write spike.
-2. **Feed cache stampede on a viral post.** If a post suddenly goes viral and many users' feed caches expire or need updating near-simultaneously, this is exactly the cache-stampede mechanism from [Caching Strategies and Invalidation](../handbook/system-design/caching-strategies-and-invalidation.md) — the mitigation (single-flight coalescing, or avoiding TTL-based invalidation for this specific cache in favor of explicit updates) is directly reused, not reinvented.
+2. **Feed cache stampede on a viral post.** If a post suddenly goes viral and many users' feed caches expire or need updating near-simultaneously, this is exactly the cache-stampede mechanism from [Caching Strategies and Invalidation](../syllabus/11-system-design/caching-strategies-and-invalidation.md) — the mitigation (single-flight coalescing, or avoiding TTL-based invalidation for this specific cache in favor of explicit updates) is directly reused, not reinvented.
 3. **Deep pagination on a long-lived feed session.** A user scrolling far back should use keyset pagination, not `OFFSET`, or the same order-of-magnitude cost measured in [API Design](../syllabus/07-api-design/api-design.md)'s pagination comparison applies directly here.
 
 ## Security, Observability, and Cost
@@ -158,4 +158,4 @@ The single most important modeling decision here is recognizing that "fan-out st
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; fan-out discussed explicitly, including the celebrity-case trade-off (fan-out-on-write vs. fan-out-on-read), not just one approach; caching traced back to the 200:1 read:write ratio; and at least one reliability concern explicitly connected to a specific named mechanism (cache stampede, keyset pagination) rather than a generic "add more caching."
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; fan-out discussed explicitly, including the celebrity-case trade-off (fan-out-on-write vs. fan-out-on-read), not just one approach; caching traced back to the 200:1 read:write ratio; and at least one reliability concern explicitly connected to a specific named mechanism (cache stampede, keyset pagination) rather than a generic "add more caching."

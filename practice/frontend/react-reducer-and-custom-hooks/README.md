@@ -1,6 +1,6 @@
 # React useReducer & Custom Hooks demo app (F-109 useReducer, F-110 custom hooks)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-usereducer-and-custom-hooks.md`](../../../handbook/frontend/react-usereducer-and-custom-hooks.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md`](../../../syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md).
 
 ## Run it
 

@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Streaming and Suspense
 
-**Canonical chapter:** [`handbook/frontend/nextjs-streaming-and-suspense.md`](../handbook/frontend/nextjs-streaming-and-suspense.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-streaming-and-suspense.md`](../syllabus/21-frontend-web/nextjs-streaming-and-suspense.md)
 
 ## Core Mental Model
 
@@ -63,7 +63,7 @@ Streaming turns one HTTP response into a sequence of "here's what I know so far"
 
 ## Related
 
-- `handbook/frontend/nextjs-rendering-strategies.md`
-- `handbook/frontend/react-concurrent-rendering.md`
-- `handbook/frontend/nextjs-route-handlers.md`
-- `handbook/frontend/nextjs-metadata-api-and-seo.md`
+- `syllabus/21-frontend-web/nextjs-rendering-strategies.md`
+- `syllabus/21-frontend-web/react-concurrent-rendering.md`
+- `syllabus/21-frontend-web/nextjs-route-handlers.md`
+- `syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md`

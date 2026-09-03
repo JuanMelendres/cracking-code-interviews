@@ -13,20 +13,20 @@ target_levels:
   - staff
 estimated_reading_minutes: 18
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/kafka/delivery-semantics-and-exactly-once.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
 related:
-  - ../handbook/kafka/kafka-architecture-fundamentals.md
-  - ../handbook/system-design/idempotency.md
-  - ../handbook/kafka/consumer-groups-and-rebalancing.md
-  - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
+  - ../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md
+  - ../syllabus/11-system-design/idempotency.md
+  - ../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
+  - ../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-08/09-design-exercise-notification-system.md
 official_references: []
 ---
 
 # Architecture Atlas: Notification System
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -107,10 +107,10 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **Partition key = `userId`, throughout every topic in the pipeline.** Guarantees one user's notifications process in order relative to each other, per [Kafka Architecture Fundamentals](../handbook/kafka/kafka-architecture-fundamentals.md)'s per-partition ordering guarantee — a "password changed" notification must never be delivered after a later "password change reverted" for the same user, even under retries and rebalances.
+- **Partition key = `userId`, throughout every topic in the pipeline.** Guarantees one user's notifications process in order relative to each other, per [Kafka Architecture Fundamentals](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md)'s per-partition ordering guarantee — a "password changed" notification must never be delivered after a later "password change reverted" for the same user, even under retries and rebalances.
 - **A per-channel topic downstream of a single fan-out consumer,** rather than one worker doing all three deliveries inline, isolates a slow/down channel (e.g., a degraded SMS provider) from the other two — push and email consumer groups keep draining independently, only SMS backs up.
-- **Delivery is at-least-once, deliberately,** per [Delivery Semantics and Exactly-Once](../handbook/kafka/delivery-semantics-and-exactly-once.md): each worker commits its offset after a provider call succeeds, not before, so a crash mid-delivery redelivers the notification. Trades an occasional duplicate push (annoying) for never silently dropping one (unacceptable for "your payment failed").
-- **The delivery log doubles as the idempotency boundary,** per [Idempotency at System Edges](../handbook/system-design/idempotency.md): each worker checks `(notificationId, channel)` against the log before calling the provider, so at-least-once redelivery from Kafka doesn't become an actually-duplicate SMS — the dedupe check converts a non-idempotent action into an idempotent one.
+- **Delivery is at-least-once, deliberately,** per [Delivery Semantics and Exactly-Once](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md): each worker commits its offset after a provider call succeeds, not before, so a crash mid-delivery redelivers the notification. Trades an occasional duplicate push (annoying) for never silently dropping one (unacceptable for "your payment failed").
+- **The delivery log doubles as the idempotency boundary,** per [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md): each worker checks `(notificationId, channel)` against the log before calling the provider, so at-least-once redelivery from Kafka doesn't become an actually-duplicate SMS — the dedupe check converts a non-idempotent action into an idempotent one.
 
 ## Data Model
 
@@ -174,4 +174,4 @@ The most instructive bottleneck in this design is the explicit distinction betwe
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the partition key choice (`userId`) justified explicitly against a concrete ordering requirement, not merely asserted; at-least-once delivery chosen deliberately, with the idempotency mechanism that makes it safe named explicitly; and the "hot event type" scenario distinguished explicitly from a "hot partition" scenario — they are not the same failure mode.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the partition key choice (`userId`) justified explicitly against a concrete ordering requirement, not merely asserted; at-least-once delivery chosen deliberately, with the idempotency mechanism that makes it safe named explicitly; and the "hot event type" scenario distinguished explicitly from a "hot partition" scenario — they are not the same failure mode.

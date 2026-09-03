@@ -1,6 +1,6 @@
 # React Fundamentals demo app (F-101–104)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-fundamentals-jsx-components-props-and-state.md`](../../../handbook/frontend/react-fundamentals-jsx-components-props-and-state.md). Not a description of concepts — every claim in the chapter was verified live in a browser against this running app.
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md`](../../../syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md). Not a description of concepts — every claim in the chapter was verified live in a browser against this running app.
 
 ## Run it
 

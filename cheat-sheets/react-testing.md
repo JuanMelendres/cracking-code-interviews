@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Testing (RTL Philosophy, Mocking, E2E with Playwright)
 
-**Canonical chapter:** [`handbook/frontend/react-testing.md`](../handbook/frontend/react-testing.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-testing.md`](../syllabus/21-frontend-web/react-testing.md)
 
 ## Core Mental Model
 
@@ -68,6 +68,6 @@ Every testing decision answers one question: does this test verify something a U
 
 ## Related
 
-- `handbook/frontend/react-forms.md`
-- `handbook/frontend/react-typescript.md`
-- `handbook/testing/test-strategy-and-test-doubles.md`
+- `syllabus/21-frontend-web/react-forms.md`
+- `syllabus/21-frontend-web/react-typescript.md`
+- `syllabus/08-testing/test-strategy-and-test-doubles.md`

@@ -1,6 +1,6 @@
 # Build tooling comparison (F-301): Vite vs. Next.js/Turbopack
 
-A real, minimal Vite + React app, purpose-built to directly compare against [`practice/frontend/react-nextjs-fundamentals/`](../react-nextjs-fundamentals/) (Next.js 16.3.1, Turbopack) for [`handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md`](../../../handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md) (F-301). Deliberately small and separate from [`react-fundamentals`](../react-fundamentals/) (F-101–F-119's own Vite app) — this app's purpose (bundler mechanics: tree-shaking, code-splitting, dev-server architecture) is materially different from that chapter's own (React concepts), so it gets its own, focused app rather than reusing or modifying that one.
+A real, minimal Vite + React app, purpose-built to directly compare against [`practice/frontend/react-nextjs-fundamentals/`](../react-nextjs-fundamentals/) (Next.js 16.3.1, Turbopack) for [`syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md`](../../../syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md) (F-301). Deliberately small and separate from [`react-fundamentals`](../react-fundamentals/) (F-101–F-119's own Vite app) — this app's purpose (bundler mechanics: tree-shaking, code-splitting, dev-server architecture) is materially different from that chapter's own (React concepts), so it gets its own, focused app rather than reusing or modifying that one.
 
 ## Run it
 

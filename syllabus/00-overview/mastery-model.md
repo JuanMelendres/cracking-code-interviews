@@ -29,7 +29,7 @@ Per the user's explicit requirement, **"read this chapter" is never a criterion.
 2. **Apply-it** — solve a coding/practice exercise correctly (existing `practice/` code, once linked, already supplies this for most Java/DSA topics).
 3. **Debug-it** — diagnose a described symptom to its root cause (existing `production-cookbook/` entries already supply this almost verbatim for the topics that have one).
 4. **Compare-it** — correctly choose between named alternatives for a given scenario, with a stated reason.
-5. **Defend-it** — produce a short written or spoken justification for a decision under a stated constraint (existing ADR template and `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` already supply the mechanics for this).
+5. **Defend-it** — produce a short written or spoken justification for a decision under a stated constraint (existing ADR template and `syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md` already supply the mechanics for this).
 
 A topic's Mastery Checklist is a short table, e.g.:
 

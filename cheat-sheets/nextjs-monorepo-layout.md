@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Monorepo Layout
 
-**Canonical chapter:** [`handbook/frontend/nextjs-monorepo-layout.md`](../handbook/frontend/nextjs-monorepo-layout.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-monorepo-layout.md`](../syllabus/21-frontend-web/nextjs-monorepo-layout.md)
 
 The final entry in the frontend topic register (closes D-F1 through D-F3). Tests both a real working npm workspaces monorepo AND this repository's own actual, real, measured layout choice directly.
 
@@ -65,6 +65,6 @@ A workspace monorepo's core promise — "shared code updates everywhere instantl
 
 ## Related
 
-- `handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md`
+- `syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md`
 - `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md`
-- `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md`
+- `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md`

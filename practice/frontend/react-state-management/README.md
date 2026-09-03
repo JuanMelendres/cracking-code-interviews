@@ -1,6 +1,6 @@
 # React State Management Landscape demo app (F-120)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-state-management.md`](../../../handbook/frontend/react-state-management.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-state-management.md`](../../../syllabus/21-frontend-web/react-state-management.md).
 
 ## Run it
 

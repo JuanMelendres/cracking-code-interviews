@@ -13,15 +13,15 @@ target_levels:
   - staff
 estimated_reading_minutes: 20
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/databases/optimistic-vs-pessimistic-locking.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/06-databases/optimistic-vs-pessimistic-locking.md
 related:
-  - ../handbook/databases/optimistic-vs-pessimistic-locking.md
-  - ../handbook/databases/isolation-levels-and-concurrency-anomalies.md
-  - ../handbook/system-design/rate-limiting-and-throttling-algorithms.md
-  - ../handbook/system-design/idempotency.md
+  - ../syllabus/06-databases/optimistic-vs-pessimistic-locking.md
+  - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
+  - ../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md
+  - ../syllabus/11-system-design/idempotency.md
   - payment-processing-system.md
-  - ../handbook/performance/capacity-planning-and-headroom.md
+  - ../syllabus/16-performance-jvm/capacity-planning-and-headroom.md
 official_references: []
 ---
 
@@ -29,7 +29,7 @@ official_references: []
 
 > **Sourcing note:** like [Real-Time Chat System](real-time-chat-system.md), this entry is new, original content, not elevated from an existing study-pack exercise — none exists for this problem. It is added as a second, additional canonical design problem toward the Master Topic Register's T-813 (Canonical design problems (12-problem set)) line. *Update:* two further additions after this one — [URL Shortener System](url-shortener-system.md) and [Distributed Key-Value Store](distributed-key-value-store.md) — brought the Atlas to exactly 12 classic full-system-design entries, matching T-813's stated count; see that last entry's sourcing note and the Architecture Atlas README for the full accounting.
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -112,8 +112,8 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **A virtual waiting room in front of the inventory service, not behind it,** is the load-bearing decision: per [Rate Limiting and Throttling Algorithms](../handbook/system-design/rate-limiting-and-throttling-algorithms.md)'s general framing, admission control belongs as close to the edge as possible — the 33,000 req/s spike is shed *before* it reaches the seat-inventory system at all, rather than the inventory system attempting to survive the full spike and failing unpredictably under it.
-- **Seat holds use optimistic concurrency (a compare-and-swap on seat state), not a pessimistic row lock held for the buyer's entire checkout flow.** Per [Optimistic vs. Pessimistic Locking](../handbook/databases/optimistic-vs-pessimistic-locking.md), holding a pessimistic lock across an entire multi-step checkout (browse seat map, confirm, enter payment details) would serialize every buyer contending for a hot event's seats behind however long the slowest buyer's browser tab takes — optimistic CAS lets thousands of buyers attempt the same seat with only the actual, sub-millisecond write contended, not the whole human-paced checkout flow.
+- **A virtual waiting room in front of the inventory service, not behind it,** is the load-bearing decision: per [Rate Limiting and Throttling Algorithms](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md)'s general framing, admission control belongs as close to the edge as possible — the 33,000 req/s spike is shed *before* it reaches the seat-inventory system at all, rather than the inventory system attempting to survive the full spike and failing unpredictably under it.
+- **Seat holds use optimistic concurrency (a compare-and-swap on seat state), not a pessimistic row lock held for the buyer's entire checkout flow.** Per [Optimistic vs. Pessimistic Locking](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md), holding a pessimistic lock across an entire multi-step checkout (browse seat map, confirm, enter payment details) would serialize every buyer contending for a hot event's seats behind however long the slowest buyer's browser tab takes — optimistic CAS lets thousands of buyers attempt the same seat with only the actual, sub-millisecond write contended, not the whole human-paced checkout flow.
 - **Partitioning seat inventory by `eventId`** isolates one event's flash-sale contention from every other event's normal traffic — the platform's steady-state load (many events, none flash-selling simultaneously) never contends with the one event currently spiking.
 - **A separate, time-driven hold-expiry sweeper**, not a client-side timeout, is what guarantees a held-but-unpaid seat reliably returns to inventory even if the buyer's browser closes or their payment step simply never completes — correctness here cannot depend on the buyer's client behaving cooperatively.
 
@@ -161,8 +161,8 @@ The waiting room is the primary scaling lever for the flash-sale spike specifica
 ## Reliability Strategy
 
 1. **The waiting room failing open (admitting everyone) under its own failure is the wrong default here** — unlike most admission-control systems, if the waiting room itself goes down during a flash sale, the correct failure mode is closing admission to that event's checkout entirely (a clear "try again shortly" message) rather than passing the full unshed spike through to an inventory system sized for post-admission-control load.
-2. **A stuck or delayed hold-expiry sweep is a real availability risk, not just a minor delay** — per this repository's own [Capacity Planning and Headroom](../handbook/performance/capacity-planning-and-headroom.md) framing, the sweeper's own throughput must be provisioned with headroom against the peak *hold* rate, not the peak *sale* rate, since a slow sweeper directly extends how long an abandoned hold blocks a seat other buyers could otherwise take.
-3. **Payment-confirmation idempotency** — per [Idempotency at System Edges](../handbook/system-design/idempotency.md) — is required specifically because a buyer's client retrying a slow `confirm` call must never risk converting the same hold into two separate orders, or charging the same buyer twice for one seat.
+2. **A stuck or delayed hold-expiry sweep is a real availability risk, not just a minor delay** — per this repository's own [Capacity Planning and Headroom](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md) framing, the sweeper's own throughput must be provisioned with headroom against the peak *hold* rate, not the peak *sale* rate, since a slow sweeper directly extends how long an abandoned hold blocks a seat other buyers could otherwise take.
+3. **Payment-confirmation idempotency** — per [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md) — is required specifically because a buyer's client retrying a slow `confirm` call must never risk converting the same hold into two separate orders, or charging the same buyer twice for one seat.
 
 ## Security, Observability, and Cost
 
@@ -179,8 +179,8 @@ Not addressed in this 45-minute exercise, which was deliberately scoped to the i
 
 ## Alternatives Considered
 
-- **A distributed lock per seat, held for the buyer's full checkout duration.** Rejected: ties lock hold time to human-paced UI interaction (entering payment details), turning a sub-millisecond data operation into a multi-second-to-multi-minute contention window per seat — exactly the failure mode [Optimistic vs. Pessimistic Locking](../handbook/databases/optimistic-vs-pessimistic-locking.md) warns against for high-contention, human-paced workflows.
-- **No waiting room; let the inventory service absorb the full spike and rely purely on horizontal autoscaling.** Rejected: autoscaling reacts on a timescale of seconds to minutes, while a flash on-sale spike arrives in the first few seconds — this is precisely the "reactive autoscaling isn't a substitute for admission control at a hard, sudden spike" case [Capacity Planning and Headroom](../handbook/performance/capacity-planning-and-headroom.md) names generally.
+- **A distributed lock per seat, held for the buyer's full checkout duration.** Rejected: ties lock hold time to human-paced UI interaction (entering payment details), turning a sub-millisecond data operation into a multi-second-to-multi-minute contention window per seat — exactly the failure mode [Optimistic vs. Pessimistic Locking](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md) warns against for high-contention, human-paced workflows.
+- **No waiting room; let the inventory service absorb the full spike and rely purely on horizontal autoscaling.** Rejected: autoscaling reacts on a timescale of seconds to minutes, while a flash on-sale spike arrives in the first few seconds — this is precisely the "reactive autoscaling isn't a substitute for admission control at a hard, sudden spike" case [Capacity Planning and Headroom](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md) names generally.
 - **First-come-first-served via a single global queue across all events.** Rejected: couples every event's on-sale timing and load together through one shared queue, so an unrelated event's flash sale would degrade a different event's buyers — partitioning the waiting room (and inventory) by `eventId` avoids this entirely.
 
 ## Staff-Level Discussion
@@ -189,4 +189,4 @@ The most instructive decision in this design is treating the waiting room and th
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram (buyer and waiting-room entry point first, the core hold/confirm path next, the sweeper and payment integration introduced once the core path is agreed, the failure-mode annotations — waiting-room fail-closed, sweeper headroom — last). A self-verification exit check for this specific problem: the waiting-room-vs-inventory-service boundary named and justified explicitly, not merely drawn as two boxes; optimistic CAS chosen deliberately over a pessimistic lock with the human-paced-checkout reasoning stated aloud; the eventually-consistent listing vs. strongly-consistent hold distinction named explicitly; and the hold-expiry sweeper's own throughput requirement stated as a capacity-planning concern in its own right, not an afterthought.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram (buyer and waiting-room entry point first, the core hold/confirm path next, the sweeper and payment integration introduced once the core path is agreed, the failure-mode annotations — waiting-room fail-closed, sweeper headroom — last). A self-verification exit check for this specific problem: the waiting-room-vs-inventory-service boundary named and justified explicitly, not merely drawn as two boxes; optimistic CAS chosen deliberately over a pessimistic lock with the human-paced-checkout reasoning stated aloud; the eventually-consistent listing vs. strongly-consistent hold distinction named explicitly; and the hold-expiry sweeper's own throughput requirement stated as a capacity-planning concern in its own right, not an afterthought.

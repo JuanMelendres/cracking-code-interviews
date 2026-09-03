@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Full-Stack Integration
 
-**Canonical chapter:** [`handbook/frontend/nextjs-fullstack-integration.md`](../handbook/frontend/nextjs-fullstack-integration.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-fullstack-integration.md`](../syllabus/21-frontend-web/nextjs-fullstack-integration.md)
 
 Closes D-F2. The register names this as the topic that "most directly serves a full-stack Java+React developer specifically" — verified against two real, separately-running processes: Next.js (port 5198) and a real Spring Boot backend (port 8080).
 
@@ -66,7 +66,7 @@ Two real processes, two real origins, and exactly one of them should ever be vis
 
 ## Related
 
-- `handbook/frontend/nextjs-authentication-patterns.md`
-- `handbook/frontend/nextjs-route-handlers.md`
-- `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/security/authn-authz-rbac-vs-abac.md`
+- `syllabus/21-frontend-web/nextjs-authentication-patterns.md`
+- `syllabus/21-frontend-web/nextjs-route-handlers.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
+- `syllabus/12-security/authn-authz-rbac-vs-abac.md`

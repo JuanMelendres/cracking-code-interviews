@@ -12,19 +12,19 @@ target_levels:
   - staff
 estimated_reading_minutes: 20
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
   - ../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
 related:
   - ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
-  - ../handbook/system-design/idempotency.md
-  - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
+  - ../syllabus/11-system-design/idempotency.md
+  - ../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-09/09-design-exercise-distributed-job-scheduler.md
 official_references: []
 ---
 
 # Architecture Atlas: Distributed Job Scheduler
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -108,7 +108,7 @@ graph TD
 
 **Job definitions:** relational, one row per job — `id`, `runAt`, `cronExpr` (nullable), `status`, `payload`, `attemptCount`, `maxRetries`, `lockedBy`, `lockedUntil`. The `lockedBy`/`lockedUntil` pair prevents two scheduler instances from picking up the same due job — a worker claims via a conditional update (`UPDATE jobs SET lockedBy=?, lockedUntil=now()+leaseSeconds WHERE id=? AND (lockedUntil IS NULL OR lockedUntil < now())`), the same optimistic-claim pattern as a distributed lock lease, deliberately avoiding a true distributed lock service as unnecessary complexity here.
 
-**Execution history:** append-only, one row per attempt — makes retry/backoff decisions auditable and is the idempotency boundary (per [Idempotency at System Edges](../handbook/system-design/idempotency.md)) if a job's execution needs to be safe against being picked up twice during a lease-expiry race.
+**Execution history:** append-only, one row per attempt — makes retry/backoff decisions auditable and is the idempotency boundary (per [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md)) if a job's execution needs to be safe against being picked up twice during a lease-expiry race.
 
 ## APIs
 
@@ -166,4 +166,4 @@ The recurring theme across this design's three named bottlenecks is that each on
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock, including this exact design's own real mid-round curveball ("jobs now need exactly-once execution guarantees, not at-least-once") and the expectation that a strong answer revises the execution-history idempotency boundary specifically, rather than bolting on a patch. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the p50/p99 execution-time spread named explicitly and traced through to the two-pool architecture decision; lease-based claiming chosen deliberately over a distributed lock, with the specific failure mode it avoids (crashed lock holder) stated.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock, including this exact design's own real mid-round curveball ("jobs now need exactly-once execution guarantees, not at-least-once") and the expectation that a strong answer revises the execution-history idempotency boundary specifically, rather than bolting on a patch. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the p50/p99 execution-time spread named explicitly and traced through to the two-pool architecture decision; lease-based claiming chosen deliberately over a distributed lock, with the specific failure mode it avoids (crashed lock holder) stated.

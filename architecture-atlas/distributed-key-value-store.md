@@ -13,14 +13,14 @@ target_levels:
   - staff
 estimated_reading_minutes: 22
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
-  - ../handbook/system-design/cap-theorem-and-consistency-models.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
 related:
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
-  - ../handbook/system-design/cap-theorem-and-consistency-models.md
-  - ../handbook/databases/replication-read-replicas-and-replica-lag.md
-  - ../handbook/system-design/distributed-systems-failure-modes.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
+  - ../syllabus/06-databases/replication-read-replicas-and-replica-lag.md
+  - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
   - distributed-cache.md
 official_references: []
 ---
@@ -29,7 +29,7 @@ official_references: []
 
 > **Sourcing note:** like the three entries before it, this is new, original content, not elevated from an existing study-pack exercise — none exists for this problem. It is a fourth additional canonical design problem toward the Master Topic Register's T-813 (Canonical design problems (12-problem set)) line. Counting it, the Atlas now holds exactly 12 classic full-system-design entries built to the Architecture Atlas Standard's six-phase method: the 8 elevated from study-pack exercises (ride-hailing, news feed, payment processing, authentication, notification, job scheduler, distributed cache, metrics/monitoring) plus these 4 new ones (chat, ticket booking, URL shortener, this entry). That matches T-813's stated count exactly. The register never names *which* twelve problems it means, so this is closure by count against the stated target, not a guarantee that these are the specific twelve any given interviewer would ask for — see the Architecture Atlas README for the full accounting.
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -71,7 +71,7 @@ Design a general-purpose, horizontally scalable key-value store (a Dynamo/Cassan
 ## Non-Functional Requirements
 
 - No single point of failure — every node is a peer; there is no distinguished "primary" node whose failure blocks the whole system.
-- The system must remain available for both reads and writes during a network partition, accepting that some reads may return stale or conflicting data as the cost of that availability (a stated, deliberate AP choice per [CAP Theorem and Consistency Models](../handbook/system-design/cap-theorem-and-consistency-models.md), not an accidental one).
+- The system must remain available for both reads and writes during a network partition, accepting that some reads may return stale or conflicting data as the cost of that availability (a stated, deliberate AP choice per [CAP Theorem and Consistency Models](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md), not an accidental one).
 - Adding or removing a node must redistribute only a small, bounded fraction of keys, not require a full data reshuffle.
 - A temporarily unreachable replica must not permanently lose writes directed at it once it rejoins.
 
@@ -113,7 +113,7 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **Consistent hashing with virtual nodes** determines both which N nodes own a given key and how much data moves on membership change — per [Data Partitioning and Consistent Hashing](../handbook/system-design/data-partitioning-and-consistent-hashing.md), this is exactly what bounds a node join/leave to a small, predictable fraction of keys rather than a full reshuffle, directly satisfying the stated non-functional requirement.
+- **Consistent hashing with virtual nodes** determines both which N nodes own a given key and how much data moves on membership change — per [Data Partitioning and Consistent Hashing](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md), this is exactly what bounds a node join/leave to a small, predictable fraction of keys rather than a full reshuffle, directly satisfying the stated non-functional requirement.
 - **Any node can coordinate any request** (no distinguished primary), consulting the hash ring to find the current key's replica set and fanning the request out to them — this is the specific mechanism behind "no single point of failure": losing any one node, including whichever one happened to coordinate a given request, doesn't block the system.
 - **Hinted handoff** is what makes "keep accepting writes during a node failure" safe rather than lossy: if a replica is unreachable at write time, another node stores the write as a "hint" addressed to the down replica and replays it once that node rejoins — the write still succeeds toward the caller's `W` count via the remaining reachable replicas, and the temporarily-missed replica catches up later rather than staying permanently behind.
 - **Background anti-entropy / read-repair** reconciles replicas that have drifted (from a hinted-handoff replay lag, or a replica that missed writes during a partition) without requiring every read to pay a full quorum-comparison cost — most reads are served from whatever `R` replicas respond fastest, with inconsistency detection and repair happening opportunistically.
@@ -187,4 +187,4 @@ The single most instructive decision in this design is making the consistency/av
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram (the hash ring and replica-set concept first, since every other mechanism in this design depends on it; the core `PUT`/`GET` fan-out path next; hinted handoff and anti-entropy introduced afterward as the explicit failure-mode annotations). A self-verification exit check for this specific problem: the `R+W` vs. `N` relationship stated explicitly with a concrete example, not left as an abstract formula; hinted handoff explained as a mechanism for *availability* (writes keep succeeding) distinct from anti-entropy's role in *convergence* (replicas eventually agree); the hot-key-vs-hot-node distinction named explicitly; and the tunable-per-request consistency model presented as the design's actual central idea, not a minor configuration detail mentioned in passing.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram (the hash ring and replica-set concept first, since every other mechanism in this design depends on it; the core `PUT`/`GET` fan-out path next; hinted handoff and anti-entropy introduced afterward as the explicit failure-mode annotations). A self-verification exit check for this specific problem: the `R+W` vs. `N` relationship stated explicitly with a concrete example, not left as an abstract formula; hinted handoff explained as a mechanism for *availability* (writes keep succeeding) distinct from anti-entropy's role in *convergence* (replicas eventually agree); the hot-key-vs-hot-node distinction named explicitly; and the tunable-per-request consistency model presented as the design's actual central idea, not a minor configuration detail mentioned in passing.

@@ -1,6 +1,6 @@
 # React Hooks demo app (F-105 useEffect, F-106 useRef)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-hooks-useeffect-and-useref.md`](../../../handbook/frontend/react-hooks-useeffect-and-useref.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md`](../../../syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md).
 
 ## Run it
 

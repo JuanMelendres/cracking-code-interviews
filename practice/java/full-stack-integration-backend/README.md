@@ -1,6 +1,6 @@
 # Full-stack integration backend (F-214)
 
-A real, separate Spring Boot backend (its own JVM process, its own port) that [`practice/frontend/react-nextjs-fundamentals/`](../../frontend/react-nextjs-fundamentals/) integrates with, backing [`handbook/frontend/nextjs-fullstack-integration.md`](../../../handbook/frontend/nextjs-fullstack-integration.md) (F-214). Reuses the same jar-based, no-Maven-required setup as [`practice/java/spring-vs-spring-boot/embedded-server-and-autoconfig`](../spring-vs-spring-boot/embedded-server-and-autoconfig/).
+A real, separate Spring Boot backend (its own JVM process, its own port) that [`practice/frontend/react-nextjs-fundamentals/`](../../frontend/react-nextjs-fundamentals/) integrates with, backing [`syllabus/21-frontend-web/nextjs-fullstack-integration.md`](../../../syllabus/21-frontend-web/nextjs-fullstack-integration.md) (F-214). Reuses the same jar-based, no-Maven-required setup as [`practice/java/spring-vs-spring-boot/embedded-server-and-autoconfig`](../spring-vs-spring-boot/embedded-server-and-autoconfig/).
 
 ## Run it
 

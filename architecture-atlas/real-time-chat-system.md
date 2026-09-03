@@ -13,23 +13,23 @@ target_levels:
   - staff
 estimated_reading_minutes: 20
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md
 related:
-  - ../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
+  - ../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md
   - notification-system.md
   - distributed-cache.md
   - ticket-and-event-booking-system.md
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
-  - ../interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline.md
 official_references: []
 ---
 
 # Architecture Atlas: Real-Time Chat System
 
-> **Sourcing note:** every other Architecture Atlas entry is elevated from an existing, already-written study-pack design exercise (Weeks 3–19). No such source exercise exists for this problem — this entry is new, original content, built directly against the same [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md) six-phase method and the same Architecture Atlas Standard every other entry follows, not invented from a different template. It is added as a genuine, additional canonical design problem toward the register's own T-813 (Canonical design problems (12-problem set)) line. *Update:* with three further additions after this one — [Ticket and Event Booking System](ticket-and-event-booking-system.md), [URL Shortener System](url-shortener-system.md), and [Distributed Key-Value Store](distributed-key-value-store.md) — the Atlas reached exactly 12 classic full-system-design entries, matching T-813's stated count; see that last entry's sourcing note and the Architecture Atlas README for the full accounting.
+> **Sourcing note:** every other Architecture Atlas entry is elevated from an existing, already-written study-pack design exercise (Weeks 3–19). No such source exercise exists for this problem — this entry is new, original content, built directly against the same [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md) six-phase method and the same Architecture Atlas Standard every other entry follows, not invented from a different template. It is added as a genuine, additional canonical design problem toward the register's own T-813 (Canonical design problems (12-problem set)) line. *Update:* with three further additions after this one — [Ticket and Event Booking System](ticket-and-event-booking-system.md), [URL Shortener System](url-shortener-system.md), and [Distributed Key-Value Store](distributed-key-value-store.md) — the Atlas reached exactly 12 classic full-system-design entries, matching T-813's stated count; see that last entry's sourcing note and the Architecture Atlas README for the full accounting.
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -116,7 +116,7 @@ graph TD
 
 - **The connection registry, not the message store, is this design's hardest component.** Any gateway node handling an incoming send must discover which specific node (if any) holds each recipient's live connection — a lookup problem structurally identical to [Distributed Cache](distributed-cache.md)'s sharded key-value model, here storing `userId -> gatewayNodeId` with a short TTL refreshed by a periodic heartbeat from each open connection, so a crashed gateway's stale entries expire quickly rather than routing messages into a void.
 - **Persist before publish, always.** A message is written to the durable, conversation-partitioned message store *before* the fan-out bus attempts delivery — matching the Non-Functional Requirement that a server crash must never lose an already-accepted message. Delivery is best-effort and retryable; persistence is not.
-- **Partitioning the message store by `conversationId`,** not by sender or recipient, is what keeps one conversation's messages in a strictly orderable sequence — per [Data Partitioning and Consistent Hashing](../handbook/system-design/data-partitioning-and-consistent-hashing.md)'s general principle of choosing a partition key matching the entity that needs internal ordering, exactly as [Notification System](notification-system.md) partitions by `userId` for the identical reason applied to a different ordering requirement.
+- **Partitioning the message store by `conversationId`,** not by sender or recipient, is what keeps one conversation's messages in a strictly orderable sequence — per [Data Partitioning and Consistent Hashing](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md)'s general principle of choosing a partition key matching the entity that needs internal ordering, exactly as [Notification System](notification-system.md) partitions by `userId` for the identical reason applied to a different ordering requirement.
 - **A separate offline queue per user**, populated only when the connection-registry lookup finds no live gateway for that recipient, avoids conflating "this message has no online recipient right now" with "this message failed to deliver" — the former is expected, routine behavior; the latter would be a real failure requiring retry/alerting.
 
 ## Data Model
@@ -157,13 +157,13 @@ Message order within one conversation is strongly ordered, by construction: the 
 
 ## Scaling Strategy
 
-Gateway nodes scale horizontally purely on concurrent-connection count, entirely independent of message-send throughput — a node holding 50,000 idle open sockets costs the same regardless of how many messages flow through the system that day. The message store scales by adding partitions keyed on `conversationId`, exactly the way any partitioned log scales, bounded by the same trade-off [Table Partitioning and Sharding Strategies](../handbook/databases/table-partitioning-and-sharding-strategies.md) names generally: more partitions raise write parallelism but make any cross-conversation query more expensive. The connection registry scales as a standard sharded key-value store (consistent hashing on `userId`, per [Data Partitioning and Consistent Hashing](../handbook/system-design/data-partitioning-and-consistent-hashing.md)), since lookups are always by a single known `userId`, never a range scan.
+Gateway nodes scale horizontally purely on concurrent-connection count, entirely independent of message-send throughput — a node holding 50,000 idle open sockets costs the same regardless of how many messages flow through the system that day. The message store scales by adding partitions keyed on `conversationId`, exactly the way any partitioned log scales, bounded by the same trade-off [Table Partitioning and Sharding Strategies](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md) names generally: more partitions raise write parallelism but make any cross-conversation query more expensive. The connection registry scales as a standard sharded key-value store (consistent hashing on `userId`, per [Data Partitioning and Consistent Hashing](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md)), since lookups are always by a single known `userId`, never a range scan.
 
 ## Reliability Strategy
 
 1. **A crashed gateway node loses connections, not messages.** Every connected client detects the dropped socket and reconnects to a (possibly different) gateway node, which re-registers it in the connection registry; any message sent to the crashed node's stale registry entry during the brief TTL-expiry window simply falls through to the offline queue rather than being lost, since persistence always happens before fan-out is even attempted.
 2. **A stale registry entry is a routing delay, not a correctness bug**, because of the persist-before-publish ordering — the worst case from a stale or missing registry entry is a message temporarily routed to the offline queue instead of pushed live, recovered on the recipient's next reconnect or queue-drain check.
-3. **Fan-out bus backpressure**, not the message store, is the component most likely to need active capacity planning under a sudden spike (a viral group conversation, a mass-join event) — per [Capacity Planning and Headroom](../handbook/performance/capacity-planning-and-headroom.md)'s general framing, this is exactly the kind of component that should be provisioned with deliberate headroom against a measured saturation point, not sized purely from average load.
+3. **Fan-out bus backpressure**, not the message store, is the component most likely to need active capacity planning under a sudden spike (a viral group conversation, a mass-join event) — per [Capacity Planning and Headroom](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)'s general framing, this is exactly the kind of component that should be provisioned with deliberate headroom against a measured saturation point, not sized purely from average load.
 
 ## Security, Observability, and Cost
 
@@ -180,7 +180,7 @@ Not addressed in this 45-minute exercise, which was deliberately scoped to the c
 
 ## Alternatives Considered
 
-- **Polling instead of a connection registry + push.** Rejected: server-side polling for new messages (or client-side short-polling) either misses the sub-second latency requirement or drives an enormous, wasteful request rate at 15M concurrent users — exactly the trade-off [Real-Time Delivery: WebSocket, SSE, and Long-Polling](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md) names generally, decided here in favor of a persistent connection specifically because bidirectional, low-latency delivery is a hard functional requirement, not a nice-to-have.
+- **Polling instead of a connection registry + push.** Rejected: server-side polling for new messages (or client-side short-polling) either misses the sub-second latency requirement or drives an enormous, wasteful request rate at 15M concurrent users — exactly the trade-off [Real-Time Delivery: WebSocket, SSE, and Long-Polling](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md) names generally, decided here in favor of a persistent connection specifically because bidirectional, low-latency delivery is a hard functional requirement, not a nice-to-have.
 - **A single global message sequence number instead of per-conversation.** Rejected: a global sequence would serialize all writes across every conversation in the system onto one counter, destroying the horizontal write scalability partitioning by `conversationId` provides, for an ordering guarantee (global message order across unrelated conversations) nothing in the functional requirements actually needs.
 - **Fan-out-on-write for every group conversation, regardless of size.** Rejected at the boundary this design already draws (≤50 participants): writing a copy of every message to every participant's own inbox is the [News Feed System](news-feed-system.md) pattern, justified there by a much larger, power-law-distributed fan-out; at ≤50 participants the connection-registry-driven push model is simpler and doesn't need a separate per-recipient copy of the same message.
 
@@ -190,4 +190,4 @@ The single most instructive design choice here is treating presence (the connect
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram itself (client and gateway entry point first, the core send/persist path next, the connection-registry and fan-out logic introduced only once the core path is agreed, offline-queue handling last as the explicit failure-mode annotation). A self-verification exit check for this specific problem: the connection-registry-vs-message-store separation named and justified explicitly, not merely drawn as two boxes; persist-before-publish stated as a deliberate ordering decision tied to the crash-safety requirement; the per-conversation (not global) sequence number's scaling rationale stated explicitly; and the offline-queue path presented as expected, routine behavior rather than a failure case bolted on at the end.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram itself (client and gateway entry point first, the core send/persist path next, the connection-registry and fan-out logic introduced only once the core path is agreed, offline-queue handling last as the explicit failure-mode annotation). A self-verification exit check for this specific problem: the connection-registry-vs-message-store separation named and justified explicitly, not merely drawn as two boxes; persist-before-publish stated as a deliberate ordering decision tied to the crash-safety requirement; the per-conversation (not global) sequence number's scaling rationale stated explicitly; and the offline-queue path presented as expected, routine behavior rather than a failure case bolted on at the end.

@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Server Actions and Mutations
 
-**Canonical chapter:** [`handbook/frontend/nextjs-server-actions-and-mutations.md`](../handbook/frontend/nextjs-server-actions-and-mutations.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md`](../syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md)
 
 ## Core Mental Model
 
@@ -64,6 +64,6 @@ A Server Action is a public POST endpoint wearing a function's clothes. `'use se
 
 ## Related
 
-- `handbook/frontend/nextjs-authentication-patterns.md`
-- `handbook/frontend/nextjs-route-handlers.md`
-- `handbook/security/owasp-top-10-for-backend-services.md`
+- `syllabus/21-frontend-web/nextjs-authentication-patterns.md`
+- `syllabus/21-frontend-web/nextjs-route-handlers.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`

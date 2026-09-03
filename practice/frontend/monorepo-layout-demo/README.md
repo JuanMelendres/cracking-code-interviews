@@ -1,6 +1,6 @@
 # Monorepo layout demo (F-303)
 
-A real, minimal npm workspaces monorepo — one shared package, two independent consumers — backing [`handbook/frontend/nextjs-monorepo-layout.md`](../../../handbook/frontend/nextjs-monorepo-layout.md) (F-303), the final entry in the frontend topic register.
+A real, minimal npm workspaces monorepo — one shared package, two independent consumers — backing [`syllabus/21-frontend-web/nextjs-monorepo-layout.md`](../../../syllabus/21-frontend-web/nextjs-monorepo-layout.md) (F-303), the final entry in the frontend topic register.
 
 ## Run it
 

@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Proxy and Edge Runtime
 
-**Canonical chapter:** [`handbook/frontend/nextjs-proxy-and-edge-runtime.md`](../handbook/frontend/nextjs-proxy-and-edge-runtime.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md`](../syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md)
 
 The register calls this "Middleware & the Edge runtime" — both halves of that name are stale in Next.js 16: Middleware was renamed to Proxy, and the Edge Runtime is deprecated, with Proxy specifically forbidden from opting into it.
 
@@ -65,6 +65,6 @@ Proxy is a single, project-wide gatekeeper that runs BEFORE a matched request re
 
 ## Related
 
-- `handbook/frontend/nextjs-route-handlers.md`
-- `handbook/security/authn-authz-rbac-vs-abac.md`
-- `handbook/frontend/nextjs-authentication-patterns.md`
+- `syllabus/21-frontend-web/nextjs-route-handlers.md`
+- `syllabus/12-security/authn-authz-rbac-vs-abac.md`
+- `syllabus/21-frontend-web/nextjs-authentication-patterns.md`

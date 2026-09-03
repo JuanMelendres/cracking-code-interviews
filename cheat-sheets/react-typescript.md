@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # TypeScript with React (Generics, Discriminated Unions, Exhaustiveness)
 
-**Canonical chapter:** [`handbook/frontend/react-typescript.md`](../handbook/frontend/react-typescript.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-typescript.md`](../syllabus/21-frontend-web/react-typescript.md)
 
 ## Core Mental Model
 
@@ -71,6 +71,6 @@ Every technique here turns a class of bug that would otherwise surface at runtim
 
 ## Related
 
-- `handbook/frontend/react-testing.md`
-- `handbook/frontend/react-forms.md`
-- `handbook/frontend/react-state-management.md`
+- `syllabus/21-frontend-web/react-testing.md`
+- `syllabus/21-frontend-web/react-forms.md`
+- `syllabus/21-frontend-web/react-state-management.md`

@@ -1,6 +1,6 @@
 # Concurrent React demo app (F-113)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-concurrent-rendering.md`](../../../handbook/frontend/react-concurrent-rendering.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-concurrent-rendering.md`](../../../syllabus/21-frontend-web/react-concurrent-rendering.md).
 
 ## Run it
 

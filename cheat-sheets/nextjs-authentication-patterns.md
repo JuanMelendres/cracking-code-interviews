@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Authentication Patterns
 
-**Canonical chapter:** [`handbook/frontend/nextjs-authentication-patterns.md`](../handbook/frontend/nextjs-authentication-patterns.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-authentication-patterns.md`](../syllabus/21-frontend-web/nextjs-authentication-patterns.md)
 
 Upgrades F-208's original naive Proxy cookie-presence check into a real, cryptographically verified one.
 
@@ -66,7 +66,7 @@ Authentication is a layered system, and skipping a layer creates a real, reprodu
 
 ## Related
 
-- `handbook/frontend/nextjs-proxy-and-edge-runtime.md`
-- `handbook/frontend/nextjs-route-handlers.md`
-- `handbook/security/oauth2-oidc-and-jwt.md`
-- `handbook/security/authn-authz-rbac-vs-abac.md`
+- `syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md`
+- `syllabus/21-frontend-web/nextjs-route-handlers.md`
+- `syllabus/12-security/oauth2-oidc-and-jwt.md`
+- `syllabus/12-security/authn-authz-rbac-vs-abac.md`

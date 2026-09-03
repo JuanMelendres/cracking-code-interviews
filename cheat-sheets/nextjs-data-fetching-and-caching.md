@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Data Fetching and Caching
 
-**Canonical chapter:** [`handbook/frontend/nextjs-data-fetching-and-caching.md`](../handbook/frontend/nextjs-data-fetching-and-caching.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md`](../syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md)
 
 Covers this Next.js version's "Previous Model" (`fetch`'s own `cache`/`next.revalidate`/`next.tags` options) — the app's `next.config.mjs` does not set `cacheComponents: true`.
 
@@ -66,7 +66,7 @@ Two separate caching layers exist, and conflating them is the single most common
 
 ## Related
 
-- `handbook/frontend/nextjs-server-vs-client-components.md`
-- `handbook/frontend/nextjs-rendering-strategies.md`
-- `handbook/system-design/caching-strategies-and-invalidation.md`
+- `syllabus/21-frontend-web/nextjs-server-vs-client-components.md`
+- `syllabus/21-frontend-web/nextjs-rendering-strategies.md`
+- `syllabus/11-system-design/caching-strategies-and-invalidation.md`
 - `00-project/frontend-topic-register.md`

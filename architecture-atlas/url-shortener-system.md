@@ -13,13 +13,13 @@ target_levels:
   - staff
 estimated_reading_minutes: 18
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/caching-strategies-and-invalidation.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
 related:
-  - ../handbook/system-design/caching-strategies-and-invalidation.md
-  - ../handbook/system-design/storage-selection-tradeoffs.md
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
-  - ../handbook/performance/capacity-planning-and-headroom.md
+  - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
+  - ../syllabus/11-system-design/storage-selection-tradeoffs.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/16-performance-jvm/capacity-planning-and-headroom.md
   - distributed-cache.md
 official_references: []
 ---
@@ -28,7 +28,7 @@ official_references: []
 
 > **Sourcing note:** like [Real-Time Chat System](real-time-chat-system.md) and [Ticket and Event Booking System](ticket-and-event-booking-system.md), this entry is new, original content, not elevated from an existing study-pack exercise — none exists for this problem. It is a third additional canonical design problem toward the Master Topic Register's T-813 (Canonical design problems (12-problem set)) line. *Update:* one further addition after this one — [Distributed Key-Value Store](distributed-key-value-store.md) — brought the Atlas to exactly 12 classic full-system-design entries, matching T-813's stated count; see that entry's sourcing note and the Architecture Atlas README for the full accounting.
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -110,7 +110,7 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **A two-tier cache in front of the mapping store** — a fast, small edge/in-process cache backed by a larger shared distributed cache — per [Caching Strategies and Invalidation](../handbook/system-design/caching-strategies-and-invalidation.md), is what actually delivers the sub-10ms redirect latency requirement: at a 100:1+ read:write ratio, the mapping store itself should rarely be touched on the hot path at all once a link has been resolved once anywhere in the fleet.
+- **A two-tier cache in front of the mapping store** — a fast, small edge/in-process cache backed by a larger shared distributed cache — per [Caching Strategies and Invalidation](../syllabus/11-system-design/caching-strategies-and-invalidation.md), is what actually delivers the sub-10ms redirect latency requirement: at a 100:1+ read:write ratio, the mapping store itself should rarely be touched on the hot path at all once a link has been resolved once anywhere in the fleet.
 - **A distributed key generator that pre-allocates a block of keys per write-service node**, rather than a single global auto-increment counter, avoids turning the (already low-volume) write path into a serialization point — each node hands out keys from its own locally-held block and only round-trips to the shared allocator once the block is exhausted, trading a small amount of key-space "waste" (unused keys in a block if a node restarts) for eliminating write-path contention entirely.
 - **Click counting is explicitly asynchronous and off the redirect's own critical path** — the redirect service enqueues a click event and returns the `302` immediately; an analytics count that's a few seconds stale is an acceptable trade against ever adding latency to the one operation this design's non-functional requirements treat as latency-critical above everything else.
 
@@ -152,7 +152,7 @@ The read path scales almost entirely through caching, not through mapping-store 
 
 1. **A write-service node crashing mid-block is a capacity-planning cost, not a correctness bug** — any keys left unused in that node's pre-allocated block are simply never issued again, a bounded, acceptable waste given the enormous total key space (see Capacity Assumptions), not a re-issuance or collision risk.
 2. **A cache-tier outage degrades latency, not correctness** — if the shared distributed cache becomes unavailable, redirects still resolve correctly by falling through to the mapping store directly; p99 latency rises, but no request fails or returns a wrong answer, which is the specific trade-off [Distributed Cache](distributed-cache.md) frames generally for a cache-aside pattern.
-3. **The click-count queue backing up under load must never back-pressure the redirect path** — per this repository's own [Capacity Planning and Headroom](../handbook/performance/capacity-planning-and-headroom.md) framing, the click-counting pipeline should be provisioned and monitored as an independent component with its own headroom target, precisely so a slowdown there is contained to (temporarily) stale click counts rather than propagating into redirect latency.
+3. **The click-count queue backing up under load must never back-pressure the redirect path** — per this repository's own [Capacity Planning and Headroom](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md) framing, the click-counting pipeline should be provisioned and monitored as an independent component with its own headroom target, precisely so a slowdown there is contained to (temporarily) stale click counts rather than propagating into redirect latency.
 
 ## Security, Observability, and Cost
 
@@ -179,4 +179,4 @@ The most instructive decision in this design is recognizing that the mapping's *
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram (client and the read/write entry points first, the core redirect-through-cache path next since it's the design's actual center of gravity, the key-generation mechanism and async click-counting introduced afterward as secondary concerns). A self-verification exit check for this specific problem: the 100:1+ read:write ratio stated explicitly and used to justify every subsequent decision, not left implicit; the mapping's immutability named as the specific reason no cache-invalidation strategy is needed; the pre-allocated key-block mechanism explained as a write-path contention avoidance, not just "how keys are generated"; and click counting explicitly placed off the redirect's critical path with the eventual-consistency trade-off stated aloud.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [System Design Narration and Whiteboard Discipline](../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline.md) for sequencing the diagram (client and the read/write entry points first, the core redirect-through-cache path next since it's the design's actual center of gravity, the key-generation mechanism and async click-counting introduced afterward as secondary concerns). A self-verification exit check for this specific problem: the 100:1+ read:write ratio stated explicitly and used to justify every subsequent decision, not left implicit; the mapping's immutability named as the specific reason no cache-invalidation strategy is needed; the pre-allocated key-block mechanism explained as a write-path contention avoidance, not just "how keys are generated"; and click counting explicitly placed off the redirect's critical path with the eventual-consistency trade-off stated aloud.

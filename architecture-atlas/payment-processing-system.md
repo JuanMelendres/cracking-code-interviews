@@ -13,11 +13,11 @@ target_levels:
   - staff
 estimated_reading_minutes: 18
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/idempotency.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/idempotency.md
 related:
-  - ../handbook/system-design/cap-theorem-and-consistency-models.md
-  - ../handbook/system-design/distributed-systems-failure-modes.md
+  - ../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
+  - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
   - ride-hailing-dispatch-system.md
   - ../study-packs/week-05/09-design-exercise-payment-processing.md
 official_references: []
@@ -25,7 +25,7 @@ official_references: []
 
 # Architecture Atlas: Payment Processing System
 
-**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method. Idempotency and exactly-once semantics are mandatory discussion points.**
+**Delivered as a timed, 45-minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method. Idempotency and exactly-once semantics are mandatory discussion points.**
 
 ## Table of Contents
 
@@ -111,7 +111,7 @@ sequenceDiagram
 
 ## Data Model
 
-**Payments table:** relational (PostgreSQL), strongly consistent — this is exactly the kind of data [CAP Theorem and Consistency Models](../handbook/system-design/cap-theorem-and-consistency-models.md) identifies as warranting CP behavior, not AP: a payment record must not be lost or duplicated, ever, even at the cost of rejecting a request during a partition. **Idempotency keys table:** the exact mechanism from [Idempotency at System Edges](../handbook/system-design/idempotency.md) — a `UNIQUE` key column, status, result, TTL.
+**Payments table:** relational (PostgreSQL), strongly consistent — this is exactly the kind of data [CAP Theorem and Consistency Models](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md) identifies as warranting CP behavior, not AP: a payment record must not be lost or duplicated, ever, even at the cost of rejecting a request during a partition. **Idempotency keys table:** the exact mechanism from [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md) — a `UNIQUE` key column, status, result, TTL.
 
 ## APIs
 
@@ -122,7 +122,7 @@ POST /payments   {orderId, amount, idempotencyKey}
 GET  /payments/{paymentId}   -> {status, confirmationId?}
 ```
 
-The idempotency key is part of the API contract from the start — not retrofitted later — because this endpoint's entire design center is "what happens on a retry," per [Idempotency at System Edges](../handbook/system-design/idempotency.md).
+The idempotency key is part of the API contract from the start — not retrofitted later — because this endpoint's entire design center is "what happens on a retry," per [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md).
 
 ## Request Flow
 
@@ -133,7 +133,7 @@ The idempotency key is part of the API contract from the start — not retrofitt
 
 ## Consistency Model
 
-Both the payments table and the idempotency-keys table require CP behavior — strong consistency over availability. A payment record must never be lost or duplicated, even if that means rejecting a request during a partition rather than risking an inconsistent write. This is a direct application of [CAP Theorem and Consistency Models](../handbook/system-design/cap-theorem-and-consistency-models.md)'s per-data-type classification: not every piece of data in a system needs the same consistency treatment, but this specific data unambiguously does.
+Both the payments table and the idempotency-keys table require CP behavior — strong consistency over availability. A payment record must never be lost or duplicated, even if that means rejecting a request during a partition rather than risking an inconsistent write. This is a direct application of [CAP Theorem and Consistency Models](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md)'s per-data-type classification: not every piece of data in a system needs the same consistency treatment, but this specific data unambiguously does.
 
 ## Scaling Strategy
 
@@ -141,7 +141,7 @@ This system is explicitly not scaled for throughput — at ~17 peak QPS there is
 
 ## Reliability Strategy
 
-1. **The external payment provider itself is slow or degraded.** Per [Distributed Systems Failure Modes](../handbook/system-design/distributed-systems-failure-modes.md), naive retries here would amplify load on an already-struggling provider and risk a double charge without the idempotency mechanism already designed in. Mitigation: the idempotency key (already in the design) plus exponential backoff with jitter for the provider call specifically.
+1. **The external payment provider itself is slow or degraded.** Per [Distributed Systems Failure Modes](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md), naive retries here would amplify load on an already-struggling provider and risk a double charge without the idempotency mechanism already designed in. Mitigation: the idempotency key (already in the design) plus exponential backoff with jitter for the provider call specifically.
 2. **Exactly-once is not actually achievable end-to-end without care at the boundary.** The payment service can guarantee it processes its own logic exactly once (via the idempotency key), but the call to the *external* provider is still an at-least-once-delivery problem from the payment service's perspective — the provider itself must also be idempotent-request-aware (most real providers, including Stripe, require and support this) for true end-to-end exactly-once behavior. Stating this limitation explicitly, rather than claiming "exactly-once" as an unqualified guarantee, is the Staff-level answer here.
 3. **The idempotency store itself is a new single point of failure for every payment.** Mitigation: it needs the same CP treatment as the payments table itself — this is not a component that can be relaxed to eventual consistency without reintroducing the exact race the whole design exists to prevent.
 
@@ -168,4 +168,4 @@ The most important framing in this design is that it inverts the usual system-de
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the idempotency mechanism designed in from the API phase, not added as an afterthought during architecture; the limitation of "exactly-once" (dependent on the external provider also supporting idempotent requests) stated explicitly, not claimed as an unqualified guarantee; and the CAP/consistency choice for the payments and idempotency data explicitly justified as CP.
+Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock. A self-verification exit check for this specific problem: all six phases completed within 45 minutes; the idempotency mechanism designed in from the API phase, not added as an afterthought during architecture; the limitation of "exactly-once" (dependent on the external provider also supporting idempotent requests) stated explicitly, not claimed as an unqualified guarantee; and the CAP/consistency choice for the payments and idempotency data explicitly justified as CP.

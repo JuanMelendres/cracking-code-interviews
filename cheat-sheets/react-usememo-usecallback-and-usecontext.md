@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # React Memoization and Context (useMemo, useCallback, useContext)
 
-**Canonical chapter:** [`handbook/frontend/react-usememo-usecallback-and-usecontext.md`](../handbook/frontend/react-usememo-usecallback-and-usecontext.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md`](../syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md)
 
 ## Core Mental Model
 
@@ -71,6 +71,6 @@ last_updated: 2026-09-03
 
 ## Related
 
-- `handbook/frontend/react-hooks-useeffect-and-useref.md`
-- `handbook/frontend/react-usereducer-and-custom-hooks.md`
+- `syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md`
+- `syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md`
 - `00-project/frontend-topic-register.md`

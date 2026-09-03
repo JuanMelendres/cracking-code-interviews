@@ -22,7 +22,7 @@ last_reviewed: 2026-07-29
 
 The same event, told at Senior scope, typically ends at "the decision was adopted for our service." Told at Staff scope, it continues: who else was affected by the decision, who had to be convinced (and what was their strongest counter-argument), and what changed beyond the immediate team. This is not embellishment — it's surfacing detail that was true of the original event but wasn't part of the Senior-scope telling. Doing this rewrite now, after 8 stories already exist (Weeks 1, 2, 4), means there's real material to mine rather than constructing scope artificially.
 
-The full reframing lens, mental model, worked example, and a dedicated "when there's genuinely no broader scope" section are now canonical at [`behavioral-handbook/03-scope-impact-and-influence-framing.md`](../../behavioral-handbook/03-scope-impact-and-influence-framing.md) — read that chapter before doing the reframes in §4 below.
+The full reframing lens, mental model, worked example, and a dedicated "when there's genuinely no broader scope" section are now canonical at [`syllabus/20-interview-preparation/behavioral/03-scope-impact-and-influence-framing.md`](../../syllabus/20-interview-preparation/behavioral/03-scope-impact-and-influence-framing.md) — read that chapter before doing the reframes in §4 below.
 
 ## 2. The reframing lens (summary)
 
@@ -35,7 +35,7 @@ The full reframing lens, mental model, worked example, and a dedicated "when the
 
 ## 3. Worked example (summary)
 
-The canonical chapter's worked example reframes a Week 1-style architecture-decision story ("we chose hexagonal architecture for persistence flexibility") from a Senior-scope telling into a Staff-scope one that surfaces two consuming teams affected, a fairly-represented objection, and a downstream practice adopted elsewhere — see [`behavioral-handbook/03-scope-impact-and-influence-framing.md` § Worked Example](../../behavioral-handbook/03-scope-impact-and-influence-framing.md#worked-example) for the full text.
+The canonical chapter's worked example reframes a Week 1-style architecture-decision story ("we chose hexagonal architecture for persistence flexibility") from a Senior-scope telling into a Staff-scope one that surfaces two consuming teams affected, a fairly-represented objection, and a downstream practice adopted elsewhere — see [`syllabus/20-interview-preparation/behavioral/03-scope-impact-and-influence-framing.md` § Worked Example](../../syllabus/20-interview-preparation/behavioral/03-scope-impact-and-influence-framing.md#worked-example) for the full text.
 
 ## 4. Your four reframes
 

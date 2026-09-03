@@ -11,7 +11,7 @@ last_updated: 2026-09-03
 
 # Next.js Image, Font Optimization and Web Vitals
 
-**Canonical chapter:** [`handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md`](../handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md)
+**Canonical chapter:** [`syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md`](../syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md)
 
 ## Core Mental Model
 
@@ -64,6 +64,6 @@ last_updated: 2026-09-03
 
 ## Related
 
-- `handbook/frontend/nextjs-metadata-api-and-seo.md`
-- `handbook/frontend/nextjs-streaming-and-suspense.md`
-- `handbook/frontend/nextjs-proxy-and-edge-runtime.md`
+- `syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md`
+- `syllabus/21-frontend-web/nextjs-streaming-and-suspense.md`
+- `syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md`

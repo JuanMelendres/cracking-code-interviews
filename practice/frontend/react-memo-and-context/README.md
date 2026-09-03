@@ -1,6 +1,6 @@
 # React Memoization & Context demo app (F-107 useMemo/useCallback, F-108 useContext)
 
-Real Vite + React 19 app backing [`handbook/frontend/react-usememo-usecallback-and-usecontext.md`](../../../handbook/frontend/react-usememo-usecallback-and-usecontext.md).
+Real Vite + React 19 app backing [`syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md`](../../../syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md).
 
 ## Run it
 

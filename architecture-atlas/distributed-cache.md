@@ -12,20 +12,20 @@ target_levels:
   - staff
 estimated_reading_minutes: 20
 prerequisites:
-  - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
-  - ../handbook/system-design/resilience-patterns.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/11-system-design/resilience-patterns.md
 related:
   - ride-hailing-dispatch-system.md
   - url-shortener-system.md
-  - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
+  - ../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-10/10-design-exercise-distributed-cache.md
 official_references: []
 ---
 
 # Architecture Atlas: Distributed Cache
 
-**Delivered as a timed, 45-60 minute exercise using [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md)'s six-phase method.**
+**Delivered as a timed, 45-60 minute exercise using [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s six-phase method.**
 
 ## Table of Contents
 
@@ -105,8 +105,8 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **Consistent hashing with virtual nodes for key routing:** directly reuses [Data Partitioning and Consistent Hashing](../handbook/system-design/data-partitioning-and-consistent-hashing.md)'s measured result — adding or removing a cache node remaps only ~9.2% of keys (10-node ring) rather than ~92.5% under naive `hash % N`, the difference between "a node failure causes a brief, bounded miss-rate blip" and "a node failure invalidates almost the entire cache at once," a self-inflicted load spike onto the database exactly when the system is already degraded.
-- **A circuit breaker per cache node, not a shared one** (the bulkhead principle): if one physical node goes down, calls to it should fail fast and fall through to the database — calls to every other healthy node must be unaffected. A single shared breaker would incorrectly treat one node's failure as a signal to stop trying all of them — the shared-pool-starvation failure mode from [Resilience Patterns](../handbook/system-design/resilience-patterns.md)'s bulkhead discussion, one level up from thread pools to cache-node connections.
+- **Consistent hashing with virtual nodes for key routing:** directly reuses [Data Partitioning and Consistent Hashing](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md)'s measured result — adding or removing a cache node remaps only ~9.2% of keys (10-node ring) rather than ~92.5% under naive `hash % N`, the difference between "a node failure causes a brief, bounded miss-rate blip" and "a node failure invalidates almost the entire cache at once," a self-inflicted load spike onto the database exactly when the system is already degraded.
+- **A circuit breaker per cache node, not a shared one** (the bulkhead principle): if one physical node goes down, calls to it should fail fast and fall through to the database — calls to every other healthy node must be unaffected. A single shared breaker would incorrectly treat one node's failure as a signal to stop trying all of them — the shared-pool-starvation failure mode from [Resilience Patterns](../syllabus/11-system-design/resilience-patterns.md)'s bulkhead discussion, one level up from thread pools to cache-node connections.
 - **Fall-through-to-database on a cache miss OR a downed node, not stale-serve-or-fail:** given that cache durability doesn't matter and the DB is the source of truth, always falling through to correct, current data is strictly safer than failing the request or serving unboundedly stale data — the cost is the latency/load spike named in Reliability Strategy, which is why the circuit breaker (fail fast toward the DB rather than waiting out a dead node's timeout) matters here.
 
 ## Data Model
@@ -144,7 +144,7 @@ Scaling capacity means adding cache nodes to the consistent-hash ring — the ~9
 
 1. **The "thundering herd" on cache-node failure, quantified from the capacity assumptions.** A node holding ~47.5K reads/s going down means ~47.5K reads/s suddenly falling through to the database (until the ring rebalances and some of that traffic finds a new correct cache node) — the numbers show a real, sudden ~2x load increase on the database (25K → up to 72.5K/s) if it was already near its previous 25K/s steady-state capacity. Mitigation: size the database's headroom explicitly for at least one full node's worth of fallback traffic, not just steady-state load.
 2. **Hot keys defeat sharding regardless of hash quality** (consistent hashing solves rebalancing cost, not hot-key distribution). A single viral key can saturate one physical node's capacity even with perfectly even ring distribution overall. Mitigation: detect hot keys (per-key request-rate monitoring) and replicate just that key across multiple nodes (client picks one at random), rather than fixing it via the general sharding scheme.
-3. **Cache stampede on a popular key's simultaneous expiry:** many concurrent requests for the same just-expired key all miss at once and hit the database simultaneously — a distinct failure mode from #1 (many different keys falling through due to node failure) and #2 (one key overloading one node while cached). Mitigation: a short-lived per-key "recompute lock" (only one request per key queries the database on a miss; others wait briefly for that result) — the identical retry-storm problem from [Resilience Patterns](../handbook/system-design/resilience-patterns.md), triggered by key expiry instead of a downstream failure.
+3. **Cache stampede on a popular key's simultaneous expiry:** many concurrent requests for the same just-expired key all miss at once and hit the database simultaneously — a distinct failure mode from #1 (many different keys falling through due to node failure) and #2 (one key overloading one node while cached). Mitigation: a short-lived per-key "recompute lock" (only one request per key queries the database on a miss; others wait briefly for that result) — the identical retry-storm problem from [Resilience Patterns](../syllabus/11-system-design/resilience-patterns.md), triggered by key expiry instead of a downstream failure.
 
 ## Security, Observability, and Cost
 
@@ -170,4 +170,4 @@ The three named bottlenecks in this design are deliberately distinguished as dif
 
 ## Interview Presentation Sequence
 
-Delivered as a timed, 45-60 minute exercise using the six-phase method's own stated budget, widened for Staff-tier material — see [Time-Boxing and Mid-Round Changes](../interview-playbook/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock, including this exact design's own real mid-round curveball ("the cache must now survive a full node failure without a cold-start latency spike"). A self-verification exit check for this specific problem: all six phases completed within 45-60 minutes; consistent hashing's measured redistribution number (not just its name) used to justify the node-failure blast-radius claim; per-node circuit breakers justified explicitly against the bulkhead principle; and all three reliability bottlenecks correctly distinguished as different failure shapes, not conflated into one generic statement.
+Delivered as a timed, 45-60 minute exercise using the six-phase method's own stated budget, widened for Staff-tier material — see [Time-Boxing and Mid-Round Changes](../syllabus/20-interview-preparation/system-design/time-boxing-and-mid-round-changes.md) for the live-delivery discipline of running this inside the clock, including this exact design's own real mid-round curveball ("the cache must now survive a full node failure without a cold-start latency spike"). A self-verification exit check for this specific problem: all six phases completed within 45-60 minutes; consistent hashing's measured redistribution number (not just its name) used to justify the node-failure blast-radius claim; per-node circuit breakers justified explicitly against the bulkhead principle; and all three reliability bottlenecks correctly distinguished as different failure shapes, not conflated into one generic statement.

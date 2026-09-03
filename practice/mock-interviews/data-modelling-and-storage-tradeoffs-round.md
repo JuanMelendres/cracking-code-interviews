@@ -17,13 +17,13 @@ competencies:
   - Monotonic-stack coding under a structural-gap interrupt
   - Production incident story (four-beat trade-off structure)
 related:
-  - ../../handbook/databases/query-planning-and-explain-analyze.md
-  - ../../handbook/databases/data-modelling-and-explicit-join-tables.md
-  - ../../handbook/architecture/ddd-tactical-design-aggregates.md
-  - ../../handbook/system-design/distributed-transactions-saga-and-outbox.md
-  - ../../handbook/system-design/storage-selection-tradeoffs.md
-  - ../../interview-playbook/coding/coding-interview-communication-protocol.md
-  - ../../behavioral-handbook/04-production-incident-narratives.md
+  - ../../syllabus/06-databases/query-planning-and-explain-analyze.md
+  - ../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md
+  - ../../syllabus/17-architecture/ddd-tactical-design-aggregates.md
+  - ../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
+  - ../../syllabus/11-system-design/storage-selection-tradeoffs.md
+  - ../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md
+  - ../../syllabus/20-interview-preparation/behavioral/04-production-incident-narratives.md
 source: ../../study-packs/week-02/09-week-2-mock-interview.md
 official_references: []
 ---
@@ -48,12 +48,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Cold EXPLAIN ANALYZE diagnosis | Q1 | [Query Planning and EXPLAIN ANALYZE](../../handbook/databases/query-planning-and-explain-analyze.md) |
-| Many-to-many with an attribute-bearing relationship | Q2 | [Data Modelling and Explicit Join Tables](../../handbook/databases/data-modelling-and-explicit-join-tables.md) |
-| Aggregate boundaries as transaction boundaries | Q3 | [DDD Tactical Design — Aggregates](../../handbook/architecture/ddd-tactical-design-aggregates.md), [Distributed Transactions: Saga and Outbox](../../handbook/system-design/distributed-transactions-saga-and-outbox.md) |
-| PostgreSQL vs. DynamoDB, argued both ways | Q4 | [Storage Selection Trade-offs](../../handbook/system-design/storage-selection-tradeoffs.md) |
-| Monotonic-stack coding (LC 739) | Q5 | [Coding Interview Communication Protocol](../../interview-playbook/coding/coding-interview-communication-protocol.md) |
-| Production incident story | Q6 | [Production Incident Narratives](../../behavioral-handbook/04-production-incident-narratives.md) |
+| Cold EXPLAIN ANALYZE diagnosis | Q1 | [Query Planning and EXPLAIN ANALYZE](../../syllabus/06-databases/query-planning-and-explain-analyze.md) |
+| Many-to-many with an attribute-bearing relationship | Q2 | [Data Modelling and Explicit Join Tables](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md) |
+| Aggregate boundaries as transaction boundaries | Q3 | [DDD Tactical Design — Aggregates](../../syllabus/17-architecture/ddd-tactical-design-aggregates.md), [Distributed Transactions: Saga and Outbox](../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md) |
+| PostgreSQL vs. DynamoDB, argued both ways | Q4 | [Storage Selection Trade-offs](../../syllabus/11-system-design/storage-selection-tradeoffs.md) |
+| Monotonic-stack coding (LC 739) | Q5 | [Coding Interview Communication Protocol](../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md) |
+| Production incident story | Q6 | [Production Incident Narratives](../../syllabus/20-interview-preparation/behavioral/04-production-incident-narratives.md) |
 
 ## Interviewer Opening Script
 
@@ -67,7 +67,7 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 2. **(4 min)** "Model a many-to-many relationship between `Order` and `Product`. Now it needs a `quantity`. What changes?"
 3. **(4 min)** "What is an aggregate boundary, and why is it a transaction boundary?" Then one follow-up.
 4. **(4 min)** "Choose between PostgreSQL and DynamoDB for a given workload. Defend it, then argue the opposite."
-5. **(8 min)** Implement LeetCode 739 (Daily Temperatures), narrated per all six phases of the [Coding Interview Communication Protocol](../../interview-playbook/coding/coding-interview-communication-protocol.md). State, unprompted, why a values-only stack can't work.
+5. **(8 min)** Implement LeetCode 739 (Daily Temperatures), narrated per all six phases of the [Coding Interview Communication Protocol](../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md). State, unprompted, why a values-only stack can't work.
 6. **(7 min)** Deliver a production-incident story using the four-beat trade-off structure, then answer one follow-up.
 
 ## Evaluator Section
@@ -132,10 +132,10 @@ Walk the candidate through their scores, starting with the weakest. Questions 2 
 
 ## Remediation Recommendations
 
-- Weak Q1 → re-read [Query Planning and EXPLAIN ANALYZE](../../handbook/databases/query-planning-and-explain-analyze.md).
-- Weak Q2 → re-read [Data Modelling and Explicit Join Tables](../../handbook/databases/data-modelling-and-explicit-join-tables.md).
-- Weak Q3 → re-read [DDD Tactical Design — Aggregates](../../handbook/architecture/ddd-tactical-design-aggregates.md) and [Distributed Transactions: Saga and Outbox](../../handbook/system-design/distributed-transactions-saga-and-outbox.md).
-- Weak Q4 → re-read [Storage Selection Trade-offs](../../handbook/system-design/storage-selection-tradeoffs.md).
-- Weak Q5 → re-read [Coding Interview Communication Protocol](../../interview-playbook/coding/coding-interview-communication-protocol.md) and redo the kata under a timer, starting from an index-based stack.
-- Weak Q6 → re-read [Production Incident Narratives](../../behavioral-handbook/04-production-incident-narratives.md).
+- Weak Q1 → re-read [Query Planning and EXPLAIN ANALYZE](../../syllabus/06-databases/query-planning-and-explain-analyze.md).
+- Weak Q2 → re-read [Data Modelling and Explicit Join Tables](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md).
+- Weak Q3 → re-read [DDD Tactical Design — Aggregates](../../syllabus/17-architecture/ddd-tactical-design-aggregates.md) and [Distributed Transactions: Saga and Outbox](../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md).
+- Weak Q4 → re-read [Storage Selection Trade-offs](../../syllabus/11-system-design/storage-selection-tradeoffs.md).
+- Weak Q5 → re-read [Coding Interview Communication Protocol](../../syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md) and redo the kata under a timer, starting from an index-based stack.
+- Weak Q6 → re-read [Production Incident Narratives](../../syllabus/20-interview-preparation/behavioral/04-production-incident-narratives.md).
 - Any dimension scored below Senior (4) overall → retake this mock in full after remediation.
