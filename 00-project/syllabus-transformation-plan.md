@@ -1,7 +1,7 @@
 ---
 title: "Syllabus Transformation Plan"
 document_type: project-planning-document
-status: proposed — awaiting approval
+status: approved — 2026-09-03, all six open questions (§14) resolved; Phase 0 complete; Phase 1 not yet authorized
 version: 1.0
 last_updated: 2026-09-03
 author: Claude (Cowork), commissioned by the repository owner
@@ -502,9 +502,17 @@ For the *migration*, once approved, each phase in §10 has its own definition of
 
 Explicit decisions this document surfaces but does not make unilaterally:
 
-1. Confirm the treatment of `graft/` (§2.9) — excluded from migration as tooling/cache, or does it contain content that needs to be pulled in?
-2. Confirm the `19-leadership-staff` vs. `20-interview-preparation/behavioral/` split and reference-not-duplicate approach (§2.7).
-3. Confirm `interview-playbook/company-prep/` becomes a permanent, tooling-enforced private category rather than being sanitized into public material at some point (§2.8, §11, §12 rule 7).
-4. Approve, adjust, or reject the 21-domain taxonomy (§3.2) and the specific boundary calls in §3.3 before Phase 0 begins.
-5. Approve the Topic Specification (§4) and Mastery Model (§5) as the standard going forward — this is the highest-leverage decision, since every future chapter (existing or new) will be written or retrofitted against it.
-6. Decide the migration-order priority within Phase 3 (§10) — this plan suggests `02-java` first as lowest-risk/highest-value, but the user may prefer a different starting domain.
+1. **Confirm the treatment of `graft/` (§2.9)** — excluded from migration as tooling/cache, or does it contain content that needs to be pulled in?
+   - **Resolved 2026-09-03 — excluded.** Confirmed by direct inspection during Phase 0, not left as an assumption: `.gitignore`'s own comment states `graft/` is "graft's local graph cache — regenerable, not committed (run `graft build`)." `graft/INDEX.md` self-describes as "430 per-file wiring cards" (symbol/function indexes with `file:line` references, no original prose). `graft/practice/` and `graft/scripts/` are exact directory mirrors of the real `practice/`/`scripts/` trees, each file containing only extracted symbol lists (e.g., `graft/scripts/validate.md` lists `err`, `warn`, `note`, `ok`, `head`, `md_files` with line numbers, zero authored content). Nothing to pull in; excluded with certainty, not judgment.
+2. **Confirm the `19-leadership-staff` vs. `20-interview-preparation/behavioral/` split and reference-not-duplicate approach (§2.7).**
+   - **Resolved 2026-09-03 — approved as proposed.** `behavioral-handbook/` (16 files) relocates as-is, unchanged, to `20-interview-preparation/behavioral/`. `19-leadership-staff` is a new domain that references the relevant `behavioral-handbook/` chapters (07 mentoring, 09 cross-team influence, 10 migrations, 11 technical-debt advocacy, 12 design reviews/RFCs) as source material for its own Level 1–4 ladder, never duplicating their content.
+3. **Confirm `interview-playbook/company-prep/` becomes a permanent, tooling-enforced private category (§2.8, §11, §12 rule 7).**
+   - **Resolved 2026-09-03 — approved as proposed.** `company-prep/` (and any future `*.private.md`/`local/` file) is a permanent private category, enforced structurally by validation rule §12.7 (no `syllabus/` canonical topic, learning path, or `00-overview/` index may reference it), not merely by convention — never sanitized into public/commercial material.
+4. **Approve, adjust, or reject the 21-domain taxonomy (§3.2) and the specific boundary calls in §3.3.**
+   - **Resolved 2026-09-03 — approved as proposed, no adjustments.** The 21-domain taxonomy in §3.2, including the `10` vs. `11`, `13` vs. `16`, `14` vs. `15` splits and `07-api-design` as its own domain (§3.3), stands as written.
+5. **Approve the Topic Specification (§4) and Mastery Model (§5) as the standard going forward.**
+   - **Resolved 2026-09-03 — approved as proposed.** The 20-section Topic Specification (§4.2) and the four-level (L1 Foundation → L4 Staff) Mastery Model (§5) become the standard every existing and future chapter is written or retrofitted against.
+6. **Decide the migration-order priority within Phase 3 (§10).**
+   - **Resolved 2026-09-03 — `02-java` first, as the plan suggested** (largest, least ambiguous domain).
+
+**All six open questions are now resolved.** Per §13's Definition of Done, this plan itself is done: approved with the six decisions recorded above. Phase 0 (§10) is complete — see `00-project/migration-mapping.md`. Phase 1 (Scaffolding) has not been authorized and does not begin automatically; it requires its own explicit go/no-go per §10's governance model.
