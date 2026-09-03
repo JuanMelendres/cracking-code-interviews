@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/reflection-and-dynamic-proxies.md
+  - ../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md
   - ../handbook/spring/spring-framework-vs-spring-boot.md
 source: handbook/java-core/reflection-and-dynamic-proxies.md#production-scenarios
 ---
@@ -87,5 +87,5 @@ Self-invocation defeating `@Transactional` is one of the clearest illustrations 
 
 ## Related Handbook Chapters
 
-- [Reflection and Dynamic Proxies](../handbook/java-core/reflection-and-dynamic-proxies.md) — canonical dynamic-proxy mechanics and the reproduced `Proxy`/`InvocationHandler` interception model this incident traces back to.
+- [Reflection and Dynamic Proxies](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md) — canonical dynamic-proxy mechanics and the reproduced `Proxy`/`InvocationHandler` interception model this incident traces back to.
 - [Spring Framework vs. Spring Boot](../handbook/spring/spring-framework-vs-spring-boot.md) — related Spring mechanism context for how proxy-based cross-cutting behavior is wired into a Spring application.

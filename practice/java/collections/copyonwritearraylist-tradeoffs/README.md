@@ -1,12 +1,12 @@
 # CopyOnWriteArrayList and copy-on-write trade-offs (T-206) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`](../../../../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md)
+[`syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`](../../../../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md)
 (T-206). Two independent demos: the real cost side (O(n) write cost, measured) and the real
 benefit side (lock-free concurrent reads, measured).
 
 Snapshot-isolation/iterator behavior is already covered with real evidence in
-[`fail-fast-vs-weakly-consistent-iterators.md`](../../../../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md)
+[`fail-fast-vs-weakly-consistent-iterators.md`](../../../../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md)
 (T-208) and is not re-demonstrated here — this chapter's own evidence focuses on the write-cost
 and read-throughput trade-off specifically.
 

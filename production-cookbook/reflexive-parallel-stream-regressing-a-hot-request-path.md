@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/java-core/streams-and-collectors.md
+  - ../syllabus/02-java/language-core/streams-and-collectors.md
 source: handbook/java-core/streams-and-collectors.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This maps to "someone added `.parallel()` and latency got worse, why" directly. 
 
 ## Related Handbook Chapters
 
-- [Streams and Collectors](../handbook/java-core/streams-and-collectors.md) — canonical `parallel()` fork/join overhead mechanics and benchmark used here.
-- [Executors and Thread Pool Sizing](../handbook/concurrency/executors-and-thread-pool-sizing.md) — the dedicated-pool-vs-shared-pool trade-off referenced in the permanent fix.
+- [Streams and Collectors](../syllabus/02-java/language-core/streams-and-collectors.md) — canonical `parallel()` fork/join overhead mechanics and benchmark used here.
+- [Executors and Thread Pool Sizing](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md) — the dedicated-pool-vs-shared-pool trade-off referenced in the permanent fix.

@@ -1,7 +1,7 @@
 # Strings: interning, compact strings, and builders (T-106) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/strings-interning-compact-strings-and-builders.md`](../../../handbook/java-core/strings-interning-compact-strings-and-builders.md)
+[`handbook/java-core/strings-interning-compact-strings-and-builders.md`](../../../../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md)
 (T-106). Three independent demos, including a real, honest self-correction (an initial
 "non-Latin-1" test character turned out to actually be within Latin-1's range).
 

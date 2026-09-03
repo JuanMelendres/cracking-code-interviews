@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md
+  - ../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md
 source: handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md#production-scenarios
 ---
 
@@ -85,4 +85,4 @@ The specific fix here — one missing `unregister()` call, one missing eviction 
 
 ## Related Handbook Chapters
 
-- [Memory Leak Diagnosis and Heap Dump Analysis](../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md) — canonical `jmap`/heap-dump/GC-roots methodology used here.
+- [Memory Leak Diagnosis and Heap Dump Analysis](../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md) — canonical `jmap`/heap-dump/GC-roots methodology used here.

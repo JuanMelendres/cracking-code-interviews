@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Deadlock, Race Conditions, and Thread Diagnostics
 
-**Canonical chapter:** [`handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md)
 
 ## Card: The real Thread.State values
 
@@ -27,7 +27,7 @@ Corrects a previously actively-wrong diagram in this project's own source materi
 Inventing a "Running" state distinct from `RUNNABLE`, or forgetting `TIMED_WAITING`.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation)
 
 ## Card: Detecting a deadlock in a live JVM
 
@@ -44,7 +44,7 @@ The actual production diagnostic technique, not guessing from a thread dump.
 Describing deadlock only abstractly without naming a concrete tool.
 
 **Related:**
-[Java Examples](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#java-examples)
+[Java Examples](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#java-examples)
 
 ## Card: How much data unsynchronized count++ loses
 
@@ -61,4 +61,4 @@ Race conditions under concurrency are a near-certainty, not a theoretical risk.
 Assuming this kind of bug is rare or unlikely to matter in practice.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation)

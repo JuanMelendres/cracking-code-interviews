@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/concurrency/completablefuture-and-async-composition.md
+  - ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
 source: handbook/concurrency/completablefuture-and-async-composition.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is a strong example of a correctness gap that exists entirely in w
 
 ## Related Handbook Chapters
 
-- [CompletableFuture and Async Composition](../handbook/concurrency/completablefuture-and-async-composition.md) — canonical completion-and-threading model and the measured exception-swallowing reproduction this incident traces back to.
-- [Structured Concurrency](../handbook/concurrency/structured-concurrency.md) — related, purpose-built alternative that structurally prevents an async task's outcome from being silently lost.
+- [CompletableFuture and Async Composition](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md) — canonical completion-and-threading model and the measured exception-swallowing reproduction this incident traces back to.
+- [Structured Concurrency](../syllabus/02-java/concurrency/structured-concurrency.md) — related, purpose-built alternative that structurally prevents an async task's outcome from being silently lost.

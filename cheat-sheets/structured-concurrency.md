@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Structured Concurrency
 
-**Canonical chapter:** [`handbook/concurrency/structured-concurrency.md`](../handbook/concurrency/structured-concurrency.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/structured-concurrency.md`](../syllabus/02-java/concurrency/structured-concurrency.md)
 
 ## Core Mental Model
 
@@ -61,6 +61,6 @@ A structured concurrent operation has exactly one entry and exactly one exit —
 
 ## Related
 
-- `handbook/concurrency/completablefuture-and-async-composition.md`
-- `handbook/concurrency/forkjoinpool-and-work-stealing.md`
-- `handbook/concurrency/scoped-values-and-threadlocal-migration.md`
+- `syllabus/02-java/concurrency/completablefuture-and-async-composition.md`
+- `syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md`
+- `syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md`

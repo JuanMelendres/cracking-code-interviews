@@ -80,6 +80,6 @@ Modern JVMs can defend against DCE automatically: with HotSpot's Compiler Blackh
 
 ## Related
 
-- `handbook/jvm/jit-tiered-compilation-and-deoptimization.md`
-- `handbook/jvm/escape-analysis-and-scalar-replacement.md`
+- `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md`
+- `syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md`
 - `handbook/performance/profiling-jfr-and-flame-graphs.md`

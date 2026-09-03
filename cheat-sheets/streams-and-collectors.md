@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Streams and Collectors
 
-**Canonical chapter:** [`handbook/java-core/streams-and-collectors.md`](../handbook/java-core/streams-and-collectors.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/streams-and-collectors.md`](../syllabus/02-java/language-core/streams-and-collectors.md)
 
 ## Core Mental Model
 
@@ -81,6 +81,6 @@ IllegalStateException: Duplicate key alice (attempted merging values 100.0 and 7
 
 ## Related
 
-- `handbook/collections/hashmap-internals.md`
-- `handbook/concurrency/executors-and-thread-pool-sizing.md`
-- `handbook/java-core/generics-erasure-and-pecs.md`
+- `syllabus/02-java/collections/hashmap-internals.md`
+- `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`
+- `syllabus/02-java/language-core/generics-erasure-and-pecs.md`

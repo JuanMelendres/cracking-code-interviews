@@ -13,7 +13,7 @@ target_levels:
   - staff
 estimated_reading_minutes: 30
 prerequisites:
-  - ../jvm/gc-fundamentals-and-log-analysis.md
+  - ../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
 related:
   - kubernetes-objects-scheduling-and-networking.md
   - container-image-internals.md

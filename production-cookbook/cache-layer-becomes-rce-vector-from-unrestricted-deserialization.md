@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/serialization-hazards-and-alternatives.md
+  - ../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md
 source: handbook/java-core/serialization-hazards-and-alternatives.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is the clearest possible illustration of why Java deserialization 
 
 ## Related Handbook Chapters
 
-- [Serialization Hazards and Alternatives](../handbook/java-core/serialization-hazards-and-alternatives.md) — canonical mechanics of the constructor-bypass hazard, singleton break, and `ObjectInputFilter` defense this incident traces back to.
-- [Optional and Null Strategy](../handbook/java-core/optional-and-null-strategy.md) — related discussion of `Serializable`'s structural constraints on class design.
+- [Serialization Hazards and Alternatives](../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md) — canonical mechanics of the constructor-bypass hazard, singleton break, and `ObjectInputFilter` defense this incident traces back to.
+- [Optional and Null Strategy](../syllabus/02-java/language-core/optional-and-null-strategy.md) — related discussion of `Serializable`'s structural constraints on class design.

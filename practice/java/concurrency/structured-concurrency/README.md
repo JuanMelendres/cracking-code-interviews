@@ -1,7 +1,7 @@
 # Structured Concurrency (T-411) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/concurrency/structured-concurrency.md`](../../../../handbook/concurrency/structured-concurrency.md)
+[`syllabus/02-java/concurrency/structured-concurrency.md`](../../../../syllabus/02-java/concurrency/structured-concurrency.md)
 (T-411). `StructuredTaskScope` is a **preview API in JDK 21** ([JEP 453](https://openjdk.org/jeps/453),
 second preview) — every command below needs `--enable-preview`.
 

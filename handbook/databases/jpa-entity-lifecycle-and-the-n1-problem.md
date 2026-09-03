@@ -22,7 +22,7 @@ related:
   - connection-pooling-and-sizing.md
   - hibernate-flush-modes-and-batch-writes.md
   - ../spring/transactional-proxy-mechanics-and-propagation.md
-  - ../java-core/polymorphism-and-dynamic-dispatch.md
+  - ../../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md
   - hibernate-second-level-and-query-cache.md
 official_references:
   - https://jakarta.ee/specifications/persistence/3.1/

@@ -15,7 +15,7 @@ canonical: ../../handbook/collections/blockingqueue-family.md
 
 **IWI 5.80 · Core tier · High interview frequency**
 
-**Canonical chapter:** [BlockingQueue Family and Producer-Consumer](../../handbook/collections/blockingqueue-family.md). This file is the Week 14 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [BlockingQueue Family and Producer-Consumer](../../syllabus/02-java/collections/blockingqueue-family.md). This file is the Week 14 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** every trace behind this summary is real, executed output from `practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java` on OpenJDK 21.0.12.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/collections/blockingqueue-family.md
 
 ## 1. The concept
 
-A `BlockingQueue`'s `put()` waits for space when full and `take()` waits for an element when empty — its capacity IS its concurrency-control mechanism. → [Definition and Purpose](../../handbook/collections/blockingqueue-family.md#definition-and-purpose).
+A `BlockingQueue`'s `put()` waits for space when full and `take()` waits for an element when empty — its capacity IS its concurrency-control mechanism. → [Definition and Purpose](../../syllabus/02-java/collections/blockingqueue-family.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Bounded queues provide natural backpressure — a producer that outpaces its consumer blocks rather than growing memory without limit. → [Definition and Purpose](../../handbook/collections/blockingqueue-family.md#definition-and-purpose).
+Bounded queues provide natural backpressure — a producer that outpaces its consumer blocks rather than growing memory without limit. → [Definition and Purpose](../../syllabus/02-java/collections/blockingqueue-family.md#definition-and-purpose).
 
 ## 3. ArrayBlockingQueue blocking, measured
 
-Measured: filling a capacity-2 queue, a third `put()` genuinely blocks (thread state `WAITING`) for ~313ms until a consumer's `take()` frees a slot. → [Internal Implementation](../../handbook/collections/blockingqueue-family.md#internal-implementation) has the full trace.
+Measured: filling a capacity-2 queue, a third `put()` genuinely blocks (thread state `WAITING`) for ~313ms until a consumer's `take()` frees a slot. → [Internal Implementation](../../syllabus/02-java/collections/blockingqueue-family.md#internal-implementation) has the full trace.
 
 ## 4. SynchronousQueue's zero-capacity handoff, measured
 
-Measured: `SynchronousQueue.put()` blocks for ~305ms until a `take()` is already waiting to receive that exact element — no internal storage at all, a direct handoff rather than a buffer. → [Internal Implementation](../../handbook/collections/blockingqueue-family.md#internal-implementation) has the full trace.
+Measured: `SynchronousQueue.put()` blocks for ~305ms until a `take()` is already waiting to receive that exact element — no internal storage at all, a direct handoff rather than a buffer. → [Internal Implementation](../../syllabus/02-java/collections/blockingqueue-family.md#internal-implementation) has the full trace.
 
 ## 5. Trade-offs
 
-An unbounded queue never blocks the producer but risks unbounded memory growth; a bounded queue provides real backpressure at the cost of the producer sometimes waiting; SynchronousQueue is maximum backpressure with zero buffering. → [Trade-offs](../../handbook/collections/blockingqueue-family.md#trade-offs).
+An unbounded queue never blocks the producer but risks unbounded memory growth; a bounded queue provides real backpressure at the cost of the producer sometimes waiting; SynchronousQueue is maximum backpressure with zero buffering. → [Trade-offs](../../syllabus/02-java/collections/blockingqueue-family.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Your ingestion service crashed with OutOfMemoryError during a downstream slowdown. What's your first suspect?
 2. What's the actual difference between SynchronousQueue and a capacity-1 ArrayBlockingQueue?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/collections/blockingqueue-family.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/collections/blockingqueue-family.md#interview-questions).
 
 ## 7. Common mistakes
 
-Using an unbounded queue by default; assuming SynchronousQueue behaves like a capacity-1 buffer; blocking indefinitely in a latency-sensitive path without a timeout. → [Common Mistakes](../../handbook/collections/blockingqueue-family.md#common-mistakes).
+Using an unbounded queue by default; assuming SynchronousQueue behaves like a capacity-1 buffer; blocking indefinitely in a latency-sensitive path without a timeout. → [Common Mistakes](../../syllabus/02-java/collections/blockingqueue-family.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-Bounded-queue backpressure is one instance of a general principle: absorbing overload internally converts a visible degradation into a catastrophic one once the implicit limit (memory) is exhausted. → [Staff-Level Discussion](../../handbook/collections/blockingqueue-family.md#interview-answer-framework).
+Bounded-queue backpressure is one instance of a general principle: absorbing overload internally converts a visible degradation into a catastrophic one once the implicit limit (memory) is exhausted. → [Staff-Level Discussion](../../syllabus/02-java/collections/blockingqueue-family.md#interview-answer-framework).
 
 ## 9. Summary
 
-put() blocks when full, take() blocks when empty, both measured as genuine parking. SynchronousQueue takes this to zero capacity. Bounded capacity is deliberate backpressure; removing it defers failure to an eventual memory crash. → [Summary](../../handbook/collections/blockingqueue-family.md#summary).
+put() blocks when full, take() blocks when empty, both measured as genuine parking. SynchronousQueue takes this to zero capacity. Bounded capacity is deliberate backpressure; removing it defers failure to an eventual memory crash. → [Summary](../../syllabus/02-java/collections/blockingqueue-family.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/collections/blockingqueue-family.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/collections/blockingqueue-family.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/collections/blockingqueue-family.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/collections/blockingqueue-family.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/collections/blockingqueue-family.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/collections/blockingqueue-family.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/collections/blockingqueue-family.md#practice-exercises) and [Solutions](../../handbook/collections/blockingqueue-family.md#solutions). Reproducible demo: `practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java`.
+→ [Practice Exercises](../../syllabus/02-java/collections/blockingqueue-family.md#practice-exercises) and [Solutions](../../syllabus/02-java/collections/blockingqueue-family.md#solutions). Reproducible demo: `practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java`.
 
 ## 14. Additional Reading
 

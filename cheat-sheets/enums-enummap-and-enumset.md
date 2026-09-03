@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Enums, EnumMap, and EnumSet
 
-**Canonical chapter:** [`handbook/java-core/enums-enummap-and-enumset.md`](../handbook/java-core/enums-enummap-and-enumset.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/enums-enummap-and-enumset.md`](../syllabus/02-java/language-core/enums-enummap-and-enumset.md)
 
 ## Core Mental Model
 
@@ -62,5 +62,5 @@ An enum constant is a real, JVM-enforced singleton object, and the entire enum t
 
 ## Related
 
-- `handbook/java-core/annotations-and-annotation-processing.md`
-- `handbook/collections/treemap-treeset-and-navigable-hierarchy.md`
+- `syllabus/02-java/language-core/annotations-and-annotation-processing.md`
+- `syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md`

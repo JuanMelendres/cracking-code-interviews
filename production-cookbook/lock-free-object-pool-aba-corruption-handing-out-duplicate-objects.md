@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/concurrency/atomics-cas-and-the-aba-problem.md
+  - ../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md
 source: handbook/concurrency/atomics-cas-and-the-aba-problem.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ ABA bugs are a strong argument for why "no thread ever reported an exception, an
 
 ## Related Handbook Chapters
 
-- [Atomics, CAS, and the ABA Problem](../handbook/concurrency/atomics-cas-and-the-aba-problem.md) — canonical CAS mechanics, the deterministic ABA reproduction, and the `AtomicStampedReference` fix this incident applies directly.
-- [ReentrantLock, ReadWriteLock, and StampedLock](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md) — related lock-based alternative considered and rejected in favor of preserving lock-free throughput.
+- [Atomics, CAS, and the ABA Problem](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md) — canonical CAS mechanics, the deterministic ABA reproduction, and the `AtomicStampedReference` fix this incident applies directly.
+- [ReentrantLock, ReadWriteLock, and StampedLock](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md) — related lock-based alternative considered and rejected in favor of preserving lock-free throughput.

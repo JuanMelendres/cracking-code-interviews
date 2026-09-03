@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Exception Design and Hierarchy Strategy
 
-**Canonical chapter:** [`handbook/java-core/exception-design-and-hierarchy-strategy.md`](../handbook/java-core/exception-design-and-hierarchy-strategy.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md`](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md)
 
 ## Card: What chaining the cause preserves
 
@@ -27,7 +27,7 @@ Without it, `getCause()` returns `null` and the real root cause is gone permanen
 Constructing a message-only wrapped exception inside a `catch` block.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/exception-design-and-hierarchy-strategy.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md#internal-implementation)
 
 ## Card: What try-with-resources does when both throw
 
@@ -44,7 +44,7 @@ The specific guarantee that motivated try-with-resources over manual cleanup.
 Assuming a manual `finally` block behaves the same way.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/exception-design-and-hierarchy-strategy.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md#internal-implementation)
 
 ## Card: Why manual finally cleanup is strictly worse
 
@@ -61,4 +61,4 @@ The concrete reason try-with-resources exists as a language feature.
 Assuming both approaches are equivalent as long as `close()` is called.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/exception-design-and-hierarchy-strategy.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md#internal-implementation)

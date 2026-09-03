@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/concurrency/threadlocal-mediated-classloader-leaks.md
+  - ../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md
 source: handbook/concurrency/threadlocal-mediated-classloader-leaks.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ One leaked `ThreadLocal` value can leak an entire classloader — the symptom, M
 
 ## Related Handbook Chapters
 
-- [ThreadLocal-Mediated Classloader Leaks](../handbook/concurrency/threadlocal-mediated-classloader-leaks.md) — canonical classloader-retention mechanism used here.
+- [ThreadLocal-Mediated Classloader Leaks](../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md) — canonical classloader-retention mechanism used here.

@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/java-core/immutability-and-defensive-copying.md
+  - ../syllabus/02-java/language-core/immutability-and-defensive-copying.md
 source: handbook/java-core/immutability-and-defensive-copying.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This bug class is worth taking seriously precisely because it has no concurrency
 
 ## Related Handbook Chapters
 
-- [Immutability and Defensive Copying](../handbook/java-core/immutability-and-defensive-copying.md) — canonical live-reference-leak mechanics and defensive-copy patterns used here.
+- [Immutability and Defensive Copying](../syllabus/02-java/language-core/immutability-and-defensive-copying.md) — canonical live-reference-leak mechanics and defensive-copy patterns used here.

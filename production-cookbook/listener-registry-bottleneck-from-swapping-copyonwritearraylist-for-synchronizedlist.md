@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md
+  - ../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md
 source: handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is a clean example of "more standard" not meaning "more correct" �
 
 ## Related Handbook Chapters
 
-- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md) — canonical cost model and the measured ~44x lock-free-read advantage this incident's regression traces back to.
-- [Fail-Fast vs. Weakly-Consistent Iterators](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md) — related snapshot-isolation guarantee `CopyOnWriteArrayList`'s iterator provides that `synchronizedList` does not.
+- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md) — canonical cost model and the measured ~44x lock-free-read advantage this incident's regression traces back to.
+- [Fail-Fast vs. Weakly-Consistent Iterators](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md) — related snapshot-isolation guarantee `CopyOnWriteArrayList`'s iterator provides that `synchronizedList` does not.

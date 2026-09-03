@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: JVM Flags and Container Ergonomics
 
-**Canonical chapter:** [`handbook/jvm/jvm-flags-and-container-ergonomics.md`](../handbook/jvm/jvm-flags-and-container-ergonomics.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md`](../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md)
 
 ## Card: Does container-aware ergonomics affect only heap sizing
 
@@ -27,7 +27,7 @@ Prevents underestimating how broadly container detection changes JVM runtime beh
 Assuming container-aware ergonomics only affects heap sizing, missing the CPU-driven GC-thread-count effect.
 
 **Related:**
-[handbook/jvm/jvm-flags-and-container-ergonomics.md](../handbook/jvm/jvm-flags-and-container-ergonomics.md)
+[handbook/jvm/jvm-flags-and-container-ergonomics.md](../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md)
 
 ## Card: The default heap-cap percentage of container memory
 
@@ -44,7 +44,7 @@ The specific default number behind "the JVM sizes itself against the container a
 Assuming the JVM claims the full container memory limit as heap by default.
 
 **Related:**
-[handbook/jvm/jvm-flags-and-container-ergonomics.md](../handbook/jvm/jvm-flags-and-container-ergonomics.md)
+[handbook/jvm/jvm-flags-and-container-ergonomics.md](../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md)
 
 ## Card: What availableProcessors() reflects in a container
 
@@ -61,4 +61,4 @@ Explains why thread-pool sizing logic based on `availableProcessors()` behaves c
 Assuming `availableProcessors()` reports the physical host's core count regardless of container CPU limits.
 
 **Related:**
-[handbook/jvm/jvm-flags-and-container-ergonomics.md](../handbook/jvm/jvm-flags-and-container-ergonomics.md)
+[handbook/jvm/jvm-flags-and-container-ergonomics.md](../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md)

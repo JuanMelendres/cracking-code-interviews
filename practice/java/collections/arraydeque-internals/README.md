@@ -1,7 +1,7 @@
 # ArrayDeque internals & the legacy Stack/Vector problem (T-204) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md`](../../../../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md)
+[`syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md`](../../../../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md)
 (T-204). Two independent demos, including a real finding that corrects outdated,
 widely-repeated "ArrayDeque uses power-of-two capacity" folklore.
 

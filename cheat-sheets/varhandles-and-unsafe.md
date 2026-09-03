@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # VarHandles, Unsafe, and Their Replacement
 
-**Canonical chapter:** [`handbook/concurrency/varhandles-and-unsafe.md`](../handbook/concurrency/varhandles-and-unsafe.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/varhandles-and-unsafe.md`](../syllabus/02-java/concurrency/varhandles-and-unsafe.md)
 
 *Expert tier, rare interview frequency — this cheat sheet is scoped shorter to match the register's own recognition-level depth target.*
 
@@ -82,6 +82,6 @@ Real failures across 200000 real publish/observe rounds: 0
 
 ## Related
 
-- `handbook/concurrency/atomics-cas-and-the-aba-problem.md`
-- `handbook/concurrency/java-memory-model-and-volatile.md`
-- `handbook/concurrency/foreign-function-and-memory-api.md`
+- `syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`
+- `syllabus/02-java/concurrency/java-memory-model-and-volatile.md`
+- `syllabus/02-java/concurrency/foreign-function-and-memory-api.md`

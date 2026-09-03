@@ -16,7 +16,7 @@ prerequisites: []
 related:
   - owasp-top-10-for-backend-services.md
   - secrets-management-and-key-rotation.md
-  - ../jvm/jvm-flags-and-container-ergonomics.md
+  - ../../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md
   - ../../study-packs/week-17/07-supply-chain-security-sbom-and-dependency-risk.md
 official_references:
   - https://www.cisa.gov/sbom
@@ -87,7 +87,7 @@ Generating an SBOM alone doesn't fix anything — its value comes from being mat
 
 ## Internal Implementation
 
-**Real SBOM extraction from `eclipse-temurin:21-jre`** — the exact base image already used by this handbook's own JVM chapters (see [Container Ergonomics](../jvm/jvm-flags-and-container-ergonomics.md)) — via `docker scout sbom` (Docker Scout v1.24.0):
+**Real SBOM extraction from `eclipse-temurin:21-jre`** — the exact base image already used by this handbook's own JVM chapters (see [Container Ergonomics](../../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md)) — via `docker scout sbom` (Docker Scout v1.24.0):
 
 ```
 $ docker scout sbom eclipse-temurin:21-jre --format list

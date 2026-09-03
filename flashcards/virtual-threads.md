@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Virtual Threads (Project Loom)
 
-**Canonical chapter:** [`handbook/concurrency/virtual-threads.md`](../handbook/concurrency/virtual-threads.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/virtual-threads.md`](../syllabus/02-java/concurrency/virtual-threads.md)
 
 ## Card: What a carrier does on virtual thread block
 
@@ -27,7 +27,7 @@ The core mechanism that makes virtual threads' concurrency benefit possible.
 Assuming all blocking operations behave this way, including inside `synchronized`.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/virtual-threads.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/virtual-threads.md#internal-implementation)
 
 ## Card: What causes pinning
 
@@ -44,7 +44,7 @@ The single most important migration hazard, with no compiler warning.
 Assuming `synchronized` "just works" under virtual threads with no downside.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/virtual-threads.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/virtual-threads.md#internal-implementation)
 
 ## Card: Why pooling virtual threads is wrong
 
@@ -61,4 +61,4 @@ A common instinct carried over from platform-thread practice that no longer appl
 Building a pool of virtual threads "to be safe," adding complexity for no benefit.
 
 **Related:**
-[Java Examples](../handbook/concurrency/virtual-threads.md#java-examples)
+[Java Examples](../syllabus/02-java/concurrency/virtual-threads.md#java-examples)

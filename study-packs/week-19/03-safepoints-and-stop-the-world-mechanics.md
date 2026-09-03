@@ -15,7 +15,7 @@ canonical: ../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md
 
 **IWI 5.00 · Advanced tier · Moderate interview frequency**
 
-**Canonical chapter:** [Safepoints and Stop-the-World Mechanics](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md). This file is the Week 19 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [Safepoints and Stop-the-World Mechanics](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md). This file is the Week 19 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** the evidence behind this summary is real, executed output from `practice/java/week-19/safepoints/` — three distinct real safepoint operation types from a single run.
 
@@ -40,54 +40,54 @@ canonical: ../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md
 
 ## 1. The concept
 
-A safepoint is the JVM's general mechanism for stopping all threads at a consistent, inspectable state — GC is the most common reason to request one, but far from the only one. → [Mental Model](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#mental-model).
+A safepoint is the JVM's general mechanism for stopping all threads at a consistent, inspectable state — GC is the most common reason to request one, but far from the only one. → [Mental Model](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#mental-model).
 
 ## 2. Why it exists
 
-Thread dumps, deoptimization, and class redefinition also need every thread stopped at a consistent state — the same underlying mechanism serves all of them, not just GC. → [Definition and Purpose](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#definition-and-purpose).
+Thread dumps, deoptimization, and class redefinition also need every thread stopped at a consistent state — the same underlying mechanism serves all of them, not just GC. → [Definition and Purpose](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#definition-and-purpose).
 
 ## 3. The measured evidence
 
-Real single-run evidence: `PrintThreads` (a `jcmd Thread.print` thread dump) took 84,083ns at safepoint; the immediately-following `FindDeadlocks` check took 1,083ns; `G1CollectFull` (`jcmd GC.run`) took 1,587,416ns — roughly a 1,500x cost range between the cheapest and most expensive operation, from the same real run. → [Internal Implementation](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#internal-implementation) has the full trace.
+Real single-run evidence: `PrintThreads` (a `jcmd Thread.print` thread dump) took 84,083ns at safepoint; the immediately-following `FindDeadlocks` check took 1,083ns; `G1CollectFull` (`jcmd GC.run`) took 1,587,416ns — roughly a 1,500x cost range between the cheapest and most expensive operation, from the same real run. → [Internal Implementation](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#internal-implementation) has the full trace.
 
 ## 4. Trade-offs
 
-The mechanism's generality is architecturally efficient but makes "a pause happened" ambiguous on its own — distinguishing cheap from expensive requires checking the specific logged operation. → [Trade-offs](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#trade-offs).
+The mechanism's generality is architecturally efficient but makes "a pause happened" ambiguous on its own — distinguishing cheap from expensive requires checking the specific logged operation. → [Trade-offs](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#trade-offs).
 
 ## 5. Interview questions
 
 1. A service shows an unexplained 2ms latency spike with no corresponding GC log entry. What would you check?
 2. Explain the difference between "time to reach safepoint" and "time at safepoint."
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#interview-questions).
 
 ## 6. Common mistakes
 
-Treating "safepoint" and "GC pause" as synonyms; assuming an unexplained pause with no GC entry must be unrelated to the JVM; conflating reaching-safepoint time with at-safepoint time. → [Common Mistakes](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#common-mistakes).
+Treating "safepoint" and "GC pause" as synonyms; assuming an unexplained pause with no GC entry must be unrelated to the JVM; conflating reaching-safepoint time with at-safepoint time. → [Common Mistakes](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#common-mistakes).
 
 ## 7. Staff-level discussion
 
-Defaults to checking the safepoint log (not just the GC log) for any unexplained pause, and audits diagnostic-tooling safepoint cost for extremely latency-sensitive services. → [Staff-Level Discussion](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#interview-answer-framework).
+Defaults to checking the safepoint log (not just the GC log) for any unexplained pause, and audits diagnostic-tooling safepoint cost for extremely latency-sensitive services. → [Staff-Level Discussion](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#interview-answer-framework).
 
 ## 8. Summary
 
-GC is one of several real safepoint-triggering operations. Measured directly: three operation types from one run spanning a ~1,500x real cost range, confirming "at safepoint" cost is operation-specific. → [Summary](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#summary).
+GC is one of several real safepoint-triggering operations. Measured directly: three operation types from one run spanning a ~1,500x real cost range, confirming "at safepoint" cost is operation-specific. → [Summary](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#summary).
 
 ## 9. Key Takeaways
 
-→ [Key Takeaways](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#key-takeaways).
 
 ## 10. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#cheat-sheet).
 
 ## 11. Flashcards
 
-→ [Flashcards](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#flashcards). Full week-level deck: `08-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#flashcards). Full week-level deck: `08-flashcards.md`.
 
 ## 12. Practice Exercises
 
-→ [Practice Exercises](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#practice-exercises) and [Solutions](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md#solutions). Reproducible demo: `practice/java/week-19/safepoints/`.
+→ [Practice Exercises](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#practice-exercises) and [Solutions](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#solutions). Reproducible demo: `practice/java/week-19/safepoints/`.
 
 ## 13. Additional Reading
 

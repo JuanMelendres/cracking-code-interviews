@@ -1,7 +1,7 @@
 # Atomics, CAS, and the ABA problem (T-405) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/concurrency/atomics-cas-and-the-aba-problem.md`](../../../../handbook/concurrency/atomics-cas-and-the-aba-problem.md)
+[`syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`](../../../../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md)
 (T-405). Three independent demos: real measured CAS-vs-lock throughput, a deterministic
 real reproduction of the ABA problem, and its real fix.
 

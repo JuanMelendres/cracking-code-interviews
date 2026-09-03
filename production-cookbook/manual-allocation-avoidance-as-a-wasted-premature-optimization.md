@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/escape-analysis-and-scalar-replacement.md
+  - ../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
 source: handbook/jvm/escape-analysis-and-scalar-replacement.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ This scenario is valuable specifically because it documents a *wasted* optimizat
 
 ## Related Handbook Chapters
 
-- [Escape Analysis and Scalar Replacement](../handbook/jvm/escape-analysis-and-scalar-replacement.md) — canonical scalar-replacement mechanics and premature-optimization anti-pattern used here.
+- [Escape Analysis and Scalar Replacement](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md) — canonical scalar-replacement mechanics and premature-optimization anti-pattern used here.

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: ForkJoinPool and Work-Stealing
 
-**Canonical chapter:** [`handbook/concurrency/forkjoinpool-and-work-stealing.md`](../handbook/concurrency/forkjoinpool-and-work-stealing.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md`](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md)
 
 ## Card: Own end vs. opposite end
 
@@ -27,7 +27,7 @@ The actual contention-minimization mechanism, not just "idle workers take work."
 Describing work-stealing as generic load balancing without the deque-end mechanism.
 
 **Related:**
-[Core Concepts](../handbook/concurrency/forkjoinpool-and-work-stealing.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md#core-concepts)
 
 ## Card: The shared common pool (and the one that isn't)
 
@@ -44,7 +44,7 @@ A real, easy-to-miss cross-feature contention risk for the first two — and an 
 Assuming every JDK concurrency feature "backed by a ForkJoinPool" shares the exact same instance.
 
 **Related:**
-[Production Scenarios](../handbook/concurrency/forkjoinpool-and-work-stealing.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md#production-scenarios)
 
 ## Card: Verifying stealing, not assuming it
 
@@ -61,4 +61,4 @@ Evidence over assumption — the same discipline this whole chapter is built on.
 Assuming stealing happens just because the API "supports" it, without checking.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/forkjoinpool-and-work-stealing.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md#internal-implementation)

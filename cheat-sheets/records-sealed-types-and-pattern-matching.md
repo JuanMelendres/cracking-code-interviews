@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Records, Sealed Types, and Pattern Matching
 
-**Canonical chapter:** [`handbook/java-core/records-sealed-types-and-pattern-matching.md`](../handbook/java-core/records-sealed-types-and-pattern-matching.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md`](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)
 
 ## Core Mental Model
 
@@ -61,4 +61,4 @@ A record trades extensibility and boilerplate for a compiler-enforced, transpare
 ## Related
 
 - `syllabus/04-software-design/design-patterns-applied.md`
-- `handbook/java-core/polymorphism-and-dynamic-dispatch.md`
+- `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md`

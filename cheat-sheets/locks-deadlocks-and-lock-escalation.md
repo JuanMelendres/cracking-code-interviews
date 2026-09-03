@@ -76,4 +76,4 @@ A lock is a promise, a deadlock is two promises that can't both be kept, and esc
 - `handbook/databases/isolation-levels-and-concurrency-anomalies.md`
 - `handbook/databases/optimistic-vs-pessimistic-locking.md`
 - `handbook/databases/mvcc-vacuum-and-bloat.md`
-- `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`
+- `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`

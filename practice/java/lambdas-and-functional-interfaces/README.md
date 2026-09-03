@@ -1,7 +1,7 @@
 # Lambdas and functional interfaces (T-108) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/lambdas-and-functional-interfaces.md`](../../../handbook/java-core/lambdas-and-functional-interfaces.md)
+[`syllabus/02-java/language-core/lambdas-and-functional-interfaces.md`](../../../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md)
 (T-108). Five independent pieces of evidence: real bytecode disassembly, two real compiler
 errors (and their real fixes), and a real method-reference-kinds demo.
 

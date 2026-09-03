@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # ArrayList and LinkedList Internals
 
-**Canonical chapter:** [`handbook/collections/arraylist-and-linkedlist-internals.md`](../handbook/collections/arraylist-and-linkedlist-internals.md)
+**Canonical chapter:** [`syllabus/02-java/collections/arraylist-and-linkedlist-internals.md`](../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md)
 
 ## Core Mental Model
 
@@ -86,4 +86,4 @@ ArrayList is 117.3x SLOWER for front-insertion
 
 ## Related
 
-- `handbook/collections/collection-selection-decision-matrix.md`
+- `syllabus/02-java/collections/collection-selection-decision-matrix.md`

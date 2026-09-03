@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # BlockingQueue Family and Producer-Consumer
 
-**Canonical chapter:** [`handbook/collections/blockingqueue-family.md`](../handbook/collections/blockingqueue-family.md)
+**Canonical chapter:** [`syllabus/02-java/collections/blockingqueue-family.md`](../syllabus/02-java/collections/blockingqueue-family.md)
 
 ## Core Mental Model
 
@@ -73,5 +73,5 @@ Both traces confirm the producer thread genuinely parks (`WAITING`, not a busy-l
 
 ## Related
 
-- `handbook/collections/concurrenthashmap-internals.md`
-- `handbook/concurrency/executors-and-thread-pool-sizing.md`
+- `syllabus/02-java/collections/concurrenthashmap-internals.md`
+- `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`

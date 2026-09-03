@@ -37,20 +37,20 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 4 | [Data Modelling and Explicit Join Tables](data-modelling-and-explicit-join-tables.md) | T-605/T-608 | 3 | `handbook/databases/data-modelling-and-explicit-join-tables.md` |
 | 5 | [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md) | T-614 | 3 | `handbook/databases/table-partitioning-and-sharding-strategies.md` |
 | 6 | [Zero-Downtime Schema Migration](zero-downtime-schema-migration.md) | T-616 | 3 | `handbook/databases/zero-downtime-schema-migration.md` |
-| 7 | [equals(), hashCode(), and Comparable Contracts](equals-hashcode-and-comparable-contracts.md) | T-101 | 3 | `handbook/java-core/equals-hashcode-and-comparable-contracts.md` |
-| 8 | [Exception Design and Hierarchy Strategy](exception-design-and-hierarchy-strategy.md) | T-105 | 3 | `handbook/java-core/exception-design-and-hierarchy-strategy.md` |
-| 9 | [Generics: Erasure, Variance, and PECS](generics-erasure-and-pecs.md) | T-104 | 3 | `handbook/java-core/generics-erasure-and-pecs.md` |
-| 10 | [Immutability and Defensive Copying](immutability-and-defensive-copying.md) | T-103 | 3 | `handbook/java-core/immutability-and-defensive-copying.md` |
-| 11 | [Streams and Collectors](streams-and-collectors.md) | T-107 | 3 | `handbook/java-core/streams-and-collectors.md` |
-| 12 | [HashMap Internals](hashmap-internals.md) | T-201 | 3 | `handbook/collections/hashmap-internals.md` |
-| 13 | [ArrayList and LinkedList Internals](arraylist-and-linkedlist-internals.md) | T-202 | 3 | `handbook/collections/arraylist-and-linkedlist-internals.md` |
-| 14 | [ConcurrentHashMap Internals](concurrenthashmap-internals.md) | T-205 | 3 | `handbook/collections/concurrenthashmap-internals.md` |
-| 15 | [BlockingQueue Family and Producer-Consumer](blockingqueue-family.md) | T-207 | 3 | `handbook/collections/blockingqueue-family.md` |
-| 16 | [Collection Selection Decision Matrix](collection-selection-decision-matrix.md) | T-209 | 3 | `handbook/collections/collection-selection-decision-matrix.md` |
-| 17 | [Java Memory Model and volatile](java-memory-model-and-volatile.md) | T-401 | 3 | `handbook/concurrency/java-memory-model-and-volatile.md` |
-| 18 | [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) | T-406 | 3 | `handbook/concurrency/executors-and-thread-pool-sizing.md` |
-| 19 | [Deadlock, Race Conditions, and Thread Diagnostics](deadlock-race-conditions-and-thread-diagnostics.md) | T-409 | 3 | `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
-| 20 | [Virtual Threads (Project Loom)](virtual-threads.md) | T-410 | 3 | `handbook/concurrency/virtual-threads.md` |
+| 7 | [equals(), hashCode(), and Comparable Contracts](equals-hashcode-and-comparable-contracts.md) | T-101 | 3 | `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
+| 8 | [Exception Design and Hierarchy Strategy](exception-design-and-hierarchy-strategy.md) | T-105 | 3 | `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
+| 9 | [Generics: Erasure, Variance, and PECS](generics-erasure-and-pecs.md) | T-104 | 3 | `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
+| 10 | [Immutability and Defensive Copying](immutability-and-defensive-copying.md) | T-103 | 3 | `syllabus/02-java/language-core/immutability-and-defensive-copying.md` |
+| 11 | [Streams and Collectors](streams-and-collectors.md) | T-107 | 3 | `syllabus/02-java/language-core/streams-and-collectors.md` |
+| 12 | [HashMap Internals](hashmap-internals.md) | T-201 | 3 | `syllabus/02-java/collections/hashmap-internals.md` |
+| 13 | [ArrayList and LinkedList Internals](arraylist-and-linkedlist-internals.md) | T-202 | 3 | `syllabus/02-java/collections/arraylist-and-linkedlist-internals.md` |
+| 14 | [ConcurrentHashMap Internals](concurrenthashmap-internals.md) | T-205 | 3 | `syllabus/02-java/collections/concurrenthashmap-internals.md` |
+| 15 | [BlockingQueue Family and Producer-Consumer](blockingqueue-family.md) | T-207 | 3 | `syllabus/02-java/collections/blockingqueue-family.md` |
+| 16 | [Collection Selection Decision Matrix](collection-selection-decision-matrix.md) | T-209 | 3 | `syllabus/02-java/collections/collection-selection-decision-matrix.md` |
+| 17 | [Java Memory Model and volatile](java-memory-model-and-volatile.md) | T-401 | 3 | `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` |
+| 18 | [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) | T-406 | 3 | `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md` |
+| 19 | [Deadlock, Race Conditions, and Thread Diagnostics](deadlock-race-conditions-and-thread-diagnostics.md) | T-409 | 3 | `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
+| 20 | [Virtual Threads (Project Loom)](virtual-threads.md) | T-410 | 3 | `syllabus/02-java/concurrency/virtual-threads.md` |
 | 21 | [Spring Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md) | T-501 | 3 | `handbook/spring/auto-configuration-and-bean-lifecycle.md` |
 | 22 | [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](transactional-proxy-mechanics-and-propagation.md) | T-504 | 4 | `handbook/spring/transactional-proxy-mechanics-and-propagation.md` |
 | 23 | [Spring Security Filter Chain](security-filter-chain.md) | T-511 | 3 | `handbook/spring/security-filter-chain.md` |
@@ -79,7 +79,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 46 | [Distributed Transactions: Saga, Outbox, and 2PC](distributed-transactions-saga-and-outbox.md) | T-618 | 4 | `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
 | 47 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 3 | `handbook/system-design/storage-selection-tradeoffs.md` |
 | 48 | [Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads](resilience-patterns.md) | T-515 | 3 | `handbook/system-design/resilience-patterns.md` |
-| 49 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 3 | `handbook/jvm/gc-fundamentals-and-log-analysis.md` |
+| 49 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 3 | `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md` |
 | 50 | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md) | T-512/T-513 | 4 | `handbook/security/oauth2-oidc-and-jwt.md` |
 | 51 | [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 3 | `handbook/testing/test-strategy-and-test-doubles.md` |
 | 52 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 3 | `handbook/testing/integration-testing-against-real-dependencies.md` |
@@ -95,17 +95,17 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 62 | [Secrets Management and Key Rotation](secrets-management-and-key-rotation.md) | T-1304 | 3 | `handbook/security/secrets-management-and-key-rotation.md` |
 | 63 | [Supply Chain Security, SBOM, and Dependency Risk](supply-chain-security-sbom-and-dependency-risk.md) | T-1306 | 3 | `handbook/security/supply-chain-security-sbom-and-dependency-risk.md` |
 | 64 | [Multi-Tenancy Isolation Models](multi-tenancy-isolation-models.md) | T-1307 | 3 | `handbook/security/multi-tenancy-isolation-models.md` |
-| 65 | [Object Layout, Headers, and Compressed Oops](object-layout-headers-and-compressed-oops.md) | T-302 | 3 | `handbook/jvm/object-layout-headers-and-compressed-oops.md` |
-| 66 | [GC Roots, Reachability, and Reference Strength](gc-roots-reachability-and-reference-strength.md) | T-303 | 3 | `handbook/jvm/gc-roots-reachability-and-reference-strength.md` |
-| 67 | [Memory Leak Diagnosis and Heap Dump Analysis](memory-leak-diagnosis-and-heap-dump-analysis.md) | T-307 | 3 | `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md` |
-| 68 | [Escape Analysis and Scalar Replacement](escape-analysis-and-scalar-replacement.md) | T-309 | 3 | `handbook/jvm/escape-analysis-and-scalar-replacement.md` |
-| 69 | [JVM Memory Layout and Runtime Regions](jvm-memory-layout-and-runtime-regions.md) | T-301 | 3 | `handbook/jvm/jvm-memory-layout-and-runtime-regions.md` |
-| 70 | [G1 Internals: Remembered Sets and Write Barriers](g1-remembered-sets-and-write-barriers.md) | T-304 | 3 | `handbook/jvm/g1-remembered-sets-and-write-barriers.md` |
-| 71 | [JIT: Tiered Compilation, Inlining, and Deoptimization](jit-tiered-compilation-and-deoptimization.md) | T-308 | 3 | `handbook/jvm/jit-tiered-compilation-and-deoptimization.md` |
-| 72 | [Safepoints and Stop-the-World Mechanics](safepoints-and-stop-the-world-mechanics.md) | T-310 | 3 | `handbook/jvm/safepoints-and-stop-the-world-mechanics.md` |
-| 73 | [ZGC and Shenandoah: Concurrent Collection](zgc-and-shenandoah-concurrent-collection.md) | T-305 | 3 | `handbook/jvm/zgc-and-shenandoah-concurrent-collection.md` |
-| 74 | [Native Memory, Direct Buffers, and Off-Heap](native-memory-direct-buffers-and-off-heap.md) | T-311 | 3 | `handbook/jvm/native-memory-direct-buffers-and-off-heap.md` |
-| 75 | [JVM Flags and Container Ergonomics](jvm-flags-and-container-ergonomics.md) | T-312 | 3 | `handbook/jvm/jvm-flags-and-container-ergonomics.md` |
+| 65 | [Object Layout, Headers, and Compressed Oops](object-layout-headers-and-compressed-oops.md) | T-302 | 3 | `syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md` |
+| 66 | [GC Roots, Reachability, and Reference Strength](gc-roots-reachability-and-reference-strength.md) | T-303 | 3 | `syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md` |
+| 67 | [Memory Leak Diagnosis and Heap Dump Analysis](memory-leak-diagnosis-and-heap-dump-analysis.md) | T-307 | 3 | `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` |
+| 68 | [Escape Analysis and Scalar Replacement](escape-analysis-and-scalar-replacement.md) | T-309 | 3 | `syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md` |
+| 69 | [JVM Memory Layout and Runtime Regions](jvm-memory-layout-and-runtime-regions.md) | T-301 | 3 | `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |
+| 70 | [G1 Internals: Remembered Sets and Write Barriers](g1-remembered-sets-and-write-barriers.md) | T-304 | 3 | `syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md` |
+| 71 | [JIT: Tiered Compilation, Inlining, and Deoptimization](jit-tiered-compilation-and-deoptimization.md) | T-308 | 3 | `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md` |
+| 72 | [Safepoints and Stop-the-World Mechanics](safepoints-and-stop-the-world-mechanics.md) | T-310 | 3 | `syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md` |
+| 73 | [ZGC and Shenandoah: Concurrent Collection](zgc-and-shenandoah-concurrent-collection.md) | T-305 | 3 | `syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md` |
+| 74 | [Native Memory, Direct Buffers, and Off-Heap](native-memory-direct-buffers-and-off-heap.md) | T-311 | 3 | `syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md` |
+| 75 | [JVM Flags and Container Ergonomics](jvm-flags-and-container-ergonomics.md) | T-312 | 3 | `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` |
 | 76 | [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) | T-514 | 3 | `handbook/spring/spring-cache-abstraction-and-pitfalls.md` |
 | 77 | [Spring Bean Scopes and Proxy Modes](spring-bean-scopes-and-proxy-modes.md) | T-502 | 3 | `handbook/spring/spring-bean-scopes-and-proxy-modes.md` |
 | 78 | [Spring Testing: Slices and Context Caching](spring-testing-slices-and-context-caching.md) | T-517 | 3 | `handbook/spring/spring-testing-slices-and-context-caching.md` |
@@ -116,9 +116,9 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 83 | [Hibernate Second-Level and Query Cache](hibernate-second-level-and-query-cache.md) | T-603 | 3 | `handbook/databases/hibernate-second-level-and-query-cache.md` |
 | 84 | [Search and Indexing Systems](search-and-indexing-systems.md) | T-810 | 3 | `handbook/system-design/search-and-indexing-systems.md` |
 | 85 | [The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation](twelve-factor-config.md) | T-1008 | 3 | `handbook/system-design/twelve-factor-config.md` |
-| 86 | [ThreadLocal-Mediated Classloader Leaks](threadlocal-mediated-classloader-leaks.md) | T-413 | 2 | `handbook/concurrency/threadlocal-mediated-classloader-leaks.md` |
-| 87 | [VarHandles, Unsafe, and Their Replacement](varhandles-and-unsafe.md) | T-415 | 3 | `handbook/concurrency/varhandles-and-unsafe.md` |
-| 88 | [Foreign Function & Memory API](foreign-function-and-memory-api.md) | T-416 | 1 | `handbook/concurrency/foreign-function-and-memory-api.md` |
+| 86 | [ThreadLocal-Mediated Classloader Leaks](threadlocal-mediated-classloader-leaks.md) | T-413 | 2 | `syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md` |
+| 87 | [VarHandles, Unsafe, and Their Replacement](varhandles-and-unsafe.md) | T-415 | 3 | `syllabus/02-java/concurrency/varhandles-and-unsafe.md` |
+| 88 | [Foreign Function & Memory API](foreign-function-and-memory-api.md) | T-416 | 1 | `syllabus/02-java/concurrency/foreign-function-and-memory-api.md` |
 | 89 | [Containers & Image Internals](container-image-internals.md) | T-1001 | 3 | `handbook/cloud/container-image-internals.md` |
 | 90 | [Capacity Planning & Headroom](capacity-planning-and-headroom.md) | T-1208 | 3 | `handbook/performance/capacity-planning-and-headroom.md` |
 | 91 | [Benchmarking & JMH Pitfalls](benchmarking-and-jmh-pitfalls.md) | T-1203 | 3 | `handbook/jvm/benchmarking-and-jmh-pitfalls.md` |
@@ -140,33 +140,33 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 107 | [Load Balancing, Service Discovery, and Health Checking](load-balancing-service-discovery-and-health-checking.md) | T-805 | 3 | `handbook/system-design/load-balancing-service-discovery-and-health-checking.md` |
 | 108 | [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md) | T-613 | 3 | `handbook/databases/locks-deadlocks-and-lock-escalation.md` |
 | 109 | [Schema Registry and Compatibility Evolution](schema-registry-and-compatibility-evolution.md) | T-708 | 3 | `handbook/kafka/schema-registry-and-compatibility-evolution.md` |
-| 110 | [CompletableFuture and Async Composition](completablefuture-and-async-composition.md) | T-407 | 3 | `handbook/concurrency/completablefuture-and-async-composition.md` |
+| 110 | [CompletableFuture and Async Composition](completablefuture-and-async-composition.md) | T-407 | 3 | `syllabus/02-java/concurrency/completablefuture-and-async-composition.md` |
 | 111 | [Connection Pooling and Sizing (HikariCP)](connection-pooling-and-sizing.md) | T-607 | 3 | `handbook/databases/connection-pooling-and-sizing.md` |
 | 112 | [Modular Monolith as a Deliberate Choice](modular-monolith-as-a-deliberate-choice.md) | T-910 | 3 | `handbook/architecture/modular-monolith-as-a-deliberate-choice.md` |
 | 113 | [Messaging Patterns and Change Data Capture](messaging-patterns-and-change-data-capture.md) | T-710 | 3 | `handbook/system-design/messaging-patterns-and-change-data-capture.md` |
 | 114 | [Architecture Decision Records](architecture-decision-records.md) | T-916 | 3 | `handbook/architecture/architecture-decision-records.md` |
 | 115 | [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) | T-905 | 3 | `handbook/architecture/event-sourcing-and-its-real-costs.md` |
-| 116 | [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) | T-405 | 3 | `handbook/concurrency/atomics-cas-and-the-aba-problem.md` |
+| 116 | [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) | T-405 | 3 | `syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md` |
 | 117 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 4 | `syllabus/04-software-design/design-patterns-applied.md` |
-| 118 | [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) | T-404 | 3 | `handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
-| 119 | [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) | T-102 | 3 | `handbook/java-core/polymorphism-and-dynamic-dispatch.md` |
+| 118 | [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) | T-404 | 3 | `syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
+| 119 | [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) | T-102 | 3 | `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md` |
 | 120 | [Hibernate Flush Modes and Batch Writes](hibernate-flush-modes-and-batch-writes.md) | T-606 | 3 | `handbook/databases/hibernate-flush-modes-and-batch-writes.md` |
-| 121 | [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) | T-108 | 3 | `handbook/java-core/lambdas-and-functional-interfaces.md` |
-| 122 | [Structured Concurrency](structured-concurrency.md) | T-411 | 3 | `handbook/concurrency/structured-concurrency.md` |
-| 123 | [TreeMap, TreeSet, and the Navigable Hierarchy](treemap-treeset-and-navigable-hierarchy.md) | T-203 | 2 | `handbook/collections/treemap-treeset-and-navigable-hierarchy.md` |
-| 124 | [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) | T-208 | 3 | `handbook/collections/fail-fast-vs-weakly-consistent-iterators.md` |
-| 125 | [CopyOnWriteArrayList and Copy-on-Write Trade-offs](copyonwritearraylist-and-copy-on-write-tradeoffs.md) | T-206 | 3 | `handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md` |
-| 126 | [ForkJoinPool and Work-Stealing](forkjoinpool-and-work-stealing.md) | T-408 | 3 | `handbook/concurrency/forkjoinpool-and-work-stealing.md` |
-| 127 | [Strings: Interning, Compact Strings, and Builders](strings-interning-compact-strings-and-builders.md) | T-106 | 3 | `handbook/java-core/strings-interning-compact-strings-and-builders.md` |
-| 128 | [ArrayDeque Internals and the Legacy Stack/Vector Problem](arraydeque-internals-and-the-legacy-stack-problem.md) | T-204 | 3 | `handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md` |
-| 129 | [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) | T-113 | 3 | `handbook/java-core/reflection-and-dynamic-proxies.md` |
-| 130 | [Optional and Null Strategy](optional-and-null-strategy.md) | T-109 | 3 | `handbook/java-core/optional-and-null-strategy.md` |
-| 131 | [ClassLoaders and Class Initialization](classloaders-and-class-initialization.md) | T-114 | 3 | `handbook/java-core/classloaders-and-class-initialization.md` |
-| 132 | [Scoped Values and ThreadLocal Migration](scoped-values-and-threadlocal-migration.md) | T-412 | 3 | `handbook/concurrency/scoped-values-and-threadlocal-migration.md` |
-| 133 | [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md) | T-110 | 2 | `handbook/java-core/records-sealed-types-and-pattern-matching.md` |
-| 134 | [Annotations and Annotation Processing](annotations-and-annotation-processing.md) | T-112 | 3 | `handbook/java-core/annotations-and-annotation-processing.md` |
-| 135 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 3 | `handbook/java-core/enums-enummap-and-enumset.md` |
-| 136 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 3 | `handbook/java-core/serialization-hazards-and-alternatives.md` |
+| 121 | [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) | T-108 | 3 | `syllabus/02-java/language-core/lambdas-and-functional-interfaces.md` |
+| 122 | [Structured Concurrency](structured-concurrency.md) | T-411 | 3 | `syllabus/02-java/concurrency/structured-concurrency.md` |
+| 123 | [TreeMap, TreeSet, and the Navigable Hierarchy](treemap-treeset-and-navigable-hierarchy.md) | T-203 | 2 | `syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md` |
+| 124 | [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) | T-208 | 3 | `syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md` |
+| 125 | [CopyOnWriteArrayList and Copy-on-Write Trade-offs](copyonwritearraylist-and-copy-on-write-tradeoffs.md) | T-206 | 3 | `syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md` |
+| 126 | [ForkJoinPool and Work-Stealing](forkjoinpool-and-work-stealing.md) | T-408 | 3 | `syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md` |
+| 127 | [Strings: Interning, Compact Strings, and Builders](strings-interning-compact-strings-and-builders.md) | T-106 | 3 | `syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md` |
+| 128 | [ArrayDeque Internals and the Legacy Stack/Vector Problem](arraydeque-internals-and-the-legacy-stack-problem.md) | T-204 | 3 | `syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md` |
+| 129 | [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) | T-113 | 3 | `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md` |
+| 130 | [Optional and Null Strategy](optional-and-null-strategy.md) | T-109 | 3 | `syllabus/02-java/language-core/optional-and-null-strategy.md` |
+| 131 | [ClassLoaders and Class Initialization](classloaders-and-class-initialization.md) | T-114 | 3 | `syllabus/02-java/language-core/classloaders-and-class-initialization.md` |
+| 132 | [Scoped Values and ThreadLocal Migration](scoped-values-and-threadlocal-migration.md) | T-412 | 3 | `syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md` |
+| 133 | [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md) | T-110 | 2 | `syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md` |
+| 134 | [Annotations and Annotation Processing](annotations-and-annotation-processing.md) | T-112 | 3 | `syllabus/02-java/language-core/annotations-and-annotation-processing.md` |
+| 135 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 3 | `syllabus/02-java/language-core/enums-enummap-and-enumset.md` |
+| 136 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 3 | `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md` |
 | 137 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | 2 | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
 
 ## How this relates to other deliverables

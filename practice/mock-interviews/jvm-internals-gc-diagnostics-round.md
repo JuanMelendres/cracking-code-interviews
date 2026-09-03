@@ -16,11 +16,11 @@ competencies:
   - Container-aware heap-sizing defaults
   - Deoptimization as a non-GC latency cause
 related:
-  - ../../handbook/jvm/g1-remembered-sets-and-write-barriers.md
-  - ../../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md
-  - ../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md
-  - ../../handbook/jvm/jvm-flags-and-container-ergonomics.md
-  - ../../handbook/jvm/jit-tiered-compilation-and-deoptimization.md
+  - ../../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md
+  - ../../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md
+  - ../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md
+  - ../../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md
+  - ../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
 source: ../../study-packs/week-16/08-week-16-mock-interview.md
 official_references: []
 ---
@@ -45,11 +45,11 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| G1 RSet/write-barrier diagnostics | Q1, Q6 | [G1 Internals: Remembered Sets and Write Barriers](../../handbook/jvm/g1-remembered-sets-and-write-barriers.md) |
-| Memory-leak diagnosis | Q2 | [Memory Leak Diagnosis and Heap Dump Analysis](../../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md) |
-| Stack vs heap independence | Q3 | [JVM Memory Layout and Runtime Regions](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md) |
-| Container-aware heap sizing | Q4 | [JVM Flags and Container Ergonomics](../../handbook/jvm/jvm-flags-and-container-ergonomics.md) |
-| Deoptimization as a latency cause | Q5 | [JIT: Tiered Compilation, Inlining, and Deoptimization](../../handbook/jvm/jit-tiered-compilation-and-deoptimization.md) |
+| G1 RSet/write-barrier diagnostics | Q1, Q6 | [G1 Internals: Remembered Sets and Write Barriers](../../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md) |
+| Memory-leak diagnosis | Q2 | [Memory Leak Diagnosis and Heap Dump Analysis](../../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md) |
+| Stack vs heap independence | Q3 | [JVM Memory Layout and Runtime Regions](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md) |
+| Container-aware heap sizing | Q4 | [JVM Flags and Container Ergonomics](../../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md) |
+| Deoptimization as a latency cause | Q5 | [JIT: Tiered Compilation, Inlining, and Deoptimization](../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md) |
 | Cross-topic synthesis | Q7 | All five, above |
 
 ## Interviewer Opening Script
@@ -144,9 +144,9 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 or Q6 → re-read [G1 Internals: Remembered Sets and Write Barriers](../../handbook/jvm/g1-remembered-sets-and-write-barriers.md) in full, including the measured dirty-card evidence.
-- Any score ≤ 2 on Q2 → re-read [Memory Leak Diagnosis and Heap Dump Analysis](../../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md)'s diagnosis runbook and redo the histogram-sampling exercise.
-- Any score ≤ 2 on Q3 → re-read [JVM Memory Layout and Runtime Regions](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md)'s stack-independence measurement.
-- Any score ≤ 2 on Q4 → re-read [JVM Flags and Container Ergonomics](../../handbook/jvm/jvm-flags-and-container-ergonomics.md)'s `MaxRAMPercentage` material.
-- Any score ≤ 2 on Q5 → re-read [JIT: Tiered Compilation, Inlining, and Deoptimization](../../handbook/jvm/jit-tiered-compilation-and-deoptimization.md)'s deoptimization-cost measurements.
+- Any score ≤ 2 on Q1 or Q6 → re-read [G1 Internals: Remembered Sets and Write Barriers](../../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md) in full, including the measured dirty-card evidence.
+- Any score ≤ 2 on Q2 → re-read [Memory Leak Diagnosis and Heap Dump Analysis](../../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md)'s diagnosis runbook and redo the histogram-sampling exercise.
+- Any score ≤ 2 on Q3 → re-read [JVM Memory Layout and Runtime Regions](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md)'s stack-independence measurement.
+- Any score ≤ 2 on Q4 → re-read [JVM Flags and Container Ergonomics](../../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md)'s `MaxRAMPercentage` material.
+- Any score ≤ 2 on Q5 → re-read [JIT: Tiered Compilation, Inlining, and Deoptimization](../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md)'s deoptimization-cost measurements.
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation.

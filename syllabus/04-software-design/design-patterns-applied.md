@@ -16,10 +16,10 @@ target_levels:
   - staff
 estimated_reading_minutes: 35
 prerequisites:
-  - ../../handbook/java-core/polymorphism-and-dynamic-dispatch.md
+  - ../02-java/language-core/polymorphism-and-dynamic-dispatch.md
 related:
   - ../../handbook/architecture/clean-hexagonal-architecture.md
-  - ../../handbook/concurrency/java-memory-model-and-volatile.md
+  - ../02-java/concurrency/java-memory-model-and-volatile.md
   - ../../handbook/spring/transactional-proxy-mechanics-and-propagation.md
   - ../../handbook/spring/security-filter-chain.md
 official_references:
@@ -148,7 +148,7 @@ No `EmailSlackNotifier`, `EmailSmsNotifier`, or `EmailSlackSmsNotifier` class ex
 
 ### Singleton's thread-safety pitfall, measured directly
 
-A naive, unsynchronized lazy Singleton, raced by 30 threads all calling `getInstance()` for the first time simultaneously (via a `CountDownLatch` releasing every thread at once, with a small artificial delay inside the constructor to widen the race window enough to reproduce reliably in one run — the same widening technique this handbook's [Java Memory Model](../../handbook/concurrency/java-memory-model-and-volatile.md) chapter uses for its own visibility demos):
+A naive, unsynchronized lazy Singleton, raced by 30 threads all calling `getInstance()` for the first time simultaneously (via a `CountDownLatch` releasing every thread at once, with a small artificial delay inside the constructor to widen the race window enough to reproduce reliably in one run — the same widening technique this handbook's [Java Memory Model](../02-java/concurrency/java-memory-model-and-volatile.md) chapter uses for its own visibility demos):
 
 ```
 == Naive lazy singleton, 30 threads racing on the FIRST call to getInstance() ==
@@ -309,7 +309,7 @@ enum ConfigRegistry {
 - Reaching for a pattern because it sounds sophisticated, on a problem with no real variation to isolate — the most common Staff-level critique of pattern overuse.
 - Implementing a lazy Singleton with a plain `if (instance == null)` check and no synchronization, assuming single-threaded intuition applies to concurrent first access.
 - Using inheritance (subclassing) to combine optional behaviors, discovering the subclass count grows combinatorially as more optional behaviors are added.
-- Treating a `final` field initialized once in a constructor as automatically thread-safe for *publication* of the object itself — construction and safe publication are related but distinct concerns (see [Java Memory Model](../../handbook/concurrency/java-memory-model-and-volatile.md)).
+- Treating a `final` field initialized once in a constructor as automatically thread-safe for *publication* of the object itself — construction and safe publication are related but distinct concerns (see [Java Memory Model](../02-java/concurrency/java-memory-model-and-volatile.md)).
 
 ## Anti-Patterns
 
@@ -368,7 +368,7 @@ Correctly explains the thread-safety pitfall in a naive lazy Singleton, and name
 
 ### Staff-Level Discussion
 
-The Staff-level signal in this domain isn't knowing more pattern names — it's judgment about when *not* to use one. A Staff engineer reviewing a design that reaches for Strategy with one real implementation, or Builder on a two-field record, flags it as unnecessary indirection just as readily as they'd flag a missing pattern where genuine variation is being handled with ad hoc conditionals. The Singleton thread-safety pitfall specifically connects to a broader Staff-level pattern this handbook covers elsewhere: any shared mutable state reachable from multiple threads needs an explicit correctness argument, not an assumption that "it probably only runs once" — the same discipline behind [Java Memory Model and `volatile`](../../handbook/concurrency/java-memory-model-and-volatile.md) and behind why Spring's `@Transactional` proxy mechanics matter for correctness, not just convention.
+The Staff-level signal in this domain isn't knowing more pattern names — it's judgment about when *not* to use one. A Staff engineer reviewing a design that reaches for Strategy with one real implementation, or Builder on a two-field record, flags it as unnecessary indirection just as readily as they'd flag a missing pattern where genuine variation is being handled with ad hoc conditionals. The Singleton thread-safety pitfall specifically connects to a broader Staff-level pattern this handbook covers elsewhere: any shared mutable state reachable from multiple threads needs an explicit correctness argument, not an assumption that "it probably only runs once" — the same discipline behind [Java Memory Model and `volatile`](../02-java/concurrency/java-memory-model-and-volatile.md) and behind why Spring's `@Transactional` proxy mechanics matter for correctness, not just convention.
 
 ## Interview Questions
 

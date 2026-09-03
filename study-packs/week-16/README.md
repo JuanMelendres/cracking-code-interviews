@@ -18,7 +18,7 @@ JVM was the thinnest handbook domain in the program — only 1 of 12 register to
 
 ## Prerequisites
 
-Week 9's GC Fundamentals and Log Analysis chapter (`handbook/jvm/gc-fundamentals-and-log-analysis.md`) — this week's G1 remembered-sets chapter specifically builds on its region/young/mixed-collection vocabulary. Week 15's container-ergonomics coverage (`study-packs/week-15/01-...md`) for the memory-limit half of container awareness; this week extends it into CPU detection and flag-level heap-percentage tuning.
+Week 9's GC Fundamentals and Log Analysis chapter (`syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`) — this week's G1 remembered-sets chapter specifically builds on its region/young/mixed-collection vocabulary. Week 15's container-ergonomics coverage (`study-packs/week-15/01-...md`) for the memory-limit half of container awareness; this week extends it into CPU detection and flag-level heap-percentage tuning.
 
 ## Schedule
 
@@ -29,11 +29,11 @@ See `10-week-16-checklist.md` for the day-by-day breakdown.
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-g1-remembered-sets-and-write-barriers.md` | T-304 — summary + link; full chapter canonical at `handbook/jvm/g1-remembered-sets-and-write-barriers.md` |
-| 3 | `02-memory-leak-diagnosis-and-heap-dump-analysis.md` | T-307 — summary + link; full chapter canonical at `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md` |
-| 4 | `03-jvm-memory-layout-and-runtime-regions.md` | T-301 — summary + link; full chapter canonical at `handbook/jvm/jvm-memory-layout-and-runtime-regions.md` |
-| 5 | `04-jvm-flags-and-container-ergonomics.md` | T-312 — summary + link; full chapter canonical at `handbook/jvm/jvm-flags-and-container-ergonomics.md` |
-| 6 | `05-jit-tiered-compilation-and-deoptimization.md` | T-308 — summary + link; full chapter canonical at `handbook/jvm/jit-tiered-compilation-and-deoptimization.md` |
+| 2 | `01-g1-remembered-sets-and-write-barriers.md` | T-304 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md` |
+| 3 | `02-memory-leak-diagnosis-and-heap-dump-analysis.md` | T-307 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` |
+| 4 | `03-jvm-memory-layout-and-runtime-regions.md` | T-301 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |
+| 5 | `04-jvm-flags-and-container-ergonomics.md` | T-312 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` |
+| 6 | `05-jit-tiered-compilation-and-deoptimization.md` | T-308 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md` |
 | 7 | `06-hands-on-lab.md` | 6 labs reproducing this week's real flag-driven demonstrations |
 | 8 | `07-flashcards.md` | 15 cards |
 | 9 | `08-week-16-mock-interview.md` | 45-min JVM internals technical round |

@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Executors and Thread Pool Sizing
 
-**Canonical chapter:** [`handbook/concurrency/executors-and-thread-pool-sizing.md`](../handbook/concurrency/executors-and-thread-pool-sizing.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md)
 
 ## Core Mental Model
 
@@ -74,5 +74,5 @@ Bounded queue: 2 workers, 5-slot queue, AbortPolicy, 20 tasks submitted
 ## Related
 
 - [Java Memory Model and volatile](java-memory-model-and-volatile.md)
-- `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`
-- `handbook/concurrency/virtual-threads.md`
+- `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`
+- `syllabus/02-java/concurrency/virtual-threads.md`

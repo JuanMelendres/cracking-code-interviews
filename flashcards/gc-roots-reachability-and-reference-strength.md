@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: GC Roots, Reachability, and Reference Strength
 
-**Canonical chapter:** [`handbook/jvm/gc-roots-reachability-and-reference-strength.md`](../handbook/jvm/gc-roots-reachability-and-reference-strength.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md`](../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md)
 
 ## Card: What GC roots are, concretely
 
@@ -27,7 +27,7 @@ Grounds "reachability" in a concrete, enumerable set rather than a vague abstrac
 Describing GC roots only abstractly ("things the GC starts from") without naming the concrete categories.
 
 **Related:**
-[handbook/jvm/gc-roots-reachability-and-reference-strength.md](../handbook/jvm/gc-roots-reachability-and-reference-strength.md)
+[handbook/jvm/gc-roots-reachability-and-reference-strength.md](../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md)
 
 ## Card: WeakReference vs SoftReference
 
@@ -44,7 +44,7 @@ The precise distinction between the two most commonly conflated reference-streng
 Treating `WeakReference` and `SoftReference` as interchangeable, pressure-aware caching mechanisms.
 
 **Related:**
-[handbook/jvm/gc-roots-reachability-and-reference-strength.md](../handbook/jvm/gc-roots-reachability-and-reference-strength.md)
+[handbook/jvm/gc-roots-reachability-and-reference-strength.md](../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md)
 
 ## Card: Why PhantomReference.get() never returns the referent
 
@@ -61,4 +61,4 @@ Explains the specific design intent behind `PhantomReference`, distinct from the
 Assuming `PhantomReference` behaves like `WeakReference` but with a different clearing timing, rather than a fundamentally different access contract.
 
 **Related:**
-[handbook/jvm/gc-roots-reachability-and-reference-strength.md](../handbook/jvm/gc-roots-reachability-and-reference-strength.md)
+[handbook/jvm/gc-roots-reachability-and-reference-strength.md](../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md)

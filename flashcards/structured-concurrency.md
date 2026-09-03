@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Structured Concurrency
 
-**Canonical chapter:** [`handbook/concurrency/structured-concurrency.md`](../handbook/concurrency/structured-concurrency.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/structured-concurrency.md`](../syllabus/02-java/concurrency/structured-concurrency.md)
 
 ## Card: What "structured" actually guarantees
 
@@ -27,7 +27,7 @@ The real, enforced guarantee `CompletableFuture` doesn't provide.
 Treating it as a stylistic API difference rather than an enforced lifetime guarantee.
 
 **Related:**
-[Core Concepts](../handbook/concurrency/structured-concurrency.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/structured-concurrency.md#core-concepts)
 
 ## Card: The orphaned-task cost
 
@@ -44,7 +44,7 @@ The real, quantified problem structured concurrency exists to solve.
 Assuming `CompletableFuture.allOf()` provides cancellation-on-failure semantics.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/structured-concurrency.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/structured-concurrency.md#internal-implementation)
 
 ## Card: Version status
 
@@ -61,4 +61,4 @@ Production adoption is a deliberate decision, not a default.
 Assuming any documented JDK API is automatically production-stable.
 
 **Related:**
-[Version status callout](../handbook/concurrency/structured-concurrency.md#structured-concurrency)
+[Version status callout](../syllabus/02-java/concurrency/structured-concurrency.md#structured-concurrency)

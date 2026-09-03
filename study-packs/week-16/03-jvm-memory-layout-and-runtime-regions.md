@@ -15,7 +15,7 @@ canonical: ../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md
 
 **IWI 6.30 · Foundation tier · Very High interview frequency**
 
-**Canonical chapter:** [JVM Memory Layout and Runtime Regions](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md). This file is the Week 16 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [JVM Memory Layout and Runtime Regions](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md). This file is the Week 16 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** every trace behind this summary is real, executed output from `practice/java/week-16/memory-layout/` on OpenJDK 21.0.12.
 
@@ -40,54 +40,54 @@ canonical: ../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md
 
 ## 1. The concept
 
-The JVM Specification defines distinct runtime data areas — heap (shared, objects), metaspace (shared, class metadata, native-memory-backed since Java 8), and per-thread JVM stacks — not one memory pool. Each has its own sizing flag and its own specific failure mode. → [Definition and Purpose](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#definition-and-purpose).
+The JVM Specification defines distinct runtime data areas — heap (shared, objects), metaspace (shared, class metadata, native-memory-backed since Java 8), and per-thread JVM stacks — not one memory pool. Each has its own sizing flag and its own specific failure mode. → [Definition and Purpose](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Object data, class metadata, and call-frame bookkeeping have genuinely different access patterns and lifetimes — treating them as one pool would prevent independent tuning and diagnosis. → [Definition and Purpose](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#definition-and-purpose).
+Object data, class metadata, and call-frame bookkeeping have genuinely different access patterns and lifetimes — treating them as one pool would prevent independent tuning and diagnosis. → [Definition and Purpose](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#definition-and-purpose).
 
 ## 3. The measured evidence
 
-Real metaspace exhaustion: 5,275 dynamically-generated classes triggered `OutOfMemoryError: Metaspace` with heap usage at only 18MB of a 512MB max — proof the two regions are independent. Real stack-depth scaling: recursion depth reached before `StackOverflowError` scaled from 1,479 (Xss=256k) to 413,005 (Xss=8m), heap held constant throughout. → [Internal Implementation](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#internal-implementation) has the full trace.
+Real metaspace exhaustion: 5,275 dynamically-generated classes triggered `OutOfMemoryError: Metaspace` with heap usage at only 18MB of a 512MB max — proof the two regions are independent. Real stack-depth scaling: recursion depth reached before `StackOverflowError` scaled from 1,479 (Xss=256k) to 413,005 (Xss=8m), heap held constant throughout. → [Internal Implementation](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#internal-implementation) has the full trace.
 
 ## 4. Trade-offs
 
-A small `-Xss` conserves memory per thread at the cost of a lower safe-recursion ceiling; total stack reservation scales with `threads × -Xss`, independent of heap size. → [Trade-offs](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#trade-offs).
+A small `-Xss` conserves memory per thread at the cost of a lower safe-recursion ceiling; total stack reservation scales with `threads × -Xss`, independent of heap size. → [Trade-offs](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#trade-offs).
 
 ## 5. Interview questions
 
 1. A process throws `StackOverflowError` on one endpoint, but heap and overall memory look normal. What's happening, and what do you check?
 2. A service throws `OutOfMemoryError: Metaspace` after running for a while, but heap occupancy stayed low. Diagnose it.
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#interview-questions).
 
 ## 6. Common mistakes
 
-Treating `-Xmx` as controlling total JVM memory; raising `-Xmx` in response to a `StackOverflowError` or metaspace OOM (zero effect on either); not accounting for `threads × -Xss` at high thread counts. → [Common Mistakes](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#common-mistakes).
+Treating `-Xmx` as controlling total JVM memory; raising `-Xmx` in response to a `StackOverflowError` or metaspace OOM (zero effect on either); not accounting for `threads × -Xss` at high thread counts. → [Common Mistakes](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#common-mistakes).
 
 ## 7. Staff-level discussion
 
-A migration to a much-higher-thread-count concurrency model has a real, calculable `threads × -Xss` memory cost that should be modeled explicitly, not discovered via an incident. → [Staff-Level Discussion](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#interview-answer-framework).
+A migration to a much-higher-thread-count concurrency model has a real, calculable `threads × -Xss` memory cost that should be modeled explicitly, not discovered via an incident. → [Staff-Level Discussion](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#interview-answer-framework).
 
 ## 8. Summary
 
-Heap, metaspace, and per-thread stacks are independently exhaustible regions, each with its own flag and failure mode. Measured directly: metaspace OOM at 5,275 classes with heap at 18MB/512MB; stack depth scaling 1,479 → 413,005 across `-Xss` values, heap constant. → [Summary](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#summary).
+Heap, metaspace, and per-thread stacks are independently exhaustible regions, each with its own flag and failure mode. Measured directly: metaspace OOM at 5,275 classes with heap at 18MB/512MB; stack depth scaling 1,479 → 413,005 across `-Xss` values, heap constant. → [Summary](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#summary).
 
 ## 9. Key Takeaways
 
-→ [Key Takeaways](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#key-takeaways).
 
 ## 10. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#cheat-sheet).
 
 ## 11. Flashcards
 
-→ [Flashcards](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 12. Practice Exercises
 
-→ [Practice Exercises](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#practice-exercises) and [Solutions](../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md#solutions). Reproducible demos: `practice/java/week-16/memory-layout/`.
+→ [Practice Exercises](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#practice-exercises) and [Solutions](../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#solutions). Reproducible demos: `practice/java/week-16/memory-layout/`.
 
 ## 13. Additional Reading
 

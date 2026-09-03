@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: equals(), hashCode(), and Comparable Contracts
 
-**Canonical chapter:** [`handbook/java-core/equals-hashcode-and-comparable-contracts.md`](../handbook/java-core/equals-hashcode-and-comparable-contracts.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md`](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md)
 
 ## Card: The equals/hashCode contract
 
@@ -27,7 +27,7 @@ The rule every hash-based collection assumes holds.
 Overriding one without the other.
 
 **Related:**
-[Definition and Purpose](../handbook/java-core/equals-hashcode-and-comparable-contracts.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md#definition-and-purpose)
 
 ## Card: What breaks a HashSet silently
 
@@ -44,7 +44,7 @@ The most common real-world instance of this contract violation.
 Assuming a broken contract produces a visible error.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/equals-hashcode-and-comparable-contracts.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md#internal-implementation)
 
 ## Card: What TreeSet uses for duplicate detection
 
@@ -61,4 +61,4 @@ A `Comparable` inconsistent with `equals()` can silently drop a genuinely distin
 Assuming `TreeSet` falls back to `equals()` the way `HashSet` does within a bucket.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/equals-hashcode-and-comparable-contracts.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md#internal-implementation)

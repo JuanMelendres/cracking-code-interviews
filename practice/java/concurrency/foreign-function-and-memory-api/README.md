@@ -1,7 +1,7 @@
 # Foreign Function & Memory API (T-416) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/concurrency/foreign-function-and-memory-api.md`](../../../../handbook/concurrency/foreign-function-and-memory-api.md)
+[`syllabus/02-java/concurrency/foreign-function-and-memory-api.md`](../../../../syllabus/02-java/concurrency/foreign-function-and-memory-api.md)
 (T-416). No JNI, no `sun.misc.Unsafe`, no `.so`/`.dylib` of our own — real
 off-heap memory managed by a real `Arena`, a real safety exception on
 use-after-close, and a real, direct call into libc's `strlen` with zero

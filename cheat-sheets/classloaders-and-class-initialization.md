@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # ClassLoaders and Class Initialization
 
-**Canonical chapter:** [`handbook/java-core/classloaders-and-class-initialization.md`](../handbook/java-core/classloaders-and-class-initialization.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/classloaders-and-class-initialization.md`](../syllabus/02-java/language-core/classloaders-and-class-initialization.md)
 
 ## Core Mental Model
 
@@ -55,6 +55,6 @@ A class's real identity in the JVM isn't its name — it's the pair `(fully-qual
 
 ## Related
 
-- `handbook/jvm/jvm-memory-layout-and-runtime-regions.md`
-- `handbook/java-core/annotations-and-annotation-processing.md`
-- `handbook/java-core/reflection-and-dynamic-proxies.md`
+- `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md`
+- `syllabus/02-java/language-core/annotations-and-annotation-processing.md`
+- `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`

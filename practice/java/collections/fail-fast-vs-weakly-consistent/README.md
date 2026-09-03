@@ -1,7 +1,7 @@
 # Fail-fast vs. weakly-consistent iterators (T-208) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/collections/fail-fast-vs-weakly-consistent-iterators.md`](../../../../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md)
+[`syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md`](../../../../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md)
 (T-208). Three independent demos: a real, reproduced `ConcurrentModificationException`
 and its best-effort quirk, real reflective proof of the `modCount` mechanism, and real,
 latch-forced concurrent iteration on `CopyOnWriteArrayList`/`ConcurrentHashMap`.

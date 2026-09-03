@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Memory Leak Diagnosis and Heap Dump Analysis
 
-**Canonical chapter:** [`handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md`](../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md`](../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md)
 
 ## Card: What makes an object a Java-specific leak
 
@@ -27,7 +27,7 @@ The precise reframing that makes "the GC didn't collect it" the wrong mental mod
 Describing a Java memory leak as a garbage-collector failure rather than an accidental live reference.
 
 **Related:**
-[handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md](../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md)
+[handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md](../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md)
 
 ## Card: What :live adds to jmap -histo
 
@@ -44,7 +44,7 @@ Prevents misreading a pre-collection snapshot as evidence of a leak.
 Running `jmap -histo` without `:live` and treating the raw counts as proof of a leak.
 
 **Related:**
-[handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md](../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md)
+[handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md](../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md)
 
 ## Card: Distinguishing a real leak from a warming cache
 
@@ -61,4 +61,4 @@ The concrete diagnostic procedure that turns "memory looks high" into an actual 
 Concluding a leak from a single histogram snapshot instead of a trend across multiple spaced samples.
 
 **Related:**
-[handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md](../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md)
+[handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md](../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md)

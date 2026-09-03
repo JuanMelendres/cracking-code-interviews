@@ -75,6 +75,6 @@ A profiler answers one question — "where is the JVM actually spending time (or
 ## Related
 
 - `handbook/performance/performance-methodology-and-slo-error-budgets.md`
-- `handbook/jvm/gc-fundamentals-and-log-analysis.md`
-- `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md`
+- `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`
+- `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md`
 - `handbook/jvm/benchmarking-and-jmh-pitfalls.md`

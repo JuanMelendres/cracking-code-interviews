@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Annotations and Annotation Processing
 
-**Canonical chapter:** [`handbook/java-core/annotations-and-annotation-processing.md`](../handbook/java-core/annotations-and-annotation-processing.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/annotations-and-annotation-processing.md`](../syllabus/02-java/language-core/annotations-and-annotation-processing.md)
 
 ## Card: The invisible default
 
@@ -27,7 +27,7 @@ A real, common, silent source of "why doesn't my framework code see this annotat
 Assuming the default behaves like `RUNTIME`.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/annotations-and-annotation-processing.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/annotations-and-annotation-processing.md#internal-implementation)
 
 ## Card: The real annotation-framework mechanism
 
@@ -44,7 +44,7 @@ Demystifies "framework magic" into a concrete, buildable mechanism.
 Treating annotation-driven frameworks as unexplainable magic rather than reflection plus metadata.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/annotations-and-annotation-processing.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/annotations-and-annotation-processing.md#internal-implementation)
 
 ## Card: @Inherited's real scope
 
@@ -61,4 +61,4 @@ A real, documented but frequently-missed limitation.
 Assuming `@Inherited` works like general Java inheritance across any `extends`/`implements` relationship.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/annotations-and-annotation-processing.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/annotations-and-annotation-processing.md#internal-implementation)

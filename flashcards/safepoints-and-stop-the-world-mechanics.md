@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Safepoints and Stop-the-World Mechanics
 
-**Canonical chapter:** [`handbook/jvm/safepoints-and-stop-the-world-mechanics.md`](../handbook/jvm/safepoints-and-stop-the-world-mechanics.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md`](../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md)
 
 ## Card: Is every stop-the-world pause a GC pause
 
@@ -27,7 +27,7 @@ Explains why a real latency blip can appear with nothing in the GC log at that t
 Assuming any unexplained stop-the-world pause must be GC-related and searching only GC logs for it.
 
 **Related:**
-[handbook/jvm/safepoints-and-stop-the-world-mechanics.md](../handbook/jvm/safepoints-and-stop-the-world-mechanics.md)
+[handbook/jvm/safepoints-and-stop-the-world-mechanics.md](../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md)
 
 ## Card: Reaching safepoint vs at safepoint cost
 
@@ -44,7 +44,7 @@ Separates two genuinely different cost sources that both contribute to total obs
 Treating total safepoint pause time as a single undifferentiated number rather than two distinct cost components.
 
 **Related:**
-[handbook/jvm/safepoints-and-stop-the-world-mechanics.md](../handbook/jvm/safepoints-and-stop-the-world-mechanics.md)
+[handbook/jvm/safepoints-and-stop-the-world-mechanics.md](../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md)
 
 ## Card: The measured cost gap between a deadlock check and a full GC
 
@@ -61,4 +61,4 @@ A concrete, measured illustration of how widely "at safepoint" cost varies by op
 Assuming all safepoint operations carry roughly comparable execution cost.
 
 **Related:**
-[handbook/jvm/safepoints-and-stop-the-world-mechanics.md](../handbook/jvm/safepoints-and-stop-the-world-mechanics.md)
+[handbook/jvm/safepoints-and-stop-the-world-mechanics.md](../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md)

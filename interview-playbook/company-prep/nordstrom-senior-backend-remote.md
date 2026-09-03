@@ -7,7 +7,7 @@ last_updated: 2026-09-03
 related:
   - ../../handbook/system-design/idempotency.md
   - ../../handbook/databases/optimistic-vs-pessimistic-locking.md
-  - ../../handbook/collections/concurrenthashmap-internals.md
+  - ../../syllabus/02-java/collections/concurrenthashmap-internals.md
   - ../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md
   - ../../handbook/system-design/resilience-patterns.md
   - ../../handbook/databases/connection-pooling-and-sizing.md
@@ -60,7 +60,7 @@ if (rowsAffected == 0) {
 
 ### 3. HashMap vs ConcurrentHashMap: el infinite loop bajo resize concurrente
 
-🆕 **Gap real, cerrado.** [ConcurrentHashMap Internals](../../handbook/collections/concurrenthashmap-internals.md) (T-205, IWI 6.65) ya cubría la corrupción silenciosa (entries perdidas, tamaño final incorrecto) bajo escritura concurrente, pero no el mecanismo específico del infinite loop. Agregué la explicación precisa:
+🆕 **Gap real, cerrado.** [ConcurrentHashMap Internals](../../syllabus/02-java/collections/concurrenthashmap-internals.md) (T-205, IWI 6.65) ya cubría la corrupción silenciosa (entries perdidas, tamaño final incorrecto) bajo escritura concurrente, pero no el mecanismo específico del infinite loop. Agregué la explicación precisa:
 
 - **JDK 7 y anteriores:** el resize de `HashMap` reescribe cada bucket usando una lista enlazada, y el algoritmo de resize **invertía el orden** de esa lista al moverla al nuevo array. Si dos threads disparan un resize concurrentemente sin sincronización, el rewiring parcial de un thread puede interlazarse con el del otro, produciendo un nodo cuyo `next` apunta hacia atrás en la misma lista — un ciclo. Cualquier `get()`/`put()` posterior que recorra ese bucket queda en loop infinito, un core al 100% para siempre.
 - **Por qué NO es OOM ni el GC:** la memoria del JVM está bien, el GC no hace nada malo — el proceso está atascado recorriendo una lista circular, no reteniendo memoria de más ni pausando por colección de basura. Esta distinción es exactamente la que suelen confundir en entrevista.
@@ -84,7 +84,7 @@ Los componentes individuales ya están cubiertos por separado y en profundidad; 
 1. **Logs** — buscar excepciones, timeouts o reintentos alrededor de la ventana de tiempo donde p95 subió. Si los logs están limpios, el problema probablemente no es un error explícito sino latencia genuina en alguna dependencia. Ver [Logging, Metrics, Tracing, and OpenTelemetry](../../handbook/performance/logging-metrics-tracing-and-opentelemetry.md).
 2. **Métricas** — confirmar que es realmente cola alta (p95/p99), no un problema de medición. Revisar el mecanismo de medición mismo: un load test o dashboard con *coordinated omission* puede subestimar la cola real. Ver [Percentiles, Tail Latency, and Coordinated Omission](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md).
 3. **Traces distribuidos** — con CPU normal, la latencia casi siempre está en un span de espera (I/O, downstream), no de cómputo. Un `traceId` compartido reconstruye exactamente en qué servicio y en qué operación se acumula el tiempo. Ver el mismo capítulo de logging/metrics/tracing — la propagación de contexto de trace es el mecanismo que hace esto posible.
-4. **Connection/thread pools** — revisar si hay requests esperando por una conexión o un thread disponible (pool exhaustion), no por trabajo real. Ver [Connection Pooling and Sizing](../../handbook/databases/connection-pooling-and-sizing.md) y [Executors and Thread Pool Sizing](../../handbook/concurrency/executors-and-thread-pool-sizing.md).
+4. **Connection/thread pools** — revisar si hay requests esperando por una conexión o un thread disponible (pool exhaustion), no por trabajo real. Ver [Connection Pooling and Sizing](../../handbook/databases/connection-pooling-and-sizing.md) y [Executors and Thread Pool Sizing](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md).
 5. **Dependencias downstream** — si el pool está sano pero la latencia persiste, el downstream mismo es lento (no caído — CPU normal descarta un problema local de cómputo). Ver [Resilience Patterns](../../handbook/system-design/resilience-patterns.md) (timeout selection es una decisión de percentil, no una adivinanza) y [Distributed Systems Failure Modes](../../handbook/system-design/distributed-systems-failure-modes.md).
 
 **Por qué este orden:** cada paso descarta una categoría de causa antes de pasar a la siguiente — CPU normal ya descarta cómputo local, así que el orden va de la señal más barata de revisar (logs) a la más cara (trazar un downstream específico), sin saltar directo a "debe ser el downstream" sin antes confirmar que no es el pool.
@@ -129,7 +129,7 @@ Incluye tabla de trade-offs, por qué una acción compensatoria es una operació
 |---|---|
 | [`handbook/system-design/idempotency.md`](../../handbook/system-design/idempotency.md) | "Check before write" vs "insert/upsert by key" nombrados explícitamente; puente hacia idempotencia en consumers de Kafka |
 | [`handbook/databases/optimistic-vs-pessimistic-locking.md`](../../handbook/databases/optimistic-vs-pessimistic-locking.md) | Tercera técnica: atomic conditional UPDATE, con código SQL/Java y tabla comparativa actualizada |
-| [`handbook/collections/concurrenthashmap-internals.md`](../../handbook/collections/concurrenthashmap-internals.md) | Mecanismo del infinite loop en JDK 7 durante resize concurrente, y por qué JDK 8+ ya no lo reproduce (pero sigue sin ser thread-safe) |
+| [`syllabus/02-java/collections/concurrenthashmap-internals.md`](../../syllabus/02-java/collections/concurrenthashmap-internals.md) | Mecanismo del infinite loop en JDK 7 durante resize concurrente, y por qué JDK 8+ ya no lo reproduce (pero sigue sin ser thread-safe) |
 | [`handbook/system-design/resilience-patterns.md`](../../handbook/system-design/resilience-patterns.md) | Narrativa unificada: pool HikariCP compartido + downstream lento + circuit breaker como fix |
 | [`handbook/cloud/aws-core-services-for-backend-engineers.md`](../../handbook/cloud/aws-core-services-for-backend-engineers.md) | ALB y Auto Scaling (ASG/ECS/HPA) como sección nueva |
 | [`handbook/cloud/kubernetes-objects-scheduling-and-networking.md`](../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) | Flujo práctico de debugging con kubectl (4 comandos, en orden) |

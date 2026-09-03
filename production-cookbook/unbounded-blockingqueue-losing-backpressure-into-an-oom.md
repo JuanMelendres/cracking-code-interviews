@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/collections/blockingqueue-family.md
+  - ../syllabus/02-java/collections/blockingqueue-family.md
 source: handbook/collections/blockingqueue-family.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This is the same structural mistake as an unbounded `ThreadPoolExecutor` queue, 
 
 ## Related Handbook Chapters
 
-- [BlockingQueue Family](../handbook/collections/blockingqueue-family.md) — canonical bounded-queue and backpressure mechanics used here.
-- [Executors and Thread Pool Sizing](../handbook/concurrency/executors-and-thread-pool-sizing.md) — the analogous unbounded-executor-queue failure mode.
+- [BlockingQueue Family](../syllabus/02-java/collections/blockingqueue-family.md) — canonical bounded-queue and backpressure mechanics used here.
+- [Executors and Thread Pool Sizing](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md) — the analogous unbounded-executor-queue failure mode.

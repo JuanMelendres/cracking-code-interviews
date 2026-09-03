@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Streams and Collectors
 
-**Canonical chapter:** [`handbook/java-core/streams-and-collectors.md`](../handbook/java-core/streams-and-collectors.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/streams-and-collectors.md`](../syllabus/02-java/language-core/streams-and-collectors.md)
 
 ## Card: When a stream pipeline actually executes
 
@@ -27,7 +27,7 @@ Explains why `peek()`-based debugging can look confusing if you expect output im
 Assuming intermediate operations run as soon as they're called.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/streams-and-collectors.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/streams-and-collectors.md#internal-implementation)
 
 ## Card: Why toMap() throws on duplicates
 
@@ -44,7 +44,7 @@ A common production `IllegalStateException` waiting to happen on real-world data
 Using the two-argument `toMap()` on data that could plausibly contain duplicate keys.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/streams-and-collectors.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/streams-and-collectors.md#internal-implementation)
 
 ## Card: What parallel() does and doesn't do
 
@@ -61,4 +61,4 @@ A silent, no-exception data-loss bug, not a crash — easy to miss without a siz
 Assuming `parallel()` handles thread-safety of the stream's own side effects.
 
 **Related:**
-[Production Scenarios](../handbook/java-core/streams-and-collectors.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/language-core/streams-and-collectors.md#production-scenarios)

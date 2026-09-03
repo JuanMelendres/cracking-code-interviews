@@ -15,7 +15,7 @@ canonical: ../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md
 
 **IWI 5.40 · Advanced tier · Moderate interview frequency**
 
-**Canonical chapter:** [ZGC and Shenandoah: Concurrent Collection](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md). This file is the Week 19 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [ZGC and Shenandoah: Concurrent Collection](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md). This file is the Week 19 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** the evidence behind this summary is real, executed output from `practice/java/week-19/zgc-vs-g1/` — G1 vs. ZGC pause times, real ZGC safepoint logs, and a confirmed real Shenandoah pause.
 
@@ -40,54 +40,54 @@ canonical: ../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md
 
 ## 1. The concept
 
-ZGC and Shenandoah move G1's stop-the-world evacuation work to run concurrently with application threads, using different reference-remapping mechanisms to keep references correct while objects move. → [Mental Model](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#mental-model).
+ZGC and Shenandoah move G1's stop-the-world evacuation work to run concurrently with application threads, using different reference-remapping mechanisms to keep references correct while objects move. → [Mental Model](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#mental-model).
 
 ## 2. Why it exists
 
-G1's pause times, even well-tuned, scale somewhat with live-data volume — some latency-sensitive workloads need pause times that don't. → [Definition and Purpose](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#definition-and-purpose).
+G1's pause times, even well-tuned, scale somewhat with live-data volume — some latency-sensitive workloads need pause times that don't. → [Definition and Purpose](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#definition-and-purpose).
 
 ## 3. The measured evidence
 
-Real, identical allocation-churn workload: G1 max pause 0.748ms, no stalls, 28.9M allocations completed. ZGC's real "At safepoint" durations: 1-40 microseconds (one to two orders of magnitude shorter) — but 218 real allocation-stall events and only 22.5M allocations completed in the same window. Shenandoah confirmed a real 0.010ms pause on this environment. → [Internal Implementation](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#internal-implementation) has the full trace.
+Real, identical allocation-churn workload: G1 max pause 0.748ms, no stalls, 28.9M allocations completed. ZGC's real "At safepoint" durations: 1-40 microseconds (one to two orders of magnitude shorter) — but 218 real allocation-stall events and only 22.5M allocations completed in the same window. Shenandoah confirmed a real 0.010ms pause on this environment. → [Internal Implementation](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#internal-implementation) has the full trace.
 
 ## 4. Trade-offs
 
-Dramatically shorter, more predictable pauses at the real cost of allocation-stall risk under insufficient heap headroom and additional background overhead. → [Trade-offs](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#trade-offs).
+Dramatically shorter, more predictable pauses at the real cost of allocation-stall risk under insufficient heap headroom and additional background overhead. → [Trade-offs](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#trade-offs).
 
 ## 5. Interview questions
 
 1. A service migrates from G1 to ZGC and initially sees worse p99 under peak load. What would you check?
 2. Would you recommend ZGC for a nightly batch job with no strict latency requirement?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#interview-questions).
 
 ## 6. Common mistakes
 
-Describing ZGC/Shenandoah as "just faster G1"; migrating without adjusting heap headroom; treating "sub-millisecond pause" as "zero collection-related cost." → [Common Mistakes](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#common-mistakes).
+Describing ZGC/Shenandoah as "just faster G1"; migrating without adjusting heap headroom; treating "sub-millisecond pause" as "zero collection-related cost." → [Common Mistakes](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#common-mistakes).
 
 ## 7. Staff-level discussion
 
-Reasons about collector choice as workload-shape-dependent, and treats heap-headroom re-provisioning as a required, first-class part of any migration to a concurrent collector. → [Staff-Level Discussion](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#interview-answer-framework).
+Reasons about collector choice as workload-shape-dependent, and treats heap-headroom re-provisioning as a required, first-class part of any migration to a concurrent collector. → [Staff-Level Discussion](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#interview-answer-framework).
 
 ## 8. Summary
 
-Concurrent relocation buys dramatically shorter pauses at the real cost of allocation-stall risk. Measured directly: ZGC's real pauses in microseconds vs. G1's 0.748ms, but 218 real stalls and ~22% less throughput on this workload. → [Summary](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#summary).
+Concurrent relocation buys dramatically shorter pauses at the real cost of allocation-stall risk. Measured directly: ZGC's real pauses in microseconds vs. G1's 0.748ms, but 218 real stalls and ~22% less throughput on this workload. → [Summary](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#summary).
 
 ## 9. Key Takeaways
 
-→ [Key Takeaways](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#key-takeaways).
 
 ## 10. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#cheat-sheet).
 
 ## 11. Flashcards
 
-→ [Flashcards](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#flashcards). Full week-level deck: `08-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#flashcards). Full week-level deck: `08-flashcards.md`.
 
 ## 12. Practice Exercises
 
-→ [Practice Exercises](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#practice-exercises) and [Solutions](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#solutions). Reproducible demo: `practice/java/week-19/zgc-vs-g1/`.
+→ [Practice Exercises](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#practice-exercises) and [Solutions](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#solutions). Reproducible demo: `practice/java/week-19/zgc-vs-g1/`.
 
 ## 13. Additional Reading
 

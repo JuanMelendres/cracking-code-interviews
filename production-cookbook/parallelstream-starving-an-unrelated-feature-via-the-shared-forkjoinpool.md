@@ -5,8 +5,8 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/concurrency/forkjoinpool-and-work-stealing.md
-  - ../handbook/concurrency/completablefuture-and-async-composition.md
+  - ../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md
+  - ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
 source: handbook/concurrency/forkjoinpool-and-work-stealing.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ This incident is a clean illustration of implicit shared infrastructure coupling
 
 ## Related Handbook Chapters
 
-- [ForkJoinPool and Work-Stealing](../handbook/concurrency/forkjoinpool-and-work-stealing.md) — canonical work-stealing mechanics, the `getStealCount()` verification, and the shared-common-pool resource-sharing risk this incident reproduces.
-- [CompletableFuture and Async Composition](../handbook/concurrency/completablefuture-and-async-composition.md) — the other half of the shared-pool coupling, including why unqualified `*Async` calls route to the identical default executor.
+- [ForkJoinPool and Work-Stealing](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md) — canonical work-stealing mechanics, the `getStealCount()` verification, and the shared-common-pool resource-sharing risk this incident reproduces.
+- [CompletableFuture and Async Composition](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md) — the other half of the shared-pool coupling, including why unqualified `*Async` calls route to the identical default executor.

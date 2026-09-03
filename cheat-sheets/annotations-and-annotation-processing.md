@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Annotations and Annotation Processing
 
-**Canonical chapter:** [`handbook/java-core/annotations-and-annotation-processing.md`](../handbook/java-core/annotations-and-annotation-processing.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/annotations-and-annotation-processing.md`](../syllabus/02-java/language-core/annotations-and-annotation-processing.md)
 
 ## Core Mental Model
 
@@ -56,6 +56,6 @@ last_updated: 2026-09-02
 
 ## Related
 
-- `handbook/java-core/classloaders-and-class-initialization.md`
-- `handbook/java-core/enums-enummap-and-enumset.md`
-- `handbook/java-core/reflection-and-dynamic-proxies.md`
+- `syllabus/02-java/language-core/classloaders-and-class-initialization.md`
+- `syllabus/02-java/language-core/enums-enummap-and-enumset.md`
+- `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`

@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/collections/collection-selection-decision-matrix.md
+  - ../syllabus/02-java/collections/collection-selection-decision-matrix.md
 source: handbook/collections/collection-selection-decision-matrix.md#production-scenarios
 ---
 
@@ -84,6 +84,6 @@ This scenario is valuable specifically because it's the successful case, not a f
 
 ## Related Handbook Chapters
 
-- [Collection Selection Decision Matrix](../handbook/collections/collection-selection-decision-matrix.md) — canonical access-pattern decision framework used here.
-- [BlockingQueue Family](../handbook/collections/blockingqueue-family.md) — the unbounded-queue incident this pattern matches.
-- [HashMap Internals](../handbook/collections/hashmap-internals.md) — the shared-mutable-map-under-concurrency risk this pattern matches.
+- [Collection Selection Decision Matrix](../syllabus/02-java/collections/collection-selection-decision-matrix.md) — canonical access-pattern decision framework used here.
+- [BlockingQueue Family](../syllabus/02-java/collections/blockingqueue-family.md) — the unbounded-queue incident this pattern matches.
+- [HashMap Internals](../syllabus/02-java/collections/hashmap-internals.md) — the shared-mutable-map-under-concurrency risk this pattern matches.

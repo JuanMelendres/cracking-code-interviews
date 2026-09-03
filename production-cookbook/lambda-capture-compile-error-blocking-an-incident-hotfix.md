@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/lambdas-and-functional-interfaces.md
+  - ../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md
 source: handbook/java-core/lambdas-and-functional-interfaces.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is a useful case study in the cost of "correct but unfamiliar" com
 
 ## Related Handbook Chapters
 
-- [Lambdas and Functional Interfaces](../handbook/java-core/lambdas-and-functional-interfaces.md) — canonical effectively-final capture rule mechanics and the reproduced compiler error.
-- [ForkJoinPool and Work-Stealing](../handbook/concurrency/forkjoinpool-and-work-stealing.md) — related considerations when converting a sequential loop with mutable state into a parallel or stream-based one.
+- [Lambdas and Functional Interfaces](../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md) — canonical effectively-final capture rule mechanics and the reproduced compiler error.
+- [ForkJoinPool and Work-Stealing](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md) — related considerations when converting a sequential loop with mutable state into a parallel or stream-based one.

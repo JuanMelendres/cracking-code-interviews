@@ -15,7 +15,7 @@ canonical: ../../handbook/concurrency/java-memory-model-and-volatile.md
 
 **IWI 7.75 (T-401) / 6.60 (T-402) · Advanced / Core tier · deepest single technical topic in the handbook**
 
-**Canonical chapter:** [Java Memory Model and volatile](../../handbook/concurrency/java-memory-model-and-volatile.md). This file is the Week 9 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `08-week-9-checkpoint.md` and `MANIFEST.md`'s errata table cite §3 directly.
+**Canonical chapter:** [Java Memory Model and volatile](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md). This file is the Week 9 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `08-week-9-checkpoint.md` and `MANIFEST.md`'s errata table cite §3 directly.
 
 **Errata correction, stated explicitly:** the source material described `volatile` as "prevents caching" — a hardware-level framing that is not what the Java Memory Model (JMM) actually specifies. §3 reproduces the real, measured consequence of getting this wrong, then explains the correct model.
 
@@ -43,58 +43,58 @@ canonical: ../../handbook/concurrency/java-memory-model-and-volatile.md
 
 ## 1. The concept
 
-The JMM specifies what values a thread is guaranteed to observe when it reads memory another thread wrote. `volatile` is one of its tools for establishing a happens-before relationship between a write on one thread and a read on another. → [Definition and Purpose](../../handbook/concurrency/java-memory-model-and-volatile.md#definition-and-purpose).
+The JMM specifies what values a thread is guaranteed to observe when it reads memory another thread wrote. `volatile` is one of its tools for establishing a happens-before relationship between a write on one thread and a read on another. → [Definition and Purpose](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Without the JMM, "correct" multi-threaded code would depend on undefined behavior that happens to work on today's specific JIT and CPU. → [Definition and Purpose](../../handbook/concurrency/java-memory-model-and-volatile.md#definition-and-purpose).
+Without the JMM, "correct" multi-threaded code would depend on undefined behavior that happens to work on today's specific JIT and CPU. → [Definition and Purpose](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#definition-and-purpose).
 
 ## 3. Visibility, measured: the "prevents caching" misconception, killed with data
 
-Measured: a non-volatile flag update was never observed by a spinning worker thread across three runs (5+ second hang each time); the volatile version stopped instantly. The mechanism is a JIT compiler optimization (loop-invariant read hoisting), not a CPU cache-coherence problem. → [Internal Implementation](../../handbook/concurrency/java-memory-model-and-volatile.md#internal-implementation) has the full trace.
+Measured: a non-volatile flag update was never observed by a spinning worker thread across three runs (5+ second hang each time); the volatile version stopped instantly. The mechanism is a JIT compiler optimization (loop-invariant read hoisting), not a CPU cache-coherence problem. → [Internal Implementation](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#internal-implementation) has the full trace.
 
 ## 4. Happens-before, not caching
 
-Five practical rules: program order, monitor lock, volatile variable, thread start/join, final field. Double-checked locking needs `volatile` on the singleton field specifically to prevent observing a partially-constructed object. → [Core Concepts](../../handbook/concurrency/java-memory-model-and-volatile.md#core-concepts).
+Five practical rules: program order, monitor lock, volatile variable, thread start/join, final field. Double-checked locking needs `volatile` on the singleton field specifically to prevent observing a partially-constructed object. → [Core Concepts](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#core-concepts).
 
 ## 5. Trade-offs
 
-A plain field is cheapest but has no visibility guarantee; `volatile` adds visibility and ordering but not atomicity for compound operations; `synchronized` adds mutual exclusion at the cost of contention and deadlock risk. → [Trade-offs](../../handbook/concurrency/java-memory-model-and-volatile.md#trade-offs).
+A plain field is cheapest but has no visibility guarantee; `volatile` adds visibility and ordering but not atomicity for compound operations; `synchronized` adds mutual exclusion at the cost of contention and deadlock risk. → [Trade-offs](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Why does double-checked locking break without `volatile`?
 2. Is `volatile int count; count++;` from multiple threads safe?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/concurrency/java-memory-model-and-volatile.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#interview-questions).
 
 ## 7. Common mistakes
 
-Describing `volatile` as being about CPU/hardware caching; believing it makes multi-step operations atomic; treating happens-before as a total order. → [Common Mistakes](../../handbook/concurrency/java-memory-model-and-volatile.md#common-mistakes).
+Describing `volatile` as being about CPU/hardware caching; believing it makes multi-step operations atomic; treating happens-before as a total order. → [Common Mistakes](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-The JMM is the reason "it worked on my machine" is a legitimate, dangerous failure mode — an unsynchronized pattern can work under one JIT tier and fail after an upgrade or longer run. → [Staff-Level Discussion](../../handbook/concurrency/java-memory-model-and-volatile.md#interview-answer-framework).
+The JMM is the reason "it worked on my machine" is a legitimate, dangerous failure mode — an unsynchronized pattern can work under one JIT tier and fail after an upgrade or longer run. → [Staff-Level Discussion](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#interview-answer-framework).
 
 ## 9. Summary
 
-`volatile` establishes a happens-before edge — not a caching mechanism. Getting this wrong isn't theoretical: the measured demo reliably reproduces a genuine 5+ second visibility failure caused by a real, common JIT optimization. → [Summary](../../handbook/concurrency/java-memory-model-and-volatile.md#summary).
+`volatile` establishes a happens-before edge — not a caching mechanism. Getting this wrong isn't theoretical: the measured demo reliably reproduces a genuine 5+ second visibility failure caused by a real, common JIT optimization. → [Summary](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/concurrency/java-memory-model-and-volatile.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/concurrency/java-memory-model-and-volatile.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/concurrency/java-memory-model-and-volatile.md#flashcards). Full week-level deck: `06-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#flashcards). Full week-level deck: `06-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/concurrency/java-memory-model-and-volatile.md#practice-exercises) and [Solutions](../../handbook/concurrency/java-memory-model-and-volatile.md#solutions). Reproducible demo: `practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java`.
+→ [Practice Exercises](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#practice-exercises) and [Solutions](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#solutions). Reproducible demo: `practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java`.
 
 ## 14. Additional Reading
 

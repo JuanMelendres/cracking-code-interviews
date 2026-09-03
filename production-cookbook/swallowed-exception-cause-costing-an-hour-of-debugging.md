@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/java-core/exception-design-and-hierarchy-strategy.md
+  - ../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
 source: handbook/java-core/exception-design-and-hierarchy-strategy.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This is a small, mechanical defect with an outsized incident-response cost, whic
 
 ## Related Handbook Chapters
 
-- [Exception Design and Hierarchy Strategy](../handbook/java-core/exception-design-and-hierarchy-strategy.md) — canonical exception-chaining mechanics used here.
+- [Exception Design and Hierarchy Strategy](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md) — canonical exception-chaining mechanics used here.

@@ -12,11 +12,11 @@ target_levels:
   - staff
 estimated_reading_minutes: 15
 prerequisites:
-  - ../handbook/jvm/jvm-flags-and-container-ergonomics.md
-  - ../handbook/jvm/jvm-memory-layout-and-runtime-regions.md
+  - ../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md
+  - ../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md
 related:
-  - ../handbook/jvm/g1-remembered-sets-and-write-barriers.md
-  - ../handbook/jvm/jit-tiered-compilation-and-deoptimization.md
+  - ../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md
+  - ../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
   - ../study-packs/week-16/09-design-exercise-jvm-sizing-and-diagnostics-playbook.md
 official_references: []
 ---
@@ -60,11 +60,11 @@ Produce a JVM sizing and diagnostics playbook for a real-time pricing service: i
 
 ## Reference Analysis
 
-**Region sizing.** Heap sized via the default `MaxRAMPercentage` ergonomic against the container's memory limit, per [JVM Flags and Container Ergonomics](../handbook/jvm/jvm-flags-and-container-ergonomics.md), unless a specific, measured reason exists to override it. Metaspace capped explicitly (`-XX:MaxMetaspaceSize`) at a conservative multiple of the class count actually loaded at steady state — this service's pricing-strategy flag rollout is exactly the kind of dynamic-class-generation-adjacent change, per [JVM Memory Layout and Runtime Regions](../handbook/jvm/jvm-memory-layout-and-runtime-regions.md), worth guarding with an explicit cap rather than leaving metaspace unbounded. First diagnostic step on any region exhaustion: read the exact error message and region name (`Java heap space`, `Metaspace`, `StackOverflowError`) before choosing a remediation — each points at a different region with a different fix, and none is fixed by adjusting a different region's flag.
+**Region sizing.** Heap sized via the default `MaxRAMPercentage` ergonomic against the container's memory limit, per [JVM Flags and Container Ergonomics](../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md), unless a specific, measured reason exists to override it. Metaspace capped explicitly (`-XX:MaxMetaspaceSize`) at a conservative multiple of the class count actually loaded at steady state — this service's pricing-strategy flag rollout is exactly the kind of dynamic-class-generation-adjacent change, per [JVM Memory Layout and Runtime Regions](../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md), worth guarding with an explicit cap rather than leaving metaspace unbounded. First diagnostic step on any region exhaustion: read the exact error message and region name (`Java heap space`, `Metaspace`, `StackOverflowError`) before choosing a remediation — each points at a different region with a different fix, and none is fixed by adjusting a different region's flag.
 
 **Container ergonomics.** Expect fewer GC threads and correspondingly different (likely somewhat longer) individual pause times than the old VM deployment, for the same heap size — this is the JVM correctly detecting the smaller CPU limit (per Container Ergonomics' measured `CPUs: {total} total, {available} available` evidence) and sizing `ParallelGCThreads` accordingly, not a misconfiguration. Whether it's actually "a problem" depends on whether the new pause profile still meets the service's latency SLO — confirm via `-Xlog:gc+init`'s CPU-detection line before concluding anything is wrong, and only raise the CPU limit if the new pause profile genuinely fails the SLO.
 
-**G1 remembered-set awareness.** The price cache — fresh (young-gen) price objects written on every tick into a long-lived (old-gen, promoted) container — is precisely the cross-region write pattern [G1 Remembered Sets and Write Barriers](../handbook/jvm/g1-remembered-sets-and-write-barriers.md) measures producing disproportionate dirty-card/remembered-set activity. Watch for pause time growing while heap occupancy stays flat — the specific diagnostic signature — via `-Xlog:gc+phases=debug`'s `Merge Heap Roots` phase duration and dirty/scanned card sums. If it becomes a real problem, the mitigation is partitioning the price cache (e.g., sharded by instrument symbol), spreading the card-dirtying load across more regions instead of concentrating it — not resizing the heap.
+**G1 remembered-set awareness.** The price cache — fresh (young-gen) price objects written on every tick into a long-lived (old-gen, promoted) container — is precisely the cross-region write pattern [G1 Remembered Sets and Write Barriers](../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md) measures producing disproportionate dirty-card/remembered-set activity. Watch for pause time growing while heap occupancy stays flat — the specific diagnostic signature — via `-Xlog:gc+phases=debug`'s `Merge Heap Roots` phase duration and dirty/scanned card sums. If it becomes a real problem, the mitigation is partitioning the price cache (e.g., sharded by instrument symbol), spreading the card-dirtying load across more regions instead of concentrating it — not resizing the heap.
 
 **Memory-leak diagnosis runbook.**
 
@@ -85,7 +85,7 @@ Produce a JVM sizing and diagnostics playbook for a real-time pricing service: i
 
 Enable `-XX:+HeapDumpOnOutOfMemoryError` in production as a standing safety net, so an actual OOM captures the exact evidence needed without requiring a live reproduction.
 
-**Deoptimization-aware rollout.** Expect a brief, real, one-time latency cost the moment the flag first exposes the second pricing strategy to the previously-monomorphic call site — [JIT Tiered Compilation and Deoptimization](../handbook/jvm/jit-tiered-compilation-and-deoptimization.md) measures this at roughly 2x on the first affected call versus the same call re-run after recompilation. If that one-time cost matters for this service's latency SLO during rollout, pre-warm a canary instance against *both* pricing strategies (not just the currently-live one) before the flag reaches meaningful production traffic, so the deoptimization-and-recompilation cycle happens during controlled warmup, not live rollout traffic.
+**Deoptimization-aware rollout.** Expect a brief, real, one-time latency cost the moment the flag first exposes the second pricing strategy to the previously-monomorphic call site — [JIT Tiered Compilation and Deoptimization](../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md) measures this at roughly 2x on the first affected call versus the same call re-run after recompilation. If that one-time cost matters for this service's latency SLO during rollout, pre-warm a canary instance against *both* pricing strategies (not just the currently-live one) before the flag reaches meaningful production traffic, so the deoptimization-and-recompilation cycle happens during controlled warmup, not live rollout traffic.
 
 ## Diagnostic Decision Flow
 

@@ -5,8 +5,8 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/concurrency/structured-concurrency.md
-  - ../handbook/concurrency/completablefuture-and-async-composition.md
+  - ../syllabus/02-java/concurrency/structured-concurrency.md
+  - ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
 source: handbook/concurrency/structured-concurrency.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ This incident captures a class of resource waste that's easy to miss because not
 
 ## Related Handbook Chapters
 
-- [Structured Concurrency](../handbook/concurrency/structured-concurrency.md) — canonical mechanics of `StructuredTaskScope`'s automatic cancellation propagation and the measured orphaned-task reproduction this incident traces back to.
-- [CompletableFuture and Async Composition](../handbook/concurrency/completablefuture-and-async-composition.md) — the composition model whose lack of built-in cancellation propagation is this incident's root cause.
+- [Structured Concurrency](../syllabus/02-java/concurrency/structured-concurrency.md) — canonical mechanics of `StructuredTaskScope`'s automatic cancellation propagation and the measured orphaned-task reproduction this incident traces back to.
+- [CompletableFuture and Async Composition](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md) — the composition model whose lack of built-in cancellation propagation is this incident's root cause.

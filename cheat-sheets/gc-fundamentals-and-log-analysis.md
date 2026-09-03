@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # GC Fundamentals and Log Analysis
 
-**Canonical chapter:** [`handbook/jvm/gc-fundamentals-and-log-analysis.md`](../handbook/jvm/gc-fundamentals-and-log-analysis.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`](../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md)
 
 ## Core Mental Model
 
@@ -75,6 +75,6 @@ Four real young-generation collections in under 10ms of wall-clock time, each su
 
 ## Related
 
-- `handbook/concurrency/java-memory-model-and-volatile.md`
-- `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md`
-- `handbook/jvm/jvm-memory-layout-and-runtime-regions.md`
+- `syllabus/02-java/concurrency/java-memory-model-and-volatile.md`
+- `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md`
+- `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md`

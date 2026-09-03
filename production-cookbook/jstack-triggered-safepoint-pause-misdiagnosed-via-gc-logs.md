@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/safepoints-and-stop-the-world-mechanics.md
+  - ../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md
 source: handbook/jvm/safepoints-and-stop-the-world-mechanics.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ The specific value of this incident is correcting a common but incomplete mental
 
 ## Related Handbook Chapters
 
-- [Safepoints and Stop-the-World Mechanics](../handbook/jvm/safepoints-and-stop-the-world-mechanics.md) — canonical safepoint-operation-trigger mechanics used here.
+- [Safepoints and Stop-the-World Mechanics](../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md) — canonical safepoint-operation-trigger mechanics used here.

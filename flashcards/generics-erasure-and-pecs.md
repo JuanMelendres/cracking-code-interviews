@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Generics: Erasure, Variance, and PECS
 
-**Canonical chapter:** [`handbook/java-core/generics-erasure-and-pecs.md`](../handbook/java-core/generics-erasure-and-pecs.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/generics-erasure-and-pecs.md`](../syllabus/02-java/language-core/generics-erasure-and-pecs.md)
 
 ## Card: What erasure removes
 
@@ -27,7 +27,7 @@ Explains why you can't do `instanceof List<String>` or `new T[]`.
 Assuming some generic type information survives to runtime.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/generics-erasure-and-pecs.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/generics-erasure-and-pecs.md#internal-implementation)
 
 ## Card: When a defeated generic actually fails
 
@@ -44,7 +44,7 @@ Explains why such bugs are often hard to trace back to their real cause.
 Assuming the cast operation itself is where the failure would occur.
 
 **Related:**
-[Production Scenarios](../handbook/java-core/generics-erasure-and-pecs.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/language-core/generics-erasure-and-pecs.md#production-scenarios)
 
 ## Card: PECS rule
 
@@ -61,4 +61,4 @@ The rule that maximizes what callers can pass while keeping the compiler's safet
 Reversing extends/super, or using a wildcard where a plain type parameter would do.
 
 **Related:**
-[Core Concepts](../handbook/java-core/generics-erasure-and-pecs.md#core-concepts)
+[Core Concepts](../syllabus/02-java/language-core/generics-erasure-and-pecs.md#core-concepts)

@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # ConcurrentHashMap Internals
 
-**Canonical chapter:** [`handbook/collections/concurrenthashmap-internals.md`](../handbook/collections/concurrenthashmap-internals.md)
+**Canonical chapter:** [`syllabus/02-java/collections/concurrenthashmap-internals.md`](../syllabus/02-java/collections/concurrenthashmap-internals.md)
 
 ## Core Mental Model
 

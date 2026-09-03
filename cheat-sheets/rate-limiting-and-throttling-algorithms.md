@@ -82,4 +82,4 @@ Every rate limiter answers the same question — "has this identity used up its 
 - `handbook/system-design/idempotency.md`
 - `handbook/system-design/load-balancing-service-discovery-and-health-checking.md`
 - `handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md`
-- `handbook/concurrency/atomics-cas-and-the-aba-problem.md`
+- `syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`

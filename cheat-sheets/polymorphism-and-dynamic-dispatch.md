@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Polymorphism and Dynamic Dispatch Mechanics
 
-**Canonical chapter:** [`handbook/java-core/polymorphism-and-dynamic-dispatch.md`](../handbook/java-core/polymorphism-and-dynamic-dispatch.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md`](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md)
 
 ## Core Mental Model
 
@@ -57,5 +57,5 @@ Only instance method calls are looked up by "what is this object, right now" —
 
 ## Related
 
-- `handbook/java-core/strings-interning-compact-strings-and-builders.md`
+- `syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md`
 - `interview-playbook/technical-answers/`

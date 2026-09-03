@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/polymorphism-and-dynamic-dispatch.md
+  - ../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md
 source: handbook/java-core/polymorphism-and-dynamic-dispatch.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This bug class is a direct consequence of Java's dynamic dispatch being active e
 
 ## Related Handbook Chapters
 
-- [Polymorphism and Dynamic Dispatch Mechanics](../handbook/java-core/polymorphism-and-dynamic-dispatch.md) — canonical mechanics of `invokevirtual` during construction and the reproduced uninitialized-subclass-state pitfall.
-- [Records, Sealed Types, and Pattern Matching](../handbook/java-core/records-sealed-types-and-pattern-matching.md) — related design alternative for closed, data-carrying hierarchies that avoids overridable-method dispatch entirely.
+- [Polymorphism and Dynamic Dispatch Mechanics](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md) — canonical mechanics of `invokevirtual` during construction and the reproduced uninitialized-subclass-state pitfall.
+- [Records, Sealed Types, and Pattern Matching](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md) — related design alternative for closed, data-carrying hierarchies that avoids overridable-method dispatch entirely.

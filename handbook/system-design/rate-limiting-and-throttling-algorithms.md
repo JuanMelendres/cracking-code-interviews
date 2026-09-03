@@ -21,7 +21,7 @@ related:
   - load-balancing-service-discovery-and-health-checking.md
   - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
   - ../spring/security-filter-chain.md
-  - ../concurrency/virtual-threads.md
+  - ../../syllabus/02-java/concurrency/virtual-threads.md
   - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - ../../practice/java/system-design/rate-limiting-and-throttling/README.md
 official_references:
@@ -359,7 +359,7 @@ added latency for a request that "arrived" at t+0.
 Every algorithm in this chapter has a check-then-act sequence (check remaining budget,
 then debit it) that is not atomic unless explicitly guarded — this is a textbook
 read-modify-write race, the same class of bug covered in
-[Atomics, CAS, and the ABA Problem](../concurrency/atomics-cas-and-the-aba-problem.md).
+[Atomics, CAS, and the ABA Problem](../../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md).
 This chapter's own [`ConcurrencyRaceDemo.java`](../../practice/java/system-design/rate-limiting-and-throttling/ConcurrencyRaceDemo.java)
 proves this concretely rather than asserting it: an unsynchronized
 `if (count < limit) count++` limiter, driven by 64 real threads making 3,200 total

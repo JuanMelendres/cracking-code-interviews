@@ -1,7 +1,7 @@
 # ThreadLocal-mediated classloader leaks (T-413) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/concurrency/threadlocal-mediated-classloader-leaks.md`](../../../../handbook/concurrency/threadlocal-mediated-classloader-leaks.md)
+[`syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md`](../../../../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md)
 (T-413). No mocked classloader — a real, isolated `ClassLoader` subclass
 defining a class independently of the system classloader, a real
 `WeakReference` proving whether that classloader is actually collectible,

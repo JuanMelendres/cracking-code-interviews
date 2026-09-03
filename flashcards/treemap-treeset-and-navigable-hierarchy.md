@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: TreeMap, TreeSet, and the Navigable Hierarchy
 
-**Canonical chapter:** [`handbook/collections/treemap-treeset-and-navigable-hierarchy.md`](../handbook/collections/treemap-treeset-and-navigable-hierarchy.md)
+**Canonical chapter:** [`syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md`](../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md)
 
 ## Card: Is `NavigableSet` a class or an interface, and what's its relationship to `TreeSet`?
 
@@ -27,7 +27,7 @@ A real, commonly-misdrawn hierarchy — this repo's own Phase 1 audit flagged it
 Drawing `NavigableSet` as a peer implementation rather than the interface `TreeSet` fulfills.
 
 **Related:**
-[handbook/collections/treemap-treeset-and-navigable-hierarchy.md](../handbook/collections/treemap-treeset-and-navigable-hierarchy.md), [handbook/collections/hashmap-internals.md](../handbook/collections/hashmap-internals.md)
+[handbook/collections/treemap-treeset-and-navigable-hierarchy.md](../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md), [handbook/collections/hashmap-internals.md](../syllabus/02-java/collections/hashmap-internals.md)
 
 ## Card: Does `TreeMap` guarantee O(log n) even under the worst possible insertion order?
 
@@ -44,4 +44,4 @@ Distinguishes a real, structural worst-case guarantee from `HashMap`'s average-c
 Assuming `TreeMap`'s O(log n) is merely typical, like `HashMap`'s O(1), rather than a genuine worst-case property.
 
 **Related:**
-[handbook/collections/treemap-treeset-and-navigable-hierarchy.md](../handbook/collections/treemap-treeset-and-navigable-hierarchy.md)
+[handbook/collections/treemap-treeset-and-navigable-hierarchy.md](../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md)

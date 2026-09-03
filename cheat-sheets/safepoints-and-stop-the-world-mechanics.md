@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Safepoints and Stop-the-World Mechanics
 
-**Canonical chapter:** [`handbook/jvm/safepoints-and-stop-the-world-mechanics.md`](../handbook/jvm/safepoints-and-stop-the-world-mechanics.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md`](../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md)
 
 ## Core Mental Model
 
@@ -69,4 +69,4 @@ Safepoint "G1CollectFull":  Reaching: 35,625 ns  At safepoint: 1,587,416 ns
 
 ## Related
 
-- `handbook/jvm/zgc-and-shenandoah-concurrent-collection.md`
+- `syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md`

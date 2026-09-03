@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/native-memory-direct-buffers-and-off-heap.md
+  - ../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
 source: handbook/jvm/native-memory-direct-buffers-and-off-heap.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ This incident is a precise illustration of a monitoring blind spot that's invisi
 
 ## Related Handbook Chapters
 
-- [Native Memory, Direct Buffers, and Off-Heap](../handbook/jvm/native-memory-direct-buffers-and-off-heap.md) — canonical direct-buffer and Native Memory Tracking mechanics used here.
+- [Native Memory, Direct Buffers, and Off-Heap](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md) — canonical direct-buffer and Native Memory Tracking mechanics used here.

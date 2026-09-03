@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Executors and Thread Pool Sizing
 
-**Canonical chapter:** [`handbook/concurrency/executors-and-thread-pool-sizing.md`](../handbook/concurrency/executors-and-thread-pool-sizing.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md)
 
 ## Card: Default queue's consequence
 
@@ -27,7 +27,7 @@ The hidden default most candidates have used without examining.
 Assuming "never rejects" is a purely positive property.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/executors-and-thread-pool-sizing.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#internal-implementation)
 
 ## Card: Getting real backpressure
 
@@ -44,7 +44,7 @@ Converts a silent, catastrophic failure mode into a loud, actionable one.
 Assuming pool size alone controls memory usage under load.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/executors-and-thread-pool-sizing.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#internal-implementation)
 
 ## Card: CPU-bound vs IO-bound sizing
 
@@ -61,4 +61,4 @@ A single pool-sizing heuristic is wrong for at least one of the two profiles.
 Applying the same sizing rule to both workload types.
 
 **Related:**
-[Core Concepts](../handbook/concurrency/executors-and-thread-pool-sizing.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#core-concepts)

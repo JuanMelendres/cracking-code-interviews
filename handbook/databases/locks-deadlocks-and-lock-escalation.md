@@ -20,7 +20,7 @@ related:
   - query-planning-and-explain-analyze.md
   - optimistic-vs-pessimistic-locking.md
   - mvcc-vacuum-and-bloat.md
-  - ../concurrency/deadlock-race-conditions-and-thread-diagnostics.md
+  - ../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
   - ../../practice/sql/locks-deadlocks-and-lock-escalation/README.md
 official_references:
   - https://www.postgresql.org/docs/current/explicit-locking.html
@@ -427,7 +427,7 @@ Assuming a huge bulk `UPDATE` risks this limit — it doesn't, since row locks d
 
 - [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md) — the application-level race conditions (lost updates, write skew) and the `SELECT ... FOR UPDATE` fix this chapter deliberately doesn't repeat.
 - [Query Planning and EXPLAIN ANALYZE](query-planning-and-explain-analyze.md) — the right tool when a slow bulk operation turns out not to be a locking problem at all.
-- [Deadlock, Race Conditions, and Thread Diagnostics](../concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — the equivalent mental model and diagnostic discipline applied to Java thread deadlocks rather than database transactions.
+- [Deadlock, Race Conditions, and Thread Diagnostics](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — the equivalent mental model and diagnostic discipline applied to Java thread deadlocks rather than database transactions.
 
 ## Official References
 

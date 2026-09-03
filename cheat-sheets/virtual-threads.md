@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Virtual Threads
 
-**Canonical chapter:** [`handbook/concurrency/virtual-threads.md`](../handbook/concurrency/virtual-threads.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/virtual-threads.md`](../syllabus/02-java/concurrency/virtual-threads.md)
 
 ## Core Mental Model
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/04-software-design/design-patterns-applied.md
-  - ../handbook/concurrency/java-memory-model-and-volatile.md
+  - ../syllabus/02-java/concurrency/java-memory-model-and-volatile.md
 source: syllabus/04-software-design/design-patterns-applied.md#production-scenarios
 ---
 
@@ -88,4 +88,4 @@ This incident's real lesson is less about the specific Singleton bug and more ab
 ## Related Handbook Chapters
 
 - [Design Patterns Applied](../syllabus/04-software-design/design-patterns-applied.md) — canonical Singleton pattern analysis and the `NaiveLazySingleton` race this incident reproduces.
-- [Java Memory Model and volatile](../handbook/concurrency/java-memory-model-and-volatile.md) — the underlying visibility and atomicity concerns a hand-rolled lazy Singleton must get right and a framework-managed bean sidesteps entirely.
+- [Java Memory Model and volatile](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md) — the underlying visibility and atomicity concerns a hand-rolled lazy Singleton must get right and a framework-managed bean sidesteps entirely.

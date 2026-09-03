@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Generics: Erasure, Variance, and PECS
 
-**Canonical chapter:** [`handbook/java-core/generics-erasure-and-pecs.md`](../handbook/java-core/generics-erasure-and-pecs.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/generics-erasure-and-pecs.md`](../syllabus/02-java/language-core/generics-erasure-and-pecs.md)
 
 ## Core Mental Model
 
@@ -79,4 +79,4 @@ readOnlyView (List<? extends Number>): .get(0) = 1 (safe); .add(99) -- DOES NOT 
 
 ## Related
 
-- `handbook/java-core/streams-and-collectors.md`
+- `syllabus/02-java/language-core/streams-and-collectors.md`

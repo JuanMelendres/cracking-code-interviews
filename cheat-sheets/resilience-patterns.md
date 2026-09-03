@@ -78,4 +78,4 @@ With-jitter delays,     attempt1: 72,68,30,27,66ms (spread across the window)
 ## Related
 
 - `handbook/system-design/distributed-systems-failure-modes.md`
-- `handbook/concurrency/executors-and-thread-pool-sizing.md`
+- `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`

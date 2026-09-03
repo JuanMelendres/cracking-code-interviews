@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: JIT: Tiered Compilation, Inlining, and Deoptimization
 
-**Canonical chapter:** [`handbook/jvm/jit-tiered-compilation-and-deoptimization.md`](../handbook/jvm/jit-tiered-compilation-and-deoptimization.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md`](../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md)
 
 ## Card: "Made not entrant" vs a true deoptimization
 
@@ -27,7 +27,7 @@ Prevents treating every recompilation event in a log as a costly correctness bai
 Reading any "not entrant" log line as evidence of an expensive deoptimization event.
 
 **Related:**
-[handbook/jvm/jit-tiered-compilation-and-deoptimization.md](../handbook/jvm/jit-tiered-compilation-and-deoptimization.md)
+[handbook/jvm/jit-tiered-compilation-and-deoptimization.md](../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md)
 
 ## Card: Why speculative optimization exists despite deoptimization risk
 
@@ -44,7 +44,7 @@ The explicit trade-off reasoning behind a JIT design choice, not merely a downsi
 Treating deoptimization risk as a pure defect rather than the cost side of a deliberate performance trade-off.
 
 **Related:**
-[handbook/jvm/jit-tiered-compilation-and-deoptimization.md](../handbook/jvm/jit-tiered-compilation-and-deoptimization.md)
+[handbook/jvm/jit-tiered-compilation-and-deoptimization.md](../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md)
 
 ## Card: Measured tiered-JIT speedup over interpretation
 
@@ -61,4 +61,4 @@ A concrete, measured number grounding "JIT compilation is faster" in an actual f
 Citing JIT's speedup only qualitatively, with no measured comparison.
 
 **Related:**
-[handbook/jvm/jit-tiered-compilation-and-deoptimization.md](../handbook/jvm/jit-tiered-compilation-and-deoptimization.md)
+[handbook/jvm/jit-tiered-compilation-and-deoptimization.md](../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md)

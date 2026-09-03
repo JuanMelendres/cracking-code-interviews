@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # CopyOnWriteArrayList and Copy-on-Write Trade-offs
 
-**Canonical chapter:** [`handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md)
+**Canonical chapter:** [`syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md)
 
 ## Core Mental Model
 
@@ -59,6 +59,6 @@ Every write throws away the old array and builds an entirely new one — reads n
 
 ## Related
 
-- `handbook/collections/concurrenthashmap-internals.md`
-- `handbook/collections/collection-selection-decision-matrix.md`
-- `handbook/collections/fail-fast-vs-weakly-consistent-iterators.md`
+- `syllabus/02-java/collections/concurrenthashmap-internals.md`
+- `syllabus/02-java/collections/collection-selection-decision-matrix.md`
+- `syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md`

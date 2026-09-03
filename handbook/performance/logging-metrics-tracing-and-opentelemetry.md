@@ -19,7 +19,7 @@ related:
   - performance-methodology-and-slo-error-budgets.md
   - incident-response-and-blameless-postmortems.md
   - profiling-jfr-and-flame-graphs.md
-  - ../jvm/gc-fundamentals-and-log-analysis.md
+  - ../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
   - ../spring/spring-actuator-health-and-observability-hooks.md
   - ../../study-packs/week-11/04-logging-metrics-tracing-and-opentelemetry.md
 official_references:
@@ -224,7 +224,7 @@ Correctly describes the shared-`traceId`, parent-child-`spanId` mechanism; propo
 
 ### Staff-Level Discussion
 
-The 4-span trace in this chapter is a small-scale version of what makes microservices architectures debuggable at all — without a shared `traceId` threading through every service boundary, a slow or failed request in a system with dozens of services becomes nearly impossible to root-cause, because no single service's own logs contain the full picture. A Staff engineer treats trace-context propagation as a non-negotiable requirement for any new service in a distributed system, in the same category as authentication or logging itself — not an optional nice-to-have added after the fact, because retrofitting it into a system with untraced gaps is far more expensive than building it in from the start. This is explicitly the same "diagnose from an artifact" skill as [GC log analysis](../jvm/gc-fundamentals-and-log-analysis.md), generalized — the artifact might be a GC log, a trace, or a metrics dashboard, and the discipline (read what's actually there before proposing a fix) is identical regardless of which artifact type is handed over. A Staff-level sequencing: metrics alerted something's wrong → trace localizes which span → logs/GC-log/`EXPLAIN`-plan for that specific span's system give the detailed why.
+The 4-span trace in this chapter is a small-scale version of what makes microservices architectures debuggable at all — without a shared `traceId` threading through every service boundary, a slow or failed request in a system with dozens of services becomes nearly impossible to root-cause, because no single service's own logs contain the full picture. A Staff engineer treats trace-context propagation as a non-negotiable requirement for any new service in a distributed system, in the same category as authentication or logging itself — not an optional nice-to-have added after the fact, because retrofitting it into a system with untraced gaps is far more expensive than building it in from the start. This is explicitly the same "diagnose from an artifact" skill as [GC log analysis](../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md), generalized — the artifact might be a GC log, a trace, or a metrics dashboard, and the discipline (read what's actually there before proposing a fix) is identical regardless of which artifact type is handed over. A Staff-level sequencing: metrics alerted something's wrong → trace localizes which span → logs/GC-log/`EXPLAIN`-plan for that specific span's system give the detailed why.
 
 ## Interview Questions
 
@@ -268,7 +268,7 @@ The 4-span trace in this chapter is a small-scale version of what makes microser
 
 **Evaluation criteria (1–5).** 1: treats each signal type as unrelated. 3: proposes checking trace then GC log in sequence. 5: correct sequencing plus the explicit three-signal funnel articulated generally.
 
-**Related references.** [GC Fundamentals and Log Analysis](../jvm/gc-fundamentals-and-log-analysis.md).
+**Related references.** [GC Fundamentals and Log Analysis](../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md).
 
 ## Summary
 

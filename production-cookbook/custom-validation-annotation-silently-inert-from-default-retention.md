@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/annotations-and-annotation-processing.md
+  - ../syllabus/02-java/language-core/annotations-and-annotation-processing.md
 source: handbook/java-core/annotations-and-annotation-processing.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This bug class is expensive precisely because nothing in the ordinary developer 
 
 ## Related Handbook Chapters
 
-- [Annotations and Annotation Processing](../handbook/java-core/annotations-and-annotation-processing.md) — canonical retention-policy mechanics and the reflection-based mini-ORM demo this incident traces back to.
-- [Reflection and Dynamic Proxies](../handbook/java-core/reflection-and-dynamic-proxies.md) — the reflective mechanism (`getAnnotations()`, `Field.getAnnotation()`) that this incident's validator depends on being able to see.
+- [Annotations and Annotation Processing](../syllabus/02-java/language-core/annotations-and-annotation-processing.md) — canonical retention-policy mechanics and the reflection-based mini-ORM demo this incident traces back to.
+- [Reflection and Dynamic Proxies](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md) — the reflective mechanism (`getAnnotations()`, `Field.getAnnotation()`) that this incident's validator depends on being able to see.

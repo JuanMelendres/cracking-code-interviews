@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Records, Sealed Types, and Pattern Matching
 
-**Canonical chapter:** [`handbook/java-core/records-sealed-types-and-pattern-matching.md`](../handbook/java-core/records-sealed-types-and-pattern-matching.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md`](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)
 
 ## Card: Record hashCode formula
 
@@ -27,7 +27,7 @@ A common but incorrect interview claim; testable via a two-line demo.
 Assuming record internals mirror IDE-generated `equals`/`hashCode`.
 
 **Related:**
-[handbook/java-core/records-sealed-types-and-pattern-matching.md](../handbook/java-core/records-sealed-types-and-pattern-matching.md)
+[handbook/java-core/records-sealed-types-and-pattern-matching.md](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)
 
 ## Card: Sealed exhaustiveness
 
@@ -44,4 +44,4 @@ Converts a class of runtime bugs (missed case) into a compile-time failure.
 Adding `default` "just in case," which silently defeats the exhaustiveness guarantee for future variants.
 
 **Related:**
-[handbook/java-core/records-sealed-types-and-pattern-matching.md](../handbook/java-core/records-sealed-types-and-pattern-matching.md)
+[handbook/java-core/records-sealed-types-and-pattern-matching.md](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)

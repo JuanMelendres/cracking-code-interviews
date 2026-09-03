@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: ArrayList and LinkedList Internals
 
-**Canonical chapter:** [`handbook/collections/arraylist-and-linkedlist-internals.md`](../handbook/collections/arraylist-and-linkedlist-internals.md)
+**Canonical chapter:** [`syllabus/02-java/collections/arraylist-and-linkedlist-internals.md`](../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md)
 
 ## Card: ArrayList's growth factor
 
@@ -27,7 +27,7 @@ A common assumption is that it doubles, like many other growable structures.
 Assuming ArrayList doubles its capacity like a typical dynamic array implementation.
 
 **Related:**
-[Internal Implementation](../handbook/collections/arraylist-and-linkedlist-internals.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md#internal-implementation)
 
 ## Card: Indexed access complexity
 
@@ -44,7 +44,7 @@ The single biggest reason to prefer `ArrayList` for read-heavy access patterns.
 Using `LinkedList.get()` in a loop, creating an accidental O(n²) traversal.
 
 **Related:**
-[Internal Implementation](../handbook/collections/arraylist-and-linkedlist-internals.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md#internal-implementation)
 
 ## Card: The scope of LinkedList's O(1) insertion
 
@@ -61,4 +61,4 @@ A common overgeneralization that leads to choosing LinkedList for the wrong reas
 Assuming `add(k, x)` for an arbitrary `k` is O(1) on a `LinkedList`.
 
 **Related:**
-[Core Concepts](../handbook/collections/arraylist-and-linkedlist-internals.md#core-concepts)
+[Core Concepts](../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md#core-concepts)

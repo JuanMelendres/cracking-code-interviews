@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: HashMap Internals
 
-**Canonical chapter:** [`handbook/collections/hashmap-internals.md`](../handbook/collections/hashmap-internals.md)
+**Canonical chapter:** [`syllabus/02-java/collections/hashmap-internals.md`](../syllabus/02-java/collections/hashmap-internals.md)
 
 ## Card: When HashMap resizes
 
@@ -27,7 +27,7 @@ The mechanism behind HashMap's amortized O(1) put/get despite growing.
 Not sizing initial capacity when the final entry count is known, causing avoidable resize events.
 
 **Related:**
-[Internal Implementation](../handbook/collections/hashmap-internals.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/hashmap-internals.md#internal-implementation)
 
 ## Card: Treeification threshold
 
@@ -44,7 +44,7 @@ Distinguishes a genuine hash-collision problem from a simple sizing problem.
 Stating only the bucket-size threshold without the capacity condition.
 
 **Related:**
-[Core Concepts](../handbook/collections/hashmap-internals.md#core-concepts)
+[Core Concepts](../syllabus/02-java/collections/hashmap-internals.md#core-concepts)
 
 ## Card: What a poor hashCode() costs
 
@@ -61,4 +61,4 @@ Resizing the table doesn't fix a distribution problem.
 Assuming a larger table always fixes slow HashMap lookups.
 
 **Related:**
-[Production Scenarios](../handbook/collections/hashmap-internals.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/collections/hashmap-internals.md#production-scenarios)

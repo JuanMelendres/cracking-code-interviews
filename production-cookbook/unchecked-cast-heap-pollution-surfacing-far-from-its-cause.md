@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/java-core/generics-erasure-and-pecs.md
+  - ../syllabus/02-java/language-core/generics-erasure-and-pecs.md
 source: handbook/java-core/generics-erasure-and-pecs.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is the direct, real-world cost of generics' type erasure combined 
 
 ## Related Handbook Chapters
 
-- [Generics, Erasure, and PECS](../handbook/java-core/generics-erasure-and-pecs.md) — canonical type-erasure and unchecked-cast heap-pollution mechanics used here.
+- [Generics, Erasure, and PECS](../syllabus/02-java/language-core/generics-erasure-and-pecs.md) — canonical type-erasure and unchecked-cast heap-pollution mechanics used here.

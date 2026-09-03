@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: CompletableFuture and Async Composition
 
-**Canonical chapter:** [`handbook/concurrency/completablefuture-and-async-composition.md`](../handbook/concurrency/completablefuture-and-async-composition.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/completablefuture-and-async-composition.md`](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md)
 
 ## Card: Attach-timing threading rule
 
@@ -27,7 +27,7 @@ The least-expected of the three real threading behaviors, and the one most candi
 Assuming `thenApply` always behaves like `thenApplyAsync` in terms of thread dispatch.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/completablefuture-and-async-composition.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md#internal-implementation)
 
 ## Card: Fire-and-forget exceptions
 
@@ -44,7 +44,7 @@ A real, undetectable-by-default failure mode in production code.
 Believing an uncaught exception "surfaces somewhere" automatically.
 
 **Related:**
-[Production Scenarios](../handbook/concurrency/completablefuture-and-async-composition.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md#production-scenarios)
 
 ## Card: Accidental serialization
 
@@ -61,4 +61,4 @@ Measured directly at 614ms sequential vs. 313ms concurrent for two 300ms calls.
 Believing code "uses `CompletableFuture`" is sufficient for it to be concurrent.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/completablefuture-and-async-composition.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md#internal-implementation)

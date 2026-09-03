@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Scoped Values and ThreadLocal Migration
 
-**Canonical chapter:** [`handbook/concurrency/scoped-values-and-threadlocal-migration.md`](../handbook/concurrency/scoped-values-and-threadlocal-migration.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md`](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md)
 
 ## Card: No set(), nothing to forget
 
@@ -27,7 +27,7 @@ This is exactly what makes it structurally immune to the thread-pool-reuse leak.
 Looking for a `set()` method that doesn't exist.
 
 **Related:**
-[Core Concepts](../handbook/concurrency/scoped-values-and-threadlocal-migration.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md#core-concepts)
 
 ## Card: The real ThreadLocal leak
 
@@ -44,7 +44,7 @@ A real, common production bug pattern, not a theoretical concern.
 Assuming a task finishing automatically clears its `ThreadLocal` state.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/scoped-values-and-threadlocal-migration.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md#internal-implementation)
 
 ## Card: Propagation differences
 
@@ -61,4 +61,4 @@ A common, incorrect assumption about `ThreadLocal` inheritance.
 Assuming any child thread automatically inherits parent `ThreadLocal` state.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/scoped-values-and-threadlocal-migration.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md#internal-implementation)

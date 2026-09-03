@@ -13,12 +13,12 @@ target_levels:
   - staff
 estimated_reading_minutes: 40
 prerequisites:
-  - ../jvm/gc-fundamentals-and-log-analysis.md
+  - ../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
 related:
   - performance-methodology-and-slo-error-budgets.md
   - logging-metrics-tracing-and-opentelemetry.md
-  - ../jvm/gc-fundamentals-and-log-analysis.md
-  - ../jvm/memory-leak-diagnosis-and-heap-dump-analysis.md
+  - ../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
+  - ../../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md
   - ../jvm/benchmarking-and-jmh-pitfalls.md
   - ../../practice/java/jvm/profiling-jfr-and-flame-graphs/README.md
 official_references:
@@ -612,8 +612,8 @@ async-profiler version.
 - Brendan Gregg's original flame graph writeup (see
   [Official References](#official-references)) is the primary source for the
   visualization format and remains the clearest explanation of reading one correctly.
-- [GC Fundamentals and Log Analysis](../jvm/gc-fundamentals-and-log-analysis.md) and
-  [Memory Leak Diagnosis and Heap Dump Analysis](../jvm/memory-leak-diagnosis-and-heap-dump-analysis.md)
+- [GC Fundamentals and Log Analysis](../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md) and
+  [Memory Leak Diagnosis and Heap Dump Analysis](../../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md)
   cover the memory-specific diagnostic artifacts (GC logs, heap dumps) that
   complement, but are distinct from, the CPU/allocation profiling this chapter
   covers.

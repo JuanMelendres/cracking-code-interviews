@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: ArrayDeque Internals and the Legacy Stack/Vector Problem
 
-**Canonical chapter:** [`handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md`](../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md)
+**Canonical chapter:** [`syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md`](../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md)
 
 ## Card: Real capacity formula
 
@@ -27,7 +27,7 @@ A common, unverified claim worth checking against the actual JDK.
 Repeating version-specific internals claims as timeless facts.
 
 **Related:**
-[Internal Implementation](../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md#internal-implementation)
 
 ## Card: The legacy Stack cost
 
@@ -44,7 +44,7 @@ Justifies the "avoid Stack" recommendation with an actual measured mechanism.
 Citing "it's legacy" without a real reason.
 
 **Related:**
-[Internal Implementation](../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md#internal-implementation)
 
 ## Card: Null restriction
 
@@ -61,4 +61,4 @@ A real, easy-to-miss behavioral gotcha versus `LinkedList`, which permits `null`
 Assuming all `Deque` implementations handle `null` identically.
 
 **Related:**
-[Internal Implementation](../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md#internal-implementation)

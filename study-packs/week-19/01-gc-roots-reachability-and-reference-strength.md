@@ -15,7 +15,7 @@ canonical: ../../handbook/jvm/gc-roots-reachability-and-reference-strength.md
 
 **IWI 6.90 · Core tier · Very High interview frequency**
 
-**Canonical chapter:** [GC Roots, Reachability, and Reference Strength](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md). This file is the Week 19 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Complements Week 9's G1-flavored `gc-fundamentals-and-log-analysis.md` chapter (which owns G1's region mechanics) with the theory that chapter doesn't cover: GC roots, formal reachability, and the reference-strength hierarchy.
+**Canonical chapter:** [GC Roots, Reachability, and Reference Strength](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md). This file is the Week 19 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Complements Week 9's G1-flavored `gc-fundamentals-and-log-analysis.md` chapter (which owns G1's region mechanics) with the theory that chapter doesn't cover: GC roots, formal reachability, and the reference-strength hierarchy.
 
 **Verification note:** the evidence behind this summary is real, executed output from `practice/java/week-19/gc-roots-reachability/`.
 
@@ -40,54 +40,54 @@ canonical: ../../handbook/jvm/gc-roots-reachability-and-reference-strength.md
 
 ## 1. The concept
 
-An object is reachable if a chain of strong references traces from at least one GC root to it, computed by the mark phase's actual graph traversal — not a reference count. → [Mental Model](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#mental-model).
+An object is reachable if a chain of strong references traces from at least one GC root to it, computed by the mark phase's actual graph traversal — not a reference count. → [Mental Model](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#mental-model).
 
 ## 2. Why it exists
 
-The reference-strength hierarchy (strong/soft/weak/phantom) lets code hold a reference without necessarily keeping an object strongly alive, each with a distinct, real clearing policy. → [Definition and Purpose](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#definition-and-purpose).
+The reference-strength hierarchy (strong/soft/weak/phantom) lets code hold a reference without necessarily keeping an object strongly alive, each with a distinct, real clearing policy. → [Definition and Purpose](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#definition-and-purpose).
 
 ## 3. The measured evidence
 
-Real demo: a strong reference survives `System.gc()`; an identical weak reference is cleared immediately once its only strong path is removed; a soft reference survives the identical operation under no memory pressure; a phantom reference never returns the object at all, only enqueueing to a `ReferenceQueue` after collection. → [Internal Implementation](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#internal-implementation) has the full trace.
+Real demo: a strong reference survives `System.gc()`; an identical weak reference is cleared immediately once its only strong path is removed; a soft reference survives the identical operation under no memory pressure; a phantom reference never returns the object at all, only enqueueing to a `ReferenceQueue` after collection. → [Internal Implementation](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#internal-implementation) has the full trace.
 
 ## 4. Trade-offs
 
-Soft references give pressure-aware caching for free but with an implementation-defined exact heuristic; weak references give precise, predictable immediate clearing — exactly wrong for pressure-aware caching, exactly right for non-lifecycle-affecting tracking. → [Trade-offs](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#trade-offs).
+Soft references give pressure-aware caching for free but with an implementation-defined exact heuristic; weak references give precise, predictable immediate clearing — exactly wrong for pressure-aware caching, exactly right for non-lifecycle-affecting tracking. → [Trade-offs](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#trade-offs).
 
 ## 5. Interview questions
 
 1. A `WeakHashMap`-based cache empties much faster than expected with plenty of heap free. What's going on?
 2. Why is `finalize()` considered a legacy anti-pattern, and what replaced it?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#interview-questions).
 
 ## 6. Common mistakes
 
-Describing GC eligibility as "no longer referenced" without naming roots; using `WeakHashMap` expecting pressure-aware caching; relying on `finalize()` for cleanup timing. → [Common Mistakes](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#common-mistakes).
+Describing GC eligibility as "no longer referenced" without naming roots; using `WeakHashMap` expecting pressure-aware caching; relying on `finalize()` for cleanup timing. → [Common Mistakes](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#common-mistakes).
 
 ## 7. Staff-level discussion
 
-Recognizes the generational hypothesis as the general theoretical basis for generational collection, independent of any specific collector's implementation. → [Staff-Level Discussion](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#interview-answer-framework).
+Recognizes the generational hypothesis as the general theoretical basis for generational collection, independent of any specific collector's implementation. → [Staff-Level Discussion](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#interview-answer-framework).
 
 ## 8. Summary
 
-Reachability is root-traced graph connectivity, not a count. Measured directly: identical post-unreachability `System.gc()` clears a weak reference immediately but leaves a soft reference intact under normal pressure. → [Summary](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#summary).
+Reachability is root-traced graph connectivity, not a count. Measured directly: identical post-unreachability `System.gc()` clears a weak reference immediately but leaves a soft reference intact under normal pressure. → [Summary](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#summary).
 
 ## 9. Key Takeaways
 
-→ [Key Takeaways](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#key-takeaways).
 
 ## 10. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#cheat-sheet).
 
 ## 11. Flashcards
 
-→ [Flashcards](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#flashcards). Full week-level deck: `08-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#flashcards). Full week-level deck: `08-flashcards.md`.
 
 ## 12. Practice Exercises
 
-→ [Practice Exercises](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#practice-exercises) and [Solutions](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md#solutions). Reproducible demo: `practice/java/week-19/gc-roots-reachability/`.
+→ [Practice Exercises](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#practice-exercises) and [Solutions](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md#solutions). Reproducible demo: `practice/java/week-19/gc-roots-reachability/`.
 
 ## 13. Additional Reading
 

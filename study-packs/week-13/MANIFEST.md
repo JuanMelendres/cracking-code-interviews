@@ -17,11 +17,11 @@ last_reviewed: 2026-07-31
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, schedule, exit criteria | 570 |
-| 2 | `01-streams-and-collectors.md` | T-107 — summary + link; full chapter canonical at `handbook/java-core/streams-and-collectors.md` | 545 |
-| 3 | `02-equals-hashcode-and-comparable-contracts.md` | T-101 — summary + link; full chapter canonical at `handbook/java-core/equals-hashcode-and-comparable-contracts.md` | 575 |
-| 4 | `03-generics-erasure-and-pecs.md` | T-104 — summary + link; full chapter canonical at `handbook/java-core/generics-erasure-and-pecs.md` | 616 |
-| 5 | `04-exception-design-and-hierarchy-strategy.md` | T-105 — summary + link; full chapter canonical at `handbook/java-core/exception-design-and-hierarchy-strategy.md` | 587 |
-| 6 | `05-immutability-and-defensive-copying.md` | T-103 — summary + link; full chapter canonical at `handbook/java-core/immutability-and-defensive-copying.md` | 545 |
+| 2 | `01-streams-and-collectors.md` | T-107 — summary + link; full chapter canonical at `syllabus/02-java/language-core/streams-and-collectors.md` | 545 |
+| 3 | `02-equals-hashcode-and-comparable-contracts.md` | T-101 — summary + link; full chapter canonical at `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` | 575 |
+| 4 | `03-generics-erasure-and-pecs.md` | T-104 — summary + link; full chapter canonical at `syllabus/02-java/language-core/generics-erasure-and-pecs.md` | 616 |
+| 5 | `04-exception-design-and-hierarchy-strategy.md` | T-105 — summary + link; full chapter canonical at `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` | 587 |
+| 6 | `05-immutability-and-defensive-copying.md` | T-103 — summary + link; full chapter canonical at `syllabus/02-java/language-core/immutability-and-defensive-copying.md` | 545 |
 | 7 | `06-java-coding-practice.md` | 4 problems, all compiled and run, 12/12 assertions pass | 404 |
 | 8 | `07-flashcards.md` | 15 cards | 943 |
 | 9 | `08-week-13-mock-interview.md` | 45-min Java Core technical round | 914 |

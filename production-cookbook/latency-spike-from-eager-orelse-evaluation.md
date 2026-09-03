@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/optional-and-null-strategy.md
+  - ../syllabus/02-java/language-core/optional-and-null-strategy.md
 source: handbook/java-core/optional-and-null-strategy.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This is a case where an API's naming similarity actively works against correct u
 
 ## Related Handbook Chapters
 
-- [Optional and Null Strategy](../handbook/java-core/optional-and-null-strategy.md) — canonical `orElse()` vs. `orElseGet()` mechanics and the measured ~1200x evaluation-cost gap.
+- [Optional and Null Strategy](../syllabus/02-java/language-core/optional-and-null-strategy.md) — canonical `orElse()` vs. `orElseGet()` mechanics and the measured ~1200x evaluation-cost gap.
 - [Connection Pooling and Sizing (HikariCP)](../handbook/databases/connection-pooling-and-sizing.md) — related considerations when a fallback path makes unnecessary database calls under load.

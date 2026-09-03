@@ -1,7 +1,7 @@
 # Serialization hazards and alternatives (T-115) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/serialization-hazards-and-alternatives.md`](../../../handbook/java-core/serialization-hazards-and-alternatives.md)
+[`handbook/java-core/serialization-hazards-and-alternatives.md`](../../../../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md)
 (T-115). Three independent demos: a real, byte-level-tampered constructor-bypass proof (and its
 real, verified fix), a real broken-then-fixed Singleton round trip, and the JDK's own current,
 real defensive mechanism (`ObjectInputFilter`).

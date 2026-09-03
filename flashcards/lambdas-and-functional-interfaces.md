@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Lambdas and Functional Interfaces
 
-**Canonical chapter:** [`handbook/java-core/lambdas-and-functional-interfaces.md`](../handbook/java-core/lambdas-and-functional-interfaces.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/lambdas-and-functional-interfaces.md`](../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md)
 
 ## Card: Why effectively final
 
@@ -27,7 +27,7 @@ The reasoning, not just the rule, is what interviewers probe for.
 Reciting it as an arbitrary Java rule without the value-capture explanation.
 
 **Related:**
-[Core Concepts](../handbook/java-core/lambdas-and-functional-interfaces.md#core-concepts)
+[Core Concepts](../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md#core-concepts)
 
 ## Card: Lambda vs. anonymous class, on disk
 
@@ -44,7 +44,7 @@ The concrete, measurable difference behind "lambdas are more lightweight."
 Assuming lambdas are "just anonymous classes with shorter syntax" at the bytecode level.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/lambdas-and-functional-interfaces.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md#internal-implementation)
 
 ## Card: What counts toward SAM
 
@@ -61,4 +61,4 @@ A common source of unnecessary hesitation when designing functional interfaces.
 Assuming any extra method on the interface breaks `@FunctionalInterface`.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/lambdas-and-functional-interfaces.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md#internal-implementation)

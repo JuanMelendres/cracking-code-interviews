@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Atomics, CAS, and the ABA Problem
 
-**Canonical chapter:** [`handbook/concurrency/atomics-cas-and-the-aba-problem.md`](../handbook/concurrency/atomics-cas-and-the-aba-problem.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md)
 
 ## Card: What CAS actually checks
 
@@ -27,7 +27,7 @@ The exact misconception ABA exploits.
 Treating "CAS succeeded" as "nothing happened in between."
 
 **Related:**
-[Core Concepts](../handbook/concurrency/atomics-cas-and-the-aba-problem.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md#core-concepts)
 
 ## Card: The ABA fix
 
@@ -44,7 +44,7 @@ The standard, real JDK fix — verified by a rejected CAS in this chapter's demo
 Forgetting to bump the stamp on every mutation path, silently reintroducing the vulnerability.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/atomics-cas-and-the-aba-problem.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md#internal-implementation)
 
 ## Card: CAS vs. synchronized, measured
 
@@ -61,4 +61,4 @@ Avoids treating "lock-free" as a performance guarantee rather than something to 
 Choosing CAS by reputation rather than by measuring the actual workload.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/atomics-cas-and-the-aba-problem.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md#internal-implementation)

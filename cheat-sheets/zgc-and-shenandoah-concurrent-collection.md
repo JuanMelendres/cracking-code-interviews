@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # ZGC and Shenandoah: Concurrent Collection
 
-**Canonical chapter:** [`handbook/jvm/zgc-and-shenandoah-concurrent-collection.md`](../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md`](../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md)
 
 ## Core Mental Model
 
@@ -75,5 +75,5 @@ Neither number is cherry-picked — both are the real, direct trade-off: dramati
 
 ## Related
 
-- `handbook/jvm/gc-fundamentals-and-log-analysis.md`
-- `handbook/jvm/safepoints-and-stop-the-world-mechanics.md`
+- `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`
+- `syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md`

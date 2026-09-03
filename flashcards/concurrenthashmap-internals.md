@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: ConcurrentHashMap Internals
 
-**Canonical chapter:** [`handbook/collections/concurrenthashmap-internals.md`](../handbook/collections/concurrenthashmap-internals.md)
+**Canonical chapter:** [`syllabus/02-java/collections/concurrenthashmap-internals.md`](../syllabus/02-java/collections/concurrenthashmap-internals.md)
 
 ## Card: HashMap vs ConcurrentHashMap under concurrency
 
@@ -27,7 +27,7 @@ The core reason ConcurrentHashMap exists.
 Assuming a plain HashMap "probably won't cause a problem in practice" under light concurrent access.
 
 **Related:**
-[Internal Implementation](../handbook/collections/concurrenthashmap-internals.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/concurrenthashmap-internals.md#internal-implementation)
 
 ## Card: Why get-then-put is not atomic
 
@@ -44,7 +44,7 @@ The most common ConcurrentHashMap misuse in real codebases.
 Assuming ConcurrentHashMap's thread-safety extends across multiple separate method calls.
 
 **Related:**
-[Internal Implementation](../handbook/collections/concurrenthashmap-internals.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/concurrenthashmap-internals.md#internal-implementation)
 
 ## Card: The correct atomic increment
 
@@ -61,4 +61,4 @@ Eliminates the lost-update race entirely, measured directly.
 Using a manual get()/put() pair instead of the built-in atomic compound operation.
 
 **Related:**
-[Internal Implementation](../handbook/collections/concurrenthashmap-internals.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/concurrenthashmap-internals.md#internal-implementation)

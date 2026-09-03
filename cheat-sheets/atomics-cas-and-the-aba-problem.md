@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Atomics, CAS, and the ABA Problem
 
-**Canonical chapter:** [`handbook/concurrency/atomics-cas-and-the-aba-problem.md`](../handbook/concurrency/atomics-cas-and-the-aba-problem.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md)
 
 ## Core Mental Model
 
@@ -59,5 +59,5 @@ Compare-and-swap answers exactly one question — "is the value still what I las
 
 ## Related
 
-- `handbook/concurrency/completablefuture-and-async-composition.md`
-- `handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md`
+- `syllabus/02-java/concurrency/completablefuture-and-async-composition.md`
+- `syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md`

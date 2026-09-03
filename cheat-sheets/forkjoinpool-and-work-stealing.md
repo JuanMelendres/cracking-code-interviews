@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # ForkJoinPool and Work-Stealing
 
-**Canonical chapter:** [`handbook/concurrency/forkjoinpool-and-work-stealing.md`](../handbook/concurrency/forkjoinpool-and-work-stealing.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md`](../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md)
 
 ## Core Mental Model
 
@@ -60,5 +60,5 @@ Every worker has its own private task queue, pulling from its own end first — 
 
 ## Related
 
-- `handbook/concurrency/completablefuture-and-async-composition.md`
-- `handbook/concurrency/structured-concurrency.md`
+- `syllabus/02-java/concurrency/completablefuture-and-async-composition.md`
+- `syllabus/02-java/concurrency/structured-concurrency.md`

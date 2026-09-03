@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Collection Selection Decision Matrix
 
-**Canonical chapter:** [`handbook/collections/collection-selection-decision-matrix.md`](../handbook/collections/collection-selection-decision-matrix.md)
+**Canonical chapter:** [`syllabus/02-java/collections/collection-selection-decision-matrix.md`](../syllabus/02-java/collections/collection-selection-decision-matrix.md)
 
 ## Core Mental Model
 
@@ -67,8 +67,8 @@ BlockingQueue put() on full queue:     genuinely blocks (WAITING thread state), 
 
 ## Related
 
-- `handbook/collections/hashmap-internals.md`
-- `handbook/collections/concurrenthashmap-internals.md`
-- `handbook/collections/blockingqueue-family.md`
-- `handbook/collections/arraylist-and-linkedlist-internals.md`
+- `syllabus/02-java/collections/hashmap-internals.md`
+- `syllabus/02-java/collections/concurrenthashmap-internals.md`
+- `syllabus/02-java/collections/blockingqueue-family.md`
+- `syllabus/02-java/collections/arraylist-and-linkedlist-internals.md`
 - `handbook/system-design/storage-selection-tradeoffs.md`

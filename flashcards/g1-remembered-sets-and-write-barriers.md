@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: G1 Internals: Remembered Sets and Write Barriers
 
-**Canonical chapter:** [`handbook/jvm/g1-remembered-sets-and-write-barriers.md`](../handbook/jvm/g1-remembered-sets-and-write-barriers.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md`](../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md)
 
 ## Card: What lets G1 collect one region without scanning the whole heap
 
@@ -27,7 +27,7 @@ The core mechanism behind G1's ability to do partial, region-scoped collections 
 Describing G1 collection without naming the specific remembered-set/write-barrier mechanism that makes it possible.
 
 **Related:**
-[handbook/jvm/g1-remembered-sets-and-write-barriers.md](../handbook/jvm/g1-remembered-sets-and-write-barriers.md)
+[handbook/jvm/g1-remembered-sets-and-write-barriers.md](../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md)
 
 ## Card: What RSet/write-barrier cost scales with
 
@@ -44,7 +44,7 @@ A real, measured number that redirects diagnosis toward the actual cost driver i
 Attributing high RSet overhead to total allocation volume rather than the specific cross-region write pattern.
 
 **Related:**
-[handbook/jvm/g1-remembered-sets-and-write-barriers.md](../handbook/jvm/g1-remembered-sets-and-write-barriers.md)
+[handbook/jvm/g1-remembered-sets-and-write-barriers.md](../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md)
 
 ## Card: The JDK 17+ log name for the old "Update RS" phase
 
@@ -61,4 +61,4 @@ Prevents searching a modern GC log for terminology that no longer exists in curr
 Searching a current GC log for "Update RS" instead of the renamed "Merge Heap Roots" phase.
 
 **Related:**
-[handbook/jvm/g1-remembered-sets-and-write-barriers.md](../handbook/jvm/g1-remembered-sets-and-write-barriers.md)
+[handbook/jvm/g1-remembered-sets-and-write-barriers.md](../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md)

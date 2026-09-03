@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md
+  - ../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md
 source: handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is a good illustration of "legacy but still standard library" trap
 
 ## Related Handbook Chapters
 
-- [ArrayDeque Internals and the Legacy Stack/Vector Problem](../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md) — canonical circular-buffer mechanics and the measured ~2.26x `Stack`-versus-`ArrayDeque` cost this incident reproduces.
-- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md) — related consideration of when synchronization cost on a collection is or isn't justified by the actual access pattern.
+- [ArrayDeque Internals and the Legacy Stack/Vector Problem](../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md) — canonical circular-buffer mechanics and the measured ~2.26x `Stack`-versus-`ArrayDeque` cost this incident reproduces.
+- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md) — related consideration of when synchronization cost on a collection is or isn't justified by the actual access pattern.

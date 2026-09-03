@@ -20,7 +20,7 @@ related:
   - secrets-management-and-key-rotation.md
   - supply-chain-security-sbom-and-dependency-risk.md
   - multi-tenancy-isolation-models.md
-  - ../java-core/serialization-hazards-and-alternatives.md
+  - ../../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md
   - oauth2-oidc-and-jwt.md
   - ../spring/security-filter-chain.md
   - ../../study-packs/week-17/01-owasp-top-10-for-backend-services.md
@@ -293,7 +293,7 @@ A: It's bypassable via alternate address representations, DNS rebinding, and red
 ## Additional Reading
 
 - [OWASP Top 10:2021](https://owasp.org/Top10/)
-- [Serialization Hazards and Alternatives](../java-core/serialization-hazards-and-alternatives.md) — the real, Java-specific mechanics (with real, byte-level-tampered reproductions) behind this chapter's "untrusted data treated as code" deserialization risk shape.
+- [Serialization Hazards and Alternatives](../../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md) — the real, Java-specific mechanics (with real, byte-level-tampered reproductions) behind this chapter's "untrusted data treated as code" deserialization risk shape.
 
 ## Official References
 

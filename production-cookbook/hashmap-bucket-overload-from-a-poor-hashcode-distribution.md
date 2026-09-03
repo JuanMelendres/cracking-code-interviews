@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/collections/hashmap-internals.md
+  - ../syllabus/02-java/collections/hashmap-internals.md
 source: handbook/collections/hashmap-internals.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The specific danger in this bug class is that it is invisible to the correctness
 
 ## Related Handbook Chapters
 
-- [HashMap Internals](../handbook/collections/hashmap-internals.md) — canonical bucket, collision, and treeification mechanics used here.
+- [HashMap Internals](../syllabus/02-java/collections/hashmap-internals.md) — canonical bucket, collision, and treeification mechanics used here.

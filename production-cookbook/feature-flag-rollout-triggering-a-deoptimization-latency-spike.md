@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/jit-tiered-compilation-and-deoptimization.md
+  - ../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
 source: handbook/jvm/jit-tiered-compilation-and-deoptimization.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident broadens the mental model of what can cause a stop-the-world-adjac
 
 ## Related Handbook Chapters
 
-- [JIT Tiered Compilation and Deoptimization](../handbook/jvm/jit-tiered-compilation-and-deoptimization.md) — canonical speculative-optimization and deoptimization mechanics used here.
+- [JIT Tiered Compilation and Deoptimization](../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md) — canonical speculative-optimization and deoptimization mechanics used here.

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Optional and Null Strategy
 
-**Canonical chapter:** [`handbook/java-core/optional-and-null-strategy.md`](../handbook/java-core/optional-and-null-strategy.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/optional-and-null-strategy.md`](../syllabus/02-java/language-core/optional-and-null-strategy.md)
 
 ## Core Mental Model
 
@@ -60,6 +60,6 @@ last_updated: 2026-09-02
 
 ## Related
 
-- `handbook/java-core/lambdas-and-functional-interfaces.md`
-- `handbook/java-core/streams-and-collectors.md`
-- `handbook/java-core/serialization-hazards-and-alternatives.md`
+- `syllabus/02-java/language-core/lambdas-and-functional-interfaces.md`
+- `syllabus/02-java/language-core/streams-and-collectors.md`
+- `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md`

@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md
+  - ../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md
 source: handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is a good example of a bottleneck that is invisible from ordinary 
 
 ## Related Handbook Chapters
 
-- [ReentrantLock, ReadWriteLock, and StampedLock](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md) — canonical mechanics of the read/write split and the measured concurrent-read-overlap evidence this fix relies on.
-- [Atomics, CAS, and the ABA Problem](../handbook/concurrency/atomics-cas-and-the-aba-problem.md) — related lock-free alternative worth considering for sufficiently simple shared-state access patterns.
+- [ReentrantLock, ReadWriteLock, and StampedLock](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md) — canonical mechanics of the read/write split and the measured concurrent-read-overlap evidence this fix relies on.
+- [Atomics, CAS, and the ABA Problem](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md) — related lock-free alternative worth considering for sufficiently simple shared-state access patterns.

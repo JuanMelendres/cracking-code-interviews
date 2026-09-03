@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/object-layout-headers-and-compressed-oops.md
+  - ../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md
 source: handbook/jvm/object-layout-headers-and-compressed-oops.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ This scenario is a specific instance of a broader category worth internalizing: 
 
 ## Related Handbook Chapters
 
-- [Object Layout, Headers, and Compressed Oops](../handbook/jvm/object-layout-headers-and-compressed-oops.md) — canonical compressed-oops mechanics and addressing-ceiling measurement used here.
+- [Object Layout, Headers, and Compressed Oops](../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md) — canonical compressed-oops mechanics and addressing-ceiling measurement used here.

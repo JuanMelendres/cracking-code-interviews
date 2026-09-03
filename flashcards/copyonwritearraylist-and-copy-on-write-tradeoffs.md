@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: CopyOnWriteArrayList and Copy-on-Write Trade-offs
 
-**Canonical chapter:** [`handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md)
+**Canonical chapter:** [`syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md)
 
 ## Card: The real write cost
 
@@ -27,7 +27,7 @@ A common underestimate of the real write cost.
 Assuming the copy cost scales with the size of the change rather than the size of the whole list.
 
 **Related:**
-[Internal Implementation](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#internal-implementation)
 
 ## Card: The real read benefit
 
@@ -44,7 +44,7 @@ Quantifies "lock-free reads" as a real, measured number rather than an abstract 
 Assuming `synchronizedList()`'s lock cost only matters when writers are actually contending.
 
 **Related:**
-[Internal Implementation](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#internal-implementation)
 
 ## Card: Right workload shape
 
@@ -61,4 +61,4 @@ The entire design is built around this one specific assumption.
 Using it as a general-purpose thread-safe list default regardless of write frequency.
 
 **Related:**
-[Decision Framework](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#decision-framework)
+[Decision Framework](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#decision-framework)

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Polymorphism and Dynamic Dispatch Mechanics
 
-**Canonical chapter:** [`handbook/java-core/polymorphism-and-dynamic-dispatch.md`](../handbook/java-core/polymorphism-and-dynamic-dispatch.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md`](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md)
 
 ## Card: What's actually polymorphic in Java
 
@@ -27,7 +27,7 @@ Fields, static methods, and overload resolution are all resolved at compile time
 Assuming any subclass member with the same name as a superclass member is "overriding" it.
 
 **Related:**
-[Core Concepts](../handbook/java-core/polymorphism-and-dynamic-dispatch.md#core-concepts)
+[Core Concepts](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md#core-concepts)
 
 ## Card: Field hiding vs. method overriding
 
@@ -44,7 +44,7 @@ The most commonly missed contrast with method overriding, which behaves the oppo
 Expecting a superclass-typed reference to see the subclass's field value, the way it would see an overridden method's behavior.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/polymorphism-and-dynamic-dispatch.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md#internal-implementation)
 
 ## Card: The constructor-calls-overridable-method pitfall
 
@@ -61,4 +61,4 @@ A real, recurring production bug pattern, not just trivia — measured directly 
 Not recognizing this as a design smell to actively avoid in code review.
 
 **Related:**
-[Production Scenarios](../handbook/java-core/polymorphism-and-dynamic-dispatch.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md#production-scenarios)

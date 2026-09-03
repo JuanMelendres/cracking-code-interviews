@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Fail-Fast vs. Weakly-Consistent Iterators
 
-**Canonical chapter:** [`handbook/collections/fail-fast-vs-weakly-consistent-iterators.md`](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md)
+**Canonical chapter:** [`syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md`](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md)
 
 ## Core Mental Model
 
@@ -54,6 +54,6 @@ A fail-fast iterator isn't watching the collection for changes — it's comparin
 
 ## Related
 
-- `handbook/collections/concurrenthashmap-internals.md`
-- `handbook/collections/collection-selection-decision-matrix.md`
-- `handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`
+- `syllabus/02-java/collections/concurrenthashmap-internals.md`
+- `syllabus/02-java/collections/collection-selection-decision-matrix.md`
+- `syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md`

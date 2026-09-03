@@ -16,11 +16,11 @@ competencies:
   - Exception design and cause-chaining
   - Immutability and defensive copying
 related:
-  - ../../handbook/java-core/streams-and-collectors.md
-  - ../../handbook/java-core/equals-hashcode-and-comparable-contracts.md
-  - ../../handbook/java-core/generics-erasure-and-pecs.md
-  - ../../handbook/java-core/exception-design-and-hierarchy-strategy.md
-  - ../../handbook/java-core/immutability-and-defensive-copying.md
+  - ../../syllabus/02-java/language-core/streams-and-collectors.md
+  - ../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md
+  - ../../syllabus/02-java/language-core/generics-erasure-and-pecs.md
+  - ../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
+  - ../../syllabus/02-java/language-core/immutability-and-defensive-copying.md
 source: ../../study-packs/week-13/08-week-13-mock-interview.md
 official_references: []
 ---
@@ -45,11 +45,11 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Parallel streams and fork/join coordination cost | Q1 | [Streams and Collectors](../../handbook/java-core/streams-and-collectors.md) |
-| equals()/hashCode() contract | Q2 | [equals(), hashCode(), and Comparable Contracts](../../handbook/java-core/equals-hashcode-and-comparable-contracts.md) |
-| Generics and type erasure | Q3 | [Generics: Erasure, Variance, and PECS](../../handbook/java-core/generics-erasure-and-pecs.md) |
-| Exception design and cause-chaining | Q4 | [Exception Design and Hierarchy Strategy](../../handbook/java-core/exception-design-and-hierarchy-strategy.md) |
-| Immutability and defensive copying | Q5, Q6 | [Immutability and Defensive Copying](../../handbook/java-core/immutability-and-defensive-copying.md) |
+| Parallel streams and fork/join coordination cost | Q1 | [Streams and Collectors](../../syllabus/02-java/language-core/streams-and-collectors.md) |
+| equals()/hashCode() contract | Q2 | [equals(), hashCode(), and Comparable Contracts](../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md) |
+| Generics and type erasure | Q3 | [Generics: Erasure, Variance, and PECS](../../syllabus/02-java/language-core/generics-erasure-and-pecs.md) |
+| Exception design and cause-chaining | Q4 | [Exception Design and Hierarchy Strategy](../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md) |
+| Immutability and defensive copying | Q5, Q6 | [Immutability and Defensive Copying](../../syllabus/02-java/language-core/immutability-and-defensive-copying.md) |
 | Cross-topic synthesis | Q7 | All five, above |
 
 ## Interviewer Opening Script
@@ -144,9 +144,9 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 or Q7 (parallel streams) → re-read [Streams and Collectors](../../handbook/java-core/streams-and-collectors.md), focusing on the chapter's own measured parallel-stream evidence before re-attempting.
-- Any score ≤ 2 on Q2 or Q6 (equals/hashCode/Comparable) → re-read [equals(), hashCode(), and Comparable Contracts](../../handbook/java-core/equals-hashcode-and-comparable-contracts.md); redo the chapter's own contract-violation demo.
-- Any score ≤ 2 on Q3 → re-read [Generics: Erasure, Variance, and PECS](../../handbook/java-core/generics-erasure-and-pecs.md)'s Internal Implementation section on erasure timing.
-- Any score ≤ 2 on Q4 → re-read [Exception Design and Hierarchy Strategy](../../handbook/java-core/exception-design-and-hierarchy-strategy.md)'s cause-chaining material.
-- Any score ≤ 2 on Q5 or Q6 (immutability) → re-read [Immutability and Defensive Copying](../../handbook/java-core/immutability-and-defensive-copying.md), specifically the two-leak-points framing.
+- Any score ≤ 2 on Q1 or Q7 (parallel streams) → re-read [Streams and Collectors](../../syllabus/02-java/language-core/streams-and-collectors.md), focusing on the chapter's own measured parallel-stream evidence before re-attempting.
+- Any score ≤ 2 on Q2 or Q6 (equals/hashCode/Comparable) → re-read [equals(), hashCode(), and Comparable Contracts](../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md); redo the chapter's own contract-violation demo.
+- Any score ≤ 2 on Q3 → re-read [Generics: Erasure, Variance, and PECS](../../syllabus/02-java/language-core/generics-erasure-and-pecs.md)'s Internal Implementation section on erasure timing.
+- Any score ≤ 2 on Q4 → re-read [Exception Design and Hierarchy Strategy](../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md)'s cause-chaining material.
+- Any score ≤ 2 on Q5 or Q6 (immutability) → re-read [Immutability and Defensive Copying](../../syllabus/02-java/language-core/immutability-and-defensive-copying.md), specifically the two-leak-points framing.
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation, not just the failed questions — Q7's synthesis quality depends on fluency across all five topics simultaneously.

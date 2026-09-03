@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/gc-fundamentals-and-log-analysis.md
+  - ../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
 source: handbook/jvm/gc-fundamentals-and-log-analysis.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The most valuable move in this incident is refusing the GC-tuning framing: an un
 
 ## Related Handbook Chapters
 
-- [GC Fundamentals and Log Analysis](../handbook/jvm/gc-fundamentals-and-log-analysis.md) — canonical GC log reading and diagnostic-checklist methodology used here.
-- [Memory Leak Diagnosis and Heap Dump Analysis](../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md) — the heap dump comparison technique used to isolate the growing object type.
+- [GC Fundamentals and Log Analysis](../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md) — canonical GC log reading and diagnostic-checklist methodology used here.
+- [Memory Leak Diagnosis and Heap Dump Analysis](../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md) — the heap dump comparison technique used to isolate the growing object type.

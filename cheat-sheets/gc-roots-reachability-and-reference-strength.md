@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # GC Roots, Reachability, and Reference Strength
 
-**Canonical chapter:** [`handbook/jvm/gc-roots-reachability-and-reference-strength.md`](../handbook/jvm/gc-roots-reachability-and-reference-strength.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md`](../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md)
 
 ## Core Mental Model
 
@@ -73,5 +73,5 @@ The weak reference clears immediately once its only strong path is gone; the sof
 
 ## Related
 
-- `handbook/jvm/gc-fundamentals-and-log-analysis.md`
-- `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md`
+- `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`
+- `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md`

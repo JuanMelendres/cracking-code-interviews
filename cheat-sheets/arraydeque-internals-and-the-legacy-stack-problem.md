@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # ArrayDeque Internals and the Legacy Stack/Vector Problem
 
-**Canonical chapter:** [`handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md`](../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md)
+**Canonical chapter:** [`syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md`](../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md)
 
 ## Core Mental Model
 
@@ -59,6 +59,6 @@ last_updated: 2026-09-02
 
 ## Related
 
-- `handbook/collections/arraylist-and-linkedlist-internals.md`
-- `handbook/collections/collection-selection-decision-matrix.md`
-- `handbook/collections/fail-fast-vs-weakly-consistent-iterators.md`
+- `syllabus/02-java/collections/arraylist-and-linkedlist-internals.md`
+- `syllabus/02-java/collections/collection-selection-decision-matrix.md`
+- `syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md`

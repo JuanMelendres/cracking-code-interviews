@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Immutability and Defensive Copying
 
-**Canonical chapter:** [`handbook/java-core/immutability-and-defensive-copying.md`](../handbook/java-core/immutability-and-defensive-copying.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/immutability-and-defensive-copying.md`](../syllabus/02-java/language-core/immutability-and-defensive-copying.md)
 
 ## Core Mental Model
 
@@ -77,5 +77,5 @@ Fixed version (defensive copy + List.copyOf()):
 
 ## Related
 
-- `handbook/java-core/equals-hashcode-and-comparable-contracts.md`
-- `handbook/concurrency/java-memory-model-and-volatile.md`
+- `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md`
+- `syllabus/02-java/concurrency/java-memory-model-and-volatile.md`

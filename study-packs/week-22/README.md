@@ -18,7 +18,7 @@ Weeks 20 and 21 closed the worst zero/near-zero patterns and the next-thinnest f
 
 ## Prerequisites
 
-None formally required. `study-packs/week-01/04-coding-interview-communication.md` for the six-phase narration method. The Concurrency-coding file assumes familiarity with `handbook/concurrency/java-memory-model-and-volatile.md` and `deadlock-race-conditions-and-thread-diagnostics.md` — this week's problems apply those concepts, they don't re-teach them.
+None formally required. `study-packs/week-01/04-coding-interview-communication.md` for the six-phase narration method. The Concurrency-coding file assumes familiarity with `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` and `deadlock-race-conditions-and-thread-diagnostics.md` — this week's problems apply those concepts, they don't re-teach them.
 
 ## Schedule
 

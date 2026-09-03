@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/enums-enummap-and-enumset.md
+  - ../syllabus/02-java/language-core/enums-enummap-and-enumset.md
 source: handbook/java-core/enums-enummap-and-enumset.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This bug is a strong example of a correctness invariant that is completely invis
 
 ## Related Handbook Chapters
 
-- [Enums, EnumMap, and EnumSet](../handbook/java-core/enums-enummap-and-enumset.md) — canonical mechanics of enum identity, `ordinal()`, and the reproduced silent-corruption example.
-- [equals/hashCode and Comparable Contracts](../handbook/java-core/equals-hashcode-and-comparable-contracts.md) — related contract-stability considerations for values that cross persistence boundaries.
+- [Enums, EnumMap, and EnumSet](../syllabus/02-java/language-core/enums-enummap-and-enumset.md) — canonical mechanics of enum identity, `ordinal()`, and the reproduced silent-corruption example.
+- [equals/hashCode and Comparable Contracts](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md) — related contract-stability considerations for values that cross persistence boundaries.

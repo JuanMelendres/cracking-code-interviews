@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: GC Fundamentals and Log Analysis
 
-**Canonical chapter:** [`handbook/jvm/gc-fundamentals-and-log-analysis.md`](../handbook/jvm/gc-fundamentals-and-log-analysis.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`](../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md)
 
 ## Card: Most common GC tuning misconception
 
@@ -27,7 +27,7 @@ The default instinct most candidates reach for first, and frequently the wrong o
 Proposing more heap without reading the log first.
 
 **Related:**
-[Decision Framework](../handbook/jvm/gc-fundamentals-and-log-analysis.md#decision-framework)
+[Decision Framework](../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md#decision-framework)
 
 ## Card: Rising post-GC occupancy trend
 
@@ -44,7 +44,7 @@ The real diagnostic signal, versus any single pause line.
 Drawing a conclusion from one log line instead of the trend.
 
 **Related:**
-[Internal Implementation](../handbook/jvm/gc-fundamentals-and-log-analysis.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md#internal-implementation)
 
 ## Card: Humongous allocations
 
@@ -61,4 +61,4 @@ A specific, diagnosable cause of bad GC behavior that a naive "increase the heap
 Treating all bad GC pauses as a sizing problem.
 
 **Related:**
-[Core Concepts](../handbook/jvm/gc-fundamentals-and-log-analysis.md#core-concepts)
+[Core Concepts](../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md#core-concepts)

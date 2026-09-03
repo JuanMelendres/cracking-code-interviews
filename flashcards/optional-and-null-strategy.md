@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Optional and Null Strategy
 
-**Canonical chapter:** [`handbook/java-core/optional-and-null-strategy.md`](../handbook/java-core/optional-and-null-strategy.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/optional-and-null-strategy.md`](../syllabus/02-java/language-core/optional-and-null-strategy.md)
 
 ## Card: orElse vs orElseGet, measured
 
@@ -27,7 +27,7 @@ A real, measured, easy-to-miss performance trap, not a stylistic nuance.
 Treating `orElse` and `orElseGet` as interchangeable regardless of fallback cost.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/optional-and-null-strategy.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/optional-and-null-strategy.md#internal-implementation)
 
 ## Card: Optional as a field, the real consequence
 
@@ -44,7 +44,7 @@ Turns a commonly-repeated rule into a defensible, evidence-backed answer.
 Citing "it's bad practice" without a concrete reason.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/optional-and-null-strategy.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/optional-and-null-strategy.md#internal-implementation)
 
 ## Card: of vs ofNullable
 
@@ -61,4 +61,4 @@ Choosing the wrong constructor turns a graceful "empty" case into an immediate c
 Using `of()` on a value whose nullability isn't actually guaranteed.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/optional-and-null-strategy.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/optional-and-null-strategy.md#internal-implementation)

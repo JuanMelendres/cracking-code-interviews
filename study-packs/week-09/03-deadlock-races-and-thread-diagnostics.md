@@ -15,7 +15,7 @@ canonical: ../../handbook/concurrency/deadlock-race-conditions-and-thread-diagno
 
 **IWI 6.70 · Core tier**
 
-**Canonical chapter:** [Deadlock, Race Conditions, and Thread Diagnostics](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md). This file is the Week 9 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `MANIFEST.md`'s errata table cites §3 directly.
+**Canonical chapter:** [Deadlock, Race Conditions, and Thread Diagnostics](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md). This file is the Week 9 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `MANIFEST.md`'s errata table cites §3 directly.
 
 **Errata correction, stated explicitly:** the source material's thread-lifecycle diagram invented a "Running" state and omitted `TIMED_WAITING`. `java.lang.Thread.State` has exactly six real values — §3 prints all six from a real running JVM, not from memory.
 
@@ -44,62 +44,62 @@ canonical: ../../handbook/concurrency/deadlock-race-conditions-and-thread-diagno
 
 ## 1. The concept
 
-Deadlock, livelock, starvation, and race conditions are four distinct concurrency failure modes requiring different diagnosis — deadlock is a race condition's more dramatic cousin, not a separate category. → [Definition and Purpose](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#definition-and-purpose).
+Deadlock, livelock, starvation, and race conditions are four distinct concurrency failure modes requiring different diagnosis — deadlock is a race condition's more dramatic cousin, not a separate category. → [Definition and Purpose](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Multiple threads sharing mutable state or contending for locks is unavoidable in real systems; these four failure modes are the concrete, diagnosable shapes that sharing state incorrectly actually takes in production. → [Definition and Purpose](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#definition-and-purpose).
+Multiple threads sharing mutable state or contending for locks is unavoidable in real systems; these four failure modes are the concrete, diagnosable shapes that sharing state incorrectly actually takes in production. → [Definition and Purpose](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#definition-and-purpose).
 
 ## 3. The real six-state lifecycle, corrected
 
-Measured: `Thread.State.values()` printed directly from a running JVM — six real states (NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED), no invented "Running" state, TIMED_WAITING demonstrated. → [Internal Implementation](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation) has the full trace.
+Measured: `Thread.State.values()` printed directly from a running JVM — six real states (NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED), no invented "Running" state, TIMED_WAITING demonstrated. → [Internal Implementation](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation) has the full trace.
 
 ## 4. A real deadlock, detected
 
-Measured: two threads acquiring two locks in opposite order deadlock; `ThreadMXBean.findDeadlockedThreads()` — the same mechanism `jstack` uses — detects the exact cycle. Fix: consistent global lock-acquisition ordering. → [Internal Implementation](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation).
+Measured: two threads acquiring two locks in opposite order deadlock; `ThreadMXBean.findDeadlockedThreads()` — the same mechanism `jstack` uses — detects the exact cycle. Fix: consistent global lock-acquisition ordering. → [Internal Implementation](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation).
 
 ## 5. A race condition, measured
 
-Measured: 10 threads each incrementing a shared counter 100,000 times lost 838,094 updates (83.8%) unsynchronized; `AtomicInteger` lost zero under identical load. → [Internal Implementation](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation).
+Measured: 10 threads each incrementing a shared counter 100,000 times lost 838,094 updates (83.8%) unsynchronized; `AtomicInteger` lost zero under identical load. → [Internal Implementation](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation).
 
 ## 6. Trade-offs
 
-`synchronized` prevents races and gives visibility at the cost of contention/deadlock risk; atomic classes avoid contention but only cover single-variable operations; consistent lock ordering eliminates deadlock structurally but isn't compiler-enforced. → [Trade-offs](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#trade-offs).
+`synchronized` prevents races and gives visibility at the cost of contention/deadlock risk; atomic classes avoid contention but only cover single-variable operations; consistent lock ordering eliminates deadlock structurally but isn't compiler-enforced. → [Trade-offs](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#trade-offs).
 
 ## 7. Interview questions
 
 1. Two threads deadlock in production. Walk me through diagnosing it live.
 2. Your metrics counter is undercounting under load. Why, and how do you fix it — show the numbers.
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#interview-questions).
 
 ## 8. Common mistakes
 
-Inventing a "Running" thread state or forgetting `TIMED_WAITING`; assuming race conditions are rare rather than near-certain under load; debugging deadlocks by reading logs instead of pulling a thread dump. → [Common Mistakes](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#common-mistakes).
+Inventing a "Running" thread state or forgetting `TIMED_WAITING`; assuming race conditions are rare rather than near-certain under load; debugging deadlocks by reading logs instead of pulling a thread dump. → [Common Mistakes](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#common-mistakes).
 
 ## 9. Staff-level discussion
 
-Deadlock and the measured race condition are both instances of the same lesson: concurrent bugs are not rare edge cases — under real load, they manifest reliably and severely. → [Staff-Level Discussion](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#interview-answer-framework).
+Deadlock and the measured race condition are both instances of the same lesson: concurrent bugs are not rare edge cases — under real load, they manifest reliably and severely. → [Staff-Level Discussion](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#interview-answer-framework).
 
 ## 10. Summary
 
-The real `Thread.State` enum has six values, corrected directly from a running JVM. Deadlock is detectable via `ThreadMXBean` and structurally preventable via lock ordering. Race conditions from unsynchronized compound operations lose the vast majority of updates under real load. → [Summary](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#summary).
+The real `Thread.State` enum has six values, corrected directly from a running JVM. Deadlock is detectable via `ThreadMXBean` and structurally preventable via lock ordering. Race conditions from unsynchronized compound operations lose the vast majority of updates under real load. → [Summary](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#summary).
 
 ## 11. Key Takeaways
 
-→ [Key Takeaways](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#key-takeaways).
 
 ## 12. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#cheat-sheet).
 
 ## 13. Flashcards
 
-→ [Flashcards](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards). Full week-level deck: `06-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards). Full week-level deck: `06-flashcards.md`.
 
 ## 14. Practice Exercises
 
-→ [Practice Exercises](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#practice-exercises) and [Solutions](../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#solutions). Reproducible demos in `practice/java/week-09/`.
+→ [Practice Exercises](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#practice-exercises) and [Solutions](../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#solutions). Reproducible demos in `practice/java/week-09/`.
 
 ## 15. Additional Reading
 

@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/concurrency/java-memory-model-and-volatile.md
+  - ../syllabus/02-java/concurrency/java-memory-model-and-volatile.md
 source: handbook/concurrency/java-memory-model-and-volatile.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is the sharpest possible illustration of why "it worked in testing
 
 ## Related Handbook Chapters
 
-- [Java Memory Model and Volatile](../handbook/concurrency/java-memory-model-and-volatile.md) — canonical visibility and happens-before mechanics used here.
+- [Java Memory Model and Volatile](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md) — canonical visibility and happens-before mechanics used here.

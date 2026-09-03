@@ -1,6 +1,6 @@
 # TreeMap/TreeSet internals (T-203) — runnable verification
 
-Real, executed Java backing [`handbook/collections/treemap-treeset-and-navigable-hierarchy.md`](../../../../handbook/collections/treemap-treeset-and-navigable-hierarchy.md) (T-203). Also closes two real, tracked Phase 1 audit defects: the inverted `Set` hierarchy diagram, and `NavigableSet` miscategorized as a peer implementation instead of the interface `TreeSet` actually implements.
+Real, executed Java backing [`syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md`](../../../../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md) (T-203). Also closes two real, tracked Phase 1 audit defects: the inverted `Set` hierarchy diagram, and `NavigableSet` miscategorized as a peer implementation instead of the interface `TreeSet` actually implements.
 
 ## Setup and run
 

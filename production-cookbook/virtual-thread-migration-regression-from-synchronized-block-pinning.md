@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/concurrency/virtual-threads.md
+  - ../syllabus/02-java/concurrency/virtual-threads.md
 source: handbook/concurrency/virtual-threads.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This incident is the canonical gotcha of adopting virtual threads onto an existi
 
 ## Related Handbook Chapters
 
-- [Virtual Threads](../handbook/concurrency/virtual-threads.md) — canonical pinning mechanics and the `synchronized`-to-`ReentrantLock` fix used here.
-- [Executors and Thread Pool Sizing](../handbook/concurrency/executors-and-thread-pool-sizing.md) — the platform-thread pool model this migration was replacing.
+- [Virtual Threads](../syllabus/02-java/concurrency/virtual-threads.md) — canonical pinning mechanics and the `synchronized`-to-`ReentrantLock` fix used here.
+- [Executors and Thread Pool Sizing](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md) — the platform-thread pool model this migration was replacing.

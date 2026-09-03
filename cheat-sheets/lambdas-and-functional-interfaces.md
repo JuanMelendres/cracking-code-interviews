@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Lambdas and Functional Interfaces
 
-**Canonical chapter:** [`handbook/java-core/lambdas-and-functional-interfaces.md`](../handbook/java-core/lambdas-and-functional-interfaces.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/lambdas-and-functional-interfaces.md`](../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md)
 
 ## Core Mental Model
 
@@ -59,6 +59,6 @@ A lambda is not an object literal — it's a deferred call to a factory the JVM 
 
 ## Related
 
-- `handbook/java-core/streams-and-collectors.md`
-- `handbook/java-core/reflection-and-dynamic-proxies.md`
-- `handbook/java-core/optional-and-null-strategy.md`
+- `syllabus/02-java/language-core/streams-and-collectors.md`
+- `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`
+- `syllabus/02-java/language-core/optional-and-null-strategy.md`

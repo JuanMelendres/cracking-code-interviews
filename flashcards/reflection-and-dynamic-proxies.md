@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Reflection and Dynamic Proxies
 
-**Canonical chapter:** [`handbook/java-core/reflection-and-dynamic-proxies.md`](../handbook/java-core/reflection-and-dynamic-proxies.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md)
 
 ## Card: Reflection's real cost
 
@@ -27,7 +27,7 @@ Turns "reflection is slow" from a vague claim into a defensible, measured number
 Treating reflection's cost as either negligible or prohibitive without measuring the actual hot path.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/reflection-and-dynamic-proxies.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md#internal-implementation)
 
 ## Card: The interface-only constraint
 
@@ -44,7 +44,7 @@ A real, structural constraint, not a minor limitation to work around.
 Assuming any object can be proxied with a plain JDK dynamic proxy.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/reflection-and-dynamic-proxies.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md#internal-implementation)
 
 ## Card: Self-invocation defeats the proxy
 
@@ -61,4 +61,4 @@ A real, common, silent production bug directly traceable to the proxy mechanism.
 Assuming `@Transactional` "just works" regardless of how the method is called.
 
 **Related:**
-[Production Scenarios](../handbook/java-core/reflection-and-dynamic-proxies.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md#production-scenarios)

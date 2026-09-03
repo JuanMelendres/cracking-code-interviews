@@ -1,7 +1,7 @@
 # ClassLoaders and class initialization (T-114) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/classloaders-and-class-initialization.md`](../../../handbook/java-core/classloaders-and-class-initialization.md)
+[`handbook/java-core/classloaders-and-class-initialization.md`](../../../../syllabus/02-java/language-core/classloaders-and-class-initialization.md)
 (T-114). Three independent demos: the real classloader hierarchy and delegation model,
 the classic "same class, two loaders" identity gotcha with a real `ClassCastException`,
 and the real JLS "active use" initialization-trigger rules.

@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md
+  - ../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md
 source: handbook/collections/fail-fast-vs-weakly-consistent-iterators.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ The most consequential fact in this incident is not the exception itself but wha
 
 ## Related Handbook Chapters
 
-- [Fail-Fast vs. Weakly-Consistent Iterators](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md) — canonical `modCount` mechanism, the best-effort second-to-last-element quirk, and weakly-consistent alternatives this incident's fix relies on.
-- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md) — the permanent-fix collection's own cost model and intended read-heavy, write-rare workload profile.
+- [Fail-Fast vs. Weakly-Consistent Iterators](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md) — canonical `modCount` mechanism, the best-effort second-to-last-element quirk, and weakly-consistent alternatives this incident's fix relies on.
+- [CopyOnWriteArrayList and Copy-on-Write Trade-offs](../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md) — the permanent-fix collection's own cost model and intended read-heavy, write-rare workload profile.

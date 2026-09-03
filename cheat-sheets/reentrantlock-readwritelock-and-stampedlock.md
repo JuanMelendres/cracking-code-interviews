@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # ReentrantLock, ReadWriteLock, and StampedLock
 
-**Canonical chapter:** [`handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md`](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md`](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md)
 
 ## Core Mental Model
 
@@ -60,5 +60,5 @@ Every lock in this family answers "who gets in, and under what condition?" diffe
 
 ## Related
 
-- `handbook/concurrency/atomics-cas-and-the-aba-problem.md`
-- `handbook/concurrency/executors-and-thread-pool-sizing.md`
+- `syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`
+- `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`

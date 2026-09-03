@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/g1-remembered-sets-and-write-barriers.md
+  - ../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md
 source: handbook/jvm/g1-remembered-sets-and-write-barriers.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ The key diagnostic move in this incident is refusing to conflate "GC pause time"
 
 ## Related Handbook Chapters
 
-- [G1 Remembered Sets and Write Barriers](../handbook/jvm/g1-remembered-sets-and-write-barriers.md) — canonical RSet, write-barrier, and cross-region-write cost mechanics used here.
+- [G1 Remembered Sets and Write Barriers](../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md) — canonical RSet, write-barrier, and cross-region-write cost mechanics used here.

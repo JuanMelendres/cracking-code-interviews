@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Scoped Values and ThreadLocal Migration
 
-**Canonical chapter:** [`handbook/concurrency/scoped-values-and-threadlocal-migration.md`](../handbook/concurrency/scoped-values-and-threadlocal-migration.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md`](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md)
 
 ## Core Mental Model
 
@@ -54,6 +54,6 @@ A `ScopedValue` behaves like a dynamically-scoped variable, bound for exactly th
 
 ## Related
 
-- `handbook/concurrency/structured-concurrency.md`
-- `handbook/concurrency/virtual-threads.md`
-- `handbook/concurrency/completablefuture-and-async-composition.md`
+- `syllabus/02-java/concurrency/structured-concurrency.md`
+- `syllabus/02-java/concurrency/virtual-threads.md`
+- `syllabus/02-java/concurrency/completablefuture-and-async-composition.md`

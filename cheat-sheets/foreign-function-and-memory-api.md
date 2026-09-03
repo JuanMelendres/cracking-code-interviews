@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Foreign Function & Memory API
 
-**Canonical chapter:** [`handbook/concurrency/foreign-function-and-memory-api.md`](../handbook/concurrency/foreign-function-and-memory-api.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/foreign-function-and-memory-api.md`](../syllabus/02-java/concurrency/foreign-function-and-memory-api.md)
 
 *Expert tier, rare interview frequency, recognition-level only per this handbook's own register notes — this cheat sheet is intentionally brief.*
 
@@ -71,5 +71,5 @@ Match: true (matches Java's String.length())
 
 ## Related
 
-- `handbook/concurrency/varhandles-and-unsafe.md`
-- `handbook/jvm/native-memory-direct-buffers-and-off-heap.md`
+- `syllabus/02-java/concurrency/varhandles-and-unsafe.md`
+- `syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md`

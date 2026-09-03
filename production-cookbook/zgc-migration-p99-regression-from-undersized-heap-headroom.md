@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md
+  - ../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md
 source: handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ The most valuable move in this incident is resisting the tempting, premature con
 
 ## Related Handbook Chapters
 
-- [ZGC and Shenandoah Concurrent Collection](../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md) — canonical concurrent-collector headroom and allocation-stall mechanics used here.
+- [ZGC and Shenandoah Concurrent Collection](../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md) — canonical concurrent-collector headroom and allocation-stall mechanics used here.

@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
+  - ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
 source: handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#production-scenarios
 ---
 
@@ -85,4 +85,4 @@ A single lock-ordering fix closes this one incident, but the underlying risk is 
 
 ## Related Handbook Chapters
 
-- [Deadlock, Race Conditions, and Thread Diagnostics](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — canonical mechanics of lock cycles, thread-dump reading, and the `ThreadMXBean` API used here.
+- [Deadlock, Race Conditions, and Thread Diagnostics](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — canonical mechanics of lock cycles, thread-dump reading, and the `ThreadMXBean` API used here.

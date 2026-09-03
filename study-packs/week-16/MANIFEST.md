@@ -18,11 +18,11 @@ last_reviewed: 2026-07-31
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, schedule, exit criteria | 688 |
-| 2 | `01-g1-remembered-sets-and-write-barriers.md` | T-304 — summary + link; full chapter canonical at `handbook/jvm/g1-remembered-sets-and-write-barriers.md` | 556 |
-| 3 | `02-memory-leak-diagnosis-and-heap-dump-analysis.md` | T-307 — summary + link; full chapter canonical at `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md` | 575 |
-| 4 | `03-jvm-memory-layout-and-runtime-regions.md` | T-301 — summary + link; full chapter canonical at `handbook/jvm/jvm-memory-layout-and-runtime-regions.md` | 554 |
-| 5 | `04-jvm-flags-and-container-ergonomics.md` | T-312 — summary + link; full chapter canonical at `handbook/jvm/jvm-flags-and-container-ergonomics.md` | 557 |
-| 6 | `05-jit-tiered-compilation-and-deoptimization.md` | T-308 — summary + link; full chapter canonical at `handbook/jvm/jit-tiered-compilation-and-deoptimization.md` | 575 |
+| 2 | `01-g1-remembered-sets-and-write-barriers.md` | T-304 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md` | 556 |
+| 3 | `02-memory-leak-diagnosis-and-heap-dump-analysis.md` | T-307 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` | 575 |
+| 4 | `03-jvm-memory-layout-and-runtime-regions.md` | T-301 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` | 554 |
+| 5 | `04-jvm-flags-and-container-ergonomics.md` | T-312 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` | 557 |
+| 6 | `05-jit-tiered-compilation-and-deoptimization.md` | T-308 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md` | 575 |
 | 7 | `06-hands-on-lab.md` | 6 labs, all real and reproducible | 671 |
 | 8 | `07-flashcards.md` | 15 cards | 1,051 |
 | 9 | `08-week-16-mock-interview.md` | 45-min JVM internals technical round | 846 |

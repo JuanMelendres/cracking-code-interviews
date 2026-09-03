@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: ClassLoaders and Class Initialization
 
-**Canonical chapter:** [`handbook/java-core/classloaders-and-class-initialization.md`](../handbook/java-core/classloaders-and-class-initialization.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/classloaders-and-class-initialization.md`](../syllabus/02-java/language-core/classloaders-and-class-initialization.md)
 
 ## Card: Real class identity
 
@@ -27,7 +27,7 @@ The mechanism behind a real, confusing, and diagnosable class of production bugs
 Assuming "same name" always means "same class."
 
 **Related:**
-[Internal Implementation](../handbook/java-core/classloaders-and-class-initialization.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/classloaders-and-class-initialization.md#internal-implementation)
 
 ## Card: Active use, not reference
 
@@ -44,7 +44,7 @@ A common, real source of confusion about when static side effects actually happe
 Assuming loading and initialization happen together.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/classloaders-and-class-initialization.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/classloaders-and-class-initialization.md#internal-implementation)
 
 ## Card: Diagnosing the identity gotcha
 
@@ -61,4 +61,4 @@ Turns a confusing, seemingly-impossible error into a fast, concrete diagnosis.
 Assuming it's a JVM bug or a build/version mismatch instead.
 
 **Related:**
-[Production Scenarios](../handbook/java-core/classloaders-and-class-initialization.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/language-core/classloaders-and-class-initialization.md#production-scenarios)

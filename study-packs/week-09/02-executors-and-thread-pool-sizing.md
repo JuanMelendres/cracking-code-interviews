@@ -15,7 +15,7 @@ canonical: ../../handbook/concurrency/executors-and-thread-pool-sizing.md
 
 **IWI 7.15 · Core tier**
 
-**Canonical chapter:** [Executors and Thread Pool Sizing](../../handbook/concurrency/executors-and-thread-pool-sizing.md). This file is the Week 9 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [Executors and Thread Pool Sizing](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md). This file is the Week 9 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** both traces behind this summary are real, executed output from `practice/java/week-09/executors/src/ExecutorSizingDemo.java`.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/concurrency/executors-and-thread-pool-sizing.md
 
 ## 1. The concept
 
-A thread pool decouples task submission from task execution: a fixed set of worker threads pulls tasks from a queue. The two decisions that matter are pool size and what happens to a task that arrives when every worker is busy — and `Executors.newFixedThreadPool()`'s default answer to the second question is a trap. → [Definition and Purpose](../../handbook/concurrency/executors-and-thread-pool-sizing.md#definition-and-purpose).
+A thread pool decouples task submission from task execution: a fixed set of worker threads pulls tasks from a queue. The two decisions that matter are pool size and what happens to a task that arrives when every worker is busy — and `Executors.newFixedThreadPool()`'s default answer to the second question is a trap. → [Definition and Purpose](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Without pooling, every task either creates an unbounded new thread or blocks the submitter. Pools bound the first cost; queues decide what happens to the second — and `newFixedThreadPool`'s embedded choice (an unbounded queue) quietly trades "never rejected" for "unbounded memory growth under overload." → [Definition and Purpose](../../handbook/concurrency/executors-and-thread-pool-sizing.md#definition-and-purpose).
+Without pooling, every task either creates an unbounded new thread or blocks the submitter. Pools bound the first cost; queues decide what happens to the second — and `newFixedThreadPool`'s embedded choice (an unbounded queue) quietly trades "never rejected" for "unbounded memory growth under overload." → [Definition and Purpose](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#definition-and-purpose).
 
 ## 3. The unbounded-queue trap, measured
 
-Measured: `newFixedThreadPool(2)` fed 500 tasks — 200ms in, 496 sit queued with zero rejection or backpressure signal. A `ThreadPoolExecutor` built with a bounded queue + `AbortPolicy` instead accepts exactly `corePoolSize + queueCapacity` and rejects the rest loudly. → [Internal Implementation](../../handbook/concurrency/executors-and-thread-pool-sizing.md#internal-implementation) has the full trace.
+Measured: `newFixedThreadPool(2)` fed 500 tasks — 200ms in, 496 sit queued with zero rejection or backpressure signal. A `ThreadPoolExecutor` built with a bounded queue + `AbortPolicy` instead accepts exactly `corePoolSize + queueCapacity` and rejects the rest loudly. → [Internal Implementation](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#internal-implementation) has the full trace.
 
 ## 4. Sizing from Little's Law
 
-`L = λ × W`. CPU-bound pools should size near `N_cores`; IO-bound pools scale with `N_cores × (1 + waitTime/computeTime)`, bounded by memory rather than CPU — exactly the asymmetry [virtual threads](../../handbook/concurrency/virtual-threads.md) exist to remove. → [Core Concepts](../../handbook/concurrency/executors-and-thread-pool-sizing.md#core-concepts).
+`L = λ × W`. CPU-bound pools should size near `N_cores`; IO-bound pools scale with `N_cores × (1 + waitTime/computeTime)`, bounded by memory rather than CPU — exactly the asymmetry [virtual threads](../../syllabus/02-java/concurrency/virtual-threads.md) exist to remove. → [Core Concepts](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#core-concepts).
 
 ## 5. Trade-offs
 
-Unbounded queue never rejects but grows memory without limit; bounded queue + `AbortPolicy` gives loud backpressure; `CallerRunsPolicy` throttles the producer instead. → [Trade-offs](../../handbook/concurrency/executors-and-thread-pool-sizing.md#trade-offs).
+Unbounded queue never rejects but grows memory without limit; bounded queue + `AbortPolicy` gives loud backpressure; `CallerRunsPolicy` throttles the producer instead. → [Trade-offs](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Size this pool. Show the arithmetic.
 2. Queue is unbounded and memory is climbing. Why?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/concurrency/executors-and-thread-pool-sizing.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#interview-questions).
 
 ## 7. Common mistakes
 
-Using `newFixedThreadPool`/`newCachedThreadPool` without understanding their default queue/thread-creation behavior; sizing by intuition instead of Little's Law; treating "never rejects" as a feature. → [Common Mistakes](../../handbook/concurrency/executors-and-thread-pool-sizing.md#common-mistakes).
+Using `newFixedThreadPool`/`newCachedThreadPool` without understanding their default queue/thread-creation behavior; sizing by intuition instead of Little's Law; treating "never rejects" as a feature. → [Common Mistakes](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-An unbounded queue is one instance of a general anti-pattern — absorbing overload internally instead of surfacing backpressure — that also governs unbounded caches, retries, and connection pools. → [Staff-Level Discussion](../../handbook/concurrency/executors-and-thread-pool-sizing.md#interview-answer-framework).
+An unbounded queue is one instance of a general anti-pattern — absorbing overload internally instead of surfacing backpressure — that also governs unbounded caches, retries, and connection pools. → [Staff-Level Discussion](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#interview-answer-framework).
 
 ## 9. Summary
 
-`newFixedThreadPool`'s unbounded queue trades rejection for silent, unbounded memory growth — measured at 496/500 tasks queued 200ms in. A bounded queue with an explicit rejection policy converts that into loud backpressure; pool size itself should come from Little's Law, not intuition. → [Summary](../../handbook/concurrency/executors-and-thread-pool-sizing.md#summary).
+`newFixedThreadPool`'s unbounded queue trades rejection for silent, unbounded memory growth — measured at 496/500 tasks queued 200ms in. A bounded queue with an explicit rejection policy converts that into loud backpressure; pool size itself should come from Little's Law, not intuition. → [Summary](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/concurrency/executors-and-thread-pool-sizing.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/concurrency/executors-and-thread-pool-sizing.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/concurrency/executors-and-thread-pool-sizing.md#flashcards). Full week-level deck: `06-flashcards.md`.
+→ [Flashcards](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards). Full week-level deck: `06-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/concurrency/executors-and-thread-pool-sizing.md#practice-exercises) and [Solutions](../../handbook/concurrency/executors-and-thread-pool-sizing.md#solutions). Reproducible demo: `practice/java/week-09/executors/src/ExecutorSizingDemo.java`.
+→ [Practice Exercises](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#practice-exercises) and [Solutions](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#solutions). Reproducible demo: `practice/java/week-09/executors/src/ExecutorSizingDemo.java`.
 
 ## 14. Additional Reading
 

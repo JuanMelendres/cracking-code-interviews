@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Serialization Hazards and Alternatives
 
-**Canonical chapter:** [`handbook/java-core/serialization-hazards-and-alternatives.md`](../handbook/java-core/serialization-hazards-and-alternatives.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/serialization-hazards-and-alternatives.md`](../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md)
 
 ## Core Mental Model
 
@@ -57,4 +57,4 @@ last_updated: 2026-09-02
 ## Related
 
 - `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/java-core/optional-and-null-strategy.md`
+- `syllabus/02-java/language-core/optional-and-null-strategy.md`

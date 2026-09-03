@@ -20,7 +20,7 @@ related:
   - logging-metrics-tracing-and-opentelemetry.md
   - incident-response-and-blameless-postmortems.md
   - profiling-jfr-and-flame-graphs.md
-  - ../jvm/gc-fundamentals-and-log-analysis.md
+  - ../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
   - ../kafka/consumer-groups-and-rebalancing.md
   - ../system-design/resilience-patterns.md
   - ../../study-packs/week-11/05-performance-methodology-and-slo-error-budgets.md
@@ -360,7 +360,7 @@ Treating a healthy aggregate percentage as sufficient justification for a risky 
 
 **Exercise 1.** A longer or more severe incident consumes a proportionally larger fraction of the monthly budget in the same window; e.g., doubling the incident's duration roughly doubles its failure count and its percentage-of-budget impact, all else equal.
 
-**Exercise 2.** For a thread pool: the resource is the pool itself. Utilization = active threads / pool size. Saturation = queued tasks waiting for a free thread (directly connects to the [unbounded-queue trap](../concurrency/executors-and-thread-pool-sizing.md#internal-implementation)) — a growing queue is saturation made visible, the same way a GC pause is saturation made visible for the heap. Errors = `RejectedExecutionException` counts from a bounded queue's rejection policy.
+**Exercise 2.** For a thread pool: the resource is the pool itself. Utilization = active threads / pool size. Saturation = queued tasks waiting for a free thread (directly connects to the [unbounded-queue trap](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#internal-implementation)) — a growing queue is saturation made visible, the same way a GC pause is saturation made visible for the heap. Errors = `RejectedExecutionException` counts from a bounded queue's rejection policy.
 
 **Exercise 3.** A template sentence: "A 40-minute incident on day 17 consumed roughly 14% of the month's entire error budget — nearly two weeks' worth of typical daily burn in under an hour — which is why we treated it as a genuine incident requiring a full root-cause review, not routine noise."
 

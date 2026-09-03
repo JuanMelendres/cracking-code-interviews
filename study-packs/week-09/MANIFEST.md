@@ -17,11 +17,11 @@ last_reviewed: 2026-07-31
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 733 |
-| 2 | `01-java-memory-model-and-volatile.md` | T-401/402 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/java-memory-model-and-volatile.md` | 667 |
-| 3 | `02-executors-and-thread-pool-sizing.md` | T-406 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/executors-and-thread-pool-sizing.md` | 578 |
-| 4 | `03-deadlock-races-and-thread-diagnostics.md` | T-409 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` | 641 |
-| 5 | `04-virtual-threads.md` | T-410 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/concurrency/virtual-threads.md` | 609 |
-| 6 | `05-gc-fundamentals-and-log-analysis.md` | T-303/306 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/jvm/gc-fundamentals-and-log-analysis.md` | 652 |
+| 2 | `01-java-memory-model-and-volatile.md` | T-401/402 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` | 667 |
+| 3 | `02-executors-and-thread-pool-sizing.md` | T-406 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md` | 578 |
+| 4 | `03-deadlock-races-and-thread-diagnostics.md` | T-409 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` | 641 |
+| 5 | `04-virtual-threads.md` | T-410 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/02-java/concurrency/virtual-threads.md` | 609 |
+| 6 | `05-gc-fundamentals-and-log-analysis.md` | T-303/306 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md` | 652 |
 | 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 + LC 62/1143/416/5, all compiled and run | 1,369 |
 | 8 | `07-flashcards.md` | 16 cards | 507 |
 | 9 | `08-week-9-checkpoint.md` | Full 3-round loop + roadmap's own scorecard | 867 |
@@ -48,8 +48,8 @@ last_reviewed: 2026-07-31
 
 | Defect (from `CHANGELOG.md`'s errata register) | Status |
 |---|---|
-| Incorrect thread-lifecycle states (missing `TIMED_WAITING`) | **Fixed and verified here** — `03-deadlock-races-and-thread-diagnostics.md` §3 (now a summary + link), full evidence at `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`, real `Thread.State.values()` output from a running JVM |
-| `volatile` reduced to "prevents caching" instead of happens-before | **Fixed and verified here** — `01-java-memory-model-and-volatile.md` §3 (now a summary + link), full evidence at `handbook/concurrency/java-memory-model-and-volatile.md`, real reproducing visibility-failure demo plus the corrected mechanism (compiler/JIT reordering, not CPU cache coherence) |
+| Incorrect thread-lifecycle states (missing `TIMED_WAITING`) | **Fixed and verified here** — `03-deadlock-races-and-thread-diagnostics.md` §3 (now a summary + link), full evidence at `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`, real `Thread.State.values()` output from a running JVM |
+| `volatile` reduced to "prevents caching" instead of happens-before | **Fixed and verified here** — `01-java-memory-model-and-volatile.md` §3 (now a summary + link), full evidence at `syllabus/02-java/concurrency/java-memory-model-and-volatile.md`, real reproducing visibility-failure demo plus the corrected mechanism (compiler/JIT reordering, not CPU cache coherence) |
 
 `CHANGELOG.md`'s errata register updated to reflect both fixes.
 

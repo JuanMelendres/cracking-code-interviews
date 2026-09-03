@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # equals(), hashCode(), and Comparable Contracts
 
-**Canonical chapter:** [`handbook/java-core/equals-hashcode-and-comparable-contracts.md`](../handbook/java-core/equals-hashcode-and-comparable-contracts.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md`](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md)
 
 ## Core Mental Model
 
@@ -81,5 +81,5 @@ catalog.size() = 1                       <- gadget SILENTLY DROPPED
 
 ## Related
 
-- `handbook/collections/hashmap-internals.md`
-- `handbook/java-core/immutability-and-defensive-copying.md`
+- `syllabus/02-java/collections/hashmap-internals.md`
+- `syllabus/02-java/language-core/immutability-and-defensive-copying.md`

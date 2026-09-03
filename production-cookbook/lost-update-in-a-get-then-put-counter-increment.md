@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/collections/concurrenthashmap-internals.md
+  - ../syllabus/02-java/collections/concurrenthashmap-internals.md
 source: handbook/collections/concurrenthashmap-internals.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The mistake here is a common and subtle one: `ConcurrentHashMap` being thread-sa
 
 ## Related Handbook Chapters
 
-- [ConcurrentHashMap Internals](../handbook/collections/concurrenthashmap-internals.md) — canonical per-bucket concurrency model and lost-update mechanics used here.
+- [ConcurrentHashMap Internals](../syllabus/02-java/collections/concurrenthashmap-internals.md) — canonical per-bucket concurrency model and lost-update mechanics used here.

@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/concurrency/varhandles-and-unsafe.md
+  - ../syllabus/02-java/concurrency/varhandles-and-unsafe.md
 source: handbook/concurrency/varhandles-and-unsafe.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ This maps to a "how would you reduce memory overhead for a huge number of small 
 
 ## Related Handbook Chapters
 
-- [VarHandles, Unsafe, and Their Replacement](../handbook/concurrency/varhandles-and-unsafe.md) — canonical VarHandle-vs-AtomicLong overhead comparison used here.
+- [VarHandles, Unsafe, and Their Replacement](../syllabus/02-java/concurrency/varhandles-and-unsafe.md) — canonical VarHandle-vs-AtomicLong overhead comparison used here.

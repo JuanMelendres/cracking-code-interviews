@@ -17,12 +17,12 @@ competencies:
   - Off-heap memory accounting beyond -Xmx
   - Escape analysis and scalar replacement
 related:
-  - ../../handbook/jvm/gc-roots-reachability-and-reference-strength.md
-  - ../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md
-  - ../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md
-  - ../../handbook/jvm/object-layout-headers-and-compressed-oops.md
-  - ../../handbook/jvm/native-memory-direct-buffers-and-off-heap.md
-  - ../../handbook/jvm/escape-analysis-and-scalar-replacement.md
+  - ../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md
+  - ../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md
+  - ../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md
+  - ../../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md
+  - ../../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
+  - ../../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
 source: ../../study-packs/week-19/09-week-19-mock-interview.md
 official_references: []
 ---
@@ -47,12 +47,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Reference-strength semantics | Q1 | [GC Roots, Reachability, and Reference Strength](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md) |
-| ZGC/Shenandoah migration diagnostics | Q2 | [ZGC and Shenandoah: Concurrent Collection](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md) |
-| Safepoint logging beyond GC | Q3 | [Safepoints and Stop-the-World Mechanics](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md) |
-| Object-layout memory estimation | Q4 | [Object Layout, Headers, and Compressed Oops](../../handbook/jvm/object-layout-headers-and-compressed-oops.md) |
-| Off-heap memory accounting | Q5 | [Native Memory, Direct Buffers, and Off-Heap](../../handbook/jvm/native-memory-direct-buffers-and-off-heap.md) |
-| Escape analysis / scalar replacement | Q6 | [Escape Analysis and Scalar Replacement](../../handbook/jvm/escape-analysis-and-scalar-replacement.md) |
+| Reference-strength semantics | Q1 | [GC Roots, Reachability, and Reference Strength](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md) |
+| ZGC/Shenandoah migration diagnostics | Q2 | [ZGC and Shenandoah: Concurrent Collection](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md) |
+| Safepoint logging beyond GC | Q3 | [Safepoints and Stop-the-World Mechanics](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md) |
+| Object-layout memory estimation | Q4 | [Object Layout, Headers, and Compressed Oops](../../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md) |
+| Off-heap memory accounting | Q5 | [Native Memory, Direct Buffers, and Off-Heap](../../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md) |
+| Escape analysis / scalar replacement | Q6 | [Escape Analysis and Scalar Replacement](../../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md) |
 | Cross-topic synthesis | Q7 | All six, above |
 
 ## Interviewer Opening Script
@@ -147,10 +147,10 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 → re-read [GC Roots, Reachability, and Reference Strength](../../handbook/jvm/gc-roots-reachability-and-reference-strength.md)'s Weak-vs-Soft demo.
-- Any score ≤ 2 on Q2 → re-read [ZGC and Shenandoah: Concurrent Collection](../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md)'s allocation-stall material.
-- Any score ≤ 2 on Q3 → re-read [Safepoints and Stop-the-World Mechanics](../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md).
-- Any score ≤ 2 on Q4 → re-read [Object Layout, Headers, and Compressed Oops](../../handbook/jvm/object-layout-headers-and-compressed-oops.md)'s header-overhead measurements.
-- Any score ≤ 2 on Q5 → re-read [Native Memory, Direct Buffers, and Off-Heap](../../handbook/jvm/native-memory-direct-buffers-and-off-heap.md).
-- Any score ≤ 2 on Q6 → re-read [Escape Analysis and Scalar Replacement](../../handbook/jvm/escape-analysis-and-scalar-replacement.md).
+- Any score ≤ 2 on Q1 → re-read [GC Roots, Reachability, and Reference Strength](../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md)'s Weak-vs-Soft demo.
+- Any score ≤ 2 on Q2 → re-read [ZGC and Shenandoah: Concurrent Collection](../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md)'s allocation-stall material.
+- Any score ≤ 2 on Q3 → re-read [Safepoints and Stop-the-World Mechanics](../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md).
+- Any score ≤ 2 on Q4 → re-read [Object Layout, Headers, and Compressed Oops](../../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md)'s header-overhead measurements.
+- Any score ≤ 2 on Q5 → re-read [Native Memory, Direct Buffers, and Off-Heap](../../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md).
+- Any score ≤ 2 on Q6 → re-read [Escape Analysis and Scalar Replacement](../../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md).
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation.

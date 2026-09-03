@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: JVM Memory Layout and Runtime Regions
 
-**Canonical chapter:** [`handbook/jvm/jvm-memory-layout-and-runtime-regions.md`](../handbook/jvm/jvm-memory-layout-and-runtime-regions.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md`](../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md)
 
 ## Card: Does -Xmx control total JVM memory usage
 
@@ -27,7 +27,7 @@ The precise reason a container OOMKill can occur even when `-Xmx` sits well unde
 Treating `-Xmx` as the sole determinant of the JVM's total process memory footprint.
 
 **Related:**
-[handbook/jvm/jvm-memory-layout-and-runtime-regions.md](../handbook/jvm/jvm-memory-layout-and-runtime-regions.md)
+[handbook/jvm/jvm-memory-layout-and-runtime-regions.md](../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md)
 
 ## Card: What replaced PermGen in Java 8
 
@@ -44,7 +44,7 @@ Explains why an uncapped metaspace can grow unexpectedly under class-generation-
 Assuming metaspace behaves like PermGen — a fixed-size heap region with its own OOM ceiling by default.
 
 **Related:**
-[handbook/jvm/jvm-memory-layout-and-runtime-regions.md](../handbook/jvm/jvm-memory-layout-and-runtime-regions.md)
+[handbook/jvm/jvm-memory-layout-and-runtime-regions.md](../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md)
 
 ## Card: Is thread-stack capacity affected by heap size
 
@@ -61,4 +61,4 @@ A real, measured confirmation that stack depth and heap sizing are independent l
 Increasing `-Xmx` to try to fix a `StackOverflowError`, when `-Xss` is the actual relevant flag.
 
 **Related:**
-[handbook/jvm/jvm-memory-layout-and-runtime-regions.md](../handbook/jvm/jvm-memory-layout-and-runtime-regions.md)
+[handbook/jvm/jvm-memory-layout-and-runtime-regions.md](../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md)

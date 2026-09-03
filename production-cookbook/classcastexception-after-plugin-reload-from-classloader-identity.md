@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/classloaders-and-class-initialization.md
+  - ../syllabus/02-java/language-core/classloaders-and-class-initialization.md
 source: handbook/java-core/classloaders-and-class-initialization.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This failure mode is a direct consequence of a genuine, load-bearing JVM design 
 
 ## Related Handbook Chapters
 
-- [ClassLoaders and Class Initialization](../handbook/java-core/classloaders-and-class-initialization.md) — canonical classloader identity and delegation mechanics, including the reproduced `ClassCastException`.
-- [Reflection and Dynamic Proxies](../handbook/java-core/reflection-and-dynamic-proxies.md) — related JVM-identity mechanics relevant to dynamically-loaded and proxied types.
+- [ClassLoaders and Class Initialization](../syllabus/02-java/language-core/classloaders-and-class-initialization.md) — canonical classloader identity and delegation mechanics, including the reproduced `ClassCastException`.
+- [Reflection and Dynamic Proxies](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md) — related JVM-identity mechanics relevant to dynamically-loaded and proxied types.

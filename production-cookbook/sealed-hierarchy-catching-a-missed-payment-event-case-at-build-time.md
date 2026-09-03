@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/records-sealed-types-and-pattern-matching.md
+  - ../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md
 source: handbook/java-core/records-sealed-types-and-pattern-matching.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This scenario is valuable precisely because it inverts the usual production-cook
 
 ## Related Handbook Chapters
 
-- [Records, Sealed Types, and Pattern Matching](../handbook/java-core/records-sealed-types-and-pattern-matching.md) — canonical mechanics of sealed hierarchies, exhaustiveness checking, and the reproduced compile error.
-- [Polymorphism and Dynamic Dispatch Mechanics](../handbook/java-core/polymorphism-and-dynamic-dispatch.md) — related mechanics for how a codebase might otherwise model a closed set of behaviors via overriding rather than sealed pattern matching.
+- [Records, Sealed Types, and Pattern Matching](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md) — canonical mechanics of sealed hierarchies, exhaustiveness checking, and the reproduced compile error.
+- [Polymorphism and Dynamic Dispatch Mechanics](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md) — related mechanics for how a codebase might otherwise model a closed set of behaviors via overriding rather than sealed pattern matching.

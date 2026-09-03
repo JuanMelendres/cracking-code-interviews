@@ -1,7 +1,7 @@
 # Scoped Values and ThreadLocal migration (T-412) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/concurrency/scoped-values-and-threadlocal-migration.md`](../../../../handbook/concurrency/scoped-values-and-threadlocal-migration.md)
+[`syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md`](../../../../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md)
 (T-412). `ScopedValue` is a **preview API in JDK 21** ([JEP 446](https://openjdk.org/jeps/446),
 second preview) — every command below needs `--enable-preview`.
 

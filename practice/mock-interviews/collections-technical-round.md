@@ -16,11 +16,11 @@ competencies:
   - Backpressure and unbounded-queue failure modes
   - ArrayList vs LinkedList complexity trade-offs
 related:
-  - ../../handbook/collections/hashmap-internals.md
-  - ../../handbook/collections/concurrenthashmap-internals.md
-  - ../../handbook/collections/blockingqueue-family.md
-  - ../../handbook/collections/arraylist-and-linkedlist-internals.md
-  - ../../handbook/collections/collection-selection-decision-matrix.md
+  - ../../syllabus/02-java/collections/hashmap-internals.md
+  - ../../syllabus/02-java/collections/concurrenthashmap-internals.md
+  - ../../syllabus/02-java/collections/blockingqueue-family.md
+  - ../../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md
+  - ../../syllabus/02-java/collections/collection-selection-decision-matrix.md
 source: ../../study-packs/week-14/08-week-14-mock-interview.md
 official_references: []
 ---
@@ -45,12 +45,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| HashMap resize mechanics | Q1 | [HashMap Internals](../../handbook/collections/hashmap-internals.md) |
-| Hash-distribution diagnosis | Q2 | [HashMap Internals](../../handbook/collections/hashmap-internals.md) |
-| ConcurrentHashMap atomicity | Q3 | [ConcurrentHashMap Internals](../../handbook/collections/concurrenthashmap-internals.md) |
-| Backpressure / unbounded queues | Q4 | [BlockingQueue Family and Producer-Consumer](../../handbook/collections/blockingqueue-family.md) |
-| ArrayList vs LinkedList complexity | Q5, Q6 | [ArrayList and LinkedList Internals](../../handbook/collections/arraylist-and-linkedlist-internals.md) |
-| Cross-topic synthesis and selection reasoning | Q6, Q7 | [Collection Selection Decision Matrix](../../handbook/collections/collection-selection-decision-matrix.md) |
+| HashMap resize mechanics | Q1 | [HashMap Internals](../../syllabus/02-java/collections/hashmap-internals.md) |
+| Hash-distribution diagnosis | Q2 | [HashMap Internals](../../syllabus/02-java/collections/hashmap-internals.md) |
+| ConcurrentHashMap atomicity | Q3 | [ConcurrentHashMap Internals](../../syllabus/02-java/collections/concurrenthashmap-internals.md) |
+| Backpressure / unbounded queues | Q4 | [BlockingQueue Family and Producer-Consumer](../../syllabus/02-java/collections/blockingqueue-family.md) |
+| ArrayList vs LinkedList complexity | Q5, Q6 | [ArrayList and LinkedList Internals](../../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md) |
+| Cross-topic synthesis and selection reasoning | Q6, Q7 | [Collection Selection Decision Matrix](../../syllabus/02-java/collections/collection-selection-decision-matrix.md) |
 
 ## Interviewer Opening Script
 
@@ -133,9 +133,9 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 or Q2 → re-read [HashMap Internals](../../handbook/collections/hashmap-internals.md) in full, including the treeification-threshold material.
-- Any score ≤ 2 on Q3 → re-read [ConcurrentHashMap Internals](../../handbook/collections/concurrenthashmap-internals.md), specifically the get-then-put non-atomicity demo.
-- Any score ≤ 2 on Q4 → re-read [BlockingQueue Family and Producer-Consumer](../../handbook/collections/blockingqueue-family.md)'s unbounded-queue production scenario.
-- Any score ≤ 2 on Q5 or Q6 → re-read [ArrayList and LinkedList Internals](../../handbook/collections/arraylist-and-linkedlist-internals.md), focusing on the measured indexed-access complexity contrast.
-- Weak Q7 synthesis despite individually-passing questions → re-read [Collection Selection Decision Matrix](../../handbook/collections/collection-selection-decision-matrix.md), whose entire purpose is connecting these topics into one selection framework rather than five isolated facts.
+- Any score ≤ 2 on Q1 or Q2 → re-read [HashMap Internals](../../syllabus/02-java/collections/hashmap-internals.md) in full, including the treeification-threshold material.
+- Any score ≤ 2 on Q3 → re-read [ConcurrentHashMap Internals](../../syllabus/02-java/collections/concurrenthashmap-internals.md), specifically the get-then-put non-atomicity demo.
+- Any score ≤ 2 on Q4 → re-read [BlockingQueue Family and Producer-Consumer](../../syllabus/02-java/collections/blockingqueue-family.md)'s unbounded-queue production scenario.
+- Any score ≤ 2 on Q5 or Q6 → re-read [ArrayList and LinkedList Internals](../../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md), focusing on the measured indexed-access complexity contrast.
+- Weak Q7 synthesis despite individually-passing questions → re-read [Collection Selection Decision Matrix](../../syllabus/02-java/collections/collection-selection-decision-matrix.md), whose entire purpose is connecting these topics into one selection framework rather than five isolated facts.
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation.

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Collection Selection Decision Matrix
 
-**Canonical chapter:** [`handbook/collections/collection-selection-decision-matrix.md`](../handbook/collections/collection-selection-decision-matrix.md)
+**Canonical chapter:** [`syllabus/02-java/collections/collection-selection-decision-matrix.md`](../syllabus/02-java/collections/collection-selection-decision-matrix.md)
 
 ## Card: The three questions
 
@@ -27,7 +27,7 @@ The single decision process underlying all four of this week's individual topics
 Naming an interface (List, Map, Queue) as if that alone determines the implementation.
 
 **Related:**
-[Decision Framework](../handbook/collections/collection-selection-decision-matrix.md#decision-framework)
+[Decision Framework](../syllabus/02-java/collections/collection-selection-decision-matrix.md#decision-framework)
 
 ## Card: When ArrayList's default hurts
 
@@ -44,7 +44,7 @@ A concrete, measured counter-example to "ArrayList is usually fine."
 Defending ArrayList as a universal default without checking the actual access pattern.
 
 **Related:**
-[ArrayList and LinkedList Internals](../handbook/collections/arraylist-and-linkedlist-internals.md)
+[ArrayList and LinkedList Internals](../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md)
 
 ## Card: When HashMap's default hurts
 
@@ -61,4 +61,4 @@ A correctness failure, not just a performance one, unlike the ArrayList case.
 Assuming a HashMap "probably won't be accessed concurrently in practice."
 
 **Related:**
-[HashMap Internals](../handbook/collections/hashmap-internals.md)
+[HashMap Internals](../syllabus/02-java/collections/hashmap-internals.md)

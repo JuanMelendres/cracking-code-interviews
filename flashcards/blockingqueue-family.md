@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: BlockingQueue Family and Producer-Consumer
 
-**Canonical chapter:** [`handbook/collections/blockingqueue-family.md`](../handbook/collections/blockingqueue-family.md)
+**Canonical chapter:** [`syllabus/02-java/collections/blockingqueue-family.md`](../syllabus/02-java/collections/blockingqueue-family.md)
 
 ## Card: When put() blocks
 
@@ -27,7 +27,7 @@ The mechanism that provides real backpressure in a producer-consumer pipeline.
 Assuming `put()` on a full queue returns immediately or throws, rather than blocking.
 
 **Related:**
-[Internal Implementation](../handbook/collections/blockingqueue-family.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/blockingqueue-family.md#internal-implementation)
 
 ## Card: SynchronousQueue's actual capacity
 
@@ -44,7 +44,7 @@ A common misconception is treating it as a very small buffer rather than genuine
 Assuming it behaves like a capacity-1 queue.
 
 **Related:**
-[Internal Implementation](../handbook/collections/blockingqueue-family.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/blockingqueue-family.md#internal-implementation)
 
 ## Card: Why unbounded queues are dangerous
 
@@ -61,4 +61,4 @@ Converts a visible, gradual slowdown into an eventual, harder-to-diagnose OutOfM
 Constructing a `LinkedBlockingQueue` with no capacity argument, silently defaulting to unbounded.
 
 **Related:**
-[Production Scenarios](../handbook/collections/blockingqueue-family.md#production-scenarios)
+[Production Scenarios](../syllabus/02-java/collections/blockingqueue-family.md#production-scenarios)

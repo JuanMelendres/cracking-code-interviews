@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/concurrency/executors-and-thread-pool-sizing.md
+  - ../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
 source: handbook/concurrency/executors-and-thread-pool-sizing.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The `java.util.concurrent.Executors` factory methods are convenient exactly beca
 
 ## Related Handbook Chapters
 
-- [Executors and Thread Pool Sizing](../handbook/concurrency/executors-and-thread-pool-sizing.md) — canonical pool-sizing, queueing, and rejection-policy mechanics used here.
+- [Executors and Thread Pool Sizing](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md) — canonical pool-sizing, queueing, and rejection-policy mechanics used here.

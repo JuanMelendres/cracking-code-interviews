@@ -74,6 +74,6 @@ Every pattern in this chapter exists to answer one specific, recurring "what var
 ## Related
 
 - `handbook/architecture/clean-hexagonal-architecture.md`
-- `handbook/concurrency/java-memory-model-and-volatile.md`
+- `syllabus/02-java/concurrency/java-memory-model-and-volatile.md`
 - `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
-- `handbook/java-core/polymorphism-and-dynamic-dispatch.md`
+- `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md`

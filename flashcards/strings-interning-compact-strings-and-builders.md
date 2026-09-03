@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Strings: Interning, Compact Strings, and Builders
 
-**Canonical chapter:** [`handbook/java-core/strings-interning-compact-strings-and-builders.md`](../handbook/java-core/strings-interning-compact-strings-and-builders.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md`](../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md)
 
 ## Card: What actually gets pooled
 
@@ -27,7 +27,7 @@ The exact, verified boundary of string pooling.
 Assuming `==` works for any two equal-content strings.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/strings-interning-compact-strings-and-builders.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md#internal-implementation)
 
 ## Card: Compact Strings, all-or-nothing
 
@@ -44,7 +44,7 @@ A real, content-dependent threshold effect, not a smooth per-character cost.
 Assuming the memory cost scales proportionally with the number of "wide" characters.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/strings-interning-compact-strings-and-builders.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md#internal-implementation)
 
 ## Card: The real concatenation cost
 
@@ -61,4 +61,4 @@ Turns "it's slow" into a defensible, measured claim.
 Treating this as a minor stylistic preference rather than a real, dramatic performance difference.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/strings-interning-compact-strings-and-builders.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md#internal-implementation)

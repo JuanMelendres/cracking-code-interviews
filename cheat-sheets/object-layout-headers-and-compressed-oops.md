@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Object Layout, Headers, and Compressed Oops
 
-**Canonical chapter:** [`handbook/jvm/object-layout-headers-and-compressed-oops.md`](../handbook/jvm/object-layout-headers-and-compressed-oops.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md`](../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md)
 
 ## Core Mental Model
 
@@ -65,5 +65,5 @@ A real ~42% memory-footprint increase purely from the pointer-representation fla
 
 ## Related
 
-- `handbook/jvm/jvm-memory-layout-and-runtime-regions.md`
-- `handbook/concurrency/java-memory-model-and-volatile.md`
+- `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md`
+- `syllabus/02-java/concurrency/java-memory-model-and-volatile.md`

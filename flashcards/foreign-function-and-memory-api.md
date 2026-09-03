@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Foreign Function & Memory API
 
-**Canonical chapter:** [`handbook/concurrency/foreign-function-and-memory-api.md`](../handbook/concurrency/foreign-function-and-memory-api.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/foreign-function-and-memory-api.md`](../syllabus/02-java/concurrency/foreign-function-and-memory-api.md)
 
 ## Card: What does FFM replace?
 
@@ -32,4 +32,4 @@ Confusing FFM with `Unsafe` as interchangeable, rather than FFM being the
 safer replacement for it.
 
 **Related:**
-[handbook/concurrency/foreign-function-and-memory-api.md](../handbook/concurrency/foreign-function-and-memory-api.md), [VarHandles, Unsafe, and Their Replacement](../handbook/concurrency/varhandles-and-unsafe.md)
+[handbook/concurrency/foreign-function-and-memory-api.md](../syllabus/02-java/concurrency/foreign-function-and-memory-api.md), [VarHandles, Unsafe, and Their Replacement](../syllabus/02-java/concurrency/varhandles-and-unsafe.md)

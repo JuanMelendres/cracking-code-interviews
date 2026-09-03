@@ -13,12 +13,12 @@ target_levels:
   - staff
 estimated_reading_minutes: 40
 prerequisites:
-  - ../concurrency/virtual-threads.md
+  - ../../syllabus/02-java/concurrency/virtual-threads.md
 related:
   - transactional-proxy-mechanics-and-propagation.md
   - spring-bean-scopes-and-proxy-modes.md
   - spring-testing-slices-and-context-caching.md
-  - ../concurrency/virtual-threads.md
+  - ../../syllabus/02-java/concurrency/virtual-threads.md
   - spring-actuator-health-and-observability-hooks.md
   - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - ../system-design/realtime-delivery-websocket-sse-and-long-polling.md
@@ -720,7 +720,7 @@ before/after comparison to reproduce.
 - The Project Reactor reference guide (see [Official References](#official-references))
   is the authoritative source for the full fusion-optimization model and the
   complete `Sinks` API beyond this chapter's scope.
-- [Virtual Threads and Structured Concurrency](../concurrency/virtual-threads.md)
+- [Virtual Threads and Structured Concurrency](../../syllabus/02-java/concurrency/virtual-threads.md)
   covers the blocking-thread alternative this chapter repeatedly contrasts
   reactive against — read it for the other half of the "reactive vs. virtual
   threads" decision this chapter frames.

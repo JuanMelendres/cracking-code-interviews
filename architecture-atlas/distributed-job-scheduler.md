@@ -13,9 +13,9 @@ target_levels:
 estimated_reading_minutes: 20
 prerequisites:
   - ../handbook/system-design/system-design-method-and-estimation.md
-  - ../handbook/concurrency/executors-and-thread-pool-sizing.md
+  - ../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
 related:
-  - ../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
+  - ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
   - ../handbook/system-design/idempotency.md
   - ../interview-playbook/system-design/time-boxing-and-mid-round-changes.md
   - ../study-packs/week-09/09-design-exercise-distributed-job-scheduler.md
@@ -100,9 +100,9 @@ graph TD
 
 **Justified against this design's own topics:**
 
-- **Two separate execution pools, not one:** the p50-vs-p99 spread from the capacity assumptions is exactly the CPU-bound-vs-IO-bound sizing distinction from [Executors and Thread Pool Sizing](../handbook/concurrency/executors-and-thread-pool-sizing.md) — short (CPU-bound) jobs get a platform pool sized near `N_cores`; long-running (IO-bound) jobs get a virtual-thread-per-task executor, so slow jobs can't starve the short-job pool the way one shared, undersized pool would.
+- **Two separate execution pools, not one:** the p50-vs-p99 spread from the capacity assumptions is exactly the CPU-bound-vs-IO-bound sizing distinction from [Executors and Thread Pool Sizing](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md) — short (CPU-bound) jobs get a platform pool sized near `N_cores`; long-running (IO-bound) jobs get a virtual-thread-per-task executor, so slow jobs can't starve the short-job pool the way one shared, undersized pool would.
 - **Lease-based claiming, not a distributed lock:** a true distributed lock (e.g., Zookeeper/etcd) solves a more general problem than needed and introduces its own failure mode — a lock holder crashing while holding it. The lease pattern (claim with expiry, periodically renewed) self-heals: a crashed poller's claimed jobs become claimable again once the lease expires, with no failure detection or explicit unlock needed. The same "avoid the general mechanism when a narrower one avoids its failure mode" judgment as choosing `AtomicInteger` over `synchronized` for a single counter.
-- **Multiple poller replicas via conditional-update claim, not leader election:** avoids a single point of failure without leader-election's own complexity — every replica independently polls and races to claim due jobs; the database's atomic conditional update (not application-level locking) prevents double-claiming, sidestepping the [Deadlock, Race Conditions, and Thread Diagnostics](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) risk category entirely (no multi-lock acquisition to order incorrectly).
+- **Multiple poller replicas via conditional-update claim, not leader election:** avoids a single point of failure without leader-election's own complexity — every replica independently polls and races to claim due jobs; the database's atomic conditional update (not application-level locking) prevents double-claiming, sidestepping the [Deadlock, Race Conditions, and Thread Diagnostics](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) risk category entirely (no multi-lock acquisition to order incorrectly).
 
 ## Data Model
 

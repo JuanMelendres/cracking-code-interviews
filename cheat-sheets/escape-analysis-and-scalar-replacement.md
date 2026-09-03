@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Escape Analysis and Scalar Replacement
 
-**Canonical chapter:** [`handbook/jvm/escape-analysis-and-scalar-replacement.md`](../handbook/jvm/escape-analysis-and-scalar-replacement.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md`](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)
 
 ## Core Mental Model
 
@@ -67,4 +67,4 @@ Same Java source, same JVM, same iteration count — either zero or hundreds of 
 
 ## Related
 
-- `handbook/jvm/object-layout-headers-and-compressed-oops.md`
+- `syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md`

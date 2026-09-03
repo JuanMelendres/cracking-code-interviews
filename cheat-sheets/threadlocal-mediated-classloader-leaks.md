@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # ThreadLocal-Mediated Classloader Leaks
 
-**Canonical chapter:** [`handbook/concurrency/threadlocal-mediated-classloader-leaks.md`](../handbook/concurrency/threadlocal-mediated-classloader-leaks.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md`](../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md)
 
 ## Core Mental Model
 
@@ -77,6 +77,6 @@ Real classloader still reachable after GC: false (now correctly collected)
 
 ## Related
 
-- `handbook/concurrency/scoped-values-and-threadlocal-migration.md`
-- `handbook/concurrency/varhandles-and-unsafe.md`
-- `handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md`
+- `syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md`
+- `syllabus/02-java/concurrency/varhandles-and-unsafe.md`
+- `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md`

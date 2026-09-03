@@ -5,7 +5,7 @@ domain: collections
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/collections/treemap-treeset-and-navigable-hierarchy.md
+  - ../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md
 source: handbook/collections/treemap-treeset-and-navigable-hierarchy.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ This scenario is a useful example of the difference between a symptom-level fix 
 
 ## Related Handbook Chapters
 
-- [TreeMap/TreeSet & the Navigable Hierarchy](../handbook/collections/treemap-treeset-and-navigable-hierarchy.md) — canonical `NavigableMap`/`NavigableSet` mechanics, the reflectively-proven interface hierarchy, and Red-Black tree height guarantees this fix relies on.
-- [Fail-Fast vs. Weakly-Consistent Iterators](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md) — related iteration-safety considerations relevant to a leaderboard structure updated concurrently with reads.
+- [TreeMap/TreeSet & the Navigable Hierarchy](../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md) — canonical `NavigableMap`/`NavigableSet` mechanics, the reflectively-proven interface hierarchy, and Red-Black tree height guarantees this fix relies on.
+- [Fail-Fast vs. Weakly-Consistent Iterators](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md) — related iteration-safety considerations relevant to a leaderboard structure updated concurrently with reads.

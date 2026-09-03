@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # TreeMap/TreeSet & the Navigable Hierarchy
 
-**Canonical chapter:** [`handbook/collections/treemap-treeset-and-navigable-hierarchy.md`](../handbook/collections/treemap-treeset-and-navigable-hierarchy.md)
+**Canonical chapter:** [`syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md`](../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md)
 
 ## Core Mental Model
 
@@ -59,6 +59,6 @@ last_updated: 2026-09-02
 
 ## Related
 
-- `handbook/collections/hashmap-internals.md`
-- `handbook/collections/collection-selection-decision-matrix.md`
-- `handbook/collections/concurrenthashmap-internals.md`
+- `syllabus/02-java/collections/hashmap-internals.md`
+- `syllabus/02-java/collections/collection-selection-decision-matrix.md`
+- `syllabus/02-java/collections/concurrenthashmap-internals.md`

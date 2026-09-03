@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Fail-Fast vs. Weakly-Consistent Iterators
 
-**Canonical chapter:** [`handbook/collections/fail-fast-vs-weakly-consistent-iterators.md`](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md)
+**Canonical chapter:** [`syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md`](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md)
 
 ## Card: What actually triggers CME
 
@@ -27,7 +27,7 @@ The real mechanism, not the vague "you can't modify during iteration" rule.
 Assuming Java actively prevents modification, rather than detecting it after the fact, and only at specific check points.
 
 **Related:**
-[Internal Implementation](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md#internal-implementation)
 
 ## Card: The best-effort quirk
 
@@ -44,7 +44,7 @@ Proof that "no exception" is not evidence of a safe loop.
 Treating a clean test run as proof of correctness.
 
 **Related:**
-[Internal Implementation](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md#internal-implementation)
 
 ## Card: Two different weakly-consistent contracts
 
@@ -61,4 +61,4 @@ No — `CopyOnWriteArrayList`'s iterator is a fixed snapshot; `ConcurrentHashMap
 Assuming all non-fail-fast collections behave identically under concurrent iteration.
 
 **Related:**
-[Internal Implementation](../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md#internal-implementation)

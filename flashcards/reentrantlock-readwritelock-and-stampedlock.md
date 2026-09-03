@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: ReentrantLock, ReadWriteLock, and StampedLock
 
-**Canonical chapter:** [`handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md`](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md`](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md)
 
 ## Card: ReentrantLock's real additions
 
@@ -27,7 +27,7 @@ The concrete reasons to reach for `ReentrantLock` over `synchronized` at all.
 Using `ReentrantLock` without needing any of these, adding complexity for no real benefit.
 
 **Related:**
-[Core Concepts](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md#core-concepts)
 
 ## Card: ReadWriteLock's guarantee
 
@@ -44,7 +44,7 @@ Measured directly: readers' hold intervals genuinely overlapped in this chapter'
 Using it for a write-heavy workload, where it offers no real benefit over a plain lock.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md#internal-implementation)
 
 ## Card: StampedLock's mandatory step
 
@@ -61,4 +61,4 @@ Skipping this is a silent, real correctness bug — proven by this chapter's det
 Treating `StampedLock` as a drop-in faster lock without implementing the validate-and-fallback protocol.
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md#internal-implementation)

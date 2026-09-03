@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/java-core/equals-hashcode-and-comparable-contracts.md
+  - ../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md
 source: handbook/java-core/equals-hashcode-and-comparable-contracts.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The `equals()`/`hashCode()` contract is a case where tooling (an IDE's "regenera
 
 ## Related Handbook Chapters
 
-- [equals/hashCode and Comparable Contracts](../handbook/java-core/equals-hashcode-and-comparable-contracts.md) — canonical contract mechanics and `BrokenEqualsHashCodeDemo` used here.
-- [HashMap Internals](../handbook/collections/hashmap-internals.md) — the bucket-lookup mechanism this broken contract silently defeats.
+- [equals/hashCode and Comparable Contracts](../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md) — canonical contract mechanics and `BrokenEqualsHashCodeDemo` used here.
+- [HashMap Internals](../syllabus/02-java/collections/hashmap-internals.md) — the bucket-lookup mechanism this broken contract silently defeats.

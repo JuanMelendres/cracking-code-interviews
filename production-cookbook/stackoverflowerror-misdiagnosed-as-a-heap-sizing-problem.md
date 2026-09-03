@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/jvm/jvm-memory-layout-and-runtime-regions.md
+  - ../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md
 source: handbook/jvm/jvm-memory-layout-and-runtime-regions.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ This incident is a clean test of whether an engineer's mental model of JVM memor
 
 ## Related Handbook Chapters
 
-- [JVM Memory Layout and Runtime Regions](../handbook/jvm/jvm-memory-layout-and-runtime-regions.md) — canonical stack-vs-heap region mechanics used here.
+- [JVM Memory Layout and Runtime Regions](../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md) — canonical stack-vs-heap region mechanics used here.

@@ -86,4 +86,4 @@ The costliest part of this incident wasn't the memory miscalculation — it was 
 ## Related Handbook Chapters
 
 - [Kubernetes Resource Limits, Probes, and JVM Sizing](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md) — canonical cgroup/OOMKill mechanics and JVM container-sizing methodology used here.
-- [JVM Flags and Container Ergonomics](../handbook/jvm/jvm-flags-and-container-ergonomics.md) — the `-Xmx`/container-aware ergonomic defaults this sizing decision is stated in terms of.
+- [JVM Flags and Container Ergonomics](../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md) — the `-Xmx`/container-aware ergonomic defaults this sizing decision is stated in terms of.

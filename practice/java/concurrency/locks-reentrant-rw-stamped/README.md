@@ -1,7 +1,7 @@
 # ReentrantLock, ReadWriteLock, and StampedLock (T-404) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md`](../../../../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md)
+[`syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md`](../../../../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md)
 (T-404). Three independent demos, each proving one real, measurable capability `synchronized`
 alone cannot give you.
 

@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Deadlock, Race Conditions, and Thread Diagnostics
 
-**Canonical chapter:** [`handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`](../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md)
 
 ## Core Mental Model
 

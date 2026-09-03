@@ -2,7 +2,7 @@
 
 No Java source for this topic — the evidence comes directly from Docker Scout
 CLI output against a real image, `eclipse-temurin:21-jre` (the same base
-image used in `handbook/jvm/jvm-flags-and-container-ergonomics.md`).
+image used in `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md`).
 
 Tooling used: Docker 29.6.2, Docker Scout v1.24.0.
 

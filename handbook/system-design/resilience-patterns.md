@@ -16,7 +16,7 @@ prerequisites:
   - distributed-systems-failure-modes.md
 related:
   - distributed-systems-failure-modes.md
-  - ../concurrency/executors-and-thread-pool-sizing.md
+  - ../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
   - multi-region-failover-and-disaster-recovery.md
   - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
   - ../performance/incident-response-and-blameless-postmortems.md
@@ -83,7 +83,7 @@ Resilience-pattern questions test whether a candidate treats calling a downstrea
 
 Resilience patterns are the standard toolkit for a service that depends on other services which will, eventually, fail or slow down: **timeouts** bound how long you wait, **retries** handle transient failures, **circuit breakers** stop calling a downstream that's clearly down, and **bulkheads** isolate one dependency's failure from starving resources needed by others.
 
-Without these patterns, a single slow or failing downstream dependency doesn't just fail its own calls — it can exhaust the calling service's own thread pool/connection pool waiting on it ([the unbounded-queue trap](../concurrency/executors-and-thread-pool-sizing.md#internal-implementation) is exactly this failure mode, one layer up), cascading the failure to every OTHER caller of the now-resource-starved service, even ones that never touch the failing dependency.
+Without these patterns, a single slow or failing downstream dependency doesn't just fail its own calls — it can exhaust the calling service's own thread pool/connection pool waiting on it ([the unbounded-queue trap](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#internal-implementation) is exactly this failure mode, one layer up), cascading the failure to every OTHER caller of the now-resource-starved service, even ones that never touch the failing dependency.
 
 ## Core Concepts
 
@@ -101,7 +101,7 @@ A timeout set from the p50 latency times out roughly half of all genuinely-succe
 
 ### A bulkhead isolates a shared resource per dependency
 
-Bulkhead isolation partitions a limited resource (thread pool, connection pool) per-dependency, so one dependency's slowdown can only exhaust its OWN allocated slice, not the shared pool every other dependency also needs — the same principle as ships' bulkheads containing flooding to one compartment. This is the resilience-pattern framing of exactly the problem [executor sizing](../concurrency/executors-and-thread-pool-sizing.md#internal-implementation) measures directly: a single shared, unbounded-queue pool lets one slow dependency starve every other caller of that pool.
+Bulkhead isolation partitions a limited resource (thread pool, connection pool) per-dependency, so one dependency's slowdown can only exhaust its OWN allocated slice, not the shared pool every other dependency also needs — the same principle as ships' bulkheads containing flooding to one compartment. This is the resilience-pattern framing of exactly the problem [executor sizing](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#internal-implementation) measures directly: a single shared, unbounded-queue pool lets one slow dependency starve every other caller of that pool.
 
 **The concrete, frequently-asked version of this: a fixed-size HikariCP pool shared across unrelated request types.** A service with a single `maximumPoolSize: 20` connection pool (see [Connection Pooling and Sizing](../databases/connection-pooling-and-sizing.md) for the pool's own internals) serves two unrelated endpoints — say, order-lookup and order-cancellation — both borrowing connections from that same pool. If the cancellation flow calls a slow downstream service (a payment processor, a fraud-check API) while still holding its borrowed connection, every cancellation request in flight during that downstream's slowdown holds a connection for the downstream's full latency, not the database's own latency. Once enough concurrent cancellation requests are each holding a connection waiting on the slow downstream, the pool's 20 connections are exhausted — and the *unrelated* order-lookup endpoint, which never talks to the slow downstream at all, now also fails with a connection-timeout, because there are no connections left in the shared pool for it to borrow. This is the same bulkhead violation as the thread-pool case above, just against a JDBC connection pool instead of a thread pool: one dependency's slowness starves every caller of a resource it shares with unrelated work. A circuit breaker (Resilience4j, wrapping the call to the slow downstream) fixes this specifically by failing fast once the downstream's failure/slowness rate crosses its threshold — the breaker opens, cancellation requests fail immediately without ever borrowing a connection and holding it through the downstream's full timeout, and the pool stops being drained by requests waiting on a dependency that's already known to be unhealthy. The breaker doesn't fix the downstream; it stops one dependency's problem from propagating into a shared resource every other, unrelated request also depends on — the textbook justification for pairing a circuit breaker with bulkhead isolation rather than treating either as sufficient alone.
 

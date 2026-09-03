@@ -13,10 +13,10 @@ target_levels:
   - staff
 estimated_reading_minutes: 26
 prerequisites:
-  - jit-tiered-compilation-and-deoptimization.md
+  - ../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
 related:
-  - jit-tiered-compilation-and-deoptimization.md
-  - escape-analysis-and-scalar-replacement.md
+  - ../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
+  - ../../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
   - ../performance/profiling-jfr-and-flame-graphs.md
   - ../../practice/java/jvm/benchmarking-and-jmh-pitfalls/README.md
 official_references:
@@ -29,7 +29,7 @@ official_references:
 
 > **Topic register:** T-1203 · IWI 5.2 · Advanced tier · Occasional interview frequency — most often surfaces as a follow-up once a candidate claims a specific number ("we measured X% faster") in a performance-optimization story.
 > **Provenance:** every number in this chapter is real, executed JMH 1.37 output on JDK 21.0.12, run twice under two different blackhole configurations to separate a real effect from an environment-specific one. Source and full output at [`practice/java/jvm/benchmarking-and-jmh-pitfalls/`](../../practice/java/jvm/benchmarking-and-jmh-pitfalls/README.md).
-> **Scope note:** this chapter is about correct *microbenchmark methodology* specifically — the pitfalls unique to measuring nanosecond/microsecond-scale code on a JIT-compiled runtime. It does not re-cover JIT compilation itself (already [`jit-tiered-compilation-and-deoptimization.md`](jit-tiered-compilation-and-deoptimization.md)'s job) or general application profiling (already [`profiling-jfr-and-flame-graphs.md`](../performance/profiling-jfr-and-flame-graphs.md)'s job).
+> **Scope note:** this chapter is about correct *microbenchmark methodology* specifically — the pitfalls unique to measuring nanosecond/microsecond-scale code on a JIT-compiled runtime. It does not re-cover JIT compilation itself (already [`jit-tiered-compilation-and-deoptimization.md`](../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md)'s job) or general application profiling (already [`profiling-jfr-and-flame-graphs.md`](../performance/profiling-jfr-and-flame-graphs.md)'s job).
 
 ## Table of Contents
 
@@ -292,8 +292,8 @@ Naive hand-timed loops are not valid microbenchmarks because a JIT-compiled runt
 ## Additional Reading
 
 - [`practice/java/jvm/benchmarking-and-jmh-pitfalls/README.md`](../../practice/java/jvm/benchmarking-and-jmh-pitfalls/README.md) — full real output this chapter draws from.
-- [`jit-tiered-compilation-and-deoptimization.md`](jit-tiered-compilation-and-deoptimization.md) — the compilation-tier mechanics that make warmup necessary in the first place.
-- [`escape-analysis-and-scalar-replacement.md`](escape-analysis-and-scalar-replacement.md) — another JIT optimization capable of silently changing what a naive benchmark actually measures.
+- [`jit-tiered-compilation-and-deoptimization.md`](../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md) — the compilation-tier mechanics that make warmup necessary in the first place.
+- [`escape-analysis-and-scalar-replacement.md`](../../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md) — another JIT optimization capable of silently changing what a naive benchmark actually measures.
 - [`../performance/profiling-jfr-and-flame-graphs.md`](../performance/profiling-jfr-and-flame-graphs.md) — the tool of choice once you need to understand *where* time goes inside real application code, as opposed to isolating one small operation.
 
 ## Official References

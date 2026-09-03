@@ -5,7 +5,7 @@ domain: java-core
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/java-core/strings-interning-compact-strings-and-builders.md
+  - ../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md
 source: handbook/java-core/strings-interning-compact-strings-and-builders.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This is a textbook case of a "for readability" choice quietly encoding an algori
 
 ## Related Handbook Chapters
 
-- [Strings: Interning, Compact Strings, and Builders](../handbook/java-core/strings-interning-compact-strings-and-builders.md) — canonical mechanics of `String` immutability, the measured 63–147x concatenation-versus-builder gap, and `StringBuilder`/`StringBuffer` trade-offs.
-- [Optional and Null Strategy](../handbook/java-core/optional-and-null-strategy.md) — related pattern of an innocuous-looking refactor introducing an unconditional, hidden cost on a hot path.
+- [Strings: Interning, Compact Strings, and Builders](../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md) — canonical mechanics of `String` immutability, the measured 63–147x concatenation-versus-builder gap, and `StringBuilder`/`StringBuffer` trade-offs.
+- [Optional and Null Strategy](../syllabus/02-java/language-core/optional-and-null-strategy.md) — related pattern of an innocuous-looking refactor introducing an unconditional, hidden cost on a hot path.

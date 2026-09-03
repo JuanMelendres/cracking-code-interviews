@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Enums, EnumMap, and EnumSet
 
-**Canonical chapter:** [`handbook/java-core/enums-enummap-and-enumset.md`](../handbook/java-core/enums-enummap-and-enumset.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/enums-enummap-and-enumset.md`](../syllabus/02-java/language-core/enums-enummap-and-enumset.md)
 
 ## Card: Real singleton protection
 
@@ -27,7 +27,7 @@ The real reason enums are the recommended Singleton-pattern implementation.
 Assuming enum singletons are only as protected as a hand-written one.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/enums-enummap-and-enumset.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/enums-enummap-and-enumset.md#internal-implementation)
 
 ## Card: The ordinal() danger
 
@@ -44,7 +44,7 @@ A real, silent, genuinely dangerous production data-corruption pattern.
 Assuming `ordinal()` is safe as long as constants are never removed.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/enums-enummap-and-enumset.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/enums-enummap-and-enumset.md#internal-implementation)
 
 ## Card: EnumMap's real advantage
 
@@ -61,4 +61,4 @@ An honest correction against overstated performance folklore.
 Assuming array-backed-versus-hash-backed always implies a dramatic speed difference.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/enums-enummap-and-enumset.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/enums-enummap-and-enumset.md#internal-implementation)

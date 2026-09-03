@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Reflection and Dynamic Proxies
 
-**Canonical chapter:** [`handbook/java-core/reflection-and-dynamic-proxies.md`](../handbook/java-core/reflection-and-dynamic-proxies.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`](../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md)
 
 ## Core Mental Model
 
@@ -60,6 +60,6 @@ Reflection lets code ask an object "what are you, and what can you do?" at runti
 
 ## Related
 
-- `handbook/concurrency/completablefuture-and-async-composition.md`
-- `handbook/java-core/classloaders-and-class-initialization.md`
-- `handbook/java-core/annotations-and-annotation-processing.md`
+- `syllabus/02-java/concurrency/completablefuture-and-async-composition.md`
+- `syllabus/02-java/language-core/classloaders-and-class-initialization.md`
+- `syllabus/02-java/language-core/annotations-and-annotation-processing.md`

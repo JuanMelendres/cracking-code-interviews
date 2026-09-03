@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: ZGC and Shenandoah: Concurrent Collection
 
-**Canonical chapter:** [`handbook/jvm/zgc-and-shenandoah-concurrent-collection.md`](../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md`](../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md)
 
 ## Card: The core architectural difference from G1
 
@@ -27,7 +27,7 @@ The precise mechanism behind ZGC/Shenandoah's dramatically lower pause times com
 Attributing ZGC/Shenandoah's benefit to "better tuning" rather than the specific concurrent-relocation architecture.
 
 **Related:**
-[handbook/jvm/zgc-and-shenandoah-concurrent-collection.md](../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md)
+[handbook/jvm/zgc-and-shenandoah-concurrent-collection.md](../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md)
 
 ## Card: The real cost a concurrent collector can still impose
 
@@ -44,7 +44,7 @@ Prevents treating a low-pause-time collector as a free lunch with no possible la
 Assuming excellent measured pause times mean the collector has no remaining latency risk under any allocation rate.
 
 **Related:**
-[handbook/jvm/zgc-and-shenandoah-concurrent-collection.md](../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md)
+[handbook/jvm/zgc-and-shenandoah-concurrent-collection.md](../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md)
 
 ## Card: Why migrating to ZGC/Shenandoah needs more heap headroom
 
@@ -61,4 +61,4 @@ The specific reason a straight collector swap with unchanged heap sizing risks t
 Migrating to ZGC/Shenandoah while keeping the existing G1-era heap sizing unchanged.
 
 **Related:**
-[handbook/jvm/zgc-and-shenandoah-concurrent-collection.md](../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md)
+[handbook/jvm/zgc-and-shenandoah-concurrent-collection.md](../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md)

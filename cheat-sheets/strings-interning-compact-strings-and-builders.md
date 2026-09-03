@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Strings: Interning, Compact Strings, and Builders
 
-**Canonical chapter:** [`handbook/java-core/strings-interning-compact-strings-and-builders.md`](../handbook/java-core/strings-interning-compact-strings-and-builders.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md`](../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md)
 
 ## Core Mental Model
 
@@ -60,4 +60,4 @@ A string literal reuses a shared pooled object; `new String(...)` explicitly all
 
 ## Related
 
-- `handbook/java-core/polymorphism-and-dynamic-dispatch.md`
+- `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md`

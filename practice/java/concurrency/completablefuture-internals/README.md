@@ -1,7 +1,7 @@
 # CompletableFuture internals (T-407) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/concurrency/completablefuture-and-async-composition.md`](../../../../handbook/concurrency/completablefuture-and-async-composition.md)
+[`syllabus/02-java/concurrency/completablefuture-and-async-composition.md`](../../../../syllabus/02-java/concurrency/completablefuture-and-async-composition.md)
 (T-407). Three independent demos, each proving one real, easy-to-miss mechanism.
 
 ## Setup and run

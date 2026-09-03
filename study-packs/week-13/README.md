@@ -18,7 +18,7 @@ Java Core, Collections, and Cloud & Infrastructure were the three domains with z
 
 ## Prerequisites
 
-None formally required, though `handbook/architecture/clean-hexagonal-architecture.md` and `handbook/concurrency/java-memory-model-and-volatile.md` are referenced for cross-topic connections (immutability's thread-safety implications, generic collections used in ports/adapters).
+None formally required, though `handbook/architecture/clean-hexagonal-architecture.md` and `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` are referenced for cross-topic connections (immutability's thread-safety implications, generic collections used in ports/adapters).
 
 ## Schedule
 
@@ -29,11 +29,11 @@ See `10-week-13-checklist.md` for the day-by-day breakdown.
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-streams-and-collectors.md` | T-107 — summary + link; full chapter canonical at `handbook/java-core/streams-and-collectors.md` |
-| 3 | `02-equals-hashcode-and-comparable-contracts.md` | T-101 — summary + link; full chapter canonical at `handbook/java-core/equals-hashcode-and-comparable-contracts.md` |
-| 4 | `03-generics-erasure-and-pecs.md` | T-104 — summary + link; full chapter canonical at `handbook/java-core/generics-erasure-and-pecs.md` |
-| 5 | `04-exception-design-and-hierarchy-strategy.md` | T-105 — summary + link; full chapter canonical at `handbook/java-core/exception-design-and-hierarchy-strategy.md` |
-| 6 | `05-immutability-and-defensive-copying.md` | T-103 — summary + link; full chapter canonical at `handbook/java-core/immutability-and-defensive-copying.md` |
+| 2 | `01-streams-and-collectors.md` | T-107 — summary + link; full chapter canonical at `syllabus/02-java/language-core/streams-and-collectors.md` |
+| 3 | `02-equals-hashcode-and-comparable-contracts.md` | T-101 — summary + link; full chapter canonical at `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
+| 4 | `03-generics-erasure-and-pecs.md` | T-104 — summary + link; full chapter canonical at `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
+| 5 | `04-exception-design-and-hierarchy-strategy.md` | T-105 — summary + link; full chapter canonical at `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
+| 6 | `05-immutability-and-defensive-copying.md` | T-103 — summary + link; full chapter canonical at `syllabus/02-java/language-core/immutability-and-defensive-copying.md` |
 | 7 | `06-java-coding-practice.md` | 4 problems exercising this week's topics together, all compiled and run |
 | 8 | `07-flashcards.md` | 15 cards |
 | 9 | `08-week-13-mock-interview.md` | 45-min Java Core technical round |

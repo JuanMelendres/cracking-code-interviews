@@ -1,7 +1,7 @@
 # ForkJoinPool and work-stealing (T-408) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/concurrency/forkjoinpool-and-work-stealing.md`](../../../../handbook/concurrency/forkjoinpool-and-work-stealing.md)
+[`syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md`](../../../../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md)
 (T-408). Three independent demos: a real, measured fork/join speedup with correctness verification,
 a real proof of work-stealing itself via the JDK's own `ForkJoinPool.getStealCount()` metric, and a
 real check that corrected an inaccurate first-draft assumption about virtual threads sharing

@@ -1,7 +1,7 @@
 # Optional and null strategy (T-109) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/optional-and-null-strategy.md`](../../../handbook/java-core/optional-and-null-strategy.md)
+[`handbook/java-core/optional-and-null-strategy.md`](../../../../syllabus/02-java/language-core/optional-and-null-strategy.md)
 (T-109). Three independent demos: real construction/access contracts, a real ~1200x-measured
 eager-vs-lazy gotcha, and a real serialization failure proving the "Optional as a field" anti-pattern.
 

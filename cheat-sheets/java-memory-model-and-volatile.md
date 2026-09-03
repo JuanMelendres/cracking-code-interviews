@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Java Memory Model and volatile
 
-**Canonical chapter:** [`handbook/concurrency/java-memory-model-and-volatile.md`](../handbook/concurrency/java-memory-model-and-volatile.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/java-memory-model-and-volatile.md`](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md)
 
 ## Core Mental Model
 
@@ -78,4 +78,4 @@ Root cause: JIT hoists the loop-invariant read (`while (!stop) i++;` → `if (!s
 
 ## Related
 
-- `handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`
+- `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`

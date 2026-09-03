@@ -32,5 +32,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 ### Not yet done
 
-- Phase 3 (domain-by-domain handbook migration, `02-java` first) has not been authorized.
 - These four relocated files still carry only L3/L4 (Senior/Staff-depth) content — Foundation/Working-Knowledge layers remain Phase 5 gap-filling work, same as every other existing chapter.
+
+## [2026-09-03] — Phase 3: First domain migration (02-java)
+
+### Changed
+
+- Relocated all 49 mapped `02-java` chapters via `git mv`: `handbook/java-core/` (15) → `language-core/`, `handbook/collections/` (9) → `collections/`, `handbook/jvm/` (12 of 13 — `benchmarking-and-jmh-pitfalls.md` stays for `16-performance-jvm`'s own turn) → `jvm-internals/`, `handbook/concurrency/` (13) → `concurrency/`. Each gained `source_history` and an updated `domain` field.
+- Built a general link fixer that recomputes every one of these 49 files' own outbound links from their pristine pre-move content, correctly handling both "the target moved too" and "only I moved" cases — the subdomain nesting here is one level deeper than the old `handbook/` layout, so even links to unmoved content needed depth recalculation.
+- Fixed 235 other files' inbound references (1,353 individual link fixes) across the rest of the repository. See the repository-root `CHANGELOG.md` for the full account, including a caught-and-fixed regression (7 `practice/` READMEs) and 51 discovered-but-out-of-scope pre-existing broken links unrelated to this migration.
+- Updated `syllabus/02-java/INDEX.md` to reflect the real relocation.
+
+### Not yet done
+
+- Phase 3 for every other domain (19 more, plus the 2 new-writing-only domains) has not been authorized.
+- `02-java`'s Foundation/Working-Knowledge (L1/L2) layers remain Phase 5 work.

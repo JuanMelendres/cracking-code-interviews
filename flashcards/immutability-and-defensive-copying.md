@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Immutability and Defensive Copying
 
-**Canonical chapter:** [`handbook/java-core/immutability-and-defensive-copying.md`](../handbook/java-core/immutability-and-defensive-copying.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/immutability-and-defensive-copying.md`](../syllabus/02-java/language-core/immutability-and-defensive-copying.md)
 
 ## Card: What final fields do and don't guarantee
 
@@ -27,7 +27,7 @@ The single most common misconception about Java immutability.
 Treating "all fields final, no setters" as sufficient proof of immutability.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/immutability-and-defensive-copying.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/immutability-and-defensive-copying.md#internal-implementation)
 
 ## Card: The two leak points
 
@@ -44,7 +44,7 @@ Both must be defensively copied for genuine immutability.
 Fixing only one of the two boundaries.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/immutability-and-defensive-copying.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/immutability-and-defensive-copying.md#internal-implementation)
 
 ## Card: Why List.copyOf() is stronger than a plain copy
 
@@ -61,4 +61,4 @@ A structural guarantee (loud failure on violation) is stronger than a convention
 Treating a plain defensive copy as equivalent to an immutable view.
 
 **Related:**
-[Core Concepts](../handbook/java-core/immutability-and-defensive-copying.md#core-concepts)
+[Core Concepts](../syllabus/02-java/language-core/immutability-and-defensive-copying.md#core-concepts)

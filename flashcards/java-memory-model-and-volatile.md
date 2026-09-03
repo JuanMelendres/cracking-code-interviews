@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Java Memory Model and volatile
 
-**Canonical chapter:** [`handbook/concurrency/java-memory-model-and-volatile.md`](../handbook/concurrency/java-memory-model-and-volatile.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/java-memory-model-and-volatile.md`](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md)
 
 ## Card: What volatile actually guarantees
 
@@ -27,7 +27,7 @@ Corrects the single most common, and previously actively-wrong, misconception in
 Describing `volatile` as "preventing caching" or "forcing a read from RAM."
 
 **Related:**
-[Internal Implementation](../handbook/concurrency/java-memory-model-and-volatile.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#internal-implementation)
 
 ## Card: volatile and compound operations
 
@@ -44,7 +44,7 @@ The most common way `volatile` is over-trusted in practice.
 Assuming a `volatile` counter is safe under concurrent increments.
 
 **Related:**
-[Core Concepts](../handbook/concurrency/java-memory-model-and-volatile.md#core-concepts)
+[Core Concepts](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#core-concepts)
 
 ## Card: Double-checked locking and volatile
 
@@ -61,4 +61,4 @@ The canonical interview question this topic exists to answer.
 Believing `synchronized` on the constructor block alone is sufficient without `volatile` on the field.
 
 **Related:**
-[Java Examples](../handbook/concurrency/java-memory-model-and-volatile.md#java-examples)
+[Java Examples](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md#java-examples)

@@ -1,7 +1,7 @@
 # VarHandles, Unsafe, and their replacement (T-415) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/concurrency/varhandles-and-unsafe.md`](../../../../handbook/concurrency/varhandles-and-unsafe.md)
+[`syllabus/02-java/concurrency/varhandles-and-unsafe.md`](../../../../syllabus/02-java/concurrency/varhandles-and-unsafe.md)
 (T-415). No mocked memory model — a real `VarHandle` over a plain field
 achieving the identical race-free correctness as `AtomicInteger`, and all
 four real VarHandle access-mode families (plain, opaque, acquire/release,

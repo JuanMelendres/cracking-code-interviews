@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # CompletableFuture and Async Composition
 
-**Canonical chapter:** [`handbook/concurrency/completablefuture-and-async-composition.md`](../handbook/concurrency/completablefuture-and-async-composition.md)
+**Canonical chapter:** [`syllabus/02-java/concurrency/completablefuture-and-async-composition.md`](../syllabus/02-java/concurrency/completablefuture-and-async-composition.md)
 
 ## Core Mental Model
 
@@ -59,6 +59,6 @@ A `CompletableFuture` is a box filled exactly once, with a value or an exception
 
 ## Related
 
-- `handbook/concurrency/executors-and-thread-pool-sizing.md`
-- `handbook/concurrency/forkjoinpool-and-work-stealing.md`
-- `handbook/java-core/reflection-and-dynamic-proxies.md`
+- `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`
+- `syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md`
+- `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`

@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # HashMap Internals
 
-**Canonical chapter:** [`handbook/collections/hashmap-internals.md`](../handbook/collections/hashmap-internals.md)
+**Canonical chapter:** [`syllabus/02-java/collections/hashmap-internals.md`](../syllabus/02-java/collections/hashmap-internals.md)
 
 ## Core Mental Model
 
@@ -75,5 +75,5 @@ Bucket node's actual runtime class after collision: TreeNode
 
 ## Related
 
-- `handbook/java-core/equals-hashcode-and-comparable-contracts.md`
-- `handbook/collections/concurrenthashmap-internals.md`
+- `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md`
+- `syllabus/02-java/collections/concurrenthashmap-internals.md`

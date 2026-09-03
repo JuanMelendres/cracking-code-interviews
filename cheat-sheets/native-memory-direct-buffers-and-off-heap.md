@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Native Memory, Direct Buffers, and Off-Heap
 
-**Canonical chapter:** [`handbook/jvm/native-memory-direct-buffers-and-off-heap.md`](../handbook/jvm/native-memory-direct-buffers-and-off-heap.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md`](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)
 
 ## Core Mental Model
 
@@ -76,6 +76,6 @@ Other     (reserved=102400KB, committed=102400KB) <- exactly 100MB, malloc=#10
 
 ## Related
 
-- `handbook/jvm/jvm-memory-layout-and-runtime-regions.md`
-- `handbook/jvm/gc-roots-reachability-and-reference-strength.md`
-- `handbook/jvm/jvm-flags-and-container-ergonomics.md`
+- `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md`
+- `syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md`
+- `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md`

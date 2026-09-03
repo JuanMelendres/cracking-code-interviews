@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Serialization Hazards and Alternatives
 
-**Canonical chapter:** [`handbook/java-core/serialization-hazards-and-alternatives.md`](../handbook/java-core/serialization-hazards-and-alternatives.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/serialization-hazards-and-alternatives.md`](../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md)
 
 ## Card: The constructor-bypass fact
 
@@ -27,7 +27,7 @@ The single foundational fact every serialization hazard in this chapter traces b
 Assuming constructor validation applies universally, including on the deserialization path.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/serialization-hazards-and-alternatives.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md#internal-implementation)
 
 ## Card: Fixing a broken singleton
 
@@ -44,7 +44,7 @@ A real, common, and easy-to-miss way `Serializable` silently breaks an existing 
 Assuming a private constructor alone is sufficient once the class implements `Serializable`.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/serialization-hazards-and-alternatives.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md#internal-implementation)
 
 ## Card: The real, current defense
 
@@ -61,4 +61,4 @@ The real, current JDK-native mitigation for the gadget-chain RCE risk class.
 Assuming a process has a default filter configured — verified directly in this chapter, it does not unless explicitly set.
 
 **Related:**
-[Internal Implementation](../handbook/java-core/serialization-hazards-and-alternatives.md#internal-implementation)
+[Internal Implementation](../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md#internal-implementation)

@@ -29,11 +29,11 @@ See `10-week-14-checklist.md` for the day-by-day breakdown.
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-hashmap-internals.md` | T-201 — summary + link; full chapter canonical at `handbook/collections/hashmap-internals.md` |
-| 3 | `02-concurrenthashmap-internals.md` | T-205 — summary + link; full chapter canonical at `handbook/collections/concurrenthashmap-internals.md` |
-| 4 | `03-blockingqueue-family.md` | T-207 — summary + link; full chapter canonical at `handbook/collections/blockingqueue-family.md` |
-| 5 | `04-arraylist-and-linkedlist-internals.md` | T-202 — summary + link; full chapter canonical at `handbook/collections/arraylist-and-linkedlist-internals.md` |
-| 6 | `05-collection-selection-decision-matrix.md` | T-209 — summary + link; full chapter canonical at `handbook/collections/collection-selection-decision-matrix.md` |
+| 2 | `01-hashmap-internals.md` | T-201 — summary + link; full chapter canonical at `syllabus/02-java/collections/hashmap-internals.md` |
+| 3 | `02-concurrenthashmap-internals.md` | T-205 — summary + link; full chapter canonical at `syllabus/02-java/collections/concurrenthashmap-internals.md` |
+| 4 | `03-blockingqueue-family.md` | T-207 — summary + link; full chapter canonical at `syllabus/02-java/collections/blockingqueue-family.md` |
+| 5 | `04-arraylist-and-linkedlist-internals.md` | T-202 — summary + link; full chapter canonical at `syllabus/02-java/collections/arraylist-and-linkedlist-internals.md` |
+| 6 | `05-collection-selection-decision-matrix.md` | T-209 — summary + link; full chapter canonical at `syllabus/02-java/collections/collection-selection-decision-matrix.md` |
 | 7 | `06-java-coding-practice.md` | 3 problems exercising this week's topics together, all compiled and run |
 | 8 | `07-flashcards.md` | 15 cards |
 | 9 | `08-week-14-mock-interview.md` | 45-min Collections technical round |

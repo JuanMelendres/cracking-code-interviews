@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Exception Design and Hierarchy Strategy
 
-**Canonical chapter:** [`handbook/java-core/exception-design-and-hierarchy-strategy.md`](../handbook/java-core/exception-design-and-hierarchy-strategy.md)
+**Canonical chapter:** [`syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md`](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md)
 
 ## Core Mental Model
 
@@ -78,4 +78,4 @@ Manual finally block, BOTH throw:
 
 ## Related
 
-- `handbook/java-core/immutability-and-defensive-copying.md`
+- `syllabus/02-java/language-core/immutability-and-defensive-copying.md`

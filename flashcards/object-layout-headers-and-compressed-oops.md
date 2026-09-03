@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Object Layout, Headers, and Compressed Oops
 
-**Canonical chapter:** [`handbook/jvm/object-layout-headers-and-compressed-oops.md`](../handbook/jvm/object-layout-headers-and-compressed-oops.md)
+**Canonical chapter:** [`syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md`](../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md)
 
 ## Card: Does a zero-field object occupy zero memory
 
@@ -27,7 +27,7 @@ Corrects the intuitive but wrong assumption that an "empty" object costs nothing
 Assuming a class with no fields has effectively zero per-instance memory cost.
 
 **Related:**
-[handbook/jvm/object-layout-headers-and-compressed-oops.md](../handbook/jvm/object-layout-headers-and-compressed-oops.md)
+[handbook/jvm/object-layout-headers-and-compressed-oops.md](../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md)
 
 ## Card: How compressed oops fits a reference in 32 bits
 
@@ -44,7 +44,7 @@ The specific mechanism behind a memory-saving feature many candidates can name b
 Describing compressed oops as "just truncating the address" without the alignment-based shift mechanism.
 
 **Related:**
-[handbook/jvm/object-layout-headers-and-compressed-oops.md](../handbook/jvm/object-layout-headers-and-compressed-oops.md)
+[handbook/jvm/object-layout-headers-and-compressed-oops.md](../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md)
 
 ## Card: What happens past the compressed oops heap ceiling
 
@@ -61,4 +61,4 @@ A concrete, easy-to-miss cost of scaling heap size past a specific threshold, no
 Assuming heap growth past 32GB scales memory cost linearly with no structural change to reference size.
 
 **Related:**
-[handbook/jvm/object-layout-headers-and-compressed-oops.md](../handbook/jvm/object-layout-headers-and-compressed-oops.md)
+[handbook/jvm/object-layout-headers-and-compressed-oops.md](../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md)

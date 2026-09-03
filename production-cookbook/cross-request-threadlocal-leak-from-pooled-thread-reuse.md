@@ -5,7 +5,7 @@ domain: concurrency
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/concurrency/scoped-values-and-threadlocal-migration.md
+  - ../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md
 source: handbook/concurrency/scoped-values-and-threadlocal-migration.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ Present it as a representative scenario to adapt, not a claimed personal history
 
 ## Related Handbook Chapters
 
-- [Scoped Values and ThreadLocal Migration](../handbook/concurrency/scoped-values-and-threadlocal-migration.md) — canonical mechanics of the thread-pool-reuse leak and `ScopedValue`'s structural immunity to it.
-- [Structured Concurrency](../handbook/concurrency/structured-concurrency.md) — related mechanism for propagating context safely into forked subtasks, relevant if request handling itself fans out concurrently.
+- [Scoped Values and ThreadLocal Migration](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md) — canonical mechanics of the thread-pool-reuse leak and `ScopedValue`'s structural immunity to it.
+- [Structured Concurrency](../syllabus/02-java/concurrency/structured-concurrency.md) — related mechanism for propagating context safely into forked subtasks, relevant if request handling itself fans out concurrently.
