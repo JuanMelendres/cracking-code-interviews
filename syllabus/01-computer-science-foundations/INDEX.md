@@ -2,19 +2,27 @@
 title: "Computer Science Foundations — Domain Index"
 document_type: syllabus-domain-index
 domain: 01-computer-science-foundations
-status: scaffolding — Phase 1 (structure only; content migration is Phase 3, gap-filling is Phase 5)
+status: 1 of ~5 planned topics written (Phase 5, in progress, started 2026-09-03)
 last_updated: 2026-09-03
 ---
 
 # Computer Science Foundations
 
-How computers actually execute a program, number representation, the OS process/thread model below Java's abstraction, networking basics, and algorithmic complexity from first principles. **New domain — no existing content.** Entirely new writing, prioritized first among the gap domains per the plan's Section 7.6, since it is the hard prerequisite for the new Junior entry point.
+How computers actually execute a program, number representation, the OS process/thread model below Java's abstraction, networking basics, and algorithmic complexity from first principles. **New domain — no migrated content; every topic here is new writing**, prioritized first among the gap domains per the plan's Section 7.6, since it is the hard prerequisite for the new Junior entry point.
 
-> **Phase 1 scaffolding notice.** This is a structural placeholder created during Phase 1 of the approved `00-project/syllabus-transformation-plan.md`. No content has moved here yet — the topics listed below still live at their current `handbook/` path (right-hand column) until this domain's Phase 3 migration runs. This file will be rewritten as a real domain index once that happens.
+> **Phase 5 update (2026-09-03).** Writing started. The plan's own Section 2.5/§7.6 names five explicit gap areas for this domain (how a computer executes a program, number representation, the OS process/thread model, networking basics, algorithmic complexity) — this is the working topic list, assigned new T-codes in the plan's reserved `T-2000`–`T-2099` range (§9). One topic is written so far, applying the [Topic Specification](../00-overview/topic-specification.md) and [Mastery Model](../00-overview/mastery-model.md) for the first time with genuine L1→L4 coverage in a single file, per the plan's own "one topic, not four seniority-versioned copies" requirement (§5.3).
 
 ## Topics
 
-No existing `handbook/` chapters map to this domain yet — this is one of the plan's identified new-writing domains (Section 7.6). See `syllabus/00-overview/topic-specification.md` and `mastery-model.md` for the standard any new chapter here should be written against.
+| Topic ID | Title | Mastery levels covered | Location |
+|---|---|---|---|
+| T-2001 | [Algorithmic Complexity and Big-O, From First Principles](algorithmic-complexity-and-big-o-from-first-principles.md) | L1, L2, L3, L4 — fully written | `syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md` |
+| T-2002 | How a Computer Executes a Program (CPU, instruction cycle, stack vs. heap below the JVM's own abstraction of it) | Not yet written | Planned |
+| T-2003 | Number Representation (binary, two's complement, floating point, overflow) | Not yet written | Planned |
+| T-2004 | The OS Process/Thread Model, Below Java's Abstraction of It | Not yet written | Planned |
+| T-2005 | Networking Basics: TCP/IP and HTTP Mechanics Below the Spring MVC Layer | Not yet written | Planned |
+
+T-2001 was chosen first because it is genuinely prerequisite-free, is explicitly named in the plan's own gap description, and is the vocabulary every other existing chapter in this syllabus that discusses performance already assumes. Cheat sheet, flashcards, and a production-cookbook entry for T-2001 have not been built yet — per this session's established batching discipline, chapter-writing and complementary-deliverable backlogs are closed in separate, bounded passes rather than bundled into one turn.
 
 ## Where this domain's boundary comes from
 
