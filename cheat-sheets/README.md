@@ -2,7 +2,7 @@
 title: "Cheat Sheets — Index"
 document_type: cheat-sheet-index
 status: draft
-last_updated: 2026-09-01
+last_updated: 2026-09-03
 ---
 
 # Cheat Sheets
@@ -17,9 +17,11 @@ One-page-equivalent rapid-review documents, one per canonical `handbook/` chapte
 
 The 46 were built in two parallel batches of 23 (to keep each batch's own scope bounded and independently verifiable, per `CLAUDE.md`'s instruction against one giant operation), then merged into this single index. Every fact, decision-table entry, and measured number was extracted directly from its chapter's own text — spot-checked post-hoc against source (e.g. `optimistic-vs-pessimistic-locking.md`'s "~1520ms against a 1500ms hold" and "$150 instead of $200" figures were verified character-for-character against the canonical chapter's own executed output) before this closure was accepted. One file, [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md), was included even though its own chapter explicitly states it carries no blueprint T-code or IWI — it belongs to the separate, already-closed "foundational gap category" (OOP, Design Patterns, Git/GitHub, etc.) and is listed with `—` in the Topic ID/IWI columns rather than an invented value.
 
-**This deliverable is, once again, complete against its own selection criterion — 132/132, plus the one bonus non-ranked chapter.** Only 5 chapters remain uncovered, all in `handbook/jvm/`, and all confirmed via direct inspection to state no IWI or Topic register line anywhere in their text — not a scanning gap, a genuine absence of the ranking signal this deliverable relies on. Per the user's explicit decision (2026-08-05), these 5 are left as a documented, permanent gap rather than closed via an invented or alternative ranking criterion.
+**This deliverable is, once again, complete against its own backend selection criterion — 132/132, plus the one bonus non-ranked chapter.** Only 5 chapters remain uncovered, all in `handbook/jvm/`, and all confirmed via direct inspection to state no IWI or Topic register line anywhere in their text — not a scanning gap, a genuine absence of the ranking signal this deliverable relies on. Per the user's explicit decision (2026-08-05), these 5 are left as a documented, permanent gap rather than closed via an invented or alternative ranking criterion.
 
-Given that this is now the **second** time an "IWI-complete" claim in this note has turned out to be stale (first at 86/86, now corrected at 132/132), any future session revisiting this deliverable should re-run the diff-against-full-handbook-list audit itself before trusting this note's count — do not assume the count above is still accurate once new handbook chapters have landed since 2026-09-02.
+**2026-09-03 — a third stale-count discovery, this time a whole missed domain.** Every audit above (86/86, then 132/132) only ever diffed `cheat-sheets/` against `handbook/`'s backend directories — it never checked `handbook/frontend/` at all, despite 31 frontend chapters existing since the Scope Addendum (2026-08-12) and every one of them already carrying its own embedded `## Cheat Sheet` section and Topic register line, exactly the qualifying shape this deliverable looks for. Closed in this same pass: see the new **Frontend Cheat Sheets** table below. Total across both domains: **163 cheat sheets** (132 backend + 31 frontend).
+
+Given that this is now the **third** time a "complete" claim in this note has turned out to understate the real backlog (86/86, then 132/132, now 163/163 once the frontend domain was included), any future session revisiting this deliverable should re-run the diff-against-full-handbook-list audit itself across **every** `handbook/` subdirectory, backend and frontend both — do not assume the count above is still accurate once new handbook chapters have landed since 2026-09-03.
 
 Every fact in every cheat sheet below (definitions, decision tables, measured numbers, production incidents) was extracted directly from its canonical chapter — nothing here was written from memory or general knowledge. Extraction was done via a dedicated read-and-report pass per chapter before any cheat sheet was drafted, consistent with this repository's no-fabrication discipline.
 
@@ -159,6 +161,44 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 130 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 4.2 | java-core | `handbook/java-core/enums-enummap-and-enumset.md` |
 | 131 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 4.1 | java-core | `handbook/java-core/serialization-hazards-and-alternatives.md` |
 | 132 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | — | cloud | `handbook/cloud/git-internals-and-collaboration-workflows.md` |
+
+## Frontend Cheat Sheets (F-codes, no IWI)
+
+The frontend domain (`handbook/frontend/`) uses the Master Topic Register's F-codes and a Beginner/Intermediate/Advanced/Expert tier instead of the backend's numeric IWI score — see `00-project/frontend-topic-register.md` and `CLAUDE.md`'s Scope Addendum. **Added 2026-09-03**: all 31 `handbook/frontend/` chapters had zero cheat-sheet coverage before this batch, despite every one already carrying its own embedded `## Cheat Sheet` section and a genuine Topic register line — a gap this backend-focused deliverable's own repeated audits had never checked, since it only ever diffed against backend chapters. Closed in two parallel batches (14 React, 17 Next.js), each new file expanding (not copying) that chapter's own embedded summary. Ordered by F-code, not ranked by tier (unlike the IWI-sorted table above, since tier is a coarse 4-value bucket, not a fine-grained rank).
+
+| # | Cheat Sheet | Topic ID | Tier | Canonical Chapter |
+|---|---|---|---|---|
+| F1 | [React Fundamentals (JSX, Components, Props, and State)](react-fundamentals-jsx-components-props-and-state.md) | F-101–F-104 | Beginner | `handbook/frontend/react-fundamentals-jsx-components-props-and-state.md` |
+| F2 | [React Hooks (useEffect and useRef)](react-hooks-useeffect-and-useref.md) | F-105/F-106 | Intermediate | `handbook/frontend/react-hooks-useeffect-and-useref.md` |
+| F3 | [React Memoization and Context (useMemo, useCallback, useContext)](react-usememo-usecallback-and-usecontext.md) | F-107/F-108 | Intermediate | `handbook/frontend/react-usememo-usecallback-and-usecontext.md` |
+| F4 | [React useReducer and Custom Hooks](react-usereducer-and-custom-hooks.md) | F-109/F-110 | Intermediate | `handbook/frontend/react-usereducer-and-custom-hooks.md` |
+| F5 | [React Component Patterns](react-component-patterns.md) | F-111 | Advanced | `handbook/frontend/react-component-patterns.md` |
+| F6 | [React Reconciliation and the Fiber Architecture](react-reconciliation-and-fiber.md) | F-112 | Advanced | `handbook/frontend/react-reconciliation-and-fiber.md` |
+| F7 | [Concurrent React (Transitions, Deferred Values, Suspense)](react-concurrent-rendering.md) | F-113 | Advanced | `handbook/frontend/react-concurrent-rendering.md` |
+| F8 | [React Forms (Controlled vs. Uncontrolled, Validation, RHF/Zod)](react-forms.md) | F-114 | Intermediate | `handbook/frontend/react-forms.md` |
+| F9 | [React Error Boundaries and Error Handling Strategy](react-error-boundaries.md) | F-115 | Intermediate | `handbook/frontend/react-error-boundaries.md` |
+| F10 | [React Accessibility (Semantic HTML, ARIA, Keyboard, Focus)](react-accessibility.md) | F-116 | Intermediate | `handbook/frontend/react-accessibility.md` |
+| F11 | [React Performance (Profiling, Memoization, Virtualization, Code-Splitting)](react-performance.md) | F-117 | Advanced | `handbook/frontend/react-performance.md` |
+| F12 | [React Testing (RTL Philosophy, Mocking, E2E with Playwright)](react-testing.md) | F-118 | Advanced | `handbook/frontend/react-testing.md` |
+| F13 | [TypeScript with React (Generics, Discriminated Unions, Exhaustiveness)](react-typescript.md) | F-119 | Advanced | `handbook/frontend/react-typescript.md` |
+| F14 | [React State Management Landscape](react-state-management.md) | F-120 | Advanced | `handbook/frontend/react-state-management.md` |
+| F15 | [Next.js Fundamentals](nextjs-fundamentals.md) | F-201 | Beginner | `handbook/frontend/nextjs-fundamentals.md` |
+| F16 | [Next.js App Router Fundamentals](nextjs-app-router-fundamentals.md) | F-202 | Beginner | `handbook/frontend/nextjs-app-router-fundamentals.md` |
+| F17 | [Next.js Server vs. Client Components](nextjs-server-vs-client-components.md) | F-203 | Intermediate | `handbook/frontend/nextjs-server-vs-client-components.md` |
+| F18 | [Next.js Data Fetching and Caching](nextjs-data-fetching-and-caching.md) | F-204 | Intermediate | `handbook/frontend/nextjs-data-fetching-and-caching.md` |
+| F19 | [Next.js Rendering Strategies](nextjs-rendering-strategies.md) | F-205 | Intermediate | `handbook/frontend/nextjs-rendering-strategies.md` |
+| F20 | [Next.js Streaming and Suspense](nextjs-streaming-and-suspense.md) | F-206 | Advanced | `handbook/frontend/nextjs-streaming-and-suspense.md` |
+| F21 | [Next.js Route Handlers](nextjs-route-handlers.md) | F-207 | Intermediate | `handbook/frontend/nextjs-route-handlers.md` |
+| F22 | [Next.js Proxy and Edge Runtime](nextjs-proxy-and-edge-runtime.md) | F-208 | Advanced | `handbook/frontend/nextjs-proxy-and-edge-runtime.md` |
+| F23 | [Next.js Metadata API and SEO](nextjs-metadata-api-and-seo.md) | F-209 | Intermediate | `handbook/frontend/nextjs-metadata-api-and-seo.md` |
+| F24 | [Next.js Image, Font Optimization and Web Vitals](nextjs-image-font-optimization-and-web-vitals.md) | F-210 | Intermediate | `handbook/frontend/nextjs-image-font-optimization-and-web-vitals.md` |
+| F25 | [Next.js Authentication Patterns](nextjs-authentication-patterns.md) | F-211 | Advanced | `handbook/frontend/nextjs-authentication-patterns.md` |
+| F26 | [Next.js Server Actions and Mutations](nextjs-server-actions-and-mutations.md) | F-212 | Advanced | `handbook/frontend/nextjs-server-actions-and-mutations.md` |
+| F27 | [Next.js Deployment Models](nextjs-deployment-models.md) | F-213 | Advanced | `handbook/frontend/nextjs-deployment-models.md` |
+| F28 | [Next.js Full-Stack Integration](nextjs-fullstack-integration.md) | F-214 | Expert | `handbook/frontend/nextjs-fullstack-integration.md` |
+| F29 | [Vite vs. Turbopack Build Tooling](nextjs-build-tooling-vite-vs-turbopack.md) | F-301 | Intermediate | `handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md` |
+| F30 | [Next.js Styling Approaches](nextjs-styling-approaches.md) | F-302 | Intermediate | `handbook/frontend/nextjs-styling-approaches.md` |
+| F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `handbook/frontend/nextjs-monorepo-layout.md` |
 
 ## How this relates to `flashcards/`
 
