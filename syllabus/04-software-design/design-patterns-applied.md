@@ -2,10 +2,12 @@
 title: "Design Patterns Applied (GoF in Production)"
 slug: design-patterns-applied
 document_type: handbook-chapter
-domain: architecture
+domain: 04-software-design
 status: draft
 version: 1.0
-last_updated: 2026-08-12
+last_updated: 2026-09-03
+source_history:
+  - handbook/architecture/design-patterns-applied.md
 difficulty:
   - intermediate
   - advanced
@@ -14,12 +16,12 @@ target_levels:
   - staff
 estimated_reading_minutes: 35
 prerequisites:
-  - ../java-core/polymorphism-and-dynamic-dispatch.md
+  - ../../handbook/java-core/polymorphism-and-dynamic-dispatch.md
 related:
-  - clean-hexagonal-architecture.md
-  - ../concurrency/java-memory-model-and-volatile.md
-  - ../spring/transactional-proxy-mechanics-and-propagation.md
-  - ../spring/security-filter-chain.md
+  - ../../handbook/architecture/clean-hexagonal-architecture.md
+  - ../../handbook/concurrency/java-memory-model-and-volatile.md
+  - ../../handbook/spring/transactional-proxy-mechanics-and-propagation.md
+  - ../../handbook/spring/security-filter-chain.md
 official_references:
   - https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html#jls-8.9
 ---
@@ -146,7 +148,7 @@ No `EmailSlackNotifier`, `EmailSmsNotifier`, or `EmailSlackSmsNotifier` class ex
 
 ### Singleton's thread-safety pitfall, measured directly
 
-A naive, unsynchronized lazy Singleton, raced by 30 threads all calling `getInstance()` for the first time simultaneously (via a `CountDownLatch` releasing every thread at once, with a small artificial delay inside the constructor to widen the race window enough to reproduce reliably in one run — the same widening technique this handbook's [Java Memory Model](../concurrency/java-memory-model-and-volatile.md) chapter uses for its own visibility demos):
+A naive, unsynchronized lazy Singleton, raced by 30 threads all calling `getInstance()` for the first time simultaneously (via a `CountDownLatch` releasing every thread at once, with a small artificial delay inside the constructor to widen the race window enough to reproduce reliably in one run — the same widening technique this handbook's [Java Memory Model](../../handbook/concurrency/java-memory-model-and-volatile.md) chapter uses for its own visibility demos):
 
 ```
 == Naive lazy singleton, 30 threads racing on the FIRST call to getInstance() ==
@@ -307,7 +309,7 @@ enum ConfigRegistry {
 - Reaching for a pattern because it sounds sophisticated, on a problem with no real variation to isolate — the most common Staff-level critique of pattern overuse.
 - Implementing a lazy Singleton with a plain `if (instance == null)` check and no synchronization, assuming single-threaded intuition applies to concurrent first access.
 - Using inheritance (subclassing) to combine optional behaviors, discovering the subclass count grows combinatorially as more optional behaviors are added.
-- Treating a `final` field initialized once in a constructor as automatically thread-safe for *publication* of the object itself — construction and safe publication are related but distinct concerns (see [Java Memory Model](../concurrency/java-memory-model-and-volatile.md)).
+- Treating a `final` field initialized once in a constructor as automatically thread-safe for *publication* of the object itself — construction and safe publication are related but distinct concerns (see [Java Memory Model](../../handbook/concurrency/java-memory-model-and-volatile.md)).
 
 ## Anti-Patterns
 
@@ -366,7 +368,7 @@ Correctly explains the thread-safety pitfall in a naive lazy Singleton, and name
 
 ### Staff-Level Discussion
 
-The Staff-level signal in this domain isn't knowing more pattern names — it's judgment about when *not* to use one. A Staff engineer reviewing a design that reaches for Strategy with one real implementation, or Builder on a two-field record, flags it as unnecessary indirection just as readily as they'd flag a missing pattern where genuine variation is being handled with ad hoc conditionals. The Singleton thread-safety pitfall specifically connects to a broader Staff-level pattern this handbook covers elsewhere: any shared mutable state reachable from multiple threads needs an explicit correctness argument, not an assumption that "it probably only runs once" — the same discipline behind [Java Memory Model and `volatile`](../concurrency/java-memory-model-and-volatile.md) and behind why Spring's `@Transactional` proxy mechanics matter for correctness, not just convention.
+The Staff-level signal in this domain isn't knowing more pattern names — it's judgment about when *not* to use one. A Staff engineer reviewing a design that reaches for Strategy with one real implementation, or Builder on a two-field record, flags it as unnecessary indirection just as readily as they'd flag a missing pattern where genuine variation is being handled with ad hoc conditionals. The Singleton thread-safety pitfall specifically connects to a broader Staff-level pattern this handbook covers elsewhere: any shared mutable state reachable from multiple threads needs an explicit correctness argument, not an assumption that "it probably only runs once" — the same discipline behind [Java Memory Model and `volatile`](../../handbook/concurrency/java-memory-model-and-volatile.md) and behind why Spring's `@Transactional` proxy mechanics matter for correctness, not just convention.
 
 ## Interview Questions
 
@@ -420,7 +422,7 @@ These four appear constantly in real Java and framework code, and are worth reco
 |---|---|---|
 | **Observer** | Notify an open-ended set of interested parties when something changes, without the subject knowing who they are | Spring's `ApplicationEventPublisher`/`@EventListener`; Java's own `PropertyChangeListener`; any pub/sub or webhook-dispatch system |
 | **Factory Method** | Defer *which concrete class* gets instantiated to a subclass or a configuration-driven choice, instead of the caller calling `new ConcreteClass()` directly | `Collections.unmodifiableList(...)`-style static factories throughout the JDK; Spring's `BeanFactory` choosing which concrete bean implementation to construct based on configuration |
-| **Adapter** | Make an existing class's interface compatible with what calling code expects, without modifying either side | Wrapping a third-party payment SDK's client behind your own `PaymentGateway` interface, exactly the kind of boundary [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) formalizes as a port/adapter |
+| **Adapter** | Make an existing class's interface compatible with what calling code expects, without modifying either side | Wrapping a third-party payment SDK's client behind your own `PaymentGateway` interface, exactly the kind of boundary [Clean and Hexagonal Architecture](../../handbook/architecture/clean-hexagonal-architecture.md) formalizes as a port/adapter |
 | **Template Method** | Fix the overall skeleton of an algorithm in a base class, letting subclasses override only specific steps | `JdbcTemplate` itself (the name is literally the pattern): it fixes the connection-acquire/execute/close skeleton, and callers supply only the query-specific step |
 
 ## Summary

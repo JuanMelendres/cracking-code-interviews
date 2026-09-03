@@ -4,13 +4,13 @@ slug: api-gateway-bff-and-edge-concerns
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-911
-canonical: ../handbook/system-design/api-gateway-bff-and-edge-concerns.md
+canonical: ../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
 last_updated: 2026-09-01
 ---
 
 # API Gateway, BFF, and Edge Concerns
 
-**Canonical chapter:** [`handbook/system-design/api-gateway-bff-and-edge-concerns.md`](../handbook/system-design/api-gateway-bff-and-edge-concerns.md)
+**Canonical chapter:** [`syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md)
 
 ## Core Mental Model
 

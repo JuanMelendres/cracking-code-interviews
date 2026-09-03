@@ -69,7 +69,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 36 | [AWS Core Services for Backend Engineers](aws-core-services-for-backend-engineers.md) | T-1006 | 3 | `handbook/cloud/aws-core-services-for-backend-engineers.md` |
 | 37 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 3 | `handbook/cloud/cloud-cost-and-scaling-economics.md` |
 | 38 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 3 | `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` |
-| 39 | [API Design](api-design.md) | T-803 | 3 | `handbook/system-design/api-design.md` |
+| 39 | [API Design](api-design.md) | T-803 | 3 | `syllabus/07-api-design/api-design.md` |
 | 40 | [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md) | T-804 | 4 | `handbook/system-design/caching-strategies-and-invalidation.md` |
 | 41 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 3 | `handbook/system-design/data-partitioning-and-consistent-hashing.md` |
 | 42 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 4 | `handbook/system-design/cap-theorem-and-consistency-models.md` |
@@ -111,7 +111,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 78 | [Spring Testing: Slices and Context Caching](spring-testing-slices-and-context-caching.md) | T-517 | 3 | `handbook/spring/spring-testing-slices-and-context-caching.md` |
 | 79 | [Spring WebFlux and Reactive Programming](spring-webflux-and-reactive-programming.md) | T-509 | 3 | `handbook/spring/spring-webflux-and-reactive-programming.md` |
 | 80 | [Spring Boot Actuator, Health, and Observability Hooks](spring-actuator-health-and-observability-hooks.md) | T-516 | 3 | `handbook/spring/spring-actuator-health-and-observability-hooks.md` |
-| 81 | [API Gateway, BFF, and Edge Concerns](api-gateway-bff-and-edge-concerns.md) | T-911 | 3 | `handbook/system-design/api-gateway-bff-and-edge-concerns.md` |
+| 81 | [API Gateway, BFF, and Edge Concerns](api-gateway-bff-and-edge-concerns.md) | T-911 | 3 | `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md` |
 | 82 | [Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push](realtime-delivery-websocket-sse-and-long-polling.md) | T-812 | 3 | `handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md` |
 | 83 | [Hibernate Second-Level and Query Cache](hibernate-second-level-and-query-cache.md) | T-603 | 3 | `handbook/databases/hibernate-second-level-and-query-cache.md` |
 | 84 | [Search and Indexing Systems](search-and-indexing-systems.md) | T-810 | 3 | `handbook/system-design/search-and-indexing-systems.md` |
@@ -147,7 +147,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 114 | [Architecture Decision Records](architecture-decision-records.md) | T-916 | 3 | `handbook/architecture/architecture-decision-records.md` |
 | 115 | [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) | T-905 | 3 | `handbook/architecture/event-sourcing-and-its-real-costs.md` |
 | 116 | [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) | T-405 | 3 | `handbook/concurrency/atomics-cas-and-the-aba-problem.md` |
-| 117 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 4 | `handbook/architecture/design-patterns-applied.md` |
+| 117 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 4 | `syllabus/04-software-design/design-patterns-applied.md` |
 | 118 | [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) | T-404 | 3 | `handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
 | 119 | [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) | T-102 | 3 | `handbook/java-core/polymorphism-and-dynamic-dispatch.md` |
 | 120 | [Hibernate Flush Modes and Batch Writes](hibernate-flush-modes-and-batch-writes.md) | T-606 | 3 | `handbook/databases/hibernate-flush-modes-and-batch-writes.md` |
@@ -167,7 +167,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 134 | [Annotations and Annotation Processing](annotations-and-annotation-processing.md) | T-112 | 3 | `handbook/java-core/annotations-and-annotation-processing.md` |
 | 135 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 3 | `handbook/java-core/enums-enummap-and-enumset.md` |
 | 136 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 3 | `handbook/java-core/serialization-hazards-and-alternatives.md` |
-| 137 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | 2 | `handbook/cloud/git-internals-and-collaboration-workflows.md` |
+| 137 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | 2 | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
 
 ## How this relates to other deliverables
 

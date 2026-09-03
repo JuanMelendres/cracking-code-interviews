@@ -21,7 +21,7 @@ related:
   - data-partitioning-and-consistent-hashing.md
   - multi-region-failover-and-disaster-recovery.md
   - rate-limiting-and-throttling-algorithms.md
-  - api-gateway-bff-and-edge-concerns.md
+  - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - realtime-delivery-websocket-sse-and-long-polling.md
   - twelve-factor-config.md
   - ../cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md

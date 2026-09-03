@@ -15,7 +15,7 @@ prerequisites:
   - nextjs-build-tooling-vite-vs-turbopack.md
 related:
   - ../../00-project/frontend-topic-register.md
-  - ../cloud/git-internals-and-collaboration-workflows.md
+  - ../../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md
   - ../cloud/cicd-pipeline-design-and-deployment-strategies.md
 official_references:
   - https://docs.npmjs.com/cli/v10/using-npm/workspaces
@@ -309,7 +309,7 @@ Exercise 3: any two more of this repo's own real Vite-based `practice/frontend/`
 ## Additional Reading
 
 - [Build Tooling: Vite vs. Next.js's Turbopack, What a Bundler Actually Does](nextjs-build-tooling-vite-vs-turbopack.md) — this chapter's prerequisite; the same real, direct-inspection verification method (grepping/inspecting real build/install output) is applied here to repo structure instead of bundler output.
-- [Git Internals and Collaboration Workflows](../cloud/git-internals-and-collaboration-workflows.md) — the backend-domain chapter covering the version-control layer a monorepo's shared history sits on top of.
+- [Git Internals and Collaboration Workflows](../../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md) — the backend-domain chapter covering the version-control layer a monorepo's shared history sits on top of.
 - [CI/CD Pipeline Design and Deployment Strategies](../cloud/cicd-pipeline-design-and-deployment-strategies.md) — the backend-domain chapter covering how a monorepo's multiple packages typically get built and deployed independently despite sharing one repository.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-303 of, and its FINAL entry — D-F1 (F-101–F-119), D-F2 (F-201–F-214), and D-F3 (F-301–F-303) are now all complete.
 

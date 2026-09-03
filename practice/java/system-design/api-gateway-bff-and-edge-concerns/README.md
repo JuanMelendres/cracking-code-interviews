@@ -1,7 +1,7 @@
 # API gateway, BFF, and edge concerns (T-911) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/system-design/api-gateway-bff-and-edge-concerns.md`](../../../../handbook/system-design/api-gateway-bff-and-edge-concerns.md)
+[`syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`](../../../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md)
 (T-911). No framework, no mocked responses — a real API gateway
 (`com.sun.net.httpserver.HttpServer` accepting requests, `java.net.http.HttpClient`
 forwarding to real backends), real path-based routing, a real centralized

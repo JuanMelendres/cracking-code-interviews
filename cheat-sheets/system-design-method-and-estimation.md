@@ -74,4 +74,4 @@ B2B/business-hours systems: peak-to-average ~1.5–2x, not 3x.
 
 - [Distributed Systems Failure Modes](distributed-systems-failure-modes.md)
 - [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md)
-- `handbook/system-design/api-design.md`
+- `syllabus/07-api-design/api-design.md`

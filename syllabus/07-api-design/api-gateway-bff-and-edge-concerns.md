@@ -2,10 +2,12 @@
 title: "API Gateway, BFF, and Edge Concerns"
 slug: api-gateway-bff-and-edge-concerns
 document_type: handbook-chapter
-domain: system-design
+domain: 07-api-design
 status: draft
 version: 1.0
-last_updated: 2026-08-31
+last_updated: 2026-09-03
+source_history:
+  - handbook/system-design/api-gateway-bff-and-edge-concerns.md
 difficulty:
   - intermediate
   - advanced
@@ -14,15 +16,15 @@ target_levels:
   - staff
 estimated_reading_minutes: 35
 prerequisites:
-  - load-balancing-service-discovery-and-health-checking.md
+  - ../../handbook/system-design/load-balancing-service-discovery-and-health-checking.md
 related:
-  - load-balancing-service-discovery-and-health-checking.md
-  - rate-limiting-and-throttling-algorithms.md
-  - resilience-patterns.md
-  - distributed-systems-failure-modes.md
-  - ../spring/spring-webflux-and-reactive-programming.md
-  - realtime-delivery-websocket-sse-and-long-polling.md
-  - twelve-factor-config.md
+  - ../../handbook/system-design/load-balancing-service-discovery-and-health-checking.md
+  - ../../handbook/system-design/rate-limiting-and-throttling-algorithms.md
+  - ../../handbook/system-design/resilience-patterns.md
+  - ../../handbook/system-design/distributed-systems-failure-modes.md
+  - ../../handbook/spring/spring-webflux-and-reactive-programming.md
+  - ../../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
+  - ../../handbook/system-design/twelve-factor-config.md
   - ../../practice/java/system-design/api-gateway-bff-and-edge-concerns/README.md
 official_references:
   - https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends
@@ -654,7 +656,7 @@ internal fan-out is concurrent, not sequential.
 
 1. Extend `ApiGateway` with a second edge concern — a simple, in-memory
    per-client-IP rate limiter (reusing the token-bucket logic from
-   [Rate Limiting and Throttling Algorithms](rate-limiting-and-throttling-algorithms.md))
+   [Rate Limiting and Throttling Algorithms](../../handbook/system-design/rate-limiting-and-throttling-algorithms.md))
    applied before routing, and verify a real `429` response with the backend
    request count staying at 0, exactly like this chapter's API-key check.
 2. Add a third backend service and a corresponding `/bff/dashboard` field,
@@ -688,10 +690,10 @@ practice since it's a genuine, open error-handling design exercise.
   Aggregation patterns (see [Official References](#official-references)) are
   concise, vendor-neutral descriptions of the exact patterns this chapter's
   demos implement directly.
-- [Load Balancing, Service Discovery, and Health Checking](load-balancing-service-discovery-and-health-checking.md)
+- [Load Balancing, Service Discovery, and Health Checking](../../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
   covers the layer immediately below a gateway — distributing traffic across
   identical instances of whatever service the gateway routes to.
-- [Rate Limiting and Throttling Algorithms](rate-limiting-and-throttling-algorithms.md)
+- [Rate Limiting and Throttling Algorithms](../../handbook/system-design/rate-limiting-and-throttling-algorithms.md)
   covers, in depth, one of the specific cross-cutting concerns this chapter's
   gateway centralizes conceptually (a real token-bucket implementation
   suitable for the gateway-level rate-limiting exercise above).

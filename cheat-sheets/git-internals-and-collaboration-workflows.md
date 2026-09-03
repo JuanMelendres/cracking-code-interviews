@@ -4,13 +4,13 @@ slug: git-internals-and-collaboration-workflows
 document_type: cheat-sheet
 domain: cloud
 topic_id: "N/A (no blueprint topic ID — see chapter's Topic register note)"
-canonical: ../handbook/cloud/git-internals-and-collaboration-workflows.md
+canonical: ../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md
 last_updated: 2026-09-02
 ---
 
 # Git Internals and Collaboration Workflows
 
-**Canonical chapter:** [`handbook/cloud/git-internals-and-collaboration-workflows.md`](../handbook/cloud/git-internals-and-collaboration-workflows.md)
+**Canonical chapter:** [`syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md`](../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md)
 
 ## Core Mental Model
 

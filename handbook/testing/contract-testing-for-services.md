@@ -15,7 +15,7 @@ prerequisites:
   - integration-testing-against-real-dependencies.md
 related:
   - integration-testing-against-real-dependencies.md
-  - ../system-design/api-design.md
+  - ../../syllabus/07-api-design/api-design.md
   - ../kafka/producer-semantics-and-partition-keys.md
   - ../../study-packs/week-18/03-contract-testing-for-services.md
 official_references:

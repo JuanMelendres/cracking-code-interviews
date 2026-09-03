@@ -17,7 +17,7 @@ prerequisites:
   - load-balancing-service-discovery-and-health-checking.md
 related:
   - load-balancing-service-discovery-and-health-checking.md
-  - api-gateway-bff-and-edge-concerns.md
+  - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - resilience-patterns.md
   - ../spring/spring-webflux-and-reactive-programming.md
   - ../../practice/java/system-design/realtime-delivery-websocket-sse-long-poll/README.md
@@ -721,7 +721,7 @@ feature this chapter's minimal demo intentionally left out.
   covers the reactive, non-blocking execution model a production WebSocket or
   SSE server built on Spring would typically use instead of this chapter's
   raw-socket, one-thread-per-connection demo.
-- [API Gateway, BFF, and Edge Concerns](api-gateway-bff-and-edge-concerns.md)
+- [API Gateway, BFF, and Edge Concerns](../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md)
   is directly relevant to where a real WebSocket/SSE endpoint would sit
   behind a gateway, and the real routing/proxy-compatibility considerations
   that raises.

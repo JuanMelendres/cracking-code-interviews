@@ -67,4 +67,4 @@ A Route Handler is a real, standalone HTTP endpoint — not a data-fetching help
 
 - `handbook/frontend/nextjs-data-fetching-and-caching.md`
 - `handbook/frontend/nextjs-proxy-and-edge-runtime.md`
-- `handbook/system-design/api-design.md`
+- `syllabus/07-api-design/api-design.md`

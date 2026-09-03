@@ -22,7 +22,7 @@ related:
   - ../kafka/consumer-lag-backpressure-and-dlq-strategy.md
   - ../spring/security-filter-chain.md
   - ../concurrency/virtual-threads.md
-  - api-gateway-bff-and-edge-concerns.md
+  - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - ../../practice/java/system-design/rate-limiting-and-throttling/README.md
 official_references:
   - https://blog.cloudflare.com/counting-things-a-lot-of-different-things/

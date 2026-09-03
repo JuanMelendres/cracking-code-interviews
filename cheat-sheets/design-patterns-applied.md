@@ -4,13 +4,13 @@ slug: design-patterns-applied
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-914
-canonical: ../handbook/architecture/design-patterns-applied.md
+canonical: ../syllabus/04-software-design/design-patterns-applied.md
 last_updated: 2026-09-02
 ---
 
 # Design Patterns Applied (GoF in Production)
 
-**Canonical chapter:** [`handbook/architecture/design-patterns-applied.md`](../handbook/architecture/design-patterns-applied.md)
+**Canonical chapter:** [`syllabus/04-software-design/design-patterns-applied.md`](../syllabus/04-software-design/design-patterns-applied.md)
 
 ## Core Mental Model
 

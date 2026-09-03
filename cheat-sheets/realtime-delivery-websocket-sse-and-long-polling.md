@@ -92,6 +92,6 @@ Real unsolicited push received within 3s: true
 
 ## Related
 
-- `handbook/system-design/api-gateway-bff-and-edge-concerns.md`
+- `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`
 - `handbook/spring/spring-webflux-and-reactive-programming.md`
 - `handbook/system-design/load-balancing-service-discovery-and-health-checking.md`

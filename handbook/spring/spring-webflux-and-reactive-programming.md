@@ -20,7 +20,7 @@ related:
   - spring-testing-slices-and-context-caching.md
   - ../concurrency/virtual-threads.md
   - spring-actuator-health-and-observability-hooks.md
-  - ../system-design/api-gateway-bff-and-edge-concerns.md
+  - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - ../system-design/realtime-delivery-websocket-sse-and-long-polling.md
   - ../../practice/java/spring/spring-webflux-and-reactive-programming/README.md
 official_references:

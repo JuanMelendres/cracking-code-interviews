@@ -4,13 +4,13 @@ slug: git-internals-and-collaboration-workflows
 document_type: flashcard-deck
 domain: cloud
 topic_id: "—"
-canonical: ../handbook/cloud/git-internals-and-collaboration-workflows.md
+canonical: ../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md
 last_updated: 2026-09-02
 ---
 
 # Flashcards: Git Internals and Collaboration Workflows
 
-**Canonical chapter:** [`handbook/cloud/git-internals-and-collaboration-workflows.md`](../handbook/cloud/git-internals-and-collaboration-workflows.md)
+**Canonical chapter:** [`syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md`](../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md)
 
 ## Card: Merge vs. rebase commit identity
 
@@ -27,7 +27,7 @@ This is why rebasing a branch others have already pulled breaks their local hist
 Assuming rebase just "reorders" the same commits in place.
 
 **Related:**
-[handbook/cloud/git-internals-and-collaboration-workflows.md](../handbook/cloud/git-internals-and-collaboration-workflows.md)
+[syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md](../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md)
 
 ## Card: Reflog recovery window
 
@@ -44,4 +44,4 @@ Turns "I think I lost my work" into a routine, mechanical recovery step.
 Believing a hard reset is instantly and permanently destructive.
 
 **Related:**
-[handbook/cloud/git-internals-and-collaboration-workflows.md](../handbook/cloud/git-internals-and-collaboration-workflows.md)
+[syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md](../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md)

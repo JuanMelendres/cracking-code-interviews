@@ -60,5 +60,5 @@ A record trades extensibility and boilerplate for a compiler-enforced, transpare
 
 ## Related
 
-- `handbook/architecture/design-patterns-applied.md`
+- `syllabus/04-software-design/design-patterns-applied.md`
 - `handbook/java-core/polymorphism-and-dynamic-dispatch.md`

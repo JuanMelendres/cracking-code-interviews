@@ -17,7 +17,7 @@ competencies:
 related:
   - ../../handbook/system-design/system-design-method-and-estimation.md
   - ../../handbook/system-design/caching-strategies-and-invalidation.md
-  - ../../handbook/system-design/api-design.md
+  - ../../syllabus/07-api-design/api-design.md
 source: ../../study-packs/week-04/07-week-4-mock-interview.md
 official_references: []
 ---
@@ -47,7 +47,7 @@ This round has a different shape from the itemized-question rounds elsewhere in 
 | Six-phase method, self-transitioned | No prompted phase transitions | [System Design Method and Estimation](../../handbook/system-design/system-design-method-and-estimation.md) |
 | Caching as a reasoned response | Probe 2 (minute ~20) | [Caching Strategies and Invalidation](../../handbook/system-design/caching-strategies-and-invalidation.md) |
 | Fan-out-on-write vs. fan-out-on-read | Probe 3 | [Caching Strategies and Invalidation](../../handbook/system-design/caching-strategies-and-invalidation.md) (precompute strategy), design prompt's own framing |
-| Keyset vs. OFFSET pagination | Probe 4 | [API Design](../../handbook/system-design/api-design.md) |
+| Keyset vs. OFFSET pagination | Probe 4 | [API Design](../../syllabus/07-api-design/api-design.md) |
 
 ## Interviewer Opening Script
 
@@ -108,5 +108,5 @@ Walk the candidate through phase habituality first — it's the structural signa
 - Weak phase habituality → re-read [System Design Method and Estimation](../../handbook/system-design/system-design-method-and-estimation.md), and re-run the drill under a strict 45-minute timer with no interviewer prompting at all, even when stuck.
 - Weak caching probe → re-read [Caching Strategies and Invalidation](../../handbook/system-design/caching-strategies-and-invalidation.md).
 - Weak fan-out probe → revisit this design's own Estimate-phase numbers and re-derive the fan-out-on-write cost for a 10-million-follower account explicitly.
-- Weak pagination probe → re-read [API Design](../../handbook/system-design/api-design.md)'s pagination section, including its measured OFFSET-vs-keyset execution-time comparison.
+- Weak pagination probe → re-read [API Design](../../syllabus/07-api-design/api-design.md)'s pagination section, including its measured OFFSET-vs-keyset execution-time comparison.
 - Any dimension scored below Senior (4) overall → retake this mock in full, ideally with a different unseen design prompt, since a memorized single scenario doesn't test the underlying method.

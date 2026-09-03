@@ -4,13 +4,13 @@ slug: api-design
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-803
-canonical: ../handbook/system-design/api-design.md
+canonical: ../syllabus/07-api-design/api-design.md
 last_updated: 2026-08-03
 ---
 
 # API Design
 
-**Canonical chapter:** [`handbook/system-design/api-design.md`](../handbook/system-design/api-design.md)
+**Canonical chapter:** [`syllabus/07-api-design/api-design.md`](../syllabus/07-api-design/api-design.md)
 
 ## Core Mental Model
 

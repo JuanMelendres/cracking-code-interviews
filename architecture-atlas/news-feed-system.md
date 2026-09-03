@@ -16,7 +16,7 @@ prerequisites:
   - ../handbook/system-design/system-design-method-and-estimation.md
   - ../handbook/system-design/caching-strategies-and-invalidation.md
 related:
-  - ../handbook/system-design/api-design.md
+  - ../syllabus/07-api-design/api-design.md
   - ../handbook/system-design/storage-selection-tradeoffs.md
   - ride-hailing-dispatch-system.md
   - ../study-packs/week-04/08-design-exercise-news-feed.md
@@ -133,7 +133,7 @@ The dominant scaling lever is the fan-out strategy split by follower count: fan-
 
 1. **Celebrity fan-out cost.** A post from a user with 10M followers, if fanned out on write, means 10M feed-cache writes for one post — a write amplification the read:write ratio doesn't justify for this specific case. Mitigation: hybrid fan-out — skip precomputation for high-follower-count authors, merging their posts into a follower's feed at read time instead, accepting slightly higher per-read cost for a rare case in exchange for avoiding a catastrophic write spike.
 2. **Feed cache stampede on a viral post.** If a post suddenly goes viral and many users' feed caches expire or need updating near-simultaneously, this is exactly the cache-stampede mechanism from [Caching Strategies and Invalidation](../handbook/system-design/caching-strategies-and-invalidation.md) — the mitigation (single-flight coalescing, or avoiding TTL-based invalidation for this specific cache in favor of explicit updates) is directly reused, not reinvented.
-3. **Deep pagination on a long-lived feed session.** A user scrolling far back should use keyset pagination, not `OFFSET`, or the same order-of-magnitude cost measured in [API Design](../handbook/system-design/api-design.md)'s pagination comparison applies directly here.
+3. **Deep pagination on a long-lived feed session.** A user scrolling far back should use keyset pagination, not `OFFSET`, or the same order-of-magnitude cost measured in [API Design](../syllabus/07-api-design/api-design.md)'s pagination comparison applies directly here.
 
 ## Security, Observability, and Cost
 

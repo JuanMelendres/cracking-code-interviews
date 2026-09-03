@@ -2,7 +2,7 @@
 title: "Software Design — Domain Index"
 document_type: syllabus-domain-index
 domain: 04-software-design
-status: scaffolding — Phase 1 (structure only; content migration is Phase 3, gap-filling is Phase 5)
+status: 1 of 1 mapped chapters physically relocated (Phase 2, 2026-09-03); Foundation/Working-Knowledge layers pending Phase 5
 last_updated: 2026-09-03
 ---
 
@@ -10,13 +10,13 @@ last_updated: 2026-09-03
 
 Class/module-level design decisions — a different altitude from `17-architecture`'s system-level concerns. Currently one relocated chapter (`design-patterns-applied.md`) plus `practice/java/{oop-fundamentals,design-patterns}/`.
 
-> **Phase 1 scaffolding notice.** This is a structural placeholder created during Phase 1 of the approved `00-project/syllabus-transformation-plan.md`. No content has moved here yet — the topics listed below still live at their current `handbook/` path (right-hand column) until this domain's Phase 3 migration runs. This file will be rewritten as a real domain index once that happens.
+> **Phase 2 update (2026-09-03).** `design-patterns-applied.md` has physically relocated here via `git mv` from `handbook/architecture/` — one of the plan's own named low-risk relocations (§10 Phase 2). It is the one existing chapter this domain has today.
 
-## Topics (planned — not yet migrated)
+## Topics
 
 | Topic ID | Title | Mastery levels covered today | Current location |
 |---|---|---|---|
-| T-914 | Design Patterns Applied (GoF in Production) | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `handbook/architecture/design-patterns-applied.md` |
+| T-914 | Design Patterns Applied (GoF in Production) | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/04-software-design/design-patterns-applied.md` |
 
 ## Where this domain's boundary comes from
 

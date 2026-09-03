@@ -32,10 +32,10 @@ syllabus/
 │   ├── jvm-internals/                  handbook/jvm/ (12 topics)
 │   └── concurrency/                    handbook/concurrency/ (16 topics)
 ├── 03-data-structures-algorithms/      NEW canonical prose — practice/java/{collections,advanced-structures,...} as Practice layer
-├── 04-software-design/                 handbook/architecture/design-patterns-applied.md + practice/java/{oop-fundamentals,design-patterns}
+├── 04-software-design/                 syllabus/04-software-design/design-patterns-applied.md + practice/java/{oop-fundamentals,design-patterns}
 ├── 05-spring/                          handbook/spring/ (9 topics)
 ├── 06-databases/                       handbook/databases/ (14 topics)
-├── 07-api-design/                      handbook/system-design/api-design.md, api-gateway-bff-and-edge-concerns.md
+├── 07-api-design/                      syllabus/07-api-design/api-design.md, api-gateway-bff-and-edge-concerns.md
 ├── 08-testing/                         handbook/testing/ (7 topics)
 ├── 09-messaging-event-driven/          handbook/kafka/ (6 topics) + architecture's event-driven/event-sourcing/CDC chapters
 ├── 10-distributed-systems/             handbook/system-design's CAP, consistent hashing, failure modes, distributed transactions

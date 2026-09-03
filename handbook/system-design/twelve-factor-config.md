@@ -18,7 +18,7 @@ related:
   - ../spring/auto-configuration-and-bean-lifecycle.md
   - ../security/secrets-management-and-key-rotation.md
   - ../spring/spring-actuator-health-and-observability-hooks.md
-  - api-gateway-bff-and-edge-concerns.md
+  - ../../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
   - ../../practice/java/system-design/twelve-factor-config/README.md
 official_references:
   - https://12factor.net/config

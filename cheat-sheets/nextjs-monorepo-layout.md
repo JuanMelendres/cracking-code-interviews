@@ -66,5 +66,5 @@ A workspace monorepo's core promise — "shared code updates everywhere instantl
 ## Related
 
 - `handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md`
-- `handbook/cloud/git-internals-and-collaboration-workflows.md`
+- `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md`
 - `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md`

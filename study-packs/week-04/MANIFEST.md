@@ -18,7 +18,7 @@ last_reviewed: 2026-07-29
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 688 |
 | 2 | `01-caching-strategies.md` | T-804 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/caching-strategies-and-invalidation.md` | 667 |
 | 3 | `02-distributed-failure-modes.md` | T-909 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/distributed-systems-failure-modes.md` | 730 |
-| 4 | `03-api-design.md` | T-803 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/api-design.md` | 615 |
+| 4 | `03-api-design.md` | T-803 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/07-api-design/api-design.md` | 615 |
 | 5 | `04-java-coding-practice.md` | 5 graph problems, all compiled and run | 938 |
 | 6 | `05-flashcards.md` | 16 cards | 466 |
 | 7 | `06-failure-modes-deliverable.md` | `failure-modes.md` template + fully worked example | 604 |

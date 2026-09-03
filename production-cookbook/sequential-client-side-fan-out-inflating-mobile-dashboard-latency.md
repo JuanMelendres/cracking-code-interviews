@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/system-design/api-gateway-bff-and-edge-concerns.md
-source: handbook/system-design/api-gateway-bff-and-edge-concerns.md#production-scenarios
+  - ../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
+source: syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md#production-scenarios
 ---
 
 # Sequential Client-Side Fan-Out Inflating Mobile Dashboard Latency
@@ -82,4 +82,4 @@ The BFF pattern's real value here is not architectural tidiness — it is a genu
 
 ## Related Handbook Chapters
 
-- [API Gateway, BFF, and Edge Concerns](../handbook/system-design/api-gateway-bff-and-edge-concerns.md) — canonical BFF fan-out model and round-trip-reduction mechanism used here.
+- [API Gateway, BFF, and Edge Concerns](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md) — canonical BFF fan-out model and round-trip-reduction mechanism used here.

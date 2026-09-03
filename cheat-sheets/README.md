@@ -38,7 +38,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 7 | [Kafka Delivery Semantics and Exactly-Once](delivery-semantics-and-exactly-once.md) | T-704 | 8.00 | kafka | `handbook/kafka/delivery-semantics-and-exactly-once.md` |
 | 8 | [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md) | T-611 | 7.95 | databases | `handbook/databases/isolation-levels-and-concurrency-anomalies.md` |
 | 9 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 7.90 | system-design | `handbook/system-design/cap-theorem-and-consistency-models.md` |
-| 10 | [API Design](api-design.md) | T-803 | 7.90 | system-design | `handbook/system-design/api-design.md` |
+| 10 | [API Design](api-design.md) | T-803 | 7.90 | system-design | `syllabus/07-api-design/api-design.md` |
 | 11 | [Query Planning and EXPLAIN ANALYZE](query-planning-and-explain-analyze.md) | T-610 | 7.90 | databases | `handbook/databases/query-planning-and-explain-analyze.md` |
 | 12 | [Idempotency at System Edges](idempotency.md) | T-809 | 7.85 | system-design | `handbook/system-design/idempotency.md` |
 | 13 | [Java Memory Model and volatile](java-memory-model-and-volatile.md) | T-401 | 7.75 | concurrency | `handbook/concurrency/java-memory-model-and-volatile.md` |
@@ -79,7 +79,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 48 | [Performance and Load Testing Methodology](performance-and-load-testing-methodology.md) | T-1106 | 5.9 | testing | `handbook/testing/performance-and-load-testing-methodology.md` |
 | 49 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 5.9 | cloud | `handbook/cloud/cloud-cost-and-scaling-economics.md` |
 | 50 | [Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push](realtime-delivery-websocket-sse-and-long-polling.md) | T-812 | 5.9 | system-design | `handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md` |
-| 51 | [API Gateway, BFF, and Edge Concerns](api-gateway-bff-and-edge-concerns.md) | T-911 | 5.9 | system-design | `handbook/system-design/api-gateway-bff-and-edge-concerns.md` |
+| 51 | [API Gateway, BFF, and Edge Concerns](api-gateway-bff-and-edge-concerns.md) | T-911 | 5.9 | system-design | `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md` |
 | 52 | [Generics: Erasure, Variance, and PECS](generics-erasure-and-pecs.md) | T-104 | 5.85 | java-core | `handbook/java-core/generics-erasure-and-pecs.md` |
 | 53 | [BlockingQueue Family and Producer-Consumer](blockingqueue-family.md) | T-207 | 5.8 | collections | `handbook/collections/blockingqueue-family.md` |
 | 54 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 5.8 | cloud | `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` |
@@ -140,7 +140,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 109 | [Architecture Decision Records](architecture-decision-records.md) | T-916 | 6.2 | architecture | `handbook/architecture/architecture-decision-records.md` |
 | 110 | [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) | T-905 | 5.95 | architecture | `handbook/architecture/event-sourcing-and-its-real-costs.md` |
 | 111 | [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) | T-405 | 5.9 | concurrency | `handbook/concurrency/atomics-cas-and-the-aba-problem.md` |
-| 112 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 5.8 | architecture | `handbook/architecture/design-patterns-applied.md` |
+| 112 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 5.8 | architecture | `syllabus/04-software-design/design-patterns-applied.md` |
 | 113 | [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) | T-404 | 5.7 | concurrency | `handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
 | 114 | [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) | T-102 | 5.6 | java-core | `handbook/java-core/polymorphism-and-dynamic-dispatch.md` |
 | 115 | [Hibernate Flush Modes and Batch Writes](hibernate-flush-modes-and-batch-writes.md) | T-606 | 5.6 | databases | `handbook/databases/hibernate-flush-modes-and-batch-writes.md` |
@@ -160,7 +160,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 129 | [Annotations and Annotation Processing](annotations-and-annotation-processing.md) | T-112 | 4.3 | java-core | `handbook/java-core/annotations-and-annotation-processing.md` |
 | 130 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 4.2 | java-core | `handbook/java-core/enums-enummap-and-enumset.md` |
 | 131 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 4.1 | java-core | `handbook/java-core/serialization-hazards-and-alternatives.md` |
-| 132 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | — | cloud | `handbook/cloud/git-internals-and-collaboration-workflows.md` |
+| 132 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | — | cloud | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 

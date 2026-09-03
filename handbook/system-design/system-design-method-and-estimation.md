@@ -14,7 +14,7 @@ target_levels:
 estimated_reading_minutes: 40
 prerequisites: []
 related:
-  - api-design.md
+  - ../../syllabus/07-api-design/api-design.md
   - caching-strategies-and-invalidation.md
   - distributed-systems-failure-modes.md
   - load-balancing-service-discovery-and-health-checking.md

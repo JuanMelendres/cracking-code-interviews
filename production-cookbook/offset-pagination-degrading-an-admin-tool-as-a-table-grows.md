@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/api-design.md
-source: handbook/system-design/api-design.md#production-scenarios
+  - ../syllabus/07-api-design/api-design.md
+source: syllabus/07-api-design/api-design.md#production-scenarios
 ---
 
 # OFFSET Pagination Degrading an Admin Tool as a Table Grows
@@ -84,4 +84,4 @@ This incident is the concrete cost of a design decision that was entirely reason
 
 ## Related Handbook Chapters
 
-- [API Design](../handbook/system-design/api-design.md) — canonical keyset-vs-OFFSET pagination mechanics and hybrid approach used here.
+- [API Design](../syllabus/07-api-design/api-design.md) — canonical keyset-vs-OFFSET pagination mechanics and hybrid approach used here.

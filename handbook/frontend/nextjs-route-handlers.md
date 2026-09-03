@@ -16,7 +16,7 @@ prerequisites:
   - nextjs-data-fetching-and-caching.md
 related:
   - ../../00-project/frontend-topic-register.md
-  - ../system-design/api-design.md
+  - ../../syllabus/07-api-design/api-design.md
 official_references:
   - https://nextjs.org/docs/app/getting-started/route-handlers
   - https://nextjs.org/docs/app/guides/backend-for-frontend
@@ -311,7 +311,7 @@ Exercise 3: with `cache: 'force-cache'`, the fetch to `httpbin.org/uuid` becomes
 ## Additional Reading
 
 - [Data Fetching in the App Router](nextjs-data-fetching-and-caching.md) — this chapter's prerequisite; the page-level `fetch()` caching model this chapter's Route Handler caching model is deliberately contrasted against.
-- [API Design](../system-design/api-design.md) — the backend-domain chapter covering the broader HTTP API design principles (status codes, validation, idempotency) this chapter's CRUD demo applies specifically to a Route Handler.
+- [API Design](../../syllabus/07-api-design/api-design.md) — the backend-domain chapter covering the broader HTTP API design principles (status codes, validation, idempotency) this chapter's CRUD demo applies specifically to a Route Handler.
 - [Proxy (formerly Middleware) & the Edge Runtime in Next.js 16](nextjs-proxy-and-edge-runtime.md) — the next chapter in sequence (F-208); covers the OTHER real, public-facing server-side seam in this app, and contrasts it directly against this chapter's Route Handlers (fast, coarse gating vs. real business logic).
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-207 of.
 

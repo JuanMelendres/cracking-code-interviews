@@ -5,8 +5,8 @@ domain: cloud
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/cloud/git-internals-and-collaboration-workflows.md
-source: handbook/cloud/git-internals-and-collaboration-workflows.md#production-scenarios
+  - ../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md
+source: syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md#production-scenarios
 ---
 
 # Force-Push Silently Discarding a Teammate's Already-Pushed Commits
@@ -83,4 +83,4 @@ The choice between `--force` and `--force-with-lease` is a small, single-flag di
 
 ## Related Handbook Chapters
 
-- [Git Internals and Collaboration Workflows](../handbook/cloud/git-internals-and-collaboration-workflows.md) — canonical explanation of reflog recovery, `--force-with-lease`, and branch protection this incident reproduces.
+- [Git Internals and Collaboration Workflows](../syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md) — canonical explanation of reflog recovery, `--force-with-lease`, and branch protection this incident reproduces.

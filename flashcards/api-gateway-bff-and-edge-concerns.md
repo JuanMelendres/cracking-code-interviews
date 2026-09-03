@@ -4,13 +4,13 @@ slug: api-gateway-bff-and-edge-concerns
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-911
-canonical: ../handbook/system-design/api-gateway-bff-and-edge-concerns.md
+canonical: ../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md
 last_updated: 2026-09-01
 ---
 
 # Flashcards: API Gateway, BFF, and Edge Concerns
 
-**Canonical chapter:** [`handbook/system-design/api-gateway-bff-and-edge-concerns.md`](../handbook/system-design/api-gateway-bff-and-edge-concerns.md)
+**Canonical chapter:** [`syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md)
 
 ## Card: How is a gateway different from a load balancer?
 
@@ -33,7 +33,7 @@ duplicated inconsistently across services.
 Treating "gateway" and "load balancer" as interchangeable terms.
 
 **Related:**
-[handbook/system-design/api-gateway-bff-and-edge-concerns.md](../handbook/system-design/api-gateway-bff-and-edge-concerns.md), [Load Balancing, Service Discovery, and Health Checking](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
+[syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md), [Load Balancing, Service Discovery, and Health Checking](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
 
 ## Card: Does centralizing an edge concern actually stop a bad request from reaching a backend?
 
@@ -56,7 +56,7 @@ Assuming a gateway "adds" a check on top of backend-level enforcement rather
 than replacing the need for per-service duplication entirely.
 
 **Related:**
-[handbook/system-design/api-gateway-bff-and-edge-concerns.md](../handbook/system-design/api-gateway-bff-and-edge-concerns.md)
+[syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md)
 
 ## Card: What's the real mechanism behind a BFF's speed benefit?
 
@@ -80,4 +80,4 @@ Assuming a BFF is slower because it's "an extra hop," missing that its
 internal fan-out is concurrent, not sequential.
 
 **Related:**
-[handbook/system-design/api-gateway-bff-and-edge-concerns.md](../handbook/system-design/api-gateway-bff-and-edge-concerns.md)
+[syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md)

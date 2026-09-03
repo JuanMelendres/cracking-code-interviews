@@ -71,5 +71,5 @@ The verification test runs against the provider's real, live-generated response 
 ## Related
 
 - `handbook/testing/integration-testing-against-real-dependencies.md`
-- `handbook/system-design/api-design.md`
+- `syllabus/07-api-design/api-design.md`
 - `handbook/kafka/producer-semantics-and-partition-keys.md`

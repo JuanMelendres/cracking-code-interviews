@@ -4,13 +4,13 @@ slug: api-design
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-803
-canonical: ../handbook/system-design/api-design.md
+canonical: ../syllabus/07-api-design/api-design.md
 last_updated: 2026-08-06
 ---
 
 # Flashcards: API Design
 
-**Canonical chapter:** [`handbook/system-design/api-design.md`](../handbook/system-design/api-design.md)
+**Canonical chapter:** [`syllabus/07-api-design/api-design.md`](../syllabus/07-api-design/api-design.md)
 
 ## Card: Why OFFSET gets slower with depth
 
@@ -27,7 +27,7 @@ A measured, ~3,000× real-world difference, not a theoretical concern.
 Assuming pagination cost is roughly constant regardless of implementation.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/api-design.md#internal-implementation)
+[Internal Implementation](../syllabus/07-api-design/api-design.md#internal-implementation)
 
 ## Card: What keyset pagination gives up
 
@@ -44,7 +44,7 @@ The honest trade-off a Staff-level answer states unprompted.
 Presenting keyset pagination as a strict, cost-free upgrade.
 
 **Related:**
-[Core Concepts](../handbook/system-design/api-design.md#core-concepts)
+[Core Concepts](../syllabus/07-api-design/api-design.md#core-concepts)
 
 ## Card: PUT vs POST idempotency
 
@@ -61,4 +61,4 @@ The precise distinction that resolves the "is idempotent the same as read-only" 
 Assuming only read-only methods can be idempotent.
 
 **Related:**
-[Core Concepts](../handbook/system-design/api-design.md#core-concepts)
+[Core Concepts](../syllabus/07-api-design/api-design.md#core-concepts)

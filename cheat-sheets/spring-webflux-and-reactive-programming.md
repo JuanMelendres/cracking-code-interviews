@@ -89,5 +89,5 @@ with .hide():     source runs on: main               <!-- textbook behavior rest
 ## Related
 
 - `handbook/concurrency/virtual-threads.md`
-- `handbook/system-design/api-gateway-bff-and-edge-concerns.md`
+- `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`
 - `handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md`

@@ -4,13 +4,13 @@ slug: design-patterns-applied
 document_type: flashcard-deck
 domain: architecture
 topic_id: T-914
-canonical: ../handbook/architecture/design-patterns-applied.md
+canonical: ../syllabus/04-software-design/design-patterns-applied.md
 last_updated: 2026-09-02
 ---
 
 # Flashcards: Design Patterns Applied
 
-**Canonical chapter:** [`handbook/architecture/design-patterns-applied.md`](../handbook/architecture/design-patterns-applied.md)
+**Canonical chapter:** [`syllabus/04-software-design/design-patterns-applied.md`](../syllabus/04-software-design/design-patterns-applied.md)
 
 ## Card: What Strategy isolates
 
@@ -27,7 +27,7 @@ The core "problem shape" question every pattern in this chapter answers differen
 Confusing Strategy (algorithm choice) with Decorator (optional behavior layering) — they look similar but solve different problems.
 
 **Related:**
-[Core Concepts](../handbook/architecture/design-patterns-applied.md#core-concepts)
+[Core Concepts](../syllabus/04-software-design/design-patterns-applied.md#core-concepts)
 
 ## Card: Why a naive lazy Singleton isn't thread-safe
 
@@ -44,7 +44,7 @@ The single sharpest, most measurably-real result in this chapter.
 Assuming Singleton is automatically safe because it's a well-known pattern.
 
 **Related:**
-[Internal Implementation](../handbook/architecture/design-patterns-applied.md#internal-implementation)
+[Internal Implementation](../syllabus/04-software-design/design-patterns-applied.md#internal-implementation)
 
 ## Card: Composition vs. inheritance for optional behaviors
 
@@ -61,7 +61,7 @@ The precise, quantified reason Decorator exists, not just "it avoids too many su
 Not being able to state the actual `N` vs. `2^N` scaling when asked why.
 
 **Related:**
-[Internal Implementation](../handbook/architecture/design-patterns-applied.md#internal-implementation)
+[Internal Implementation](../syllabus/04-software-design/design-patterns-applied.md#internal-implementation)
 
 ## Card: The Singleton fix that needs no hand-written synchronization
 
@@ -78,4 +78,4 @@ Removes an entire class of bugs (getting double-checked locking subtly wrong) by
 Reaching for manual `synchronized`/double-checked locking when the enum form is simpler and provably correct.
 
 **Related:**
-[Internal Implementation](../handbook/architecture/design-patterns-applied.md#internal-implementation)
+[Internal Implementation](../syllabus/04-software-design/design-patterns-applied.md#internal-implementation)
