@@ -13,6 +13,14 @@ The Interview Playbook owns interview-craft content: reusable structures for *de
 
 Four subdirectories exist per `CLAUDE.md`'s target repository structure: `technical-answers/`, `system-design/`, `coding/`, `behavioral/`. All four now have content. This deliverable was built in bounded batches. A fifth subdirectory, `frontend/`, was opened per the Scope Addendum in `CLAUDE.md` (2026-08-12) once the frontend domain's 37 canonical `handbook/frontend/` chapters were confirmed complete with zero corresponding interview-craft content of their own.
 
+A sixth subdirectory, `company-prep/`, was opened 2026-09-03 at explicit user request, ahead of a specific, named interview — per `CLAUDE.md`'s explicit allowance ("do not overfit content to any single company's interview process unless explicitly requested"), this is a company-specific exception, not a change to the programme's general company-agnostic scope. Entries here are personal, targeted prep guides, not full canonical chapters — they audit existing handbook coverage against a specific topic list, close any real gaps found directly in the relevant canonical chapter, and then link back to it rather than duplicating it.
+
+## company-prep/
+
+| Entry | What it's about |
+|---|---|
+| [Nordstrom — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)](company-prep/nordstrom-senior-backend-remote.md) | Audited 8 user-specified topics against existing handbook coverage; 6 of 8 already covered with sufficient depth, 5 canonical chapters received targeted additions to close real gaps (atomic conditional UPDATE, HashMap's JDK 7 concurrent-resize infinite loop, a unified pool-exhaustion-plus-circuit-breaker narrative, ALB/Auto Scaling, a practical kubectl debugging workflow), plus a new synthesized p95-high-CPU-normal troubleshooting checklist. |
+
 ## technical-answers/
 
 | Entry | Topic ID | IWI | What it's about |

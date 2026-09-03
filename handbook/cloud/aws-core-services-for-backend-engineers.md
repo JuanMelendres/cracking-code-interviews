@@ -94,6 +94,10 @@ AWS's core services for backend engineering cluster into a few functional catego
 
 **SQS** (Simple Queue Service) is a durable, point-to-point queue — one message is processed by (typically) one consumer, providing buffering and backpressure between a producer and a consumer at different rates. **SNS** (Simple Notification Service) is pub/sub — one message fanned out to potentially many independent subscribers. The common "SNS fan-out to multiple SQS queues" pattern combines both: SNS distributes one event to several independent consumer queues, each processed independently and durably.
 
+### Traffic distribution and elasticity: ALB and Auto Scaling turn a fleet of instances into one service
+
+An **Application Load Balancer (ALB)** is a Layer-7 (HTTP/HTTPS-aware) load balancer that distributes incoming requests across a target group of instances or containers, health-checking each target and routing only to ones passing that check — the same conceptual role [Load Balancing, Service Discovery, and Health Checking](../system-design/load-balancing-service-discovery-and-health-checking.md) covers generally, with AWS managing the balancer itself. Being Layer-7 (as opposed to a Network Load Balancer's Layer-4) means an ALB can route on path or host header (`/api/orders` to one target group, `/api/payments` to another) and terminate TLS at the balancer, which a plain Layer-4 balancer cannot do. **Auto Scaling** (an Auto Scaling Group, or ASG, for EC2; a Service Auto Scaling policy for ECS; a HorizontalPodAutoscaler for EKS, per the previous chapters' Kubernetes coverage) adds or removes instances/tasks/pods in response to a metric — typically CPU or request-count target tracking — so fleet size tracks real load instead of being sized once for peak and left there. The two compose directly: the ALB's target group membership updates automatically as Auto Scaling adds or removes instances, so a scale-out event is invisible to callers — they keep hitting the same ALB endpoint while the pool of healthy targets behind it grows or shrinks.
+
 ## Diagrams
 
 ```mermaid

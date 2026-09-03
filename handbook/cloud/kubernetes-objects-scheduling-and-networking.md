@@ -39,23 +39,24 @@ official_references:
 4. [Definition and Purpose](#definition-and-purpose)
 5. [Core Concepts](#core-concepts)
 6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+7. [A Practical kubectl Debugging Workflow](#a-practical-kubectl-debugging-workflow)
+8. [Diagrams](#diagrams)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Common Mistakes](#common-mistakes)
+13. [Anti-Patterns](#anti-patterns)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -156,6 +157,17 @@ $ ruby -ryaml -e "docs = YAML.load_stream(File.read('deployment-with-probes-and-
 ```
 
 **Reading `maxSurge: 1, maxUnavailable: 0` precisely:** with 3 desired replicas, a rolling update can temporarily run up to 4 Pods (3 + `maxSurge`) but never fewer than 3 (3 − `maxUnavailable`) — the new Pod starts, passes its readiness probe, then one old Pod is terminated, repeating until all 3 are the new version. The requests/limits memory being equal (`512Mi`/`512Mi`) means the scheduler's placement decision and the kubelet's OOMKill enforcement bind at the exact same number — a deliberate, predictable choice per the previous chapter's decision framework.
+
+## A Practical `kubectl` Debugging Workflow
+
+Knowing the object model is necessary but not sufficient — a Senior-level debugging session on a broken Deployment follows a specific, repeatable command sequence rather than guessing. In order:
+
+1. **`kubectl get pods`** — the first command, always. Shows every Pod's `STATUS` (`Running`, `CrashLoopBackOff`, `Pending`, `ImagePullBackOff`, `OOMKilled` is not a status here but shows up via `RESTARTS` climbing) and `READY` count (`1/1` vs `0/1` — a container that's running but has failed its readiness probe shows as `0/1` Ready while still `Running`, a distinction candidates frequently miss). A climbing `RESTARTS` count on an otherwise-`Running` pod is the signal to move to step 2.
+2. **`kubectl describe pod <name>`** — the single most information-dense command. Read, in order: the `Containers` section's `State`/`Last State` (a `Last State: Terminated, Reason: OOMKilled, Exit Code: 137` means the kernel's OOM killer terminated the container for exceeding its memory limit — this is an infrastructure-level kill with zero application-level signal, so the application's own logs will show nothing informative; a non-zero exit code without `OOMKilled` as the reason points to an application crash instead), and the `Events` section at the bottom (chronological, and the single best place to see `FailedScheduling` — no node has enough allocatable resources for this Pod's `requests` — or a failing readiness/liveness probe's specific HTTP status or timeout, before the Pod is ever killed for it).
+3. **`kubectl logs <pod>`** for a running or freshly-crashed container's own output; **`kubectl logs <pod> --previous`** specifically for the *previous* container instance's logs after a restart — the current container's logs start empty right after a crash-and-restart, so `--previous` is the only way to see what the container printed right before it died. Add `-c <container>` when the Pod has more than one container (a sidecar, an init container).
+4. **`kubectl exec -it <pod> -- /bin/sh`** (or `bash`, if the image has it) to get an interactive shell inside the running container — for checking whether a config file actually landed where expected, whether a downstream host is reachable from inside the container's own network namespace (`curl`, `nc`), or inspecting a JVM's live state (a thread dump, `jstat`) when the symptom doesn't explain itself from logs and events alone.
+
+This order matters: `get pods` triages which Pod to look at, `describe` explains *why* (usually the fastest path to the actual root cause — an OOMKill or a failed probe is visible here immediately), `logs`/`logs --previous` shows what the application itself was doing at the moment of failure, and `exec` is the last resort for interactively probing state that isn't captured in either. Jumping straight to `exec` without first reading `describe pod`'s `Events` is the single most common wasted-time pattern in a live debugging round.
 
 ## Diagrams
 

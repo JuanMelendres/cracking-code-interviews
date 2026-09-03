@@ -143,6 +143,46 @@ update this chapter's own baseline demo reproduces directly.
 - **Blocking, not detecting.** `PESSIMISTIC_WRITE` acquires a real row lock at read
   time; a concurrent request for the same lock genuinely waits, measured in this
   chapter directly at ~1520ms against an intentional 1500ms hold.
+- **A third technique: the atomic conditional `UPDATE`.** Neither `@Version` nor a
+  pessimistic lock is required when the operation is a single, self-contained
+  arithmetic change — most commonly, decrementing inventory. Instead of a
+  read-then-write sequence (`SELECT stock FROM inventory WHERE id = ?`, check in
+  application code, then `UPDATE`), the check and the write happen in one atomic SQL
+  statement:
+
+  ```sql
+  UPDATE inventory
+  SET stock = stock - 1
+  WHERE product_id = ? AND stock > 0;
+  ```
+
+  ```java
+  int rowsAffected = jdbcTemplate.update(
+      "UPDATE inventory SET stock = stock - 1 WHERE product_id = ? AND stock > 0",
+      productId
+  );
+  if (rowsAffected == 0) {
+      throw new OutOfStockException(productId);
+  }
+  ```
+
+  The race a separate `SELECT` + `UPDATE` has — two concurrent requests both read
+  `stock = 1`, both see the guard condition pass in application code, and both
+  proceed to decrement, producing `stock = -1` — cannot occur here, because the
+  database evaluates the `WHERE` clause and performs the decrement as one atomic
+  operation against the current row value, not the value the application last read.
+  A second concurrent request targeting the same now-zero row simply fails its own
+  `WHERE stock > 0` check and updates zero rows — `rowsAffected` is the only signal
+  the application needs, and checking it is mandatory: a silently ignored
+  zero-rows-affected result reintroduces the overselling bug this exact statement
+  exists to prevent, just moved from the database into application code that forgot
+  to check. This technique is narrower than `@Version` (it only works when the
+  entire business rule reduces to a single-row conditional arithmetic update — it
+  has no answer for a multi-field business invariant, which is exactly what
+  `@Version` optimistic locking or `SELECT ... FOR UPDATE` exist for), but where it
+  applies, it is cheaper than both: no version column, no retry loop, no lock held —
+  a single round trip either succeeds or fails with an unambiguous, mechanically
+  checkable signal.
 
 ## Internal Implementation
 
@@ -349,13 +389,14 @@ them — a failure mode optimistic locking structurally cannot produce.
 
 ## Comparisons
 
-| Dimension | Optimistic (`@Version`) | Pessimistic (`PESSIMISTIC_WRITE`) |
-|---|---|---|
-| When conflict is caught | At commit/flush time | Never occurs — prevented at read time |
-| Cost under low contention | Near zero | Real lock-acquisition overhead |
-| Cost under high contention | Real, bounded retries | Real, potentially unbounded wait time |
-| Deadlock risk | None | Real, same as any row lock (see [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md)) |
-| Caller obligation | Must implement retry logic | None — but must not hold the lock across slow work |
+| Dimension | Optimistic (`@Version`) | Pessimistic (`PESSIMISTIC_WRITE`) | Atomic conditional `UPDATE` |
+|---|---|---|---|
+| When conflict is caught | At commit/flush time | Never occurs — prevented at read time | At the single `UPDATE` statement itself |
+| Cost under low contention | Near zero | Real lock-acquisition overhead | Near zero — one round trip |
+| Cost under high contention | Real, bounded retries | Real, potentially unbounded wait time | Near zero — losing requests just affect 0 rows, no wait and no retry needed |
+| Deadlock risk | None | Real, same as any row lock (see [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md)) | None |
+| Caller obligation | Must implement retry logic | None — but must not hold the lock across slow work | Must check `rowsAffected`/`executeUpdate()`'s return value |
+| Scope of what it can express | Any field, any business invariant | Any field, any business invariant | Single-row, single-statement conditional arithmetic only |
 
 ## Common Mistakes
 
