@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Search and Indexing Systems
 
-**Canonical chapter:** [`handbook/system-design/search-and-indexing-systems.md`](../handbook/system-design/search-and-indexing-systems.md)
+**Canonical chapter:** [`syllabus/11-system-design/search-and-indexing-systems.md`](../syllabus/11-system-design/search-and-indexing-systems.md)
 
 ## Core Mental Model
 
@@ -83,6 +83,6 @@ A real ~270x measured speedup for the identical logical question.
 
 ## Related
 
-- `handbook/system-design/storage-selection-tradeoffs.md`
-- `handbook/databases/index-structures-btree-composite-covering.md`
-- `handbook/system-design/messaging-patterns-and-change-data-capture.md`
+- `syllabus/11-system-design/storage-selection-tradeoffs.md`
+- `syllabus/06-databases/index-structures-btree-composite-covering.md`
+- `syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md`

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Writing Tests Live in an Interview
 
-**Canonical chapter:** [`handbook/testing/writing-tests-live-in-an-interview.md`](../handbook/testing/writing-tests-live-in-an-interview.md)
+**Canonical chapter:** [`syllabus/08-testing/writing-tests-live-in-an-interview.md`](../syllabus/08-testing/writing-tests-live-in-an-interview.md)
 
 ## Card: What live-coding test-first tests that a take-home can't
 
@@ -27,7 +27,7 @@ The precise reason interviewers weight the live-coding round differently from a 
 Treating a polished take-home submission as equally informative about a candidate's under-pressure testing discipline.
 
 **Related:**
-[handbook/testing/writing-tests-live-in-an-interview.md](../handbook/testing/writing-tests-live-in-an-interview.md)
+[handbook/testing/writing-tests-live-in-an-interview.md](../syllabus/08-testing/writing-tests-live-in-an-interview.md)
 
 ## Card: What must be confirmed before leaving a red step
 
@@ -44,7 +44,7 @@ Distinguishes genuine red-green-refactor discipline from a candidate who merely 
 Seeing any red output and moving straight to implementation without confirming the failure reason.
 
 **Related:**
-[handbook/testing/writing-tests-live-in-an-interview.md](../handbook/testing/writing-tests-live-in-an-interview.md)
+[handbook/testing/writing-tests-live-in-an-interview.md](../syllabus/08-testing/writing-tests-live-in-an-interview.md)
 
 ## Card: What to do when running low on time mid-kata
 
@@ -61,4 +61,4 @@ The single most transferable signal from this exercise to actual on-the-job beha
 Silently dropping test-first discipline or rushing implementation without narrating the trade-off being made.
 
 **Related:**
-[handbook/testing/writing-tests-live-in-an-interview.md](../handbook/testing/writing-tests-live-in-an-interview.md)
+[handbook/testing/writing-tests-live-in-an-interview.md](../syllabus/08-testing/writing-tests-live-in-an-interview.md)

@@ -7,7 +7,7 @@ deciders: [platform-architecture-group]
 
 # ADR-001: Adopt CQRS for the Order Spend Reporting Read Path
 
-> **Representative scenario.** This ADR is a worked example, not a record of a real company decision. Every number it cites is real, measured evidence from this repository's own [CQRS: Read/Write Separation](../../../handbook/architecture/cqrs-read-write-separation.md) chapter and its [practice code](../../java/architecture/cqrs-read-write-separation/README.md) — the decision itself is a representative scenario built to demonstrate what a fully-worked, evidence-grounded ADR looks like.
+> **Representative scenario.** This ADR is a worked example, not a record of a real company decision. Every number it cites is real, measured evidence from this repository's own [CQRS: Read/Write Separation](../../../syllabus/17-architecture/cqrs-read-write-separation.md) chapter and its [practice code](../../java/architecture/cqrs-read-write-separation/README.md) — the decision itself is a representative scenario built to demonstrate what a fully-worked, evidence-grounded ADR looks like.
 
 ## Status
 
@@ -71,7 +71,7 @@ thousands of rows on every request.
 
 We will adopt Option C — a CQRS read model for this specific report — because the
 report's cost problem is structural (query shape, not query volume), which is exactly
-the condition this repository's own [CQRS chapter](../../../handbook/architecture/cqrs-read-write-separation.md#decision-framework)
+the condition this repository's own [CQRS chapter](../../../syllabus/17-architecture/cqrs-read-write-separation.md#decision-framework)
 names as the correct trigger, and because the reporting team has explicitly confirmed
 seconds-scale staleness is acceptable for this report.
 
@@ -91,7 +91,7 @@ against introducing CQRS system-wide from a single justified case.
   operational fact that must be communicated to the reporting team's own stakeholders,
   not just accepted silently by engineering.
 - Projector lag becomes a new metric the on-call rotation must monitor, per this
-  repository's own [best practice](../../../handbook/architecture/cqrs-read-write-separation.md#best-practices)
+  repository's own [best practice](../../../syllabus/17-architecture/cqrs-read-write-separation.md#best-practices)
   on treating an un-monitored async boundary as a real risk.
 
 **Follow-up:**
@@ -102,5 +102,5 @@ against introducing CQRS system-wide from a single justified case.
 
 ## Related
 
-- [CQRS: Read/Write Separation](../../../handbook/architecture/cqrs-read-write-separation.md) — the canonical chapter and all cited evidence.
+- [CQRS: Read/Write Separation](../../../syllabus/17-architecture/cqrs-read-write-separation.md) — the canonical chapter and all cited evidence.
 - [CQRS practice code and real measurements](../../java/architecture/cqrs-read-write-separation/README.md)

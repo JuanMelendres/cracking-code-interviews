@@ -48,8 +48,8 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-caching-strategies.md` | T-804 — summary + link; full chapter now canonical at `handbook/system-design/caching-strategies-and-invalidation.md` |
-| 3 | `02-distributed-failure-modes.md` | T-909 — summary + link; full chapter now canonical at `handbook/system-design/distributed-systems-failure-modes.md` |
+| 2 | `01-caching-strategies.md` | T-804 — summary + link; full chapter now canonical at `syllabus/11-system-design/caching-strategies-and-invalidation.md` |
+| 3 | `02-distributed-failure-modes.md` | T-909 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/distributed-systems-failure-modes.md` |
 | 4 | `03-api-design.md` | T-803 — summary + link; full chapter now canonical at `syllabus/07-api-design/api-design.md` |
 | 5 | `04-java-coding-practice.md` | 5 graph problems, all compiled and run, Union-Find and topological sort from scratch |
 | 6 | `05-flashcards.md` | 16 cards |

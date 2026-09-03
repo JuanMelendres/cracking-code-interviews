@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
+  - ../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md
 source: handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ The trade-off between polling and a held-open connection (SSE/WebSocket) is real
 
 ## Related Handbook Chapters
 
-- [Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md) — canonical polling-vs-push request-volume model used here.
+- [Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md) — canonical polling-vs-push request-volume model used here.

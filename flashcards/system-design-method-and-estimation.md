@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: System Design Method and Estimation
 
-**Canonical chapter:** [`handbook/system-design/system-design-method-and-estimation.md`](../handbook/system-design/system-design-method-and-estimation.md)
+**Canonical chapter:** [`syllabus/11-system-design/system-design-method-and-estimation.md`](../syllabus/11-system-design/system-design-method-and-estimation.md)
 
 ## Card: The six phases in order
 
@@ -27,7 +27,7 @@ The repeatable procedure this entire topic exists to teach.
 Skipping straight to Architecture without the preceding phases.
 
 **Related:**
-[Core Concepts](../handbook/system-design/system-design-method-and-estimation.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/system-design-method-and-estimation.md#core-concepts)
 
 ## Card: Why estimate before architecture
 
@@ -44,7 +44,7 @@ The core ordering discipline that makes a design defensible under challenge.
 Designing architecture first and retrofitting justification afterward.
 
 **Related:**
-[Mental Model](../handbook/system-design/system-design-method-and-estimation.md#mental-model)
+[Mental Model](../syllabus/11-system-design/system-design-method-and-estimation.md#mental-model)
 
 ## Card: The most important estimation assumption
 
@@ -61,7 +61,7 @@ The number most directly determining whether the architecture is actually adequa
 Sizing an architecture to average load rather than peak.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/system-design-method-and-estimation.md#internal-implementation)
+[Internal Implementation](../syllabus/11-system-design/system-design-method-and-estimation.md#internal-implementation)
 
 ## Card: The most commonly skipped phase
 
@@ -78,4 +78,4 @@ Directly tied to the production-judgment signal disproportionately weighted at S
 Letting the architecture phase consume all remaining time.
 
 **Related:**
-[Production Scenarios](../handbook/system-design/system-design-method-and-estimation.md#production-scenarios)
+[Production Scenarios](../syllabus/11-system-design/system-design-method-and-estimation.md#production-scenarios)

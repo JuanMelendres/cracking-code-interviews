@@ -17,9 +17,9 @@ last_reviewed: 2026-07-29
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, checkpoint summary, exit criteria | 867 |
-| 2 | `01-transactions-and-propagation.md` | T-503/504/505 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/spring/transactional-proxy-mechanics-and-propagation.md` | 894 |
-| 3 | `02-isolation-levels-and-write-skew.md` | T-611 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/databases/isolation-levels-and-concurrency-anomalies.md` | 708 |
-| 4 | `03-system-design-method.md` | T-801/802 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/system-design/system-design-method-and-estimation.md` | 596 |
+| 2 | `01-transactions-and-propagation.md` | T-503/504/505 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md` | 894 |
+| 3 | `02-isolation-levels-and-write-skew.md` | T-611 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md` | 708 |
+| 4 | `03-system-design-method.md` | T-801/802 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/11-system-design/system-design-method-and-estimation.md` | 596 |
 | 5 | `04-java-coding-practice.md` | 6 tree problems, all compiled and run | 1,033 |
 | 6 | `05-flashcards.md` | 16 cards | 421 |
 | 7 | `06-week-3-checkpoint-mock.md` | 60-min combined checkpoint round | 489 |

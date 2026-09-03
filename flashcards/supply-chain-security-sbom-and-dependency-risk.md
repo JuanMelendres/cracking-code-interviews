@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Supply Chain Security, SBOM, and Dependency Risk
 
-**Canonical chapter:** [`handbook/security/supply-chain-security-sbom-and-dependency-risk.md`](../handbook/security/supply-chain-security-sbom-and-dependency-risk.md)
+**Canonical chapter:** [`syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md`](../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md)
 
 ## Card: Why direct-dependency-only review is insufficient
 
@@ -27,7 +27,7 @@ The precise scope gap that justifies generating a full SBOM rather than reviewin
 Reviewing only directly-declared dependencies and treating that as a complete supply-chain risk assessment.
 
 **Related:**
-[handbook/security/supply-chain-security-sbom-and-dependency-risk.md](../handbook/security/supply-chain-security-sbom-and-dependency-risk.md)
+[handbook/security/supply-chain-security-sbom-and-dependency-risk.md](../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md)
 
 ## Card: What the real docker scout scan found
 
@@ -44,7 +44,7 @@ Real, measured evidence that meaningful vulnerabilities live in transitive/base-
 Assuming a base image is safe by default because the application's own dependencies were reviewed.
 
 **Related:**
-[handbook/security/supply-chain-security-sbom-and-dependency-risk.md](../handbook/security/supply-chain-security-sbom-and-dependency-risk.md)
+[handbook/security/supply-chain-security-sbom-and-dependency-risk.md](../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md)
 
 ## Card: Why base-image remediation should be centrally owned
 
@@ -61,4 +61,4 @@ An organizational, not just technical, argument for centralizing a specific clas
 Leaving each service team to independently patch a shared base-image vulnerability rather than fixing it once, centrally.
 
 **Related:**
-[handbook/security/supply-chain-security-sbom-and-dependency-risk.md](../handbook/security/supply-chain-security-sbom-and-dependency-risk.md)
+[handbook/security/supply-chain-security-sbom-and-dependency-risk.md](../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md)

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Test Strategy, the Pyramid, and Test Doubles
 
-**Canonical chapter:** [`handbook/testing/test-strategy-and-test-doubles.md`](../handbook/testing/test-strategy-and-test-doubles.md)
+**Canonical chapter:** [`syllabus/08-testing/test-strategy-and-test-doubles.md`](../syllabus/08-testing/test-strategy-and-test-doubles.md)
 
 ## Card: What a mock proves beyond a return value
 
@@ -27,7 +27,7 @@ Catches wasted-retry and missing-retry bugs a return-value-only assertion would 
 Treating a passing boolean assertion as proof the interaction logic itself is correct.
 
 **Related:**
-[Internal Implementation](../handbook/testing/test-strategy-and-test-doubles.md#internal-implementation)
+[Internal Implementation](../syllabus/08-testing/test-strategy-and-test-doubles.md#internal-implementation)
 
 ## Card: Why mocking the database in a repository test is wrong
 
@@ -44,7 +44,7 @@ A common, false-confidence-producing mistake that a 100%-passing suite can hide.
 Believing a fully-mocked, fully-passing repository suite is sufficient coverage of the boundary.
 
 **Related:**
-[Production Scenarios](../handbook/testing/test-strategy-and-test-doubles.md#production-scenarios)
+[Production Scenarios](../syllabus/08-testing/test-strategy-and-test-doubles.md#production-scenarios)
 
 ## Card: What coverage percentage actually measures
 
@@ -61,4 +61,4 @@ Prevents treating a coverage number as proof of test quality.
 Setting a coverage percentage as a release gate without checking assertion quality.
 
 **Related:**
-[Core Concepts](../handbook/testing/test-strategy-and-test-doubles.md#core-concepts)
+[Core Concepts](../syllabus/08-testing/test-strategy-and-test-doubles.md#core-concepts)

@@ -5,8 +5,8 @@ domain: performance
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/performance/profiling-jfr-and-flame-graphs.md
-  - ../handbook/performance/performance-methodology-and-slo-error-budgets.md
+  - ../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md
+  - ../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md
 source: handbook/performance/profiling-jfr-and-flame-graphs.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ This incident is a clean, concrete argument for a discipline that is easy to sta
 
 ## Related Handbook Chapters
 
-- [Profiling, JFR, and Flame Graphs](../handbook/performance/profiling-jfr-and-flame-graphs.md) — canonical JFR profiling methodology and the checkout-service measurement this incident reproduces.
-- [Performance Methodology and SLO/Error Budgets](../handbook/performance/performance-methodology-and-slo-error-budgets.md) — the SLO context that made this latency regression an actionable, prioritized incident rather than an unnoticed regression.
+- [Profiling, JFR, and Flame Graphs](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md) — canonical JFR profiling methodology and the checkout-service measurement this incident reproduces.
+- [Performance Methodology and SLO/Error Budgets](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md) — the SLO context that made this latency regression an actionable, prioritized incident rather than an unnoticed regression.

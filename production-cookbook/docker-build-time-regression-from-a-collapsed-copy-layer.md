@@ -5,7 +5,7 @@ domain: cloud
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/cloud/container-image-internals.md
+  - ../syllabus/14-devops-containers/container-image-internals.md
 source: handbook/cloud/container-image-internals.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ This maps to a "why did our Docker build get slower" question. Present it as a r
 
 ## Related Handbook Chapters
 
-- [Containers & Image Internals](../handbook/cloud/container-image-internals.md) — canonical layer-caching and `COPY`-ordering mechanism used here.
+- [Containers & Image Internals](../syllabus/14-devops-containers/container-image-internals.md) — canonical layer-caching and `COPY`-ordering mechanism used here.

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # MVCC, Vacuum, and Bloat
 
-**Canonical chapter:** [`handbook/databases/mvcc-vacuum-and-bloat.md`](../handbook/databases/mvcc-vacuum-and-bloat.md)
+**Canonical chapter:** [`syllabus/06-databases/mvcc-vacuum-and-bloat.md`](../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ PostgreSQL never overwrites a row in place. Every UPDATE (and DELETE) creates a 
 
 ## Related
 
-- `handbook/databases/isolation-levels-and-concurrency-anomalies.md`
-- `handbook/databases/locks-deadlocks-and-lock-escalation.md`
-- `handbook/databases/optimistic-vs-pessimistic-locking.md`
-- `handbook/system-design/messaging-patterns-and-change-data-capture.md`
+- `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`
+- `syllabus/06-databases/locks-deadlocks-and-lock-escalation.md`
+- `syllabus/06-databases/optimistic-vs-pessimistic-locking.md`
+- `syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md`

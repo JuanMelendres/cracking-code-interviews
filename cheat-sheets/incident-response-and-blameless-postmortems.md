@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Incident Response and Blameless Postmortems
 
-**Canonical chapter:** [`handbook/performance/incident-response-and-blameless-postmortems.md`](../handbook/performance/incident-response-and-blameless-postmortems.md)
+**Canonical chapter:** [`syllabus/13-observability/incident-response-and-blameless-postmortems.md`](../syllabus/13-observability/incident-response-and-blameless-postmortems.md)
 
 ## Core Mental Model
 
@@ -76,7 +76,7 @@ An incident has two, genuinely different jobs happening at once, and conflating 
 
 ## Related
 
-- `handbook/performance/performance-methodology-and-slo-error-budgets.md`
-- `handbook/performance/logging-metrics-tracing-and-opentelemetry.md`
-- `handbook/architecture/architecture-decision-records.md`
-- `handbook/system-design/resilience-patterns.md`
+- `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md`
+- `syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md`
+- `syllabus/17-architecture/architecture-decision-records.md`
+- `syllabus/11-system-design/resilience-patterns.md`

@@ -5,7 +5,7 @@ domain: cloud
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/cloud/kubernetes-objects-scheduling-and-networking.md
+  - ../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md
 source: handbook/cloud/kubernetes-objects-scheduling-and-networking.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This maps to a "why did a zero-downtime rollout still cause a latency spike" que
 
 ## Related Handbook Chapters
 
-- [Kubernetes Objects, Scheduling, and Networking](../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) — canonical rolling-update and readiness-probe mechanics used here.
-- [Kubernetes Resource Limits, Probes, and JVM Sizing](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md) — the JVM-in-container sizing context this warmup behavior is part of.
+- [Kubernetes Objects, Scheduling, and Networking](../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md) — canonical rolling-update and readiness-probe mechanics used here.
+- [Kubernetes Resource Limits, Probes, and JVM Sizing](../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md) — the JVM-in-container sizing context this warmup behavior is part of.

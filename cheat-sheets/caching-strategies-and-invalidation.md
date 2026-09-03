@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Caching Strategies and Invalidation
 
-**Canonical chapter:** [`handbook/system-design/caching-strategies-and-invalidation.md`](../handbook/system-design/caching-strategies-and-invalidation.md)
+**Canonical chapter:** [`syllabus/11-system-design/caching-strategies-and-invalidation.md`](../syllabus/11-system-design/caching-strategies-and-invalidation.md)
 
 ## Core Mental Model
 
@@ -77,4 +77,4 @@ Both mechanisms are O(1) per-request overhead — the value is eliminating redun
 
 - [System Design Method and Estimation](system-design-method-and-estimation.md)
 - [Distributed Systems Failure Modes](distributed-systems-failure-modes.md)
-- `handbook/databases/index-structures-btree-composite-covering.md`
+- `syllabus/06-databases/index-structures-btree-composite-covering.md`

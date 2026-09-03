@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/databases/zero-downtime-schema-migration.md
+  - ../syllabus/06-databases/zero-downtime-schema-migration.md
 source: handbook/databases/zero-downtime-schema-migration.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The core insight this incident teaches is that "fast" and "safe under a rolling 
 
 ## Related Handbook Chapters
 
-- [Zero-Downtime Schema Migration](../handbook/databases/zero-downtime-schema-migration.md) — canonical expand-contract methodology used here.
+- [Zero-Downtime Schema Migration](../syllabus/06-databases/zero-downtime-schema-migration.md) — canonical expand-contract methodology used here.

@@ -5,14 +5,14 @@ domain: interview-playbook
 status: draft
 last_updated: 2026-09-03
 related:
-  - ../../handbook/system-design/idempotency.md
-  - ../../handbook/databases/optimistic-vs-pessimistic-locking.md
+  - ../../syllabus/11-system-design/idempotency.md
+  - ../../syllabus/06-databases/optimistic-vs-pessimistic-locking.md
   - ../../syllabus/02-java/collections/concurrenthashmap-internals.md
-  - ../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md
-  - ../../handbook/system-design/resilience-patterns.md
-  - ../../handbook/databases/connection-pooling-and-sizing.md
-  - ../../handbook/cloud/aws-core-services-for-backend-engineers.md
-  - ../../handbook/system-design/distributed-transactions-saga-and-outbox.md
+  - ../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md
+  - ../../syllabus/11-system-design/resilience-patterns.md
+  - ../../syllabus/06-databases/connection-pooling-and-sizing.md
+  - ../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md
+  - ../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 ---
 
 # Nordstrom — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)
@@ -25,18 +25,18 @@ Guía de preparación puntual para esta entrevista específica, no un capítulo 
 
 ### 1. Idempotency Key pattern (REST + Kafka)
 
-**Ya cubierto en profundidad:** [Idempotency at System Edges](../../handbook/system-design/idempotency.md) (T-809, IWI 7.85) — mecanismo de 3 partes (key/storage/TTL), por qué el `UNIQUE` constraint de la base de datos coordina las escrituras concurrentes en vez de un lock de aplicación, comportamiento del cliente ante una respuesta ambigua, y una reproducción real y medida de dos requests concurrentes con la misma key (ambas devuelven el mismo resultado, un solo cargo real ejecutado).
+**Ya cubierto en profundidad:** [Idempotency at System Edges](../../syllabus/11-system-design/idempotency.md) (T-809, IWI 7.85) — mecanismo de 3 partes (key/storage/TTL), por qué el `UNIQUE` constraint de la base de datos coordina las escrituras concurrentes en vez de un lock de aplicación, comportamiento del cliente ante una respuesta ambigua, y una reproducción real y medida de dos requests concurrentes con la misma key (ambas devuelven el mismo resultado, un solo cargo real ejecutado).
 
 🆕 **Lo que agregué:** el capítulo ya mostraba el patrón correcto (`INSERT` + capturar la violación de unicidad), pero nunca nombraba explícitamente el patrón inseguro como contraste. Agregué una sección nueva ("Check before write" versus "insert/upsert by key") que nombra ambas formas:
 
 - **Check-before-write (inseguro):** `SELECT ... WHERE key = ?`, si no existe, procede. Dos requests concurrentes pueden pasar el check antes de que cualquiera haga el insert — la clásica race de leer-luego-escribir.
 - **Insert/upsert por key (correcto):** el `INSERT` (o `INSERT ... ON CONFLICT`) mismo es el check, atómicamente, vía el unique constraint.
 
-También agregué un puente explícito hacia Kafka: el mismo mecanismo aplica a un consumer que puede recibir el mismo mensaje más de una vez (at-least-once delivery) — la "key" es el ID del evento (o `topic-partition-offset`), y el "write" es el mismo insert/upsert-por-key, idealmente en la misma transacción que el efecto secundario real. El lado productor/broker (idempotent producer, `acks=all`) vive en [Kafka Delivery Semantics and Exactly-Once](../../handbook/kafka/delivery-semantics-and-exactly-once.md) — son mitades complementarias del mismo garantía end-to-end, no técnicas competidoras.
+También agregué un puente explícito hacia Kafka: el mismo mecanismo aplica a un consumer que puede recibir el mismo mensaje más de una vez (at-least-once delivery) — la "key" es el ID del evento (o `topic-partition-offset`), y el "write" es el mismo insert/upsert-por-key, idealmente en la misma transacción que el efecto secundario real. El lado productor/broker (idempotent producer, `acks=all`) vive en [Kafka Delivery Semantics and Exactly-Once](../../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md) — son mitades complementarias del mismo garantía end-to-end, no técnicas competidoras.
 
 ### 2. Atomic conditional UPDATE para race conditions de inventario
 
-🆕 **Gap real, cerrado.** No existía como patrón propio — solo estaban `@Version` (optimistic locking) y `SELECT ... FOR UPDATE` (pessimistic locking). Agregué esta tercera técnica directamente a [Optimistic vs. Pessimistic Locking](../../handbook/databases/optimistic-vs-pessimistic-locking.md) como "A third technique: the atomic conditional UPDATE":
+🆕 **Gap real, cerrado.** No existía como patrón propio — solo estaban `@Version` (optimistic locking) y `SELECT ... FOR UPDATE` (pessimistic locking). Agregué esta tercera técnica directamente a [Optimistic vs. Pessimistic Locking](../../syllabus/06-databases/optimistic-vs-pessimistic-locking.md) como "A third technique: the atomic conditional UPDATE":
 
 ```sql
 UPDATE inventory
@@ -69,7 +69,7 @@ if (rowsAffected == 0) {
 
 ### 4. Connection/thread pool exhaustion + Circuit Breaker
 
-**Ya bien cubierto por separado:** [Connection Pooling and Sizing (HikariCP)](../../handbook/databases/connection-pooling-and-sizing.md) (T-607) tiene un escenario de producción real y medido sobre sizing de pool; [Resilience Patterns](../../handbook/system-design/resilience-patterns.md) (T-515, IWI 7.60) cubre circuit breaker de 3 estados, bulkhead, timeouts y jitter en profundidad.
+**Ya bien cubierto por separado:** [Connection Pooling and Sizing (HikariCP)](../../syllabus/06-databases/connection-pooling-and-sizing.md) (T-607) tiene un escenario de producción real y medido sobre sizing de pool; [Resilience Patterns](../../syllabus/11-system-design/resilience-patterns.md) (T-515, IWI 7.60) cubre circuit breaker de 3 estados, bulkhead, timeouts y jitter en profundidad.
 
 🆕 **Lo que agregué:** los dos capítulos no conectaban explícitamente el escenario exacto que pediste — un dependency downstream lento saturando un pool de tamaño fijo y afectando requests *no relacionados*. Agregué esa narrativa unificada a la sección de bulkhead en Resilience Patterns:
 
@@ -81,11 +81,11 @@ Un pool HikariCP compartido (`maximumPoolSize: 20`) sirve dos endpoints no relac
 
 Los componentes individuales ya están cubiertos por separado y en profundidad; esta es una síntesis nueva de un flujo de diagnóstico ordenado, cada paso enlazando al capítulo canónico correspondiente:
 
-1. **Logs** — buscar excepciones, timeouts o reintentos alrededor de la ventana de tiempo donde p95 subió. Si los logs están limpios, el problema probablemente no es un error explícito sino latencia genuina en alguna dependencia. Ver [Logging, Metrics, Tracing, and OpenTelemetry](../../handbook/performance/logging-metrics-tracing-and-opentelemetry.md).
-2. **Métricas** — confirmar que es realmente cola alta (p95/p99), no un problema de medición. Revisar el mecanismo de medición mismo: un load test o dashboard con *coordinated omission* puede subestimar la cola real. Ver [Percentiles, Tail Latency, and Coordinated Omission](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md).
+1. **Logs** — buscar excepciones, timeouts o reintentos alrededor de la ventana de tiempo donde p95 subió. Si los logs están limpios, el problema probablemente no es un error explícito sino latencia genuina en alguna dependencia. Ver [Logging, Metrics, Tracing, and OpenTelemetry](../../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md).
+2. **Métricas** — confirmar que es realmente cola alta (p95/p99), no un problema de medición. Revisar el mecanismo de medición mismo: un load test o dashboard con *coordinated omission* puede subestimar la cola real. Ver [Percentiles, Tail Latency, and Coordinated Omission](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md).
 3. **Traces distribuidos** — con CPU normal, la latencia casi siempre está en un span de espera (I/O, downstream), no de cómputo. Un `traceId` compartido reconstruye exactamente en qué servicio y en qué operación se acumula el tiempo. Ver el mismo capítulo de logging/metrics/tracing — la propagación de contexto de trace es el mecanismo que hace esto posible.
-4. **Connection/thread pools** — revisar si hay requests esperando por una conexión o un thread disponible (pool exhaustion), no por trabajo real. Ver [Connection Pooling and Sizing](../../handbook/databases/connection-pooling-and-sizing.md) y [Executors and Thread Pool Sizing](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md).
-5. **Dependencias downstream** — si el pool está sano pero la latencia persiste, el downstream mismo es lento (no caído — CPU normal descarta un problema local de cómputo). Ver [Resilience Patterns](../../handbook/system-design/resilience-patterns.md) (timeout selection es una decisión de percentil, no una adivinanza) y [Distributed Systems Failure Modes](../../handbook/system-design/distributed-systems-failure-modes.md).
+4. **Connection/thread pools** — revisar si hay requests esperando por una conexión o un thread disponible (pool exhaustion), no por trabajo real. Ver [Connection Pooling and Sizing](../../syllabus/06-databases/connection-pooling-and-sizing.md) y [Executors and Thread Pool Sizing](../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md).
+5. **Dependencias downstream** — si el pool está sano pero la latencia persiste, el downstream mismo es lento (no caído — CPU normal descarta un problema local de cómputo). Ver [Resilience Patterns](../../syllabus/11-system-design/resilience-patterns.md) (timeout selection es una decisión de percentil, no una adivinanza) y [Distributed Systems Failure Modes](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md).
 
 **Por qué este orden:** cada paso descarta una categoría de causa antes de pasar a la siguiente — CPU normal ya descarta cómputo local, así que el orden va de la señal más barata de revisar (logs) a la más cara (trazar un downstream específico), sin saltar directo a "debe ser el downstream" sin antes confirmar que no es el pool.
 
@@ -93,17 +93,17 @@ Los componentes individuales ya están cubiertos por separado y en profundidad; 
 
 ### 6. AWS para desplegar microservicios Java (nivel conceptual)
 
-**Ya bien cubierto:** [AWS Core Services for Backend Engineers](../../handbook/cloud/aws-core-services-for-backend-engineers.md) (T-1006) — EC2/ECS/EKS/Lambda como espectro de ownership operacional vs. conveniencia, RDS vs. DynamoDB con el mismo método de storage-selection del programa, SQS (punto-a-punto) vs. SNS (pub/sub) y el patrón combinado "SNS fan-out a múltiples SQS".
+**Ya bien cubierto:** [AWS Core Services for Backend Engineers](../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md) (T-1006) — EC2/ECS/EKS/Lambda como espectro de ownership operacional vs. conveniencia, RDS vs. DynamoDB con el mismo método de storage-selection del programa, SQS (punto-a-punto) vs. SNS (pub/sub) y el patrón combinado "SNS fan-out a múltiples SQS".
 
 🆕 **Lo que agregué:** ALB y Auto Scaling no estaban mencionados en ningún capítulo del handbook. Agregué una sección nueva ("Traffic distribution and elasticity"):
 
-- **ALB (Application Load Balancer):** Layer-7 — puede rutear por path/host header y terminar TLS, a diferencia de un Network Load Balancer (Layer-4). El mismo rol conceptual que cubre [Load Balancing, Service Discovery, and Health Checking](../../handbook/system-design/load-balancing-service-discovery-and-health-checking.md), con AWS administrando el balanceador.
+- **ALB (Application Load Balancer):** Layer-7 — puede rutear por path/host header y terminar TLS, a diferencia de un Network Load Balancer (Layer-4). El mismo rol conceptual que cubre [Load Balancing, Service Discovery, and Health Checking](../../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md), con AWS administrando el balanceador.
 - **Auto Scaling:** un Auto Scaling Group (EC2), Service Auto Scaling (ECS), o un HorizontalPodAutoscaler (EKS) — agrega o quita instancias/tasks/pods según una métrica (CPU, request-count), en vez de dimensionar una vez para el pico y dejarlo así.
 - **Cómo se componen:** el target group del ALB se actualiza automáticamente conforme Auto Scaling agrega o quita instancias — un scale-out es invisible para el caller, que sigue golpeando el mismo endpoint del ALB mientras el pool de targets saludables detrás crece o se achica.
 
 ### 7. Saga pattern (choreography vs orchestration)
 
-**Ya bien cubierto, sin gap.** [Distributed Transactions: Saga and Outbox](../../handbook/system-design/distributed-transactions-saga-and-outbox.md) (T-618, IWI 7.65) distingue claramente:
+**Ya bien cubierto, sin gap.** [Distributed Transactions: Saga and Outbox](../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md) (T-618, IWI 7.65) distingue claramente:
 
 - **Orchestration:** un coordinador central llama explícitamente a cada servicio e invoca compensaciones ante fallo — más fácil de debuggear, pero el coordinador es una dependencia estructural para cada paso.
 - **Choreography:** cada servicio reacciona a eventos del paso anterior y emite el suyo — sin coordinador central, pero el flujo es implícito y genuinamente más difícil de trazar.
@@ -114,7 +114,7 @@ Incluye tabla de trade-offs, por qué una acción compensatoria es una operació
 
 ### 8. Comandos básicos de kubectl para debugging de pods
 
-🆕 **Gap parcial, cerrado.** Los comandos aparecían mencionados de pasada dentro de narrativas de incidentes (`kubectl get pods`, `kubectl describe pod` en [Kubernetes Resource Limits, Probes, and JVM Sizing](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md)), pero no como referencia práctica dedicada. Agregué una sección nueva a [Kubernetes Objects, Scheduling, and Networking](../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) ("A Practical kubectl Debugging Workflow"):
+🆕 **Gap parcial, cerrado.** Los comandos aparecían mencionados de pasada dentro de narrativas de incidentes (`kubectl get pods`, `kubectl describe pod` en [Kubernetes Resource Limits, Probes, and JVM Sizing](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md)), pero no como referencia práctica dedicada. Agregué una sección nueva a [Kubernetes Objects, Scheduling, and Networking](../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md) ("A Practical kubectl Debugging Workflow"):
 
 1. **`kubectl get pods`** — primer comando siempre. `STATUS` (`CrashLoopBackOff`, `Pending`, `ImagePullBackOff`) y `READY` (`0/1` con `Running` significa que el contenedor corre pero falló su readiness probe — distinción que se suele confundir).
 2. **`kubectl describe pod <name>`** — el comando más denso en información. `Last State: Terminated, Reason: OOMKilled, Exit Code: 137` significa que el kernel mató el contenedor por exceder su límite de memoria — un kill de infraestructura sin ninguna señal a nivel de aplicación, así que los logs de la app no van a mostrar nada útil. La sección `Events` es el mejor lugar para ver un `FailedScheduling` o un probe fallando, antes de que el pod sea matado por eso.
@@ -127,11 +127,11 @@ Incluye tabla de trade-offs, por qué una acción compensatoria es una operació
 
 | Archivo | Qué se agregó |
 |---|---|
-| [`handbook/system-design/idempotency.md`](../../handbook/system-design/idempotency.md) | "Check before write" vs "insert/upsert by key" nombrados explícitamente; puente hacia idempotencia en consumers de Kafka |
-| [`handbook/databases/optimistic-vs-pessimistic-locking.md`](../../handbook/databases/optimistic-vs-pessimistic-locking.md) | Tercera técnica: atomic conditional UPDATE, con código SQL/Java y tabla comparativa actualizada |
+| [`syllabus/11-system-design/idempotency.md`](../../syllabus/11-system-design/idempotency.md) | "Check before write" vs "insert/upsert by key" nombrados explícitamente; puente hacia idempotencia en consumers de Kafka |
+| [`syllabus/06-databases/optimistic-vs-pessimistic-locking.md`](../../syllabus/06-databases/optimistic-vs-pessimistic-locking.md) | Tercera técnica: atomic conditional UPDATE, con código SQL/Java y tabla comparativa actualizada |
 | [`syllabus/02-java/collections/concurrenthashmap-internals.md`](../../syllabus/02-java/collections/concurrenthashmap-internals.md) | Mecanismo del infinite loop en JDK 7 durante resize concurrente, y por qué JDK 8+ ya no lo reproduce (pero sigue sin ser thread-safe) |
-| [`handbook/system-design/resilience-patterns.md`](../../handbook/system-design/resilience-patterns.md) | Narrativa unificada: pool HikariCP compartido + downstream lento + circuit breaker como fix |
-| [`handbook/cloud/aws-core-services-for-backend-engineers.md`](../../handbook/cloud/aws-core-services-for-backend-engineers.md) | ALB y Auto Scaling (ASG/ECS/HPA) como sección nueva |
-| [`handbook/cloud/kubernetes-objects-scheduling-and-networking.md`](../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) | Flujo práctico de debugging con kubectl (4 comandos, en orden) |
+| [`syllabus/11-system-design/resilience-patterns.md`](../../syllabus/11-system-design/resilience-patterns.md) | Narrativa unificada: pool HikariCP compartido + downstream lento + circuit breaker como fix |
+| [`syllabus/15-cloud/aws-core-services-for-backend-engineers.md`](../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md) | ALB y Auto Scaling (ASG/ECS/HPA) como sección nueva |
+| [`syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`](../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md) | Flujo práctico de debugging con kubectl (4 comandos, en orden) |
 
 **Nota de honestidad:** los snippets de código nuevos en esta guía (atomic UPDATE) son ilustrativos y sintácticamente correctos, pero no fueron ejecutados como parte de una demo real con base de datos — a diferencia del resto del contenido de este repositorio, que sí exige evidencia ejecutada. Si querés una demo real y medida del atomic-UPDATE pattern (dos threads compitiendo por el mismo `stock`), decímelo y la construyo con el mismo rigor que el resto del handbook.

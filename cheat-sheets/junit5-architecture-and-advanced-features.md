@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # JUnit 5 Architecture and Advanced Features
 
-**Canonical chapter:** [`handbook/testing/junit5-architecture-and-advanced-features.md`](../handbook/testing/junit5-architecture-and-advanced-features.md)
+**Canonical chapter:** [`syllabus/08-testing/junit5-architecture-and-advanced-features.md`](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)
 
 ## Core Mental Model
 
@@ -73,5 +73,5 @@ Filtering to tag=fast: 9 tests found, 9 succeeded
 
 ## Related
 
-- `handbook/testing/test-strategy-and-test-doubles.md`
-- `handbook/testing/writing-tests-live-in-an-interview.md`
+- `syllabus/08-testing/test-strategy-and-test-doubles.md`
+- `syllabus/08-testing/writing-tests-live-in-an-interview.md`

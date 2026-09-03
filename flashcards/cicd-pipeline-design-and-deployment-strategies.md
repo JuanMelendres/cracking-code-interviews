@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: CI/CD Pipeline Design and Deployment Strategies
 
-**Canonical chapter:** [`handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md`](../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md`](../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md)
 
 ## Card: How the three strategies bound risk
 
@@ -27,7 +27,7 @@ Different mechanisms, different costs — the right choice depends on the specif
 Treating all three as interchangeable "ways to deploy" without their distinct risk-bounding mechanisms.
 
 **Related:**
-[Definition and Purpose](../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md#definition-and-purpose)
 
 ## Card: What canary's value depends on
 
@@ -44,7 +44,7 @@ A fully-automated promotion gate can only catch what its thresholds were explici
 Automatically promoting after a fixed wait with no alert, treating silence as proof of health.
 
 **Related:**
-[Production Scenarios](../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md#production-scenarios)
+[Production Scenarios](../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md#production-scenarios)
 
 ## Card: Blue-green's real cost
 
@@ -61,4 +61,4 @@ The specific, concrete trade-off against blue-green's instant-rollback benefit.
 Describing only blue-green's benefits without naming this specific cost.
 
 **Related:**
-[Trade-offs](../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md#trade-offs)
+[Trade-offs](../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md#trade-offs)

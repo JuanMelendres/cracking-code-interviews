@@ -5,7 +5,7 @@ domain: kafka
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/kafka/delivery-semantics-and-exactly-once.md
+  - ../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
 source: handbook/kafka/delivery-semantics-and-exactly-once.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The most important framing in this incident is naming what did *not* go wrong: a
 
 ## Related Handbook Chapters
 
-- [Delivery Semantics and Exactly-Once](../handbook/kafka/delivery-semantics-and-exactly-once.md) — canonical at-least-once/idempotency mechanics used here.
-- [Idempotency at System Edges](../handbook/system-design/idempotency.md) — the general idempotency-key pattern this dedupe table is an instance of.
+- [Delivery Semantics and Exactly-Once](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md) — canonical at-least-once/idempotency mechanics used here.
+- [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md) — the general idempotency-key pattern this dedupe table is an instance of.

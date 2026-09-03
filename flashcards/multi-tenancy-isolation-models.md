@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Multi-Tenancy Isolation Models
 
-**Canonical chapter:** [`handbook/security/multi-tenancy-isolation-models.md`](../handbook/security/multi-tenancy-isolation-models.md)
+**Canonical chapter:** [`syllabus/12-security/multi-tenancy-isolation-models.md`](../syllabus/12-security/multi-tenancy-isolation-models.md)
 
 ## Card: The key weakness of application-level tenant_id filtering
 
@@ -27,7 +27,7 @@ The structural reason RLS is preferred over relying on application-code discipli
 Treating consistent application-level `tenant_id` filtering as sufficient isolation on its own.
 
 **Related:**
-[handbook/security/multi-tenancy-isolation-models.md](../handbook/security/multi-tenancy-isolation-models.md)
+[handbook/security/multi-tenancy-isolation-models.md](../syllabus/12-security/multi-tenancy-isolation-models.md)
 
 ## Card: Does RLS guarantee isolation unconditionally
 
@@ -44,7 +44,7 @@ The specific, easy-to-miss gap that makes an RLS-only claim of isolation incompl
 Assuming RLS provides isolation without auditing which database roles are exempt from it.
 
 **Related:**
-[handbook/security/multi-tenancy-isolation-models.md](../handbook/security/multi-tenancy-isolation-models.md)
+[handbook/security/multi-tenancy-isolation-models.md](../syllabus/12-security/multi-tenancy-isolation-models.md)
 
 ## Card: What an RLS query returns with an unset tenant context
 
@@ -61,4 +61,4 @@ Confirms RLS's default behavior fails safely rather than silently leaking data w
 Assuming a missing tenant-context variable would either error loudly or return every tenant's rows.
 
 **Related:**
-[handbook/security/multi-tenancy-isolation-models.md](../handbook/security/multi-tenancy-isolation-models.md)
+[handbook/security/multi-tenancy-isolation-models.md](../syllabus/12-security/multi-tenancy-isolation-models.md)

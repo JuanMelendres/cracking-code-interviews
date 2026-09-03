@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Kubernetes Resource Limits, Probes, and JVM Sizing
 
-**Canonical chapter:** [`handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md`](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md`](../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md)
 
 ## Core Mental Model
 
@@ -79,4 +79,4 @@ Scenario B (OOMKilled): --memory=100m, -Xmx256m
 ## Related
 
 - [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md)
-- `handbook/cloud/kubernetes-objects-scheduling-and-networking.md`
+- `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`

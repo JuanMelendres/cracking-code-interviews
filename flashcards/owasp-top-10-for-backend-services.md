@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: OWASP Top 10 for Backend Services
 
-**Canonical chapter:** [`handbook/security/owasp-top-10-for-backend-services.md`](../handbook/security/owasp-top-10-for-backend-services.md)
+**Canonical chapter:** [`syllabus/12-security/owasp-top-10-for-backend-services.md`](../syllabus/12-security/owasp-top-10-for-backend-services.md)
 
 ## Card: Is the OWASP Top 10 exhaustive
 
@@ -27,7 +27,7 @@ Prevents treating "we covered the Top 10" as a complete security review.
 Presenting Top 10 compliance as equivalent to a comprehensive security audit.
 
 **Related:**
-[handbook/security/owasp-top-10-for-backend-services.md](../handbook/security/owasp-top-10-for-backend-services.md)
+[handbook/security/owasp-top-10-for-backend-services.md](../syllabus/12-security/owasp-top-10-for-backend-services.md)
 
 ## Card: Why IDOR routinely passes functional testing
 
@@ -44,7 +44,7 @@ Explains why IDOR is one of the most commonly shipped-to-production vulnerabilit
 Assuming a passing functional test suite means access-control checks are correct.
 
 **Related:**
-[handbook/security/owasp-top-10-for-backend-services.md](../handbook/security/owasp-top-10-for-backend-services.md)
+[handbook/security/owasp-top-10-for-backend-services.md](../syllabus/12-security/owasp-top-10-for-backend-services.md)
 
 ## Card: Why a denylist is insufficient against SSRF
 
@@ -61,4 +61,4 @@ The precise, structural reason a denylist-based SSRF defense fails under real at
 Believing a blocked-hostname denylist is sufficient SSRF protection.
 
 **Related:**
-[handbook/security/owasp-top-10-for-backend-services.md](../handbook/security/owasp-top-10-for-backend-services.md)
+[handbook/security/owasp-top-10-for-backend-services.md](../syllabus/12-security/owasp-top-10-for-backend-services.md)

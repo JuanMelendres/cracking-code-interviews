@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Kafka Delivery Semantics and Exactly-Once Processing
 
-**Canonical chapter:** [`handbook/kafka/delivery-semantics-and-exactly-once.md`](../handbook/kafka/delivery-semantics-and-exactly-once.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md)
 
 ## Card: What causes at-least-once duplicates
 
@@ -27,7 +27,7 @@ The standard, generally-correct default — but only safe if processing is idemp
 Treating redelivery as a bug rather than expected behavior to design for.
 
 **Related:**
-[Internal Implementation](../handbook/kafka/delivery-semantics-and-exactly-once.md#internal-implementation)
+[Internal Implementation](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md#internal-implementation)
 
 ## Card: What causes at-most-once loss
 
@@ -44,7 +44,7 @@ Explains why at-most-once is rarely the right default.
 Choosing at-most-once to "avoid duplicates" without recognizing the loss risk it trades in.
 
 **Related:**
-[Internal Implementation](../handbook/kafka/delivery-semantics-and-exactly-once.md#internal-implementation)
+[Internal Implementation](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md#internal-implementation)
 
 ## Card: Scope of Kafka's exactly-once
 
@@ -61,4 +61,4 @@ The precise, scoped answer to this project's own discriminating interview questi
 Assuming Kafka's transactional producer/consumer setup alone makes any external write exactly-once.
 
 **Related:**
-[Core Concepts](../handbook/kafka/delivery-semantics-and-exactly-once.md#core-concepts)
+[Core Concepts](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md#core-concepts)

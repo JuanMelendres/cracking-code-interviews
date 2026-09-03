@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Resilience Patterns
 
-**Canonical chapter:** [`handbook/system-design/resilience-patterns.md`](../handbook/system-design/resilience-patterns.md)
+**Canonical chapter:** [`syllabus/11-system-design/resilience-patterns.md`](../syllabus/11-system-design/resilience-patterns.md)
 
 ## Core Mental Model
 
@@ -77,5 +77,5 @@ With-jitter delays,     attempt1: 72,68,30,27,66ms (spread across the window)
 
 ## Related
 
-- `handbook/system-design/distributed-systems-failure-modes.md`
+- `syllabus/10-distributed-systems/distributed-systems-failure-modes.md`
 - `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`

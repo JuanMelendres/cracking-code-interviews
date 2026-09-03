@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/system-design/load-balancing-service-discovery-and-health-checking.md
-  - ../handbook/system-design/distributed-systems-failure-modes.md
+  - ../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md
+  - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
 source: handbook/system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The value of this scenario is procedural, not just numerical: it demonstrates th
 
 ## Related Handbook Chapters
 
-- [Load Balancing, Service Discovery, and Health Checking](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md) — canonical mechanics of active/passive health checking and the `HealthCheckFailoverDemo` measurement this scenario reproduces.
-- [Distributed Systems Failure Modes](../handbook/system-design/distributed-systems-failure-modes.md) — the broader failure-detection context this bound feeds into.
+- [Load Balancing, Service Discovery, and Health Checking](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md) — canonical mechanics of active/passive health checking and the `HealthCheckFailoverDemo` measurement this scenario reproduces.
+- [Distributed Systems Failure Modes](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md) — the broader failure-detection context this bound feeds into.

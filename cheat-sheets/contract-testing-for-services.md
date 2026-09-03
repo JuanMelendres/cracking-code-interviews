@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Contract Testing for Services
 
-**Canonical chapter:** [`handbook/testing/contract-testing-for-services.md`](../handbook/testing/contract-testing-for-services.md)
+**Canonical chapter:** [`syllabus/08-testing/contract-testing-for-services.md`](../syllabus/08-testing/contract-testing-for-services.md)
 
 ## Core Mental Model
 
@@ -70,6 +70,6 @@ The verification test runs against the provider's real, live-generated response 
 
 ## Related
 
-- `handbook/testing/integration-testing-against-real-dependencies.md`
+- `syllabus/08-testing/integration-testing-against-real-dependencies.md`
 - `syllabus/07-api-design/api-design.md`
-- `handbook/kafka/producer-semantics-and-partition-keys.md`
+- `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`

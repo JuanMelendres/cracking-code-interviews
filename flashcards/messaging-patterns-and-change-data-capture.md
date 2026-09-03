@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Messaging Patterns and Change Data Capture
 
-**Canonical chapter:** [`handbook/system-design/messaging-patterns-and-change-data-capture.md`](../handbook/system-design/messaging-patterns-and-change-data-capture.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md`](../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md)
 
 ## Card: What does CDC actually read from?
 
@@ -27,7 +27,7 @@ Distinguishes real understanding from name-dropping "CDC" or "Debezium" without 
 Describing CDC as a polling mechanism, confusing it with the outbox pattern's poller.
 
 **Related:**
-[handbook/system-design/messaging-patterns-and-change-data-capture.md](../handbook/system-design/messaging-patterns-and-change-data-capture.md)
+[handbook/system-design/messaging-patterns-and-change-data-capture.md](../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md)
 
 ## Card: CDC's real operational cost
 
@@ -44,7 +44,7 @@ CDC's "zero application-code changes" benefit doesn't mean zero operational resp
 Assuming CDC is operationally free just because it requires no code changes.
 
 **Related:**
-[handbook/system-design/messaging-patterns-and-change-data-capture.md](../handbook/system-design/messaging-patterns-and-change-data-capture.md), [handbook/databases/mvcc-vacuum-and-bloat.md](../handbook/databases/mvcc-vacuum-and-bloat.md)
+[handbook/system-design/messaging-patterns-and-change-data-capture.md](../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md), [handbook/databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
 
 ## Card: Point-to-point vs. publish-subscribe, proven
 
@@ -61,4 +61,4 @@ Makes the abstract pattern distinction concrete and measurable rather than a def
 Assuming the delivery pattern is determined by the message or topic itself, rather than by how consumers are grouped.
 
 **Related:**
-[handbook/system-design/messaging-patterns-and-change-data-capture.md](../handbook/system-design/messaging-patterns-and-change-data-capture.md)
+[handbook/system-design/messaging-patterns-and-change-data-capture.md](../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md)

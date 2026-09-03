@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Kafka Producer Semantics — acks, Idempotence, Partition Keys
 
-**Canonical chapter:** [`handbook/kafka/producer-semantics-and-partition-keys.md`](../handbook/kafka/producer-semantics-and-partition-keys.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md)
 
 ## Core Mental Model
 
@@ -89,6 +89,6 @@ retries = 2147483647
 
 ## Related
 
-- `handbook/kafka/kafka-architecture-fundamentals.md`
-- `handbook/kafka/delivery-semantics-and-exactly-once.md`
+- `syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md`
+- `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`
 - `production-cookbook/silent-data-loss-from-a-shrunk-isr-without-min-insync-replicas.md`

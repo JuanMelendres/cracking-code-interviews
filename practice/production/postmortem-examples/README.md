@@ -1,7 +1,7 @@
 # Incident response and blameless postmortems (T-1207) — runnable verification
 
 Real, executed output backing
-[`handbook/performance/incident-response-and-blameless-postmortems.md`](../../../handbook/performance/incident-response-and-blameless-postmortems.md)
+[`syllabus/13-observability/incident-response-and-blameless-postmortems.md`](../../../syllabus/13-observability/incident-response-and-blameless-postmortems.md)
 (T-1207). A real Python linter run against real, checked-in example documents — not a
 description of what "blameless" or "contributing factors" should mean.
 

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Locks, Deadlocks, and Lock Escalation
 
-**Canonical chapter:** [`handbook/databases/locks-deadlocks-and-lock-escalation.md`](../handbook/databases/locks-deadlocks-and-lock-escalation.md)
+**Canonical chapter:** [`syllabus/06-databases/locks-deadlocks-and-lock-escalation.md`](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md)
 
 ## Core Mental Model
 
@@ -73,7 +73,7 @@ A lock is a promise, a deadlock is two promises that can't both be kept, and esc
 
 ## Related
 
-- `handbook/databases/isolation-levels-and-concurrency-anomalies.md`
-- `handbook/databases/optimistic-vs-pessimistic-locking.md`
-- `handbook/databases/mvcc-vacuum-and-bloat.md`
+- `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`
+- `syllabus/06-databases/optimistic-vs-pessimistic-locking.md`
+- `syllabus/06-databases/mvcc-vacuum-and-bloat.md`
 - `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md`

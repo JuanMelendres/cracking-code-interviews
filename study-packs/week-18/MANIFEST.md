@@ -18,11 +18,11 @@ last_reviewed: 2026-08-02
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, schedule, exit criteria | 738 |
-| 2 | `01-performance-and-load-testing-methodology.md` | T-1106 — summary + link; full chapter canonical at `handbook/testing/performance-and-load-testing-methodology.md` | 548 |
-| 3 | `02-writing-tests-live-in-an-interview.md` | T-1108 — summary + link; full chapter canonical at `handbook/testing/writing-tests-live-in-an-interview.md` | 503 |
-| 4 | `03-contract-testing-for-services.md` | T-1105 — summary + link; full chapter canonical at `handbook/testing/contract-testing-for-services.md` | 517 |
-| 5 | `04-junit5-architecture-and-advanced-features.md` | T-1102 — summary + link; full chapter canonical at `handbook/testing/junit5-architecture-and-advanced-features.md` | 491 |
-| 6 | `05-mutation-and-property-based-testing.md` | T-1107 — summary + link; full chapter canonical at `handbook/testing/mutation-and-property-based-testing.md` | 591 |
+| 2 | `01-performance-and-load-testing-methodology.md` | T-1106 — summary + link; full chapter canonical at `syllabus/08-testing/performance-and-load-testing-methodology.md` | 548 |
+| 3 | `02-writing-tests-live-in-an-interview.md` | T-1108 — summary + link; full chapter canonical at `syllabus/08-testing/writing-tests-live-in-an-interview.md` | 503 |
+| 4 | `03-contract-testing-for-services.md` | T-1105 — summary + link; full chapter canonical at `syllabus/08-testing/contract-testing-for-services.md` | 517 |
+| 5 | `04-junit5-architecture-and-advanced-features.md` | T-1102 — summary + link; full chapter canonical at `syllabus/08-testing/junit5-architecture-and-advanced-features.md` | 491 |
+| 6 | `05-mutation-and-property-based-testing.md` | T-1107 — summary + link; full chapter canonical at `syllabus/08-testing/mutation-and-property-based-testing.md` | 591 |
 | 7 | `06-hands-on-lab.md` | 5 labs, all real and reproducible | 568 |
 | 8 | `07-flashcards.md` | 15 cards | 1,073 |
 | 9 | `08-week-18-mock-interview.md` | 45-min Testing technical round (including a live-coding question) | 886 |
@@ -45,7 +45,7 @@ last_reviewed: 2026-08-02
 
 ## Errata addressed this week
 
-**Coverage-audit correction:** `00-project/coverage-audit-2026-07-31.md` reported Testing at 2/8 register topics covered (T-1101, T-1104). This week found the real number was 3/8 — `handbook/testing/test-strategy-and-test-doubles.md`'s own "Topic register" line reads `T-1101/T-1103`, meaning T-1103 (Mockito, test doubles, and mocking boundaries) was already covered, bundled into that chapter, but never tagged in any `study-packs/*/topic_id` front-matter field — exactly the kind of bundled-chapter undercounting the audit's own methodology section (§6) flagged as a known limitation of its grep-based approach. This left 5, not 6, genuinely uncovered Testing topics, all closed this week.
+**Coverage-audit correction:** `00-project/coverage-audit-2026-07-31.md` reported Testing at 2/8 register topics covered (T-1101, T-1104). This week found the real number was 3/8 — `syllabus/08-testing/test-strategy-and-test-doubles.md`'s own "Topic register" line reads `T-1101/T-1103`, meaning T-1103 (Mockito, test doubles, and mocking boundaries) was already covered, bundled into that chapter, but never tagged in any `study-packs/*/topic_id` front-matter field — exactly the kind of bundled-chapter undercounting the audit's own methodology section (§6) flagged as a known limitation of its grep-based approach. This left 5, not 6, genuinely uncovered Testing topics, all closed this week.
 
 ## Scope note
 

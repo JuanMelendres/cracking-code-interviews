@@ -5,7 +5,7 @@ domain: architecture
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/architecture/clean-hexagonal-architecture.md
+  - ../syllabus/17-architecture/clean-hexagonal-architecture.md
 source: handbook/architecture/clean-hexagonal-architecture.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The estimate failure here isn't really about architecture — it's about the gap
 
 ## Related Handbook Chapters
 
-- [Clean Hexagonal Architecture](../handbook/architecture/clean-hexagonal-architecture.md) — canonical dependency-direction rule and hexagonal-architecture mechanics used here.
+- [Clean Hexagonal Architecture](../syllabus/17-architecture/clean-hexagonal-architecture.md) — canonical dependency-direction rule and hexagonal-architecture mechanics used here.

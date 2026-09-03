@@ -1,7 +1,7 @@
 # Load balancing, service discovery, and health checking (T-805) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/system-design/load-balancing-service-discovery-and-health-checking.md`](../../../../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
+[`syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`](../../../../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md)
 (T-805). No framework, no mocked responses — a real reverse proxy (`java.net.http.HttpClient`
 forwarding to real `com.sun.net.httpserver.HttpServer` backends), real round-robin and
 least-connections routing decisions, and a real active health checker on its own

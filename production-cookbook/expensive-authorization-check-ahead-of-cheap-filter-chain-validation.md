@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/spring/security-filter-chain.md
+  - ../syllabus/05-spring/security-filter-chain.md
 source: handbook/spring/security-filter-chain.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ Filter and interceptor ordering is exactly the kind of decision that's easy to l
 
 ## Related Handbook Chapters
 
-- [Security Filter Chain](../handbook/spring/security-filter-chain.md) — canonical filter-ordering and cost/decisiveness principle used here.
+- [Security Filter Chain](../syllabus/05-spring/security-filter-chain.md) — canonical filter-ordering and cost/decisiveness principle used here.

@@ -18,7 +18,7 @@ Java Core, Collections, and Cloud & Infrastructure were the three domains with z
 
 ## Prerequisites
 
-None formally required, though `handbook/architecture/clean-hexagonal-architecture.md` and `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` are referenced for cross-topic connections (immutability's thread-safety implications, generic collections used in ports/adapters).
+None formally required, though `syllabus/17-architecture/clean-hexagonal-architecture.md` and `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` are referenced for cross-topic connections (immutability's thread-safety implications, generic collections used in ports/adapters).
 
 ## Schedule
 

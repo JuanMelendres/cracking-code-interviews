@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # The Modular Monolith as a Deliberate Choice
 
-**Canonical chapter:** [`handbook/architecture/modular-monolith-as-a-deliberate-choice.md`](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md)
+**Canonical chapter:** [`syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md`](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md)
 
 ## Core Mental Model
 
@@ -71,7 +71,7 @@ A module boundary that isn't mechanically enforced is a comment, not a boundary.
 
 ## Related
 
-- `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`
-- `handbook/architecture/ddd-tactical-design-aggregates.md`
-- `handbook/architecture/clean-hexagonal-architecture.md`
-- `handbook/architecture/architecture-decision-records.md`
+- `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`
+- `syllabus/17-architecture/ddd-tactical-design-aggregates.md`
+- `syllabus/17-architecture/clean-hexagonal-architecture.md`
+- `syllabus/17-architecture/architecture-decision-records.md`

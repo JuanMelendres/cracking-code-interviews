@@ -17,11 +17,11 @@ last_reviewed: 2026-07-31
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, schedule, exit criteria, evidence-scoping note | 697 |
-| 2 | `01-kubernetes-resource-limits-probes-and-jvm-sizing.md` | T-1003 — summary + link; full chapter canonical at `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` | 582 |
-| 3 | `02-kubernetes-objects-scheduling-and-networking.md` | T-1002 — summary + link; full chapter canonical at `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` | 504 |
-| 4 | `03-cloud-cost-and-scaling-economics.md` | T-1007 — summary + link; full chapter canonical at `handbook/cloud/cloud-cost-and-scaling-economics.md` | 504 |
-| 5 | `04-cicd-pipeline-design-and-deployment-strategies.md` | T-1009 — summary + link; full chapter canonical at `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` | 527 |
-| 6 | `05-aws-core-services-for-backend-engineers.md` | T-1006 — summary + link; full chapter canonical at `handbook/cloud/aws-core-services-for-backend-engineers.md` | 491 |
+| 2 | `01-kubernetes-resource-limits-probes-and-jvm-sizing.md` | T-1003 — summary + link; full chapter canonical at `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md` | 582 |
+| 3 | `02-kubernetes-objects-scheduling-and-networking.md` | T-1002 — summary + link; full chapter canonical at `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md` | 504 |
+| 4 | `03-cloud-cost-and-scaling-economics.md` | T-1007 — summary + link; full chapter canonical at `syllabus/15-cloud/cloud-cost-and-scaling-economics.md` | 504 |
+| 5 | `04-cicd-pipeline-design-and-deployment-strategies.md` | T-1009 — summary + link; full chapter canonical at `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md` | 527 |
+| 6 | `05-aws-core-services-for-backend-engineers.md` | T-1006 — summary + link; full chapter canonical at `syllabus/15-cloud/aws-core-services-for-backend-engineers.md` | 491 |
 | 7 | `06-hands-on-lab.md` | 5 labs, all real and reproducible | 442 |
 | 8 | `07-flashcards.md` | 15 cards | 1,072 |
 | 9 | `08-week-15-mock-interview.md` | 45-min Cloud & Infrastructure technical round | 676 |
@@ -39,7 +39,7 @@ last_reviewed: 2026-07-31
 | Docker + Java — OutOfMemoryError vs OOMKilled | **Executed.** Real `java.lang.OutOfMemoryError` (exit 1, full stack trace) for a 512m container with `-Xmx64m`; real OOMKilled (exit 137) for a 100m container with `-Xmx256m`, confirmed via `docker inspect --format '{{.State.OOMKilled}}'` returning `true`. Source: `practice/java/week-15/container-ergonomics/` |
 | Kubernetes manifest | **Syntax-validated**, not applied against a live cluster (stated explicitly). `ruby -ryaml` confirms 3 documents (Deployment, Service, HorizontalPodAutoscaler) parse correctly. Source: `practice/k8s/week-15/deployment-with-probes-and-limits.yaml` |
 | CI/CD pipeline | **Syntax-validated**, not executed against a live GitHub Actions runner (stated explicitly). `ruby -ryaml` confirms all 3 jobs parse correctly. Source: `practice/k8s/week-15/ci-cd-pipeline.yaml` |
-| Cloud cost calculations | **Real arithmetic** against clearly-labeled illustrative unit prices (not live-scraped current AWS rates — stated explicitly, verify against published rates for any real decision). All figures independently re-checked. Source: `handbook/cloud/cloud-cost-and-scaling-economics.md` §Internal Implementation |
+| Cloud cost calculations | **Real arithmetic** against clearly-labeled illustrative unit prices (not live-scraped current AWS rates — stated explicitly, verify against published rates for any real decision). All figures independently re-checked. Source: `syllabus/15-cloud/cloud-cost-and-scaling-economics.md` §Internal Implementation |
 | Interview statistics | None invented anywhere in this pack |
 
 ## Errata addressed this week

@@ -9,7 +9,7 @@ deciders: [platform-architecture-group]
 
 > **Representative scenario.** A worked example, not a record of a real company
 > decision. Every number cited is real, measured evidence from this repository's own
-> [Multi-Region, Failover, and Disaster Recovery](../../../handbook/system-design/multi-region-failover-and-disaster-recovery.md)
+> [Multi-Region, Failover, and Disaster Recovery](../../../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md)
 > chapter and its [practice code](../../sql/multi-region-failover-and-dr/README.md).
 
 ## Status
@@ -77,7 +77,7 @@ accepted as the real price of a verified RPO/RTO number instead of a hoped-for o
 - A full second node runs continuously in the DR region, a real, ongoing cost that
   Option A would have avoided.
 - The failover procedure must include real, unconditional fencing of the old primary
-  before promotion — per this repository's own [real, reproduced split-brain finding](../../../handbook/system-design/multi-region-failover-and-disaster-recovery.md#production-scenarios)
+  before promotion — per this repository's own [real, reproduced split-brain finding](../../../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md#production-scenarios)
   — or this decision's real RPO advantage is undermined by a different real risk.
 
 **Follow-up:**
@@ -89,5 +89,5 @@ accepted as the real price of a verified RPO/RTO number instead of a hoped-for o
 
 ## Related
 
-- [Multi-Region, Failover, and Disaster Recovery](../../../handbook/system-design/multi-region-failover-and-disaster-recovery.md) — the canonical chapter and all cited evidence.
+- [Multi-Region, Failover, and Disaster Recovery](../../../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md) — the canonical chapter and all cited evidence.
 - [DR practice code and real measurements](../../sql/multi-region-failover-and-dr/README.md)

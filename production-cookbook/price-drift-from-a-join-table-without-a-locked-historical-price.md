@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/databases/data-modelling-and-explicit-join-tables.md
+  - ../syllabus/06-databases/data-modelling-and-explicit-join-tables.md
 source: handbook/databases/data-modelling-and-explicit-join-tables.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The mistake here is treating `Order`-to-`Product` as a simple relationship ("an 
 
 ## Related Handbook Chapters
 
-- [Data Modelling and Explicit Join Tables](../handbook/databases/data-modelling-and-explicit-join-tables.md) — canonical snapshotted-attribute join-table pattern used here.
+- [Data Modelling and Explicit Join Tables](../syllabus/06-databases/data-modelling-and-explicit-join-tables.md) — canonical snapshotted-attribute join-table pattern used here.

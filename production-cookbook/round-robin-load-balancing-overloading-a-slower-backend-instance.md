@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/system-design/load-balancing-service-discovery-and-health-checking.md
-  - ../handbook/system-design/resilience-patterns.md
+  - ../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md
+  - ../syllabus/11-system-design/resilience-patterns.md
 source: handbook/system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The organizational risk in this incident is that round-robin's "fairness" is a p
 
 ## Related Handbook Chapters
 
-- [Load Balancing, Service Discovery, and Health Checking](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md) — canonical comparison of load-balancing algorithms and the `AlgorithmComparisonDemo` measurement this incident reproduces.
-- [Resilience Patterns](../handbook/system-design/resilience-patterns.md) — broader patterns for handling backend-capacity variance beyond load-balancer algorithm choice.
+- [Load Balancing, Service Discovery, and Health Checking](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md) — canonical comparison of load-balancing algorithms and the `AlgorithmComparisonDemo` measurement this incident reproduces.
+- [Resilience Patterns](../syllabus/11-system-design/resilience-patterns.md) — broader patterns for handling backend-capacity variance beyond load-balancer algorithm choice.

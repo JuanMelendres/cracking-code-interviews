@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push
 
-**Canonical chapter:** [`handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md`](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md)
+**Canonical chapter:** [`syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md`](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md)
 
 ## Core Mental Model
 
@@ -93,5 +93,5 @@ Real unsolicited push received within 3s: true
 ## Related
 
 - `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`
-- `handbook/spring/spring-webflux-and-reactive-programming.md`
-- `handbook/system-design/load-balancing-service-discovery-and-health-checking.md`
+- `syllabus/05-spring/spring-webflux-and-reactive-programming.md`
+- `syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`

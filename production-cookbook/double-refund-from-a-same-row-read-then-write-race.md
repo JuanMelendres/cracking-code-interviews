@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/databases/isolation-levels-and-concurrency-anomalies.md
+  - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
 source: handbook/databases/isolation-levels-and-concurrency-anomalies.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The sharpest technical point in this incident is the distinction between "same-r
 
 ## Related Handbook Chapters
 
-- [Isolation Levels and Concurrency Anomalies](../handbook/databases/isolation-levels-and-concurrency-anomalies.md) — canonical read-then-write race and write-skew distinction used here.
-- [Idempotency at System Edges](../handbook/system-design/idempotency.md) — the client-side idempotency-key mechanism used as a complementary fix.
+- [Isolation Levels and Concurrency Anomalies](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md) — canonical read-then-write race and write-skew distinction used here.
+- [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md) — the client-side idempotency-key mechanism used as a complementary fix.

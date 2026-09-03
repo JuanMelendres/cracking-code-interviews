@@ -15,7 +15,7 @@ canonical: ../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing
 
 **IWI 6.80 · Advanced tier · The highest-value entry in the Cloud & Infrastructure domain**
 
-**Canonical chapter:** [Kubernetes Resource Limits, Probes, and JVM Sizing](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md). This file is the Week 15 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [Kubernetes Resource Limits, Probes, and JVM Sizing](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md). This file is the Week 15 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** every trace behind this summary is real, executed output from Docker containers running `eclipse-temurin:21-jre`, source at `practice/java/week-15/container-ergonomics/src/`.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing
 
 ## 1. The concept
 
-Since JDK 10, the JVM reads a container's cgroup memory limit for ergonomic heap sizing. Kubernetes probes (liveness, readiness, startup) let the platform detect and react to container health differently depending on probe type. → [Definition and Purpose](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#definition-and-purpose).
+Since JDK 10, the JVM reads a container's cgroup memory limit for ergonomic heap sizing. Kubernetes probes (liveness, readiness, startup) let the platform detect and react to container health differently depending on probe type. → [Definition and Purpose](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Without container awareness, a JVM sizes its heap against host memory, routinely far exceeding what a container is actually permitted to use. → [Definition and Purpose](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#definition-and-purpose).
+Without container awareness, a JVM sizes its heap against host memory, routinely far exceeding what a container is actually permitted to use. → [Definition and Purpose](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#definition-and-purpose).
 
 ## 3. Container-aware heap sizing, measured
 
-Measured: heap sizes of ~121/123/247 MiB at container memory limits of 256m/512m/1g respectively — a surprising 47% ratio at 256m versus ~24% at 512m/1g, explained by `MinRAMPercentage`'s 50% floor for small containers, confirmed via `-XX:+PrintFlagsFinal`. → [Internal Implementation](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation) has the full trace.
+Measured: heap sizes of ~121/123/247 MiB at container memory limits of 256m/512m/1g respectively — a surprising 47% ratio at 256m versus ~24% at 512m/1g, explained by `MinRAMPercentage`'s 50% floor for small containers, confirmed via `-XX:+PrintFlagsFinal`. → [Internal Implementation](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation) has the full trace.
 
 ## 4. OutOfMemoryError vs OOMKilled, measured
 
-Measured: a generous container (512m) with a small explicit `-Xmx` (64m) produces a clean `java.lang.OutOfMemoryError` (exit 1). A small container (100m) with `-Xmx` set to exceed it (256m) produces an OOMKilled process (exit 137, confirmed via `docker inspect`'s `OOMKilled=true`) with zero application-level signal. → [Internal Implementation](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation) has the full trace.
+Measured: a generous container (512m) with a small explicit `-Xmx` (64m) produces a clean `java.lang.OutOfMemoryError` (exit 1). A small container (100m) with `-Xmx` set to exceed it (256m) produces an OOMKilled process (exit 137, confirmed via `docker inspect`'s `OOMKilled=true`) with zero application-level signal. → [Internal Implementation](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation) has the full trace.
 
 ## 5. Trade-offs
 
-Relying on container-aware defaults is safer but doesn't account for non-heap memory; setting requests equal to limits gives predictable scheduling at the cost of no bursting. → [Trade-offs](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#trade-offs).
+Relying on container-aware defaults is safer but doesn't account for non-heap memory; setting requests equal to limits gives predictable scheduling at the cost of no bursting. → [Trade-offs](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Your pods are restarting with no application logs at all. What's your first check?
 2. Why would a startupProbe matter for a Spring Boot application specifically?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#interview-questions).
 
 ## 7. Common mistakes
 
-Assuming container-awareness alone is sufficient without accounting for non-heap memory; debugging a restart loop via application logs before checking the container-level termination reason. → [Common Mistakes](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#common-mistakes).
+Assuming container-awareness alone is sufficient without accounting for non-heap memory; debugging a restart loop via application logs before checking the container-level termination reason. → [Common Mistakes](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-A failure's visibility depends entirely on which layer of the stack actually detects it — the JVM cannot log a failure that happens to it from outside its own process boundary. → [Staff-Level Discussion](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#interview-answer-framework).
+A failure's visibility depends entirely on which layer of the stack actually detects it — the JVM cannot log a failure that happens to it from outside its own process boundary. → [Staff-Level Discussion](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#interview-answer-framework).
 
 ## 9. Summary
 
-Container-aware heap sizing, measured directly, includes a surprising small-container floor. OutOfMemoryError and OOMKilled are measurably, structurally different failure modes for the same underlying problem. → [Summary](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#summary).
+Container-aware heap sizing, measured directly, includes a surprising small-container floor. OutOfMemoryError and OOMKilled are measurably, structurally different failure modes for the same underlying problem. → [Summary](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#practice-exercises) and [Solutions](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#solutions). Reproducible demos: `practice/java/week-15/container-ergonomics/src/`.
+→ [Practice Exercises](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#practice-exercises) and [Solutions](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#solutions). Reproducible demos: `practice/java/week-15/container-ergonomics/src/`.
 
 ## 14. Additional Reading
 

@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Performance and Load Testing Methodology
 
-**Canonical chapter:** [`handbook/testing/performance-and-load-testing-methodology.md`](../handbook/testing/performance-and-load-testing-methodology.md)
+**Canonical chapter:** [`syllabus/08-testing/performance-and-load-testing-methodology.md`](../syllabus/08-testing/performance-and-load-testing-methodology.md)
 
 ## Core Mental Model
 
@@ -69,6 +69,6 @@ Mean and p50 both look healthy; p95 (150.54ms) reveals the full 5% of requests h
 
 ## Related
 
-- `handbook/testing/test-strategy-and-test-doubles.md`
-- `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md`
-- `handbook/performance/performance-methodology-and-slo-error-budgets.md`
+- `syllabus/08-testing/test-strategy-and-test-doubles.md`
+- `syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md`
+- `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md`

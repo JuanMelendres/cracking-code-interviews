@@ -1,7 +1,7 @@
 # Technical debt and evolutionary architecture (T-913) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/architecture/technical-debt-and-evolutionary-architecture.md`](../../../../handbook/architecture/technical-debt-and-evolutionary-architecture.md)
+[`syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md`](../../../../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
 (T-913). No described-but-untested claim about "coupling got worse" — a real
 reflection-based fitness function measuring a real, exact number against a real
 class, both before and after a real incremental refactor.
@@ -69,7 +69,7 @@ Efferent coupling by field count is one real, simple, legitimate fitness functio
 not the only one, and not sufficient on its own to characterize "good architecture."
 Real production fitness functions also check cyclomatic complexity, build time,
 dependency-direction rules (see
-[Modular Monolith as a Deliberate Choice](../../../../handbook/architecture/modular-monolith-as-a-deliberate-choice.md)'s
+[Modular Monolith as a Deliberate Choice](../../../../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md)'s
 ArchUnit-based demos for that specific kind of check), test coverage trends, and
 security-scan results. What transfers directly from this simple example is the
 underlying mechanism: an automated, numeric, continuously-re-run check catches

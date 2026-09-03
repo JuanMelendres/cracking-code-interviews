@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # AuthN vs AuthZ, RBAC vs ABAC
 
-**Canonical chapter:** [`handbook/security/authn-authz-rbac-vs-abac.md`](../handbook/security/authn-authz-rbac-vs-abac.md)
+**Canonical chapter:** [`syllabus/12-security/authn-authz-rbac-vs-abac.md`](../syllabus/12-security/authn-authz-rbac-vs-abac.md)
 
 ## Core Mental Model
 
@@ -76,6 +76,6 @@ Identical user, identical change, identical role — only an environment attribu
 
 ## Related
 
-- `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/security/oauth2-oidc-and-jwt.md`
-- `handbook/security/multi-tenancy-isolation-models.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
+- `syllabus/12-security/oauth2-oidc-and-jwt.md`
+- `syllabus/12-security/multi-tenancy-isolation-models.md`

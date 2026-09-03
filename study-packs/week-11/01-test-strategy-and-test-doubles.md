@@ -15,7 +15,7 @@ canonical: ../../handbook/testing/test-strategy-and-test-doubles.md
 
 **IWI 7.00 (T-1101) / 6.40 (T-1103) · Core tier**
 
-**Canonical chapter:** [Test Strategy, the Pyramid, and Test Doubles](../../handbook/testing/test-strategy-and-test-doubles.md). This file is the Week 11 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [Test Strategy, the Pyramid, and Test Doubles](../../syllabus/08-testing/test-strategy-and-test-doubles.md). This file is the Week 11 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** the test run behind this summary is real, executed output from `practice/java/week-11/testing/src/PaymentServiceUnitTest.java` against a real Mockito mock, via JUnit 5's console launcher (no Maven/Gradle).
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/testing/test-strategy-and-test-doubles.md
 
 ## 1. The concept
 
-Test strategy decides what to test at which level — unit, integration, end-to-end. A test double (mock, stub, fake, spy) stands in for a real dependency so a unit test can isolate the logic under test. → [Definition and Purpose](../../handbook/testing/test-strategy-and-test-doubles.md#definition-and-purpose).
+Test strategy decides what to test at which level — unit, integration, end-to-end. A test double (mock, stub, fake, spy) stands in for a real dependency so a unit test can isolate the logic under test. → [Definition and Purpose](../../syllabus/08-testing/test-strategy-and-test-doubles.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Without a strategy, teams under-test or build an ice-cream-cone suite. Test doubles exist because testing retry logic against a real, on-demand-failing dependency is normally impossible; a mock makes it a one-line setup. → [Definition and Purpose](../../handbook/testing/test-strategy-and-test-doubles.md#definition-and-purpose).
+Without a strategy, teams under-test or build an ice-cream-cone suite. Test doubles exist because testing retry logic against a real, on-demand-failing dependency is normally impossible; a mock makes it a one-line setup. → [Definition and Purpose](../../syllabus/08-testing/test-strategy-and-test-doubles.md#definition-and-purpose).
 
 ## 3. A real mock, verifying behavior not just a return value
 
-Measured: `verify(gateway, times(3))` proves retry logic called its dependency the exact expected number of times with the exact arguments — something no return-value assertion alone could confirm. → [Internal Implementation](../../handbook/testing/test-strategy-and-test-doubles.md#internal-implementation) has the full trace.
+Measured: `verify(gateway, times(3))` proves retry logic called its dependency the exact expected number of times with the exact arguments — something no return-value assertion alone could confirm. → [Internal Implementation](../../syllabus/08-testing/test-strategy-and-test-doubles.md#internal-implementation) has the full trace.
 
 ## 4. The pyramid, and the ice-cream-cone anti-pattern
 
-Many fast unit tests, fewer integration tests, very few end-to-end tests — a deliberate cost/coverage trade-off. Mock what's slow/external/non-deterministic; never mock the exact thing an integration test exists to verify. → [Core Concepts](../../handbook/testing/test-strategy-and-test-doubles.md#core-concepts).
+Many fast unit tests, fewer integration tests, very few end-to-end tests — a deliberate cost/coverage trade-off. Mock what's slow/external/non-deterministic; never mock the exact thing an integration test exists to verify. → [Core Concepts](../../syllabus/08-testing/test-strategy-and-test-doubles.md#core-concepts).
 
 ## 5. Trade-offs
 
-Unit tests are fast but blind to real dependency behavior; integration tests catch real boundary bugs at real cost; end-to-end tests catch whole-system issues but are slow and brittle. → [Trade-offs](../../handbook/testing/test-strategy-and-test-doubles.md#trade-offs).
+Unit tests are fast but blind to real dependency behavior; integration tests catch real boundary bugs at real cost; end-to-end tests catch whole-system issues but are slow and brittle. → [Trade-offs](../../syllabus/08-testing/test-strategy-and-test-doubles.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Where do you draw the unit/integration line?
 2. What does coverage percentage actually measure?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/testing/test-strategy-and-test-doubles.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/08-testing/test-strategy-and-test-doubles.md#interview-questions).
 
 ## 7. Common mistakes
 
-Treating coverage as a quality target; mocking the exact dependency an integration test exists to verify; building an ice-cream-cone suite. → [Common Mistakes](../../handbook/testing/test-strategy-and-test-doubles.md#common-mistakes).
+Treating coverage as a quality target; mocking the exact dependency an integration test exists to verify; building an ice-cream-cone suite. → [Common Mistakes](../../syllabus/08-testing/test-strategy-and-test-doubles.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-What to mock is itself an architectural decision — a codebase with business logic cleanly separated from IO makes unit testing natural; tangled code forces either brittle mocking or the ice-cream cone. → [Staff-Level Discussion](../../handbook/testing/test-strategy-and-test-doubles.md#interview-answer-framework).
+What to mock is itself an architectural decision — a codebase with business logic cleanly separated from IO makes unit testing natural; tangled code forces either brittle mocking or the ice-cream cone. → [Staff-Level Discussion](../../syllabus/08-testing/test-strategy-and-test-doubles.md#interview-answer-framework).
 
 ## 9. Summary
 
-A mock verifies both outcome and interaction, real and executed in 460ms. The pyramid's shape reflects a real cost/coverage trade-off; inverting it produces a slow, flaky suite for the sake of feeling thorough. → [Summary](../../handbook/testing/test-strategy-and-test-doubles.md#summary).
+A mock verifies both outcome and interaction, real and executed in 460ms. The pyramid's shape reflects a real cost/coverage trade-off; inverting it produces a slow, flaky suite for the sake of feeling thorough. → [Summary](../../syllabus/08-testing/test-strategy-and-test-doubles.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/testing/test-strategy-and-test-doubles.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/08-testing/test-strategy-and-test-doubles.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/testing/test-strategy-and-test-doubles.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/08-testing/test-strategy-and-test-doubles.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/testing/test-strategy-and-test-doubles.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/08-testing/test-strategy-and-test-doubles.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/testing/test-strategy-and-test-doubles.md#practice-exercises) and [Solutions](../../handbook/testing/test-strategy-and-test-doubles.md#solutions). Reproducible demo: `practice/java/week-11/testing/src/PaymentServiceUnitTest.java`.
+→ [Practice Exercises](../../syllabus/08-testing/test-strategy-and-test-doubles.md#practice-exercises) and [Solutions](../../syllabus/08-testing/test-strategy-and-test-doubles.md#solutions). Reproducible demo: `practice/java/week-11/testing/src/PaymentServiceUnitTest.java`.
 
 ## 14. Additional Reading
 

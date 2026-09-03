@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Multi-Tenancy Isolation Models
 
-**Canonical chapter:** [`handbook/security/multi-tenancy-isolation-models.md`](../handbook/security/multi-tenancy-isolation-models.md)
+**Canonical chapter:** [`syllabus/12-security/multi-tenancy-isolation-models.md`](../syllabus/12-security/multi-tenancy-isolation-models.md)
 
 ## Core Mental Model
 
@@ -72,6 +72,6 @@ As superuser postgres (BYPASSRLS), no SET needed:
 
 ## Related
 
-- `handbook/security/authn-authz-rbac-vs-abac.md`
-- `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/databases/table-partitioning-and-sharding-strategies.md`
+- `syllabus/12-security/authn-authz-rbac-vs-abac.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
+- `syllabus/06-databases/table-partitioning-and-sharding-strategies.md`

@@ -1,7 +1,7 @@
 # MVCC in PostgreSQL, vacuum, and bloat (T-612) — runnable verification
 
 Real, executed output backing
-[`handbook/databases/mvcc-vacuum-and-bloat.md`](../../../handbook/databases/mvcc-vacuum-and-bloat.md)
+[`syllabus/06-databases/mvcc-vacuum-and-bloat.md`](../../../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
 (T-612). A real PostgreSQL 16 in Docker, real `ctid`/`xmin`/`xmax` system columns
 inspected via the real `pageinspect` extension, real measured table-size numbers, and
 a real, concurrent, persistent long-running transaction that really blocks VACUUM.

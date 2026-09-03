@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Event Sourcing and Its Real Costs
 
-**Canonical chapter:** [`handbook/architecture/event-sourcing-and-its-real-costs.md`](../handbook/architecture/event-sourcing-and-its-real-costs.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md`](../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md)
 
 ## Core Mental Model
 
@@ -75,7 +75,7 @@ In a conventional system, a database row holds the current state, and history (i
 
 ## Related
 
-- `handbook/architecture/cqrs-read-write-separation.md`
-- `handbook/architecture/event-driven-architecture-integration-styles.md`
-- `handbook/kafka/schema-registry-and-compatibility-evolution.md`
-- `handbook/system-design/distributed-transactions-saga-and-outbox.md`
+- `syllabus/17-architecture/cqrs-read-write-separation.md`
+- `syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md`
+- `syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md`
+- `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md`

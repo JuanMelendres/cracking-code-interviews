@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Locks, Deadlocks, and Lock Escalation
 
-**Canonical chapter:** [`handbook/databases/locks-deadlocks-and-lock-escalation.md`](../handbook/databases/locks-deadlocks-and-lock-escalation.md)
+**Canonical chapter:** [`syllabus/06-databases/locks-deadlocks-and-lock-escalation.md`](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md)
 
 ## Card: Does PostgreSQL escalate row locks?
 
@@ -27,7 +27,7 @@ A precise, checkable claim that separates PostgreSQL-specific reasoning from cro
 Carrying MySQL/SQL Server intuition into a PostgreSQL answer.
 
 **Related:**
-[Core Concepts](../handbook/databases/locks-deadlocks-and-lock-escalation.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md#core-concepts)
 
 ## Card: How PostgreSQL detects a deadlock
 
@@ -44,7 +44,7 @@ A wait-for graph: after `deadlock_timeout` (default 1s), it checks whether the b
 Describing deadlock detection vaguely, or confusing ordinary blocking (no cycle) with a real deadlock.
 
 **Related:**
-[Internal Implementation](../handbook/databases/locks-deadlocks-and-lock-escalation.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md#internal-implementation)
 
 ## Card: What actually limits PostgreSQL instead of escalation
 
@@ -61,4 +61,4 @@ This chapter demonstrated it directly: 20,000 row locks cost nothing extra; 5,00
 Assuming a huge bulk `UPDATE` risks this limit — it doesn't, since row locks don't consume lock-table slots.
 
 **Related:**
-[Production Scenarios](../handbook/databases/locks-deadlocks-and-lock-escalation.md#production-scenarios)
+[Production Scenarios](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md#production-scenarios)

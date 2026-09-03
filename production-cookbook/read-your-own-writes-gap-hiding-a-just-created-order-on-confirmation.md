@@ -5,8 +5,8 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/replication-read-replicas-and-replica-lag.md
-  - ../handbook/architecture/cqrs-read-write-separation.md
+  - ../syllabus/06-databases/replication-read-replicas-and-replica-lag.md
+  - ../syllabus/17-architecture/cqrs-read-write-separation.md
 source: handbook/databases/replication-read-replicas-and-replica-lag.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ The load-correlated nature of this bug is what makes it expensive: it is nearly 
 
 ## Related Handbook Chapters
 
-- [Replication, Read Replicas, and Replica Lag](../handbook/databases/replication-read-replicas-and-replica-lag.md) — canonical explanation of asynchronous replication lag and the read-your-own-writes gap this incident reproduces.
-- [CQRS: Read/Write Separation](../handbook/architecture/cqrs-read-write-separation.md) — the broader pattern of routing reads differently from writes, and the consistency trade-offs that decision carries.
+- [Replication, Read Replicas, and Replica Lag](../syllabus/06-databases/replication-read-replicas-and-replica-lag.md) — canonical explanation of asynchronous replication lag and the read-your-own-writes gap this incident reproduces.
+- [CQRS: Read/Write Separation](../syllabus/17-architecture/cqrs-read-write-separation.md) — the broader pattern of routing reads differently from writes, and the consistency trade-offs that decision carries.

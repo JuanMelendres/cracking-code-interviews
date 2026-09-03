@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Modular Monolith as a Deliberate Choice
 
-**Canonical chapter:** [`handbook/architecture/modular-monolith-as-a-deliberate-choice.md`](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md)
+**Canonical chapter:** [`syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md`](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md)
 
 ## Card: Does a package name enforce a boundary?
 
@@ -27,7 +27,7 @@ Verified directly: a real class compiled and ran cleanly while directly violatin
 Assuming a naming convention alone provides real protection.
 
 **Related:**
-[Core Concepts](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md#core-concepts)
 
 ## Card: Boundary violations vs. cycles
 
@@ -44,7 +44,7 @@ This chapter reproduced a real cycle entering through one plausible-looking shor
 Assuming a boundary-violation rule alone also catches cycles.
 
 **Related:**
-[Production Scenarios](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios)
+[Production Scenarios](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios)
 
 ## Card: When to extract a module into a service
 
@@ -61,4 +61,4 @@ An enforced boundary has already been exercised; an unenforced one may hide coup
 Treating "it's in its own package" as sufficient justification.
 
 **Related:**
-[Interview Questions, Question 2](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md#interview-questions)
+[Interview Questions, Question 2](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md#interview-questions)

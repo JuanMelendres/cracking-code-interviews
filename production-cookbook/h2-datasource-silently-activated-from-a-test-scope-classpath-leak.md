@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/spring/spring-framework-vs-spring-boot.md
+  - ../syllabus/05-spring/spring-framework-vs-spring-boot.md
 source: handbook/spring/spring-framework-vs-spring-boot.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ The most important framing for this incident is that Spring Boot's auto-configur
 
 ## Related Handbook Chapters
 
-- [Spring Framework vs. Spring Boot](../handbook/spring/spring-framework-vs-spring-boot.md) — canonical auto-configuration conditions-evaluation mechanics and the real conditions-evaluation report this incident's diagnosis relies on.
-- [Connection Pooling and Sizing (HikariCP)](../handbook/databases/connection-pooling-and-sizing.md) — related `DataSource`-adjacent configuration concerns relevant once the correct `DataSource` is confirmed active.
+- [Spring Framework vs. Spring Boot](../syllabus/05-spring/spring-framework-vs-spring-boot.md) — canonical auto-configuration conditions-evaluation mechanics and the real conditions-evaluation report this incident's diagnosis relies on.
+- [Connection Pooling and Sizing (HikariCP)](../syllabus/06-databases/connection-pooling-and-sizing.md) — related `DataSource`-adjacent configuration concerns relevant once the correct `DataSource` is confirmed active.

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Table Partitioning and Sharding Strategies
 
-**Canonical chapter:** [`handbook/databases/table-partitioning-and-sharding-strategies.md`](../handbook/databases/table-partitioning-and-sharding-strategies.md)
+**Canonical chapter:** [`syllabus/06-databases/table-partitioning-and-sharding-strategies.md`](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md)
 
 ## Card: What partition pruning requires
 
@@ -27,7 +27,7 @@ The single condition that determines whether sharding actually helps a given que
 Assuming sharding speeds up every query, not just ones filtering by the key.
 
 **Related:**
-[Internal Implementation](../handbook/databases/table-partitioning-and-sharding-strategies.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md#internal-implementation)
 
 ## Card: Why shard-key selection is a one-way door
 
@@ -44,7 +44,7 @@ The reason shard-key selection deserves design-time rigor comparable to a public
 Treating shard-key changes as a quick reconfiguration.
 
 **Related:**
-[Production Scenarios](../handbook/databases/table-partitioning-and-sharding-strategies.md#production-scenarios)
+[Production Scenarios](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md#production-scenarios)
 
 ## Card: Postgres HASH partitioning's hidden cost
 
@@ -61,4 +61,4 @@ A common assumption (database feature = safer) that doesn't hold here.
 Assuming a built-in database feature is automatically immune to a well-known distributed-systems problem.
 
 **Related:**
-[Core Concepts](../handbook/databases/table-partitioning-and-sharding-strategies.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md#core-concepts)

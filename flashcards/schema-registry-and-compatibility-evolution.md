@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Schema Registry and Compatibility Evolution
 
-**Canonical chapter:** [`handbook/kafka/schema-registry-and-compatibility-evolution.md`](../handbook/kafka/schema-registry-and-compatibility-evolution.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md`](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md)
 
 ## Card: The BACKWARD add-vs-remove asymmetry
 
@@ -27,7 +27,7 @@ This is the single most commonly inverted rule on this topic; real, executed evi
 Assuming removal is the riskier change — it's the opposite under BACKWARD.
 
 **Related:**
-[Core Concepts](../handbook/kafka/schema-registry-and-compatibility-evolution.md#core-concepts)
+[Core Concepts](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#core-concepts)
 
 ## Card: Compatibility mode = deploy-order promise
 
@@ -44,7 +44,7 @@ Turns an easily-memorized-wrong rule into something reasoned from the real deplo
 Picking a mode by habit rather than by the actual deploy-order constraint.
 
 **Related:**
-[Mental Model](../handbook/kafka/schema-registry-and-compatibility-evolution.md#mental-model)
+[Mental Model](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#mental-model)
 
 ## Card: What the registry actually prevents
 
@@ -61,4 +61,4 @@ Ties the abstract "compatibility" concept to the concrete byte-level mechanism i
 Describing the registry as validating data content rather than validating a schema *change* against a resolution guarantee.
 
 **Related:**
-[Internal Implementation](../handbook/kafka/schema-registry-and-compatibility-evolution.md#internal-implementation)
+[Internal Implementation](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#internal-implementation)

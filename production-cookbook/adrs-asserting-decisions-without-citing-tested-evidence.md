@@ -5,9 +5,9 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/architecture-decision-records.md
-  - ../handbook/system-design/multi-region-failover-and-disaster-recovery.md
-  - ../handbook/architecture/cqrs-read-write-separation.md
+  - ../syllabus/17-architecture/architecture-decision-records.md
+  - ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
+  - ../syllabus/17-architecture/cqrs-read-write-separation.md
 source: handbook/architecture/architecture-decision-records.md#production-scenarios
 ---
 
@@ -90,6 +90,6 @@ The organizational risk an evidence-free ADR practice carries is subtle because 
 
 ## Related Handbook Chapters
 
-- [Architecture Decision Records](../handbook/architecture/architecture-decision-records.md) — canonical ADR structure and the norm of citing real evidence this entry documents.
-- [Multi-Region Failover and Disaster Recovery](../handbook/system-design/multi-region-failover-and-disaster-recovery.md) — source of the measured RPO evidence cited in `adr-002`.
-- [CQRS: Read/Write Separation](../handbook/architecture/cqrs-read-write-separation.md) — source of the measured speedup evidence cited in `adr-001`.
+- [Architecture Decision Records](../syllabus/17-architecture/architecture-decision-records.md) — canonical ADR structure and the norm of citing real evidence this entry documents.
+- [Multi-Region Failover and Disaster Recovery](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md) — source of the measured RPO evidence cited in `adr-002`.
+- [CQRS: Read/Write Separation](../syllabus/17-architecture/cqrs-read-write-separation.md) — source of the measured speedup evidence cited in `adr-001`.

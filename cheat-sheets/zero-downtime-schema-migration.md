@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Zero-Downtime Schema Migration
 
-**Canonical chapter:** [`handbook/databases/zero-downtime-schema-migration.md`](../handbook/databases/zero-downtime-schema-migration.md)
+**Canonical chapter:** [`syllabus/06-databases/zero-downtime-schema-migration.md`](../syllabus/06-databases/zero-downtime-schema-migration.md)
 
 ## Core Mental Model
 

@@ -17,7 +17,7 @@ target_levels:
 estimated_reading_minutes: 25
 prerequisites: []
 related:
-  - ../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
+  - ../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
 official_references:
   - https://git-scm.com/book/en/v2
   - https://git-scm.com/docs/git-bisect
@@ -27,7 +27,7 @@ official_references:
 # Git Internals and Collaboration Workflows
 
 > **Topic register:** no blueprint topic ID — this is genuinely out of scope for the original Master Topic Register, which explicitly notes (Phase 2, §14) that the prior knowledge base over-allocated Git relative to its interview weight. It is covered here because it belongs to a distinct, user-identified gap category: baseline engineering-craft topics assumed by Senior/Staff interview loops but never taught as such.
-> **Scope note:** this chapter covers Git itself (object model, branching, history rewriting, recovery, and the GitHub PR workflow). It does not re-derive [CI/CD Pipeline Design and Deployment Strategies](../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md) (T-1009, already covered), which owns pipeline/deployment-strategy content — this chapter cross-links to it for the "what happens after a PR merges" half of the story.
+> **Scope note:** this chapter covers Git itself (object model, branching, history rewriting, recovery, and the GitHub PR workflow). It does not re-derive [CI/CD Pipeline Design and Deployment Strategies](../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md) (T-1009, already covered), which owns pipeline/deployment-strategy content — this chapter cross-links to it for the "what happens after a PR merges" half of the story.
 > **Provenance:** every command and every line of output in this chapter is real, captured from actually running git 2.55.0 against scratch repositories in [`practice/git/`](../../practice/git/). Each demo ships as a self-contained, reproducible `setup.sh` plus a `transcript.txt` of one real run.
 
 ## Table of Contents
@@ -183,7 +183,7 @@ All demos are real, reproducible shell scripts under [`practice/git/`](../../pra
 ## Anti-Patterns
 
 - **Rebasing `main`/shared integration branches** to "clean up" history after other people have already branched from or merged into them — this doesn't just risk conflicts, it silently orphans anyone else's work built on the old commits.
-- **Giant, long-lived feature branches** that diverge from `main` for weeks — every day of divergence increases eventual merge/rebase conflict surface and defeats the point of continuous integration; prefer trunk-based development with short-lived branches and feature flags for incomplete work (see [CI/CD Pipeline Design and Deployment Strategies](../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md) for the deployment-strategy half of this).
+- **Giant, long-lived feature branches** that diverge from `main` for weeks — every day of divergence increases eventual merge/rebase conflict surface and defeats the point of continuous integration; prefer trunk-based development with short-lived branches and feature flags for incomplete work (see [CI/CD Pipeline Design and Deployment Strategies](../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md) for the deployment-strategy half of this).
 - **Committing directly to `main` with no PR/review gate** in a team setting — even where it's technically permitted, it removes the one structural checkpoint (review + required CI checks) most orgs rely on for quality and knowledge-sharing.
 
 ## Best Practices
@@ -234,7 +234,7 @@ Correctly explains the two-parent-commit vs. new-commit-object distinction betwe
 
 ### Staff-Level Discussion
 
-Frame branching strategy as an organizational risk/velocity trade-off, not a technical preference: trunk-based development with short-lived branches and feature flags trades some local convenience for continuous integration and lower merge risk at scale, and is the strategy most large, high-velocity engineering orgs converge on — while GitFlow-style long-lived release branches suit organizations with genuinely infrequent, heavily-gated releases (e.g., regulated industries with mandatory review windows). Connect this to CI/CD strategy directly: branch strategy and deployment strategy are coupled decisions, not independent ones — see [CI/CD Pipeline Design and Deployment Strategies](../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md) for the canary/blue-green half of that conversation. A Staff-level answer also addresses the organizational side of "someone leaked a secret": the technical fix (rotate the credential) is necessary but insufficient without a process fix (secret-scanning pre-commit hooks or CI gates preventing recurrence), since history rewriting alone gives false confidence.
+Frame branching strategy as an organizational risk/velocity trade-off, not a technical preference: trunk-based development with short-lived branches and feature flags trades some local convenience for continuous integration and lower merge risk at scale, and is the strategy most large, high-velocity engineering orgs converge on — while GitFlow-style long-lived release branches suit organizations with genuinely infrequent, heavily-gated releases (e.g., regulated industries with mandatory review windows). Connect this to CI/CD strategy directly: branch strategy and deployment strategy are coupled decisions, not independent ones — see [CI/CD Pipeline Design and Deployment Strategies](../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md) for the canary/blue-green half of that conversation. A Staff-level answer also addresses the organizational side of "someone leaked a secret": the technical fix (rotate the credential) is necessary but insufficient without a process fix (secret-scanning pre-commit hooks or CI gates preventing recurrence), since history rewriting alone gives false confidence.
 
 ## Interview Questions
 
@@ -339,7 +339,7 @@ Exercise 3: moving the bug to commit 4 out of 5 still converges correctly; `git 
 
 ## Additional Reading
 
-- [CI/CD Pipeline Design and Deployment Strategies](../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md) — what happens after a PR merges: build, test, deploy strategy.
+- [CI/CD Pipeline Design and Deployment Strategies](../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md) — what happens after a PR merges: build, test, deploy strategy.
 
 ## Official References
 

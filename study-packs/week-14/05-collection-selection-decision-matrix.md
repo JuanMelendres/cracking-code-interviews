@@ -94,7 +94,7 @@ Every one of this week's measured findings is evidence for one branch of the sam
 
 ## 14. Additional Reading
 
-- [Storage Selection Trade-offs](../../handbook/system-design/storage-selection-tradeoffs.md) — the analogous method one layer up, at the storage-technology level
+- [Storage Selection Trade-offs](../../syllabus/11-system-design/storage-selection-tradeoffs.md) — the analogous method one layer up, at the storage-technology level
 
 ## 15. Official References
 

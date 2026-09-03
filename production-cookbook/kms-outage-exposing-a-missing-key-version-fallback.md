@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/secrets-management-and-key-rotation.md
+  - ../syllabus/12-security/secrets-management-and-key-rotation.md
 source: handbook/security/secrets-management-and-key-rotation.md#production-scenarios
 ---
 
@@ -83,5 +83,5 @@ This incident demonstrates a general principle about single points of failure th
 
 ## Related Handbook Chapters
 
-- [Secrets Management and Key Rotation](../handbook/security/secrets-management-and-key-rotation.md) — canonical key-versioning and rotation mechanics used here.
-- [Applied Cryptography: Hashing, Signing, TLS](../handbook/security/applied-cryptography-hashing-signing-tls.md) — the signing mechanics this key-version fallback protects.
+- [Secrets Management and Key Rotation](../syllabus/12-security/secrets-management-and-key-rotation.md) — canonical key-versioning and rotation mechanics used here.
+- [Applied Cryptography: Hashing, Signing, TLS](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md) — the signing mechanics this key-version fallback protects.

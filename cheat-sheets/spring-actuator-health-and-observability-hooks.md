@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Spring Boot Actuator, Health, and Observability Hooks
 
-**Canonical chapter:** [`handbook/spring/spring-actuator-health-and-observability-hooks.md`](../handbook/spring/spring-actuator-health-and-observability-hooks.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-actuator-health-and-observability-hooks.md`](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
 
 ## Core Mental Model
 
@@ -85,6 +85,6 @@ Real readiness after REFUSING_TRAFFIC: {"status":"OUT_OF_SERVICE"}
 
 ## Related
 
-- `handbook/spring/spring-testing-slices-and-context-caching.md`
-- `handbook/system-design/twelve-factor-config.md`
-- `handbook/performance/logging-metrics-tracing-and-opentelemetry.md`
+- `syllabus/05-spring/spring-testing-slices-and-context-caching.md`
+- `syllabus/15-cloud/twelve-factor-config.md`
+- `syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md`

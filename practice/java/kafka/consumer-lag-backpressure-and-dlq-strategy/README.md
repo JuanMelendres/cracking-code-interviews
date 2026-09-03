@@ -1,7 +1,7 @@
 # Consumer lag, backpressure, and DLQ strategy (T-707) — runnable verification
 
 Real, executed output backing
-[`handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md`](../../../../handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md)
+[`syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md`](../../../../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
 (T-707). A real `apache/kafka:3.7.0` KRaft broker running in Docker, real Java
 `kafka-clients` producers and consumers connecting from the host, real poison
 messages, real dead-letter routing, and a real 5-consumers-on-3-partitions rebalance.

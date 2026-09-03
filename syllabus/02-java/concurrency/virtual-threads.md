@@ -21,8 +21,8 @@ related:
   - java-memory-model-and-volatile.md
   - structured-concurrency.md
   - scoped-values-and-threadlocal-migration.md
-  - ../../../handbook/system-design/rate-limiting-and-throttling-algorithms.md
-  - ../../../handbook/spring/spring-webflux-and-reactive-programming.md
+  - ../../11-system-design/rate-limiting-and-throttling-algorithms.md
+  - ../../05-spring/spring-webflux-and-reactive-programming.md
   - ../../../study-packs/week-09/04-virtual-threads.md
 official_references:
   - https://openjdk.org/jeps/444

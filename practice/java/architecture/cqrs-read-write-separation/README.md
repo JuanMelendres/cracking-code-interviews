@@ -1,7 +1,7 @@
 # CQRS: read/write separation (T-904) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/architecture/cqrs-read-write-separation.md`](../../../../handbook/architecture/cqrs-read-write-separation.md)
+[`syllabus/17-architecture/cqrs-read-write-separation.md`](../../../../syllabus/17-architecture/cqrs-read-write-separation.md)
 (T-904). No framework, no mocked timings — a real normalized write model, a real denormalized
 read model, a real `BlockingQueue` + background thread as the asynchronous boundary between them,
 and three real, measured demos: the honest floor of eventual-consistency lag, a deterministic

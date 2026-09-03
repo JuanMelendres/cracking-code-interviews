@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Kafka Producer Semantics: acks, Idempotence, and Partition Key Design
 
-**Canonical chapter:** [`handbook/kafka/producer-semantics-and-partition-keys.md`](../handbook/kafka/producer-semantics-and-partition-keys.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md)
 
 ## Card: Why acks=all alone isn't enough
 
@@ -27,7 +27,7 @@ The named interview trap for this topic.
 Believing `acks=all` is unconditionally durable.
 
 **Related:**
-[Internal Implementation](../handbook/kafka/producer-semantics-and-partition-keys.md#internal-implementation)
+[Internal Implementation](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md#internal-implementation)
 
 ## Card: What idempotent producers dedupe
 
@@ -44,7 +44,7 @@ Prevents overclaiming "Kafka is exactly-once" from this mechanism alone.
 Conflating idempotent producers with end-to-end exactly-once.
 
 **Related:**
-[Core Concepts](../handbook/kafka/producer-semantics-and-partition-keys.md#core-concepts)
+[Core Concepts](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md#core-concepts)
 
 ## Card: Sticky partitioner behavior
 
@@ -61,4 +61,4 @@ Corrects an outdated round-robin expectation from older Kafka documentation.
 Expecting strict round-robin distribution for unkeyed records.
 
 **Related:**
-[Historical Context](../handbook/kafka/producer-semantics-and-partition-keys.md#historical-context)
+[Historical Context](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md#historical-context)

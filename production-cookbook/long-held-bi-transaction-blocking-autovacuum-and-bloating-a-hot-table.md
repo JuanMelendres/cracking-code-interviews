@@ -5,8 +5,8 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/mvcc-vacuum-and-bloat.md
-  - ../handbook/databases/isolation-levels-and-concurrency-anomalies.md
+  - ../syllabus/06-databases/mvcc-vacuum-and-bloat.md
+  - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
 source: handbook/databases/mvcc-vacuum-and-bloat.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The counterintuitive core of this incident — a tool that never wrote to, or ev
 
 ## Related Handbook Chapters
 
-- [MVCC, VACUUM, and Bloat](../handbook/databases/mvcc-vacuum-and-bloat.md) — canonical mechanics of how a long-held snapshot blocks vacuum's ability to reclaim dead tuples.
-- [Isolation Levels and Concurrency Anomalies](../handbook/databases/isolation-levels-and-concurrency-anomalies.md) — the `REPEATABLE READ` snapshot semantics this incident's root cause depends on.
+- [MVCC, VACUUM, and Bloat](../syllabus/06-databases/mvcc-vacuum-and-bloat.md) — canonical mechanics of how a long-held snapshot blocks vacuum's ability to reclaim dead tuples.
+- [Isolation Levels and Concurrency Anomalies](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md) — the `REPEATABLE READ` snapshot semantics this incident's root cause depends on.

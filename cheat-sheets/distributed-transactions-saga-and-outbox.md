@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Distributed Transactions: Saga and Outbox
 
-**Canonical chapter:** [`handbook/system-design/distributed-transactions-saga-and-outbox.md`](../handbook/system-design/distributed-transactions-saga-and-outbox.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md`](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md)
 
 ## Core Mental Model
 
@@ -74,6 +74,6 @@ A dual write is a promise made to two systems that don't know about each other, 
 ## Related
 
 - [Idempotency at System Edges](idempotency.md)
-- `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
-- `handbook/kafka/delivery-semantics-and-exactly-once.md`
+- `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`
+- `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`
 - [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md)

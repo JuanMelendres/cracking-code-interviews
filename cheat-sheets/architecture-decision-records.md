@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Architecture Decision Records
 
-**Canonical chapter:** [`handbook/architecture/architecture-decision-records.md`](../handbook/architecture/architecture-decision-records.md)
+**Canonical chapter:** [`syllabus/17-architecture/architecture-decision-records.md`](../syllabus/17-architecture/architecture-decision-records.md)
 
 ## Core Mental Model
 
@@ -69,7 +69,7 @@ This is a documentation-governance practice, not a running system, so its real-w
 
 ## Related
 
-- `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`
-- `handbook/architecture/cqrs-read-write-separation.md`
-- `handbook/system-design/multi-region-failover-and-disaster-recovery.md`
-- `handbook/kafka/schema-registry-and-compatibility-evolution.md`
+- `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`
+- `syllabus/17-architecture/cqrs-read-write-separation.md`
+- `syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md`
+- `syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md`

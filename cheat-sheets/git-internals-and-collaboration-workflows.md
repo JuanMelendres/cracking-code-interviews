@@ -76,4 +76,4 @@ Git is a content-addressable object store (blobs, trees, commits, all named by t
 
 ## Related
 
-- `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md`
+- `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md`

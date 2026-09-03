@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/strangler-fig-and-migration-patterns.md
-  - ../handbook/architecture/architecture-decision-records.md
+  - ../syllabus/17-architecture/strangler-fig-and-migration-patterns.md
+  - ../syllabus/17-architecture/architecture-decision-records.md
 source: handbook/architecture/strangler-fig-and-migration-patterns.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The honest answer to "how do you roll back mid-migration" is that the rollback-s
 
 ## Related Handbook Chapters
 
-- [Strangler Fig and Migration Patterns](../handbook/architecture/strangler-fig-and-migration-patterns.md) — canonical dual-write and rollback-safety-window mechanics this incident reproduces.
-- [Architecture Decision Records](../handbook/architecture/architecture-decision-records.md) — the documentation discipline that should record a migration's rollback-safety window and disable criteria explicitly, rather than leaving them as an undocumented judgment call.
+- [Strangler Fig and Migration Patterns](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md) — canonical dual-write and rollback-safety-window mechanics this incident reproduces.
+- [Architecture Decision Records](../syllabus/17-architecture/architecture-decision-records.md) — the documentation discipline that should record a migration's rollback-safety window and disable criteria explicitly, rather than leaving them as an undocumented judgment call.

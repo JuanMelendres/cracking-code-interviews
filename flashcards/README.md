@@ -31,12 +31,12 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 
 | # | Deck | Topic ID | Cards | Canonical Chapter |
 |---|---|---|---|---|
-| 1 | [Database Index Structures](index-structures-btree-composite-covering.md) | T-609 | 5 | `handbook/databases/index-structures-btree-composite-covering.md` |
-| 2 | [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md) | T-611 | 4 | `handbook/databases/isolation-levels-and-concurrency-anomalies.md` |
-| 3 | [Query Planning and EXPLAIN ANALYZE](query-planning-and-explain-analyze.md) | T-610 | 4 | `handbook/databases/query-planning-and-explain-analyze.md` |
-| 4 | [Data Modelling and Explicit Join Tables](data-modelling-and-explicit-join-tables.md) | T-605/T-608 | 3 | `handbook/databases/data-modelling-and-explicit-join-tables.md` |
-| 5 | [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md) | T-614 | 3 | `handbook/databases/table-partitioning-and-sharding-strategies.md` |
-| 6 | [Zero-Downtime Schema Migration](zero-downtime-schema-migration.md) | T-616 | 3 | `handbook/databases/zero-downtime-schema-migration.md` |
+| 1 | [Database Index Structures](index-structures-btree-composite-covering.md) | T-609 | 5 | `syllabus/06-databases/index-structures-btree-composite-covering.md` |
+| 2 | [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md) | T-611 | 4 | `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md` |
+| 3 | [Query Planning and EXPLAIN ANALYZE](query-planning-and-explain-analyze.md) | T-610 | 4 | `syllabus/06-databases/query-planning-and-explain-analyze.md` |
+| 4 | [Data Modelling and Explicit Join Tables](data-modelling-and-explicit-join-tables.md) | T-605/T-608 | 3 | `syllabus/06-databases/data-modelling-and-explicit-join-tables.md` |
+| 5 | [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md) | T-614 | 3 | `syllabus/06-databases/table-partitioning-and-sharding-strategies.md` |
+| 6 | [Zero-Downtime Schema Migration](zero-downtime-schema-migration.md) | T-616 | 3 | `syllabus/06-databases/zero-downtime-schema-migration.md` |
 | 7 | [equals(), hashCode(), and Comparable Contracts](equals-hashcode-and-comparable-contracts.md) | T-101 | 3 | `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
 | 8 | [Exception Design and Hierarchy Strategy](exception-design-and-hierarchy-strategy.md) | T-105 | 3 | `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
 | 9 | [Generics: Erasure, Variance, and PECS](generics-erasure-and-pecs.md) | T-104 | 3 | `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
@@ -51,50 +51,50 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 18 | [Executors and Thread Pool Sizing](executors-and-thread-pool-sizing.md) | T-406 | 3 | `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md` |
 | 19 | [Deadlock, Race Conditions, and Thread Diagnostics](deadlock-race-conditions-and-thread-diagnostics.md) | T-409 | 3 | `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
 | 20 | [Virtual Threads (Project Loom)](virtual-threads.md) | T-410 | 3 | `syllabus/02-java/concurrency/virtual-threads.md` |
-| 21 | [Spring Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md) | T-501 | 3 | `handbook/spring/auto-configuration-and-bean-lifecycle.md` |
-| 22 | [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](transactional-proxy-mechanics-and-propagation.md) | T-504 | 4 | `handbook/spring/transactional-proxy-mechanics-and-propagation.md` |
-| 23 | [Spring Security Filter Chain](security-filter-chain.md) | T-511 | 3 | `handbook/spring/security-filter-chain.md` |
-| 24 | [Kafka Architecture Fundamentals — Topics, Partitions, Replication](kafka-architecture-fundamentals.md) | T-701 | 3 | `handbook/kafka/kafka-architecture-fundamentals.md` |
-| 25 | [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](producer-semantics-and-partition-keys.md) | T-702/T-705 | 3 | `handbook/kafka/producer-semantics-and-partition-keys.md` |
-| 26 | [Kafka Consumer Groups, Rebalancing, and Offset Management](consumer-groups-and-rebalancing.md) | T-703 | 3 | `handbook/kafka/consumer-groups-and-rebalancing.md` |
-| 27 | [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md) | T-704 | 3 | `handbook/kafka/delivery-semantics-and-exactly-once.md` |
-| 28 | [Percentiles, Tail Latency, and Coordinated Omission](percentiles-tail-latency-and-coordinated-omission.md) | T-1204 | 3 | `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` |
-| 29 | [Logging, Metrics, Tracing, and OpenTelemetry](logging-metrics-tracing-and-opentelemetry.md) | T-1205 | 3 | `handbook/performance/logging-metrics-tracing-and-opentelemetry.md` |
-| 30 | [Performance Methodology (USE/RED) and SLI/SLO/Error Budgets](performance-methodology-and-slo-error-budgets.md) | T-1206 | 3 | `handbook/performance/performance-methodology-and-slo-error-budgets.md` |
-| 31 | [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) | T-901 | 3 | `handbook/architecture/clean-hexagonal-architecture.md` |
-| 32 | [DDD Tactical Design — Aggregates](ddd-tactical-design-aggregates.md) | T-903 | 3 | `handbook/architecture/ddd-tactical-design-aggregates.md` |
-| 33 | [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md) | T-907 | 4 | `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md` |
-| 34 | [Kubernetes Objects, Scheduling, and Networking](kubernetes-objects-scheduling-and-networking.md) | T-1002 | 3 | `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` |
-| 35 | [Kubernetes Resource Limits, Probes, and JVM Sizing](kubernetes-resource-limits-probes-and-jvm-sizing.md) | T-1003 | 3 | `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
-| 36 | [AWS Core Services for Backend Engineers](aws-core-services-for-backend-engineers.md) | T-1006 | 3 | `handbook/cloud/aws-core-services-for-backend-engineers.md` |
-| 37 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 3 | `handbook/cloud/cloud-cost-and-scaling-economics.md` |
-| 38 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 3 | `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` |
+| 21 | [Spring Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md) | T-501 | 3 | `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md` |
+| 22 | [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](transactional-proxy-mechanics-and-propagation.md) | T-504 | 4 | `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md` |
+| 23 | [Spring Security Filter Chain](security-filter-chain.md) | T-511 | 3 | `syllabus/05-spring/security-filter-chain.md` |
+| 24 | [Kafka Architecture Fundamentals — Topics, Partitions, Replication](kafka-architecture-fundamentals.md) | T-701 | 3 | `syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md` |
+| 25 | [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](producer-semantics-and-partition-keys.md) | T-702/T-705 | 3 | `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md` |
+| 26 | [Kafka Consumer Groups, Rebalancing, and Offset Management](consumer-groups-and-rebalancing.md) | T-703 | 3 | `syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md` |
+| 27 | [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md) | T-704 | 3 | `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md` |
+| 28 | [Percentiles, Tail Latency, and Coordinated Omission](percentiles-tail-latency-and-coordinated-omission.md) | T-1204 | 3 | `syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md` |
+| 29 | [Logging, Metrics, Tracing, and OpenTelemetry](logging-metrics-tracing-and-opentelemetry.md) | T-1205 | 3 | `syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md` |
+| 30 | [Performance Methodology (USE/RED) and SLI/SLO/Error Budgets](performance-methodology-and-slo-error-budgets.md) | T-1206 | 3 | `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md` |
+| 31 | [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md) | T-901 | 3 | `syllabus/17-architecture/clean-hexagonal-architecture.md` |
+| 32 | [DDD Tactical Design — Aggregates](ddd-tactical-design-aggregates.md) | T-903 | 3 | `syllabus/17-architecture/ddd-tactical-design-aggregates.md` |
+| 33 | [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md) | T-907 | 4 | `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md` |
+| 34 | [Kubernetes Objects, Scheduling, and Networking](kubernetes-objects-scheduling-and-networking.md) | T-1002 | 3 | `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md` |
+| 35 | [Kubernetes Resource Limits, Probes, and JVM Sizing](kubernetes-resource-limits-probes-and-jvm-sizing.md) | T-1003 | 3 | `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
+| 36 | [AWS Core Services for Backend Engineers](aws-core-services-for-backend-engineers.md) | T-1006 | 3 | `syllabus/15-cloud/aws-core-services-for-backend-engineers.md` |
+| 37 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 3 | `syllabus/15-cloud/cloud-cost-and-scaling-economics.md` |
+| 38 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 3 | `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md` |
 | 39 | [API Design](api-design.md) | T-803 | 3 | `syllabus/07-api-design/api-design.md` |
-| 40 | [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md) | T-804 | 4 | `handbook/system-design/caching-strategies-and-invalidation.md` |
-| 41 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 3 | `handbook/system-design/data-partitioning-and-consistent-hashing.md` |
-| 42 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 4 | `handbook/system-design/cap-theorem-and-consistency-models.md` |
-| 43 | [Distributed Systems Failure Modes](distributed-systems-failure-modes.md) | T-909 | 4 | `handbook/system-design/distributed-systems-failure-modes.md` |
-| 44 | [System Design Method and Estimation](system-design-method-and-estimation.md) | T-801 | 4 | `handbook/system-design/system-design-method-and-estimation.md` |
-| 45 | [Idempotency at System Edges](idempotency.md) | T-809 | 4 | `handbook/system-design/idempotency.md` |
-| 46 | [Distributed Transactions: Saga, Outbox, and 2PC](distributed-transactions-saga-and-outbox.md) | T-618 | 4 | `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
-| 47 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 3 | `handbook/system-design/storage-selection-tradeoffs.md` |
-| 48 | [Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads](resilience-patterns.md) | T-515 | 3 | `handbook/system-design/resilience-patterns.md` |
+| 40 | [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md) | T-804 | 4 | `syllabus/11-system-design/caching-strategies-and-invalidation.md` |
+| 41 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 3 | `syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md` |
+| 42 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 4 | `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md` |
+| 43 | [Distributed Systems Failure Modes](distributed-systems-failure-modes.md) | T-909 | 4 | `syllabus/10-distributed-systems/distributed-systems-failure-modes.md` |
+| 44 | [System Design Method and Estimation](system-design-method-and-estimation.md) | T-801 | 4 | `syllabus/11-system-design/system-design-method-and-estimation.md` |
+| 45 | [Idempotency at System Edges](idempotency.md) | T-809 | 4 | `syllabus/11-system-design/idempotency.md` |
+| 46 | [Distributed Transactions: Saga, Outbox, and 2PC](distributed-transactions-saga-and-outbox.md) | T-618 | 4 | `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md` |
+| 47 | [Storage Selection Trade-offs](storage-selection-tradeoffs.md) | T-811 | 3 | `syllabus/11-system-design/storage-selection-tradeoffs.md` |
+| 48 | [Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads](resilience-patterns.md) | T-515 | 3 | `syllabus/11-system-design/resilience-patterns.md` |
 | 49 | [GC Fundamentals and Log Analysis](gc-fundamentals-and-log-analysis.md) | T-306 | 3 | `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md` |
-| 50 | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md) | T-512/T-513 | 4 | `handbook/security/oauth2-oidc-and-jwt.md` |
-| 51 | [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 3 | `handbook/testing/test-strategy-and-test-doubles.md` |
-| 52 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 3 | `handbook/testing/integration-testing-against-real-dependencies.md` |
-| 53 | [JUnit 5 Architecture and Advanced Features](junit5-architecture-and-advanced-features.md) | T-1102 | 3 | `handbook/testing/junit5-architecture-and-advanced-features.md` |
-| 54 | [Contract Testing for Services](contract-testing-for-services.md) | T-1105 | 3 | `handbook/testing/contract-testing-for-services.md` |
-| 55 | [Performance and Load Testing Methodology](performance-and-load-testing-methodology.md) | T-1106 | 3 | `handbook/testing/performance-and-load-testing-methodology.md` |
-| 56 | [Mutation and Property-Based Testing](mutation-and-property-based-testing.md) | T-1107 | 3 | `handbook/testing/mutation-and-property-based-testing.md` |
-| 57 | [Writing Tests Live in an Interview](writing-tests-live-in-an-interview.md) | T-1108 | 3 | `handbook/testing/writing-tests-live-in-an-interview.md` |
-| 58 | [OWASP Top 10 for Backend Services](owasp-top-10-for-backend-services.md) | T-1301 | 3 | `handbook/security/owasp-top-10-for-backend-services.md` |
-| 59 | [AuthN vs AuthZ, RBAC vs ABAC](authn-authz-rbac-vs-abac.md) | T-1302 | 3 | `handbook/security/authn-authz-rbac-vs-abac.md` |
-| 60 | [Applied Cryptography: Hashing, Signing, and TLS](applied-cryptography-hashing-signing-tls.md) | T-1303 | 3 | `handbook/security/applied-cryptography-hashing-signing-tls.md` |
-| 61 | [Injection, Input Validation, and Output Encoding](injection-input-validation-output-encoding.md) | T-1305 | 3 | `handbook/security/injection-input-validation-output-encoding.md` |
-| 62 | [Secrets Management and Key Rotation](secrets-management-and-key-rotation.md) | T-1304 | 3 | `handbook/security/secrets-management-and-key-rotation.md` |
-| 63 | [Supply Chain Security, SBOM, and Dependency Risk](supply-chain-security-sbom-and-dependency-risk.md) | T-1306 | 3 | `handbook/security/supply-chain-security-sbom-and-dependency-risk.md` |
-| 64 | [Multi-Tenancy Isolation Models](multi-tenancy-isolation-models.md) | T-1307 | 3 | `handbook/security/multi-tenancy-isolation-models.md` |
+| 50 | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md) | T-512/T-513 | 4 | `syllabus/12-security/oauth2-oidc-and-jwt.md` |
+| 51 | [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) | T-1103 | 3 | `syllabus/08-testing/test-strategy-and-test-doubles.md` |
+| 52 | [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) | T-1104 | 3 | `syllabus/08-testing/integration-testing-against-real-dependencies.md` |
+| 53 | [JUnit 5 Architecture and Advanced Features](junit5-architecture-and-advanced-features.md) | T-1102 | 3 | `syllabus/08-testing/junit5-architecture-and-advanced-features.md` |
+| 54 | [Contract Testing for Services](contract-testing-for-services.md) | T-1105 | 3 | `syllabus/08-testing/contract-testing-for-services.md` |
+| 55 | [Performance and Load Testing Methodology](performance-and-load-testing-methodology.md) | T-1106 | 3 | `syllabus/08-testing/performance-and-load-testing-methodology.md` |
+| 56 | [Mutation and Property-Based Testing](mutation-and-property-based-testing.md) | T-1107 | 3 | `syllabus/08-testing/mutation-and-property-based-testing.md` |
+| 57 | [Writing Tests Live in an Interview](writing-tests-live-in-an-interview.md) | T-1108 | 3 | `syllabus/08-testing/writing-tests-live-in-an-interview.md` |
+| 58 | [OWASP Top 10 for Backend Services](owasp-top-10-for-backend-services.md) | T-1301 | 3 | `syllabus/12-security/owasp-top-10-for-backend-services.md` |
+| 59 | [AuthN vs AuthZ, RBAC vs ABAC](authn-authz-rbac-vs-abac.md) | T-1302 | 3 | `syllabus/12-security/authn-authz-rbac-vs-abac.md` |
+| 60 | [Applied Cryptography: Hashing, Signing, and TLS](applied-cryptography-hashing-signing-tls.md) | T-1303 | 3 | `syllabus/12-security/applied-cryptography-hashing-signing-tls.md` |
+| 61 | [Injection, Input Validation, and Output Encoding](injection-input-validation-output-encoding.md) | T-1305 | 3 | `syllabus/12-security/injection-input-validation-output-encoding.md` |
+| 62 | [Secrets Management and Key Rotation](secrets-management-and-key-rotation.md) | T-1304 | 3 | `syllabus/12-security/secrets-management-and-key-rotation.md` |
+| 63 | [Supply Chain Security, SBOM, and Dependency Risk](supply-chain-security-sbom-and-dependency-risk.md) | T-1306 | 3 | `syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md` |
+| 64 | [Multi-Tenancy Isolation Models](multi-tenancy-isolation-models.md) | T-1307 | 3 | `syllabus/12-security/multi-tenancy-isolation-models.md` |
 | 65 | [Object Layout, Headers, and Compressed Oops](object-layout-headers-and-compressed-oops.md) | T-302 | 3 | `syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md` |
 | 66 | [GC Roots, Reachability, and Reference Strength](gc-roots-reachability-and-reference-strength.md) | T-303 | 3 | `syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md` |
 | 67 | [Memory Leak Diagnosis and Heap Dump Analysis](memory-leak-diagnosis-and-heap-dump-analysis.md) | T-307 | 3 | `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` |
@@ -106,51 +106,51 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 73 | [ZGC and Shenandoah: Concurrent Collection](zgc-and-shenandoah-concurrent-collection.md) | T-305 | 3 | `syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md` |
 | 74 | [Native Memory, Direct Buffers, and Off-Heap](native-memory-direct-buffers-and-off-heap.md) | T-311 | 3 | `syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md` |
 | 75 | [JVM Flags and Container Ergonomics](jvm-flags-and-container-ergonomics.md) | T-312 | 3 | `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` |
-| 76 | [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) | T-514 | 3 | `handbook/spring/spring-cache-abstraction-and-pitfalls.md` |
-| 77 | [Spring Bean Scopes and Proxy Modes](spring-bean-scopes-and-proxy-modes.md) | T-502 | 3 | `handbook/spring/spring-bean-scopes-and-proxy-modes.md` |
-| 78 | [Spring Testing: Slices and Context Caching](spring-testing-slices-and-context-caching.md) | T-517 | 3 | `handbook/spring/spring-testing-slices-and-context-caching.md` |
-| 79 | [Spring WebFlux and Reactive Programming](spring-webflux-and-reactive-programming.md) | T-509 | 3 | `handbook/spring/spring-webflux-and-reactive-programming.md` |
-| 80 | [Spring Boot Actuator, Health, and Observability Hooks](spring-actuator-health-and-observability-hooks.md) | T-516 | 3 | `handbook/spring/spring-actuator-health-and-observability-hooks.md` |
+| 76 | [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) | T-514 | 3 | `syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md` |
+| 77 | [Spring Bean Scopes and Proxy Modes](spring-bean-scopes-and-proxy-modes.md) | T-502 | 3 | `syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md` |
+| 78 | [Spring Testing: Slices and Context Caching](spring-testing-slices-and-context-caching.md) | T-517 | 3 | `syllabus/05-spring/spring-testing-slices-and-context-caching.md` |
+| 79 | [Spring WebFlux and Reactive Programming](spring-webflux-and-reactive-programming.md) | T-509 | 3 | `syllabus/05-spring/spring-webflux-and-reactive-programming.md` |
+| 80 | [Spring Boot Actuator, Health, and Observability Hooks](spring-actuator-health-and-observability-hooks.md) | T-516 | 3 | `syllabus/05-spring/spring-actuator-health-and-observability-hooks.md` |
 | 81 | [API Gateway, BFF, and Edge Concerns](api-gateway-bff-and-edge-concerns.md) | T-911 | 3 | `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md` |
-| 82 | [Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push](realtime-delivery-websocket-sse-and-long-polling.md) | T-812 | 3 | `handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md` |
-| 83 | [Hibernate Second-Level and Query Cache](hibernate-second-level-and-query-cache.md) | T-603 | 3 | `handbook/databases/hibernate-second-level-and-query-cache.md` |
-| 84 | [Search and Indexing Systems](search-and-indexing-systems.md) | T-810 | 3 | `handbook/system-design/search-and-indexing-systems.md` |
-| 85 | [The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation](twelve-factor-config.md) | T-1008 | 3 | `handbook/system-design/twelve-factor-config.md` |
+| 82 | [Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push](realtime-delivery-websocket-sse-and-long-polling.md) | T-812 | 3 | `syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md` |
+| 83 | [Hibernate Second-Level and Query Cache](hibernate-second-level-and-query-cache.md) | T-603 | 3 | `syllabus/06-databases/hibernate-second-level-and-query-cache.md` |
+| 84 | [Search and Indexing Systems](search-and-indexing-systems.md) | T-810 | 3 | `syllabus/11-system-design/search-and-indexing-systems.md` |
+| 85 | [The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation](twelve-factor-config.md) | T-1008 | 3 | `syllabus/15-cloud/twelve-factor-config.md` |
 | 86 | [ThreadLocal-Mediated Classloader Leaks](threadlocal-mediated-classloader-leaks.md) | T-413 | 2 | `syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md` |
 | 87 | [VarHandles, Unsafe, and Their Replacement](varhandles-and-unsafe.md) | T-415 | 3 | `syllabus/02-java/concurrency/varhandles-and-unsafe.md` |
 | 88 | [Foreign Function & Memory API](foreign-function-and-memory-api.md) | T-416 | 1 | `syllabus/02-java/concurrency/foreign-function-and-memory-api.md` |
-| 89 | [Containers & Image Internals](container-image-internals.md) | T-1001 | 3 | `handbook/cloud/container-image-internals.md` |
-| 90 | [Capacity Planning & Headroom](capacity-planning-and-headroom.md) | T-1208 | 3 | `handbook/performance/capacity-planning-and-headroom.md` |
-| 91 | [Benchmarking & JMH Pitfalls](benchmarking-and-jmh-pitfalls.md) | T-1203 | 3 | `handbook/jvm/benchmarking-and-jmh-pitfalls.md` |
-| 92 | [Rate Limiting and Throttling Algorithms](rate-limiting-and-throttling-algorithms.md) | T-808 | 3 | `handbook/system-design/rate-limiting-and-throttling-algorithms.md` |
-| 93 | [Event-Driven Architecture Integration Styles](event-driven-architecture-integration-styles.md) | T-906 | 3 | `handbook/architecture/event-driven-architecture-integration-styles.md` |
-| 94 | [DDD Strategic — Bounded Contexts and Context Mapping](ddd-strategic-bounded-contexts-and-context-mapping.md) | T-902 | 3 | `handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md` |
-| 95 | [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md) | T-912 | 3 | `handbook/architecture/strangler-fig-and-migration-patterns.md` |
-| 96 | [Technical Debt and Evolutionary Architecture](technical-debt-and-evolutionary-architecture.md) | T-913 | 3 | `handbook/architecture/technical-debt-and-evolutionary-architecture.md` |
-| 97 | [Consumer Lag, Backpressure, and DLQ Strategy](consumer-lag-backpressure-and-dlq-strategy.md) | T-707 | 3 | `handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md` |
-| 98 | [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md) | T-601/T-602 | 3 | `handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md` |
-| 99 | [Optimistic vs. Pessimistic Locking](optimistic-vs-pessimistic-locking.md) | T-604 | 3 | `handbook/databases/optimistic-vs-pessimistic-locking.md` |
-| 100 | [Incident Response and Blameless Postmortems](incident-response-and-blameless-postmortems.md) | T-1207 | 3 | `handbook/performance/incident-response-and-blameless-postmortems.md` |
-| 101 | [Spring Framework vs. Spring Boot](spring-framework-vs-spring-boot.md) | T-506/T-501 | 3 | `handbook/spring/spring-framework-vs-spring-boot.md` |
-| 102 | [MVCC, Vacuum, and Bloat](mvcc-vacuum-and-bloat.md) | T-612 | 3 | `handbook/databases/mvcc-vacuum-and-bloat.md` |
-| 103 | [Replication, Read Replicas, and Replica Lag](replication-read-replicas-and-replica-lag.md) | T-615 | 3 | `handbook/databases/replication-read-replicas-and-replica-lag.md` |
-| 104 | [CQRS Read/Write Separation](cqrs-read-write-separation.md) | T-904 | 3 | `handbook/architecture/cqrs-read-write-separation.md` |
-| 105 | [Multi-Region Failover and Disaster Recovery](multi-region-failover-and-disaster-recovery.md) | T-814 | 3 | `handbook/system-design/multi-region-failover-and-disaster-recovery.md` |
-| 106 | [Profiling, JFR, and Flame Graphs](profiling-jfr-and-flame-graphs.md) | T-1202 | 3 | `handbook/performance/profiling-jfr-and-flame-graphs.md` |
-| 107 | [Load Balancing, Service Discovery, and Health Checking](load-balancing-service-discovery-and-health-checking.md) | T-805 | 3 | `handbook/system-design/load-balancing-service-discovery-and-health-checking.md` |
-| 108 | [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md) | T-613 | 3 | `handbook/databases/locks-deadlocks-and-lock-escalation.md` |
-| 109 | [Schema Registry and Compatibility Evolution](schema-registry-and-compatibility-evolution.md) | T-708 | 3 | `handbook/kafka/schema-registry-and-compatibility-evolution.md` |
+| 89 | [Containers & Image Internals](container-image-internals.md) | T-1001 | 3 | `syllabus/14-devops-containers/container-image-internals.md` |
+| 90 | [Capacity Planning & Headroom](capacity-planning-and-headroom.md) | T-1208 | 3 | `syllabus/16-performance-jvm/capacity-planning-and-headroom.md` |
+| 91 | [Benchmarking & JMH Pitfalls](benchmarking-and-jmh-pitfalls.md) | T-1203 | 3 | `syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md` |
+| 92 | [Rate Limiting and Throttling Algorithms](rate-limiting-and-throttling-algorithms.md) | T-808 | 3 | `syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md` |
+| 93 | [Event-Driven Architecture Integration Styles](event-driven-architecture-integration-styles.md) | T-906 | 3 | `syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md` |
+| 94 | [DDD Strategic — Bounded Contexts and Context Mapping](ddd-strategic-bounded-contexts-and-context-mapping.md) | T-902 | 3 | `syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md` |
+| 95 | [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md) | T-912 | 3 | `syllabus/17-architecture/strangler-fig-and-migration-patterns.md` |
+| 96 | [Technical Debt and Evolutionary Architecture](technical-debt-and-evolutionary-architecture.md) | T-913 | 3 | `syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md` |
+| 97 | [Consumer Lag, Backpressure, and DLQ Strategy](consumer-lag-backpressure-and-dlq-strategy.md) | T-707 | 3 | `syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md` |
+| 98 | [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md) | T-601/T-602 | 3 | `syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md` |
+| 99 | [Optimistic vs. Pessimistic Locking](optimistic-vs-pessimistic-locking.md) | T-604 | 3 | `syllabus/06-databases/optimistic-vs-pessimistic-locking.md` |
+| 100 | [Incident Response and Blameless Postmortems](incident-response-and-blameless-postmortems.md) | T-1207 | 3 | `syllabus/13-observability/incident-response-and-blameless-postmortems.md` |
+| 101 | [Spring Framework vs. Spring Boot](spring-framework-vs-spring-boot.md) | T-506/T-501 | 3 | `syllabus/05-spring/spring-framework-vs-spring-boot.md` |
+| 102 | [MVCC, Vacuum, and Bloat](mvcc-vacuum-and-bloat.md) | T-612 | 3 | `syllabus/06-databases/mvcc-vacuum-and-bloat.md` |
+| 103 | [Replication, Read Replicas, and Replica Lag](replication-read-replicas-and-replica-lag.md) | T-615 | 3 | `syllabus/06-databases/replication-read-replicas-and-replica-lag.md` |
+| 104 | [CQRS Read/Write Separation](cqrs-read-write-separation.md) | T-904 | 3 | `syllabus/17-architecture/cqrs-read-write-separation.md` |
+| 105 | [Multi-Region Failover and Disaster Recovery](multi-region-failover-and-disaster-recovery.md) | T-814 | 3 | `syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md` |
+| 106 | [Profiling, JFR, and Flame Graphs](profiling-jfr-and-flame-graphs.md) | T-1202 | 3 | `syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md` |
+| 107 | [Load Balancing, Service Discovery, and Health Checking](load-balancing-service-discovery-and-health-checking.md) | T-805 | 3 | `syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md` |
+| 108 | [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md) | T-613 | 3 | `syllabus/06-databases/locks-deadlocks-and-lock-escalation.md` |
+| 109 | [Schema Registry and Compatibility Evolution](schema-registry-and-compatibility-evolution.md) | T-708 | 3 | `syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md` |
 | 110 | [CompletableFuture and Async Composition](completablefuture-and-async-composition.md) | T-407 | 3 | `syllabus/02-java/concurrency/completablefuture-and-async-composition.md` |
-| 111 | [Connection Pooling and Sizing (HikariCP)](connection-pooling-and-sizing.md) | T-607 | 3 | `handbook/databases/connection-pooling-and-sizing.md` |
-| 112 | [Modular Monolith as a Deliberate Choice](modular-monolith-as-a-deliberate-choice.md) | T-910 | 3 | `handbook/architecture/modular-monolith-as-a-deliberate-choice.md` |
-| 113 | [Messaging Patterns and Change Data Capture](messaging-patterns-and-change-data-capture.md) | T-710 | 3 | `handbook/system-design/messaging-patterns-and-change-data-capture.md` |
-| 114 | [Architecture Decision Records](architecture-decision-records.md) | T-916 | 3 | `handbook/architecture/architecture-decision-records.md` |
-| 115 | [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) | T-905 | 3 | `handbook/architecture/event-sourcing-and-its-real-costs.md` |
+| 111 | [Connection Pooling and Sizing (HikariCP)](connection-pooling-and-sizing.md) | T-607 | 3 | `syllabus/06-databases/connection-pooling-and-sizing.md` |
+| 112 | [Modular Monolith as a Deliberate Choice](modular-monolith-as-a-deliberate-choice.md) | T-910 | 3 | `syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md` |
+| 113 | [Messaging Patterns and Change Data Capture](messaging-patterns-and-change-data-capture.md) | T-710 | 3 | `syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md` |
+| 114 | [Architecture Decision Records](architecture-decision-records.md) | T-916 | 3 | `syllabus/17-architecture/architecture-decision-records.md` |
+| 115 | [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) | T-905 | 3 | `syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md` |
 | 116 | [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) | T-405 | 3 | `syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md` |
 | 117 | [Design Patterns Applied](design-patterns-applied.md) | T-914 | 4 | `syllabus/04-software-design/design-patterns-applied.md` |
 | 118 | [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md) | T-404 | 3 | `syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md` |
 | 119 | [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) | T-102 | 3 | `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md` |
-| 120 | [Hibernate Flush Modes and Batch Writes](hibernate-flush-modes-and-batch-writes.md) | T-606 | 3 | `handbook/databases/hibernate-flush-modes-and-batch-writes.md` |
+| 120 | [Hibernate Flush Modes and Batch Writes](hibernate-flush-modes-and-batch-writes.md) | T-606 | 3 | `syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md` |
 | 121 | [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) | T-108 | 3 | `syllabus/02-java/language-core/lambdas-and-functional-interfaces.md` |
 | 122 | [Structured Concurrency](structured-concurrency.md) | T-411 | 3 | `syllabus/02-java/concurrency/structured-concurrency.md` |
 | 123 | [TreeMap, TreeSet, and the Navigable Hierarchy](treemap-treeset-and-navigable-hierarchy.md) | T-203 | 2 | `syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md` |

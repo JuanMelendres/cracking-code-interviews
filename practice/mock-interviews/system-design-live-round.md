@@ -15,8 +15,8 @@ competencies:
   - Fan-out-on-write vs. fan-out-on-read as an explicit trade-off
   - Keyset vs. OFFSET pagination
 related:
-  - ../../handbook/system-design/system-design-method-and-estimation.md
-  - ../../handbook/system-design/caching-strategies-and-invalidation.md
+  - ../../syllabus/11-system-design/system-design-method-and-estimation.md
+  - ../../syllabus/11-system-design/caching-strategies-and-invalidation.md
   - ../../syllabus/07-api-design/api-design.md
 source: ../../study-packs/week-04/07-week-4-mock-interview.md
 official_references: []
@@ -44,9 +44,9 @@ This round has a different shape from the itemized-question rounds elsewhere in 
 
 | Competency | Evidence source | Canonical Chapter |
 |---|---|---|
-| Six-phase method, self-transitioned | No prompted phase transitions | [System Design Method and Estimation](../../handbook/system-design/system-design-method-and-estimation.md) |
-| Caching as a reasoned response | Probe 2 (minute ~20) | [Caching Strategies and Invalidation](../../handbook/system-design/caching-strategies-and-invalidation.md) |
-| Fan-out-on-write vs. fan-out-on-read | Probe 3 | [Caching Strategies and Invalidation](../../handbook/system-design/caching-strategies-and-invalidation.md) (precompute strategy), design prompt's own framing |
+| Six-phase method, self-transitioned | No prompted phase transitions | [System Design Method and Estimation](../../syllabus/11-system-design/system-design-method-and-estimation.md) |
+| Caching as a reasoned response | Probe 2 (minute ~20) | [Caching Strategies and Invalidation](../../syllabus/11-system-design/caching-strategies-and-invalidation.md) |
+| Fan-out-on-write vs. fan-out-on-read | Probe 3 | [Caching Strategies and Invalidation](../../syllabus/11-system-design/caching-strategies-and-invalidation.md) (precompute strategy), design prompt's own framing |
 | Keyset vs. OFFSET pagination | Probe 4 | [API Design](../../syllabus/07-api-design/api-design.md) |
 
 ## Interviewer Opening Script
@@ -55,7 +55,7 @@ This round has a different shape from the itemized-question rounds elsewhere in 
 
 ## Candidate Section
 
-Design a **news feed** system (or a different unseen problem your partner supplies, if running this as a partner mock). Run the full six-phase method — Clarify, Estimate, API, Data, Architecture, Bottlenecks — from [System Design Method and Estimation](../../handbook/system-design/system-design-method-and-estimation.md), across the full 45 minutes. Caching and fan-out are mandatory discussion points: if the design hasn't naturally reached them by minute 30, raise them yourself.
+Design a **news feed** system (or a different unseen problem your partner supplies, if running this as a partner mock). Run the full six-phase method — Clarify, Estimate, API, Data, Architecture, Bottlenecks — from [System Design Method and Estimation](../../syllabus/11-system-design/system-design-method-and-estimation.md), across the full 45 minutes. Caching and fan-out are mandatory discussion points: if the design hasn't naturally reached them by minute 30, raise them yourself.
 
 ## Evaluator Section
 
@@ -105,8 +105,8 @@ Walk the candidate through phase habituality first — it's the structural signa
 
 ## Remediation Recommendations
 
-- Weak phase habituality → re-read [System Design Method and Estimation](../../handbook/system-design/system-design-method-and-estimation.md), and re-run the drill under a strict 45-minute timer with no interviewer prompting at all, even when stuck.
-- Weak caching probe → re-read [Caching Strategies and Invalidation](../../handbook/system-design/caching-strategies-and-invalidation.md).
+- Weak phase habituality → re-read [System Design Method and Estimation](../../syllabus/11-system-design/system-design-method-and-estimation.md), and re-run the drill under a strict 45-minute timer with no interviewer prompting at all, even when stuck.
+- Weak caching probe → re-read [Caching Strategies and Invalidation](../../syllabus/11-system-design/caching-strategies-and-invalidation.md).
 - Weak fan-out probe → revisit this design's own Estimate-phase numbers and re-derive the fan-out-on-write cost for a 10-million-follower account explicitly.
 - Weak pagination probe → re-read [API Design](../../syllabus/07-api-design/api-design.md)'s pagination section, including its measured OFFSET-vs-keyset execution-time comparison.
 - Any dimension scored below Senior (4) overall → retake this mock in full, ideally with a different unseen design prompt, since a memorized single scenario doesn't test the underlying method.

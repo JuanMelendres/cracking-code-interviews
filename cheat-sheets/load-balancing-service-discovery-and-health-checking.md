@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Load Balancing, Service Discovery, and Health Checking
 
-**Canonical chapter:** [`handbook/system-design/load-balancing-service-discovery-and-health-checking.md`](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
+**Canonical chapter:** [`syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md)
 
 ## Core Mental Model
 
@@ -76,7 +76,7 @@ A load balancer is only as good as the information it's routing on, and that inf
 
 ## Related
 
-- `handbook/system-design/resilience-patterns.md`
-- `handbook/system-design/multi-region-failover-and-disaster-recovery.md`
-- `handbook/system-design/data-partitioning-and-consistent-hashing.md`
-- `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md`
+- `syllabus/11-system-design/resilience-patterns.md`
+- `syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md`
+- `syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md`
+- `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md`

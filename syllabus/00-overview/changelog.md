@@ -45,5 +45,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 ### Not yet done
 
-- Phase 3 for every other domain (19 more, plus the 2 new-writing-only domains) has not been authorized.
 - `02-java`'s Foundation/Working-Knowledge (L1/L2) layers remain Phase 5 work.
+
+## [2026-09-03] — Phase 3 continued: 12 more domains, remainder of backend handbook/
+
+### Changed
+
+- Relocated the entire remainder of the backend `handbook/` tree in one batch: 84 chapters across 12 domains (`05-spring`, `06-databases`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, `11-system-design`, `12-security`, `13-observability`, `14-devops-containers`, `15-cloud`, `16-performance-jvm`, `17-architecture`) via `git mv`. Combined with Phase 2 and the `02-java` batch, **all 137 backend `handbook/` chapters have now relocated**.
+- Built the full 84-entry mapping up front rather than one domain at a time, then applied the same pristine-rebuild-plus-repository-wide-fix process proven correct for `02-java`: 466 other files changed, 2,705 link fixes.
+- Verified: zero new broken links introduced. The same 51 pre-existing, unrelated broken links from the `02-java` migration were found again, unchanged — no regressions, no new instances.
+- Updated all 12 affected domain `INDEX.md` files plus this directory's own `INDEX.md` (domain-status table, "What's next" section). See the repository-root `CHANGELOG.md` for the full account.
+
+### Not yet done
+
+- `01-computer-science-foundations`, `03-data-structures-algorithms`, `19-leadership-staff`, and most of `18-engineering-practices` remain new-writing-only (Phase 5) — no migration step applies.
+- Every migrated domain's Foundation/Working-Knowledge (L1/L2) layers remain Phase 5 work.

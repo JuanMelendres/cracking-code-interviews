@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Hibernate Second-Level and Query Cache
 
-**Canonical chapter:** [`handbook/databases/hibernate-second-level-and-query-cache.md`](../handbook/databases/hibernate-second-level-and-query-cache.md)
+**Canonical chapter:** [`syllabus/06-databases/hibernate-second-level-and-query-cache.md`](../syllabus/06-databases/hibernate-second-level-and-query-cache.md)
 
 ## Core Mental Model
 
@@ -87,6 +87,6 @@ Real loaded stock: 100 (real row value is 5; stale L2 value would be 100)
 
 ## Related
 
-- `handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md`
-- `handbook/spring/spring-cache-abstraction-and-pitfalls.md`
-- `handbook/databases/optimistic-vs-pessimistic-locking.md`
+- `syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md`
+- `syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md`
+- `syllabus/06-databases/optimistic-vs-pessimistic-locking.md`

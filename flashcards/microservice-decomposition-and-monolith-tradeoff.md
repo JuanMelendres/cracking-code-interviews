@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Microservice Decomposition and the Monolith Trade-off
 
-**Canonical chapter:** [`handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md)
+**Canonical chapter:** [`syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md)
 
 ## Card: The actual boundary test
 
@@ -27,7 +27,7 @@ Prevents boundary decisions driven by code organization or team preference inste
 Splitting by table or file proximity rather than consistency.
 
 **Related:**
-[Core Concepts](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts)
 
 ## Card: Two services, one transaction
 
@@ -44,7 +44,7 @@ The default reflex (reach for 2PC) treats the symptom, not the cause.
 Proposing distributed 2PC as the fix.
 
 **Related:**
-[Core Concepts](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts)
 
 ## Card: Merge-back signal
 
@@ -61,7 +61,7 @@ Makes "should we merge back" an evidence-based question, not a purely qualitativ
 Treating decomposition as a one-way door.
 
 **Related:**
-[Production Scenarios](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#production-scenarios)
+[Production Scenarios](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#production-scenarios)
 
 ## Card: Small-team microservices question
 
@@ -78,4 +78,4 @@ One of the highest-signal questions in the register; most candidates answer "yes
 Defending microservices as a technical best practice regardless of team size.
 
 **Related:**
-[Interview Questions](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#interview-questions), Question 4
+[Interview Questions](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#interview-questions), Question 4

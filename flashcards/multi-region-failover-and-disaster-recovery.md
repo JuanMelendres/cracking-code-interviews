@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Multi-Region Failover and Disaster Recovery
 
-**Canonical chapter:** [`handbook/system-design/multi-region-failover-and-disaster-recovery.md`](../handbook/system-design/multi-region-failover-and-disaster-recovery.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md`](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md)
 
 ## Card: RPO vs. RTO
 
@@ -27,7 +27,7 @@ Every DR tier trades cost against these two numbers specifically — naming them
 Confusing the two, or answering "as fast/safe as possible" instead of a real number.
 
 **Related:**
-[Definition and Purpose](../handbook/system-design/multi-region-failover-and-disaster-recovery.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md#definition-and-purpose)
 
 ## Card: Split-brain's real cause
 
@@ -44,7 +44,7 @@ This chapter reproduced it directly: two real nodes, each with a real committed 
 Assuming "unreachable" means "dead" — a network partition proves neither.
 
 **Related:**
-[Failure Modes and Debugging](../handbook/system-design/multi-region-failover-and-disaster-recovery.md#failure-modes-and-debugging)
+[Failure Modes and Debugging](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md#failure-modes-and-debugging)
 
 ## Card: Fencing / STONITH
 
@@ -61,4 +61,4 @@ This chapter's demo showed the exact contrast: an unfenced failover produced rea
 Treating fencing as a nice-to-have that can be skipped to fail over faster — that speed is exactly what causes split-brain.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/multi-region-failover-and-disaster-recovery.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md#internal-implementation)

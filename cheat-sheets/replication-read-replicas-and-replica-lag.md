@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Replication, Read Replicas, and Replica Lag
 
-**Canonical chapter:** [`handbook/databases/replication-read-replicas-and-replica-lag.md`](../handbook/databases/replication-read-replicas-and-replica-lag.md)
+**Canonical chapter:** [`syllabus/06-databases/replication-read-replicas-and-replica-lag.md`](../syllabus/06-databases/replication-read-replicas-and-replica-lag.md)
 
 ## Core Mental Model
 
@@ -73,7 +73,7 @@ A read replica is not a live mirror — it's a follower re-executing a real, ord
 
 ## Related
 
-- `handbook/system-design/cap-theorem-and-consistency-models.md`
-- `handbook/architecture/cqrs-read-write-separation.md`
-- `handbook/system-design/multi-region-failover-and-disaster-recovery.md`
-- `handbook/system-design/messaging-patterns-and-change-data-capture.md`
+- `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md`
+- `syllabus/17-architecture/cqrs-read-write-separation.md`
+- `syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md`
+- `syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md`

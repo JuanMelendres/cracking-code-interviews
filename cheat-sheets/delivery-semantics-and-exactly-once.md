@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Kafka Delivery Semantics and Exactly-Once Processing
 
-**Canonical chapter:** [`handbook/kafka/delivery-semantics-and-exactly-once.md`](../handbook/kafka/delivery-semantics-and-exactly-once.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md)
 
 ## Core Mental Model
 
@@ -67,6 +67,6 @@ The dedupe check itself is O(1) (a keyed lookup) — this is about correctness u
 
 ## Related
 
-- `handbook/kafka/producer-semantics-and-partition-keys.md`
-- `handbook/kafka/consumer-groups-and-rebalancing.md`
+- `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`
+- `syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md`
 - [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md)

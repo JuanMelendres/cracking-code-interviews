@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # DDD Tactical Design: Aggregates
 
-**Canonical chapter:** [`handbook/architecture/ddd-tactical-design-aggregates.md`](../handbook/architecture/ddd-tactical-design-aggregates.md)
+**Canonical chapter:** [`syllabus/17-architecture/ddd-tactical-design-aggregates.md`](../syllabus/17-architecture/ddd-tactical-design-aggregates.md)
 
 ## Core Mental Model
 
@@ -63,6 +63,6 @@ Not applicable — this is a domain-modelling discipline, not a runtime mechanis
 
 ## Related
 
-- `handbook/databases/data-modelling-and-explicit-join-tables.md`
+- `syllabus/06-databases/data-modelling-and-explicit-join-tables.md`
 - [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md)
 - [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md)

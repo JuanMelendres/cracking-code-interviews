@@ -9,7 +9,7 @@ deciders: [platform-architecture-group]
 
 > **Representative scenario.** A worked example, not a record of a real company
 > decision. Every result cited is real, executed evidence from this repository's own
-> [Schema Registry and Compatibility Evolution](../../../handbook/kafka/schema-registry-and-compatibility-evolution.md)
+> [Schema Registry and Compatibility Evolution](../../../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md)
 > chapter and its [practice code](../../java/kafka/schema-registry-and-compatibility-evolution/README.md).
 
 ## Status
@@ -92,5 +92,5 @@ every future removed field to have carried a default from its introduction).
 
 ## Related
 
-- [Schema Registry and Compatibility Evolution](../../../handbook/kafka/schema-registry-and-compatibility-evolution.md) — the canonical chapter and all cited evidence.
+- [Schema Registry and Compatibility Evolution](../../../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md) — the canonical chapter and all cited evidence.
 - [Schema Registry practice code and real 2×2 compatibility matrix](../../java/kafka/schema-registry-and-compatibility-evolution/README.md)

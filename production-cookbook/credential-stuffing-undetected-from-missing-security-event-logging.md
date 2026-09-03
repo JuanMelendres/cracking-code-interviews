@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/owasp-top-10-for-backend-services.md
+  - ../syllabus/12-security/owasp-top-10-for-backend-services.md
 source: handbook/security/owasp-top-10-for-backend-services.md#production-scenarios
 ---
 
@@ -83,5 +83,5 @@ This incident demonstrates that "we have logging" and "we have security observab
 
 ## Related Handbook Chapters
 
-- [OWASP Top 10 for Backend Services](../handbook/security/owasp-top-10-for-backend-services.md) — canonical A09 security logging and monitoring failure category used here.
-- [AuthN/AuthZ: RBAC vs. ABAC](../handbook/security/authn-authz-rbac-vs-abac.md) — the authorization model whose failures this logging discipline also covers.
+- [OWASP Top 10 for Backend Services](../syllabus/12-security/owasp-top-10-for-backend-services.md) — canonical A09 security logging and monitoring failure category used here.
+- [AuthN/AuthZ: RBAC vs. ABAC](../syllabus/12-security/authn-authz-rbac-vs-abac.md) — the authorization model whose failures this logging discipline also covers.

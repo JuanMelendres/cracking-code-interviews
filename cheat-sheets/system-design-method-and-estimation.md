@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # System Design Method and Estimation
 
-**Canonical chapter:** [`handbook/system-design/system-design-method-and-estimation.md`](../handbook/system-design/system-design-method-and-estimation.md)
+**Canonical chapter:** [`syllabus/11-system-design/system-design-method-and-estimation.md`](../syllabus/11-system-design/system-design-method-and-estimation.md)
 
 ## Core Mental Model
 

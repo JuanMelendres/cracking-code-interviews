@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
 
-**Canonical chapter:** [`handbook/system-design/twelve-factor-config.md`](../handbook/system-design/twelve-factor-config.md)
+**Canonical chapter:** [`syllabus/15-cloud/twelve-factor-config.md`](../syllabus/15-cloud/twelve-factor-config.md)
 
 ## Core Mental Model
 
@@ -83,6 +83,6 @@ FIXED (real startup validation): Missing required config key 'database.url' -- r
 
 ## Related
 
-- `handbook/spring/auto-configuration-and-bean-lifecycle.md`
-- `handbook/security/secrets-management-and-key-rotation.md`
-- `handbook/spring/spring-actuator-health-and-observability-hooks.md`
+- `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md`
+- `syllabus/12-security/secrets-management-and-key-rotation.md`
+- `syllabus/05-spring/spring-actuator-health-and-observability-hooks.md`

@@ -1,7 +1,7 @@
 # Containers & Image Internals (T-1001) — runnable verification
 
 Real, executed Docker output backing
-[`handbook/cloud/container-image-internals.md`](../../../../handbook/cloud/container-image-internals.md)
+[`syllabus/14-devops-containers/container-image-internals.md`](../../../../syllabus/14-devops-containers/container-image-internals.md)
 (T-1001). Every number below is measured on this machine (Docker 29.6.2,
 Docker Desktop, `overlayfs` storage driver, linux/aarch64 VM), not asserted
 from documentation.
@@ -9,7 +9,7 @@ from documentation.
 This pack deliberately does not re-cover container **resource limits**
 (cgroup memory limits from the JVM's perspective, `OutOfMemoryError` vs
 OOMKill) — that is already covered in depth by
-[`handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md`](../../../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md).
+[`syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md`](../../../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md).
 This pack's scope is the layer beneath that: how an image is actually
 built, layered, and stored, and what a container's namespace/cgroup view
 looks like from the inside.

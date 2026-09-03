@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Isolation Levels and Concurrency Anomalies
 
-**Canonical chapter:** [`handbook/databases/isolation-levels-and-concurrency-anomalies.md`](../handbook/databases/isolation-levels-and-concurrency-anomalies.md)
+**Canonical chapter:** [`syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md)
 
 ## Core Mental Model
 
@@ -74,6 +74,6 @@ All variants are O(1) database operations — the distinction is entirely correc
 
 ## Related
 
-- `handbook/databases/index-structures-btree-composite-covering.md`
-- `handbook/databases/query-planning-and-explain-analyze.md`
+- `syllabus/06-databases/index-structures-btree-composite-covering.md`
+- `syllabus/06-databases/query-planning-and-explain-analyze.md`
 - [Spring Transactional Proxy Mechanics and Propagation](transactional-proxy-mechanics-and-propagation.md)

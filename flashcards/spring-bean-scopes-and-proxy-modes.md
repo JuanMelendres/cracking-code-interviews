@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Spring Bean Scopes and Proxy Modes
 
-**Canonical chapter:** [`handbook/spring/spring-bean-scopes-and-proxy-modes.md`](../handbook/spring/spring-bean-scopes-and-proxy-modes.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md`](../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md)
 
 ## Card: Why does a prototype bean behave like a singleton once injected into one?
 
@@ -33,7 +33,7 @@ Assuming the bean's own `@Scope` annotation alone guarantees correct runtime
 behavior regardless of injection site.
 
 **Related:**
-[handbook/spring/spring-bean-scopes-and-proxy-modes.md](../handbook/spring/spring-bean-scopes-and-proxy-modes.md), [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](../handbook/spring/transactional-proxy-mechanics-and-propagation.md)
+[handbook/spring/spring-bean-scopes-and-proxy-modes.md](../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md), [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
 
 ## Card: What's actually injected with proxyMode = ScopedProxyMode.TARGET_CLASS?
 
@@ -58,7 +58,7 @@ stand-in — which also means a direct field read on it won't see the real targe
 state.
 
 **Related:**
-[handbook/spring/spring-bean-scopes-and-proxy-modes.md](../handbook/spring/spring-bean-scopes-and-proxy-modes.md), [Spring Cache Abstraction and Pitfalls](../handbook/spring/spring-cache-abstraction-and-pitfalls.md)
+[handbook/spring/spring-bean-scopes-and-proxy-modes.md](../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
 
 ## Card: How do request/session scope actually work, mechanically?
 
@@ -83,4 +83,4 @@ Assuming request/session scope require understanding servlet-container internals
 to reason about correctly.
 
 **Related:**
-[handbook/spring/spring-bean-scopes-and-proxy-modes.md](../handbook/spring/spring-bean-scopes-and-proxy-modes.md)
+[handbook/spring/spring-bean-scopes-and-proxy-modes.md](../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md)

@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Kafka Architecture Fundamentals
 
-**Canonical chapter:** [`handbook/kafka/kafka-architecture-fundamentals.md`](../handbook/kafka/kafka-architecture-fundamentals.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md`](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md)
 
 ## Core Mental Model
 
@@ -73,7 +73,7 @@ Note: replication/ISR mechanics are described from documented Kafka behavior, no
 
 ## Related
 
-- `handbook/kafka/producer-semantics-and-partition-keys.md`
+- `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`
 - [Consumer Groups and Rebalancing](consumer-groups-and-rebalancing.md)
 - [Kafka Delivery Semantics and Exactly-Once](delivery-semantics-and-exactly-once.md)
 - [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md)

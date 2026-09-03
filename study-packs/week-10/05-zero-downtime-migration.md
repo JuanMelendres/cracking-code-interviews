@@ -15,7 +15,7 @@ canonical: ../../handbook/databases/zero-downtime-schema-migration.md
 
 **IWI 7.30 · Staff tier**
 
-**Canonical chapter:** [Zero-Downtime Schema Migration](../../handbook/databases/zero-downtime-schema-migration.md). This file is the Week 10 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [Zero-Downtime Schema Migration](../../syllabus/06-databases/zero-downtime-schema-migration.md). This file is the Week 10 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** the blocking-vs-`CONCURRENTLY` timings behind this summary are real, measured wall-clock output from `practice/sql/week-10/zero-downtime-migration/` against a live Postgres 16 (Docker), a genuine 2-million-row table, and a real concurrent `INSERT` from a second session.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/databases/zero-downtime-schema-migration.md
 
 ## 1. The concept
 
-Zero-downtime migration changes a live database's schema without blocking normal reads/writes, because a maintenance window is rarely an option for a system with real concurrent traffic. → [Definition and Purpose](../../handbook/databases/zero-downtime-schema-migration.md#definition-and-purpose).
+Zero-downtime migration changes a live database's schema without blocking normal reads/writes, because a maintenance window is rarely an option for a system with real concurrent traffic. → [Definition and Purpose](../../syllabus/06-databases/zero-downtime-schema-migration.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Schema changes that look instant locally take real, lock-holding time against production-scale data — Postgres's default DDL operations hold locks for that entire duration. → [Definition and Purpose](../../handbook/databases/zero-downtime-schema-migration.md#definition-and-purpose).
+Schema changes that look instant locally take real, lock-holding time against production-scale data — Postgres's default DDL operations hold locks for that entire duration. → [Definition and Purpose](../../syllabus/06-databases/zero-downtime-schema-migration.md#definition-and-purpose).
 
 ## 3. Blocking vs CONCURRENTLY, measured
 
-Measured: a plain `CREATE INDEX` on a 2M-row table blocks a concurrent `INSERT` for 1943ms (the full build duration); `CREATE INDEX CONCURRENTLY` lets the same `INSERT` complete in 84ms while the build is still running — roughly 23x. → [Internal Implementation](../../handbook/databases/zero-downtime-schema-migration.md#internal-implementation) has the full trace.
+Measured: a plain `CREATE INDEX` on a 2M-row table blocks a concurrent `INSERT` for 1943ms (the full build duration); `CREATE INDEX CONCURRENTLY` lets the same `INSERT` complete in 84ms while the build is still running — roughly 23x. → [Internal Implementation](../../syllabus/06-databases/zero-downtime-schema-migration.md#internal-implementation) has the full trace.
 
 ## 4. Expand-contract for column/type changes
 
-A direct rename is instant at the catalog level but breaks old code still running during a rolling deploy. Expand-contract fixes this in three phases: add the new column, dual-write + backfill, then drop the old column once all instances run new code. The dual-write phase inherits the same atomicity hazard as any cross-system dual write. → [Core Concepts](../../handbook/databases/zero-downtime-schema-migration.md#core-concepts).
+A direct rename is instant at the catalog level but breaks old code still running during a rolling deploy. Expand-contract fixes this in three phases: add the new column, dual-write + backfill, then drop the old column once all instances run new code. The dual-write phase inherits the same atomicity hazard as any cross-system dual write. → [Core Concepts](../../syllabus/06-databases/zero-downtime-schema-migration.md#core-concepts).
 
 ## 5. Trade-offs
 
-Plain `CREATE INDEX` is simpler but blocks writes; `CONCURRENTLY` doesn't block but is slower and can leave an invalid index on failure; direct rename is simple but breaks mixed-version deploys; expand-contract keeps both versions working at the cost of more steps. → [Trade-offs](../../handbook/databases/zero-downtime-schema-migration.md#trade-offs).
+Plain `CREATE INDEX` is simpler but blocks writes; `CONCURRENTLY` doesn't block but is slower and can leave an invalid index on failure; direct rename is simple but breaks mixed-version deploys; expand-contract keeps both versions working at the cost of more steps. → [Trade-offs](../../syllabus/06-databases/zero-downtime-schema-migration.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Rename a column on a live 200M-row table.
 2. How do you add an index to a 500M-row table in production without downtime?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/databases/zero-downtime-schema-migration.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/06-databases/zero-downtime-schema-migration.md#interview-questions).
 
 ## 7. Common mistakes
 
-Assuming a maintenance window is available; using plain `CREATE INDEX` on a large, actively-written table; performing a direct column rename/retype during a rolling deploy. → [Common Mistakes](../../handbook/databases/zero-downtime-schema-migration.md#common-mistakes).
+Assuming a maintenance window is available; using plain `CREATE INDEX` on a large, actively-written table; performing a direct column rename/retype during a rolling deploy. → [Common Mistakes](../../syllabus/06-databases/zero-downtime-schema-migration.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-A schema change that looks routine in staging (small table, no concurrent load) can cause a real production outage purely from lock duration once the table is large and under real write traffic. → [Staff-Level Discussion](../../handbook/databases/zero-downtime-schema-migration.md#interview-answer-framework).
+A schema change that looks routine in staging (small table, no concurrent load) can cause a real production outage purely from lock duration once the table is large and under real write traffic. → [Staff-Level Discussion](../../syllabus/06-databases/zero-downtime-schema-migration.md#interview-answer-framework).
 
 ## 9. Summary
 
-A plain `CREATE INDEX` measurably blocks writes for its full build duration; `CONCURRENTLY` avoids that at the cost of a slower build. Column renames/retypes need expand-contract, not a direct change, to keep old and new code both working during a rolling deploy. → [Summary](../../handbook/databases/zero-downtime-schema-migration.md#summary).
+A plain `CREATE INDEX` measurably blocks writes for its full build duration; `CONCURRENTLY` avoids that at the cost of a slower build. Column renames/retypes need expand-contract, not a direct change, to keep old and new code both working during a rolling deploy. → [Summary](../../syllabus/06-databases/zero-downtime-schema-migration.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/databases/zero-downtime-schema-migration.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/06-databases/zero-downtime-schema-migration.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/databases/zero-downtime-schema-migration.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/06-databases/zero-downtime-schema-migration.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/databases/zero-downtime-schema-migration.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/06-databases/zero-downtime-schema-migration.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/databases/zero-downtime-schema-migration.md#practice-exercises) and [Solutions](../../handbook/databases/zero-downtime-schema-migration.md#solutions). Reproducible scripts: `practice/sql/week-10/zero-downtime-migration/run-blocking.sh` and `run-concurrently.sh`.
+→ [Practice Exercises](../../syllabus/06-databases/zero-downtime-schema-migration.md#practice-exercises) and [Solutions](../../syllabus/06-databases/zero-downtime-schema-migration.md#solutions). Reproducible scripts: `practice/sql/week-10/zero-downtime-migration/run-blocking.sh` and `run-concurrently.sh`.
 
 ## 14. Additional Reading
 

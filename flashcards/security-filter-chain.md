@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Spring Security Filter Chain
 
-**Canonical chapter:** [`handbook/spring/security-filter-chain.md`](../handbook/spring/security-filter-chain.md)
+**Canonical chapter:** [`syllabus/05-spring/security-filter-chain.md`](../syllabus/05-spring/security-filter-chain.md)
 
 ## Card: 401 vs 403
 
@@ -27,7 +27,7 @@ The precise, testable distinction between two sequential security gates.
 Treating both as generic "access denied" responses with no distinction.
 
 **Related:**
-[Core Concepts](../handbook/spring/security-filter-chain.md#core-concepts)
+[Core Concepts](../syllabus/05-spring/security-filter-chain.md#core-concepts)
 
 ## Card: Filters can short-circuit
 
@@ -44,7 +44,7 @@ The mechanism that makes cheap, early rejection possible.
 Assuming every request always reaches the controller regardless of filter outcomes.
 
 **Related:**
-[Definition and Purpose](../handbook/spring/security-filter-chain.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/05-spring/security-filter-chain.md#definition-and-purpose)
 
 ## Card: Why CORS/CSRF run first
 
@@ -61,4 +61,4 @@ The general cost/decisiveness ordering principle, applicable to any new cross-cu
 Reciting a memorized filter order with no underlying reasoning principle.
 
 **Related:**
-[Staff-Level Discussion](../handbook/spring/security-filter-chain.md#interview-answer-framework)
+[Staff-Level Discussion](../syllabus/05-spring/security-filter-chain.md#interview-answer-framework)

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Consumer Lag, Backpressure, and DLQ Strategy
 
-**Canonical chapter:** [`handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md`](../handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md`](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ A Kafka partition is a strictly ordered log, and a consumer reads it strictly in
 
 ## Related
 
-- `handbook/kafka/consumer-groups-and-rebalancing.md`
-- `handbook/kafka/delivery-semantics-and-exactly-once.md`
-- `handbook/system-design/rate-limiting-and-throttling-algorithms.md`
-- `handbook/system-design/resilience-patterns.md`
+- `syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md`
+- `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`
+- `syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md`
+- `syllabus/11-system-design/resilience-patterns.md`

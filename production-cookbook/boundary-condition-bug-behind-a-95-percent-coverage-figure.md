@@ -5,7 +5,7 @@ domain: testing
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/testing/mutation-and-property-based-testing.md
+  - ../syllabus/08-testing/mutation-and-property-based-testing.md
 source: handbook/testing/mutation-and-property-based-testing.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ This incident is a precise demonstration of the difference between two claims th
 
 ## Related Handbook Chapters
 
-- [Mutation and Property-Based Testing](../handbook/testing/mutation-and-property-based-testing.md) — canonical mutation-testing mechanics and the `>=`-to-`>` demonstration used here.
+- [Mutation and Property-Based Testing](../syllabus/08-testing/mutation-and-property-based-testing.md) — canonical mutation-testing mechanics and the `>=`-to-`>` demonstration used here.

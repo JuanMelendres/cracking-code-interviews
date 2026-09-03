@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: AWS Core Services for Backend Engineers
 
-**Canonical chapter:** [`handbook/cloud/aws-core-services-for-backend-engineers.md`](../handbook/cloud/aws-core-services-for-backend-engineers.md)
+**Canonical chapter:** [`syllabus/15-cloud/aws-core-services-for-backend-engineers.md`](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md)
 
 ## Card: The compute spectrum
 
@@ -27,7 +27,7 @@ The core organizing principle for AWS compute choices.
 Choosing a compute service by popularity rather than this actual trade-off.
 
 **Related:**
-[Core Concepts](../handbook/cloud/aws-core-services-for-backend-engineers.md#core-concepts)
+[Core Concepts](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md#core-concepts)
 
 ## Card: S3 vs EBS vs EFS
 
@@ -44,7 +44,7 @@ Prevents treating all three as interchangeable "AWS storage."
 Choosing based on price alone without matching to the actual access model needed.
 
 **Related:**
-[Core Concepts](../handbook/cloud/aws-core-services-for-backend-engineers.md#core-concepts)
+[Core Concepts](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md#core-concepts)
 
 ## Card: SQS vs SNS
 
@@ -61,4 +61,4 @@ They solve different problems; a workflow needing both fan-out and durable per-c
 Treating SQS and SNS as alternatives rather than complementary.
 
 **Related:**
-[Core Concepts](../handbook/cloud/aws-core-services-for-backend-engineers.md#core-concepts)
+[Core Concepts](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md#core-concepts)

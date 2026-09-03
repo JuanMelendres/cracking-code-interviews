@@ -17,10 +17,10 @@ last_reviewed: 2026-07-31
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 664 |
-| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/kafka-architecture-fundamentals.md` | 590 |
-| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/producer-semantics-and-partition-keys.md` | 578 |
-| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/consumer-groups-and-rebalancing.md` | 558 |
-| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/kafka/delivery-semantics-and-exactly-once.md` | 599 |
+| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md` | 590 |
+| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md` | 578 |
+| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md` | 558 |
+| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md` | 599 |
 | 6 | `05-java-coding-practice.md` | LC 70, 198, 322, 300, all compiled and run | 826 |
 | 7 | `06-flashcards.md` | 14 cards | 479 |
 | 8 | `07-kafka-guarantees-deliverable.md` | Guarantee table + full worked exit-criteria answers | 785 |

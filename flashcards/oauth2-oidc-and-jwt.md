@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: OAuth2, OIDC, and JWT
 
-**Canonical chapter:** [`handbook/security/oauth2-oidc-and-jwt.md`](../handbook/security/oauth2-oidc-and-jwt.md)
+**Canonical chapter:** [`syllabus/12-security/oauth2-oidc-and-jwt.md`](../syllabus/12-security/oauth2-oidc-and-jwt.md)
 
 ## Card: OAuth2 vs OIDC
 
@@ -27,7 +27,7 @@ The precise distinction most frequently conflated in practice.
 Treating OAuth2 and OIDC as the same thing.
 
 **Related:**
-[Definition and Purpose](../handbook/security/oauth2-oidc-and-jwt.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/12-security/oauth2-oidc-and-jwt.md#definition-and-purpose)
 
 ## Card: Why PKCE if you have a client secret
 
@@ -44,7 +44,7 @@ Prevents treating the two mechanisms as redundant.
 Assuming a client secret alone makes PKCE unnecessary.
 
 **Related:**
-[Internal Implementation](../handbook/security/oauth2-oidc-and-jwt.md#internal-implementation)
+[Internal Implementation](../syllabus/12-security/oauth2-oidc-and-jwt.md#internal-implementation)
 
 ## Card: Can a valid JWT be revoked
 
@@ -61,7 +61,7 @@ The honest, scoped answer to this domain's sharpest discriminating question.
 Claiming JWTs can simply be revoked with no further mechanism.
 
 **Related:**
-[Internal Implementation](../handbook/security/oauth2-oidc-and-jwt.md#internal-implementation)
+[Internal Implementation](../syllabus/12-security/oauth2-oidc-and-jwt.md#internal-implementation)
 
 ## Card: Honest JWT revocation mitigations
 
@@ -78,4 +78,4 @@ Neither mitigation is free — a Staff-level answer states both trade-offs expli
 Presenting one mitigation as if it were a complete, cost-free solution.
 
 **Related:**
-[Core Concepts](../handbook/security/oauth2-oidc-and-jwt.md#core-concepts)
+[Core Concepts](../syllabus/12-security/oauth2-oidc-and-jwt.md#core-concepts)

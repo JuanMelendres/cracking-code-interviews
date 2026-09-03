@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Schema Registry and Compatibility Evolution
 
-**Canonical chapter:** [`handbook/kafka/schema-registry-and-compatibility-evolution.md`](../handbook/kafka/schema-registry-and-compatibility-evolution.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md`](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ A compatibility mode is really just a promise about who deploys first. BACKWARD 
 
 ## Related
 
-- `handbook/kafka/producer-semantics-and-partition-keys.md`
-- `handbook/kafka/delivery-semantics-and-exactly-once.md`
-- `handbook/architecture/cqrs-read-write-separation.md`
-- `handbook/architecture/event-sourcing-and-its-real-costs.md`
+- `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`
+- `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`
+- `syllabus/17-architecture/cqrs-read-write-separation.md`
+- `syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md`

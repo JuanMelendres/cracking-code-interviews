@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Table Partitioning and Sharding Strategies
 
-**Canonical chapter:** [`handbook/databases/table-partitioning-and-sharding-strategies.md`](../handbook/databases/table-partitioning-and-sharding-strategies.md)
+**Canonical chapter:** [`syllabus/06-databases/table-partitioning-and-sharding-strategies.md`](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md)
 
 ## Core Mental Model
 
@@ -75,4 +75,4 @@ Roughly proportional to the ~4x difference in partitions scanned. (Cross-referen
 - [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md)
 - [Database Index Structures](index-structures-btree-composite-covering.md)
 - [Query Planning and EXPLAIN ANALYZE](query-planning-and-explain-analyze.md)
-- `handbook/databases/zero-downtime-schema-migration.md`
+- `syllabus/06-databases/zero-downtime-schema-migration.md`

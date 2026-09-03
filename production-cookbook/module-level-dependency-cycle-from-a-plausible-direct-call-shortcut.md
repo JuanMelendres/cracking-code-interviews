@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/modular-monolith-as-a-deliberate-choice.md
-  - ../handbook/system-design/distributed-transactions-saga-and-outbox.md
+  - ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
+  - ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 source: handbook/architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios
 ---
 
@@ -94,5 +94,5 @@ This incident is a sharper illustration of the same underlying lesson as the pac
 
 ## Related Handbook Chapters
 
-- [Modular Monolith as a Deliberate Choice](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md) — canonical module-boundary and cycle-detection mechanics and the `CycleCheckDemo` this incident reproduces.
-- [Distributed Transactions, Saga, and Outbox](../handbook/system-design/distributed-transactions-saga-and-outbox.md) — the event-based dependency-inversion pattern applied here at the intra-process module level.
+- [Modular Monolith as a Deliberate Choice](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md) — canonical module-boundary and cycle-detection mechanics and the `CycleCheckDemo` this incident reproduces.
+- [Distributed Transactions, Saga, and Outbox](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md) — the event-based dependency-inversion pattern applied here at the intra-process module level.

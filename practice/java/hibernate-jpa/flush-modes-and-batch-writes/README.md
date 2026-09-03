@@ -1,7 +1,7 @@
 # Hibernate Flush Modes and Batch Writes (T-606) — runnable verification
 
 Real, executed Hibernate 6.6.55.Final output backing
-[`handbook/databases/hibernate-flush-modes-and-batch-writes.md`](../../../../handbook/databases/hibernate-flush-modes-and-batch-writes.md)
+[`syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md`](../../../../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md)
 (T-606). Real H2, real JDBC-level call counting via a dynamic proxy — no
 mocked SQL, no assumed batching behavior.
 

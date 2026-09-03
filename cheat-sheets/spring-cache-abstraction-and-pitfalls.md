@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Spring Cache Abstraction and Pitfalls
 
-**Canonical chapter:** [`handbook/spring/spring-cache-abstraction-and-pitfalls.md`](../handbook/spring/spring-cache-abstraction-and-pitfalls.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md`](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
 
 ## Core Mental Model
 
@@ -89,6 +89,6 @@ Real read after the update: Product{sku-1, Widget, stock=5}
 
 ## Related
 
-- `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
-- `handbook/spring/spring-bean-scopes-and-proxy-modes.md`
-- `handbook/system-design/caching-strategies-and-invalidation.md`
+- `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`
+- `syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md`
+- `syllabus/11-system-design/caching-strategies-and-invalidation.md`

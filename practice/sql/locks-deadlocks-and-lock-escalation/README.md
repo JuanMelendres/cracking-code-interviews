@@ -1,14 +1,14 @@
 # Locks, deadlocks, and lock escalation in RDBMS (T-613) — runnable verification
 
 Real, executed PostgreSQL 16 (Docker) output backing
-[`handbook/databases/locks-deadlocks-and-lock-escalation.md`](../../../handbook/databases/locks-deadlocks-and-lock-escalation.md)
+[`syllabus/06-databases/locks-deadlocks-and-lock-escalation.md`](../../../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md)
 (T-613). A real, reproduced two-transaction deadlock, caught by PostgreSQL's own
 detector, not a scripted timeout — and real, direct proof that PostgreSQL does **not**
 escalate row locks to a table lock the way MySQL/InnoDB or SQL Server do, plus the
 real failure mode (`out of shared memory`) that takes escalation's place.
 
 This directory deliberately doesn't repeat
-[`isolation-levels-and-concurrency-anomalies.md`](../../../handbook/databases/isolation-levels-and-concurrency-anomalies.md)'s
+[`isolation-levels-and-concurrency-anomalies.md`](../../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md)'s
 existing coverage of lost updates, write skew, and `SELECT ... FOR UPDATE` as a race
 fix — this is about the lock manager mechanism itself: real deadlock detection, and
 what actually happens (and doesn't happen) as lock count grows.

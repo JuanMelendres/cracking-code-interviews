@@ -5,7 +5,7 @@ domain: testing
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/testing/test-strategy-and-test-doubles.md
+  - ../syllabus/08-testing/test-strategy-and-test-doubles.md
 source: handbook/testing/test-strategy-and-test-doubles.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This maps directly to "your test suite is green but production broke anyway" que
 
 ## Related Handbook Chapters
 
-- [Test Strategy and Test Doubles](../handbook/testing/test-strategy-and-test-doubles.md) — canonical mock-vs-real-dependency trade-off mechanics used here.
-- [Integration Testing Against Real Dependencies](../handbook/testing/integration-testing-against-real-dependencies.md) — the integration-testing approach used as the permanent fix.
+- [Test Strategy and Test Doubles](../syllabus/08-testing/test-strategy-and-test-doubles.md) — canonical mock-vs-real-dependency trade-off mechanics used here.
+- [Integration Testing Against Real Dependencies](../syllabus/08-testing/integration-testing-against-real-dependencies.md) — the integration-testing approach used as the permanent fix.

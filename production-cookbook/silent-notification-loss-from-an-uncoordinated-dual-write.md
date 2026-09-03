@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/distributed-transactions-saga-and-outbox.md
+  - ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 source: handbook/system-design/distributed-transactions-saga-and-outbox.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This is one of the cleanest demonstrations in distributed systems that "the code
 
 ## Related Handbook Chapters
 
-- [Distributed Transactions: Saga and Outbox](../handbook/system-design/distributed-transactions-saga-and-outbox.md) — canonical outbox-pattern and dual-write-hazard mechanics used here.
-- [Kafka Delivery Semantics and Exactly-Once](../handbook/kafka/delivery-semantics-and-exactly-once.md) — the at-least-once/idempotent-consumer design the outbox relies on downstream.
+- [Distributed Transactions: Saga and Outbox](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md) — canonical outbox-pattern and dual-write-hazard mechanics used here.
+- [Kafka Delivery Semantics and Exactly-Once](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md) — the at-least-once/idempotent-consumer design the outbox relies on downstream.

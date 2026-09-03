@@ -17,11 +17,11 @@ competencies:
   - Coverage vs. mutation/verification strength
   - JUnit 5 architecture
 related:
-  - ../../handbook/testing/performance-and-load-testing-methodology.md
-  - ../../handbook/testing/writing-tests-live-in-an-interview.md
-  - ../../handbook/testing/contract-testing-for-services.md
-  - ../../handbook/testing/mutation-and-property-based-testing.md
-  - ../../handbook/testing/junit5-architecture-and-advanced-features.md
+  - ../../syllabus/08-testing/performance-and-load-testing-methodology.md
+  - ../../syllabus/08-testing/writing-tests-live-in-an-interview.md
+  - ../../syllabus/08-testing/contract-testing-for-services.md
+  - ../../syllabus/08-testing/mutation-and-property-based-testing.md
+  - ../../syllabus/08-testing/junit5-architecture-and-advanced-features.md
 source: ../../study-packs/week-18/08-week-18-mock-interview.md
 official_references: []
 ---
@@ -46,12 +46,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Percentile vs mean latency | Q1 | [Percentiles, Tail Latency, and Coordinated Omission](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md) |
-| Performance-testing process design | Q2 | [Performance and Load Testing Methodology](../../handbook/testing/performance-and-load-testing-methodology.md) |
-| Live test-first coding discipline | Q3 (live-coding) | [Writing Tests Live in an Interview](../../handbook/testing/writing-tests-live-in-an-interview.md) |
-| Consumer-driven contract testing | Q4 | [Contract Testing for Services](../../handbook/testing/contract-testing-for-services.md) |
-| Coverage vs. verification strength | Q5 | [Mutation and Property-Based Testing](../../handbook/testing/mutation-and-property-based-testing.md) |
-| JUnit 5 architecture | Q6 | [JUnit 5 Architecture and Advanced Features](../../handbook/testing/junit5-architecture-and-advanced-features.md) |
+| Percentile vs mean latency | Q1 | [Percentiles, Tail Latency, and Coordinated Omission](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md) |
+| Performance-testing process design | Q2 | [Performance and Load Testing Methodology](../../syllabus/08-testing/performance-and-load-testing-methodology.md) |
+| Live test-first coding discipline | Q3 (live-coding) | [Writing Tests Live in an Interview](../../syllabus/08-testing/writing-tests-live-in-an-interview.md) |
+| Consumer-driven contract testing | Q4 | [Contract Testing for Services](../../syllabus/08-testing/contract-testing-for-services.md) |
+| Coverage vs. verification strength | Q5 | [Mutation and Property-Based Testing](../../syllabus/08-testing/mutation-and-property-based-testing.md) |
+| JUnit 5 architecture | Q6 | [JUnit 5 Architecture and Advanced Features](../../syllabus/08-testing/junit5-architecture-and-advanced-features.md) |
 | Cross-topic synthesis | Q7 | All five of this week's testing topics |
 
 ## Interviewer Opening Script
@@ -146,10 +146,10 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 → re-read [Percentiles, Tail Latency, and Coordinated Omission](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md).
-- Any score ≤ 2 on Q2 → re-read [Performance and Load Testing Methodology](../../handbook/testing/performance-and-load-testing-methodology.md)'s process-ownership material.
-- Any score ≤ 2 on Q3 → re-read [Writing Tests Live in an Interview](../../handbook/testing/writing-tests-live-in-an-interview.md) and redo the kata under a timer.
-- Any score ≤ 2 on Q4 → re-read [Contract Testing for Services](../../handbook/testing/contract-testing-for-services.md), specifically the consumer-driven ownership model.
-- Any score ≤ 2 on Q5 → re-read [Mutation and Property-Based Testing](../../handbook/testing/mutation-and-property-based-testing.md).
-- Any score ≤ 2 on Q6 → re-read [JUnit 5 Architecture and Advanced Features](../../handbook/testing/junit5-architecture-and-advanced-features.md).
+- Any score ≤ 2 on Q1 → re-read [Percentiles, Tail Latency, and Coordinated Omission](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md).
+- Any score ≤ 2 on Q2 → re-read [Performance and Load Testing Methodology](../../syllabus/08-testing/performance-and-load-testing-methodology.md)'s process-ownership material.
+- Any score ≤ 2 on Q3 → re-read [Writing Tests Live in an Interview](../../syllabus/08-testing/writing-tests-live-in-an-interview.md) and redo the kata under a timer.
+- Any score ≤ 2 on Q4 → re-read [Contract Testing for Services](../../syllabus/08-testing/contract-testing-for-services.md), specifically the consumer-driven ownership model.
+- Any score ≤ 2 on Q5 → re-read [Mutation and Property-Based Testing](../../syllabus/08-testing/mutation-and-property-based-testing.md).
+- Any score ≤ 2 on Q6 → re-read [JUnit 5 Architecture and Advanced Features](../../syllabus/08-testing/junit5-architecture-and-advanced-features.md).
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation.

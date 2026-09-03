@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/system-design/messaging-patterns-and-change-data-capture.md
-  - ../handbook/system-design/distributed-transactions-saga-and-outbox.md
+  - ../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md
+  - ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 source: handbook/system-design/messaging-patterns-and-change-data-capture.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The outbox pattern's failure mode here is instructive precisely because it isn't
 
 ## Related Handbook Chapters
 
-- [Messaging Patterns and Change Data Capture](../handbook/system-design/messaging-patterns-and-change-data-capture.md) — canonical CDC-versus-outbox trade-off analysis this incident reproduces in production form.
-- [Distributed Transactions, Saga, and Outbox](../handbook/system-design/distributed-transactions-saga-and-outbox.md) — the outbox pattern's own mechanics and the structural cost this incident demonstrates.
+- [Messaging Patterns and Change Data Capture](../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md) — canonical CDC-versus-outbox trade-off analysis this incident reproduces in production form.
+- [Distributed Transactions, Saga, and Outbox](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md) — the outbox pattern's own mechanics and the structural cost this incident demonstrates.

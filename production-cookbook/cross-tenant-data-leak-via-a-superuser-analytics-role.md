@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/multi-tenancy-isolation-models.md
+  - ../syllabus/12-security/multi-tenancy-isolation-models.md
 source: handbook/security/multi-tenancy-isolation-models.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The most important insight in this incident is that tenant isolation is a proper
 
 ## Related Handbook Chapters
 
-- [Multi-Tenancy Isolation Models](../handbook/security/multi-tenancy-isolation-models.md) — canonical RLS and shared-pool isolation mechanics used here.
+- [Multi-Tenancy Isolation Models](../syllabus/12-security/multi-tenancy-isolation-models.md) — canonical RLS and shared-pool isolation mechanics used here.

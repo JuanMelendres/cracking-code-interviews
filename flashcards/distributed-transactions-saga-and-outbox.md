@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Distributed Transactions: Saga, Outbox, and 2PC
 
-**Canonical chapter:** [`handbook/system-design/distributed-transactions-saga-and-outbox.md`](../handbook/system-design/distributed-transactions-saga-and-outbox.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md`](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md)
 
 ## Card: What a dual write fails to guarantee
 
@@ -27,7 +27,7 @@ The precise mechanism, not just "dual writes are risky."
 Assuming a retry loop around the publish call fixes this.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/distributed-transactions-saga-and-outbox.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md#internal-implementation)
 
 ## Card: What makes the outbox atomic
 
@@ -44,7 +44,7 @@ The core mechanism the entire pattern depends on.
 Believing application-level coordination (two separate writes with manual retry logic) achieves the same atomicity.
 
 **Related:**
-[Core Concepts](../handbook/system-design/distributed-transactions-saga-and-outbox.md#core-concepts)
+[Core Concepts](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md#core-concepts)
 
 ## Card: Outbox's actual guarantee
 
@@ -61,7 +61,7 @@ Prevents overclaiming exactly-once from a pattern that structurally can't provid
 Assuming the outbox pattern is exactly-once because it eliminates loss.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/distributed-transactions-saga-and-outbox.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md#internal-implementation)
 
 ## Card: Why 2PC is avoided
 
@@ -78,4 +78,4 @@ The precise, structural reason, not just "2PC is old/slow."
 Attributing 2PC's unpopularity to performance rather than availability.
 
 **Related:**
-[Core Concepts](../handbook/system-design/distributed-transactions-saga-and-outbox.md#core-concepts)
+[Core Concepts](../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md#core-concepts)

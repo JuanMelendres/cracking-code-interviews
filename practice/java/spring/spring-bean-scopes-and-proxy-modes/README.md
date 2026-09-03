@@ -1,6 +1,6 @@
 # Spring Bean Scopes and Proxy Modes — Real, Executed Demos
 
-Backs [Spring Bean Scopes and Proxy Modes](../../../../handbook/spring/spring-bean-scopes-and-proxy-modes.md)
+Backs [Spring Bean Scopes and Proxy Modes](../../../../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md)
 (T-502). Real Spring Framework 6.1.14 output, plain jars, no Spring Boot
 auto-configuration — same pattern as the other packs in `practice/java/spring/`.
 

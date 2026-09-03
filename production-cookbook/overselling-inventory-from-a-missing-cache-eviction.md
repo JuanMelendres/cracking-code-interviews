@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/spring/spring-cache-abstraction-and-pitfalls.md
+  - ../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md
 source: handbook/spring/spring-cache-abstraction-and-pitfalls.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ Declarative caching's biggest organizational risk is not that any single enginee
 
 ## Related Handbook Chapters
 
-- [Spring Cache Abstraction and Pitfalls](../handbook/spring/spring-cache-abstraction-and-pitfalls.md) — canonical eviction-responsibility model and stale-cache mechanism used here.
+- [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md) — canonical eviction-responsibility model and stale-cache mechanism used here.

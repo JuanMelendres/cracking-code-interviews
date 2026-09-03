@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Idempotency at System Edges
 
-**Canonical chapter:** [`handbook/system-design/idempotency.md`](../handbook/system-design/idempotency.md)
+**Canonical chapter:** [`syllabus/11-system-design/idempotency.md`](../syllabus/11-system-design/idempotency.md)
 
 ## Core Mental Model
 
@@ -70,6 +70,6 @@ The mechanism is O(1) per request (an insert, and on conflict, a bounded poll lo
 
 ## Related
 
-- `handbook/system-design/distributed-systems-failure-modes.md`
+- `syllabus/10-distributed-systems/distributed-systems-failure-modes.md`
 - [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md)
-- `handbook/kafka/delivery-semantics-and-exactly-once.md`
+- `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md`

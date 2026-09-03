@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Cloud Cost and Scaling Economics
 
-**Canonical chapter:** [`handbook/cloud/cloud-cost-and-scaling-economics.md`](../handbook/cloud/cloud-cost-and-scaling-economics.md)
+**Canonical chapter:** [`syllabus/15-cloud/cloud-cost-and-scaling-economics.md`](../syllabus/15-cloud/cloud-cost-and-scaling-economics.md)
 
 ## Core Mental Model
 
@@ -84,5 +84,5 @@ Reserving peak costs MORE by $3,212/year -- sized for the wrong baseline
 
 ## Related
 
-- `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md`
-- `handbook/system-design/system-design-method-and-estimation.md`
+- `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md`
+- `syllabus/11-system-design/system-design-method-and-estimation.md`

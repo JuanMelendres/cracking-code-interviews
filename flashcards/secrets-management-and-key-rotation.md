@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Secrets Management and Key Rotation
 
-**Canonical chapter:** [`handbook/security/secrets-management-and-key-rotation.md`](../handbook/security/secrets-management-and-key-rotation.md)
+**Canonical chapter:** [`syllabus/12-security/secrets-management-and-key-rotation.md`](../syllabus/12-security/secrets-management-and-key-rotation.md)
 
 ## Card: Why naive key rotation breaks existing encrypted data
 
@@ -27,7 +27,7 @@ The precise mechanism that makes key-version tagging a prerequisite for safe rot
 Rotating the active key without first ensuring every record is tagged with the key version that encrypted it.
 
 **Related:**
-[handbook/security/secrets-management-and-key-rotation.md](../handbook/security/secrets-management-and-key-rotation.md)
+[handbook/security/secrets-management-and-key-rotation.md](../syllabus/12-security/secrets-management-and-key-rotation.md)
 
 ## Card: What must happen before deleting an old key
 
@@ -44,7 +44,7 @@ The concrete, sequenced safety check that separates a safe rotation from an irre
 Deleting the old key on a fixed schedule without first verifying the re-encryption sweep actually completed.
 
 **Related:**
-[handbook/security/secrets-management-and-key-rotation.md](../handbook/security/secrets-management-and-key-rotation.md)
+[handbook/security/secrets-management-and-key-rotation.md](../syllabus/12-security/secrets-management-and-key-rotation.md)
 
 ## Card: Two reasons to rotate keys proactively
 
@@ -61,4 +61,4 @@ Reframes rotation as a standing risk-reduction practice, not merely an incident-
 Treating "no known compromise" as sufficient justification to skip rotation entirely.
 
 **Related:**
-[handbook/security/secrets-management-and-key-rotation.md](../handbook/security/secrets-management-and-key-rotation.md)
+[handbook/security/secrets-management-and-key-rotation.md](../syllabus/12-security/secrets-management-and-key-rotation.md)

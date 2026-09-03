@@ -77,4 +77,4 @@ An API is a contract, and every contract decision made today constrains every cl
 
 - [Database Index Structures](index-structures-btree-composite-covering.md)
 - [Idempotency at System Edges](idempotency.md)
-- `handbook/system-design/distributed-systems-failure-modes.md`
+- `syllabus/10-distributed-systems/distributed-systems-failure-modes.md`

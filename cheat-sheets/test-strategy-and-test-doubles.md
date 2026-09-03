@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Test Strategy and Test Doubles
 
-**Canonical chapter:** [`handbook/testing/test-strategy-and-test-doubles.md`](../handbook/testing/test-strategy-and-test-doubles.md)
+**Canonical chapter:** [`syllabus/08-testing/test-strategy-and-test-doubles.md`](../syllabus/08-testing/test-strategy-and-test-doubles.md)
 
 ## Core Mental Model
 
@@ -70,5 +70,5 @@ succeedsImmediatelyWithNoRetriesNeeded test: verify(gateway, times(1))
 
 ## Related
 
-- `handbook/testing/integration-testing-against-real-dependencies.md`
+- `syllabus/08-testing/integration-testing-against-real-dependencies.md`
 - [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md)

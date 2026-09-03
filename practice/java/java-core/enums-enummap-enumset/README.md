@@ -1,7 +1,7 @@
 # Enums, EnumMap, and EnumSet (T-111) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/enums-enummap-and-enumset.md`](../../../../syllabus/02-java/language-core/enums-enummap-and-enumset.md)
+[`syllabus/02-java/language-core/enums-enummap-and-enumset.md`](../../../../syllabus/02-java/language-core/enums-enummap-and-enumset.md)
 (T-111). Three independent demos: real enum-internals proofs (including a genuinely
 JVM-enforced reflection guard), a real, honestly-modest `EnumMap`-vs-`HashMap` throughput
 measurement, and a dramatic real reproduction of the classic `ordinal()` danger.

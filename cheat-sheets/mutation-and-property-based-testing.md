@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Mutation and Property-Based Testing
 
-**Canonical chapter:** [`handbook/testing/mutation-and-property-based-testing.md`](../handbook/testing/mutation-and-property-based-testing.md)
+**Canonical chapter:** [`syllabus/08-testing/mutation-and-property-based-testing.md`](../syllabus/08-testing/mutation-and-property-based-testing.md)
 
 ## Core Mental Model
 
@@ -74,5 +74,5 @@ STRONG suite vs MUTANT: 3 tests, 2 succeeded, 1 FAILED  <- mutant KILLED (added 
 
 ## Related
 
-- `handbook/testing/test-strategy-and-test-doubles.md`
-- `handbook/testing/junit5-architecture-and-advanced-features.md`
+- `syllabus/08-testing/test-strategy-and-test-doubles.md`
+- `syllabus/08-testing/junit5-architecture-and-advanced-features.md`

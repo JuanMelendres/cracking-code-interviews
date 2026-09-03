@@ -17,7 +17,7 @@ estimated_reading_minutes: 28
 prerequisites:
   - immutability-and-defensive-copying.md
 related:
-  - ../../../handbook/security/owasp-top-10-for-backend-services.md
+  - ../../12-security/owasp-top-10-for-backend-services.md
   - optional-and-null-strategy.md
   - ../../../practice/java/java-core/serialization-hazards/README.md
 official_references:
@@ -384,7 +384,7 @@ Assuming a process has a default filter configured — verified directly in this
 
 ## Additional Reading
 
-- [OWASP Top 10 for Backend Services](../../../handbook/security/owasp-top-10-for-backend-services.md) — deserialization of untrusted data as one of the OWASP Top 10's recurring "untrusted data treated as code" failure shapes, the broader security framing this chapter's Java-specific mechanics sit within.
+- [OWASP Top 10 for Backend Services](../../12-security/owasp-top-10-for-backend-services.md) — deserialization of untrusted data as one of the OWASP Top 10's recurring "untrusted data treated as code" failure shapes, the broader security framing this chapter's Java-specific mechanics sit within.
 - [Optional and Null Strategy](optional-and-null-strategy.md) — `Optional`'s own real `NotSerializableException` consequence, a smaller, related real example of a type's design constraints interacting with Java serialization.
 
 ## Official References

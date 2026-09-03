@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/event-driven-architecture-integration-styles.md
-  - ../handbook/performance/logging-metrics-tracing-and-opentelemetry.md
+  - ../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md
+  - ../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
 source: handbook/architecture/event-driven-architecture-integration-styles.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ Choreography's core appeal — services react to events independently, with no c
 
 ## Related Handbook Chapters
 
-- [Event-Driven Architecture: Integration Styles](../handbook/architecture/event-driven-architecture-integration-styles.md) — canonical choreography-versus-orchestration trade-off and the `ChoreographyTraceabilityDemo` this incident reproduces.
-- [Logging, Metrics, Tracing, and OpenTelemetry](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md) — the distributed-tracing mechanism adopted as this incident's permanent fix.
+- [Event-Driven Architecture: Integration Styles](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md) — canonical choreography-versus-orchestration trade-off and the `ChoreographyTraceabilityDemo` this incident reproduces.
+- [Logging, Metrics, Tracing, and OpenTelemetry](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md) — the distributed-tracing mechanism adopted as this incident's permanent fix.

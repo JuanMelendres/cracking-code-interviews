@@ -5,7 +5,7 @@ domain: performance
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/performance/performance-methodology-and-slo-error-budgets.md
+  - ../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md
 source: handbook/performance/performance-methodology-and-slo-error-budgets.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ An aggregate percentage and a trend are different kinds of information, and this
 
 ## Related Handbook Chapters
 
-- [Performance Methodology and SLO Error Budgets](../handbook/performance/performance-methodology-and-slo-error-budgets.md) — canonical error-budget and burn-rate mechanics used here.
+- [Performance Methodology and SLO Error Budgets](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md) — canonical error-budget and burn-rate mechanics used here.

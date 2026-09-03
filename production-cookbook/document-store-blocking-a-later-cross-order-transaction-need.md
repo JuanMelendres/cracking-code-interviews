@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/storage-selection-tradeoffs.md
+  - ../syllabus/11-system-design/storage-selection-tradeoffs.md
 source: handbook/system-design/storage-selection-tradeoffs.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is nearly a mirror of the earlier DynamoDB-migration case, and tha
 
 ## Related Handbook Chapters
 
-- [Storage Selection Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md) — canonical access-pattern method and polyglot-persistence trade-off used here.
+- [Storage Selection Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md) — canonical access-pattern method and polyglot-persistence trade-off used here.

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Distributed Systems Failure Modes
 
-**Canonical chapter:** [`handbook/system-design/distributed-systems-failure-modes.md`](../handbook/system-design/distributed-systems-failure-modes.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/distributed-systems-failure-modes.md`](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md)
 
 ## Card: Why a timeout is ambiguous
 
@@ -27,7 +27,7 @@ The root cause of nearly every failure mode in this domain.
 Treating a timeout as definite proof the request failed.
 
 **Related:**
-[Core Concepts](../handbook/system-design/distributed-systems-failure-modes.md#core-concepts)
+[Core Concepts](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#core-concepts)
 
 ## Card: How retries amplify an outage
 
@@ -44,7 +44,7 @@ The exact, measured mechanism — not a vague "retries are risky" statement.
 Assuming a client giving up cancels the work already submitted downstream.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/distributed-systems-failure-modes.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#internal-implementation)
 
 ## Card: What fixes retry safety structurally
 
@@ -61,7 +61,7 @@ Shifts the burden of resolving retry ambiguity from the client to the server.
 Believing better retry-policy tuning alone (without idempotency) is sufficient.
 
 **Related:**
-[Java Examples](../handbook/system-design/distributed-systems-failure-modes.md#java-examples)
+[Java Examples](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#java-examples)
 
 ## Card: What prevents split-brain corruption
 
@@ -78,4 +78,4 @@ Leader election alone only decides who is elected, not whether a stale former le
 Assuming leader election alone is sufficient to prevent split-brain.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/distributed-systems-failure-modes.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#internal-implementation)

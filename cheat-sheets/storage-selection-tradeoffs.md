@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Storage Selection Trade-offs
 
-**Canonical chapter:** [`handbook/system-design/storage-selection-tradeoffs.md`](../handbook/system-design/storage-selection-tradeoffs.md)
+**Canonical chapter:** [`syllabus/11-system-design/storage-selection-tradeoffs.md`](../syllabus/11-system-design/storage-selection-tradeoffs.md)
 
 ## Core Mental Model
 
@@ -60,4 +60,4 @@ Not applicable — this chapter is a decision-framework chapter with no benchmar
 ## Related
 
 - [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md)
-- `handbook/databases/data-modelling-and-explicit-join-tables.md`
+- `syllabus/06-databases/data-modelling-and-explicit-join-tables.md`

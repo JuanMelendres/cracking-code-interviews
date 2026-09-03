@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Replication, Read Replicas, and Replica Lag
 
-**Canonical chapter:** [`handbook/databases/replication-read-replicas-and-replica-lag.md`](../handbook/databases/replication-read-replicas-and-replica-lag.md)
+**Canonical chapter:** [`syllabus/06-databases/replication-read-replicas-and-replica-lag.md`](../syllabus/06-databases/replication-read-replicas-and-replica-lag.md)
 
 ## Card: Async replication's real risk
 
@@ -27,7 +27,7 @@ The core, structural read-your-own-writes risk every read/write split must accou
 Assuming replicas are "close enough to instant" to be safe for any read.
 
 **Related:**
-[Internal Implementation](../handbook/databases/replication-read-replicas-and-replica-lag.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/replication-read-replicas-and-replica-lag.md#internal-implementation)
 
 ## Card: Two different "lag" numbers
 
@@ -44,7 +44,7 @@ Conflating the two leads to badly over- or under-estimating actual replica stale
 Treating any "time until I observed the new row" measurement as pure replication lag.
 
 **Related:**
-[Internal Implementation](../handbook/databases/replication-read-replicas-and-replica-lag.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/replication-read-replicas-and-replica-lag.md#internal-implementation)
 
 ## Card: Promotion's sequence gotcha
 
@@ -61,4 +61,4 @@ A real operational detail beyond "the replica becomes the new primary."
 Assuming `SERIAL` columns are always gap-free under any circumstance, including failover.
 
 **Related:**
-[Internal Implementation](../handbook/databases/replication-read-replicas-and-replica-lag.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/replication-read-replicas-and-replica-lag.md#internal-implementation)

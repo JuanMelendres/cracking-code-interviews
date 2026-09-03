@@ -1,7 +1,7 @@
 # Search and indexing systems: PostgreSQL full-text search (T-810) — runnable verification
 
 Real, executed output backing
-[`handbook/system-design/search-and-indexing-systems.md`](../../../handbook/system-design/search-and-indexing-systems.md)
+[`syllabus/11-system-design/search-and-indexing-systems.md`](../../../syllabus/11-system-design/search-and-indexing-systems.md)
 (T-810). A real PostgreSQL 16 in Docker with 200,006 real rows, a real
 `tsvector`/GIN index (PostgreSQL's own database-native inverted index), and
 real `EXPLAIN ANALYZE` plans proving it's a genuinely different execution

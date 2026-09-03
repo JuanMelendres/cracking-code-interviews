@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Connection Pooling and Sizing (HikariCP)
 
-**Canonical chapter:** [`handbook/databases/connection-pooling-and-sizing.md`](../handbook/databases/connection-pooling-and-sizing.md)
+**Canonical chapter:** [`syllabus/06-databases/connection-pooling-and-sizing.md`](../syllabus/06-databases/connection-pooling-and-sizing.md)
 
 ## Card: Does a bigger pool always help?
 
@@ -32,7 +32,7 @@ Reflexively increasing pool size as the first response to any connection timeout
 without checking database utilization first.
 
 **Related:**
-[handbook/databases/connection-pooling-and-sizing.md](../handbook/databases/connection-pooling-and-sizing.md)
+[handbook/databases/connection-pooling-and-sizing.md](../syllabus/06-databases/connection-pooling-and-sizing.md)
 
 ## Card: HikariCP's real leak-detection minimum
 
@@ -53,7 +53,7 @@ disabled the feature entirely without realizing it.
 Assuming any positive value for `leakDetectionThreshold` takes effect as configured.
 
 **Related:**
-[handbook/databases/connection-pooling-and-sizing.md](../handbook/databases/connection-pooling-and-sizing.md)
+[handbook/databases/connection-pooling-and-sizing.md](../syllabus/06-databases/connection-pooling-and-sizing.md)
 
 ## Card: What exception does pool exhaustion actually throw?
 
@@ -76,4 +76,4 @@ Treating any database-related timeout as evidence the database is down, without
 checking whether it's actually a pool-level exhaustion signal.
 
 **Related:**
-[handbook/databases/connection-pooling-and-sizing.md](../handbook/databases/connection-pooling-and-sizing.md)
+[handbook/databases/connection-pooling-and-sizing.md](../syllabus/06-databases/connection-pooling-and-sizing.md)

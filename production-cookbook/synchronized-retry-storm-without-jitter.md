@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/resilience-patterns.md
+  - ../syllabus/11-system-design/resilience-patterns.md
 source: handbook/system-design/resilience-patterns.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The mechanism here — deterministic backoff without jitter — looks like a min
 
 ## Related Handbook Chapters
 
-- [Resilience Patterns](../handbook/system-design/resilience-patterns.md) — canonical jitter, backoff, circuit-breaker, and bulkhead mechanics.
-- [Distributed Systems Failure Modes](../handbook/system-design/distributed-systems-failure-modes.md) — cascading-failure framing this incident is an instance of.
+- [Resilience Patterns](../syllabus/11-system-design/resilience-patterns.md) — canonical jitter, backoff, circuit-breaker, and bulkhead mechanics.
+- [Distributed Systems Failure Modes](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md) — cascading-failure framing this incident is an instance of.

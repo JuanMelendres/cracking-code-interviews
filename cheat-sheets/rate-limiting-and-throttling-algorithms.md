@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Rate Limiting and Throttling Algorithms
 
-**Canonical chapter:** [`handbook/system-design/rate-limiting-and-throttling-algorithms.md`](../handbook/system-design/rate-limiting-and-throttling-algorithms.md)
+**Canonical chapter:** [`syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md`](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md)
 
 ## Core Mental Model
 
@@ -79,7 +79,7 @@ Every rate limiter answers the same question — "has this identity used up its 
 
 ## Related
 
-- `handbook/system-design/idempotency.md`
-- `handbook/system-design/load-balancing-service-discovery-and-health-checking.md`
-- `handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md`
+- `syllabus/11-system-design/idempotency.md`
+- `syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`
+- `syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md`
 - `syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md`

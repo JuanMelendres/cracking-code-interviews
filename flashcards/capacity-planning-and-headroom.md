@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Capacity Planning & Headroom
 
-**Canonical chapter:** [`handbook/performance/capacity-planning-and-headroom.md`](../handbook/performance/capacity-planning-and-headroom.md)
+**Canonical chapter:** [`syllabus/16-performance-jvm/capacity-planning-and-headroom.md`](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)
 
 ## Card: Little's Law and why it's broadly useful
 
@@ -27,7 +27,7 @@ Gives a single, distribution-agnostic formula for reasoning about capacity from 
 Assuming a queueing relationship like this only holds under specific, idealized arrival patterns rather than any stable system.
 
 **Related:**
-[handbook/performance/capacity-planning-and-headroom.md](../handbook/performance/capacity-planning-and-headroom.md)
+[handbook/performance/capacity-planning-and-headroom.md](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)
 
 ## Card: Why a healthy-looking throughput graph can hide saturation
 
@@ -44,7 +44,7 @@ A flat throughput graph is exactly the false-reassurance signal a capacity-limit
 Treating stable or flat throughput as evidence the system is handling load comfortably rather than checking whether it has simply hit its ceiling.
 
 **Related:**
-[handbook/performance/capacity-planning-and-headroom.md](../handbook/performance/capacity-planning-and-headroom.md)
+[handbook/performance/capacity-planning-and-headroom.md](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)
 
 ## Card: Why utilization-to-latency is non-linear near saturation
 
@@ -61,4 +61,4 @@ Explains why headroom near full utilization is disproportionately valuable — t
 Extrapolating latency linearly from utilization instead of accounting for the `ρ/(1-ρ)` blowup near the ceiling.
 
 **Related:**
-[handbook/performance/capacity-planning-and-headroom.md](../handbook/performance/capacity-planning-and-headroom.md)
+[handbook/performance/capacity-planning-and-headroom.md](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)

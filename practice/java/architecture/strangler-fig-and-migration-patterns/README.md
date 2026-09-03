@@ -1,7 +1,7 @@
 # Strangler Fig, Anti-Corruption Layer, and migration patterns (T-912) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/architecture/strangler-fig-and-migration-patterns.md`](../../../../handbook/architecture/strangler-fig-and-migration-patterns.md)
+[`syllabus/17-architecture/strangler-fig-and-migration-patterns.md`](../../../../syllabus/17-architecture/strangler-fig-and-migration-patterns.md)
 (T-912). No described-but-untested claim about migration safety — a real router with
 real, independent stores, a real rollback that either really loses data or really
 doesn't, and a real percentage-based facade whose observed traffic split is measured,

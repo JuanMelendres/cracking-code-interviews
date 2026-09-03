@@ -5,7 +5,7 @@ domain: kafka
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/kafka/producer-semantics-and-partition-keys.md
+  - ../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md
 source: handbook/kafka/producer-semantics-and-partition-keys.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ This maps directly to the "`acks=all` and you still lost a message" interview tr
 
 ## Related Handbook Chapters
 
-- [Producer Semantics and Partition Keys](../handbook/kafka/producer-semantics-and-partition-keys.md) — canonical `acks`/ISR/durability mechanics used here.
-- [Delivery Semantics and Exactly-Once](../handbook/kafka/delivery-semantics-and-exactly-once.md) — the broader delivery-guarantee framing this durability setting is part of.
+- [Producer Semantics and Partition Keys](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md) — canonical `acks`/ISR/durability mechanics used here.
+- [Delivery Semantics and Exactly-Once](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md) — the broader delivery-guarantee framing this durability setting is part of.

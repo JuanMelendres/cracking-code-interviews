@@ -1,7 +1,7 @@
 # Spring Cache abstraction and pitfalls (T-514) — runnable verification
 
 Real, executed output backing
-[`handbook/spring/spring-cache-abstraction-and-pitfalls.md`](../../../../handbook/spring/spring-cache-abstraction-and-pitfalls.md)
+[`syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md`](../../../../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
 (T-514). Real Spring Framework 6.1.14, a real CGLIB proxy, real `@Cacheable`/`@CacheEvict`
 behavior, and two real, honestly-disclosed bugs hit while building these demos.
 

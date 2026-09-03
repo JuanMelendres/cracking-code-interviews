@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Auto-Configuration and Bean Lifecycle
 
-**Canonical chapter:** [`handbook/spring/auto-configuration-and-bean-lifecycle.md`](../handbook/spring/auto-configuration-and-bean-lifecycle.md)
+**Canonical chapter:** [`syllabus/05-spring/auto-configuration-and-bean-lifecycle.md`](../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md)
 
 ## Core Mental Model
 
@@ -71,4 +71,4 @@ The transaction rolls back correctly — the surprise is that the calling thread
 ## Related
 
 - [Spring Transactional Proxy Mechanics and Propagation](transactional-proxy-mechanics-and-propagation.md)
-- `handbook/spring/security-filter-chain.md`
+- `syllabus/05-spring/security-filter-chain.md`

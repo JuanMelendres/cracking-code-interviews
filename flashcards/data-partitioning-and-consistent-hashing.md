@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Data Partitioning and Consistent Hashing
 
-**Canonical chapter:** [`handbook/system-design/data-partitioning-and-consistent-hashing.md`](../handbook/system-design/data-partitioning-and-consistent-hashing.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md`](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md)
 
 ## Card: Why naive hash % N remaps nearly all keys
 
@@ -27,7 +27,7 @@ A quantitative, not just qualitative, understanding of the naive scheme's failur
 Assuming this cost is roughly constant regardless of hashing scheme.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/data-partitioning-and-consistent-hashing.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#internal-implementation)
 
 ## Card: Consistent hashing's remap fraction
 
@@ -44,7 +44,7 @@ The concrete number that justifies consistent hashing's adoption industry-wide.
 Assuming consistent hashing eliminates data movement entirely rather than bounding it.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/data-partitioning-and-consistent-hashing.md#internal-implementation)
+[Internal Implementation](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#internal-implementation)
 
 ## Card: Why virtual nodes
 
@@ -61,4 +61,4 @@ Without this, consistent hashing's theoretical benefit doesn't materialize evenl
 Using consistent hashing with too few virtual nodes and being surprised by uneven load.
 
 **Related:**
-[Core Concepts](../handbook/system-design/data-partitioning-and-consistent-hashing.md#core-concepts)
+[Core Concepts](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#core-concepts)

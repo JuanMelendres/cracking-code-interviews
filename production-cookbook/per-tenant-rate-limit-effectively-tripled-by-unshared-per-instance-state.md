@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/system-design/rate-limiting-and-throttling-algorithms.md
-  - ../handbook/system-design/idempotency.md
+  - ../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md
+  - ../syllabus/11-system-design/idempotency.md
 source: handbook/system-design/rate-limiting-and-throttling-algorithms.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ This is the interview version of a mistake that is genuinely easy to make in pro
 
 ## Related Handbook Chapters
 
-- [Rate Limiting and Throttling Algorithms](../handbook/system-design/rate-limiting-and-throttling-algorithms.md) — canonical algorithm comparison and the shared-state requirement this incident reproduces.
-- [Idempotency](../handbook/system-design/idempotency.md) — the related atomic-operation discipline (`INCR`/`PEXPIRE` via Lua script) this fix relies on to avoid a race condition.
+- [Rate Limiting and Throttling Algorithms](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md) — canonical algorithm comparison and the shared-state requirement this incident reproduces.
+- [Idempotency](../syllabus/11-system-design/idempotency.md) — the related atomic-operation discipline (`INCR`/`PEXPIRE` via Lua script) this fix relies on to avoid a race condition.

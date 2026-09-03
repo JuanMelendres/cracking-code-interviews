@@ -1,6 +1,6 @@
 # Spring Boot Actuator, Health, and Observability Hooks — Real, Executed Demos
 
-Backs [Spring Boot Actuator, Health, and Observability Hooks](../../../../handbook/spring/spring-actuator-health-and-observability-hooks.md)
+Backs [Spring Boot Actuator, Health, and Observability Hooks](../../../../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
 (T-516). Real Spring Boot 3.3.5 + Spring Boot Actuator + Micrometer output,
 plain jars fetched directly from Maven Central, no Maven/Gradle install, run
 with the `junit-platform-console-standalone` shaded jar. Follows the same

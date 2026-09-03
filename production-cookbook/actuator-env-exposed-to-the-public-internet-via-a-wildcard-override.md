@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/spring/spring-actuator-health-and-observability-hooks.md
+  - ../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md
 source: handbook/spring/spring-actuator-health-and-observability-hooks.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ Spring Boot's restrictive default (`health`, `info` only) is a real security con
 
 ## Related Handbook Chapters
 
-- [Spring Boot Actuator, Health, and Observability Hooks](../handbook/spring/spring-actuator-health-and-observability-hooks.md) — canonical default-exposure model and endpoint-security posture used here.
+- [Spring Boot Actuator, Health, and Observability Hooks](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md) — canonical default-exposure model and endpoint-security posture used here.

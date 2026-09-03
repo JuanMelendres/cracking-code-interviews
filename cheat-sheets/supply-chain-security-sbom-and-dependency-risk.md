@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Supply Chain Security, SBOM, and Dependency Risk
 
-**Canonical chapter:** [`handbook/security/supply-chain-security-sbom-and-dependency-risk.md`](../handbook/security/supply-chain-security-sbom-and-dependency-risk.md)
+**Canonical chapter:** [`syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md`](../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md)
 
 ## Core Mental Model
 
@@ -70,5 +70,5 @@ CRITICAL CVE-2026-39821 in golang.org/x/net@0.40.0
 
 ## Related
 
-- `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/security/secrets-management-and-key-rotation.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
+- `syllabus/12-security/secrets-management-and-key-rotation.md`

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Event-Driven Architecture Integration Styles
 
-**Canonical chapter:** [`handbook/architecture/event-driven-architecture-integration-styles.md`](../handbook/architecture/event-driven-architecture-integration-styles.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md`](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md)
 
 ## Card: Where does coupling go when you add events?
 
@@ -27,7 +27,7 @@ The single most common interview misconception on this topic; naming the relocat
 Stopping at "events decouple things" without being able to say what replaced the coupling.
 
 **Related:**
-[handbook/architecture/event-driven-architecture-integration-styles.md](../handbook/architecture/event-driven-architecture-integration-styles.md)
+[handbook/architecture/event-driven-architecture-integration-styles.md](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md)
 
 ## Card: Why is choreography hard to trace?
 
@@ -44,7 +44,7 @@ It's a structural property, not a logging gap — measured directly: a real 9-fr
 Assuming "just add better logging" fixes this without a shared correlation identifier across services.
 
 **Related:**
-[handbook/architecture/event-driven-architecture-integration-styles.md](../handbook/architecture/event-driven-architecture-integration-styles.md)
+[handbook/architecture/event-driven-architecture-integration-styles.md](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md)
 
 ## Card: This chapter vs. the Saga chapter's choreography/orchestration
 
@@ -61,4 +61,4 @@ Conflating the two loses precision an interviewer is specifically listening for.
 Answering a Saga-specific question with only this chapter's general framing, or vice versa.
 
 **Related:**
-[handbook/architecture/event-driven-architecture-integration-styles.md](../handbook/architecture/event-driven-architecture-integration-styles.md)
+[handbook/architecture/event-driven-architecture-integration-styles.md](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md)

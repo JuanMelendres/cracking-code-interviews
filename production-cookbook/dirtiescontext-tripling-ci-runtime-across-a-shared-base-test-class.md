@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/spring/spring-testing-slices-and-context-caching.md
+  - ../syllabus/05-spring/spring-testing-slices-and-context-caching.md
 source: handbook/spring/spring-testing-slices-and-context-caching.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ This maps to a "why did our CI suddenly get slower" question. Present it as a re
 
 ## Related Handbook Chapters
 
-- [Spring Testing: Slices and Context Caching](../handbook/spring/spring-testing-slices-and-context-caching.md) — canonical context-caching and `@DirtiesContext` cost model used here.
+- [Spring Testing: Slices and Context Caching](../syllabus/05-spring/spring-testing-slices-and-context-caching.md) — canonical context-caching and `@DirtiesContext` cost model used here.

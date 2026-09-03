@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # JPA Entity Lifecycle and the N+1 Problem
 
-**Canonical chapter:** [`handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md`](../handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md)
+**Canonical chapter:** [`syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md`](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md)
 
 ## Core Mental Model
 
@@ -75,7 +75,7 @@ The persistence context is a per-transaction identity map: within one session th
 
 ## Related
 
-- `handbook/databases/hibernate-second-level-and-query-cache.md`
-- `handbook/databases/optimistic-vs-pessimistic-locking.md`
-- `handbook/databases/hibernate-flush-modes-and-batch-writes.md`
-- `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
+- `syllabus/06-databases/hibernate-second-level-and-query-cache.md`
+- `syllabus/06-databases/optimistic-vs-pessimistic-locking.md`
+- `syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md`
+- `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`

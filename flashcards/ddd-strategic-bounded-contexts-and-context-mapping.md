@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: DDD Strategic — Bounded Contexts and Context Mapping
 
-**Canonical chapter:** [`handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`](../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
+**Canonical chapter:** [`syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
 
 ## Card: Why don't two teams need to agree on "Order"?
 
@@ -27,7 +27,7 @@ This is the register's own named interview follow-up, designed to catch candidat
 Proposing a single unified model as the "clean" fix — this is the exact misconception the register calls out.
 
 **Related:**
-[handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
+[handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
 
 ## Card: Conformist vs. Anti-Corruption Layer, proven
 
@@ -44,7 +44,7 @@ It's real, measured proof rather than an assertion of the trade-off — the exac
 Treating ACL as strictly "better" with no cost — it requires building and maintaining the translator that Conformist skips entirely.
 
 **Related:**
-[handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
+[handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
 
 ## Card: Bounded contexts as service boundaries
 
@@ -61,4 +61,4 @@ Connects this chapter directly to microservice decomposition — a common Staff 
 Drawing service boundaries along layers or database tables instead of domain concepts.
 
 **Related:**
-[handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md), [handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md)
+[handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md), [handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md)

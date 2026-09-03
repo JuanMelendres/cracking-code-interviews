@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Spring WebFlux and Reactive Programming
 
-**Canonical chapter:** [`handbook/spring/spring-webflux-and-reactive-programming.md`](../handbook/spring/spring-webflux-and-reactive-programming.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-webflux-and-reactive-programming.md`](../syllabus/05-spring/spring-webflux-and-reactive-programming.md)
 
 ## Card: What's the real difference between a cold and a hot publisher?
 
@@ -35,7 +35,7 @@ methods (`Flux.just`, `Flux.range`, `Flux.defer`) are cold; `ConnectableFlux`
 and `Sinks`-backed sources are hot.
 
 **Related:**
-[handbook/spring/spring-webflux-and-reactive-programming.md](../handbook/spring/spring-webflux-and-reactive-programming.md)
+[handbook/spring/spring-webflux-and-reactive-programming.md](../syllabus/05-spring/spring-webflux-and-reactive-programming.md)
 
 ## Card: Does publishOn always leave the source on the original thread?
 
@@ -60,7 +60,7 @@ Assuming the textbook "publishOn only affects downstream" rule holds
 universally regardless of source type.
 
 **Related:**
-[handbook/spring/spring-webflux-and-reactive-programming.md](../handbook/spring/spring-webflux-and-reactive-programming.md)
+[handbook/spring/spring-webflux-and-reactive-programming.md](../syllabus/05-spring/spring-webflux-and-reactive-programming.md)
 
 ## Card: Why is a partial reactive migration sometimes worse than no migration at all?
 
@@ -86,4 +86,4 @@ Assuming a WebFlux migration is always net-positive regardless of whether
 every dependency has also been migrated to non-blocking equivalents.
 
 **Related:**
-[handbook/spring/spring-webflux-and-reactive-programming.md](../handbook/spring/spring-webflux-and-reactive-programming.md)
+[handbook/spring/spring-webflux-and-reactive-programming.md](../syllabus/05-spring/spring-webflux-and-reactive-programming.md)

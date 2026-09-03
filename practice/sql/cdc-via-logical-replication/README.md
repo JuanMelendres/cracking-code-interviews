@@ -1,7 +1,7 @@
 # Change Data Capture via PostgreSQL logical replication (T-710) — runnable verification
 
 Real, executed output backing
-[`handbook/system-design/messaging-patterns-and-change-data-capture.md`](../../../handbook/system-design/messaging-patterns-and-change-data-capture.md)
+[`syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md`](../../../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md)
 (T-710). A real PostgreSQL 16 logical replication slot, real WAL-tailed change
 events, zero application-code changes required to capture them, and a real,
 measured operational risk when the slot goes unconsumed.
@@ -50,7 +50,7 @@ COMMIT 735
 Every real change was captured from the WAL, and the `INSERT`/`UPDATE`/`DELETE`
 statements above are completely ordinary — nothing about them was written with CDC
 in mind. Contrast this directly with the transactional outbox pattern (covered in
-[Distributed Transactions: Saga, Outbox, and 2PC](../../../handbook/system-design/distributed-transactions-saga-and-outbox.md)),
+[Distributed Transactions: Saga, Outbox, and 2PC](../../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md)),
 which requires the application to explicitly write an outbox row in the same
 transaction as the business write.
 
@@ -73,7 +73,7 @@ Real slot-retained WAL after the slot fully catches up: 11 kB
 Even a real `CHECKPOINT` — which normally lets PostgreSQL recycle old WAL
 segments — could not reclaim the WAL this unconsumed slot was still holding: the
 real directory tripled from 16 MB to 48 MB. This is the same underlying mechanism as
-[MVCC in PostgreSQL, Vacuum, and Bloat](../../../handbook/databases/mvcc-vacuum-and-bloat.md)'s
+[MVCC in PostgreSQL, Vacuum, and Bloat](../../../syllabus/06-databases/mvcc-vacuum-and-bloat.md)'s
 long-transaction-blocks-vacuum finding — a held reference (there, an open snapshot;
 here, an unconsumed slot's `restart_lsn`) prevents resource reclamation, applied
 here to WAL retention instead of tuple/vacuum retention.

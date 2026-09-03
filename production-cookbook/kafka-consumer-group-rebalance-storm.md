@@ -5,7 +5,7 @@ domain: kafka
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/kafka/consumer-groups-and-rebalancing.md
+  - ../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
 source: handbook/kafka/consumer-groups-and-rebalancing.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The mistaken first hypothesis here — networking — is not a sign of poor engi
 
 ## Related Handbook Chapters
 
-- [Consumer Groups and Rebalancing](../handbook/kafka/consumer-groups-and-rebalancing.md) — canonical rebalance-trigger mechanics and assignor comparison.
-- [Kafka Architecture Fundamentals](../handbook/kafka/kafka-architecture-fundamentals.md) — partition and consumer-group model this incident is stated in terms of.
+- [Consumer Groups and Rebalancing](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md) — canonical rebalance-trigger mechanics and assignor comparison.
+- [Kafka Architecture Fundamentals](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md) — partition and consumer-group model this incident is stated in terms of.

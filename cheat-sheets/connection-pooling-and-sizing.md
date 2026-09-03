@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Connection Pooling and Sizing (HikariCP)
 
-**Canonical chapter:** [`handbook/databases/connection-pooling-and-sizing.md`](../handbook/databases/connection-pooling-and-sizing.md)
+**Canonical chapter:** [`syllabus/06-databases/connection-pooling-and-sizing.md`](../syllabus/06-databases/connection-pooling-and-sizing.md)
 
 ## Core Mental Model
 
@@ -60,6 +60,6 @@ A connection pool amortizes the real cost of opening a database connection (TCP 
 
 ## Related
 
-- `handbook/databases/mvcc-vacuum-and-bloat.md`
-- `handbook/databases/isolation-levels-and-concurrency-anomalies.md`
-- `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
+- `syllabus/06-databases/mvcc-vacuum-and-bloat.md`
+- `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`
+- `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`

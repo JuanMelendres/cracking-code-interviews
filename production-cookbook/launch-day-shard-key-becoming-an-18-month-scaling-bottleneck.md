@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/databases/table-partitioning-and-sharding-strategies.md
+  - ../syllabus/06-databases/table-partitioning-and-sharding-strategies.md
 source: handbook/databases/table-partitioning-and-sharding-strategies.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The genuinely difficult part of this incident is that nothing was done wrong at 
 
 ## Related Handbook Chapters
 
-- [Table Partitioning and Sharding Strategies](../handbook/databases/table-partitioning-and-sharding-strategies.md) — canonical shard-key selection and fan-out mechanics used here.
-- [Storage Selection Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md) — the broader access-pattern-driven storage-selection framework this incident is an instance of.
+- [Table Partitioning and Sharding Strategies](../syllabus/06-databases/table-partitioning-and-sharding-strategies.md) — canonical shard-key selection and fan-out mechanics used here.
+- [Storage Selection Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md) — the broader access-pattern-driven storage-selection framework this incident is an instance of.

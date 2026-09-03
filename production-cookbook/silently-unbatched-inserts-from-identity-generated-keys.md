@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/hibernate-flush-modes-and-batch-writes.md
+  - ../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md
 source: handbook/databases/hibernate-flush-modes-and-batch-writes.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ Present it as a representative scenario to adapt, not a claimed personal history
 
 ## Related Handbook Chapters
 
-- [Hibernate Flush Modes and Batch Writes](../handbook/databases/hibernate-flush-modes-and-batch-writes.md) — canonical flush-mode and JDBC-batching mechanics, including the measured `IDENTITY`-versus-`SEQUENCE` batching evidence this incident traces back to.
-- [Connection Pooling and Sizing (HikariCP)](../handbook/databases/connection-pooling-and-sizing.md) — related database-throughput concern relevant to a bulk-write workload's actual round-trip and connection-hold cost.
+- [Hibernate Flush Modes and Batch Writes](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md) — canonical flush-mode and JDBC-batching mechanics, including the measured `IDENTITY`-versus-`SEQUENCE` batching evidence this incident traces back to.
+- [Connection Pooling and Sizing (HikariCP)](../syllabus/06-databases/connection-pooling-and-sizing.md) — related database-throughput concern relevant to a bulk-write workload's actual round-trip and connection-hold cost.

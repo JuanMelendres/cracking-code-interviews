@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Percentiles, Tail Latency, and Coordinated Omission
 
-**Canonical chapter:** [`handbook/performance/percentiles-tail-latency-and-coordinated-omission.md`](../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md)
+**Canonical chapter:** [`syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md`](../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md)
 
 ## Core Mental Model
 
@@ -74,4 +74,4 @@ Closed-loop average calculation: `0.98×10 + 0.02×500 = 19.8ms` — looks clean
 
 - [Logging, Metrics, Tracing, and OpenTelemetry](logging-metrics-tracing-and-opentelemetry.md)
 - [Performance Methodology and SLO Error Budgets](performance-methodology-and-slo-error-budgets.md)
-- `handbook/testing/performance-and-load-testing-methodology.md`
+- `syllabus/08-testing/performance-and-load-testing-methodology.md`

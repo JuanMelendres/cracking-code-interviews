@@ -18,10 +18,10 @@ estimated_reading_minutes: 35
 prerequisites:
   - ../02-java/language-core/polymorphism-and-dynamic-dispatch.md
 related:
-  - ../../handbook/architecture/clean-hexagonal-architecture.md
+  - ../17-architecture/clean-hexagonal-architecture.md
   - ../02-java/concurrency/java-memory-model-and-volatile.md
-  - ../../handbook/spring/transactional-proxy-mechanics-and-propagation.md
-  - ../../handbook/spring/security-filter-chain.md
+  - ../05-spring/transactional-proxy-mechanics-and-propagation.md
+  - ../05-spring/security-filter-chain.md
 official_references:
   - https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html#jls-8.9
 ---
@@ -422,7 +422,7 @@ These four appear constantly in real Java and framework code, and are worth reco
 |---|---|---|
 | **Observer** | Notify an open-ended set of interested parties when something changes, without the subject knowing who they are | Spring's `ApplicationEventPublisher`/`@EventListener`; Java's own `PropertyChangeListener`; any pub/sub or webhook-dispatch system |
 | **Factory Method** | Defer *which concrete class* gets instantiated to a subclass or a configuration-driven choice, instead of the caller calling `new ConcreteClass()` directly | `Collections.unmodifiableList(...)`-style static factories throughout the JDK; Spring's `BeanFactory` choosing which concrete bean implementation to construct based on configuration |
-| **Adapter** | Make an existing class's interface compatible with what calling code expects, without modifying either side | Wrapping a third-party payment SDK's client behind your own `PaymentGateway` interface, exactly the kind of boundary [Clean and Hexagonal Architecture](../../handbook/architecture/clean-hexagonal-architecture.md) formalizes as a port/adapter |
+| **Adapter** | Make an existing class's interface compatible with what calling code expects, without modifying either side | Wrapping a third-party payment SDK's client behind your own `PaymentGateway` interface, exactly the kind of boundary [Clean and Hexagonal Architecture](../17-architecture/clean-hexagonal-architecture.md) formalizes as a port/adapter |
 | **Template Method** | Fix the overall skeleton of an algorithm in a base class, letting subclasses override only specific steps | `JdbcTemplate` itself (the name is literally the pattern): it fixes the connection-acquire/execute/close skeleton, and callers supply only the query-specific step |
 
 ## Summary

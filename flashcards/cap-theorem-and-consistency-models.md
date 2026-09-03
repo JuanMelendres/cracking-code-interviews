@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: CAP Theorem and Consistency Models
 
-**Canonical chapter:** [`handbook/system-design/cap-theorem-and-consistency-models.md`](../handbook/system-design/cap-theorem-and-consistency-models.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md`](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md)
 
 ## Card: When CAP applies
 
@@ -27,7 +27,7 @@ Prevents treating CAP as a permanent, always-active trade-off.
 Discussing CAP as if it constrains every design decision, not just partition behavior.
 
 **Related:**
-[Definition and Purpose](../handbook/system-design/cap-theorem-and-consistency-models.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md#definition-and-purpose)
 
 ## Card: CP system behavior
 
@@ -44,7 +44,7 @@ Concrete behavior, not just the label "CP."
 Stating the label without describing the actual refusal behavior.
 
 **Related:**
-[Core Concepts](../handbook/system-design/cap-theorem-and-consistency-models.md#core-concepts)
+[Core Concepts](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md#core-concepts)
 
 ## Card: AP system behavior
 
@@ -61,7 +61,7 @@ Concrete behavior, not just the label "AP."
 Stating the label without describing the reconciliation implication.
 
 **Related:**
-[Core Concepts](../handbook/system-design/cap-theorem-and-consistency-models.md#core-concepts)
+[Core Concepts](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md#core-concepts)
 
 ## Card: One model for a whole system?
 
@@ -78,4 +78,4 @@ The most sophisticated version of this topic; most candidates stop at "pick CP o
 Choosing one consistency model for an entire system rather than per data type.
 
 **Related:**
-[Staff-Level Discussion](../handbook/system-design/cap-theorem-and-consistency-models.md#interview-answer-framework)
+[Staff-Level Discussion](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md#interview-answer-framework)

@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/databases/index-structures-btree-composite-covering.md
+  - ../syllabus/06-databases/index-structures-btree-composite-covering.md
 source: handbook/databases/index-structures-btree-composite-covering.md#production-scenarios
 ---
 
@@ -88,5 +88,5 @@ This incident generalizes a specific, easy-to-miss risk: an ORM's generated SQL 
 
 ## Related Handbook Chapters
 
-- [Index Structures: B-Tree, Composite, Covering](../handbook/databases/index-structures-btree-composite-covering.md) — canonical index-selectivity and expression-index mechanics used here.
-- [Query Planning and EXPLAIN ANALYZE](../handbook/databases/query-planning-and-explain-analyze.md) — the plan-reading methodology used to diagnose this incident.
+- [Index Structures: B-Tree, Composite, Covering](../syllabus/06-databases/index-structures-btree-composite-covering.md) — canonical index-selectivity and expression-index mechanics used here.
+- [Query Planning and EXPLAIN ANALYZE](../syllabus/06-databases/query-planning-and-explain-analyze.md) — the plan-reading methodology used to diagnose this incident.

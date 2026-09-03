@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Writing Tests Live in an Interview
 
-**Canonical chapter:** [`handbook/testing/writing-tests-live-in-an-interview.md`](../handbook/testing/writing-tests-live-in-an-interview.md)
+**Canonical chapter:** [`syllabus/08-testing/writing-tests-live-in-an-interview.md`](../syllabus/08-testing/writing-tests-live-in-an-interview.md)
 
 ## Core Mental Model
 
@@ -78,5 +78,5 @@ Each transition is real captured console output — the exact visible checkpoint
 
 ## Related
 
-- `handbook/testing/test-strategy-and-test-doubles.md`
-- `handbook/testing/junit5-architecture-and-advanced-features.md`
+- `syllabus/08-testing/test-strategy-and-test-doubles.md`
+- `syllabus/08-testing/junit5-architecture-and-advanced-features.md`

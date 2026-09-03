@@ -1,7 +1,7 @@
 # 12-factor config, and fail-fast validation (T-1008) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/system-design/twelve-factor-config.md`](../../../../handbook/system-design/twelve-factor-config.md)
+[`syllabus/15-cloud/twelve-factor-config.md`](../../../../syllabus/15-cloud/twelve-factor-config.md)
 (T-1008). No framework — a real, minimal config loader implementing the
 12-factor app's config precedence (defaults < config file < environment
 variables < command-line arguments), plus a real, direct comparison between

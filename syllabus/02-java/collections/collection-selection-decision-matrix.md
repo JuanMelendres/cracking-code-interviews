@@ -22,7 +22,7 @@ related:
   - concurrenthashmap-internals.md
   - blockingqueue-family.md
   - arraylist-and-linkedlist-internals.md
-  - ../../../handbook/system-design/storage-selection-tradeoffs.md
+  - ../../11-system-design/storage-selection-tradeoffs.md
   - ../../../study-packs/week-14/05-collection-selection-decision-matrix.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html
@@ -354,7 +354,7 @@ Assuming a HashMap "probably won't be accessed concurrently in practice."
 
 ## Additional Reading
 
-- The JDK's own `Collections` framework overview, and [Storage Selection Trade-offs](../../../handbook/system-design/storage-selection-tradeoffs.md) for the analogous access-pattern-first method applied one layer up, at the storage-technology level rather than the in-memory-collection level.
+- The JDK's own `Collections` framework overview, and [Storage Selection Trade-offs](../../11-system-design/storage-selection-tradeoffs.md) for the analogous access-pattern-first method applied one layer up, at the storage-technology level rather than the in-memory-collection level.
 
 ## Official References
 

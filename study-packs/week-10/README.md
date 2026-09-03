@@ -52,11 +52,11 @@ graph LR
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-saga-outbox-and-distributed-transactions.md` | T-618 — summary + link; full chapter now canonical at `handbook/system-design/distributed-transactions-saga-and-outbox.md` |
-| 3 | `02-sharding-and-partitioning-strategies.md` | T-614 — summary + link; full chapter now canonical at `handbook/databases/table-partitioning-and-sharding-strategies.md` |
-| 4 | `03-consistent-hashing.md` | T-806 — summary + link; full chapter now canonical at `handbook/system-design/data-partitioning-and-consistent-hashing.md` |
-| 5 | `04-resilience-patterns.md` | T-515 — summary + link; full chapter now canonical at `handbook/system-design/resilience-patterns.md` |
-| 6 | `05-zero-downtime-migration.md` | T-616 — summary + link; full chapter now canonical at `handbook/databases/zero-downtime-schema-migration.md` |
+| 2 | `01-saga-outbox-and-distributed-transactions.md` | T-618 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md` |
+| 3 | `02-sharding-and-partitioning-strategies.md` | T-614 — summary + link; full chapter now canonical at `syllabus/06-databases/table-partitioning-and-sharding-strategies.md` |
+| 4 | `03-consistent-hashing.md` | T-806 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md` |
+| 5 | `04-resilience-patterns.md` | T-515 — summary + link; full chapter now canonical at `syllabus/11-system-design/resilience-patterns.md` |
+| 6 | `05-zero-downtime-migration.md` | T-616 — summary + link; full chapter now canonical at `syllabus/06-databases/zero-downtime-schema-migration.md` |
 | 7 | `06-java-coding-practice.md` | LC 215/347/23/295 (heaps), all compiled and run |
 | 8 | `07-flashcards.md` | 16 cards |
 | 9 | `08-outbox-implementation-deliverable.md` | The week's named deliverable — full working outbox walkthrough |

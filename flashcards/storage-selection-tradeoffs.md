@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Storage Selection Trade-offs
 
-**Canonical chapter:** [`handbook/system-design/storage-selection-tradeoffs.md`](../handbook/system-design/storage-selection-tradeoffs.md)
+**Canonical chapter:** [`syllabus/11-system-design/storage-selection-tradeoffs.md`](../syllabus/11-system-design/storage-selection-tradeoffs.md)
 
 ## Card: The first question in storage selection
 
@@ -27,7 +27,7 @@ Anchors every subsequent decision in evidence rather than reputation.
 Naming a technology before articulating the access pattern.
 
 **Related:**
-[Core Concepts](../handbook/system-design/storage-selection-tradeoffs.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/storage-selection-tradeoffs.md#core-concepts)
 
 ## Card: The four storage categories
 
@@ -44,7 +44,7 @@ Prevents treating "NoSQL" as a single, undifferentiated alternative to relationa
 Assuming all non-relational stores share the same trade-offs.
 
 **Related:**
-[Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md#trade-offs)
+[Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md#trade-offs)
 
 ## Card: The hidden cost of polyglot persistence
 
@@ -61,4 +61,4 @@ The reason polyglot persistence is a cost/benefit call, not a default good pract
 Adopting a second storage technology without weighing this cost explicitly.
 
 **Related:**
-[Core Concepts](../handbook/system-design/storage-selection-tradeoffs.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/storage-selection-tradeoffs.md#core-concepts)

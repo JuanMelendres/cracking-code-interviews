@@ -5,7 +5,7 @@ domain: cloud
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
+  - ../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
 source: handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is a specific instance of a general trap in automation: a numeric 
 
 ## Related Handbook Chapters
 
-- [CI/CD Pipeline Design and Deployment Strategies](../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md) — canonical canary/promotion-gate design used here.
+- [CI/CD Pipeline Design and Deployment Strategies](../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md) — canonical canary/promotion-gate design used here.

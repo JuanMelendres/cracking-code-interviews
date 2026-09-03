@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/technical-debt-and-evolutionary-architecture.md
-  - ../handbook/architecture/modular-monolith-as-a-deliberate-choice.md
+  - ../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md
+  - ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
 source: handbook/architecture/technical-debt-and-evolutionary-architecture.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The interview lesson this scenario states explicitly is the correct one to lead 
 
 ## Related Handbook Chapters
 
-- [Technical Debt and Evolutionary Architecture](../handbook/architecture/technical-debt-and-evolutionary-architecture.md) — canonical fitness-function mechanics and the `CouplingFitnessFunction` this incident's audit is modeled on.
-- [Modular Monolith as a Deliberate Choice](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md) — the broader module-boundary discipline that bounded-coupling fitness functions protect.
+- [Technical Debt and Evolutionary Architecture](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md) — canonical fitness-function mechanics and the `CouplingFitnessFunction` this incident's audit is modeled on.
+- [Modular Monolith as a Deliberate Choice](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md) — the broader module-boundary discipline that bounded-coupling fitness functions protect.

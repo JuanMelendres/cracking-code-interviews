@@ -5,7 +5,7 @@ domain: cloud
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/cloud/aws-core-services-for-backend-engineers.md
+  - ../syllabus/15-cloud/aws-core-services-for-backend-engineers.md
 source: handbook/cloud/aws-core-services-for-backend-engineers.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The important reframing in this incident is that the original migration decision
 
 ## Related Handbook Chapters
 
-- [AWS Core Services for Backend Engineers](../handbook/cloud/aws-core-services-for-backend-engineers.md) — canonical DynamoDB access-pattern-design mechanics used here.
-- [Storage Selection Trade-offs](../handbook/system-design/storage-selection-tradeoffs.md) — the general access-pattern method this migration decision should have applied to future needs.
+- [AWS Core Services for Backend Engineers](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md) — canonical DynamoDB access-pattern-design mechanics used here.
+- [Storage Selection Trade-offs](../syllabus/11-system-design/storage-selection-tradeoffs.md) — the general access-pattern method this migration decision should have applied to future needs.

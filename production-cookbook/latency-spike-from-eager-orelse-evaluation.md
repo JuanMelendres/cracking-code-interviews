@@ -87,4 +87,4 @@ This is a case where an API's naming similarity actively works against correct u
 ## Related Handbook Chapters
 
 - [Optional and Null Strategy](../syllabus/02-java/language-core/optional-and-null-strategy.md) — canonical `orElse()` vs. `orElseGet()` mechanics and the measured ~1200x evaluation-cost gap.
-- [Connection Pooling and Sizing (HikariCP)](../handbook/databases/connection-pooling-and-sizing.md) — related considerations when a fallback path makes unnecessary database calls under load.
+- [Connection Pooling and Sizing (HikariCP)](../syllabus/06-databases/connection-pooling-and-sizing.md) — related considerations when a fallback path makes unnecessary database calls under load.

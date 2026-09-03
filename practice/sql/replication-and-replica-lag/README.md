@@ -1,7 +1,7 @@
 # PostgreSQL replication, read replicas, and replica lag (T-615) — runnable verification
 
 Real, executed PostgreSQL 16 output backing
-[`handbook/databases/replication-read-replicas-and-replica-lag.md`](../../../handbook/databases/replication-read-replicas-and-replica-lag.md)
+[`syllabus/06-databases/replication-read-replicas-and-replica-lag.md`](../../../syllabus/06-databases/replication-read-replicas-and-replica-lag.md)
 (T-615). A real primary + real streaming-replica pair, built with Docker (no simulation, no
 mocked output) — real `pg_basebackup`, real WAL streaming, real measured lag, real read-only
 enforcement, and a real promotion, including an honest, reproducible side finding about sequence

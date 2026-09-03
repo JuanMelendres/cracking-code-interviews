@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Integration Testing Against Real Dependencies
 
-**Canonical chapter:** [`handbook/testing/integration-testing-against-real-dependencies.md`](../handbook/testing/integration-testing-against-real-dependencies.md)
+**Canonical chapter:** [`syllabus/08-testing/integration-testing-against-real-dependencies.md`](../syllabus/08-testing/integration-testing-against-real-dependencies.md)
 
 ## Card: What a real-database integration test catches
 
@@ -27,7 +27,7 @@ The concrete gap that makes mocked-only repository test suites give false confid
 Believing a mocked test suite covers the repository layer adequately.
 
 **Related:**
-[Internal Implementation](../handbook/testing/integration-testing-against-real-dependencies.md#internal-implementation)
+[Internal Implementation](../syllabus/08-testing/integration-testing-against-real-dependencies.md#internal-implementation)
 
 ## Card: Mock vs. real dependency scope
 
@@ -44,7 +44,7 @@ Prevents both under-testing boundaries and over-mocking business logic.
 Assuming every test must either always mock or always use a real dependency.
 
 **Related:**
-[Decision Framework](../handbook/testing/integration-testing-against-real-dependencies.md#decision-framework)
+[Decision Framework](../syllabus/08-testing/integration-testing-against-real-dependencies.md#decision-framework)
 
 ## Card: What Testcontainers automates
 
@@ -61,4 +61,4 @@ Separates the library's convenience from the actual testing property that matter
 Assuming manual container orchestration isn't "real" integration testing.
 
 **Related:**
-[Core Concepts](../handbook/testing/integration-testing-against-real-dependencies.md#core-concepts)
+[Core Concepts](../syllabus/08-testing/integration-testing-against-real-dependencies.md#core-concepts)

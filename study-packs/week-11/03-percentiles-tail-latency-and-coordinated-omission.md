@@ -15,7 +15,7 @@ canonical: ../../handbook/performance/percentiles-tail-latency-and-coordinated-o
 
 **IWI 6.70 · Staff tier**
 
-**Canonical chapter:** [Percentiles, Tail Latency, and Coordinated Omission](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md). This file is the Week 11 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
+**Canonical chapter:** [Percentiles, Tail Latency, and Coordinated Omission](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md). This file is the Week 11 study-pack entry point — a short summary of each section plus a link to the full canonical treatment.
 
 **Verification note:** the percentile figures behind this summary are real, computed output from `practice/java/week-11/percentiles/src/CoordinatedOmissionDemo.java` — 100,000 simulated requests through each of two measurement methodologies, same underlying service behavior, same random seed.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/performance/percentiles-tail-latency-and-coordinated-o
 
 ## 1. The concept
 
-A percentile states the latency below which a given fraction of requests fall. Coordinated omission is a measurement bug: a naive closed-loop load generator sends fewer requests exactly when the service is struggling, systematically understating the true tail. → [Definition and Purpose](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#definition-and-purpose).
+A percentile states the latency below which a given fraction of requests fall. Coordinated omission is a measurement bug: a naive closed-loop load generator sends fewer requests exactly when the service is struggling, systematically understating the true tail. → [Definition and Purpose](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Averages hide exactly the information that matters for user experience and SLOs. Coordinated omission exists as a named concept because the natural way to write a load generator is precisely the wrong way. → [Definition and Purpose](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#definition-and-purpose).
+Averages hide exactly the information that matters for user experience and SLOs. Coordinated omission exists as a named concept because the natural way to write a load generator is precisely the wrong way. → [Definition and Purpose](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#definition-and-purpose).
 
 ## 3. Coordinated omission, measured
 
-Measured: the identical service (98% fast, 2% stalling 500ms) reports p99=500ms under closed-loop load generation but p99=830ms (and p90 380ms vs. 10ms) under the correct open-loop methodology — purely from correcting how latency was measured. → [Internal Implementation](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#internal-implementation) has the full trace.
+Measured: the identical service (98% fast, 2% stalling 500ms) reports p99=500ms under closed-loop load generation but p99=830ms (and p90 380ms vs. 10ms) under the correct open-loop methodology — purely from correcting how latency was measured. → [Internal Implementation](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#internal-implementation) has the full trace.
 
 ## 4. Why average latency is close to useless
 
-A single average is compatible with wildly different real experiences — it can't distinguish "everyone waits near the average" from "98% fast, 2% very slow." Percentiles distinguish these; an average cannot. → [Core Concepts](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#core-concepts).
+A single average is compatible with wildly different real experiences — it can't distinguish "everyone waits near the average" from "98% fast, 2% very slow." Percentiles distinguish these; an average cannot. → [Core Concepts](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#core-concepts).
 
 ## 5. Trade-offs
 
-Average latency reveals almost nothing; p50 shows typical experience; p99/p99.9 shows the tail an SLO should target; closed-loop testing understates the tail, open-loop captures it correctly at higher implementation cost. → [Trade-offs](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#trade-offs).
+Average latency reveals almost nothing; p50 shows typical experience; p99/p99.9 shows the tail an SLO should target; closed-loop testing understates the tail, open-loop captures it correctly at higher implementation cost. → [Trade-offs](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Your load test shows p99 = 200ms, but users report much worse in production. Why the gap?
 2. Justify a percentile-based SLO instead of an average-based one.
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#interview-questions).
 
 ## 7. Common mistakes
 
-Reporting average latency as characterizing user experience; trusting closed-loop load-test percentiles; chasing p100/max as an SLO target. → [Common Mistakes](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#common-mistakes).
+Reporting average latency as characterizing user experience; trusting closed-loop load-test percentiles; chasing p100/max as an SLO target. → [Common Mistakes](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-The measurement methodology is itself part of the system under evaluation — getting it subtly wrong produces confidently-wrong conclusions, not obviously-wrong ones. → [Staff-Level Discussion](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#interview-answer-framework).
+The measurement methodology is itself part of the system under evaluation — getting it subtly wrong produces confidently-wrong conclusions, not obviously-wrong ones. → [Staff-Level Discussion](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#interview-answer-framework).
 
 ## 9. Summary
 
-Percentiles reveal what averages hide. Coordinated omission is a real, measured methodology bug — the same service reporting a materially different, more honest picture once measured correctly. → [Summary](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#summary).
+Percentiles reveal what averages hide. Coordinated omission is a real, measured methodology bug — the same service reporting a materially different, more honest picture once measured correctly. → [Summary](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#practice-exercises) and [Solutions](../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#solutions). Reproducible demo: `practice/java/week-11/percentiles/src/CoordinatedOmissionDemo.java`.
+→ [Practice Exercises](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#practice-exercises) and [Solutions](../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#solutions). Reproducible demo: `practice/java/week-11/percentiles/src/CoordinatedOmissionDemo.java`.
 
 ## 14. Additional Reading
 

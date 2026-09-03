@@ -5,8 +5,8 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/locks-deadlocks-and-lock-escalation.md
-  - ../handbook/databases/query-planning-and-explain-analyze.md
+  - ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
+  - ../syllabus/06-databases/query-planning-and-explain-analyze.md
 source: handbook/databases/locks-deadlocks-and-lock-escalation.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ This scenario is valuable precisely because nothing went wrong — its lesson is
 
 ## Related Handbook Chapters
 
-- [Locks, Deadlocks, and Lock Escalation](../handbook/databases/locks-deadlocks-and-lock-escalation.md) — canonical explanation of PostgreSQL's lock-manager model and why escalation does not occur.
-- [Query Planning and EXPLAIN ANALYZE](../handbook/databases/query-planning-and-explain-analyze.md) — the broader discipline of verifying database behavior with real, measured evidence rather than assumption.
+- [Locks, Deadlocks, and Lock Escalation](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md) — canonical explanation of PostgreSQL's lock-manager model and why escalation does not occur.
+- [Query Planning and EXPLAIN ANALYZE](../syllabus/06-databases/query-planning-and-explain-analyze.md) — the broader discipline of verifying database behavior with real, measured evidence rather than assumption.

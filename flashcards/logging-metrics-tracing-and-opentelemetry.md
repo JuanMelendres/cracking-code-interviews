@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Logging, Metrics, Tracing, and OpenTelemetry
 
-**Canonical chapter:** [`handbook/performance/logging-metrics-tracing-and-opentelemetry.md`](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md)
+**Canonical chapter:** [`syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md`](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md)
 
 ## Card: What reconstructs a trace
 
@@ -27,7 +27,7 @@ The actual mechanism, not just the vocabulary of "tracing."
 Describing tracing without naming this specific mechanism.
 
 **Related:**
-[Internal Implementation](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md#internal-implementation)
+[Internal Implementation](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md#internal-implementation)
 
 ## Card: What a metric alone can't tell you
 
@@ -44,7 +44,7 @@ The core reason metrics, traces, and logs are complementary, not redundant.
 Treating a metrics dashboard as sufficient observability on its own.
 
 **Related:**
-[Core Concepts](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md#core-concepts)
+[Core Concepts](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md#core-concepts)
 
 ## Card: Why inconsistent propagation is serious
 
@@ -61,4 +61,4 @@ The gap appears exactly where visibility matters most, often during an active in
 Assuming propagation is guaranteed by default across every library and service.
 
 **Related:**
-[Production Scenarios](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md#production-scenarios)
+[Production Scenarios](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md#production-scenarios)

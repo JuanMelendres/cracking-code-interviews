@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/system-design/multi-region-failover-and-disaster-recovery.md
-  - ../handbook/architecture/architecture-decision-records.md
+  - ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
+  - ../syllabus/17-architecture/architecture-decision-records.md
 source: handbook/system-design/multi-region-failover-and-disaster-recovery.md#production-scenarios
 ---
 
@@ -88,5 +88,5 @@ The most consequential fact in this scenario is not which pattern won, but that 
 
 ## Related Handbook Chapters
 
-- [Multi-Region Failover and Disaster Recovery](../handbook/system-design/multi-region-failover-and-disaster-recovery.md) — canonical comparison of warm-standby and log-shipping DR patterns and the `rpo-demo.sh` / `rpo-archive-demo.sh` measurements this incident reproduces.
-- [Architecture Decision Records](../handbook/architecture/architecture-decision-records.md) — the documentation practice of grounding a DR pattern choice in tested evidence rather than a general argument.
+- [Multi-Region Failover and Disaster Recovery](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md) — canonical comparison of warm-standby and log-shipping DR patterns and the `rpo-demo.sh` / `rpo-archive-demo.sh` measurements this incident reproduces.
+- [Architecture Decision Records](../syllabus/17-architecture/architecture-decision-records.md) — the documentation practice of grounding a DR pattern choice in tested evidence rather than a general argument.

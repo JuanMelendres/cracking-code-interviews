@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Isolation Levels and Concurrency Anomalies
 
-**Canonical chapter:** [`handbook/databases/isolation-levels-and-concurrency-anomalies.md`](../handbook/databases/isolation-levels-and-concurrency-anomalies.md)
+**Canonical chapter:** [`syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md)
 
 ## Card: Lost update vs. write skew
 
@@ -27,7 +27,7 @@ The single most commonly conflated pair of anomalies; this project's own intervi
 Answering a write-skew question by describing a lost update instead.
 
 **Related:**
-[Core Concepts](../handbook/databases/isolation-levels-and-concurrency-anomalies.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#core-concepts)
 
 ## Card: Does REPEATABLE READ prevent write skew?
 
@@ -44,7 +44,7 @@ The specific, non-obvious gap that makes write skew "the discriminating question
 Assuming any isolation level stronger than READ COMMITTED must prevent all anomalies.
 
 **Related:**
-[Internal Implementation](../handbook/databases/isolation-levels-and-concurrency-anomalies.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#internal-implementation)
 
 ## Card: What SERIALIZABLE requires from application code
 
@@ -61,7 +61,7 @@ SERIALIZABLE without retry logic fails intermittently under contention instead o
 Treating SERIALIZABLE as a drop-in stronger guarantee with no code changes required.
 
 **Related:**
-[Internal Implementation](../handbook/databases/isolation-levels-and-concurrency-anomalies.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#internal-implementation)
 
 ## Card: Cheaper fix for a same-row race
 
@@ -78,4 +78,4 @@ Prevents reflexively escalating every concurrency bug to SERIALIZABLE when a che
 Reaching for SERIALIZABLE for a same-row problem that a row lock would solve more cheaply.
 
 **Related:**
-[Java Examples](../handbook/databases/isolation-levels-and-concurrency-anomalies.md#java-examples)
+[Java Examples](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#java-examples)

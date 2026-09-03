@@ -56,5 +56,5 @@ last_updated: 2026-09-02
 
 ## Related
 
-- `handbook/security/owasp-top-10-for-backend-services.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
 - `syllabus/02-java/language-core/optional-and-null-strategy.md`

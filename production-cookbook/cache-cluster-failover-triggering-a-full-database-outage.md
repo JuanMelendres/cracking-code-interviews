@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/caching-strategies-and-invalidation.md
+  - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
 source: handbook/system-design/caching-strategies-and-invalidation.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The database in this incident was never actually unhealthy — it was correctly 
 
 ## Related Handbook Chapters
 
-- [Caching Strategies and Invalidation](../handbook/system-design/caching-strategies-and-invalidation.md) — canonical cache-stampede and graceful-degradation mechanics used here.
-- [Resilience Patterns](../handbook/system-design/resilience-patterns.md) — the circuit-breaker and load-shedding mechanisms used as immediate mitigation.
+- [Caching Strategies and Invalidation](../syllabus/11-system-design/caching-strategies-and-invalidation.md) — canonical cache-stampede and graceful-degradation mechanics used here.
+- [Resilience Patterns](../syllabus/11-system-design/resilience-patterns.md) — the circuit-breaker and load-shedding mechanisms used as immediate mitigation.

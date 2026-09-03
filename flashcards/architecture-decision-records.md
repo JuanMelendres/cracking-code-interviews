@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Architecture Decision Records
 
-**Canonical chapter:** [`handbook/architecture/architecture-decision-records.md`](../handbook/architecture/architecture-decision-records.md)
+**Canonical chapter:** [`syllabus/17-architecture/architecture-decision-records.md`](../syllabus/17-architecture/architecture-decision-records.md)
 
 ## Card: The four required ADR sections
 
@@ -27,7 +27,7 @@ The minimal, durable core of the pattern — deliberately lightweight so teams a
 Assuming a longer template (MADR-style, with Decision Drivers and Considered Options) replaces these four rather than extending them.
 
 **Related:**
-[Core Concepts](../handbook/architecture/architecture-decision-records.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/architecture-decision-records.md#core-concepts)
 
 ## Card: Editing vs. superseding
 
@@ -44,7 +44,7 @@ Preserves the historical record of what was known and believed at the time — t
 Treating ADRs as living documents to keep current, like a wiki page.
 
 **Related:**
-[Interview Questions, Question 2](../handbook/architecture/architecture-decision-records.md#interview-questions)
+[Interview Questions, Question 2](../syllabus/17-architecture/architecture-decision-records.md#interview-questions)
 
 ## Card: The real Consequences test
 
@@ -61,4 +61,4 @@ An ADR listing only positive consequences signals the decision wasn't honestly i
 Writing Consequences as a justification restatement of the chosen option's pros, already covered in Considered Options.
 
 **Related:**
-[Common Mistakes](../handbook/architecture/architecture-decision-records.md#common-mistakes)
+[Common Mistakes](../syllabus/17-architecture/architecture-decision-records.md#common-mistakes)

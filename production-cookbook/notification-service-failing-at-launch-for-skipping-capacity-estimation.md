@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/system-design-method-and-estimation.md
+  - ../syllabus/11-system-design/system-design-method-and-estimation.md
 source: handbook/system-design/system-design-method-and-estimation.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is the cleanest possible demonstration of why the six-phase method
 
 ## Related Handbook Chapters
 
-- [System Design Method and Estimation](../handbook/system-design/system-design-method-and-estimation.md) — canonical six-phase method and estimation-phase discipline used here.
+- [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md) — canonical six-phase method and estimation-phase discipline used here.

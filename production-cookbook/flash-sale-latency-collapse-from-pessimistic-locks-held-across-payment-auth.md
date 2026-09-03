@@ -5,8 +5,8 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/optimistic-vs-pessimistic-locking.md
-  - ../handbook/databases/locks-deadlocks-and-lock-escalation.md
+  - ../syllabus/06-databases/optimistic-vs-pessimistic-locking.md
+  - ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
 source: handbook/databases/optimistic-vs-pessimistic-locking.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The instructive failure here isn't "pessimistic locking is wrong" — it's that 
 
 ## Related Handbook Chapters
 
-- [Optimistic vs. Pessimistic Locking](../handbook/databases/optimistic-vs-pessimistic-locking.md) — canonical trade-off analysis and the `PessimisticLockingBlockingDemo` measurement this incident reproduces at scale.
-- [Locks, Deadlocks, and Lock Escalation](../handbook/databases/locks-deadlocks-and-lock-escalation.md) — the underlying row-locking mechanics `PESSIMISTIC_WRITE` relies on.
+- [Optimistic vs. Pessimistic Locking](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md) — canonical trade-off analysis and the `PessimisticLockingBlockingDemo` measurement this incident reproduces at scale.
+- [Locks, Deadlocks, and Lock Escalation](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md) — the underlying row-locking mechanics `PESSIMISTIC_WRITE` relies on.

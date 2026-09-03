@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Spring Transactional Proxy Mechanics and Propagation
 
-**Canonical chapter:** [`handbook/spring/transactional-proxy-mechanics-and-propagation.md`](../handbook/spring/transactional-proxy-mechanics-and-propagation.md)
+**Canonical chapter:** [`syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
 
 ## Core Mental Model
 
@@ -72,4 +72,4 @@ Proxy dispatch itself is O(1)/negligible per-call overhead — these are correct
 ## Related
 
 - [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md)
-- `handbook/databases/index-structures-btree-composite-covering.md`
+- `syllabus/06-databases/index-structures-btree-composite-covering.md`

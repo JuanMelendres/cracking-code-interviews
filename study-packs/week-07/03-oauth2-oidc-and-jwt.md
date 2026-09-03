@@ -15,7 +15,7 @@ canonical: ../../handbook/security/oauth2-oidc-and-jwt.md
 
 **IWI 7.15 · Advanced tier**
 
-**Canonical chapter:** [OAuth2, OIDC, and JWT](../../handbook/security/oauth2-oidc-and-jwt.md). This file is the Week 7 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `08-design-exercise-authentication-service.md` cites §4 directly.
+**Canonical chapter:** [OAuth2, OIDC, and JWT](../../syllabus/12-security/oauth2-oidc-and-jwt.md). This file is the Week 7 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `08-design-exercise-authentication-service.md` cites §4 directly.
 
 **Verification note:** the JWT sign/verify/tamper/expiry behavior behind this summary is real, executed HMAC-SHA256 cryptography via `javax.crypto` — genuine signature bytes, genuine mismatch detection. The OAuth2/OIDC flow is conceptual: a faithful multi-party demo (authorization server, resource server, client, real redirect flow) was out of scope for this pack's time budget, stated explicitly here rather than simulated as if it were executed.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/security/oauth2-oidc-and-jwt.md
 
 ## 1. OAuth2 and OIDC — the concept
 
-OAuth2 is an authorization framework (what can this client do); OIDC is an identity layer on top (who is this user, via an ID token). Frequently conflated; the precise distinction is authorization vs. authentication/identity. → [Definition and Purpose](../../handbook/security/oauth2-oidc-and-jwt.md#definition-and-purpose).
+OAuth2 is an authorization framework (what can this client do); OIDC is an identity layer on top (who is this user, via an ID token). Frequently conflated; the precise distinction is authorization vs. authentication/identity. → [Definition and Purpose](../../syllabus/12-security/oauth2-oidc-and-jwt.md#definition-and-purpose).
 
 ## 2. Authorization Code + PKCE, walked through
 
-The modern default grant: client generates a verifier/challenge pair, user authenticates directly with the authorization server, client exchanges the code plus verifier for tokens. PKCE protects the authorization code from interception, a different attack surface than a client secret protects. → [Internal Implementation](../../handbook/security/oauth2-oidc-and-jwt.md#internal-implementation) has the full flow.
+The modern default grant: client generates a verifier/challenge pair, user authenticates directly with the authorization server, client exchanges the code plus verifier for tokens. PKCE protects the authorization code from interception, a different attack surface than a client secret protects. → [Internal Implementation](../../syllabus/12-security/oauth2-oidc-and-jwt.md#internal-implementation) has the full flow.
 
 ## 3. JWT mechanics, reproduced
 
-Measured: real HMAC-SHA256 sign and verify (VALID); tamper with the payload (INVALID, signature mismatch); expired token (INVALID, expired). Verification is a pure computation over the token's own bytes, never a database lookup. → [Internal Implementation](../../handbook/security/oauth2-oidc-and-jwt.md#internal-implementation) has all three traces.
+Measured: real HMAC-SHA256 sign and verify (VALID); tamper with the payload (INVALID, signature mismatch); expired token (INVALID, expired). Verification is a pure computation over the token's own bytes, never a database lookup. → [Internal Implementation](../../syllabus/12-security/oauth2-oidc-and-jwt.md#internal-implementation) has all three traces.
 
 ## 4. Why you cannot revoke a JWT
 
-Measured: a token for a deleted/compromised user still verifies as VALID until natural expiry, because verification never looks anything up. Two honest mitigations: short expiry + refresh tokens (bounds exposure, doesn't enable revocation), or a deny-list (solves revocation, reintroduces statefulness). → [Core Concepts](../../handbook/security/oauth2-oidc-and-jwt.md#core-concepts).
+Measured: a token for a deleted/compromised user still verifies as VALID until natural expiry, because verification never looks anything up. Two honest mitigations: short expiry + refresh tokens (bounds exposure, doesn't enable revocation), or a deny-list (solves revocation, reintroduces statefulness). → [Core Concepts](../../syllabus/12-security/oauth2-oidc-and-jwt.md#core-concepts).
 
 ## 5. Trade-offs
 
-Authorization Code + PKCE costs more round-trips for better protection; JWTs are stateless but unrevocable before expiry; short expiry bounds exposure at the cost of more refresh traffic; a deny-list solves revocation but reintroduces the lookup JWTs were meant to avoid. → [Trade-offs](../../handbook/security/oauth2-oidc-and-jwt.md#trade-offs).
+Authorization Code + PKCE costs more round-trips for better protection; JWTs are stateless but unrevocable before expiry; short expiry bounds exposure at the cost of more refresh traffic; a deny-list solves revocation but reintroduces the lookup JWTs were meant to avoid. → [Trade-offs](../../syllabus/12-security/oauth2-oidc-and-jwt.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Explain JWT revocation honestly.
 2. Why PKCE if you already have a client secret?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/security/oauth2-oidc-and-jwt.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/12-security/oauth2-oidc-and-jwt.md#interview-questions).
 
 ## 7. Common mistakes
 
-Conflating OAuth2 with OIDC; claiming JWTs can be revoked without naming the stateful mechanism required; treating PKCE and a client secret as solving the same problem. → [Common Mistakes](../../handbook/security/oauth2-oidc-and-jwt.md#common-mistakes).
+Conflating OAuth2 with OIDC; claiming JWTs can be revoked without naming the stateful mechanism required; treating PKCE and a client secret as solving the same problem. → [Common Mistakes](../../syllabus/12-security/oauth2-oidc-and-jwt.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-JWT revocation is a specific instance of the stateless-vs-stateful trade-off recurring throughout this project — caching staleness, CAP consistency-vs-availability, and here, statelessness vs. revocability. → [Staff-Level Discussion](../../handbook/security/oauth2-oidc-and-jwt.md#interview-answer-framework).
+JWT revocation is a specific instance of the stateless-vs-stateful trade-off recurring throughout this project — caching staleness, CAP consistency-vs-availability, and here, statelessness vs. revocability. → [Staff-Level Discussion](../../syllabus/12-security/oauth2-oidc-and-jwt.md#interview-answer-framework).
 
 ## 9. Summary
 
-OAuth2 answers authorization, OIDC layers identity on top. A JWT's verification is a pure computation over its own bytes — real, demonstrated tamper and expiry detection — which means it structurally cannot be revoked before expiry without a stateful deny-list. → [Summary](../../handbook/security/oauth2-oidc-and-jwt.md#summary).
+OAuth2 answers authorization, OIDC layers identity on top. A JWT's verification is a pure computation over its own bytes — real, demonstrated tamper and expiry detection — which means it structurally cannot be revoked before expiry without a stateful deny-list. → [Summary](../../syllabus/12-security/oauth2-oidc-and-jwt.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/security/oauth2-oidc-and-jwt.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/12-security/oauth2-oidc-and-jwt.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/security/oauth2-oidc-and-jwt.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/12-security/oauth2-oidc-and-jwt.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/security/oauth2-oidc-and-jwt.md#flashcards). Full week-level deck: `05-flashcards.md`.
+→ [Flashcards](../../syllabus/12-security/oauth2-oidc-and-jwt.md#flashcards). Full week-level deck: `05-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/security/oauth2-oidc-and-jwt.md#practice-exercises) and [Solutions](../../handbook/security/oauth2-oidc-and-jwt.md#solutions). Reproducible demo: `practice/java/week-07/security/src/JwtDemo.java`.
+→ [Practice Exercises](../../syllabus/12-security/oauth2-oidc-and-jwt.md#practice-exercises) and [Solutions](../../syllabus/12-security/oauth2-oidc-and-jwt.md#solutions). Reproducible demo: `practice/java/week-07/security/src/JwtDemo.java`.
 
 ## 14. Additional Reading
 

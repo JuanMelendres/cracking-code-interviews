@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: DDD Tactical Design — Aggregates
 
-**Canonical chapter:** [`handbook/architecture/ddd-tactical-design-aggregates.md`](../handbook/architecture/ddd-tactical-design-aggregates.md)
+**Canonical chapter:** [`syllabus/17-architecture/ddd-tactical-design-aggregates.md`](../syllabus/17-architecture/ddd-tactical-design-aggregates.md)
 
 ## Card: What an aggregate root is
 
@@ -27,7 +27,7 @@ Enforces that all mutations go through methods that can uphold the aggregate's i
 Giving an internal entity its own repository, bypassing the root.
 
 **Related:**
-[Core Concepts](../handbook/architecture/ddd-tactical-design-aggregates.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/ddd-tactical-design-aggregates.md#core-concepts)
 
 ## Card: What decides aggregate boundaries
 
@@ -44,7 +44,7 @@ The single principled test that prevents both under- and over-sizing.
 Grouping objects because they seem related, not because an invariant requires it.
 
 **Related:**
-[Decision Framework](../handbook/architecture/ddd-tactical-design-aggregates.md#decision-framework)
+[Decision Framework](../syllabus/17-architecture/ddd-tactical-design-aggregates.md#decision-framework)
 
 ## Card: Repositories per aggregate
 
@@ -61,4 +61,4 @@ Prevents code from bypassing the root's invariant-enforcing methods.
 Creating a repository for every entity class regardless of aggregate membership.
 
 **Related:**
-[Core Concepts](../handbook/architecture/ddd-tactical-design-aggregates.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/ddd-tactical-design-aggregates.md#core-concepts)

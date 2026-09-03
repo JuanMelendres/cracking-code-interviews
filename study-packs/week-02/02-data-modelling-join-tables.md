@@ -15,7 +15,7 @@ canonical: ../../handbook/databases/data-modelling-and-explicit-join-tables.md
 
 **IWI 5.20 · Advanced tier**
 
-**Canonical chapter:** [Data Modelling and Explicit Join Tables](../../handbook/databases/data-modelling-and-explicit-join-tables.md). This file is the Week 2 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `06-answer-frameworks.md` cites §3 directly.
+**Canonical chapter:** [Data Modelling and Explicit Join Tables](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md). This file is the Week 2 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `06-answer-frameworks.md` cites §3 directly.
 
 **Verification note:** the many-to-many demonstration behind this summary, including the data-integrity bug, is real executed PostgreSQL 16 output. Source: `practice/sql/week-02/many-to-many-lab.sql`; full output: `many-to-many-lab-output.txt`.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/databases/data-modelling-and-explicit-join-tables.md
 
 ## 1. The concept
 
-A many-to-many relationship needs a join table; the naive version (just the two foreign keys) is what an unannotated JPA `@ManyToMany` generates. The moment the relationship has any attribute of its own, it needs to become an explicit join entity with its own key and columns. → [Definition and Purpose](../../handbook/databases/data-modelling-and-explicit-join-tables.md#definition-and-purpose).
+A many-to-many relationship needs a join table; the naive version (just the two foreign keys) is what an unannotated JPA `@ManyToMany` generates. The moment the relationship has any attribute of its own, it needs to become an explicit join entity with its own key and columns. → [Definition and Purpose](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-ORMs make the naive version the path of least resistance, correct only as long as the relationship truly carries no data. The moment a fact like "3 units at this price" needs recording, the relationship *is* data. → [Definition and Purpose](../../handbook/databases/data-modelling-and-explicit-join-tables.md#definition-and-purpose).
+ORMs make the naive version the path of least resistance, correct only as long as the relationship truly carries no data. The moment a fact like "3 units at this price" needs recording, the relationship *is* data. → [Definition and Purpose](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#definition-and-purpose).
 
 ## 3. The trap, demonstrated
 
-Measured: a naive join table has no room for quantity, and — more importantly — silently reports the wrong historical total once a referenced product's price changes. An explicit `order_lines` entity that locks the price at insert time still reports correctly. The real trigger: any fact needing to be true "as of formation time," not "as of read time." → [Internal Implementation](../../handbook/databases/data-modelling-and-explicit-join-tables.md#internal-implementation) has the full trace.
+Measured: a naive join table has no room for quantity, and — more importantly — silently reports the wrong historical total once a referenced product's price changes. An explicit `order_lines` entity that locks the price at insert time still reports correctly. The real trigger: any fact needing to be true "as of formation time," not "as of read time." → [Internal Implementation](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#internal-implementation) has the full trace.
 
 ## 4. How it works internally
 
-`@ManyToMany` generates the naive join table with no entity to attach fields to. The fix is modelling the join table as its own `@Entity` (`OrderLine`) — a modelling decision, not a configuration flag. → [Internal Implementation](../../handbook/databases/data-modelling-and-explicit-join-tables.md#internal-implementation).
+`@ManyToMany` generates the naive join table with no entity to attach fields to. The fix is modelling the join table as its own `@Entity` (`OrderLine`) — a modelling decision, not a configuration flag. → [Internal Implementation](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#internal-implementation).
 
 ## 5. Trade-offs
 
-A naive join table costs zero extra code but can't record any fact about the relationship; an explicit join entity is fully general at the cost of an extra class and join. → [Trade-offs](../../handbook/databases/data-modelling-and-explicit-join-tables.md#trade-offs).
+A naive join table costs zero extra code but can't record any fact about the relationship; an explicit join entity is fully general at the cost of an extra class and join. → [Trade-offs](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Model many-to-many between `Order` and `Product`. Now the relationship needs `quantity` — what changes, and why was the original `@ManyToMany` a trap?
 2. When is an explicit join entity mandatory rather than optional?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/databases/data-modelling-and-explicit-join-tables.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#interview-questions).
 
 ## 7. Common mistakes
 
-Treating "does the relationship have an attribute" as the only test; adding timestamp columns to a naive join table without recognizing it's now an entity. → [Common Mistakes](../../handbook/databases/data-modelling-and-explicit-join-tables.md#common-mistakes).
+Treating "does the relationship have an attribute" as the only test; adding timestamp columns to a naive join table without recognizing it's now an entity. → [Common Mistakes](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-Any many-to-many relationship where one side's data can change independently of when the relationship was formed needs an explicit join entity — permission grants, pricing agreements, versioned configuration all share this pattern. → [Staff-Level Discussion](../../handbook/databases/data-modelling-and-explicit-join-tables.md#interview-answer-framework).
+Any many-to-many relationship where one side's data can change independently of when the relationship was formed needs an explicit join entity — permission grants, pricing agreements, versioned configuration all share this pattern. → [Staff-Level Discussion](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#interview-answer-framework).
 
 ## 9. Summary
 
-A plain join table can only record *that* two entities are related, not any fact about the relationship. The real, executed demonstration shows this isn't hypothetical: the naive table silently reports a wrong historical total once a referenced price changes. → [Summary](../../handbook/databases/data-modelling-and-explicit-join-tables.md#summary).
+A plain join table can only record *that* two entities are related, not any fact about the relationship. The real, executed demonstration shows this isn't hypothetical: the naive table silently reports a wrong historical total once a referenced price changes. → [Summary](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/databases/data-modelling-and-explicit-join-tables.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/databases/data-modelling-and-explicit-join-tables.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/databases/data-modelling-and-explicit-join-tables.md#flashcards). Full week-level deck: `08-flashcards.md`.
+→ [Flashcards](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#flashcards). Full week-level deck: `08-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/databases/data-modelling-and-explicit-join-tables.md#practice-exercises) and [Solutions](../../handbook/databases/data-modelling-and-explicit-join-tables.md#solutions). Reproducible demo: `practice/sql/week-02/many-to-many-lab.sql`.
+→ [Practice Exercises](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#practice-exercises) and [Solutions](../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#solutions). Reproducible demo: `practice/sql/week-02/many-to-many-lab.sql`.
 
 ## 14. Additional Reading
 

@@ -1,6 +1,6 @@
 # Spring WebFlux and Reactive Programming — Real, Executed Demos
 
-Backs [Spring WebFlux and Reactive Programming](../../../../handbook/spring/spring-webflux-and-reactive-programming.md)
+Backs [Spring WebFlux and Reactive Programming](../../../../syllabus/05-spring/spring-webflux-and-reactive-programming.md)
 (T-509). Real Spring Framework 6.1.14 + Spring WebFlux + Project Reactor 3.6.10
 output, plain jars fetched directly from Maven Central, no Maven/Gradle
 install, run with the `junit-platform-console-standalone` shaded jar.

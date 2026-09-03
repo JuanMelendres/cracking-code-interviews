@@ -15,7 +15,7 @@ canonical: ../../handbook/databases/isolation-levels-and-concurrency-anomalies.m
 
 **IWI 7.95 · Advanced tier · The discriminating question this chapter builds toward: "explain write skew with a concrete example."**
 
-**Canonical chapter:** [Isolation Levels and Concurrency Anomalies](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md). This file is the Week 3 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because other deliverables (the Week 3 checkpoint mock, the ride-hailing design exercise, Week 6's weak-list repair) cite them directly.
+**Canonical chapter:** [Isolation Levels and Concurrency Anomalies](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md). This file is the Week 3 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because other deliverables (the Week 3 checkpoint mock, the ride-hailing design exercise, Week 6's weak-list repair) cite them directly.
 
 **Verification note:** the write-skew reproduction and prevention behind this summary are real, executed PostgreSQL 16 output from two genuinely concurrent `psql` sessions. Source: `practice/sql/week-03/`.
 
@@ -41,23 +41,23 @@ canonical: ../../handbook/databases/isolation-levels-and-concurrency-anomalies.m
 
 ## 1. The concept
 
-An isolation level defines how much one transaction can see of another transaction's uncommitted or concurrent work. Weaker isolation allows more concurrency at the cost of more anomalies; stronger isolation prevents more anomalies at the cost of more blocking and retries. → [Definition and Purpose](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#definition-and-purpose).
+An isolation level defines how much one transaction can see of another transaction's uncommitted or concurrent work. Weaker isolation allows more concurrency at the cost of more anomalies; stronger isolation prevents more anomalies at the cost of more blocking and retries. → [Definition and Purpose](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Without isolation, concurrent transactions can produce results no serial execution ever would — defeating the point of "transaction" as a unit of correctness. → [Definition and Purpose](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#definition-and-purpose).
+Without isolation, concurrent transactions can produce results no serial execution ever would — defeating the point of "transaction" as a unit of correctness. → [Definition and Purpose](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#definition-and-purpose).
 
 ## 3. Write skew, reproduced and prevented
 
-The on-call-doctors scenario, measured: at `REPEATABLE READ`, both Alice's and Bob's transactions commit, leaving zero doctors on call — the invariant is violated even though neither transaction's own write conflicted with the other's. At `SERIALIZABLE`, identical code, one transaction aborts with a real SSI dependency-cycle error; the application must retry. → [Internal Implementation](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#internal-implementation) has the full session transcripts.
+The on-call-doctors scenario, measured: at `REPEATABLE READ`, both Alice's and Bob's transactions commit, leaving zero doctors on call — the invariant is violated even though neither transaction's own write conflicted with the other's. At `SERIALIZABLE`, identical code, one transaction aborts with a real SSI dependency-cycle error; the application must retry. → [Internal Implementation](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#internal-implementation) has the full session transcripts.
 
 ## 4. Isolation levels, walked through
 
-READ COMMITTED prevents dirty reads only; REPEATABLE READ additionally prevents non-repeatable reads and same-row lost updates (but not write skew); SERIALIZABLE additionally prevents write skew via runtime dependency tracking (SSI). → [Core Concepts](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#core-concepts) has the full prevents/allows table and the balance-read-then-write walkthrough at all three levels.
+READ COMMITTED prevents dirty reads only; REPEATABLE READ additionally prevents non-repeatable reads and same-row lost updates (but not write skew); SERIALIZABLE additionally prevents write skew via runtime dependency tracking (SSI). → [Core Concepts](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#core-concepts) has the full prevents/allows table and the balance-read-then-write walkthrough at all three levels.
 
 ## 5. Trade-offs
 
-READ COMMITTED gives the highest concurrency but requires defensive application code; SERIALIZABLE gives the strongest guarantee but requires mandatory retry-on-serialization-failure in every code path touching the protected data. → [Trade-offs](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#trade-offs).
+READ COMMITTED gives the highest concurrency but requires defensive application code; SERIALIZABLE gives the strongest guarantee but requires mandatory retry-on-serialization-failure in every code path touching the protected data. → [Trade-offs](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#trade-offs).
 
 ## 6. Interview questions
 
@@ -65,35 +65,35 @@ READ COMMITTED gives the highest concurrency but requires defensive application 
 2. Explain write skew with a concrete example. *(the discriminating question)*
 3. Estimate QPS and storage for a system with 10M DAU. Show every assumption. *(see `03-system-design-method.md` §3 for the estimation method — this question is cross-listed here as a Week 3 checkpoint drill, not a T-611 concept.)*
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for Q1–Q2: → [Interview Questions](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for Q1–Q2: → [Interview Questions](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#interview-questions).
 
 ## 7. Common mistakes
 
-Conflating write skew with a lost update (different anomaly classes — cross-row vs. same-row); assuming READ COMMITTED always risks lost updates (PostgreSQL's atomic `UPDATE` prevents this for the common case); choosing SERIALIZABLE everywhere without the required retry logic. → [Common Mistakes](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#common-mistakes).
+Conflating write skew with a lost update (different anomaly classes — cross-row vs. same-row); assuming READ COMMITTED always risks lost updates (PostgreSQL's atomic `UPDATE` prevents this for the common case); choosing SERIALIZABLE everywhere without the required retry logic. → [Common Mistakes](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-Isolation-level choice is a cross-cutting architectural decision, not a per-query tuning knob — SERIALIZABLE's guarantee is only real if every code path touching the invariant both uses it and retries on failure. → [Staff-Level Discussion](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#interview-answer-framework).
+Isolation-level choice is a cross-cutting architectural decision, not a per-query tuning knob — SERIALIZABLE's guarantee is only real if every code path touching the invariant both uses it and retries on failure. → [Staff-Level Discussion](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#interview-answer-framework).
 
 ## 9. Summary
 
-Write skew — two transactions each reading a shared multi-row state and writing to different rows in a way that jointly violates an invariant — is real, reproducible, and specifically not caught by REPEATABLE READ even though REPEATABLE READ does prevent same-row lost updates. → [Summary](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#summary).
+Write skew — two transactions each reading a shared multi-row state and writing to different rows in a way that jointly violates an invariant — is real, reproducible, and specifically not caught by REPEATABLE READ even though REPEATABLE READ does prevent same-row lost updates. → [Summary](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#flashcards). Full week-level deck: `05-flashcards.md`.
+→ [Flashcards](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#flashcards). Full week-level deck: `05-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#practice-exercises) and [Solutions](../../handbook/databases/isolation-levels-and-concurrency-anomalies.md#solutions). Reproducible lab: `practice/sql/week-03/write-skew-setup.sql` and `write-skew-tx.sh`.
+→ [Practice Exercises](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#practice-exercises) and [Solutions](../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#solutions). Reproducible lab: `practice/sql/week-03/write-skew-setup.sql` and `write-skew-tx.sh`.
 
 ## 14. Additional Reading
 

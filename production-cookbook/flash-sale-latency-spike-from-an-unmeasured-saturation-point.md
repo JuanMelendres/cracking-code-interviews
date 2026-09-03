@@ -5,7 +5,7 @@ domain: performance
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/performance/capacity-planning-and-headroom.md
+  - ../syllabus/16-performance-jvm/capacity-planning-and-headroom.md
 source: handbook/performance/capacity-planning-and-headroom.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ This maps to a "how do you diagnose a latency spike under load" question. Presen
 
 ## Related Handbook Chapters
 
-- [Capacity Planning & Headroom](../handbook/performance/capacity-planning-and-headroom.md) — canonical saturation-point model and headroom-sizing method used here.
+- [Capacity Planning & Headroom](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md) — canonical saturation-point model and headroom-sizing method used here.

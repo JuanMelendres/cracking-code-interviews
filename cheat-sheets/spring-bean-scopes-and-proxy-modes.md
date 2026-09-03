@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Spring Bean Scopes and Proxy Modes
 
-**Canonical chapter:** [`handbook/spring/spring-bean-scopes-and-proxy-modes.md`](../handbook/spring/spring-bean-scopes-and-proxy-modes.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md`](../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md)
 
 ## Core Mental Model
 
@@ -96,6 +96,6 @@ t1a == fromOtherThread: false  (Greeter#2 vs Greeter#3)
 
 ## Related
 
-- `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
-- `handbook/spring/spring-cache-abstraction-and-pitfalls.md`
-- `handbook/spring/spring-testing-slices-and-context-caching.md`
+- `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`
+- `syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md`
+- `syllabus/05-spring/spring-testing-slices-and-context-caching.md`

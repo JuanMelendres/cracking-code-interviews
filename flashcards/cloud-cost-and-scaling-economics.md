@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Cloud Cost and Scaling Economics
 
-**Canonical chapter:** [`handbook/cloud/cloud-cost-and-scaling-economics.md`](../handbook/cloud/cloud-cost-and-scaling-economics.md)
+**Canonical chapter:** [`syllabus/15-cloud/cloud-cost-and-scaling-economics.md`](../syllabus/15-cloud/cloud-cost-and-scaling-economics.md)
 
 ## Card: What the commitment spectrum trades
 
@@ -27,7 +27,7 @@ The right choice depends on demand predictability, not just per-unit price.
 Choosing purely by discount percentage without considering the workload's tolerance for the trade-off.
 
 **Related:**
-[Definition and Purpose](../handbook/cloud/cloud-cost-and-scaling-economics.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/15-cloud/cloud-cost-and-scaling-economics.md#definition-and-purpose)
 
 ## Card: What a reservation should be sized to
 
@@ -44,7 +44,7 @@ A real, computable cost mistake this chapter's arithmetic demonstrates directly.
 Sizing a reservation to peak demand "to be safe."
 
 **Related:**
-[Internal Implementation](../handbook/cloud/cloud-cost-and-scaling-economics.md#internal-implementation)
+[Internal Implementation](../syllabus/15-cloud/cloud-cost-and-scaling-economics.md#internal-implementation)
 
 ## Card: When autoscaling doesn't save money
 
@@ -61,4 +61,4 @@ Prevents applying autoscaling as a default assumed-cost-win regardless of demand
 Treating autoscaling as inherently cost-reducing.
 
 **Related:**
-[Core Concepts](../handbook/cloud/cloud-cost-and-scaling-economics.md#core-concepts)
+[Core Concepts](../syllabus/15-cloud/cloud-cost-and-scaling-economics.md#core-concepts)

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation
 
-**Canonical chapter:** [`handbook/spring/transactional-proxy-mechanics-and-propagation.md`](../handbook/spring/transactional-proxy-mechanics-and-propagation.md)
+**Canonical chapter:** [`syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
 
 ## Card: Why self-invocation breaks @Transactional
 
@@ -27,7 +27,7 @@ The single most reliable interview question in this domain for separating surfac
 Assuming Spring applies the transaction anyway via some form of bytecode magic.
 
 **Related:**
-[Core Concepts](../handbook/spring/transactional-proxy-mechanics-and-propagation.md#core-concepts)
+[Core Concepts](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md#core-concepts)
 
 ## Card: Default rollback rule
 
@@ -44,7 +44,7 @@ The most common source of "why didn't my transaction roll back" production surpr
 Assuming any thrown exception triggers a rollback.
 
 **Related:**
-[Internal Implementation](../handbook/spring/transactional-proxy-mechanics-and-propagation.md#internal-implementation), Demo 2
+[Internal Implementation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md#internal-implementation), Demo 2
 
 ## Card: REQUIRES_NEW deadlock risk
 
@@ -61,7 +61,7 @@ It suspends the outer transaction's connection and starts an independent one; if
 Naming the audit-logging use case without naming the deadlock risk.
 
 **Related:**
-[Internal Implementation](../handbook/spring/transactional-proxy-mechanics-and-propagation.md#internal-implementation), Demo 3
+[Internal Implementation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md#internal-implementation), Demo 3
 
 ## Card: readOnly enforcement
 
@@ -78,4 +78,4 @@ Prevents treating a hint as a portable, cross-database guarantee.
 Relying on `readOnly = true` as the sole write-prevention mechanism.
 
 **Related:**
-[Internal Implementation](../handbook/spring/transactional-proxy-mechanics-and-propagation.md#internal-implementation), Demo 4 & 5
+[Internal Implementation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md#internal-implementation), Demo 4 & 5

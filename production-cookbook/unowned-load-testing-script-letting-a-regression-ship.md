@@ -5,7 +5,7 @@ domain: testing
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/testing/performance-and-load-testing-methodology.md
+  - ../syllabus/08-testing/performance-and-load-testing-methodology.md
 source: handbook/testing/performance-and-load-testing-methodology.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ The failure here isn't technical at all — the script worked correctly every ti
 
 ## Related Handbook Chapters
 
-- [Performance and Load Testing Methodology](../handbook/testing/performance-and-load-testing-methodology.md) — canonical load-testing practice and ownership discipline used here.
+- [Performance and Load Testing Methodology](../syllabus/08-testing/performance-and-load-testing-methodology.md) — canonical load-testing practice and ownership discipline used here.

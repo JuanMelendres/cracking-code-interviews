@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Load Balancing, Service Discovery, and Health Checking
 
-**Canonical chapter:** [`handbook/system-design/load-balancing-service-discovery-and-health-checking.md`](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
+**Canonical chapter:** [`syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md)
 
 ## Card: Round-robin vs. least-connections
 
@@ -27,7 +27,7 @@ This chapter measured a real ~4.4x cost difference (921ms vs. 208ms for the same
 Assuming round-robin distributes load evenly just because it distributes request count evenly.
 
 **Related:**
-[Core Concepts](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md#core-concepts)
 
 ## Card: Health-check detection latency is real and bounded
 
@@ -44,7 +44,7 @@ This chapter measured it directly: 206ms real detection latency for a real kille
 Saying "the load balancer handles it" without naming the actual bound.
 
 **Related:**
-[Production Scenarios](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios)
+[Production Scenarios](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios)
 
 ## Card: Active vs. passive health checking
 
@@ -61,4 +61,4 @@ Relying on only one leaves a real gap the other would have caught.
 Treating them as interchangeable rather than complementary.
 
 **Related:**
-[Core Concepts](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md#core-concepts)

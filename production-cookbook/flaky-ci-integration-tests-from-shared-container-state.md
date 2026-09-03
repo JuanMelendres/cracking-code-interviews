@@ -5,7 +5,7 @@ domain: testing
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/testing/integration-testing-against-real-dependencies.md
+  - ../syllabus/08-testing/integration-testing-against-real-dependencies.md
 source: handbook/testing/integration-testing-against-real-dependencies.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The organizational cost of this bug class is easy to underestimate because it's 
 
 ## Related Handbook Chapters
 
-- [Integration Testing Against Real Dependencies](../handbook/testing/integration-testing-against-real-dependencies.md) — canonical Testcontainers setup and test-isolation methodology used here.
+- [Integration Testing Against Real Dependencies](../syllabus/08-testing/integration-testing-against-real-dependencies.md) — canonical Testcontainers setup and test-isolation methodology used here.

@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/spring/spring-bean-scopes-and-proxy-modes.md
+  - ../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md
 source: handbook/spring/spring-bean-scopes-and-proxy-modes.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ The bean's own scope declaration was entirely correct — the defect lived at th
 
 ## Related Handbook Chapters
 
-- [Spring Bean Scopes and Proxy Modes](../handbook/spring/spring-bean-scopes-and-proxy-modes.md) — canonical scope-resolution-timing model and scoped-proxy mechanism used here.
+- [Spring Bean Scopes and Proxy Modes](../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md) — canonical scope-resolution-timing model and scoped-proxy mechanism used here.

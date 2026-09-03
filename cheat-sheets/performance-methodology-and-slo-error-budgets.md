@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Performance Methodology and SLO Error Budgets
 
-**Canonical chapter:** [`handbook/performance/performance-methodology-and-slo-error-budgets.md`](../handbook/performance/performance-methodology-and-slo-error-budgets.md)
+**Canonical chapter:** [`syllabus/13-observability/performance-methodology-and-slo-error-budgets.md`](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md)
 
 ## Core Mental Model
 

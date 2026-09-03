@@ -17,9 +17,9 @@ last_reviewed: 2026-07-31
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, dependency graph, schedule, exit criteria | 730 |
-| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/spring/auto-configuration-and-bean-lifecycle.md` | 657 |
-| 3 | `02-spring-security-filter-chain.md` | T-511 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/spring/security-filter-chain.md` | 502 |
-| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — slimmed to a per-section summary + link; full chapter now canonical at `handbook/security/oauth2-oidc-and-jwt.md` | 657 |
+| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md` | 657 |
+| 3 | `02-spring-security-filter-chain.md` | T-511 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/05-spring/security-filter-chain.md` | 502 |
+| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — slimmed to a per-section summary + link; full chapter now canonical at `syllabus/12-security/oauth2-oidc-and-jwt.md` | 657 |
 | 5 | `04-java-coding-practice.md` | LC 46 (errata #3 fix), 78, 39, 22, all compiled and run | 783 |
 | 6 | `05-flashcards.md` | 14 cards | 387 |
 | 7 | `06-security-chain-trace-deliverable.md` | Template + worked example | 478 |

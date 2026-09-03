@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Incident Response and Blameless Postmortems
 
-**Canonical chapter:** [`handbook/performance/incident-response-and-blameless-postmortems.md`](../handbook/performance/incident-response-and-blameless-postmortems.md)
+**Canonical chapter:** [`syllabus/13-observability/incident-response-and-blameless-postmortems.md`](../syllabus/13-observability/incident-response-and-blameless-postmortems.md)
 
 ## Card: Mitigate or diagnose first?
 
@@ -27,7 +27,7 @@ It's the register's own named follow-up question, testing real incident instinct
 Defending "diagnose first" as more thorough, without weighing the real cost of continued user-facing impact.
 
 **Related:**
-[handbook/performance/incident-response-and-blameless-postmortems.md](../handbook/performance/incident-response-and-blameless-postmortems.md)
+[handbook/performance/incident-response-and-blameless-postmortems.md](../syllabus/13-observability/incident-response-and-blameless-postmortems.md)
 
 ## Card: Contributing factors vs. root cause
 
@@ -44,7 +44,7 @@ It's the register's own named misconception, and this chapter's real linter enfo
 Using "5 Whys" until reaching one satisfying-sounding cause, without asking whether other, independent causal chains also contributed.
 
 **Related:**
-[handbook/performance/incident-response-and-blameless-postmortems.md](../handbook/performance/incident-response-and-blameless-postmortems.md)
+[handbook/performance/incident-response-and-blameless-postmortems.md](../syllabus/13-observability/incident-response-and-blameless-postmortems.md)
 
 ## Card: Blameless is checkable, not just name-free
 
@@ -61,4 +61,4 @@ Blame-coded language has a real, measurable cost beyond morale — this chapter'
 Treating "we didn't say whose fault it was" as sufficient without checking the document's actual language.
 
 **Related:**
-[handbook/performance/incident-response-and-blameless-postmortems.md](../handbook/performance/incident-response-and-blameless-postmortems.md)
+[handbook/performance/incident-response-and-blameless-postmortems.md](../syllabus/13-observability/incident-response-and-blameless-postmortems.md)

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Optimistic vs. Pessimistic Locking
 
-**Canonical chapter:** [`handbook/databases/optimistic-vs-pessimistic-locking.md`](../handbook/databases/optimistic-vs-pessimistic-locking.md)
+**Canonical chapter:** [`syllabus/06-databases/optimistic-vs-pessimistic-locking.md`](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md)
 
 ## Card: Detects vs. prevents
 
@@ -31,7 +31,7 @@ Describing optimistic locking as if it blocks the second reader, which is
 pessimistic locking's behavior, not optimistic's.
 
 **Related:**
-[handbook/databases/optimistic-vs-pessimistic-locking.md](../handbook/databases/optimistic-vs-pessimistic-locking.md)
+[handbook/databases/optimistic-vs-pessimistic-locking.md](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md)
 
 ## Card: The real cost of pessimistic locking
 
@@ -54,7 +54,7 @@ Choosing pessimistic locking by default as the "safe" option without considering
 held-duration cost under real contention.
 
 **Related:**
-[handbook/databases/optimistic-vs-pessimistic-locking.md](../handbook/databases/optimistic-vs-pessimistic-locking.md), [handbook/databases/locks-deadlocks-and-lock-escalation.md](../handbook/databases/locks-deadlocks-and-lock-escalation.md)
+[handbook/databases/optimistic-vs-pessimistic-locking.md](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md), [handbook/databases/locks-deadlocks-and-lock-escalation.md](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md)
 
 ## Card: Why can't a @Version entity skip locking?
 
@@ -77,4 +77,4 @@ concurrent-write bugs.
 Assuming `@Version` only applies where you explicitly check for conflicts.
 
 **Related:**
-[handbook/databases/optimistic-vs-pessimistic-locking.md](../handbook/databases/optimistic-vs-pessimistic-locking.md)
+[handbook/databases/optimistic-vs-pessimistic-locking.md](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md)

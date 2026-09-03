@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Spring Framework vs. Spring Boot: Auto-Configuration and the Embedded Server
 
-**Canonical chapter:** [`handbook/spring/spring-framework-vs-spring-boot.md`](../handbook/spring/spring-framework-vs-spring-boot.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-framework-vs-spring-boot.md`](../syllabus/05-spring/spring-framework-vs-spring-boot.md)
 
 ## Core Mental Model
 
@@ -59,6 +59,6 @@ Spring Framework is the programming model; Spring Boot is an opinionated assembl
 
 ## Related
 
-- `handbook/spring/auto-configuration-and-bean-lifecycle.md`
-- `handbook/spring/transactional-proxy-mechanics-and-propagation.md`
-- `handbook/spring/security-filter-chain.md`
+- `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md`
+- `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md`
+- `syllabus/05-spring/security-filter-chain.md`

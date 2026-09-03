@@ -1,7 +1,7 @@
 # Event-driven architecture: integration styles and coordination (T-906) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/architecture/event-driven-architecture-integration-styles.md`](../../../../handbook/architecture/event-driven-architecture-integration-styles.md)
+[`syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md`](../../../../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md)
 (T-906). No simulated stack traces, no described-but-not-run behavior — real
 `Thread.currentThread().getStackTrace()` captured at the moment it matters, and a real
 simulated producer outage that either really breaks a consumer or really doesn't.

@@ -1,7 +1,7 @@
 # Profiling: async-profiler, JFR, and flame graphs (T-1202) — runnable verification
 
 Real, executed JDK Flight Recorder output backing
-[`handbook/performance/profiling-jfr-and-flame-graphs.md`](../../../../handbook/performance/profiling-jfr-and-flame-graphs.md)
+[`syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md`](../../../../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
 (T-1202). No described-but-untested profiling claim — a real JFR recording of a real
 JVM running real, deliberately inefficient code, analyzed with the JDK's own built-in
 `jfr` CLI (no external agent, no download).

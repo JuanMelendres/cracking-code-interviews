@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/modular-monolith-as-a-deliberate-choice.md
-  - ../handbook/architecture/clean-hexagonal-architecture.md
+  - ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
+  - ../syllabus/17-architecture/clean-hexagonal-architecture.md
 source: handbook/architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios
 ---
 
@@ -94,5 +94,5 @@ The structural lesson here generalizes well beyond this one incident: any conven
 
 ## Related Handbook Chapters
 
-- [Modular Monolith as a Deliberate Choice](../handbook/architecture/modular-monolith-as-a-deliberate-choice.md) — canonical module-boundary-enforcement mechanics and the `BoundaryCheckDemo` this incident reproduces.
-- [Clean and Hexagonal Architecture](../handbook/architecture/clean-hexagonal-architecture.md) — the broader boundary-drawing discipline (public API vs. internal implementation) this convention was meant to express.
+- [Modular Monolith as a Deliberate Choice](../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md) — canonical module-boundary-enforcement mechanics and the `BoundaryCheckDemo` this incident reproduces.
+- [Clean and Hexagonal Architecture](../syllabus/17-architecture/clean-hexagonal-architecture.md) — the broader boundary-drawing discipline (public API vs. internal implementation) this convention was meant to express.

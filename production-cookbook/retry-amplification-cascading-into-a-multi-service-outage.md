@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/distributed-systems-failure-modes.md
+  - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
 source: handbook/system-design/distributed-systems-failure-modes.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The mechanism here — retries adding load on top of still-running work — is n
 
 ## Related Handbook Chapters
 
-- [Distributed Systems Failure Modes](../handbook/system-design/distributed-systems-failure-modes.md) — canonical retry-amplification and cascading-failure mechanics used here.
-- [Resilience Patterns](../handbook/system-design/resilience-patterns.md) — the jitter and circuit-breaker mechanisms used as the permanent fix.
+- [Distributed Systems Failure Modes](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md) — canonical retry-amplification and cascading-failure mechanics used here.
+- [Resilience Patterns](../syllabus/11-system-design/resilience-patterns.md) — the jitter and circuit-breaker mechanisms used as the permanent fix.

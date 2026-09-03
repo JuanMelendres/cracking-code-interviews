@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Database Index Structures: B+Tree, Composite, Covering
 
-**Canonical chapter:** [`handbook/databases/index-structures-btree-composite-covering.md`](../handbook/databases/index-structures-btree-composite-covering.md)
+**Canonical chapter:** [`syllabus/06-databases/index-structures-btree-composite-covering.md`](../syllabus/06-databases/index-structures-btree-composite-covering.md)
 
 ## Core Mental Model
 
@@ -80,5 +80,5 @@ An index is a second, sorted copy of a narrow slice of your table, purpose-built
 
 ## Related
 
-- `handbook/databases/query-planning-and-explain-analyze.md`
+- `syllabus/06-databases/query-planning-and-explain-analyze.md`
 - [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md)

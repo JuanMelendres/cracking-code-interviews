@@ -86,6 +86,6 @@ Real total client time: 159ms
 
 ## Related
 
-- `handbook/system-design/load-balancing-service-discovery-and-health-checking.md`
-- `handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md`
-- `handbook/spring/spring-webflux-and-reactive-programming.md`
+- `syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`
+- `syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md`
+- `syllabus/05-spring/spring-webflux-and-reactive-programming.md`

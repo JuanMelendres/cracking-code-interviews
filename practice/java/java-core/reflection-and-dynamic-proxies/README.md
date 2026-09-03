@@ -1,7 +1,7 @@
 # Reflection and dynamic proxies (T-113) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/reflection-and-dynamic-proxies.md`](../../../../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md)
+[`syllabus/02-java/language-core/reflection-and-dynamic-proxies.md`](../../../../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md)
 (T-113). Three independent demos: a real measured cost comparison, a real dynamic-proxy
 interception mechanism (the JDK AOP mechanism), and a real encapsulation-bypass demo that
 surfaced an honest, unexpected nestmate-access finding along the way.

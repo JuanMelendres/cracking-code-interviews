@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/system-design/twelve-factor-config.md
+  - ../syllabus/15-cloud/twelve-factor-config.md
 source: handbook/system-design/twelve-factor-config.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ This maps to a "how did a healthy deployment fail every request" question. Prese
 
 ## Related Handbook Chapters
 
-- [The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation](../handbook/system-design/twelve-factor-config.md) — canonical fail-fast startup validation model used here.
+- [The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation](../syllabus/15-cloud/twelve-factor-config.md) — canonical fail-fast startup validation model used here.

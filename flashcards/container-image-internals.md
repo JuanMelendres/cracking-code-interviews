@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Containers & Image Internals
 
-**Canonical chapter:** [`handbook/cloud/container-image-internals.md`](../handbook/cloud/container-image-internals.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/container-image-internals.md`](../syllabus/14-devops-containers/container-image-internals.md)
 
 ## Card: Why deleting a file later doesn't shrink an image
 
@@ -27,7 +27,7 @@ Explains why "just delete it in a later step" doesn't actually shrink an image â
 Believing a later `RUN rm` instruction removes the file's bytes from the final image rather than merely hiding it behind a new layer.
 
 **Related:**
-[handbook/cloud/container-image-internals.md](../handbook/cloud/container-image-internals.md)
+[handbook/cloud/container-image-internals.md](../syllabus/14-devops-containers/container-image-internals.md)
 
 ## Card: Namespaces versus cgroups
 
@@ -44,7 +44,7 @@ Separates two frequently conflated container primitives into their real, distinc
 Treating "containers" as one monolithic isolation mechanism instead of two separate kernel features doing different jobs.
 
 **Related:**
-[handbook/cloud/container-image-internals.md](../handbook/cloud/container-image-internals.md)
+[handbook/cloud/container-image-internals.md](../syllabus/14-devops-containers/container-image-internals.md)
 
 ## Card: Why splitting the dependency layer speeds up rebuilds
 
@@ -61,4 +61,4 @@ Explains the concrete mechanism behind a measured rebuild-speed difference, rath
 Ordering a Dockerfile's `COPY`/`RUN` steps by convenience instead of by change frequency, forcing an unnecessarily expensive cache invalidation on every source change.
 
 **Related:**
-[handbook/cloud/container-image-internals.md](../handbook/cloud/container-image-internals.md)
+[handbook/cloud/container-image-internals.md](../syllabus/14-devops-containers/container-image-internals.md)

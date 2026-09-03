@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Benchmarking & JMH Pitfalls
 
-**Canonical chapter:** [`handbook/jvm/benchmarking-and-jmh-pitfalls.md`](../handbook/jvm/benchmarking-and-jmh-pitfalls.md)
+**Canonical chapter:** [`syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md`](../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md)
 
 ## Card: Why discarding a computed value fakes a fast benchmark
 
@@ -27,7 +27,7 @@ Explains the actual root cause behind a classic JMH pitfall — a benchmark can 
 Writing a benchmark method that computes a value but never uses it, unaware the JIT is allowed to delete the entire computation.
 
 **Related:**
-[handbook/jvm/benchmarking-and-jmh-pitfalls.md](../handbook/jvm/benchmarking-and-jmh-pitfalls.md)
+[handbook/jvm/benchmarking-and-jmh-pitfalls.md](../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md)
 
 ## Card: The actual fix for dead-code elimination
 
@@ -44,7 +44,7 @@ Gives the concrete, actionable fix rather than a vague "add a blackhole" instruc
 Assuming any benchmark that "runs without errors" is measuring real work, rather than checking that the computed value has an observable use.
 
 **Related:**
-[handbook/jvm/benchmarking-and-jmh-pitfalls.md](../handbook/jvm/benchmarking-and-jmh-pitfalls.md)
+[handbook/jvm/benchmarking-and-jmh-pitfalls.md](../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md)
 
 ## Card: Why a documented pitfall might not reproduce on your JVM
 
@@ -61,4 +61,4 @@ A direct, honestly-reported finding from this chapter's own demo — grounds the
 Citing a well-known benchmarking pitfall as universally reproducible rather than verifying it against the specific JVM/version/operation in front of you.
 
 **Related:**
-[handbook/jvm/benchmarking-and-jmh-pitfalls.md](../handbook/jvm/benchmarking-and-jmh-pitfalls.md)
+[handbook/jvm/benchmarking-and-jmh-pitfalls.md](../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md)

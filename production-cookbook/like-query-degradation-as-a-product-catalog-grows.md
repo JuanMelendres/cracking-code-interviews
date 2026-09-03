@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/system-design/search-and-indexing-systems.md
+  - ../syllabus/11-system-design/search-and-indexing-systems.md
 source: handbook/system-design/search-and-indexing-systems.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ The fix here was not more hardware — it was recognizing that the query needed 
 
 ## Related Handbook Chapters
 
-- [Search and Indexing Systems](../handbook/system-design/search-and-indexing-systems.md) — canonical `LIKE`-vs-GIN mechanism and full-text indexing trade-offs used here.
+- [Search and Indexing Systems](../syllabus/11-system-design/search-and-indexing-systems.md) — canonical `LIKE`-vs-GIN mechanism and full-text indexing trade-offs used here.

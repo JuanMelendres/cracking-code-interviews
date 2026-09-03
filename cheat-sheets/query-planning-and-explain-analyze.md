@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Query Planning and EXPLAIN ANALYZE
 
-**Canonical chapter:** [`handbook/databases/query-planning-and-explain-analyze.md`](../handbook/databases/query-planning-and-explain-analyze.md)
+**Canonical chapter:** [`syllabus/06-databases/query-planning-and-explain-analyze.md`](../syllabus/06-databases/query-planning-and-explain-analyze.md)
 
 ## Core Mental Model
 

@@ -15,7 +15,7 @@ canonical: ../../handbook/system-design/idempotency.md
 
 **IWI 8.09 · Advanced tier · The structural fix to Week 4's retry-ambiguity problem**
 
-**Canonical chapter:** [Idempotency at System Edges](../../handbook/system-design/idempotency.md). This file is the Week 5 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `09-design-exercise-payment-processing.md` cites §3 directly.
+**Canonical chapter:** [Idempotency at System Edges](../../syllabus/11-system-design/idempotency.md). This file is the Week 5 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `09-design-exercise-payment-processing.md` cites §3 directly.
 
 **Verification note:** the full mechanism behind this summary is real, executed Java against real PostgreSQL 16 — genuine concurrent threads, a real unique-constraint race, and real TTL-based recovery. Source: `practice/java/week-05/idempotency/`.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/system-design/idempotency.md
 
 ## 1. The concept
 
-An operation is idempotent if performing it multiple times produces the same result and the same side effect as performing it once. An idempotency key lets the server recognize a retried request and return the original result instead of re-executing it. → [Definition and Purpose](../../handbook/system-design/idempotency.md#definition-and-purpose).
+An operation is idempotent if performing it multiple times produces the same result and the same side effect as performing it once. An idempotency key lets the server recognize a retried request and return the original result instead of re-executing it. → [Definition and Purpose](../../syllabus/11-system-design/idempotency.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Directly answers Week 4's unresolved question: a network cannot distinguish "lost," "still processing," and "succeeded but the response was lost." Idempotency keys make the ambiguity safe to retry through by moving resolution to the server. → [Definition and Purpose](../../handbook/system-design/idempotency.md#definition-and-purpose).
+Directly answers Week 4's unresolved question: a network cannot distinguish "lost," "still processing," and "succeeded but the response was lost." Idempotency keys make the ambiguity safe to retry through by moving resolution to the server. → [Definition and Purpose](../../syllabus/11-system-design/idempotency.md#definition-and-purpose).
 
 ## 3. The full mechanism, reproduced
 
-Measured: two concurrent duplicate requests produce exactly 1 charge, both returning the same result — coordinated by the database's own unique constraint, not application-level locking. A TTL on `IN_PROGRESS` rows lets a fresh attempt reclaim a key from a crashed prior attempt rather than blocking forever. → [Internal Implementation](../../handbook/system-design/idempotency.md#internal-implementation) has the full measured traces and schema.
+Measured: two concurrent duplicate requests produce exactly 1 charge, both returning the same result — coordinated by the database's own unique constraint, not application-level locking. A TTL on `IN_PROGRESS` rows lets a fresh attempt reclaim a key from a crashed prior attempt rather than blocking forever. → [Internal Implementation](../../syllabus/11-system-design/idempotency.md#internal-implementation) has the full measured traces and schema.
 
 ## 4. What the client does when it never receives the response
 
-Retry, unconditionally, with the same idempotency key — safe specifically because the server-side mechanism resolves the ambiguity, not because the client resolved it. → [Core Concepts](../../handbook/system-design/idempotency.md#core-concepts).
+Retry, unconditionally, with the same idempotency key — safe specifically because the server-side mechanism resolves the ambiguity, not because the client resolved it. → [Core Concepts](../../syllabus/11-system-design/idempotency.md#core-concepts).
 
 ## 5. Trade-offs
 
-No idempotency mechanism forces a choice between risking a duplicate or risking never completing; a short TTL bounds storage but risks premature reuse, a long TTL is safer but grows storage. → [Trade-offs](../../handbook/system-design/idempotency.md#trade-offs).
+No idempotency mechanism forces a choice between risking a duplicate or risking never completing; a short TTL bounds storage but risks premature reuse, a long TTL is safer but grows storage. → [Trade-offs](../../syllabus/11-system-design/idempotency.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Make a payment endpoint idempotent. Full mechanism — key, storage, TTL, concurrent-duplicate behaviour.
 2. What does the client do when it never receives the response?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/system-design/idempotency.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/11-system-design/idempotency.md#interview-questions).
 
 ## 7. Common mistakes
 
-Implementing idempotency as a client-side check instead of server-side storage-backed; using application locking instead of a database unique constraint; no TTL at all. → [Common Mistakes](../../handbook/system-design/idempotency.md#common-mistakes).
+Implementing idempotency as a client-side check instead of server-side storage-backed; using application locking instead of a database unique constraint; no TTL at all. → [Common Mistakes](../../syllabus/11-system-design/idempotency.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-Idempotency keys are one instance of a broader pattern: moving ambiguity resolution to the party with the most information — the server, which has ground truth, not the client. → [Staff-Level Discussion](../../handbook/system-design/idempotency.md#interview-answer-framework).
+Idempotency keys are one instance of a broader pattern: moving ambiguity resolution to the party with the most information — the server, which has ground truth, not the client. → [Staff-Level Discussion](../../syllabus/11-system-design/idempotency.md#interview-answer-framework).
 
 ## 9. Summary
 
-An idempotency key backed by a unique-constraint storage mechanism converts "I don't know if my request succeeded" into a safe-to-retry-regardless guarantee. → [Summary](../../handbook/system-design/idempotency.md#summary).
+An idempotency key backed by a unique-constraint storage mechanism converts "I don't know if my request succeeded" into a safe-to-retry-regardless guarantee. → [Summary](../../syllabus/11-system-design/idempotency.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/system-design/idempotency.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/11-system-design/idempotency.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/system-design/idempotency.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/11-system-design/idempotency.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/system-design/idempotency.md#flashcards). Full week-level deck: `05-flashcards.md`.
+→ [Flashcards](../../syllabus/11-system-design/idempotency.md#flashcards). Full week-level deck: `05-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/system-design/idempotency.md#practice-exercises) and [Solutions](../../handbook/system-design/idempotency.md#solutions). Reproducible demo: `practice/java/week-05/idempotency/`.
+→ [Practice Exercises](../../syllabus/11-system-design/idempotency.md#practice-exercises) and [Solutions](../../syllabus/11-system-design/idempotency.md#solutions). Reproducible demo: `practice/java/week-05/idempotency/`.
 
 ## 14. Additional Reading
 

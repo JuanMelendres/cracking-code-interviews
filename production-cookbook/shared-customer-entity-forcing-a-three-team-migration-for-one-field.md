@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
-  - ../handbook/architecture/ddd-tactical-design-aggregates.md
+  - ../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
+  - ../syllabus/17-architecture/ddd-tactical-design-aggregates.md
 source: handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The organizational failure here predates the specific field-addition incident: a
 
 ## Related Handbook Chapters
 
-- [DDD Strategic Design: Bounded Contexts and Context Mapping](../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md) — canonical context-mapping patterns (Shared Kernel, Anti-Corruption Layer, Conformist) this incident's resolution applies.
-- [DDD Tactical Design: Aggregates](../handbook/architecture/ddd-tactical-design-aggregates.md) — the aggregate-boundary discipline each team's new bounded-context-local `Customer` representation must respect.
+- [DDD Strategic Design: Bounded Contexts and Context Mapping](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md) — canonical context-mapping patterns (Shared Kernel, Anti-Corruption Layer, Conformist) this incident's resolution applies.
+- [DDD Tactical Design: Aggregates](../syllabus/17-architecture/ddd-tactical-design-aggregates.md) — the aggregate-boundary discipline each team's new bounded-context-local `Customer` representation must respect.

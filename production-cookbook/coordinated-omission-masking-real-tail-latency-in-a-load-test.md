@@ -5,7 +5,7 @@ domain: performance
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md
+  - ../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md
 source: handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The specific value of naming "coordinated omission" rather than saying "the load
 
 ## Related Handbook Chapters
 
-- [Percentiles, Tail Latency, and Coordinated Omission](../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md) — canonical coordinated-omission mechanics and open-loop/closed-loop distinction used here.
+- [Percentiles, Tail Latency, and Coordinated Omission](../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md) — canonical coordinated-omission mechanics and open-loop/closed-loop distinction used here.

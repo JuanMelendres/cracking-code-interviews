@@ -16,12 +16,12 @@ target_levels:
   - staff
 estimated_reading_minutes: 30
 prerequisites:
-  - ../../handbook/system-design/caching-strategies-and-invalidation.md
+  - ../11-system-design/caching-strategies-and-invalidation.md
 related:
-  - ../../handbook/system-design/system-design-method-and-estimation.md
-  - ../../handbook/system-design/distributed-systems-failure-modes.md
-  - ../../handbook/system-design/idempotency.md
-  - ../../handbook/databases/index-structures-btree-composite-covering.md
+  - ../11-system-design/system-design-method-and-estimation.md
+  - ../10-distributed-systems/distributed-systems-failure-modes.md
+  - ../11-system-design/idempotency.md
+  - ../06-databases/index-structures-btree-composite-covering.md
   - ../../study-packs/week-04/03-api-design.md
 official_references:
   - https://cloud.google.com/apis/design
@@ -103,7 +103,7 @@ Resource naming convention: plural nouns for collections (`/orders`, not `/order
 
 ### Error design
 
-A consistent error envelope — status code, machine-readable error code, human-readable message, and (where applicable) which field caused a validation failure — lets client code handle errors programmatically rather than string-matching a message. The specific status code matters for idempotency reasoning too: a `409 Conflict` on a duplicate `POST` (with idempotency key) tells the client definitively "already handled," versus a `500` which is genuinely ambiguous (see [Distributed Systems Failure Modes](../../handbook/system-design/distributed-systems-failure-modes.md)).
+A consistent error envelope — status code, machine-readable error code, human-readable message, and (where applicable) which field caused a validation failure — lets client code handle errors programmatically rather than string-matching a message. The specific status code matters for idempotency reasoning too: a `409 Conflict` on a duplicate `POST` (with idempotency key) tells the client definitively "already handled," versus a `500` which is genuinely ambiguous (see [Distributed Systems Failure Modes](../10-distributed-systems/distributed-systems-failure-modes.md)).
 
 ## Internal Implementation
 
@@ -117,7 +117,7 @@ OFFSET, deep page (offset 1,000,000):     Execution Time: 86.006ms   (rows=10000
 Keyset, equivalent depth (id > 1000000):  Execution Time: 0.020ms    (Index Cond jumps directly there)
 ```
 
-**~3,000× difference at depth, same table, same index.** This is the same B+Tree indexing mechanism from [Database Index Structures](../../handbook/databases/index-structures-btree-composite-covering.md), applied to a specific API-level design decision: `OFFSET` forces the database to walk past every skipped row; `WHERE id > cursor` lets the index seek directly.
+**~3,000× difference at depth, same table, same index.** This is the same B+Tree indexing mechanism from [Database Index Structures](../06-databases/index-structures-btree-composite-covering.md), applied to a specific API-level design decision: `OFFSET` forces the database to walk past every skipped row; `WHERE id > cursor` lets the index seek directly.
 
 ```
 POST /feed?limit=20                              -- first page
@@ -276,7 +276,7 @@ API design decisions, once shipped, are among the most expensive to change in a 
 
 **Evaluation criteria (1–5).** 1: "OFFSET is fine." 3: correct mechanism and keyset proposal. 5: mechanism, keyset proposal, plus the honest trade-off and hybrid solution.
 
-**Related references.** [§ Internal Implementation](#internal-implementation); [Database Index Structures](../../handbook/databases/index-structures-btree-composite-covering.md).
+**Related references.** [§ Internal Implementation](#internal-implementation); [Database Index Structures](../06-databases/index-structures-btree-composite-covering.md).
 
 ---
 
@@ -298,7 +298,7 @@ API design decisions, once shipped, are among the most expensive to change in a 
 
 **Evaluation criteria (1–5).** 1: conflates idempotent with read-only. 3: correct definition plus retry connection. 5: definition, retry connection, plus the idempotency-key mechanism for `POST`.
 
-**Related references.** [Idempotency at System Edges](../../handbook/system-design/idempotency.md); [Distributed Systems Failure Modes](../../handbook/system-design/distributed-systems-failure-modes.md).
+**Related references.** [Idempotency at System Edges](../11-system-design/idempotency.md); [Distributed Systems Failure Modes](../10-distributed-systems/distributed-systems-failure-modes.md).
 
 ## Summary
 

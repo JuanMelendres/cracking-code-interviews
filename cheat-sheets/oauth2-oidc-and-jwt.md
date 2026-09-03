@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # OAuth2, OIDC, and JWT
 
-**Canonical chapter:** [`handbook/security/oauth2-oidc-and-jwt.md`](../handbook/security/oauth2-oidc-and-jwt.md)
+**Canonical chapter:** [`syllabus/12-security/oauth2-oidc-and-jwt.md`](../syllabus/12-security/oauth2-oidc-and-jwt.md)
 
 ## Core Mental Model
 
@@ -78,6 +78,6 @@ The OAuth2/OIDC multi-party flow itself is conceptual (a real authorization-serv
 
 ## Related
 
-- `handbook/security/authn-authz-rbac-vs-abac.md`
-- `handbook/spring/security-filter-chain.md`
+- `syllabus/12-security/authn-authz-rbac-vs-abac.md`
+- `syllabus/05-spring/security-filter-chain.md`
 - `production-cookbook/jwt-revocation-gap-after-account-suspension.md`

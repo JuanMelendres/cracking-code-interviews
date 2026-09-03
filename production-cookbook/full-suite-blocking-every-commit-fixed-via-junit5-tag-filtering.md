@@ -5,7 +5,7 @@ domain: testing
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/testing/junit5-architecture-and-advanced-features.md
+  - ../syllabus/08-testing/junit5-architecture-and-advanced-features.md
 source: handbook/testing/junit5-architecture-and-advanced-features.md#production-scenarios
 ---
 
@@ -83,5 +83,5 @@ The key judgment call in this scenario is recognizing that the actual constraint
 
 ## Related Handbook Chapters
 
-- [JUnit 5 Architecture and Advanced Features](../handbook/testing/junit5-architecture-and-advanced-features.md) — canonical tag-filtering mechanism used here.
-- [Test Strategy and Test Doubles](../handbook/testing/test-strategy-and-test-doubles.md) — the broader fast-vs-real-dependency test-composition trade-off this scenario is an instance of.
+- [JUnit 5 Architecture and Advanced Features](../syllabus/08-testing/junit5-architecture-and-advanced-features.md) — canonical tag-filtering mechanism used here.
+- [Test Strategy and Test Doubles](../syllabus/08-testing/test-strategy-and-test-doubles.md) — the broader fast-vs-real-dependency test-composition trade-off this scenario is an instance of.

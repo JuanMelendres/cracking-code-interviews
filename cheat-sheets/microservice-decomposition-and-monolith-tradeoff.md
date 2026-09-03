@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Microservice Decomposition and the Monolith Trade-off
 
-**Canonical chapter:** [`handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md)
+**Canonical chapter:** [`syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md)
 
 ## Core Mental Model
 
@@ -78,5 +78,5 @@ A service boundary is a consistency boundary wearing a deployment-topology costu
 
 ## Related
 
-- `handbook/system-design/distributed-systems-failure-modes.md`
-- `handbook/system-design/cap-theorem-and-consistency-models.md`
+- `syllabus/10-distributed-systems/distributed-systems-failure-modes.md`
+- `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md`

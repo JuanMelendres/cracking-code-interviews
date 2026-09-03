@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Database Index Structures — B+Tree, Composite, Covering
 
-**Canonical chapter:** [`handbook/databases/index-structures-btree-composite-covering.md`](../handbook/databases/index-structures-btree-composite-covering.md)
+**Canonical chapter:** [`syllabus/06-databases/index-structures-btree-composite-covering.md`](../syllabus/06-databases/index-structures-btree-composite-covering.md)
 
 ## Card: B+Tree lookup path
 
@@ -27,7 +27,7 @@ Distinguishes "recited the word B-Tree" from actually understanding the physical
 Describing a plain binary search tree, or omitting the final heap-fetch step.
 
 **Related:**
-[Internal Implementation](../handbook/databases/index-structures-btree-composite-covering.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/index-structures-btree-composite-covering.md#internal-implementation)
 
 ## Card: Leftmost-prefix rule
 
@@ -44,7 +44,7 @@ The single most common real-world index-design defect.
 Assuming an index on `(A, B)` helps any query touching either column.
 
 **Related:**
-[Core Concepts](../handbook/databases/index-structures-btree-composite-covering.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/index-structures-btree-composite-covering.md#core-concepts)
 
 ## Card: Proof of an index-only scan
 
@@ -61,7 +61,7 @@ Prevents overclaiming a "covering index" benefit that the planner never actually
 Assuming a covering index automatically produces an index-only scan.
 
 **Related:**
-[Execution Flow](../handbook/databases/index-structures-btree-composite-covering.md#execution-flow)
+[Execution Flow](../syllabus/06-databases/index-structures-btree-composite-covering.md#execution-flow)
 
 ## Card: Two mechanisms for "index made it slower"
 
@@ -78,7 +78,7 @@ Most candidates name only one; naming both unprompted is a Senior/Staff signal.
 Stopping at write amplification alone.
 
 **Related:**
-[Failure Modes and Debugging](../handbook/databases/index-structures-btree-composite-covering.md#failure-modes-and-debugging)
+[Failure Modes and Debugging](../syllabus/06-databases/index-structures-btree-composite-covering.md#failure-modes-and-debugging)
 
 ## Card: PostgreSQL vs InnoDB clustering
 
@@ -95,4 +95,4 @@ Using "clustered index" loosely for PostgreSQL is a specific, previously-flagged
 Assuming `CLUSTER` keeps the table physically ordered after the command runs — it doesn't; the next write breaks it.
 
 **Related:**
-[Comparisons](../handbook/databases/index-structures-btree-composite-covering.md#comparisons)
+[Comparisons](../syllabus/06-databases/index-structures-btree-composite-covering.md#comparisons)

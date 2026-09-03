@@ -1,7 +1,7 @@
 # Hibernate second-level and query cache (T-603) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/databases/hibernate-second-level-and-query-cache.md`](../../../../handbook/databases/hibernate-second-level-and-query-cache.md)
+[`syllabus/06-databases/hibernate-second-level-and-query-cache.md`](../../../../syllabus/06-databases/hibernate-second-level-and-query-cache.md)
 (T-603). Real Hibernate ORM 6.6.55.Final, a real second-level cache backed by
 Hibernate's own JCache region factory over a real Ehcache 3 provider, and a
 real in-memory H2 database. Extends

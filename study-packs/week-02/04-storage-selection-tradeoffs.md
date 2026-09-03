@@ -15,7 +15,7 @@ canonical: ../../handbook/system-design/storage-selection-tradeoffs.md
 
 **IWI 6.90 · Advanced tier**
 
-**Canonical chapter:** [Storage Selection Trade-offs](../../handbook/system-design/storage-selection-tradeoffs.md). This file is the Week 2 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `study-packs/week-03/08-design-exercise-ride-hailing.md` cites §3 directly.
+**Canonical chapter:** [Storage Selection Trade-offs](../../syllabus/11-system-design/storage-selection-tradeoffs.md). This file is the Week 2 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `study-packs/week-03/08-design-exercise-ride-hailing.md` cites §3 directly.
 
 ## Table of Contents
 
@@ -38,54 +38,54 @@ canonical: ../../handbook/system-design/storage-selection-tradeoffs.md
 
 ## 1. The concept
 
-Storage selection is answered by working backward from the queries the system needs to serve, not from a technology's reputation. The same logical data can correctly live in a relational table, document store, key-value store, or wide-column store depending on access pattern. → [Definition and Purpose](../../handbook/system-design/storage-selection-tradeoffs.md#definition-and-purpose).
+Storage selection is answered by working backward from the queries the system needs to serve, not from a technology's reputation. The same logical data can correctly live in a relational table, document store, key-value store, or wide-column store depending on access pattern. → [Definition and Purpose](../../syllabus/11-system-design/storage-selection-tradeoffs.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Choosing by reputation produces two recurring failures: over-normalized relational schemas for document-shaped data, or document stores forced into multi-record transactional roles they don't support well. → [Definition and Purpose](../../handbook/system-design/storage-selection-tradeoffs.md#definition-and-purpose).
+Choosing by reputation produces two recurring failures: over-normalized relational schemas for document-shaped data, or document stores forced into multi-record transactional roles they don't support well. → [Definition and Purpose](../../syllabus/11-system-design/storage-selection-tradeoffs.md#definition-and-purpose).
 
 ## 3. The access-pattern method
 
-Answer in order before naming a technology: actual read/write patterns, per-operation consistency requirement, transactional scope, volume and growth shape. Only then does a technology choice become a conclusion rather than a guess. → [Core Concepts](../../handbook/system-design/storage-selection-tradeoffs.md#core-concepts).
+Answer in order before naming a technology: actual read/write patterns, per-operation consistency requirement, transactional scope, volume and growth shape. Only then does a technology choice become a conclusion rather than a guess. → [Core Concepts](../../syllabus/11-system-design/storage-selection-tradeoffs.md#core-concepts).
 
 ## 4. Trade-offs
 
-Relational wins for multi-entity transactions and ad-hoc queries; document for flexible, self-contained data; key-value for high-throughput point lookups; wide-column for massive, predictably-patterned write volume. → [Trade-offs](../../handbook/system-design/storage-selection-tradeoffs.md#trade-offs).
+Relational wins for multi-entity transactions and ad-hoc queries; document for flexible, self-contained data; key-value for high-throughput point lookups; wide-column for massive, predictably-patterned write volume. → [Trade-offs](../../syllabus/11-system-design/storage-selection-tradeoffs.md#trade-offs).
 
 ## 5. Interview questions
 
 1. Choose between PostgreSQL and DynamoDB for a given workload. Defend it, then argue the opposite.
 2. When would polyglot persistence be worth its operational cost?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/system-design/storage-selection-tradeoffs.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/11-system-design/storage-selection-tradeoffs.md#interview-questions).
 
 ## 6. Common mistakes
 
-Choosing storage by reputation; treating "NoSQL" as one category; adding a second storage technology without weighing its operational cost. → [Common Mistakes](../../handbook/system-design/storage-selection-tradeoffs.md#common-mistakes).
+Choosing storage by reputation; treating "NoSQL" as one category; adding a second storage technology without weighing its operational cost. → [Common Mistakes](../../syllabus/11-system-design/storage-selection-tradeoffs.md#common-mistakes).
 
 ## 7. Staff-level discussion
 
-A storage decision is a multi-year commitment with a real migration cost — team operational maturity with a technology is a legitimate factor alongside pure technical fit. → [Staff-Level Discussion](../../handbook/system-design/storage-selection-tradeoffs.md#interview-answer-framework).
+A storage decision is a multi-year commitment with a real migration cost — team operational maturity with a technology is a legitimate factor alongside pure technical fit. → [Staff-Level Discussion](../../syllabus/11-system-design/storage-selection-tradeoffs.md#interview-answer-framework).
 
 ## 8. Summary
 
-Storage selection should follow the actual access pattern, not reputation. Each category wins under specific, nameable conditions — a defensible answer names the condition that would flip the decision. → [Summary](../../handbook/system-design/storage-selection-tradeoffs.md#summary).
+Storage selection should follow the actual access pattern, not reputation. Each category wins under specific, nameable conditions — a defensible answer names the condition that would flip the decision. → [Summary](../../syllabus/11-system-design/storage-selection-tradeoffs.md#summary).
 
 ## 9. Key Takeaways
 
-→ [Key Takeaways](../../handbook/system-design/storage-selection-tradeoffs.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/11-system-design/storage-selection-tradeoffs.md#key-takeaways).
 
 ## 10. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/system-design/storage-selection-tradeoffs.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/11-system-design/storage-selection-tradeoffs.md#cheat-sheet).
 
 ## 11. Flashcards
 
-→ [Flashcards](../../handbook/system-design/storage-selection-tradeoffs.md#flashcards). Full week-level deck: `08-flashcards.md`.
+→ [Flashcards](../../syllabus/11-system-design/storage-selection-tradeoffs.md#flashcards). Full week-level deck: `08-flashcards.md`.
 
 ## 12. Practice Exercises
 
-→ [Practice Exercises](../../handbook/system-design/storage-selection-tradeoffs.md#practice-exercises) and [Solutions](../../handbook/system-design/storage-selection-tradeoffs.md#solutions).
+→ [Practice Exercises](../../syllabus/11-system-design/storage-selection-tradeoffs.md#practice-exercises) and [Solutions](../../syllabus/11-system-design/storage-selection-tradeoffs.md#solutions).
 
 ## 13. Additional Reading
 

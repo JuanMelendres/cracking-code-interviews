@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Strangler Fig, Anti-Corruption Layer, and Migration Patterns
 
-**Canonical chapter:** [`handbook/architecture/strangler-fig-and-migration-patterns.md`](../handbook/architecture/strangler-fig-and-migration-patterns.md)
+**Canonical chapter:** [`syllabus/17-architecture/strangler-fig-and-migration-patterns.md`](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ A big-bang rewrite bets everything on one cutover event: the new system either w
 
 ## Related
 
-- `handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`
-- `handbook/architecture/clean-hexagonal-architecture.md`
-- `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`
-- `handbook/architecture/architecture-decision-records.md`
+- `syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`
+- `syllabus/17-architecture/clean-hexagonal-architecture.md`
+- `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`
+- `syllabus/17-architecture/architecture-decision-records.md`

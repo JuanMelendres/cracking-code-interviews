@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/event-sourcing-and-its-real-costs.md
-  - ../handbook/architecture/event-driven-architecture-integration-styles.md
+  - ../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md
+  - ../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md
 source: handbook/architecture/event-sourcing-and-its-real-costs.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ Event sourcing's audit-trail and full-history appeal is genuinely valuable, but 
 
 ## Related Handbook Chapters
 
-- [Event Sourcing and Its Real Costs](../handbook/architecture/event-sourcing-and-its-real-costs.md) — canonical replay-cost mechanics and the snapshot-plus-tail-replay pattern this incident's fix applies.
-- [Event-Driven Architecture: Integration Styles](../handbook/architecture/event-driven-architecture-integration-styles.md) — the broader event-driven context event-sourced aggregates typically operate within.
+- [Event Sourcing and Its Real Costs](../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md) — canonical replay-cost mechanics and the snapshot-plus-tail-replay pattern this incident's fix applies.
+- [Event-Driven Architecture: Integration Styles](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md) — the broader event-driven context event-sourced aggregates typically operate within.

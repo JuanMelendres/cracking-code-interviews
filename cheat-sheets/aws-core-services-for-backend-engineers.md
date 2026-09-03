@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # AWS Core Services for Backend Engineers
 
-**Canonical chapter:** [`handbook/cloud/aws-core-services-for-backend-engineers.md`](../handbook/cloud/aws-core-services-for-backend-engineers.md)
+**Canonical chapter:** [`syllabus/15-cloud/aws-core-services-for-backend-engineers.md`](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md)
 
 ## Core Mental Model
 
@@ -80,6 +80,6 @@ Fix: NOT reverting to RDS -- the original access pattern is still real and still
 
 ## Related
 
-- `handbook/cloud/kubernetes-objects-scheduling-and-networking.md`
-- `handbook/cloud/cloud-cost-and-scaling-economics.md`
-- `handbook/system-design/storage-selection-tradeoffs.md`
+- `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`
+- `syllabus/15-cloud/cloud-cost-and-scaling-economics.md`
+- `syllabus/11-system-design/storage-selection-tradeoffs.md`

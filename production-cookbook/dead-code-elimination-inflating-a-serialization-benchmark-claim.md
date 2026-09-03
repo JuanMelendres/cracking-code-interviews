@@ -5,7 +5,7 @@ domain: jvm
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/jvm/benchmarking-and-jmh-pitfalls.md
+  - ../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md
 source: handbook/jvm/benchmarking-and-jmh-pitfalls.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ This maps to a "how do you validate a performance claim before acting on it" que
 
 ## Related Handbook Chapters
 
-- [Benchmarking & JMH Pitfalls](../handbook/jvm/benchmarking-and-jmh-pitfalls.md) — canonical dead-code-elimination and warmup-discipline mechanism used here.
+- [Benchmarking & JMH Pitfalls](../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md) — canonical dead-code-elimination and warmup-discipline mechanism used here.

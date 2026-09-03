@@ -15,7 +15,7 @@ canonical: ../../handbook/system-design/distributed-systems-failure-modes.md
 
 **IWI 8.45 · Staff-Level tier · 4th-ranked topic in the Mandatory Core**
 
-**Canonical chapter:** [Distributed Systems Failure Modes](../../handbook/system-design/distributed-systems-failure-modes.md). This file is the Week 4 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `03-api-design.md`, `06-failure-modes-deliverable.md`, `09-week-4-checklist.md`, and Week 5's `02-idempotency.md`/`09-design-exercise-payment-processing.md` all cite them directly (notably §3, the retry-amplification section, and §4, the idempotency section).
+**Canonical chapter:** [Distributed Systems Failure Modes](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md). This file is the Week 4 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `03-api-design.md`, `06-failure-modes-deliverable.md`, `09-week-4-checklist.md`, and Week 5's `02-idempotency.md`/`09-design-exercise-payment-processing.md` all cite them directly (notably §3, the retry-amplification section, and §4, the idempotency section).
 
 **Verification note:** the retry-amplification and fencing-token demonstrations behind this summary are real, executed Java — genuine concurrent thread pools, real measured timing and call counts. Source: `practice/java/week-04/failure-modes/`.
 
@@ -42,27 +42,27 @@ canonical: ../../handbook/system-design/distributed-systems-failure-modes.md
 
 ## 1. The concept
 
-A component can fail, or merely appear to fail, without either side being able to distinguish the two cases with certainty — most failure modes in this domain are consequences of that single fact. → [Definition and Purpose](../../handbook/system-design/distributed-systems-failure-modes.md#definition-and-purpose).
+A component can fail, or merely appear to fail, without either side being able to distinguish the two cases with certainty — most failure modes in this domain are consequences of that single fact. → [Definition and Purpose](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-A single-process program either completes a call or the whole process crashes. Across a network, a request can succeed and have its *response* lost, indistinguishable from the request itself being lost. → [Definition and Purpose](../../handbook/system-design/distributed-systems-failure-modes.md#definition-and-purpose).
+A single-process program either completes a call or the whole process crashes. Across a network, a request can succeed and have its *response* lost, indistinguishable from the request itself being lost. → [Definition and Purpose](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#definition-and-purpose).
 
 ## 3. Retries and amplification, measured
 
-Measured: retrying without backoff cost 2.3× the load and 3× the time for the *same* 4/12 success rate as no retries at all — because a client giving up doesn't cancel the work already submitted downstream. Exponential backoff + jitter achieved 12/12 success with less amplification than no-backoff. → [Internal Implementation](../../handbook/system-design/distributed-systems-failure-modes.md#internal-implementation) has the full measured trace.
+Measured: retrying without backoff cost 2.3× the load and 3× the time for the *same* 4/12 success rate as no retries at all — because a client giving up doesn't cancel the work already submitted downstream. Exponential backoff + jitter achieved 12/12 success with less amplification than no-backoff. → [Internal Implementation](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#internal-implementation) has the full measured trace.
 
 ## 4. Distinguishing "failed" from "succeeded slowly"
 
-A request that failed is generally safe to retry immediately; one that succeeded slowly is not. Idempotency keys resolve the ambiguity by letting the server recognize a retry and return the original result, shifting the resolution from client to server. → [Core Concepts](../../handbook/system-design/distributed-systems-failure-modes.md#core-concepts).
+A request that failed is generally safe to retry immediately; one that succeeded slowly is not. Idempotency keys resolve the ambiguity by letting the server recognize a retry and return the original result, shifting the resolution from client to server. → [Core Concepts](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#core-concepts).
 
 ## 5. Split-brain and fencing tokens, reproduced
 
-Measured: a paused node's stale write corrupts shared state without fencing; with fencing tokens (storage rejects any write older than the highest token seen), the stale write is correctly rejected. The check must live at the storage layer, never trusted from the node itself. → [Internal Implementation](../../handbook/system-design/distributed-systems-failure-modes.md#internal-implementation) has the full trace.
+Measured: a paused node's stale write corrupts shared state without fencing; with fencing tokens (storage rejects any write older than the highest token seen), the stale write is correctly rejected. The check must live at the storage layer, never trusted from the node itself. → [Internal Implementation](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#internal-implementation) has the full trace.
 
 ## 6. Trade-offs
 
-No retries risks any transient failure becoming permanent; retries without backoff amplify load; backoff+jitter costs worst-case latency but recovers correctly; fencing tokens require every write path to check token ordering. → [Trade-offs](../../handbook/system-design/distributed-systems-failure-modes.md#trade-offs).
+No retries risks any transient failure becoming permanent; retries without backoff amplify load; backoff+jitter costs worst-case latency but recovers correctly; fencing tokens require every write path to check token ordering. → [Trade-offs](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#trade-offs).
 
 ## 7. Interview questions
 
@@ -70,35 +70,35 @@ No retries risks any transient failure becoming permanent; retries without backo
 2. How do you distinguish "the request failed" from "the request succeeded slowly," and why does it matter?
 3. Two nodes both believe they are leader. How, and what breaks?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/system-design/distributed-systems-failure-modes.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#interview-questions).
 
 ## 8. Common mistakes
 
-Believing a timeout definitively means failure; adding retries without backoff, jitter, or idempotency; assuming leader election alone prevents split-brain corruption. → [Common Mistakes](../../handbook/system-design/distributed-systems-failure-modes.md#common-mistakes).
+Believing a timeout definitively means failure; adding retries without backoff, jitter, or idempotency; assuming leader election alone prevents split-brain corruption. → [Common Mistakes](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#common-mistakes).
 
 ## 9. Staff-level discussion
 
-Every mechanism here — backoff, idempotency keys, fencing tokens — is a structural answer to the same fact: a distributed system cannot get instantaneous, certain knowledge of another component's state. → [Staff-Level Discussion](../../handbook/system-design/distributed-systems-failure-modes.md#interview-answer-framework).
+Every mechanism here — backoff, idempotency keys, fencing tokens — is a structural answer to the same fact: a distributed system cannot get instantaneous, certain knowledge of another component's state. → [Staff-Level Discussion](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#interview-answer-framework).
 
 ## 10. Summary
 
-Distributed failure modes stem from network ambiguity between lost, slow, and succeeded-but-response-lost. Retries without backoff amplify load with no success-rate benefit; split-brain is prevented by fencing tokens at the storage layer. → [Summary](../../handbook/system-design/distributed-systems-failure-modes.md#summary).
+Distributed failure modes stem from network ambiguity between lost, slow, and succeeded-but-response-lost. Retries without backoff amplify load with no success-rate benefit; split-brain is prevented by fencing tokens at the storage layer. → [Summary](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#summary).
 
 ## 11. Key Takeaways
 
-→ [Key Takeaways](../../handbook/system-design/distributed-systems-failure-modes.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#key-takeaways).
 
 ## 12. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/system-design/distributed-systems-failure-modes.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#cheat-sheet).
 
 ## 13. Flashcards
 
-→ [Flashcards](../../handbook/system-design/distributed-systems-failure-modes.md#flashcards). Full week-level deck: `05-flashcards.md`.
+→ [Flashcards](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#flashcards). Full week-level deck: `05-flashcards.md`.
 
 ## 14. Practice Exercises
 
-→ [Practice Exercises](../../handbook/system-design/distributed-systems-failure-modes.md#practice-exercises) and [Solutions](../../handbook/system-design/distributed-systems-failure-modes.md#solutions). Reproducible demos: `practice/java/week-04/failure-modes/RetryStormDemo.java`, `FencingTokenDemo.java`.
+→ [Practice Exercises](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#practice-exercises) and [Solutions](../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md#solutions). Reproducible demos: `practice/java/week-04/failure-modes/RetryStormDemo.java`, `FencingTokenDemo.java`.
 
 ## 15. Additional Reading
 

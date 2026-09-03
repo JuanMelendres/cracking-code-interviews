@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Kafka Consumer Groups, Rebalancing, and Offset Management
 
-**Canonical chapter:** [`handbook/kafka/consumer-groups-and-rebalancing.md`](../handbook/kafka/consumer-groups-and-rebalancing.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md`](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md)
 
 ## Card: Exclusive partition assignment
 
@@ -27,7 +27,7 @@ The core guarantee that makes consumer-group parallelism coherent.
 Assuming partitions can be shared for extra throughput within a group.
 
 **Related:**
-[Core Concepts](../handbook/kafka/consumer-groups-and-rebalancing.md#core-concepts)
+[Core Concepts](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md#core-concepts)
 
 ## Card: Most common cause of repeated rebalancing
 
@@ -44,7 +44,7 @@ The standard deep-dive question for this topic; most candidates guess "networkin
 Assuming a networking issue before checking processing time per poll.
 
 **Related:**
-[Production Scenarios](../handbook/kafka/consumer-groups-and-rebalancing.md#production-scenarios)
+[Production Scenarios](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md#production-scenarios)
 
 ## Card: Consumer parallelism ceiling
 
@@ -61,4 +61,4 @@ Ties consumer-side scaling back to a topic-creation-time decision.
 Assuming adding consumers always increases throughput.
 
 **Related:**
-[Interview Questions](../handbook/kafka/consumer-groups-and-rebalancing.md#interview-questions), Question 2
+[Interview Questions](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md#interview-questions), Question 2

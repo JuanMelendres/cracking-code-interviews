@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/applied-cryptography-hashing-signing-tls.md
+  - ../syllabus/12-security/applied-cryptography-hashing-signing-tls.md
 source: handbook/security/applied-cryptography-hashing-signing-tls.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ The critical distinction this incident teaches is that salting and slow hashing 
 
 ## Related Handbook Chapters
 
-- [Applied Cryptography: Hashing, Signing, TLS](../handbook/security/applied-cryptography-hashing-signing-tls.md) — canonical password-hashing cost-parameter mechanics used here.
+- [Applied Cryptography: Hashing, Signing, TLS](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md) — canonical password-hashing cost-parameter mechanics used here.

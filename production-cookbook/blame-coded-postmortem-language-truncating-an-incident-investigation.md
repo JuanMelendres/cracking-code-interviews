@@ -5,8 +5,8 @@ domain: performance
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/performance/incident-response-and-blameless-postmortems.md
-  - ../handbook/architecture/architecture-decision-records.md
+  - ../syllabus/13-observability/incident-response-and-blameless-postmortems.md
+  - ../syllabus/17-architecture/architecture-decision-records.md
 source: handbook/performance/incident-response-and-blameless-postmortems.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The real finding in this scenario is not that blame-coded language is unkind —
 
 ## Related Handbook Chapters
 
-- [Incident Response and Blameless Postmortems](../handbook/performance/incident-response-and-blameless-postmortems.md) — canonical blameless-language framing and the linter this incident's permanent fix adopts.
-- [Architecture Decision Records](../handbook/architecture/architecture-decision-records.md) — the broader documentation-quality discipline (grounding conclusions in checkable evidence) that also underlies rigorous postmortem analysis.
+- [Incident Response and Blameless Postmortems](../syllabus/13-observability/incident-response-and-blameless-postmortems.md) — canonical blameless-language framing and the linter this incident's permanent fix adopts.
+- [Architecture Decision Records](../syllabus/17-architecture/architecture-decision-records.md) — the broader documentation-quality discipline (grounding conclusions in checkable evidence) that also underlies rigorous postmortem analysis.

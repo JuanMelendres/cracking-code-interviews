@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Kubernetes Objects, Scheduling, and Networking
 
-**Canonical chapter:** [`handbook/cloud/kubernetes-objects-scheduling-and-networking.md`](../handbook/cloud/kubernetes-objects-scheduling-and-networking.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`](../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md)
 
 ## Card: Why Deployments manage ReplicaSets, not Pods directly
 
@@ -27,7 +27,7 @@ Explains the actual object model, not just "Kubernetes does rolling updates."
 Describing Deployments as directly managing Pods, skipping the ReplicaSet layer.
 
 **Related:**
-[Core Concepts](../handbook/cloud/kubernetes-objects-scheduling-and-networking.md#core-concepts)
+[Core Concepts](../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md#core-concepts)
 
 ## Card: requests vs limits
 
@@ -44,7 +44,7 @@ A common source of capacity-planning confusion.
 Assuming the scheduler enforces limits at placement time.
 
 **Related:**
-[Core Concepts](../handbook/cloud/kubernetes-objects-scheduling-and-networking.md#core-concepts)
+[Core Concepts](../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md#core-concepts)
 
 ## Card: What maxUnavailable: 0 actually guarantees
 
@@ -61,4 +61,4 @@ A real, measured gap between documented guarantee and commonly-assumed guarantee
 Assuming "zero unavailable" means "zero performance impact."
 
 **Related:**
-[Production Scenarios](../handbook/cloud/kubernetes-objects-scheduling-and-networking.md#production-scenarios)
+[Production Scenarios](../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md#production-scenarios)

@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Containers & Image Internals
 
-**Canonical chapter:** [`handbook/cloud/container-image-internals.md`](../handbook/cloud/container-image-internals.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/container-image-internals.md`](../syllabus/14-devops-containers/container-image-internals.md)
 
 ## Core Mental Model
 
@@ -76,6 +76,6 @@ Host at that instant: 537 processes running
 
 ## Related
 
-- `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md`
-- `handbook/cloud/kubernetes-objects-scheduling-and-networking.md`
-- `handbook/security/supply-chain-security-sbom-and-dependency-risk.md`
+- `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md`
+- `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`
+- `syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md`

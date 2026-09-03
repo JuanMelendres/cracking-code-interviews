@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Benchmarking & JMH Pitfalls
 
-**Canonical chapter:** [`handbook/jvm/benchmarking-and-jmh-pitfalls.md`](../handbook/jvm/benchmarking-and-jmh-pitfalls.md)
+**Canonical chapter:** [`syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md`](../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md)
 
 ## Core Mental Model
 
@@ -82,4 +82,4 @@ Modern JVMs can defend against DCE automatically: with HotSpot's Compiler Blackh
 
 - `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md`
 - `syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md`
-- `handbook/performance/profiling-jfr-and-flame-graphs.md`
+- `syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md`

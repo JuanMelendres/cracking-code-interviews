@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Multi-Region, Failover, and Disaster Recovery
 
-**Canonical chapter:** [`handbook/system-design/multi-region-failover-and-disaster-recovery.md`](../handbook/system-design/multi-region-failover-and-disaster-recovery.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md`](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md)
 
 ## Core Mental Model
 
@@ -75,7 +75,7 @@ RPO is how much you're willing to lose; RTO is how long you're willing to be dow
 
 ## Related
 
-- `handbook/databases/replication-read-replicas-and-replica-lag.md`
-- `handbook/system-design/cap-theorem-and-consistency-models.md`
-- `handbook/system-design/resilience-patterns.md`
-- `handbook/system-design/load-balancing-service-discovery-and-health-checking.md`
+- `syllabus/06-databases/replication-read-replicas-and-replica-lag.md`
+- `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md`
+- `syllabus/11-system-design/resilience-patterns.md`
+- `syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md`

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Performance Methodology (USE/RED) and SLI/SLO/Error Budgets
 
-**Canonical chapter:** [`handbook/performance/performance-methodology-and-slo-error-budgets.md`](../handbook/performance/performance-methodology-and-slo-error-budgets.md)
+**Canonical chapter:** [`syllabus/13-observability/performance-methodology-and-slo-error-budgets.md`](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md)
 
 ## Card: What USE stands for and diagnoses
 
@@ -27,7 +27,7 @@ Matches the right diagnostic lens to a resource rather than a service.
 Applying USE to a service endpoint instead of a resource.
 
 **Related:**
-[Core Concepts](../handbook/performance/performance-methodology-and-slo-error-budgets.md#core-concepts)
+[Core Concepts](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md#core-concepts)
 
 ## Card: What RED stands for and diagnoses
 
@@ -44,7 +44,7 @@ Matches the right diagnostic lens to a service rather than a resource.
 Applying RED to a resource like a CPU or disk.
 
 **Related:**
-[Core Concepts](../handbook/performance/performance-methodology-and-slo-error-budgets.md#core-concepts)
+[Core Concepts](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md#core-concepts)
 
 ## Card: Why a monthly aggregate can mislead
 
@@ -61,4 +61,4 @@ The reason gating decisions on the aggregate alone is risky.
 Treating a healthy aggregate percentage as sufficient justification for a risky decision.
 
 **Related:**
-[Production Scenarios](../handbook/performance/performance-methodology-and-slo-error-budgets.md#production-scenarios)
+[Production Scenarios](../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md#production-scenarios)

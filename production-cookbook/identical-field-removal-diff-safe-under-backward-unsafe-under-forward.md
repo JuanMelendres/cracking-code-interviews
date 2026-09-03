@@ -5,8 +5,8 @@ domain: kafka
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/kafka/schema-registry-and-compatibility-evolution.md
-  - ../handbook/architecture/cqrs-read-write-separation.md
+  - ../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md
+  - ../syllabus/17-architecture/cqrs-read-write-separation.md
 source: handbook/kafka/schema-registry-and-compatibility-evolution.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The core Staff-level insight this comparison makes concrete is that compatibilit
 
 ## Related Handbook Chapters
 
-- [Schema Registry and Compatibility Evolution](../handbook/kafka/schema-registry-and-compatibility-evolution.md) — canonical mechanics of BACKWARD/FORWARD compatibility and the reader/writer schema distinction this comparison demonstrates.
-- [CQRS: Read/Write Separation](../handbook/architecture/cqrs-read-write-separation.md) — a related instance of producer/consumer (write/read) evolution needing explicit compatibility reasoning.
+- [Schema Registry and Compatibility Evolution](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md) — canonical mechanics of BACKWARD/FORWARD compatibility and the reader/writer schema distinction this comparison demonstrates.
+- [CQRS: Read/Write Separation](../syllabus/17-architecture/cqrs-read-write-separation.md) — a related instance of producer/consumer (write/read) evolution needing explicit compatibility reasoning.

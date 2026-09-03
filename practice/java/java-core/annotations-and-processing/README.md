@@ -1,7 +1,7 @@
 # Annotations and annotation processing (T-112) — runnable verification
 
 Real, executed Java (OpenJDK 21.0.12) backing
-[`handbook/java-core/annotations-and-annotation-processing.md`](../../../../syllabus/02-java/language-core/annotations-and-annotation-processing.md)
+[`syllabus/02-java/language-core/annotations-and-annotation-processing.md`](../../../../syllabus/02-java/language-core/annotations-and-annotation-processing.md)
 (T-112). Three independent demos plus real `javap` bytecode disassembly: retention-policy
 lifetimes, a real reflective mini-ORM built purely from annotations, and the `@Inherited`
 interfaces-don't-count gotcha.

@@ -1,6 +1,6 @@
 # Architecture Decision Records (T-916) — worked examples and a real completeness check
 
-Backing [`handbook/architecture/architecture-decision-records.md`](../../../handbook/architecture/architecture-decision-records.md)
+Backing [`syllabus/17-architecture/architecture-decision-records.md`](../../../syllabus/17-architecture/architecture-decision-records.md)
 (T-916). Three fully-worked, representative example ADRs — each grounded in real,
 already-executed evidence from other chapters in this repository, not invented
 numbers — plus a real, tested script that checks any ADR for completeness against

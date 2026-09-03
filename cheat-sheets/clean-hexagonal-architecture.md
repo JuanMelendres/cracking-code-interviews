@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Clean and Hexagonal Architecture
 
-**Canonical chapter:** [`handbook/architecture/clean-hexagonal-architecture.md`](../handbook/architecture/clean-hexagonal-architecture.md)
+**Canonical chapter:** [`syllabus/17-architecture/clean-hexagonal-architecture.md`](../syllabus/17-architecture/clean-hexagonal-architecture.md)
 
 ## Core Mental Model
 
@@ -67,5 +67,5 @@ This is a compile-time/organizational pattern, not a runtime one — the chapter
 
 ## Related
 
-- `handbook/architecture/ddd-tactical-design-aggregates.md`
+- `syllabus/17-architecture/ddd-tactical-design-aggregates.md`
 - [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md)

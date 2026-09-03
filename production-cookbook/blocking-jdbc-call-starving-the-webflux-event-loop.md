@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/spring/spring-webflux-and-reactive-programming.md
+  - ../syllabus/05-spring/spring-webflux-and-reactive-programming.md
 source: handbook/spring/spring-webflux-and-reactive-programming.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ A partial reactive migration is often worse than no migration at all, because it
 
 ## Related Handbook Chapters
 
-- [Spring WebFlux and Reactive Programming](../handbook/spring/spring-webflux-and-reactive-programming.md) — canonical event-loop model and blocking-call mechanism used here.
+- [Spring WebFlux and Reactive Programming](../syllabus/05-spring/spring-webflux-and-reactive-programming.md) — canonical event-loop model and blocking-call mechanism used here.

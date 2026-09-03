@@ -1,7 +1,7 @@
 # DDD strategic design: bounded contexts and context mapping (T-902) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`](../../../../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
+[`syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`](../../../../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
 (T-902). No described-but-untested claim — a real `javac` compile that really
 succeeds, and a real `javac` compile that really fails with a real compiler error,
 against file sets verified byte-identical (or intentionally different) via real `diff`.

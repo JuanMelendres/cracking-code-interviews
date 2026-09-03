@@ -5,8 +5,8 @@ domain: kafka
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md
-  - ../handbook/kafka/consumer-groups-and-rebalancing.md
+  - ../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md
+  - ../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
 source: handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident is a clean illustration of a mechanical constraint (partition coun
 
 ## Related Handbook Chapters
 
-- [Consumer Lag, Backpressure, and DLQ Strategy](../handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md) — canonical explanation of the partition-count-bounds-parallelism mechanism this incident reproduces.
-- [Consumer Groups and Rebalancing](../handbook/kafka/consumer-groups-and-rebalancing.md) — the partition-assignment mechanics that leave excess consumers idle.
+- [Consumer Lag, Backpressure, and DLQ Strategy](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md) — canonical explanation of the partition-count-bounds-parallelism mechanism this incident reproduces.
+- [Consumer Groups and Rebalancing](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md) — the partition-assignment mechanics that leave excess consumers idle.

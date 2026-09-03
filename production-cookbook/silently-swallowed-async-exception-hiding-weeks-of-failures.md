@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/spring/auto-configuration-and-bean-lifecycle.md
+  - ../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
 source: handbook/spring/auto-configuration-and-bean-lifecycle.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The genuinely dangerous property of this bug is that every individual piece beha
 
 ## Related Handbook Chapters
 
-- [Auto-Configuration and Bean Lifecycle](../handbook/spring/auto-configuration-and-bean-lifecycle.md) — canonical `@Async` execution and exception-handling mechanics used here.
+- [Auto-Configuration and Bean Lifecycle](../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md) — canonical `@Async` execution and exception-handling mechanics used here.

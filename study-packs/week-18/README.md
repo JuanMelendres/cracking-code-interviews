@@ -18,7 +18,7 @@ The repository's own coverage audit (`00-project/coverage-audit-2026-07-31.md`) 
 
 ## Prerequisites
 
-Week 11's `test-strategy-and-test-doubles.md` and `integration-testing-against-real-dependencies.md` — this week's five chapters all build on the pyramid/test-doubles vocabulary and the Testcontainers-based integration-testing pattern established there. `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md` (Week 11) for the percentile-mathematics depth the load-testing chapter deliberately doesn't duplicate.
+Week 11's `test-strategy-and-test-doubles.md` and `integration-testing-against-real-dependencies.md` — this week's five chapters all build on the pyramid/test-doubles vocabulary and the Testcontainers-based integration-testing pattern established there. `syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md` (Week 11) for the percentile-mathematics depth the load-testing chapter deliberately doesn't duplicate.
 
 ## Schedule
 
@@ -29,11 +29,11 @@ See `10-week-18-checklist.md` for the day-by-day breakdown.
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-performance-and-load-testing-methodology.md` | T-1106 — summary + link; full chapter canonical at `handbook/testing/performance-and-load-testing-methodology.md` |
-| 3 | `02-writing-tests-live-in-an-interview.md` | T-1108 — summary + link; full chapter canonical at `handbook/testing/writing-tests-live-in-an-interview.md` |
-| 4 | `03-contract-testing-for-services.md` | T-1105 — summary + link; full chapter canonical at `handbook/testing/contract-testing-for-services.md` |
-| 5 | `04-junit5-architecture-and-advanced-features.md` | T-1102 — summary + link; full chapter canonical at `handbook/testing/junit5-architecture-and-advanced-features.md` |
-| 6 | `05-mutation-and-property-based-testing.md` | T-1107 — summary + link; full chapter canonical at `handbook/testing/mutation-and-property-based-testing.md` |
+| 2 | `01-performance-and-load-testing-methodology.md` | T-1106 — summary + link; full chapter canonical at `syllabus/08-testing/performance-and-load-testing-methodology.md` |
+| 3 | `02-writing-tests-live-in-an-interview.md` | T-1108 — summary + link; full chapter canonical at `syllabus/08-testing/writing-tests-live-in-an-interview.md` |
+| 4 | `03-contract-testing-for-services.md` | T-1105 — summary + link; full chapter canonical at `syllabus/08-testing/contract-testing-for-services.md` |
+| 5 | `04-junit5-architecture-and-advanced-features.md` | T-1102 — summary + link; full chapter canonical at `syllabus/08-testing/junit5-architecture-and-advanced-features.md` |
+| 6 | `05-mutation-and-property-based-testing.md` | T-1107 — summary + link; full chapter canonical at `syllabus/08-testing/mutation-and-property-based-testing.md` |
 | 7 | `06-hands-on-lab.md` | 5 labs reproducing this week's real demonstrations |
 | 8 | `07-flashcards.md` | 15 cards |
 | 9 | `08-week-18-mock-interview.md` | 45-min Testing technical round |

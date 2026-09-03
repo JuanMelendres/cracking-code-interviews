@@ -1,7 +1,7 @@
 # Connection pooling and sizing, HikariCP (T-607) — runnable verification
 
 Real, executed output backing
-[`handbook/databases/connection-pooling-and-sizing.md`](../../../../handbook/databases/connection-pooling-and-sizing.md)
+[`syllabus/06-databases/connection-pooling-and-sizing.md`](../../../../syllabus/06-databases/connection-pooling-and-sizing.md)
 (T-607). A real HikariCP 5.1.0 pool against a real, CPU-capped PostgreSQL 16
 container — a real `SQLTransientConnectionException` under real exhaustion, a real
 leak-detection WARN with a real stack trace, and real, measured throughput numbers

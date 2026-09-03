@@ -17,13 +17,13 @@ competencies:
   - Row-Level Security's real scope and gaps
   - Envelope encryption and key rotation
 related:
-  - ../../handbook/security/owasp-top-10-for-backend-services.md
-  - ../../handbook/security/applied-cryptography-hashing-signing-tls.md
-  - ../../handbook/security/authn-authz-rbac-vs-abac.md
-  - ../../handbook/security/injection-input-validation-output-encoding.md
-  - ../../handbook/security/multi-tenancy-isolation-models.md
-  - ../../handbook/security/secrets-management-and-key-rotation.md
-  - ../../handbook/security/supply-chain-security-sbom-and-dependency-risk.md
+  - ../../syllabus/12-security/owasp-top-10-for-backend-services.md
+  - ../../syllabus/12-security/applied-cryptography-hashing-signing-tls.md
+  - ../../syllabus/12-security/authn-authz-rbac-vs-abac.md
+  - ../../syllabus/12-security/injection-input-validation-output-encoding.md
+  - ../../syllabus/12-security/multi-tenancy-isolation-models.md
+  - ../../syllabus/12-security/secrets-management-and-key-rotation.md
+  - ../../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md
 source: ../../study-packs/week-17/10-week-17-mock-interview.md
 official_references: []
 ---
@@ -48,13 +48,13 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| IDOR structural diagnosis | Q1 | [OWASP Top 10 for Backend Services](../../handbook/security/owasp-top-10-for-backend-services.md) |
-| Password hashing selection | Q2 | [Applied Cryptography: Hashing, Signing, and TLS](../../handbook/security/applied-cryptography-hashing-signing-tls.md) |
-| RBAC-to-ABAC escalation | Q3 | [AuthN vs AuthZ, RBAC vs ABAC](../../handbook/security/authn-authz-rbac-vs-abac.md) |
-| SQL injection mechanism | Q4 | [Injection, Input Validation, and Output Encoding](../../handbook/security/injection-input-validation-output-encoding.md) |
-| RLS's real scope | Q5 | [Multi-Tenancy Isolation Models](../../handbook/security/multi-tenancy-isolation-models.md) |
-| Envelope encryption / key rotation | Q6 | [Secrets Management and Key Rotation](../../handbook/security/secrets-management-and-key-rotation.md) |
-| Cross-topic synthesis | Q7 | All seven of this week's topics, including [Supply Chain Security, SBOM, and Dependency Risk](../../handbook/security/supply-chain-security-sbom-and-dependency-risk.md) |
+| IDOR structural diagnosis | Q1 | [OWASP Top 10 for Backend Services](../../syllabus/12-security/owasp-top-10-for-backend-services.md) |
+| Password hashing selection | Q2 | [Applied Cryptography: Hashing, Signing, and TLS](../../syllabus/12-security/applied-cryptography-hashing-signing-tls.md) |
+| RBAC-to-ABAC escalation | Q3 | [AuthN vs AuthZ, RBAC vs ABAC](../../syllabus/12-security/authn-authz-rbac-vs-abac.md) |
+| SQL injection mechanism | Q4 | [Injection, Input Validation, and Output Encoding](../../syllabus/12-security/injection-input-validation-output-encoding.md) |
+| RLS's real scope | Q5 | [Multi-Tenancy Isolation Models](../../syllabus/12-security/multi-tenancy-isolation-models.md) |
+| Envelope encryption / key rotation | Q6 | [Secrets Management and Key Rotation](../../syllabus/12-security/secrets-management-and-key-rotation.md) |
+| Cross-topic synthesis | Q7 | All seven of this week's topics, including [Supply Chain Security, SBOM, and Dependency Risk](../../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md) |
 
 ## Interviewer Opening Script
 
@@ -148,10 +148,10 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 → re-read [OWASP Top 10 for Backend Services](../../handbook/security/owasp-top-10-for-backend-services.md)'s IDOR material and compare the vulnerable/fixed handler pair line by line.
-- Any score ≤ 2 on Q2 → re-read [Applied Cryptography: Hashing, Signing, and TLS](../../handbook/security/applied-cryptography-hashing-signing-tls.md).
-- Any score ≤ 2 on Q3 → re-read [AuthN vs AuthZ, RBAC vs ABAC](../../handbook/security/authn-authz-rbac-vs-abac.md)'s role-explosion signal.
-- Any score ≤ 2 on Q4 → re-read [Injection, Input Validation, and Output Encoding](../../handbook/security/injection-input-validation-output-encoding.md).
-- Any score ≤ 2 on Q5 → re-read [Multi-Tenancy Isolation Models](../../handbook/security/multi-tenancy-isolation-models.md)'s RLS/`BYPASSRLS` material.
-- Any score ≤ 2 on Q6 → re-read [Secrets Management and Key Rotation](../../handbook/security/secrets-management-and-key-rotation.md)'s envelope-encryption walkthrough.
+- Any score ≤ 2 on Q1 → re-read [OWASP Top 10 for Backend Services](../../syllabus/12-security/owasp-top-10-for-backend-services.md)'s IDOR material and compare the vulnerable/fixed handler pair line by line.
+- Any score ≤ 2 on Q2 → re-read [Applied Cryptography: Hashing, Signing, and TLS](../../syllabus/12-security/applied-cryptography-hashing-signing-tls.md).
+- Any score ≤ 2 on Q3 → re-read [AuthN vs AuthZ, RBAC vs ABAC](../../syllabus/12-security/authn-authz-rbac-vs-abac.md)'s role-explosion signal.
+- Any score ≤ 2 on Q4 → re-read [Injection, Input Validation, and Output Encoding](../../syllabus/12-security/injection-input-validation-output-encoding.md).
+- Any score ≤ 2 on Q5 → re-read [Multi-Tenancy Isolation Models](../../syllabus/12-security/multi-tenancy-isolation-models.md)'s RLS/`BYPASSRLS` material.
+- Any score ≤ 2 on Q6 → re-read [Secrets Management and Key Rotation](../../syllabus/12-security/secrets-management-and-key-rotation.md)'s envelope-encryption walkthrough.
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation.

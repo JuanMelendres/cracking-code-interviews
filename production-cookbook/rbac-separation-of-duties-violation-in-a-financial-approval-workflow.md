@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/authn-authz-rbac-vs-abac.md
+  - ../syllabus/12-security/authn-authz-rbac-vs-abac.md
 source: handbook/security/authn-authz-rbac-vs-abac.md#production-scenarios
 ---
 
@@ -83,4 +83,4 @@ The most valuable outcome of this incident is correctly naming it as a modeling-
 
 ## Related Handbook Chapters
 
-- [AuthN/AuthZ: RBAC vs. ABAC](../handbook/security/authn-authz-rbac-vs-abac.md) — canonical RBAC/ABAC expressiveness comparison used here.
+- [AuthN/AuthZ: RBAC vs. ABAC](../syllabus/12-security/authn-authz-rbac-vs-abac.md) — canonical RBAC/ABAC expressiveness comparison used here.

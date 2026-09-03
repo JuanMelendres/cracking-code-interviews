@@ -5,7 +5,7 @@ domain: cloud
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/cloud/cloud-cost-and-scaling-economics.md
+  - ../syllabus/15-cloud/cloud-cost-and-scaling-economics.md
 source: handbook/cloud/cloud-cost-and-scaling-economics.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The core error here is a subtle one: a "discount" is only a savings if it's appl
 
 ## Related Handbook Chapters
 
-- [Cloud Cost and Scaling Economics](../handbook/cloud/cloud-cost-and-scaling-economics.md) — canonical reservation-sizing arithmetic used here.
+- [Cloud Cost and Scaling Economics](../syllabus/15-cloud/cloud-cost-and-scaling-economics.md) — canonical reservation-sizing arithmetic used here.

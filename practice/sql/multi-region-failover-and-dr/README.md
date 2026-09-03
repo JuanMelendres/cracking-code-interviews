@@ -1,7 +1,7 @@
 # Multi-region, failover, and disaster recovery (T-814) — runnable verification
 
 Real, executed PostgreSQL 16 (Docker) output backing
-[`handbook/system-design/multi-region-failover-and-disaster-recovery.md`](../../../handbook/system-design/multi-region-failover-and-disaster-recovery.md)
+[`syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md`](../../../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md)
 (T-814). Three real demos, each destroying a real container mid-scenario rather than
 describing what "would" happen: a real RPO/RTO measurement for a hot streaming
 standby, a real RPO measurement for a WAL-archiving (log-shipping) standby, and a

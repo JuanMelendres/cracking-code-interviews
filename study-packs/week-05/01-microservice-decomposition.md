@@ -15,7 +15,7 @@ canonical: ../../handbook/architecture/microservice-decomposition-and-monolith-t
 
 **IWI 8.40 / 7.90 · Staff-Level tier · A judgment topic — the expected answer is frequently "don't"**
 
-**Canonical chapter:** [Microservice Decomposition and the Monolith Trade-off](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md). This file is the Week 5 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `06-decomposition-analysis-deliverable.md` and `10-week-5-checklist.md` cite §3 directly.
+**Canonical chapter:** [Microservice Decomposition and the Monolith Trade-off](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md). This file is the Week 5 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `06-decomposition-analysis-deliverable.md` and `10-week-5-checklist.md` cite §3 directly.
 
 ## Table of Contents
 
@@ -39,23 +39,23 @@ canonical: ../../handbook/architecture/microservice-decomposition-and-monolith-t
 
 ## 1. The concept
 
-Microservice decomposition splits a system so each resulting service can be developed, deployed, and scaled independently — "independently" carries the entire weight of the decision. → [Definition and Purpose](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#definition-and-purpose).
+Microservice decomposition splits a system so each resulting service can be developed, deployed, and scaled independently — "independently" carries the entire weight of the decision. → [Definition and Purpose](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-A monolith's principal failure mode at scale is organizational, not technical — one team's bad deploy blocks every other team's work. Microservices exist to give teams independently deployable units of ownership. → [Definition and Purpose](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#definition-and-purpose).
+A monolith's principal failure mode at scale is organizational, not technical — one team's bad deploy blocks every other team's work. Microservices exist to give teams independently deployable units of ownership. → [Definition and Purpose](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#definition-and-purpose).
 
 ## 3. Where to draw a boundary
 
-Draw the line where strong single-transaction consistency is not required across it — the same test as an aggregate boundary, not an arbitrary table split. Two services needing one transaction signals a possibly-wrong boundary, not a cue for distributed 2PC. → [Core Concepts](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts).
+Draw the line where strong single-transaction consistency is not required across it — the same test as an aggregate boundary, not an arbitrary table split. Two services needing one transaction signals a possibly-wrong boundary, not a cue for distributed 2PC. → [Core Concepts](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts).
 
 ## 4. When to merge services back together
 
-Three signals: always co-deployed together, mostly synchronous critical-path calls, or operational cost exceeding benefit. A four-engineer team is very likely better served by a well-modularized monolith than microservices at all. → [Core Concepts](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts).
+Three signals: always co-deployed together, mostly synchronous critical-path calls, or operational cost exceeding benefit. A four-engineer team is very likely better served by a well-modularized monolith than microservices at all. → [Core Concepts](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#core-concepts).
 
 ## 5. Trade-offs
 
-Independent deployment and scaling per team, at the cost of every cross-service call becoming a network call, distributed transactions becoming sagas, and multiplied operational surface. → [Trade-offs](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#trade-offs).
+Independent deployment and scaling per team, at the cost of every cross-service call becoming a network call, distributed transactions becoming sagas, and multiplied operational surface. → [Trade-offs](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#trade-offs).
 
 ## 6. Interview questions
 
@@ -64,35 +64,35 @@ Independent deployment and scaling per team, at the cost of every cross-service 
 3. When would you merge two services back together?
 4. You have four engineers. Does microservices still make sense? Defend it.
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#interview-questions).
 
 ## 7. Common mistakes
 
-Drawing boundaries by table or code proximity; reaching for distributed 2PC by default; treating decomposition as a one-way door; defending microservices unconditionally. → [Common Mistakes](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#common-mistakes).
+Drawing boundaries by table or code proximity; reaching for distributed 2PC by default; treating decomposition as a one-way door; defending microservices unconditionally. → [Common Mistakes](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-The organizational structure — not technical elegance — is the primary justification for microservices; a team too small to have this organizational problem gains little from paying the distributed-systems tax. → [Staff-Level Discussion](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#interview-answer-framework).
+The organizational structure — not technical elegance — is the primary justification for microservices; a team too small to have this organizational problem gains little from paying the distributed-systems tax. → [Staff-Level Discussion](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#interview-answer-framework).
 
 ## 9. Summary
 
-A service boundary follows the same consistency-driven test as an aggregate boundary. Two services needing one transaction is a signal to question the boundary. Merge back when co-deployment, synchronous coupling, or operational cost outweigh the benefit. → [Summary](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#summary).
+A service boundary follows the same consistency-driven test as an aggregate boundary. Two services needing one transaction is a signal to question the boundary. Merge back when co-deployment, synchronous coupling, or operational cost outweigh the benefit. → [Summary](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#flashcards). Full week-level deck: `05-flashcards.md`.
+→ [Flashcards](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#flashcards). Full week-level deck: `05-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#practice-exercises) and [Solutions](../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#solutions).
+→ [Practice Exercises](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#practice-exercises) and [Solutions](../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#solutions).
 
 ## 14. Additional Reading
 

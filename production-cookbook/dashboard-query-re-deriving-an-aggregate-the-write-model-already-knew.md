@@ -5,8 +5,8 @@ domain: architecture
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/architecture/cqrs-read-write-separation.md
-  - ../handbook/system-design/caching-strategies-and-invalidation.md
+  - ../syllabus/17-architecture/cqrs-read-write-separation.md
+  - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
 source: handbook/architecture/cqrs-read-write-separation.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ The judgment call this scenario turns on — is eventual consistency acceptable 
 
 ## Related Handbook Chapters
 
-- [CQRS: Read/Write Separation](../handbook/architecture/cqrs-read-write-separation.md) — canonical trade-off analysis and the `QueryComplexityComparisonDemo` measurement this incident reproduces.
-- [Caching Strategies and Invalidation](../handbook/system-design/caching-strategies-and-invalidation.md) — the rejected alternative's own staleness-and-invalidation cost, referenced directly in this incident's mitigation analysis.
+- [CQRS: Read/Write Separation](../syllabus/17-architecture/cqrs-read-write-separation.md) — canonical trade-off analysis and the `QueryComplexityComparisonDemo` measurement this incident reproduces.
+- [Caching Strategies and Invalidation](../syllabus/11-system-design/caching-strategies-and-invalidation.md) — the rejected alternative's own staleness-and-invalidation cost, referenced directly in this incident's mitigation analysis.

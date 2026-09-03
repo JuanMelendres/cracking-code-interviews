@@ -17,11 +17,11 @@ competencies:
   - Deployment-strategy process gaps
   - Storage-service selection for mixed access patterns
 related:
-  - ../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md
-  - ../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md
-  - ../../handbook/cloud/cloud-cost-and-scaling-economics.md
-  - ../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
-  - ../../handbook/cloud/aws-core-services-for-backend-engineers.md
+  - ../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md
+  - ../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md
+  - ../../syllabus/15-cloud/cloud-cost-and-scaling-economics.md
+  - ../../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
+  - ../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md
 source: ../../study-packs/week-15/08-week-15-mock-interview.md
 official_references: []
 ---
@@ -46,12 +46,12 @@ official_references: []
 
 | Competency | Question(s) | Canonical Chapter |
 |---|---|---|
-| Pod-restart / OOMKill diagnostics | Q1 | [Kubernetes Resource Limits, Probes, and JVM Sizing](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md) |
-| Requests vs limits | Q2 | [Kubernetes Objects, Scheduling, and Networking](../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) |
-| Rollout guarantees vs steady-state performance | Q3 | [Kubernetes Objects, Scheduling, and Networking](../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) |
-| Reserved vs on-demand economics | Q4 | [Cloud Cost and Scaling Economics](../../handbook/cloud/cloud-cost-and-scaling-economics.md) |
-| Deployment-strategy process gaps | Q5 | [CI/CD Pipeline Design and Deployment Strategies](../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md) |
-| Storage-service selection | Q6 | [AWS Core Services for Backend Engineers](../../handbook/cloud/aws-core-services-for-backend-engineers.md) |
+| Pod-restart / OOMKill diagnostics | Q1 | [Kubernetes Resource Limits, Probes, and JVM Sizing](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md) |
+| Requests vs limits | Q2 | [Kubernetes Objects, Scheduling, and Networking](../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md) |
+| Rollout guarantees vs steady-state performance | Q3 | [Kubernetes Objects, Scheduling, and Networking](../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md) |
+| Reserved vs on-demand economics | Q4 | [Cloud Cost and Scaling Economics](../../syllabus/15-cloud/cloud-cost-and-scaling-economics.md) |
+| Deployment-strategy process gaps | Q5 | [CI/CD Pipeline Design and Deployment Strategies](../../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md) |
+| Storage-service selection | Q6 | [AWS Core Services for Backend Engineers](../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md) |
 | Cross-topic synthesis | Q7 | All five, above |
 
 ## Interviewer Opening Script
@@ -135,9 +135,9 @@ Walk the candidate through their own scores question by question, starting with 
 
 ## Remediation Recommendations
 
-- Any score ≤ 2 on Q1 → re-read [Kubernetes Resource Limits, Probes, and JVM Sizing](../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md), specifically the OutOfMemoryError-vs-OOMKilled distinction.
-- Any score ≤ 2 on Q2 or Q3 → re-read [Kubernetes Objects, Scheduling, and Networking](../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md) in full.
-- Any score ≤ 2 on Q4 → re-read [Cloud Cost and Scaling Economics](../../handbook/cloud/cloud-cost-and-scaling-economics.md)'s worked reservation-sizing arithmetic and redo it independently.
-- Any score ≤ 2 on Q5 → re-read [CI/CD Pipeline Design and Deployment Strategies](../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md)'s canary-value material.
-- Any score ≤ 2 on Q6 → re-read [AWS Core Services for Backend Engineers](../../handbook/cloud/aws-core-services-for-backend-engineers.md)'s storage-access-model comparisons.
+- Any score ≤ 2 on Q1 → re-read [Kubernetes Resource Limits, Probes, and JVM Sizing](../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md), specifically the OutOfMemoryError-vs-OOMKilled distinction.
+- Any score ≤ 2 on Q2 or Q3 → re-read [Kubernetes Objects, Scheduling, and Networking](../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md) in full.
+- Any score ≤ 2 on Q4 → re-read [Cloud Cost and Scaling Economics](../../syllabus/15-cloud/cloud-cost-and-scaling-economics.md)'s worked reservation-sizing arithmetic and redo it independently.
+- Any score ≤ 2 on Q5 → re-read [CI/CD Pipeline Design and Deployment Strategies](../../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md)'s canary-value material.
+- Any score ≤ 2 on Q6 → re-read [AWS Core Services for Backend Engineers](../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md)'s storage-access-model comparisons.
 - Below the 3.5 pass threshold overall → retake this mock in full after remediation.

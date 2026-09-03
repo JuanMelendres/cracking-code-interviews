@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Event Sourcing and Its Real Costs
 
-**Canonical chapter:** [`handbook/architecture/event-sourcing-and-its-real-costs.md`](../handbook/architecture/event-sourcing-and-its-real-costs.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md`](../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md)
 
 ## Card: What's the register's own named cost of event sourcing?
 
@@ -27,7 +27,7 @@ It's the exact gap that separates a candidate who's read about event sourcing's 
 Describing event sourcing's benefits fluently with no mention of this cost.
 
 **Related:**
-[handbook/architecture/event-sourcing-and-its-real-costs.md](../handbook/architecture/event-sourcing-and-its-real-costs.md)
+[handbook/architecture/event-sourcing-and-its-real-costs.md](../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md)
 
 ## Card: How does a snapshot actually help?
 
@@ -44,7 +44,7 @@ Clarifies that snapshotting is purely an optimization of the read path, never a 
 Treating a snapshot as if it replaces or supersedes the event log, rather than being a derived, disposable-and-rebuildable optimization on top of it.
 
 **Related:**
-[handbook/architecture/event-sourcing-and-its-real-costs.md](../handbook/architecture/event-sourcing-and-its-real-costs.md)
+[handbook/architecture/event-sourcing-and-its-real-costs.md](../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md)
 
 ## Card: Event sourcing vs. CQRS
 
@@ -61,4 +61,4 @@ Conflating the two is one of the most common imprecisions on this topic.
 Treating "event sourcing" and "CQRS" as interchangeable terms.
 
 **Related:**
-[handbook/architecture/event-sourcing-and-its-real-costs.md](../handbook/architecture/event-sourcing-and-its-real-costs.md), [handbook/architecture/cqrs-read-write-separation.md](../handbook/architecture/cqrs-read-write-separation.md)
+[handbook/architecture/event-sourcing-and-its-real-costs.md](../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md), [handbook/architecture/cqrs-read-write-separation.md](../syllabus/17-architecture/cqrs-read-write-separation.md)

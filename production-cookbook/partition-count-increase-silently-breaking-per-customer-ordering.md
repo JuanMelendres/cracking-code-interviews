@@ -5,7 +5,7 @@ domain: kafka
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/kafka/kafka-architecture-fundamentals.md
+  - ../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md
 source: handbook/kafka/kafka-architecture-fundamentals.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ The most dangerous property of this incident is that the triggering change — a
 
 ## Related Handbook Chapters
 
-- [Kafka Architecture Fundamentals](../handbook/kafka/kafka-architecture-fundamentals.md) — canonical partition-count and key-to-partition mapping mechanics used here.
-- [Producer Semantics and Partition Keys](../handbook/kafka/producer-semantics-and-partition-keys.md) — the partition-key design this ordering dependency relies on.
+- [Kafka Architecture Fundamentals](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md) — canonical partition-count and key-to-partition mapping mechanics used here.
+- [Producer Semantics and Partition Keys](../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md) — the partition-key design this ordering dependency relies on.

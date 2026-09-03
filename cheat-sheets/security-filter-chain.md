@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Spring Security Filter Chain
 
-**Canonical chapter:** [`handbook/spring/security-filter-chain.md`](../handbook/spring/security-filter-chain.md)
+**Canonical chapter:** [`syllabus/05-spring/security-filter-chain.md`](../syllabus/05-spring/security-filter-chain.md)
 
 ## Core Mental Model
 
@@ -65,4 +65,4 @@ Real, executed request trace confirms the ordered chain-of-responsibility mechan
 ## Related
 
 - [Spring Transactional Proxy Mechanics and Propagation](transactional-proxy-mechanics-and-propagation.md)
-- `handbook/security/oauth2-oidc-and-jwt.md`
+- `syllabus/12-security/oauth2-oidc-and-jwt.md`

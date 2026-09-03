@@ -1,7 +1,7 @@
 # Modular monolith as a deliberate choice (T-910) — runnable verification
 
 Real, executed ArchUnit 1.4.1 output backing
-[`handbook/architecture/modular-monolith-as-a-deliberate-choice.md`](../../../../handbook/architecture/modular-monolith-as-a-deliberate-choice.md)
+[`syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md`](../../../../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md)
 (T-910). A real, compiling, three-package sample codebase (`orders.api` /
 `orders.internal` / `shipping` / `shippinglegacy`), and real, executed ArchUnit
 architecture tests run against its actual compiled bytecode — not a description of

@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Spring Testing: Slices and Context Caching
 
-**Canonical chapter:** [`handbook/spring/spring-testing-slices-and-context-caching.md`](../handbook/spring/spring-testing-slices-and-context-caching.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-testing-slices-and-context-caching.md`](../syllabus/05-spring/spring-testing-slices-and-context-caching.md)
 
 ## Core Mental Model
 
@@ -92,6 +92,6 @@ Fixed with `@MockBean private GreetingService greetingService;` inside a `@WebMv
 
 ## Related
 
-- `handbook/spring/auto-configuration-and-bean-lifecycle.md`
-- `handbook/spring/spring-cache-abstraction-and-pitfalls.md`
-- `handbook/testing/integration-testing-against-real-dependencies.md`
+- `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md`
+- `syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md`
+- `syllabus/08-testing/integration-testing-against-real-dependencies.md`

@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Clean and Hexagonal Architecture
 
-**Canonical chapter:** [`handbook/architecture/clean-hexagonal-architecture.md`](../handbook/architecture/clean-hexagonal-architecture.md)
+**Canonical chapter:** [`syllabus/17-architecture/clean-hexagonal-architecture.md`](../syllabus/17-architecture/clean-hexagonal-architecture.md)
 
 ## Card: What a port is
 
@@ -27,7 +27,7 @@ The core mechanism that lets the domain avoid depending on infrastructure direct
 Placing the interface in the infrastructure package "for convenience."
 
 **Related:**
-[Core Concepts](../handbook/architecture/clean-hexagonal-architecture.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/clean-hexagonal-architecture.md#core-concepts)
 
 ## Card: What an adapter is
 
@@ -44,7 +44,7 @@ The thing that changes on an infrastructure swap, while the domain doesn't.
 Calling a concrete class a "port."
 
 **Related:**
-[Core Concepts](../handbook/architecture/clean-hexagonal-architecture.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/clean-hexagonal-architecture.md#core-concepts)
 
 ## Card: When NOT to use hexagonal architecture
 
@@ -61,4 +61,4 @@ The single most differentiating thing a candidate can volunteer on this topic.
 Answering "use it everywhere" unconditionally.
 
 **Related:**
-[Trade-offs](../handbook/architecture/clean-hexagonal-architecture.md#trade-offs)
+[Trade-offs](../syllabus/17-architecture/clean-hexagonal-architecture.md#trade-offs)

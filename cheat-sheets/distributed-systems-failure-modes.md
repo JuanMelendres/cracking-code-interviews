@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Distributed Systems Failure Modes
 
-**Canonical chapter:** [`handbook/system-design/distributed-systems-failure-modes.md`](../handbook/system-design/distributed-systems-failure-modes.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/distributed-systems-failure-modes.md`](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md)
 
 ## Core Mental Model
 
@@ -70,4 +70,4 @@ All three mechanisms (backoff, idempotency check, fencing check) are O(1) per re
 
 - [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md)
 - [System Design Method and Estimation](system-design-method-and-estimation.md)
-- `handbook/databases/isolation-levels-and-concurrency-anomalies.md`
+- `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`

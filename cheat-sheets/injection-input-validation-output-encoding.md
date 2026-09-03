@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Injection, Input Validation, and Output Encoding
 
-**Canonical chapter:** [`handbook/security/injection-input-validation-output-encoding.md`](../handbook/security/injection-input-validation-output-encoding.md)
+**Canonical chapter:** [`syllabus/12-security/injection-input-validation-output-encoding.md`](../syllabus/12-security/injection-input-validation-output-encoding.md)
 
 ## Core Mental Model
 
@@ -81,5 +81,5 @@ FIXED render, output-encoded: &lt;script&gt;fetch(&#39;...&#39;...)&lt;/script&g
 
 ## Related
 
-- `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/databases/query-planning-and-explain-analyze.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
+- `syllabus/06-databases/query-planning-and-explain-analyze.md`

@@ -5,8 +5,8 @@ domain: kafka
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/kafka/schema-registry-and-compatibility-evolution.md
-  - ../handbook/kafka/delivery-semantics-and-exactly-once.md
+  - ../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md
+  - ../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
 source: handbook/kafka/schema-registry-and-compatibility-evolution.md#production-scenarios
 ---
 
@@ -85,5 +85,5 @@ The organizational value of this near-miss is that the registry converted what w
 
 ## Related Handbook Chapters
 
-- [Schema Registry and Compatibility Evolution](../handbook/kafka/schema-registry-and-compatibility-evolution.md) — canonical mechanics of BACKWARD/FORWARD compatibility checking this incident reproduces.
-- [Delivery Semantics and Exactly-Once](../handbook/kafka/delivery-semantics-and-exactly-once.md) — the broader consumer-reliability context schema compatibility failures threaten.
+- [Schema Registry and Compatibility Evolution](../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md) — canonical mechanics of BACKWARD/FORWARD compatibility checking this incident reproduces.
+- [Delivery Semantics and Exactly-Once](../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md) — the broader consumer-reliability context schema compatibility failures threaten.

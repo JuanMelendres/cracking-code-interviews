@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Hibernate Flush Modes and Batch Writes
 
-**Canonical chapter:** [`handbook/databases/hibernate-flush-modes-and-batch-writes.md`](../handbook/databases/hibernate-flush-modes-and-batch-writes.md)
+**Canonical chapter:** [`syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md`](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md)
 
 ## Core Mental Model
 
@@ -60,6 +60,6 @@ A flush is Hibernate synchronizing the persistence context to the database via S
 
 ## Related
 
-- `handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md`
-- `handbook/databases/hibernate-second-level-and-query-cache.md`
-- `handbook/databases/connection-pooling-and-sizing.md`
+- `syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md`
+- `syllabus/06-databases/hibernate-second-level-and-query-cache.md`
+- `syllabus/06-databases/connection-pooling-and-sizing.md`

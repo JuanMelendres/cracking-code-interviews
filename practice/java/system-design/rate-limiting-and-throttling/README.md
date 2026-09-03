@@ -1,7 +1,7 @@
 # Rate limiting and throttling algorithms (T-808) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/system-design/rate-limiting-and-throttling-algorithms.md`](../../../../handbook/system-design/rate-limiting-and-throttling-algorithms.md)
+[`syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md`](../../../../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md)
 (T-808). No mocked clocks, no simulated request streams — real `System.nanoTime()` /
 `System.currentTimeMillis()` timing, real concurrent threads racing a shared limiter,
 and a real background thread draining a real queue at a real fixed rate.

@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Hibernate Flush Modes and Batch Writes
 
-**Canonical chapter:** [`handbook/databases/hibernate-flush-modes-and-batch-writes.md`](../handbook/databases/hibernate-flush-modes-and-batch-writes.md)
+**Canonical chapter:** [`syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md`](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md)
 
 ## Card: Why IDENTITY defeats JDBC batching
 
@@ -27,7 +27,7 @@ Hibernate must execute each `IDENTITY`-generated insert individually to retrieve
 Assuming `batch_size` alone guarantees batched inserts regardless of the entity's id-generation strategy, and not checking `Statistics`'s JDBC-batch count to confirm batching is actually happening.
 
 **Related:**
-[handbook/databases/hibernate-flush-modes-and-batch-writes.md](../handbook/databases/hibernate-flush-modes-and-batch-writes.md)
+[handbook/databases/hibernate-flush-modes-and-batch-writes.md](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md)
 
 ## Card: Why FlushMode.COMMIT can miss the transaction's own write
 
@@ -44,7 +44,7 @@ The default `AUTO` flush mode flushes before a query that could be affected by p
 Assuming Hibernate always synchronizes the persistence context with the database before every query, regardless of the configured flush mode.
 
 **Related:**
-[handbook/databases/hibernate-flush-modes-and-batch-writes.md](../handbook/databases/hibernate-flush-modes-and-batch-writes.md)
+[handbook/databases/hibernate-flush-modes-and-batch-writes.md](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md)
 
 ## Card: Bounding memory during bulk inserts
 
@@ -61,4 +61,4 @@ Without periodic clearing, the persistence context accumulates every managed ent
 Flushing without also clearing — flush alone sends the SQL but leaves every entity managed, so the persistence context still grows unbounded.
 
 **Related:**
-[handbook/databases/hibernate-flush-modes-and-batch-writes.md](../handbook/databases/hibernate-flush-modes-and-batch-writes.md)
+[handbook/databases/hibernate-flush-modes-and-batch-writes.md](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md)

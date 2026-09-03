@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Mutation and Property-Based Testing
 
-**Canonical chapter:** [`handbook/testing/mutation-and-property-based-testing.md`](../handbook/testing/mutation-and-property-based-testing.md)
+**Canonical chapter:** [`syllabus/08-testing/mutation-and-property-based-testing.md`](../syllabus/08-testing/mutation-and-property-based-testing.md)
 
 ## Card: What each technique finds bugs in
 
@@ -27,7 +27,7 @@ The core distinction that keeps the two techniques from being conflated as inter
 Treating property-based testing and mutation testing as solving the same problem.
 
 **Related:**
-[handbook/testing/mutation-and-property-based-testing.md](../handbook/testing/mutation-and-property-based-testing.md)
+[handbook/testing/mutation-and-property-based-testing.md](../syllabus/08-testing/mutation-and-property-based-testing.md)
 
 ## Card: Why 95% coverage can still hide a real gap
 
@@ -44,7 +44,7 @@ The core justification for mutation testing existing at all, distinct from a cov
 Treating a high coverage percentage as proof the corresponding assertions are actually strong.
 
 **Related:**
-[handbook/testing/mutation-and-property-based-testing.md](../handbook/testing/mutation-and-property-based-testing.md)
+[handbook/testing/mutation-and-property-based-testing.md](../syllabus/08-testing/mutation-and-property-based-testing.md)
 
 ## Card: Why a property-based test's seed should be fixed
 
@@ -61,4 +61,4 @@ Prevents a genuinely-caught bug from becoming an unreproducible, hard-to-debug f
 Letting the random seed vary freely on every test run, losing reproducibility for any failure it finds.
 
 **Related:**
-[handbook/testing/mutation-and-property-based-testing.md](../handbook/testing/mutation-and-property-based-testing.md)
+[handbook/testing/mutation-and-property-based-testing.md](../syllabus/08-testing/mutation-and-property-based-testing.md)

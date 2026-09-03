@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # OWASP Top 10 for Backend Services
 
-**Canonical chapter:** [`handbook/security/owasp-top-10-for-backend-services.md`](../handbook/security/owasp-top-10-for-backend-services.md)
+**Canonical chapter:** [`syllabus/12-security/owasp-top-10-for-backend-services.md`](../syllabus/12-security/owasp-top-10-for-backend-services.md)
 
 ## Core Mental Model
 
@@ -82,6 +82,6 @@ The fix is a strict **allowlist** checked against the *resolved* target — not 
 
 ## Related
 
-- `handbook/security/authn-authz-rbac-vs-abac.md`
-- `handbook/security/injection-input-validation-output-encoding.md`
+- `syllabus/12-security/authn-authz-rbac-vs-abac.md`
+- `syllabus/12-security/injection-input-validation-output-encoding.md`
 - `production-cookbook/credential-stuffing-undetected-from-missing-security-event-logging.md`

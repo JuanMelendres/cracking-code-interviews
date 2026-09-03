@@ -71,4 +71,4 @@ BlockingQueue put() on full queue:     genuinely blocks (WAITING thread state), 
 - `syllabus/02-java/collections/concurrenthashmap-internals.md`
 - `syllabus/02-java/collections/blockingqueue-family.md`
 - `syllabus/02-java/collections/arraylist-and-linkedlist-internals.md`
-- `handbook/system-design/storage-selection-tradeoffs.md`
+- `syllabus/11-system-design/storage-selection-tradeoffs.md`

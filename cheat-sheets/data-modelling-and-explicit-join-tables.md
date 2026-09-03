@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Data Modelling and Explicit Join Tables
 
-**Canonical chapter:** [`handbook/databases/data-modelling-and-explicit-join-tables.md`](../handbook/databases/data-modelling-and-explicit-join-tables.md)
+**Canonical chapter:** [`syllabus/06-databases/data-modelling-and-explicit-join-tables.md`](../syllabus/06-databases/data-modelling-and-explicit-join-tables.md)
 
 ## Core Mental Model
 
@@ -72,4 +72,4 @@ No error thrown in either case — the naive table just silently returns the wro
 
 ## Related
 
-- `handbook/architecture/ddd-tactical-design-aggregates.md`
+- `syllabus/17-architecture/ddd-tactical-design-aggregates.md`

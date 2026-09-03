@@ -15,7 +15,7 @@ canonical: ../../handbook/system-design/data-partitioning-and-consistent-hashing
 
 **IWI 7.70 · Staff tier**
 
-**Canonical chapter:** [Data Partitioning and Consistent Hashing](../../handbook/system-design/data-partitioning-and-consistent-hashing.md). This file is the Week 10 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `10-design-exercise-distributed-cache.md` cites §6 Q2 directly, and `02-sharding-and-partitioning-strategies.md` references this file's measurement.
+**Canonical chapter:** [Data Partitioning and Consistent Hashing](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md). This file is the Week 10 study-pack entry point — a short summary of each section plus a link to the full canonical treatment. Section numbers below are kept stable because `10-design-exercise-distributed-cache.md` cites §6 Q2 directly, and `02-sharding-and-partitioning-strategies.md` references this file's measurement.
 
 **Verification note:** the redistribution percentages behind this summary are real, executed output from `practice/java/week-10/consistent-hashing/src/ConsistentHashingDemo.java` — 10,000 real keys, 10 real nodes, one real removal, measured directly, not approximated.
 
@@ -41,58 +41,58 @@ canonical: ../../handbook/system-design/data-partitioning-and-consistent-hashing
 
 ## 1. The concept
 
-Consistent hashing maps nodes and keys onto the same ring; adding/removing a node only affects keys immediately adjacent to it on the ring, unlike `hash(key) % N`. → [Definition and Purpose](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#definition-and-purpose).
+Consistent hashing maps nodes and keys onto the same ring; adding/removing a node only affects keys immediately adjacent to it on the ring, unlike `hash(key) % N`. → [Definition and Purpose](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#definition-and-purpose).
 
 ## 2. Why it exists
 
-Any hash-based distribution scheme needs to handle nodes being added or removed — the question is how much data has to move, and the naive answer is bad enough to matter directly. → [Definition and Purpose](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#definition-and-purpose).
+Any hash-based distribution scheme needs to handle nodes being added or removed — the question is how much data has to move, and the naive answer is bad enough to matter directly. → [Definition and Purpose](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#definition-and-purpose).
 
 ## 3. Naive hash % N vs consistent hashing, measured
 
-Measured: removing 1 of 10 nodes remapped 92.5% of keys under naive `hash % N`, versus 9.2% under consistent hashing with 150 virtual nodes per physical node (theoretical ideal ~10%). → [Internal Implementation](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#internal-implementation) has the full measured output.
+Measured: removing 1 of 10 nodes remapped 92.5% of keys under naive `hash % N`, versus 9.2% under consistent hashing with 150 virtual nodes per physical node (theoretical ideal ~10%). → [Internal Implementation](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#internal-implementation) has the full measured output.
 
 ## 4. Virtual nodes: why 150, not 1
 
-One point per physical node gives uneven load distribution by chance; 150 virtual nodes per physical node (1,500 total points) converges each node's share close to an even 1/N via the law of large numbers. → [Core Concepts](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#core-concepts).
+One point per physical node gives uneven load distribution by chance; 150 virtual nodes per physical node (1,500 total points) converges each node's share close to an even 1/N via the law of large numbers. → [Core Concepts](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#core-concepts).
 
 ## 5. Trade-offs
 
-`hash % N` is trivial but remaps nearly everything on any change; consistent hashing with virtual nodes gives even distribution close to ideal at the cost of ring memory and more hash computations. → [Trade-offs](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#trade-offs).
+`hash % N` is trivial but remaps nearly everything on any change; consistent hashing with virtual nodes gives even distribution close to ideal at the cost of ring memory and more hash computations. → [Trade-offs](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#trade-offs).
 
 ## 6. Interview questions
 
 1. Add a node — how much data moves?
 2. Your shard key is the timestamp. What breaks?
 
-Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#interview-questions).
+Full expected answers, minimum-acceptable bar, Senior/Staff scoring criteria, and follow-ups for each: → [Interview Questions](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#interview-questions).
 
 ## 7. Common mistakes
 
-Believing rebalancing is routine and cheap regardless of hashing scheme; using too few virtual nodes; conflating rebalancing-cost solved with hot-key distribution solved — they're different problems. → [Common Mistakes](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#common-mistakes).
+Believing rebalancing is routine and cheap regardless of hashing scheme; using too few virtual nodes; conflating rebalancing-cost solved with hot-key distribution solved — they're different problems. → [Common Mistakes](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#common-mistakes).
 
 ## 8. Staff-level discussion
 
-The 92.5%-vs-9.2% gap is the concrete justification for why every major distributed data system uses consistent hashing rather than naive modulo hashing — this is a number worth having memorized precisely, derivable from first principles. → [Staff-Level Discussion](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#interview-answer-framework).
+The 92.5%-vs-9.2% gap is the concrete justification for why every major distributed data system uses consistent hashing rather than naive modulo hashing — this is a number worth having memorized precisely, derivable from first principles. → [Staff-Level Discussion](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#interview-answer-framework).
 
 ## 9. Summary
 
-Naive `hash % N` remaps nearly all keys on any node-count change — mathematically expected, not a rare edge case. Consistent hashing with virtual nodes bounds remapping to roughly 1/N. → [Summary](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#summary).
+Naive `hash % N` remaps nearly all keys on any node-count change — mathematically expected, not a rare edge case. Consistent hashing with virtual nodes bounds remapping to roughly 1/N. → [Summary](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#summary).
 
 ## 10. Key Takeaways
 
-→ [Key Takeaways](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#key-takeaways).
+→ [Key Takeaways](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#key-takeaways).
 
 ## 11. Cheat Sheet
 
-→ [Cheat Sheet](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#cheat-sheet).
+→ [Cheat Sheet](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#cheat-sheet).
 
 ## 12. Flashcards
 
-→ [Flashcards](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#flashcards). Full week-level deck: `07-flashcards.md`.
+→ [Flashcards](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#flashcards). Full week-level deck: `07-flashcards.md`.
 
 ## 13. Practice Exercises
 
-→ [Practice Exercises](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#practice-exercises) and [Solutions](../../handbook/system-design/data-partitioning-and-consistent-hashing.md#solutions). Reproducible demo: `practice/java/week-10/consistent-hashing/src/ConsistentHashingDemo.java`.
+→ [Practice Exercises](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#practice-exercises) and [Solutions](../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#solutions). Reproducible demo: `practice/java/week-10/consistent-hashing/src/ConsistentHashingDemo.java`.
 
 ## 14. Additional Reading
 

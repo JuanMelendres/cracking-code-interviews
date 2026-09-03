@@ -1,7 +1,7 @@
 # Capacity Planning & Headroom (T-1208) — runnable verification
 
 Real, executed Java output backing
-[`handbook/performance/capacity-planning-and-headroom.md`](../../../../handbook/performance/capacity-planning-and-headroom.md)
+[`syllabus/16-performance-jvm/capacity-planning-and-headroom.md`](../../../../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)
 (T-1208). No mocked timing, no simulated numbers — a real, bounded
 `ExecutorService` worker pool, real `Thread.sleep`-based service time, and
 real wall-clock measurement throughout.

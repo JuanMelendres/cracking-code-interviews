@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # CAP Theorem and Consistency Models
 
-**Canonical chapter:** [`handbook/system-design/cap-theorem-and-consistency-models.md`](../handbook/system-design/cap-theorem-and-consistency-models.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md`](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md)
 
 ## Core Mental Model
 

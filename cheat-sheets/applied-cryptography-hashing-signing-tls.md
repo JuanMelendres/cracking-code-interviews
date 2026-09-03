@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Applied Cryptography — Hashing, Signing, TLS
 
-**Canonical chapter:** [`handbook/security/applied-cryptography-hashing-signing-tls.md`](../handbook/security/applied-cryptography-hashing-signing-tls.md)
+**Canonical chapter:** [`syllabus/12-security/applied-cryptography-hashing-signing-tls.md`](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)
 
 ## Core Mental Model
 
@@ -84,6 +84,6 @@ Verification error: self-signed certificate  <- expected/correct for a non-CA-is
 
 ## Related
 
-- `handbook/security/secrets-management-and-key-rotation.md`
-- `handbook/security/oauth2-oidc-and-jwt.md`
+- `syllabus/12-security/secrets-management-and-key-rotation.md`
+- `syllabus/12-security/oauth2-oidc-and-jwt.md`
 - `production-cookbook/salted-fast-hash-passwords-surviving-rainbow-tables-not-gpu-cracking.md`

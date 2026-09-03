@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/data-partitioning-and-consistent-hashing.md
+  - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
 source: handbook/system-design/data-partitioning-and-consistent-hashing.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The critical insight this incident teaches is that a naive `hash % N` scheme's c
 
 ## Related Handbook Chapters
 
-- [Data Partitioning and Consistent Hashing](../handbook/system-design/data-partitioning-and-consistent-hashing.md) — canonical consistent-hashing and virtual-node remapping mechanics used here.
+- [Data Partitioning and Consistent Hashing](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md) — canonical consistent-hashing and virtual-node remapping mechanics used here.

@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # CI/CD Pipeline Design and Deployment Strategies
 
-**Canonical chapter:** [`handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md`](../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md`](../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md)
 
 ## Core Mental Model
 
@@ -68,5 +68,5 @@ Pipeline structure: `build-and-test` gates on real test success before pushing a
 
 ## Related
 
-- `handbook/cloud/kubernetes-objects-scheduling-and-networking.md`
-- `handbook/system-design/resilience-patterns.md`
+- `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`
+- `syllabus/11-system-design/resilience-patterns.md`

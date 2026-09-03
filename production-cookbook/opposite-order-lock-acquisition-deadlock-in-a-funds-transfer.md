@@ -5,8 +5,8 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/locks-deadlocks-and-lock-escalation.md
-  - ../handbook/databases/isolation-levels-and-concurrency-anomalies.md
+  - ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
+  - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
 source: handbook/databases/locks-deadlocks-and-lock-escalation.md#production-scenarios
 ---
 
@@ -91,5 +91,5 @@ A deadlock caught and retried correctly is not itself a defect — PostgreSQL's 
 
 ## Related Handbook Chapters
 
-- [Locks, Deadlocks, and Lock Escalation](../handbook/databases/locks-deadlocks-and-lock-escalation.md) — canonical mechanics of PostgreSQL locking and deadlock detection this incident reproduces.
-- [Isolation Levels and Concurrency Anomalies](../handbook/databases/isolation-levels-and-concurrency-anomalies.md) — the broader concurrency-anomaly context this lock-ordering discipline sits within.
+- [Locks, Deadlocks, and Lock Escalation](../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md) — canonical mechanics of PostgreSQL locking and deadlock detection this incident reproduces.
+- [Isolation Levels and Concurrency Anomalies](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md) — the broader concurrency-anomaly context this lock-ordering discipline sits within.

@@ -10,7 +10,7 @@ last_updated: 2026-08-05
 
 # Secrets Management and Key Rotation
 
-**Canonical chapter:** [`handbook/security/secrets-management-and-key-rotation.md`](../handbook/security/secrets-management-and-key-rotation.md)
+**Canonical chapter:** [`syllabus/12-security/secrets-management-and-key-rotation.md`](../syllabus/12-security/secrets-management-and-key-rotation.md)
 
 ## Core Mental Model
 
@@ -78,6 +78,6 @@ v1 record now fails: no key for version 1
 
 ## Related
 
-- `handbook/security/applied-cryptography-hashing-signing-tls.md`
-- `handbook/security/owasp-top-10-for-backend-services.md`
-- `handbook/security/supply-chain-security-sbom-and-dependency-risk.md`
+- `syllabus/12-security/applied-cryptography-hashing-signing-tls.md`
+- `syllabus/12-security/owasp-top-10-for-backend-services.md`
+- `syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md`

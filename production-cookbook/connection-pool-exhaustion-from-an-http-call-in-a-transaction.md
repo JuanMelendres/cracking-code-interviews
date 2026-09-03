@@ -5,7 +5,7 @@ domain: spring
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/spring/transactional-proxy-mechanics-and-propagation.md
+  - ../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md
 source: handbook/spring/transactional-proxy-mechanics-and-propagation.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The mechanism is narrow — one method's transaction boundary is drawn too wide 
 
 ## Related Handbook Chapters
 
-- [Transactional Proxy Mechanics and Propagation](../handbook/spring/transactional-proxy-mechanics-and-propagation.md) — canonical `@Transactional` boundary and connection-holding mechanics used here.
+- [Transactional Proxy Mechanics and Propagation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md) — canonical `@Transactional` boundary and connection-holding mechanics used here.

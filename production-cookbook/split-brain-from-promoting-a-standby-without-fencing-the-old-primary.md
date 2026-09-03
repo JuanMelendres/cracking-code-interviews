@@ -5,8 +5,8 @@ domain: system-design
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/system-design/multi-region-failover-and-disaster-recovery.md
-  - ../handbook/system-design/distributed-systems-failure-modes.md
+  - ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
+  - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
 source: handbook/system-design/multi-region-failover-and-disaster-recovery.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ Split-brain is one of the failure modes where the cost of getting it wrong is qu
 
 ## Related Handbook Chapters
 
-- [Multi-Region Failover and Disaster Recovery](../handbook/system-design/multi-region-failover-and-disaster-recovery.md) — canonical mechanics of fencing/STONITH and the `splitbrain-demo.sh` reproduction this incident is based on.
-- [Distributed Systems Failure Modes](../handbook/system-design/distributed-systems-failure-modes.md) — the broader partition-versus-crash distinction this root cause depends on.
+- [Multi-Region Failover and Disaster Recovery](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md) — canonical mechanics of fencing/STONITH and the `splitbrain-demo.sh` reproduction this incident is based on.
+- [Distributed Systems Failure Modes](../syllabus/10-distributed-systems/distributed-systems-failure-modes.md) — the broader partition-versus-crash distinction this root cause depends on.

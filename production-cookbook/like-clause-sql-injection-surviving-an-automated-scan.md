@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/injection-input-validation-output-encoding.md
+  - ../syllabus/12-security/injection-input-validation-output-encoding.md
 source: handbook/security/injection-input-validation-output-encoding.md#production-scenarios
 ---
 
@@ -83,5 +83,5 @@ The most important lesson here is epistemic, not technical: "the scanner passed"
 
 ## Related Handbook Chapters
 
-- [Injection, Input Validation, and Output Encoding](../handbook/security/injection-input-validation-output-encoding.md) — canonical parameterization and `LIKE`-wildcard-escaping mechanics used here.
-- [OWASP Top 10 for Backend Services](../handbook/security/owasp-top-10-for-backend-services.md) — the broader injection risk category (A03) this incident is an instance of.
+- [Injection, Input Validation, and Output Encoding](../syllabus/12-security/injection-input-validation-output-encoding.md) — canonical parameterization and `LIKE`-wildcard-escaping mechanics used here.
+- [OWASP Top 10 for Backend Services](../syllabus/12-security/owasp-top-10-for-backend-services.md) — the broader injection risk category (A03) this incident is an instance of.

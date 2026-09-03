@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Optimistic vs. Pessimistic Locking
 
-**Canonical chapter:** [`handbook/databases/optimistic-vs-pessimistic-locking.md`](../handbook/databases/optimistic-vs-pessimistic-locking.md)
+**Canonical chapter:** [`syllabus/06-databases/optimistic-vs-pessimistic-locking.md`](../syllabus/06-databases/optimistic-vs-pessimistic-locking.md)
 
 ## Core Mental Model
 
@@ -77,7 +77,7 @@ Both strategies answer "what happens when two transactions try to modify the sam
 
 ## Related
 
-- `handbook/databases/locks-deadlocks-and-lock-escalation.md`
-- `handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md`
-- `handbook/databases/isolation-levels-and-concurrency-anomalies.md`
-- `handbook/databases/mvcc-vacuum-and-bloat.md`
+- `syllabus/06-databases/locks-deadlocks-and-lock-escalation.md`
+- `syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md`
+- `syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md`
+- `syllabus/06-databases/mvcc-vacuum-and-bloat.md`

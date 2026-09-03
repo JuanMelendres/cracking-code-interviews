@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Data Modelling and Explicit Join Tables
 
-**Canonical chapter:** [`handbook/databases/data-modelling-and-explicit-join-tables.md`](../handbook/databases/data-modelling-and-explicit-join-tables.md)
+**Canonical chapter:** [`syllabus/06-databases/data-modelling-and-explicit-join-tables.md`](../syllabus/06-databases/data-modelling-and-explicit-join-tables.md)
 
 ## Card: What a plain join table cannot store
 
@@ -27,7 +27,7 @@ The structural limit that forces promotion to an explicit entity.
 Trying to add a column directly to a framework-generated join table.
 
 **Related:**
-[Internal Implementation](../handbook/databases/data-modelling-and-explicit-join-tables.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#internal-implementation)
 
 ## Card: The real trigger for an explicit join entity
 
@@ -44,7 +44,7 @@ Catches the price-history case, which has no obvious extra attribute.
 Only checking for an obviously-missing column, missing facts that depend on mutable referenced data.
 
 **Related:**
-[Core Concepts](../handbook/databases/data-modelling-and-explicit-join-tables.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#core-concepts)
 
 ## Card: The canonical silent-bug example
 
@@ -61,4 +61,4 @@ A real, measured, silent (no error thrown) data-integrity defect.
 Assuming a missing feature always produces a visible error rather than a wrong number.
 
 **Related:**
-[Production Scenarios](../handbook/databases/data-modelling-and-explicit-join-tables.md#production-scenarios)
+[Production Scenarios](../syllabus/06-databases/data-modelling-and-explicit-join-tables.md#production-scenarios)

@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/cap-theorem-and-consistency-models.md
+  - ../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
 source: handbook/system-design/cap-theorem-and-consistency-models.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ The most important realization in this incident is that no fix was needed at the
 
 ## Related Handbook Chapters
 
-- [CAP Theorem and Consistency Models](../handbook/system-design/cap-theorem-and-consistency-models.md) — canonical CP/AP trade-off mechanics used here.
+- [CAP Theorem and Consistency Models](../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md) — canonical CP/AP trade-off mechanics used here.

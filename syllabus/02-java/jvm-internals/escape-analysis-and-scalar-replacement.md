@@ -17,7 +17,7 @@ related:
   - jit-tiered-compilation-and-deoptimization.md
   - object-layout-headers-and-compressed-oops.md
   - gc-fundamentals-and-log-analysis.md
-  - ../../../handbook/jvm/benchmarking-and-jmh-pitfalls.md
+  - ../../16-performance-jvm/benchmarking-and-jmh-pitfalls.md
   - ../../../study-packs/week-19/06-escape-analysis-and-scalar-replacement.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/vm/java-hotspot-virtual-machine-performance-enhancements.html

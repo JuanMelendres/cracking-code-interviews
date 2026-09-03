@@ -1,7 +1,7 @@
 # Optimistic vs. pessimistic locking (T-604) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/databases/optimistic-vs-pessimistic-locking.md`](../../../../handbook/databases/optimistic-vs-pessimistic-locking.md)
+[`syllabus/06-databases/optimistic-vs-pessimistic-locking.md`](../../../../syllabus/06-databases/optimistic-vs-pessimistic-locking.md)
 (T-604). Real Hibernate 6.6, real `@Version`, a real `jakarta.persistence.OptimisticLockException`
 thrown by real Hibernate code (never simulated), and a real thread genuinely blocked
 by a real `PESSIMISTIC_WRITE` lock, measured with real wall-clock timing.

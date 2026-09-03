@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # DDD Strategic Design — Bounded Contexts and Context Mapping
 
-**Canonical chapter:** [`handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`](../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
+**Canonical chapter:** [`syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
 
 ## Core Mental Model
 
@@ -75,7 +75,7 @@ A bounded context is the boundary within which a specific model, and a specific 
 
 ## Related
 
-- `handbook/architecture/ddd-tactical-design-aggregates.md`
-- `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`
-- `handbook/architecture/event-driven-architecture-integration-styles.md`
-- `handbook/architecture/strangler-fig-and-migration-patterns.md`
+- `syllabus/17-architecture/ddd-tactical-design-aggregates.md`
+- `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`
+- `syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md`
+- `syllabus/17-architecture/strangler-fig-and-migration-patterns.md`

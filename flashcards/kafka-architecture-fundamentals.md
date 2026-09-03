@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Kafka Architecture Fundamentals — Topics, Partitions, Replication
 
-**Canonical chapter:** [`handbook/kafka/kafka-architecture-fundamentals.md`](../handbook/kafka/kafka-architecture-fundamentals.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md`](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md)
 
 ## Card: What Kafka guarantees about ordering
 
@@ -27,7 +27,7 @@ The single most consequential and most commonly wrong assumption in this domain.
 Assuming Kafka provides global, topic-wide ordering.
 
 **Related:**
-[Core Concepts](../handbook/kafka/kafka-architecture-fundamentals.md#core-concepts)
+[Core Concepts](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md#core-concepts)
 
 ## Card: Why changing partition count is dangerous
 
@@ -44,7 +44,7 @@ Makes partition count a one-way door, not a tunable capacity lever.
 Treating partition count as freely adjustable for scaling.
 
 **Related:**
-[Production Scenarios](../handbook/kafka/kafka-architecture-fundamentals.md#production-scenarios)
+[Production Scenarios](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md#production-scenarios)
 
 ## Card: ISR vs replication.factor
 
@@ -61,4 +61,4 @@ The current In-Sync Replica set (ISR), which can be smaller than `replication.fa
 Assuming `replication.factor=3` means three replicas always ack a write.
 
 **Related:**
-[Core Concepts](../handbook/kafka/kafka-architecture-fundamentals.md#core-concepts)
+[Core Concepts](../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md#core-concepts)

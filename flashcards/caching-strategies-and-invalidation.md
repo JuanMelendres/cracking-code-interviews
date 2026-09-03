@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Caching Strategies and Invalidation
 
-**Canonical chapter:** [`handbook/system-design/caching-strategies-and-invalidation.md`](../handbook/system-design/caching-strategies-and-invalidation.md)
+**Canonical chapter:** [`syllabus/11-system-design/caching-strategies-and-invalidation.md`](../syllabus/11-system-design/caching-strategies-and-invalidation.md)
 
 ## Card: How cache/database disagreement happens
 
@@ -27,7 +27,7 @@ The precise, nameable mechanism interviewers expect, not a vague description.
 Describing it only as "the cache didn't update" without the race's ordering.
 
 **Related:**
-[Core Concepts](../handbook/system-design/caching-strategies-and-invalidation.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/caching-strategies-and-invalidation.md#core-concepts)
 
 ## Card: Cache dying at peak
 
@@ -44,7 +44,7 @@ Distinguishes "things get slower" from the actual systemic capacity failure.
 Treating a cache outage as merely a performance degradation.
 
 **Related:**
-[Production Scenarios](../handbook/system-design/caching-strategies-and-invalidation.md#production-scenarios)
+[Production Scenarios](../syllabus/11-system-design/caching-strategies-and-invalidation.md#production-scenarios)
 
 ## Card: Three cache-stampede fixes
 
@@ -61,7 +61,7 @@ A named interview question requiring all three, not one.
 Naming only one fix as if it were the complete answer.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/caching-strategies-and-invalidation.md#internal-implementation)
+[Internal Implementation](../syllabus/11-system-design/caching-strategies-and-invalidation.md#internal-implementation)
 
 ## Card: Three hot-key mitigations
 
@@ -78,4 +78,4 @@ Different mitigations fit different access patterns — naming one isn't suffici
 Naming only one mitigation regardless of access pattern.
 
 **Related:**
-[Core Concepts](../handbook/system-design/caching-strategies-and-invalidation.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/caching-strategies-and-invalidation.md#core-concepts)

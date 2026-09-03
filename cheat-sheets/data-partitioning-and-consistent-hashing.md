@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Data Partitioning and Consistent Hashing
 
-**Canonical chapter:** [`handbook/system-design/data-partitioning-and-consistent-hashing.md`](../handbook/system-design/data-partitioning-and-consistent-hashing.md)
+**Canonical chapter:** [`syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md`](../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md)
 
 ## Core Mental Model
 
@@ -73,5 +73,5 @@ Ring implementation: a `TreeMap` with 1,500 entries for just 10 physical nodes (
 ## Related
 
 - [Distributed Transactions: Saga and Outbox](distributed-transactions-saga-and-outbox.md)
-- `handbook/kafka/producer-semantics-and-partition-keys.md`
+- `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`
 - [Table Partitioning and Sharding Strategies](table-partitioning-and-sharding-strategies.md)

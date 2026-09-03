@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/databases/query-planning-and-explain-analyze.md
+  - ../syllabus/06-databases/query-planning-and-explain-analyze.md
 source: handbook/databases/query-planning-and-explain-analyze.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ The specific fix is a one-line `CREATE INDEX`, but the incident is a symptom of 
 
 ## Related Handbook Chapters
 
-- [Query Planning and EXPLAIN ANALYZE](../handbook/databases/query-planning-and-explain-analyze.md) — canonical `EXPLAIN ANALYZE` reading and plan-diagnosis methodology used here.
-- [Index Structures: B-Tree, Composite, Covering](../handbook/databases/index-structures-btree-composite-covering.md) — index-selection reasoning behind the fix.
+- [Query Planning and EXPLAIN ANALYZE](../syllabus/06-databases/query-planning-and-explain-analyze.md) — canonical `EXPLAIN ANALYZE` reading and plan-diagnosis methodology used here.
+- [Index Structures: B-Tree, Composite, Covering](../syllabus/06-databases/index-structures-btree-composite-covering.md) — index-selection reasoning behind the fix.

@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Kubernetes Objects, Scheduling, and Networking
 
-**Canonical chapter:** [`handbook/cloud/kubernetes-objects-scheduling-and-networking.md`](../handbook/cloud/kubernetes-objects-scheduling-and-networking.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md`](../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md)
 
 ## Core Mental Model
 

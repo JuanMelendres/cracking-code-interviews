@@ -33,11 +33,11 @@ See `10-week-15-checklist.md` for the day-by-day breakdown.
 | # | File | Purpose |
 |---|---|---|
 | 1 | `README.md` | This file |
-| 2 | `01-kubernetes-resource-limits-probes-and-jvm-sizing.md` | T-1003 — summary + link; full chapter canonical at `handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
-| 3 | `02-kubernetes-objects-scheduling-and-networking.md` | T-1002 — summary + link; full chapter canonical at `handbook/cloud/kubernetes-objects-scheduling-and-networking.md` |
-| 4 | `03-cloud-cost-and-scaling-economics.md` | T-1007 — summary + link; full chapter canonical at `handbook/cloud/cloud-cost-and-scaling-economics.md` |
-| 5 | `04-cicd-pipeline-design-and-deployment-strategies.md` | T-1009 — summary + link; full chapter canonical at `handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md` |
-| 6 | `05-aws-core-services-for-backend-engineers.md` | T-1006 — summary + link; full chapter canonical at `handbook/cloud/aws-core-services-for-backend-engineers.md` |
+| 2 | `01-kubernetes-resource-limits-probes-and-jvm-sizing.md` | T-1003 — summary + link; full chapter canonical at `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
+| 3 | `02-kubernetes-objects-scheduling-and-networking.md` | T-1002 — summary + link; full chapter canonical at `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md` |
+| 4 | `03-cloud-cost-and-scaling-economics.md` | T-1007 — summary + link; full chapter canonical at `syllabus/15-cloud/cloud-cost-and-scaling-economics.md` |
+| 5 | `04-cicd-pipeline-design-and-deployment-strategies.md` | T-1009 — summary + link; full chapter canonical at `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md` |
+| 6 | `05-aws-core-services-for-backend-engineers.md` | T-1006 — summary + link; full chapter canonical at `syllabus/15-cloud/aws-core-services-for-backend-engineers.md` |
 | 7 | `06-hands-on-lab.md` | 5 labs reproducing this week's real container/YAML/arithmetic evidence |
 | 8 | `07-flashcards.md` | 15 cards |
 | 9 | `08-week-15-mock-interview.md` | 45-min Cloud & Infrastructure technical round |

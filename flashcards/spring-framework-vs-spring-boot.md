@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Spring Framework vs. Spring Boot
 
-**Canonical chapter:** [`handbook/spring/spring-framework-vs-spring-boot.md`](../handbook/spring/spring-framework-vs-spring-boot.md)
+**Canonical chapter:** [`syllabus/05-spring/spring-framework-vs-spring-boot.md`](../syllabus/05-spring/spring-framework-vs-spring-boot.md)
 
 ## Card: What Spring Boot actually is
 
@@ -27,7 +27,7 @@ The single most common shallow-answer trap for this near-universal warm-up quest
 Describing Boot as competing with or replacing Spring Framework.
 
 **Related:**
-[Definition and Purpose](../handbook/spring/spring-framework-vs-spring-boot.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/05-spring/spring-framework-vs-spring-boot.md#definition-and-purpose)
 
 ## Card: What a starter mechanically does
 
@@ -44,7 +44,7 @@ Explains why adding one dependency line changes runtime behavior, not just what 
 Assuming a starter directly wires up beans, rather than changing what auto-configuration's conditions see.
 
 **Related:**
-[Internal Implementation](../handbook/spring/spring-framework-vs-spring-boot.md#internal-implementation)
+[Internal Implementation](../syllabus/05-spring/spring-framework-vs-spring-boot.md#internal-implementation)
 
 ## Card: How to override an auto-configured bean
 
@@ -61,4 +61,4 @@ The mechanism behind "Boot doesn't need to be disabled, just told what you want 
 Reaching for `@SpringBootApplication(exclude = ...)` reflexively when defining a competing bean is usually simpler.
 
 **Related:**
-[Core Concepts](../handbook/spring/spring-framework-vs-spring-boot.md#core-concepts)
+[Core Concepts](../syllabus/05-spring/spring-framework-vs-spring-boot.md#core-concepts)

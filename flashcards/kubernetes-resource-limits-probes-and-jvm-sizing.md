@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Kubernetes Resource Limits, Probes, and JVM Sizing
 
-**Canonical chapter:** [`handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md`](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md)
+**Canonical chapter:** [`syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md`](../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md)
 
 ## Card: What container-aware ergonomics read
 
@@ -27,7 +27,7 @@ Prevents a JVM from sizing its heap against memory it will never actually be all
 Assuming a flat 25% heap ratio regardless of container size.
 
 **Related:**
-[Internal Implementation](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation)
+[Internal Implementation](../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation)
 
 ## Card: OutOfMemoryError vs OOMKilled
 
@@ -44,7 +44,7 @@ Determines where to look when debugging — application logs vs. container/pod-l
 Assuming an unexplained restart is an application bug without checking the container-level reason first.
 
 **Related:**
-[Internal Implementation](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation)
+[Internal Implementation](../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#internal-implementation)
 
 ## Card: Readiness vs liveness
 
@@ -61,4 +61,4 @@ Using one probe type for both purposes loses the ability to distinguish "tempora
 Using the same endpoint/probe for both readiness and liveness.
 
 **Related:**
-[Definition and Purpose](../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#definition-and-purpose)

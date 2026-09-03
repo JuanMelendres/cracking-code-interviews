@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-09-01
 related_handbook:
-  - ../handbook/databases/hibernate-second-level-and-query-cache.md
+  - ../syllabus/06-databases/hibernate-second-level-and-query-cache.md
 source: handbook/databases/hibernate-second-level-and-query-cache.md#production-scenarios
 ---
 
@@ -82,4 +82,4 @@ Hibernate can only defend the cache against writes it can see — a multi-writer
 
 ## Related Handbook Chapters
 
-- [Hibernate Second-Level and Query Cache](../handbook/databases/hibernate-second-level-and-query-cache.md) — canonical L2 cache visibility model and multi-writer staleness mechanism used here.
+- [Hibernate Second-Level and Query Cache](../syllabus/06-databases/hibernate-second-level-and-query-cache.md) — canonical L2 cache visibility model and multi-writer staleness mechanism used here.

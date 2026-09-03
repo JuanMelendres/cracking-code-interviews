@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: CQRS Read/Write Separation
 
-**Canonical chapter:** [`handbook/architecture/cqrs-read-write-separation.md`](../handbook/architecture/cqrs-read-write-separation.md)
+**Canonical chapter:** [`syllabus/17-architecture/cqrs-read-write-separation.md`](../syllabus/17-architecture/cqrs-read-write-separation.md)
 
 ## Card: CQS vs. CQRS
 
@@ -27,7 +27,7 @@ Conflating the two is the single most common mistake candidates make on this top
 Calling "different read/write DTOs" CQRS — that's CQS at the interface level, not CQRS.
 
 **Related:**
-[Comparisons](../handbook/architecture/cqrs-read-write-separation.md#comparisons)
+[Comparisons](../syllabus/17-architecture/cqrs-read-write-separation.md#comparisons)
 
 ## Card: The real cost of CQRS
 
@@ -44,7 +44,7 @@ This chapter measured a real p50 of 1.5 microseconds best-case and a real, force
 Presenting CQRS as a strict upgrade with no downside.
 
 **Related:**
-[Core Concepts](../handbook/architecture/cqrs-read-write-separation.md#core-concepts)
+[Core Concepts](../syllabus/17-architecture/cqrs-read-write-separation.md#core-concepts)
 
 ## Card: CQRS vs. Event Sourcing
 
@@ -61,4 +61,4 @@ A very common conflation; correcting it precisely is a strong interview signal.
 Assuming "domain events" in a CQRS pipeline means the system is event-sourced.
 
 **Related:**
-[Comparisons](../handbook/architecture/cqrs-read-write-separation.md#comparisons)
+[Comparisons](../syllabus/17-architecture/cqrs-read-write-separation.md#comparisons)

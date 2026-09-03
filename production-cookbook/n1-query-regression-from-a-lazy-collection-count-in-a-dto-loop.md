@@ -5,8 +5,8 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md
-  - ../handbook/databases/query-planning-and-explain-analyze.md
+  - ../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md
+  - ../syllabus/06-databases/query-planning-and-explain-analyze.md
 source: handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md#production-scenarios
 ---
 
@@ -87,5 +87,5 @@ The dangerous property of this bug class is that the triggering change looks not
 
 ## Related Handbook Chapters
 
-- [JPA Entity Lifecycle and the N+1 Problem](../handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md) — canonical mechanics of lazy loading and the N+1 pattern this incident reproduces.
-- [Query Planning and EXPLAIN ANALYZE](../handbook/databases/query-planning-and-explain-analyze.md) — the diagnostic discipline (verify with real query counts and plans, not code-review intuition) that this incident's evidence-gathering follows.
+- [JPA Entity Lifecycle and the N+1 Problem](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md) — canonical mechanics of lazy loading and the N+1 pattern this incident reproduces.
+- [Query Planning and EXPLAIN ANALYZE](../syllabus/06-databases/query-planning-and-explain-analyze.md) — the diagnostic discipline (verify with real query counts and plans, not code-review intuition) that this incident's evidence-gathering follows.

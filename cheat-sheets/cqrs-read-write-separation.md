@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # CQRS: Read/Write Separation
 
-**Canonical chapter:** [`handbook/architecture/cqrs-read-write-separation.md`](../handbook/architecture/cqrs-read-write-separation.md)
+**Canonical chapter:** [`syllabus/17-architecture/cqrs-read-write-separation.md`](../syllabus/17-architecture/cqrs-read-write-separation.md)
 
 ## Core Mental Model
 
@@ -78,7 +78,7 @@ CQRS does **not** require Event Sourcing, and Event Sourcing does not require CQ
 
 ## Related
 
-- `handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md`
-- `handbook/architecture/event-driven-architecture-integration-styles.md`
-- `handbook/system-design/distributed-transactions-saga-and-outbox.md`
-- `handbook/databases/replication-read-replicas-and-replica-lag.md`
+- `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md`
+- `syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md`
+- `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md`
+- `syllabus/06-databases/replication-read-replicas-and-replica-lag.md`

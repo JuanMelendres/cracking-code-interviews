@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Messaging Patterns and Change Data Capture
 
-**Canonical chapter:** [`handbook/system-design/messaging-patterns-and-change-data-capture.md`](../handbook/system-design/messaging-patterns-and-change-data-capture.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md`](../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ Every messaging pattern answers two separable questions: how does a change becom
 
 ## Related
 
-- `handbook/system-design/distributed-transactions-saga-and-outbox.md`
-- `handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md`
-- `handbook/databases/mvcc-vacuum-and-bloat.md`
-- `handbook/databases/replication-read-replicas-and-replica-lag.md`
+- `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md`
+- `syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md`
+- `syllabus/06-databases/mvcc-vacuum-and-bloat.md`
+- `syllabus/06-databases/replication-read-replicas-and-replica-lag.md`

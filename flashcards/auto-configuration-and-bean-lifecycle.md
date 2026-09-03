@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Spring Auto-Configuration and Bean Lifecycle
 
-**Canonical chapter:** [`handbook/spring/auto-configuration-and-bean-lifecycle.md`](../handbook/spring/auto-configuration-and-bean-lifecycle.md)
+**Canonical chapter:** [`syllabus/05-spring/auto-configuration-and-bean-lifecycle.md`](../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md)
 
 ## Card: Correct bean lifecycle order
 
@@ -27,7 +27,7 @@ The fixed sequence every framework feature (transactions, validation) hooks into
 Assuming `@PostConstruct` runs before any proxy wrapping occurs.
 
 **Related:**
-[Internal Implementation](../handbook/spring/auto-configuration-and-bean-lifecycle.md#internal-implementation)
+[Internal Implementation](../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md#internal-implementation)
 
 ## Card: What creates a @Transactional proxy
 
@@ -44,7 +44,7 @@ Explains why the proxy, not the raw bean, is what's injected everywhere else in 
 Assuming the proxy is created lazily at first method call rather than during bean initialization.
 
 **Related:**
-[Core Concepts](../handbook/spring/auto-configuration-and-bean-lifecycle.md#core-concepts)
+[Core Concepts](../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md#core-concepts)
 
 ## Card: The @Async + @Transactional gotcha
 
@@ -61,4 +61,4 @@ A near-universal real-world Spring trap that looks like a transaction bug but is
 Concluding the transaction itself is broken rather than identifying the visibility gap.
 
 **Related:**
-[Production Scenarios](../handbook/spring/auto-configuration-and-bean-lifecycle.md#production-scenarios)
+[Production Scenarios](../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md#production-scenarios)

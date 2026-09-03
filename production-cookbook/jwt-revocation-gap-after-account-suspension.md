@@ -5,7 +5,7 @@ domain: security
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/security/oauth2-oidc-and-jwt.md
+  - ../syllabus/12-security/oauth2-oidc-and-jwt.md
 source: handbook/security/oauth2-oidc-and-jwt.md#production-scenarios
 ---
 
@@ -84,5 +84,5 @@ Nothing here was a bug in the strict sense — the JWT verified correctly, exact
 
 ## Related Handbook Chapters
 
-- [OAuth2, OIDC, and JWT](../handbook/security/oauth2-oidc-and-jwt.md) — canonical token-verification and revocation-trade-off mechanics used here.
-- [AuthN/AuthZ: RBAC vs. ABAC](../handbook/security/authn-authz-rbac-vs-abac.md) — the authorization model suspension is a case of.
+- [OAuth2, OIDC, and JWT](../syllabus/12-security/oauth2-oidc-and-jwt.md) — canonical token-verification and revocation-trade-off mechanics used here.
+- [AuthN/AuthZ: RBAC vs. ABAC](../syllabus/12-security/authn-authz-rbac-vs-abac.md) — the authorization model suspension is a case of.

@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
 
-**Canonical chapter:** [`handbook/system-design/twelve-factor-config.md`](../handbook/system-design/twelve-factor-config.md)
+**Canonical chapter:** [`syllabus/15-cloud/twelve-factor-config.md`](../syllabus/15-cloud/twelve-factor-config.md)
 
 ## Card: What does Factor III actually require?
 
@@ -33,7 +33,7 @@ Branching on an environment name inside code instead of injecting the
 actual differing values.
 
 **Related:**
-[handbook/system-design/twelve-factor-config.md](../handbook/system-design/twelve-factor-config.md)
+[handbook/system-design/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
 
 ## Card: What's the real config precedence order?
 
@@ -55,7 +55,7 @@ taking effect" debugging instantly.
 Assuming the config file is authoritative over environment variables.
 
 **Related:**
-[handbook/system-design/twelve-factor-config.md](../handbook/system-design/twelve-factor-config.md)
+[handbook/system-design/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
 
 ## Card: Why does fail-fast startup validation matter?
 
@@ -79,4 +79,4 @@ Assuming a passing health check is sufficient proof of correct
 configuration.
 
 **Related:**
-[handbook/system-design/twelve-factor-config.md](../handbook/system-design/twelve-factor-config.md)
+[handbook/system-design/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)

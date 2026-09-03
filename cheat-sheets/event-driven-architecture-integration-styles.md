@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Event-Driven Architecture: Integration Styles, Choreography, and Orchestration
 
-**Canonical chapter:** [`handbook/architecture/event-driven-architecture-integration-styles.md`](../handbook/architecture/event-driven-architecture-integration-styles.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md`](../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md)
 
 ## Core Mental Model
 
@@ -75,7 +75,7 @@ Every event-driven integration answers two independent questions: what does the 
 
 ## Related
 
-- `handbook/architecture/cqrs-read-write-separation.md`
-- `handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`
-- `handbook/system-design/distributed-transactions-saga-and-outbox.md`
-- `handbook/kafka/schema-registry-and-compatibility-evolution.md`
+- `syllabus/17-architecture/cqrs-read-write-separation.md`
+- `syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md`
+- `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md`
+- `syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md`

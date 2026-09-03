@@ -5,7 +5,7 @@ domain: architecture
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/architecture/ddd-tactical-design-aggregates.md
+  - ../syllabus/17-architecture/ddd-tactical-design-aggregates.md
 source: handbook/architecture/ddd-tactical-design-aggregates.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is the concrete cost of a modeling shortcut that reads as harmless
 
 ## Related Handbook Chapters
 
-- [DDD Tactical Design: Aggregates](../handbook/architecture/ddd-tactical-design-aggregates.md) — canonical aggregate-sizing and invariant-boundary mechanics used here.
+- [DDD Tactical Design: Aggregates](../syllabus/17-architecture/ddd-tactical-design-aggregates.md) — canonical aggregate-sizing and invariant-boundary mechanics used here.

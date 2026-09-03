@@ -5,7 +5,7 @@ domain: databases
 status: draft
 last_updated: 2026-09-02
 related_handbook:
-  - ../handbook/databases/connection-pooling-and-sizing.md
+  - ../syllabus/06-databases/connection-pooling-and-sizing.md
 source: handbook/databases/connection-pooling-and-sizing.md#production-scenarios
 ---
 
@@ -86,5 +86,5 @@ This incident captures a genuinely common and costly reflex: "increase pool size
 
 ## Related Handbook Chapters
 
-- [Connection Pooling and Sizing (HikariCP)](../handbook/databases/connection-pooling-and-sizing.md) — canonical pool-exhaustion mechanics and the measured pool-size-versus-throughput degradation this incident reproduces at production scale.
-- [Hibernate Flush Modes and Batch Writes](../handbook/databases/hibernate-flush-modes-and-batch-writes.md) — related database-interaction performance concern where the ORM layer, not the pool, is the actual throughput driver.
+- [Connection Pooling and Sizing (HikariCP)](../syllabus/06-databases/connection-pooling-and-sizing.md) — canonical pool-exhaustion mechanics and the measured pool-size-versus-throughput degradation this incident reproduces at production scale.
+- [Hibernate Flush Modes and Batch Writes](../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md) — related database-interaction performance concern where the ORM layer, not the pool, is the actual throughput driver.

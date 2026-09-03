@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Logging, Metrics, Tracing, and OpenTelemetry
 
-**Canonical chapter:** [`handbook/performance/logging-metrics-tracing-and-opentelemetry.md`](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md)
+**Canonical chapter:** [`syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md`](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md)
 
 ## Core Mental Model
 

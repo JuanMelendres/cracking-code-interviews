@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Flashcards: Rate Limiting and Throttling Algorithms
 
-**Canonical chapter:** [`handbook/system-design/rate-limiting-and-throttling-algorithms.md`](../handbook/system-design/rate-limiting-and-throttling-algorithms.md)
+**Canonical chapter:** [`syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md`](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md)
 
 ## Card: Fixed window boundary flaw
 
@@ -27,7 +27,7 @@ The single most common "gotcha" question on this topic; failing to explain it si
 Confusing this deterministic, single-threaded flaw with the separate concurrency race that affects all five algorithms.
 
 **Related:**
-[handbook/system-design/rate-limiting-and-throttling-algorithms.md](../handbook/system-design/rate-limiting-and-throttling-algorithms.md)
+[handbook/system-design/rate-limiting-and-throttling-algorithms.md](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md)
 
 ## Card: Token bucket vs. leaky bucket
 
@@ -44,7 +44,7 @@ They are not interchangeable defaults — the choice depends on whether the down
 Describing leaky bucket as "just token bucket in reverse" without naming the queuing/smoothing behavior that makes it actually different in observed effect.
 
 **Related:**
-[handbook/system-design/rate-limiting-and-throttling-algorithms.md](../handbook/system-design/rate-limiting-and-throttling-algorithms.md)
+[handbook/system-design/rate-limiting-and-throttling-algorithms.md](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md)
 
 ## Card: The distributed rate limiter's real bottleneck
 
@@ -61,4 +61,4 @@ This is the gap that separates a correct-algorithm answer from a Staff-level pro
 Assuming a correct single-process implementation is "done" without addressing multi-instance deployment.
 
 **Related:**
-[handbook/system-design/rate-limiting-and-throttling-algorithms.md](../handbook/system-design/rate-limiting-and-throttling-algorithms.md), [handbook/system-design/load-balancing-service-discovery-and-health-checking.md](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
+[handbook/system-design/rate-limiting-and-throttling-algorithms.md](../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md), [handbook/system-design/load-balancing-service-discovery-and-health-checking.md](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md)

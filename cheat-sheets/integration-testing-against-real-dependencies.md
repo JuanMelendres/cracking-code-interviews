@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Integration Testing Against Real Dependencies
 
-**Canonical chapter:** [`handbook/testing/integration-testing-against-real-dependencies.md`](../handbook/testing/integration-testing-against-real-dependencies.md)
+**Canonical chapter:** [`syllabus/08-testing/integration-testing-against-real-dependencies.md`](../syllabus/08-testing/integration-testing-against-real-dependencies.md)
 
 ## Core Mental Model
 

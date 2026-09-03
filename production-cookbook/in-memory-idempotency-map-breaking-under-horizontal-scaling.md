@@ -5,7 +5,7 @@ domain: system-design
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/system-design/idempotency.md
+  - ../syllabus/11-system-design/idempotency.md
 source: handbook/system-design/idempotency.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is a clean example of a correctness property that depends entirely
 
 ## Related Handbook Chapters
 
-- [Idempotency at System Edges](../handbook/system-design/idempotency.md) — canonical idempotency-key mechanism and horizontal-scaling trap used here.
+- [Idempotency at System Edges](../syllabus/11-system-design/idempotency.md) — canonical idempotency-key mechanism and horizontal-scaling trap used here.

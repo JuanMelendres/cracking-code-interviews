@@ -1,7 +1,7 @@
 # Benchmarking & JMH Pitfalls (T-1203) — runnable verification
 
 Real, executed JMH (Java Microbenchmark Harness) output backing
-[`handbook/jvm/benchmarking-and-jmh-pitfalls.md`](../../../../handbook/jvm/benchmarking-and-jmh-pitfalls.md)
+[`syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md`](../../../../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md)
 (T-1203). Real JMH 1.37, real annotation processing, real forked JVM runs
 on JDK 21 — no invented numbers.
 

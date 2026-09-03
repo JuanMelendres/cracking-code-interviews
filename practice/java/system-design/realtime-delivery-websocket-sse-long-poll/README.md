@@ -1,7 +1,7 @@
 # Real-time delivery: WebSocket, SSE, and long-polling (T-812) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md`](../../../../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md)
+[`syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md`](../../../../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md)
 (T-812). No framework, no library — a real long-polling server holding a
 request open on a real monitor wait, a real Server-Sent Events endpoint
 streaming over chunked transfer encoding, and a real, minimal RFC 6455

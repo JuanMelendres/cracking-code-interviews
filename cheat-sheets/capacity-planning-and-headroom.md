@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Capacity Planning & Headroom
 
-**Canonical chapter:** [`handbook/performance/capacity-planning-and-headroom.md`](../handbook/performance/capacity-planning-and-headroom.md)
+**Canonical chapter:** [`syllabus/16-performance-jvm/capacity-planning-and-headroom.md`](../syllabus/16-performance-jvm/capacity-planning-and-headroom.md)
 
 ## Core Mental Model
 
@@ -80,6 +80,6 @@ p99 latency: 55ms -> 1373ms (a 25x increase)
 
 ## Related
 
-- `handbook/performance/percentiles-tail-latency-and-coordinated-omission.md`
-- `handbook/performance/performance-methodology-and-slo-error-budgets.md`
-- `handbook/testing/performance-and-load-testing-methodology.md`
+- `syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md`
+- `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md`
+- `syllabus/08-testing/performance-and-load-testing-methodology.md`

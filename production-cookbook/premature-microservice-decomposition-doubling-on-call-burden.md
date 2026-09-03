@@ -5,7 +5,7 @@ domain: architecture
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md
+  - ../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md
 source: handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ This incident is a direct instance of a mistake that is easy to make and expensi
 
 ## Related Handbook Chapters
 
-- [Microservice Decomposition and the Monolith Trade-off](../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md) — canonical decomposition-precondition and co-deployment-detection methodology used here.
+- [Microservice Decomposition and the Monolith Trade-off](../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md) — canonical decomposition-precondition and co-deployment-detection methodology used here.

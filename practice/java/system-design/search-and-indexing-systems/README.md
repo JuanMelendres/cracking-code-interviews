@@ -1,7 +1,7 @@
 # Search and indexing systems: inverted index, TF-IDF, BM25 (T-810) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/system-design/search-and-indexing-systems.md`](../../../../handbook/system-design/search-and-indexing-systems.md)
+[`syllabus/11-system-design/search-and-indexing-systems.md`](../../../../syllabus/11-system-design/search-and-indexing-systems.md)
 (T-810). No library, no Lucene/Elasticsearch — a real, from-scratch inverted
 index, a real classic TF-IDF scorer, and a real BM25 scorer (the actual
 ranking function behind Elasticsearch/Lucene's default relevance scoring),

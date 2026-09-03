@@ -10,7 +10,7 @@ last_updated: 2026-09-02
 
 # Profiling: async-profiler, JFR, and Flame Graphs
 
-**Canonical chapter:** [`handbook/performance/profiling-jfr-and-flame-graphs.md`](../handbook/performance/profiling-jfr-and-flame-graphs.md)
+**Canonical chapter:** [`syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md`](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
 
 ## Core Mental Model
 
@@ -74,7 +74,7 @@ A profiler answers one question — "where is the JVM actually spending time (or
 
 ## Related
 
-- `handbook/performance/performance-methodology-and-slo-error-budgets.md`
+- `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md`
 - `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md`
 - `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md`
-- `handbook/jvm/benchmarking-and-jmh-pitfalls.md`
+- `syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md`

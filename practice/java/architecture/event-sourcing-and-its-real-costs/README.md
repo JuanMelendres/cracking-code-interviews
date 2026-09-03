@@ -1,7 +1,7 @@
 # Event sourcing and its real costs (T-905) — runnable verification
 
 Real, executed Java 21 output backing
-[`handbook/architecture/event-sourcing-and-its-real-costs.md`](../../../../handbook/architecture/event-sourcing-and-its-real-costs.md)
+[`syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md`](../../../../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md)
 (T-905). A real, file-backed, append-only event store — real disk I/O, real
 measured replay-time growth, and a real, byte-offset-seeking snapshot mechanism, not
 a description of expected event-sourcing costs.

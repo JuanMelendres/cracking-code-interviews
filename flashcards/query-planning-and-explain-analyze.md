@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Query Planning and EXPLAIN ANALYZE
 
-**Canonical chapter:** [`handbook/databases/query-planning-and-explain-analyze.md`](../handbook/databases/query-planning-and-explain-analyze.md)
+**Canonical chapter:** [`syllabus/06-databases/query-planning-and-explain-analyze.md`](../syllabus/06-databases/query-planning-and-explain-analyze.md)
 
 ## Card: Most useful EXPLAIN flag combination
 
@@ -27,7 +27,7 @@ What's the single most useful `EXPLAIN` flag combination for diagnosing a slow q
 Reading `EXPLAIN` output without `ANALYZE` and treating the estimate as fact.
 
 **Related:**
-[Core Concepts](../handbook/databases/query-planning-and-explain-analyze.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/query-planning-and-explain-analyze.md#core-concepts)
 
 ## Card: Estimate-vs-actual mismatch
 
@@ -44,7 +44,7 @@ This single number is frequently the entire diagnosis for a misbehaving plan.
 Not noticing the mismatch, or treating the estimate as measured.
 
 **Related:**
-[Internal Implementation](../handbook/databases/query-planning-and-explain-analyze.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/query-planning-and-explain-analyze.md#internal-implementation)
 
 ## Card: Function-wrapped predicate
 
@@ -61,7 +61,7 @@ The most common plan-defeating mistake introduced by ORM-generated SQL.
 Assuming any index on the column helps, regardless of how the predicate is written.
 
 **Related:**
-[Internal Implementation](../handbook/databases/query-planning-and-explain-analyze.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/query-planning-and-explain-analyze.md#internal-implementation)
 
 ## Card: Nested loop beating a hash join
 
@@ -78,4 +78,4 @@ Prevents the "hash joins are always faster" oversimplification.
 Claiming one join algorithm is universally faster regardless of data shape.
 
 **Related:**
-[Internal Implementation](../handbook/databases/query-planning-and-explain-analyze.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/query-planning-and-explain-analyze.md#internal-implementation)

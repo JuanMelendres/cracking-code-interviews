@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Idempotency at System Edges
 
-**Canonical chapter:** [`handbook/system-design/idempotency.md`](../handbook/system-design/idempotency.md)
+**Canonical chapter:** [`syllabus/11-system-design/idempotency.md`](../syllabus/11-system-design/idempotency.md)
 
 ## Card: What an idempotency key protects against
 
@@ -27,7 +27,7 @@ The precise scope of the guarantee — not "prevents all bugs," specifically dup
 Implementing it as a client-side-only check that doesn't survive a genuine network retry.
 
 **Related:**
-[Definition and Purpose](../handbook/system-design/idempotency.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/11-system-design/idempotency.md#definition-and-purpose)
 
 ## Card: What coordinates concurrent duplicates correctly
 
@@ -44,7 +44,7 @@ Application-level locking reintroduces the exact race the database constraint el
 Using a `synchronized` block or in-memory map instead of a database constraint.
 
 **Related:**
-[Core Concepts](../handbook/system-design/idempotency.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/idempotency.md#core-concepts)
 
 ## Card: Why the TTL is necessary
 
@@ -61,7 +61,7 @@ The mechanism must handle its own failure mode, not just the happy path.
 Building the key/storage mechanism without any TTL or crash-recovery path.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/idempotency.md#internal-implementation)
+[Internal Implementation](../syllabus/11-system-design/idempotency.md#internal-implementation)
 
 ## Card: Correct client behavior under ambiguity
 
@@ -78,4 +78,4 @@ The client structurally cannot resolve the ambiguity itself; the server-side mec
 Trying to have the client determine whether the operation succeeded before retrying.
 
 **Related:**
-[Core Concepts](../handbook/system-design/idempotency.md#core-concepts)
+[Core Concepts](../syllabus/11-system-design/idempotency.md#core-concepts)

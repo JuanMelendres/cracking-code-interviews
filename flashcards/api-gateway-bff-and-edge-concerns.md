@@ -33,7 +33,7 @@ duplicated inconsistently across services.
 Treating "gateway" and "load balancer" as interchangeable terms.
 
 **Related:**
-[syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md), [Load Balancing, Service Discovery, and Health Checking](../handbook/system-design/load-balancing-service-discovery-and-health-checking.md)
+[syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md](../syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md), [Load Balancing, Service Discovery, and Health Checking](../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md)
 
 ## Card: Does centralizing an edge concern actually stop a bad request from reaching a backend?
 

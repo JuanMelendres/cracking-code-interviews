@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads
 
-**Canonical chapter:** [`handbook/system-design/resilience-patterns.md`](../handbook/system-design/resilience-patterns.md)
+**Canonical chapter:** [`syllabus/11-system-design/resilience-patterns.md`](../syllabus/11-system-design/resilience-patterns.md)
 
 ## Card: What a circuit breaker's OPEN state saves
 
@@ -27,7 +27,7 @@ The concrete, measurable benefit behind an otherwise abstract pattern name.
 Describing circuit breakers only qualitatively ("stops calling a down service") without the quantified latency benefit.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/resilience-patterns.md#internal-implementation)
+[Internal Implementation](../syllabus/11-system-design/resilience-patterns.md#internal-implementation)
 
 ## Card: What jitter fixes
 
@@ -44,7 +44,7 @@ Distinguishes the synchronization problem (jitter's job) from the load-amplifica
 Assuming exponential backoff alone (without jitter) prevents retry storms.
 
 **Related:**
-[Internal Implementation](../handbook/system-design/resilience-patterns.md#internal-implementation)
+[Internal Implementation](../syllabus/11-system-design/resilience-patterns.md#internal-implementation)
 
 ## Card: What a bulkhead prevents
 
@@ -61,4 +61,4 @@ Connects directly to the executor unbounded-queue failure mode, one layer down.
 Sharing one resource pool across dependencies with very different latency/failure profiles.
 
 **Related:**
-[Definition and Purpose](../handbook/system-design/resilience-patterns.md#definition-and-purpose)
+[Definition and Purpose](../syllabus/11-system-design/resilience-patterns.md#definition-and-purpose)

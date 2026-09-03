@@ -18,13 +18,13 @@ last_reviewed: 2026-08-02
 | # | File | Purpose | Words |
 |---|---|---|---|
 | 1 | `README.md` | Objective, schedule, exit criteria | 729 |
-| 2 | `01-owasp-top-10-for-backend-services.md` | T-1301 — summary + link; full chapter canonical at `handbook/security/owasp-top-10-for-backend-services.md` | 604 |
-| 3 | `02-applied-cryptography-hashing-signing-tls.md` | T-1303 — summary + link; full chapter canonical at `handbook/security/applied-cryptography-hashing-signing-tls.md` | 554 |
-| 4 | `03-authn-authz-rbac-vs-abac.md` | T-1302 — summary + link; full chapter canonical at `handbook/security/authn-authz-rbac-vs-abac.md` | 577 |
-| 5 | `04-injection-input-validation-output-encoding.md` | T-1305 — summary + link; full chapter canonical at `handbook/security/injection-input-validation-output-encoding.md` | 556 |
-| 6 | `05-multi-tenancy-isolation-models.md` | T-1307 — summary + link; full chapter canonical at `handbook/security/multi-tenancy-isolation-models.md` | 526 |
-| 7 | `06-secrets-management-and-key-rotation.md` | T-1304 — summary + link; full chapter canonical at `handbook/security/secrets-management-and-key-rotation.md` | 542 |
-| 8 | `07-supply-chain-security-sbom-and-dependency-risk.md` | T-1306 — summary + link; full chapter canonical at `handbook/security/supply-chain-security-sbom-and-dependency-risk.md` | 567 |
+| 2 | `01-owasp-top-10-for-backend-services.md` | T-1301 — summary + link; full chapter canonical at `syllabus/12-security/owasp-top-10-for-backend-services.md` | 604 |
+| 3 | `02-applied-cryptography-hashing-signing-tls.md` | T-1303 — summary + link; full chapter canonical at `syllabus/12-security/applied-cryptography-hashing-signing-tls.md` | 554 |
+| 4 | `03-authn-authz-rbac-vs-abac.md` | T-1302 — summary + link; full chapter canonical at `syllabus/12-security/authn-authz-rbac-vs-abac.md` | 577 |
+| 5 | `04-injection-input-validation-output-encoding.md` | T-1305 — summary + link; full chapter canonical at `syllabus/12-security/injection-input-validation-output-encoding.md` | 556 |
+| 6 | `05-multi-tenancy-isolation-models.md` | T-1307 — summary + link; full chapter canonical at `syllabus/12-security/multi-tenancy-isolation-models.md` | 526 |
+| 7 | `06-secrets-management-and-key-rotation.md` | T-1304 — summary + link; full chapter canonical at `syllabus/12-security/secrets-management-and-key-rotation.md` | 542 |
+| 8 | `07-supply-chain-security-sbom-and-dependency-risk.md` | T-1306 — summary + link; full chapter canonical at `syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md` | 567 |
 | 9 | `08-hands-on-lab.md` | 7 labs, all real and reproducible | 768 |
 | 10 | `09-flashcards.md` | 21 cards | 1,304 |
 | 11 | `10-week-17-mock-interview.md` | 45-min Security technical round | 927 |
@@ -53,7 +53,7 @@ None. This is new-domain content (Security had 0 of 7 register topics covered), 
 
 ## Scope note
 
-This week covers all 7 of the 7 Security register topics (T-1301, T-1302, T-1303, T-1304, T-1305, T-1306, T-1307), closing the domain completely — unlike Week 16's JVM week, which covered 5 of 12 register topics by IWI descending order and explicitly deferred the remainder. Security's smaller register size (7 topics total, versus JVM's 12) made full closure practical in one week. Note per `00-project/coverage-audit-2026-07-31.md` §2: three JWT/OAuth2-adjacent topics (T-511 Spring Security filter chain, T-512 OAuth2/OIDC, T-513 JWT design) physically live in `handbook/spring/` and `handbook/security/oauth2-oidc-and-jwt.md` but are classified under D5 Spring in the blueprint's own register, not D13 Security — they are pre-existing (Week 7) and out of this week's scope, referenced from the new chapters as related material rather than duplicated.
+This week covers all 7 of the 7 Security register topics (T-1301, T-1302, T-1303, T-1304, T-1305, T-1306, T-1307), closing the domain completely — unlike Week 16's JVM week, which covered 5 of 12 register topics by IWI descending order and explicitly deferred the remainder. Security's smaller register size (7 topics total, versus JVM's 12) made full closure practical in one week. Note per `00-project/coverage-audit-2026-07-31.md` §2: three JWT/OAuth2-adjacent topics (T-511 Spring Security filter chain, T-512 OAuth2/OIDC, T-513 JWT design) physically live in `handbook/spring/` and `syllabus/12-security/oauth2-oidc-and-jwt.md` but are classified under D5 Spring in the blueprint's own register, not D13 Security — they are pre-existing (Week 7) and out of this week's scope, referenced from the new chapters as related material rather than duplicated.
 
 ## A note on real evidence and cleanup
 

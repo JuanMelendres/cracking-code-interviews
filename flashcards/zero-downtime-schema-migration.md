@@ -10,7 +10,7 @@ last_updated: 2026-08-06
 
 # Flashcards: Zero-Downtime Schema Migration
 
-**Canonical chapter:** [`handbook/databases/zero-downtime-schema-migration.md`](../handbook/databases/zero-downtime-schema-migration.md)
+**Canonical chapter:** [`syllabus/06-databases/zero-downtime-schema-migration.md`](../syllabus/06-databases/zero-downtime-schema-migration.md)
 
 ## Card: What a plain CREATE INDEX blocks
 
@@ -27,7 +27,7 @@ The specific mechanism that makes "just run CREATE INDEX" dangerous at scale.
 Assuming index creation is always fast because it's fast on a small local table.
 
 **Related:**
-[Internal Implementation](../handbook/databases/zero-downtime-schema-migration.md#internal-implementation)
+[Internal Implementation](../syllabus/06-databases/zero-downtime-schema-migration.md#internal-implementation)
 
 ## Card: What CONCURRENTLY trades away
 
@@ -44,7 +44,7 @@ Not a free lunch — the write-blocking fix has its own operational cost.
 Assuming `CONCURRENTLY` is strictly better with no downside.
 
 **Related:**
-[Trade-offs](../handbook/databases/zero-downtime-schema-migration.md#trade-offs)
+[Trade-offs](../syllabus/06-databases/zero-downtime-schema-migration.md#trade-offs)
 
 ## Card: Why direct column rename is unsafe
 
@@ -61,4 +61,4 @@ The core reason "fast at the catalog level" doesn't mean "safe."
 Proposing a direct rename because it's fast and simple, ignoring the rolling-deploy mixed-version window.
 
 **Related:**
-[Core Concepts](../handbook/databases/zero-downtime-schema-migration.md#core-concepts)
+[Core Concepts](../syllabus/06-databases/zero-downtime-schema-migration.md#core-concepts)

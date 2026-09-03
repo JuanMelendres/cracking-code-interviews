@@ -1,6 +1,6 @@
 # Spring Testing: Slices and Context Caching — Real, Executed Demos
 
-Backs [Spring Testing: Slices and Context Caching](../../../../handbook/spring/spring-testing-slices-and-context-caching.md)
+Backs [Spring Testing: Slices and Context Caching](../../../../syllabus/05-spring/spring-testing-slices-and-context-caching.md)
 (T-517). Real Spring Framework 6.1.14 + Spring Boot 3.3.5 output, plain jars
 fetched directly from Maven Central, no Maven/Gradle install, run with the
 `junit-platform-console-standalone` shaded jar instead of a build tool.

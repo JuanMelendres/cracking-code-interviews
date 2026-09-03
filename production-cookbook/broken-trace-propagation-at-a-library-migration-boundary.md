@@ -5,7 +5,7 @@ domain: performance
 status: draft
 last_updated: 2026-08-05
 related_handbook:
-  - ../handbook/performance/logging-metrics-tracing-and-opentelemetry.md
+  - ../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
 source: handbook/performance/logging-metrics-tracing-and-opentelemetry.md#production-scenarios
 ---
 
@@ -84,4 +84,4 @@ Observability infrastructure has a specific failure mode that's easy to underwei
 
 ## Related Handbook Chapters
 
-- [Logging, Metrics, Tracing, and OpenTelemetry](../handbook/performance/logging-metrics-tracing-and-opentelemetry.md) — canonical trace-context propagation mechanics used here.
+- [Logging, Metrics, Tracing, and OpenTelemetry](../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md) — canonical trace-context propagation mechanics used here.

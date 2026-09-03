@@ -1,7 +1,7 @@
 # Schema Registry and compatibility evolution (T-708) — runnable verification
 
 Real, executed output backing
-[`handbook/kafka/schema-registry-and-compatibility-evolution.md`](../../../../handbook/kafka/schema-registry-and-compatibility-evolution.md)
+[`syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md`](../../../../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md)
 (T-708). A real Confluent Schema Registry 7.6.1 (Docker), backed by a real Kafka
 broker, driven with real HTTP calls (no mocked responses) — plus a real, compiling
 Java demo showing exactly what the registry's compatibility check is protecting: real

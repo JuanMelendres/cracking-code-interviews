@@ -10,7 +10,7 @@ last_updated: 2026-09-01
 
 # Flashcards: Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push
 
-**Canonical chapter:** [`handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md`](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md)
+**Canonical chapter:** [`syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md`](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md)
 
 ## Card: What's the real difference in request volume between short- and long-polling?
 
@@ -33,7 +33,7 @@ Assuming long-polling is primarily about reducing latency rather than
 reducing wasted request count.
 
 **Related:**
-[handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md)
+[handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md)
 
 ## Card: Is SSE actually streaming, or does it just look that way?
 
@@ -56,7 +56,7 @@ Assuming any long-lived HTTP response is automatically "streaming" without
 verifying the client actually receives data incrementally.
 
 **Related:**
-[handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md)
+[handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md)
 
 ## Card: What makes WebSocket structurally different from SSE and long-polling?
 
@@ -80,4 +80,4 @@ Believing SSE also supports "server push" in the same sense as WebSocket,
 missing that SSE has no client-to-server channel at all.
 
 **Related:**
-[handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md](../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md)
+[handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md](../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md)

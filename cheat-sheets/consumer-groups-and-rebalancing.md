@@ -10,7 +10,7 @@ last_updated: 2026-08-03
 
 # Consumer Groups and Rebalancing
 
-**Canonical chapter:** [`handbook/kafka/consumer-groups-and-rebalancing.md`](../handbook/kafka/consumer-groups-and-rebalancing.md)
+**Canonical chapter:** [`syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md`](../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md)
 
 ## Core Mental Model
 
@@ -74,6 +74,6 @@ KIP-429 shipped in Kafka 2.4 (2019) — same release cycle as the sticky partiti
 
 ## Related
 
-- `handbook/kafka/kafka-architecture-fundamentals.md`
-- `handbook/kafka/producer-semantics-and-partition-keys.md`
+- `syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md`
+- `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md`
 - [Kafka Delivery Semantics and Exactly-Once](delivery-semantics-and-exactly-once.md)
