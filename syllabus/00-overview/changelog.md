@@ -114,3 +114,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - Cheat sheets, flashcards, and production-cookbook entries for all five T-2001–T-2005 topics — deferred to a separate batch, per established session discipline.
 - Every other domain's own L1/L2 retrofit, plus new writing for `03-data-structures-algorithms`, `18-engineering-practices` (beyond its git-internals seed), and `19-leadership-staff` — all still pending.
+
+## [2026-09-03] — Phase 5: 03-data-structures-algorithms begins (T-2101–T-2105, top 5 by IWI)
+
+### Added
+
+- Five canonical chapters in `03-data-structures-algorithms`, corresponding to the Master Topic Register's top-5-by-priority coding-interview patterns (T-1402–T-1406): [Arrays, Two Pointers, and Sliding Window](../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md) (T-2101), [Hashing Patterns and Frequency Maps](../03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md) (T-2102), [Binary Search, Including Search-on-Answer](../03-data-structures-algorithms/binary-search-and-search-on-answer.md) (T-2103), [Linked Lists and In-Place Manipulation](../03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md) (T-2104), and [Stacks and the Monotonic Stack](../03-data-structures-algorithms/stacks-and-monotonic-stack.md) (T-2105).
+- Each chapter **elevates** already-real, already-compiled, already-verified practice code and its study-pack retrospective (`study-packs/week-{20,21,22,23}/...`) rather than writing new algorithm solutions from scratch — exactly the pattern the transformation plan itself named for this domain (§7.6: "practice code exists and is reusable as-is"). Every underlying demo (`practice/java/week-{20,21,22,23}/{linked-lists,stacks,hashing,binary-search,arrays-two-pointers}/`) was re-compiled and re-run on OpenJDK 21.0.12 while writing its chapter, confirming 57/57 real assertions still pass across all five, rather than trusting the study-packs' own prior verification alone.
+- New topic IDs `T-2101`–`T-2118` reserved for this domain's full 18-chapter plan (the D14 register's T-1402–T-1419, excluding T-1401 which is already covered by `01-computer-science-foundations`'s T-2001), per the plan's `T-2100`–`T-2199` reserved range (§9).
+- Updated `syllabus/03-data-structures-algorithms/INDEX.md` (rewritten from its Phase 1 scaffolding placeholder into a real, populated 18-topic working list, cross-referencing each T-21xx canonical-chapter ID against its corresponding D14 practice-log ID) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- T-2106 through T-2118 (Heaps, Trees, Graphs ⭐, Backtracking, Dynamic Programming ⭐, Intervals, Greedy, Bit Manipulation, Tries, Design Problems ⭐, Concurrency Problems ⭐, Advanced Structures, Communication Protocol) — not yet written; T-2108 (Graphs) and T-2110 (DP) are the two highest-weighted remaining patterns and the natural next batch.
+- Cheat sheets, flashcards, and production-cookbook entries for T-2101–T-2105 — deferred to a separate batch, per established session discipline.
+- `18-engineering-practices` (beyond its git-internals seed) and `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit — all still pending.
