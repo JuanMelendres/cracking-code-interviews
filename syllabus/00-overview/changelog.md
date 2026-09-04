@@ -100,3 +100,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - T-2003 through T-2005 (number representation, the OS process/thread model, networking basics) — not yet written.
 - Cheat sheets, flashcards, and production-cookbook entries for T-2001/T-2002 — deferred to a separate batch, per established session discipline.
 - Every other domain's own L1/L2 retrofit, plus new writing for `03-data-structures-algorithms`, `18-engineering-practices` (beyond its git-internals seed), and `19-leadership-staff` — all still pending.
+
+## [2026-09-03] — Phase 5: 01-computer-science-foundations domain complete (T-2003, T-2004, T-2005)
+
+### Added
+
+- `syllabus/01-computer-science-foundations/number-representation.md` (T-2003) — two's complement, IEEE 754 floating point, overflow, and narrowing-cast truncation. Real evidence (`practice/java/cs-foundations/number-representation/`) caught a real methodological mistake before it shipped: `printf("%.20f", 0.1)` does not reveal `double`'s true stored value (it pads the shortest round-trip decimal with zeros); `new BigDecimal(0.1)` does. Production Scenarios cites two real, publicly documented historical incidents (Ariane 5 Flight 501, the Patriot missile failure at Dhahran) rather than inventing a fictionalized incident, since no existing `production-cookbook/` entry has a numeric-representation root cause.
+- `syllabus/01-computer-science-foundations/os-process-thread-model.md` (T-2004) — processes, threads, context switching, and the 1:1 (platform thread) vs. M:N (virtual thread) models, deliberately scoped as the OS-level layer below the existing `virtual-threads.md` chapter rather than a duplicate of it. Real evidence (`practice/java/cs-foundations/process-thread-model/`): 200 blocked platform threads cost the OS ~208 real threads (confirming 1:1); 200 blocked virtual threads cost the OS only 10 real threads — exactly this machine's CPU core count, the default virtual-thread carrier-pool size — measured via macOS `top -stats th`, from outside the JVM.
+- `syllabus/01-computer-science-foundations/networking-basics.md` (T-2005) — the TCP three-way handshake, HTTP as plain text over a TCP byte stream, and connection pooling, as the layer below `api-design.md` and Spring MVC. Real evidence (`practice/java/cs-foundations/networking-basics/`): a raw `ServerSocket`/`Socket` HTTP exchange with no HTTP library on either end, capturing the exact `\r\n`-terminated request/response bytes and the distinct local/remote TCP ports of one real connection.
+- **This completes `01-computer-science-foundations`'s originally-scoped 5-topic list (T-2001–T-2005) from the plan's own Section 2.5/§7.6.** Updated `syllabus/01-computer-science-foundations/INDEX.md` (5/5, domain complete) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- Cheat sheets, flashcards, and production-cookbook entries for all five T-2001–T-2005 topics — deferred to a separate batch, per established session discipline.
+- Every other domain's own L1/L2 retrofit, plus new writing for `03-data-structures-algorithms`, `18-engineering-practices` (beyond its git-internals seed), and `19-leadership-staff` — all still pending.

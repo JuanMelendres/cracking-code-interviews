@@ -2,7 +2,7 @@
 title: "Computer Science Foundations — Domain Index"
 document_type: syllabus-domain-index
 domain: 01-computer-science-foundations
-status: 2 of ~5 planned topics written (Phase 5, in progress, started 2026-09-03)
+status: 5 of 5 planned topics written (Phase 5, domain complete, 2026-09-03)
 last_updated: 2026-09-03
 ---
 
@@ -10,7 +10,7 @@ last_updated: 2026-09-03
 
 How computers actually execute a program, number representation, the OS process/thread model below Java's abstraction, networking basics, and algorithmic complexity from first principles. **New domain — no migrated content; every topic here is new writing**, prioritized first among the gap domains per the plan's Section 7.6, since it is the hard prerequisite for the new Junior entry point.
 
-> **Phase 5 update (2026-09-03).** Writing continues. The plan's own Section 2.5/§7.6 names five explicit gap areas for this domain (how a computer executes a program, number representation, the OS process/thread model, networking basics, algorithmic complexity) — this is the working topic list, assigned new T-codes in the plan's reserved `T-2000`–`T-2099` range (§9). Two topics are written so far, applying the [Topic Specification](../00-overview/topic-specification.md) and [Mastery Model](../00-overview/mastery-model.md) with genuine L1→L4 coverage in a single file, per the plan's own "one topic, not four seniority-versioned copies" requirement (§5.3).
+> **Phase 5 update (2026-09-03).** All five topics named in the plan's own Section 2.5/§7.6 gap description are now written — this domain is complete for its originally-scoped topic list. Each applies the [Topic Specification](../00-overview/topic-specification.md) and [Mastery Model](../00-overview/mastery-model.md) with genuine L1→L4 coverage in a single file, per the plan's own "one topic, not four seniority-versioned copies" requirement (§5.3), assigned T-codes in the plan's reserved `T-2000`–`T-2099` range (§9).
 
 ## Topics
 
@@ -18,11 +18,11 @@ How computers actually execute a program, number representation, the OS process/
 |---|---|---|---|
 | T-2001 | [Algorithmic Complexity and Big-O, From First Principles](algorithmic-complexity-and-big-o-from-first-principles.md) | L1, L2, L3, L4 — fully written | `syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md` |
 | T-2002 | [How a Computer Executes a Program](how-a-computer-executes-a-program.md) (fetch-decode-execute, bytecode vs. machine code, the call stack below the JVM's own abstraction of it) | L1, L2, L3, L4 — fully written | `syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md` |
-| T-2003 | Number Representation (binary, two's complement, floating point, overflow) | Not yet written | Planned |
-| T-2004 | The OS Process/Thread Model, Below Java's Abstraction of It | Not yet written | Planned |
-| T-2005 | Networking Basics: TCP/IP and HTTP Mechanics Below the Spring MVC Layer | Not yet written | Planned |
+| T-2003 | [Number Representation](number-representation.md) (two's complement, IEEE 754 floating point, overflow, narrowing-cast truncation) | L1, L2, L3, L4 — fully written | `syllabus/01-computer-science-foundations/number-representation.md` |
+| T-2004 | [The OS Process/Thread Model, Below Java's Abstraction of It](os-process-thread-model.md) (processes, threads, context switching, the 1:1 vs. M:N threading models) | L1, L2, L3, L4 — fully written | `syllabus/01-computer-science-foundations/os-process-thread-model.md` |
+| T-2005 | [Networking Basics: TCP/IP and HTTP Mechanics Below the Spring MVC Layer](networking-basics.md) (the TCP handshake, HTTP as text over a byte stream, connection pooling) | L1, L2, L3, L4 — fully written | `syllabus/01-computer-science-foundations/networking-basics.md` |
 
-T-2001 was chosen first because it is genuinely prerequisite-free, is explicitly named in the plan's own gap description, and is the vocabulary every other existing chapter in this syllabus that discusses performance already assumes. T-2002 was chosen next because it is the layer directly below T-2001 and below [JVM Memory Layout and Runtime Regions](../02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md) — it builds real evidence (a `-Xss`-vs-recursion-depth measurement, a `javap -c` disassembly) rather than duplicating either. Cheat sheets, flashcards, and production-cookbook entries for T-2001/T-2002 have not been built yet — per this session's established batching discipline, chapter-writing and complementary-deliverable backlogs are closed in separate, bounded passes rather than bundled into one turn.
+Written in dependency order, each building on real, executed evidence from the one before it: T-2001 (prerequisite-free) → T-2002 (the call stack, the layer below T-2001's own performance vocabulary) → T-2003 (what a number actually is, once T-2002 established that a variable is bits in memory) → T-2004 (what happens when many instruction streams — Section 3 of T-2002 — run on one machine at once) → T-2005 (what happens when two machines need to talk at all). Cheat sheets, flashcards, and production-cookbook entries for all five have not been built yet — per this session's established batching discipline, chapter-writing and complementary-deliverable backlogs are closed in separate, bounded passes rather than bundled into first-draft chapter writing.
 
 ## Where this domain's boundary comes from
 
