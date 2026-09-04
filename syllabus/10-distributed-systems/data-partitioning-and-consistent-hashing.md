@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 10-distributed-systems
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/data-partitioning-and-consistent-hashing.md
+topic_id: T-806
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -35,29 +41,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Comparisons](#comparisons)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -73,6 +81,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Any system that distributes data or load across nodes by hashing needs to handle nodes being added or removed — scaling, failure, maintenance — and this topic is High-frequency because the naive answer (`hash % N`) is catastrophically bad in a way most candidates have never measured directly. The gap between the naive and correct approaches (92.5% vs. 9.2% remapped keys for removing one node out of ten) is large enough that this project's own blueprint names it as a number worth having memorized precisely, since an interviewer can ask a candidate to derive or explain it from first principles, not just name "consistent hashing" as a buzzword.
+
+## Level 1 — Foundation
+
+Imagine a classroom of 10 students assigned to 10 numbered lockers using the rule "your locker number is your student ID number modulo 10." If one student leaves the class and the teacher now has only 9 lockers, and re-applies the rule with modulo 9 instead, almost every remaining student's assigned locker number changes — not because their stuff physically moved, but because the *rule itself* shifted since the divisor changed. Everyone has to shuffle to a new locker, even students who had nothing to do with the one student leaving. This is exactly what naive `hash(key) % N` does whenever the number of servers changes.
+
+**Consistent hashing** fixes this with a cleverer rule: imagine all 10 lockers and all students standing in a circle (a ring), and each student's stuff goes to "the first locker clockwise from where I'm standing." If one student leaves, only the students who were standing closest to that specific locker need to move to the next one over — everyone else's locker assignment is completely untouched, because the circle itself didn't change shape, only one point on it disappeared.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to state, with a concrete number, why the naive approach is dangerous: removing just 1 of 10 servers under plain modulo hashing remaps roughly 90%+ of all keys to a new server — this isn't a bug in a particular implementation, it's the mathematically guaranteed outcome of changing the divisor in a modulo operation. Under consistent hashing, that same removal only remaps roughly 1/10th of keys — just the ones that were assigned to the removed server.
+
+You should also recognize a subtlety that trips people up: consistent hashing solves the *rebalancing cost* problem, not the *hot key* problem. If your chosen key is naturally lopsided — say, everything gets keyed by today's date, so all of today's traffic lands on one server — consistent hashing does nothing to fix that; it faithfully spreads out a well-distributed key, but a badly-chosen key stays badly distributed no matter how clever the placement scheme is underneath it.
+
+Practically, if you're reviewing a system that shards or load-balances by hashing, the first working question is: "what happens to existing data/traffic if a node gets added or removed?" If the answer is "everything reshuffles," that's a real, concrete red flag worth raising, especially for any system expected to scale up, scale down, or tolerate node failures — which is nearly every real system eventually.
 
 ## Mental Model
 

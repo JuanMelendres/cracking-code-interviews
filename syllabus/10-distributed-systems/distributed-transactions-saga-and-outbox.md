@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 10-distributed-systems
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/distributed-transactions-saga-and-outbox.md
+topic_id: T-618
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -42,30 +48,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -81,6 +89,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic is where three of the handbook's other threads converge into one concrete, buildable mechanism, which makes it a strong signal of whether a candidate can synthesize rather than recite: Spring's transaction guarantees, idempotency's redelivery-safety mechanism, and Kafka's exactly-once scope all get tested at once. It's High-frequency specifically because "you wrote to the database and published to a queue — prove no message is lost" is a question with no correct answer for a plain dual write, and the candidate's ability to recognize that — rather than proposing "just add retries" — is exactly the signal this topic is built to surface.
+
+## Level 1 — Foundation
+
+Imagine you're mailing a wedding invitation and separately texting a friend "invitation sent!" If you drop the invitation in the mailbox but get hit by a bus before sending the text, your friend never finds out — even though the invitation is genuinely on its way. This is a **dual write**: two separate actions (mailing the letter, sending the text) that need to happen together but have no way to guarantee both actually happen, because nothing connects them into one atomic step.
+
+The fix — the **transactional outbox** — is like writing both the invitation *and* a sticky note "remember to text Sam" on the same single sheet of paper before you seal the envelope. Now either both exist (you wrote them together) or neither does. A separate helper (the **poller**) periodically checks for un-actioned sticky notes and sends the text — and crucially, if that helper gets interrupted right after sending the text but before crossing it off the list, they might text again later. That's a real, accepted trade-off: your friend might get the "invitation sent!" text twice, but they will never fail to get it at all.
+
+**Saga** extends this idea to a whole chain of favors done by different people (book the venue, then the caterer, then the band), where there's no single "undo everything" button if the band cancels late — instead, someone has to actively call the venue back and cancel it, a new action, not a rewind.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to answer, without hesitation, "I wrote to the database and published to Kafka — how do I know no message was lost?" for a plain, uncoordinated dual write: you can't, and that's the correct, expected answer. The fix is the outbox pattern, and the concrete, buildable design is: write the business row and an "event to publish" row in the exact same database transaction, then have a separate process reliably read and relay unpublished rows.
+
+You should also be comfortable stating the outbox's real guarantee precisely when asked: at-least-once, never exactly-once. A crash can land between "the message broker confirmed the send" and "the database marked the row as sent," producing a genuine duplicate — which is why anything consuming outbox-published events must be built to safely handle receiving the same event twice.
+
+Practically, if you're reviewing a design where one service calls another service, or writes to a database and then separately calls an external API, the working habit is to ask: "what happens if the process crashes between these two steps?" If the honest answer is "we'd lose track of the second step entirely," that's the exact shape of problem this chapter solves — and the fix is either an outbox-style atomic write plus reliable relay, or restructuring so only one system needs to be updated as the source of truth.
 
 ## Mental Model
 

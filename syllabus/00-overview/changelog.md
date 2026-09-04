@@ -340,4 +340,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 9 further migrated domains (`10`–`17`, `20`, `21`) — 90 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 10-distributed-systems domain complete (5/5)
+
+### Added
+
+- All 5 `10-distributed-systems` chapters retrofitted: `distributed-transactions-saga-and-outbox.md` (T-618), `data-partitioning-and-consistent-hashing.md` (T-806), `cap-theorem-and-consistency-models.md` (T-807), `multi-region-failover-and-disaster-recovery.md` (T-814), `distributed-systems-failure-modes.md` (T-909) — same additive method as every prior batch, all 5 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a mailed-invitation-plus-text analogy for the dual-write hazard and the outbox pattern; a classroom-locker-assignment analogy for naive modulo hashing versus a ring analogy for consistent hashing; a two-library-branches analogy for CAP; a personal-backup analogy for RPO/RTO plus a two-people-both-watering-the-plants analogy for split-brain; an unanswered-text-message analogy for the general network-ambiguity problem behind retries, idempotency, and fencing tokens.
+- Verified all 5 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/10-distributed-systems/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`10-distributed-systems` is now fully L1–L4 (5/5)** — the eighth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, and `09-messaging-event-driven`.
+
+### Not yet done
+
+- 8 further migrated domains (`11`–`17`, `20`, `21`) — 85 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

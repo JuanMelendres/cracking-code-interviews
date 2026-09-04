@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 10-distributed-systems
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/multi-region-failover-and-disaster-recovery.md
+topic_id: T-814
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -40,34 +46,36 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Concurrency Implications](#concurrency-implications)
-15. [Security Implications](#security-implications)
-16. [Decision Framework](#decision-framework)
-17. [Comparisons](#comparisons)
-18. [Common Mistakes](#common-mistakes)
-19. [Anti-Patterns](#anti-patterns)
-20. [Best Practices](#best-practices)
-21. [Interview Answer Framework](#interview-answer-framework)
-22. [Interview Questions](#interview-questions)
-23. [Summary](#summary)
-24. [Key Takeaways](#key-takeaways)
-25. [Cheat Sheet](#cheat-sheet)
-26. [Flashcards](#flashcards)
-27. [Practice Exercises](#practice-exercises)
-28. [Solutions](#solutions)
-29. [Additional Reading](#additional-reading)
-30. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Concurrency Implications](#concurrency-implications)
+17. [Security Implications](#security-implications)
+18. [Decision Framework](#decision-framework)
+19. [Comparisons](#comparisons)
+20. [Common Mistakes](#common-mistakes)
+21. [Anti-Patterns](#anti-patterns)
+22. [Best Practices](#best-practices)
+23. [Interview Answer Framework](#interview-answer-framework)
+24. [Interview Questions](#interview-questions)
+25. [Summary](#summary)
+26. [Key Takeaways](#key-takeaways)
+27. [Cheat Sheet](#cheat-sheet)
+28. [Flashcards](#flashcards)
+29. [Practice Exercises](#practice-exercises)
+30. [Solutions](#solutions)
+31. [Additional Reading](#additional-reading)
+32. [Official References](#official-references)
 
 ---
 
@@ -84,6 +92,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is a Staff-level question because it is rarely actually about database replication mechanics — a candidate who launches into streaming-replication internals when asked "how would you survive a full region outage" is answering the wrong question. The real signal being tested is judgment under an explicit cost-versus-risk trade: naming a concrete RPO/RTO target the business actually needs, picking the cheapest DR tier that meets it, and — the part candidates skip most often — describing how a failover stays *safe*, not just fast. An interviewer who asks a sharp follow-up ("what stops both regions from accepting writes at once during the cutover?") is testing whether the candidate has ever actually thought about fencing, or has only ever drawn the two-region diagram with an arrow between them.
+
+## Level 1 — Foundation
+
+Think about backing up your laptop. If you back up once a week and your hard drive dies the day before your next backup, you lose almost a week of work — that's your **RPO** (Recovery Point Objective): how much you're willing to lose, measured in time. Separately, if it takes you two days to buy a new laptop and restore everything, that's your **RTO** (Recovery Time Objective): how long you're willing to be without a working computer. Backing up every hour instead of every week shrinks your RPO, but costs you more effort to maintain — there's no free way to make both numbers zero.
+
+**Disaster recovery** for a company's whole system works the same way, just at a much bigger scale: instead of "my laptop dies," it's "an entire data center region goes down." The four standard approaches — from cheapest-and-slowest to most-expensive-and-fastest — are like: keeping backups on a shelf you'd have to physically go grab (**backup and restore**), keeping a spare, powered-off computer ready to switch on (**pilot light**), keeping a second computer running quietly in the background the whole time (**warm standby**), or running two identical, fully active setups side by side all the time (**multi-site active-active**).
+
+**Split-brain** is what happens if you assume your old laptop is truly dead and start using a replacement while the "dead" one actually still works and someone keeps typing on it — now you have two different, disagreeing versions of your files, and no clean way to merge them.
+
+## Level 2 — Working Knowledge
+
+At this level, the most important working habit is refusing to accept "as fast and safe as possible" as an answer to "what's our recovery target." Any real disaster-recovery conversation should start with a specific number for RPO (e.g., "we can lose at most 5 minutes of data") and a specific number for RTO (e.g., "we need to be back up within 15 minutes"), agreed on by the business — not engineering guessing at what "reasonable" means.
+
+You should also be able to recognize the single most dangerous mistake in a failover design: promoting a new primary system the instant the old one "looks unreachable," without first guaranteeing the old one can no longer accept writes. "Looks unreachable" and "is actually dead" are not the same thing — a server can be alive and fully functional but simply unable to talk to the rest of the network for a moment. If a design skips this verification step (called **fencing**), you should flag it immediately: it's the exact gap that produces split-brain, and it's not a hypothetical risk, it's a routine failure mode of naive failover automation.
+
+Practically, whenever someone proposes a specific RPO or RTO number based on a configuration setting (like "our backup runs every 3 seconds, so our RPO is 3 seconds"), the working instinct should be skepticism: a configured target is what the system is *supposed* to do, not proof of what it actually does under real conditions — and the only way to know the real number is to actually test it, by simulating a failure and measuring what survives.
 
 ## Mental Model
 

@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 10-distributed-systems
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/distributed-systems-failure-modes.md
+topic_id: T-909
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -36,30 +42,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -76,6 +84,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is the clearest single dividing line between Senior and Staff in a design round: Senior candidates design the happy path competently; Staff candidates design the *failure* path, and do so unprompted. Every distributed system question is ultimately a partial-failure question, and this topic — tied for third-highest IWI in the entire 198-topic register — is where that judgment gets tested most directly, both as a dedicated deep-dive and as unscripted follow-up pressure inside nearly every system design round.
+
+## Level 1 — Foundation
+
+Imagine texting a friend "are you free tonight?" and getting no reply for ten minutes. You genuinely can't tell whether your text never arrived, your friend hasn't looked at their phone yet, or they replied and their message got lost on the way back to you. If you assume "no reply" means "message failed" and text again, and your friend actually did get the first text and is in the middle of typing a reply, you've now sent a redundant, possibly confusing second message — not fixed anything, just added noise on top of something already in progress. This is the core problem of **distributed systems failure modes**: a network can't tell you which of these situations you're actually in, and every "fix" in this chapter is a specific answer to that same uncertainty.
+
+**Retrying** without waiting is like texting "hello???" again immediately, then again, then again — if your friend's phone is already struggling to keep up with notifications, piling on more messages doesn't help them reply faster, it makes things worse. Waiting a bit longer between each retry (**backoff**) gives them breathing room to actually catch up.
+
+**Split-brain** is a different problem entirely: imagine two people both believing they're in charge of watering the office plants because a scheduling mix-up happened, and both showing up and dumping in a full watering can — the plants get overwatered because nobody checked whether the other person had already done it. A **fencing token** is like a shared sign-up sheet: whoever's turn it officially is gets to sign in, and if someone with an outdated understanding of whose turn it is tries to sign in anyway, the sheet itself rejects them because a more recent entry already exists.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, precisely, why "just add retries" is not automatically a resilience improvement. The key insight: when a client gives up waiting and retries, the original request usually keeps running on the server side — it isn't cancelled. So a retry doesn't replace load, it adds to it. Under a struggling, at-capacity server, this can turn a temporary slowdown into a full outage, because now there's more total work queued than the server can ever clear. The fix isn't "don't retry" — it's retrying with exponential backoff and jitter, so retries are spaced out rather than piling on immediately.
+
+You should also be comfortable applying the working rule for when a retry is actually safe: if an operation is idempotent (repeating it produces the same result as doing it once — like setting a value, or checking a durable idempotency key before charging a card again), retrying it is safe regardless of whether the first attempt actually succeeded. If it's not idempotent and you can't make it so, a naive retry risks a real duplicate side effect (a second charge, a duplicate order).
+
+Practically, whenever you're reviewing a new API endpoint or protocol design, the working question to ask is: "if this request is retried, or its response is lost, or it arrives twice, what actually happens?" If nobody has a clear answer, that's a real gap to flag — building the answer into the design (an idempotency key, a fencing token check, an explicit backoff policy) is far cheaper than discovering the gap during a real incident.
 
 ## Mental Model
 

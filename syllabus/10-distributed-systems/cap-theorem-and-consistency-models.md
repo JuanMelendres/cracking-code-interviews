@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 10-distributed-systems
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/cap-theorem-and-consistency-models.md
+topic_id: T-807
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -37,27 +43,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Diagrams](#diagrams)
-7. [Production Scenarios](#production-scenarios)
-8. [Trade-offs](#trade-offs)
-9. [Decision Framework](#decision-framework)
-10. [Comparisons](#comparisons)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Diagrams](#diagrams)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Comparisons](#comparisons)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +81,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 CAP is one of the most commonly *recited* and least commonly *applied* topics in system design interviews — nearly every candidate can state "consistency, availability, partition tolerance, pick two," and that recitation is precisely what fails to differentiate a Senior from a Staff answer. The interviewer is checking whether the candidate can tie the abstract theorem to a specific, real system and a specific, user-visible consequence — which is a fundamentally different skill than memorizing the theorem's statement.
+
+## Level 1 — Foundation
+
+Imagine two branches of the same library, in different cities, that normally sync their catalog with each other constantly. One day, the connection between them goes down — a **network partition**. A patron walks into Branch A and asks to check out a book. Branch A now faces a real choice: refuse the checkout because it can't confirm with Branch B whether the book is already checked out somewhere else (**consistency** — safe, but the patron is turned away), or let the checkout happen anyway, accepting the small risk that Branch B might have already lent the same title to someone else (**availability** — the patron is served, but the two branches' records might briefly disagree). **CAP** is just the observation that during that actual outage, a branch has to pick one of these two options — it can't guarantee both "never wrong" and "always open" at the same time.
+
+The key detail most people miss: this choice only matters *while the connection is actually down*. The moment the two branches can talk to each other again, there's no more dilemma — they sync up and both goals are achievable again. CAP isn't a permanent tax paid every day; it's a question that only comes up during the (hopefully rare) moments things are actually broken.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to answer a CAP question the way an interviewer actually wants it answered: never with the bare phrase "consistency, availability, partition tolerance, pick two," but by naming a real or realistic system, saying whether it leans CP or AP, and stating precisely what a user would experience as a result. For example: a session store during a partition should almost always choose availability — a user should never get logged out because of a brief network blip between data centers — accepting that a profile change made on one side might not show up on the other side for a little while.
+
+You should also be comfortable with the more sophisticated, working-level insight that a single system usually shouldn't apply one consistency model to everything it stores. An e-commerce platform is a good example to reach for: inventory counts genuinely need strong consistency (overselling a sold-out item is a real, costly mistake), while a "recently viewed products" list can be eventually consistent without anyone ever noticing or caring. Practically, when reviewing or designing a system, ask "does every piece of data in here actually need the same consistency guarantee?" rather than picking one database consistency setting for the whole system and calling it done.
 
 ## Mental Model
 
