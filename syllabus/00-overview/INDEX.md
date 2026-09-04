@@ -24,7 +24,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 
 | # | Domain | Status |
 |---|---|---|
-| 01 | [Computer Science Foundations](../01-computer-science-foundations/INDEX.md) | 1 of ~5 planned topics written (Phase 5, in progress, started 2026-09-03) |
+| 01 | [Computer Science Foundations](../01-computer-science-foundations/INDEX.md) | 2 of ~5 planned topics written (Phase 5, in progress, started 2026-09-03) |
 | 02 | [Java](../02-java/INDEX.md) | 49/49 chapters relocated (Phase 3, 2026-09-03) |
 | 03 | [Data Structures & Algorithms](../03-data-structures-algorithms/INDEX.md) | New domain — no existing content |
 | 04 | [Software Design](../04-software-design/INDEX.md) | 1/1 chapter relocated (Phase 2, 2026-09-03) |
