@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-616
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - index-structures-btree-composite-covering.md
 related:
@@ -34,27 +36,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -70,6 +74,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Zero-downtime migration questions test whether a candidate has actually operated a schema change against a live, traffic-serving database, versus only having run migrations against an empty local database where every operation looks instantaneous. The gap between "works on my machine" and "works against a 500M-row production table under load" is exactly what this topic is designed to expose.
+
+## Level 1 — Foundation
+
+**Zero-downtime migration means changing a live database's structure — adding a column, renaming one, adding an index — while the application keeps running and serving real traffic**, without users experiencing errors or downtime. Some schema changes that look instant on your local, empty test database can actually lock a real, large production table for minutes, blocking every read and write to it during that time.
+
+Reach for these techniques any time you're modifying a table that real, concurrent traffic is actively reading from and writing to — the exact scenario a quick local test against an empty database never reveals.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday rule for adding an index to a table people are actively using**: use `CREATE INDEX CONCURRENTLY` instead of a plain `CREATE INDEX`. It takes longer to build, but it doesn't block normal reads and writes to the table while it does — a plain `CREATE INDEX` does, for its entire build duration.
+
+**The practical, everyday pattern for safely renaming a column**: don't run a direct rename in one step. Add the new column alongside the old one, have the application write to both temporarily during a rolling deploy, then remove the old column only once every part of the application has fully moved to using the new one (the "expand-contract" pattern) — this avoids a window where old and new application code, both running simultaneously during deployment, disagree about which column exists.
 
 ## Mental Model
 

@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-611
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
@@ -41,36 +43,38 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Java Examples](#java-examples)
-11. [Production Scenarios](#production-scenarios)
-12. [Failure Modes and Debugging](#failure-modes-and-debugging)
-13. [Trade-offs](#trade-offs)
-14. [Performance Implications](#performance-implications)
-15. [Memory Implications](#memory-implications)
-16. [Concurrency Implications](#concurrency-implications)
-17. [Security Implications](#security-implications)
-18. [Decision Framework](#decision-framework)
-19. [Comparisons](#comparisons)
-20. [Common Mistakes](#common-mistakes)
-21. [Anti-Patterns](#anti-patterns)
-22. [Best Practices](#best-practices)
-23. [Interview Answer Framework](#interview-answer-framework)
-24. [Interview Questions](#interview-questions)
-25. [Summary](#summary)
-26. [Key Takeaways](#key-takeaways)
-27. [Cheat Sheet](#cheat-sheet)
-28. [Flashcards](#flashcards)
-29. [Practice Exercises](#practice-exercises)
-30. [Solutions](#solutions)
-31. [Additional Reading](#additional-reading)
-32. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Java Examples](#java-examples)
+13. [Production Scenarios](#production-scenarios)
+14. [Failure Modes and Debugging](#failure-modes-and-debugging)
+15. [Trade-offs](#trade-offs)
+16. [Performance Implications](#performance-implications)
+17. [Memory Implications](#memory-implications)
+18. [Concurrency Implications](#concurrency-implications)
+19. [Security Implications](#security-implications)
+20. [Decision Framework](#decision-framework)
+21. [Comparisons](#comparisons)
+22. [Common Mistakes](#common-mistakes)
+23. [Anti-Patterns](#anti-patterns)
+24. [Best Practices](#best-practices)
+25. [Interview Answer Framework](#interview-answer-framework)
+26. [Interview Questions](#interview-questions)
+27. [Summary](#summary)
+28. [Key Takeaways](#key-takeaways)
+29. [Cheat Sheet](#cheat-sheet)
+30. [Flashcards](#flashcards)
+31. [Practice Exercises](#practice-exercises)
+32. [Solutions](#solutions)
+33. [Additional Reading](#additional-reading)
+34. [Official References](#official-references)
 
 ---
 
@@ -87,6 +91,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Isolation levels are Very-High-frequency because nearly every backend system has at least one cross-row invariant, and most engineers have never been asked to name the specific mechanism that protects it — or doesn't. This topic contains what this project's own interview-feedback record calls **the discriminating question**: "explain write skew with a concrete example." It discriminates cleanly because a shallow answer (confusing write skew with a lost update) is audibly different from a real one, and because the correct answer requires having actually reasoned about *why* a weaker isolation level misses a specific class of bug rather than reciting a definition.
+
+## Level 1 — Foundation
+
+**An isolation level controls how much of what other transactions are doing at the same time your own transaction can see.** Setting it stricter avoids more surprises from concurrent access, but makes things slower; setting it looser is faster but risks specific, real, well-understood kinds of bugs.
+
+You almost never need to think about this for everyday, single-row operations — the database's default level already handles those correctly. It becomes relevant the moment you have a "read a value, then update it based on what you read" sequence that must not race against another user doing the exact same thing at the same time.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday default**: PostgreSQL's default, READ COMMITTED, is the right choice for the overwhelming majority of everyday operations — leave it as-is unless you have a specific, identified reason to change it.
+
+**The practical, everyday fix for a genuine "read then update" race** (two users editing the same record, a balance being debited by two concurrent requests): use `SELECT ... FOR UPDATE` to lock the row for the duration of that specific operation, rather than reflexively escalating the entire transaction's isolation level to SERIALIZABLE. SERIALIZABLE is the strictest, safest option, but it comes with a real cost of its own — code running under it must be written to catch a serialization failure and retry, which `SELECT ... FOR UPDATE` at READ COMMITTED does not require.
 
 ## Mental Model
 

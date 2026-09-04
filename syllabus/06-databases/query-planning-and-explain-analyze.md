@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-610
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - index-structures-btree-composite-covering.md
 related:
@@ -37,36 +39,38 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Java Examples](#java-examples)
-11. [Production Scenarios](#production-scenarios)
-12. [Failure Modes and Debugging](#failure-modes-and-debugging)
-13. [Trade-offs](#trade-offs)
-14. [Performance Implications](#performance-implications)
-15. [Memory Implications](#memory-implications)
-16. [Concurrency Implications](#concurrency-implications)
-17. [Security Implications](#security-implications)
-18. [Decision Framework](#decision-framework)
-19. [Comparisons](#comparisons)
-20. [Common Mistakes](#common-mistakes)
-21. [Anti-Patterns](#anti-patterns)
-22. [Best Practices](#best-practices)
-23. [Interview Answer Framework](#interview-answer-framework)
-24. [Interview Questions](#interview-questions)
-25. [Summary](#summary)
-26. [Key Takeaways](#key-takeaways)
-27. [Cheat Sheet](#cheat-sheet)
-28. [Flashcards](#flashcards)
-29. [Practice Exercises](#practice-exercises)
-30. [Solutions](#solutions)
-31. [Additional Reading](#additional-reading)
-32. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Java Examples](#java-examples)
+13. [Production Scenarios](#production-scenarios)
+14. [Failure Modes and Debugging](#failure-modes-and-debugging)
+15. [Trade-offs](#trade-offs)
+16. [Performance Implications](#performance-implications)
+17. [Memory Implications](#memory-implications)
+18. [Concurrency Implications](#concurrency-implications)
+19. [Security Implications](#security-implications)
+20. [Decision Framework](#decision-framework)
+21. [Comparisons](#comparisons)
+22. [Common Mistakes](#common-mistakes)
+23. [Anti-Patterns](#anti-patterns)
+24. [Best Practices](#best-practices)
+25. [Interview Answer Framework](#interview-answer-framework)
+26. [Interview Questions](#interview-questions)
+27. [Summary](#summary)
+28. [Key Takeaways](#key-takeaways)
+29. [Cheat Sheet](#cheat-sheet)
+30. [Flashcards](#flashcards)
+31. [Practice Exercises](#practice-exercises)
+32. [Solutions](#solutions)
+33. [Additional Reading](#additional-reading)
+34. [Official References](#official-references)
 
 ---
 
@@ -83,6 +87,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 "The query is slow" is a symptom, not a diagnosis — and the plan is the only place the actual mechanism is visible. This is High-frequency across backend and database rounds precisely because it's unusually verifiable: an interviewer can hand you a real plan and a real number, and there is a right answer. It is also the topic where candidates who "know indexes" but have never diagnosed a live query fall apart — reciting "add an index" without being able to say *which* structural problem the plan reveals reads as memorized, not operated. This chapter's own dataset produced one honest, unglamorous result specifically because most study material only shows the dramatic wins, and a Staff-level candidate is expected to distinguish the two before promising a fix will help.
+
+## Level 1 — Foundation
+
+**`EXPLAIN` shows you the plan the database chose to run your query** — which strategy, in what order — before actually running it. **`EXPLAIN ANALYZE`** goes further: it actually runs the query and tells you what really happened, side by side with what the database expected. This is how you find out *why* a specific query is slow, instead of guessing.
+
+Running `EXPLAIN ANALYZE SELECT ...` in front of a slow query is the everyday, first, concrete step toward diagnosing it — far more useful than trying random changes and re-timing the query by hand.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday habit**: whenever a query is slow, run `EXPLAIN ANALYZE` on it before making any change. Look for two specific, easy-to-recognize signals: a large gap between the estimated and actual row counts (a sign the database's statistics are stale and need an `ANALYZE` run), and a sequential scan on a large table where you expected an index to be used (a sign either the index doesn't exist, or something in the query — like wrapping the column in a function — is preventing the planner from using it).
+
+**A working default**: don't assume adding an index will fix a slow query without checking the plan first — the plan tells you which specific operation is actually consuming the time, which might be a join strategy or a row-count mismatch that a new index wouldn't touch at all.
 
 ## Mental Model
 

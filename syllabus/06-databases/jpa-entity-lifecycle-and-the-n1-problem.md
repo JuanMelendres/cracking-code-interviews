@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-601/T-602
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../17-architecture/clean-hexagonal-architecture.md
 related:
@@ -41,30 +43,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -80,6 +84,16 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 N+1 is one of this project's own blueprint-named top-25 topics by interview weight, and for good reason: "your endpoint fires 400 queries, fix it without breaking lazy loading elsewhere" is a single question that simultaneously tests whether a candidate understands the persistence context, fetch strategies, and the trade-offs between four or five genuinely different fixes — not just whether they've heard the term "N+1" before. The most common wrong answer (`switch everything to EAGER`) is wrong in an instructive way: it doesn't eliminate the extra queries, it just moves them earlier and applies them unconditionally to every query touching that entity, whether the association is needed or not. A candidate who can explain *why* that's wrong, not just that it is, is demonstrating real operational depth with an ORM most Java backend teams depend on daily.
+
+## Level 1 — Foundation
+
+**JPA/Hibernate automatically maps your Java objects to database rows**, so you write `user.setName("Alice")` and Hibernate translates that into the right SQL for you — no hand-written `UPDATE` statements for everyday changes. The **persistence context** is Hibernate's memory of every object it's currently tracking during one unit of work (typically one transaction): call `entityManager.find(User.class, 1L)` twice within that same unit of work, and you get back the exact same object both times, with only one real database query issued.
+
+## Level 2 — Working Knowledge
+
+**The N+1 problem, in plain terms**: fetching a list of N items, then looping over that list and separately fetching each item's related data one at a time, produces `1 + N` total database round trips instead of the 1 or 2 the same data actually needs. `for (Order o : orders) { o.getCustomer().getName(); }` — if `orders` has 100 entries and `customer` is lazily loaded, this innocent-looking loop can fire 100 extra queries.
+
+**The practical, everyday fix**: when you notice a query count scaling with your result-set size, don't reflexively switch the relevant association to `EAGER` — that just moves the extra queries earlier and applies them to *every* query touching that entity, needed or not. Instead, use a `JOIN FETCH` in your query (or a batch-fetch setting) for the specific access pattern you actually have, fetching the related data in one extra query (or the same query) instead of one query per row.
 
 ## Mental Model
 

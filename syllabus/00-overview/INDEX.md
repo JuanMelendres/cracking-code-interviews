@@ -29,7 +29,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 | 03 | [Data Structures & Algorithms](../03-data-structures-algorithms/INDEX.md) | 17/17 planned topics written — domain complete (Phase 5, 2026-09-03) |
 | 04 | [Software Design](../04-software-design/INDEX.md) | 1/1 chapter relocated (Phase 2, 2026-09-03); **L1/L2 retrofit complete, 1/1** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 05 | [Spring](../05-spring/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 9/9** — fully L1–L4 (Phase 5, 2026-09-04) |
-| 06 | [Databases](../06-databases/INDEX.md) | 14/14 chapters relocated (Phase 3, 2026-09-03) |
+| 06 | [Databases](../06-databases/INDEX.md) | 14/14 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 14/14** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 07 | [API Design](../07-api-design/INDEX.md) | 2/2 chapters relocated (Phase 2, 2026-09-03) |
 | 08 | [Testing](../08-testing/INDEX.md) | 7/7 chapters relocated (Phase 3, 2026-09-03) |
 | 09 | [Messaging & Event-Driven Systems](../09-messaging-event-driven/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) |

@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-614
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
@@ -37,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Partitioning and sharding questions test whether a candidate treats data-distribution decisions as permanent architectural commitments or as a tunable knob. The topic is Staff-tier because the cost of a wrong shard key is not discovered until real data volume makes correction a multi-week migration project — the same category of decision as [Kafka's partition-key choice](../09-messaging-event-driven/producer-semantics-and-partition-keys.md), one level up the stack.
+
+## Level 1 — Foundation
+
+**When one table (or one database) gets too big for a single machine to handle well, you can split it into several smaller pieces**, each holding part of the data, based on some chosen column (like customer ID or date range). **Partitioning** splits data within one database; **sharding** spreads it across separate database instances entirely.
+
+Think of it like splitting one enormous filing cabinet into several smaller ones, each holding a specific range of files (say, by year) — finding a file from a known year becomes faster (you only open one cabinet), but finding files across all years now means checking every cabinet.
+
+## Level 2 — Working Knowledge
+
+**The single most important, practical thing to know before choosing a partition or shard key**: this choice is expensive and difficult to change later, since changing it means physically moving large amounts of data around, not just adjusting a setting. Treat it as a significant, largely one-way architectural decision, not a quick config tweak.
+
+**A practical, everyday way to evaluate a proposed key**: identify which of your actual, real queries filter by that key (those get faster — they can skip straight to the relevant partition) versus which don't (those get slower, or need to check every partition to find an answer). If your most frequent, most important queries don't naturally filter by the key you're considering, that's a strong signal to reconsider before committing to it.
 
 ## Mental Model
 

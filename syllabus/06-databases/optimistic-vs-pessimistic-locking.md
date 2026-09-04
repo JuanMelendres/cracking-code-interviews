@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-604
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - locks-deadlocks-and-lock-escalation.md
   - jpa-entity-lifecycle-and-the-n1-problem.md
@@ -44,33 +46,35 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Concurrency Implications](#concurrency-implications)
-15. [Decision Framework](#decision-framework)
-16. [Comparisons](#comparisons)
-17. [Common Mistakes](#common-mistakes)
-18. [Anti-Patterns](#anti-patterns)
-19. [Best Practices](#best-practices)
-20. [Interview Answer Framework](#interview-answer-framework)
-21. [Interview Questions](#interview-questions)
-22. [Summary](#summary)
-23. [Key Takeaways](#key-takeaways)
-24. [Cheat Sheet](#cheat-sheet)
-25. [Flashcards](#flashcards)
-26. [Practice Exercises](#practice-exercises)
-27. [Solutions](#solutions)
-28. [Additional Reading](#additional-reading)
-29. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Concurrency Implications](#concurrency-implications)
+17. [Decision Framework](#decision-framework)
+18. [Comparisons](#comparisons)
+19. [Common Mistakes](#common-mistakes)
+20. [Anti-Patterns](#anti-patterns)
+21. [Best Practices](#best-practices)
+22. [Interview Answer Framework](#interview-answer-framework)
+23. [Interview Questions](#interview-questions)
+24. [Summary](#summary)
+25. [Key Takeaways](#key-takeaways)
+26. [Cheat Sheet](#cheat-sheet)
+27. [Flashcards](#flashcards)
+28. [Practice Exercises](#practice-exercises)
+29. [Solutions](#solutions)
+30. [Additional Reading](#additional-reading)
+31. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -97,6 +101,16 @@ when two concurrent requests genuinely collide. The register's own named follow-
 "two users edit the same record, walk both strategies" — specifically rewards a
 candidate who can narrate the mechanism (not commit-time exception vs. read-time
 block, but nothing) rather than just naming the annotation.
+
+## Level 1 — Foundation
+
+**When two people update the same database row at the same time with nothing protecting them, one update can silently overwrite the other** — the "lost update" problem. Optimistic and pessimistic locking are two different ways of preventing this: **optimistic locking** lets both people proceed and only catches the conflict at the moment of saving (using a version number that changes on every update); **pessimistic locking** blocks the second person from even starting until the first one is completely done.
+
+## Level 2 — Working Knowledge
+
+**A practical, everyday default**: reach for optimistic locking (a `@Version` field on your entity) as the default choice for most web applications — it doesn't block anyone, and real conflicts are relatively rare for most everyday data. Reach for pessimistic locking (`SELECT ... FOR UPDATE`) specifically for genuinely high-contention, must-not-fail operations — reserving the last ticket for an event, transferring money between two accounts — where a conflict happening at all is unacceptable, not just rare.
+
+**The one rule that matters if you use optimistic locking**: always be ready to actually catch the resulting exception (`OptimisticLockException`) and retry the operation — don't let it crash the request. Optimistic locking's entire value depends on the calling code actually handling the conflict it detects, not just treating detection as the end of the story.
 
 ## Mental Model
 

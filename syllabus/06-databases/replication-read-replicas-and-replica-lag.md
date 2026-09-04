@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 32
+topic_id: T-615
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - isolation-levels-and-concurrency-anomalies.md
 related:
@@ -39,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Replication is Staff tier and Moderate frequency because it's the mechanism underneath nearly every "how would you scale reads" and "how would you handle a database failure" system design answer, yet most candidates describe it only at the level of "you add a read replica" without understanding that replication is fundamentally asynchronous by default — meaning a read from a replica can be wrong, not just slow. This chapter is where "add a read replica" gets tested against whether a candidate can reason precisely about staleness, consistency trade-offs, and failover mechanics.
+
+## Level 1 — Foundation
+
+**A "read replica" is a second copy of your database that continuously receives and applies the same changes as the main database** (the "primary"), so read-only queries can be sent there instead of loading up the main one. This copying isn't instant — there's always a small, real delay ("replica lag") between when something changes on the primary and when a replica reflects that same change.
+
+Reach for a read replica when you need to spread out read-heavy load (reports, dashboards, analytics queries) without overloading the primary database that's also handling writes.
+
+## Level 2 — Working Knowledge
+
+**A real, common gotcha worth knowing before routing reads to a replica**: if your application writes something and then immediately reads it back from a replica, it might not see its own just-written change yet, because of that lag — a genuine, common source of confusing "did my save even work?" bugs.
+
+**The practical, everyday fix**: for any operation that needs to read its own just-written data immediately (showing a user their own just-submitted form, for instance), read that specific piece of data from the primary database right after writing it, rather than routing that particular read to a replica. Reserve replicas for reads that can tolerate being slightly, briefly out of date — which describes the vast majority of everyday read traffic.
 
 ## Mental Model
 

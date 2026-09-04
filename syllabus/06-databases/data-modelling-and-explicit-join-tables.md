@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-605/T-608
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - ../17-architecture/ddd-tactical-design-aggregates.md
@@ -32,27 +34,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -68,6 +72,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests whether a candidate models data from the actual invariant the system needs, or defaults to whatever an ORM generates for free. `@ManyToMany` looks free right up until the relationship needs to carry its own fact — and the more dangerous version of that trap (a silently wrong historical total) produces no error at all, which is exactly why interviewers use it to separate candidates who've been burned by this in production from those who haven't.
+
+## Level 1 — Foundation
+
+**A many-to-many relationship needs a third table connecting the two others** — a student can take many courses, and a course can have many students, so neither `students` nor `courses` alone can represent that relationship; a connecting table (say, `enrollments`) linking a student ID and a course ID together does.
+
+The simplest version of that connecting table just holds the two foreign keys and nothing else — this is exactly what an unannotated JPA `@ManyToMany` generates automatically for you.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday rule**: the moment that relationship needs to remember something about itself — how many units were ordered, at what price, since when, in what status — a plain two-column connecting table has nowhere to put that information. At that point, turn it into its own real table (an "explicit join entity" with its own primary key and columns) instead of trying to force extra facts into a table that was only ever designed to say "these two things are linked."
+
+A concrete, easy-to-recognize trigger: if you ever catch yourself wanting to add a column to a `@ManyToMany` join table, that's the signal it needs to become its own full entity instead.
 
 ## Mental Model
 

@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-607
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - mvcc-vacuum-and-bloat.md
 related:
@@ -48,31 +50,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Performance Implications](#performance-implications)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Performance Implications](#performance-implications)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -100,6 +104,18 @@ reaches for "increase `maximumPoolSize`" as the default fix for pool exhaustion,
 without asking what the database can actually execute concurrently, reveals they've
 never measured the alternative. This chapter's own practice code measures it
 directly, and the real result is more dramatic than most candidates expect.
+
+## Level 1 — Foundation
+
+**Opening a new database connection is slow** — real setup work happens every time (a network handshake, authentication, session setup) — so instead of opening a brand-new connection for every single request, your application keeps a small set of already-open connections ready to reuse. That reusable set is the **connection pool**.
+
+An everyday analogy: keeping a few phone lines already connected to a call center, ready to hand to the next caller, instead of dialing a fresh long-distance call for every single person who calls in.
+
+## Level 2 — Working Knowledge
+
+**The single most important practical rule, stated plainly**: don't assume "bigger pool = faster." A pool sized far beyond what your actual database can execute concurrently doesn't sit around harmlessly — it creates real contention for the database's own limited resources, and this chapter's own measurements show that can make things measurably *slower*, not just fail to help.
+
+**A practical, everyday diagnostic**: if requests start failing or timing out while waiting for a connection, that's a specific, recognizable symptom (pool exhaustion) — usually a real, typed exception, not a silent hang. The fix is almost always finding and fixing whatever is holding connections too long (a slow query, a forgotten `close()`, a connection borrowed and never returned), not simply increasing the pool size, which just delays the same underlying problem.
 
 ## Mental Model
 

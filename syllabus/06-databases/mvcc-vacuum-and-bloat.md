@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-612
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - isolation-levels-and-concurrency-anomalies.md
 related:
@@ -50,32 +52,34 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Decision Framework](#decision-framework)
-15. [Comparisons](#comparisons)
-16. [Common Mistakes](#common-mistakes)
-17. [Anti-Patterns](#anti-patterns)
-18. [Best Practices](#best-practices)
-19. [Interview Answer Framework](#interview-answer-framework)
-20. [Interview Questions](#interview-questions)
-21. [Summary](#summary)
-22. [Key Takeaways](#key-takeaways)
-23. [Cheat Sheet](#cheat-sheet)
-24. [Flashcards](#flashcards)
-25. [Practice Exercises](#practice-exercises)
-26. [Solutions](#solutions)
-27. [Additional Reading](#additional-reading)
-28. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -105,6 +109,18 @@ real load from those who've only used it. This chapter's connective link to
 is itself a strong interview signal — being able to explain *why* a long transaction's
 isolation-level choice has a resource-retention consequence, not just a correctness
 one, is exactly the kind of cross-topic reasoning Staff interviewers listen for.
+
+## Level 1 — Foundation
+
+**When you `UPDATE` or `DELETE` a row in PostgreSQL, it doesn't actually erase the old version right away** — it marks the old version as no-longer-current and keeps it around briefly, so other transactions that started earlier can still see a consistent snapshot of the data as it looked when they began. **`VACUUM`** is PostgreSQL's background housekeeping process that comes back afterward and actually reclaims the space those old, no-longer-needed row versions were using.
+
+This is invisible day-to-day machinery for most application code — you don't call `VACUUM` yourself in normal operation (PostgreSQL runs it automatically) — but understanding it exists explains a specific, real class of otherwise-confusing symptoms (Section 12 below).
+
+## Level 2 — Working Knowledge
+
+**A practical, everyday warning sign worth recognizing**: if a table's disk usage keeps growing even though the actual amount of live data in it isn't growing, that's "bloat" — old, dead row versions piling up faster than `VACUUM` can clean them.
+
+**A real, common, non-obvious cause worth checking for**: a long-running transaction *elsewhere in the system* — even one that never touches the bloating table at all — can block `VACUUM` from reclaiming dead tuples anywhere in the database, because PostgreSQL must keep old row versions around as long as any transaction might still need to see them. If you notice unexpected bloat, checking for a forgotten long-running or idle-in-transaction session is a practical, concrete first step.
 
 ## Mental Model
 

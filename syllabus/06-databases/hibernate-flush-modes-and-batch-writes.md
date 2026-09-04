@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
+topic_id: T-606
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - jpa-entity-lifecycle-and-the-n1-problem.md
 related:
@@ -36,27 +38,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -71,6 +75,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Bulk insert performance is one of the most common real production surprises with Hibernate: a team configures `hibernate.jdbc.batch_size`, sees no improvement, and either concludes batching "doesn't work" or spends hours debugging a setting that was never going to apply to their entity's identifier strategy in the first place. Interviewers use this topic to separate a candidate who has configured Hibernate from one who has actually diagnosed a batching problem — the specific, precise answer ("it's IDENTITY generation, not a bug") is a strong, concrete signal that the candidate has hit and understood this exact gotcha, not just read about ORMs in the abstract.
+
+## Level 1 — Foundation
+
+**"Flushing" is the moment Hibernate actually sends your pending changes to the database as real SQL.** Calling `user.setName("Alice")` doesn't necessarily hit the database instantly — Hibernate tracks that change in memory and sends it at specific, controllable moments (usually right before running a query that might need to see it, or when the transaction commits).
+
+This matters practically because it means "I called a setter" and "the database has been updated" are two different events in time, not the same instant — usually invisible to you, but occasionally the source of confusing behavior if you're not aware of it.
+
+## Level 2 — Working Knowledge
+
+**The everyday, practical pattern for a large bulk insert**: periodically call `flush()` (send pending changes to the database) followed by `clear()` (detach those entities from memory) at fixed intervals during the loop. Without this, every single entity you persist stays tracked in memory for the entire operation, and a sufficiently large batch can genuinely run out of memory.
+
+**A real, common gotcha worth checking if batch inserts seem slower than expected**: an auto-generated `IDENTITY` primary key strategy silently disables Hibernate's JDBC batch-insert optimization entirely, even with `hibernate.jdbc.batch_size` correctly configured — because Hibernate can't know an `IDENTITY`-generated row's key until that specific insert has already run. If you need genuine batch-insert performance, use `SEQUENCE` (or `TABLE`) key generation instead.
 
 ## Mental Model
 

@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-609
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - query-planning-and-explain-analyze.md
@@ -34,36 +36,38 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Java Examples](#java-examples)
-11. [Production Scenarios](#production-scenarios)
-12. [Failure Modes and Debugging](#failure-modes-and-debugging)
-13. [Trade-offs](#trade-offs)
-14. [Performance Implications](#performance-implications)
-15. [Memory Implications](#memory-implications)
-16. [Concurrency Implications](#concurrency-implications)
-17. [Security Implications](#security-implications)
-18. [Decision Framework](#decision-framework)
-19. [Comparisons](#comparisons)
-20. [Common Mistakes](#common-mistakes)
-21. [Anti-Patterns](#anti-patterns)
-22. [Best Practices](#best-practices)
-23. [Interview Answer Framework](#interview-answer-framework)
-24. [Interview Questions](#interview-questions)
-25. [Summary](#summary)
-26. [Key Takeaways](#key-takeaways)
-27. [Cheat Sheet](#cheat-sheet)
-28. [Flashcards](#flashcards)
-29. [Practice Exercises](#practice-exercises)
-30. [Solutions](#solutions)
-31. [Additional Reading](#additional-reading)
-32. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Java Examples](#java-examples)
+13. [Production Scenarios](#production-scenarios)
+14. [Failure Modes and Debugging](#failure-modes-and-debugging)
+15. [Trade-offs](#trade-offs)
+16. [Performance Implications](#performance-implications)
+17. [Memory Implications](#memory-implications)
+18. [Concurrency Implications](#concurrency-implications)
+19. [Security Implications](#security-implications)
+20. [Decision Framework](#decision-framework)
+21. [Comparisons](#comparisons)
+22. [Common Mistakes](#common-mistakes)
+23. [Anti-Patterns](#anti-patterns)
+24. [Best Practices](#best-practices)
+25. [Interview Answer Framework](#interview-answer-framework)
+26. [Interview Questions](#interview-questions)
+27. [Summary](#summary)
+28. [Key Takeaways](#key-takeaways)
+29. [Cheat Sheet](#cheat-sheet)
+30. [Flashcards](#flashcards)
+31. [Practice Exercises](#practice-exercises)
+32. [Solutions](#solutions)
+33. [Additional Reading](#additional-reading)
+34. [Official References](#official-references)
 
 ---
 
@@ -83,6 +87,18 @@ By the end of this chapter you can:
 Indexing is where "I have five years of backend experience" gets tested against a live artifact instead of a definition. An interviewer can hand you a slow query and a real plan, and your answer is either right or it isn't — few Java/backend topics discriminate this cleanly between a candidate who has *read about* indexes and one who has *operated* them. It is also the single most common production performance lever a backend engineer pulls, which makes it Near-Certain in both dedicated database rounds and as unscripted follow-up pressure inside system design rounds (T-801, T-813).
 
 Phase 1 of this project's own knowledge-base audit found 15 generic SQL rows and **zero PostgreSQL-specific content** against a PostgreSQL-targeted brief — this chapter exists specifically to close that gap, and to correct the "clustered index" terminology error that a real interview surfaced as direct feedback (see [§ Historical Context](#historical-context)).
+
+## Level 1 — Foundation
+
+**A database index works like the index at the back of a book** — instead of reading every page to find a topic, you look it up in the sorted index and jump straight to the right page. An index is a sorted, separate copy of a narrow slice of your table (specific columns), kept automatically in sync with every write, purpose-built to answer one shape of lookup quickly.
+
+Reach for an index on any column you frequently filter by (`WHERE status = 'active'`) or sort by (`ORDER BY created_at`) — especially foreign key columns, which are joined against constantly but not automatically indexed by default in PostgreSQL.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday trade-off worth knowing before adding indexes freely**: every index also has a real, ongoing cost on every `INSERT`, `UPDATE`, and `DELETE` that touches an indexed column, since the index itself must be updated to stay in sync. Indexing every column "just in case" is not a free safety net — it's a genuine, ongoing write-performance cost, so index the columns your actual queries need, not every column that theoretically might someday be useful.
+
+**A practical everyday habit**: if a query filtering or sorting on a column you expect to be indexed still seems slow, check whether an index actually exists on that column (and, for multi-column filters, whether a composite index's column order actually matches how you're querying it) before assuming something else is wrong.
 
 ## Mental Model
 

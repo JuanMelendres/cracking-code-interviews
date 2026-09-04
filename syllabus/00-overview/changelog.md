@@ -286,3 +286,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - 13 further migrated domains (`06`–`17`, `20`, `21`) — 122 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 06-databases domain complete (14/14)
+
+### Added
+
+- All 14 `06-databases` chapters retrofitted: `jpa-entity-lifecycle-and-the-n1-problem.md` (T-601/T-602), `hibernate-second-level-and-query-cache.md` (T-603), `optimistic-vs-pessimistic-locking.md` (T-604), `data-modelling-and-explicit-join-tables.md` (T-605/T-608), `hibernate-flush-modes-and-batch-writes.md` (T-606), `connection-pooling-and-sizing.md` (T-607), `index-structures-btree-composite-covering.md` (T-609), `query-planning-and-explain-analyze.md` (T-610), `isolation-levels-and-concurrency-anomalies.md` (T-611), `mvcc-vacuum-and-bloat.md` (T-612), `locks-deadlocks-and-lock-escalation.md` (T-613), `table-partitioning-and-sharding-strategies.md` (T-614), `replication-read-replicas-and-replica-lag.md` (T-615), `zero-downtime-schema-migration.md` (T-616) — same additive method as every prior batch, all 14 gained both `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a book-index analogy for B+Tree indexes; a "diary for one conversation vs. a shared notice board" framing distinguishing Hibernate's L1 from L2 cache; a narrow-doorway standoff for deadlocks; a filing-cabinet-split analogy for partitioning/sharding.
+- Non-standard TOC lengths were handled individually against each chapter's real structure — this domain's chapters range from a 23-item base TOC up to 34 items (several chapters carry Historical Context, Execution Flow, and Performance/Memory/Concurrency/Security Implications sections beyond the base template).
+- Verified all 14 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain (checked programmatically across all 14 files).
+- Updated `syllabus/06-databases/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`06-databases` is now fully L1–L4 (14/14)** — the fourth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, and `05-spring`.
+
+### Not yet done
+
+- 12 further migrated domains (`07`–`17`, `20`, `21`) — 108 chapters — still await the same retrofit.
+- Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

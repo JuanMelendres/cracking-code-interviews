@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-613
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - isolation-levels-and-concurrency-anomalies.md
 related:
@@ -40,33 +42,35 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Performance Implications](#performance-implications)
-13. [Concurrency Implications](#concurrency-implications)
-14. [Security Implications](#security-implications)
-15. [Decision Framework](#decision-framework)
-16. [Comparisons](#comparisons)
-17. [Common Mistakes](#common-mistakes)
-18. [Anti-Patterns](#anti-patterns)
-19. [Best Practices](#best-practices)
-20. [Interview Answer Framework](#interview-answer-framework)
-21. [Interview Questions](#interview-questions)
-22. [Summary](#summary)
-23. [Key Takeaways](#key-takeaways)
-24. [Cheat Sheet](#cheat-sheet)
-25. [Flashcards](#flashcards)
-26. [Practice Exercises](#practice-exercises)
-27. [Solutions](#solutions)
-28. [Additional Reading](#additional-reading)
-29. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Performance Implications](#performance-implications)
+15. [Concurrency Implications](#concurrency-implications)
+16. [Security Implications](#security-implications)
+17. [Decision Framework](#decision-framework)
+18. [Comparisons](#comparisons)
+19. [Common Mistakes](#common-mistakes)
+20. [Anti-Patterns](#anti-patterns)
+21. [Best Practices](#best-practices)
+22. [Interview Answer Framework](#interview-answer-framework)
+23. [Interview Questions](#interview-questions)
+24. [Summary](#summary)
+25. [Key Takeaways](#key-takeaways)
+26. [Cheat Sheet](#cheat-sheet)
+27. [Flashcards](#flashcards)
+28. [Practice Exercises](#practice-exercises)
+29. [Solutions](#solutions)
+30. [Additional Reading](#additional-reading)
+31. [Official References](#official-references)
 
 ---
 
@@ -83,6 +87,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Two things collide in this topic that make it a real Senior/Staff differentiator. First, "explain what a deadlock is" is answerable at a Junior level, but "walk me through exactly how the database detects one, and what determines which transaction gets killed" requires having actually looked at a wait-for graph, not just having read the word "deadlock" in a textbook. Second, and more decisively: many candidates carry an assumption from MySQL/InnoDB or SQL Server experience — that row locks escalate to table locks under enough contention — into a PostgreSQL conversation, and state it as fact. PostgreSQL does not do this, for a real architectural reason, and getting this specific, checkable claim wrong is a clean, low-ambiguity signal that the candidate is pattern-matching from a different database rather than reasoning about the one actually being discussed.
+
+## Level 1 — Foundation
+
+**A lock is the database's way of saying "nobody else can touch this row (or table) until I'm done with it."** A **deadlock** happens when two transactions are each waiting on something the other one is holding — neither can ever finish on its own, so the database has to forcibly cancel one of them to break the standoff.
+
+An everyday analogy: two people trying to pass through a narrow doorway, each waiting politely for the other to step back first — if neither ever does, both are stuck forever, unless something (or someone) forces one of them to back up.
+
+## Level 2 — Working Knowledge
+
+**The single most practical, everyday habit that prevents the vast majority of application-caused deadlocks**: always access or lock multiple related rows (or tables) in the same, consistent order everywhere in your code. If every part of your application that needs to touch both Account A and Account B always locks A first, then B — never the reverse — a deadlock between those two operations becomes structurally impossible, regardless of timing.
+
+**A practical, everyday recognition point**: if you see a real `ERROR: deadlock detected` in your logs, that's PostgreSQL's own detector actually catching a real circular wait and resolving it (by aborting one of the transactions) — not a sign something is broken. The genuinely useful next step is checking your own code for the inconsistent lock-ordering pattern above, since that's the fix, not just retrying the failed transaction and hoping it doesn't happen again.
 
 ## Mental Model
 
