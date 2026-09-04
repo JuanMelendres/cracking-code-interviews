@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/contract-testing-for-services.md
+topic_id: T-1105
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -32,27 +38,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -63,6 +71,20 @@ By the end of this chapter you can explain why contract testing sits between uni
 ## Why This Matters in Interviews
 
 Contract testing questions probe whether a candidate has actually worked in a microservices environment where independent teams deploy independently, versus one where "integration testing" always meant a single, monolithic end-to-end suite. The distinctive value contract testing provides — catching a breaking API change *before* deployment, without needing every consumer's full application running together — is easy to state abstractly but much harder to explain concretely, and interviewers use this topic specifically to check whether a candidate can describe *what* a contract test actually verifies and *why* it catches what a unit test structurally cannot.
+
+## Level 1 — Foundation
+
+Imagine two coworkers on different floors who communicate only via a shared document. Coworker A only ever reads three specific cells from that document; Coworker B (who maintains it) has no idea which cells anyone actually reads and worries that changing anything might break someone downstream. Contract testing is Coworker A writing down, explicitly, "I only ever read cells B2, C4, and D1" — so Coworker B can freely change every other cell in the document without asking anyone, and gets an immediate, specific warning ("you changed C4, which I depend on!") the moment something A actually needs changes.
+
+That written-down list of "exactly what I depend on" is the **contract**. The fact that coworker A (the **consumer**) writes it, not coworker B (the **provider**), matters: A is the only one who actually knows what A uses. If B tried to write the contract instead, B would probably just copy the entire document as "things someone might use," which defeats the purpose of the exercise.
+
+## Level 2 — Working Knowledge
+
+At this level you should recognize contract testing as sitting in a specific gap: it's not a substitute for testing your own service's business logic (that's what unit tests are for), and it's not a substitute for occasionally checking that a full real user flow across several services genuinely works end-to-end. It exists specifically to answer one question fast, cheaply, and without needing every other team's service running: "if I make this exact change, will it break a real consumer?"
+
+You should also be able to recognize a stale contract when you see one. If a contract test fails, don't automatically assume the provider broke something — first check whether the consumer actually still uses the field the contract complains about. If a prior refactor removed that usage but nobody updated the contract, the contract itself is the thing that's wrong, not the provider's change; the fix there is updating the contract, not blocking a safe deployment.
+
+Practically, if you're a provider team about to remove a field you believe nobody uses, running your consumers' contract tests against your new code is a fast, concrete way to confirm that belief instead of guessing — a passing set of contract tests is a real, checkable signal, not a hope.
 
 ## Mental Model
 

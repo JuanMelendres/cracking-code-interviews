@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/performance-and-load-testing-methodology.md
+topic_id: T-1106
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -34,27 +40,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -65,6 +73,18 @@ By the end of this chapter you can distinguish load, stress, and soak testing as
 ## Why This Matters in Interviews
 
 Performance-testing questions at Senior/Staff level rarely ask "what is a load test" — they ask where it fits in a testing strategy: is it a release gate or an occasional exercise, who owns it, what triggers re-running it, and how its results should change engineering decisions. [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) establishes that different test types answer different questions at different costs; this chapter applies that same discipline specifically to performance testing, where the three sub-types (load, stress, soak) are easy to conflate and a candidate who treats them as interchangeable — or who can't say when each belongs in a release process — reveals a shallow, checklist-level understanding of the topic.
+
+## Level 1 — Foundation
+
+Think of three different ways to test a bridge before opening it to traffic. **Load testing** is driving the normal expected number of cars across it and confirming it holds up fine — a routine check before every opening. **Stress testing** is deliberately sending far more traffic than expected to find out exactly how much the bridge can take before it actually fails, and how it fails (does it sag gradually, or snap?) — something you'd do once, deliberately, not every single day. **Soak testing** is leaving a moderate, steady stream of traffic on the bridge for weeks, to catch a problem that only shows up from sustained wear over time — metal fatigue that a single day of traffic, however heavy, would never reveal.
+
+The key thing all three share: they're testing under realistic conditions, not just checking "does it technically work at all." A load test that only ever sends identical, simple traffic (all cars, no trucks, same route every time) can pass cleanly while missing exactly the mixed, uneven traffic pattern that would cause real problems — the traffic's *shape*, not just how many cars, matters.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to look at a proposed change and correctly decide which of the three testing types it actually needs. A routine feature release touching a latency-sensitive endpoint gets a load test, run as a normal part of releasing — cheap enough to do every time. A change expected to significantly increase traffic (a big marketing push, a new integration) deserves a stress test beforehand, to know the actual breaking point rather than hoping capacity is sufficient. A change introducing a new cache, connection pool, or other long-lived in-memory state specifically needs a soak test — a load test's typical short duration simply cannot reveal a slow memory leak or a cache that never gets evicted.
+
+You should also recognize the practical trap this topic exists to warn about: performance testing, unlike a broken unit test, doesn't fail loudly and block anything by default. If nobody owns it and nothing requires it, it quietly stops happening, and nobody notices until a real regression ships. When you're evaluating a team's release process, "who runs the load test, and what makes them run it" is a fair, practical question to ask — an answer like "whoever remembers" is itself a finding worth flagging.
 
 ## Mental Model
 

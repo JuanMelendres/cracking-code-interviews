@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/junit5-architecture-and-advanced-features.md
+topic_id: T-1102
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -31,27 +37,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -62,6 +70,22 @@ By the end of this chapter you can explain JUnit 5's three-module (Platform/Jupi
 ## Why This Matters in Interviews
 
 JUnit 5 questions at Foundational/Core tier can feel like trivia ("what's the annotation for X"), but Senior/Staff interviewers use this topic to check whether a candidate understands JUnit 5's *extension model* as an architectural decision, not just a feature list — because that understanding is what lets an engineer solve a novel testing problem (a custom setup/teardown need, a database-per-test-class strategy, a domain-specific assertion) without reaching for a workaround or a heavyweight third-party library the platform's own extension model already supports directly.
+
+## Level 1 — Foundation
+
+Think of JUnit 5 as a house with three rooms built on one shared foundation. The **Platform** is the foundation itself — plumbing and electrical wiring that doesn't care what furniture goes in each room. **Jupiter** is the modern living room, furnished with today's conveniences (`@Test`, `@ParameterizedTest`, and friends). **Vintage** is a room kept exactly as it was, furnished with your grandparents' old furniture (JUnit 3/4 tests) — it still sits on the same foundation, so you don't have to move out and rebuild everything at once just to add a new room.
+
+The two most common everyday tools you'll reach for are `@Test` (one test, one fixed scenario) and `@ParameterizedTest` (the same test logic run automatically against a list of different inputs you write out, like `1, true`, `2, false`, `3, true`) — instead of copy-pasting the same test method five times with slightly different numbers.
+
+An **extension** is like a helper you can call in before and after every test to handle a repetitive chore — timing how long each test took, or spinning up a shared resource — without cluttering every single test method with that setup code. And a **tag** is just a sticky label (`@Tag("slow")`) you can put on a test so you can later say "run only the tests without this label" — useful for keeping the everyday test run fast while still having a way to run everything, including the slow ones, before a release.
+
+## Level 2 — Working Knowledge
+
+At this level you should be comfortable choosing between `@ParameterizedTest` and `@TestFactory` without hesitation: if you already know every input you want to test (a short, fixed list you can write directly into the test), reach for `@ParameterizedTest` — it's simpler and its failure output already tells you which specific input failed. Reach for `@TestFactory` only when the actual list of cases has to be computed while the test is running (read from a file, generated combinatorially) — using it for a fixed, known list is unnecessary complexity.
+
+You should also be able to read and reason about test tags in a real CI setup: if a build pipeline is configured to run only tests tagged `fast` on every commit and the full suite (including `slow`-tagged tests) only nightly, you should recognize that a typo in a `@Tag` value silently excludes or includes a test with no error message at all — worth checking first whenever a test that should have run didn't, or one that should have been skipped wasn't.
+
+Practically, when you find yourself copy-pasting the same `@BeforeEach` setup logic into several unrelated test classes, that's the signal to write a small custom extension and apply it via `@ExtendWith` instead — this is the everyday case for using JUnit 5's extension model rather than an inherited base test class, which tends to get harder to reason about as more classes share it.
 
 ## Mental Model
 

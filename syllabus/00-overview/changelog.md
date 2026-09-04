@@ -313,4 +313,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 11 further migrated domains (`08`–`17`, `20`, `21`) — 106 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 08-testing domain complete (7/7)
+
+### Added
+
+- All 7 `08-testing` chapters retrofitted: `test-strategy-and-test-doubles.md` (T-1101/T-1103), `junit5-architecture-and-advanced-features.md` (T-1102), `integration-testing-against-real-dependencies.md` (T-1104), `contract-testing-for-services.md` (T-1105), `performance-and-load-testing-methodology.md` (T-1106), `mutation-and-property-based-testing.md` (T-1107), `writing-tests-live-in-an-interview.md` (T-1108) — same additive method as every prior batch, all 7 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a fire-drill analogy for test doubles and the testing pyramid; a three-room-house-on-one-foundation analogy for JUnit 5's Platform/Jupiter/Vintage split; a "practicing with a fellow learner vs. a native speaker" analogy for mocked vs. real-dependency integration testing; a shared-document analogy for consumer-driven contract ownership; a bridge-load-test analogy distinguishing load/stress/soak testing; a secretly-altered-exam analogy for mutation testing; a furniture-instruction-booklet analogy for live red-green-refactor TDD.
+- `mutation-and-property-based-testing.md` (Experimental tier, Rare interview frequency) received deliberately scoped, narrower Level 1/Level 2 content matching its own stated rarity, consistent with how prior Expert-tier chapters (e.g., VarHandles/Unsafe in `02-java/concurrency`) were handled.
+- Verified all 7 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/08-testing/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`08-testing` is now fully L1–L4 (7/7)** — the sixth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, and `07-api-design`.
+
+### Not yet done
+
+- 10 further migrated domains (`09`–`17`, `20`, `21`) — 99 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/writing-tests-live-in-an-interview.md
+topic_id: T-1108
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -31,27 +37,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -62,6 +70,20 @@ By the end of this chapter you can run a genuine red-green-refactor cycle live, 
 ## Why This Matters in Interviews
 
 "Write a test for this" or "implement this test-first" is one of the most common live-coding interview formats at Senior/Staff level, precisely because it tests something a take-home assignment cannot: whether a candidate's testing discipline is a genuine habit or something they only apply when there's time to be careful. Under interview time pressure, candidates who don't practice this specific skill tend to either skip tests entirely once they feel behind schedule, or write a single, weak test at the end as an afterthought — both read as a testing habit that evaporates under pressure, which is exactly the signal a Senior/Staff interviewer is trying to surface, since production incidents also happen under time pressure.
+
+## Level 1 — Foundation
+
+Think of assembling furniture with an instruction booklet that has you check each step before moving to the next ("does the shelf sit flush before you screw it in?") rather than assembling the whole thing silently and only checking at the very end whether it stands up. Test-first (writing a test before the code that makes it pass) works the same way: write one tiny check ("an empty input should return an empty result"), watch it fail because you haven't built anything yet, write just enough code to satisfy that one check, watch it pass, then add the next check. This "red, green" rhythm (test fails, then test passes) repeats in small steps instead of one big leap.
+
+In a live interview specifically, the reason this matters isn't really about testing best practice — it's about giving the interviewer something to actually watch. If you silently write a full solution and add a test at the end, the interviewer only sees the destination, not how you think. Narrating each small step ("I'll start with the empty-input case since it's the simplest thing that could exist") is what lets them evaluate your reasoning, not just your typing speed.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to run this rhythm smoothly under time pressure without it feeling artificial: pick the smallest, simplest case first (not the hardest one), say out loud why you picked it, write a deliberately minimal implementation (even something as bare as `return "";` to pass just the first test), and say explicitly that it's intentionally incomplete rather than letting it look like a rushed or careless answer.
+
+You should also practice the specific skill of reading a test failure message before reacting to it. A common mistake under pressure is assuming, the instant a test fails, that either the test or the code must be "obviously" wrong and rewriting one of them on a guess. The stronger habit is reading the actual assertion message first ("expected empty string but got null") and using it to decide, calmly, which side is actually at fault.
+
+Practically, if you're ever running low on time mid-exercise, the working move is to say so explicitly — "I'm going to skip the refactor step and move straight to the next test case, given the time" — rather than silently rushing through remaining steps or silently dropping the test-first discipline altogether. That one sentence of narration is itself part of what's being evaluated.
 
 ## Mental Model
 

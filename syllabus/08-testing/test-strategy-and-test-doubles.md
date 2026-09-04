@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/test-strategy-and-test-doubles.md
+topic_id: T-1101/T-1103
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -33,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -69,6 +77,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Test strategy questions test whether a candidate treats testing as a deliberate cost/coverage design decision or as something bolted on reactively. The topic is Core-tier because nearly every candidate has written tests, but far fewer can articulate precisely what a mock proves beyond "the code ran," or defend why an inverted pyramid is worse than no test suite at all.
+
+## Level 1 — Foundation
+
+Think of a fire drill. You don't need an actual fire to check whether the evacuation plan works — you press the alarm's test button and watch whether people move to the right exits in the right order. A **test double** works the same way: instead of a real, expensive, hard-to-control dependency (a payment gateway, a database), you use a stand-in that behaves predictably on command, so you can check your own logic without needing the real fire.
+
+There's a difference between a stand-in that just answers questions the same way every time (a **stub** — "if asked, always say the fire drill passed") and one that also lets you check *how* it was used (a **mock** — "did the fire marshal actually check every floor, in order, exactly once?"). A stub only tells you the final answer; a mock also tells you whether the right steps happened along the way — which matters a lot for something like a retry mechanism, where "it eventually worked" can look identical whether the retry logic is correct or secretly broken.
+
+The **testing pyramid** is just a statement about where to spend your limited testing time: lots of cheap, fast checks on small pieces (unit tests — like checking each fire extinguisher individually), fewer checks on how pieces work together (integration tests — like testing one floor's evacuation route), and only a handful of full, expensive dress rehearsals (end-to-end tests — evacuating the entire building for real). Flipping this upside down — mostly full building evacuations, almost no individual extinguisher checks — is the "ice-cream-cone" anti-pattern: slow, expensive, and it still misses small problems a cheap check would have caught instantly.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to look at a piece of code and decide, without much deliberation, whether it needs a test double or a real dependency. The working rule: mock anything slow, external, or unpredictable (a network call, a clock, a payment gateway) so your test stays fast and repeatable — but never mock the exact thing a test exists to check. A test for a database repository that mocks the database isn't really testing anything about the database; it's just testing that you configured the mock the way you expected.
+
+You should also be comfortable reading a coverage report critically. Seeing "94% covered" tells you which lines *ran* during testing — it says nothing about whether the assertions checking those lines were actually meaningful. A test that calls a method and only checks "it didn't throw an exception" can produce 100% coverage on a genuinely broken method. Treat coverage as a map of where nobody has looked yet, not as a trophy to maximize.
+
+Practically: when you're deciding what kind of test to write for a new piece of code, ask "is this pure logic with no outside calls?" (unit test, no mocks needed), "does it call something slow/unpredictable?" (unit test, mock that one dependency), or "is this code's entire job talking to a real system?" (that's an integration test's territory — see [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md)).
 
 ## Mental Model
 

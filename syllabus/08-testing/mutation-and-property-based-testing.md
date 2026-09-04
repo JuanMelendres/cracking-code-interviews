@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/mutation-and-property-based-testing.md
+topic_id: T-1107
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -32,27 +38,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -63,6 +71,20 @@ By the end of this chapter you can explain what mutation testing actually measur
 ## Why This Matters in Interviews
 
 Both techniques are Experimental/Rare-frequency topics in most interview loops, which is exactly why a candidate who brings them up thoughtfully — not as buzzwords, but with a precise understanding of what each one actually measures — stands out. The most common candidate failure on this topic isn't ignorance of the names; it's conflating the two techniques, or worse, describing "high test coverage" as evidence of test-suite quality without recognizing that coverage percentage (a topic covered in [Test Strategy](test-strategy-and-test-doubles.md)) measures *what code ran*, not *whether the tests would actually catch a bug* — which is precisely the gap mutation testing exists to measure directly.
+
+## Level 1 — Foundation
+
+Imagine grading a student's essay by only checking that they used exactly the vocabulary words you happened to teach that week — you'd miss a real spelling mistake in any word you didn't specifically think to check. **Property-based testing** is like handing the essay to hundreds of different, randomly-generated readers and asking each one "does this sentence still make grammatical sense?" — a general rule (a *property*) checked against far more cases than you personally would have thought to write by hand, catching mistakes you didn't anticipate.
+
+**Mutation testing** answers a different question entirely: not "is the code correct," but "would my tests actually notice if it weren't?" It's like a teacher secretly changing one correct answer in an already-graded exam to a wrong one, then checking whether the grading process still catches it. If it does, the grading process (your tests) is working. If the deliberately-wrong answer sails through ungraded, that's a real gap in the grading process itself — even though, in this analogy, no student was actually cheating.
+
+These two techniques are easy to mix up because both involve deliberately introducing something unusual — but property-based testing is looking for bugs *in the code*, and mutation testing is looking for bugs *in the tests*.
+
+## Level 2 — Working Knowledge
+
+This is an experimental-tier, rarely-asked-about topic — you're not expected to reach for these tools daily. What matters at this level is recognizing when a hand-picked set of example tests might be missing something because of the test-writer's own blind spot: if every example you wrote for a function happens to share some unstated assumption (like "the first argument is always the longer one"), a bug specific to the opposite case will sail through every one of your examples untouched. That's the practical signal for reaching for property-based testing — when you have a genuine invariant to state (round-trips, sorted output, "same length in and out") and suspect your examples are all cut from the same cloth.
+
+For mutation testing, the practical takeaway is simpler: a high coverage percentage on a file doesn't mean the tests would actually catch a real bug there — it only means the lines ran. If you're ever asked to justify why a well-covered module still shipped a bug, "the assertions weren't strong enough to actually catch it, even though the code executed" is the correct, precise answer — not a contradiction of the coverage number.
 
 ## Mental Model
 

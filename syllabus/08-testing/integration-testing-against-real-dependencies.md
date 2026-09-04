@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 08-testing
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/testing/integration-testing-against-real-dependencies.md
+topic_id: T-1104
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -35,26 +41,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Trade-offs](#trade-offs)
-9. [Decision Framework](#decision-framework)
-10. [Common Mistakes](#common-mistakes)
-11. [Anti-Patterns](#anti-patterns)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Common Mistakes](#common-mistakes)
+13. [Anti-Patterns](#anti-patterns)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -70,6 +78,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests whether a candidate can defend real-dependency testing against a "just mock it, it's faster" objection with specifics, not vibes. It's Advanced-tier because the honest answer requires naming exactly what a mock can never verify (real SQL correctness, real constraint behavior) and because flaky integration tests are a near-universal real-world pain point interviewers use to probe debugging instinct.
+
+## Level 1 — Foundation
+
+Imagine learning a new language by practicing conversations only with a friend who's also learning — you both agree on made-up grammar rules that feel right to you, and every conversation "succeeds." That doesn't prove you can actually speak the language; it only proves you and your friend agree with each other. An integration test is like finally having a real conversation with a native speaker: it checks whether your Java code's SQL, HTTP calls, or messages actually work against the real system on the other end (a real database, a real API) — not just against a stand-in you built and configured yourself to agree with you.
+
+**Testcontainers** is a tool that automates spinning up a real, temporary copy of that "native speaker" — a real, disposable Postgres database, say — for the length of your test, then throws it away afterward. You get to have the real conversation without needing a permanent database sitting around, and without one test's leftover data confusing the next test.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, concretely, why a repository test that mocks the database is a false sense of security: the mock only ever says what you told it to say, so it can never catch a typo'd column name, a wrong data type, or a broken SQL query — the exact bugs a real database would surface immediately. When you see a test suite entirely built on mocked database calls, you should recognize that as a gap in coverage of what actually matters at that layer, not evidence the layer is well-tested.
+
+You should also be able to recognize the single most common cause of a "passes on my machine, fails in CI" integration test: shared or leftover state. If two tests insert a row with the same hardcoded ID and happen to run at the same time against the same database, one will randomly fail depending on timing — the fix is giving each test its own isolated data (a fresh schema, or a transaction that gets rolled back afterward), not just re-running the failing test and hoping it passes next time.
+
+Practically: when deciding what needs an integration test versus a mocked unit test, ask whether the code's entire job is talking to a real external system. If yes (a repository, an API client), it needs a real dependency in the test. If the code just calls that repository as part of some other business logic, the repository can be mocked there instead — this is a per-layer decision, not an all-or-nothing rule for the whole codebase.
 
 ## Mental Model
 
