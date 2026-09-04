@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 ---
 
 # Syllabus Changelog
@@ -173,3 +173,21 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - Cheat sheets, flashcards, and production-cookbook entries for T-1801–T-1804 — deferred to a separate batch.
 - `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit (including this domain's own git-internals chapter) — all still pending.
+
+## [2026-09-04] — Phase 5: 19-leadership-staff domain complete (T-1901–T-1905)
+
+### Added
+
+- Five new canonical chapters, the domain's first: [Mentoring and Developing Others](../19-leadership-staff/mentoring-and-developing-others.md) (T-1901), [Cross-Team Influence Without Authority](../19-leadership-staff/cross-team-influence-without-authority.md) (T-1902), [Leading Migrations and Large-Scale Technical Change](../19-leadership-staff/leading-migrations-and-large-technical-change.md) (T-1903), [Technical Debt: Prioritization and Advocacy](../19-leadership-staff/technical-debt-prioritization-and-advocacy.md) (T-1904), and [Design Reviews and RFCs as an Organizational Practice](../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md) (T-1905) — all five assigned IDs in the plan's reserved `T-1900`–`T-1999` range.
+- Each chapter is the *working-skill* counterpart to an existing `20-interview-preparation/behavioral/` chapter (07, 09, 10, 11, 12 respectively), per the Section 2.7 decision. All five behavioral chapters were read in full before writing to confirm they are exclusively STAR-narration content with no overlapping working-skill coverage — none was found, so no duplication occurred.
+- T-1903 and T-1904 each state an explicit boundary against an existing `17-architecture` chapter that owns the same subject's technical/architectural mechanics ([Strangler Fig and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) and [Technical Debt and Evolutionary Architecture](../17-architecture/technical-debt-and-evolutionary-architecture.md) respectively) — this domain's chapters cover only the organizational-leadership layer (sequencing, stakeholder buy-in, prioritization, advocacy), not the pattern or metaphor itself.
+- T-1905 states a three-way boundary against [Architecture Decision Records and Technical Writing for Engineers](../18-engineering-practices/architecture-decision-records-and-technical-writing.md) (owns the ADR document format, post-decision) and [Trade-off Narration and Architecture Decision Records](../20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md) (owns verbal interview narration) — this chapter owns only the pre-decision review-process design (decision rights, RFC lifecycle states, reviewer craft, timeboxing).
+- Two real, existing `production-cookbook/` entries are cited as grounding evidence: [Shared Customer Entity Requiring a Three-Team Migration](../../production-cookbook/shared-customer-entity-forcing-a-three-team-migration-for-one-field.md) (T-1902, T-1903) and [Gradual Coupling Erosion Turning a Core Class into a Release Bottleneck](../../production-cookbook/gradual-coupling-erosion-turning-a-core-class-into-a-release-bottleneck.md) (T-1904) — both located by grepping the cookbook for topically relevant existing incidents before considering a new one. T-1901 and T-1905 have no matching existing entry (the cookbook is technical-incident-shaped by design); both use an explicitly labeled representative scenario, following this repository's own established convention for illustrative-not-literal examples (the same convention already used in `production-cookbook/gradual-coupling-erosion-turning-a-core-class-into-a-release-bottleneck.md` itself), with a `> Planned reference:` note for a future dedicated entry.
+- All five chapters verified structurally: 1 H1, 20 H2 sections each, valid YAML front matter, balanced code fences, and every relative link (front-matter and Markdown-syntax) confirmed resolving via an inline script.
+- **This completes `19-leadership-staff`.** Updated `syllabus/19-leadership-staff/INDEX.md` (5/5, domain complete) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- Cheat sheets, flashcards, and production-cookbook entries for T-1901–T-1905 — deferred to a separate batch.
+- L1/L2 (Foundation/Working-Knowledge) retrofit across every already-migrated domain's existing chapters — still the single largest remaining body of Phase 5 work, per the plan's own §7.6.
+- Phase 6 (learning-path assembly) — not started, not authorized.

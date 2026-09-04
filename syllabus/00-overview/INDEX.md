@@ -42,7 +42,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 | 16 | [Performance & JVM Tuning](../16-performance-jvm/INDEX.md) | 3/3 chapters relocated (Phase 3, 2026-09-03) |
 | 17 | [Architecture](../17-architecture/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) |
 | 18 | [Engineering Practices](../18-engineering-practices/INDEX.md) | 5/5 planned topics present — domain complete (Phase 5, 2026-09-03) |
-| 19 | [Leadership & Staff Engineering](../19-leadership-staff/INDEX.md) | New domain — references `syllabus/20-interview-preparation/behavioral/` (formerly `behavioral-handbook/`), duplicates nothing |
+| 19 | [Leadership & Staff Engineering](../19-leadership-staff/INDEX.md) | 5/5 planned topics written — domain complete (Phase 5, 2026-09-04) |
 | 20 | [Interview Preparation](../20-interview-preparation/INDEX.md) | 19/19 chapters relocated (Phase 3, 2026-09-03); `practice/mock-interviews/` referenced, `company-prep/` private and untouched |
 | 21 | [Frontend & Web (React/Next.js)](../21-frontend-web/INDEX.md) | 32/32 chapters relocated (Phase 3, 2026-09-03) |
 
