@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 45
+topic_id: T-503/T-504/T-505
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../06-databases/isolation-levels-and-concurrency-anomalies.md
 related:
@@ -40,36 +42,38 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Java Examples](#java-examples)
-11. [Production Scenarios](#production-scenarios)
-12. [Failure Modes and Debugging](#failure-modes-and-debugging)
-13. [Trade-offs](#trade-offs)
-14. [Performance Implications](#performance-implications)
-15. [Memory Implications](#memory-implications)
-16. [Concurrency Implications](#concurrency-implications)
-17. [Security Implications](#security-implications)
-18. [Decision Framework](#decision-framework)
-19. [Comparisons](#comparisons)
-20. [Common Mistakes](#common-mistakes)
-21. [Anti-Patterns](#anti-patterns)
-22. [Best Practices](#best-practices)
-23. [Interview Answer Framework](#interview-answer-framework)
-24. [Interview Questions](#interview-questions)
-25. [Summary](#summary)
-26. [Key Takeaways](#key-takeaways)
-27. [Cheat Sheet](#cheat-sheet)
-28. [Flashcards](#flashcards)
-29. [Practice Exercises](#practice-exercises)
-30. [Solutions](#solutions)
-31. [Additional Reading](#additional-reading)
-32. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Java Examples](#java-examples)
+13. [Production Scenarios](#production-scenarios)
+14. [Failure Modes and Debugging](#failure-modes-and-debugging)
+15. [Trade-offs](#trade-offs)
+16. [Performance Implications](#performance-implications)
+17. [Memory Implications](#memory-implications)
+18. [Concurrency Implications](#concurrency-implications)
+19. [Security Implications](#security-implications)
+20. [Decision Framework](#decision-framework)
+21. [Comparisons](#comparisons)
+22. [Common Mistakes](#common-mistakes)
+23. [Anti-Patterns](#anti-patterns)
+24. [Best Practices](#best-practices)
+25. [Interview Answer Framework](#interview-answer-framework)
+26. [Interview Questions](#interview-questions)
+27. [Summary](#summary)
+28. [Key Takeaways](#key-takeaways)
+29. [Cheat Sheet](#cheat-sheet)
+30. [Flashcards](#flashcards)
+31. [Practice Exercises](#practice-exercises)
+32. [Solutions](#solutions)
+33. [Additional Reading](#additional-reading)
+34. [Official References](#official-references)
 
 ---
 
@@ -87,6 +91,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `@Transactional` is the single most commonly used annotation in Spring backend code and simultaneously one of the least understood — it looks like a declaration, but it's a proxy-mediated runtime behavior with several failure modes that are completely silent in development and destructive in production. The self-invocation question ("method A calls `@Transactional` method B in the same class — what happens?") is near-universal at Senior level specifically because it cannot be answered correctly from surface-level familiarity with the annotation; it requires understanding the proxy underneath it. This is the highest-IWI Spring-specific topic in the entire 198-topic register, and Phase 1 of this project's own audit found the existing knowledge base's Spring coverage was shallow definition-level material with none of these mechanics present.
+
+## Level 1 — Foundation
+
+**`@Transactional` makes a group of database operations either all succeed together or all get undone together** — if anything fails partway through, everything that already happened inside that method rolls back, as if none of it occurred. An everyday analogy: an all-or-nothing bank transfer — money leaving one account and arriving in another either both happen, or neither does; you'd never want the money to disappear from one account without arriving in the other.
+
+`@Service public class OrderService { @Transactional public void placeOrder(...) { ... } }` — adding the annotation to a method is usually all that's needed for straightforward cases, and Spring handles beginning, committing, and rolling back the underlying database transaction automatically.
+
+## Level 2 — Working Knowledge
+
+**The single most important practical rule to know early**: calling a `@Transactional` method from *another method in the same class* does **not** actually start a transaction — this is called self-invocation, and it's one of the most common real-world Spring mistakes. Always call a `@Transactional` method from *outside* the class (through another Spring-managed bean) for the annotation to actually take effect. Section 6 explains precisely why this happens (it's a proxy limitation), but the practical rule to internalize now is simply: never rely on `@Transactional` working when called from a sibling method in the same class.
+
+**A second everyday rule**: by default, only unchecked exceptions (`RuntimeException` and its subclasses) trigger a rollback — a checked exception does not, unless you explicitly add `rollbackFor = Exception.class` (or the specific checked type) to the annotation. This surprises many engineers coming from an "any exception means something went wrong" assumption, and forgetting it is a common, silent source of a transaction that "failed" but was actually committed anyway.
 
 ## Mental Model
 

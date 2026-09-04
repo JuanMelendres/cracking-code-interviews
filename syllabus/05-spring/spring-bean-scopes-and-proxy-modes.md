@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-502
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - transactional-proxy-mechanics-and-propagation.md
 related:
@@ -48,30 +50,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -101,6 +105,18 @@ serves the wrong data (or the wrong per-request state) under real concurrent loa
 Interviewers use this topic specifically because it's easy to get partially right —
 knowing scoped proxies exist without being able to explain the mechanism is a
 common tell of surface-level Spring knowledge.
+
+## Level 1 — Foundation
+
+**A "Spring bean" is just an object that Spring creates and manages for you**, so your own code never has to write `new SomeService()` — instead you declare that you need one (`@Autowired`, or a constructor parameter) and Spring hands you an instance. **Scope** answers a simple follow-up question: when two different parts of your code ask for the same bean, do they get the exact same shared object, or a fresh one each time?
+
+By default, every Spring bean is a **singleton** — one single shared instance for the entire application, handed to everyone who asks for it. This is almost always what you want for a stateless service class. Reach for `@Scope("prototype")` only when you specifically need a brand-new instance every time — for example, an object that holds mutable, request-specific state that must never be shared.
+
+## Level 2 — Working Knowledge
+
+**A real, easy-to-hit gotcha worth knowing early**: injecting a `prototype`-scoped bean directly into a `singleton`-scoped bean via ordinary constructor injection does **not** give you a fresh instance every time you use it — Spring resolves that dependency exactly once, when the singleton itself is created, and the singleton then holds that one instance forever. If you genuinely need a fresh prototype instance on every use from within a singleton, you need `ObjectProvider<T>` (ask for a fresh instance explicitly, each time) or a scoped proxy (Section 5 explains the mechanism) — not a plain injected field.
+
+**The everyday practical default**: don't set an explicit scope at all unless you have a specific reason — `singleton` (the default) is correct for the overwhelming majority of Spring-managed services, repositories, and controllers, since they're typically stateless.
 
 ## Mental Model
 

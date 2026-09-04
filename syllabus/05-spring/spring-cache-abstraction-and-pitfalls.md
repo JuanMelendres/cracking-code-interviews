@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-514
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - transactional-proxy-mechanics-and-propagation.md
 related:
@@ -48,30 +50,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -98,6 +102,18 @@ mutable-cached-value and missing-eviction pitfalls are both real, common product
 bugs precisely because they produce no exception, no log line, no visible symptom —
 just quietly wrong data — which is exactly the kind of "looks fine until it doesn't"
 scenario Staff interviews are designed to probe.
+
+## Level 1 — Foundation
+
+**`@Cacheable` remembers the result of a method call the first time it runs with a given input, so the next call with the same input skips re-running the method and returns the remembered answer instead.** An everyday analogy: writing down the answer to a calculation the first time you work it out, so next time someone asks the same question, you just read your notes instead of recalculating from scratch.
+
+`@Cacheable("users") public User findById(Long id) { ... }` — the first call for a given `id` runs the real method and stores the result; every subsequent call with that same `id` returns the stored result directly, without the method body running again.
+
+## Level 2 — Working Knowledge
+
+**The same self-invocation rule from `@Transactional` applies here too, for the identical underlying reason** (Section 5 explains the shared mechanism): calling a `@Cacheable` method from another method in the same class does not go through Spring's caching proxy, so it won't actually get cached. Always call it from outside the class for caching to actually take effect.
+
+**A real, easy-to-miss gotcha worth knowing before caching mutable objects**: never modify an object you got back from a `@Cacheable` method's result. The cache hands out the *exact same object reference* to every caller — if one caller mutates it, every future caller (and the cache itself) sees that mutation too, a silent data-correctness bug with no error or warning anywhere. If a cached object might be mutated by a caller, return a defensive copy instead of the cached reference directly, or treat the cached result as read-only by convention.
 
 ## Mental Model
 

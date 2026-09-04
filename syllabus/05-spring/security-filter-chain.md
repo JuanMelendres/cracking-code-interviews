@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-511
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - transactional-proxy-mechanics-and-propagation.md
@@ -34,26 +36,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -68,6 +72,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Spring Security's filter chain is where "I added `@PreAuthorize` somewhere" gets tested against the actual request-processing mechanism. This topic is High-frequency because "trace a request through your security chain" is a standard, concrete way to test whether a candidate understands the architecture rather than just annotating endpoints, and the 401-vs-403 distinction specifically probes whether authentication and authorization are understood as two separate, sequential concerns rather than one fused check.
+
+## Level 1 — Foundation
+
+**Before your own code ever runs, an incoming web request passes through a series of checks** — is this a well-formed request? Who is making it? Are they allowed to do this specific thing? — and any one of these checks can reject the request before it ever reaches your controller.
+
+The two everyday HTTP status codes this produces mean two different things: **401 Unauthorized** means "we don't know who you are" (no valid credentials, or none provided at all); **403 Forbidden** means "we know exactly who you are, but you're not allowed to do this." Knowing which one you're seeing tells you immediately which half of the problem to look at — a login/credentials problem, or a permissions problem.
+
+## Level 2 — Working Knowledge
+
+**The everyday, practical takeaway**: annotations like `@PreAuthorize("hasRole('ADMIN')")` are just a convenient way to plug an authorization check into this same underlying pipeline — behind the scenes, every request still travels through the same filter chain before your annotated method ever runs. Recognizing this helps when debugging: a request rejected before it reaches your controller at all (visible as an early, generic error with no application logging) is very likely being stopped by a filter, not by your own business logic.
+
+**A practical debugging habit**: when a request that "should" be allowed gets rejected, check the status code first — a 401 means the fix is on the authentication side (missing, expired, or invalid credentials); a 403 means the identity is fine but the specific permission or role check is failing, which is a different fix entirely (checking the actual roles/authorities assigned, not the login flow).
 
 ## Mental Model
 

@@ -271,3 +271,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - 14 further migrated domains (`05`–`17` minus `04`, plus `20`, `21`) — 131 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 05-spring domain complete (9/9)
+
+### Added
+
+- All 9 `05-spring` chapters retrofitted: `spring-bean-scopes-and-proxy-modes.md` (T-502), `transactional-proxy-mechanics-and-propagation.md` (T-503/T-504/T-505), `auto-configuration-and-bean-lifecycle.md` (T-506/T-501), `spring-framework-vs-spring-boot.md` (T-506/T-501), `spring-webflux-and-reactive-programming.md` (T-509), `security-filter-chain.md` (T-511), `spring-cache-abstraction-and-pitfalls.md` (T-514), `spring-actuator-health-and-observability-hooks.md` (T-516), `spring-testing-slices-and-context-caching.md` (T-517) — same additive method as every prior batch, all 9 gained both `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Each chapter's own content was read in full before writing its new sections, so every analogy is grounded in that chapter's own real subject: an all-or-nothing bank-transfer analogy for `@Transactional`; a dashboard-warning-lights analogy for Actuator; the shared proxy-based self-invocation gotcha stated explicitly for both `@Transactional` and `@Cacheable` (Spring's cache chapter's own text already draws this exact parallel, so the retrofit made it concrete at the Level 2 layer too, not a new claim).
+- Several chapters had non-standard TOC lengths, each handled individually against its own real structure: `security-filter-chain.md` has a shorter 24-item TOC (no "Solutions" section); several others carry 26–28-item TOCs with extra Java Examples/Failure Modes/Comparisons entries; `transactional-proxy-mechanics-and-propagation.md` has the domain's largest TOC (34 items, with Historical Context plus five extra "Implications" sections).
+- Verified all 9 files: 1 H1 each; both new headings present with correctly resolving anchors; YAML still parses; every cross-reference inside the new sections resolves. One pre-existing broken link was found in `auto-configuration-and-bean-lifecycle.md` (a missing `src/` path segment, confirmed via `git diff` to predate this batch) and left unfixed as out of scope.
+- Updated `syllabus/05-spring/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`05-spring` is now fully L1–L4 (9/9)** — the third fully-retrofitted domain in the syllabus, after `02-java` and `04-software-design`.
+
+### Not yet done
+
+- 13 further migrated domains (`06`–`17`, `20`, `21`) — 122 chapters — still await the same retrofit.
+- Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-517
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - auto-configuration-and-bean-lifecycle.md
 related:
@@ -55,30 +57,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -111,6 +115,18 @@ Candidates who have only ever *used* `@WebMvcTest` without knowing what it
 excludes are a common tell — they can write the annotation but can't explain
 *why* their controller test needed a `@MockBean` for a service they never
 otherwise think about.
+
+## Level 1 — Foundation
+
+**A "slice test" starts only the one layer of your application you're actually testing** (like just the web layer, with `@WebMvcTest`) instead of the entire application — which is much faster than starting everything for every single test. **Context caching** means Spring automatically reuses the same already-started application setup across multiple tests that need an identical configuration, instead of paying the cost of restarting it for every test class.
+
+The everyday practical value: a large test suite that started the full application for every test class would be slow to run; slice tests and context caching, together, are the two main levers Spring gives you to keep test suites fast without giving up realistic, context-backed tests.
+
+## Level 2 — Working Knowledge
+
+**The everyday, practical rule for a slice-test failure**: if `@WebMvcTest` (or another slice annotation) fails with something like "no bean of type X found," that's expected, not a bug — the slice deliberately loads only its own layer's beans. The fix is adding a `@MockBean` for that specific dependency, not switching to a full `@SpringBootTest` just to make the error go away — a full context defeats the entire speed benefit the slice was giving you.
+
+**A practical habit to avoid slowing down your whole test suite**: avoid `@DirtiesContext` unless you genuinely need a fresh application state for a specific test — it forces Spring to throw away and rebuild the cached context afterward, which then forces every subsequent test that would have reused that same cached context to pay the rebuild cost too.
 
 ## Mental Model
 

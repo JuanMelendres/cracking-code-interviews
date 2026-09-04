@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-509
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/concurrency/virtual-threads.md
 related:
@@ -55,30 +57,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -112,6 +116,18 @@ necessity for many workloads, and being able to articulate when reactive
 still earns its complexity (genuinely high-concurrency I/O-bound workloads,
 backpressure-sensitive streaming), is exactly the kind of calibrated, non-
 dogmatic judgment Staff interviews look for.
+
+## Level 1 — Foundation
+
+**"Reactive" programming means writing code that reacts to pieces of data as they arrive**, one at a time, instead of waiting for an entire result to be ready before doing anything with it — similar to watching a live video stream arrive frame by frame, rather than downloading the whole file first and only then playing it.
+
+`Mono<User> user = userRepository.findById(id);` looks similar to a normal method call, but nothing actually runs until something "subscribes" to it — declaring the pipeline and running it are two separate steps, which is the core idea this whole topic builds on (Section 5 covers exactly why that matters).
+
+## Level 2 — Working Knowledge
+
+**The honest, practical scope this chapter itself states**: most everyday Spring applications should keep using the traditional (Spring MVC, blocking) style — it's simpler to write, debug, and reason about. Reach for WebFlux specifically for workloads with genuinely high concurrency and a lot of waiting on I/O (many simultaneous slow network calls), not as a default choice, and be aware that Virtual Threads (see [Virtual Threads](../02-java/concurrency/virtual-threads.md)) have reduced how often WebFlux's added complexity is actually necessary compared to a few years ago.
+
+**The one practical gotcha worth knowing before writing any reactive code**: never call a genuinely blocking method (a traditional JDBC call, `Thread.sleep()`, a blocking HTTP client) from inside a reactive pipeline. Reactive code runs on a small, shared pool of threads meant to juggle many concurrent operations without ever waiting — blocking even one of those threads can stall every other unrelated request sharing it, not just the one that made the blocking call.
 
 ## Mental Model
 

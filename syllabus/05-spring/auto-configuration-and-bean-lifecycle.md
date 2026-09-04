@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-506/T-501
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - transactional-proxy-mechanics-and-propagation.md
 related:
@@ -41,28 +43,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -78,6 +82,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Auto-configuration and bean lifecycle questions test whether a candidate has only used Spring Boot's conveniences or actually understands the mechanism underneath them. The `@Async`+`@Transactional` gotcha specifically is a near-universal real-world trap — most Spring codebases have at least one instance of it — and a candidate who can explain precisely *why* it's surprising (visibility, not correctness) demonstrates operational depth beyond "I've used `@Transactional`."
+
+## Level 1 — Foundation
+
+**Every object Spring manages ("bean") goes through the same fixed sequence of steps** — created, wired up with its dependencies, initialized, ready for use, and eventually destroyed when the application shuts down — and you can hook into specific steps to run your own setup or cleanup logic at exactly the right moment. `@PostConstruct` is the everyday hook for "run this once my dependencies have been injected" — the most common lifecycle hook a working engineer actually writes.
+
+**Auto-configuration** is Spring Boot's related but separate convenience: it automatically sets up common things (a database connection, a web server) for you based on what's on your project's classpath, unless you've already configured that thing yourself — in which case Spring Boot quietly backs off and uses your configuration instead.
+
+## Level 2 — Working Knowledge
+
+**The everyday, practical use of `@PostConstruct`**: mark a method with it when you need setup logic that depends on injected fields already being populated (a constructor runs *before* dependency injection completes for field injection, so `@PostConstruct` is the right place for logic that needs those fields ready).
+
+**A practical, common scenario**: if Spring Boot auto-configured something you'd rather control yourself (say, a `DataSource` with settings you want to customize), you don't need to explicitly "turn off" auto-configuration — just define your own bean of that type in your own `@Configuration` class, and Spring Boot's `@ConditionalOnMissingBean` guard automatically detects your bean already exists and skips its own default. This is the standard, idiomatic way to override exactly one piece of Spring Boot's auto-configured behavior without disabling the rest.
 
 ## Mental Model
 

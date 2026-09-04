@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-516
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - spring-testing-slices-and-context-caching.md
 related:
@@ -51,30 +53,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -106,6 +110,18 @@ environment variables, secrets, or a full heap dump to anyone who can reach
 the management port), and interviewers use this to probe whether a candidate
 treats Actuator's exposure model as a real security boundary or an
 afterthought.
+
+## Level 1 — Foundation
+
+**Actuator gives you built-in, ready-made endpoints — like `/actuator/health` — that let you (or a monitoring tool like Kubernetes) check whether your running application is healthy**, without you having to build that checking mechanism yourself. An everyday analogy: a car's dashboard warning lights are already built in; you don't design your own diagnostic panel from scratch.
+
+Adding the Actuator dependency to a Spring Boot project gives you these operational endpoints for free — `/actuator/health` for an overall up/down signal, `/actuator/info` for basic build/version information — with no custom code required for the basics.
+
+## Level 2 — Working Knowledge
+
+**A genuinely important security default worth knowing**: by default, only `/actuator/health` and `/actuator/info` are exposed over HTTP — everything else (like `/actuator/env`, which can reveal environment variables and secrets, or `/actuator/heapdump`) is off by default and should generally stay that way unless you have a specific, secured reason to expose it. Accidentally opening up broader Actuator endpoints in production is a real, well-known security misconfiguration.
+
+**The everyday, practical task a working engineer actually does with Actuator**: writing a custom `HealthIndicator` for a specific dependency your application relies on (a downstream API, a message queue) so the application's overall health signal genuinely reflects whether that dependency is reachable — rather than only reporting "healthy" as long as the JVM process itself is still running.
 
 ## Mental Model
 

@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-506/T-501
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - auto-configuration-and-bean-lifecycle.md
 related:
@@ -37,29 +39,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Comparisons](#comparisons)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 "What's the difference between Spring and Spring Boot?" sounds like a warm-up question, and it's often asked as one — but the shallow answer ("Boot makes Spring easier") is exactly the kind of answer that invites a sharper follow-up: *how*, specifically? A candidate who can name the actual mechanism — starters bundling dependencies plus matching auto-configuration, and auto-configuration itself being conditional on what's actually present on the classpath and already defined by the application — demonstrates they've looked past the convenience to the mechanism producing it. This matters operationally too: debugging "why did Spring Boot configure a `DataSource` I didn't ask for" or "why didn't my custom bean's auto-configuration apply" both require understanding this same conditional mechanism, not just knowing that "Boot does things automatically."
+
+## Level 1 — Foundation
+
+**Spring Framework is the underlying toolkit** (dependency injection, transaction management, web request handling, and more); **Spring Boot is a layer built on top of it** that sets up sensible defaults for you automatically and bundles a ready-to-run web server *inside* your own application, so you can start a complete web app with a single command instead of packaging it and deploying it to a separately-installed server.
+
+The everyday, practical distinction: Spring Boot is not a competing framework — it's Spring Framework, pre-wired with reasonable defaults so you write less setup code, plus one convenience (the embedded server) that changes how the finished application actually gets run.
+
+## Level 2 — Working Knowledge
+
+**A "starter" dependency** (`spring-boot-starter-web`, `spring-boot-starter-data-jpa`, and similar) is just a bundle of related dependencies, all pre-selected at versions known to work well together — adding one to your project is what makes the matching auto-configuration kick in (Spring Boot detects the relevant classes are now on the classpath and configures them for you).
+
+**The everyday, practical payoff**: `java -jar yourapp.jar` runs a complete, self-contained web application — the embedded server (Tomcat, by default) starts inside your own application's process, so there's no separate application-server installation to manage. This is the direct, practical reason most new Spring web projects today are built with Spring Boot rather than assembling Spring Framework's pieces by hand.
 
 ## Mental Model
 
