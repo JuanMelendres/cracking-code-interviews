@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-102
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - equals-hashcode-and-comparable-contracts.md
@@ -34,28 +36,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -71,6 +75,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 "Explain polymorphism" is one of the most reliably asked, and most reliably shallow-answered, questions in a Java interview — nearly every candidate can recite "a subclass can override a method," and almost none can explain *which* member accesses are actually polymorphic and which only look like they should be. Interviewers use the field-hiding and static-hiding variants specifically because they separate candidates who understand the underlying dispatch mechanism from candidates who've memorized "polymorphism means overriding" as a slogan. This is Foundation tier precisely because the mechanism it tests (virtual dispatch via a per-class method table) is the assumed substrate under every later discussion of inheritance, interfaces, and framework proxying (including this handbook's own [`@Transactional` proxy mechanics](../../05-spring/transactional-proxy-mechanics-and-propagation.md), which depends on exactly this distinction between virtual and non-virtual dispatch).
+
+## Level 1 — Foundation
+
+**Polymorphism means you can write code against a general type and have it automatically behave correctly for whichever specific subtype actually gets used when the program runs.** `Animal a = new Dog(); a.makeSound();` calls `Dog`'s version of `makeSound()`, even though the variable `a` is declared as the more general `Animal` — the actual object's real type, not the variable's declared type, decides which version runs.
+
+The everyday value: you can write one method that accepts an `Animal` (or a `List`, or a `PaymentMethod`) and it works correctly for every subtype that exists now *and* every subtype someone adds later, without an `if (x instanceof Dog) ... else if (x instanceof Cat) ...` chain that has to be updated every time a new subtype is added.
+
+## Level 2 — Working Knowledge
+
+**Always use the `@Override` annotation when overriding a method.** It costs nothing at runtime, but it makes the compiler check that you're actually overriding a real method from the parent — catching a typo'd method name or wrong parameter list (which would otherwise silently create an unrelated new method instead of overriding anything) at compile time instead of as a confusing runtime surprise.
+
+**A practical trap worth knowing early**: don't call an overridable (non-`private`, non-`static`, non-`final`) instance method from inside a constructor. Because the subclass's own constructor hasn't finished running yet when the superclass's constructor executes, calling an overridable method from the superclass constructor can invoke a subclass's override before that subclass has initialized its own fields — a well-known, easy-to-hit source of confusing `NullPointerException`s at construction time (Section 5 covers exactly why). Prefer calling only `private`, `static`, or `final` methods from a constructor, since none of those can be overridden at all.
 
 ## Mental Model
 

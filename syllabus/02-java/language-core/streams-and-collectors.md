@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-107
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - generics-erasure-and-pecs.md
@@ -36,28 +38,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Streams questions separate candidates who use the fluent API correctly from those who understand its actual execution model. The laziness/short-circuiting behavior and the `parallel()` pitfalls are both near-universal real-world traps — most Java codebases have at least one `parallel()` call added for a speedup that never materialized, or a `toMap()` call one production dataset away from an `IllegalStateException`.
+
+## Level 1 — Foundation
+
+**A stream is a pipeline for processing a collection of items step by step**, instead of writing a manual loop with an intermediate list at every stage. `names.stream().filter(n -> n.startsWith("A")).map(String::toUpperCase).collect(Collectors.toList())` reads as "take these names, keep only the ones starting with A, uppercase each, gather the results into a list" — one readable chain, versus a loop with a manually-managed accumulator list.
+
+Think of it like an assembly line: items pass through a sequence of stations (filter, transform), each doing exactly one thing, and a final station collects the finished output. Reach for a stream whenever the task is naturally "take this collection, keep/transform/combine its elements" — it's often more readable than nested loops with mutable state, though a plain loop can still be clearer for simple iteration or when you need to exit early with complex control flow.
+
+## Level 2 — Working Knowledge
+
+The everyday stream operations a working engineer uses constantly: **`filter(predicate)`** keeps only matching elements; **`map(function)`** transforms each element; **`collect(Collectors.toList())`** (or `toSet()`, `toMap()`) gathers the results; **`forEach(action)`** performs a side effect per element; **`count()`** counts elements.
+
+**A practical, easy-to-hit gotcha**: a stream can only be consumed once — calling a second terminal operation (like `collect()` again) on the same stream throws `IllegalStateException`. If you need to process the same data two different ways, create a fresh stream from the source collection each time, rather than trying to reuse one stream object. And a working default worth stating plainly: don't reach for `.parallel()` by default expecting a free speedup — Section 5's real, measured evidence shows it can make small or cheap-per-element workloads *slower*, not faster.
 
 ## Mental Model
 

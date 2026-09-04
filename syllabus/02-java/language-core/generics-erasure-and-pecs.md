@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-104
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - streams-and-collectors.md
@@ -33,28 +35,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -70,6 +74,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Generics questions test whether a candidate understands generics as a compile-time-only construct or has an incomplete mental model that breaks down under a follow-up. PECS specifically is a common area where candidates can use `? extends`/`? super` correctly by habit without being able to explain *why* the compiler rejects a write to a producer wildcard — and that "why" is exactly what separates a memorized rule from real understanding.
+
+## Level 1 — Foundation
+
+**Generics let you write one class or method that works with any type, while still catching type mistakes at compile time instead of at runtime.** `List<String> names = new ArrayList<>();` tells the compiler "this list only ever holds `String`s" — attempting `names.add(42)` fails to compile immediately, rather than compiling successfully and only breaking later, confusingly, when something tries to treat the `42` as a `String`.
+
+Think of a generic type like a labeled storage box: `Box<String>` is a box explicitly labeled "Strings only," so anyone using it (including the compiler) knows what's inside without opening it and guessing — versus an old-style unlabeled `List` (pre-Java-5 style), where every item taken out has to be manually cast, and a wrong guess only fails at that exact point, not at the point the wrong item was put in.
+
+## Level 2 — Working Knowledge
+
+**Everyday generic types**: `List<String>`, `Map<String, Integer>`, `Optional<User>` — read the type parameter as "this container holds exactly this kind of thing." Prefer declaring variables with the specific type you need (`List<String>`) over a raw, unparameterized `List`, since the raw form gives up all of generics' compile-time checking.
+
+**The practical, working-level takeaway from PECS** (Section 5 covers the full mechanism): most everyday code just uses the exact type it needs and never touches a wildcard (`? extends`/`? super`) at all. Wildcards become relevant only when writing a reusable utility method that should accept a *range* of related types — for example, a method that copies from any list of `Number` or its subtypes (`List<? extends Number>`) into a list that accepts `Number` or its supertypes (`List<? super Number>`), so the same method works whether callers pass a `List<Integer>`, a `List<Double>`, or a `List<Number>` directly.
 
 ## Mental Model
 

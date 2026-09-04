@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-110
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - equals-hashcode-and-comparable-contracts.md
 related:
@@ -38,29 +40,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Java Version Timeline](#java-version-timeline)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Java Version Timeline](#java-version-timeline)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -76,6 +80,29 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 These features show up two ways in Senior/Staff loops: directly ("what's the difference between a record and a class with the same fields?", "why does `sealed` matter here?"), and indirectly, embedded in system-design or code-review discussions where a candidate who reaches for a record/sealed-hierarchy/pattern-match combination signals current, idiomatic Java fluency versus someone still writing Java 8 patterns in 2026. The most common failure mode isn't "hasn't heard of records" — it's overclaiming what they do (assuming `hashCode()` matches `Objects.hash()`, assuming records can extend a class, assuming sealed alone gives runtime safety without pattern matching).
+
+## Level 1 — Foundation
+
+**A record is a quick way to define a simple class that just holds a few pieces of data**, where Java automatically writes the constructor, accessor methods, `equals()`, `hashCode()`, and `toString()` for you. `record Point(int x, int y) {}` gives you `Point p = new Point(1, 2); p.x();` (returns `1`) and correct, automatic equality — all from that one line, instead of the dozens of lines a hand-written equivalent class needs.
+
+Think of it like filling out a labeled form instead of hand-writing a document from scratch every time: you supply just the fields that matter (`x`, `y`), and Java fills in all the routine, predictable boilerplate around them. Reach for a record any time you need a small, immutable "just data" class — a coordinate, a money amount, a range, a simple API response shape.
+
+## Level 2 — Working Knowledge
+
+**One detail that surprises newcomers**: a record's accessor methods are named exactly after the component (`p.x()`, not `p.getX()`) — there's no `get` prefix, unlike the traditional JavaBean convention.
+
+**Pattern matching with `switch`** is the modern way to handle "this value is one of a few known shapes" cleanly, replacing a chain of `instanceof`-and-cast checks:
+
+```java
+String describe(Shape shape) {
+    return switch (shape) {
+        case Circle c -> "circle with radius " + c.radius();
+        case Square s -> "square with side " + s.side();
+    };
+}
+```
+
+**Sealed types** (`sealed interface Shape permits Circle, Square`) are how you tell the compiler "these are literally the only subtypes that will ever exist" — combined with a `switch` like the one above, the compiler can then verify every case is handled, catching a missing case at compile time instead of letting an unhandled shape slip through silently at runtime.
 
 ## Mental Model
 

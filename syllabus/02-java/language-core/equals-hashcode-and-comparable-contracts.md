@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-101
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - ../collections/hashmap-internals.md
@@ -33,27 +35,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -69,6 +73,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is Foundation-tier but Very-High-frequency for a reason: nearly every candidate has overridden `equals()` without `hashCode()` at some point, and the resulting bug is silent — no exception, just a collection that quietly stops working correctly. Interviewers use this topic because a candidate's answer reveals whether they've actually been burned by it or are reciting a rule they've memorized without understanding why it exists.
+
+## Level 1 — Foundation
+
+**In Java, `==` checks whether two references point to the exact same object in memory; `.equals()` checks whether two objects should be considered "the same value."** `String a = new String("hi"); String b = new String("hi"); a == b` is `false` (two distinct objects), but `a.equals(b)` is `true` (same content). This is the single most common early Java mistake: comparing objects with `==` when the intent is "do these hold the same value," which is almost always what `.equals()` is for.
+
+`hashCode()` is a number a hash-based collection (`HashSet`, `HashMap`) uses to decide roughly where to store or look for an object — like a shelf number in a library, so the collection doesn't have to check every single item to find a match. Reach for overriding both `equals()` and `hashCode()` together any time you write a class that represents a value (a `Money` amount, a `Point`, a custom ID type) that will ever be compared, stored in a `Set`, or used as a `Map` key — the two must always be overridden as a pair, never just one (Section 5 explains exactly why).
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday rule**: for a simple data-holding class, let the IDE generate `equals()`/`hashCode()`/`toString()` together (most IDEs offer this as a single action), or — on Java 16+ — use a `record` instead of a hand-written class, which generates all three automatically and correctly from its components (see [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md)). Both approaches avoid the exact hand-written-mismatch bug this chapter's own [Internal Implementation](#internal-implementation) section demonstrates.
+
+`Comparable<T>`'s `compareTo()` method is what `Collections.sort()`, `TreeSet`, and `TreeMap` use to order elements — implement it on a class whenever objects of that type need a natural sort order (alphabetical, numeric, chronological). The everyday working rule: whatever fields `equals()` considers, `compareTo()` should generally agree with, so that "sorted the same" and "considered equal" don't quietly disagree (Section 5 covers the concrete consequence when they don't).
 
 ## Mental Model
 

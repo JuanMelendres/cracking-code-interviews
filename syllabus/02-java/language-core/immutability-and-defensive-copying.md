@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 20
+topic_id: T-103
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - equals-hashcode-and-comparable-contracts.md
@@ -32,28 +34,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -69,6 +73,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests whether "immutable" is understood as a structural guarantee or just a naming convention (`final` fields, no setters). A class can look immutable by every surface signal and still leak a mutable reference through its constructor or a getter — and that leak is exactly the kind of subtle correctness bug that shows up in real production incidents involving shared mutable state, which is why interviewers use it to probe beyond the textbook definition.
+
+## Level 1 — Foundation
+
+**An immutable object is one whose state can never change after it's created** — like a printed photograph, as opposed to a whiteboard drawing that anyone can erase and redraw. `String` is Java's most common immutable type: every "modifying" method (`toUpperCase()`, `trim()`, `replace()`) actually returns a brand-new `String`, leaving the original untouched (see [Strings: Interning, Compact Strings, and Builders](strings-interning-compact-strings-and-builders.md)).
+
+Immutability matters day to day for a simple reason: an immutable object can be freely shared, passed around, and read by multiple parts of a program (or multiple threads) with zero risk that one piece of code will be surprised by another piece silently changing it underneath it. Reach for it as the default for simple data-holding classes (a `Money` amount, a coordinate, a date) unless you have a specific, real reason a particular object needs to change after construction.
+
+## Level 2 — Working Knowledge
+
+**The everyday recipe for making a class immutable**: mark every field `final`, provide no setters, and initialize every field only from the constructor. For fields holding a genuinely mutable type (a `List`, a `Date`-like object), copy the value on the way in rather than storing the caller's reference directly, and return a copy (or an unmodifiable view) from any getter rather than the live internal reference — Section 5 covers exactly why skipping either side of this still leaks mutability.
+
+**A practical, everyday preference**: use `java.time` types (`LocalDate`, `Instant`, `Duration`) instead of the old, mutable `java.util.Date`/`Calendar` — the modern date/time API was deliberately designed to be immutable, which sidesteps this entire class of bug for date/time values without any extra defensive-copying work on your part.
 
 ## Mental Model
 

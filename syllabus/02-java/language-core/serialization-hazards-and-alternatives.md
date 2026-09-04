@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 28
+topic_id: T-115
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - immutability-and-defensive-copying.md
 related:
@@ -40,27 +42,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -76,6 +80,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Serialization is Advanced tier and Moderate frequency because Java's built-in object serialization is the source of one of the most consequential real vulnerability classes in the language's history — Java deserialization RCE (remote code execution) via gadget chains has caused real, high-severity CVEs across major frameworks. Interviewers ask about it specifically to see whether a candidate understands `Serializable`'s actual structural danger (an alternate construction path outside normal validation) rather than treating it as "just a way to save objects to a file."
+
+## Level 1 — Foundation
+
+**Serialization means converting a live, in-memory object into a stream of bytes** (to save to a file, send over a network, or cache it), and **deserialization** means reconstructing an equivalent object later from those bytes. An everyday analogy: flattening a piece of furniture into a box for shipping, then reassembling it on the other end.
+
+This matters even for a working engineer who never touches Java's built-in `Serializable` directly, because nearly every backend today serializes data as JSON (via Jackson or Gson) or a binary format like Protobuf instead — for the exact structural safety reasons this chapter documents. Knowing the term and the basic idea is enough at this level; the deeper hazard (Section 5) is specifically about Java's own built-in mechanism, not about serialization as a general concept.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday default**: for data interchange (an API request/response body, a message on a queue), use JSON via a library like Jackson, or a schema-based binary format like Protobuf — both are the current, standard tools for this job in modern backend code. Treat Java's built-in `Serializable`/`ObjectInputStream` mechanism as legacy machinery to avoid reaching for in new code, reserved mainly for narrow, same-JVM-version internal caching scenarios where its specific hazards (Section 5) are well understood and mitigated.
+
+If a class genuinely must implement `Serializable` (often because a legacy API or library requires it), always declare `serialVersionUID` explicitly (`private static final long serialVersionUID = 1L;`) rather than letting the JVM compute it implicitly — this avoids a subtle, easy-to-hit failure where changing the class later (even a harmless-looking change) causes previously-serialized data to fail deserialization with a version-mismatch error.
 
 ## Mental Model
 

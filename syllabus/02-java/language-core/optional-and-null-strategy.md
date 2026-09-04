@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
+topic_id: T-109
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - lambdas-and-functional-interfaces.md
@@ -35,27 +37,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -71,6 +75,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `Optional` is Foundational tier and Moderate frequency because it's simultaneously one of the most-used and most-misused types in modern Java — candidates who've used `Optional.ofNullable(x).map(...).orElse(...)` chains daily often can't explain the real difference between `orElse` and `orElseGet`, or why storing an `Optional` as a field is discouraged beyond "I read that somewhere." This chapter turns both into defensible, measured, evidence-backed answers.
+
+## Level 1 — Foundation
+
+**`Optional<T>` is a way for a method to say "I might not have an answer for you" explicitly in its return type**, instead of secretly returning `null` and hoping the caller remembers to check. `Optional<User> findUser(String id)` tells anyone reading the method signature — without reading any documentation — that "no user found" is a real, expected outcome to handle, unlike `User findUser(String id)`, which might silently return `null` with nothing in the signature warning you.
+
+An everyday analogy: a vending machine slot that clearly lights up "sold out" when empty, versus one that just gives you nothing and lets you assume something's broken. `Optional` is the lit-up "sold out" sign — explicit and impossible to miss, rather than a silent absence a caller has to remember to guard against.
+
+## Level 2 — Working Knowledge
+
+The everyday `Optional` methods: **`isPresent()`**/**`isEmpty()`** check whether a value exists; **`orElse(fallback)`** returns the value or a given fallback if empty; **`map(function)`** transforms the value only if present, otherwise stays empty; **`ifPresent(action)`** runs an action only if a value exists.
+
+**The one practical rule that matters most for everyday code**: use `Optional` only as a method's *return type* — never as a field type, a constructor parameter, or a method parameter. This isn't just a style preference (Section 5 covers the real, concrete reason it can't even be serialized), and the working pattern is: keep the underlying field a plain, nullable reference internally, and only wrap it in `Optional` at the point a getter returns it to a caller.
 
 ## Mental Model
 

@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
+topic_id: T-111
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - equals-hashcode-and-comparable-contracts.md
 related:
@@ -37,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,28 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Enums are Foundational tier and Moderate frequency because nearly every Java engineer uses them constantly, yet few have examined what an enum constant actually *is* at the JVM level, or hit the real, silent `ordinal()`-persistence bug in production. This chapter is where "I use enums all the time" gets tested against whether a candidate understands the real singleton/reflection-safety guarantees, constant-specific method bodies' actual mechanism, and a genuinely dangerous, easy-to-reproduce data-corruption gotcha.
+
+## Level 1 — Foundation
+
+**An `enum` defines a fixed, named set of possible values that the compiler enforces** — `enum Status { PENDING, SHIPPED, DELIVERED }` means a variable of type `Status` can only ever be one of those three named values, never an arbitrary typo'd string or an out-of-range number. This replaces the older, error-prone pattern of using loose `String`s or `int`s to represent a fixed set of options, where nothing stops a typo (`"SHIPED"`) from compiling successfully and only failing at runtime, if at all.
+
+Think of it like a multiple-choice question with fixed options, versus a free-text field where anything can be typed — an `enum` catches an invalid value at compile time, long before it could ever reach production and cause a confusing bug.
+
+## Level 2 — Working Knowledge
+
+Enums work naturally with `switch`:
+
+```java
+switch (status) {
+    case PENDING -> System.out.println("Waiting to ship");
+    case SHIPPED -> System.out.println("On its way");
+    case DELIVERED -> System.out.println("Complete");
+}
+```
+
+Use **`EnumMap`**/**`EnumSet`** instead of `HashMap`/`HashSet` specifically when the keys or elements will always come from one enum type — the everyday benefit is guaranteed iteration in the enum's declared order (Section 5 covers the real, honest performance picture, which is a modest gain, not a dramatic one).
+
+**The one genuinely dangerous gotcha to know early**: never save an enum's `ordinal()` (its position number, `0`, `1`, `2`, ...) to a database, file, or any other persisted format. If someone later reorders the enum's declared constants or inserts a new one in the middle, every previously saved number now silently refers to a different constant — a real, silent data-corruption risk with no error message. Persist the enum's `name()` (the constant's actual name as a string) instead, which stays correct regardless of future reordering.
 
 ## Mental Model
 

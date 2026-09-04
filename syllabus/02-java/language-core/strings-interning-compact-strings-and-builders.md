@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
+topic_id: T-106
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - equals-hashcode-and-comparable-contracts.md
 related:
@@ -37,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,28 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Strings are Foundational tier and High frequency because `String` is the single most-used type in Java, yet very few engineers have verified — rather than assumed — how string pooling, compact strings, or builder performance actually work under the hood. This chapter is where "I know `==` compares references and `.equals()` compares content" gets tested against whether a candidate can predict pooling behavior precisely, explain a real, measured memory optimization, and quantify the concatenation-in-a-loop anti-pattern with real numbers instead of "it's slow."
+
+## Level 1 — Foundation
+
+**A `String` is a sequence of characters, and the single most important rule for a working Java engineer is: use `.equals()` to compare `String` content, never `==`.** `new String("hi") == new String("hi")` is `false` (two distinct objects in memory), even though `new String("hi").equals(new String("hi"))` is `true` (identical content). `==` checks whether two references point to the exact same object; `.equals()` checks whether their content matches — and content is almost always what you actually want to compare.
+
+An everyday analogy: two separately printed letters with identical text are "equal" in what they say, but they are not the same physical piece of paper. This is the most common early-Java bug for anyone new to the language, and it's worth internalizing before anything else in this chapter.
+
+## Level 2 — Working Knowledge
+
+**Every `String` in Java is immutable** — `toUpperCase()`, `trim()`, `replace()`, and every other seemingly-mutating method actually return a brand-new `String`, leaving the original unchanged. `String s = "hello"; s.toUpperCase();` does nothing observable unless you capture the result: `s = s.toUpperCase();`.
+
+**Use `StringBuilder` when building a string piece by piece in a loop**, rather than repeated `+=` concatenation:
+
+```java
+StringBuilder sb = new StringBuilder();
+for (String item : items) {
+    sb.append(item).append(", ");
+}
+String result = sb.toString();
+```
+
+Section 5 below measures exactly why `+=` in a loop is a real, not just stylistic, performance problem as the loop grows — `StringBuilder.append()` avoids it entirely. For building a short, readable string from a few named pieces, `String.format(...)` or a text block (`"""..."""`) is often clearer than either approach.
 
 ## Mental Model
 

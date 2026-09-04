@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 26
+topic_id: T-108
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - streams-and-collectors.md
@@ -37,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Lambdas are Core tier and High frequency for an unusual reason: almost every Senior/Staff candidate writes them fluently, which means interviewers routinely probe *underneath* the syntax — what a lambda actually compiles to, why the effectively-final rule exists rather than just "it's a Java rule," and what a functional interface's contract really requires. This is a topic where "I use lambdas every day" and "I can explain what's happening" are frequently two different candidates, and this chapter closes that gap with real bytecode and real compiler errors rather than a syntax refresher.
+
+## Level 1 — Foundation
+
+**A lambda is a compact way to write "a small piece of behavior" that you can pass around like a value**, instead of writing a full class just to implement one method. `list.sort((a, b) -> a.compareTo(b));` passes a tiny piece of comparison logic directly where it's needed, rather than defining a separate named class that implements `Comparator`.
+
+Think of it like the difference between hiring and formally naming someone for a one-time errand versus just handing a colleague a sticky note with instructions — a lambda is the sticky note. Everyday places you'll already see this: sorting with a custom comparison (`Comparator`), running a small task on a background thread (`Runnable`), or reacting to a button click or event.
+
+## Level 2 — Working Knowledge
+
+The everyday lambda shape is `(parameters) -> expression` (or `{ statements }` for more than one line): `x -> x * 2`, `(a, b) -> a + b`, `() -> System.out.println("done")`. When a lambda's body is *just* calling one existing method, a **method reference** is a shorter equivalent: `s -> s.toUpperCase()` can be written as `String::toUpperCase`, and `x -> System.out.println(x)` as `System.out::println` — purely a shorthand, with no behavior difference.
+
+**The one practical rule that trips people up**: a lambda can only reference a local variable from its enclosing method if that variable is never reassigned after it's first set ("effectively final"). `int count = 0; list.forEach(x -> count++);` fails to compile — `count` is being reassigned, so the lambda can't capture it. The everyday workaround is an `AtomicInteger` (or restructuring to avoid needing a mutable local at all) — Section 5 explains precisely why this restriction exists.
 
 ## Mental Model
 

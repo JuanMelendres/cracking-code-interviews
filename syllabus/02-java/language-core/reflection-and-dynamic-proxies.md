@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 28
+topic_id: T-113
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - lambdas-and-functional-interfaces.md
 related:
@@ -39,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Reflection and dynamic proxies are Advanced tier and Moderate frequency because they're the invisible machinery behind nearly every framework a Senior/Staff engineer uses daily — Spring's dependency injection and AOP, Jackson's serialization, JUnit's test discovery — yet most candidates have never written a line of reflection code themselves. This chapter closes exactly that gap: the mechanism that makes "how does `@Autowired` actually find and inject a field" or "how does a Spring `@Transactional` proxy actually intercept a method call" answerable with a real mechanism instead of "it's magic."
+
+## Level 1 — Foundation
+
+**Reflection is code that can inspect and use another class's methods and fields while the program is running**, even if it had no knowledge of that specific class when it was written. An everyday analogy: reading a stranger's business card at a party and calling the number printed on it, versus already having that number saved before you arrived — reflection lets a piece of code "read the business card" of a class it's never seen before and act on what it finds.
+
+This is invisible, day-to-day machinery for most working engineers: you rarely write reflection code by hand, but the frameworks you use constantly — Spring finding and injecting a field, Jackson mapping JSON properties onto a class, JUnit discovering which methods are tests — are all doing exactly this under the hood.
+
+## Level 2 — Working Knowledge
+
+Recognizing reflection at work in framework "magic" is more valuable day to day than writing it yourself: when Spring injects a dependency into a field you never manually set, or Jackson correctly populates a class's fields from a JSON string with matching property names, that's reflection reading your class's structure at runtime and acting on it — there's no deeper mechanism than "the framework inspected your class and built behavior from what it found," even though it can feel like magic.
+
+**The practical, everyday takeaway**: a working engineer's job is almost always to write code that correctly follows a framework's expected contract (the right annotations on the right fields, matching property names) and let the framework's own reflection layer do the introspection — writing raw reflection code by hand is a comparatively rare, more advanced task, reserved for building the kind of generic, framework-level tooling this chapter's own internals cover.
 
 ## Mental Model
 

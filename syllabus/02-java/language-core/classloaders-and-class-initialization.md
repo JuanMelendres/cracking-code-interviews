@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 26
+topic_id: T-114
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - reflection-and-dynamic-proxies.md
 related:
@@ -37,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 ClassLoaders are Advanced tier and Moderate frequency because they're genuinely invisible in day-to-day application code — most engineers never write one — yet they're the real mechanism behind application-server isolation, plugin systems, hot-reloading, and a specific, real class of "this should be the same class but Java says it isn't" production bugs. This chapter is where "I know classes get loaded somehow" gets tested against whether a candidate understands the actual identity and delegation model well enough to diagnose a real classloader-identity bug.
+
+## Level 1 — Foundation
+
+**A classloader is the part of the JVM responsible for finding a compiled class's bytecode and turning it into a usable class the program can create objects from** — similar to how an operating system loads a program's code into memory before running it. This is invisible, background machinery for a typical application engineer: you never write a classloader yourself, but understanding it exists helps make sense of a specific, otherwise-confusing category of error.
+
+**"Classpath"** is literally the list of places classloaders look for your compiled classes and the `.jar` files your project depends on. The most common way a working engineer actually encounters classloaders is indirectly, through a `ClassNotFoundException` or `NoClassDefFoundError` — which usually means a required dependency simply isn't on the classpath at runtime (a missing jar, a dependency-scope mismatch in a build file), not a mysterious JVM bug.
+
+## Level 2 — Working Knowledge
+
+**Class initialization** (running a class's static initializers and static field assignments) is a separate step from a class merely being loaded, and it happens lazily — only the first time the class is genuinely used (constructing an instance, calling a static method, or similar), not simply the first time it's mentioned in code. The everyday, practical consequence: a static block with expensive setup logic (opening a connection, loading configuration) doesn't run at application startup just because the class exists somewhere in the codebase — it runs the first time something actually triggers that class's real use, which is worth knowing when debugging why a startup log line appears later than expected.
+
+A working engineer troubleshooting a classloading-related error should check, in order: is the dependency actually declared and present on the classpath/build output; is there a version conflict between two dependencies providing the same class; and, in more unusual cases (application servers, plugin systems), whether two different classloaders have each loaded their own copy of what looks like "the same" class — Section 5 covers exactly why that specific case produces a genuine, confusing `ClassCastException` between two objects that appear identical.
 
 ## Mental Model
 

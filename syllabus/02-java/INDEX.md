@@ -2,7 +2,7 @@
 title: "Java — Domain Index"
 document_type: syllabus-domain-index
 domain: 02-java
-status: 49 of 49 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit in progress (Phase 5) — 9 of 49 done (collections subdomain complete, 2026-09-04)
+status: 49 of 49 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit in progress (Phase 5) — 24 of 49 done (collections + language-core subdomains complete, 2026-09-04)
 last_updated: 2026-09-04
 ---
 
@@ -12,7 +12,7 @@ The primary specialization and deepest track: language core, collections, JVM in
 
 > **Phase 3 update (2026-09-03).** This domain's full existing content has physically relocated via `git mv` from `handbook/{java-core,collections,jvm,concurrency}/`, preserving file history. 235 files across the rest of the repository (`cheat-sheets/`, `flashcards/`, `production-cookbook/`, other `handbook/` chapters, `study-packs/`, `architecture-atlas/`, `practice/`) had their cross-references to these 49 chapters updated to the new paths; a full repository-wide link-resolution pass confirms zero references broken by this move. See the repository-root `CHANGELOG.md` for the full account, including a discovered class of pre-existing, unrelated broken links (in `behavioral-handbook/`, `AGENTS.md`/`CLAUDE.md`, and `production-cookbook/`) that predate this migration and were not introduced by it.
 >
-> **Phase 5 update (2026-09-04).** The `02-java/collections` subdomain (T-201–T-209, 9 chapters) is the first to receive the plan's own additive L1/L2 retrofit (§2.4): each chapter gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between the existing "Why This Matters in Interviews" and "Mental Model" sections, per the plan's own stated placement. No existing sentence was deleted, reworded, or moved — every retrofit was a pure insertion, verified by diff. Each chapter also gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]` front-matter fields (additive; existing fields untouched). `language-core`, `jvm-internals`, and `concurrency` (40 chapters) still carry L3/L4 only and are next in this retrofit, subdomain by subdomain.
+> **Phase 5 update (2026-09-04).** The `02-java/collections` subdomain (T-201–T-209, 9 chapters) and the `02-java/language-core` subdomain (T-101–T-115, 15 chapters) have both now received the plan's own additive L1/L2 retrofit (§2.4): each chapter gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between the existing "Why This Matters in Interviews" and "Mental Model" sections, per the plan's own stated placement. No existing sentence was deleted, reworded, or moved — every retrofit was a pure insertion, verified by diff. Each chapter also gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]` front-matter fields (additive; existing fields untouched). `jvm-internals` and `concurrency` (25 chapters) still carry L3/L4 only and are next in this retrofit, subdomain by subdomain.
 
 ## Topics
 
@@ -52,21 +52,21 @@ The primary specialization and deepest track: language core, collections, JVM in
 | — | JVM Flags and Container Ergonomics | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` |
 | — | JVM Memory Layout and Runtime Regions | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |
 | — | Memory Leak Diagnosis and Heap Dump Analysis | `02-java/jvm-internals` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` |
-| T-101 | equals(), hashCode(), and Comparable Contracts | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
-| T-102 | Polymorphism and Dynamic Dispatch Mechanics | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md` |
-| T-103 | Immutability and Defensive Copying | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/immutability-and-defensive-copying.md` |
-| T-104 | Generics: Erasure, Variance, and PECS | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
-| T-105 | Exception Design and Hierarchy Strategy | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
-| T-106 | Strings: Interning, Compact Strings, and Builders | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md` |
-| T-107 | Streams and Collectors | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/streams-and-collectors.md` |
-| T-108 | Lambdas and Functional Interfaces | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/lambdas-and-functional-interfaces.md` |
-| T-109 | Optional and Null Strategy | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/optional-and-null-strategy.md` |
-| T-110 | Records, Sealed Types, and Pattern Matching | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md` |
-| T-111 | Enums, EnumMap, and EnumSet | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/enums-enummap-and-enumset.md` |
-| T-112 | Annotations and Annotation Processing | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/annotations-and-annotation-processing.md` |
-| T-113 | Reflection and Dynamic Proxies | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md` |
-| T-114 | ClassLoaders and Class Initialization | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/classloaders-and-class-initialization.md` |
-| T-115 | Serialization Hazards and Alternatives | `02-java/language-core` | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending Phase 5) | `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md` |
+| T-101 | equals(), hashCode(), and Comparable Contracts | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
+| T-102 | Polymorphism and Dynamic Dispatch Mechanics | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md` |
+| T-103 | Immutability and Defensive Copying | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/immutability-and-defensive-copying.md` |
+| T-104 | Generics: Erasure, Variance, and PECS | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
+| T-105 | Exception Design and Hierarchy Strategy | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
+| T-106 | Strings: Interning, Compact Strings, and Builders | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md` |
+| T-107 | Streams and Collectors | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/streams-and-collectors.md` |
+| T-108 | Lambdas and Functional Interfaces | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/lambdas-and-functional-interfaces.md` |
+| T-109 | Optional and Null Strategy | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/optional-and-null-strategy.md` |
+| T-110 | Records, Sealed Types, and Pattern Matching | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md` |
+| T-111 | Enums, EnumMap, and EnumSet | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/enums-enummap-and-enumset.md` |
+| T-112 | Annotations and Annotation Processing | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/annotations-and-annotation-processing.md` |
+| T-113 | Reflection and Dynamic Proxies | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/reflection-and-dynamic-proxies.md` |
+| T-114 | ClassLoaders and Class Initialization | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/classloaders-and-class-initialization.md` |
+| T-115 | Serialization Hazards and Alternatives | `02-java/language-core` | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md` |
 
 ## Where this domain's boundary comes from
 

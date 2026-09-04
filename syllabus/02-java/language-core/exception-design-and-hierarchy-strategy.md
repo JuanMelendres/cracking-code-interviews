@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-105
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - immutability-and-defensive-copying.md
@@ -32,28 +34,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -69,6 +73,28 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Exception design questions test whether a candidate treats exception handling as a deliberate design decision or as boilerplate to get past the compiler. The cause-chaining and try-with-resources behaviors specifically are near-universal real-world traps: most Java codebases have at least one exception wrapper that silently drops the original cause, and most engineers have never actually traced through what happens when both a resource's body and its `close()` throw.
+
+## Level 1 — Foundation
+
+**An exception is Java's way of saying "something went wrong, and I'm handing control to whoever knows how to deal with it"** — instead of returning a special error value that a caller might forget to check, `throw`ing an exception forces the surrounding code to either handle it (`catch`) or explicitly pass the problem further up (letting it propagate). The everyday analogy: raising your hand and pausing the meeting to flag a problem, versus quietly scribbling "something's wrong" in a margin no one is guaranteed to read.
+
+**Checked exceptions** (subclasses of `Exception` but not `RuntimeException`, like `IOException`) are ones the compiler forces a caller to acknowledge — either catch them or declare that the calling method also throws them. **Unchecked exceptions** (`RuntimeException` and its subclasses, like `NullPointerException` or `IllegalArgumentException`) carry no such compiler-enforced requirement. A working rule of thumb: use unchecked exceptions for programming errors (a bug that shouldn't happen if the code is correct) and reserve checked exceptions for conditions a well-written caller might genuinely need to recover from (a file that doesn't exist, a network call that failed).
+
+## Level 2 — Working Knowledge
+
+**Always catch the most specific exception type that's actually relevant** (`catch (NumberFormatException e)`), not a broad `catch (Exception e)` or, worse, `catch (Throwable t)` — a broad catch silently swallows problems it was never meant to handle, masking real bugs.
+
+**Whenever you catch an exception and throw a different one in its place, always pass the original as the cause** (`throw new ServiceException("failed to process order", e);`, not `throw new ServiceException("failed to process order");`) — Section 5 explains exactly what real debugging information is destroyed by skipping this.
+
+**Use try-with-resources for anything that implements `AutoCloseable`** (files, database connections, network streams) rather than a manual `try`/`finally` block that calls `close()` by hand:
+
+```java
+try (BufferedReader reader = Files.newBufferedReader(path)) {
+    return reader.readLine();
+}
+```
+
+This guarantees `close()` runs even if the body throws, and — as Section 5 covers in detail — handles the tricky case of both the body and `close()` failing far more safely than a hand-written `finally` block would.
 
 ## Mental Model
 

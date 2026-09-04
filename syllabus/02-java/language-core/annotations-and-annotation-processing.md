@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 26
+topic_id: T-112
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - reflection-and-dynamic-proxies.md
 related:
@@ -38,27 +40,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -74,6 +78,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Annotations are Advanced tier and Moderate frequency because nearly every Senior/Staff engineer uses them daily (`@Override`, `@Autowired`, `@Column`, `@Test`) without ever having written a custom one or understood what actually happens to an annotation after compilation. This chapter is where "I use annotations constantly" gets tested against whether a candidate can explain what `@Retention` actually controls, why a custom annotation without `RUNTIME` retention is invisible to the exact reflection-based framework code meant to read it, and the real, narrow scope of `@Inherited`.
+
+## Level 1 — Foundation
+
+**An annotation is a label you attach to a piece of code** — `@Override`, `@Test`, `@Deprecated` — that some tool or framework reads and acts on; the annotation itself does nothing on its own. Think of it like a sticky note on a file folder: the folder's actual contents are unaffected, but a specific person (or in this case, a specific tool) knows to look for that note and act on it.
+
+You've likely already used three built-in ones constantly: **`@Override`** tells the compiler "this method should be overriding something from a parent," catching a typo'd method signature at compile time; **`@Deprecated`** warns other developers (and the compiler) that a piece of code shouldn't be used anymore; **`@SuppressWarnings`** tells the compiler to stay quiet about a specific warning you've deliberately decided to ignore.
+
+## Level 2 — Working Knowledge
+
+Most of the annotations a working engineer encounters day to day come from frameworks — `@Autowired`, `@Column`, `@Test` — and recognizing what's happening underneath them is more useful than memorizing their exact behavior: some other piece of code is inspecting your class at runtime (or at build time) and building real behavior (dependency injection, a database mapping, running a test method) from what it finds. There's no deeper magic than that — it's data (the annotation and its values) plus code elsewhere that reads and acts on that data.
+
+A practical rule for consuming a framework's annotations correctly: follow its documented contract precisely (which annotation goes on which element, what values it expects) — the framework's own reflection-based scanning code depends on that contract being followed exactly, and a small mismatch (an annotation on the wrong element, a missing required value) tends to fail silently or with a confusing error, rather than a clear one.
 
 ## Mental Model
 

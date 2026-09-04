@@ -208,3 +208,19 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - The remaining 40 `02-java` chapters (`language-core` 15, `jvm-internals` 12, `concurrency` 16 minus a name overlap) still carry L3/L4 only — next in this retrofit, subdomain by subdomain.
 - Every other migrated domain (`04` through `17`, `20`, `21`) — 132 further chapters — awaits the same retrofit; this is confirmed, by this first batch, to be exactly as large a body of work as the plan's own §7.6 estimated.
 - Cheat sheets, flashcards, and production-cookbook entries for T-1901–T-1905, and for every Phase 5 new-writing chapter this session has produced — still deferred to a separate batch.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 02-java/language-core subdomain (T-101–T-115)
+
+### Added
+
+- All 15 `02-java/language-core` chapters retrofitted: `equals-hashcode-and-comparable-contracts.md` (T-101), `polymorphism-and-dynamic-dispatch.md` (T-102), `immutability-and-defensive-copying.md` (T-103), `generics-erasure-and-pecs.md` (T-104), `exception-design-and-hierarchy-strategy.md` (T-105), `strings-interning-compact-strings-and-builders.md` (T-106), `streams-and-collectors.md` (T-107), `lambdas-and-functional-interfaces.md` (T-108), `optional-and-null-strategy.md` (T-109), `records-sealed-types-and-pattern-matching.md` (T-110), `enums-enummap-and-enumset.md` (T-111), `annotations-and-annotation-processing.md` (T-112), `reflection-and-dynamic-proxies.md` (T-113), `classloaders-and-class-initialization.md` (T-114), `serialization-hazards-and-alternatives.md` (T-115).
+- Same discipline as the `collections` batch: each chapter's full "Why This Matters in Interviews" through "Core Concepts" content was read first to ground the new sections in what the chapter actually teaches (avoiding a generic, copy-pasted Foundation section across dissimilar topics — e.g., polymorphism's Level 1 uses a `Dog`/`Animal` example distinct from generics' labeled-box analogy, distinct from streams' assembly-line analogy). Each Level 1/Level 2 pair was inserted between "Why This Matters in Interviews" and "Mental Model," with zero existing sentences touched, and each chapter gained `topic_id`/`mastery_levels_covered: [L1, L2, L3, L4]` front matter.
+- `records-sealed-types-and-pattern-matching.md`'s TOC has a non-standard extra section ("Java Version Timeline") between "Definition and Purpose" and "Core Concepts"; the insertion and renumbering correctly accounted for it rather than assuming the standard 23-item TOC shape all 14 other chapters share.
+- Verified all 15 files: 1 H1 each; both new headings present and anchor-resolving (no `MD051` warning survived past the body insertion); YAML front matter parses; every cross-reference inside the new sections resolves. The same pre-existing, off-by-one-directory-level `../../practice/java/week-13/...`-style broken-link class (present in 6 of the 15 files) was reconfirmed via `git diff` to predate this batch and was left unfixed, consistent with the `collections` batch and the repository's known backlog.
+- Updated `syllabus/02-java/INDEX.md` (status line, intro paragraph, the Phase 5 note, and all 15 affected topic rows) and `syllabus/00-overview/INDEX.md`'s domain-status table — `02-java` is now 24 of 49 chapters retrofitted (collections + language-core complete; jvm-internals and concurrency, 25 chapters, remain).
+
+### Not yet done
+
+- `jvm-internals` (12 chapters) and `concurrency` (16 chapters, minus a name overlap) — next in this retrofit.
+- Every other migrated domain (132 chapters across `04`–`17`, `20`, `21`) still awaits the same retrofit.
+- Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
