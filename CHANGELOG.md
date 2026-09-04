@@ -2146,6 +2146,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Verified all 14 files: 1 H1 each; both new headings resolving; YAML parses; every cross-reference resolves — zero broken links found in this domain, checked programmatically across all 14 files.
 - Updated `syllabus/06-databases/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`06-databases` is now fully L1–L4 (14/14)** — the fourth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, and `05-spring`.
 
+### Added (L1/L2 retrofit continues — 07-api-design domain complete, 2/2, Phase 5)
+
+- Both `07-api-design` chapters retrofitted: `api-design.md` (T-803), `api-gateway-bff-and-edge-concerns.md` (T-911) — both gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Each chapter's own content was read in full first: a phone-book-vs-bookmark analogy distinguishing `OFFSET` from keyset pagination, plus an elevator-call-button analogy for idempotency, in `api-design.md`; an apartment-building-concierge analogy for the API gateway and a personal-assistant analogy for the BFF pattern, in `api-gateway-bff-and-edge-concerns.md`.
+- Verified both files: 1 H1 each; both new headings resolving; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/07-api-design/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`07-api-design` is now fully L1–L4 (2/2)** — the fifth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, and `06-databases`.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

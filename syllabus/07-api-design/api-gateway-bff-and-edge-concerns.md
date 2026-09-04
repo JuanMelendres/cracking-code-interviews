@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 07-api-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/api-gateway-bff-and-edge-concerns.md
+topic_id: T-911
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -46,30 +52,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -104,6 +112,22 @@ genuine Staff-level organizational question: a shared gateway becomes a
 platform-level dependency and governance point for every team behind it,
 which is exactly the kind of cross-team, non-purely-technical trade-off Staff
 interviews are designed to probe.
+
+## Level 1 — Foundation
+
+Think of an apartment building with a front-desk concierge. Without a concierge, every delivery driver, guest, and repair technician would have to know which of the 200 apartments they need and buzz that resident directly, and each resident would need their own peephole-and-chain-lock routine to check IDs. With a concierge, everyone stops at one desk first: the concierge checks ID once, knows which apartment to send you to, and residents never have to duplicate that check themselves. An **API gateway** is that concierge for a system of backend services — one place a request stops first, where identity gets checked and the right destination gets decided, instead of every service reimplementing its own front door.
+
+A **BFF (Backend for Frontend)** is a step further: it's like a personal assistant who, instead of just pointing you to the right office, actually goes to three different offices on your behalf, collects what you need from each, and hands you back one folder — because you specifically (say, a mobile app on a slow connection) shouldn't have to make three separate trips yourself.
+
+**Edge concerns** — things like checking a visitor's badge at the parking-garage gate before they even reach the building lobby — sit even further out than the concierge: TLS termination, firewalling malicious traffic, and absorbing a flood of attack traffic are handled by dedicated infrastructure (a CDN, a managed load balancer) before a request reaches application-level gateway code at all, the same way a building's perimeter security exists separately from its front desk.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to look at a system diagram and correctly label each box: if it's distributing traffic across several identical copies of the same service, it's a load balancer; if it's routing to genuinely different services and enforcing something like auth on every request that passes through, it's a gateway; if it's specifically reshaping and combining data for one client type (like a mobile app's home screen), it's a BFF.
+
+Practically, this matters when you're building a client that needs data from more than two or three backend services for a single screen. The instinct to avoid is calling each service directly from the client one after another — this chapter measures that pattern directly at roughly double the latency of the alternative. The working fix is to ask whether a BFF endpoint already exists for your client type, or whether one should: a BFF fans those calls out concurrently on the server side (where inter-service latency is far cheaper than a client's network round trip) and returns one combined response.
+
+You should also know where *not* to add logic: a gateway or BFF is for routing, auth, rate limiting, and reshaping — not for making business decisions. If you find yourself writing "if this order total is over $500, apply a discount" inside a BFF, that's a signal the logic belongs in a backend service instead, before the BFF quietly becomes a second, divergent copy of business rules that live elsewhere.
 
 ## Mental Model
 

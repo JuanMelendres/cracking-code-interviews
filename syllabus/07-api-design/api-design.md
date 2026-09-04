@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 07-api-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/api-design.md
+topic_id: T-803
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -37,28 +43,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Comparisons](#comparisons)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Comparisons](#comparisons)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -74,6 +82,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 API design decisions, once shipped, are among the most expensive to change in a system — a pagination scheme, a resource shape, or an error format is depended upon by every client the moment it's public. This topic is Very-High-frequency because it appears in nearly every design round's API phase, and because the pagination question specifically has a clean, measurable right answer that separates candidates who've hit this at scale from those who haven't.
+
+## Level 1 — Foundation
+
+Think of a library's card catalog versus a librarian who knows exactly where every book is. A well-designed API is the second librarian: you ask for "customer #4521's orders" and get back a predictable, consistent answer shaped the same way every time you ask about any customer. A poorly designed API is like being handed the raw shelving instructions and having to walk the aisles yourself — the shape of the answer depends on which part of the library you asked, and if the librarian rearranges the shelves, your instructions break.
+
+Pagination is the clearest place this shows up. Imagine flipping through a phone book one page at a time versus using a bookmark. `OFFSET`-based pagination is the first: to get to page 500, you (or the database) have to physically flip past pages 1 through 499 first, every single time. Keyset (cursor) pagination is the bookmark: you remember exactly where you left off ("the last name I saw was Garcia"), and next time you open straight to that spot — no matter how far into the book it is, opening to a bookmark takes the same effort. The catch: a bookmark can't jump you to "page 500" out of nowhere — it can only continue from where it already is.
+
+Idempotency is a simpler idea than the word suggests: it just means "doing it twice has the same effect as doing it once." Pressing an elevator call button five times doesn't summon five elevators — the elevator is already coming, so extra presses are safe. A `GET` (read), `PUT` (full replace), and `DELETE` are elevator-button operations: safe to retry. A plain `POST` that charges a credit card is not — pressing it twice really can charge twice, unless the API is explicitly built to recognize a repeat request.
+
+## Level 2 — Working Knowledge
+
+At this level you're not designing new APIs from scratch yet, but you can read an existing API's design and recognize whether it will hold up. Given an endpoint like `GET /orders?page=500`, you should immediately ask: does this table grow large, and does the cost of jumping to page 500 grow with the page number? If the answer is yes and yes, that's an `OFFSET`-pagination endpoint waiting to become a production complaint — exactly the failure this chapter measures directly in [Internal Implementation](#internal-implementation).
+
+You should also be able to look at an HTTP method and correctly reason about retry safety without looking anything up: a `GET`, `PUT`, or `DELETE` can be retried freely if a request times out and you're not sure it landed; a bare `POST` cannot, unless the API documents an idempotency-key mechanism (a client-supplied unique ID that lets the server recognize "I've already handled this exact request" and return the original result instead of repeating the side effect).
+
+Practically, this means: when you integrate against a third-party API, check its pagination style before writing a loop that walks "all pages" (an `OFFSET`-based API doing this at scale will get slower with every iteration); when you design a new endpoint yourself, default to keyset pagination and a client-supplied idempotency key for any `POST` with a real side effect, rather than reaching for the simplest option and discovering the cost later, as the production scenario in this chapter shows happening to a real admin tool.
 
 ## Mental Model
 

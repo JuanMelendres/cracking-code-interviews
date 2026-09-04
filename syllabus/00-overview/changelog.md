@@ -300,4 +300,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 12 further migrated domains (`07`–`17`, `20`, `21`) — 108 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 07-api-design domain complete (2/2)
+
+### Added
+
+- Both `07-api-design` chapters retrofitted: `api-design.md` (T-803), `api-gateway-bff-and-edge-concerns.md` (T-911) — same additive method as every prior batch, both gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Each chapter's own content was read in full before writing its new sections: a phone-book-vs-bookmark analogy distinguishing `OFFSET` from keyset pagination, plus an elevator-call-button analogy for idempotency, in `api-design.md`; an apartment-building-concierge analogy for the API gateway and a personal-assistant analogy for the BFF pattern, in `api-gateway-bff-and-edge-concerns.md`.
+- Verified both files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/07-api-design/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`07-api-design` is now fully L1–L4 (2/2)** — the fifth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, and `06-databases`.
+
+### Not yet done
+
+- 11 further migrated domains (`08`–`17`, `20`, `21`) — 106 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
