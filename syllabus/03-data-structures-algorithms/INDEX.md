@@ -2,7 +2,7 @@
 title: "Data Structures & Algorithms — Domain Index"
 document_type: syllabus-domain-index
 domain: 03-data-structures-algorithms
-status: 5 of 18 planned topics written (Phase 5, in progress, started 2026-09-03)
+status: 9 of 18 planned topics written (Phase 5, in progress, started 2026-09-03)
 last_updated: 2026-09-03
 ---
 
@@ -22,10 +22,10 @@ Complexity analysis through advanced structures (Master Topic Register D14, T-14
 | T-2103 | [Binary Search, Including Search-on-Answer](binary-search-and-search-on-answer.md) | T-1404 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md` |
 | T-2104 | [Linked Lists and In-Place Manipulation](linked-lists-and-in-place-manipulation.md) | T-1405 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md` |
 | T-2105 | [Stacks and the Monotonic Stack](stacks-and-monotonic-stack.md) | T-1406 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/stacks-and-monotonic-stack.md` |
-| T-2106 | Heaps, Top-K, and K-Way Merge | T-1407 | Not yet written | Planned — elevate `study-packs/week-23/03-heaps-coding-practice.md` |
-| T-2107 | Trees, BSTs, and Traversal Patterns | T-1408 | Not yet written | Planned — elevate `study-packs/week-23/04-trees-coding-practice.md` |
-| T-2108 | Graphs: BFS, DFS, Topological Sort, Dijkstra, Union-Find ⭐ | T-1409 | Not yet written | Planned — highest-weighted pattern in the register (IWI 6.25) |
-| T-2109 | Backtracking and Pruning | T-1410 | Not yet written | Planned — elevate `study-packs/week-21/02-backtracking-coding-practice.md` |
+| T-2106 | [Heaps, Top-K, and K-Way Merge](heaps-top-k-and-k-way-merge.md) | T-1407 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md` |
+| T-2107 | [Trees, BSTs, and Traversal Patterns](trees-bst-and-traversal-patterns.md) | T-1408 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/trees-bst-and-traversal-patterns.md` |
+| T-2108 | [Graphs: BFS, DFS, Topological Sort, Dijkstra, Union-Find](graphs-bfs-dfs-and-shortest-paths.md) ⭐ | T-1409 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths.md` |
+| T-2109 | [Backtracking and Pruning](backtracking-and-pruning.md) | T-1410 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/backtracking-and-pruning.md` |
 | T-2110 | Dynamic Programming: 1D, 2D, Knapsack, Intervals ⭐ | T-1411 | Not yet written | Planned — elevate `study-packs/week-21/04-dynamic-programming-coding-practice.md` and `week-23/01-dp-coding-practice.md` |
 | T-2111 | Intervals, Merging, and Sweep Line | T-1412 | Not yet written | Planned — elevate `study-packs/week-20/03-intervals-coding-practice.md` |
 | T-2112 | Greedy and the Exchange Argument | T-1413 | Not yet written | Planned — elevate `study-packs/week-20/02-greedy-coding-practice.md` |
@@ -36,7 +36,7 @@ Complexity analysis through advanced structures (Master Topic Register D14, T-14
 | T-2117 | Advanced Structures: Segment Tree, Fenwick Tree, Rolling Hash | T-1418 | Not yet written | Planned — practice code exists at `practice/java/advanced-structures/` |
 | T-2118 | Coding Interview Communication Protocol | T-1419 | Not yet written | Planned — the register's own note: "absent and disproportionately valuable" |
 
-T-2101 through T-2105 were written first because they are exactly the Master Topic Register's own top-5-by-priority patterns (T-1402–T-1406) and because their underlying practice code and study-pack retrospectives already existed in full, verified depth — the fastest path to real canonical coverage with the lowest fabrication risk. Each of the five real, compiled demos was re-run on OpenJDK 21.0.12 while writing its chapter (11–13 assertions passing each, 57 total) rather than trusted from the study-pack's own prior verification alone. Cheat sheets, flashcards, and production-cookbook entries for all five have not been built yet — per this session's established batching discipline, that backlog is closed in a separate pass. T-2108 (Graphs) and T-2110 (Dynamic Programming) are marked ⭐ in the register as the two highest-weighted remaining patterns and are the natural next batch.
+T-2101 through T-2109 were written first because they are exactly the Master Topic Register's own top-9-by-priority patterns (T-1402–T-1410) and because their underlying practice code and study-pack retrospectives already existed in full, verified depth — the fastest path to real canonical coverage with the lowest fabrication risk. Each of the nine real, compiled demos was re-run on OpenJDK 21.0.12 while writing its chapter (10–18 assertions passing each, 108 total across all nine) rather than trusted from the study-pack's own prior verification alone. T-2108 (Graphs, IWI 6.25) is the register's single highest-weighted pattern overall. Cheat sheets, flashcards, and production-cookbook entries for all nine have not been built yet — per this session's established batching discipline, that backlog is closed in a separate pass. T-2110 (Dynamic Programming, ⭐, IWI 5.85) is the next-highest-weighted remaining pattern and the natural next chapter — its two source study-packs (`week-21/04` and `week-23/01`) together cover 8 problems, roughly 60% more source material than any single chapter written so far.
 
 ## Where this domain's boundary comes from
 

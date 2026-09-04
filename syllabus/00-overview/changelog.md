@@ -129,3 +129,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - T-2106 through T-2118 (Heaps, Trees, Graphs ⭐, Backtracking, Dynamic Programming ⭐, Intervals, Greedy, Bit Manipulation, Tries, Design Problems ⭐, Concurrency Problems ⭐, Advanced Structures, Communication Protocol) — not yet written; T-2108 (Graphs) and T-2110 (DP) are the two highest-weighted remaining patterns and the natural next batch.
 - Cheat sheets, flashcards, and production-cookbook entries for T-2101–T-2105 — deferred to a separate batch, per established session discipline.
 - `18-engineering-practices` (beyond its git-internals seed) and `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit — all still pending.
+
+## [2026-09-03] — Phase 5: 03-data-structures-algorithms continues (T-2106–T-2109)
+
+### Added
+
+- Four more canonical chapters, continuing the Master Topic Register's priority order: [Heaps, Top-K, and K-Way Merge](../03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md) (T-2106, D14 T-1407), [Trees, BSTs, and Traversal Patterns](../03-data-structures-algorithms/trees-bst-and-traversal-patterns.md) (T-2107, D14 T-1408), [Graphs: BFS, DFS, Topological Sort, Dijkstra, and Union-Find](../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths.md) (T-2108, D14 T-1409 — the register's single highest-weighted pattern overall, IWI 6.25), and [Backtracking and Pruning](../03-data-structures-algorithms/backtracking-and-pruning.md) (T-2109, D14 T-1410).
+- Same elevation discipline as the first five: each chapter elevates already-real, already-compiled practice code from `study-packs/week-{20,21,23}/...`, re-verified on OpenJDK 21.0.12 while writing (10, 18, 11, and 12 assertions respectively — 51 more, 108 total across all nine chapters now written in this domain).
+- The Graphs chapter's Section 5/8 specifically documents a deliberate, real interview trap already present in the source study-pack: plain Dijkstra silently produces a wrong (not crashed) answer on Cheapest Flights Within K Stops, since it has no mechanism to represent an edge-count constraint — a genuine, non-obvious algorithm-selection failure mode elevated intact from the practice code's own retrospective.
+- Updated `syllabus/03-data-structures-algorithms/INDEX.md` (9/18) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- T-2110 through T-2118 (Dynamic Programming ⭐, Intervals, Greedy, Bit Manipulation, Tries, Design Problems ⭐, Concurrency Problems ⭐, Advanced Structures, Communication Protocol) — not yet written. T-2110 (DP) is the next-highest-weighted remaining pattern (IWI 5.85) and has two source study-packs (8 problems combined) rather than one.
+- Cheat sheets, flashcards, and production-cookbook entries for T-2101–T-2109 — deferred to a separate batch.
+- `18-engineering-practices` (beyond its git-internals seed) and `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit — all still pending.

@@ -26,7 +26,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 |---|---|---|
 | 01 | [Computer Science Foundations](../01-computer-science-foundations/INDEX.md) | 5/5 planned topics written — domain complete (Phase 5, 2026-09-03) |
 | 02 | [Java](../02-java/INDEX.md) | 49/49 chapters relocated (Phase 3, 2026-09-03) |
-| 03 | [Data Structures & Algorithms](../03-data-structures-algorithms/INDEX.md) | 5 of 18 planned topics written (Phase 5, in progress, 2026-09-03) |
+| 03 | [Data Structures & Algorithms](../03-data-structures-algorithms/INDEX.md) | 9 of 18 planned topics written (Phase 5, in progress, 2026-09-03) |
 | 04 | [Software Design](../04-software-design/INDEX.md) | 1/1 chapter relocated (Phase 2, 2026-09-03) |
 | 05 | [Spring](../05-spring/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) |
 | 06 | [Databases](../06-databases/INDEX.md) | 14/14 chapters relocated (Phase 3, 2026-09-03) |
