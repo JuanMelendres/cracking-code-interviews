@@ -2,7 +2,7 @@
 title: "Data Structures & Algorithms — Domain Index"
 document_type: syllabus-domain-index
 domain: 03-data-structures-algorithms
-status: 9 of 18 planned topics written (Phase 5, in progress, started 2026-09-03)
+status: 17/17 planned topics written — domain complete (T-1401 and T-1419 covered elsewhere, not duplicated; Phase 5, 2026-09-03)
 last_updated: 2026-09-03
 ---
 
@@ -26,17 +26,17 @@ Complexity analysis through advanced structures (Master Topic Register D14, T-14
 | T-2107 | [Trees, BSTs, and Traversal Patterns](trees-bst-and-traversal-patterns.md) | T-1408 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/trees-bst-and-traversal-patterns.md` |
 | T-2108 | [Graphs: BFS, DFS, Topological Sort, Dijkstra, Union-Find](graphs-bfs-dfs-and-shortest-paths.md) ⭐ | T-1409 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths.md` |
 | T-2109 | [Backtracking and Pruning](backtracking-and-pruning.md) | T-1410 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/backtracking-and-pruning.md` |
-| T-2110 | Dynamic Programming: 1D, 2D, Knapsack, Intervals ⭐ | T-1411 | Not yet written | Planned — elevate `study-packs/week-21/04-dynamic-programming-coding-practice.md` and `week-23/01-dp-coding-practice.md` |
-| T-2111 | Intervals, Merging, and Sweep Line | T-1412 | Not yet written | Planned — elevate `study-packs/week-20/03-intervals-coding-practice.md` |
-| T-2112 | Greedy and the Exchange Argument | T-1413 | Not yet written | Planned — elevate `study-packs/week-20/02-greedy-coding-practice.md` |
-| T-2113 | Bit Manipulation | T-1414 | Not yet written | Planned — elevate `study-packs/week-20/04-bit-manipulation-coding-practice.md` |
-| T-2114 | Tries and Prefix Structures | T-1415 | Not yet written | Planned — elevate `study-packs/week-21/01-tries-coding-practice.md` |
-| T-2115 | Design-Style Coding Problems (LRU, LFU, Iterators) ⭐ | T-1416 | Not yet written | Planned — elevate `study-packs/week-22/04-design-coding-practice.md` |
-| T-2116 | Concurrency Coding Problems ⭐ | T-1417 | Not yet written | Planned — elevate `study-packs/week-22/03-concurrency-coding-practice.md`; cross-links `02-java/concurrency/` |
-| T-2117 | Advanced Structures: Segment Tree, Fenwick Tree, Rolling Hash | T-1418 | Not yet written | Planned — practice code exists at `practice/java/advanced-structures/` |
-| T-2118 | Coding Interview Communication Protocol | T-1419 | Not yet written | Planned — the register's own note: "absent and disproportionately valuable" |
+| T-2110 | [Dynamic Programming: 1D, 2D, Knapsack, Intervals](dynamic-programming.md) ⭐ | T-1411 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/dynamic-programming.md` |
+| T-2111 | [Intervals, Merging, and Sweep Line](intervals-merging-and-sweep-line.md) | T-1412 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/intervals-merging-and-sweep-line.md` |
+| T-2112 | [Greedy and the Exchange Argument](greedy-and-the-exchange-argument.md) | T-1413 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/greedy-and-the-exchange-argument.md` |
+| T-2113 | [Bit Manipulation](bit-manipulation.md) | T-1414 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/bit-manipulation.md` |
+| T-2114 | [Tries and Prefix Structures](tries-and-prefix-structures.md) | T-1415 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/tries-and-prefix-structures.md` |
+| T-2115 | [Design-Style Coding Problems (LRU, LFU, Iterators)](design-style-coding-problems.md) ⭐ | T-1416 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/design-style-coding-problems.md` |
+| T-2116 | [Concurrency Coding Problems](concurrency-coding-problems.md) ⭐ | T-1417 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/concurrency-coding-problems.md` |
+| T-2117 | [Advanced Structures: Segment Tree, Fenwick Tree, Rolling Hash](advanced-structures-segment-tree-fenwick-rolling-hash.md) | T-1418 | L1, L2, L3, L4 — fully written | `syllabus/03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash.md` |
+| — | Coding Interview Communication Protocol | T-1419 | Covered by [Coding Interview Communication Protocol](../20-interview-preparation/coding/coding-interview-communication-protocol.md) in `20-interview-preparation/coding` | Not duplicated here |
 
-T-2101 through T-2109 were written first because they are exactly the Master Topic Register's own top-9-by-priority patterns (T-1402–T-1410) and because their underlying practice code and study-pack retrospectives already existed in full, verified depth — the fastest path to real canonical coverage with the lowest fabrication risk. Each of the nine real, compiled demos was re-run on OpenJDK 21.0.12 while writing its chapter (10–18 assertions passing each, 108 total across all nine) rather than trusted from the study-pack's own prior verification alone. T-2108 (Graphs, IWI 6.25) is the register's single highest-weighted pattern overall. Cheat sheets, flashcards, and production-cookbook entries for all nine have not been built yet — per this session's established batching discipline, that backlog is closed in a separate pass. T-2110 (Dynamic Programming, ⭐, IWI 5.85) is the next-highest-weighted remaining pattern and the natural next chapter — its two source study-packs (`week-21/04` and `week-23/01`) together cover 8 problems, roughly 60% more source material than any single chapter written so far.
+**This domain is now complete: 17 of 17 canonical chapters written** (D14's T-1402–T-1418; T-1401 and T-1419 are both covered by existing chapters in other domains and deliberately not duplicated here, per the same "one canonical explanation per concept" rule applied to T-1401 above). All 17 chapters were written across three batches (T-2101–T-2105, T-2106–T-2109, T-2110–T-2117), each elevating already-real, already-compiled, already-verified practice code and its study-pack retrospective rather than writing new algorithm solutions from scratch. Every underlying real assertion across all 17 chapters' practice code was re-compiled and re-run on OpenJDK 21.0.12 while writing this domain, not trusted from prior verification alone: 57 (T-2101–T-2105) + 51 (T-2106–T-2109) + 139 (T-2110–T-2117: 15+15 DP, 9 Intervals, 10 Greedy, 10 Bit Manipulation, 14 Tries, 23 Design, 10 Concurrency, 33 Advanced Structures) = 247 total real, passing assertions. T-2108 (Graphs, IWI 6.25) is the register's single highest-weighted pattern overall; T-2117 (Advanced Structures) is explicitly outside the roadmap's core scope (§5 of `00-project/learning-roadmap.md`), included because the underlying practice code already existed to close that gap. Cheat sheets, flashcards, and production-cookbook entries for all 17 chapters have not been built yet — per this session's established batching discipline, that backlog is closed in a separate pass.
 
 ## Where this domain's boundary comes from
 

@@ -144,3 +144,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - T-2110 through T-2118 (Dynamic Programming ⭐, Intervals, Greedy, Bit Manipulation, Tries, Design Problems ⭐, Concurrency Problems ⭐, Advanced Structures, Communication Protocol) — not yet written. T-2110 (DP) is the next-highest-weighted remaining pattern (IWI 5.85) and has two source study-packs (8 problems combined) rather than one.
 - Cheat sheets, flashcards, and production-cookbook entries for T-2101–T-2109 — deferred to a separate batch.
 - `18-engineering-practices` (beyond its git-internals seed) and `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit — all still pending.
+
+## [2026-09-03] — Phase 5: 03-data-structures-algorithms domain complete (T-2110–T-2117)
+
+### Added
+
+- Eight more canonical chapters, completing the domain's full 18-chapter working list: [Dynamic Programming](../03-data-structures-algorithms/dynamic-programming.md) (T-2110, D14 T-1411, ⭐ — elevated from two study-packs, 12 problems total), [Intervals, Merging, and Sweep Line](../03-data-structures-algorithms/intervals-merging-and-sweep-line.md) (T-2111, D14 T-1412), [Greedy and the Exchange Argument](../03-data-structures-algorithms/greedy-and-the-exchange-argument.md) (T-2112, D14 T-1413), [Bit Manipulation](../03-data-structures-algorithms/bit-manipulation.md) (T-2113, D14 T-1414), [Tries and Prefix Structures](../03-data-structures-algorithms/tries-and-prefix-structures.md) (T-2114, D14 T-1415), [Design-Style Coding Problems](../03-data-structures-algorithms/design-style-coding-problems.md) (T-2115, D14 T-1416, ⭐), [Concurrency Coding Problems](../03-data-structures-algorithms/concurrency-coding-problems.md) (T-2116, D14 T-1417, ⭐), and [Advanced Structures](../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash.md) (T-2117, D14 T-1418 — elevated from `practice/java/advanced-structures/README.md` rather than a study-pack, since none exists for this Expert-tier, roadmap-excluded topic).
+- T-2118 (D14 T-1419, Coding Interview Communication Protocol) is **not** written as a new chapter — discovered during this batch to already exist as a fully migrated entry at `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md`. The domain's own `INDEX.md` now references it directly rather than duplicating it, the same treatment already given to T-1401.
+- **This completes `03-data-structures-algorithms`: 17 of 17 canonical chapters written** (D14's T-1402–T-1418; T-1401 and T-1419 both covered elsewhere and explicitly not duplicated). Every underlying real assertion across all 17 chapters' practice code was re-compiled and re-run on OpenJDK 21.0.12 while writing this domain: 247 total real, passing assertions.
+- Updated `syllabus/03-data-structures-algorithms/INDEX.md` (17/17, domain complete) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- Cheat sheets, flashcards, and production-cookbook entries for all 17 chapters in this domain — deferred to a separate batch, per established session discipline.
+- `18-engineering-practices` (beyond its git-internals seed) and `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit — all still pending.
