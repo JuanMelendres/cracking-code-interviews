@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/kafka/consumer-groups-and-rebalancing.md
+topic_id: T-703
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -36,30 +42,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -75,6 +83,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Consumer-group rebalancing is where Kafka's abstraction meets real distributed-systems failure modes — "your consumer group rebalances every 30 seconds, diagnose it" is a standard High-frequency deep-dive because the answer requires separating three genuinely different causes (scaling, crashes, slow processing) that all produce the identical visible symptom. It also connects directly to offset-commit semantics, which is the substrate [Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md) (T-704) builds on.
+
+## Level 1 — Foundation
+
+Think of a restaurant with four sections and a team of waiters sharing them. If there's only one waiter, they cover all four sections themselves. When a second waiter joins the shift, the manager reassigns sections so each waiter covers two — this reassignment is a **rebalance**, and it happens any time a waiter joins, clocks out, or stops responding. A **consumer group** is that team of waiters sharing the restaurant's sections (partitions) — each section is covered by exactly one waiter at a time, so no table gets served twice by two different waiters and no table gets forgotten because everyone assumed someone else had it.
+
+If a sixth waiter shows up but there are only four sections, that waiter simply has nothing to do — standing around idle. This is exactly why adding more consumers than a topic has partitions doesn't increase throughput: there's no more "sections" to hand out, no matter how many extra waiters clock in.
+
+## Level 2 — Working Knowledge
+
+At this level you should recognize the single most common real-world rebalancing problem before reaching for exotic explanations. If a consumer group keeps rebalancing every 30 seconds or so, the first thing to check is not the network — it's whether a consumer is taking too long between calls to fetch its next batch of work (`max.poll.interval.ms`). A consumer that's alive but slow looks, from the coordinator's point of view, exactly like a consumer that died — so it gets evicted and the group reshuffles, repeating the cycle once the "new" (same) consumer rejoins and eventually hits the same slow path again.
+
+You should also be comfortable with a quick diagnostic habit: if someone reports "I added more consumer instances and lag didn't improve," your first question should be "how many partitions does this topic have?" — not "is something broken with the new instances." A newly-joined consumer resuming a partition with no new records since the last commit will correctly process zero records; that's expected offset-driven behavior, not a bug to chase.
+
+Practically, if you're operating a group where membership changes with any regularity (autoscaling, rolling deploys), it's worth checking whether the group uses the default (eager) assignor, which pauses the *entire* group on every rebalance, or the cooperative-incremental assignor, which only pauses the specific partitions actually moving — a one-line configuration change with a real, measurable difference in how disruptive routine scaling events are.
 
 ## Mental Model
 

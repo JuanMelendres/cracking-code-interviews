@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md
+topic_id: T-707
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -43,32 +49,34 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Decision Framework](#decision-framework)
-15. [Comparisons](#comparisons)
-16. [Common Mistakes](#common-mistakes)
-17. [Anti-Patterns](#anti-patterns)
-18. [Best Practices](#best-practices)
-19. [Interview Answer Framework](#interview-answer-framework)
-20. [Interview Questions](#interview-questions)
-21. [Summary](#summary)
-22. [Key Takeaways](#key-takeaways)
-23. [Cheat Sheet](#cheat-sheet)
-24. [Flashcards](#flashcards)
-25. [Practice Exercises](#practice-exercises)
-26. [Solutions](#solutions)
-27. [Additional Reading](#additional-reading)
-28. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -96,6 +104,18 @@ retry plus dead-lettering) rather than a vague "handle errors gracefully." Consu
 lag itself is also one of the most commonly misunderstood Kafka metrics — treated as
 a vague health indicator rather than the precise SLO it should be for any
 consumer-based system's on-call practice.
+
+## Level 1 — Foundation
+
+Picture a single-lane conveyor belt carrying packages to a worker who inspects each one in order. **Consumer lag** is simply how many packages are still waiting on the belt behind the worker's current position — the bigger that number grows, the further behind real-time the worker is. If one package is damaged and the worker can't process it, the worker can't just reach past it and grab the next one — the belt only moves forward past a package once it's actually been dealt with. So a single bad package (a **poison message**) jams the whole belt: every package behind it waits too, no matter how fine those packages are.
+
+A **dead-letter queue (DLQ)** is a side table next to the belt: after the worker tries a damaged package a few times and gives up, they set it aside on that table and let the belt keep moving. This unblocks everything behind it — but it also means the damaged package is now, deliberately, processed later (or not at all) rather than in its original position, which is a real trade-off, not a free fix.
+
+## Level 2 — Working Knowledge
+
+At this level, the practical habit worth building is treating consumer lag as a real service-level objective, not just a number to glance at. A healthy consumer's lag trends toward zero under normal load and only grows temporarily during a legitimate traffic burst — if you're setting up alerting for a consumer-based service, lag deserves the same alerting rigor as latency or error rate, watched per-partition rather than only as a topic-wide average (since one stuck partition can hide behind an otherwise-healthy aggregate).
+
+You should also be able to design a concrete, minimal DLQ strategy on the spot: pick a bounded retry count for a failing message, and once that count is exceeded, publish the message to a separate DLQ topic and explicitly move the consumer's read position past it before continuing. A subtlety worth internalizing here: committing an offset does not, by itself, guarantee the consumer's next read continues from the right place — depending on the client library, you may need to explicitly move the consumer forward, not just update the committed-offset bookkeeping. And critically, a DLQ with nobody assigned to monitor and periodically drain it is not really a safety net — it's a place where failures accumulate silently, unexamined, which defeats the entire point of building one.
 
 ## Mental Model
 

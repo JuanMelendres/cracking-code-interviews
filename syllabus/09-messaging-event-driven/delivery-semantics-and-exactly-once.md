@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/kafka/delivery-semantics-and-exactly-once.md
+topic_id: T-704
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -38,30 +44,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -77,6 +85,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 *"Is exactly-once real?"* is one of this project's own blueprint-named discriminating questions, precisely because both confident wrong answers — "yes, Kafka is exactly-once" and "no, that's marketing" — sound plausible and are both wrong. The honest, scoped answer requires understanding that Kafka's exactly-once semantics covers a specific transactional loop *within* Kafka, and requires additional machinery (an outbox, or an idempotent consumer) to extend to any external system — a distinction that separates candidates who've actually built an event-driven pipeline from those who've only read about one.
+
+## Level 1 — Foundation
+
+Imagine checking off a chore on a to-do list. If you do the chore first and then check it off, and you get interrupted right after finishing but before checking it off, you might come back later and do the chore again by mistake — a harmless duplicate. If you check it off first and then do the chore, and you get interrupted right after checking it off but before actually doing it, the chore silently never gets done — you'll never come back to it, because your list says it's already handled. This is the entire tension behind Kafka's delivery guarantees: **at-least-once** (do it, then check it off) risks doing something twice; **at-most-once** (check it off, then do it) risks silently never doing it at all.
+
+"Exactly-once" isn't a magic third way of ordering those same two steps — there's no ordering that avoids both problems. It's extra bookkeeping layered on top: either a stamped receipt system that recognizes "I already did this exact chore" and skips it safely on a repeat, or a single combined action that does the chore and checks the box as one atomic move (which Kafka can only offer when both the reading and the writing happen entirely within Kafka itself).
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to give the correct, nuanced answer to "is Kafka exactly-once?" instead of a flat yes or no: yes, for a pipeline that reads from one Kafka topic and writes to another, using Kafka's own transactional machinery — but no, the moment that pipeline also writes to an external system (a database, an email service, a payment gateway), because Kafka has no way to make that external write part of the same atomic unit.
+
+Practically, this means: whenever you design a consumer whose job includes a real side effect outside Kafka, you should default to at-least-once delivery (safer than silently losing data) and make that side effect idempotent — most commonly, by checking a durable table keyed on a stable, event-level ID before performing the action, and skipping the action if that ID has already been recorded as done. This is the concrete, buildable pattern for making something inherently non-idempotent (charging a card, sending an email) safe under redelivery, and it's the answer you should reach for immediately when asked to design around this problem, rather than treating a redelivered message as a surprising bug to investigate.
 
 ## Mental Model
 

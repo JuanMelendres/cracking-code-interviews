@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/kafka/schema-registry-and-compatibility-evolution.md
+topic_id: T-708
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -39,34 +45,36 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Concurrency Implications](#concurrency-implications)
-15. [Security Implications](#security-implications)
-16. [Decision Framework](#decision-framework)
-17. [Comparisons](#comparisons)
-18. [Common Mistakes](#common-mistakes)
-19. [Anti-Patterns](#anti-patterns)
-20. [Best Practices](#best-practices)
-21. [Interview Answer Framework](#interview-answer-framework)
-22. [Interview Questions](#interview-questions)
-23. [Summary](#summary)
-24. [Key Takeaways](#key-takeaways)
-25. [Cheat Sheet](#cheat-sheet)
-26. [Flashcards](#flashcards)
-27. [Practice Exercises](#practice-exercises)
-28. [Solutions](#solutions)
-29. [Additional Reading](#additional-reading)
-30. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Concurrency Implications](#concurrency-implications)
+17. [Security Implications](#security-implications)
+18. [Decision Framework](#decision-framework)
+19. [Comparisons](#comparisons)
+20. [Common Mistakes](#common-mistakes)
+21. [Anti-Patterns](#anti-patterns)
+22. [Best Practices](#best-practices)
+23. [Interview Answer Framework](#interview-answer-framework)
+24. [Interview Questions](#interview-questions)
+25. [Summary](#summary)
+26. [Key Takeaways](#key-takeaways)
+27. [Cheat Sheet](#cheat-sheet)
+28. [Flashcards](#flashcards)
+29. [Practice Exercises](#practice-exercises)
+30. [Solutions](#solutions)
+31. [Additional Reading](#additional-reading)
+32. [Official References](#official-references)
 
 ---
 
@@ -83,6 +91,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests whether a candidate has ever actually operated an event-driven system at the point where two independently-deployed services stop being able to assume they're running the same code — which is every event-driven system past a certain size. A candidate who can recite "BACKWARD compatibility means new code can read old data" but freezes when asked "so is removing a field safe or not" hasn't internalized the mechanism, only memorized a phrase. The Staff-level signal here is connecting the compatibility rule to *why* it holds — what a reader schema needs to resolve a record — which is exactly what lets a candidate correctly reason about a compatibility scenario they've never seen before, rather than pattern-matching to a memorized rule.
+
+## Level 1 — Foundation
+
+Imagine two coworkers who correspond only via a shared paper form. If the form's layout changes, whoever reads it next needs the new copy to still make sense of it. A **Schema Registry** is a librarian who keeps every version of that form on file and enforces a rule about which changes are allowed: for instance, "you may add a new blank line to the form, as long as it's optional (has a default answer), but you can't add a required line that older, already-filled-out forms have no way to answer."
+
+Renaming a field, adding one, or removing one all mean something different depending on which direction of reading the librarian is protecting. If new readers must be able to make sense of old, already-filled-out forms (the common case — code that reads data written a while ago), that's the promise called **BACKWARD compatibility**. This one, surprisingly to most people at first, means it's totally fine to remove a line from the form (nobody's forced to look for it anymore) but risky to add a required one (old forms simply never had an answer for it).
+
+## Level 2 — Working Knowledge
+
+At this level, the most valuable thing to internalize is the specific, often-inverted rule this chapter measures directly: under the common BACKWARD compatibility default, removing a field from an event is safe, while adding a required field without a default value gets rejected. This is the opposite of most people's first guess, so it's worth deliberately checking your intuition against this rule rather than trusting instinct.
+
+Practically, whenever you're the one proposing a schema change to an event, the working habit is: before adding any new field, ask "does this have a sensible default value?" If yes, the change is almost certainly safe under the standard compatibility rule. If you genuinely can't give it a meaningful default (a `shippingAddress` field, for instance, where an empty string isn't really "no address"), that's a signal the field needs a different rollout plan — perhaps the schema change happens in two stages, or the field is introduced as optional first and made meaningful over time.
+
+You should also recognize when a schema-compatibility question isn't really about Avro or Kafka specifically at all — it's about a much more general software engineering question: "which side of this API is going to be running an older version of the code, and does my planned change survive that?" That question comes up anywhere two systems evolve independently, not just at a message broker.
 
 ## Mental Model
 

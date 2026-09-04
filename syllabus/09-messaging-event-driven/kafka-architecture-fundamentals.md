@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/kafka/kafka-architecture-fundamentals.md
+topic_id: T-701/T-702/T-703/T-704/T-705
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -35,26 +41,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -70,6 +78,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This project's own knowledge-base audit found 15 Kafka rows averaging ~117 characters of pure API vocabulary — definitions with no semantics-under-failure content. Kafka's interview value lives almost entirely in the latter, and this chapter is the prerequisite for all of it: partition and replication mechanics are the substrate that producer semantics (T-702), consumer rebalancing (T-703), and delivery guarantees (T-704) are all built on. The single most consequential, most commonly missed fact in this entire domain — that Kafka guarantees ordering only within a partition, never across a topic — is established here.
+
+## Level 1 — Foundation
+
+Think of a large post office that sorts mail into numbered bins before delivery. A "topic" is the post office's name for a whole class of mail (say, "orders"), but the actual sorting happens into separate bins — the **partitions**. Mail dropped into bin 3 comes out of bin 3 in the exact order it went in, but there's no guarantee about how mail in bin 3 relates in time to mail in bin 7 — they're independent bins, sorted and emptied independently. This is why Kafka only guarantees order within a partition, never across a whole topic: there's no single line to keep in order, just several separate ones running in parallel for speed.
+
+The **partition key** decides which bin a piece of mail goes into — it's like writing "customer #42" on an envelope, so every envelope for customer #42 lands in the same bin, in order, even though other customers' mail is sorted into other bins with no relative order to it at all. **Replication** is having backup copies of each bin's contents kept by other clerks (**followers**) in case the main clerk (the **leader**) gets sick — but a write only "counts" once enough of those backup clerks have actually copied it down, not just because there are supposed to be three backup clerks in general.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to reason correctly about a common design question: "I need all of customer 42's events processed in order — how?" The answer is to key records by `customerId`, since Kafka's deterministic `hash(key) % partitionCount` routing guarantees every record for that key lands on the same partition, in send order. You should also recognize the trap in the follow-up: what happens if you later change the partition count? Every key's mapping changes at once, silently breaking that ordering guarantee for anything already written — which is why, practically, partition count should be sized generously up front for any topic where key-based ordering matters, not treated as a dial to turn later.
+
+You should also be comfortable with a quick sanity check on durability settings: seeing `replication.factor=3` in a topic's configuration does not by itself tell you how many replicas will actually acknowledge a write at any given moment — that depends on the current, possibly-smaller in-sync replica set. If asked to reason about whether a system can tolerate a broker failure without data loss, the practical habit is to ask "what's the current ISR size, and is `min.insync.replicas` actually set?" rather than trusting the configured replication factor alone.
 
 ## Mental Model
 

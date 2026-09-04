@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/event-driven-architecture-integration-styles.md
+topic_id: T-906
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -53,32 +59,34 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Concurrency Implications](#concurrency-implications)
-14. [Decision Framework](#decision-framework)
-15. [Comparisons](#comparisons)
-16. [Common Mistakes](#common-mistakes)
-17. [Anti-Patterns](#anti-patterns)
-18. [Best Practices](#best-practices)
-19. [Interview Answer Framework](#interview-answer-framework)
-20. [Interview Questions](#interview-questions)
-21. [Summary](#summary)
-22. [Key Takeaways](#key-takeaways)
-23. [Cheat Sheet](#cheat-sheet)
-24. [Flashcards](#flashcards)
-25. [Practice Exercises](#practice-exercises)
-26. [Solutions](#solutions)
-27. [Additional Reading](#additional-reading)
-28. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Concurrency Implications](#concurrency-implications)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -108,6 +116,18 @@ disappear — it moved into the event schema (if the event carries data) or into
 availability (if the event carries only a reference and requires a callback). Naming
 that relocation precisely, rather than reciting "events decouple things," is a clean
 Staff-level signal.
+
+## Level 1 — Foundation
+
+Picture planning a group dinner two different ways. In the first way, one person (the **orchestrator**) calls the restaurant, calls each guest, and coordinates every step personally — if you ask that person "what's the status," they know everything, because they did every step themselves. In the second way, there's no single coordinator: someone posts "dinner's happening" in a group chat, and each guest independently decides what to do in response — bring a dish, book a babysitter, RSVP — reacting to the announcement on their own (**choreography**). Both get dinner organized, but if something goes wrong, the orchestrated version has one person who can explain exactly what happened and when; the choreographed version requires piecing together everyone's individual, separate actions after the fact, since no single person watched the whole thing unfold.
+
+Separately, there's a question of what the announcement itself contains. A bare "dinner's happening at 7" (an **event notification**) means anyone who needs more detail — the address, the menu — has to go ask the organizer directly. A fuller message with the address, menu, and parking instructions all included (**event-carried state transfer**) means nobody has to ask anyone anything, but now everyone's plans depend on that message being accurate — if the organizer needs to change the address later, every guest who already memorized the old one is affected.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to correct the single most common misconception on this topic when it comes up: saying "events decouple services" is only half true. The direct call dependency really does go away, but it doesn't disappear — it moves somewhere else. If the event is thin (just an ID), the coupling moves into runtime availability: whoever received the event now has to successfully call the original service back, meaning that service still has to be up and responsive at that moment. If the event is fat (carries the actual data), the coupling moves into the event's schema: every consumer that embedded that data shape now depends on the producer never changing it in a way they can't handle.
+
+Practically, if you're asked to design or review a choreographed, multi-service workflow, the first working question to ask is "how would someone debug this if step four silently never happened?" If there's no shared identifier (a correlation ID) threading through every event and no centralized way to trace it, that's a real, concrete gap to flag before the design ships — not something to discover during the first confusing incident. This isn't a hypothetical concern: unlike a normal function call, an event dispatched through a message bus genuinely does not leave a trace connecting it back to whatever triggered it, unless something was deliberately built to create that trace.
 
 ## Mental Model
 

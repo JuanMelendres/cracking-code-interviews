@@ -32,7 +32,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 | 06 | [Databases](../06-databases/INDEX.md) | 14/14 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 14/14** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 07 | [API Design](../07-api-design/INDEX.md) | 2/2 chapters relocated (Phase 2, 2026-09-03); **L1/L2 retrofit complete, 2/2** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 08 | [Testing](../08-testing/INDEX.md) | 7/7 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 7/7** — fully L1–L4 (Phase 5, 2026-09-04) |
-| 09 | [Messaging & Event-Driven Systems](../09-messaging-event-driven/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) |
+| 09 | [Messaging & Event-Driven Systems](../09-messaging-event-driven/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 9/9** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 10 | [Distributed Systems](../10-distributed-systems/INDEX.md) | 5/5 chapters relocated (Phase 3, 2026-09-03) |
 | 11 | [System Design](../11-system-design/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) + 17 Architecture Atlas case studies (referenced) |
 | 12 | [Security](../12-security/INDEX.md) | 8/8 chapters relocated (Phase 3, 2026-09-03) |

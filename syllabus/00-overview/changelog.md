@@ -327,4 +327,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 10 further migrated domains (`09`–`17`, `20`, `21`) — 99 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 09-messaging-event-driven domain complete (9/9)
+
+### Added
+
+- All 9 `09-messaging-event-driven` chapters retrofitted: `kafka-architecture-fundamentals.md` (T-701/T-702/T-703/T-704/T-705), `producer-semantics-and-partition-keys.md` (T-702/T-705), `consumer-groups-and-rebalancing.md` (T-703), `delivery-semantics-and-exactly-once.md` (T-704), `consumer-lag-backpressure-and-dlq-strategy.md` (T-707), `schema-registry-and-compatibility-evolution.md` (T-708), `messaging-patterns-and-change-data-capture.md` (T-710), `event-sourcing-and-its-real-costs.md` (T-905), `event-driven-architecture-integration-styles.md` (T-906) — same additive method as every prior batch, all 9 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a post-office-bins analogy for partitions/keys and replication; a certified-mail analogy for `acks`/idempotence; a restaurant-waitstaff analogy for consumer groups and rebalancing; a to-do-list-checkbox analogy for at-least-once vs. at-most-once delivery; a single-lane-conveyor-belt analogy for consumer lag, poison messages, and DLQs; a shared-paper-form analogy for schema compatibility modes; a security-camera-vs-clerk analogy for CDC vs. the outbox pattern plus a ticket-queue-vs-radio-broadcast analogy for point-to-point vs. publish-subscribe; a checkbook-register analogy for event sourcing and snapshotting; a group-dinner-planning analogy for choreography vs. orchestration.
+- Verified all 9 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/09-messaging-event-driven/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`09-messaging-event-driven` is now fully L1–L4 (9/9)** — the seventh fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, and `08-testing`.
+
+### Not yet done
+
+- 9 further migrated domains (`10`–`17`, `20`, `21`) — 90 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

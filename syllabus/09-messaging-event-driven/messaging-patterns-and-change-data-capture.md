@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/messaging-patterns-and-change-data-capture.md
+topic_id: T-710
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -52,31 +58,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -108,6 +116,20 @@ similarly often glossed over — candidates who've only used Kafka sometimes con
 "consumer group" mechanics with the general pattern, missing that the same
 distinction applies to any message broker, not just Kafka's specific
 implementation.
+
+## Level 1 — Foundation
+
+Imagine a security camera pointed at a filing cabinet versus a clerk who's supposed to remember to send a memo every time they file something. **Change Data Capture (CDC)** is the security camera: it records every real change that happens to the cabinet — automatically, without the clerk needing to know or care that it's being watched. The **outbox pattern** is the clerk-with-a-memo approach: it works, but only if the clerk (every piece of application code that touches the data) remembers, every single time, to also write that memo — and if a new clerk starts working there and nobody trains them on the memo rule, changes they make simply go unnotified.
+
+Separately, **point-to-point** and **publish-subscribe** answer a completely different question: not "how does a message get created," but "who gets to see it." Point-to-point is like a single ticket-number queue at a government office — once ticket #42 is called and served by one clerk, it's done, no other clerk serves that same ticket. Publish-subscribe is like a radio broadcast — every single person tuned in hears the exact same broadcast, and a hundred more listeners tuning in doesn't mean any existing listener hears less.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, in one sentence, CDC's real practical advantage over the outbox pattern: it requires zero changes to existing application code and automatically covers every write path, including ones added in the future — whereas the outbox pattern requires every current and future code path that writes to the data to remember to participate, and a missed one is a silent, easy-to-overlook bug. This is the concrete reason CDC is often preferred when there are many existing ways data gets written and no realistic way to audit all of them for outbox compliance.
+
+You should also be comfortable recognizing CDC's real, non-obvious cost: it's not "free" just because it needs no application code changes. A CDC consumer that stops running (crashes, gets decommissioned, or simply falls behind) prevents the source database from reclaiming the portion of its transaction log that consumer hasn't read yet — so an abandoned or lagging CDC pipeline is a real, growing disk-usage risk on the source database, not just a stale downstream dataset. Practically, if you're the one proposing CDC for a new integration, "who's monitoring the replication slot's lag" needs a real, stated answer before it ships — not an assumption that it'll be fine.
+
+Finally, when someone in a design discussion says "we could use Kafka's consumer groups for point-to-point," you should recognize that as one broker's specific implementation of a general pattern — the same point-to-point/publish-subscribe distinction applies identically to RabbitMQ, SQS, or any other message broker, and stating it in those broker-independent terms is a stronger, more transferable answer.
 
 ## Mental Model
 

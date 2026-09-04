@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/event-sourcing-and-its-real-costs.md
+topic_id: T-905
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -45,31 +51,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Performance Implications](#performance-implications)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Performance Implications](#performance-implications)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -97,6 +105,20 @@ rebuilding read models from scratch). A candidate who can only describe event
 sourcing's benefits, with no mention of replay cost, snapshotting, or schema
 evolution difficulty, reveals they've read about the pattern rather than reasoned
 about operating it.
+
+## Level 1 — Foundation
+
+Think of the difference between checking your bank balance directly on a screen versus reconstructing it by reading through your entire paper checkbook register from page one, adding and subtracting every single transaction by hand until you reach today. Most systems store the equivalent of the balance directly — fast to read, but the moment you delete an old transaction record to save space, that history is gone forever. **Event sourcing** is the checkbook-register approach: it never stores "the current balance" at all — only the full list of deposits and withdrawals, in order — and the balance is always computed fresh by walking through that list. This gives you something the balance-only approach structurally can't: you can answer "what was my balance on March 3rd?" by just stopping the walk-through at that date.
+
+The catch, and the reason this chapter's title explicitly says "and its real costs," is that walking through the entire checkbook register gets slower the longer your history grows. The standard fix is a **snapshot**: periodically writing down "as of transaction #5,000, the balance was $700" on a sticky note, so next time you only need to replay transactions after #5,000 instead of from the very beginning — the sticky note doesn't change what your real balance is, it just saves you re-doing arithmetic you've already done before.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to give both halves of the answer whenever event sourcing comes up, unprompted — not just its appeal (a full audit trail, the ability to answer "what did this look like at any point in time," rebuilding a derived view from scratch) but also its real operational cost: replaying history to compute current state gets more expensive as that history grows, and any system adopting event sourcing needs a concrete snapshotting plan from the start, not as something bolted on after a slow-loading aggregate becomes a production complaint.
+
+You should also be comfortable correcting a common conflation: event sourcing and CQRS (separating read and write models) are two independent decisions, not the same thing — you can use either without the other, and they're only frequently paired in practice because an event log happens to be a convenient source for building a CQRS read-model projection, not because one requires the other.
+
+Practically, if you're evaluating whether a real system should adopt event sourcing, the working questions are: does this domain have a genuine, recurring need for a complete audit trail or "state at time T" queries that a simpler audit-log table couldn't serve? And is there a real, stated plan for snapshotting before any aggregate can accumulate meaningful history? If the answer to the second question is no, that's a real, concrete red flag worth raising before the design is approved, not after replay latency shows up as a user-facing problem.
 
 ## Mental Model
 

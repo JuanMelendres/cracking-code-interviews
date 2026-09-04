@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/kafka/producer-semantics-and-partition-keys.md
+topic_id: T-702/T-705
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -36,30 +42,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -76,6 +84,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 A Kafka producer makes two genuinely independent decisions per record — which partition it goes to, and how durably it's written before the call returns — and interview answers routinely conflate the two. This chapter's central interview trap, *"`acks=all` and you still lost a message. How?"*, is explicitly named in this project's own blueprint as a discriminating follow-up: the honest answer requires understanding that `acks=all` is a statement about the *current* ISR, not the configured replication factor, which is only learnable by first understanding replication mechanics ([Kafka Architecture Fundamentals](kafka-architecture-fundamentals.md)).
+
+## Level 1 — Foundation
+
+Sending a Kafka record is like mailing a certified letter. Two separate decisions happen: which mailbox it goes to (the **partition**, decided by the key), and how much proof of delivery you demand before you consider the letter truly sent (`acks`). Asking for `acks=0` is like dropping a letter in a public mailbox and walking away without a receipt — fast, but you'll never know if it was lost. Asking for `acks=all` is like requiring every backup clerk currently on duty to sign for it — but if only one clerk happens to be on duty that day (the in-sync replica set has shrunk), "everyone signed" only means one signature, not the three you assumed.
+
+**Idempotence** is like stamping each letter with a unique serial number before mailing it: if the postal service loses track of whether your letter arrived and you resend it "just in case," the receiving office sees the same serial number twice and discards the duplicate — but this trick only works for the mailing step itself. It says nothing about whether the person who eventually reads the letter opens it once or twice.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to reason through the specific interview trap this chapter names without hesitation: "I set `acks=all` and I still lost data — how?" The working answer is that `acks=all` only ever waits for whoever is *currently* in the in-sync replica set, which can shrink to just the leader if followers fall behind — so `acks=all` alone is not a durability guarantee unless you also set `min.insync.replicas` to something greater than one, forcing the write to fail loudly instead of silently succeeding on a single, about-to-fail copy.
+
+You should also be practically comfortable choosing a partition key for a real scenario. If a consumer needs to process one entity's events strictly in order (a customer's orders, a device's telemetry), key by that entity's ID. If there's no such ordering need, sending records with no key at all is often the better default — it lets Kafka's sticky partitioner batch records efficiently for throughput, since there's nothing to preserve order for in the first place. A key that's unique per record (a random UUID) buys you no ordering benefit at all while still costing you that batching efficiency — a common, avoidable mistake.
 
 ## Mental Model
 
