@@ -158,3 +158,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - Cheat sheets, flashcards, and production-cookbook entries for all 17 chapters in this domain — deferred to a separate batch, per established session discipline.
 - `18-engineering-practices` (beyond its git-internals seed) and `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit — all still pending.
+
+## [2026-09-03] — Phase 5: 18-engineering-practices domain complete (T-1801–T-1804)
+
+### Added
+
+- Four new canonical chapters, closing every gap the plan's own Section 7.6 named for this domain: [Code Review: Standards and Practice](../18-engineering-practices/code-review-standards-and-practice.md) (T-1801), [Architecture Decision Records and Technical Writing for Engineers](../18-engineering-practices/architecture-decision-records-and-technical-writing.md) (T-1802), [Working with Legacy Code](../18-engineering-practices/working-with-legacy-code.md) (T-1803), and [Refactoring Discipline](../18-engineering-practices/refactoring-discipline.md) (T-1804) — all four assigned IDs in the plan's reserved `T-1800`–`T-1899` range.
+- T-1803 and T-1804 are backed by real, compiled, executed Java demos: `practice/java/engineering-practices/legacy-code/` (a two-step characterization-testing workflow that surfaced a genuine, real "discount cliff" quirk — buying 9 vs. 10 units costs identically at one unit price — used as the chapter's central worked example rather than an invented one) and `practice/java/engineering-practices/refactoring-discipline/` (a real three-step Extract Method refactor proven behavior-preserving via a parity test across 10 real cases, all passing).
+- T-1801 and T-1802 are grounded in real, existing repository artifacts rather than a compile-and-run demo, since neither topic is itself an algorithm: this repository's own recent commit history (Code Review's convention example) and `templates/adr-template.md` plus `scripts/check_adr_completeness.py` (actually run against both the real template and a deliberately incomplete ADR, confirming a real PASS and a real FAIL naming the exact missing sections).
+- T-1802 deliberately does not duplicate [Trade-off Narration and Architecture Decision Records](../20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md) — it is the canonical, general engineering-practice reference that entry's own brief ADR paragraph points to.
+- **This completes `18-engineering-practices`.** Updated `syllabus/18-engineering-practices/INDEX.md` (5/5, domain complete) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- Cheat sheets, flashcards, and production-cookbook entries for T-1801–T-1804 — deferred to a separate batch.
+- `19-leadership-staff` new writing, plus every migrated domain's own L1/L2 retrofit (including this domain's own git-internals chapter) — all still pending.
