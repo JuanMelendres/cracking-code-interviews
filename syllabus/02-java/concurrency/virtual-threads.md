@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-410
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - executors-and-thread-pool-sizing.md
 related:
@@ -38,30 +40,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Decision Framework](#decision-framework)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Decision Framework](#decision-framework)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -77,6 +81,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Virtual threads are High-frequency and rising sharply because they're now a standard part of current-era Senior Java interview loops, and because the topic has a specific, easily-missed hazard (pinning) that separates candidates who've actually migrated real code from those who've only read the JEP. A candidate who claims virtual threads speed up everything, or who doesn't know that `synchronized` silently defeats the mechanism, reveals they haven't operated this feature under real migration conditions.
+
+## Level 1 — Foundation
+
+**Virtual threads are a much lighter-weight kind of thread you can create by the millions**, specifically designed to make writing simple, one-thread-per-request code practical again for programs that spend a lot of time waiting — on a network call, a database query, or similar. `Thread.ofVirtual().start(() -> doWork());` creates one, using the same familiar `Thread`-based programming style as before, just far cheaper to create in bulk.
+
+The everyday practical value: code that needs to handle many simultaneous, mostly-waiting requests (a typical backend service making calls to a database or another service) can now use a simple thread-per-request style at a scale that used to require more complex asynchronous or reactive code instead.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday rule**: reach for virtual threads specifically for IO-heavy code — code that spends most of its time waiting on network calls, database queries, or file I/O — not for CPU-heavy computation, where virtual threads provide no benefit at all (Section 5 explains exactly why the benefit is scoped this way).
+
+**A real, working gotcha worth knowing before adopting virtual threads in existing code**: putting a virtual thread's blocking call inside an old-style `synchronized` block can "pin" it to its underlying carrier thread, defeating the entire mechanism that makes virtual threads cheap (Section 5 covers this in depth, with a real measured regression). If you're migrating existing code to virtual threads, this is the first thing worth checking for.
 
 ## Mental Model
 

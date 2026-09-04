@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 32
+topic_id: T-404
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - java-memory-model-and-volatile.md
   - deadlock-race-conditions-and-thread-diagnostics.md
@@ -39,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `java.util.concurrent.locks` is Core tier and High frequency because it's where "I know `synchronized`" gets tested against whether the candidate understands *why* the JDK shipped three additional, more complex lock types on top of a keyword that already existed — each one solving a real, specific limitation of `synchronized` (no timeout, no fairness control, no read/write distinction, no lock-free optimistic path) that shows up constantly in real systems. This chapter measures each of those three limitations directly rather than listing them abstractly.
+
+## Level 1 — Foundation
+
+**`synchronized` is Java's simplest built-in tool for letting only one thread execute a block of code at a time** — a real, everyday need whenever multiple threads might touch the same shared, mutable data. `ReentrantLock`, `ReadWriteLock`, and `StampedLock` are more flexible alternatives for situations where `synchronized`'s simple, one-size-fits-all behavior isn't quite enough.
+
+An everyday analogy: `synchronized` is a single-occupancy restroom with one door — whoever's there, everyone else waits, no exceptions. `ReentrantLock` is the same idea but with an intercom that lets a waiting person say "actually, never mind" and leave instead of waiting forever. `ReadWriteLock` is a room where any number of people who only want to *look* can go in together, but anyone who wants to *change* something needs the room to themselves.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday default**: use plain `synchronized` for simple mutual exclusion — it's simpler to read, and the JVM optimizes it well. Reach for `ReentrantLock` specifically when you need one of its extra capabilities: `tryLock()` (give up instead of waiting forever), `lockInterruptibly()` (a wait that can be cancelled), or a `Condition` for more complex wait/notify logic. Reach for `ReentrantReadWriteLock` when a shared resource is read far more often than it's written, so concurrent readers can genuinely run at the same time instead of queuing behind each other unnecessarily.
+
+`StampedLock` is a more specialized, advanced tool (Section 5 covers its optimistic-read mechanism) — a working engineer's everyday choice is almost always between `synchronized`, `ReentrantLock`, and `ReadWriteLock`, reaching for `StampedLock` only once a specific, measured read-heavy bottleneck justifies its added complexity.
 
 ## Mental Model
 

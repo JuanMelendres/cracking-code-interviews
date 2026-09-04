@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-409
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - java-memory-model-and-volatile.md
 related:
@@ -37,30 +39,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -77,6 +81,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic is Very-High-frequency specifically because "walk me through diagnosing a live deadlock" and "your counter is undercounting under load" are both concrete, practical questions that separate candidates who have actually operated concurrent production systems from those who only know the vocabulary. It also carries a specific corrective weight: this project's own audit found the prior material's thread-lifecycle diagram was not merely incomplete but factually wrong — inventing a state that doesn't exist and omitting one that does. Being able to state the real model, and to diagnose failures with the real production tooling (`ThreadMXBean`, the mechanism `jstack` itself uses) rather than describing failure modes in the abstract, is the actual signal being tested.
+
+## Level 1 — Foundation
+
+**A race condition is a bug where your program's result depends on unlucky timing** — which thread happened to run first, or which thread's update happened to "win" — rather than always producing the same, correct answer. **Deadlock** is a specific, more dramatic failure: two or more threads get stuck forever, each waiting for something the other one is holding, and neither ever lets go.
+
+An everyday analogy for deadlock: two people meeting in a narrow doorway, each waiting politely for the other to step back first — if neither ever does, both are stuck permanently. A race condition is more like two people editing the same shared document at the same time without coordinating — whoever saves last silently overwrites the other's change, and the final result depends on timing neither person controlled.
+
+## Level 2 — Working Knowledge
+
+**The single most common everyday race condition**: `count++` on a plain shared variable, touched by more than one thread, without any synchronization. It looks like one operation but is actually three (read, add one, write back), and two threads can interleave those three steps in a way that loses an update — see [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) for the fix (`AtomicInteger`) that most everyday code should reach for instead of a plain field.
+
+**The practical, everyday fix for deadlock**: always acquire multiple locks in the same, consistent order everywhere in your code. If every thread that needs both Lock A and Lock B always acquires A first, then B, a deadlock between them structurally cannot happen — the classic deadlock scenario requires two threads acquiring the same two locks in *opposite* order.
 
 ## Mental Model
 

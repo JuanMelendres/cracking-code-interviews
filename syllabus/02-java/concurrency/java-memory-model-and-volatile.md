@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 40
+topic_id: T-401/T-402
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - deadlock-race-conditions-and-thread-diagnostics.md
@@ -35,31 +37,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Concurrency Implications](#concurrency-implications)
-14. [Decision Framework](#decision-framework)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Concurrency Implications](#concurrency-implications)
+16. [Decision Framework](#decision-framework)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is the deepest single technical topic in the handbook and Very-High-frequency because it is where "I've written concurrent Java for years" gets tested against an actual mechanism rather than folklore. It carries an additional, specific weight here: this project's own audit found the prior source material's explanation of `volatile` was not merely shallow but **actively wrong** — describing it as a hardware caching mechanism. Getting this specific correction right, and being able to say *why* the old model was wrong rather than just reciting the new one, is itself a Staff-level signal, since it demonstrates reasoning from the actual specification rather than pattern-matching a folk explanation.
+
+## Level 1 — Foundation
+
+**When two threads share a variable, one thread's changes to it aren't automatically guaranteed to be visible to the other thread the instant they happen** — Java needs to be told explicitly to guarantee this. `volatile` is the simplest tool for that: marking a field `volatile` guarantees that once one thread writes to it, any other thread that reads it afterward sees that new value, not a stale one.
+
+The everyday example: a shared "please stop" flag read by a background thread and set by another part of the program (`volatile boolean stop = false;`) needs to be `volatile` — without it, the background thread's loop checking `while (!stop)` might never actually notice the flag was changed, because nothing guarantees it will look at the current value rather than an outdated one it cached.
+
+## Level 2 — Working Knowledge
+
+**The one rule to know before using `volatile`**: it guarantees visibility of a single read or write, but it does **not** make a multi-step operation (like `count++`, which is really "read, add one, write back") safe across threads. Two threads both incrementing a `volatile int count` can still lose updates, because the read-then-write sequence itself isn't atomic — only each individual read or write is guaranteed visible.
+
+**The practical, everyday choice**: use `volatile` for a simple flag or a reference that's fully replaced on each update (not incrementally modified); use `AtomicInteger`/`AtomicLong` (see [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md)) for a shared counter that needs safe increments; use `synchronized` or a `Lock` (see [ReentrantLock, ReadWriteLock, and StampedLock](reentrantlock-readwritelock-and-stampedlock.md)) when you need to update multiple related fields together as one atomic unit.
 
 ## Mental Model
 

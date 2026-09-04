@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 28
+topic_id: T-408
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - executors-and-thread-pool-sizing.md
 related:
@@ -36,27 +38,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -72,6 +76,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `ForkJoinPool` is Advanced tier and Moderate frequency because most engineers interact with it only indirectly — through `.parallelStream()` or `CompletableFuture`'s default executor — without ever writing a `RecursiveTask` directly or understanding the work-stealing algorithm underneath. This chapter closes exactly that gap: the mechanism behind the shared-common-pool warning already raised in [CompletableFuture and Async Composition](completablefuture-and-async-composition.md), and — verified directly, not assumed — why [Structured Concurrency](structured-concurrency.md)'s virtual threads are a related but genuinely *separate* story, scheduled on their own dedicated `ForkJoinPool` instance rather than `commonPool()` itself.
+
+## Level 1 — Foundation
+
+**`ForkJoinPool` is a specialized thread pool built for splitting a big task into smaller pieces, running the pieces in parallel, and combining the results** — used automatically underneath features like `.parallelStream()`, without most application code ever creating one directly.
+
+An everyday analogy: a big job divided among a team, where anyone who finishes their own share early picks up part of someone else's still-unfinished pile, rather than sitting idle — that "helping whoever's behind" behavior is what "work-stealing" refers to.
+
+## Level 2 — Working Knowledge
+
+**The everyday, practical relevance of this topic for most working engineers**: you rarely write directly against `ForkJoinPool` (`RecursiveTask`/`RecursiveAction`) yourself — the everyday value is knowing it's what actually runs `Stream.parallel()` behind the scenes, and that it's a single, shared, process-wide pool (`ForkJoinPool.commonPool()`) also used by `CompletableFuture`'s default `*Async` methods.
+
+**The practical, working-level awareness this creates**: because parallel streams and `CompletableFuture`'s default async calls share the same underlying pool, a long-running or blocking task submitted through one can slow down unrelated work submitted through the other, since they're competing for the same limited set of worker threads. If you notice unexpectedly slow parallel streams or async chains in the same application, this shared-resource fact (Section 5 covers it precisely) is worth checking before assuming either feature is simply "slow."
 
 ## Mental Model
 

@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 32
+topic_id: T-407
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - executors-and-thread-pool-sizing.md
   - java-memory-model-and-volatile.md
@@ -38,27 +40,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -74,6 +78,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `CompletableFuture` is the topic where "I've used it to make an API call async" gets tested against whether the candidate actually understands the completion and threading model underneath — not just the fluent method-chaining surface. It's Core tier and High frequency because three real, JDK-documented behaviors are consistently misunderstood even by engineers who use it daily: which thread a callback runs on, that failures are silently swallowed without `join()`/`get()`/`handle()`, and that two independent async calls are trivially and accidentally serialized by careless `get()` placement. This chapter measures all three directly.
+
+## Level 1 — Foundation
+
+**`CompletableFuture` lets you run something in the background and specify what should happen once it finishes, without blocking and waiting for it.** `CompletableFuture.supplyAsync(() -> callSlowApi()).thenApply(result -> transform(result));` kicks off `callSlowApi()` on a background thread and automatically runs `transform(result)` once it completes — the calling code doesn't sit there waiting.
+
+An everyday analogy: dropping off a photo to be developed and being told you'll get a text when it's ready, versus standing at the counter the whole time waiting for it — `CompletableFuture` is the "I'll be notified when it's done" pattern applied to code.
+
+## Level 2 — Working Knowledge
+
+**Everyday methods**: `supplyAsync(supplier)` starts an async computation that returns a value; `thenApply(function)` transforms the result once it's ready; `thenAccept(consumer)` consumes the result without returning a new value; `thenCompose(function)` is for chaining a *dependent* async call — use this, not `thenApply`, when the next step itself returns a `CompletableFuture`, to avoid ending up with a confusing "future of a future."
+
+**The one practical rule that prevents the most common gotcha**: always end a `CompletableFuture` chain with something that actually observes the result or the failure — `join()`, `get()`, or `.exceptionally(...)`/`.handle(...)` somewhere in the chain. Without one of these, an exception thrown partway through the chain is silently swallowed, and you'll never find out the pipeline failed at all.
 
 ## Mental Model
 

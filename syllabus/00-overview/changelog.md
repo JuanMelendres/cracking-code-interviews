@@ -241,3 +241,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `concurrency` (13 chapters) — the last `02-java` subdomain, next in this retrofit.
 - Every other migrated domain (132 chapters across `04`–`17`, `20`, `21`) still awaits the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit completes 02-java — concurrency subdomain (13 chapters, domain now 49/49)
+
+### Added
+
+- All 13 `02-java/concurrency` chapters retrofitted: `java-memory-model-and-volatile.md` (T-401/T-402), `reentrantlock-readwritelock-and-stampedlock.md` (T-404), `atomics-cas-and-the-aba-problem.md` (T-405), `executors-and-thread-pool-sizing.md` (T-406), `completablefuture-and-async-composition.md` (T-407), `forkjoinpool-and-work-stealing.md` (T-408), `deadlock-race-conditions-and-thread-diagnostics.md` (T-409), `virtual-threads.md` (T-410), `structured-concurrency.md` (T-411), `scoped-values-and-threadlocal-migration.md` (T-412), `threadlocal-mediated-classloader-leaks.md` (T-413), `varhandles-and-unsafe.md` (T-415), `foreign-function-and-memory-api.md` (T-416/T-414) — every one of the 13 already had a Master Topic Register ID, so every chapter also gained a `topic_id` field alongside `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Two of the thirteen (`varhandles-and-unsafe.md`, `foreign-function-and-memory-api.md`) are Expert-tier, rare-frequency, explicitly "recognition-level only" topics per their own scope notes — their Level 1/Level 2 sections were deliberately written lighter and narrower than the other eleven, matching that stated scope rather than inflating a false sense of everyday depth for topics the source material itself says most engineers never need directly.
+- Several chapters had non-standard TOC lengths (`java-memory-model-and-volatile.md` and `virtual-threads.md` both carry an extra "Historical Context" entry; `deadlock-race-conditions-and-thread-diagnostics.md`, `threadlocal-mediated-classloader-leaks.md`, and `varhandles-and-unsafe.md` each carry extra "Java Examples"/"Failure Modes"/"Comparisons" entries; `foreign-function-and-memory-api.md` has a shorter, non-standard 19-item TOC missing several sections other chapters have) — each was renumbered correctly against its own real structure rather than assuming a uniform 23-item shape; one renumbering mistake on the first file of this batch (`java-memory-model-and-volatile.md`) was caught immediately via the IDE's own `MD029` ordered-list-prefix warnings and corrected before proceeding.
+- Verified all 13 files: 1 H1 each; both new headings present with correctly resolving anchors; YAML still parses; every cross-reference inside the new sections resolves. The same pre-existing off-by-one-directory-level broken-link class was reconfirmed via `git diff` in six of the thirteen files, consistent with every prior batch this Phase 5 retrofit effort has run.
+- Updated `syllabus/02-java/INDEX.md` (status line, intro paragraph, the Phase 5 note now marked domain-complete, and all 13 affected topic rows) and `syllabus/00-overview/INDEX.md`'s domain-status table. **`02-java` is now 49 of 49 chapters retrofitted — the first fully L1–L4 domain in the syllabus.**
+
+### Not yet done
+
+- Every other migrated domain (132 chapters across `04`–`17`, `20`, `21`) still awaits the same L1/L2 retrofit — this is now the largest remaining body of Phase 5 work, exactly as the plan's own §7.6 anticipated.
+- Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

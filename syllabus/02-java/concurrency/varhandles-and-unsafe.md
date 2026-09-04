@@ -13,6 +13,8 @@ difficulty:
 target_levels:
   - staff
 estimated_reading_minutes: 30
+topic_id: T-415
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - atomics-cas-and-the-aba-problem.md
   - java-memory-model-and-volatile.md
@@ -42,30 +44,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -100,6 +104,18 @@ have "proven" a reordering bug from a quick demo, without acknowledging how
 hard that is to reliably reproduce, is showing a weaker grasp of the model
 than one who explains why the *positive* guarantee (what release/acquire
 correctly ensures) is the provable, demonstrable side of this topic.
+
+## Level 1 — Foundation
+
+**This is an Expert-tier, rarely-needed topic for most working engineers day to day** — but two terms are worth recognizing if you encounter them: `sun.misc.Unsafe` is old, unsupported, internal JDK machinery that some libraries historically used for very low-level tricks (direct memory access, bypassing normal safety checks); `VarHandle` is its modern, officially sanctioned, safer replacement.
+
+Most application code never needs either directly — for everyday shared counters and references, the tools covered in [Atomics, CAS, and the ABA Problem](atomics-cas-and-the-aba-problem.md) (`AtomicInteger`, `AtomicReference`) remain the right, simple choice.
+
+## Level 2 — Working Knowledge
+
+**A practical, everyday note**: if you ever see `sun.misc.Unsafe` referenced in a stack trace, a library's internals, or a deprecation warning, recognize it as legacy, non-public JDK machinery rather than something your own code should reach for — it was never a supported, public API despite being widely used internally by frameworks over the years.
+
+`VarHandle` itself is mainly relevant to library and framework authors who need fine-grained control over memory-ordering guarantees (something in between a plain field and a full `volatile`/`Atomic` guarantee) — not typical application code, which should keep reaching for `AtomicInteger`/`AtomicLong`/`synchronized`/`Lock` for its everyday concurrency needs.
 
 ## Mental Model
 

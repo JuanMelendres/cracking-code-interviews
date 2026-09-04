@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-405
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - java-memory-model-and-volatile.md
 related:
@@ -39,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 CAS and the atomic classes are Advanced tier and High frequency because most engineers who use `AtomicInteger`/`AtomicReference` daily have never had to reason about what CAS actually guarantees — and the ABA problem is the single most consistently-cited gap in that understanding, precisely because it doesn't show up in ordinary testing: it requires a specific, rare interleaving to manifest, which is exactly why interviewers use it to separate candidates who've memorized "atomics are lock-free" from those who understand the actual correctness boundary.
+
+## Level 1 — Foundation
+
+**`AtomicInteger`, `AtomicLong`, and their relatives give you a shared counter or value that multiple threads can safely update at once, without needing a lock at all.** `AtomicInteger count = new AtomicInteger(); count.incrementAndGet();` safely increments `count` even when many threads call it simultaneously — unlike a plain `int count; count++;`, which is not thread-safe even though it looks like a single, simple operation (it's actually read, add one, write back — three separate steps a lock or an atomic operation is needed to protect).
+
+Reach for these classes any time you need a simple shared counter or a single shared reference updated concurrently — a request counter, a running total, a flag that gets replaced (not incrementally modified) — without wanting the overhead or complexity of an explicit lock.
+
+## Level 2 — Working Knowledge
+
+The everyday operations: **`incrementAndGet()`/`decrementAndGet()`** for counters; **`get()`/`set()`** for plain reads/writes; **`compareAndSet(expected, new)`** — the lower-level building block underneath the others, useful when you need "update this value, but only if it hasn't changed since I last checked."
+
+**The one practical rule that matters day to day**: `int total; total++;` is not thread-safe, even in code that looks perfectly ordinary — if more than one thread might touch a shared counter, use `AtomicInteger`/`AtomicLong` (or a lock) instead of a plain primitive field. This is one of the most common, easy-to-miss sources of subtly wrong counts under real concurrent load.
 
 ## Mental Model
 

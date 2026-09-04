@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-413
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - scoped-values-and-threadlocal-migration.md
 related:
@@ -47,30 +49,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -103,6 +107,27 @@ deployment's classloader was never actually collected. Interviewers use
 this to probe whether a candidate's mental model of "the leak" stops at one
 object or correctly extends to the whole transitive closure a classloader
 identity drags along with it.
+
+## Level 1 — Foundation
+
+**If you use `ThreadLocal` in a thread-pool-based application (like a typical web server) and forget to clean it up, the leftover value can stick around far longer than intended — and in specific cases, can keep far more memory alive than you'd expect from just one stale value.**
+
+An everyday analogy: leaving a single full moving box behind in the corner of a rented storage unit after moving out — that one forgotten box is enough to prevent the entire storage unit from being cleared and reused, not just the small amount of space the box itself occupies. This chapter is about a specific, more severe version of that same idea, where the "box" is a value whose class came from its own private classloader.
+
+## Level 2 — Working Knowledge
+
+**The one practical habit that prevents this entire class of bug**: whenever you use `ThreadLocal.set()` on a thread that might be reused later (any thread-pool-based code — most real backend applications), always pair it with a `try`/`finally` block that calls `threadLocal.remove()`:
+
+```java
+myThreadLocal.set(value);
+try {
+    // do work
+} finally {
+    myThreadLocal.remove();
+}
+```
+
+This one pattern — set, then guarantee removal in a `finally` block — avoids the leak this entire chapter documents, regardless of how large or severe the underlying object graph would otherwise be.
 
 ## Mental Model
 

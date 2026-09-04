@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 26
+topic_id: T-411
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - virtual-threads.md
   - executors-and-thread-pool-sizing.md
@@ -42,27 +44,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -78,6 +82,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Structured concurrency is Advanced tier and Moderate frequency because it's newer and less universally used than `CompletableFuture`, but interviewers who do ask about it are specifically probing whether a candidate understands *why* it exists — not just its API. The real differentiator this chapter measures directly: `CompletableFuture` composition looks concurrent and correct, but leaves a genuine, measurable resource leak on the table (an orphaned sibling task) that structured concurrency's automatic cancellation propagation closes by construction, not by discipline.
+
+## Level 1 — Foundation
+
+**Structured concurrency automatically stops sibling tasks the moment one of them fails**, instead of leaving them running uselessly in the background after the overall operation has already failed. If you kick off three parallel calls to check "is this order valid" and one of them comes back "no," structured concurrency cancels the other two immediately rather than letting them keep running for no purpose.
+
+An everyday analogy: canceling an entire group order the moment one item turns out to be unavailable, rather than continuing to prepare the rest of the order anyway. This behavior matters specifically for fan-out patterns — kicking off several related things at once and needing them to either all succeed together or be abandoned together.
+
+## Level 2 — Working Knowledge
+
+**This is currently a preview feature in JDK 21** (Section notes its exact version status) — worth knowing before reaching for it in production code, since its API may still change in later JDK releases.
+
+**The practical, everyday pattern this solves**: any time you fan out multiple related async calls that should logically succeed or fail as a group — several independent lookups needed to answer one request, for instance — structured concurrency (used together with virtual threads, per [Virtual Threads](virtual-threads.md)) gives you automatic cleanup of the other calls the instant one fails, rather than requiring you to manually track and cancel each one yourself.
 
 ## Mental Model
 

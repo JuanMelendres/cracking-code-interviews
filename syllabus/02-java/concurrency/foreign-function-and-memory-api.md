@@ -13,6 +13,8 @@ difficulty:
 target_levels:
   - staff
 estimated_reading_minutes: 20
+topic_id: T-416
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - varhandles-and-unsafe.md
 related:
@@ -39,23 +41,25 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Java Examples](#java-examples)
-7. [Trade-offs](#trade-offs)
-8. [Comparisons](#comparisons)
-9. [Common Mistakes](#common-mistakes)
-10. [Interview Answer Framework](#interview-answer-framework)
-11. [Interview Questions](#interview-questions)
-12. [Summary](#summary)
-13. [Key Takeaways](#key-takeaways)
-14. [Cheat Sheet](#cheat-sheet)
-15. [Flashcards](#flashcards)
-16. [Practice Exercises](#practice-exercises)
-17. [Solutions](#solutions)
-18. [Additional Reading](#additional-reading)
-19. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Java Examples](#java-examples)
+9. [Trade-offs](#trade-offs)
+10. [Comparisons](#comparisons)
+11. [Common Mistakes](#common-mistakes)
+12. [Interview Answer Framework](#interview-answer-framework)
+13. [Interview Questions](#interview-questions)
+14. [Summary](#summary)
+15. [Key Takeaways](#key-takeaways)
+16. [Cheat Sheet](#cheat-sheet)
+17. [Flashcards](#flashcards)
+18. [Practice Exercises](#practice-exercises)
+19. [Solutions](#solutions)
+20. [Additional Reading](#additional-reading)
+21. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -83,6 +87,16 @@ practitioner-level fluency. Overclaiming depth here, or getting the
 preview/finalized version status wrong, is a worse signal than honestly
 saying "I know it exists and roughly what it replaces, but I haven't used it
 in production."
+
+## Level 1 — Foundation
+
+**This is a recognition-level-only topic per this chapter's own scope** — most application engineers will never use it directly. The Foreign Function & Memory (FFM) API lets Java code call native (C-language) functions and access memory outside the JVM's normal heap directly, without writing separate C glue code (the older way of doing this, called JNI).
+
+The everyday, practical level of knowledge needed: knowing this API exists and roughly what it replaces (JNI for calling native code, and `Unsafe`/direct `ByteBuffer`s for off-heap memory) is genuinely sufficient for the vast majority of working engineers and interviews on this topic.
+
+## Level 2 — Working Knowledge
+
+Given this chapter's own explicit "recognition-level only" scope, there isn't a deeper everyday working pattern to build beyond Level 1 — the practical, honest answer if this comes up is simply naming the two problems FFM solves (safe off-heap memory access, and calling native code without JNI) and its current version status (Section notes it precisely), rather than claiming hands-on fluency most engineers genuinely won't have.
 
 ## Mental Model
 

@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 26
+topic_id: T-412
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - virtual-threads.md
   - structured-concurrency.md
@@ -41,27 +43,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -77,6 +81,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `ScopedValue` is Advanced tier and Moderate frequency because it's genuinely new and less universally adopted than `ThreadLocal`, but interviewers who ask about it are specifically testing whether a candidate understands the real, structural problems it fixes — not just "it's a modern `ThreadLocal`." The two real differentiators this chapter measures directly: `ThreadLocal`'s genuine, common thread-pool-reuse leak (a real production bug pattern), and `ScopedValue`'s real, purpose-built propagation into structured-concurrency subtasks where plain `ThreadLocal` simply doesn't reach.
+
+## Level 1 — Foundation
+
+**`ThreadLocal` lets each thread have its own private copy of a variable** — useful for passing information (like a logged-in user's ID, or a request's tracking ID) down through a chain of method calls without adding it as a parameter to every single method along the way. `ScopedValue` is a newer, safer alternative for exactly this use case, designed specifically to avoid a real, common bug `ThreadLocal` has in thread-pool-based applications (Section 5 explains it in detail).
+
+If you're new to this topic, `ThreadLocal` is the older, far more commonly seen tool in existing code — you're likely to encounter it holding something like a per-request context object in a typical web application.
+
+## Level 2 — Working Knowledge
+
+**`ScopedValue` is still a preview feature in JDK 21** — worth knowing before reaching for it in place of `ThreadLocal` in production code today, since `ThreadLocal` remains the stable, widely-supported choice for now.
+
+**The practical, everyday difference worth remembering**: a `ThreadLocal` value, once set, stays set on that thread until something explicitly removes it — easy to forget, especially on a pooled thread that gets reused for unrelated later work. A `ScopedValue` is automatically, unconditionally cleared the moment the specific call block that set it finishes — there's no `remove()` step to forget, because there's no separate step at all.
 
 ## Mental Model
 
