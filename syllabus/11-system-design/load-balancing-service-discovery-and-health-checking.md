@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/load-balancing-service-discovery-and-health-checking.md
+topic_id: T-805
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -43,33 +49,35 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Performance Implications](#performance-implications)
-13. [Concurrency Implications](#concurrency-implications)
-14. [Security Implications](#security-implications)
-15. [Decision Framework](#decision-framework)
-16. [Comparisons](#comparisons)
-17. [Common Mistakes](#common-mistakes)
-18. [Anti-Patterns](#anti-patterns)
-19. [Best Practices](#best-practices)
-20. [Interview Answer Framework](#interview-answer-framework)
-21. [Interview Questions](#interview-questions)
-22. [Summary](#summary)
-23. [Key Takeaways](#key-takeaways)
-24. [Cheat Sheet](#cheat-sheet)
-25. [Flashcards](#flashcards)
-26. [Practice Exercises](#practice-exercises)
-27. [Solutions](#solutions)
-28. [Additional Reading](#additional-reading)
-29. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Performance Implications](#performance-implications)
+15. [Concurrency Implications](#concurrency-implications)
+16. [Security Implications](#security-implications)
+17. [Decision Framework](#decision-framework)
+18. [Comparisons](#comparisons)
+19. [Common Mistakes](#common-mistakes)
+20. [Anti-Patterns](#anti-patterns)
+21. [Best Practices](#best-practices)
+22. [Interview Answer Framework](#interview-answer-framework)
+23. [Interview Questions](#interview-questions)
+24. [Summary](#summary)
+25. [Key Takeaways](#key-takeaways)
+26. [Cheat Sheet](#cheat-sheet)
+27. [Flashcards](#flashcards)
+28. [Practice Exercises](#practice-exercises)
+29. [Solutions](#solutions)
+30. [Additional Reading](#additional-reading)
+31. [Official References](#official-references)
 
 ---
 
@@ -86,6 +94,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Nearly every system-design interview draws "load balancer" as a box in the first two minutes, and nearly every candidate treats it as a solved, opaque component not worth discussing further — which is exactly the assumption a strong interviewer will probe. The real signal here is whether a candidate can explain what's actually happening inside that box: how it decides which backend gets the next request, how it knows a backend is even alive, and what the real, bounded cost of that knowledge being briefly stale looks like. A candidate who can say "least-connections, because request cost varies here, and detection lag is bounded by my health-check interval plus timeout" in one sentence is demonstrating exactly the kind of internals fluency that separates a Senior answer from a Staff one on this topic.
+
+## Level 1 — Foundation
+
+Imagine a host at a busy restaurant seating guests across several tables. **Round-robin** seating means the host just alternates: table 1, table 2, table 3, table 1 again — regardless of whether table 3 still has last night's slow eaters lingering. **Least-connections** seating means the host actually looks at which tables currently have the fewest people seated and sends the next guest there — adapting to reality instead of following a fixed rotation blindly.
+
+**Service discovery** is simply how the host knows which tables currently exist and are usable at all — if a table gets removed for repairs, or a new one gets added for a busy Friday, the host needs an up-to-date list. **Health checking** is the host periodically walking by each table to confirm it's actually usable right now, not just "on the list" — a table can exist and still be broken.
+
+The key insight worth holding onto: the host's knowledge of "which tables are healthy right now" is always a little bit out of date — it reflects whatever the host observed on their last walk-by, not the literal current second. That gap between "what the host believes" and "what's actually true" is real and unavoidable, but it can be made small and predictable by walking by more often.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, concretely, why round-robin can go badly wrong: if one backend server is genuinely slower per-request than the others (say it's undersized, or hitting a slow downstream dependency), round-robin keeps sending it an equal share of traffic anyway, since it has no way of knowing that server is falling behind. Least-connections fixes this automatically by routing based on each server's real, current number of in-flight requests — a server that's backed up simply gets fewer new requests until it catches up, with zero configuration needed to tell the system that server is slow.
+
+You should also be comfortable with the practical difference between active and passive health checking, and why production systems typically use both. Active checking means proactively polling a health endpoint on a schedule — it can catch a dead server before any real user is affected, but it only catches whatever failure mode the health endpoint happens to check for. Passive checking means noticing that real requests are failing and ejecting the server based on that — it catches failure modes an active check might miss, but only after a real user request has already failed.
+
+Practically, if someone asks "how quickly would we notice a backend crashed," the answer should never be "the load balancer handles it" — it should be a real, stated number: check interval plus timeout. If a design needs faster detection than that bound provides, the honest options are shortening the interval (more overhead) or adding passive checking as a second layer, not assuming detection is instantaneous.
 
 ## Mental Model
 

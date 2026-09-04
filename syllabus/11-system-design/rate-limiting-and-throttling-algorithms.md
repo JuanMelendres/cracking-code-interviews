@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/rate-limiting-and-throttling-algorithms.md
+topic_id: T-808
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -46,33 +52,35 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Concurrency Implications](#concurrency-implications)
-15. [Decision Framework](#decision-framework)
-16. [Comparisons](#comparisons)
-17. [Common Mistakes](#common-mistakes)
-18. [Anti-Patterns](#anti-patterns)
-19. [Best Practices](#best-practices)
-20. [Interview Answer Framework](#interview-answer-framework)
-21. [Interview Questions](#interview-questions)
-22. [Summary](#summary)
-23. [Key Takeaways](#key-takeaways)
-24. [Cheat Sheet](#cheat-sheet)
-25. [Flashcards](#flashcards)
-26. [Practice Exercises](#practice-exercises)
-27. [Solutions](#solutions)
-28. [Additional Reading](#additional-reading)
-29. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Concurrency Implications](#concurrency-implications)
+17. [Decision Framework](#decision-framework)
+18. [Comparisons](#comparisons)
+19. [Common Mistakes](#common-mistakes)
+20. [Anti-Patterns](#anti-patterns)
+21. [Best Practices](#best-practices)
+22. [Interview Answer Framework](#interview-answer-framework)
+23. [Interview Questions](#interview-questions)
+24. [Summary](#summary)
+25. [Key Takeaways](#key-takeaways)
+26. [Cheat Sheet](#cheat-sheet)
+27. [Flashcards](#flashcards)
+28. [Practice Exercises](#practice-exercises)
+29. [Solutions](#solutions)
+30. [Additional Reading](#additional-reading)
+31. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -103,6 +111,22 @@ has a real, subtle concurrency dimension most candidates miss entirely: a
 check-then-increment limiter has the same class of race as any other read-modify-write
 without synchronization, and naming that race — and its fix — is a strong differentiator
 at Senior level and an expected baseline at Staff level.
+
+## Level 1 — Foundation
+
+Think of a bouncer at a club with a rule: "no more than 10 people in an hour." A naive bouncer might reset a hand counter to zero at the top of every hour (**fixed window**). The problem: 10 people could squeeze in during the last minute before the hour ends, then another 10 the very next minute once the counter resets — 20 people in two real minutes, even though the rule said "10 per hour." A smarter bouncer instead keeps a running tally of who's arrived in the *last rolling hour*, no matter what the clock says (**sliding window**) — this closes the loophole, at the cost of the bouncer having to remember more.
+
+A **token bucket** is like the bouncer handing out 10 tickets at the start of the night, refilling one new ticket every six minutes; people can burst in fast at first if tickets are available, but once tickets run out, entry slows to the refill pace. A **leaky bucket** is stricter: people are let in at a perfectly steady drip regardless of how many showed up at once — anyone extra just waits in a line, smoothing out any burst into a constant trickle.
+
+**Rate limiting** is the bouncer's decision (let them in or not); **throttling** is choosing to make someone wait rather than turning them away outright.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain precisely why fixed-window counting can let through up to double its stated limit — the mechanism is that the window resets at an absolute clock boundary with no memory of what happened just before it, so a burst straddling that boundary is invisible to the counter as a single event. You should also know which algorithms don't have this flaw: a sliding-window log is exact, and a sliding-window counter (which approximates the log cheaply using just two numbers) avoids the boundary problem while staying cheap to compute.
+
+You should be comfortable naming the practical trade-off behind each algorithm choice: sliding-window log is exact but its memory cost grows with the limit itself (expensive for high-traffic limits or huge numbers of distinct users); token bucket is the standard choice for most API rate limits because it allows a reasonable burst while still capping the long-run average; leaky bucket is the right call specifically when the thing being protected genuinely cannot tolerate any burst at all, at the cost of adding real delay to requests that arrive faster than the steady drip rate.
+
+Practically, the single most important working habit on this topic is recognizing a check-then-increment race: an unguarded "check remaining budget, then increment" sequence has the exact same read-modify-write hazard as any unsynchronized counter under concurrent access, and it needs an explicit fix (a lock, an atomic operation, or an atomic database/Redis increment) — never assumed to be safe by default. And once a service runs on more than one instance, the limiter's counting state has to live somewhere shared (like Redis), or the effective limit silently multiplies by however many instances are running.
 
 ## Mental Model
 

@@ -353,4 +353,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 8 further migrated domains (`11`–`17`, `20`, `21`) — 85 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 11-system-design domain complete (9/9)
+
+### Added
+
+- All 9 `11-system-design` chapters retrofitted: `resilience-patterns.md` (T-515), `storage-selection-tradeoffs.md` (T-617/T-811), `system-design-method-and-estimation.md` (T-801/T-802), `caching-strategies-and-invalidation.md` (T-804), `load-balancing-service-discovery-and-health-checking.md` (T-805), `rate-limiting-and-throttling-algorithms.md` (T-808), `idempotency.md` (T-809), `search-and-indexing-systems.md` (T-810), `realtime-delivery-websocket-sse-and-long-polling.md` (T-812) — same additive method as every prior batch, all 9 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a phone-call analogy for circuit breakers/retry jitter/bulkheads; a physical-storage analogy (filing cabinet, coat-check, warehouse) for storage selection; a birthday-party-planning analogy for the six-phase design method; a sticky-note analogy for caching and stampede; a restaurant-host analogy for load balancing and health checking; a nightclub-bouncer analogy for rate-limiting algorithms; a mailed-form-with-reference-number analogy for idempotency; a library-card-catalog analogy for search indexing; a package-delivery-tracking analogy for the four real-time delivery mechanisms.
+- Verified all 9 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/11-system-design/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`11-system-design` is now fully L1–L4 (9/9)** — the ninth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, and `10-distributed-systems`.
+
+### Not yet done
+
+- 7 further migrated domains (`12`–`17`, `20`, `21`) — 76 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

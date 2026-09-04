@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/search-and-indexing-systems.md
+topic_id: T-810
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -48,30 +54,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -105,6 +113,20 @@ recurring pattern), and knowing the real trade-offs — staleness window,
 dual-write risk, when a database's own full-text search is simply enough —
 is exactly the kind of calibrated judgment Staff interviews look for over
 reflexively reaching for a dedicated search cluster.
+
+## Level 1 — Foundation
+
+Imagine trying to find every book in a library that mentions "dragons" by walking down every aisle and flipping through every single book — that's slow and gets slower as the library grows. Now imagine instead the library keeps a separate master list: for every word that appears anywhere in any book, there's a card listing exactly which books contain it. Look up "dragons" on that list, and you instantly get the exact set of books — no walking the aisles at all. That master list, word → books, is an **inverted index** (inverted because it flips the natural book → words direction around), and it's the entire reason full-text search can be fast at any scale.
+
+Once you have a list of books that all mention "dragons," you still need to decide which one the searcher probably actually wants. **TF-IDF** ranks by two things: how often the word appears in a given book (mentioning "dragons" fifty times probably means it's more relevant than mentioning it once), and how rare that word is across the whole library (a word like "the" appearing in every book tells you nothing distinctive, so it counts for less). **BM25** is a refined version of that same idea with two real corrections: it stops giving extra credit for repeating a word past a certain point, and it discounts raw word counts in very long books, since a 900-page book naturally mentions any word more times than a 10-page pamphlet, for reasons that have nothing to do with actual relevance.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain precisely why a normal database index can't help with a "contains this word anywhere" search. A standard index is like a library's card catalog sorted alphabetically by title — great for finding an exact title fast, useless for "which books mention dragons somewhere inside," since the word could be anywhere in the text with no fixed starting point to search from. This is exactly why a query like `LIKE '%term%'` forces the database to check every single row — there's no shortcut available without a genuinely different structure.
+
+You should also be comfortable with the practical, working recommendation most systems should follow: start with your existing relational database's own built-in full-text search (PostgreSQL's `tsvector`/GIN index is a real, production-grade inverted index) before reaching for a dedicated search engine like Elasticsearch. Standing up a whole separate search cluster is real, ongoing operational overhead — worth it once you actually hit a specific limitation (advanced relevance tuning, fuzzy matching, very high query volume), but often unnecessary for a system's actual, current needs.
+
+Practically, if a search feature is built on `LIKE '%term%'` against a table that's expected to keep growing, that's a concrete, reviewable risk worth flagging now rather than after it becomes a production incident — the fix isn't a bigger database server, it's a structurally different index. And whenever a search index is kept in sync with a separate system of record (via CDC, a queue, or a batch job), that sync mechanism introduces a real staleness window worth naming explicitly, not an implementation detail to assume away.
 
 ## Mental Model
 

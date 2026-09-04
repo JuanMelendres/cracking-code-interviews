@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/resilience-patterns.md
+topic_id: T-515
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -40,27 +46,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -76,6 +84,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Resilience-pattern questions test whether a candidate treats calling a downstream service as inherently unreliable by design, or only reactively after an incident. The topic is Staff-tier because each pattern here — circuit breaker, jitter, timeout, bulkhead — has a measurable, quantifiable effect, and a candidate who can state the actual numbers (not just the pattern names) demonstrates they've operated these mechanisms, not just read about them.
+
+## Level 1 — Foundation
+
+Imagine calling a friend who sometimes doesn't pick up. A **timeout** is deciding in advance how many rings you'll wait before hanging up, instead of holding the phone forever. A **circuit breaker** is what happens after your friend has missed your last three calls in a row: you stop calling for a while and just assume they're unavailable, saving yourself the wasted effort of dialing and waiting each time — then, after a cool-down, you try once more to see if they've picked up again.
+
+**Retry with jitter** solves a subtler problem: imagine a hundred people all calling the same friend, all get voicemail at the same moment, and all decide to redial in exactly 10 seconds — the friend's phone rings again all at once, just as overwhelmed as before. If instead everyone waits a random amount of time near 10 seconds, the redials spread out and the friend actually has a chance to answer some of them.
+
+A **bulkhead** is like a ship divided into separate watertight compartments: if one compartment floods, it doesn't sink the whole ship — the flooding is contained to that one section. Applied to software, it means giving each dependency its own separate, limited pool of resources (like connections or threads), so a single slow or broken dependency can't use up resources that unrelated, healthy parts of the system also need.
+
+## Level 2 — Working Knowledge
+
+At this level you should be comfortable explaining why a circuit breaker needs three states, not just "on" and "off." The third state, `HALF_OPEN`, is what lets the system heal itself: after the cool-down period, it lets exactly one trial request through to test whether the dependency has recovered, rather than requiring someone to manually flip it back on.
+
+You should also be able to reason precisely about where a timeout value should come from. A timeout picked "by feel" (a round number like 5 seconds) is a guess; a timeout derived from the downstream service's actual observed latency (for example, its p99) is a decision you can defend. The practical trade-off to hold in mind: a timeout set too aggressively kills genuinely slow-but-successful requests, while one set too generously makes a hung dependency take forever to notice.
+
+Practically, when reviewing a service that calls out to other services, ask: does every retry use randomized delay (not a fixed schedule every client computes identically)? Is there a circuit breaker in front of anything known to fail hard during real outages? And do dependencies with very different latency and reliability profiles share the same connection or thread pool, or does each get its own isolated allocation? A "yes, they share one pool" answer here is the concrete, reviewable signal that one dependency's problem could take down unrelated, healthy traffic.
 
 ## Mental Model
 

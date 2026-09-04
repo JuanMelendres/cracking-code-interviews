@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/storage-selection-tradeoffs.md
+topic_id: T-617/T-811
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -32,26 +38,28 @@ official_references: []
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Diagrams](#diagrams)
-7. [Production Scenarios](#production-scenarios)
-8. [Trade-offs](#trade-offs)
-9. [Decision Framework](#decision-framework)
-10. [Common Mistakes](#common-mistakes)
-11. [Anti-Patterns](#anti-patterns)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Diagrams](#diagrams)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Common Mistakes](#common-mistakes)
+13. [Anti-Patterns](#anti-patterns)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -67,6 +75,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Storage selection questions test whether a candidate reasons from access patterns or from technology trends. Interviewers specifically ask candidates to argue both sides of a choice because a one-sided, reputation-driven answer ("Postgres is for structured data") reveals someone who hasn't actually worked through the trade-offs — while a candidate who names the exact access-pattern change that would flip their decision demonstrates they understand the method, not just a conclusion.
+
+## Level 1 — Foundation
+
+Think about choosing storage for physical belongings. A filing cabinet with labeled folders (relational) is great when you need to cross-reference documents — "find every invoice for this client, tied to this project, tied to this employee." A single storage box where you dump one complete kit (document store) works well when everything you need for one purpose lives together and you never need to search across boxes. A coat-check ticket system (key-value) is perfect for "give me item #482, right now, nothing else" — blazing fast, but useless if you don't already know the ticket number. And a warehouse of labeled shipping containers arriving in a predictable, high-volume stream (wide-column) suits massive, mostly-append data where you already know exactly how you'll look things up later.
+
+The mistake most people make is picking the storage system first because it's trendy or familiar, then forcing their actual need to fit it — like buying a filing cabinet because "that's what offices use" before checking whether you even need to cross-reference anything.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to walk through a real access-pattern checklist before naming any technology: What are the actual reads and writes — point lookups, range scans, complex joins, full-text search? What's the consistency need per operation — does a write need to be visible immediately, or can it lag briefly? Does a single logical action need to touch multiple records atomically? What's the expected volume and growth shape? Only after answering these does naming PostgreSQL, MongoDB, DynamoDB, or Cassandra become a conclusion rather than a guess.
+
+You should also be comfortable pushing back on "NoSQL" as a meaningful category. A document store, a key-value store, and a wide-column store solve genuinely different problems and share almost nothing except "not traditionally relational" — treating them as interchangeable alternatives to "SQL" is a real, common mistake worth correcting when you hear it.
+
+Practically, if a team proposes adding a second storage technology alongside an existing one (polyglot persistence), the working question is: is this justified by a real, measurable access-pattern mismatch for one specific component, or is it being adopted just because it's available? Every additional storage technology adds real, ongoing operational cost — backup, monitoring, on-call expertise — and that cost needs to be weighed explicitly, not assumed away.
 
 ## Mental Model
 

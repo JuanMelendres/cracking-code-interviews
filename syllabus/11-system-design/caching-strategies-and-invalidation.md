@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/caching-strategies-and-invalidation.md
+topic_id: T-804
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -36,30 +42,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ---
 
@@ -76,6 +84,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Caching appears in essentially every system design discussion and most production performance conversations, and it carries unusual diagnostic value for interviewers: a candidate who adds "a Redis cache" without discussing invalidation, coherence, or failure behavior reveals a great deal in one sentence. This topic is one of only four topics tied at IWI 8.45 — third-ranked in the entire 198-topic Mandatory Core — precisely because it appears in nearly every design round and because a shallow answer ("just add a cache") is instantly and audibly distinguishable from an answer that reasons about staleness, stampede, and failure behavior.
+
+## Level 1 — Foundation
+
+Think of a cache like a sticky note on your fridge with a friend's phone number, so you don't have to dig through your full contacts list every time you want to call them. It's faster to glance at the sticky note than to search — but if your friend gets a new number and you forget to update the sticky note, you'll dial a number that's no longer right. That's the entire trade-off a cache makes: speed, at the risk that the quick copy and the real, current answer can disagree.
+
+**Cache stampede** is what happens if fifty people all try to call the same friend at the exact same moment because their sticky notes all went stale together — everyone gives up on the sticky note and dials the "real" number (the database) simultaneously, overwhelming it with fifty redundant lookups for information that's identical. A **single-flight** fix is like appointing one person to make that one call and then tell everyone else the answer, instead of fifty people all dialing independently.
+
+A **hot key** is one particular sticky note that gets checked far more often than any other — like everyone in the office needing the same shared conference-room phone number constantly. If that one note is the bottleneck, you might photocopy it and put copies in several spots (spreading the load), rather than everyone crowding around the single original.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to name, precisely, the classic way a cache and its source of truth end up silently disagreeing: a read misses the cache, starts fetching the old value from the database, and finishes writing that now-stale value into the cache *after* a concurrent write has already updated the database and cleared the cache. The cache now holds an outdated value indefinitely, with nothing to trigger a correction until the next expiration. The practical fix worth reaching for is a short backstop expiration time even when you're also explicitly invalidating on write — belt and suspenders, since write paths reliably miss an edge case eventually.
+
+You should also be able to reason about what actually happens if the entire cache — not just one key — becomes briefly unavailable (a maintenance event, a crash). The honest answer: every request that would normally hit the cache now falls through to the database at once, and if the database was only ever sized assuming the cache would absorb most read traffic, this is a full-scale overload, not just "things get a bit slower." Practically, when reviewing a caching design, ask explicitly: "what happens to the database if the cache disappears entirely for thirty seconds?" If nobody has an answer, that's a real gap worth flagging before it becomes an incident.
+
+Finally, the working habit worth internalizing: different pieces of data in the same system tolerate different amounts of staleness. A price shown at checkout might need to be exactly current; a "recently viewed items" list can be minutes stale with nobody noticing. Applying one blanket caching policy to an entire system, instead of matching each data type's actual staleness tolerance, is a common and avoidable design mistake.
 
 ## Mental Model
 

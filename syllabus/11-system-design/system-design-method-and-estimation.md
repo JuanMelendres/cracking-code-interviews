@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/system-design-method-and-estimation.md
+topic_id: T-801/T-802
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -33,27 +39,29 @@ official_references: []
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -69,6 +77,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is the highest-IWI topic in the entire 198-topic register — every other system-design topic is a component this method assembles. A design interview is not a test of having memorized the "right" architecture for a famous problem; it's a test of whether the candidate has a repeatable procedure that produces a defensible design under time pressure, for a problem they may never have seen before. Candidates who fail this round most often don't fail on technical knowledge — they fail because they jump straight to components ("we'll need a load balancer, a cache, a database...") without first establishing what the system actually needs to do, at what scale, which makes every subsequent decision unjustifiable when challenged.
+
+## Level 1 — Foundation
+
+Imagine being asked to plan a birthday party with zero information — no idea how many guests, no idea whether it's a picnic or a formal dinner. Jumping straight to "I'll book a caterer and rent tables" without first asking "how many people, what's the budget, is it indoors or outdoors" produces a plan that might be wildly wrong in either direction — too little food, or a wasteful amount of rented equipment nobody needed. The **system design method** is the same discipline applied to building software: before drawing any boxes (services, databases, caches), first figure out who's using the system, roughly how many of them, and what they'll actually be doing — because "we need a bigger table" only makes sense once you know how many guests are coming.
+
+The six phases — Clarify, Estimate, API, Data, Architecture, Bottlenecks — are just a checklist in the right order: figure out the scope, do the math on expected load, sketch the interface, decide how data is stored, then (and only then) draw the actual system, and finally ask "what could go wrong with this plan, and how would I handle it."
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to run through the six phases from memory, in order, and explain in one sentence why estimation has to come before architecture: every later decision ("do we need a cache," "do we need to shard the database") should be a direct answer to a number from the estimation phase, not a reflex. If you can't point to the specific number that justifies a component in your design, that's a sign the estimation step was skipped or ignored.
+
+You should also be comfortable working a basic capacity estimate out loud, stating every assumption as you go rather than presenting only a final number. For example: daily active users times average actions per user gives daily volume; dividing by seconds in a day gives average throughput; multiplying by a stated peak-to-average ratio (a number worth calling out explicitly, since it's usually the single biggest driver of how much capacity the design actually needs) gives peak throughput, which is what the architecture must actually be sized for. Being asked to revise an assumption mid-conversation and show how the numbers — and therefore the design — change is a normal, expected part of this exercise, not a sign something went wrong.
+
+Practically, the most valuable habit to build is reserving real time for the last phase, bottleneck analysis, rather than letting the "impressive" architecture-drawing phase eat the whole clock. Naming at least a few concrete ways the system you just drew could fail, and how you'd mitigate each, is often what separates a competent answer from a strong one.
 
 ## Mental Model
 

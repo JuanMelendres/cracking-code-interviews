@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/idempotency.md
+topic_id: T-809
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -34,29 +40,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -72,6 +80,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Idempotency is the structural fix to the retry-ambiguity problem established in [Distributed Systems Failure Modes](../10-distributed-systems/distributed-systems-failure-modes.md) — a network cannot tell a client whether its request was lost, is still processing, or succeeded with a lost response. This topic is High-frequency because it is the concrete, implementable answer interviewers expect once that ambiguity is named, and because "make this endpoint idempotent" is a common, precise system design and coding-adjacent request that tests whether a candidate can move from an abstract distributed-systems concept to a specific, correct schema and concurrency design.
+
+## Level 1 — Foundation
+
+Imagine mailing an important form, then never getting a confirmation back — you genuinely don't know whether it arrived and was processed, or got lost in the mail. Do you send it again? If it's a request for a free brochure, sure, no harm done twice. But if it's a request to withdraw money from your bank account, sending a duplicate could mean withdrawing twice by accident.
+
+An **idempotency key** solves this by writing a unique reference number on the form before mailing it. If the office receiving the form sees a form with a reference number they've already processed, they simply hand back the same result they gave the first time, instead of processing it all over again. Now you, the sender, can safely resend the exact same form (with the exact same reference number) as many times as you want whenever you're unsure it arrived — the receiving office's own bookkeeping guarantees the action only ever really happens once.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to name the three pieces this mechanism needs to actually work: a unique key (generated once per logical action, reused on every retry of that same action), a durable storage table keyed on that identifier, and a way to recover if the original attempt crashes partway through and never finishes (so a crashed attempt doesn't permanently block every future retry of that same key forever).
+
+You should also be able to explain precisely why "check if the key exists, then insert it" is the wrong shape for this mechanism, even though it sounds reasonable. Two concurrent requests carrying the same key can both run the check, both see nothing there yet, and both proceed — the check itself provides no real coordination between them. The correct shape is to attempt the insert directly and let a database-enforced uniqueness rule decide, atomically, which one (if either) actually goes first; the "check" and the "write" have to be one indivisible operation, not two separate steps.
+
+Practically, when reviewing whether a mutating endpoint (a payment, an order, anything with a real side effect) is safe to retry, ask: is there a durable, shared idempotency key mechanism here, and is it enforced by the storage layer's own uniqueness guarantee rather than by an in-memory map or a `synchronized` block in application code? An in-memory-only approach looks correct in testing and quietly breaks the moment the service runs on more than one instance, since each instance's memory is separate.
 
 ## Mental Model
 

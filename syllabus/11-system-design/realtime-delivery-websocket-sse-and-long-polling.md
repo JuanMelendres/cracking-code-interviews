@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 11-system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
+topic_id: T-812
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -44,30 +50,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -106,6 +114,22 @@ persistent connections (WebSocket, SSE) consume server-side resources
 per-connection in a way ordinary stateless HTTP request handling doesn't,
 which is exactly the kind of capacity-planning trade-off Staff interviews
 probe.
+
+## Level 1 — Foundation
+
+Imagine four different ways to find out if a package has arrived. **Short-polling** is calling the delivery company every 5 minutes and asking "has it arrived yet?" — simple, but you're making a lot of calls, and most of them get the same "not yet" answer. **Long-polling** is calling once and asking the person on the phone to stay on the line and not hang up until the package actually arrives, then tell you right then — one call instead of dozens, but the phone line stays tied up the whole time you're waiting.
+
+**Server-Sent Events (SSE)** is like leaving your phone on speaker with the delivery company's automated system, which will announce any updates as they happen ("out for delivery," "arrived") — genuinely real-time, but strictly one-way: you can hear their announcements, but you can't talk back over that same line. **WebSocket** is a full, open phone line where either side can speak up at any moment — the delivery company can announce updates unprompted, and you can also ask a question back, all on the same open connection.
+
+**Push notifications** are a completely different idea: instead of any of the above, you register your phone number with a separate paging service, and the delivery company sends a page through that service whenever something happens — even if you're not currently on any call with them at all. This is the only option that works if you've "hung up" entirely (your app isn't running).
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to state precisely what long-polling actually buys you over short-polling: not lower latency, but dramatically fewer wasted requests for the same detection speed — because the connection stays open and only responds once real data actually exists, instead of asking over and over and getting "nothing new" most of the time.
+
+You should also be comfortable correcting a common mix-up: SSE is not "the same as WebSocket but simpler." It's structurally one-way by design — the server can push freely, but there is no channel at all for the client to send data back over that same connection. If a feature genuinely needs the client to send messages as often as it receives them (a chat app, for instance), SSE cannot serve that need regardless of configuration; WebSocket is required specifically because it's the only one of these mechanisms where either side can initiate a message at any time.
+
+Practically, the working habit worth building is resisting the pull to reach for WebSocket by default just because it sounds the most sophisticated. A live stock ticker or a progress bar only needs one-way updates — SSE is simpler to build and runs over plain HTTP infrastructure with fewer compatibility surprises. And for anything the user absolutely must not miss (a critical alert, a message), pair whatever live-connection mechanism you choose with a platform push-notification fallback, since no connection-based mechanism — WebSocket included — can deliver anything to an app that isn't currently running.
 
 ## Mental Model
 
