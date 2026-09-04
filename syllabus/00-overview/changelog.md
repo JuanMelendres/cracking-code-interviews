@@ -256,3 +256,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - Every other migrated domain (132 chapters across `04`–`17`, `20`, `21`) still awaits the same L1/L2 retrofit — this is now the largest remaining body of Phase 5 work, exactly as the plan's own §7.6 anticipated.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit begins next domain — 04-software-design complete (1/1)
+
+### Added
+
+- `design-patterns-applied.md` (T-914), the domain's one existing chapter, retrofitted with the same additive method as every prior batch: a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section inserted between "Why This Matters in Interviews" and "Mental Model," with zero existing sentences touched. Its 25-item TOC (which already carries "Java Examples" and "Comparisons" beyond the 23-item base template) was renumbered correctly.
+- Level 1 grounds the concept in `java.util.Comparator` as a real, already-familiar Strategy pattern instance; Level 2 names four everyday, already-visible pattern instances (a fluent Builder chain, a Spring bean as a managed Singleton, wrapping `InputStream`s as Decorator, passing a `Comparator` as Strategy) rather than generic, invented examples.
+- Chapter gained `topic_id: T-914` and `mastery_levels_covered: [L1, L2, L3, L4]` front-matter fields, additive only.
+- Verified: 1 H1; both new headings present with correctly resolving anchors; YAML parses; zero broken links (checked programmatically — this domain has no pre-existing broken-link class, unlike every `02-java` batch).
+- Updated `syllabus/04-software-design/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`04-software-design` is now fully L1–L4 (1/1)** — being a single-chapter domain, this closes it entirely in one batch, the second fully-retrofitted domain in the syllabus after `02-java`.
+
+### Not yet done
+
+- 14 further migrated domains (`05`–`17` minus `04`, plus `20`, `21`) — 131 chapters — still await the same retrofit.
+- Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

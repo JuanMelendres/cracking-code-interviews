@@ -2122,6 +2122,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Verified all 13 files: 1 H1 each; both new headings present with correctly resolving anchors; YAML still parses; every cross-reference inside the new sections resolves. The same pre-existing off-by-one-directory-level broken-link class was reconfirmed via `git diff` in six of the thirteen files, consistent with every prior batch.
 - Updated `syllabus/02-java/INDEX.md` (status line, intro paragraph, the Phase 5 note now marked domain-complete) and `syllabus/00-overview/INDEX.md`'s domain-status table. **`02-java` is now 49 of 49 chapters retrofitted — the first fully L1–L4 domain in the syllabus**, closing out this multi-batch effort (`collections` → `language-core` → `jvm-internals` → `concurrency`).
 
+### Added (L1/L2 retrofit begins next domain — 04-software-design complete, 1/1, Phase 5)
+
+- `design-patterns-applied.md` (T-914), the domain's single existing chapter, retrofitted with the same additive method: a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section inserted between "Why This Matters in Interviews" and "Mental Model," zero existing sentences touched, its 25-item TOC renumbered correctly.
+- Level 1 grounds the concept in `java.util.Comparator` as an already-familiar real Strategy pattern instance; Level 2 names four everyday, already-visible instances of the four patterns covered in depth (a fluent Builder chain, a Spring bean as a managed Singleton, wrapping `InputStream`s as Decorator, passing a `Comparator` as Strategy).
+- Chapter gained `topic_id: T-914` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Verified: 1 H1, both new headings resolving, YAML parses, zero broken links (this domain, unlike every `02-java` batch, has no pre-existing broken-link class).
+- Updated `syllabus/04-software-design/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`04-software-design` is now fully L1–L4 (1/1)** — a single-chapter domain closed entirely in one batch, the second fully-retrofitted domain in the syllabus after `02-java`.
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
+topic_id: T-914
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/polymorphism-and-dynamic-dispatch.md
 related:
@@ -35,29 +37,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Comparisons](#comparisons)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 "Name a design pattern you've used" is one of the most common questions in this domain, and one of the least discriminating on its own — nearly every candidate can name Singleton or Factory. What actually separates a Senior answer from a Mid one is whether the candidate can connect a specific pattern to a specific *problem shape* they've hit in real code, explain what would have gone wrong without it, and — just as importantly — recognize when reaching for a pattern is overengineering a problem that a plain method or a `Comparator` would solve more simply. This project's own knowledge-base audit found zero design-patterns coverage at any depth, despite this topic's Very High interview frequency — a gap this chapter closes with real, executed Java rather than textbook UML.
+
+## Level 1 — Foundation
+
+**A design pattern is a named, reusable way of structuring code to solve a problem that comes up again and again** — naming it lets a whole team say "let's make this a Strategy" instead of re-explaining the same idea from scratch every time. You've very likely already used one without the label: `java.util.Comparator` — swapping in a different comparison rule without changing the code that calls `sort()` — is a real-world Strategy pattern.
+
+Reach for a pattern once you recognize its specific shape of problem showing up in your own code — not as a checklist to apply everywhere. A pattern applied where its underlying problem doesn't actually exist just adds an extra layer of indirection for no benefit.
+
+## Level 2 — Working Knowledge
+
+Everyday places you'll recognize these four patterns in code you already write or read: **Builder** — any class with a fluent `.setX(...).setY(...).build()` chain, used to avoid a constructor with a dozen optional parameters. **Singleton** — a Spring `@Component`/`@Service` bean is, by default, exactly one shared instance per application context — the "exactly one instance" guarantee Singleton provides, handed to you by the framework instead of hand-rolled. **Decorator** — wrapping one `InputStream` in another (`new BufferedInputStream(new FileInputStream(...))`) to layer on buffering without subclassing. **Strategy** — passing a `Comparator` or any single-method interface implementation to change behavior without touching the calling code.
+
+**The practical, everyday rule**: don't reach for a named pattern just because you recognize it — reach for one only once you notice the *specific kind of variation* it addresses (which algorithm runs, how a complex object gets built, which optional behaviors are layered on, how many instances exist) genuinely showing up in your own problem. A plain method or a simple `if`/`else` is often the right, simpler answer when that variation isn't actually present.
 
 ## Mental Model
 
