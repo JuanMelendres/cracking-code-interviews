@@ -224,3 +224,20 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `jvm-internals` (12 chapters) and `concurrency` (16 chapters, minus a name overlap) — next in this retrofit.
 - Every other migrated domain (132 chapters across `04`–`17`, `20`, `21`) still awaits the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 02-java/jvm-internals subdomain (12 chapters)
+
+### Added
+
+- All 12 `02-java/jvm-internals` chapters retrofitted: `jvm-memory-layout-and-runtime-regions.md`, `object-layout-headers-and-compressed-oops.md` (T-302), `gc-roots-reachability-and-reference-strength.md` (T-303), `gc-fundamentals-and-log-analysis.md` (T-303/T-306), `zgc-and-shenandoah-concurrent-collection.md` (T-305), `escape-analysis-and-scalar-replacement.md` (T-309), `safepoints-and-stop-the-world-mechanics.md` (T-310), `native-memory-direct-buffers-and-off-heap.md` (T-311), `g1-remembered-sets-and-write-barriers.md`, `jit-tiered-compilation-and-deoptimization.md`, `jvm-flags-and-container-ergonomics.md`, `memory-leak-diagnosis-and-heap-dump-analysis.md`.
+- Five of the twelve (`jvm-memory-layout`, `g1-remembered-sets`, `jit-tiered-compilation`, `jvm-flags-and-container-ergonomics`, `memory-leak-diagnosis`) have no assigned ID in the Master Topic Register (shown as `—` in `syllabus/02-java/INDEX.md`) — confirmed by checking the index before writing, so no `topic_id` field was added to those five (nothing to reuse); all twelve still gained `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's full existing content (through "Core Concepts") was read first, as in the two prior batches, to ground each Level 1/Level 2 pair in that specific chapter's own subject — e.g., object headers' shipping-label analogy, GC roots' family-tree analogy, safepoints' "rally point, not just GC" distinction, and container ergonomics' two-separate-census-questions framing are each grounded in that chapter's own real content, not a reused template.
+- Two chapters needed a genuinely different Level 1 framing than "explain the mechanism simply," since their subject matter is itself internals-only with no direct everyday action for a working engineer to take: `g1-remembered-sets-and-write-barriers.md`'s Level 2 explicitly states this is background knowledge rather than a tunable, and redirects the practical takeaway to a recognizable access-pattern warning sign instead of a false "here's how to configure this" framing.
+- Verified all 12 files: 1 H1 each; both new headings present with correctly resolving anchors; YAML still parses; every cross-reference inside the new sections resolves. The same pre-existing broken-link class (`../../practice/java/week-09/...`, off by one directory level) was reconfirmed via `git diff` in one file, consistent with the two prior batches and the repository's known backlog — left unfixed as out of scope.
+- Updated `syllabus/02-java/INDEX.md` (status line, intro paragraph, the Phase 5 note, and all 12 affected topic rows) and `syllabus/00-overview/INDEX.md`'s domain-status table: `02-java` is now 36 of 49 chapters retrofitted (`collections`, `language-core`, and `jvm-internals` complete; only `concurrency`, 13 chapters, remains).
+
+### Not yet done
+
+- `concurrency` (13 chapters) — the last `02-java` subdomain, next in this retrofit.
+- Every other migrated domain (132 chapters across `04`–`17`, `20`, `21`) still awaits the same retrofit.
+- Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

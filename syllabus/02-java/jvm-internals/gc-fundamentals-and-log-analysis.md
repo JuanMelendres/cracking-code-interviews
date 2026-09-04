@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-303/T-306
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - ../concurrency/java-memory-model-and-volatile.md
@@ -39,28 +41,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Failure Modes and Debugging](#failure-modes-and-debugging)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -77,6 +81,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 GC tuning questions test diagnosis-from-artifact, not recitation. An interviewer handing over a real log or latency graph is checking whether a candidate can extract a diagnosis under time pressure — the same skill as reading a slow-query `EXPLAIN` plan or a flame graph. Candidates who can only name collector algorithms ("G1 uses regions," "CMS is deprecated") without being able to read an actual log line reveal they've never operated a JVM under real memory pressure.
+
+## Level 1 — Foundation
+
+**Garbage collection is the JVM automatically freeing memory used by objects your program no longer needs**, so you never have to manually free memory the way you would in a language like C or C++. Think of it like an automatic housekeeping service for a shared storage room: instead of every tenant having to remember to remove their own unused boxes, the service periodically walks through, identifies which boxes nobody is using anymore, and clears them out.
+
+The everyday trade-off worth knowing at this level: this housekeeping isn't free — it briefly pauses the program to do its work (a "GC pause"), and the entire practical skill this chapter builds toward is being able to tell, from real evidence, whether those pauses are normal background behavior or a sign something's actually wrong.
+
+## Level 2 — Working Knowledge
+
+**A rising trend across GC pauses, not any single pause, is the everyday signal worth watching**: a growing amount of memory still in use right after each collection ("post-GC occupancy") suggests objects are living longer than expected; growing pause frequency at a stable duration suggests the application is allocating faster over time. Treat an occasional GC pause as normal, expected behavior, and reserve real investigation for a genuine, sustained trend.
+
+**The most common, and most often wrong, tuning instinct is "just give it more heap."** A larger heap can delay when a problem becomes visible, but it doesn't fix a genuine issue (an actual memory leak, or a workload that's simply outgrown its current sizing) — it just gives the same underlying problem more room to grow before it resurfaces. The practical, working default: read the actual GC log or a monitoring dashboard's GC metrics before changing any sizing flag, rather than tuning by intuition alone.
 
 ## Mental Model
 

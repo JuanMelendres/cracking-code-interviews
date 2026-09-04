@@ -6,6 +6,8 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-08-02
+topic_id: T-302
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -29,27 +31,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -60,6 +64,18 @@ By the end of this chapter you can describe what a Java object actually looks li
 ## Why This Matters in Interviews
 
 "How much memory does this object use" is a deceptively simple question that a surprising number of candidates answer incorrectly by only summing declared field sizes — missing that every object carries a header (12-16 bytes depending on configuration) regardless of its fields, and that reference fields themselves cost 4 or 8 bytes depending on whether compressed oops is active. This matters concretely for capacity planning: for reference-heavy data structures (linked lists, trees, graphs — exactly the shapes common in real backend systems), header and pointer overhead can be a substantial fraction of total memory, not a rounding error, and a candidate who can reason about this precisely demonstrates real memory-footprint intuition rather than treating "how much RAM does my data structure need" as unanswerable without a profiler.
+
+## Level 1 — Foundation
+
+**Every Java object carries a small, hidden amount of bookkeeping overhead beyond the fields you actually declared** — so you can't calculate an object's real memory footprint just by adding up its field sizes. An analogy: a shipped package's actual weight includes the box and packaging material, not just the item inside — every object pays a fixed "packaging" cost (its header) in addition to its own content.
+
+The practical, everyday consequence: a collection holding millions of small objects (tiny wrapper objects, small nodes in a linked structure) costs noticeably more memory than the raw field data alone would suggest, because every single one of those objects pays that same fixed overhead independently.
+
+## Level 2 — Working Knowledge
+
+**A practical rule for memory-sensitive code**: if you're storing a very large number of small, simple values (a few million integers, for instance), a primitive array (`int[]`) is dramatically more memory-efficient than a collection of boxed wrapper objects (`ArrayList<Integer>`) or many small custom objects, precisely because each individual object in the latter case pays its own header cost, while a primitive array pays that overhead exactly once for the whole array.
+
+This is mostly a background-knowledge concern for everyday application code — most classes don't need this level of scrutiny — but it becomes directly relevant the moment you're deliberately optimizing the memory footprint of a large, high-volume data structure (a big in-memory cache, a large collection processed in a batch job), where per-object overhead, multiplied by millions of instances, becomes a real and measurable cost rather than a rounding error.
 
 ## Mental Model
 

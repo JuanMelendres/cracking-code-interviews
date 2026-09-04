@@ -6,6 +6,7 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-07-31
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -29,26 +30,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -59,6 +62,18 @@ By the end of this chapter you can explain why the JVM interprets bytecode befor
 ## Why This Matters in Interviews
 
 "Why is my service slow for the first few seconds/minutes after deploy, then fast" is one of the most common production-judgment questions tied to JIT behavior, and "JIT warmup" as a one-word answer is not sufficient at Senior level — the expected answer names the actual mechanism (interpreted execution, then progressively more aggressive tiered compilation) and, ideally, the specific operational mitigations (readiness gating, canary warmup traffic). Deoptimization is the sharper follow-up: most candidates have never heard of it, and it directly explains a real, surprising phenomenon — code that was fast suddenly getting slower at runtime, with no code change and no GC event, purely because a speculative optimization's assumption stopped holding.
+
+## Level 1 — Foundation
+
+**Java code starts out running slower and automatically gets faster over time**, which is why a freshly-started Java application is often noticeably slower for the first few seconds or minutes than it will be shortly after — a phenomenon commonly called "warmup." The JVM initially runs your code by interpreting it directly, then automatically identifies which parts run often and compiles those specific parts into fast, optimized native code as it goes.
+
+An everyday, practical consequence: if a service seems sluggish right after it starts or redeploys, but performs fine once it's been running for a while, JIT warmup is the first, most common explanation to check — not necessarily a bug or a resource problem.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday takeaway for deploying a Java service**: plan for a warmup period after every deployment or restart, rather than expecting immediate peak performance. Common, real mitigations include readiness gating (don't route real traffic to an instance until it's had time to warm up) and canary/synthetic warmup traffic (sending some representative traffic to an instance before it takes real production load), both of which exist specifically because of this JIT warmup behavior.
+
+If you observe a service that was running fast suddenly get slower at runtime — with no code change, no deploy, and no GC event — that's a different, related phenomenon worth being aware of at a high level: the JIT occasionally has to undo one of its own optimizations ("deoptimization," Section 5) when an assumption it made stops holding, temporarily falling back to slower execution. This is a real, if less common, cause of a confusing mid-run slowdown.
 
 ## Mental Model
 

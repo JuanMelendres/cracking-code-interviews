@@ -6,6 +6,8 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-08-02
+topic_id: T-309
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -31,27 +33,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -62,6 +66,18 @@ By the end of this chapter you can explain what it means for an object to "escap
 ## Why This Matters in Interviews
 
 Escape analysis questions test whether a candidate understands that "every `new` allocates on the heap" is a simplified teaching model, not a hardware guarantee — real, production JIT compilers routinely eliminate heap allocations entirely for objects proven never to escape their creating method, and this is exactly the kind of JIT-driven optimization that makes certain "allocation-heavy-looking" code patterns (a small helper object created fresh inside a hot loop, then immediately discarded) perform far better in practice than a naive cost model would predict. A candidate who's aware of this can reason correctly about when object-pooling or manual allocation avoidance is actually necessary — and when it's solving a problem the JIT already eliminated for free.
+
+## Level 1 — Foundation
+
+**The JVM's optimizer can sometimes skip creating an object at all, if it can prove the object never leaves the method that created it.** This means "every `new` allocates memory on the heap" is a useful teaching simplification, not a strict guarantee — real, running Java code sometimes creates far fewer actual heap objects than the source code appears to allocate.
+
+An everyday analogy: using a piece of scratch paper for a quick calculation and throwing it away immediately, rather than filing it away in a cabinet — since nothing outside that one moment needs it, there was never really a need to file it in the first place. Escape analysis is the JVM proving that a specific object is exactly this kind of scratch paper.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday takeaway**: don't preemptively avoid creating small, clearly temporary helper objects inside hot code out of a general fear of "GC pressure." For an object that's created, used briefly, and immediately discarded within one method — a small coordinate pair, a temporary calculation holder — the JIT is often already eliminating that allocation entirely once the surrounding method has run enough to be compiled, making a manual workaround (packing values into a primitive instead of a small object, for instance) pure code-clarity cost with no actual runtime benefit.
+
+The working rule: write the clearest, most natural code first, and only reach for manual allocation avoidance once you've actually measured a real problem — not as a reflexive habit applied to every small object.
 
 ## Mental Model
 

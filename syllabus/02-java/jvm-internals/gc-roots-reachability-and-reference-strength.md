@@ -6,6 +6,8 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-08-02
+topic_id: T-303
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - intermediate
   - advanced
@@ -31,27 +33,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -62,6 +66,18 @@ By the end of this chapter you can define reachability precisely in terms of GC 
 ## Why This Matters in Interviews
 
 "What makes an object eligible for garbage collection" is one of the most commonly asked JVM questions, and it separates candidates who say "when it's no longer referenced" (imprecise — referenced by *what*, exactly?) from those who can name the actual GC roots (thread stacks, static fields, JNI references, and a few others) and describe reachability as a formal graph-traversal property from those roots, not a vague notion of "not being used." The reference-strength hierarchy (`WeakReference`, `SoftReference`, `PhantomReference`) is a related, frequently under-prepared area — many candidates know `WeakHashMap` exists without being able to explain precisely when and why its entries actually disappear.
+
+## Level 1 — Foundation
+
+**An object becomes eligible for garbage collection when nothing your program is actively using can trace a path back to it anymore** — not simply "when it's no longer used," but specifically when no chain of references connects it back to something the program is genuinely holding onto right now (a local variable in a running method, a static field). Think of it like a family tree: if a branch has no living connection back to the root, that whole branch is gone, no matter how many objects within that branch still point to each other.
+
+This is why two objects that only reference each other, but nothing else references either of them, are both still collected correctly — neither one has a path back to anything the program is actually using, even though they "reference" each other.
+
+## Level 2 — Working Knowledge
+
+The everyday practical touchpoint for this topic is `WeakHashMap` and `WeakReference`: a normal `Map` holds a strong reference to its keys, meaning an entry never disappears on its own even if nothing else in the program still cares about that key — a common, subtle cause of a slow memory leak in a long-lived cache. A `WeakHashMap` holds its keys weakly, so an entry can be automatically removed once nothing else references that key anymore, which is the practical, everyday tool for building a cache that doesn't accidentally keep every entry alive forever.
+
+**The working rule**: use a plain `HashMap` for normal lookups; reach for `WeakHashMap` specifically when you want entries to disappear automatically once their key is no longer used elsewhere in the program — for instance, caching metadata about objects that are otherwise expected to become eligible for collection.
 
 ## Mental Model
 

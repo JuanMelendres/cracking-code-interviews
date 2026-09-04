@@ -6,6 +6,8 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-08-02
+topic_id: T-310
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -30,27 +32,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -61,6 +65,18 @@ By the end of this chapter you can explain that safepoints, not GC specifically,
 ## Why This Matters in Interviews
 
 "Stop-the-world pause" is often used as a synonym for "GC pause," and this conflation is exactly what separates a shallow answer from a deep one at Staff level: safepoints are the JVM's *general* mechanism for getting every application thread to a consistent, inspectable state, and garbage collection is only the most common *reason* to request one — not the only one. A candidate who can name other safepoint-triggering operations (thread dumps, biased-lock revocation historically, deoptimization, class redefinition) and explain why a JIT-compiled loop can delay reaching a safepoint demonstrates a mechanistic understanding of "stop-the-world" that a GC-only framing misses entirely.
+
+## Level 1 — Foundation
+
+**"Stop-the-world pause" doesn't automatically mean "garbage collection" — it means every application thread paused briefly so the JVM could safely do *something*, and garbage collection just happens to be the most common reason.** Other real reasons include an operator requesting a diagnostic thread dump, or the JVM needing to undo a speculative optimization.
+
+The practical, plain-language distinction: a safepoint is the general "everyone pause for a moment" mechanism; GC is only the most frequent specific *reason* the JVM asks for one. Conflating the two means missing real, non-GC causes of an application pause.
+
+## Level 2 — Working Knowledge
+
+**A practical diagnostic habit**: if you observe an application pause but the GC log shows nothing happening at that exact time, don't assume the GC log is wrong or incomplete — check whether something else triggered a safepoint instead, such as someone running `jstack`/`jcmd Thread.print` against the process for a diagnostic thread dump. This is a real, common source of confusing, hard-to-explain pauses that have nothing to do with memory management at all.
+
+This is mostly a diagnostic-awareness topic for a working engineer rather than something you tune directly — the everyday value is simply knowing that "the app paused" and "GC ran" are not the same claim, and checking both possibilities before concluding which one actually happened.
 
 ## Mental Model
 

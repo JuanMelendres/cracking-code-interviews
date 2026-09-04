@@ -6,6 +6,8 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-08-02
+topic_id: T-311
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -31,27 +33,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -62,6 +66,18 @@ By the end of this chapter you can explain why direct (off-heap) `ByteBuffer`s e
 ## Why This Matters in Interviews
 
 "Off-heap" and "native memory" questions test whether a candidate understands that `-Xmx` is not actually a ceiling on a JVM process's total memory usage — a genuinely common, genuinely costly misconception when it drives container memory-limit sizing. A candidate who sizes a container's memory limit exactly equal to `-Xmx`, unaware that direct buffers, thread stacks, metaspace, JIT code cache, and native library allocations all live outside the heap and outside `-Xmx`'s accounting entirely, sets up a real, predictable OOMKilled failure mode the moment any of those other regions grow — this chapter provides the concrete, measured evidence for exactly why that assumption is wrong.
+
+## Level 1 — Foundation
+
+**`-Xmx` only limits the Java heap — it does not limit how much total memory your Java process can use.** A Java application's real, total memory footprint also includes thread stacks, class metadata, and other native-memory usage that live entirely outside the heap and outside `-Xmx`'s accounting.
+
+The everyday practical consequence: a process can genuinely use noticeably more memory than `-Xmx` alone suggests, which matters directly when deciding how much memory to give a container running that process — sizing a container's memory limit to exactly match `-Xmx` leaves no room for everything else the process also needs.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday sizing rule**: when deploying a Java application in a container (Docker, Kubernetes), always give the container meaningfully more memory than `-Xmx` alone — a common, safe starting habit is reserving real headroom (not just a token few percent) for thread stacks, class metadata, and other native-memory usage on top of the heap. Skipping this is one of the most common, avoidable causes of a container being killed for exceeding its memory limit (`OOMKilled`) even when the JVM's own heap looked perfectly healthy.
+
+If you don't recognize the specific term "direct `ByteBuffer`" or "off-heap" in your own codebase, that's fine at this level — the one practical takeaway that matters for everyday container sizing is simply: **heap size is not the same as total process memory usage**, and container memory limits should always account for the difference.
 
 ## Mental Model
 

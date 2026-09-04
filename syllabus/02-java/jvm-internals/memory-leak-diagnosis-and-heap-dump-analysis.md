@@ -6,6 +6,7 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-07-31
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -30,26 +31,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -60,6 +63,18 @@ By the end of this chapter you can define a Java memory leak precisely (an objec
 ## Why This Matters in Interviews
 
 "Your service's memory keeps climbing until it OOMs, roughly once a week" is one of the most common production-judgment prompts in a Senior/Staff Java loop, and it is a direct escalation of Week 9's GC-fundamentals material (`gc-fundamentals-and-log-analysis.md`) into an actual diagnostic procedure. A candidate who says "there's a memory leak, add more heap" fails immediately — more heap only delays an inevitable OOM by the same proportion, because the leak's growth rate is unaffected by heap size. The differentiating answer names a specific, reproducible technique (live-object histogram sampling, followed by a targeted heap dump) rather than "profile it" as a vague gesture. This chapter gives that technique with real captured evidence, not a description of what a profiler screenshot might show.
+
+## Level 1 — Foundation
+
+**A "memory leak" in Java doesn't mean memory has gone missing — it means an object is still, accidentally, reachable somewhere, so the garbage collector correctly keeps it alive forever even though your program is actually done with it.** An everyday analogy: someone who should have been removed from a mailing list but wasn't — they keep receiving mail indefinitely, not because of any error in how the mail system works, but because nobody removed the (now-stale) entry pointing to them.
+
+The practical, everyday signal: a service's memory usage climbs steadily over time and never comes back down, even well after garbage collection has run — this is the classic leak symptom, distinct from normal, temporary memory usage that rises and falls as the application does work.
+
+## Level 2 — Working Knowledge
+
+**The one rule that matters most in practice: the fix for a genuine memory leak is always finding and removing the accidental reference — never simply adding more heap.** A bigger heap only delays the same eventual crash, since the leak's underlying growth rate is unaffected by how much memory is available; a leak that would exhaust an 8GB heap in a week will exhaust a 16GB heap in roughly twice that time, then fail exactly the same way.
+
+The most common everyday sources of this accidental reference: a cache or listener registry that's never cleaned up after the object it's tracking is no longer needed, or a `static` collection that keeps growing because nothing ever removes old entries from it. When investigating a suspected leak, the practical first question is "what long-lived object is holding onto this," not "why isn't the garbage collector working" — the collector is doing exactly what it's supposed to; it just doesn't know the reference was a mistake.
 
 ## Mental Model
 

@@ -6,6 +6,7 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-07-31
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - intermediate
   - advanced
@@ -30,26 +31,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -60,6 +63,18 @@ By the end of this chapter you can explain that container-aware JVM ergonomics g
 ## Why This Matters in Interviews
 
 Week 15's material established that the JVM reads a container's cgroup *memory* limit correctly by default (`-XX:+UseContainerSupport`, enabled by default since JDK 10). What most candidates miss is that container awareness governs *CPU* detection too, and that the *default percentage* used for heap sizing (25% of detected memory, not "as much as fits") is itself a tunable ergonomic default, not a fixed rule. A candidate who can only describe "the JVM reads the memory limit" but not explain why a service on a `--cpus=2` container spawns fewer GC threads than the same service on `--cpus=6` — or why doubling a container's memory limit doesn't double the heap unless `-Xmx` or `-XX:MaxRAMPercentage` is set explicitly — is missing half of what "container ergonomics" actually covers.
+
+## Level 1 — Foundation
+
+**When Java runs inside a container (Docker, Kubernetes), it automatically detects the container's own memory and CPU limits — not the physical host machine's full resources — and sizes itself accordingly.** By default, it uses roughly 25% of the container's detected memory for the heap, not "as much as it can get."
+
+The everyday practical consequence: a container's memory limit and the JVM's actual heap size are not the same number, and simply raising a container's memory limit does not automatically give the JVM a proportionally larger heap unless something is set to actually use that extra room.
+
+## Level 2 — Working Knowledge
+
+**The practical, everyday rule for deploying to containers**: if you want the JVM to use more of a container's available memory for the heap, set it explicitly — either `-Xmx` (a fixed heap size) or `-XX:MaxRAMPercentage` (a percentage of the container's detected memory) — rather than assuming a larger container automatically means a larger heap.
+
+The same container-awareness applies to CPU count, which affects things like the default size of thread pools and the number of garbage-collection threads. A practical, everyday check when a containerized Java service behaves unexpectedly under CPU-constrained conditions: confirm what CPU count the JVM is actually detecting (visible in its own startup logs), since a mismatch between the container's real CPU quota and the JVM's assumed count can cause thread-pool and GC defaults to be sized for the wrong number of cores.
 
 ## Mental Model
 

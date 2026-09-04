@@ -6,6 +6,8 @@ domain: 02-java/jvm-internals
 status: draft
 version: 1.0
 last_reviewed: 2026-08-02
+topic_id: T-305
+mastery_levels_covered: [L1, L2, L3, L4]
 difficulty:
   - advanced
 target_levels:
@@ -30,27 +32,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -61,6 +65,16 @@ By the end of this chapter you can explain why ZGC and Shenandoah trade G1's eva
 ## Why This Matters in Interviews
 
 ZGC and Shenandoah questions test whether a candidate understands *why* a low-pause collector isn't simply "the better G1" — it's a different point in a real trade-off space, and a candidate who can only say "ZGC has lower pauses" without being able to explain the mechanism (concurrent relocation) or name the real cost that mechanism introduces (allocation stalls, additional CPU/memory overhead for the concurrent bookkeeping) is reciting a marketing summary, not demonstrating understanding. This chapter's own measured evidence makes the trade-off concrete rather than abstract: the identical workload produced dramatically shorter individual pauses under ZGC, but also produced 218 real allocation-stall events and completed noticeably less total work than G1 in the same wall-clock time.
+
+## Level 1 — Foundation
+
+**ZGC and Shenandoah are alternative garbage collectors** (instead of the JVM's default, G1) **built specifically to keep individual pause times extremely short, even on very large heaps** — useful for latency-sensitive applications where even a short pause is a real problem (trading systems, real-time bidding, anything with a strict response-time budget).
+
+Reach for one of these only when you have a specific, measured latency requirement that G1's own pause times aren't meeting — they're specialized tools for a particular, real trade-off (Section 5 covers what that trade-off actually costs), not a strictly-better, drop-in replacement for the JVM's default collector.
+
+## Level 2 — Working Knowledge
+
+**A practical, everyday default**: stick with G1 (the JVM's default) unless you have concrete, measured evidence that its pause times are actually causing a problem for your specific application's latency requirements. Switching collectors is not a free, no-downside performance upgrade — it trades shorter individual pauses for other real costs (Section 5's allocation-stall behavior under heavy allocation pressure, additional background CPU and memory overhead), so it should be a deliberate choice backed by a genuine, measured need, not a default "the newer one is probably better" assumption.
 
 ## Mental Model
 
