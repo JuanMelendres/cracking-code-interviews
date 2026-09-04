@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-203
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../language-core/equals-hashcode-and-comparable-contracts.md
   - hashmap-internals.md
@@ -35,27 +37,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -71,6 +75,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `TreeMap`/`TreeSet` sit right behind `HashMap` in real interview frequency, and the Set/Map interface hierarchy is one of the most commonly MISDRAWN diagrams candidates produce on a whiteboard — placing `NavigableSet` as a peer of `TreeSet` rather than the interface it implements is a real, common, exactly-this-kind-of error, confirmed as a real defect in this repository's own Phase 1 audit of its source material. This chapter is built to make the correct hierarchy impossible to get wrong: not a diagram to memorize, but a real, reflective proof (`TreeSet.class.getInterfaces()`) a candidate can reason from directly. It also proves the actual MECHANISM behind "TreeMap is O(log n)" — a real, measured tree height under the worst possible insertion order — rather than a fact recited without evidence.
+
+## Level 1 — Foundation
+
+**`TreeMap` and `TreeSet` are a `Map` and a `Set` that keep their entries sorted automatically**, rather than in whatever order a `HashMap`/`HashSet` happens to store them (Section 5's insertion/order comparison in [Collection Selection Decision Matrix](collection-selection-decision-matrix.md) covers this contrast in full). `TreeMap<String, Integer> scores = new TreeMap<>(); scores.put("Charlie", 90); scores.put("Alice", 70); scores.put("Bob", 85);` iterating over `scores` visits `Alice`, `Bob`, `Charlie` in that order — alphabetical, automatically — even though `Charlie` was inserted first.
+
+Reach for `TreeMap`/`TreeSet` whenever a problem needs its data in sorted order continuously (a live leaderboard, a sorted list of scheduled events) or needs "nearest value" queries (Section 4's `floor`/`ceiling` methods) rather than exact lookups — a plain `HashMap`/`HashSet` cannot answer "what's the next-largest key after this one" at all, since it keeps no order information whatsoever.
+
+## Level 2 — Working Knowledge
+
+Beyond the standard `Map`/`Set` operations both types already support (`put`/`get`, `add`/`contains`), the everyday reason to specifically choose `TreeMap`/`TreeSet`:
+
+- **`firstKey()` / `lastKey()`** (`TreeMap`) and **`first()` / `last()`** (`TreeSet`) — the smallest and largest key/element, without iterating.
+- **Iterating in sorted order for free** — a plain for-each loop over a `TreeMap`'s `entrySet()` or a `TreeSet` visits every entry smallest-to-largest, with no manual sorting step required.
+- **`floor`/`ceiling`/`higher`/`lower`** (Section 4 covers each precisely) — "nearest value" queries no `HashMap`/`HashSet` can answer.
+
+**Practical choice among the three common `Map` implementations**: `HashMap` when order doesn't matter and you want the fastest average-case lookup; `LinkedHashMap` when you need entries to come back out in the order you inserted them; `TreeMap` when you need them sorted by key at all times. The same three-way choice applies to `HashSet`/`LinkedHashSet`/`TreeSet`. [Collection Selection Decision Matrix](collection-selection-decision-matrix.md) walks through this decision for a concrete scenario.
 
 ## Mental Model
 

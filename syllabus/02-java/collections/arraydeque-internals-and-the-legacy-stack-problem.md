@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
+topic_id: T-204
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - arraylist-and-linkedlist-internals.md
 related:
@@ -37,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +77,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `ArrayDeque` is Foundational tier because it's the collection candidates are most likely to have used without ever examining, and Moderate frequency because interviewers use it specifically to test whether a candidate parrots "ArrayDeque uses power-of-two capacity" — outdated, JDK-version-specific folklore, verified in this chapter to be false on current JDKs — versus one who has actually looked. It's also the canonical vehicle for testing whether a candidate reflexively recommends `java.util.Stack`, a legacy, synchronized type most modern code should never use.
+
+## Level 1 — Foundation
+
+**A `Deque` (double-ended queue) is a line you can add to or remove from at *either* end** — unlike a plain queue (only the back grows, only the front leaves) or a plain stack (only one end is ever touched), a deque supports both. `Deque<String> deque = new ArrayDeque<>(); deque.addFirst("a"); deque.addLast("b");` puts `"a"` at the front and `"b"` at the back.
+
+`ArrayDeque` is the everyday, general-purpose implementation of `Deque`, and it's what you should reach for whenever you need stack behavior (last-in-first-out — undo history, matching parentheses, depth-first traversal) or queue behavior (first-in-first-out — a task list processed in order, breadth-first traversal). Java has two older classes, `Stack` and `Vector`, that also offer stack/queue-like behavior — Section 6 explains precisely why `ArrayDeque` should be used instead of either, in every normal case.
+
+## Level 2 — Working Knowledge
+
+The everyday `Deque` operations, and the stack/queue vocabulary they map onto:
+
+- **As a stack**: `push(x)` (add to the front), `pop()` (remove and return the front), `peek()` (look at the front without removing it) — last-in-first-out.
+- **As a queue**: `offer(x)`/`addLast(x)` (add to the back), `poll()`/`pollFirst()` (remove and return the front), `peek()`/`peekFirst()` (look at the front) — first-in-first-out.
+- **Explicit both-ends methods**: `addFirst`/`addLast`, `removeFirst`/`removeLast`, `peekFirst`/`peekLast` — useful when the code's intent (front vs. back) should be unambiguous to a reader, rather than relying on the stack/queue method names' implicit convention.
+
+**A practical rule for a working engineer**: default to `ArrayDeque` for any stack or queue need in ordinary application code — never reach for `java.util.Stack` or `java.util.Vector` for new code (Section 6 gives the measured reason why), and reach for `LinkedList` only if a specific, demonstrated need for it arises. One concrete gotcha worth knowing early: `ArrayDeque` does not allow `null` elements at all (attempting to add one throws `NullPointerException`), since `null` is used internally to signal "empty slot" — use a sentinel value or `Optional` if you need to represent absence within the deque itself.
 
 ## Mental Model
 

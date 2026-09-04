@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-207
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - concurrenthashmap-internals.md
@@ -33,27 +35,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -69,6 +73,21 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `BlockingQueue` questions test whether a candidate understands producer-consumer coordination as a deliberate capacity and backpressure decision, or just knows "it's a thread-safe queue." The distinction between a bounded buffer (`ArrayBlockingQueue`) and a zero-capacity rendezvous (`SynchronousQueue`) specifically separates candidates who've actually built a producer-consumer pipeline from those who've only used `ExecutorService` as a black box without knowing what queue backs it.
+
+## Level 1 — Foundation
+
+**A queue is a line: things join at the back and leave from the front, in the order they joined** — first in, first out. A `BlockingQueue` is a thread-safe queue with one extra behavior: if a thread tries to add to a full queue, it waits until space opens up; if a thread tries to take from an empty queue, it waits until something is added. Neither side has to check "is it full/empty yet?" in a loop — they simply wait, and are woken automatically when the condition changes.
+
+The everyday use case is **producer-consumer**: one part of a program (or one thread) produces items — incoming requests, jobs, messages — and another part consumes them, often at a different speed. A `BlockingQueue` sitting between them is the standard, safe way to hand items from one to the other: a background job queue where a web request handler adds jobs and a separate worker thread processes them is a typical, everyday example.
+
+## Level 2 — Working Knowledge
+
+The core operations, and the important distinction between the "wait" and "don't wait" versions of each:
+
+- **`put(x)`** — add an item, waiting if the queue is full. **`offer(x)`** — add an item, returning `false` immediately instead of waiting if the queue is full (a timed version, `offer(x, timeout, unit)`, waits only up to a limit).
+- **`take()`** — remove and return an item, waiting if the queue is empty. **`poll()`** — remove and return an item, or `null` immediately if empty (a timed version, `poll(timeout, unit)`, waits only up to a limit).
+
+**A practical starting choice**: `ArrayBlockingQueue` (or a capacity-bounded `LinkedBlockingQueue`) with a sensible, explicit capacity is the everyday default for a producer-consumer job queue — an *unbounded* queue (a `LinkedBlockingQueue` with no capacity given) removes the natural backpressure a bounded queue provides (Section 5 explains exactly why that matters) and can let a fast producer pile up unbounded memory if the consumer falls behind. `SynchronousQueue` is a narrower, specialized tool (Section 4) for direct hand-off between exactly one producer and one consumer at a time, not a general-purpose default.
 
 ## Mental Model
 

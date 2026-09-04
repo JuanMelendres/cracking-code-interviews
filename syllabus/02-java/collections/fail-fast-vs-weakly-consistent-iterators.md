@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 28
+topic_id: T-208
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - hashmap-internals.md
   - arraylist-and-linkedlist-internals.md
@@ -38,27 +40,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -74,6 +78,30 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Fail-fast iteration is Core tier and High frequency because nearly every Java engineer has hit `ConcurrentModificationException` at least once, but far fewer can explain *why* it happens (the `modCount` check), *when it doesn't happen despite a real structural modification* (the best-effort quirk), or what the JDK's actual alternative — weak consistency — guarantees instead. This chapter is where "I've seen that exception" gets tested against whether the candidate understands the real detection mechanism and its real, documented limits.
+
+## Level 1 — Foundation
+
+**Iterating a collection means visiting each of its elements one at a time**, usually with a for-each loop (`for (String name : names) { ... }`). `ConcurrentModificationException` is the error Java throws when you try to add or remove an element from a collection *while* a for-each loop is in the middle of going through it — a common mistake looks like `for (String name : names) { if (name.equals("x")) names.remove(name); }`, which throws on the very next iteration after the removal.
+
+A plain-language analogy: imagine someone counting the books on a shelf one at a time, left to right, while someone else pulls a book off the shelf mid-count — the counter's expectations (how many books are left, which position is next) are now wrong, so Java detects the mismatch and stops with a clear error rather than silently producing a wrong or corrupted result.
+
+## Level 2 — Working Knowledge
+
+**The safe, everyday way to remove elements while iterating** is to use the iterator's own `remove()` method instead of the collection's:
+
+```java
+Iterator<String> it = names.iterator();
+while (it.hasNext()) {
+    String name = it.next();
+    if (name.equals("x")) {
+        it.remove();  // safe — the iterator knows about its own removal
+    }
+}
+```
+
+This works because the iterator's own `remove()` keeps its internal bookkeeping in sync with the collection, unlike calling `names.remove(name)` directly during a for-each loop, which the iterator has no way to know about. An equally common, simpler alternative for many cases: collect the items to remove into a separate list while iterating, then remove them all afterward (`names.removeAll(toRemove)`), or use `names.removeIf(name -> name.equals("x"))`, which handles the safe-removal bookkeeping internally.
+
+This exception only ever comes from collections like `ArrayList` and `HashMap` being modified during single-threaded iteration — it's a bug-detection mechanism for a single thread's own mistake, not a concurrency feature. For collections genuinely shared and modified across multiple threads, see [ConcurrentHashMap Internals](concurrenthashmap-internals.md) and [CopyOnWriteArrayList and Copy-on-Write Trade-offs](copyonwritearraylist-and-copy-on-write-tradeoffs.md), whose iterators are built specifically to never throw this exception at all (Section 4 below explains why).
 
 ## Mental Model
 

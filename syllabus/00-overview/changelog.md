@@ -191,3 +191,20 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cheat sheets, flashcards, and production-cookbook entries for T-1901–T-1905 — deferred to a separate batch.
 - L1/L2 (Foundation/Working-Knowledge) retrofit across every already-migrated domain's existing chapters — still the single largest remaining body of Phase 5 work, per the plan's own §7.6.
 - Phase 6 (learning-path assembly) — not started, not authorized.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit begins — 02-java/collections subdomain (T-201–T-209)
+
+### Added
+
+- The plan's own additive Foundation/Working-Knowledge retrofit (§2.4) begins with `02-java/collections`, chosen as the first subdomain because the plan itself names `hashmap-internals.md` as its representative example of the gap. All 9 chapters (T-201 HashMap, T-202 ArrayList/LinkedList, T-203 TreeMap/TreeSet, T-204 ArrayDeque, T-205 ConcurrentHashMap, T-206 CopyOnWriteArrayList, T-207 BlockingQueue, T-208 Fail-Fast/Weakly-Consistent Iterators, T-209 Collection Selection Decision Matrix) gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section each.
+- Placement follows the plan's own wording exactly: the two new sections sit "at the top" — inserted between the existing "Why This Matters in Interviews" and "Mental Model" sections — with the existing content otherwise untouched. Verified per file via diff that every change was a pure insertion: zero existing sentences deleted, reworded, or reordered.
+- Each chapter's Level 1 section explains the concept in plain language with an everyday analogy and states when a Junior/Mid engineer would reach for it, deliberately without internals; each Level 2 section covers the everyday API surface, common idioms, and a practical default/decision rule — genuinely usable by a reader with no prior background in the topic, verified by re-reading each addition as if encountering the collection for the first time.
+- Each chapter gained two new front-matter fields, `topic_id` (matching the ID already stated in its own `> Topic register:` line) and `mastery_levels_covered: [L1, L2, L3, L4]`, per the target schema in `00-overview/topic-specification.md` §4.3 — additive fields only; no existing front-matter field was renamed or removed, preserving the existing `handbook-chapter` document type and template.
+- Verified across all 9 files: exactly one H1 each (unchanged); the two new headings resolve via the project's own anchor-slug convention (confirmed by the absence of any `MD051` link-fragment warning after each insertion, versus a warning present beforehand when the TOC referenced them ahead of the heading existing); YAML front matter still parses; every pre-existing cross-reference used within the new sections (to sibling collections chapters and to `../language-core/equals-hashcode-and-comparable-contracts.md`) resolves on disk. A pre-existing class of broken links (several `../../practice/java/week-14/...` references, off by one directory level) was found in five of the nine files during this check — confirmed via `git diff` to predate this batch and not introduced by it, consistent with this repository's already-tracked, deliberately-deferred broken-link backlog; left unfixed as out of scope for this specific retrofit task.
+- Updated `syllabus/02-java/INDEX.md` (status line, intro paragraph, a new Phase 5 note, and all 9 affected topic rows) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+### Not yet done
+
+- The remaining 40 `02-java` chapters (`language-core` 15, `jvm-internals` 12, `concurrency` 16 minus a name overlap) still carry L3/L4 only — next in this retrofit, subdomain by subdomain.
+- Every other migrated domain (`04` through `17`, `20`, `21`) — 132 further chapters — awaits the same retrofit; this is confirmed, by this first batch, to be exactly as large a body of work as the plan's own §7.6 estimated.
+- Cheat sheets, flashcards, and production-cookbook entries for T-1901–T-1905, and for every Phase 5 new-writing chapter this session has produced — still deferred to a separate batch.

@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 30
+topic_id: T-201
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../language-core/equals-hashcode-and-comparable-contracts.md
 related:
@@ -36,27 +38,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -72,6 +76,26 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is the single most-asked Java data structure question, and it's a Foundation-tier topic that rewards real, mechanical understanding over surface familiarity. Nearly every candidate can say "HashMap uses hashing," but far fewer can explain precisely when a resize happens, why the load factor is 0.75 rather than some other number, or what actually happens to a bucket once it holds more than 8 colliding entries — and that gap is exactly what separates a "used it" answer from an "understand it" answer.
+
+## Level 1 — Foundation
+
+**A `HashMap` is a lookup table: it stores pairs of a key and a value, and lets you find a value instantly if you know its key** — the same idea as a phone book (name → number) or a dictionary (word → definition), except you can put any kind of key and any kind of value in it. `Map<String, Integer> ages = new HashMap<>(); ages.put("Alice", 30); ages.get("Alice");` stores the pair `"Alice" → 30` and then hands `30` straight back when asked for `"Alice"`.
+
+You reach for a `HashMap` any time your problem is naturally "look this thing up by some identifier" — counting how many times each word appears in a document, caching a user's profile by their user ID, grouping items by a category name. The alternative — searching through a `List` element by element to find a match — works, but gets slower as the list grows; a `HashMap` finds the match almost instantly no matter how many entries it holds, which is the entire reason it exists.
+
+A `HashMap` does **not** remember the order you put things in — if you need that, `LinkedHashMap` does; if you need entries sorted by key, `TreeMap` does (see [Collection Selection Decision Matrix](collection-selection-decision-matrix.md)). A `HashMap` also allows at most one `null` key and any number of `null` values.
+
+## Level 2 — Working Knowledge
+
+The everyday `HashMap` operations, beyond `put`/`get`, that a working engineer uses constantly:
+
+- **`containsKey(key)`** — check whether a key is present without retrieving its value.
+- **`getOrDefault(key, fallback)`** — get a value, or a caller-supplied fallback if the key is absent, avoiding a separate `containsKey` check followed by a `get`.
+- **`remove(key)`** — delete an entry by its key.
+- **`computeIfAbsent(key, k -> ...)`** — get a value if present, or compute and store it if not; the standard, correct pattern for lazily building up a map of lists or counters, in place of a manual "check, then maybe insert" sequence.
+- **`keySet()` / `values()` / `entrySet()`** — iterate over just the keys, just the values, or key-value pairs together; `entrySet()` is the usual choice when a loop needs both.
+
+**The one rule that determines whether a `HashMap` works correctly at all**: whatever type you use as a key must implement `equals()` and `hashCode()` consistently (see [Equals, HashCode, and Comparable Contracts](../language-core/equals-hashcode-and-comparable-contracts.md)) — a key type that only overrides `equals()` (or neither) will silently fail to find entries that look identical, because `HashMap` locates a bucket using `hashCode()` first, and it never even reaches `equals()` if two equal-looking keys hash differently. This is why plain custom classes used as map keys need both methods overridden together, never just one; the built-in wrapper types (`String`, `Integer`, and the rest) already do this correctly, which is why they're the safest, most common key choice.
 
 ## Mental Model
 

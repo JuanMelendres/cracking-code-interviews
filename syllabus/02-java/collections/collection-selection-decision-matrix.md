@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 20
+topic_id: T-209
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - hashmap-internals.md
   - arraylist-and-linkedlist-internals.md
@@ -36,26 +38,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Diagrams](#diagrams)
-7. [Production Scenarios](#production-scenarios)
-8. [Trade-offs](#trade-offs)
-9. [Decision Framework](#decision-framework)
-10. [Common Mistakes](#common-mistakes)
-11. [Anti-Patterns](#anti-patterns)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Diagrams](#diagrams)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Common Mistakes](#common-mistakes)
+13. [Anti-Patterns](#anti-patterns)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -71,6 +75,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests synthesis: can a candidate combine what they know about `HashMap`, `ArrayList`/`LinkedList`, `ConcurrentHashMap`, and `BlockingQueue` into a single, principled decision process, rather than only being able to discuss each in isolation? Interviewers use collection-selection questions specifically because the "right" answer depends on articulating a real access pattern first — exactly the skill that separates a candidate who's memorized four separate topics from one who understands them as a coherent, related set of trade-offs.
+
+## Level 1 — Foundation
+
+**Java offers more than one way to store a group of things, and more than one implementation of each way** — `List` (ordered, indexable), `Set` (no duplicates), `Map` (key-to-value pairs), and `Queue`/`Deque` (line-like, processed in order) are the four basic shapes; each has multiple concrete implementations (`ArrayList` vs. `LinkedList`, `HashMap` vs. `TreeMap`, and so on) with different internal trade-offs.
+
+For a Junior or Mid-level engineer just starting out, the practical starting point is simple and does not require memorizing every trade-off up front: use `ArrayList` for an ordered list of things, `HashMap` for looking things up by a key, `HashSet` for a collection with no duplicates, and `ArrayDeque` for a stack or queue. These four defaults are correct for the overwhelming majority of everyday code, and the deeper decision process this chapter documents (Sections 5 onward) becomes relevant once a specific access pattern or performance concern actually appears — not before.
+
+## Level 2 — Working Knowledge
+
+Once the four safe defaults from Section 3 stop being obviously sufficient, the practical working question to ask is: **what does this code do with the collection most often?** Read by position, or search by content? Look something up by an identifier? Need the items to stay sorted, or come back out in insertion order? Add and remove from one end, or from both?
+
+Answering that question first, in plain language, before naming a specific class, is the single habit that prevents most of the individual mistakes each collection's own chapter documents — reaching for `LinkedList` "for flexibility" without a specific need for its front-insertion behavior ([ArrayList and LinkedList Internals](arraylist-and-linkedlist-internals.md)), or defaulting to an unbounded queue without thinking about backpressure ([BlockingQueue Family and Producer-Consumer](blockingqueue-family.md)). Sections 5 and 9 below turn this same working question into a structured, evidence-backed decision process for each collection family.
 
 ## Mental Model
 

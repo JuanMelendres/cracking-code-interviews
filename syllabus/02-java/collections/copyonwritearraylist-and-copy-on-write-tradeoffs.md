@@ -15,6 +15,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
+topic_id: T-206
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - arraylist-and-linkedlist-internals.md
   - fail-fast-vs-weakly-consistent-iterators.md
@@ -39,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -75,6 +79,18 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `CopyOnWriteArrayList` is Advanced tier and Moderate frequency because it's one of the clearest, most quotable examples of a genuine engineering trade-off in the entire collections framework — but candidates who've only heard "it's good for read-heavy, write-rare workloads" as a memorized rule, without ever seeing the actual numbers behind that rule, cannot defend it under a follow-up question. This chapter measures both sides of the trade-off directly, turning a memorized heuristic into a defensible, evidence-backed answer.
+
+## Level 1 — Foundation
+
+**`CopyOnWriteArrayList` is a `List` designed for the specific case where many threads read it constantly and only occasionally does anyone change it.** In plain terms: imagine a notice board that many people read at any moment, but is rarely updated — instead of making every reader wait for a lock every time they glance at it, this design reprints the entire board fresh whenever an update happens, so readers never have to wait or coordinate with anyone at all.
+
+Reach for it in the narrow case of a list that's read far more often than it's written — a list of registered event listeners, a small, occasionally-refreshed configuration list read by many request-handling threads. It is **not** a general-purpose thread-safe list, and using it for a list that changes frequently (Section 6 explains the real cost) works correctly but performs badly by design.
+
+## Level 2 — Working Knowledge
+
+`CopyOnWriteArrayList` implements the same `List` interface as `ArrayList` — `add`, `get`, `remove`, `size`, and a for-each loop all work exactly the way they do on any other `List`, with one meaningful practical difference: **iterating over a `CopyOnWriteArrayList` never throws `ConcurrentModificationException`, even if another thread adds or removes elements during the iteration** (see [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) for why, and what a running iterator does and doesn't see when this happens).
+
+**The working decision that matters**: before reaching for `CopyOnWriteArrayList`, ask how often the list actually changes. If updates are rare (occasional configuration reloads, listeners registered mostly at startup), it's a good, simple fit. If updates happen frequently (anything resembling a work queue, a per-request mutable list), a `synchronized` wrapper (`Collections.synchronizedList(...)`) or a different concurrent structure altogether is very likely the correct choice instead — [Collection Selection Decision Matrix](collection-selection-decision-matrix.md) and Section 9's Trade-offs table below cover this decision in full.
 
 ## Mental Model
 

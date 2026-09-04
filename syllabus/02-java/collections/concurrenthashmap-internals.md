@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-205
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - hashmap-internals.md
 related:
@@ -34,27 +36,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -70,6 +74,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 `ConcurrentHashMap` is one of the most commonly *misused* thread-safe classes in real Java codebases: engineers correctly avoid a plain `HashMap` under concurrency, reach for `ConcurrentHashMap`, and then write a `get()`/`put()` counter-increment pattern that's just as broken as if they'd used a `HashMap` — because per-call thread safety and multi-call atomicity are different guarantees, and this topic exists specifically to test whether a candidate understands that distinction.
+
+## Level 1 — Foundation
+
+**A regular `HashMap` is not safe to use from more than one thread at the same time** — if two parts of your program run in parallel (on separate threads) and both write to the same plain `HashMap` at once, the map can end up silently broken: entries can vanish, or the map's internal bookkeeping can become corrupted, with no error message telling you anything went wrong. `ConcurrentHashMap` is a version of `HashMap` built specifically to be safe when multiple threads read and write it at the same time.
+
+A useful analogy: a plain `HashMap` is like two people writing on the same piece of paper simultaneously, with no coordination — the result is garbled. `ConcurrentHashMap` is like a shared whiteboard with built-in rules ensuring only one person edits any given section at a time, so nothing gets corrupted even with several people using it at once.
+
+Reach for `ConcurrentHashMap` any time a map is genuinely shared and mutated by more than one thread — a cache accessed by multiple request-handling threads, a shared counter map in a multi-threaded service. If a map is only ever touched by one thread at a time, a plain `HashMap` is simpler and faster, and `ConcurrentHashMap`'s extra safety machinery buys nothing.
+
+## Level 2 — Working Knowledge
+
+`ConcurrentHashMap` supports the exact same everyday operations as `HashMap` (`put`, `get`, `containsKey`, `remove`, `computeIfAbsent`, `entrySet()`, and the rest) — it implements the same `Map` interface, so existing code written against `Map<K, V>` works unchanged if a `ConcurrentHashMap` is substituted for a `HashMap`.
+
+**The one working-knowledge trap to know before touching internals**: don't read a value, do some logic, and write it back as two separate steps (`int count = map.get(key); map.put(key, count + 1);`) when multiple threads might touch the same key — this pattern is a classic source of a lost update, covered mechanically in Section 5 below. The safe, correct pattern for "update a value based on its current value" is the built-in `merge()` or `compute()` method: `map.merge(key, 1, Integer::sum)` increments a counter for `key` correctly no matter how many threads call it concurrently, because the entire read-modify-write happens as one atomic step rather than two separate ones a reader can interleave between.
 
 ## Mental Model
 

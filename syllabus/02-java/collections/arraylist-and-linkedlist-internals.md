@@ -14,6 +14,8 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 25
+topic_id: T-202
+mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - collection-selection-decision-matrix.md
@@ -35,27 +37,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -71,6 +75,26 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is Foundation-tier but Very-High-frequency because nearly every candidate has used both classes without ever measuring the actual performance difference their access pattern implies — "ArrayList is usually better" is a memorized rule, and interviewers use this topic to check whether a candidate can explain *why*, with the actual complexity classes and a plausible measured magnitude, not just recite the conclusion.
+
+## Level 1 — Foundation
+
+**A `List` is an ordered, resizable collection of elements you access by position** — think of it as a shopping list: items are in a specific order, you can add a new one to the end, remove one from the middle, and check how many items are on it, all without having to decide the final size ahead of time. `List<String> names = new ArrayList<>(); names.add("Alice"); names.add("Bob"); names.get(0);` returns `"Alice"`, the item at position 0.
+
+This is the everyday alternative to a plain Java array (`String[] names = new String[10]`), which forces you to commit to a fixed size up front and offers no built-in `add`/`remove`. Reach for a `List` any time you're collecting items where you don't know the count in advance, need to add or remove items over time, or want convenience methods (`contains`, `indexOf`, `size`) an array doesn't give you for free.
+
+`ArrayList` is the default, general-purpose choice — use it unless you have a specific, demonstrated reason to reach for something else. `LinkedList` exists as an alternative implementation of the same `List` interface, useful in narrower cases covered in Section 5 below.
+
+## Level 2 — Working Knowledge
+
+The everyday `List` operations a working engineer uses constantly, all available on both `ArrayList` and `LinkedList` since both implement the same `List` interface:
+
+- **`add(element)`** — append to the end; **`add(index, element)`** — insert at a specific position.
+- **`get(index)`** / **`set(index, value)`** — read or replace the element at a position.
+- **`remove(index)`** — remove by position; **`remove(Object)`** — remove the first element equal to the given object (careful with `List<Integer>`: `remove(1)` removes the element *at index 1*, while `remove(Integer.valueOf(1))` removes the *value* `1` — a well-known, easy-to-hit ambiguity).
+- **`size()`**, **`isEmpty()`**, **`contains(element)`**, **`indexOf(element)`**.
+- **Iterating**: a for-each loop (`for (String name : names)`) is the default, safe way to visit every element in order; see [Fail-Fast vs. Weakly-Consistent Iterators](fail-fast-vs-weakly-consistent-iterators.md) for what goes wrong if the list is modified while a for-each loop is iterating over it.
+
+**Default to `ArrayList`.** As a working rule before internals matter (Section 5 covers exactly why): use `ArrayList` for essentially everything, and only consider an alternative (`LinkedList`, `ArrayDeque` — see [ArrayDeque Internals](arraydeque-internals-and-the-legacy-stack-problem.md)) once you have a specific, identified need such as frequent insertion at the front of a very large list. Defaulting to `ArrayList` and only reconsidering when a real, measured need appears is a better working habit than trying to pre-optimize the choice for every list you create.
 
 ## Mental Model
 
