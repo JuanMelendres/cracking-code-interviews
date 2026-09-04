@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1304
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -33,27 +39,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -64,6 +72,20 @@ By the end of this chapter you can explain why encryption keys need to be rotate
 ## Why This Matters in Interviews
 
 Key rotation questions separate candidates who understand encryption as a static "turn it on" checkbox from those who understand it as an operational lifecycle. The naive assumption — "we encrypted the data, we're done" — misses that keys need periodic rotation even absent any known compromise (limiting the blast radius of a future, not-yet-discovered compromise; meeting compliance rotation schedules; reducing the volume of data ever encrypted under a single key), and that rotating a key in a system with millions of already-encrypted records is a genuinely nontrivial operational problem if the system wasn't designed for it from the start. A candidate who can describe *why* naive rotation (just swap the key and hope) breaks existing data, and what pattern avoids that, demonstrates real operational maturity.
+
+## Level 1 — Foundation
+
+Imagine a storage-unit facility where every unit is locked with a copy of the same master key. If you want to change that key — say, because the current one has been in use for years and you want to reduce the risk of a copy floating around somewhere — you can't just cut a new key and expect it to open units already locked with the old one. Every existing unit would suddenly be inaccessible.
+
+**Envelope encryption** is the practical fix: instead of ever changing the one master key that opens everything, you issue a new "generation" of key, tag every unit with which generation's key locks it, and keep the older keys available in a key ring until every unit tagged with an old key has been individually re-locked with a new one. Only once every unit that depended on an old key has been switched over is that old key finally, safely destroyed. The tag on each unit — "this one uses key generation 3" — is what makes the whole system trackable; without it, you'd have no way to know which key opens which door once you've issued several generations.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain why keys need to be rotated even when there's no evidence anything has been compromised. It's not purely a reactive measure — rotating periodically limits how much data is ever protected by any single key (shrinking the potential damage if that key is silently compromised without anyone knowing), and it satisfies compliance requirements that mandate rotation on a schedule regardless of incident history. A slow, undetected key leak with no rotation policy has a blast radius that grows unboundedly over time, purely because nothing ever limits how much data continues to sit behind that one key.
+
+You should also be comfortable with the specific, concrete failure mode that makes naive rotation dangerous: simply generating a new key and "starting to use it" breaks decryption for every record already encrypted under the old one, because there's no way to know afterward which key protected which record without an explicit version tag. And you should know the correct order of operations for retiring an old key: re-encrypt every record still tagged with that old version under a current key, verify the re-encryption succeeded, and only then delete the old key — deleting it first is a permanent, unrecoverable data-loss event, not a rollback-able mistake.
+
+Practically, if you're reviewing a system's encryption design, the working question to ask is: "does every encrypted record carry a tag saying which key version encrypted it?" If the answer is no, that system's first-ever key rotation will be a real, multi-week migration project (introducing the tag, backfilling existing data, running a re-encryption sweep) rather than a routine, near-instant operation — which is the practical argument for building key versioning in from day one, long before any rotation is actually required.
 
 ## Mental Model
 

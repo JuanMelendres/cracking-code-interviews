@@ -366,4 +366,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 7 further migrated domains (`12`–`17`, `20`, `21`) — 76 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 12-security domain complete (8/8)
+
+### Added
+
+- All 8 `12-security` chapters retrofitted: `owasp-top-10-for-backend-services.md` (T-1301), `authn-authz-rbac-vs-abac.md` (T-1302), `applied-cryptography-hashing-signing-tls.md` (T-1303), `secrets-management-and-key-rotation.md` (T-1304), `injection-input-validation-output-encoding.md` (T-1305), `supply-chain-security-sbom-and-dependency-risk.md` (T-1306), `multi-tenancy-isolation-models.md` (T-1307), `oauth2-oidc-and-jwt.md` (T-512/T-513) — same additive method as every prior batch, all 8 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a home-burglary-risk-list analogy for the OWASP Top 10; an office-building-badge analogy for AuthN/AuthZ and RBAC/ABAC; a bouncer/notary/tamper-evident-envelope analogy for hashing/signing/TLS; an "instruction hidden in a note" analogy for injection and output encoding; an apartment-building analogy for multi-tenancy isolation models and Row-Level Security; a limited-pass-and-wax-seal analogy for OAuth2/OIDC/JWT; a storage-unit-key-generation analogy for key rotation and envelope encryption; a food-ingredient-label analogy for SBOMs and transitive dependency risk.
+- Verified all 8 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/12-security/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`12-security` is now fully L1–L4 (8/8)** — the tenth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, and `11-system-design`.
+
+### Not yet done
+
+- 6 further migrated domains (`13`–`17`, `20`, `21`) — 68 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

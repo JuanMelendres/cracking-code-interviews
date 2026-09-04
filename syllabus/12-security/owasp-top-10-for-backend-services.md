@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1301
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -38,27 +44,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -69,6 +77,20 @@ By the end of this chapter you can name all ten OWASP Top 10 (2021) categories, 
 ## Why This Matters in Interviews
 
 The OWASP Top 10 question rarely means "recite the list." Interviewers use it as a routing question: they want to see whether a candidate can take a category name and immediately produce a concrete, code-level example of how it manifests in a typical backend service, then explain the fix in terms of *where* the defense belongs (input boundary, authorization layer, output boundary, dependency pipeline). A candidate who says "SQL injection is bad, use prepared statements" gets partial credit; a candidate who says "injection is any case where untrusted data crosses into an interpreter's syntax rather than staying data — SQL is the classic case, but so is a shell command built from user input, or an LDAP filter, or a Server-Side Request Forgery where a URL itself is the interpreter's *target* rather than its filter" demonstrates the transferable mental model interviewers are actually screening for.
+
+## Level 1 — Foundation
+
+Think of the OWASP Top 10 as a "most common ways burglars actually get in" list a security consultant hands a homeowner, based on real data from thousands of break-ins — not a complete list of every conceivable way a house could be broken into, but a ranked list of the ones that keep happening in practice: an unlocked back door (broken access control), a copied key that was never deactivated (authentication failures), leaving valuables visible through an unlocked window (security misconfiguration), or letting a "package delivery" person walk straight into the house without checking they're legitimate (SSRF — the server fetching a URL is a bit like letting a stranger's request walk right into your internal network).
+
+One category, **Insecure Design (A04)**, is different from all the others: it's not "the lock was installed badly," it's "nobody thought to put a lock on this door in the first place." No amount of careful installation fixes a door that was never designed to have a lock — that's a planning problem, not a workmanship problem.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to take any of the ten category names and immediately produce a concrete example of how it shows up in an ordinary backend service, rather than just reciting the name. The single most valuable habit to build is recognizing Broken Access Control (A01) specifically: it's usually not a visibly wrong line of code, but a missing one — a handler that fetches an object by ID and forgets to check whether the requester actually owns it. This is why it routinely passes functional testing: functional tests almost always use the "correct" user's credentials, and the bug only appears when someone deliberately supplies a different user's ID.
+
+You should also be comfortable recognizing that "we use a scanner" or "we have a web application firewall" is not the same as "this category is covered" — these tools are a useful additional layer, not a substitute for the actual fix (parameterized queries, an explicit ownership check, a proper allowlist). And you should know to treat any server-side feature that fetches a URL supplied or influenced by a user (a webhook, a URL preview, an image proxy) as a candidate for SSRF review, even when it doesn't look like an obvious "URL parameter" feature at first glance.
+
+Practically, when reviewing a new feature, run through the list not as "does this have a known CVE" but as "does this feature have a shape that matches any of these ten risk categories" — that reframing is what turns the list from a memorization exercise into an actual review tool.
 
 ## Mental Model
 

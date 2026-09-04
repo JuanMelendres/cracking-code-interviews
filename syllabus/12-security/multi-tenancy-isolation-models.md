@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1307
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -32,27 +38,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -63,6 +71,20 @@ By the end of this chapter you can name the three standard multi-tenancy isolati
 ## Why This Matters in Interviews
 
 Multi-tenancy isolation questions probe whether a candidate understands that "which tenant owns this row" is a security boundary, not just a data-modeling detail — and that the strength of that boundary depends entirely on *where* it's enforced (application code, a shared database's row-level policies, or fully separate infrastructure per tenant) and *who* can bypass it. This is a favorite Staff-level topic specifically because the "obvious" cheap answer (shared schema, filter by `tenant_id` in application code) is also the answer with the weakest isolation guarantee — a single missed `WHERE tenant_id = ?` clause anywhere in the codebase is a cross-tenant data leak, and interviewers want to see whether a candidate reaches for that risk unprompted or needs it pointed out.
+
+## Level 1 — Foundation
+
+Imagine three ways an apartment building landlord could house multiple tenants. **Silo** gives each tenant their own entirely separate building — nobody can accidentally wander into someone else's unit because there's no shared building at all, but the landlord now has to maintain N separate buildings. **Pool** puts everyone into one shared building with individually locked apartment doors — much cheaper to build and maintain, but every single door's lock has to actually be installed correctly, and one unlocked door is a real breach for whoever lives there. **Bridge** is a shared building where a few floors are reserved as fully separate, dedicated wings for specific high-value tenants who need extra guarantees — a practical middle ground.
+
+Now imagine the "pool" building goes a step further: instead of each door having its own separately-installed lock that some contractor might forget, the front door of the entire building has a smart system that automatically checks your key card against exactly which room you're allowed into, every single time, regardless of who built which door. That's **Row-Level Security** — the building itself (the database) enforces the rule, rather than depending on every individual door-installer (every query in the application) to remember to lock it correctly.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain precisely why "we filter every query by `tenant_id` in application code" is real but fragile protection: it depends on every single query, in every code path, in every service, forever, correctly including that filter — a new report feature, an internal admin tool, or a background job that forgets it is a direct cross-tenant data leak. This is structurally the same shape of problem as a missing ownership check (IDOR) — an absence, not a visible mistake — just at the scale of an entire tenant's data instead of one record.
+
+You should also be comfortable with the single most important, non-obvious caveat about database-enforced isolation like Row-Level Security: it is not unconditional. A database role with superuser (or an equivalent bypass) privilege skips the policy entirely, by design — which means the isolation guarantee is only as strong as your organization's discipline about which roles are ever given that kind of access, and that discipline has to extend to every tool that touches the database, not just the main application (background jobs, analytics scripts, admin tooling, migration scripts all count).
+
+Practically, if someone tells you "we have Row-Level Security enabled, so we're protected," the working follow-up question is: "which database role does every single code path — including the ones nobody thinks about, like a data scientist's analytics notebook — actually connect as, and does any of them have bypass privileges?" That question, not the mere presence of the policy, is what actually determines whether isolation holds across the whole system.
 
 ## Mental Model
 

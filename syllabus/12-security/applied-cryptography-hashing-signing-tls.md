@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1303
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -32,27 +38,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -63,6 +71,22 @@ By the end of this chapter you can explain why password hashing, digital signing
 ## Why This Matters in Interviews
 
 "Applied cryptography" interview questions almost never ask a candidate to explain how AES or SHA-256 works internally — they ask whether the candidate knows *which primitive solves which problem*, because using the wrong one is a genuinely common, genuinely severe real-world mistake. Hashing a password with plain SHA-256 (fast, general-purpose) instead of a deliberately slow password-hashing function is one of the most common findings in real security reviews, and a candidate who can't articulate *why* "fast" is the wrong property for that specific job — even though SHA-256 is a perfectly good hash function for other purposes — is missing the core skill the question is testing.
+
+## Level 1 — Foundation
+
+Think of three different real-world tools that all get lumped together as "security" but do genuinely different jobs. **Hashing a password** is like a bouncer memorizing a very specific, deliberately hard-to-guess pattern rather than writing down your actual name — later, they can confirm "yes, that pattern matches" without ever having kept a copy of the actual secret. It only works one way: you can't work backward from the pattern to recover the original.
+
+**Signing** is like a notary stamping a document: anyone who sees the stamp and knows the notary's public seal can verify "yes, this specific notary really did approve this exact document, word for word, and nobody has altered it since" — but the document itself is still fully readable by anyone. A stamp doesn't hide the contents; it proves who approved them and that they haven't been tampered with.
+
+**TLS** is like sealing a letter in a tamper-evident envelope before mailing it to someone you've never met, using a quick, trusted introduction (the "handshake") to agree on a private code the two of you will use for the rest of that specific conversation. Once the conversation ends, that shared code is gone — TLS protects the letter in transit, not what happens to it once it's opened and read.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, precisely, why a password hashing function needs to be slow — the opposite of nearly every other performance goal you'll ever pursue. A fast hash like SHA-256 lets an attacker who steals a database of hashes try billions of guesses per second on cheap hardware. A password-hashing function (bcrypt, scrypt, Argon2) deliberately makes each single guess expensive, which directly and proportionally slows down that exact attack.
+
+You should also be comfortable correcting the single most common mix-up in this domain: signing is not encrypting. A signed message is completely readable by anyone — the signature only proves who produced it and that it hasn't changed since. If someone says "we sign our requests, so they're secure," the correct follow-up is "secure against what specifically — tampering and impersonation, or someone reading the contents?" — because signing only answers the first.
+
+Practically, the working habit worth building is treating "we use TLS" or "we sign our requests" as claims that need verification, not facts to take at face value. A signature scheme is only as strong as every single code path that actually checks it — a debug flag, a legacy internal-caller exception, or a newly-added path that reuses parsing logic but skips verification middleware can silently defeat an otherwise-correctly-designed scheme. The right question to ask isn't "do we sign requests," it's "how do we know verification is actually enforced on every path that consumes this data."
 
 ## Mental Model
 

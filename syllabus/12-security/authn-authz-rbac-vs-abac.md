@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1302
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -33,27 +39,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -64,6 +72,20 @@ By the end of this chapter you can state the precise distinction between authent
 ## Why This Matters in Interviews
 
 "AuthN vs AuthZ" sounds like a vocabulary question, but interviewers use it to check whether a candidate reasons about *where* an access decision actually happens in a request's lifecycle and *what information* that decision needs. A candidate who says "authentication is login, authorization is permissions" gives a textbook-correct but shallow answer. A stronger answer explains that authentication produces an *identity* the rest of the system can trust, and authorization is a *separate decision*, made potentially many times per request across different layers (API gateway, service, database row), each of which may need different context to decide correctly — which is exactly the seam where RBAC's simplicity starts to break down and where ABAC or its relatives (ReBAC, policy-based authorization) become necessary.
+
+## Level 1 — Foundation
+
+Think of visiting an office building. **Authentication** is showing your ID at the front desk and getting a visitor badge — it happens once, when you arrive, and confirms who you actually are. **Authorization** is every individual door in the building deciding whether your specific badge lets you through — this happens over and over, at every door, and is a completely separate question from "is this a real badge." Getting a badge (authentication) doesn't mean every door opens for you; each door still checks.
+
+**RBAC (Role-Based Access Control)** is like badges that come in fixed colors — a blue badge opens the blue doors, a red badge opens the red doors, decided once when the badge was issued. **ABAC (Attribute-Based Access Control)** is a smarter door that doesn't just check badge color — it also checks things like "is it currently business hours," "does this person already work on this floor," or "are they trying to enter the exact room they personally requested access removal from." A blue badge might open a door at 2pm but not at 2am — something a simple color-based rule could never express.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to state the practical difference between a 401 and a 403 response without hesitation: 401 means "I don't know who you are" (the fix is logging in or refreshing credentials), and 403 means "I know exactly who you are, and the answer is still no" (logging in again won't help — you need a different permission entirely). Mixing these up in a real system misleads client applications into retrying the wrong remedy.
+
+You should also be able to recognize the specific, practical signal that a system has outgrown RBAC for a particular rule: whenever you find yourself proposing a new, narrower role to express one specific condition ("engineer-not-author," "manager-during-business-hours"), that's the tell. A role is a fixed, pre-decided property of a user; conditions that depend on the specific request — "is this their own change," "is it currently business hours," "do they report to this exact manager" — are relationships and context that no static role can encode, no matter how many narrow roles you invent.
+
+Practically, when reviewing an access-control requirement written in plain English, the working habit is to check whether it contains a conditional word — "only if," "only their own," "only during," "only when." If it does, that's a strong signal the requirement needs attribute-based logic layered on top of RBAC, not a new role. And it's worth remembering these two models aren't mutually exclusive — most real systems use RBAC for coarse, actor-type gating and layer targeted ABAC rules on top only where a genuine conditional requirement exists.
 
 ## Mental Model
 

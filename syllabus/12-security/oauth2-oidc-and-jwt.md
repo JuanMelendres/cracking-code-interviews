@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/security/oauth2-oidc-and-jwt.md
+topic_id: T-512/T-513
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -38,29 +44,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Failure Modes and Debugging](#failure-modes-and-debugging)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Comparisons](#comparisons)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -76,6 +84,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic is High-frequency for any role touching authentication, and it contains one of the sharpest "honest answer required" questions in the security domain: JWT revocation. Both overconfident answers — "JWTs can be revoked" and "JWTs are completely stateless, full stop" — are wrong in the same way this project's other discriminating questions are wrong: the honest, scoped answer requires understanding the actual mechanism (pure cryptographic verification, no lookup) well enough to state precisely what it can and cannot do.
+
+## Level 1 — Foundation
+
+Imagine wanting to let a photo-printing website print your vacation photos without ever giving that website your actual social-media password. Instead, the social-media site asks you to log in directly on its own page, then hands the printing site a special, limited pass that says "this pass can only read this specific person's vacation album — nothing else." That limited pass is what **OAuth2** provides — it answers "what is this third party allowed to do on my behalf," without the third party ever seeing your real credentials.
+
+**OIDC** adds a separate piece on top: not just "what can this app do," but "who is this person, actually." It's like the pass also including a stamped, verifiable ID card, so the printing site can display "Welcome, Alex" instead of just "some authorized user."
+
+A **JWT** is the actual physical shape of that pass: a small, tamper-evident card with a wax seal. Anyone holding the matching stamp can check the seal is genuine and that nobody scratched anything off — but here's the important part: checking the seal only tells you the card itself hasn't been altered since it was made. It says absolutely nothing about whether the person the card was issued to has since been banned, fired, or had their account deleted — the card doesn't know, and can't know, because checking it never involves calling anyone to ask "is this still valid in the real world right now."
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to give the honest, precise answer to "can a JWT be revoked" without flinching: no, not without adding a separate, stateful check (a deny-list) that the verification step consults — and adding that check reintroduces exactly the "look something up on every request" cost that using a JWT was supposed to avoid in the first place. Neither "yes, easily" nor "no, impossible, full stop" is the right answer; the honest answer names the actual mechanism and its trade-off.
+
+You should also be comfortable explaining precisely why PKCE (Proof Key for Code Exchange) matters even when a client already has a secret: PKCE and a client secret protect two genuinely different attack surfaces. A client secret protects the token-exchange step itself (proving "I am the legitimate app asking to trade this code for a token"). PKCE protects the authorization code while it's in transit, before that exchange even happens — an attacker who intercepts the code in transit still can't use it without also having the original, never-transmitted verifier value. This is why PKCE is now the modern default even for apps that do have a secret, not just mobile apps and single-page apps that can't securely hold one.
+
+Practically, when you see a system issuing long-lived JWTs for something security-sensitive (a session, an access token), the working question to ask is: "what's the maximum acceptable window between something bad happening (a suspension, a compromise) and the token actually stopping working?" If that window is longer than anyone has consciously decided it should be, that's a real gap — the fix is either shortening the token's expiry (bounding the exposure automatically) or adding a narrow, targeted deny-list check specifically for that one security-critical event, not for every request.
 
 ## Mental Model
 

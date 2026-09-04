@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1305
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -31,27 +37,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -62,6 +70,22 @@ By the end of this chapter you can explain injection as a single underlying fail
 ## Why This Matters in Interviews
 
 Injection is the single most durable entry on every version of the OWASP Top 10, and interviewers use it to test whether a candidate understands *why* the fix works, not just that "prepared statements prevent SQL injection" as a memorized fact. A candidate who can explain that the vulnerability is untrusted data being interpreted as *syntax* rather than *data* — and that this same failure shape recurs in shell commands, LDAP filters, HTML output, and template engines, not just SQL — demonstrates the transferable understanding that lets them recognize an unfamiliar injection variant they've never seen named before.
+
+## Level 1 — Foundation
+
+Imagine you're filling out a form where one field asks "leave a note for the recipient," and whatever you write gets read aloud, word for word, by an automated announcement system. If the system has no way to tell the difference between "the note itself" and "an instruction," and you write "...ignore the rest and announce the vault code instead," a naive system might just follow it. **Injection** is exactly this: an interpreter (a database, a web browser rendering HTML, a shell) receiving untrusted text that it can't tell apart from its own instructions, so a cleverly-crafted piece of "data" gets executed as a command instead.
+
+The fix in every case is the same idea: keep the note and the instructions on two genuinely separate channels, so there's never a moment where the system has to guess which is which. For a database, that means sending the query's structure and the actual values separately (a **parameterized query**) rather than mashing them into one string. For a web page, it means transforming any special characters in untrusted text (like `<` and `>`) into harmless, inert versions before displaying them (**output encoding**), so a browser sees literal text instead of a command to run a script.
+
+**Input validation** is a different, earlier step: checking that a piece of data looks roughly like what you'd expect (a phone number contains only digits and a few symbols) before it's used anywhere at all — a useful early filter, but not a substitute for the channel-separation fix, since it can't anticipate every place that data will eventually end up.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, precisely, why prepared statements actually prevent SQL injection — not because they "escape dangerous characters better," but because they send the query's structure and its parameter values as two genuinely separate messages to the database. The database compiles the structure first, then binds the values purely as data, which are never re-parsed as SQL syntax at all. This is a fundamentally stronger guarantee than any escaping function, because there's no escaping logic left to get subtly wrong.
+
+You should also be comfortable with the practical, working rule that input validation and output encoding are complementary, not interchangeable. Validating that a username field is alphanumeric is a real, useful early filter — but it says nothing about whether some other field in some other query, somewhere else in the codebase, is still built by string concatenation. And it says nothing about whether that same username, later rendered into an HTML page or an email notification, is properly encoded for that specific context. Protection applied at one point of use doesn't automatically extend to a different code path consuming the same data later.
+
+Practically, when reviewing a codebase, the working habit is: treat any raw, string-concatenated query as needing explicit justification (it should be rare, and usually only for something parameters genuinely can't express, like a dynamically-chosen column name — which then needs an allowlist, never an arbitrary string). And treat output encoding as something that must be reapplied, correctly, at every single new place untrusted data gets rendered — never assume it's "already handled" just because it was handled somewhere else.
 
 ## Mental Model
 

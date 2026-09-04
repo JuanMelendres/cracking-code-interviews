@@ -5,7 +5,13 @@ document_type: handbook-chapter
 domain: 12-security
 status: draft
 version: 1.0
-last_reviewed: 2026-08-02
+last_reviewed: 2026-09-04
+topic_id: T-1306
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -33,27 +39,29 @@ source_history:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Production Scenarios](#production-scenarios)
-8. [Failure Modes and Debugging](#failure-modes-and-debugging)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Production Scenarios](#production-scenarios)
+10. [Failure Modes and Debugging](#failure-modes-and-debugging)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -64,6 +72,20 @@ By the end of this chapter you can explain what a Software Bill of Materials (SB
 ## Why This Matters in Interviews
 
 Supply chain security questions probe whether a candidate thinks about a service's attack surface as extending beyond the code they personally wrote — into every transitive dependency, every base container image, every build tool in the pipeline. This became a mainstream Staff-level interview topic specifically because of a run of real, high-profile supply-chain incidents (compromised build tooling, malicious package updates, vulnerable base images shipped unknowingly into thousands of downstream products) that made "we didn't write that code, so it's not our risk" an untenable position. A candidate who can explain what an SBOM actually is, why generating one is now table stakes rather than optional, and how it connects concretely to vulnerability management, demonstrates awareness of a risk category that's easy to overlook when reviewing only first-party code.
+
+## Level 1 — Foundation
+
+Think of a complex packaged meal's ingredient label — food packaging is legally required to list not just "sauce," but every ingredient *inside* that sauce too, because an allergen buried three ingredients deep is exactly as real a risk to someone allergic to it as one printed in bold on the front of the box. A **Software Bill of Materials (SBOM)** is that same idea applied to software: a complete list of not just the libraries a team directly chose, but every library those libraries themselves quietly pull in, all the way down — because a security flaw three layers deep is exactly as real a risk as one in a library the team picked on purpose.
+
+This matters more than it might sound like at first, because most of what actually ends up running in production isn't code anyone on the team wrote or even consciously chose — it's the base container image (bringing along an entire operating system's worth of packages), the build tools, and the dependencies-of-dependencies nobody on the team has ever read the name of.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain why reviewing only a project's own directly-declared dependencies is a materially weaker security posture than generating and reviewing a full SBOM: most real-world vulnerabilities in practice live in transitive dependencies (things pulled in indirectly, several layers deep) or in the base container image's own OS-level packages — layers that a quick look at a project's build file simply never surfaces. Finding a critical vulnerability in a package nobody on the team has ever heard of, buried inside a base image, is the normal, expected outcome of actually looking — not a sign the scanning tool made a mistake.
+
+You should also be comfortable with the practical distinction between generating an SBOM and it actually being useful: the inventory alone doesn't fix anything. Its value comes from being matched against a vulnerability database to answer "which of these components has a known, disclosed issue, at what severity, with what fix available." And you should know that not every finding deserves equal urgency — a scanner reporting thirteen vulnerabilities across five severity levels needs triage based on actual exploitability in your specific deployment (is this vulnerable code path even reachable the way your service uses it, is the service internet-facing), not just raw CVSS score, or you'll drown in noise and miss the ones that actually matter.
+
+Practically, if a vulnerability shows up in a package your team has never heard of, the working response isn't to assume the scanner is wrong or go searching your own application code for it — it's to check whether the package is a transitive dependency or part of the base image, and if it's a base-image issue, recognize that the fix belongs to whoever owns that shared image, likely affecting many other services built on the same base, not just yours.
 
 ## Mental Model
 
