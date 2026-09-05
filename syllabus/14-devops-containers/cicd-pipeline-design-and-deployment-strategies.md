@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 14-devops-containers
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
+topic_id: T-1009
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -34,27 +40,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -70,6 +78,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 CI/CD questions test whether a candidate treats deployment as a risk-management problem or purely a mechanical "push the button" process. The specific distinction between deployment strategies — what each one actually protects against, and at what cost — is where candidates who've only used a CI system as a black box diverge from those who've designed a pipeline's failure-handling behavior deliberately.
+
+## Level 1 — Foundation
+
+Imagine three different ways to switch a restaurant to a new menu. **Rolling** is swapping menus table by table as guests finish their current meal and leave — at any moment, some tables have the old menu, some have the new one, and it happens gradually with no full stop. **Blue-green** is running the entire new menu in a second, fully-staffed dining room right next door, completely empty of customers, and then one evening simply directing every new guest to the new room at once — if the new menu turns out to be a disaster, you just start directing guests back to the old room immediately, no partial-transition mess to untangle. **Canary** is quietly trying the new menu on just one or two tables first, watching closely how those specific guests react, and only rolling it out further once you're confident it's actually good.
+
+The entire point of the canary approach collapses if nobody actually watches those first couple of tables. If you just wait ten minutes and roll out the new menu to everyone regardless of whether anyone checked on how those first guests reacted, you've paid for the appearance of caution without getting any of its real benefit.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to compare all three strategies by what they actually bound: rolling deployments bound exposure as a side effect of their gradual mechanism (not a deliberate signal-gathering stage); blue-green trades real, doubled infrastructure cost for an instant, complete rollback (just re-point traffic back); canary deliberately routes a small, monitored slice of real traffic first, specifically to gather genuine signal before wider exposure.
+
+You should also be able to explain, precisely, why "no alert fired during the canary window" is a meaningfully weaker signal than "a person actually looked at the canary's metrics and confirmed they looked healthy." An alert threshold can only ever catch exactly the specific failure pattern it was explicitly designed to catch — a real, visible regression that stays just inside that threshold sails through silently, even though a human glancing at the same dashboard for thirty seconds would likely flag it as worth a second look.
+
+Practically, when reviewing a deployment pipeline, the working question to ask is: does the promotion step from canary to full production require an explicit human approval, or does it promote automatically after a fixed wait with no alert? If it's the latter, that's a real, concrete gap worth raising — not because automation is bad, but because "silence" and "confirmed healthy" are genuinely different levels of evidence, and conflating them is exactly how a subtle, real regression reaches 100% of production traffic before anyone notices.
 
 ## Mental Model
 

@@ -37,7 +37,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 | 11 | [System Design](../11-system-design/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) + 17 Architecture Atlas case studies (referenced); **L1/L2 retrofit complete, 9/9** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 12 | [Security](../12-security/INDEX.md) | 8/8 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 8/8** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 13 | [Observability](../13-observability/INDEX.md) | 4/4 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 4/4** — fully L1–L4 (Phase 5, 2026-09-04) |
-| 14 | [DevOps & Containers](../14-devops-containers/INDEX.md) | 4/4 chapters relocated (Phase 3, 2026-09-03) |
+| 14 | [DevOps & Containers](../14-devops-containers/INDEX.md) | 4/4 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 4/4** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 15 | [Cloud](../15-cloud/INDEX.md) | 3/3 chapters relocated (Phase 3, 2026-09-03) |
 | 16 | [Performance & JVM Tuning](../16-performance-jvm/INDEX.md) | 3/3 chapters relocated (Phase 3, 2026-09-03) |
 | 17 | [Architecture](../17-architecture/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03) |

@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 14-devops-containers
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/cloud/container-image-internals.md
+topic_id: T-1001
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -40,27 +46,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -77,6 +85,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Every backend candidate has run `docker build` and `docker run`. Very few can explain what a "layer" actually is beyond "a step in the Dockerfile," why their team's CI build takes eleven minutes when a teammate's takes ninety seconds on the identical Dockerfile, or what a container actually *is* at the kernel level once the marketing language ("lightweight VM") is stripped away. Interviewers use this topic as a filter for exactly that gap: a Senior candidate who can explain container images and isolation from first principles signals they've operated infrastructure, not just consumed it through `docker-compose up`. It surfaces most often as a supporting thread inside a broader deployment, CI/CD, or Kubernetes system-design conversation — "why is this image so large," "how would you speed up this pipeline," "is this container actually isolated from the host" — rather than as a standalone question.
+
+## Level 1 — Foundation
+
+Think of a container image like a stack of transparent sheets on an overhead projector. Each sheet (a **layer**) adds something on top of what came before — one sheet is the base operating system, another adds a Java runtime, another adds your compiled application. Stack them all up and you see the complete picture. A running **container** is that same stack of sheets, plus one extra sheet just for you to write on — anything you scribble on your personal sheet is yours alone, and it never bleeds through to change the shared sheets underneath. That's why starting a second container from the same image is cheap: it reuses every shared sheet and only needs its own blank one on top.
+
+A container is not a mini virtual machine, even though people often describe it that way. There's no second computer running inside your computer, no separate operating system booting up. A container is really just an ordinary program running on your actual computer, except the operating system has put a "curtain" around it (a **namespace**) so it can only see its own tiny slice of the world — its own process list, its own network — and has put a "budget" on it (a **cgroup**) capping how much memory and CPU it's allowed to use. Same kitchen, same stove, just a partition and a spending limit.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, concretely, why the *order* of steps in a Dockerfile is a real engineering decision and not just a stylistic preference. The build system reuses a step's cached result only if that exact step, and everything it depends on, hasn't changed since the last build — but the moment one step's input changes, every step after it in that build also has to redo its work, even if their own inputs didn't change at all. This is exactly why "copy the dependency list and install dependencies" should come before "copy the application source code": your source code changes constantly, your dependency list rarely does, and putting the rarely-changing step first means most rebuilds skip the expensive dependency-installation work entirely.
+
+You should also be comfortable explaining why a "multi-stage build" (using more than one starting image in a single Dockerfile, and only copying forward the specific finished artifact you actually need) isn't just a nice-to-have — it structurally prevents your compiler, build tools, and source tree from ever reaching the image that actually runs in production, which is both smaller and has a meaningfully smaller attack surface than a single-stage build shipping everything it took to build the thing.
+
+Practically, if someone reports "our container image is way bigger than it should be," the working first move is `docker history` — not guessing, not adding a cleanup step at the end of the Dockerfile (deleting a file in a later step doesn't actually shrink the image, since the bytes still exist in the earlier layer that created them). And if a team debates whether to move to a minimal "distroless" base image (one with no shell, no package manager), the real trade-off to name is: smaller attack surface for an attacker, but no `docker exec ... sh` for you either — a real, deliberate cost, not a free upgrade.
 
 ## Mental Model
 

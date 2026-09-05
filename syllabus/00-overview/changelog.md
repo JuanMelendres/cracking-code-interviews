@@ -392,4 +392,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 5 further migrated domains (`14`–`17`, `20`, `21`) — 64 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 14-devops-containers domain complete (4/4)
+
+### Added
+
+- All 4 `14-devops-containers` chapters retrofitted: `container-image-internals.md` (T-1001), `kubernetes-objects-scheduling-and-networking.md` (T-1002), `kubernetes-resource-limits-probes-and-jvm-sizing.md` (T-1003), `cicd-pipeline-design-and-deployment-strategies.md` (T-1009) — same additive method as every prior batch, all 4 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: an overhead-projector-transparency analogy for image layers, a curtain-and-budget analogy for namespaces/cgroups; a restaurant-shift-manager analogy for Deployments/ReplicaSets/Services; a storage-unit-and-loose-items analogy for `OutOfMemoryError` vs. OOM kill, a manager-check-in analogy for liveness/readiness/startup probes; a restaurant-new-menu-rollout analogy for rolling/blue-green/canary deployments.
+- Verified all 4 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/14-devops-containers/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`14-devops-containers` is now fully L1–L4 (4/4)** — the twelfth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, `11-system-design`, `12-security`, and `13-observability`.
+
+### Not yet done
+
+- 4 further migrated domains (`15`–`17`, `20`, `21`) — 60 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

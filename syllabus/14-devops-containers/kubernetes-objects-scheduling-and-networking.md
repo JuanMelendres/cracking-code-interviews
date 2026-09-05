@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 14-devops-containers
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/cloud/kubernetes-objects-scheduling-and-networking.md
+topic_id: T-1002
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -37,28 +43,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [A Practical kubectl Debugging Workflow](#a-practical-kubectl-debugging-workflow)
-8. [Diagrams](#diagrams)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [A Practical kubectl Debugging Workflow](#a-practical-kubectl-debugging-workflow)
+10. [Diagrams](#diagrams)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -74,6 +82,22 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Kubernetes questions test whether a candidate has actually operated a service on the platform or only knows the YAML syntax. The Deployment/ReplicaSet/Pod layering specifically trips up candidates who can write a manifest but can't explain why the layering exists — and that gap is exactly what interviewers probe when they ask "what actually happens when you update a Deployment's image."
+
+## Level 1 — Foundation
+
+Imagine running a restaurant where any individual waiter might unexpectedly quit mid-shift, with zero notice. You wouldn't hire waiters one at a time and hope — you'd hire a shift manager whose entire job is "always keep exactly 5 waiters on the floor, and if one leaves, immediately bring in a replacement." That shift manager is a **ReplicaSet**: it doesn't care about any individual waiter's identity, only that the *count* stays right.
+
+Now imagine you want to switch your whole waitstaff to new uniforms without ever closing the restaurant. You wouldn't fire everyone and rehire all at once — you'd bring in one waiter in the new uniform, let an old one go, repeat, gradually, so the restaurant never drops below a working staff level. A **Deployment** is the manager who oversees this transition: it doesn't manage waiters directly, it manages *two* shift managers (an old-uniform ReplicaSet and a new-uniform one), gradually shifting headcount from one to the other.
+
+Customers don't care which specific waiter serves them — they just walk up to the "please seat me" host stand and get seated by whoever's available right now. That host stand is a **Service**: a stable place to show up, regardless of which specific waiters happen to be on staff at that exact moment.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, precisely, why a Deployment manages ReplicaSets rather than Pods directly: updating a Deployment's Pod template creates a *brand-new* ReplicaSet, and the Deployment controller then gradually scales that new one up while scaling the old one down — this two-ReplicaSet dance is the entire mechanism that makes a zero-downtime rolling update possible, rather than something that has to be built and managed by hand.
+
+You should also be able to state precisely what `maxSurge` and `maxUnavailable` each control, and — critically — what they *don't* guarantee: `maxUnavailable: 0` guarantees the Pod *count* never drops below what's desired during a rollout, but it says nothing about whether a newly-started Pod is actually performing at full, warmed-up capacity the instant its readiness check passes. A Pod can be legitimately "ready" by the letter of its health check while still measurably slower than a Pod that's been running for a while — a real, easy-to-miss gap between "the documented guarantee" and "what people assume the guarantee covers."
+
+Practically, when a Pod isn't behaving as expected, the working diagnostic sequence is: `kubectl get pods` first (which Pod, what status, is `RESTARTS` climbing), then `kubectl describe pod` (read the `Events` section and the container's `Last State` — this is usually where the actual answer is, whether that's a failed scheduling decision or an OOM kill), then `kubectl logs` (and `--previous` specifically if the container already restarted), and only as a last resort `kubectl exec` for interactive poking. Jumping straight to `exec` without first reading `describe pod`'s events is the single most common way to waste time in a live debugging session.
 
 ## Mental Model
 

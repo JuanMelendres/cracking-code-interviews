@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 14-devops-containers
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md
+topic_id: T-1003
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -35,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -71,6 +79,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is the single highest-value topic in the Cloud & Infrastructure domain specifically because it sits at the intersection of two things most candidates know only shallowly in isolation: JVM memory management and container resource limits. A candidate who can explain not just "the JVM respects cgroup limits" but the exact mechanism, the small-container floor, and precisely why an OOMKill produces no Java stack trace at all, demonstrates they've actually operated a JVM in a container under memory pressure — not just read that it's "container-aware."
+
+## Level 1 — Foundation
+
+Imagine renting a small storage unit for your belongings. You (the JVM) decide how much of the unit's space you'll actually use for boxes (your heap) — if you fill your own declared space completely, you get a clear, obvious signal: "no more room in my boxes" (an `OutOfMemoryError`), and you can react to it, log it, clean something up. But if you also bring in a bunch of loose, unboxed stuff that isn't counted as "your boxes" (native memory, thread stacks, JIT-compiled code) and the *total* — boxes plus loose stuff — exceeds what the storage facility itself allows for your unit, the facility's security guard shows up and forcibly clears out your entire unit without warning (an OOM kill). You never got a heads-up; from your own perspective inside the unit, everything was fine until it suddenly wasn't.
+
+**Probes** are like a manager periodically checking in on a worker: a **readiness** check asks "are you currently able to take on new work?" — if not, the manager just stops routing new tasks to that worker, without firing them. A **liveness** check asks "are you actually still functioning at all, or are you frozen/stuck?" — if the answer's no, the manager replaces them entirely. A **startup** check exists because some workers take a while to get set up in the morning; it tells the manager "don't judge this person as frozen yet — they're still setting up their desk."
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain precisely why a JVM's memory footprint isn't just its heap: metaspace, thread stacks, the JIT compiler's code cache, and any native or off-heap memory all count toward the total the container's memory limit actually enforces — and a container memory limit sized only with the heap in mind, with no headroom for these other consumers, is a real, common way to end up with mysterious OOM kills that show zero application-level signal, because the kernel kills the process from *outside* the JVM's own accounting, before the JVM ever gets a chance to notice or log anything.
+
+You should also be comfortable with the specific, non-obvious detail that the JVM's default heap-sizing behavior isn't a flat percentage of the container's memory limit — small containers get proportionally more of their memory allocated to heap than large ones do, because of a floor built into the default ergonomics specifically to avoid computing an absurdly tiny heap for a genuinely small container.
+
+Practically, the single most valuable habit here is: when a container restarts with no application-level exception, no stack trace, and no shutdown-hook output at all, that absence of a signal is itself the signal — check the container's own termination reason (an OOM kill, exit code 137) before spending time investigating application code for a bug that was never actually there. And when configuring probes, keep readiness and liveness conceptually and practically separate: readiness answers "should traffic go here right now," liveness answers "should this thing be restarted" — using the same check for both throws away real, useful information about which of those two very different situations you're actually in.
 
 ## Mental Model
 
