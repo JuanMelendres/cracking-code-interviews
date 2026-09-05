@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/08-failure-and-learning-narratives.md
+topic_id: T-1508
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -27,6 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: A Real Failure, Owned Without Excessive Self-Blame](#mental-model-a-real-failure-owned-without-excessive-self-blame)
 - [The Failure Story Structure (STAR-L)](#the-failure-story-structure-star-l)
 - [Choosing the Right Failure](#choosing-the-right-failure)
@@ -44,6 +52,16 @@ After this chapter, you can select and tell a genuine failure story that demonst
 ## Why This Matters in Interviews
 
 Failure questions are deliberately designed to be uncomfortable, and the discomfort is the point — an interviewer wants to see how a candidate handles a question they can't fully spin to their advantage. A candidate who can discuss a genuine failure with accountability and a real applied lesson demonstrates more self-awareness, and is more trustworthy in a design review or postmortem, than one who can only present flattering material. This question type is also one of the few where interviewers actively probe follow-ups specifically to test whether the "lesson" is genuine or rehearsed.
+
+## Level 1 — Foundation
+
+Picture a chef tasting a dish before it goes out and finding it really is too salty. A chef who insists the dish is fine and sends it out anyway is denying a real defect — the disguised-strength failure mode. A chef who throws out the entire night's menu in a panic over one over-salted dish is wildly overcorrecting — the excessive-self-blame failure mode. What an experienced chef actually does is name the specific defect, send that one dish back, and fix the exact step in the recipe that caused it — real, specific, moderate, and immediately useful to the next dish.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test for choosing a failure story is the same test a head chef applies to a kitchen incident report: is the defect real and named specifically (too much salt, added at the wrong step), or is it either denied entirely or blown up into "the whole menu is a disaster"? This chapter's own illustrative example passes this test — a specific migration, a specific missed check, a specific fix now applied — not a vague "I should be more careful" the way an unhelpful kitchen report might read.
+
+The working discipline for the Lesson component is the same one that makes a kitchen's corrective note actually useful to the next shift: name the exact step that changed, not a general resolution. "I now explicitly check production row count before scheduling a migration" is a recipe correction someone else could actually follow; "I learned to be more careful with migrations" is the kitchen equivalent of a note that just says "cook better" — technically true, useless to whoever reads it next.
 
 ## Mental Model: A Real Failure, Owned Without Excessive Self-Blame
 

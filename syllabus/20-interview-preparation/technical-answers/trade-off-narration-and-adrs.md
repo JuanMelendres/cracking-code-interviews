@@ -5,9 +5,15 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/technical-answers
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - interview-playbook/technical-answers/trade-off-narration-and-adrs.md
+topic_id: T-1505/T-916
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -33,25 +39,37 @@ official_references:
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [The Four-Beat Structure](#the-four-beat-structure)
-3. [Worked Example](#worked-example)
-4. [ADRs — the Written Form of the Same Skill](#adrs--the-written-form-of-the-same-skill)
-5. [Common Mistakes](#common-mistakes)
-6. [Staff-Level Discussion](#staff-level-discussion)
-7. [Interview Questions](#interview-questions)
-8. [Summary](#summary)
-9. [Key Takeaways](#key-takeaways)
-10. [Cheat Sheet](#cheat-sheet)
-11. [Flashcards](#flashcards)
-12. [Practice Exercises](#practice-exercises)
-13. [Additional Reading](#additional-reading)
-14. [Official References](#official-references)
+2. [Level 1 — Foundation](#level-1--foundation)
+3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+4. [The Four-Beat Structure](#the-four-beat-structure)
+5. [Worked Example](#worked-example)
+6. [ADRs — the Written Form of the Same Skill](#adrs--the-written-form-of-the-same-skill)
+7. [Common Mistakes](#common-mistakes)
+8. [Staff-Level Discussion](#staff-level-discussion)
+9. [Interview Questions](#interview-questions)
+10. [Summary](#summary)
+11. [Key Takeaways](#key-takeaways)
+12. [Cheat Sheet](#cheat-sheet)
+13. [Flashcards](#flashcards)
+14. [Practice Exercises](#practice-exercises)
+15. [Additional Reading](#additional-reading)
+16. [Official References](#official-references)
 
 ---
 
 ## Why This Exists
 
 Named interview feedback specifically included "communicating why a decision was selected" and "explaining alternatives and trade-offs." This is the highest-IWI single item in the feedback block (8.10) precisely because it's not about any one technical topic — it's the structural skill underneath every technical answer this entire programme produces. Every technical chapter ends with trade-offs; this entry is where that gets turned into something rehearsed and deliverable under pressure, rather than assembled ad hoc each time. It is, specifically, a dedicated deep-dive on layer 6 of [The Technical Answer Framework](technical-answer-framework.md)'s nine-layer stack — the single most commonly skipped layer.
+
+## Level 1 — Foundation
+
+Think about choosing between two hiking trail routes with limited daylight left. The scenic ridge route offers a better summit view (a real, tempting alternative), but the direct valley route gets you back to the trailhead before dark. The specific reason you pick the valley route isn't "it seemed safer overall" — it's the specific fact that the ridge route's late sunset exposure was genuinely too risky given the daylight actually remaining. And the honest cost of that choice is real: you miss the summit view that was the whole reason you wanted to hike this trail in the first place. That's the four-beat structure in miniature: the constraint (daylight), the real alternative (the ridge route), the specific deciding factor (sunset exposure risk), and the honest cost (missing the view).
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is naming beat 3 — the specific deciding factor — with the same precision a hiker uses when explaining the choice to a disappointed hiking partner: not "the valley route seemed better," but "the ridge route's exposed sections would put us on a cliff edge after sunset, and that specific risk is what decided it." A vague "it seemed like the right call" is the hiking equivalent of never actually explaining why you turned back, leaving your partner unable to tell whether the decision was sound or just cautious instinct.
+
+The working discipline for beat 4 is the one most trail reports skip and the one this chapter's own named feedback is specifically about: actually naming what was given up, not just that a safe choice was made. "We took the valley route and got back safely" tells a listener nothing about the trade; "we took the valley route, which meant skipping the summit view we'd planned the whole trip around" is the honest, complete report — the same distinction between an answer that lists only the decision and one that names the real thing it cost.
 
 ## The Four-Beat Structure
 

@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/11-technical-debt-advocacy.md
+topic_id: T-1511
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -28,6 +34,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Business Case, Not the Technical Case](#mental-model-the-business-case-not-the-technical-case)
 - [The Technical Debt Advocacy Story Structure](#the-technical-debt-advocacy-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -45,6 +53,16 @@ After this chapter, you can tell a technical-debt-advocacy story that makes a ge
 ## Why This Matters in Interviews
 
 Every engineering organization has more technical debt than capacity to address it, and prioritizing debt paydown over visible feature work requires making a case to people (product managers, other engineers, sometimes executives) who are, reasonably, skeptical of "trust me, this needs fixing" arguments. This question assesses whether a candidate can translate a technical concern into terms a non-technical or differently-incentivized stakeholder actually finds compelling — a genuinely difficult communication skill, distinct from the underlying technical judgment about which debt matters.
+
+## Level 1 — Foundation
+
+Imagine pitching a landlord on repairing a roof before it's actually leaking. "It's not aesthetically pleasing anymore" won't move a landlord who's counting every dollar against next quarter's rent roll. "Each of the last three storms caused more water staining on the ceiling than the last, and repairing the roof now costs less than replacing a water-damaged ceiling after the next one" is a case a landlord can actually act on, because it's stated in the currency they already think in — dollars, trends, avoided cost — not in the currency of "this looks bad."
+
+## Level 2 — Working Knowledge
+
+At this level, the working move is exactly the landlord pitch's own discipline: lead with a real trend if one exists (three storms, each one worse) rather than a hypothetical, because a documented worsening pattern is far more persuasive than a one-time projection. This chapter's own illustrative example does exactly this — measuring that each of six prior payment-integration efforts took longer than the last, the same "each storm worse than the one before" evidence a landlord would find compelling.
+
+The working test for whether your own pitch would actually land is the same one that separates a persuasive roof pitch from an unpersuasive one: does it name a specific, near-term cost the landlord (the stakeholder) actually cares about, or does it stop at "the roof looks old"? A pitch that never closes the loop on whether the projected savings actually materialized once the roof was fixed is a weaker story than one that can say, afterward, "and the next storm caused zero new staining" — the landlord-pitch equivalent of this chapter's own closing measurement of the seventh integration shipping in nine days as projected.
 
 ## Mental Model: The Business Case, Not the Technical Case
 

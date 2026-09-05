@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/07-mentoring-and-developing-others.md
+topic_id: T-1507
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -26,6 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Story Is About the Other Person's Growth, Not Your Patience](#mental-model-the-story-is-about-the-other-persons-growth-not-your-patience)
 - [The Mentoring Story Structure](#the-mentoring-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -43,6 +51,16 @@ After this chapter, you can tell a mentoring story that centers the mentee's gro
 ## Why This Matters in Interviews
 
 Mentoring questions assess whether a candidate multiplies the effectiveness of people around them, not just their own individual output — a specific and heavily-weighted Staff-level signal, since Staff engineers are expected to raise the technical level of their team, not just personally ship more. A weak mentoring story reads as "I am patient and helpful," a trait; a strong one reads as "I have a repeatable method for developing someone else's capability," a skill.
+
+## Level 1 — Foundation
+
+Think about teaching a kid to ride a bicycle. A parent who never lets go of the seat keeps the kid perfectly upright and perfectly safe — and the kid never learns to balance alone, because there was never a moment where they had to. A parent who deliberately lets go at the right moment, watching the kid wobble but staying close enough to catch a real fall, is the one who actually teaches balance. Mentoring works the same way: constantly supplying the answer keeps someone from ever failing in front of you, but it's the deliberate letting-go — watching them struggle just long enough to build the skill themselves — that actually teaches something.
+
+## Level 2 — Working Knowledge
+
+At this level, the working signal to watch for in your own mentoring stories is the same one that tells you the bike-riding lesson worked: not that the kid felt supported the whole time, but that they can now ride down the street alone, without you jogging alongside. This chapter's own illustrative example shows exactly this signal — the mentee substantively disagreeing with the mentor's own design, unprompted, in writing — the mentoring equivalent of watching the kid ride away without looking back to check if you're still holding the seat.
+
+The working distinction to make honestly is between a single steadying hand (helping someone through one specific problem) and an actual course of lessons (a sustained mentoring relationship). If your best story is really one afternoon spent jogging alongside someone's bike once, tell it as that — a real, useful instance of help — rather than stretching it into a "mentoring relationship" that a timeline follow-up question will reveal was really just one ride.
 
 ## Mental Model: The Story Is About the Other Person's Growth, Not Your Patience
 

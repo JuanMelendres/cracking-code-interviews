@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/13-company-specific-frameworks.md
+topic_id: T-1513
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -26,6 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: A Lens, Not a New Set of Stories](#mental-model-a-lens-not-a-new-set-of-stories)
 - [The Amazon Leadership Principles as the Canonical Example](#the-amazon-leadership-principles-as-the-canonical-example)
 - [The Reframing Method](#the-reframing-method)
@@ -45,6 +53,16 @@ After this chapter, you can take an existing story from your portfolio and delib
 ## Why This Matters in Interviews
 
 Some companies (Amazon's Leadership Principles being the most well-known example, but far from the only one) interview against an explicit, named rubric that every interviewer is trained to score against directly — not an implicit sense of "was this a good story," but a specific, named principle the story is supposed to demonstrate. A candidate with an excellent story portfolio (see [Story Portfolio Design](02-story-portfolio-design.md)) can still score poorly at one of these companies if they never explicitly map their stories onto the company's actual named framework — the interviewer is listening for specific language and specific evidence tied to a specific principle, and a candidate who never engages with that framing leaves the interviewer to guess at the mapping themselves, which usually goes worse than doing it deliberately.
+
+## Level 1 — Foundation
+
+Think about a diplomat giving a toast at a state dinner. The core sentiment — congratulations, gratitude, hope for the relationship ahead — doesn't change from country to country, but a skilled diplomat adapts the toast to reference the host country's own proverbs and values, so the same underlying message lands as genuinely spoken to that audience rather than a generic script delivered anywhere. A company-specific framework works the same way: the underlying event in your story doesn't change, but which detail you foreground shifts to speak in the host company's own named vocabulary.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test is the same one that separates a genuinely adapted toast from a lazy one: does the emphasis shift use language the host would recognize as their own, or does it just awkwardly insert their favorite word into an unrelated speech? This chapter's own worked example shows a genuine adaptation — the same technical-debt story foregrounds "I didn't wait to be asked" for Ownership and "I scoped the ask to be small enough to approve quickly" for Bias for Action, two real, different details from the same real event, not a name dropped into an unrelated sentence.
+
+The working discipline to avoid is writing a brand-new toast for every country you might visit — the diplomat has one core speech, adapted per audience, not sixteen entirely separate speeches memorized for sixteen countries. Reframe your existing portfolio's stories for a target company's named principles; don't build a parallel portfolio from scratch just because the company happens to score against a published list.
 
 ## Mental Model: A Lens, Not a New Set of Stories
 

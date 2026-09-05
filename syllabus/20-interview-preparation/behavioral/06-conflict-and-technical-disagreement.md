@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/06-conflict-and-technical-disagreement.md
+topic_id: T-1506
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -27,6 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Opposition's Strongest Form](#mental-model-the-oppositions-strongest-form)
 - [The Conflict Story Structure](#the-conflict-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -45,6 +53,16 @@ After this chapter, you can tell a technical-disagreement story that represents 
 ## Why This Matters in Interviews
 
 Conflict questions are near-universal in Senior and Staff loops because how someone handles technical disagreement is a strong predictor of how they'll operate on a team long-term — more predictive, arguably, than pure technical skill, since most engineering work happens in the presence of some disagreement about the right approach. Interviewers are specifically listening for intellectual honesty (can the candidate represent a view they disagreed with fairly) and resolution style (did the disagreement get resolved through reasoning, authority, avoidance, or attrition).
+
+## Level 1 — Foundation
+
+Debate club has a drill where, before you're allowed to argue your own side, you have to argue the other side as persuasively as you honestly can — not a weakened, easy-to-knock-down version, the strongest version a real opponent would actually make. The drill exists because a debater who's only ever practiced against weak opposition gets blindsided the first time they face a real one, and because a judge can tell instantly when a debater doesn't actually understand the position they're supposedly refuting. A conflict story is scored the same way: the interviewer is listening for whether you can state the other engineer's position at its strongest, not a strawman you can easily beat.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test is the debate judge's own test: does the stated opposing argument sound like something the other engineer would actually recognize as their own position, or does it sound like a version you've quietly weakened to make your own side look better? This chapter's illustrative example passes that test directly — the colleague's argument about the new technology's built-in delayed-delivery feature is real and specific, not dismissed as naive.
+
+The working move once the debate drill is over is the same one a good debater makes afterward: crediting a point the other side got right, even after winning the round. Telling a conflict story that ends with "and their instinct about the problem being non-trivial was correct" is the equivalent of a debater acknowledging their opponent's argument had real merit — it's what separates genuine engagement from having simply won an argument against a position you never took seriously.
 
 ## Mental Model: The Opposition's Strongest Form
 

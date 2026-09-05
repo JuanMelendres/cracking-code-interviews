@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/15-offer-evaluation-and-negotiation.md
+topic_id: T-1515
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - foundational
   - intermediate
@@ -26,6 +32,8 @@ official_references: []
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters](#why-this-matters)
 - [A Note on Scope](#a-note-on-scope)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: Evaluate the Whole Offer, Not Just the Number](#mental-model-evaluate-the-whole-offer-not-just-the-number)
 - [What's Usually Negotiable, and What Usually Isn't](#whats-usually-negotiable-and-what-usually-isnt)
 - [Using Competing Offers Ethically](#using-competing-offers-ethically)
@@ -47,6 +55,16 @@ An offer is usually the culmination of weeks of interview preparation, and it's 
 ## A Note on Scope
 
 This chapter covers evaluation frameworks and negotiation mechanics as general career-preparation knowledge. It is not financial, legal, or tax advice, and specific compensation structures, equity vesting terms, and negotiation norms vary meaningfully by company, level, location, and current market conditions — verify current specifics against the actual offer documents and, for anything with real financial or legal weight (equity terms, tax implications of a specific structure, contract clauses), consult a professional or the company's own HR/legal documentation rather than relying on general guidance alone.
+
+## Level 1 — Foundation
+
+Think about buying a used car by looking only at the sticker price. A cheaper car with unknown maintenance history, high mileage, and a shorter warranty can be worth meaningfully less than a pricier one with full service records and a longer warranty — the sticker number alone tells you almost nothing about the real value. A job offer works the same way: base salary is the sticker price, but level, team, growth trajectory, and equity vesting terms are the maintenance history and warranty — the details that actually determine whether the deal is good.
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is the same one a careful car buyer applies before signing anything: check the details that don't show up on the sticker before committing, because level (like a car's maintenance history) is expensive and difficult to change after the fact — you don't get to renegotiate the mileage once you've driven off the lot. This chapter names exactly this: level is usually set during the interview loop itself, not negotiable after an offer, the same way a car's accumulated mileage isn't something a dealership can quietly reduce for you after the sale.
+
+The working discipline for anything promised verbally — "we'll throw in new tires," "we'll match your other offer's equity refresh" — is the same one a careful buyer applies at the dealership: if it's not on the bill of sale, it didn't happen. A verbal promise that never makes it into the final written offer letter is exactly as enforceable as a verbal promise about tires that was never written into the car's sale contract — which is to say, not enforceable at all.
 
 ## Mental Model: Evaluate the Whole Offer, Not Just the Number
 

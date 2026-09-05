@@ -5,9 +5,15 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md
+topic_id: T-1602
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -31,24 +37,36 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [The Four-Part Discipline](#the-four-part-discipline)
-3. [Diagram Sequencing](#diagram-sequencing)
-4. [Worked Example](#worked-example)
-5. [Handling Redirection Without Defensiveness](#handling-redirection-without-defensiveness)
-6. [Common Mistakes](#common-mistakes)
-7. [Staff-Level Discussion](#staff-level-discussion)
-8. [Interview Questions](#interview-questions)
-9. [Summary](#summary)
-10. [Key Takeaways](#key-takeaways)
-11. [Cheat Sheet](#cheat-sheet)
-12. [Flashcards](#flashcards)
-13. [Practice Exercises](#practice-exercises)
+2. [Level 1 — Foundation](#level-1--foundation)
+3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+4. [The Four-Part Discipline](#the-four-part-discipline)
+5. [Diagram Sequencing](#diagram-sequencing)
+6. [Worked Example](#worked-example)
+7. [Handling Redirection Without Defensiveness](#handling-redirection-without-defensiveness)
+8. [Common Mistakes](#common-mistakes)
+9. [Staff-Level Discussion](#staff-level-discussion)
+10. [Interview Questions](#interview-questions)
+11. [Summary](#summary)
+12. [Key Takeaways](#key-takeaways)
+13. [Cheat Sheet](#cheat-sheet)
+14. [Flashcards](#flashcards)
+15. [Practice Exercises](#practice-exercises)
 
 ---
 
 ## Why This Exists
 
 The register's own framing of this topic is blunt: thinking silently and presenting a finished, polished diagram is *unscorable*, not merely weaker. An interviewer evaluating a system design round has no access to the reasoning that produced a diagram — only what gets said while it's produced. A candidate who draws a technically excellent architecture in silence and then explains it afterward has given the interviewer nothing to evaluate during the 15–20 minutes that mattered most; a candidate who narrates a mediocre first attempt, catches its own gap out loud, and revises it live has given the interviewer a complete, observable reasoning process — which is what a Staff-level design round is actually measuring. This entry treats narration and whiteboard sequencing as their own rehearsable skill, distinct from knowing the six-phase method (the *what*) and from managing the clock (the *when*).
+
+## Level 1 — Foundation
+
+Picture a tour guide sketching a city map for visitors live, on a napkin, while talking. A good guide draws the main street first, narrating why it matters before adding anything else, then adds side alleys and landmarks one at a time, each with a sentence explaining why it's going in now rather than earlier. If a visitor asks "what about flooding risk near the river," a good guide adds that detail onto the existing map — a note near the riverbank — rather than either ignoring the question or crumpling up the napkin to start a brand-new map. A system design whiteboard is that napkin: the sequence of what gets drawn, and what gets said while drawing it, is the entire performance an interviewer can actually evaluate.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test is the tour guide's own test: could a visitor who wasn't looking at the napkin follow the tour purely by listening? If every street and landmark is announced before or as it's drawn, yes — that's continuous narration. If the guide draws several blocks in silence and then explains the whole thing at once, the visitor missed the actual tour and only got the destination. This chapter's own "unscorable" framing for silent drawing is exactly this: an interviewer who can't follow the sketch as it happens has nothing to evaluate except the finished napkin, regardless of how good the final map is.
+
+The working move for handling the river-flooding question is the guide's own instinct: treat it as new information the map didn't yet have, not as a challenge to the map's validity. A guide who insists the map is fine as drawn, or who scraps it and starts over, both fail the same way — the first looks like they didn't understand the question, the second looks like the original map was never actually reasoned through. Adding a small annotation near the riverbank, narrating exactly what it changes, is what a guide who actually knows the city does.
 
 ## The Four-Part Discipline
 

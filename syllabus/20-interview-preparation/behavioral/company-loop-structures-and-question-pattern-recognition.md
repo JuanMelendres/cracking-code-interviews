@@ -5,9 +5,15 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - interview-playbook/behavioral/company-loop-structures-and-question-pattern-recognition.md
+topic_id: T-1604
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -34,23 +40,35 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [Three Question Shapes, Three Different Answers](#three-question-shapes-three-different-answers)
-3. [Loop Structures and What They Imply for Prep](#loop-structures-and-what-they-imply-for-prep)
-4. [The Story-Usage Tracking Grid](#the-story-usage-tracking-grid)
-5. [Common Mistakes](#common-mistakes)
-6. [Staff-Level Discussion](#staff-level-discussion)
-7. [Interview Questions](#interview-questions)
-8. [Summary](#summary)
-9. [Key Takeaways](#key-takeaways)
-10. [Cheat Sheet](#cheat-sheet)
-11. [Flashcards](#flashcards)
-12. [Practice Exercises](#practice-exercises)
+2. [Level 1 — Foundation](#level-1--foundation)
+3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+4. [Three Question Shapes, Three Different Answers](#three-question-shapes-three-different-answers)
+5. [Loop Structures and What They Imply for Prep](#loop-structures-and-what-they-imply-for-prep)
+6. [The Story-Usage Tracking Grid](#the-story-usage-tracking-grid)
+7. [Common Mistakes](#common-mistakes)
+8. [Staff-Level Discussion](#staff-level-discussion)
+9. [Interview Questions](#interview-questions)
+10. [Summary](#summary)
+11. [Key Takeaways](#key-takeaways)
+12. [Cheat Sheet](#cheat-sheet)
+13. [Flashcards](#flashcards)
+14. [Practice Exercises](#practice-exercises)
 
 ---
 
 ## Why This Exists
 
 A well-built story portfolio and a solid STAR delivery mechanic are necessary but not sufficient for a real interview day. Two gaps remain that neither the portfolio work nor the delivery mechanic addresses: first, not every behavioral-sounding question actually wants a past-tense story — some want a forward-looking judgment call, and answering the wrong shape with the right mechanic still fails the question. Second, a real loop is often four to six rounds deep, sometimes with more than one behavioral-adjacent round, and a candidate who hasn't tracked which story went where risks visibly repeating themselves — a failure mode [Company-Specific Leadership Frameworks](13-company-specific-frameworks.md) names but doesn't give a concrete, live mechanism to prevent. This entry is that mechanism, plus the question-shape recognition skill that has to run in real time, question by question, not during prep.
+
+## Level 1 — Foundation
+
+A touring comedian doing six shows in six cities faces two distinct problems no amount of writing great material solves by itself. First, when a heckler shouts something mid-set, the comedian has to recognize in half a second whether it wants a rehearsed bit, an improvised retort, or a callback to something specific to that city — answering with the wrong kind of response falls flat regardless of how funny the material itself is. Second, across a real multi-night tour, the comedian keeps a small notebook of which jokes played in which city, specifically so a fan who caught two shows never hears the identical set twice. Neither problem is about whether the jokes are good — both are about running the show live, which is exactly this entry's territory.
+
+## Level 2 — Working Knowledge
+
+At this level, the working skill is the comedian's own half-second triage, applied to a behavioral question the instant it's asked: is this asking for a memory (a heckler wants the rehearsed bit), a live call (a heckler wants an improvised retort), or a memory tagged to something specific (a callback to the venue)? Misreading which one is wanted and delivering the wrong shape falls flat independent of how good the underlying story or joke actually is.
+
+The working mechanism for the second problem is literally this chapter's own tracking grid — the touring comedian's setlist notebook, kept between rounds the same way a comedian checks their notebook between shows. Its only job is answering one question fast: have I already told this exact story, with this exact emphasis, to someone else today? A comedian who's run out of fresh material for a specific city doesn't panic — they knowingly reuse a bit with a different angle, which reads completely differently to the audience than an accidental, identical repeat would.
 
 ## Three Question Shapes, Three Different Answers
 

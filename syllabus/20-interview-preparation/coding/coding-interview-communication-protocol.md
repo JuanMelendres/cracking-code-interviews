@@ -5,9 +5,15 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/coding
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - interview-playbook/coding/coding-interview-communication-protocol.md
+topic_id: T-1419
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - foundational
   - intermediate
@@ -32,22 +38,34 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [The Six-Phase Protocol](#the-six-phase-protocol)
-3. [Illustrative Failure Patterns](#illustrative-failure-patterns)
-4. [Common Mistakes](#common-mistakes)
-5. [Staff-Level Discussion](#staff-level-discussion)
-6. [Interview Questions](#interview-questions)
-7. [Summary](#summary)
-8. [Key Takeaways](#key-takeaways)
-9. [Cheat Sheet](#cheat-sheet)
-10. [Flashcards](#flashcards)
-11. [Practice Exercises](#practice-exercises)
+2. [Level 1 — Foundation](#level-1--foundation)
+3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+4. [The Six-Phase Protocol](#the-six-phase-protocol)
+5. [Illustrative Failure Patterns](#illustrative-failure-patterns)
+6. [Common Mistakes](#common-mistakes)
+7. [Staff-Level Discussion](#staff-level-discussion)
+8. [Interview Questions](#interview-questions)
+9. [Summary](#summary)
+10. [Key Takeaways](#key-takeaways)
+11. [Cheat Sheet](#cheat-sheet)
+12. [Flashcards](#flashcards)
+13. [Practice Exercises](#practice-exercises)
 
 ---
 
 ## Why This Exists
 
 A correct solution delivered in silence scores lower than a correct solution narrated, because the interviewer is evaluating a process they can only see if you describe it: how you clarify ambiguity, how you choose an approach, how you reason about correctness before running anything. Silence forces the interviewer to guess whether you got lucky or reasoned your way there — and Staff-level loops explicitly weight the reasoning over the final answer. This protocol externalizes that reasoning into six checkpoints, run on every coding problem, in every session, so the narration is a rehearsed habit by interview day rather than something invented under pressure.
+
+## Level 1 — Foundation
+
+A driving instructor's "commentary drive" test has the student narrate every observation and decision out loud while driving — "checking mirror, slowing for the pedestrian, indicating right" — specifically so the instructor sitting silently in the passenger seat can evaluate the reasoning behind each action, not just whether the car arrived safely. A student who drives perfectly in total silence gives the instructor nothing to grade except the outcome; a student who narrates continuously gives the instructor the entire decision process to evaluate, mistake or not. The six-phase protocol is a commentary drive for coding interviews: the interviewer can only score what you say out loud, not what you silently got right.
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is the same one a commentary-drive examiner is trained to listen for: reasoning stated before the action, not after. A student who brakes for a pedestrian and only explains "I saw a pedestrian" once safely stopped has given the examiner nothing to evaluate in the moment that mattered; a student narrating "checking mirror, pedestrian ahead, easing off the accelerator" before braking gives the examiner a real-time reasoning trail. Phase 2 of this protocol (stating the invariant before coding) works identically — reasoning given after the code exists is retroactive and unfalsifiable, indistinguishable from having memorized the route.
+
+The working test for phase 5 (testing before declaring done) is the commentary-drive equivalent of checking your blind spot before changing lanes rather than after a near-miss reveals you should have: a self-caught issue during a declared check reads as competence; the identical issue caught only because someone else noticed reads as a real gap in habit, even though the underlying skill might be the same. Practice narrating every phase until it's as automatic as a trained driver's habitual mirror-check — not something invented under the pressure of the actual test.
 
 ## The Six-Phase Protocol
 

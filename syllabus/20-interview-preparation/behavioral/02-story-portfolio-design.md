@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/02-story-portfolio-design.md
+topic_id: T-1502
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -26,6 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: A Portfolio, Not a Question List](#mental-model-a-portfolio-not-a-question-list)
 - [The Competency Matrix](#the-competency-matrix)
 - [Cross-Mapping to This Program's Study Packs](#cross-mapping-to-this-programs-study-packs)
@@ -44,6 +52,16 @@ After this chapter, you can look at any behavioral question and immediately know
 ## Why This Matters in Interviews
 
 An unprepared candidate has 2-3 stories they're comfortable telling, and they reach for the same one regardless of which question is actually asked — a candidate asked about conflict who answers with their best architecture story (reframed, awkwardly, as a conflict story) is a common and easily-spotted failure pattern. A prepared candidate has a full competency matrix, each slot filled, each story available in the three length variants from [STAR Framework and Delivery Mechanics](01-star-framework-and-delivery.md) — and reaches for the *right* story because the question maps cleanly onto a specific, pre-identified slot.
+
+## Level 1 — Foundation
+
+Picture a mechanic who owns exactly one adjustable wrench and forces it onto every bolt on the car — it technically works on most of them, badly, and slips off the ones it doesn't fit at all. A mechanic with a labeled socket set instead reaches for the specific socket that fits the bolt in front of them, every time, without having to improvise a fit. A behavioral story portfolio is the labeled socket set: instead of one all-purpose story stretched awkwardly to answer every question, you have a specific story ready for each competency, so you reach for the one that actually fits the question asked.
+
+## Level 2 — Working Knowledge
+
+At this level the working move is building the set by competency, not by memorizing question phrasings — the same way a mechanic organizes sockets by bolt size, not by the make and model of every car they've ever seen one on. One socket (one real story) fits dozens of differently-shaped bolts (differently-worded questions asking for the same underlying competency), which is why this chapter's target is 10-14 real stories mapped to competencies, not a memorized answer to every possible phrasing.
+
+The working discipline for building the set is the same one a mechanic follows when stocking a toolbox: fill it gradually, checking which sizes you're missing, rather than buying every socket at once and hoping they're the right sizes. And when a socket is missing — a competency slot with no real story yet — the working move is knowing that gap exists before you're under the car, not discovering it mid-repair the way this chapter's own honestly-named Stories 3-13 worksheet gap illustrates.
 
 ## Mental Model: A Portfolio, Not a Question List
 

@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/05-architecture-trade-off-narration.md
+topic_id: T-1505
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -28,6 +34,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Story Is About the Decision Process, Not the Diagram](#mental-model-the-story-is-about-the-decision-process-not-the-diagram)
 - [The Architecture Decision Story Structure](#the-architecture-decision-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -45,6 +53,16 @@ After this chapter, you can tell the story of an architecture decision in a way 
 ## Why This Matters in Interviews
 
 Architecture-decision stories are asked in behavioral rounds specifically to assess judgment under real constraints — budget, deadline, team skill level, existing technical debt — which a whiteboard system-design exercise deliberately abstracts away. A candidate who responds to "tell me about an architecture decision" with a pure technical trade-off explanation (as if drawing a diagram) is answering the wrong question; the interviewer wants the *decision-making process*, including the parts that were political, resource-constrained, or genuinely uncertain at the time.
+
+## Level 1 — Foundation
+
+Imagine describing your dream car from a magazine spread versus describing the actual car you bought last year. The dream car has no budget, no trade-offs, no compromises — it's whatever sounds best. The car you actually bought was chosen against a real number in your bank account, a real need to fit a car seat in the back, and a real choice between the reliable sedan and the sportier model you wanted more. A system design interview asks you to describe the dream car; a behavioral architecture-decision question asks you to describe the real one you actually drove home in, including what you gave up to afford it.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test for whether your story has drifted into "describing the dream car" is exactly this chapter's own tell: does the story include at least one real constraint — a budget, a deadline, a team's actual size — that ruled out the option that would otherwise have been obviously best? A story with no such constraint is a magazine spread, not an account of an actual purchase.
+
+The working move for the alternatives you mention is naming the option that was genuinely tempting for real reasons — cheaper, faster, more familiar — the way a real car buyer would honestly admit the sportier model was tempting even though the sedan was the right call. Presenting the chosen option as the only sensible one from the start is the equivalent of claiming you never considered any other car, which nobody believes about a real purchase and shouldn't be believed about a real architecture decision either.
 
 ## Mental Model: The Story Is About the Decision Process, Not the Diagram
 

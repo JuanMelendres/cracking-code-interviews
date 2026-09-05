@@ -2,8 +2,8 @@
 title: "Interview Preparation — Domain Index"
 document_type: syllabus-domain-index
 domain: 20-interview-preparation
-status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated
-last_updated: 2026-09-03
+status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated; L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4
+last_updated: 2026-09-04
 ---
 
 # Interview Preparation
@@ -13,6 +13,8 @@ The interview-application layer: behavioral (from `behavioral-handbook/`, reloca
 > **Phase 3 update (2026-09-03).** All 15 `behavioral-handbook/` chapters plus 4 `interview-playbook/` entries (one each from `behavioral/`, `coding/`, `system-design/` ×2, `technical-answers/` ×2 — 5 files total, see table below) have physically relocated via `git mv`, preserving file history. `behavioral-handbook/` no longer exists as a directory, since every file it held has moved. `interview-playbook/` still exists — it now holds only `README.md` (rewritten to reflect the move) and the untouched, private `company-prep/` subdirectory.
 >
 > **Two things deliberately were not moved**, per the plan's own rules: `practice/mock-interviews/` (12 real mock-interview transcripts) stays at its current path per Section 7.4 (`practice/` never relocates) — see the `mock-interviews/` subsection below for the reference-only index. `interview-playbook/company-prep/nordstrom-senior-backend-remote.md` stays exactly where it is, per the plan's own Section 7.2 sample mapping ("private — flagged, not migrated by default") and the Section 14 open-question-3 decision (approved 2026-09-03): this is a permanent, tooling-enforced private category, not something this migration touches.
+>
+> **Phase 5 update (2026-09-04) — domain complete.** All 21 chapters across `behavioral/` (16), `coding/` (1), `system-design/` (2), and `technical-answers/` (2) gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted immediately after "Why This Matters in Interviews" (or, for the four `playbook-technical-answer`-template entries, after "Why This Exists") per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject, using 21 distinct analogies (an ER intake form, a mechanic's labeled socket set, a photograph crop, a doctor's differential diagnosis, buying a real car vs. a dream car, a debate club's steelman drill, teaching a kid to ride a bike, a chef sending back a dish, a neighborhood fence-repair pitch, vascular bypass surgery, a landlord roof-repair pitch, a book editor catching a plot hole, a diplomat's toast, house-hunting with different informants, a used-car purchase, a touring comedian's setlist notebook, a driving instructor's commentary drive, a timed dinner party, a live city-map tour guide, a restaurant tasting menu, and a hiking-trail daylight constraint — no analogy repeated). Every chapter also gained `topic_id` (T-1501 through T-1515, T-1604, T-1419, T-1601, T-1505/T-916 — `time-boxing-and-mid-round-changes.md` has no dedicated T-code of its own, being an explicit companion entry to T-801/T-802, so `topic_id` was deliberately left unset there rather than fabricated) and `mastery_levels_covered: [L1, L2, L3, L4]` front matter. Verified via a Python pass: 1 H1 per file, valid YAML, exactly one Level 1/Level 2 heading pair each, and every relative link resolving on disk — zero broken links found across all 21 files. **`20-interview-preparation` is now fully L1–L4 (21/21)** — the sixteenth fully-retrofitted domain in the syllabus.
 
 ## Topics — behavioral/
 

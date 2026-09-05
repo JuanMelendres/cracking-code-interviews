@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/03-scope-impact-and-influence-framing.md
+topic_id: T-1503
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -26,6 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Same Facts, a Different Telling](#mental-model-the-same-facts-a-different-telling)
 - [The Reframing Lens](#the-reframing-lens)
 - [Worked Example](#worked-example)
@@ -44,6 +52,14 @@ After this chapter, you can take a story you've already told at Senior scope and
 ## Why This Matters in Interviews
 
 Staff-level loops score influence and organizational scope directly, often as an explicit rubric line separate from technical judgment. A candidate can have excellent technical judgment and still read as "not yet Staff" if every story they tell stops at "and it worked for my team" — because the interviewer has no evidence of impact beyond the candidate's own immediate scope of control. This is the single most common reason a strong Senior candidate is assessed as not-yet-ready for Staff, and it's frequently a *telling* problem, not a *reality* problem — the broader impact often genuinely happened, it just wasn't part of the story as told.
+
+## Level 1 — Foundation
+
+Think of a photograph you already took at a party. Cropped tight around your own face, it's a portrait — you, at an event. Cropped wider, the exact same negative shows who else was in the room, what they were reacting to, what was happening at the edges of the frame the tight crop cut off. Nothing about the actual photograph changed between the two crops — the wider version was always there, just outside the frame the tighter crop chose to show. Scope reframing is exactly this: the same real event, cropped wider to show who else was affected and who had to be convinced, details that were true all along but weren't inside the frame of the shorter telling.
+
+## Level 2 — Working Knowledge
+
+At this level, the working move is the same one a photo editor makes: don't invent new content outside the negative, just widen the crop on what's actually there. Run the four-question lens against an existing story the way you'd scan a wider print for detail the tight crop missed — who else appears at the edges of the frame, whose reaction is visible, what changed in the background after the moment the tight crop captured. If the honest answer is that the wider crop shows nothing new — the negative genuinely only has you in frame, alone — say so plainly rather than painting in people who were never there; a fabricated wide shot falls apart the moment someone asks to see the actual print.
 
 ## Mental Model: The Same Facts, a Different Telling
 

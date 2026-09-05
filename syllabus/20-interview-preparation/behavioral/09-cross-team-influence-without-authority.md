@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/09-cross-team-influence-without-authority.md
+topic_id: T-1509
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -26,6 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: Influence Is Earned Through Trust, Not Position](#mental-model-influence-is-earned-through-trust-not-position)
 - [The Cross-Team Influence Story Structure](#the-cross-team-influence-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -43,6 +51,16 @@ After this chapter, you can tell a cross-team influence story that names the spe
 ## Why This Matters in Interviews
 
 Staff engineers are expected to drive technical direction across team boundaries where they hold no formal authority — no one on another team reports to them, and they can't simply mandate a decision. This is precisely the skill this question probes, and it's one of the clearest differentiators between Senior and Staff loops: a Senior engineer's influence is usually scoped to their own team, where their technical credibility and (often) some formal seniority already smooth the path; a Staff engineer's influence has to work in rooms where neither of those advantages automatically apply.
+
+## Level 1 — Foundation
+
+Imagine trying to get your whole street to chip in for a shared fence repair. Standing up at the block meeting and complaining that the fence needs fixing rarely moves anyone — everyone already knows it's broken. Going door to door with a rough cost-split spreadsheet already worked out, showing each household exactly what they'd owe and why it's fair, is what actually gets agreement, because you've done the work that makes saying yes easy instead of asking your neighbors to trust an abstract plan. Cross-team influence without formal authority works the same way: you have no power to mandate the fence gets fixed, so the artifact that reduces everyone's uncertainty is what does the persuading.
+
+## Level 2 — Working Knowledge
+
+At this level, the working move is understanding why the door-to-door spreadsheet works when the block-meeting complaint doesn't: it addresses each neighbor's actual concern (what will this cost me, specifically) rather than restating your own concern (the fence is broken) louder. This chapter's own illustrative example does exactly this — the working prototype addresses the platform team's real blocker (blast-radius risk from touching shared code) rather than just repeating that the auth library needed a new method faster.
+
+The working sequencing to apply is the same one that makes a neighbor actually open their door the second time: a track record of small, kept commitments before the big ask. A stranger asking for money for a fence gets doubted; a neighbor who's already reliably mowed the shared strip of grass for months gets trusted with a bigger ask. And escalating straight to the homeowners' association before ever knocking on a single door — the equivalent of going to a manager before attempting peer-level influence — reads as skipping the actual work the competency is testing, even if it technically gets the fence fixed.
 
 ## Mental Model: Influence Is Earned Through Trust, Not Position
 

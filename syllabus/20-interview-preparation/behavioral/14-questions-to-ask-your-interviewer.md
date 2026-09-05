@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/14-questions-to-ask-your-interviewer.md
+topic_id: T-1514
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - foundational
 target_levels:
@@ -24,6 +30,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: This Is Real Diligence, Not a Ritual](#mental-model-this-is-real-diligence-not-a-ritual)
 - [Tailoring Questions to Who's Asking](#tailoring-questions-to-whos-asking)
 - [A Working Question Bank by Interviewer Type](#a-working-question-bank-by-interviewer-type)
@@ -41,6 +49,16 @@ After this chapter, you can prepare a small set of genuinely useful questions ta
 ## Why This Matters in Interviews
 
 This moment is frequently treated as a formality, but it's evaluated on both sides simultaneously: the interviewer is (often informally) assessing engagement and genuine curiosity through the quality of your questions, and — just as importantly — this is your actual opportunity to gather information you need to decide whether to accept an offer if one comes. Treating it as a box to check, with generic questions asked identically in every round, wastes both signals.
+
+## Level 1 — Foundation
+
+Think about touring a house you're considering buying. The current owner, the real estate agent, and the neighbor over the fence can each tell you something the others genuinely can't — the owner knows why they're really moving, the agent knows the comparable sale prices, the neighbor knows what the street actually sounds like on a Saturday morning. Asking the neighbor about mortgage rates wastes the one thing they can uniquely tell you. The "any questions for me?" moment works the same way: a peer engineer, a manager, and a director each hold different real information, and asking the wrong person the wrong question wastes the specific access that interviewer actually provides.
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is treating this moment as real house-hunting diligence, not a polite formality — the same way a serious buyer actually uses their walkthrough time to learn something real about the house, rather than nodding along and asking nothing. This chapter's own question bank is organized exactly like a house tour's cast of characters: the peer engineer's day-to-day reality, the manager's success criteria, the director's strategic context — each answerable only by the person who actually holds that information.
+
+The working test for a good house-hunting question is the same test this chapter applies to interview questions: could you have found this answer from the listing itself? Asking a peer engineer something the company's own careers page already answers is like asking the neighbor a question the real estate listing already covers — it signals you didn't do the five minutes of homework a serious buyer, or a serious candidate, would have done first.
 
 ## Mental Model: This Is Real Diligence, Not a Ritual
 

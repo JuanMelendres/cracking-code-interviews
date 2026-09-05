@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/04-production-incident-narratives.md
+topic_id: T-1504
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -29,6 +35,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: STAR Mapped Onto an Incident Timeline](#mental-model-star-mapped-onto-an-incident-timeline)
 - [The Incident Story Structure](#the-incident-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -47,6 +55,16 @@ After this chapter, you can structure a production incident story so the diagnos
 ## Why This Matters in Interviews
 
 Production incident stories are among the most commonly asked behavioral prompts for backend roles, precisely because diagnosing and resolving a real incident under time pressure is close to the actual job. Interviewers use this story type to assess composure under pressure, systematic diagnosis versus guessing, and — critically — whether the candidate did anything to prevent recurrence, not just whether they fixed the immediate symptom.
+
+## Level 1 — Foundation
+
+Picture a doctor announcing a diagnosis: "it's appendicitis." That single sentence tells you the outcome but nothing about whether it was a good diagnosis — a doctor who actually checked for a kidney stone, ruled out gallbladder disease, and noted the specific symptom pattern that pointed toward the appendix has demonstrated real clinical reasoning; a doctor who just guessed right has not, even though both doctors say the identical final sentence. A production incident story works the same way: "we found it was a memory leak" is the diagnosis stated with no differential — it tells the interviewer nothing about whether you reasoned your way there or got lucky.
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is narrating the differential, not just the diagnosis: what was checked first and ruled out, what evidence pointed away from the obvious guess and toward the actual cause — exactly the way this chapter's own illustrative example rules out a recent deploy and a traffic spike before the heap-usage graph points toward a leak. The working test for your own incident stories is the same one a chief resident applies reviewing a junior doctor's case notes: if the notes only say "checked, it was X," there's no way to tell whether X was reasoned or guessed — the case notes need the ruled-out alternatives written down, not just the final call.
+
+Finally, watch for the specific gap this chapter names between a diagnosis and a chart update: a doctor who identifies the cause but never updates the patient's chart to flag the risk for next time has only done half the job. The "what changed afterward to prevent recurrence" component of Result is that chart update — the detail that separates a story that ends at "we found it and fixed it" from one that ends at "and here's what makes this specific mistake harder to make again."
 
 ## Mental Model: STAR Mapped Onto an Incident Timeline
 

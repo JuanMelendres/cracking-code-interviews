@@ -43,7 +43,7 @@ All five content files above are extracted verbatim from the approved plan, not 
 | 17 | [Architecture](../17-architecture/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 9/9** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 18 | [Engineering Practices](../18-engineering-practices/INDEX.md) | 5/5 planned topics present — domain complete (Phase 5, 2026-09-03) |
 | 19 | [Leadership & Staff Engineering](../19-leadership-staff/INDEX.md) | 5/5 planned topics written — domain complete (Phase 5, 2026-09-04) |
-| 20 | [Interview Preparation](../20-interview-preparation/INDEX.md) | 19/19 chapters relocated (Phase 3, 2026-09-03); `practice/mock-interviews/` referenced, `company-prep/` private and untouched |
+| 20 | [Interview Preparation](../20-interview-preparation/INDEX.md) | 19/19 chapters relocated (Phase 3, 2026-09-03); `practice/mock-interviews/` referenced, `company-prep/` private and untouched; **L1/L2 retrofit complete, 21/21** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 21 | [Frontend & Web (React/Next.js)](../21-frontend-web/INDEX.md) | 32/32 chapters relocated (Phase 3, 2026-09-03) |
 
 ## What's next

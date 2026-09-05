@@ -5,9 +5,15 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/technical-answers
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - interview-playbook/technical-answers/technical-answer-framework.md
+topic_id: T-1601
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -32,17 +38,19 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [The Nine-Layer Stack](#the-nine-layer-stack)
-3. [Worked Example](#worked-example)
-4. [Practice Cadence](#practice-cadence)
-5. [Common Mistakes](#common-mistakes)
-6. [Staff-Level Discussion](#staff-level-discussion)
-7. [Interview Questions](#interview-questions)
-8. [Summary](#summary)
-9. [Key Takeaways](#key-takeaways)
-10. [Cheat Sheet](#cheat-sheet)
-11. [Flashcards](#flashcards)
-12. [Practice Exercises](#practice-exercises)
+2. [Level 1 — Foundation](#level-1--foundation)
+3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+4. [The Nine-Layer Stack](#the-nine-layer-stack)
+5. [Worked Example](#worked-example)
+6. [Practice Cadence](#practice-cadence)
+7. [Common Mistakes](#common-mistakes)
+8. [Staff-Level Discussion](#staff-level-discussion)
+9. [Interview Questions](#interview-questions)
+10. [Summary](#summary)
+11. [Key Takeaways](#key-takeaways)
+12. [Cheat Sheet](#cheat-sheet)
+13. [Flashcards](#flashcards)
+14. [Practice Exercises](#practice-exercises)
 
 ---
 
@@ -51,6 +59,16 @@ official_references: []
 Named interview feedback in the audit that seeded this programme included "explain with greater depth" and "explain why you chose it." Read literally, that sounds like a knowledge gap. It almost never is. An interviewer who says this is usually reporting that the knowledge was present — the first sentence arrived correctly — and then stopped. The audit's own measured finding was a mean answer length of roughly 110 characters: a single sentence. That is not a knowledge problem, it is a structure problem — there was no next layer to go to.
 
 The fix is not "know more facts." It is "build the next layers before the interview, so they already exist when the follow-up comes," and separately, "narrate them out loud until delivering them is a skill, not a hope." This entry is the structural skill underneath every technical answer this programme's canonical chapters produce — it is why every `handbook/` chapter's own "Interview Answer Framework" section follows this exact nine-layer shape.
+
+## Level 1 — Foundation
+
+Think about a restaurant's tasting menu. A diner who leaves after the first two courses got a complete, satisfying meal — nothing was rushed or incomplete about stopping there. But if that diner wants to keep eating, courses three through nine are already prepped in the kitchen, not invented on the spot the moment they ask for more. The nine-layer stack is that same tasting menu applied to a technical answer: layers 1-2 are a complete meal on their own, and layers 3-9 exist, fully prepped, only for the diner who keeps asking for another course.
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is exactly the kitchen's own prep schedule: courses three through nine get built across the week before the dinner service, not improvised course-by-course as the diner keeps eating. This chapter's own audit finding — a mean answer length of about 110 characters — is the diner who left after one bite because the kitchen genuinely had nothing else plated, not because the meal itself was bad; the fix isn't a fancier first bite, it's having eight more courses actually ready.
+
+The working test for whether a course is real prep or an improvised stall is the same one a head chef applies watching a line cook plate the fourth course: is this genuinely different from what was already served, or is it the same dish with a different garnish? This chapter names exactly this failure for layer 3 (the deep dive) — repeating layer 2's content more slowly is serving the same course twice and calling it new, which a discerning diner (or interviewer) notices immediately.
 
 ## The Nine-Layer Stack
 

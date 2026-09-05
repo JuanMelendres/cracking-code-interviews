@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/12-design-reviews-and-rfcs.md
+topic_id: T-1512
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -27,6 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Story Is About Shaping the Room, Not Writing the Document](#mental-model-the-story-is-about-shaping-the-room-not-writing-the-document)
 - [The Design Review Story Structure](#the-design-review-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -44,6 +52,16 @@ After this chapter, you can tell a design-review story that demonstrates how you
 ## Why This Matters in Interviews
 
 Design reviews and RFC processes are where an organization's biggest technical decisions actually get made or unmade, and a candidate's behavior in that process — the quality of the questions they ask, whether they can identify the load-bearing risk in someone else's proposal, whether they can shift a room's consensus — is a strong, distinct signal from their individual technical output. This question is asked separately from architecture-decision questions (see [Architecture Trade-off Narration](05-architecture-trade-off-narration.md)) specifically because *reviewing and shaping* someone else's proposal is a different skill from *making* your own decision, and Staff-level engineers are expected to do both.
+
+## Level 1 — Foundation
+
+Think about a book editor's actual job. Proofreading grammar and catching typos is real, useful work, but it's not what makes an editor valuable — what does is flagging a specific plot hole in chapter 12 that forces the author to rewrite the ending. A design-review story is judged the same way: reading someone's RFC carefully and finding nothing wrong is the equivalent of clean proofreading — competent, but not the skill this question is testing. The skill being tested is catching the one specific thing that changes what actually gets written.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test is the same one that separates a proofreader from a real editor: can you name the specific comment, question, or plot hole that changed the outcome, or are you just describing having read the document attentively? This chapter's own illustrative example passes this test directly — a specific, named consumer (the compliance-reporting service) that the original RFC hadn't accounted for, not a general sense of "I reviewed it thoroughly."
+
+The working move for delivering that catch is the same one a good editor uses with a touchy author: raise it as a genuine question ("how does this handle X?") rather than a verdict ("this proposal is broken"), because an editor who frames a plot hole as curiosity gets a collaborative rewrite, while one who frames it as an accusation gets a defensive author. And you don't need to have written the manuscript yourself to have been the editor who mattered most to it — a story told from the reviewer's seat, naming the specific catch, is just as strong as one told from the author's.
 
 ## Mental Model: The Story Is About Shaping the Room, Not Writing the Document
 

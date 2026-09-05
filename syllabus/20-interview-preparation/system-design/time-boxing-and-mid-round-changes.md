@@ -5,9 +5,14 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - interview-playbook/system-design/time-boxing-and-mid-round-changes.md
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -33,23 +38,35 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [Time-Boxing the Six Phases](#time-boxing-the-six-phases)
-3. [Handling a Mid-Round Change](#handling-a-mid-round-change)
-4. [The Exit-Check Habit](#the-exit-check-habit)
-5. [Common Mistakes](#common-mistakes)
-6. [Staff-Level Discussion](#staff-level-discussion)
-7. [Interview Questions](#interview-questions)
-8. [Summary](#summary)
-9. [Key Takeaways](#key-takeaways)
-10. [Cheat Sheet](#cheat-sheet)
-11. [Flashcards](#flashcards)
-12. [Practice Exercises](#practice-exercises)
+2. [Level 1 — Foundation](#level-1--foundation)
+3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+4. [Time-Boxing the Six Phases](#time-boxing-the-six-phases)
+5. [Handling a Mid-Round Change](#handling-a-mid-round-change)
+6. [The Exit-Check Habit](#the-exit-check-habit)
+7. [Common Mistakes](#common-mistakes)
+8. [Staff-Level Discussion](#staff-level-discussion)
+9. [Interview Questions](#interview-questions)
+10. [Summary](#summary)
+11. [Key Takeaways](#key-takeaways)
+12. [Cheat Sheet](#cheat-sheet)
+13. [Flashcards](#flashcards)
+14. [Practice Exercises](#practice-exercises)
 
 ---
 
 ## Why This Exists
 
 Knowing the six-phase system design method is necessary but not sufficient — a candidate who knows every phase but spends 25 minutes on estimation has no time left for architecture or bottlenecks, and a candidate who has only ever practiced the method start-to-finish with no interruption is unprepared for the single most common way these rounds actually get scored: an interviewer changing the requirements partway through and watching what happens next. This entry documents both failure surfaces — running out of the clock, and reacting badly to a scope change — as their own rehearsable skill, separate from knowing the method's six phases.
+
+## Level 1 — Foundation
+
+Think about cooking a timed, multi-course dinner party. A home cook who spends 40 of the 60 minutes available perfecting the appetizer has nothing left for the main course, no matter how good that appetizer turns out. And if a guest announces a shellfish allergy halfway through prepping the seafood course, a good cook adjusts the existing dish — swaps the ingredient, keeps the plan — rather than either ignoring the allergy or scrapping the entire menu and starting from scratch under even more time pressure. A system design round is the same timed dinner party: a fixed budget per course, and a real, live constraint change to absorb without blowing up the whole meal.
+
+## Level 2 — Working Knowledge
+
+At this level, the working discipline is the same one that keeps a dinner party on schedule: state the time budget for each course out loud before starting, and announce when moving on ("plating the appetizer now so there's time for the main") — this is exactly this chapter's practical time-boxing technique, and it does the same job at the table that it does on a whiteboard: it signals awareness even when one course runs long, and it gives a guest a natural moment to say "actually, can we skip straight to the entrée."
+
+The working test for handling the mid-meal allergy announcement is whether you revise the dish that's actually affected or just glue a fix onto whatever's already on the stove. A cook who hears "shellfish allergy" and just picks the shrimp out of the finished dish is patching; a cook who recognizes the sauce itself was built on a shellfish stock and re-bases it is revising coherently — exactly the distinction this chapter draws between bolting a fix onto an interview design versus reconsidering which earlier decision the new requirement actually invalidates.
 
 ## Time-Boxing the Six Phases
 

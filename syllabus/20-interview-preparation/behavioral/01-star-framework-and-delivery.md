@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/01-star-framework-and-delivery.md
+topic_id: T-1501
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - foundational
   - intermediate
@@ -27,6 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model](#mental-model)
 - [The Structure](#the-structure)
 - [STAR-L and STAR-R: When Lessons and Results Both Matter](#star-l-and-star-r-when-lessons-and-results-both-matter)
@@ -44,6 +52,14 @@ After this chapter, you can structure any behavioral answer under real interview
 ## Why This Matters in Interviews
 
 Every behavioral round scores structure independently of content. A strong story told without structure reads as rambling; a modest story told with clean structure reads as competent communication — a skill Staff-level roles depend on daily (design reviews, incident retros, stakeholder updates). Interviewers are pattern-matching on structure within the first 20–30 seconds of your answer, before they've absorbed any of the technical substance.
+
+## Level 1 — Foundation
+
+Think about an emergency-room intake form. A nurse under real time pressure doesn't freestyle a description of the patient — they fill four fixed fields (chief complaint, onset, action taken, outcome), because the form guarantees nothing critical gets skipped and gives the nurse a clear signal for when the intake is actually done. STAR is that same intake form applied to a behavioral answer: Situation, Task, Action, Result aren't a script to recite word-for-word, they're the fields that make sure you don't ramble past the point where the answer was already complete.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test is the same one the intake form gives a nurse: once Result is stated, stop — don't keep talking to fill silence, the same way a nurse doesn't keep adding unrelated symptoms to a chart just because they haven't handed it over yet. The most common real-world failure this chapter names — a story that never separates Task from Situation — is exactly like an intake form where "chief complaint" and "action taken" get written in the same blurry sentence: the reader can't tell what was actually done versus what was simply happening around the patient. Practice filling the four fields cleanly, at all three lengths, until reaching for the right field under pressure is as automatic as a nurse reaching for the next line on the form.
 
 ## Mental Model
 

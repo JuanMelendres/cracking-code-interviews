@@ -5,9 +5,15 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - behavioral-handbook/10-migrations-and-large-technical-change.md
+topic_id: T-1510
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -26,6 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
+- [Level 1 — Foundation](#level-1--foundation)
+- [Level 2 — Working Knowledge](#level-2--working-knowledge)
 - [Mental Model: The Story Is About Sequencing and Risk Management, Not the Destination](#mental-model-the-story-is-about-sequencing-and-risk-management-not-the-destination)
 - [The Migration Story Structure](#the-migration-story-structure)
 - [Illustrative Example](#illustrative-example)
@@ -43,6 +51,16 @@ After this chapter, you can tell a migration story that demonstrates sequencing 
 ## Why This Matters in Interviews
 
 Large migrations (a database engine change, a monolith decomposition, a major framework upgrade, a data model change touching many consumers) are among the highest-risk categories of engineering work — they touch live systems, often can't be fully tested in advance, and frequently can't be trivially rolled back once partially complete. Interviewers use this story type to assess whether a candidate can manage that risk deliberately (staged rollout, reversibility built in from the start, clear go/no-go criteria) rather than simply executing a plan and hoping nothing breaks.
+
+## Level 1 — Foundation
+
+Think about a surgeon rerouting blood flow around a blocked vessel. They don't cut the old vessel and splice in the new one in a single irreversible motion — they clamp one segment, build and test the bypass while the old pathway still carries blood, and only remove the original vessel once the new route is proven to work under real blood pressure. A migration story is judged the same way: the destination (the new database, the new architecture) is almost incidental; what's actually being assessed is whether you kept a working pathway alive while building and proving the new one, rather than betting everything on one irreversible cut.
+
+## Level 2 — Working Knowledge
+
+At this level, the working distinction to make — and the one this chapter names directly — is between early-stage and late-stage rollback, exactly like a surgeon's own risk profile changes the moment the old vessel is actually removed. Before that point, reversing course is simple: stop routing through the new pathway, the old one is still intact. After it, reversing means finding a new old pathway, which is often much harder or impossible — which is why this chapter's own illustrative example runs weeks of dual-write and reconciliation before ever cutting reads over, the equivalent of proving the bypass works under real pressure before touching the original vessel at all.
+
+The working question to prepare for, because it's asked almost every time, is the surgeon's own version of "what if the bypass had failed mid-procedure": what would you have done if this specific stage had gone wrong? A credible answer names a specific stage and a specific fallback, the same way a surgeon has a specific contingency for a bypass that doesn't take, rather than a vague "we would have figured it out."
 
 ## Mental Model: The Story Is About Sequencing and Risk Management, Not the Destination
 
