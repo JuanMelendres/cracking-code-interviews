@@ -405,4 +405,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 4 further migrated domains (`15`–`17`, `20`, `21`) — 60 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 15-cloud domain complete (3/3)
+
+### Added
+
+- All 3 `15-cloud` chapters retrofitted: `aws-core-services-for-backend-engineers.md` (T-1006), `cloud-cost-and-scaling-economics.md` (T-1007), `twelve-factor-config.md` (T-1008) — same additive method as every prior batch, all 3 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a car-ownership-spectrum analogy for the EC2/ECS/EKS/Lambda compute trade-off, plus a safe-deposit-box/external-hard-drive/shared-network-drive analogy for S3/EBS/EFS and a vending-machine-vs-grocery-store analogy for DynamoDB vs. RDS, plus a walkie-talkie-vs-pager analogy touched on for SNS/SQS (AWS core services); a gym-membership analogy for on-demand/reserved/spot pricing and the peak-vs-baseline reservation-sizing mistake (cloud cost economics); a recipe-card-vs-fridge-ingredients analogy for config/code separation, plus a kitchen-readiness analogy for the health-check/config-completeness gap (twelve-factor config).
+- Verified all 3 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/15-cloud/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`15-cloud` is now fully L1–L4 (3/3)** — the thirteenth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, `11-system-design`, `12-security`, `13-observability`, and `14-devops-containers`.
+
+### Not yet done
+
+- 3 further migrated domains (`16-performance-jvm`, `17-architecture`, `20-interview-preparation`, `21-frontend-web`) — 63 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

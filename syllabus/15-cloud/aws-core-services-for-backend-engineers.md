@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 15-cloud
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/cloud/aws-core-services-for-backend-engineers.md
+topic_id: T-1006
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -34,26 +40,28 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Diagrams](#diagrams)
-7. [Production Scenarios](#production-scenarios)
-8. [Trade-offs](#trade-offs)
-9. [Decision Framework](#decision-framework)
-10. [Common Mistakes](#common-mistakes)
-11. [Anti-Patterns](#anti-patterns)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Diagrams](#diagrams)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Common Mistakes](#common-mistakes)
+13. [Anti-Patterns](#anti-patterns)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -69,6 +77,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests breadth of real operational exposure to a major cloud provider's core services, applied with judgment rather than recited as a service catalog. Interviewers use it to check whether a candidate can map a described workload to a defensible service choice — the same access-pattern-first discipline this program applies to in-memory collections and storage technology selection, now applied one layer up, at the managed-cloud-service level.
+
+## Level 1 — Foundation
+
+Think about the different ways to get around a city. If you own a car, you handle everything yourself — gas, insurance, maintenance, finding parking — total control, total hassle (that's **EC2**). If you lease a car through a company that also handles the maintenance schedule for you, you still drive it yourself day to day, but you've handed off one specific chunk of the ownership burden (that's **ECS**). If you join a car-sharing cooperative with a standard app that works with any car in a whole network of cities, using a shared, portable system that isn't tied to one company's cars (that's **EKS** — the "network" is the Kubernetes ecosystem, usable across cloud providers). And if you just call a rideshare for one trip, you own no vehicle at all, and you pay only for the ride you actually take (that's **Lambda**). All four get you from A to B — the only real difference is how much of the ownership burden you're carrying yourself, and what control you give up in exchange for handing that burden off.
+
+Storage works the same way but for a different kind of burden. A safe-deposit box at a bank (**S3**) is where you drop things off and retrieve them later by a claim ticket — you never carry the box itself around, you just ask the teller for item #4471. An external hard drive plugged into exactly one laptop (**EBS**) behaves like a real disk, but only one machine can use it at a time. A shared drive on an office network that several computers can open at once (**EFS**) is neither of those — it's built specifically for simultaneous, multi-machine access. And for databases: a vending machine (**DynamoDB**) only ever gives you what's in the exact slot number you punch in — blazing fast, but you must already know the slot; a full grocery store you can wander through and combine anything from any aisle (**RDS**, relational/SQL) is slower per item but lets you ask questions you didn't plan for in advance.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to place a described workload on each of these spectrums and defend the placement, not just recite what each service does. For compute: ask whether the team wants to *drive* (full control, EC2), *lease with assisted maintenance* (ECS), *use a portable, standardized network* (EKS — valuable specifically when the team already knows Kubernetes elsewhere), or *just call a ride when needed* (Lambda — valuable specifically for short, event-triggered work, not sustained traffic). For storage: ask whether the data is retrieved by a claim ticket and rarely touched again (S3), needs real block-device semantics for exactly one machine (EBS), or must be visible to several machines at once (EFS) — these are different *access models*, not different price tiers of the same thing.
+
+For the database split, the working question is the vending-machine test: **can you name every "slot number" (access pattern) you'll ever need before you build the table?** If yes, DynamoDB's speed and scale are close to free. If the honest answer is "we're not sure yet, and someone will eventually want to slice this data in a way we haven't thought of," that uncertainty itself is evidence for RDS, or at minimum for planning a second, purpose-built store fed by a stream for the not-yet-known queries — exactly the mistake this chapter's own production scenario walks through.
+
+Watch for two grades of the same "confused catalog" mistake, which shows up on both the compute and database sides of this chapter: choosing a service by its reputation ("DynamoDB scales, so we should use it," "Lambda is modern, so we should use it") rather than by actually walking through which access pattern or ownership trade-off the workload needs. A workload description in an interview is really asking you to run that walk-through out loud — naming the AWS service is the least interesting part of the answer.
 
 ## Mental Model
 

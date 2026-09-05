@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 15-cloud
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/cloud/cloud-cost-and-scaling-economics.md
+topic_id: T-1007
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -33,27 +39,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -69,6 +77,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Staff-level system design conversations increasingly include a cost dimension, and candidates who can only reason about cost qualitatively ("reserved instances are cheaper") lose credibility against those who can produce an actual comparative number on the spot. This topic exists to build that muscle: not memorizing current AWS prices, but being fluent in the calculation method well enough to reason through any pricing model an interviewer supplies.
+
+## Level 1 — Foundation
+
+Think about how a gym sells access to its equipment. You can pay a **drop-in fee** every time you walk through the door — no commitment at all, but the per-visit price is the highest the gym charges anyone (that's **on-demand**). You can buy an **annual membership** at a much lower price per visit — but you're paying for it whether you show up three times a week or once a month, because you committed to the term regardless of actual attendance (that's **reserved**). Or you can grab a **standby class spot** the gym releases at a steep discount because it's spare capacity — cheap, but if a full-paying member wants that spot, you get bumped with little warning (that's **spot**).
+
+None of these three is "the smart one" in general. The annual membership is a great deal for someone who actually goes three times a week, and a genuinely bad deal for someone who only goes once a month — the exact same membership, the exact same price, produces a win or a real loss depending entirely on how accurately the buyer predicted their own future usage before committing.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to catch the specific version of the gym mistake that shows up in real cloud bills: **committing to a reservation sized for your busiest moment, not your typical one.** Someone who goes to the gym hard for one intense month and buys an annual membership based on that month's enthusiasm, then reverts to their normal, much lower attendance for the rest of the year, is paying the committed rate for capacity they mostly don't use — that's exactly this chapter's Calculation 3: reserving 20 instances to match *peak* demand, when the workload's genuine steady baseline is only 6, costs more than correctly letting the variable portion scale on real, measured demand.
+
+The working question to ask before recommending a reservation is: **is this the workload's confirmed, typically-observed level, or its best/busiest day?** If you can't answer that from real historical data, you don't yet have enough information to recommend reserving anything — you're guessing at someone's future gym attendance based on how motivated they feel today. Autoscaling is the gym's equivalent of a flexible class pass that scales with however often you actually show up: it only saves real money when attendance genuinely varies week to week, and it saves nothing over a flat membership for someone who trains on an identical schedule every single week.
+
+Also watch for the trap of treating the *discount percentage* as the whole decision. A steeper discount on a reservation sized to the wrong number is still a bad deal — the size of the commitment matters more than the size of the discount, exactly as this chapter's worked arithmetic shows directly.
 
 ## Mental Model
 

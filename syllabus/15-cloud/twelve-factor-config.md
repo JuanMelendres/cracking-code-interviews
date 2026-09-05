@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 15-cloud
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/system-design/twelve-factor-config.md
+topic_id: T-1008
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
 target_levels:
@@ -47,30 +53,32 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Comparisons](#comparisons)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Solutions](#solutions)
-25. [Additional Reading](#additional-reading)
-26. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Decision Framework](#decision-framework)
+15. [Comparisons](#comparisons)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Solutions](#solutions)
+27. [Additional Reading](#additional-reading)
+28. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -103,6 +111,20 @@ differs silently between staging and production) are common, and knowing
 that fail-fast startup validation converts a confusing runtime failure into
 an obvious, immediate one is exactly the kind of operational judgment
 interviewers probe for at Staff level.
+
+## Level 1 — Foundation
+
+Imagine a recipe card versus the specific ingredients you actually pull out of your own fridge to cook it. The recipe card — "add diced onion, salt to taste, a cup of stock" — is the same no matter whose kitchen you're standing in. What changes is which onion, which brand of stock, how salty you like it, and that's decided fresh each time you cook, not printed on the card itself. **Config is the specific ingredients from your fridge; code is the recipe card.** If someone printed "use Trader Joe's low-sodium stock" directly onto the recipe card, the recipe would break the moment anyone without that specific brand tried to follow it — that's what happens when a database URL or an API key gets hardcoded into application code instead of supplied from outside it.
+
+Now imagine four places a recipe's actual ingredient amounts could come from, checked in order: the recipe card's own suggested defaults, a sticky note taped to the fridge for this particular week, a shout from someone in the kitchen right now overriding the sticky note, and a very specific instruction from the head chef for tonight's dinner only, which beats everything else. Whichever source spoke last and most specifically wins — that's exactly the real precedence order this chapter measures: defaults, then a config file, then environment variables, then command-line arguments.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to answer a specific, practical question about any config value you encounter: **if this value needed to be different in staging than in production, would the code have to change, or just what's injected into it?** If the honest answer is "the code would have to change" — an `if (env.equals("prod"))` branch, a hardcoded staging URL — Factor III is being violated right there, regardless of how the rest of the application looks.
+
+You should also be able to explain, in concrete terms, why a service can pass its health check and still be broken: a health check typically only confirms the process is running and responding to pings, the same way a kitchen "being open" doesn't confirm every ingredient the night's menu needs is actually in the fridge. A required config value that's silently missing won't be caught by "is the process alive" — it's only caught by something that actually checks each specific ingredient is present *before* declaring the kitchen ready to serve, which is exactly what fail-fast startup validation does, and exactly what a bare health check does not.
+
+Finally, when a config value "isn't taking effect" after you changed it, the working move is to check the precedence order before assuming the value itself is wrong — the change might genuinely be applied at the config-file layer, but silently overridden by an environment variable or command-line argument sitting at a higher-precedence layer above it, exactly as this chapter's real, layered demo proves directly.
 
 ## Mental Model
 
