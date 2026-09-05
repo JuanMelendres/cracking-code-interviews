@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 16-performance-jvm
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/jvm/benchmarking-and-jmh-pitfalls.md
+topic_id: T-1203
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -37,27 +43,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +81,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Most engineers have written a `System.currentTimeMillis()`-wrapped loop at some point to check "is A faster than B," and most of those informal benchmarks are quietly wrong in ways their authors never discover, because the JIT-compiled runtime being measured actively works against naive measurement: warmup effects, dead-code elimination, and constant folding can each make a benchmark report a number with no relationship to the real cost of the code it claims to measure. Interviewers use this topic to test whether a candidate distinguishes "I measured this" from "I have a defensible measurement" — a distinction that matters directly the moment a candidate cites a specific number in a performance-optimization story ("we made X 3x faster") and gets asked how it was measured. A vague or hand-wavy answer undermines the entire story; a specific, correct answer about warmup, forking, and blackholes is a strong, concrete signal.
+
+## Level 1 — Foundation
+
+Imagine trying to find out how fast a sprinter can really run. If you time her very first sprint of the morning, straight out of bed, cold, that number tells you almost nothing about her actual race pace once warmed up — her muscles simply aren't ready yet. That's warmup: a JIT-compiled program's first few thousand iterations run "cold" (interpreted, not yet optimized), so timing them tells you about cold-start behavior, not the steady-state speed the real system will actually run at.
+
+Now imagine timing a "practice" sprint that nobody is actually watching or recording on a stopwatch — no judge, no scoreboard, nothing depending on the result. A tired athlete, knowing it doesn't count for anything, might jog most of it and nobody would ever know, because nothing observable depended on her actually running fast. That's dead-code elimination: if a computed result is never used for anything an outside observer could detect, the JIT — just as reasonably as the tired athlete — can skip most of the real work and still produce a number, and you'd never know the "sprint" wasn't real. A `Blackhole` is the judge with an actual stopwatch and clipboard: it forces a real, observable use of the result, so skipping the work stops being an option.
+
+## Level 2 — Working Knowledge
+
+At this level you should connect these images to concrete JMH behavior. JMH's warmup iterations are the equivalent of letting the sprinter run several practice laps before the clock that actually counts starts — discarding the cold, unrepresentative early measurements entirely rather than averaging them in. Every `@Benchmark` method must either return its result or explicitly hand it to `Blackhole.consume()`, exactly like making sure a real judge is watching every single sprint, not just the ones near the finish line.
+
+The working question for constant folding is a slightly different one: is this input to the "race" always literally the same, unchanging value every single time (a `static final` compile-time constant)? If so, a sufficiently aggressive judge might eventually just write down the same time from memory instead of genuinely re-timing an identical, unvarying run. This chapter's own measurement shows the risk is real but not guaranteed to manifest on every JVM — so the working defense is structural (use a real, runtime-set `@State` field instead of a constant) rather than relying on "it didn't happen last time I checked."
+
+Finally, the practical skepticism this chapter is really teaching: when someone hands you a performance number — "we measured X% faster" — the working question is the same one you'd ask about a sprinter's suspiciously fast, unwatched practice lap: was this actually measured with a real, observing judge (proper warmup, forking, blackhole-consumed results), or could it be a number produced by skipped work that nobody was watching closely enough to catch?
 
 ## Mental Model
 

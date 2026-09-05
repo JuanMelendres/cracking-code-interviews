@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 16-performance-jvm
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/performance/profiling-jfr-and-flame-graphs.md
+topic_id: T-1202
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -42,31 +48,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Performance Implications](#performance-implications)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Performance Implications](#performance-implications)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -96,6 +104,20 @@ revealed the true cost center. A candidate who has only read about profiling ten
 assume the profile will confirm whatever they already suspected; a candidate who has
 actually profiled real code has been surprised by a real profile before, and expects
 to be surprised again.
+
+## Level 1 — Foundation
+
+Picture a traffic helicopter that can't watch an entire highway continuously — instead, every few seconds it snaps one photo and notes which lane each visible car is currently in. After an hour of these snapshots, count how many times a car showed up in each lane: the lane with the most appearances is genuinely the busiest one, even if a single dramatic photo (one lane's fender-bender) looked scarier in isolation than everything else combined. That count-by-appearance approach is exactly what a profiler does: rather than watching a program at every instruction, it takes a stack "photo" at a fixed interval and tallies which method showed up on top of the stack most often. A flame graph is just that tally turned into a picture — each method gets a bar as wide as how often it appeared across all the snapshots, so the widest bar, wherever it happens to sit in the stack, is where real time is genuinely going.
+
+The whole approach breaks if you trust one dramatic-looking snapshot instead of the full tally. A lane that appears in a single scary photo but almost never otherwise isn't the highway's real bottleneck; a lane that shows up constantly, unremarkably, in nearly every photo, is.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to restate this chapter's own central surprise in your own words: an "obviously boring" method (autoboxing inside `Long.valueOf`) showed up in far more real snapshots (719) than the method someone would guess is the hotspot just from reading the code (`quadraticStringBuild`, only 88). That's the practical lesson — a profiler's snapshot tally can, and does, contradict what a code review "looks like," and the working move is to trust the tally, not the guess.
+
+You should also be able to explain why a flame graph's *height* is a trap: height only tells you how deep the call stack was at the moment of that snapshot, not how often anything happened. A narrow spike reaching high up the graph is a lane that appeared in exactly one deep, rare photo — not a hotspot. A short but wide bar low in the graph is a method that showed up constantly across the whole recording — the real hotspot, regardless of how unremarkable it looks sitting near the bottom.
+
+Finally, the practical decision to internalize: reach for JFR by default — it's already installed and cheap enough to fly continuously, the same way the helicopter's fuel budget is cheap enough to photograph all day rather than for one expensive hour. Reach for async-profiler specifically when you suspect the real cost is hiding somewhere JFR's default view doesn't photograph as completely — native code, JIT compiler threads, GC internals.
 
 ## Mental Model
 

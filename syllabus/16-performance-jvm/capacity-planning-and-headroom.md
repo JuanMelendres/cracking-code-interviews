@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 16-performance-jvm
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/performance/capacity-planning-and-headroom.md
+topic_id: T-1208
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -37,27 +43,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -73,6 +81,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Capacity planning rarely appears as its own interview question; it appears as a follow-up nobody expects: "you said this service handles 10,000 requests per second — how did you decide to provision for that, and what happens at 15,000?" A candidate who has only ever *reacted* to load (autoscaling, alerts, firefighting) often has no framework for the question and reaches for hand-waving ("we'd just add more pods"). A candidate who can name a target utilization, explain why 100% utilization is never the right target, and connect that to a measured saturation point signals they've actually been responsible for a system's provisioning, not just its code. It is a common Staff-level differentiator specifically because it requires connecting queueing behavior, cost, and risk into one coherent recommendation — not just knowing a formula.
+
+## Level 1 — Foundation
+
+Think about a call center with a fixed number of agents. When call volume is comfortably below the number of agents, a new caller gets picked up almost immediately — average hold time stays low and roughly flat no matter how busy the day gets, right up until every agent is on a call simultaneously. Past that point, a new caller doesn't just wait a little longer — she waits behind every other caller who arrived after the agents became fully busy, and that backlog compounds: hold time doesn't creep up, it explodes. A call center that only tracks "calls answered per hour" can look perfectly healthy right up until the moment the explosion happens, because "calls answered" simply cannot rise past the number of agents times how fast each call gets handled — it flatlines exactly when the real problem starts, and a flat line is not the same evidence as "everything's fine."
+
+Headroom, in this picture, is simply choosing not to schedule every single agent to be busy 100% of the time — deliberately keeping some capacity in reserve so that when call volume spikes (a product recall, a marketing blast) or an agent calls in sick, the remaining team can still absorb the extra load without every caller's hold time collapsing into the explosion described above.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to state Little's Law in call-center terms and use it directly: the average number of callers on hold or being served (`L`) equals the rate calls arrive (`λ`) times the average time each caller spends in the system, hold plus talk time (`W`). This isn't a rough approximation — this chapter's own measurement shows two completely independent ways of computing it (directly counting callers in the system live, versus multiplying arrival rate by measured time-in-system) agreeing within 0.8%, precisely because the law holds for any stable system regardless of how call arrivals are distributed.
+
+The working question when reviewing a capacity plan is never "what's our average load," but "how close to our measured ceiling does our typical load sit, and have we actually measured that ceiling with something resembling real load?" A call center staffed for "average call volume" with zero headroom is one unusually busy afternoon away from the hold-time explosion described above — the working discipline is choosing a deliberate utilization target (a common one is 60–70% of measured maximum) precisely because the cost of that reserved capacity is real but small compared to the cost of the explosion when it isn't there.
+
+Finally, watch for the specific reasoning trap this chapter's own production scenario walks through: "calls answered per hour is fine" is not proof there's no problem — once every agent is occupied, that number necessarily plateaus, and a plateaued throughput number during a real traffic spike is itself the warning sign, not reassurance that things are under control.
 
 ## Mental Model
 

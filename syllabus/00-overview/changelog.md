@@ -418,4 +418,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 3 further migrated domains (`16-performance-jvm`, `17-architecture`, `20-interview-preparation`, `21-frontend-web`) — 63 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 16-performance-jvm domain complete (3/3)
+
+### Added
+
+- All 3 `16-performance-jvm` chapters retrofitted: `profiling-jfr-and-flame-graphs.md` (T-1202), `benchmarking-and-jmh-pitfalls.md` (T-1203), `capacity-planning-and-headroom.md` (T-1208) — same additive method as every prior batch, all 3 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a traffic-helicopter-photographing-a-highway analogy for sampling profilers and flame-graph width, connected directly to this chapter's own real finding (an autoboxing call outweighing a deliberate O(n²) hotspot); a timing-a-sprinter analogy for JIT warmup, dead-code elimination, and the `Blackhole` mechanism, connected to this chapter's own measured ~22% dead-code-elimination gap; a call-center-hold-time analogy for Little's Law and the saturation cliff, connected to this chapter's own two independently-measured values of `L` agreeing within 0.8%.
+- Verified all 3 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/16-performance-jvm/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`16-performance-jvm` is now fully L1–L4 (3/3)** — the fourteenth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, `11-system-design`, `12-security`, `13-observability`, `14-devops-containers`, and `15-cloud`.
+
+### Not yet done
+
+- 3 further migrated domains (`17-architecture`, `20-interview-preparation`, `21-frontend-web`) — 60 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
