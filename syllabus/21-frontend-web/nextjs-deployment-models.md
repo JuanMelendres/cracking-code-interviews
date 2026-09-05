@@ -5,9 +5,13 @@ document_type: handbook-chapter
 domain: 21-frontend-web
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-05
 source_history:
   - handbook/frontend/nextjs-deployment-models.md
+topic_id: F-213
+mastery_levels_covered:
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:

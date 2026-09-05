@@ -5,9 +5,13 @@ document_type: handbook-chapter
 domain: 21-frontend-web
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-05
 source_history:
   - handbook/frontend/react-fundamentals-jsx-components-props-and-state.md
+topic_id: F-101/F-104
+mastery_levels_covered:
+  - L1
+  - L2
 difficulty:
   - foundational
 target_levels:

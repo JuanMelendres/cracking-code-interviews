@@ -457,5 +457,23 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 ### Not yet done
 
-- 1 further migrated domain (`21-frontend-web`) — 32 chapters — still awaits the same retrofit.
+- 1 further migrated domain (`21-frontend-web`) — 32 chapters — but see the entry immediately below: this domain does not need the same retrofit and was instead given a formal mastery-equivalence mapping.
+
+## [2026-09-05] — Phase 5: 21-frontend-web mastery equivalence mapped (32/32) — not a content retrofit
+
+### Added
+
+- Formally mapped all 32 `21-frontend-web` chapters' existing Beginner/Intermediate/Advanced/Expert register tiers onto the syllabus-wide L1–L4 mastery model: **Beginner → L1, L2**; **Intermediate → L2, L3**; **Advanced → L3, L4**; **Expert → L4**. The one interview-craft entry with no register tier (`frontend-live-coding-and-debugging-protocol.md`) was mapped to `[L2, L3, L4]` from its own stated `target_levels: [mid, senior, staff]`, with no fabricated `topic_id`.
+- Added `topic_id` (the existing F-code from each chapter's own `> **Topic register:**` line) and `mastery_levels_covered` to all 32 files' YAML front matter, and bumped `last_updated` to 2026-09-05. This was deliberately front-matter-only — no chapter body content was added, removed, or reworded.
+
+### Not a Phase 5 content retrofit, and why
+
+- This domain was explicitly exempted from the Level-1/Level-2 content-insertion retrofit applied to the other 16 syllabus domains this phase. Per `00-project/syllabus-transformation-plan.md` §3: "the frontend domain is the exception that proves the rule" — `00-project/frontend-topic-register.md` already spans Beginner/Intermediate/Advanced/Expert by original design (the 2026-08-12 Scope Addendum), with each individual chapter deliberately written at one specific tier rather than needing Foundation/Working-Knowledge layers added underneath existing Senior/Staff-only content, unlike the ~181 backend `handbook/` chapters the retrofit targets. What was genuinely missing, and is what this entry closes, was a stated equivalence between the frontend domain's own four-tier system and the syllabus-wide L1–L4 model — a mapping question, not a missing-content question.
+- User-confirmed scope decision (2026-09-05): asked explicitly whether to (a) mark the domain complete as-is, (b) formally map Beginner–Expert to L1–L4, or (c) insert Level 1/Level 2 sections anyway regardless of the exemption — the user chose (b).
+- Updated `syllabus/21-frontend-web/INDEX.md` (status line, a new Phase 5 blockquote explaining the mapping rule and rationale, and the Topics table's "Mastery levels covered today" column rewritten per-row from the placeholder "Beginner–Expert (L1–L4 equivalence not yet formally mapped)" text to the actual tier→L-level mapping) and `syllabus/00-overview/INDEX.md`'s domain-status table.
+
+**All 17 backend/interview-prep domains needing the Phase 5 content retrofit are now complete (16/16 retrofitted + this domain's equivalence mapping closes the last open item on the Phase 5 tracking list), alongside the 4 domains that were new-writing-complete from Phase 5's start (`01-computer-science-foundations`, `03-data-structures-algorithms`, `18-engineering-practices`, `19-leadership-staff`) — all 21 syllabus domains now have a stated, non-placeholder mastery-coverage status.**
+
+### Not yet done
+
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
