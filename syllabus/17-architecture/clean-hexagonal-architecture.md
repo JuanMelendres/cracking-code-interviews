@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/clean-hexagonal-architecture.md
+topic_id: T-901
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -36,29 +42,31 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Trade-offs](#trade-offs)
-12. [Performance, Memory, and Concurrency Implications](#performance-memory-and-concurrency-implications)
-13. [Decision Framework](#decision-framework)
-14. [Common Mistakes](#common-mistakes)
-15. [Anti-Patterns](#anti-patterns)
-16. [Best Practices](#best-practices)
-17. [Interview Answer Framework](#interview-answer-framework)
-18. [Interview Questions](#interview-questions)
-19. [Summary](#summary)
-20. [Key Takeaways](#key-takeaways)
-21. [Cheat Sheet](#cheat-sheet)
-22. [Flashcards](#flashcards)
-23. [Practice Exercises](#practice-exercises)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Trade-offs](#trade-offs)
+14. [Performance, Memory, and Concurrency Implications](#performance-memory-and-concurrency-implications)
+15. [Decision Framework](#decision-framework)
+16. [Common Mistakes](#common-mistakes)
+17. [Anti-Patterns](#anti-patterns)
+18. [Best Practices](#best-practices)
+19. [Interview Answer Framework](#interview-answer-framework)
+20. [Interview Questions](#interview-questions)
+21. [Summary](#summary)
+22. [Key Takeaways](#key-takeaways)
+23. [Cheat Sheet](#cheat-sheet)
+24. [Flashcards](#flashcards)
+25. [Practice Exercises](#practice-exercises)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -74,6 +82,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This is one of the highest-leverage architecture topics precisely because most candidates can describe the pattern but very few can say, unprompted, when *not* to use it. Interviewers use the "would you use this on every project" question specifically to separate candidates who've memorized the pattern from those who've actually weighed its cost against a real system's needs — an unconditional "yes" is the single most common failure on this topic.
+
+## Level 1 — Foundation
+
+Think of a wall power outlet. Every appliance in your house — the lamp, the toaster, the phone charger — plugs into the exact same standard-shaped socket. The appliance doesn't know or care whether the electricity behind that wall is coming from the city grid, a home solar panel, or a backup generator; it only knows the plug shape it needs, and the wall promises to deliver power through that shape. That's exactly what a port is: an interface the domain defines, stating "this is the shape of the thing I need," without caring who or what actually provides it. An adapter is whatever's wired in behind the wall — a specific power company, a specific solar setup — that fulfills that promise.
+
+Now imagine an electrician who, instead of using standard outlets, hardwires the toaster directly to the generator's own internal terminals because it was faster to install. The toaster works fine today. But the moment you want to switch to solar, you're not swapping a plug — you're re-wiring the toaster itself, and probably the lamp and the phone charger too, because they were all wired the same convenient-but-wrong way. That's the cost of a layered architecture whose "domain" quietly imports framework types directly: the swap that should have touched one wire touches the whole house.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to connect this picture to why the pattern's real value only shows up at the moment of a technology swap, not before. A house wired correctly with standard outlets and a house with everything hardwired to one generator look identical on a normal day — both power the toaster fine. The difference is invisible until someone actually tries to switch providers, exactly like this chapter's own production scenario: a service that looked hexagonal in its folder structure ran perfectly fine for years, and the hidden hardwiring (`domain` classes directly importing JPA types) was only discovered once an ORM migration, estimated at two weeks, actually required touching the generator.
+
+The working test to apply to any real codebase is the same one an electrician would run: pick one dependency (a database call, a payment SDK) and physically trace it — does the wire from the "appliance" (the business logic) run to a labeled socket (an interface the domain owns), or does it run straight into a specific vendor's terminals? A folder named `domain/` is the equivalent of a room labeled "outlets only" — it tells you the *intent*, but only actually tracing the wire (or running an automated check like ArchUnit, this chapter's own remedy) tells you whether that intent was honored.
+
+Finally, the honest working answer to "would you wire every room in every house this way" is no — a garden shed with one bare bulb doesn't need a standardized outlet system; the cost of the extra wiring only pays off in a house complex enough, and long-lived enough, that you can genuinely expect to swap a provider down the line. That's this chapter's own Staff-differentiating question, restated in wiring terms.
 
 ## Mental Model
 

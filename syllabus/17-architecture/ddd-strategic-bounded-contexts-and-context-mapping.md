@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
+topic_id: T-902
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -50,31 +56,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Organizational Implications](#organizational-implications)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Organizational Implications](#organizational-implications)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -106,6 +114,20 @@ concept at all. The strategic half of DDD is also the half [Microservice Decompo
 depends on directly: a bounded context is the correct unit for a service boundary,
 which is precisely why this chapter is a prerequisite concept for that one, not an
 optional extra.
+
+## Level 1 — Foundation
+
+In American English, "football" means a sport played mostly with your hands, carrying an oval ball. In British English, "football" means a completely different sport, played almost entirely with your feet, using a round ball. Neither country is wrong, and nobody needs to hold a summit to force one universal definition of "football" that both countries adopt — the word simply means something different depending on which country you're standing in, and confusion only happens when someone assumes their own country's meaning applies everywhere. A bounded context is exactly one of these countries: a region where a word ("Order," "Customer") has one specific, consistent meaning, and crossing into a different context means the same word can legitimately mean something else.
+
+Now imagine an American football commentator moving to the UK and trying to describe a match without adjusting their vocabulary at all — calling every kick a "punt" and every player a "quarterback." That confusion is what happens when one team's model (their "Order" class) gets used directly by another team who assumed it meant what their own "Order" means. A good translator, standing at the border and converting terms accurately in both directions, is what an Anti-Corruption Layer does; a traveler who just gives up and starts using the local terms with zero translation, accepting whatever the local model says without complaint, is behaving like a Conformist relationship.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to state, concretely, why forcing one universal "Order" class across every team is the same mistake as trying to force one universal, worldwide definition of "football": it ignores that the two "Orders" (or the two sports) are already legitimately different things serving different purposes, and unifying them doesn't remove the difference — it just makes one team's changes silently dangerous for the other, exactly like this chapter's own real, executed proof: a Conformist consumer that depended directly on the upstream's exact class broke, with a real, byte-for-byte identical file, the instant the upstream renamed one field. The ACL-protected consumer, translating at the border instead of depending on the foreign vocabulary directly, kept compiling.
+
+The working question when two teams argue about what "Order" means is never "which team is right" — it's "are these actually the same concept, or two countries that happen to share a word?" If the honest answer is two different concepts, the resolution isn't a meeting to pick a winner; it's drawing the border explicitly and deciding who translates at it (a Shared Kernel, if both sides want to jointly maintain one small shared phrasebook; an Anti-Corruption Layer, if one side wants full independence from the other's changes).
+
+Finally, watch for the specific real cost this chapter measures: translating at the border (an ACL) is not free — someone has to build and maintain the translator, the same real, ongoing cost as actually training and paying a human translator, rather than just hoping everyone eventually agrees to speak the same language.
 
 ## Mental Model
 

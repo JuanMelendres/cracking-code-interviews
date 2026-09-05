@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/technical-debt-and-evolutionary-architecture.md
+topic_id: T-913
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -47,31 +53,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Organizational Implications](#organizational-implications)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Organizational Implications](#organizational-implications)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -99,6 +107,20 @@ and that reframe is exactly what separates a Senior answer from a Staff one on t
 topic. The concrete mechanism this chapter is built around — fitness functions — is
 also frequently asked about directly, because it's the answer to "how do you prevent
 this from happening again" once a refactor is approved.
+
+## Level 1 — Foundation
+
+Think about a car with worn brake pads. The car still drives fine today — nothing about pressing the pedal feels obviously wrong yet — but the brakes are measurably closer to failing than they were a year ago, and every month of delay makes the eventual repair (or the eventual accident) more expensive, not less. "The brakes feel a little worse than they used to" is a subjective, easy-to-dismiss complaint; "the brake pads are at 2mm, and the legal/safety minimum is 3mm" is an objective measurement nobody can wave away, because it's stated in a currency (a number, a threshold) everyone — not just car people — can understand and act on.
+
+Technical debt works the same way: "this code feels messy" is the subjective complaint a busy stakeholder can reasonably ignore, because it gives them nothing to weigh it against. "This component's last three features each took 40% longer to ship than comparable ones, and the trend is getting worse" is the brake-pad measurement — concrete, falsifiable, and stated in a currency (delivery time, business risk) the stakeholder already reasons in every day.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to name the mechanism that makes the brake-pad number possible in the first place: a mandatory vehicle inspection, run on a fixed schedule, that measures pad thickness objectively rather than trusting the driver's own feeling that "it's probably fine." A fitness function is exactly that inspection, applied to a codebase: this chapter's own real, executed example measures a class's coupling via nothing more than plain reflection, and fails the build the instant that number crosses a stated threshold (10 collaborators, failing a threshold of 5; 4 collaborators, passing, after a real incremental refactor) — an objective check that runs every time, not a one-off inspection someone remembers to schedule occasionally.
+
+The working reason a single good design review can't substitute for a recurring inspection is exactly why a car doesn't get inspected only once, at the dealership, and never again: brake pads wear down gradually, through many individually-unremarkable trips, none of which alone would justify pulling over. This chapter's own production scenario is precisely that gradual wear: ten separate, individually-reasonable pull requests, each adding "just one more collaborator" to a component, none flagged as risky at review time, until the aggregate coupling had quietly worn down the component's maintainability the way ten years of ordinary driving wears down a brake pad.
+
+Finally, the working move once a real inspection catches a real problem is never to argue the brakes "feel fine" — it's to fix the actual measured issue and keep the inspection running afterward, so the same wear can't silently reaccumulate. A fitness function added once and never revisited is a car inspection sticker nobody ever checks again — technically present, providing zero real ongoing protection.
 
 ## Mental Model
 

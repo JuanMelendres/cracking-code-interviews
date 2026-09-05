@@ -431,4 +431,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 3 further migrated domains (`17-architecture`, `20-interview-preparation`, `21-frontend-web`) — 60 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 17-architecture domain complete (9/9)
+
+### Added
+
+- All 9 `17-architecture` chapters retrofitted: `clean-hexagonal-architecture.md` (T-901), `ddd-strategic-bounded-contexts-and-context-mapping.md` (T-902), `ddd-tactical-design-aggregates.md` (T-903), `cqrs-read-write-separation.md` (T-904), `microservice-decomposition-and-monolith-tradeoff.md` (T-907/T-908), `modular-monolith-as-a-deliberate-choice.md` (T-910), `strangler-fig-and-migration-patterns.md` (T-912), `technical-debt-and-evolutionary-architecture.md` (T-913), `architecture-decision-records.md` (T-916) — same additive method as every prior batch, all 9 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a wall-power-outlet analogy for ports/adapters; a "football means different sports in different countries" analogy for bounded contexts; a packing-boxes-for-a-move analogy for aggregate boundaries; a newsroom-vs-printed-newspaper analogy for the write/read model lag; a roommates-splitting-apartments analogy for service boundaries; a door-sign-vs-real-lock analogy for enforced module boundaries; a renovating-a-house-while-living-in-it analogy for incremental migration and rollback safety; a worn-brake-pads-and-vehicle-inspection analogy for economic debt framing and fitness functions; a scientist's-lab-notebook analogy for durable decision reasoning.
+- Verified all 9 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/17-architecture/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`17-architecture` is now fully L1–L4 (9/9)** — the fifteenth fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, `11-system-design`, `12-security`, `13-observability`, `14-devops-containers`, `15-cloud`, and `16-performance-jvm`.
+
+### Not yet done
+
+- 2 further migrated domains (`20-interview-preparation`, `21-frontend-web`) — 51 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.

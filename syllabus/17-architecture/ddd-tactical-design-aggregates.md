@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/ddd-tactical-design-aggregates.md
+topic_id: T-903
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -35,28 +41,30 @@ official_references: []
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -72,6 +80,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Aggregate design tests whether a candidate models a domain around its actual consistency requirements or around superficial object relatedness. It's a recurring Staff-level topic because a poorly-drawn aggregate boundary today is one of the most common root causes of a monolith that resists decomposition later — the coupling isn't accidental, it's modeled in from the start, and interviewers use this topic to see whether a candidate would have caught it at design time.
+
+## Level 1 — Foundation
+
+Imagine packing for a move. Some items genuinely have to go into the same sealed box together — a jigsaw puzzle's pieces, say, because a puzzle missing three pieces isn't a smaller puzzle, it's a broken one. You tape that box shut as one unit; nobody unpacks half of it separately. Other items just happen to be sitting near each other on the same shelf but have no real reason to travel together — a puzzle and a nearby lamp don't need to share a box just because they were neighbors. An aggregate is exactly the sealed puzzle box: everything inside it must arrive together, complete, or the contents don't make sense; the aggregate root is the label on the outside that a mover reads to know which box they're picking up, and nobody is allowed to reach inside and pull out one puzzle piece without going through the box as a whole.
+
+Now imagine a moving company that, to save time, decides "the puzzle and the nearby lamp are related enough, let's tape them into one giant box." Every time anyone needs just the lamp, they have to lift, open, and re-seal the entire puzzle-and-lamp box — a completely unnecessary hassle that grows worse the more unrelated items get taped into that same oversized box. That's exactly what happens when an aggregate is drawn too large: an unrelated update now has to lock and load a chunk of data it never actually needed to touch.
+
+## Level 2 — Working Knowledge
+
+At this level you should apply the actual packing test, not intuition about what "feels related": would this box be broken — genuinely incomplete or invalid — if it arrived with only some of its contents? `Order` and `OrderLine` pass this test (an order missing some of its line items while claiming a specific total is broken); `Order` and `Customer` fail it (an order arriving with slightly stale customer contact info isn't "broken," it's just eventually consistent) — this chapter's own sizing rule stated precisely: pack the box as small as the true "must arrive together" requirement demands, never as large as "these seem related."
+
+This chapter's own production scenario is the oversized-box mistake at real scale: a team taped `Customer` and every one of that customer's `Order`s into one shared box, so a single order placement had to lock the entire box — including the customer's profile data that an unrelated marketing update also needed. Splitting them back into two separately-labeled boxes, connected only by a claim-check reference (`customerId`), removed the shared lock entirely, because no rule actually required them to arrive together in the first place.
+
+The working question for cross-box operations — "I need something from two separate boxes for one delivery" — is never "let's tape them together after all." It's: can the second box's contents arrive a little later and still be correct (a saga, an event), or does this reveal the boxes were actually mispacked from the start? Reaching for a single oversized box to avoid that question is exactly the anti-pattern this chapter warns against.
 
 ## Mental Model
 

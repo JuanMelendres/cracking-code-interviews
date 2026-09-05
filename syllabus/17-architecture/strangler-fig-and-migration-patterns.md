@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/strangler-fig-and-migration-patterns.md
+topic_id: T-912
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -53,31 +59,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Execution Flow](#execution-flow)
-8. [Diagrams](#diagrams)
-9. [Java Examples](#java-examples)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Execution Flow](#execution-flow)
+10. [Diagrams](#diagrams)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -106,6 +114,20 @@ business logic, edge cases, and quiet dependencies are accounted for, and one th
 signals a candidate has not actually lived through a real migration. The much harder,
 much rarer-to-answer-well follow-up — "how do you roll back mid-migration?" — is this
 chapter's central, concretely-answered question.
+
+## Level 1 — Foundation
+
+Imagine renovating a house room by room while you keep living in it, instead of moving everyone out and rebuilding the whole house from scratch. You finish the kitchen first, actually cook in it for a while to make sure it really works, then move on to the living room — at every point, you're still living somewhere real, and if the new kitchen turns out to have a serious problem, you can go back to using the old one because you never demolished it. A facade in the Strangler Fig pattern is exactly the moving-in-stages plan: it decides, room by room (or endpoint by endpoint, tenant by tenant), which version of the house you're currently using, and that decision can move back and forth in small, low-stakes steps.
+
+Now here's the part most renovation plans get wrong: at some point, feeling confident the new kitchen works, you sell the old stove at a garage sale to free up space. That's fine — right up until you discover a gas-line problem in the new kitchen and want to go back to cooking on the old stove for a while. You can't. The "we can always go back" plan quietly stopped being true the moment you sold the stove, and nobody updated the plan to reflect that. That's exactly what disabling dual-write does to a "rollback" option: it looks like the plan is still intact, right up until someone actually tries to use it.
+
+## Level 2 — Working Knowledge
+
+At this level you should connect the stove-selling moment directly to this chapter's own real, measured proof: an identical rollback scenario, with exactly one flag flipped, lost 3 of 6 orders when dual-write (keeping the old stove around) was turned off immediately at cutover, and lost zero when it was kept running through the rollback window. The working discipline is treating "when do we sell the old stove" as a decision made in advance, on a calendar, with a stated minimum duration — never as a decision made in the moment based on how confident the team happens to feel that week, which is exactly the mistake this chapter's own production scenario reproduces: confidence arrived two full weeks before the bug that actually needed the old stove.
+
+The working question to ask about any in-flight migration is simple and concrete: if we needed to go back to the old system right now, this exact minute, would every recent change actually be there, or only some of it? If nobody can answer that with a specific, monitored number (days remaining in the rollback-safety window), the honest status is "we don't currently have a real rollback plan," regardless of what the runbook document claims.
+
+Finally, watch for the specific temptation this chapter names directly: "a full rebuild would just be faster than all this room-by-room fuss" is usually wrong, for the same reason gutting and rebuilding a house from scratch usually underestimates how much of the old wiring, plumbing, and quirks you'd actually need to reproduce correctly on day one — undocumented behavior that the room-by-room approach discovers gradually, safely, one room at a time.
 
 ## Mental Model
 

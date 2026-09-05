@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md
+topic_id: T-907
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -36,26 +42,28 @@ official_references: []
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Diagrams](#diagrams)
-7. [Production Scenarios](#production-scenarios)
-8. [Trade-offs](#trade-offs)
-9. [Decision Framework](#decision-framework)
-10. [Common Mistakes](#common-mistakes)
-11. [Anti-Patterns](#anti-patterns)
-12. [Best Practices](#best-practices)
-13. [Interview Answer Framework](#interview-answer-framework)
-14. [Interview Questions](#interview-questions)
-15. [Summary](#summary)
-16. [Key Takeaways](#key-takeaways)
-17. [Cheat Sheet](#cheat-sheet)
-18. [Flashcards](#flashcards)
-19. [Practice Exercises](#practice-exercises)
-20. [Solutions](#solutions)
-21. [Additional Reading](#additional-reading)
-22. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Diagrams](#diagrams)
+9. [Production Scenarios](#production-scenarios)
+10. [Trade-offs](#trade-offs)
+11. [Decision Framework](#decision-framework)
+12. [Common Mistakes](#common-mistakes)
+13. [Anti-Patterns](#anti-patterns)
+14. [Best Practices](#best-practices)
+15. [Interview Answer Framework](#interview-answer-framework)
+16. [Interview Questions](#interview-questions)
+17. [Summary](#summary)
+18. [Key Takeaways](#key-takeaways)
+19. [Cheat Sheet](#cheat-sheet)
+20. [Flashcards](#flashcards)
+21. [Practice Exercises](#practice-exercises)
+22. [Solutions](#solutions)
+23. [Additional Reading](#additional-reading)
+24. [Official References](#official-references)
 
 ---
 
@@ -72,6 +80,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 "How would you split this system?" is the canonical Staff architecture question, and it is a deliberate judgment trap: the candidate who decomposes enthusiastically fails it. This topic ties for 6th-highest IWI in the entire 198-topic register, near-universal at Staff level, precisely because the expected answer frequently *inverts* the naive expectation — recognizing when *not* to split is the actual signal being tested, not familiarity with microservices patterns.
+
+## Level 1 — Foundation
+
+Picture two roommates deciding whether to split into separate apartments. If their lives are already genuinely independent — different jobs, different schedules, different friend groups — separate apartments let each of them come and go, redecorate, and host guests without checking with the other person first. That's real independence, and it's worth the extra rent and the extra hassle of coordinating anything they still do together.
+
+But now picture two roommates who eat dinner together every single night, share one car, and make every major decision jointly anyway — and they still decide to get separate apartments "because separate is more modern." They haven't gained any independence at all; they've just added a commute between two front doors for something they were always going to do together regardless. Every joint dinner now requires someone to drive across town first. That's a microservice split with no real organizational independence behind it: the network call between the two services is the commute, paid on every single interaction, for a coordination cost that existed before the split and never went away.
+
+## Level 2 — Working Knowledge
+
+At this level, the working test for "should these be separate apartments" is exactly this chapter's own consistency test: do these two things need to happen atomically, right now, together — or can one of them legitimately happen a little later without anything breaking? An `Order` and its `OrderLine`s need to move in together (same apartment, same service); `Order` and `Stock Level` can tolerate a slight delay between one updating and the other finding out, which is exactly where the apartment wall — the service boundary — belongs.
+
+This chapter's own production scenario is the "separate apartments, same dinner table" mistake made real: a four-person team split into five services, and deployment logs showed over 80% of deploys were followed by a deploy of at least one other service the same day — the measurable version of "they still eat dinner together every night." The apartments never bought any real independence; they only added a commute, paid in network calls, deployment coordination, and doubled on-call surface, for coordination that was happening anyway.
+
+The working question to ask before splitting anything is never "is this cleaner" — it's "do we already have (or are we about to have) genuinely separate schedules that this split would actually serve?" If the honest answer is no, the correct move is staying in one well-organized apartment with clearly labeled, respected rooms (a modular monolith) rather than paying rent on a second front door for roommates who were always going to share everything anyway.
 
 ## Mental Model
 

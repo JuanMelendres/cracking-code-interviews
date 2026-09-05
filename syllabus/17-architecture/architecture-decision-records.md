@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/architecture-decision-records.md
+topic_id: T-916
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - intermediate
   - advanced
@@ -41,32 +47,34 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Organizational Implications](#organizational-implications)
-13. [Security Implications](#security-implications)
-14. [Decision Framework](#decision-framework)
-15. [Comparisons](#comparisons)
-16. [Common Mistakes](#common-mistakes)
-17. [Anti-Patterns](#anti-patterns)
-18. [Best Practices](#best-practices)
-19. [Interview Answer Framework](#interview-answer-framework)
-20. [Interview Questions](#interview-questions)
-21. [Summary](#summary)
-22. [Key Takeaways](#key-takeaways)
-23. [Cheat Sheet](#cheat-sheet)
-24. [Flashcards](#flashcards)
-25. [Practice Exercises](#practice-exercises)
-26. [Solutions](#solutions)
-27. [Additional Reading](#additional-reading)
-28. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Organizational Implications](#organizational-implications)
+15. [Security Implications](#security-implications)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ---
 
@@ -83,6 +91,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This topic tests a skill orthogonal to technical depth: whether a candidate can institutionalize their own judgment so it survives their absence. A Staff engineer's most valuable architectural decisions are worthless to the organization the moment that engineer leaves the room, changes teams, or simply forgets the reasoning eighteen months later, unless the *reasoning* — not just the outcome — was captured somewhere durable. Interviewers ask about this because it separates engineers who make good decisions from engineers who make good decisions an organization can actually keep making after they're gone — a distinctly Staff-level, not Senior-level, concern.
+
+## Level 1 — Foundation
+
+A scientist's lab notebook doesn't just record "the reaction worked at 80°C." A good one records what other temperatures were tried and why they were rejected, what the scientist expected to happen, and what surprised them — so that a colleague reading the notebook two years later, wanting to know whether a new, contradicting result means the original conclusion was wrong or means something about the experimental conditions genuinely changed, actually has enough information to tell the difference. A notebook that only records "80°C worked, great" gives that future colleague nothing to work with except blind trust or blind doubt.
+
+An ADR is exactly that lab notebook entry, applied to an architectural decision. It's not there to record what was decided — the code already shows that. It exists to record what was known, what was tried, and what was rejected and why, so that someone reading it later while arguing the decision was wrong can actually tell whether the original reasoning held up or whether the world underneath it quietly changed.
+
+## Level 2 — Working Knowledge
+
+At this level you should apply the lab notebook's own honesty test to any ADR you write or review: does the Context section read like a scientist honestly describing the conditions of the experiment, or does it read like someone writing up their conclusion first and back-filling a justification? This chapter names the Context section as the one most ADRs get wrong by skipping straight to the justification — the equivalent of a lab notebook that only writes down the temperature that worked and never mentions what else was tried.
+
+You should also be able to apply the same discipline to the Consequences section: a real lab notebook records the reaction's side products and inefficiencies alongside its success, not just the headline result — an ADR that lists only positive consequences is the architectural equivalent of a scientist only ever writing down when the experiment worked, which this chapter names directly as the single most common real defect, one a structural checker (this chapter's own real, tested completeness script) can catch as a missing section but never as a missing honesty.
+
+Finally, the working discipline for a changed decision is the same one governing a real lab notebook: you don't go back and erase yesterday's entry because today's experiment came out differently — you write a new entry, dated, that references the old one and explains what's different now. An ADR works the same way: superseded, never edited, because erasing the old entry destroys exactly the evidence a future reader needs to tell whether the original reasoning was wrong from the start or the world simply changed underneath it.
 
 ## Mental Model
 

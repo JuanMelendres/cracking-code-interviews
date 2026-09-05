@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/modular-monolith-as-a-deliberate-choice.md
+topic_id: T-910
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -38,32 +44,34 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Organizational Implications](#organizational-implications)
-13. [Security Implications](#security-implications)
-14. [Decision Framework](#decision-framework)
-15. [Comparisons](#comparisons)
-16. [Common Mistakes](#common-mistakes)
-17. [Anti-Patterns](#anti-patterns)
-18. [Best Practices](#best-practices)
-19. [Interview Answer Framework](#interview-answer-framework)
-20. [Interview Questions](#interview-questions)
-21. [Summary](#summary)
-22. [Key Takeaways](#key-takeaways)
-23. [Cheat Sheet](#cheat-sheet)
-24. [Flashcards](#flashcards)
-25. [Practice Exercises](#practice-exercises)
-26. [Solutions](#solutions)
-27. [Additional Reading](#additional-reading)
-28. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Organizational Implications](#organizational-implications)
+15. [Security Implications](#security-implications)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ---
 
@@ -80,6 +88,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 The [microservice decomposition chapter](microservice-decomposition-and-monolith-tradeoff.md) already establishes that a well-modularized monolith is frequently the correct Staff-level answer to "should we split this into services" — but naming that answer is only half the interview signal. The harder, more differentiating follow-up is "so how do you actually keep it well-modularized as five teams and eighteen months of feature work happen to it?" A candidate who answers "code review" alone is describing a policy with no enforcement mechanism — exactly the kind of answer that erodes in practice, which is precisely why interviewers press here: they're testing whether the candidate has ever actually operated a monolith past the point where informal discipline stopped being enough.
+
+## Level 1 — Foundation
+
+Picture a shared house where one bedroom door has a handwritten sign taped to it: "Private — please knock." The sign works exactly as well as everyone in the house chooses to respect it, and nothing about the door itself stops a housemate from just turning the handle and walking in — there's no lock, only a request. Compare that to a door with a real lock and a key held only by the room's occupant: now walking in without permission isn't a matter of politeness, it's a matter of physically being unable to open the door at all.
+
+A Java package named `orders.internal` is exactly the taped-on sign: it communicates intent clearly to any human reader who happens to look, but the compiler treats a `public class` sitting inside it exactly like any other public class anywhere else in the house. Nothing about the name itself stops another module from reaching straight in and calling it directly — which is precisely what this chapter's own real, executed evidence shows happening: a class in one module imported and called another module's "internal" class directly, and it compiled and ran without a single error, because nothing was actually checking.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to name what turns a taped-on sign into a real lock: not a stricter-sounding folder name, but an automated architecture test — this chapter's own real ArchUnit rule — that inspects the actual, compiled dependency edges and fails the build the moment code reaches through a boundary it shouldn't. The working test for any "modular" codebase you encounter is exactly this chapter's own demonstrated one: pick one module's "internal" package, and check — not by reading the folder name, but by finding a real, wired-in, currently-passing build check — whether anything actually stops another module from importing it. If the honest answer is "nothing, currently," the modularity is a sign on a door, not a lock.
+
+You should also be able to explain the second, subtler risk this chapter proves real: two doors, each individually locked correctly, can still trap the house in a bind if room A's lock also happens to require a key kept inside room B, and room B's lock requires a key kept inside room A — neither lock looks wrong by itself, but together the two rooms can no longer be entered, tested, or renovated independently at all. This is exactly why this chapter's own practice code runs a separate, dedicated cycle check in addition to the ordinary one-directional boundary check: a single-direction lock check would never catch a two-room bind, because neither individual door looks broken.
+
+Finally, the working answer to "is a modular monolith just a monolith we haven't split yet" is a firm no, in the same way a house with real, working locks on every internal door isn't just "a house that happens to have doors" — the locks (the enforced boundaries) are a deliberate, actively-maintained decision, not an accident of the floor plan.
 
 ## Mental Model
 

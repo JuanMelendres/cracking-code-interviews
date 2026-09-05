@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 17-architecture
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/architecture/cqrs-read-write-separation.md
+topic_id: T-904
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -44,34 +50,36 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Historical Context](#historical-context)
-6. [Core Concepts](#core-concepts)
-7. [Internal Implementation](#internal-implementation)
-8. [Execution Flow](#execution-flow)
-9. [Diagrams](#diagrams)
-10. [Production Scenarios](#production-scenarios)
-11. [Failure Modes and Debugging](#failure-modes-and-debugging)
-12. [Trade-offs](#trade-offs)
-13. [Performance Implications](#performance-implications)
-14. [Concurrency Implications](#concurrency-implications)
-15. [Security Implications](#security-implications)
-16. [Decision Framework](#decision-framework)
-17. [Comparisons](#comparisons)
-18. [Common Mistakes](#common-mistakes)
-19. [Anti-Patterns](#anti-patterns)
-20. [Best Practices](#best-practices)
-21. [Interview Answer Framework](#interview-answer-framework)
-22. [Interview Questions](#interview-questions)
-23. [Summary](#summary)
-24. [Key Takeaways](#key-takeaways)
-25. [Cheat Sheet](#cheat-sheet)
-26. [Flashcards](#flashcards)
-27. [Practice Exercises](#practice-exercises)
-28. [Solutions](#solutions)
-29. [Additional Reading](#additional-reading)
-30. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Historical Context](#historical-context)
+8. [Core Concepts](#core-concepts)
+9. [Internal Implementation](#internal-implementation)
+10. [Execution Flow](#execution-flow)
+11. [Diagrams](#diagrams)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Performance Implications](#performance-implications)
+16. [Concurrency Implications](#concurrency-implications)
+17. [Security Implications](#security-implications)
+18. [Decision Framework](#decision-framework)
+19. [Comparisons](#comparisons)
+20. [Common Mistakes](#common-mistakes)
+21. [Anti-Patterns](#anti-patterns)
+22. [Best Practices](#best-practices)
+23. [Interview Answer Framework](#interview-answer-framework)
+24. [Interview Questions](#interview-questions)
+25. [Summary](#summary)
+26. [Key Takeaways](#key-takeaways)
+27. [Cheat Sheet](#cheat-sheet)
+28. [Flashcards](#flashcards)
+29. [Practice Exercises](#practice-exercises)
+30. [Solutions](#solutions)
+31. [Additional Reading](#additional-reading)
+32. [Official References](#official-references)
 
 ---
 
@@ -88,6 +96,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 CQRS shows up in Staff-level system-design interviews almost exclusively as a trap, not a checklist item. Interviewers ask "how would you handle this reporting dashboard that's slowing down the write path" specifically to see whether the candidate reaches for separation, complexity, and eventual consistency as a first move, or recognizes the narrower set of conditions — a read pattern shaped fundamentally differently from the write pattern, at a volume where a materialized view or read replica genuinely isn't enough — that actually justifies it. The candidate who says "let's do CQRS" three sentences into a design discussion about a mid-traffic CRUD service is signaling the same failure mode this program's [microservice decomposition chapter](microservice-decomposition-and-monolith-tradeoff.md) warns about: pattern-matching from a name instead of reasoning from the actual pressure. Because this pattern is real and does solve real problems, "never do this" is as wrong an answer as "always do this" — the interview signal is precision about *when*.
+
+## Level 1 — Foundation
+
+A newsroom has two very different jobs happening at once. Reporters investigate a story, verify facts, and update the master record the moment new information comes in — that master record is the newsroom's single source of truth, and it changes constantly, sometimes multiple times an hour. The printed newspaper on your doorstep, though, is a separate, already-typeset copy, produced from that master record at whatever point the presses last ran. If a reporter confirms a major correction five minutes after the presses started, that correction is completely true in the newsroom's records — and completely absent from the copy sitting on your porch, until the next print run. Nobody considers this a bug; it's simply what it means to have a fast-to-produce, easy-to-read printed copy that isn't the same document as the constantly-changing master record behind it.
+
+CQRS is that same split, deliberately applied to software: the write model is the newsroom's master record, kept normalized and rigorously correct; the read model is the printed page, reshaped for fast, easy consumption and fed by a real, non-instant production process (the projector) that takes a real amount of time to run.
+
+## Level 2 — Working Knowledge
+
+At this level you should connect the "printing lag" directly to a number, not a hand-wave: this chapter measured its own newsroom-to-newspaper gap directly, and even in the best possible case — no network, one machine, an in-memory queue — that lag was never zero (a real median of 1.5 microseconds, with a forced, deliberately-slowed run showing a read model sitting stale or completely missing an order for over 400 milliseconds after the write had already fully committed). The working lesson: however fast your "presses" run, there is always a real gap between "the newsroom knows it" and "the printed page shows it," and pretending that gap is zero is exactly the mistake this chapter calls out as the most common one on this topic.
+
+The working question before reaching for this pattern at all is the newsroom's own economics: does this specific report actually need the freshly-typeset, purpose-built page (a materialized, precomputed read model), or would glancing at the reporter's own working notes (a read replica or materialized view against the existing schema) already be fast enough? This chapter's own measured 4.6-5.4x speedup on a "total spend per customer" report is real and worth having — but only once a simpler, cheaper fix (an index, a replica) has genuinely been ruled out for a stated reason, exactly as the Decision Framework requires.
+
+Finally, watch for the common confusion this chapter names directly: a newspaper being printed from the newsroom's records doesn't mean the newsroom itself operates by keeping a full historical archive of every past edition (Event Sourcing) — those are two separate decisions. A newsroom can run this exact split perfectly well while still only keeping today's current master record, with no archival log at all, exactly as this chapter's own practice code does.
 
 ## Mental Model
 
