@@ -477,3 +477,19 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
+
+## [2026-09-05] — Phase 6: Learning-path assembly complete (6/6)
+
+### Added
+
+- All six learning paths named in `00-project/syllabus-transformation-plan.md` §6 assembled as real, short documents in the new `syllabus/00-overview/learning-paths/` directory: `junior-to-mid.md`, `mid-to-senior.md`, `senior-interview-refresh.md`, `senior-to-staff.md`, `interview-emergency-sprint.md`, `backend-java-specialization.md`. Each is an ordered list of real topic links, a stated time budget, and per-topic (or per-domain) stop-at-level guidance, per §6's own definition — never a copy of topic content.
+- **Junior → Mid** and **Senior → Staff** curate individual topics across domains (14 and 16 respectively) — genuine cross-domain hand-picking. **Mid → Senior** and **Backend Java specialization** sequence whole domains, pointing to each domain's own `INDEX.md` as the exhaustive topic list rather than re-listing every topic inside it, avoiding duplication of content the domain index already owns. **Senior interview refresh** is a review-mode rotation through existing `cheat-sheets/`/`flashcards/` plus a fixed set of delivery-mechanics chapters, adding zero new topic content by design. **Interview emergency sprint** adds no content at all — it points wholesale at `study-packs/`, exactly as the Phase 1 outline specified.
+- Verified all six documents' links resolve on disk — zero broken links.
+- Updated `syllabus/00-overview/learning-paths.md` (kept its Phase 1 outline table verbatim per its own provenance note; appended a new "Phase 6 update" section linking to the six real documents and explaining the two structural approaches used) and `syllabus/00-overview/INDEX.md` (updated the stale "What's next" section, last accurate as of 2026-09-03, to reflect Phase 5's completion across all 21 domains and Phase 6's completion, and to correctly describe Phase 4 and Phase 7 as the two remaining, not-yet-executed phases).
+
+### Not yet done
+
+- Phase 4 (Cross-linking pass) has not run as its own explicit, audited sweep against §12's validation rules — substantial cross-linking already exists organically via `related:` front matter, but is unverified as complete.
+- Phase 7 (Deprecation of old paths) — the only destructive phase — has not started and requires its own separate approval.
+- `18-engineering-practices/git-internals-and-collaboration-workflows.md` remains L3/L4 only, flagged for a future retrofit pass.
+- Cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters — still deferred to a separate batch (carried over from the prior entry).
