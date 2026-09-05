@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 13-observability
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/performance/logging-metrics-tracing-and-opentelemetry.md
+topic_id: T-1205
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -38,27 +44,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -74,6 +82,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Observability questions test whether a candidate has actually operated a distributed system in production or only knows the vocabulary. The specific mechanism — a shared `traceId` linking spans — is what separates candidates who can describe tracing abstractly from those who understand exactly how a tracing backend reconstructs a multi-service request's path, and why a single missing instrumentation point breaks that reconstruction at precisely the worst place.
+
+## Level 1 — Foundation
+
+Imagine investigating a delayed package delivery across a chain of warehouses. A **metric** is like a dashboard showing "average delivery time this week is up 20%" — it tells you something's off, in aggregate, but nothing about which specific package or which specific warehouse is the problem. A **trace** is like a tracking number that follows one specific package through every single warehouse it passed through, showing exactly how long it sat at each stop — it tells you *where* in the journey the delay actually happened. A **log** is the detailed note a warehouse worker wrote down about that specific package at that specific stop — "held for extra inspection due to a mislabeled address" — the full, rich detail of *why*.
+
+None of these three substitute for each other. The dashboard alone can't tell you which package was late or why. The tracking number alone can't give you the worker's detailed note. And a pile of workers' notes with no shared tracking number can't be assembled into one coherent journey at all. The magic that makes the tracking-number trick work is that every warehouse stop for the same package gets stamped with the *same* tracking number — that shared ID is the entire mechanism that lets you reconstruct the full path later.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to state precisely what makes tracing actually work: every span (one unit of work — an HTTP call, a database query) in a single logical request shares one `traceId`, and each span also carries its own unique `spanId` plus a reference to its parent's `spanId`. A tracing backend reconstructs the entire call tree with a single, simple query: "give me everything that shares this `traceId`." That's the whole mechanism — no more complicated than that.
+
+You should also be comfortable diagnosing the specific, real consequence of a service that fails to forward an incoming trace context to its own outgoing calls: the trace tree breaks exactly at that point, turning one reconstructable request path into two disconnected fragments — right where visibility mattered most, often during an active incident. This isn't a hypothetical edge case; it's a common, real regression that happens whenever a service migrates its HTTP client library and the interceptor responsible for propagating that context gets silently dropped in the process.
+
+Practically, when facing a real diagnostic problem, the working sequence is: check metrics first ("is something actually wrong, in aggregate, right now?"), pull a trace for a representative slow or failed request next ("where in this specific request's path did it go wrong?"), then pull logs for that exact trace ID last ("why, in full detail, did that specific step fail?"). This detect-localize-explain funnel is the same underlying discipline as reading a GC log or a query plan — "diagnose from whatever artifact is actually in front of you" — just applied to a different kind of artifact.
 
 ## Mental Model
 

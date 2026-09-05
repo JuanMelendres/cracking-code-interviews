@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 13-observability
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/performance/incident-response-and-blameless-postmortems.md
+topic_id: T-1207
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -49,31 +55,33 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Java Examples](#java-examples)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Organizational Implications](#organizational-implications)
-13. [Decision Framework](#decision-framework)
-14. [Comparisons](#comparisons)
-15. [Common Mistakes](#common-mistakes)
-16. [Anti-Patterns](#anti-patterns)
-17. [Best Practices](#best-practices)
-18. [Interview Answer Framework](#interview-answer-framework)
-19. [Interview Questions](#interview-questions)
-20. [Summary](#summary)
-21. [Key Takeaways](#key-takeaways)
-22. [Cheat Sheet](#cheat-sheet)
-23. [Flashcards](#flashcards)
-24. [Practice Exercises](#practice-exercises)
-25. [Solutions](#solutions)
-26. [Additional Reading](#additional-reading)
-27. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Java Examples](#java-examples)
+11. [Production Scenarios](#production-scenarios)
+12. [Failure Modes and Debugging](#failure-modes-and-debugging)
+13. [Trade-offs](#trade-offs)
+14. [Organizational Implications](#organizational-implications)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -103,6 +111,20 @@ just as commonly missed: candidates who've absorbed "5 Whys" training sometimes
 narrow every incident down to one cause, when real incidents almost always have
 several genuinely independent contributing factors, any one of which, changed alone,
 would have prevented or shortened the incident.
+
+## Level 1 — Foundation
+
+Imagine your kitchen sink starts leaking badly onto the floor. The first thing you do isn't sit down and carefully diagram exactly which pipe fitting failed and why — you turn off the water valve first, so the flooding stops. *Then* you figure out what actually went wrong. **Incident response** works the same way: stopping the damage (mitigation — a rollback, a feature flag, shutting off traffic) almost always comes before fully understanding the damage (diagnosis), because every extra minute of a real leak costs more, while figuring out the root cause can usually wait until the water's off.
+
+Afterward, when you tell the story of what happened, there's a strong, natural pull to blame one thing — "the pipe fitting was old" — and stop there. A **blameless postmortem** resists that pull. It usually turns out several separate things had to line up for the leak to happen: the fitting was old, nobody had a schedule for checking fittings, and the shutoff valve was hard to find in an emergency. Calling out just one of these as "the" cause means the other two never get fixed, and a similar leak happens again later for a different specific reason. And "blameless" means more than just not naming which family member forgot to check the pipe — it means the writeup focuses on "there was no fitting-inspection schedule" rather than "someone failed to check the fitting," because the second framing quietly stops the investigation the moment a person is identified.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to defend, concretely, why mitigation should almost always come before full diagnosis: user-facing impact compounds every additional minute it continues, while a mitigation like a rollback is frequently far faster to execute than a genuine root-cause investigation — and diagnosis can almost always continue productively in parallel or immediately afterward, without making things worse for users in the meantime. The one real exception worth naming unprompted: if the fastest available mitigation is itself risky or hard to reverse (an irreversible data migration, say), that calculus shifts, and more diagnosis before acting can be the right call.
+
+You should also be comfortable writing (or recognizing) a genuinely blameless postmortem versus one that merely avoids using anyone's name. The real test isn't "did we name a person" — it's "does the document use blame-coded language at all" ("failed to," "should have caught," "human error"), because that language has the same effect under a different disguise: once a document says someone specifically "failed to" do something, the investigation tends to stop right there, instead of asking why the surrounding process allowed that single action to cause a full incident.
+
+Practically, when reviewing a postmortem draft, the working habit is to check two things: does it list several genuinely independent "Contributing Factors" rather than collapsing everything into one singular "Root Cause," and does every action item have both a named owner and a due date? An action item with neither is not a real commitment — it's the postmortem equivalent of "we'll be more careful next time," and it will almost certainly never actually get done.
 
 ## Mental Model
 

@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 13-observability
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/performance/performance-methodology-and-slo-error-budgets.md
+topic_id: T-1201/T-1206
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -41,27 +47,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -77,6 +85,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 This vocabulary is what makes a scaling or incident story credible in a behavioral or system-design interview — a candidate who can say "we were at 60% of our error budget for the month and a single incident consumed 15% of it in 40 minutes" is speaking with a precision that "the system was having some problems" simply doesn't convey. Interviewers use this topic specifically to check whether a candidate has practiced computing these numbers, not just read the definitions.
+
+## Level 1 — Foundation
+
+Imagine two different ways to check on a car. **USE** is like checking each individual part: how hard is the engine working right now (utilization), is anything backed up waiting for a part to be free, like fuel queued at an injector (saturation), and are any warning lights on (errors). It's a checklist for one specific component. **RED** is the equivalent checklist for the whole trip: how many miles are you covering per hour (rate), how often does something go wrong along the way (errors), and how long does each leg of the journey actually take (duration). USE looks at individual parts; RED looks at the overall service the car provides.
+
+An **error budget** is like a monthly allowance of "acceptable bad days" you've agreed to tolerate before you consider the car unreliable. If you've promised 99.9% on-time arrivals this month, you have room for a small number of late arrivals — the budget is simply how much of that allowance is left. The genuinely useful trick is realizing this allowance is meant to guide a real decision: "we still have room left this month, so it's an acceptable time to try that riskier shortcut" — not just a score you calculate afterward and forget.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to apply USE and RED to things you already have on hand, without needing new tools: USE applied to a heap in a GC log (utilization = occupied vs. max heap, saturation = a GC pause itself, since that's the JVM stopping everything because the heap couldn't absorb more without reclaiming space, errors = an `OutOfMemoryError`) and RED applied to a Kafka consumer group (rate = messages consumed per second, errors = failed processing or duplicates, duration = time from produced to fully processed). Recognizing this is a "read the same artifact through a different lens" exercise, not new material requiring new demos, is the actual skill being tested.
+
+You should also be comfortable with the specific, non-obvious trap of trusting a monthly aggregate alone: a month can show "60% of budget remaining" while the daily consumption has been steadily climbing for two weeks — meaning the real, actionable headroom is far less than the aggregate number suggests. The working habit is to always ask for the daily breakdown before treating a healthy-looking aggregate as license to take on more risk (shipping something risky, running a maintenance window).
+
+Practically, when someone tells an incident story using only qualitative language ("we had some issues"), the stronger, more credible version quantifies it against the budget: "a 40-minute incident consumed roughly 14% of the month's entire error budget." That single sentence does more work than a paragraph of vague description, and building the habit of stating incidents this way is exactly what this topic is training you to do.
 
 ## Mental Model
 

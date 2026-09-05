@@ -5,9 +5,15 @@ document_type: handbook-chapter
 domain: 13-observability
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-04
 source_history:
   - handbook/performance/percentiles-tail-latency-and-coordinated-omission.md
+topic_id: T-1204
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - advanced
 target_levels:
@@ -35,27 +41,29 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Production Scenarios](#production-scenarios)
-9. [Trade-offs](#trade-offs)
-10. [Decision Framework](#decision-framework)
-11. [Common Mistakes](#common-mistakes)
-12. [Anti-Patterns](#anti-patterns)
-13. [Best Practices](#best-practices)
-14. [Interview Answer Framework](#interview-answer-framework)
-15. [Interview Questions](#interview-questions)
-16. [Summary](#summary)
-17. [Key Takeaways](#key-takeaways)
-18. [Cheat Sheet](#cheat-sheet)
-19. [Flashcards](#flashcards)
-20. [Practice Exercises](#practice-exercises)
-21. [Solutions](#solutions)
-22. [Additional Reading](#additional-reading)
-23. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Trade-offs](#trade-offs)
+12. [Decision Framework](#decision-framework)
+13. [Common Mistakes](#common-mistakes)
+14. [Anti-Patterns](#anti-patterns)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -71,6 +79,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Percentile questions separate candidates who can recite "p99" from those who understand why averages actively mislead and why a naive load test lies about the tail. Coordinated omission specifically is a Staff-tier topic because it's a measurement bug, not a service bug — the load-testing tool itself produces confidently-wrong numbers, and recognizing that requires understanding the mechanism, not just the vocabulary.
+
+## Level 1 — Foundation
+
+Imagine a coffee shop where 98 out of 100 customers get served in under a minute, but 2 unlucky customers get stuck waiting eight minutes because the espresso machine occasionally jams. If you only report the *average* wait time, you get a number like "1.1 minutes" — which sounds great, and completely hides the fact that a real, noticeable fraction of customers are having a genuinely bad experience. A **percentile** instead answers a much more honest question: "how long did the slowest 1% (or 10%, or 50%) actually wait?" That's the number that tells you what your unluckiest customers actually experience — which is exactly who complains, and exactly who you lose.
+
+**Coordinated omission** is a sneaky measurement mistake that happens when you're trying to *test* how long the coffee shop's line gets under load. If your test sends the next fake customer in only once the previous one has been served, then during the exact moment the espresso machine is jammed, your test simply stops sending new customers — so it never captures how long a real, continuously-arriving line of customers would actually have to wait behind that jam. It's not that your test lies about any individual customer's wait — it's that it quietly stops measuring exactly when things get bad, making the whole test look far rosier than reality.
+
+## Level 2 — Working Knowledge
+
+At this level you should be able to explain, precisely, why a load-testing tool that waits for each response before sending the next request (a "closed-loop" generator) produces measurements that look clean but are systematically wrong. During a slowdown, it sends fewer requests exactly when it should be capturing how bad that slowdown is for anyone still arriving — the fix is an "open-loop" generator that keeps sending requests on a fixed schedule regardless of how long previous ones take, which is how real, independent users actually behave and correctly captures the real queueing delay a slowdown creates.
+
+You should also be comfortable with the specific, concrete argument for why an average is close to useless as a performance target: it's compatible with wildly different underlying realities. "Every single user waits close to the average" and "98% of users are fast, 2% wait ten times longer" can produce the exact same average number, while describing completely different, non-interchangeable user experiences. Only a percentile — specifically a high one, like p99 or p99.9 — actually distinguishes these.
+
+Practically, if you ever see a load test report a suspiciously clean percentile that's pinned exactly at a known stall or timeout duration, that's a real, recognizable signature of coordinated omission — worth investigating the load generator's own request-scheduling logic before trusting the number. And when setting a timeout or an SLO, the working habit is to reach for a high percentile (p99, sometimes p99.9) derived from real, correctly-measured data — never a round number picked by feel, and never the raw maximum, which is dominated by rare, often environmental outliers that don't represent a meaningful target to chase.
 
 ## Mental Model
 

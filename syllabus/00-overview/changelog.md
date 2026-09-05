@@ -379,4 +379,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - 6 further migrated domains (`13`–`17`, `20`, `21`) — 68 chapters — still await the same retrofit.
+
+## [2026-09-04] — Phase 5: L1/L2 retrofit continues — 13-observability domain complete (4/4)
+
+### Added
+
+- All 4 `13-observability` chapters retrofitted: `performance-methodology-and-slo-error-budgets.md` (T-1201/T-1206), `percentiles-tail-latency-and-coordinated-omission.md` (T-1204), `logging-metrics-tracing-and-opentelemetry.md` (T-1205), `incident-response-and-blameless-postmortems.md` (T-1207) — same additive method as every prior batch, all 4 gained `topic_id` and `mastery_levels_covered: [L1, L2, L3, L4]`.
+- Every chapter's own content was read in full before writing its new sections, grounding each analogy in that chapter's real subject: a car-diagnostics analogy for USE/RED plus a monthly-allowance analogy for error budgets; a coffee-shop-wait-time analogy for percentiles and coordinated omission; a package-tracking-number analogy for logs/metrics/traces and the shared traceId mechanism; a leaking-kitchen-sink analogy for mitigate-before-diagnose and blameless postmortems.
+- Verified all 4 files: 1 H1 each; both new headings resolving with correct anchors; YAML parses; every cross-reference resolves — zero broken links found in this domain.
+- Updated `syllabus/13-observability/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table. **`13-observability` is now fully L1–L4 (4/4)** — the eleventh fully-retrofitted domain in the syllabus, after `02-java`, `04-software-design`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`, `09-messaging-event-driven`, `10-distributed-systems`, `11-system-design`, and `12-security`.
+
+### Not yet done
+
+- 5 further migrated domains (`14`–`17`, `20`, `21`) — 64 chapters — still await the same retrofit.
 - Cheat sheets, flashcards, and production-cookbook entries for all Phase 5 new-writing chapters this session has produced — still deferred to a separate batch.
