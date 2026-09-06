@@ -527,3 +527,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `CLAUDE.md`/`AGENTS.md` Repository Structure sections and `resources/repository-tree.md` still describe the pre-migration layout — a documentation-debt item distinct from Phase 7's own scope, flagged here for visibility rather than fixed silently.
 - `18-engineering-practices/git-internals-and-collaboration-workflows.md` remains L3/L4 only, flagged for a future retrofit pass.
 - Cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters — still deferred to a separate batch.
+
+## [2026-09-06] — Phase 5 gap closed: git-internals-and-collaboration-workflows.md now L1–L4
+
+### Added
+
+- Retrofitted `18-engineering-practices/git-internals-and-collaboration-workflows.md` — the one chapter left L3/L4-only after its domain's 2026-09-03 closure — with real Level 1 — Foundation and Level 2 — Working Knowledge sections, following the same pattern used across the other 16 backend-domain retrofits this transformation plan ran.
+- Level 1 builds a library content-deduplication analogy (identical content never stored twice, addressed by what it is) and a bookmark analogy (a branch is a movable pointer, not the content itself) — a fresh analogy, not reused from any prior retrofit. Level 2 extends the same picture to why `reset --hard` and `reflog` are non-destructive in practice, and why `rebase` re-copies commits with new identity while `merge` does not — building directly toward the chapter's own existing Mental Model and Core Concepts sections rather than restating them.
+- Front matter gained `mastery_levels_covered: [L1, L2, L3, L4]`; no `topic_id` was added, consistent with the chapter's own stated Topic register note that it has no blueprint topic ID by design. `last_updated` bumped to 2026-09-06. Table of contents renumbered (+2 entries).
+- Verified: both new headings' anchors resolve against the table of contents, exactly one H1, YAML parses.
+- Updated `syllabus/18-engineering-practices/INDEX.md` and `syllabus/00-overview/INDEX.md`'s domain-status table and "What's next" section. **This closes the last remaining Phase 5 exception — all 21 syllabus domains are now genuinely L1–L4 with zero known gaps.**
+
+### Not yet done
+
+- Cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters (including this one) remain deferred to a separate batch — the one non-blocking item left across the entire transformation plan.

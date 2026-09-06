@@ -5,9 +5,14 @@ document_type: handbook-chapter
 domain: 18-engineering-practices
 status: draft
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-06
 source_history:
   - handbook/cloud/git-internals-and-collaboration-workflows.md
+mastery_levels_covered:
+  - L1
+  - L2
+  - L3
+  - L4
 difficulty:
   - foundational
   - intermediate
@@ -34,28 +39,30 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Mental Model](#mental-model)
-4. [Definition and Purpose](#definition-and-purpose)
-5. [Core Concepts](#core-concepts)
-6. [Internal Implementation](#internal-implementation)
-7. [Diagrams](#diagrams)
-8. [Real Command Transcripts](#real-command-transcripts)
-9. [Production Scenarios](#production-scenarios)
-10. [Trade-offs](#trade-offs)
-11. [Decision Framework](#decision-framework)
-12. [Common Mistakes](#common-mistakes)
-13. [Anti-Patterns](#anti-patterns)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+3. [Level 1 — Foundation](#level-1--foundation)
+4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+5. [Mental Model](#mental-model)
+6. [Definition and Purpose](#definition-and-purpose)
+7. [Core Concepts](#core-concepts)
+8. [Internal Implementation](#internal-implementation)
+9. [Diagrams](#diagrams)
+10. [Real Command Transcripts](#real-command-transcripts)
+11. [Production Scenarios](#production-scenarios)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -72,6 +79,20 @@ By the end of this chapter you can:
 ## Why This Matters in Interviews
 
 Git rarely gets its own dedicated interview round, but it surfaces constantly as connective tissue: "walk me through how you'd resolve this conflict," "you just force-pushed over a teammate's work, what do you do," "how would you find which commit caused this regression." These are practical-competence checks — they filter for engineers who have actually operated git under pressure versus those who only know `add`/`commit`/`push`/`pull`. At Senior/Staff level, the bar shifts from "can use git" to "can explain *why* a git operation behaves the way it does and can recover calmly when something goes wrong" — exactly the gap this chapter targets, since it's assumed baseline knowledge that's rarely taught with any rigor.
+
+## Level 1 — Foundation
+
+Think of a library that never buys a second physical copy of a book it already owns. If ten students all need the exact same chapter, the librarian doesn't photocopy it ten times — every checkout slip just points at the one shelf copy. But if a student turns in a draft with even one paragraph changed, that's a genuinely new book to the librarian: filed as its own separate copy with its own new call number, sitting on the shelf right alongside the original. Git works exactly like this librarian. Content is stored once, addressed by what it *is* (a hash of its exact bytes), and identical content — no matter which file it came from, or how many files reference it — is never stored twice. This is the reason cloning even a large, long-lived repository takes far less disk space than the sum of every historical version of every file would suggest.
+
+A branch, in this same library, is just a labeled bookmark clipped to a specific shelf copy — "Alice's bookmark" means "Alice starts reading here." Moving the bookmark to a different copy doesn't touch any books at all; it only changes what the bookmark points to. That's `git commit` (write a new copy, move the bookmark onto it) and `git checkout`/`git switch` (move which bookmark you're currently reading from). Crucially, nothing about moving a bookmark deletes a book — old, no-longer-bookmarked copies just sit on the shelf, undisturbed, until an explicit inventory-clearing pass (`git gc`) eventually decides they're truly unreachable.
+
+## Level 2 — Working Knowledge
+
+At this level, connect the bookmark picture to why a git command that *sounds* destructive usually isn't one. `git reset --hard` moves your bookmark backward to an earlier copy — the pages you'd already written past that point are still sitting on the shelf, simply unbookmarked by anyone at the moment. `git reflog` is the librarian's own private log of every place a given bookmark has ever pointed, which is exactly what makes it possible to reclaim that "lost" spot even after you've moved on: you're not restoring a deleted book, you're just reading the log and re-clipping the bookmark.
+
+This working knowledge also explains the two ways of combining two people's reading. `git merge` clips a new, two-pronged bookmark that says "this reading incorporates both Alice's copy and Bob's copy," without altering either of their original copies. `git rebase` instead re-copies Bob's pages fresh, as if he'd started writing from Alice's latest copy all along — so those re-copied pages, even though every word on them reads identically to before, are technically brand-new books with new call numbers. That's the concrete, working-level reason rebase is unsafe on a branch someone else has already bookmarked from: their bookmark still points at the old call numbers, which the rebase just quietly orphaned.
+
+The practical skill at this level is knowing which commands only move a bookmark (cheap, reversible, no data at risk) versus which ones can make old call numbers permanently unreachable (deleting a branch with no other bookmark on it, or running `git gc` after a reflog entry has expired). Before running anything that sounds destructive — `reset --hard`, a force-push, a branch deletion — the working habit is to check `git reflog` first: the books are very likely still on the shelf.
 
 ## Mental Model
 

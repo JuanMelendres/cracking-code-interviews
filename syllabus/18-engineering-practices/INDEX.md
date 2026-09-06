@@ -2,8 +2,8 @@
 title: "Engineering Practices — Domain Index"
 document_type: syllabus-domain-index
 domain: 18-engineering-practices
-status: 5 of 5 planned topics present — domain complete (Phase 5, 2026-09-03)
-last_updated: 2026-09-03
+status: 5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06)
+last_updated: 2026-09-06
 ---
 
 # Engineering Practices
@@ -11,12 +11,13 @@ last_updated: 2026-09-03
 Git internals, code review, technical writing (ADRs), working with legacy code, and refactoring discipline. New topics in this domain are assigned IDs in the plan's reserved `T-1800`–`T-1899` range (§9).
 
 > **Phase 5 update (2026-09-03).** All four gap topics named in the plan's own Section 7.6 ("code review, technical writing standards, working with legacy code, refactoring discipline") are now written, closing this domain. Each new chapter is written against the full 20-section Topic Specification with genuine L1–L4 coverage in one file. Two chapters (Legacy Code, Refactoring Discipline) are backed by real, compiled, executed Java demos; Code Review and ADRs are grounded in real, existing repository artifacts (this repository's own commit history, `templates/adr-template.md`, and `scripts/check_adr_completeness.py`, actually run) rather than a Java compile-and-run demo, since neither topic is itself an algorithm.
+> **Phase 5 update (2026-09-06).** `git-internals-and-collaboration-workflows.md`, the one chapter left L3/L4-only after the 2026-09-03 update, has been retrofitted with real Level 1 — Foundation and Level 2 — Working Knowledge sections (a library content-deduplication and bookmark-pointer analogy, built up to the object-model and merge/rebase mechanics its existing L3/L4 content already covers). This closes the domain's last known gap and the transformation plan's last outstanding Phase 5 item — every domain in `syllabus/` is now genuinely L1–L4.
 
 ## Topics
 
 | Topic ID | Title | Mastery levels covered | Location |
 |---|---|---|---|
-| — | Git Internals and Collaboration Workflows | L3, L4 (existing Senior/Staff-depth content; L1/L2 Foundation/Working-Knowledge layers pending a future retrofit pass) | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
+| — | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | L1, L2, L3, L4 — fully written (no blueprint topic ID; see the chapter's own Topic register note) | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
 | T-1801 | [Code Review: Standards and Practice](code-review-standards-and-practice.md) | L1, L2, L3, L4 — fully written | `syllabus/18-engineering-practices/code-review-standards-and-practice.md` |
 | T-1802 | [Architecture Decision Records and Technical Writing for Engineers](architecture-decision-records-and-technical-writing.md) | L1, L2, L3, L4 — fully written | `syllabus/18-engineering-practices/architecture-decision-records-and-technical-writing.md` |
 | T-1803 | [Working with Legacy Code](working-with-legacy-code.md) | L1, L2, L3, L4 — fully written | `syllabus/18-engineering-practices/working-with-legacy-code.md` |
