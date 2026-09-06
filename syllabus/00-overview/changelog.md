@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-04
+last_updated: 2026-09-06
 ---
 
 # Syllabus Changelog
@@ -511,3 +511,19 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Phase 7 (Deprecation of old paths) — the only destructive phase — has not started and requires its own separate approval.
 - `18-engineering-practices/git-internals-and-collaboration-workflows.md` remains L3/L4 only, flagged for a future retrofit pass.
 - Cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters — still deferred to a separate batch (carried over from the prior entry).
+
+## [2026-09-06] — Phase 7: Deprecation of old paths — redirect stubs removed
+
+### Removed
+
+- Per `00-project/syllabus-transformation-plan.md` §10 ("remove redirect stubs at old `handbook/<domain>/` paths ... Old paths removed"), on the user's explicit go-ahead following Phase 4's completion report. This is the plan's only destructive phase; scope was held to exactly what the plan names — redirect stubs, never content.
+- 16 tracked `.gitkeep` redirect stubs removed via `git rm`: all 13 remaining `handbook/<domain>/` stubs (`architecture`, `cloud`, `collections`, `concurrency`, `databases`, `java-core`, `jvm`, `kafka`, `performance`, `security`, `spring`, `system-design`, `testing`) and the 3 remaining `interview-playbook/{coding,system-design,technical-answers}/` stubs. `interview-playbook/behavioral/` had no tracked stub (already bare) and `behavioral-handbook/` had no tracked content at all — both were already-empty, untracked local directories, removed from disk but never part of the git index.
+- The `handbook/` directory (including `handbook/frontend/`, which held no content) and `behavioral-handbook/` no longer exist. `interview-playbook/` still exists and is unaffected in substance — it retains `README.md`, `company-prep/` (private, real content, untouched), and the empty `frontend/` directory (a different domain's home per the Scope Addendum, out of Phase 7's scope regardless of its emptiness).
+- **Verified safe before removal, not assumed:** re-ran the same live-reference scan used for Phase 4, scoped to the same four old-path patterns, across the whole repository. Every remaining hit was either (a) a `source_history:` front-matter field or planning-document prose recording real migration provenance (`00-project/`, `syllabus/00-overview/vision.md`/`taxonomy.md`, both verbatim plan extracts), (b) historical batch-history narrative already identified and deliberately preserved in Phase 4 (`cheat-sheets/README.md`, `flashcards/README.md`, `production-cookbook/README.md`, `interview-playbook/README.md`), or (c) `CLAUDE.md`/`AGENTS.md` — no live navigational link anywhere in the repository still pointed at a stub path.
+- **Explicitly out of scope, left alone:** `CLAUDE.md`'s and `AGENTS.md`'s own Repository Structure sections still document `handbook/`, `behavioral-handbook/`, and `interview-playbook/{behavioral,coding,system-design,technical-answers}/` as the canonical structure — both predate the `syllabus/` migration entirely and were already known-stale before this phase (a pre-existing documentation debt, not something Phase 7 created). `resources/repository-tree.md` is a static, previously-generated directory snapshot that already referenced a stub (`interview-playbook/behavioral/.gitkeep`) that did not even exist in the tracked tree before this phase ran — it was stale independent of this change and was not regenerated, since Phase 7's own scope is "old paths removed," not "regenerate unrelated generated artifacts."
+
+### Not yet done
+
+- `CLAUDE.md`/`AGENTS.md` Repository Structure sections and `resources/repository-tree.md` still describe the pre-migration layout — a documentation-debt item distinct from Phase 7's own scope, flagged here for visibility rather than fixed silently.
+- `18-engineering-practices/git-internals-and-collaboration-workflows.md` remains L3/L4 only, flagged for a future retrofit pass.
+- Cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters — still deferred to a separate batch.
