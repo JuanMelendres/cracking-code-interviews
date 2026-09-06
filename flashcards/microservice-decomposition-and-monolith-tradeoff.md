@@ -4,7 +4,7 @@ slug: microservice-decomposition-and-monolith-tradeoff
 document_type: flashcard-deck
 domain: architecture
 topic_id: T-907
-canonical: ../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md
+canonical: ../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md
 last_updated: 2026-08-06
 ---
 

@@ -4,7 +4,7 @@ slug: spring-actuator-health-and-observability-hooks
 document_type: cheat-sheet
 domain: spring
 topic_id: T-516
-canonical: ../handbook/spring/spring-actuator-health-and-observability-hooks.md
+canonical: ../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md
 last_updated: 2026-09-01
 ---
 

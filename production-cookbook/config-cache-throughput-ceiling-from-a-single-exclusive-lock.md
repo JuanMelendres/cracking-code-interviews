@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md
-source: handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md#production-scenarios
+source: syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md#production-scenarios
 ---
 
 # Config Cache Throughput Ceiling from a Single Exclusive Lock

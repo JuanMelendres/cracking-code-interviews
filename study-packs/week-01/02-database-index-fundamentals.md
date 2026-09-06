@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-610, T-611]
 week: 1
 last_reviewed: 2026-07-30
-canonical: ../../handbook/databases/index-structures-btree-composite-covering.md
+canonical: ../../syllabus/06-databases/index-structures-btree-composite-covering.md
 ---
 
 # T-609 · Database Index Structures

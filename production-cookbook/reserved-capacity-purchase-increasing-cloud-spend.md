@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/15-cloud/cloud-cost-and-scaling-economics.md
-source: handbook/cloud/cloud-cost-and-scaling-economics.md#production-scenarios
+source: syllabus/15-cloud/cloud-cost-and-scaling-economics.md#production-scenarios
 ---
 
 # Reserved-Capacity Purchase Increasing Cloud Spend

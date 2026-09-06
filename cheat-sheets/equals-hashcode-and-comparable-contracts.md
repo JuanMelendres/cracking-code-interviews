@@ -4,7 +4,7 @@ slug: equals-hashcode-and-comparable-contracts
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-101
-canonical: ../handbook/java-core/equals-hashcode-and-comparable-contracts.md
+canonical: ../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md
 last_updated: 2026-08-05
 ---
 

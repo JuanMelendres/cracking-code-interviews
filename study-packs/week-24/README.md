@@ -18,7 +18,7 @@ Weeks 20–23 closed the worst zero/near-zero patterns, the next-thinnest patter
 
 ## Prerequisites
 
-None formally required. `study-packs/week-01/04-coding-interview-communication.md` for the six-phase narration method. This week's DP file assumes comfort with the interval-DP and 2D-string-matching techniques from `study-packs/week-21/04-dynamic-programming-coding-practice.md` and `study-packs/week-23/01-dp-coding-practice.md` — it builds directly on those, it doesn't re-teach them.
+None formally required. `study-packs/week-01/04-coding-interview-communication.md` for the six-phase narration method. This week's DP file assumes comfort with the interval-DP and 2D-string-matching techniques from `syllabus/03-data-structures-algorithms/dynamic-programming.md` and `syllabus/03-data-structures-algorithms/dynamic-programming.md` — it builds directly on those, it doesn't re-teach them.
 
 ## Schedule
 

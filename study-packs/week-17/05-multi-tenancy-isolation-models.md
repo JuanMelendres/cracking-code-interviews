@@ -8,7 +8,7 @@ prerequisites: [T-1302]
 unlocks: []
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/multi-tenancy-isolation-models.md
+canonical: ../../syllabus/12-security/multi-tenancy-isolation-models.md
 ---
 
 # T-1307 · Multi-Tenancy Isolation Models

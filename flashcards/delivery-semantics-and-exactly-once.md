@@ -4,7 +4,7 @@ slug: delivery-semantics-and-exactly-once
 document_type: flashcard-deck
 domain: kafka
 topic_id: T-704
-canonical: ../handbook/kafka/delivery-semantics-and-exactly-once.md
+canonical: ../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
 last_updated: 2026-08-06
 ---
 

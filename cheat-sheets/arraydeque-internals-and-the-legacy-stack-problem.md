@@ -4,7 +4,7 @@ slug: arraydeque-internals-and-the-legacy-stack-problem
 document_type: cheat-sheet
 domain: collections
 topic_id: T-204
-canonical: ../handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md
+canonical: ../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md
 last_updated: 2026-09-02
 ---
 

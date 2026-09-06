@@ -8,7 +8,7 @@ prerequisites: [T-614]
 unlocks: []
 week: 10
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/data-partitioning-and-consistent-hashing.md
+canonical: ../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
 ---
 
 # T-806 · Data Partitioning & Consistent Hashing

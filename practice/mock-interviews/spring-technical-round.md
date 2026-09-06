@@ -29,7 +29,7 @@ official_references: []
 
 # Mock Interview: Spring Technical Round
 
-**Target role:** Senior/Staff Backend Engineer · **Duration:** 45 minutes · **Format:** self-recorded or with a partner, candidate/evaluator sections hard-separated below. Elevated from `study-packs/week-07/07-week-7-mock-interview.md`. Like the Weeks 1/2/4 rounds, this source uses a `Part A — Candidate script` / `Part B — Interviewer script` structure with no inline per-question pass/fail signals; the Evaluator Section below constructs pass/borderline/fail signals grounded in the interviewer script's own cues and the real, measured content of the canonical `handbook/spring/` and `syllabus/12-security/oauth2-oidc-and-jwt.md` chapters (both carry provenance notes stating their demos are real, executed Spring Framework 6.1.14 / `javax.crypto` output, not invented).
+**Target role:** Senior/Staff Backend Engineer · **Duration:** 45 minutes · **Format:** self-recorded or with a partner, candidate/evaluator sections hard-separated below. Elevated from `study-packs/week-07/07-week-7-mock-interview.md`. Like the Weeks 1/2/4 rounds, this source uses a `Part A — Candidate script` / `Part B — Interviewer script` structure with no inline per-question pass/fail signals; the Evaluator Section below constructs pass/borderline/fail signals grounded in the interviewer script's own cues and the real, measured content of the canonical `syllabus/05-spring/` and `syllabus/12-security/oauth2-oidc-and-jwt.md` chapters (both carry provenance notes stating their demos are real, executed Spring Framework 6.1.14 / `javax.crypto` output, not invented).
 
 ## Table of Contents
 

@@ -8,7 +8,7 @@ prerequisites: [T-301]
 unlocks: []
 week: 16
 last_reviewed: 2026-07-31
-canonical: ../../handbook/jvm/jvm-flags-and-container-ergonomics.md
+canonical: ../../syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md
 ---
 
 # T-312 · JVM Flags and Container Ergonomics

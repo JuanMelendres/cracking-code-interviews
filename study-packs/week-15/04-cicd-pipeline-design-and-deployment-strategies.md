@@ -8,7 +8,7 @@ prerequisites: [T-1002]
 unlocks: []
 week: 15
 last_reviewed: 2026-07-31
-canonical: ../../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
+canonical: ../../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
 ---
 
 # T-1009 · CI/CD Pipeline Design and Deployment Strategies

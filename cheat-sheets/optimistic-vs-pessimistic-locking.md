@@ -4,7 +4,7 @@ slug: optimistic-vs-pessimistic-locking
 document_type: cheat-sheet
 domain: databases
 topic_id: T-604
-canonical: ../handbook/databases/optimistic-vs-pessimistic-locking.md
+canonical: ../syllabus/06-databases/optimistic-vs-pessimistic-locking.md
 last_updated: 2026-09-02
 ---
 

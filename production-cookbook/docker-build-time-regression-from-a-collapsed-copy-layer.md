@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/14-devops-containers/container-image-internals.md
-source: handbook/cloud/container-image-internals.md#production-scenarios
+source: syllabus/14-devops-containers/container-image-internals.md#production-scenarios
 ---
 
 # Docker Build-Time Regression From a Collapsed COPY Layer

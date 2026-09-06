@@ -4,7 +4,7 @@ slug: authn-authz-rbac-vs-abac
 document_type: cheat-sheet
 domain: security
 topic_id: T-1302
-canonical: ../handbook/security/authn-authz-rbac-vs-abac.md
+canonical: ../syllabus/12-security/authn-authz-rbac-vs-abac.md
 last_updated: 2026-08-05
 ---
 

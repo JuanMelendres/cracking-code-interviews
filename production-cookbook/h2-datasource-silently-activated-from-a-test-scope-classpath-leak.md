@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/05-spring/spring-framework-vs-spring-boot.md
-source: handbook/spring/spring-framework-vs-spring-boot.md#production-scenarios
+source: syllabus/05-spring/spring-framework-vs-spring-boot.md#production-scenarios
 ---
 
 # H2 DataSource Silently Activated from a Test-Scope Classpath Leak

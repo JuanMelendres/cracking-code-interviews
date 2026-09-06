@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md
   - ../syllabus/11-system-design/idempotency.md
-source: handbook/system-design/rate-limiting-and-throttling-algorithms.md#production-scenarios
+source: syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md#production-scenarios
 ---
 
 # Per-Tenant Rate Limit Effectively Tripled by Unshared Per-Instance Counter State

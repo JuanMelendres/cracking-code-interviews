@@ -4,7 +4,7 @@ slug: spring-bean-scopes-and-proxy-modes
 document_type: cheat-sheet
 domain: spring
 topic_id: T-502
-canonical: ../handbook/spring/spring-bean-scopes-and-proxy-modes.md
+canonical: ../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md
 last_updated: 2026-09-01
 ---
 

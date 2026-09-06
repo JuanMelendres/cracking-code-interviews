@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 13
 last_reviewed: 2026-07-30
-canonical: ../../handbook/java-core/generics-erasure-and-pecs.md
+canonical: ../../syllabus/02-java/language-core/generics-erasure-and-pecs.md
 ---
 
 # T-104 · Generics: Erasure, Variance, and PECS

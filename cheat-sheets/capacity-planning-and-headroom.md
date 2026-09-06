@@ -4,7 +4,7 @@ slug: capacity-planning-and-headroom
 document_type: cheat-sheet
 domain: performance
 topic_id: T-1208
-canonical: ../handbook/performance/capacity-planning-and-headroom.md
+canonical: ../syllabus/16-performance-jvm/capacity-planning-and-headroom.md
 last_updated: 2026-09-01
 ---
 

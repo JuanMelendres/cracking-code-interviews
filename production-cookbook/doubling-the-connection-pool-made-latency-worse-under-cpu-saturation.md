@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/connection-pooling-and-sizing.md
-source: handbook/databases/connection-pooling-and-sizing.md#production-scenarios
+source: syllabus/06-databases/connection-pooling-and-sizing.md#production-scenarios
 ---
 
 # Doubling the Connection Pool Made Latency Worse Under CPU Saturation

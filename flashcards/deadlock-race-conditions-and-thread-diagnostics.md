@@ -4,7 +4,7 @@ slug: deadlock-race-conditions-and-thread-diagnostics
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-409
-canonical: ../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
+canonical: ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
 last_updated: 2026-08-06
 ---
 

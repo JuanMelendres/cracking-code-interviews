@@ -4,7 +4,7 @@ slug: authn-authz-rbac-vs-abac
 document_type: flashcard-deck
 domain: security
 topic_id: T-1302
-canonical: ../handbook/security/authn-authz-rbac-vs-abac.md
+canonical: ../syllabus/12-security/authn-authz-rbac-vs-abac.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ The precise, testable distinction between two sequential security gates.
 Treating both as generic "access denied" responses with no distinction.
 
 **Related:**
-[handbook/security/authn-authz-rbac-vs-abac.md](../syllabus/12-security/authn-authz-rbac-vs-abac.md)
+[syllabus/12-security/authn-authz-rbac-vs-abac.md](../syllabus/12-security/authn-authz-rbac-vs-abac.md)
 
 ## Card: Why RBAC can't express a per-instance relationship
 
@@ -44,7 +44,7 @@ The structural reason RBAC has a hard ceiling that ABAC exists to raise.
 Trying to express a subject-resource relationship by inventing an ever-narrower role instead of an attribute-based condition.
 
 **Related:**
-[handbook/security/authn-authz-rbac-vs-abac.md](../syllabus/12-security/authn-authz-rbac-vs-abac.md)
+[syllabus/12-security/authn-authz-rbac-vs-abac.md](../syllabus/12-security/authn-authz-rbac-vs-abac.md)
 
 ## Card: The signal a system has outgrown RBAC
 
@@ -61,4 +61,4 @@ A concrete, observable warning sign rather than an abstract design principle.
 Continuing to add ever-more-specific roles instead of recognizing role explosion as the signal to switch models.
 
 **Related:**
-[handbook/security/authn-authz-rbac-vs-abac.md](../syllabus/12-security/authn-authz-rbac-vs-abac.md)
+[syllabus/12-security/authn-authz-rbac-vs-abac.md](../syllabus/12-security/authn-authz-rbac-vs-abac.md)

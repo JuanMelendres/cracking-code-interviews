@@ -4,7 +4,7 @@ slug: cap-theorem-and-consistency-models
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-807
-canonical: ../handbook/system-design/cap-theorem-and-consistency-models.md
+canonical: ../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
 last_updated: 2026-08-06
 ---
 

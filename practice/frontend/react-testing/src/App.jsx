@@ -3,7 +3,7 @@ import './App.css';
 import LoginForm from './demos/LoginForm';
 import UserProfile from './demos/UserProfile';
 
-// Real demo app backing handbook/frontend/react-testing.md (F-118).
+// Real demo app backing syllabus/21-frontend-web/react-testing.md (F-118).
 // The tests themselves are the real evidence for this chapter — see
 // LoginForm.behavior.test.jsx / LoginForm.implementation-detail.test.jsx
 // and UserProfile.test.jsx, plus the E2E flow under e2e/.

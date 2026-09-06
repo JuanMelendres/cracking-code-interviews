@@ -4,7 +4,7 @@ slug: percentiles-tail-latency-and-coordinated-omission
 document_type: cheat-sheet
 domain: performance
 topic_id: T-1204
-canonical: ../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md
+canonical: ../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md
 last_updated: 2026-08-04
 ---
 

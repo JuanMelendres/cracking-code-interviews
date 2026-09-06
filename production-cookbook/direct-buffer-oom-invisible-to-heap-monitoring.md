@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
-source: handbook/jvm/native-memory-direct-buffers-and-off-heap.md#production-scenarios
+source: syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md#production-scenarios
 ---
 
 # Direct Buffer OOM Invisible to Heap Monitoring

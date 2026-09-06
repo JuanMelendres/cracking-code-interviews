@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/08-testing/junit5-architecture-and-advanced-features.md
-source: handbook/testing/junit5-architecture-and-advanced-features.md#production-scenarios
+source: syllabus/08-testing/junit5-architecture-and-advanced-features.md#production-scenarios
 ---
 
 # Full Suite Blocking Every Commit, Fixed via JUnit 5 Tag Filtering

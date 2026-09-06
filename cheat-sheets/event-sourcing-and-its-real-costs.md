@@ -4,7 +4,7 @@ slug: event-sourcing-and-its-real-costs
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-905
-canonical: ../handbook/architecture/event-sourcing-and-its-real-costs.md
+canonical: ../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md
 last_updated: 2026-09-02
 ---
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md
-source: handbook/spring/transactional-proxy-mechanics-and-propagation.md#production-scenarios
+source: syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md#production-scenarios
 ---
 
 # Connection Pool Exhaustion From an HTTP Call Inside a Transaction

@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-208
 tier: Advanced
-canonical: ../handbook/frontend/nextjs-proxy-and-edge-runtime.md
+canonical: ../syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md
 last_updated: 2026-09-03
 ---
 

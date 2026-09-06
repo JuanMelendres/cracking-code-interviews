@@ -4,7 +4,7 @@ slug: applied-cryptography-hashing-signing-tls
 document_type: flashcard-deck
 domain: security
 topic_id: T-1303
-canonical: ../handbook/security/applied-cryptography-hashing-signing-tls.md
+canonical: ../syllabus/12-security/applied-cryptography-hashing-signing-tls.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ The precise reason "salted SHA-256" is a common but insufficient answer to the p
 Believing a salt alone makes a fast general-purpose hash acceptable for password storage.
 
 **Related:**
-[handbook/security/applied-cryptography-hashing-signing-tls.md](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)
+[syllabus/12-security/applied-cryptography-hashing-signing-tls.md](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)
 
 ## Card: Does a digital signature provide confidentiality
 
@@ -44,7 +44,7 @@ A frequently conflated pair of guarantees — signing and encryption solve diffe
 Assuming signing a payload also protects its confidentiality.
 
 **Related:**
-[handbook/security/applied-cryptography-hashing-signing-tls.md](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)
+[syllabus/12-security/applied-cryptography-hashing-signing-tls.md](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)
 
 ## Card: Why TLS 1.3 removed legacy cipher suites
 
@@ -61,4 +61,4 @@ The reason "use the platform's current TLS defaults" is the secure choice, not a
 Manually pinning an older, broader cipher-suite list under the assumption it's more compatible and equally safe.
 
 **Related:**
-[handbook/security/applied-cryptography-hashing-signing-tls.md](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)
+[syllabus/12-security/applied-cryptography-hashing-signing-tls.md](../syllabus/12-security/applied-cryptography-hashing-signing-tls.md)

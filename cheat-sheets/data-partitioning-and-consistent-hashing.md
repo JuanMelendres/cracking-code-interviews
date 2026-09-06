@@ -4,7 +4,7 @@ slug: data-partitioning-and-consistent-hashing
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-806
-canonical: ../handbook/system-design/data-partitioning-and-consistent-hashing.md
+canonical: ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
 last_updated: 2026-08-03
 ---
 

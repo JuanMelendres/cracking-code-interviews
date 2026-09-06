@@ -4,7 +4,7 @@ slug: secrets-management-and-key-rotation
 document_type: cheat-sheet
 domain: security
 topic_id: T-1304
-canonical: ../handbook/security/secrets-management-and-key-rotation.md
+canonical: ../syllabus/12-security/secrets-management-and-key-rotation.md
 last_updated: 2026-08-05
 ---
 

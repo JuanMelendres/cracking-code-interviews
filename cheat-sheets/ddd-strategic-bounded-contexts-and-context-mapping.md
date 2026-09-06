@@ -4,7 +4,7 @@ slug: ddd-strategic-bounded-contexts-and-context-mapping
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-902
-canonical: ../handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
+canonical: ../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
 last_updated: 2026-09-02
 ---
 

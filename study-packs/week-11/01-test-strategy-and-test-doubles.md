@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-1104]
 week: 11
 last_reviewed: 2026-07-30
-canonical: ../../handbook/testing/test-strategy-and-test-doubles.md
+canonical: ../../syllabus/08-testing/test-strategy-and-test-doubles.md
 ---
 
 # T-1101 / T-1103 · Test Strategy, the Pyramid & Test Doubles

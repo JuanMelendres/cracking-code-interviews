@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/17-architecture/ddd-tactical-design-aggregates.md
-source: handbook/architecture/ddd-tactical-design-aggregates.md#production-scenarios
+source: syllabus/17-architecture/ddd-tactical-design-aggregates.md#production-scenarios
 ---
 
 # Over-Sized Aggregate Causing System-Wide Lock Contention

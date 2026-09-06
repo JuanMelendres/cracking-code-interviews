@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/11-system-design/resilience-patterns.md
-source: handbook/system-design/resilience-patterns.md#production-scenarios
+source: syllabus/11-system-design/resilience-patterns.md#production-scenarios
 ---
 
 # Synchronized Retry Storm Without Jitter

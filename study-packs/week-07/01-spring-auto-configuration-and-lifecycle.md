@@ -8,7 +8,7 @@ prerequisites: [T-503]
 unlocks: [T-511]
 week: 7
 last_reviewed: 2026-07-30
-canonical: ../../handbook/spring/auto-configuration-and-bean-lifecycle.md
+canonical: ../../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
 ---
 
 # T-506 / T-501 · Spring Auto-Configuration and Bean Lifecycle

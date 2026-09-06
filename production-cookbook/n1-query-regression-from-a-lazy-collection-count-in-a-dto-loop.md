@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md
   - ../syllabus/06-databases/query-planning-and-explain-analyze.md
-source: handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md#production-scenarios
+source: syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md#production-scenarios
 ---
 
 # N+1 Query Regression from a Lazy Collection Read Inside a DTO Mapping Loop

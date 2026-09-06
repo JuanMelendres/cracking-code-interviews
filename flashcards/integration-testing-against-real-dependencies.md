@@ -4,7 +4,7 @@ slug: integration-testing-against-real-dependencies
 document_type: flashcard-deck
 domain: testing
 topic_id: T-1104
-canonical: ../handbook/testing/integration-testing-against-real-dependencies.md
+canonical: ../syllabus/08-testing/integration-testing-against-real-dependencies.md
 last_updated: 2026-08-06
 ---
 

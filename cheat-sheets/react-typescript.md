@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-119
 tier: Advanced
-canonical: ../handbook/frontend/react-typescript.md
+canonical: ../syllabus/21-frontend-web/react-typescript.md
 last_updated: 2026-09-03
 ---
 

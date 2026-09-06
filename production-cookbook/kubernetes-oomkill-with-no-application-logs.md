@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md
-source: handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md#production-scenarios
+source: syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#production-scenarios
 ---
 
 # Kubernetes OOMKill With No Application Logs

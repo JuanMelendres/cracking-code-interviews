@@ -4,7 +4,7 @@ slug: isolation-levels-and-concurrency-anomalies
 document_type: cheat-sheet
 domain: databases
 topic_id: T-611
-canonical: ../handbook/databases/isolation-levels-and-concurrency-anomalies.md
+canonical: ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
 last_updated: 2026-08-03
 ---
 

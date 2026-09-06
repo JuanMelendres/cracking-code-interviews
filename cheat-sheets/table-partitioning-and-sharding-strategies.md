@@ -4,7 +4,7 @@ slug: table-partitioning-and-sharding-strategies
 document_type: cheat-sheet
 domain: databases
 topic_id: T-614
-canonical: ../handbook/databases/table-partitioning-and-sharding-strategies.md
+canonical: ../syllabus/06-databases/table-partitioning-and-sharding-strategies.md
 last_updated: 2026-08-03
 ---
 

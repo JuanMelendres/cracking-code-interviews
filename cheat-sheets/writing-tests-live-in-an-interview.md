@@ -4,7 +4,7 @@ slug: writing-tests-live-in-an-interview
 document_type: cheat-sheet
 domain: testing
 topic_id: T-1108
-canonical: ../handbook/testing/writing-tests-live-in-an-interview.md
+canonical: ../syllabus/08-testing/writing-tests-live-in-an-interview.md
 last_updated: 2026-08-05
 ---
 

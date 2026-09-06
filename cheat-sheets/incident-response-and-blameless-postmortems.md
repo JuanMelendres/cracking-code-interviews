@@ -4,7 +4,7 @@ slug: incident-response-and-blameless-postmortems
 document_type: cheat-sheet
 domain: performance
 topic_id: T-1207
-canonical: ../handbook/performance/incident-response-and-blameless-postmortems.md
+canonical: ../syllabus/13-observability/incident-response-and-blameless-postmortems.md
 last_updated: 2026-09-02
 ---
 

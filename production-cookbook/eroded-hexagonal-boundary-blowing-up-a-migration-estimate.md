@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/17-architecture/clean-hexagonal-architecture.md
-source: handbook/architecture/clean-hexagonal-architecture.md#production-scenarios
+source: syllabus/17-architecture/clean-hexagonal-architecture.md#production-scenarios
 ---
 
 # Eroded Hexagonal Boundary Blowing Up a Migration Estimate

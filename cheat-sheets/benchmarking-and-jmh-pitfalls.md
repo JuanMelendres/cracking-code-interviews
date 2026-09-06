@@ -4,7 +4,7 @@ slug: benchmarking-and-jmh-pitfalls
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-1203
-canonical: ../handbook/jvm/benchmarking-and-jmh-pitfalls.md
+canonical: ../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md
 last_updated: 2026-09-01
 ---
 

@@ -8,7 +8,7 @@ prerequisites: [T-301]
 unlocks: []
 week: 19
 last_reviewed: 2026-08-02
-canonical: ../../handbook/jvm/native-memory-direct-buffers-and-off-heap.md
+canonical: ../../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
 ---
 
 # T-311 · Native Memory, Direct Buffers, and Off-Heap

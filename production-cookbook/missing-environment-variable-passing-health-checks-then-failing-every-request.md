@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/15-cloud/twelve-factor-config.md
-source: handbook/system-design/twelve-factor-config.md#production-scenarios
+source: syllabus/15-cloud/twelve-factor-config.md#production-scenarios
 ---
 
 # Missing Environment Variable Passing Health Checks, Then Failing Every Request

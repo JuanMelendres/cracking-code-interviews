@@ -4,7 +4,7 @@ slug: system-design-method-and-estimation
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-801
-canonical: ../handbook/system-design/system-design-method-and-estimation.md
+canonical: ../syllabus/11-system-design/system-design-method-and-estimation.md
 last_updated: 2026-08-06
 ---
 

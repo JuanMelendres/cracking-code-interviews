@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/authn-authz-rbac-vs-abac.md
-source: handbook/security/authn-authz-rbac-vs-abac.md#production-scenarios
+source: syllabus/12-security/authn-authz-rbac-vs-abac.md#production-scenarios
 ---
 
 # RBAC Separation-of-Duties Violation in a Financial-Approval Workflow

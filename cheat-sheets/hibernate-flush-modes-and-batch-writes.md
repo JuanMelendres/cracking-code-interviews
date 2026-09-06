@@ -4,7 +4,7 @@ slug: hibernate-flush-modes-and-batch-writes
 document_type: cheat-sheet
 domain: databases
 topic_id: T-606
-canonical: ../handbook/databases/hibernate-flush-modes-and-batch-writes.md
+canonical: ../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md
 last_updated: 2026-09-02
 ---
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md
-source: handbook/performance/percentiles-tail-latency-and-coordinated-omission.md#production-scenarios
+source: syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md#production-scenarios
 ---
 
 # Coordinated Omission Masking Real Tail Latency in a Load Test

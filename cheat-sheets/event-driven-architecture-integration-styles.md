@@ -4,7 +4,7 @@ slug: event-driven-architecture-integration-styles
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-906
-canonical: ../handbook/architecture/event-driven-architecture-integration-styles.md
+canonical: ../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md
 last_updated: 2026-09-02
 ---
 

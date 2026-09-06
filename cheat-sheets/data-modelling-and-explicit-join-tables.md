@@ -4,7 +4,7 @@ slug: data-modelling-and-explicit-join-tables
 document_type: cheat-sheet
 domain: databases
 topic_id: T-605/T-608
-canonical: ../handbook/databases/data-modelling-and-explicit-join-tables.md
+canonical: ../syllabus/06-databases/data-modelling-and-explicit-join-tables.md
 last_updated: 2026-08-05
 ---
 

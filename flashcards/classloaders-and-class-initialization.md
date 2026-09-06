@@ -4,7 +4,7 @@ slug: classloaders-and-class-initialization
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-114
-canonical: ../handbook/java-core/classloaders-and-class-initialization.md
+canonical: ../syllabus/02-java/language-core/classloaders-and-class-initialization.md
 last_updated: 2026-09-02
 ---
 

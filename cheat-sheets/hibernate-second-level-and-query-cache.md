@@ -4,7 +4,7 @@ slug: hibernate-second-level-and-query-cache
 document_type: cheat-sheet
 domain: databases
 topic_id: T-603
-canonical: ../handbook/databases/hibernate-second-level-and-query-cache.md
+canonical: ../syllabus/06-databases/hibernate-second-level-and-query-cache.md
 last_updated: 2026-09-01
 ---
 

@@ -4,7 +4,7 @@ slug: spring-webflux-and-reactive-programming
 document_type: cheat-sheet
 domain: spring
 topic_id: T-509
-canonical: ../handbook/spring/spring-webflux-and-reactive-programming.md
+canonical: ../syllabus/05-spring/spring-webflux-and-reactive-programming.md
 last_updated: 2026-09-01
 ---
 

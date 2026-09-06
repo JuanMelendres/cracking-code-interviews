@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md
-source: handbook/concurrency/threadlocal-mediated-classloader-leaks.md#production-scenarios
+source: syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md#production-scenarios
 ---
 
 # Metaspace Growth From a ThreadLocal-Leaked Classloader

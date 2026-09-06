@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/16-performance-jvm/capacity-planning-and-headroom.md
-source: handbook/performance/capacity-planning-and-headroom.md#production-scenarios
+source: syllabus/16-performance-jvm/capacity-planning-and-headroom.md#production-scenarios
 ---
 
 # Flash-Sale Latency Spike From an Unmeasured Saturation Point

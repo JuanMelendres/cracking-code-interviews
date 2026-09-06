@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md
-source: handbook/spring/spring-bean-scopes-and-proxy-modes.md#production-scenarios
+source: syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md#production-scenarios
 ---
 
 # Leaked Correlation ID From a Singleton-Injected Request-Scoped Bean

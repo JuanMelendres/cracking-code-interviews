@@ -4,7 +4,7 @@ slug: blockingqueue-family
 document_type: flashcard-deck
 domain: collections
 topic_id: T-207
-canonical: ../handbook/collections/blockingqueue-family.md
+canonical: ../syllabus/02-java/collections/blockingqueue-family.md
 last_updated: 2026-08-06
 ---
 

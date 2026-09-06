@@ -8,7 +8,7 @@ prerequisites: [T-306]
 unlocks: []
 week: 16
 last_reviewed: 2026-07-31
-canonical: ../../handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md
+canonical: ../../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md
 ---
 
 # T-307 · Memory Leak Diagnosis and Heap Dump Analysis

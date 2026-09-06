@@ -8,7 +8,7 @@ prerequisites: [T-801]
 unlocks: [T-1504]
 week: 4
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/distributed-systems-failure-modes.md
+canonical: ../../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
 ---
 
 # T-909 · Distributed Systems Failure Modes

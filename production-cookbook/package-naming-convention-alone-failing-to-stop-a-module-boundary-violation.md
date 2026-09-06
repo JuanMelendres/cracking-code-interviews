@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
   - ../syllabus/17-architecture/clean-hexagonal-architecture.md
-source: handbook/architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios
+source: syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios
 ---
 
 # Module Boundary Violation That a Naming Convention Alone Couldn't Stop
@@ -30,7 +30,7 @@ None stated as separately investigated — the violation was confirmed directly 
 
 ## Evidence
 
-[`BoundaryCheckDemo`](../../practice/java/architecture/modular-monolith-boundary-enforcement/README.md) demonstrates this precisely: `shippinglegacy.LegacyShippingService` directly imports and calls `orders.internal.PricingEngine`, compiling and running without any error, because every class involved is `public` and Java itself enforces nothing about the word "internal" in a package name. A real ArchUnit rule checked against the actual compiled classes catches it directly:
+[`BoundaryCheckDemo`](../practice/java/architecture/modular-monolith-boundary-enforcement/README.md) demonstrates this precisely: `shippinglegacy.LegacyShippingService` directly imports and calls `orders.internal.PricingEngine`, compiling and running without any error, because every class involved is `public` and Java itself enforces nothing about the word "internal" in a package name. A real ArchUnit rule checked against the actual compiled classes catches it directly:
 
 ```
 FAIL

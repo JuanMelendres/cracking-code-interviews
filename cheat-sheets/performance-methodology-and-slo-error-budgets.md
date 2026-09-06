@@ -4,7 +4,7 @@ slug: performance-methodology-and-slo-error-budgets
 document_type: cheat-sheet
 domain: performance
 topic_id: T-1206
-canonical: ../handbook/performance/performance-methodology-and-slo-error-budgets.md
+canonical: ../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md
 last_updated: 2026-08-04
 ---
 

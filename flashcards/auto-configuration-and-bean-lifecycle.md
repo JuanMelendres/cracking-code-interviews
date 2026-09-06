@@ -4,7 +4,7 @@ slug: auto-configuration-and-bean-lifecycle
 document_type: flashcard-deck
 domain: spring
 topic_id: T-501
-canonical: ../handbook/spring/auto-configuration-and-bean-lifecycle.md
+canonical: ../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
 last_updated: 2026-08-06
 ---
 

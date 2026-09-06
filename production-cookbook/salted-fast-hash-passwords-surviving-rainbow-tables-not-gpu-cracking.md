@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/applied-cryptography-hashing-signing-tls.md
-source: handbook/security/applied-cryptography-hashing-signing-tls.md#production-scenarios
+source: syllabus/12-security/applied-cryptography-hashing-signing-tls.md#production-scenarios
 ---
 
 # Salted Fast-Hash Passwords Surviving Rainbow Tables, Not GPU Cracking

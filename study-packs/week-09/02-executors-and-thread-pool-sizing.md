@@ -8,7 +8,7 @@ prerequisites: [T-401]
 unlocks: [T-410]
 week: 9
 last_reviewed: 2026-07-30
-canonical: ../../handbook/concurrency/executors-and-thread-pool-sizing.md
+canonical: ../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
 ---
 
 # T-406 · Executors & Thread Pool Sizing

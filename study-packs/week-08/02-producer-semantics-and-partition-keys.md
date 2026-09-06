@@ -8,7 +8,7 @@ prerequisites: [T-701]
 unlocks: [T-704]
 week: 8
 last_reviewed: 2026-07-30
-canonical: ../../handbook/kafka/producer-semantics-and-partition-keys.md
+canonical: ../../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md
 ---
 
 # T-702 / T-705 · Producer Semantics & Partition Key Design

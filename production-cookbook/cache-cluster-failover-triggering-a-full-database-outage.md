@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
-source: handbook/system-design/caching-strategies-and-invalidation.md#production-scenarios
+source: syllabus/11-system-design/caching-strategies-and-invalidation.md#production-scenarios
 ---
 
 # Cache Cluster Failover Triggering a Full-Database Outage

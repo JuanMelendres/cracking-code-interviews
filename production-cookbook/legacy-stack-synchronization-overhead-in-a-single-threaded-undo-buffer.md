@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md
-source: handbook/collections/arraydeque-internals-and-the-legacy-stack-problem.md#production-scenarios
+source: syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md#production-scenarios
 ---
 
 # Legacy Stack Synchronization Overhead in a Single-Threaded Undo Buffer

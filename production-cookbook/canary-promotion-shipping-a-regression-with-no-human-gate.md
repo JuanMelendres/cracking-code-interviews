@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
-source: handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md#production-scenarios
+source: syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md#production-scenarios
 ---
 
 # Canary Promotion Shipping a Regression With No Human Gate

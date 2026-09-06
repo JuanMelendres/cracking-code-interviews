@@ -8,7 +8,7 @@ prerequisites: [T-901]
 unlocks: []
 week: 2
 last_reviewed: 2026-07-30
-canonical: ../../handbook/architecture/ddd-tactical-design-aggregates.md
+canonical: ../../syllabus/17-architecture/ddd-tactical-design-aggregates.md
 ---
 
 # T-903 · DDD Tactical Design — Aggregates

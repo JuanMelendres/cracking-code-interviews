@@ -4,7 +4,7 @@ slug: clean-hexagonal-architecture
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-901
-canonical: ../handbook/architecture/clean-hexagonal-architecture.md
+canonical: ../syllabus/17-architecture/clean-hexagonal-architecture.md
 last_updated: 2026-08-04
 ---
 

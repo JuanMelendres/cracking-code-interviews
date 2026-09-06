@@ -4,7 +4,7 @@ slug: strangler-fig-and-migration-patterns
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-912
-canonical: ../handbook/architecture/strangler-fig-and-migration-patterns.md
+canonical: ../syllabus/17-architecture/strangler-fig-and-migration-patterns.md
 last_updated: 2026-09-02
 ---
 

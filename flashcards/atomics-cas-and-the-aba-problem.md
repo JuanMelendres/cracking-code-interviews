@@ -4,7 +4,7 @@ slug: atomics-cas-and-the-aba-problem
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-405
-canonical: ../handbook/concurrency/atomics-cas-and-the-aba-problem.md
+canonical: ../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md
 last_updated: 2026-09-02
 ---
 

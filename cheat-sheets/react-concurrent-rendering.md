@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-113
 tier: Advanced
-canonical: ../handbook/frontend/react-concurrent-rendering.md
+canonical: ../syllabus/21-frontend-web/react-concurrent-rendering.md
 last_updated: 2026-09-03
 ---
 

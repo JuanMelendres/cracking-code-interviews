@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/secrets-management-and-key-rotation.md
-source: handbook/security/secrets-management-and-key-rotation.md#production-scenarios
+source: syllabus/12-security/secrets-management-and-key-rotation.md#production-scenarios
 ---
 
 # KMS Outage Exposing a Missing Key-Version Fallback

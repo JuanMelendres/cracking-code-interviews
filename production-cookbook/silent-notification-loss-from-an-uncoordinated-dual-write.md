@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
-source: handbook/system-design/distributed-transactions-saga-and-outbox.md#production-scenarios
+source: syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md#production-scenarios
 ---
 
 # Silent Notification Loss From an Uncoordinated Dual Write

@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 2
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/storage-selection-tradeoffs.md
+canonical: ../../syllabus/11-system-design/storage-selection-tradeoffs.md
 ---
 
 # T-617 / T-811 · Storage Selection Trade-offs

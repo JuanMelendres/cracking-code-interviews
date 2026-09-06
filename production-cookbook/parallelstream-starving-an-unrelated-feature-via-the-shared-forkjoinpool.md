@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md
   - ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
-source: handbook/concurrency/forkjoinpool-and-work-stealing.md#production-scenarios
+source: syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md#production-scenarios
 ---
 
 # parallelStream Starving an Unrelated Feature via the Shared ForkJoinPool

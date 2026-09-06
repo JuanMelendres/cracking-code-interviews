@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/06-databases/hibernate-second-level-and-query-cache.md
-source: handbook/databases/hibernate-second-level-and-query-cache.md#production-scenarios
+source: syllabus/06-databases/hibernate-second-level-and-query-cache.md#production-scenarios
 ---
 
 # Stale Hibernate L2 Cache From a Bypassing Batch-Job Write

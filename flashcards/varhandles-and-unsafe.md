@@ -4,7 +4,7 @@ slug: varhandles-and-unsafe
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-415
-canonical: ../handbook/concurrency/varhandles-and-unsafe.md
+canonical: ../syllabus/02-java/concurrency/varhandles-and-unsafe.md
 last_updated: 2026-09-01
 ---
 
@@ -34,7 +34,7 @@ Assuming `VarHandle` is simply "a faster `AtomicInteger`" rather than the
 same guarantee via a different, allocation-free mechanism.
 
 **Related:**
-[handbook/concurrency/varhandles-and-unsafe.md](../syllabus/02-java/concurrency/varhandles-and-unsafe.md), [Atomics, CAS, and the ABA Problem](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md)
+[syllabus/02-java/concurrency/varhandles-and-unsafe.md](../syllabus/02-java/concurrency/varhandles-and-unsafe.md), [Atomics, CAS, and the ABA Problem](../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md)
 
 ## Card: Where does a VarHandle's ordering strength actually come from?
 
@@ -58,7 +58,7 @@ Assuming a field must be declared `volatile` for any VarHandle access mode
 to provide ordering guarantees.
 
 **Related:**
-[handbook/concurrency/varhandles-and-unsafe.md](../syllabus/02-java/concurrency/varhandles-and-unsafe.md), [Java Memory Model and volatile](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md)
+[syllabus/02-java/concurrency/varhandles-and-unsafe.md](../syllabus/02-java/concurrency/varhandles-and-unsafe.md), [Java Memory Model and volatile](../syllabus/02-java/concurrency/java-memory-model-and-volatile.md)
 
 ## Card: Why doesn't this topic demonstrate a live reordering bug?
 
@@ -82,4 +82,4 @@ Treating a short demo's failure to show a bug as proof the weaker access
 mode was actually safe.
 
 **Related:**
-[handbook/concurrency/varhandles-and-unsafe.md](../syllabus/02-java/concurrency/varhandles-and-unsafe.md)
+[syllabus/02-java/concurrency/varhandles-and-unsafe.md](../syllabus/02-java/concurrency/varhandles-and-unsafe.md)

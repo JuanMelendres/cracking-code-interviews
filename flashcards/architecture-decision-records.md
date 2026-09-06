@@ -4,7 +4,7 @@ slug: architecture-decision-records
 document_type: flashcard-deck
 domain: architecture
 topic_id: T-916
-canonical: ../handbook/architecture/architecture-decision-records.md
+canonical: ../syllabus/17-architecture/architecture-decision-records.md
 last_updated: 2026-09-02
 ---
 

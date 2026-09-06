@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
-source: handbook/spring/auto-configuration-and-bean-lifecycle.md#production-scenarios
+source: syllabus/05-spring/auto-configuration-and-bean-lifecycle.md#production-scenarios
 ---
 
 # Silently Swallowed @Async Exception Hiding Weeks of Failures

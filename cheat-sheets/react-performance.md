@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-117
 tier: Advanced
-canonical: ../handbook/frontend/react-performance.md
+canonical: ../syllabus/21-frontend-web/react-performance.md
 last_updated: 2026-09-03
 ---
 

@@ -8,7 +8,7 @@ prerequisites: [T-504, T-505, T-809, T-704]
 unlocks: []
 week: 10
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/distributed-transactions-saga-and-outbox.md
+canonical: ../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 ---
 
 # T-618 · Distributed Transactions: Saga, Outbox, 2PC

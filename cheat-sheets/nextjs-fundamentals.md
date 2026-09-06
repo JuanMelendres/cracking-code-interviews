@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-201
 tier: Beginner
-canonical: ../handbook/frontend/nextjs-fundamentals.md
+canonical: ../syllabus/21-frontend-web/nextjs-fundamentals.md
 last_updated: 2026-09-03
 ---
 

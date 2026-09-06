@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/enums-enummap-and-enumset.md
-source: handbook/java-core/enums-enummap-and-enumset.md#production-scenarios
+source: syllabus/02-java/language-core/enums-enummap-and-enumset.md#production-scenarios
 ---
 
 # Status Field Meaning Shift from Persisted Enum Ordinal

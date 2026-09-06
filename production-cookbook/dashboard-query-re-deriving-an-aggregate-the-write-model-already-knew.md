@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/17-architecture/cqrs-read-write-separation.md
   - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
-source: handbook/architecture/cqrs-read-write-separation.md#production-scenarios
+source: syllabus/17-architecture/cqrs-read-write-separation.md#production-scenarios
 ---
 
 # Reporting Query Re-Deriving an Aggregate the Write Side Already Knew
@@ -30,7 +30,7 @@ None stated as separately ruled out — the investigation proceeded directly to 
 
 ## Evidence
 
-[`QueryComplexityComparisonDemo`](../../practice/java/architecture/cqrs-read-write-separation/QueryComplexityComparisonDemo.java) populated 50,000 orders (4 items each, 300,000 total domain events), waited for the read model to fully converge, then timed the identical query both ways: walking every order and every item inside it on the normalized write model took a real **15.84ms**; summing the same total off precomputed, per-order values already sitting on the read model took a real **3.45ms** — a real **4.6x** measured speedup (a repeat run measured 17.63ms vs. 3.26ms, 5.4x — the exact multiplier moves with JIT warm-up, the shape doesn't). Both computations were checked for exact equality and matched — the read model is not a different or approximate answer, it is the identical answer, pre-shaped for the query it exists to serve.
+[`QueryComplexityComparisonDemo`](../practice/java/architecture/cqrs-read-write-separation/QueryComplexityComparisonDemo.java) populated 50,000 orders (4 items each, 300,000 total domain events), waited for the read model to fully converge, then timed the identical query both ways: walking every order and every item inside it on the normalized write model took a real **15.84ms**; summing the same total off precomputed, per-order values already sitting on the read model took a real **3.45ms** — a real **4.6x** measured speedup (a repeat run measured 17.63ms vs. 3.26ms, 5.4x — the exact multiplier moves with JIT warm-up, the shape doesn't). Both computations were checked for exact equality and matched — the read model is not a different or approximate answer, it is the identical answer, pre-shaped for the query it exists to serve.
 
 ## Investigation Timeline
 

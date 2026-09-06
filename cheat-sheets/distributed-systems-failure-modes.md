@@ -4,7 +4,7 @@ slug: distributed-systems-failure-modes
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-909
-canonical: ../handbook/system-design/distributed-systems-failure-modes.md
+canonical: ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
 last_updated: 2026-08-03
 ---
 

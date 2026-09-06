@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/06-databases/data-modelling-and-explicit-join-tables.md
-source: handbook/databases/data-modelling-and-explicit-join-tables.md#production-scenarios
+source: syllabus/06-databases/data-modelling-and-explicit-join-tables.md#production-scenarios
 ---
 
 # Price Drift From a Join Table Without a Locked Historical Price

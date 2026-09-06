@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
-source: handbook/concurrency/executors-and-thread-pool-sizing.md#production-scenarios
+source: syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md#production-scenarios
 ---
 
 # Unbounded Executor Queue Causing an OOM Crash

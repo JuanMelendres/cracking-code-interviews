@@ -4,7 +4,7 @@ slug: logging-metrics-tracing-and-opentelemetry
 document_type: flashcard-deck
 domain: performance
 topic_id: T-1205
-canonical: ../handbook/performance/logging-metrics-tracing-and-opentelemetry.md
+canonical: ../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
 last_updated: 2026-08-06
 ---
 

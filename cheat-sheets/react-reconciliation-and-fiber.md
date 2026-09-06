@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-112
 tier: Advanced
-canonical: ../handbook/frontend/react-reconciliation-and-fiber.md
+canonical: ../syllabus/21-frontend-web/react-reconciliation-and-fiber.md
 last_updated: 2026-09-03
 ---
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/06-databases/zero-downtime-schema-migration.md
-source: handbook/databases/zero-downtime-schema-migration.md#production-scenarios
+source: syllabus/06-databases/zero-downtime-schema-migration.md#production-scenarios
 ---
 
 # Column Rename Outage During a Rolling Deploy

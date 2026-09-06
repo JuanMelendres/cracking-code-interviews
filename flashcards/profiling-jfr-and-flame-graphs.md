@@ -4,7 +4,7 @@ slug: profiling-jfr-and-flame-graphs
 document_type: flashcard-deck
 domain: performance
 topic_id: T-1202
-canonical: ../handbook/performance/profiling-jfr-and-flame-graphs.md
+canonical: ../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md
 last_updated: 2026-09-02
 ---
 
@@ -27,7 +27,7 @@ Misreading height as significance is one of the most common flame-graph interpre
 Assuming the deepest part of the stack is automatically the hotspot.
 
 **Related:**
-[handbook/performance/profiling-jfr-and-flame-graphs.md](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
+[syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
 
 ## Card: Profiling vs. intuition, proven
 
@@ -44,7 +44,7 @@ This is the entire justification for profiling as a discipline, demonstrated con
 Assuming a profile will simply confirm whatever code already looks suspicious.
 
 **Related:**
-[handbook/performance/profiling-jfr-and-flame-graphs.md](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
+[syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
 
 ## Card: JFR vs. async-profiler
 
@@ -61,4 +61,4 @@ Treating the two tools as interchangeable misses each one's real, specific stren
 Defaulting to whichever tool is more familiar without considering the actual diagnostic need.
 
 **Related:**
-[handbook/performance/profiling-jfr-and-flame-graphs.md](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)
+[syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md](../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md)

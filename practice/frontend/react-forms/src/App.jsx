@@ -3,7 +3,7 @@ import ControlledVsUncontrolledDemo from './demos/ControlledVsUncontrolledDemo';
 import ValidationTimingDemo from './demos/ValidationTimingDemo';
 import RhfZodDemo from './demos/RhfZodDemo';
 
-// Real demo app backing handbook/frontend/react-forms.md (F-114).
+// Real demo app backing syllabus/21-frontend-web/react-forms.md (F-114).
 // Verified live in a browser, including a real react-hook-form + zod
 // schema validation flow.
 function App() {

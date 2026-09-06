@@ -8,7 +8,7 @@ prerequisites: [T-1101]
 unlocks: []
 week: 18
 last_reviewed: 2026-08-02
-canonical: ../../handbook/testing/performance-and-load-testing-methodology.md
+canonical: ../../syllabus/08-testing/performance-and-load-testing-methodology.md
 ---
 
 # T-1106 · Performance and Load Testing Methodology

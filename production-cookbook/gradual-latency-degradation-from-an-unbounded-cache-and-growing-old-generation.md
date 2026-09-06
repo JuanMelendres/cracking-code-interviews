@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
-source: handbook/jvm/gc-fundamentals-and-log-analysis.md#production-scenarios
+source: syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md#production-scenarios
 ---
 
 # Gradual Latency Degradation From an Unbounded Cache and Growing Old Generation

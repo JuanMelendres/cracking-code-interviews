@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md
-source: handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md#production-scenarios
+source: syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md#production-scenarios
 ---
 
 # Premature Microservice Decomposition Doubling On-Call Burden

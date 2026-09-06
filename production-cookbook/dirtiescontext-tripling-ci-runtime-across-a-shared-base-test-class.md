@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/05-spring/spring-testing-slices-and-context-caching.md
-source: handbook/spring/spring-testing-slices-and-context-caching.md#production-scenarios
+source: syllabus/05-spring/spring-testing-slices-and-context-caching.md#production-scenarios
 ---
 
 # @DirtiesContext Tripling CI Runtime Across a Shared Base Test Class

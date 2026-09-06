@@ -8,7 +8,7 @@ prerequisites: [T-609]
 unlocks: [T-611]
 week: 2
 last_reviewed: 2026-07-30
-canonical: ../../handbook/databases/query-planning-and-explain-analyze.md
+canonical: ../../syllabus/06-databases/query-planning-and-explain-analyze.md
 ---
 
 # T-610 · Query Planning and EXPLAIN

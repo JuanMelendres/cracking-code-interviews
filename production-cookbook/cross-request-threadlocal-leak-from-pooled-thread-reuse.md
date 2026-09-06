@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md
-source: handbook/concurrency/scoped-values-and-threadlocal-migration.md#production-scenarios
+source: syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md#production-scenarios
 ---
 
 # Cross-Request ThreadLocal Leak from Pooled Thread Reuse

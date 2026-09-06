@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
-source: handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#production-scenarios
+source: syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#production-scenarios
 ---
 
 # Lock-Ordering Deadlock Under Peak Load

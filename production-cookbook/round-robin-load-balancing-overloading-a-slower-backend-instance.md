@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md
   - ../syllabus/11-system-design/resilience-patterns.md
-source: handbook/system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios
+source: syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios
 ---
 
 # Round-Robin Load Balancing Silently Overloading a Slower Backend Instance
@@ -30,7 +30,7 @@ The uneven latency pattern itself pointed at the load-balancing algorithm's blin
 
 ## Evidence
 
-[`AlgorithmComparisonDemo`](../../practice/java/system-design/load-balancing-and-health-checking/README.md) reproduced this directly: two fast backends (5ms real processing time) and one slow backend (200ms), 300 real requests through a real reverse proxy. Round-robin sent the slow backend its full, blind 100-of-300 share — real total batch time: **921ms**. The same 300-request batch through least-connections sent the slow backend only **10 of 300** requests, using its real, live in-flight-count as the only signal — real total batch time: **208ms**, a direct, measured **~4.4x** improvement from the algorithm alone, with zero change to any backend.
+[`AlgorithmComparisonDemo`](../practice/java/system-design/load-balancing-and-health-checking/README.md) reproduced this directly: two fast backends (5ms real processing time) and one slow backend (200ms), 300 real requests through a real reverse proxy. Round-robin sent the slow backend its full, blind 100-of-300 share — real total batch time: **921ms**. The same 300-request batch through least-connections sent the slow backend only **10 of 300** requests, using its real, live in-flight-count as the only signal — real total batch time: **208ms**, a direct, measured **~4.4x** improvement from the algorithm alone, with zero change to any backend.
 
 ## Investigation Timeline
 

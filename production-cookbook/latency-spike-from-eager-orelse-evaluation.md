@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/optional-and-null-strategy.md
-source: handbook/java-core/optional-and-null-strategy.md#production-scenarios
+source: syllabus/02-java/language-core/optional-and-null-strategy.md#production-scenarios
 ---
 
 # Latency Spike from Eager orElse() Evaluation

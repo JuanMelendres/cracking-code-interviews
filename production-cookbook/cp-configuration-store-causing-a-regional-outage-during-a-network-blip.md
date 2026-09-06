@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
-source: handbook/system-design/cap-theorem-and-consistency-models.md#production-scenarios
+source: syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md#production-scenarios
 ---
 
 # CP Configuration Store Causing a Regional Outage During a Network Blip

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md
-source: handbook/java-core/serialization-hazards-and-alternatives.md#production-scenarios
+source: syllabus/02-java/language-core/serialization-hazards-and-alternatives.md#production-scenarios
 ---
 
 # Cache Layer Becomes an RCE Vector from Unrestricted Deserialization

@@ -8,7 +8,7 @@ prerequisites: [T-609, T-610]
 unlocks: []
 week: 3
 last_reviewed: 2026-07-30
-canonical: ../../handbook/databases/isolation-levels-and-concurrency-anomalies.md
+canonical: ../../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
 ---
 
 # T-611 · Isolation Levels and Write Skew

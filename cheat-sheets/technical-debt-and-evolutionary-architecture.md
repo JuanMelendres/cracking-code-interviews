@@ -4,7 +4,7 @@ slug: technical-debt-and-evolutionary-architecture
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-913
-canonical: ../handbook/architecture/technical-debt-and-evolutionary-architecture.md
+canonical: ../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md
 last_updated: 2026-09-02
 ---
 

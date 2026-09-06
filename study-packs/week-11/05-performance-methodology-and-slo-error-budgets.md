@@ -8,7 +8,7 @@ prerequisites: [T-1204]
 unlocks: []
 week: 11
 last_reviewed: 2026-07-30
-canonical: ../../handbook/performance/performance-methodology-and-slo-error-budgets.md
+canonical: ../../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md
 ---
 
 # T-1201 / T-1206 · Performance Methodology (USE/RED) & SLI/SLO/Error Budgets

@@ -4,7 +4,7 @@ slug: contract-testing-for-services
 document_type: cheat-sheet
 domain: testing
 topic_id: T-1105
-canonical: ../handbook/testing/contract-testing-for-services.md
+canonical: ../syllabus/08-testing/contract-testing-for-services.md
 last_updated: 2026-08-05
 ---
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md
-source: handbook/jvm/safepoints-and-stop-the-world-mechanics.md#production-scenarios
+source: syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md#production-scenarios
 ---
 
 # jstack-Triggered Safepoint Pause Misdiagnosed via GC Logs

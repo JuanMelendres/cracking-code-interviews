@@ -4,7 +4,7 @@ slug: escape-analysis-and-scalar-replacement
 document_type: flashcard-deck
 domain: jvm
 topic_id: T-309
-canonical: ../handbook/jvm/escape-analysis-and-scalar-replacement.md
+canonical: ../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ Prevents underselling escape analysis as merely an allocation-speed optimization
 Describing scalar replacement as only making allocation faster, missing that it eliminates the garbage entirely.
 
 **Related:**
-[handbook/jvm/escape-analysis-and-scalar-replacement.md](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)
+[syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)
 
 ## Card: Does escape analysis apply to interpreted code
 
@@ -44,7 +44,7 @@ Explains why the same code can allocate real objects early in a run and then sto
 Assuming escape analysis benefits apply uniformly from the very first execution of a method.
 
 **Related:**
-[handbook/jvm/escape-analysis-and-scalar-replacement.md](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)
+[syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)
 
 ## Card: The measured GC-pause contrast
 
@@ -61,4 +61,4 @@ A concrete, measured number rather than an abstract claim of benefit.
 Citing escape analysis's benefit only qualitatively, without a measured before/after comparison.
 
 **Related:**
-[handbook/jvm/escape-analysis-and-scalar-replacement.md](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)
+[syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md](../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md)

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
-source: handbook/system-design/distributed-systems-failure-modes.md#production-scenarios
+source: syllabus/10-distributed-systems/distributed-systems-failure-modes.md#production-scenarios
 ---
 
 # Retry Amplification Cascading Into a Multi-Service Outage

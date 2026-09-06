@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md
-source: handbook/collections/treemap-treeset-and-navigable-hierarchy.md#production-scenarios
+source: syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md#production-scenarios
 ---
 
 # Leaderboard Latency from a Full Sort Instead of a NavigableMap

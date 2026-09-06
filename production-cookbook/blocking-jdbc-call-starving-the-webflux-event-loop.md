@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/05-spring/spring-webflux-and-reactive-programming.md
-source: handbook/spring/spring-webflux-and-reactive-programming.md#production-scenarios
+source: syllabus/05-spring/spring-webflux-and-reactive-programming.md#production-scenarios
 ---
 
 # Blocking JDBC Call Starving the WebFlux Event Loop

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/oauth2-oidc-and-jwt.md
-source: handbook/security/oauth2-oidc-and-jwt.md#production-scenarios
+source: syllabus/12-security/oauth2-oidc-and-jwt.md#production-scenarios
 ---
 
 # JWT Revocation Gap After Account Suspension

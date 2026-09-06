@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md
   - ../syllabus/05-spring/spring-framework-vs-spring-boot.md
-source: handbook/java-core/reflection-and-dynamic-proxies.md#production-scenarios
+source: syllabus/02-java/language-core/reflection-and-dynamic-proxies.md#production-scenarios
 ---
 
 # @Transactional Silently Skipped on Self-Invocation

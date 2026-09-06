@@ -4,7 +4,7 @@ slug: hashmap-internals
 document_type: flashcard-deck
 domain: collections
 topic_id: T-201
-canonical: ../handbook/collections/hashmap-internals.md
+canonical: ../syllabus/02-java/collections/hashmap-internals.md
 last_updated: 2026-08-06
 ---
 

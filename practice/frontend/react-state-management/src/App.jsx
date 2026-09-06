@@ -4,7 +4,7 @@ import ReduxDemo from './demos/ReduxDemo';
 import ZustandDemo from './demos/ZustandDemo';
 import QueryDemo from './demos/QueryDemo';
 
-// Real demo app backing handbook/frontend/react-state-management.md
+// Real demo app backing syllabus/21-frontend-web/react-state-management.md
 // (F-120). Every demo pairs a "count" consumer and a "name" consumer
 // so the same click (change count) can be checked against BOTH
 // consumers' render counters — see README.md for the captured evidence.

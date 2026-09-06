@@ -4,7 +4,7 @@ slug: spring-testing-slices-and-context-caching
 document_type: flashcard-deck
 domain: spring
 topic_id: T-517
-canonical: ../handbook/spring/spring-testing-slices-and-context-caching.md
+canonical: ../syllabus/05-spring/spring-testing-slices-and-context-caching.md
 last_updated: 2026-09-01
 ---
 
@@ -34,7 +34,7 @@ change — the cost is not local to where the annotation is written.
 Assuming `@DirtiesContext` only affects the test class it's declared on.
 
 **Related:**
-[handbook/spring/spring-testing-slices-and-context-caching.md](../syllabus/05-spring/spring-testing-slices-and-context-caching.md)
+[syllabus/05-spring/spring-testing-slices-and-context-caching.md](../syllabus/05-spring/spring-testing-slices-and-context-caching.md)
 
 ## Card: Why does a slice test need @MockBean for a service outside its slice?
 
@@ -58,7 +58,7 @@ Believing `@WebMvcTest` somehow makes every dependency automatically
 satisfiable.
 
 **Related:**
-[handbook/spring/spring-testing-slices-and-context-caching.md](../syllabus/05-spring/spring-testing-slices-and-context-caching.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
+[syllabus/05-spring/spring-testing-slices-and-context-caching.md](../syllabus/05-spring/spring-testing-slices-and-context-caching.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
 
 ## Card: Why does @RequestParam String name sometimes throw an IllegalArgumentException about -parameters?
 
@@ -83,4 +83,4 @@ Treating this as an unrelated, new bug rather than the same compiler-flag issue
 already known from caching.
 
 **Related:**
-[handbook/spring/spring-testing-slices-and-context-caching.md](../syllabus/05-spring/spring-testing-slices-and-context-caching.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
+[syllabus/05-spring/spring-testing-slices-and-context-caching.md](../syllabus/05-spring/spring-testing-slices-and-context-caching.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)

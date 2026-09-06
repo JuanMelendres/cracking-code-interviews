@@ -4,7 +4,7 @@ slug: gc-fundamentals-and-log-analysis
 document_type: flashcard-deck
 domain: jvm
 topic_id: T-306
-canonical: ../handbook/jvm/gc-fundamentals-and-log-analysis.md
+canonical: ../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
 last_updated: 2026-08-06
 ---
 

@@ -4,7 +4,7 @@ slug: generics-erasure-and-pecs
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-104
-canonical: ../handbook/java-core/generics-erasure-and-pecs.md
+canonical: ../syllabus/02-java/language-core/generics-erasure-and-pecs.md
 last_updated: 2026-08-05
 ---
 

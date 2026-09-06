@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/11-system-design/storage-selection-tradeoffs.md
-source: handbook/system-design/storage-selection-tradeoffs.md#production-scenarios
+source: syllabus/11-system-design/storage-selection-tradeoffs.md#production-scenarios
 ---
 
 # Document Store Blocking a Later Cross-Order Transaction Need

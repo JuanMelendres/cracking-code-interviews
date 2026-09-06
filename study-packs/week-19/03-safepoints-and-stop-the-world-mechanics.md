@@ -8,7 +8,7 @@ prerequisites: [T-306]
 unlocks: []
 week: 19
 last_reviewed: 2026-08-02
-canonical: ../../handbook/jvm/safepoints-and-stop-the-world-mechanics.md
+canonical: ../../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md
 ---
 
 # T-310 · Safepoints and Stop-the-World Mechanics

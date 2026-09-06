@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/injection-input-validation-output-encoding.md
-source: handbook/security/injection-input-validation-output-encoding.md#production-scenarios
+source: syllabus/12-security/injection-input-validation-output-encoding.md#production-scenarios
 ---
 
 # LIKE-Clause SQL Injection Surviving an Automated Scan

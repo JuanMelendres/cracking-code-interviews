@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/08-testing/mutation-and-property-based-testing.md
-source: handbook/testing/mutation-and-property-based-testing.md#production-scenarios
+source: syllabus/08-testing/mutation-and-property-based-testing.md#production-scenarios
 ---
 
 # Boundary Condition Bug Behind a 95% Coverage Figure

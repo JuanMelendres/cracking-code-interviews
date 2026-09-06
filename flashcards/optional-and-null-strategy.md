@@ -4,7 +4,7 @@ slug: optional-and-null-strategy
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-109
-canonical: ../handbook/java-core/optional-and-null-strategy.md
+canonical: ../syllabus/02-java/language-core/optional-and-null-strategy.md
 last_updated: 2026-09-02
 ---
 

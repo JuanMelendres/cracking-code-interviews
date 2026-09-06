@@ -4,7 +4,7 @@ slug: owasp-top-10-for-backend-services
 document_type: cheat-sheet
 domain: security
 topic_id: T-1301
-canonical: ../handbook/security/owasp-top-10-for-backend-services.md
+canonical: ../syllabus/12-security/owasp-top-10-for-backend-services.md
 last_updated: 2026-08-05
 ---
 

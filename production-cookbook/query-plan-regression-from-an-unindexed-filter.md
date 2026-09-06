@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/06-databases/query-planning-and-explain-analyze.md
-source: handbook/databases/query-planning-and-explain-analyze.md#production-scenarios
+source: syllabus/06-databases/query-planning-and-explain-analyze.md#production-scenarios
 ---
 
 # Query-Plan Regression From an Unindexed Filter

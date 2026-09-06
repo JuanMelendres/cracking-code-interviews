@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/supply-chain-security-sbom-and-dependency-risk.md
+canonical: ../../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md
 ---
 
 # T-1306 · Supply Chain Security, SBOM, and Dependency Risk

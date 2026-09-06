@@ -4,7 +4,7 @@ slug: native-memory-direct-buffers-and-off-heap
 document_type: flashcard-deck
 domain: jvm
 topic_id: T-311
-canonical: ../handbook/jvm/native-memory-direct-buffers-and-off-heap.md
+canonical: ../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ The recurring reason a container can OOMKill a JVM whose `-Xmx` sits comfortably
 Treating `-Xmx` as an effective ceiling on the JVM process's total memory footprint.
 
 **Related:**
-[handbook/jvm/native-memory-direct-buffers-and-off-heap.md](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)
+[syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)
 
 ## Card: Why direct buffers are faster for I/O
 
@@ -44,7 +44,7 @@ The precise mechanism, not just "direct buffers are faster," behind a common NIO
 Describing direct buffers as generically faster without naming the GC-movement/copy-elimination mechanism.
 
 **Related:**
-[handbook/jvm/native-memory-direct-buffers-and-off-heap.md](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)
+[syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)
 
 ## Card: What tool shows direct-buffer memory when a heap dump won't
 
@@ -61,4 +61,4 @@ Names the specific diagnostic tool for exactly the memory category a standard he
 Relying only on heap-dump analysis to diagnose memory growth that's actually coming from direct buffers.
 
 **Related:**
-[handbook/jvm/native-memory-direct-buffers-and-off-heap.md](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)
+[syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md](../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md)

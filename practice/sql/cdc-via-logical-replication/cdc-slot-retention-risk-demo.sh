@@ -3,7 +3,7 @@
 # replication slot prevents PostgreSQL from reclaiming WAL, even across a real
 # CHECKPOINT, because the slot's restart_lsn marks WAL still needed to satisfy it --
 # the exact same "held snapshot blocks reclamation" shape as
-# handbook/databases/mvcc-vacuum-and-bloat.md's long-transaction-blocks-vacuum
+# syllabus/06-databases/mvcc-vacuum-and-bloat.md's long-transaction-blocks-vacuum
 # finding, here applied to WAL retention instead of tuple/vacuum retention.
 set -euo pipefail
 cd "$(dirname "$0")"

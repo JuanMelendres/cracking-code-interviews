@@ -8,7 +8,7 @@ prerequisites: [T-701, T-702, T-703]
 unlocks: [T-809]
 week: 8
 last_reviewed: 2026-07-30
-canonical: ../../handbook/kafka/delivery-semantics-and-exactly-once.md
+canonical: ../../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
 ---
 
 # T-704 · Delivery Semantics & Exactly-Once Processing

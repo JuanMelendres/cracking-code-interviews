@@ -4,7 +4,7 @@ slug: structured-concurrency
 document_type: cheat-sheet
 domain: concurrency
 topic_id: T-411
-canonical: ../handbook/concurrency/structured-concurrency.md
+canonical: ../syllabus/02-java/concurrency/structured-concurrency.md
 last_updated: 2026-09-02
 ---
 

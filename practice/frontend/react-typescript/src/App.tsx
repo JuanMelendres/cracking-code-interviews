@@ -4,7 +4,7 @@ import TypedComponents from './demos/TypedComponents';
 import { GenericListDemo } from './demos/GenericList';
 import Alert from './demos/VariantAlert';
 
-// Real demo app backing handbook/frontend/react-typescript.md (F-119).
+// Real demo app backing syllabus/21-frontend-web/react-typescript.md (F-119).
 // Every claim in the chapter is verified against real `tsc -b` output —
 // see README.md for the captured compiler errors this app's demos were
 // deliberately misused to produce, then fixed.

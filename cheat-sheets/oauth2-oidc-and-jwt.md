@@ -4,7 +4,7 @@ slug: oauth2-oidc-and-jwt
 document_type: cheat-sheet
 domain: security
 topic_id: T-512/T-513
-canonical: ../handbook/security/oauth2-oidc-and-jwt.md
+canonical: ../syllabus/12-security/oauth2-oidc-and-jwt.md
 last_updated: 2026-08-05
 ---
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/collections/hashmap-internals.md
-source: handbook/collections/hashmap-internals.md#production-scenarios
+source: syllabus/02-java/collections/hashmap-internals.md#production-scenarios
 ---
 
 # HashMap Bucket Overload From a Poor hashCode Distribution

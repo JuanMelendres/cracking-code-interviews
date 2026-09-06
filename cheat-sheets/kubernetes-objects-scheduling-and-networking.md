@@ -4,7 +4,7 @@ slug: kubernetes-objects-scheduling-and-networking
 document_type: cheat-sheet
 domain: cloud
 topic_id: T-1002
-canonical: ../handbook/cloud/kubernetes-objects-scheduling-and-networking.md
+canonical: ../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md
 last_updated: 2026-08-04
 ---
 

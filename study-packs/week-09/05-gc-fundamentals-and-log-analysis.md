@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 9
 last_reviewed: 2026-07-30
-canonical: ../../handbook/jvm/gc-fundamentals-and-log-analysis.md
+canonical: ../../syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
 ---
 
 # T-303 / T-306 · GC Fundamentals & Log Analysis

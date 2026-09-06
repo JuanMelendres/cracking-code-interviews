@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-304, T-307, T-312]
 week: 16
 last_reviewed: 2026-07-31
-canonical: ../../handbook/jvm/jvm-memory-layout-and-runtime-regions.md
+canonical: ../../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md
 ---
 
 # T-301 · JVM Memory Layout and Runtime Regions

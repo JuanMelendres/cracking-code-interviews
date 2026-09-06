@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/collections/concurrenthashmap-internals.md
-source: handbook/collections/concurrenthashmap-internals.md#production-scenarios
+source: syllabus/02-java/collections/concurrenthashmap-internals.md#production-scenarios
 ---
 
 # Lost Update in a Get-Then-Put Counter Increment

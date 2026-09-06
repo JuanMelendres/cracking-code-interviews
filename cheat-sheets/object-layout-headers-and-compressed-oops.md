@@ -4,7 +4,7 @@ slug: object-layout-headers-and-compressed-oops
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-302
-canonical: ../handbook/jvm/object-layout-headers-and-compressed-oops.md
+canonical: ../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md
 last_updated: 2026-08-05
 ---
 

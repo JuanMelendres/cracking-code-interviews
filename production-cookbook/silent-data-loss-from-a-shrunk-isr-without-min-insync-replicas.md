@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md
-source: handbook/kafka/producer-semantics-and-partition-keys.md#production-scenarios
+source: syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md#production-scenarios
 ---
 
 # Silent Data Loss From a Shrunk ISR Without min.insync.replicas

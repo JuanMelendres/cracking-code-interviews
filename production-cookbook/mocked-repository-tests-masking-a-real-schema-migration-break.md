@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/08-testing/test-strategy-and-test-doubles.md
-source: handbook/testing/test-strategy-and-test-doubles.md#production-scenarios
+source: syllabus/08-testing/test-strategy-and-test-doubles.md#production-scenarios
 ---
 
 # Mocked Repository Tests Masking a Real Schema Migration Break

@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 14
 last_reviewed: 2026-07-30
-canonical: ../../handbook/collections/blockingqueue-family.md
+canonical: ../../syllabus/02-java/collections/blockingqueue-family.md
 ---
 
 # T-207 · BlockingQueue Family and Producer-Consumer

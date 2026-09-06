@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/mvcc-vacuum-and-bloat.md
   - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
-source: handbook/databases/mvcc-vacuum-and-bloat.md#production-scenarios
+source: syllabus/06-databases/mvcc-vacuum-and-bloat.md#production-scenarios
 ---
 
 # Table Bloat from a BI Tool's Long-Held Transaction Blocking Autovacuum

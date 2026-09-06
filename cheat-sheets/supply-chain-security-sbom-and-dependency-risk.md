@@ -4,7 +4,7 @@ slug: supply-chain-security-sbom-and-dependency-risk
 document_type: cheat-sheet
 domain: security
 topic_id: T-1306
-canonical: ../handbook/security/supply-chain-security-sbom-and-dependency-risk.md
+canonical: ../syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md
 last_updated: 2026-08-05
 ---
 

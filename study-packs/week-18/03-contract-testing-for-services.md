@@ -8,7 +8,7 @@ prerequisites: [T-1104]
 unlocks: []
 week: 18
 last_reviewed: 2026-08-02
-canonical: ../../handbook/testing/contract-testing-for-services.md
+canonical: ../../syllabus/08-testing/contract-testing-for-services.md
 ---
 
 # T-1105 · Contract Testing for Services

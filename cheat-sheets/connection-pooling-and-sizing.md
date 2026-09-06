@@ -4,7 +4,7 @@ slug: connection-pooling-and-sizing
 document_type: cheat-sheet
 domain: databases
 topic_id: T-607
-canonical: ../handbook/databases/connection-pooling-and-sizing.md
+canonical: ../syllabus/06-databases/connection-pooling-and-sizing.md
 last_updated: 2026-09-02
 ---
 

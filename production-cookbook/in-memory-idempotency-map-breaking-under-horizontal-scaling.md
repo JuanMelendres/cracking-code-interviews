@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/11-system-design/idempotency.md
-source: handbook/system-design/idempotency.md#production-scenarios
+source: syllabus/11-system-design/idempotency.md#production-scenarios
 ---
 
 # In-Memory Idempotency Map Breaking Under Horizontal Scaling

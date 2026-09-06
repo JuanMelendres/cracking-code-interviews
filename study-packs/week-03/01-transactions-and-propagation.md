@@ -8,7 +8,7 @@ prerequisites: [T-901]
 unlocks: [T-611]
 week: 3
 last_reviewed: 2026-07-30
-canonical: ../../handbook/spring/transactional-proxy-mechanics-and-propagation.md
+canonical: ../../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md
 ---
 
 # T-503 / T-504 / T-505 · Spring Transactions, Proxies, and Propagation

@@ -4,7 +4,7 @@ slug: resilience-patterns
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-515
-canonical: ../handbook/system-design/resilience-patterns.md
+canonical: ../syllabus/11-system-design/resilience-patterns.md
 last_updated: 2026-08-03
 ---
 

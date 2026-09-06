@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md
-source: handbook/spring/spring-actuator-health-and-observability-hooks.md#production-scenarios
+source: syllabus/05-spring/spring-actuator-health-and-observability-hooks.md#production-scenarios
 ---
 
 # Actuator /env Exposed to the Public Internet via a Wildcard Override

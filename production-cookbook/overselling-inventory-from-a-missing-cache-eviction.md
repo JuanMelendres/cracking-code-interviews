@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md
-source: handbook/spring/spring-cache-abstraction-and-pitfalls.md#production-scenarios
+source: syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md#production-scenarios
 ---
 
 # Overselling Inventory From a Missing Cache Eviction

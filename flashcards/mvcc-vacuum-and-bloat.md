@@ -4,7 +4,7 @@ slug: mvcc-vacuum-and-bloat
 document_type: flashcard-deck
 domain: databases
 topic_id: T-612
-canonical: ../handbook/databases/mvcc-vacuum-and-bloat.md
+canonical: ../syllabus/06-databases/mvcc-vacuum-and-bloat.md
 last_updated: 2026-09-02
 ---
 
@@ -31,7 +31,7 @@ Assuming UPDATE works like an in-place mutation, the way it might in a
 non-MVCC system.
 
 **Related:**
-[handbook/databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
+[syllabus/06-databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
 
 ## Card: Why doesn't VACUUM shrink the table?
 
@@ -53,7 +53,7 @@ count dropping to zero, and only shrank to its original 1776 kB after VACUUM FUL
 Expecting repeated plain VACUUM runs to eventually shrink an already-bloated table.
 
 **Related:**
-[handbook/databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
+[syllabus/06-databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md)
 
 ## Card: The unrelated-transaction bloat mechanism
 
@@ -76,4 +76,4 @@ Assuming vacuum-blocking only applies to tables a long transaction directly lock
 reads.
 
 **Related:**
-[handbook/databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md), [handbook/databases/isolation-levels-and-concurrency-anomalies.md](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md)
+[syllabus/06-databases/mvcc-vacuum-and-bloat.md](../syllabus/06-databases/mvcc-vacuum-and-bloat.md), [syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md](../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md)

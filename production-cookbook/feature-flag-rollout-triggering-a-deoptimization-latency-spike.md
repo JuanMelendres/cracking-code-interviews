@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
-source: handbook/jvm/jit-tiered-compilation-and-deoptimization.md#production-scenarios
+source: syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md#production-scenarios
 ---
 
 # Feature-Flag Rollout Triggering a Deoptimization Latency Spike

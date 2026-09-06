@@ -4,7 +4,7 @@ slug: container-image-internals
 document_type: cheat-sheet
 domain: cloud
 topic_id: T-1001
-canonical: ../handbook/cloud/container-image-internals.md
+canonical: ../syllabus/14-devops-containers/container-image-internals.md
 last_updated: 2026-09-01
 ---
 

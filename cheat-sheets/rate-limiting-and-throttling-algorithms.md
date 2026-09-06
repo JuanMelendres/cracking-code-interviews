@@ -4,7 +4,7 @@ slug: rate-limiting-and-throttling-algorithms
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-808
-canonical: ../handbook/system-design/rate-limiting-and-throttling-algorithms.md
+canonical: ../syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md
 last_updated: 2026-09-02
 ---
 

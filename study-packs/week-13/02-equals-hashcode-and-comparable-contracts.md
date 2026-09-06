@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 13
 last_reviewed: 2026-07-30
-canonical: ../../handbook/java-core/equals-hashcode-and-comparable-contracts.md
+canonical: ../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md
 ---
 
 # T-101 · equals(), hashCode(), and Comparable Contracts

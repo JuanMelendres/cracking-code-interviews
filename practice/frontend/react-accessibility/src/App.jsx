@@ -3,7 +3,7 @@ import SemanticVsDivButtonDemo from './demos/SemanticVsDivButtonDemo';
 import FocusTrapModalDemo from './demos/FocusTrapModalDemo';
 import AccessibleFormErrorDemo from './demos/AccessibleFormErrorDemo';
 
-// Real demo app backing handbook/frontend/react-accessibility.md (F-116).
+// Real demo app backing syllabus/21-frontend-web/react-accessibility.md (F-116).
 // Verified live in a browser, including real keyboard-only navigation
 // checks and real document.activeElement focus tracking.
 function App() {

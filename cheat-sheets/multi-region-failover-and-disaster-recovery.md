@@ -4,7 +4,7 @@ slug: multi-region-failover-and-disaster-recovery
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-814
-canonical: ../handbook/system-design/multi-region-failover-and-disaster-recovery.md
+canonical: ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
 last_updated: 2026-09-02
 ---
 

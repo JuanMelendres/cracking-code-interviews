@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md
-source: handbook/java-core/records-sealed-types-and-pattern-matching.md#production-scenarios
+source: syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md#production-scenarios
 ---
 
 # Sealed Hierarchy Catching a Missed Payment-Event Case at Build Time

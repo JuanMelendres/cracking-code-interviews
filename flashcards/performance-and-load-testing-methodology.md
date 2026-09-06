@@ -4,7 +4,7 @@ slug: performance-and-load-testing-methodology
 document_type: flashcard-deck
 domain: testing
 topic_id: T-1106
-canonical: ../handbook/testing/performance-and-load-testing-methodology.md
+canonical: ../syllabus/08-testing/performance-and-load-testing-methodology.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ The precise reason two distinct test types exist rather than one "performance te
 Treating a passed load test as evidence the service is also safe to run for extended periods.
 
 **Related:**
-[handbook/testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)
+[syllabus/08-testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)
 
 ## Card: What determines whether a load test catches real issues
 
@@ -44,7 +44,7 @@ Distinguishes a load test that generates a genuine confidence signal from one th
 Designing a load test around total requests-per-second alone, without matching the real traffic's shape.
 
 **Related:**
-[handbook/testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)
+[syllabus/08-testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)
 
 ## Card: Why performance testing silently lapses
 
@@ -61,4 +61,4 @@ Explains why a performance-testing practice needs deliberate ownership and a def
 Assuming a performance-testing practice will persist on its own once established, with no explicit owner or re-trigger condition.
 
 **Related:**
-[handbook/testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)
+[syllabus/08-testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)

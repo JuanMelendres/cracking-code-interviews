@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 13
 last_reviewed: 2026-07-30
-canonical: ../../handbook/java-core/streams-and-collectors.md
+canonical: ../../syllabus/02-java/language-core/streams-and-collectors.md
 ---
 
 # T-107 · Streams and Collectors

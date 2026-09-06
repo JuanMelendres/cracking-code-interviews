@@ -8,7 +8,7 @@ prerequisites: [T-306]
 unlocks: []
 week: 19
 last_reviewed: 2026-08-02
-canonical: ../../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md
+canonical: ../../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md
 ---
 
 # T-305 · ZGC and Shenandoah: Concurrent Collection

@@ -4,7 +4,7 @@ slug: collection-selection-decision-matrix
 document_type: flashcard-deck
 domain: collections
 topic_id: T-209
-canonical: ../handbook/collections/collection-selection-decision-matrix.md
+canonical: ../syllabus/02-java/collections/collection-selection-decision-matrix.md
 last_updated: 2026-08-06
 ---
 

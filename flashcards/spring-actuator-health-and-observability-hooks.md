@@ -4,7 +4,7 @@ slug: spring-actuator-health-and-observability-hooks
 document_type: flashcard-deck
 domain: spring
 topic_id: T-516
-canonical: ../handbook/spring/spring-actuator-health-and-observability-hooks.md
+canonical: ../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md
 last_updated: 2026-09-01
 ---
 
@@ -33,7 +33,7 @@ Assuming each indicator's status is shown independently with no effect on the
 overall result.
 
 **Related:**
-[handbook/spring/spring-actuator-health-and-observability-hooks.md](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
+[syllabus/05-spring/spring-actuator-health-and-observability-hooks.md](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
 
 ## Card: What's exposed over HTTP by default?
 
@@ -57,7 +57,7 @@ dumps).
 Assuming a documented, built-in endpoint must be reachable by default.
 
 **Related:**
-[handbook/spring/spring-actuator-health-and-observability-hooks.md](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
+[syllabus/05-spring/spring-actuator-health-and-observability-hooks.md](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
 
 ## Card: How do you programmatically control a Kubernetes readiness probe's result?
 
@@ -82,4 +82,4 @@ Assuming readiness/liveness probes are static, always-UP endpoints with no
 real application-state connection.
 
 **Related:**
-[handbook/spring/spring-actuator-health-and-observability-hooks.md](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)
+[syllabus/05-spring/spring-actuator-health-and-observability-hooks.md](../syllabus/05-spring/spring-actuator-health-and-observability-hooks.md)

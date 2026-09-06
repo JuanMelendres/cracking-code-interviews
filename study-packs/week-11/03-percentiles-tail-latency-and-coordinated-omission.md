@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 11
 last_reviewed: 2026-07-30
-canonical: ../../handbook/performance/percentiles-tail-latency-and-coordinated-omission.md
+canonical: ../../syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md
 ---
 
 # T-1204 · Latency: Percentiles, Tail Latency & Coordinated Omission

@@ -8,7 +8,7 @@ prerequisites: [T-909]
 unlocks: []
 week: 5
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/idempotency.md
+canonical: ../../syllabus/11-system-design/idempotency.md
 ---
 
 # T-809 · Idempotency

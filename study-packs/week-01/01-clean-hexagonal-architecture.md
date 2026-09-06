@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-903, T-912]
 week: 1
 last_reviewed: 2026-07-30
-canonical: ../../handbook/architecture/clean-hexagonal-architecture.md
+canonical: ../../syllabus/17-architecture/clean-hexagonal-architecture.md
 ---
 
 # T-901 · Clean / Hexagonal Architecture

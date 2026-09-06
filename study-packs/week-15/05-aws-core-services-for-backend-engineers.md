@@ -8,7 +8,7 @@ prerequisites: [T-1002]
 unlocks: []
 week: 15
 last_reviewed: 2026-07-31
-canonical: ../../handbook/cloud/aws-core-services-for-backend-engineers.md
+canonical: ../../syllabus/15-cloud/aws-core-services-for-backend-engineers.md
 ---
 
 # T-1006 · AWS Core Services for Backend Engineers

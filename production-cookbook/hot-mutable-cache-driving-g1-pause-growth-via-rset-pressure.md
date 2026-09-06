@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md
-source: handbook/jvm/g1-remembered-sets-and-write-barriers.md#production-scenarios
+source: syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md#production-scenarios
 ---
 
 # Hot Mutable Cache Driving G1 Pause Growth via RSet Pressure

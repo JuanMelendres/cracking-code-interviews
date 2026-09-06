@@ -4,7 +4,7 @@ slug: storage-selection-tradeoffs
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-811
-canonical: ../handbook/system-design/storage-selection-tradeoffs.md
+canonical: ../syllabus/11-system-design/storage-selection-tradeoffs.md
 last_updated: 2026-08-06
 ---
 

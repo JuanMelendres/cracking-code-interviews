@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 13
 last_reviewed: 2026-07-30
-canonical: ../../handbook/java-core/exception-design-and-hierarchy-strategy.md
+canonical: ../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
 ---
 
 # T-105 · Exception Design and Hierarchy Strategy

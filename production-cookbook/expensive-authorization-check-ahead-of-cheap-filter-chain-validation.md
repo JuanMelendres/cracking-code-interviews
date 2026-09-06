@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/05-spring/security-filter-chain.md
-source: handbook/spring/security-filter-chain.md#production-scenarios
+source: syllabus/05-spring/security-filter-chain.md#production-scenarios
 ---
 
 # Expensive Authorization Check Ahead of Cheap Filter-Chain Validation

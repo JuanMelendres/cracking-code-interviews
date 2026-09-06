@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 2
 last_reviewed: 2026-07-30
-canonical: ../../interview-playbook/technical-answers/trade-off-narration-and-adrs.md
+canonical: ../../syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md
 ---
 
 # T-1505 / T-916 · Trade-off Narration and Architecture Decision Records

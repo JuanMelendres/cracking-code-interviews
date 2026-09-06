@@ -8,7 +8,7 @@ prerequisites: [T-306]
 unlocks: []
 week: 19
 last_reviewed: 2026-08-02
-canonical: ../../handbook/jvm/gc-roots-reachability-and-reference-strength.md
+canonical: ../../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md
 ---
 
 # T-303 · GC Roots, Reachability, and Reference Strength

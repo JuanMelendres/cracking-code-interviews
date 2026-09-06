@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-212
 tier: Advanced
-canonical: ../handbook/frontend/nextjs-server-actions-and-mutations.md
+canonical: ../syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md
 last_updated: 2026-09-03
 ---
 

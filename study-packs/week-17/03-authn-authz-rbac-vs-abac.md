@@ -8,7 +8,7 @@ prerequisites: [T-1301]
 unlocks: [T-1307]
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/authn-authz-rbac-vs-abac.md
+canonical: ../../syllabus/12-security/authn-authz-rbac-vs-abac.md
 ---
 
 # T-1302 · AuthN vs AuthZ, RBAC vs ABAC

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md
-source: handbook/java-core/strings-interning-compact-strings-and-builders.md#production-scenarios
+source: syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md#production-scenarios
 ---
 
 # Log-Formatting Throughput Regression from String Concatenation in a Loop

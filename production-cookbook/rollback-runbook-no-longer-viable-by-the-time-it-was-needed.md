@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/17-architecture/strangler-fig-and-migration-patterns.md
   - ../syllabus/17-architecture/architecture-decision-records.md
-source: handbook/architecture/strangler-fig-and-migration-patterns.md#production-scenarios
+source: syllabus/17-architecture/strangler-fig-and-migration-patterns.md#production-scenarios
 ---
 
 # Rollback Runbook That Was Already Impossible by the Time It Was Needed

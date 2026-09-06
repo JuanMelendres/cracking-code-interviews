@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-303
 tier: Advanced
-canonical: ../handbook/frontend/nextjs-monorepo-layout.md
+canonical: ../syllabus/21-frontend-web/nextjs-monorepo-layout.md
 last_updated: 2026-09-03
 ---
 

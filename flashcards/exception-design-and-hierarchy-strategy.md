@@ -4,7 +4,7 @@ slug: exception-design-and-hierarchy-strategy
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-105
-canonical: ../handbook/java-core/exception-design-and-hierarchy-strategy.md
+canonical: ../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
 last_updated: 2026-08-06
 ---
 

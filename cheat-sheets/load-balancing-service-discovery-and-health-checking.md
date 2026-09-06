@@ -4,7 +4,7 @@ slug: load-balancing-service-discovery-and-health-checking
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-805
-canonical: ../handbook/system-design/load-balancing-service-discovery-and-health-checking.md
+canonical: ../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md
 last_updated: 2026-09-02
 ---
 

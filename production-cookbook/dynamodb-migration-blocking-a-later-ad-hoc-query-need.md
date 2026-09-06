@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/15-cloud/aws-core-services-for-backend-engineers.md
-source: handbook/cloud/aws-core-services-for-backend-engineers.md#production-scenarios
+source: syllabus/15-cloud/aws-core-services-for-backend-engineers.md#production-scenarios
 ---
 
 # DynamoDB Migration Blocking a Later Ad-Hoc Query Need

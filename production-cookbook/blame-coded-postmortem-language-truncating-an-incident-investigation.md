@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/13-observability/incident-response-and-blameless-postmortems.md
   - ../syllabus/17-architecture/architecture-decision-records.md
-source: handbook/performance/incident-response-and-blameless-postmortems.md#production-scenarios
+source: syllabus/13-observability/incident-response-and-blameless-postmortems.md#production-scenarios
 ---
 
 # Blame-Coded Postmortem Language Truncating an Incident Investigation

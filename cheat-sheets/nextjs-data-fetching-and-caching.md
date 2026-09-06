@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-204
 tier: Intermediate
-canonical: ../handbook/frontend/nextjs-data-fetching-and-caching.md
+canonical: ../syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md
 last_updated: 2026-09-03
 ---
 

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md
-source: handbook/cloud/kubernetes-objects-scheduling-and-networking.md#production-scenarios
+source: syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md#production-scenarios
 ---
 
 # Rolling Update Latency Spike Despite maxUnavailable: 0

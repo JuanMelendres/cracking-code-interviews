@@ -4,7 +4,7 @@ slug: junit5-architecture-and-advanced-features
 document_type: flashcard-deck
 domain: testing
 topic_id: T-1102
-canonical: ../handbook/testing/junit5-architecture-and-advanced-features.md
+canonical: ../syllabus/08-testing/junit5-architecture-and-advanced-features.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ The architectural reason JUnit 5 can run alongside legacy JUnit 4 tests in the s
 Describing JUnit 5 as a single monolithic library rather than a layered platform architecture.
 
 **Related:**
-[handbook/testing/junit5-architecture-and-advanced-features.md](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)
+[syllabus/08-testing/junit5-architecture-and-advanced-features.md](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)
 
 ## Card: What replaced Runner and Rule
 
@@ -44,7 +44,7 @@ The concrete mechanism behind JUnit 5's improved composability over JUnit 4.
 Assuming JUnit 5's extension model is just a renamed version of JUnit 4's Runner, rather than a genuinely composable replacement.
 
 **Related:**
-[handbook/testing/junit5-architecture-and-advanced-features.md](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)
+[syllabus/08-testing/junit5-architecture-and-advanced-features.md](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)
 
 ## Card: When to choose @TestFactory over @ParameterizedTest
 
@@ -61,4 +61,4 @@ Prevents reaching for the more complex dynamic-test mechanism when a simpler, st
 Defaulting to `@TestFactory` for a fixed, statically-known set of test cases that `@ParameterizedTest` would express more simply.
 
 **Related:**
-[handbook/testing/junit5-architecture-and-advanced-features.md](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)
+[syllabus/08-testing/junit5-architecture-and-advanced-features.md](../syllabus/08-testing/junit5-architecture-and-advanced-features.md)

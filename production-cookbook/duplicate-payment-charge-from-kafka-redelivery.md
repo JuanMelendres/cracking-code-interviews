@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
-source: handbook/kafka/delivery-semantics-and-exactly-once.md#production-scenarios
+source: syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md#production-scenarios
 ---
 
 # Duplicate Payment Charge From Kafka Redelivery

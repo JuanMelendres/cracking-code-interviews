@@ -4,7 +4,7 @@ slug: test-strategy-and-test-doubles
 document_type: cheat-sheet
 domain: testing
 topic_id: T-1103
-canonical: ../handbook/testing/test-strategy-and-test-doubles.md
+canonical: ../syllabus/08-testing/test-strategy-and-test-doubles.md
 last_updated: 2026-08-04
 ---
 

@@ -8,7 +8,7 @@ prerequisites: [T-701]
 unlocks: [T-704]
 week: 8
 last_reviewed: 2026-07-30
-canonical: ../../handbook/kafka/consumer-groups-and-rebalancing.md
+canonical: ../../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
 ---
 
 # T-703 · Consumer Groups, Rebalancing & Offset Management

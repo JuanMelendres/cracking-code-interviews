@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/optimistic-vs-pessimistic-locking.md
   - ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
-source: handbook/databases/optimistic-vs-pessimistic-locking.md#production-scenarios
+source: syllabus/06-databases/optimistic-vs-pessimistic-locking.md#production-scenarios
 ---
 
 # Flash-Sale Latency Collapse from Pessimistic Locks Held Across Payment Authorization

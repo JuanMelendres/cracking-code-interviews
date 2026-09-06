@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md
-source: handbook/collections/fail-fast-vs-weakly-consistent-iterators.md#production-scenarios
+source: syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md#production-scenarios
 ---
 
 # Intermittent ConcurrentModificationException from an Unsynchronized Shared List

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
-source: handbook/kafka/consumer-groups-and-rebalancing.md#production-scenarios
+source: syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md#production-scenarios
 ---
 
 # Kafka Consumer Group Rebalance Storm

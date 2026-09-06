@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/concurrency/virtual-threads.md
-source: handbook/concurrency/virtual-threads.md#production-scenarios
+source: syllabus/02-java/concurrency/virtual-threads.md#production-scenarios
 ---
 
 # Virtual Thread Migration Regression From Synchronized-Block Pinning

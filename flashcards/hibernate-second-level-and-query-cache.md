@@ -4,7 +4,7 @@ slug: hibernate-second-level-and-query-cache
 document_type: flashcard-deck
 domain: databases
 topic_id: T-603
-canonical: ../handbook/databases/hibernate-second-level-and-query-cache.md
+canonical: ../syllabus/06-databases/hibernate-second-level-and-query-cache.md
 last_updated: 2026-09-01
 ---
 
@@ -32,7 +32,7 @@ Hibernate, so it must bypass the cache too") with real, measured evidence.
 Assuming "native" means "invisible to Hibernate" in every respect.
 
 **Related:**
-[handbook/databases/hibernate-second-level-and-query-cache.md](../syllabus/06-databases/hibernate-second-level-and-query-cache.md)
+[syllabus/06-databases/hibernate-second-level-and-query-cache.md](../syllabus/06-databases/hibernate-second-level-and-query-cache.md)
 
 ## Card: What write actually produces a stale second-level cache read?
 
@@ -56,7 +56,7 @@ Assuming any SQL statement, run through any means, is equally invisible to
 Hibernate's cache machinery.
 
 **Related:**
-[handbook/databases/hibernate-second-level-and-query-cache.md](../syllabus/06-databases/hibernate-second-level-and-query-cache.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
+[syllabus/06-databases/hibernate-second-level-and-query-cache.md](../syllabus/06-databases/hibernate-second-level-and-query-cache.md), [Spring Cache Abstraction and Pitfalls](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
 
 ## Card: Why doesn't the query cache alone eliminate database hits?
 
@@ -77,4 +77,4 @@ benefit than expected, without any error or warning.
 Assuming the query cache is a complete, standalone caching solution.
 
 **Related:**
-[handbook/databases/hibernate-second-level-and-query-cache.md](../syllabus/06-databases/hibernate-second-level-and-query-cache.md)
+[syllabus/06-databases/hibernate-second-level-and-query-cache.md](../syllabus/06-databases/hibernate-second-level-and-query-cache.md)

@@ -4,7 +4,7 @@ slug: profiling-jfr-and-flame-graphs
 document_type: cheat-sheet
 domain: performance
 topic_id: T-1202
-canonical: ../handbook/performance/profiling-jfr-and-flame-graphs.md
+canonical: ../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md
 last_updated: 2026-09-02
 ---
 

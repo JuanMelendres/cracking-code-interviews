@@ -4,7 +4,7 @@ slug: cqrs-read-write-separation
 document_type: flashcard-deck
 domain: architecture
 topic_id: T-904
-canonical: ../handbook/architecture/cqrs-read-write-separation.md
+canonical: ../syllabus/17-architecture/cqrs-read-write-separation.md
 last_updated: 2026-09-02
 ---
 

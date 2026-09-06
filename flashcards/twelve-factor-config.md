@@ -4,7 +4,7 @@ slug: twelve-factor-config
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-1008
-canonical: ../handbook/system-design/twelve-factor-config.md
+canonical: ../syllabus/15-cloud/twelve-factor-config.md
 last_updated: 2026-09-01
 ---
 
@@ -33,7 +33,7 @@ Branching on an environment name inside code instead of injecting the
 actual differing values.
 
 **Related:**
-[handbook/system-design/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
+[syllabus/15-cloud/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
 
 ## Card: What's the real config precedence order?
 
@@ -55,7 +55,7 @@ taking effect" debugging instantly.
 Assuming the config file is authoritative over environment variables.
 
 **Related:**
-[handbook/system-design/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
+[syllabus/15-cloud/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
 
 ## Card: Why does fail-fast startup validation matter?
 
@@ -79,4 +79,4 @@ Assuming a passing health check is sufficient proof of correct
 configuration.
 
 **Related:**
-[handbook/system-design/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
+[syllabus/15-cloud/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)

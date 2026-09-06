@@ -4,7 +4,7 @@ slug: kubernetes-resource-limits-probes-and-jvm-sizing
 document_type: flashcard-deck
 domain: cloud
 topic_id: T-1003
-canonical: ../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md
+canonical: ../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md
 last_updated: 2026-08-06
 ---
 

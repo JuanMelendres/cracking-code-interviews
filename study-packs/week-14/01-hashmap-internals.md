@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 14
 last_reviewed: 2026-07-30
-canonical: ../../handbook/collections/hashmap-internals.md
+canonical: ../../syllabus/02-java/collections/hashmap-internals.md
 ---
 
 # T-201 · HashMap Internals

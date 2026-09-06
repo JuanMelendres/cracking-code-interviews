@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/11-system-design/search-and-indexing-systems.md
-source: handbook/system-design/search-and-indexing-systems.md#production-scenarios
+source: syllabus/11-system-design/search-and-indexing-systems.md#production-scenarios
 ---
 
 # LIKE Query Degradation as a Product Catalog Grows

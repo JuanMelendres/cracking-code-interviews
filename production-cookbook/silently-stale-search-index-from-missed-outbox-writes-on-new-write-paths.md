@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md
   - ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
-source: handbook/system-design/messaging-patterns-and-change-data-capture.md#production-scenarios
+source: syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md#production-scenarios
 ---
 
 # Silently Stale Search Index from Missed Outbox Writes on New Code Paths

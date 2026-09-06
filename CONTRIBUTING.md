@@ -42,7 +42,7 @@ This repository is **public**. STAR stories, architecture analyses, and producti
 
 ### Sanitisation checklist for STAR stories
 
-Before committing anything in `study-packs/*/`, `interview-playbook/behavioral/`, or a `story-bank.md`:
+Before committing anything in `study-packs/*/`, `syllabus/20-interview-preparation/behavioral/`, or a `story-bank.md`:
 
 - [ ] No employer name, or only a public, non-sensitive one
 - [ ] No client name unless demonstrably public

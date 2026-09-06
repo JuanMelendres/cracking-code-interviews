@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-105/F-106
 tier: Intermediate
-canonical: ../handbook/frontend/react-hooks-useeffect-and-useref.md
+canonical: ../syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md
 last_updated: 2026-09-03
 ---
 

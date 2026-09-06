@@ -4,7 +4,7 @@ slug: polymorphism-and-dynamic-dispatch
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-102
-canonical: ../handbook/java-core/polymorphism-and-dynamic-dispatch.md
+canonical: ../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md
 last_updated: 2026-09-02
 ---
 
@@ -58,4 +58,4 @@ Only instance method calls are looked up by "what is this object, right now" —
 ## Related
 
 - `syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md`
-- `interview-playbook/technical-answers/`
+- `syllabus/20-interview-preparation/technical-answers/`

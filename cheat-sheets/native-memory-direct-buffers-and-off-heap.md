@@ -4,7 +4,7 @@ slug: native-memory-direct-buffers-and-off-heap
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-311
-canonical: ../handbook/jvm/native-memory-direct-buffers-and-off-heap.md
+canonical: ../syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
 last_updated: 2026-08-05
 ---
 

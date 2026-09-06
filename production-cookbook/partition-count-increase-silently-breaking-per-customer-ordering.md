@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md
-source: handbook/kafka/kafka-architecture-fundamentals.md#production-scenarios
+source: syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md#production-scenarios
 ---
 
 # Partition Count Increase Silently Breaking Per-Customer Ordering

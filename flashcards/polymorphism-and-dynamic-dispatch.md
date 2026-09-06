@@ -4,7 +4,7 @@ slug: polymorphism-and-dynamic-dispatch
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-102
-canonical: ../handbook/java-core/polymorphism-and-dynamic-dispatch.md
+canonical: ../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md
 last_updated: 2026-09-02
 ---
 

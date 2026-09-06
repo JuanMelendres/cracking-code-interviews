@@ -4,7 +4,7 @@ slug: performance-and-load-testing-methodology
 document_type: cheat-sheet
 domain: testing
 topic_id: T-1106
-canonical: ../handbook/testing/performance-and-load-testing-methodology.md
+canonical: ../syllabus/08-testing/performance-and-load-testing-methodology.md
 last_updated: 2026-08-05
 ---
 

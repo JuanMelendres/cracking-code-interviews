@@ -4,7 +4,7 @@ slug: injection-input-validation-output-encoding
 document_type: flashcard-deck
 domain: security
 topic_id: T-1305
-canonical: ../handbook/security/injection-input-validation-output-encoding.md
+canonical: ../syllabus/12-security/injection-input-validation-output-encoding.md
 last_updated: 2026-08-06
 ---
 
@@ -27,7 +27,7 @@ The precise mechanism, not just "prepared statements are safer" as an unexplaine
 Describing prepared statements as safer without explaining the structure/data separation that actually causes the safety.
 
 **Related:**
-[handbook/security/injection-input-validation-output-encoding.md](../syllabus/12-security/injection-input-validation-output-encoding.md)
+[syllabus/12-security/injection-input-validation-output-encoding.md](../syllabus/12-security/injection-input-validation-output-encoding.md)
 
 ## Card: Is input validation alone sufficient
 
@@ -44,7 +44,7 @@ Prevents treating input validation as the complete defense rather than one layer
 Believing a strong input-validation layer alone closes off injection risk entirely.
 
 **Related:**
-[handbook/security/injection-input-validation-output-encoding.md](../syllabus/12-security/injection-input-validation-output-encoding.md)
+[syllabus/12-security/injection-input-validation-output-encoding.md](../syllabus/12-security/injection-input-validation-output-encoding.md)
 
 ## Card: Why generic sanitization is weaker than context-specific encoding
 
@@ -61,4 +61,4 @@ Explains why a single sanitize-everywhere function is a common, real source of m
 Applying one generic sanitization function across every output context regardless of its specific encoding rules.
 
 **Related:**
-[handbook/security/injection-input-validation-output-encoding.md](../syllabus/12-security/injection-input-validation-output-encoding.md)
+[syllabus/12-security/injection-input-validation-output-encoding.md](../syllabus/12-security/injection-input-validation-output-encoding.md)

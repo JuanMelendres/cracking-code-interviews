@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-214
 tier: Expert
-canonical: ../handbook/frontend/nextjs-fullstack-integration.md
+canonical: ../syllabus/21-frontend-web/nextjs-fullstack-integration.md
 last_updated: 2026-09-03
 ---
 

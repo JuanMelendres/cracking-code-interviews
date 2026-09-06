@@ -4,7 +4,7 @@ slug: spring-framework-vs-spring-boot
 document_type: cheat-sheet
 domain: spring
 topic_id: T-506 / T-501
-canonical: ../handbook/spring/spring-framework-vs-spring-boot.md
+canonical: ../syllabus/05-spring/spring-framework-vs-spring-boot.md
 last_updated: 2026-09-02
 ---
 

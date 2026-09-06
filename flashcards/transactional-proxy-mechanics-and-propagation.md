@@ -4,7 +4,7 @@ slug: transactional-proxy-mechanics-and-propagation
 document_type: flashcard-deck
 domain: spring
 topic_id: T-504
-canonical: ../handbook/spring/transactional-proxy-mechanics-and-propagation.md
+canonical: ../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md
 last_updated: 2026-08-06
 ---
 

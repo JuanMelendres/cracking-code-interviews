@@ -8,7 +8,7 @@ prerequisites: [T-1003]
 unlocks: []
 week: 15
 last_reviewed: 2026-07-31
-canonical: ../../handbook/cloud/kubernetes-objects-scheduling-and-networking.md
+canonical: ../../syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md
 ---
 
 # T-1002 · Kubernetes Objects, Scheduling, and Networking

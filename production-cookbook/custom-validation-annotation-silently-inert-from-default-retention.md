@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/annotations-and-annotation-processing.md
-source: handbook/java-core/annotations-and-annotation-processing.md#production-scenarios
+source: syllabus/02-java/language-core/annotations-and-annotation-processing.md#production-scenarios
 ---
 
 # Custom Validation Annotation Silently Inert from Default Retention

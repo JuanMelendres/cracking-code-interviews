@@ -4,7 +4,7 @@ slug: consumer-lag-backpressure-and-dlq-strategy
 document_type: flashcard-deck
 domain: kafka
 topic_id: T-707
-canonical: ../handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md
+canonical: ../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md
 last_updated: 2026-09-02
 ---
 
@@ -27,7 +27,7 @@ It's the register's own named follow-up question, and measured directly in this 
 Treating this as a surprising defect rather than the expected consequence of ordering.
 
 **Related:**
-[handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
+[syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
 
 ## Card: Does adding consumers always help?
 
@@ -44,7 +44,7 @@ It's the register's own named misconception, and a real, costly on-call mistake 
 Assuming more replicas always means more throughput, without reference to partition count.
 
 **Related:**
-[handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
+[syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
 
 ## Card: Why is an explicit seek() needed after dead-lettering?
 
@@ -61,4 +61,4 @@ This is a real bug this chapter's own practice code hit and fixed while being bu
 Assuming `commitSync()` alone is sufficient to make the consumer continue from the right place.
 
 **Related:**
-[handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)
+[syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md](../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md)

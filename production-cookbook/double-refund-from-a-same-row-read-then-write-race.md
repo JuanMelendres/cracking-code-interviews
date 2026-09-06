@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
-source: handbook/databases/isolation-levels-and-concurrency-anomalies.md#production-scenarios
+source: syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md#production-scenarios
 ---
 
 # Double Refund From a Same-Row Read-Then-Write Race

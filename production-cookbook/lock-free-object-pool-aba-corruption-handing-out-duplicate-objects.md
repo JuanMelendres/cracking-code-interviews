@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md
-source: handbook/concurrency/atomics-cas-and-the-aba-problem.md#production-scenarios
+source: syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md#production-scenarios
 ---
 
 # Lock-Free Object Pool ABA Corruption Handing Out Duplicate Objects

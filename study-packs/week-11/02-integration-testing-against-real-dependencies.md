@@ -8,7 +8,7 @@ prerequisites: [T-1101, T-1103]
 unlocks: []
 week: 11
 last_reviewed: 2026-07-30
-canonical: ../../handbook/testing/integration-testing-against-real-dependencies.md
+canonical: ../../syllabus/08-testing/integration-testing-against-real-dependencies.md
 ---
 
 # T-1104 · Integration Testing Against Real Dependencies

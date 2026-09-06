@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 10
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/resilience-patterns.md
+canonical: ../../syllabus/11-system-design/resilience-patterns.md
 ---
 
 # T-515 · Resilience: Retry, Circuit Breaker, Bulkhead, Timeout

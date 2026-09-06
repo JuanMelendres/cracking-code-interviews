@@ -8,7 +8,7 @@ prerequisites: [T-1301]
 unlocks: []
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/injection-input-validation-output-encoding.md
+canonical: ../../syllabus/12-security/injection-input-validation-output-encoding.md
 ---
 
 # T-1305 · Injection, Input Validation, and Output Encoding

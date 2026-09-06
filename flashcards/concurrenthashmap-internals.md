@@ -4,7 +4,7 @@ slug: concurrenthashmap-internals
 document_type: flashcard-deck
 domain: collections
 topic_id: T-205
-canonical: ../handbook/collections/concurrenthashmap-internals.md
+canonical: ../syllabus/02-java/collections/concurrenthashmap-internals.md
 last_updated: 2026-08-06
 ---
 

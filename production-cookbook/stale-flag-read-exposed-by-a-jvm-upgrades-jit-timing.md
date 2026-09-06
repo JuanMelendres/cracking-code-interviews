@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/concurrency/java-memory-model-and-volatile.md
-source: handbook/concurrency/java-memory-model-and-volatile.md#production-scenarios
+source: syllabus/02-java/concurrency/java-memory-model-and-volatile.md#production-scenarios
 ---
 
 # Stale Flag Read Exposed by a JVM Upgrade's JIT Timing

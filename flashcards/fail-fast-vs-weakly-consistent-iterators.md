@@ -4,7 +4,7 @@ slug: fail-fast-vs-weakly-consistent-iterators
 document_type: flashcard-deck
 domain: collections
 topic_id: T-208
-canonical: ../handbook/collections/fail-fast-vs-weakly-consistent-iterators.md
+canonical: ../syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md
 last_updated: 2026-09-02
 ---
 

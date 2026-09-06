@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/08-testing/integration-testing-against-real-dependencies.md
-source: handbook/testing/integration-testing-against-real-dependencies.md#production-scenarios
+source: syllabus/08-testing/integration-testing-against-real-dependencies.md#production-scenarios
 ---
 
 # Flaky CI Integration Tests From Shared Container State

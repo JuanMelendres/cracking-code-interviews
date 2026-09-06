@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-702, T-703, T-704, T-705]
 week: 8
 last_reviewed: 2026-07-30
-canonical: ../../handbook/kafka/kafka-architecture-fundamentals.md
+canonical: ../../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md
 ---
 
 # T-701 · Kafka Architecture Fundamentals

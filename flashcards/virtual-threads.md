@@ -4,7 +4,7 @@ slug: virtual-threads
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-410
-canonical: ../handbook/concurrency/virtual-threads.md
+canonical: ../syllabus/02-java/concurrency/virtual-threads.md
 last_updated: 2026-08-06
 ---
 

@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md
   - ../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md
-source: handbook/architecture/event-sourcing-and-its-real-costs.md#production-scenarios
+source: syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md#production-scenarios
 ---
 
 # Unbounded Event Replay Making an Event-Sourced Cart Unusable Over Time

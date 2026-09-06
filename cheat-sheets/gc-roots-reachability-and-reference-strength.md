@@ -4,7 +4,7 @@ slug: gc-roots-reachability-and-reference-strength
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-303
-canonical: ../handbook/jvm/gc-roots-reachability-and-reference-strength.md
+canonical: ../syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md
 last_updated: 2026-08-05
 ---
 

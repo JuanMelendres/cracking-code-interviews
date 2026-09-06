@@ -8,7 +8,7 @@ prerequisites: [T-308]
 unlocks: []
 week: 19
 last_reviewed: 2026-08-02
-canonical: ../../handbook/jvm/escape-analysis-and-scalar-replacement.md
+canonical: ../../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
 ---
 
 # T-309 · Escape Analysis and Scalar Replacement

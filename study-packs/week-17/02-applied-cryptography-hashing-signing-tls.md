@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-1304]
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/applied-cryptography-hashing-signing-tls.md
+canonical: ../../syllabus/12-security/applied-cryptography-hashing-signing-tls.md
 ---
 
 # T-1303 · Applied Cryptography: Hashing, Signing, and TLS

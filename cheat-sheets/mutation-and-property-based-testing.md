@@ -4,7 +4,7 @@ slug: mutation-and-property-based-testing
 document_type: cheat-sheet
 domain: testing
 topic_id: T-1107
-canonical: ../handbook/testing/mutation-and-property-based-testing.md
+canonical: ../syllabus/08-testing/mutation-and-property-based-testing.md
 last_updated: 2026-08-05
 ---
 

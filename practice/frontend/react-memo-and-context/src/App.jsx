@@ -4,7 +4,7 @@ import MemoizedChildDemo from './demos/MemoizedChildDemo';
 import PropDrillingVsContextDemo from './demos/PropDrillingVsContextDemo';
 import ContextRerenderCostDemo from './demos/ContextRerenderCostDemo';
 
-// Real demo app backing handbook/frontend/react-usememo-usecallback-and-usecontext.md
+// Real demo app backing syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md
 // (F-107: useMemo/useCallback, F-108: useContext). Verified live in a browser.
 function App() {
   return (

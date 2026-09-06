@@ -4,7 +4,7 @@ slug: streams-and-collectors
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-107
-canonical: ../handbook/java-core/streams-and-collectors.md
+canonical: ../syllabus/02-java/language-core/streams-and-collectors.md
 last_updated: 2026-08-06
 ---
 

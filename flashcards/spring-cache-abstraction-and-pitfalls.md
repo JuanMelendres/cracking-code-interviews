@@ -4,7 +4,7 @@ slug: spring-cache-abstraction-and-pitfalls
 document_type: flashcard-deck
 domain: spring
 topic_id: T-514
-canonical: ../handbook/spring/spring-cache-abstraction-and-pitfalls.md
+canonical: ../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md
 last_updated: 2026-09-01
 ---
 
@@ -32,7 +32,7 @@ It's a shared, Spring-wide proxy-based-AOP constraint, not a caching-specific qu
 Assuming the annotation is broken rather than understanding the proxy mechanism.
 
 **Related:**
-[handbook/spring/spring-cache-abstraction-and-pitfalls.md](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md), [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
+[syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md), [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
 
 ## Card: Does the cache protect against mutation?
 
@@ -54,7 +54,7 @@ the moment of corruption.
 Assuming the cache isolates each caller's own copy of the returned value.
 
 **Related:**
-[handbook/spring/spring-cache-abstraction-and-pitfalls.md](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
+[syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
 
 ## Card: What does -parameters have to do with caching?
 
@@ -75,4 +75,4 @@ Assuming named SpEL parameter references work automatically with any Java
 compilation.
 
 **Related:**
-[handbook/spring/spring-cache-abstraction-and-pitfalls.md](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)
+[syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md](../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md)

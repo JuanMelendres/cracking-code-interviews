@@ -8,7 +8,7 @@ prerequisites: [T-401]
 unlocks: []
 week: 9
 last_reviewed: 2026-07-30
-canonical: ../../handbook/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
+canonical: ../../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
 ---
 
 # T-409 · Deadlock, Race Conditions & Thread Diagnostics

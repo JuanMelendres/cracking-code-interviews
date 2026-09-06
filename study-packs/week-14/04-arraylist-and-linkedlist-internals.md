@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 14
 last_reviewed: 2026-07-30
-canonical: ../../handbook/collections/arraylist-and-linkedlist-internals.md
+canonical: ../../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md
 ---
 
 # T-202 · ArrayList and LinkedList Internals

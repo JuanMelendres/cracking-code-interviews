@@ -4,7 +4,7 @@ slug: consumer-lag-backpressure-and-dlq-strategy
 document_type: cheat-sheet
 domain: kafka
 topic_id: T-707
-canonical: ../handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md
+canonical: ../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md
 last_updated: 2026-09-02
 ---
 

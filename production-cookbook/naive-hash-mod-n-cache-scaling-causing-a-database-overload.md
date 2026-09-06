@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
-source: handbook/system-design/data-partitioning-and-consistent-hashing.md#production-scenarios
+source: syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md#production-scenarios
 ---
 
 # Naive hash % N Cache Scaling Causing a Database Overload

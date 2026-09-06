@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/language-core/generics-erasure-and-pecs.md
-source: handbook/java-core/generics-erasure-and-pecs.md#production-scenarios
+source: syllabus/02-java/language-core/generics-erasure-and-pecs.md#production-scenarios
 ---
 
 # Unchecked-Cast Heap Pollution Surfacing Far From Its Cause

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md
-source: handbook/jvm/benchmarking-and-jmh-pitfalls.md#production-scenarios
+source: syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md#production-scenarios
 ---
 
 # Dead-Code Elimination Inflating a Serialization Benchmark Claim

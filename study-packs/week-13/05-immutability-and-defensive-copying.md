@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 13
 last_reviewed: 2026-07-30
-canonical: ../../handbook/java-core/immutability-and-defensive-copying.md
+canonical: ../../syllabus/02-java/language-core/immutability-and-defensive-copying.md
 ---
 
 # T-103 · Immutability and Defensive Copying

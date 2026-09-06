@@ -4,7 +4,7 @@ import CounterStaleReadDemo from './demos/CounterStaleReadDemo';
 import UseToggleDemo from './demos/UseToggleDemo';
 import DebouncedSearchDemo from './demos/DebouncedSearchDemo';
 
-// Real demo app backing handbook/frontend/react-usereducer-and-custom-hooks.md
+// Real demo app backing syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md
 // (F-109: useReducer, F-110: custom hooks). Verified live in a browser.
 function App() {
   return (

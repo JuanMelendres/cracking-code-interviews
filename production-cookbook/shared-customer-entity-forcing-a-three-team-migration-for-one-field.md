@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
   - ../syllabus/17-architecture/ddd-tactical-design-aggregates.md
-source: handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md#production-scenarios
+source: syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md#production-scenarios
 ---
 
 # Shared Customer Entity Requiring a Three-Team Migration for One New Field

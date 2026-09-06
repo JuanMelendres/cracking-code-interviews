@@ -4,7 +4,7 @@ slug: immutability-and-defensive-copying
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-103
-canonical: ../handbook/java-core/immutability-and-defensive-copying.md
+canonical: ../syllabus/02-java/language-core/immutability-and-defensive-copying.md
 last_updated: 2026-08-05
 ---
 

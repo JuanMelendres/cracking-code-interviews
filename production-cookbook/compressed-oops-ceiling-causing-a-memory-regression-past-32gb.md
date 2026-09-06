@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md
-source: handbook/jvm/object-layout-headers-and-compressed-oops.md#production-scenarios
+source: syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md#production-scenarios
 ---
 
 # Compressed Oops Ceiling Causing a Memory Regression Past 32GB

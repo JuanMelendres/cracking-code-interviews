@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-908]
 week: 5
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/cap-theorem-and-consistency-models.md
+canonical: ../../syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md
 ---
 
 # T-807 · CAP Theorem and Consistency Models

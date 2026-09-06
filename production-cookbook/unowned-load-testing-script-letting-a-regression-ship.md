@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/08-testing/performance-and-load-testing-methodology.md
-source: handbook/testing/performance-and-load-testing-methodology.md#production-scenarios
+source: syllabus/08-testing/performance-and-load-testing-methodology.md#production-scenarios
 ---
 
 # Unowned Load-Testing Script Letting a Regression Ship

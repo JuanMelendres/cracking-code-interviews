@@ -4,7 +4,7 @@ slug: foreign-function-and-memory-api
 document_type: cheat-sheet
 domain: concurrency
 topic_id: T-416
-canonical: ../handbook/concurrency/foreign-function-and-memory-api.md
+canonical: ../syllabus/02-java/concurrency/foreign-function-and-memory-api.md
 last_updated: 2026-09-01
 ---
 

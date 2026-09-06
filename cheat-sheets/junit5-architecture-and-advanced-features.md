@@ -4,7 +4,7 @@ slug: junit5-architecture-and-advanced-features
 document_type: cheat-sheet
 domain: testing
 topic_id: T-1102
-canonical: ../handbook/testing/junit5-architecture-and-advanced-features.md
+canonical: ../syllabus/08-testing/junit5-architecture-and-advanced-features.md
 last_updated: 2026-08-05
 ---
 

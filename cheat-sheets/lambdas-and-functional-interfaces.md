@@ -4,7 +4,7 @@ slug: lambdas-and-functional-interfaces
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-108
-canonical: ../handbook/java-core/lambdas-and-functional-interfaces.md
+canonical: ../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md
 last_updated: 2026-09-02
 ---
 

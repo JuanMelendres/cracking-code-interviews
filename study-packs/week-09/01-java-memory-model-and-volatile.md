@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-403, T-405, T-409]
 week: 9
 last_reviewed: 2026-07-30
-canonical: ../../handbook/concurrency/java-memory-model-and-volatile.md
+canonical: ../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md
 ---
 
 # T-401 / T-402 · Java Memory Model & volatile

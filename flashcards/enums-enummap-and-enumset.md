@@ -4,7 +4,7 @@ slug: enums-enummap-and-enumset
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-111
-canonical: ../handbook/java-core/enums-enummap-and-enumset.md
+canonical: ../syllabus/02-java/language-core/enums-enummap-and-enumset.md
 last_updated: 2026-09-02
 ---
 

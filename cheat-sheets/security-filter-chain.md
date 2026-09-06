@@ -4,7 +4,7 @@ slug: security-filter-chain
 document_type: cheat-sheet
 domain: spring
 topic_id: T-511
-canonical: ../handbook/spring/security-filter-chain.md
+canonical: ../syllabus/05-spring/security-filter-chain.md
 last_updated: 2026-08-04
 ---
 

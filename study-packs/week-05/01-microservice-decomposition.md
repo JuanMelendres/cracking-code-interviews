@@ -8,7 +8,7 @@ prerequisites: [T-901, T-903]
 unlocks: []
 week: 5
 last_reviewed: 2026-07-30
-canonical: ../../handbook/architecture/microservice-decomposition-and-monolith-tradeoff.md
+canonical: ../../syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md
 ---
 
 # T-907 / T-908 · Microservice Decomposition and the Monolith Trade-off

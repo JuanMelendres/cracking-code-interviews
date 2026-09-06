@@ -4,7 +4,7 @@ slug: cicd-pipeline-design-and-deployment-strategies
 document_type: cheat-sheet
 domain: cloud
 topic_id: T-1009
-canonical: ../handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
+canonical: ../syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
 last_updated: 2026-08-05
 ---
 

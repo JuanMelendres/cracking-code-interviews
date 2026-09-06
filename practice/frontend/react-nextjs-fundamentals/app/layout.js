@@ -18,10 +18,10 @@ export const metadata = {
     default: "React + Next.js Fundamentals — F-201",
     template: "%s | Next.js Fundamentals Demo",
   },
-  description: "Real demo app backing handbook/frontend/nextjs-fundamentals.md",
+  description: "Real demo app backing syllabus/21-frontend-web/nextjs-fundamentals.md",
 };
 
-// Real demo app backing handbook/frontend/nextjs-fundamentals.md (F-201).
+// Real demo app backing syllabus/21-frontend-web/nextjs-fundamentals.md (F-201).
 // This root layout wraps every route below via the {children} prop —
 // exactly the mechanism that produces the mount-count evidence in
 // PersistentHeader.js, captured in README.md.

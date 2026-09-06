@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md
   - ../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
-source: handbook/architecture/event-driven-architecture-integration-styles.md#production-scenarios
+source: syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md#production-scenarios
 ---
 
 # Untraceable Choreographed Order-Fulfillment Failure with No Correlation ID

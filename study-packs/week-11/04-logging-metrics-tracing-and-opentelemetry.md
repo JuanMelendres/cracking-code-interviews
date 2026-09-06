@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 11
 last_reviewed: 2026-07-30
-canonical: ../../handbook/performance/logging-metrics-tracing-and-opentelemetry.md
+canonical: ../../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
 ---
 
 # T-1205 · Logging, Metrics, Tracing & OpenTelemetry

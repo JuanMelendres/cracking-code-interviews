@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-107/F-108
 tier: Intermediate
-canonical: ../handbook/frontend/react-usememo-usecallback-and-usecontext.md
+canonical: ../syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md
 last_updated: 2026-09-03
 ---
 

@@ -4,7 +4,7 @@ slug: threadlocal-mediated-classloader-leaks
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-413
-canonical: ../handbook/concurrency/threadlocal-mediated-classloader-leaks.md
+canonical: ../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md
 last_updated: 2026-09-01
 ---
 
@@ -35,7 +35,7 @@ Assuming a `ThreadLocal` leak's impact is always limited to the single
 leaked object.
 
 **Related:**
-[handbook/concurrency/threadlocal-mediated-classloader-leaks.md](../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md), [Scoped Values and ThreadLocal Migration](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md)
+[syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md](../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md), [Scoped Values and ThreadLocal Migration](../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md)
 
 ## Card: What's the real-world symptom of this specific leak?
 
@@ -58,4 +58,4 @@ Diagnosing Metaspace growth after redeploys as an ordinary memory leak
 without checking for multiple, stale `ClassLoader` instances.
 
 **Related:**
-[handbook/concurrency/threadlocal-mediated-classloader-leaks.md](../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md)
+[syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md](../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md)

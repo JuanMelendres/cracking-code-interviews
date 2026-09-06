@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md
-source: handbook/java-core/equals-hashcode-and-comparable-contracts.md#production-scenarios
+source: syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md#production-scenarios
 ---
 
 # Broken equals/hashCode Contract Letting Duplicates Through

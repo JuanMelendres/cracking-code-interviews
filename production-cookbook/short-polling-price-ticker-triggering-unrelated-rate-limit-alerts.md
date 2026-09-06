@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md
-source: handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md#production-scenarios
+source: syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md#production-scenarios
 ---
 
 # Short-Polling Price Ticker Triggering Unrelated Rate-Limit Alerts

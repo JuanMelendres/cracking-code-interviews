@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
-source: handbook/java-core/exception-design-and-hierarchy-strategy.md#production-scenarios
+source: syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md#production-scenarios
 ---
 
 # Swallowed Exception Cause Costing an Hour of Debugging

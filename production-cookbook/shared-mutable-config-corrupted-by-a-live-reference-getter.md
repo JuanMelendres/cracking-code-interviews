@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/language-core/immutability-and-defensive-copying.md
-source: handbook/java-core/immutability-and-defensive-copying.md#production-scenarios
+source: syllabus/02-java/language-core/immutability-and-defensive-copying.md#production-scenarios
 ---
 
 # Shared Mutable Config Corrupted by a Live-Reference Getter

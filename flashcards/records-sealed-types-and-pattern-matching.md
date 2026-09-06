@@ -4,7 +4,7 @@ slug: records-sealed-types-and-pattern-matching
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-110
-canonical: ../handbook/java-core/records-sealed-types-and-pattern-matching.md
+canonical: ../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md
 last_updated: 2026-09-02
 ---
 
@@ -27,7 +27,7 @@ A common but incorrect interview claim; testable via a two-line demo.
 Assuming record internals mirror IDE-generated `equals`/`hashCode`.
 
 **Related:**
-[handbook/java-core/records-sealed-types-and-pattern-matching.md](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)
+[syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)
 
 ## Card: Sealed exhaustiveness
 
@@ -44,4 +44,4 @@ Converts a class of runtime bugs (missed case) into a compile-time failure.
 Adding `default` "just in case," which silently defeats the exhaustiveness guarantee for future variants.
 
 **Related:**
-[handbook/java-core/records-sealed-types-and-pattern-matching.md](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)
+[syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md](../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md)

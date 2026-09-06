@@ -4,7 +4,7 @@ slug: technical-debt-and-evolutionary-architecture
 document_type: flashcard-deck
 domain: architecture
 topic_id: T-913
-canonical: ../handbook/architecture/technical-debt-and-evolutionary-architecture.md
+canonical: ../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md
 last_updated: 2026-09-02
 ---
 
@@ -27,7 +27,7 @@ This is the register's own named misconception on this topic, and the single fas
 Leading with a code-quality principle (SOLID, DRY) as if it were self-evidently persuasive outside engineering.
 
 **Related:**
-[handbook/architecture/technical-debt-and-evolutionary-architecture.md](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
+[syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
 
 ## Card: What is a fitness function, concretely?
 
@@ -44,7 +44,7 @@ Candidates often describe fitness functions vaguely; a concrete example demonstr
 Assuming a fitness function requires a specific tool (ArchUnit, a commercial product) rather than understanding it as a concept any automated, objective, repeatable check satisfies.
 
 **Related:**
-[handbook/architecture/technical-debt-and-evolutionary-architecture.md](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
+[syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
 
 ## Card: Why can't a design review alone prevent this?
 
@@ -61,4 +61,4 @@ It's the core justification for evolutionary architecture as a distinct discipli
 Believing sufficiently rigorous human review process alone (without automation) is enough to prevent this kind of drift.
 
 **Related:**
-[handbook/architecture/technical-debt-and-evolutionary-architecture.md](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)
+[syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md](../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md)

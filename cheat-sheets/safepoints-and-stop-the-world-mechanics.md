@@ -4,7 +4,7 @@ slug: safepoints-and-stop-the-world-mechanics
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-310
-canonical: ../handbook/jvm/safepoints-and-stop-the-world-mechanics.md
+canonical: ../syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md
 last_updated: 2026-08-05
 ---
 

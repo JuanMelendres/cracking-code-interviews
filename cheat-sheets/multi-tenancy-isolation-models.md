@@ -4,7 +4,7 @@ slug: multi-tenancy-isolation-models
 document_type: cheat-sheet
 domain: security
 topic_id: T-1307
-canonical: ../handbook/security/multi-tenancy-isolation-models.md
+canonical: ../syllabus/12-security/multi-tenancy-isolation-models.md
 last_updated: 2026-08-05
 ---
 

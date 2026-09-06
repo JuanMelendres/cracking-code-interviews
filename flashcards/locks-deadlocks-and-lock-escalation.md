@@ -4,7 +4,7 @@ slug: locks-deadlocks-and-lock-escalation
 document_type: flashcard-deck
 domain: databases
 topic_id: T-613
-canonical: ../handbook/databases/locks-deadlocks-and-lock-escalation.md
+canonical: ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
 last_updated: 2026-09-02
 ---
 

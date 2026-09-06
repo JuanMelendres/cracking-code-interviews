@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-205
 tier: Intermediate
-canonical: ../handbook/frontend/nextjs-rendering-strategies.md
+canonical: ../syllabus/21-frontend-web/nextjs-rendering-strategies.md
 last_updated: 2026-09-03
 ---
 

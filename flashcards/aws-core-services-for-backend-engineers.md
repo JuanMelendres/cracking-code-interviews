@@ -4,7 +4,7 @@ slug: aws-core-services-for-backend-engineers
 document_type: flashcard-deck
 domain: cloud
 topic_id: T-1006
-canonical: ../handbook/cloud/aws-core-services-for-backend-engineers.md
+canonical: ../syllabus/15-cloud/aws-core-services-for-backend-engineers.md
 last_updated: 2026-08-06
 ---
 

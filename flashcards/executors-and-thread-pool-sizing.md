@@ -4,7 +4,7 @@ slug: executors-and-thread-pool-sizing
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-406
-canonical: ../handbook/concurrency/executors-and-thread-pool-sizing.md
+canonical: ../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md
 last_updated: 2026-08-06
 ---
 

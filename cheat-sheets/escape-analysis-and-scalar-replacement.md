@@ -4,7 +4,7 @@ slug: escape-analysis-and-scalar-replacement
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-309
-canonical: ../handbook/jvm/escape-analysis-and-scalar-replacement.md
+canonical: ../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
 last_updated: 2026-08-05
 ---
 

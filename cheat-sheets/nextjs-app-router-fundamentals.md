@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-202
 tier: Beginner
-canonical: ../handbook/frontend/nextjs-app-router-fundamentals.md
+canonical: ../syllabus/21-frontend-web/nextjs-app-router-fundamentals.md
 last_updated: 2026-09-03
 ---
 

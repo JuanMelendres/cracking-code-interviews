@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md
-source: handbook/jvm/memory-leak-diagnosis-and-heap-dump-analysis.md#production-scenarios
+source: syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md#production-scenarios
 ---
 
 # Unconditional Heap Growth and Memory Leak Diagnosis

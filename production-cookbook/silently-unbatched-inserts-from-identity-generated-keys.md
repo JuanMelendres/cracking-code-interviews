@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md
-source: handbook/databases/hibernate-flush-modes-and-batch-writes.md#production-scenarios
+source: syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md#production-scenarios
 ---
 
 # Silently Unbatched Inserts from IDENTITY-Generated Keys

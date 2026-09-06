@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/collections/collection-selection-decision-matrix.md
-source: handbook/collections/collection-selection-decision-matrix.md#production-scenarios
+source: syllabus/02-java/collections/collection-selection-decision-matrix.md#production-scenarios
 ---
 
 # Three Known-Bad Collection Patterns Caught in One Review

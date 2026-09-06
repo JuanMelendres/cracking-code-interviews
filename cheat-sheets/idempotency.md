@@ -4,7 +4,7 @@ slug: idempotency
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-809
-canonical: ../handbook/system-design/idempotency.md
+canonical: ../syllabus/11-system-design/idempotency.md
 last_updated: 2026-08-03
 ---
 

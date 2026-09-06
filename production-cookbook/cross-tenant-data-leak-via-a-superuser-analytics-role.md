@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/multi-tenancy-isolation-models.md
-source: handbook/security/multi-tenancy-isolation-models.md#production-scenarios
+source: syllabus/12-security/multi-tenancy-isolation-models.md#production-scenarios
 ---
 
 # Cross-Tenant Data Leak via a Superuser Analytics Role

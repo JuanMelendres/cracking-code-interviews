@@ -4,7 +4,7 @@ slug: zgc-and-shenandoah-concurrent-collection
 document_type: cheat-sheet
 domain: jvm
 topic_id: T-305
-canonical: ../handbook/jvm/zgc-and-shenandoah-concurrent-collection.md
+canonical: ../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md
 last_updated: 2026-08-05
 ---
 

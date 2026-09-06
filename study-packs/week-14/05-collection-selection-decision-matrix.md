@@ -8,7 +8,7 @@ prerequisites: [T-201, T-202]
 unlocks: []
 week: 14
 last_reviewed: 2026-07-30
-canonical: ../../handbook/collections/collection-selection-decision-matrix.md
+canonical: ../../syllabus/02-java/collections/collection-selection-decision-matrix.md
 ---
 
 # T-209 · Collection Selection Decision Matrix

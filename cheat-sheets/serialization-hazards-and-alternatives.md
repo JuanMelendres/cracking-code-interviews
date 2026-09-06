@@ -4,7 +4,7 @@ slug: serialization-hazards-and-alternatives
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-115
-canonical: ../handbook/java-core/serialization-hazards-and-alternatives.md
+canonical: ../syllabus/02-java/language-core/serialization-hazards-and-alternatives.md
 last_updated: 2026-09-02
 ---
 

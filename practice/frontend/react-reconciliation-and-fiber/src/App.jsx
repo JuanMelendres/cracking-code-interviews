@@ -3,7 +3,7 @@ import DomNodeReuseDemo from './demos/DomNodeReuseDemo';
 import TypeChangeRemountDemo from './demos/TypeChangeRemountDemo';
 import BatchingDemo from './demos/BatchingDemo';
 
-// Real demo app backing handbook/frontend/react-reconciliation-and-fiber.md
+// Real demo app backing syllabus/21-frontend-web/react-reconciliation-and-fiber.md
 // (F-112). Verified live in a browser, including direct DOM node identity checks.
 function App() {
   return (

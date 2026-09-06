@@ -3,7 +3,7 @@
 # real INSERT/UPDATE/DELETE events directly from the WAL, with ZERO changes to the
 # application's own SQL -- no outbox table, no explicit event-writing code. Contrast
 # this directly with the transactional outbox pattern (see
-# handbook/system-design/distributed-transactions-saga-and-outbox.md), which
+# syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md), which
 # requires the application to explicitly write an outbox row in the same
 # transaction; CDC instead reads what already happened, after the fact, from the
 # database's own commit log.

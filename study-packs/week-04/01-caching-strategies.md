@@ -8,7 +8,7 @@ prerequisites: [T-801]
 unlocks: [T-803]
 week: 4
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/caching-strategies-and-invalidation.md
+canonical: ../../syllabus/11-system-design/caching-strategies-and-invalidation.md
 ---
 
 # T-804 · Caching Strategies and Invalidation

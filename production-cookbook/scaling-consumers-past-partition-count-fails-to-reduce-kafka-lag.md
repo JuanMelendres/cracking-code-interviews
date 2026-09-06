@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md
   - ../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
-source: handbook/kafka/consumer-lag-backpressure-and-dlq-strategy.md#production-scenarios
+source: syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md#production-scenarios
 ---
 
 # Scaling Consumers Past Partition Count Did Nothing to Reduce Lag

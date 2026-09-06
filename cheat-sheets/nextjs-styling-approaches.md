@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-302
 tier: Intermediate
-canonical: ../handbook/frontend/nextjs-styling-approaches.md
+canonical: ../syllabus/21-frontend-web/nextjs-styling-approaches.md
 last_updated: 2026-09-03
 ---
 

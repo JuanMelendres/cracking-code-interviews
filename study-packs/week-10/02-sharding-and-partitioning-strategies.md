@@ -8,7 +8,7 @@ prerequisites: [T-609, T-610]
 unlocks: [T-806]
 week: 10
 last_reviewed: 2026-07-30
-canonical: ../../handbook/databases/table-partitioning-and-sharding-strategies.md
+canonical: ../../syllabus/06-databases/table-partitioning-and-sharding-strategies.md
 ---
 
 # T-614 · Partitioning & Sharding Strategies

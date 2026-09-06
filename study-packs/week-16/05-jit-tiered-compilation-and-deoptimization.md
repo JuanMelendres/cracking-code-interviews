@@ -8,7 +8,7 @@ prerequisites: [T-301]
 unlocks: []
 week: 16
 last_reviewed: 2026-07-31
-canonical: ../../handbook/jvm/jit-tiered-compilation-and-deoptimization.md
+canonical: ../../syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md
 ---
 
 # T-308 · JIT: Tiered Compilation, Inlining, and Deoptimization

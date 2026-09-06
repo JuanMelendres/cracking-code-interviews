@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
   - ../syllabus/17-architecture/architecture-decision-records.md
-source: handbook/system-design/multi-region-failover-and-disaster-recovery.md#production-scenarios
+source: syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md#production-scenarios
 ---
 
 # Log-Shipping DR Silently Missing Its Configured RPO Target
@@ -30,9 +30,9 @@ None needed — the test was a deliberate, controlled comparison of two DR patte
 
 ## Evidence
 
-**Warm standby (streaming replication).** [`rpo-demo.sh`](../../practice/sql/multi-region-failover-and-dr/README.md) fired a 150,000-statement burst at a real primary and destroyed the primary's container **and volume** mid-burst, 0.4 seconds in — a real, irreversible loss, not a graceful shutdown. Result: **2,437 rows committed, 0 lost.** Measured RTO: **0.98 seconds** from destruction to the promoted standby accepting its first write.
+**Warm standby (streaming replication).** [`rpo-demo.sh`](../practice/sql/multi-region-failover-and-dr/README.md) fired a 150,000-statement burst at a real primary and destroyed the primary's container **and volume** mid-burst, 0.4 seconds in — a real, irreversible loss, not a graceful shutdown. Result: **2,437 rows committed, 0 lost.** Measured RTO: **0.98 seconds** from destruction to the promoted standby accepting its first write.
 
-**Backup-restore / log-shipping (WAL archiving).** [`rpo-archive-demo.sh`](../../practice/sql/multi-region-failover-and-dr/README.md) configured a real primary with `archive_mode=on`, `archive_timeout=3`, wrote ten individually-timestamped rows over ten real seconds, then destroyed the primary. Result: **only the startup WAL segment was ever archived — 10 out of 10 rows genuinely unrecoverable**, because no second segment closed and shipped in the entire ten-second window despite the 3-second `archive_timeout` configuration.
+**Backup-restore / log-shipping (WAL archiving).** [`rpo-archive-demo.sh`](../practice/sql/multi-region-failover-and-dr/README.md) configured a real primary with `archive_mode=on`, `archive_timeout=3`, wrote ten individually-timestamped rows over ten real seconds, then destroyed the primary. Result: **only the startup WAL segment was ever archived — 10 out of 10 rows genuinely unrecoverable**, because no second segment closed and shipped in the entire ten-second window despite the 3-second `archive_timeout` configuration.
 
 ## Investigation Timeline
 

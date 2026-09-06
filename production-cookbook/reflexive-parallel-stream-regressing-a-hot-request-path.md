@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/language-core/streams-and-collectors.md
-source: handbook/java-core/streams-and-collectors.md#production-scenarios
+source: syllabus/02-java/language-core/streams-and-collectors.md#production-scenarios
 ---
 
 # Reflexive parallel() Stream Regressing a Hot Request Path

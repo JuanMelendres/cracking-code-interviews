@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
-source: handbook/concurrency/completablefuture-and-async-composition.md#production-scenarios
+source: syllabus/02-java/concurrency/completablefuture-and-async-composition.md#production-scenarios
 ---
 
 # Fire-and-Forget CompletableFuture Silently Dropping Audit-Log Errors

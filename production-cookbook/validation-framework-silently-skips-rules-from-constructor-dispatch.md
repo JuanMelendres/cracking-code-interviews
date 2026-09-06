@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md
-source: handbook/java-core/polymorphism-and-dynamic-dispatch.md#production-scenarios
+source: syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md#production-scenarios
 ---
 
 # Validation Framework Silently Skips Rules from Constructor Dispatch

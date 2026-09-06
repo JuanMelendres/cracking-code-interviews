@@ -4,7 +4,7 @@ slug: foreign-function-and-memory-api
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-416
-canonical: ../handbook/concurrency/foreign-function-and-memory-api.md
+canonical: ../syllabus/02-java/concurrency/foreign-function-and-memory-api.md
 last_updated: 2026-09-01
 ---
 
@@ -32,4 +32,4 @@ Confusing FFM with `Unsafe` as interchangeable, rather than FFM being the
 safer replacement for it.
 
 **Related:**
-[handbook/concurrency/foreign-function-and-memory-api.md](../syllabus/02-java/concurrency/foreign-function-and-memory-api.md), [VarHandles, Unsafe, and Their Replacement](../syllabus/02-java/concurrency/varhandles-and-unsafe.md)
+[syllabus/02-java/concurrency/foreign-function-and-memory-api.md](../syllabus/02-java/concurrency/foreign-function-and-memory-api.md), [VarHandles, Unsafe, and Their Replacement](../syllabus/02-java/concurrency/varhandles-and-unsafe.md)

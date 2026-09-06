@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
   - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
-source: handbook/system-design/multi-region-failover-and-disaster-recovery.md#production-scenarios
+source: syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md#production-scenarios
 ---
 
 # Split-Brain from Promoting a Standby Without Fencing the Old Primary
@@ -30,7 +30,7 @@ None needed — this was a deliberate reproduction of the split-brain failure mo
 
 ## Evidence
 
-[`splitbrain-demo.sh`](../../practice/sql/multi-region-failover-and-dr/README.md) reproduced this directly: after promotion, the *old* primary accepted a write (`accepted-by-old-primary-unaware-of-failover`) from a client still able to reach it, while the newly-promoted standby independently accepted its own, different write (`accepted-by-new-primary-after-failover`). After healing the partition, the two nodes' ledgers had genuinely, observably diverged.
+[`splitbrain-demo.sh`](../practice/sql/multi-region-failover-and-dr/README.md) reproduced this directly: after promotion, the *old* primary accepted a write (`accepted-by-old-primary-unaware-of-failover`) from a client still able to reach it, while the newly-promoted standby independently accepted its own, different write (`accepted-by-new-primary-after-failover`). After healing the partition, the two nodes' ledgers had genuinely, observably diverged.
 
 ## Investigation Timeline
 

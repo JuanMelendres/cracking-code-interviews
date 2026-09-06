@@ -4,7 +4,7 @@ slug: messaging-patterns-and-change-data-capture
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-710
-canonical: ../handbook/system-design/messaging-patterns-and-change-data-capture.md
+canonical: ../syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md
 last_updated: 2026-09-02
 ---
 

@@ -8,7 +8,7 @@ prerequisites: [T-609]
 unlocks: []
 week: 10
 last_reviewed: 2026-07-30
-canonical: ../../handbook/databases/zero-downtime-schema-migration.md
+canonical: ../../syllabus/06-databases/zero-downtime-schema-migration.md
 ---
 
 # T-616 · Zero-Downtime Schema Migration

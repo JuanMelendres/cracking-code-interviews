@@ -4,7 +4,7 @@ slug: consumer-groups-and-rebalancing
 document_type: flashcard-deck
 domain: kafka
 topic_id: T-703
-canonical: ../handbook/kafka/consumer-groups-and-rebalancing.md
+canonical: ../syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md
 last_updated: 2026-08-06
 ---
 

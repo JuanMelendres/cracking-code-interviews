@@ -4,7 +4,7 @@ slug: reflection-and-dynamic-proxies
 document_type: flashcard-deck
 domain: java-core
 topic_id: T-113
-canonical: ../handbook/java-core/reflection-and-dynamic-proxies.md
+canonical: ../syllabus/02-java/language-core/reflection-and-dynamic-proxies.md
 last_updated: 2026-09-02
 ---
 

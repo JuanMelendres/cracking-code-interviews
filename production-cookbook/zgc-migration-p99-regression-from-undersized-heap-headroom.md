@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md
-source: handbook/jvm/zgc-and-shenandoah-concurrent-collection.md#production-scenarios
+source: syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md#production-scenarios
 ---
 
 # ZGC Migration p99 Regression From Undersized Heap Headroom

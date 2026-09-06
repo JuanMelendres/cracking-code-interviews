@@ -4,7 +4,7 @@ slug: search-and-indexing-systems
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-810
-canonical: ../handbook/system-design/search-and-indexing-systems.md
+canonical: ../syllabus/11-system-design/search-and-indexing-systems.md
 last_updated: 2026-09-01
 ---
 
@@ -32,7 +32,7 @@ infrastructure than a standard row-oriented index.
 Assuming any index on a text column would make `LIKE '%term%'` fast.
 
 **Related:**
-[handbook/system-design/search-and-indexing-systems.md](../syllabus/11-system-design/search-and-indexing-systems.md)
+[syllabus/11-system-design/search-and-indexing-systems.md](../syllabus/11-system-design/search-and-indexing-systems.md)
 
 ## Card: What does BM25 add over plain TF-IDF?
 
@@ -55,7 +55,7 @@ Treating TF-IDF and BM25 as interchangeable "relevance scoring," with no
 specific, nameable difference.
 
 **Related:**
-[handbook/system-design/search-and-indexing-systems.md](../syllabus/11-system-design/search-and-indexing-systems.md)
+[syllabus/11-system-design/search-and-indexing-systems.md](../syllabus/11-system-design/search-and-indexing-systems.md)
 
 ## Card: Why did a LIKE '%term%' search feature degrade as the catalog grew?
 
@@ -80,4 +80,4 @@ replica, rather than recognizing the query itself can't use standard
 indexing at all.
 
 **Related:**
-[handbook/system-design/search-and-indexing-systems.md](../syllabus/11-system-design/search-and-indexing-systems.md)
+[syllabus/11-system-design/search-and-indexing-systems.md](../syllabus/11-system-design/search-and-indexing-systems.md)

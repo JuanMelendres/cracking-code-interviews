@@ -4,7 +4,7 @@ slug: arraylist-and-linkedlist-internals
 document_type: flashcard-deck
 domain: collections
 topic_id: T-202
-canonical: ../handbook/collections/arraylist-and-linkedlist-internals.md
+canonical: ../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md
 last_updated: 2026-08-06
 ---
 

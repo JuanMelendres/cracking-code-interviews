@@ -4,7 +4,7 @@ slug: modular-monolith-as-a-deliberate-choice
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-910
-canonical: ../handbook/architecture/modular-monolith-as-a-deliberate-choice.md
+canonical: ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
 last_updated: 2026-09-02
 ---
 

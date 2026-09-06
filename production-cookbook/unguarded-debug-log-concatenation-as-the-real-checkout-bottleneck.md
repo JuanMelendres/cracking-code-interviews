@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md
   - ../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md
-source: handbook/performance/profiling-jfr-and-flame-graphs.md#production-scenarios
+source: syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md#production-scenarios
 ---
 
 # Unguarded Debug-Log String Concatenation as the Real Checkout Bottleneck

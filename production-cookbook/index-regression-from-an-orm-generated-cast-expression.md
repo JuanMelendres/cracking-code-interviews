@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/06-databases/index-structures-btree-composite-covering.md
-source: handbook/databases/index-structures-btree-composite-covering.md#production-scenarios
+source: syllabus/06-databases/index-structures-btree-composite-covering.md#production-scenarios
 ---
 
 # Index Regression From an ORM-Generated CAST Expression

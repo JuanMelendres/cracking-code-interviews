@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/replication-read-replicas-and-replica-lag.md
   - ../syllabus/17-architecture/cqrs-read-write-separation.md
-source: handbook/databases/replication-read-replicas-and-replica-lag.md#production-scenarios
+source: syllabus/06-databases/replication-read-replicas-and-replica-lag.md#production-scenarios
 ---
 
 # Read-Your-Own-Writes Gap Hiding a Just-Created Order on the Confirmation Page

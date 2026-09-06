@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 3
 last_reviewed: 2026-07-30
-canonical: ../../handbook/system-design/system-design-method-and-estimation.md
+canonical: ../../syllabus/11-system-design/system-design-method-and-estimation.md
 ---
 
 # T-801 / T-802 · System Design Method and Estimation

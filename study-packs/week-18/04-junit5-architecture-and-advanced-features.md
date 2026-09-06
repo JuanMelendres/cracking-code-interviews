@@ -8,7 +8,7 @@ prerequisites: [T-1101]
 unlocks: []
 week: 18
 last_reviewed: 2026-08-02
-canonical: ../../handbook/testing/junit5-architecture-and-advanced-features.md
+canonical: ../../syllabus/08-testing/junit5-architecture-and-advanced-features.md
 ---
 
 # T-1102 · JUnit 5 Architecture and Advanced Features

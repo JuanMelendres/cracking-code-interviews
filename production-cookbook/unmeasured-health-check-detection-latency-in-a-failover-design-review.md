@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md
   - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
-source: handbook/system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios
+source: syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md#production-scenarios
 ---
 
 # Unverified Health-Check Detection Latency Assumption Ahead of a Design Review
@@ -30,7 +30,7 @@ None needed — the design review's question is itself the trigger; the response
 
 ## Evidence
 
-[`HealthCheckFailoverDemo`](../../practice/java/system-design/load-balancing-and-health-checking/README.md) really stopped a backend's HTTP server mid-run against a real active health checker polling every 300ms. Real, measured detection latency: **206ms**. Twelve real requests fired immediately after detection all landed correctly on the two remaining healthy backends — real, direct proof the routing decision respected the concurrently-updated health state, not just that detection eventually happened. After a real restart, re-detection took **70ms**.
+[`HealthCheckFailoverDemo`](../practice/java/system-design/load-balancing-and-health-checking/README.md) really stopped a backend's HTTP server mid-run against a real active health checker polling every 300ms. Real, measured detection latency: **206ms**. Twelve real requests fired immediately after detection all landed correctly on the two remaining healthy backends — real, direct proof the routing decision respected the concurrently-updated health state, not just that detection eventually happened. After a real restart, re-detection took **70ms**.
 
 ## Investigation Timeline
 

@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
   - ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
-source: handbook/architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios
+source: syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md#production-scenarios
 ---
 
 # Module-Level Dependency Cycle Introduced Through a Plausible Direct-Call Shortcut
@@ -30,7 +30,7 @@ None recorded as separately investigated — the cycle was confirmed directly by
 
 ## Evidence
 
-[`CycleCheckDemo`](../../practice/java/architecture/modular-monolith-boundary-enforcement/README.md) reproduces exactly how this happens: `shipping` legitimately depends on `orders` (through `orders.api`); `orders.internal.OrderCreatedNotifier` was added so `orders` could notify `shipping` directly, completing a real cycle. ArchUnit's real slice-cycle check reports it precisely:
+[`CycleCheckDemo`](../practice/java/architecture/modular-monolith-boundary-enforcement/README.md) reproduces exactly how this happens: `shipping` legitimately depends on `orders` (through `orders.api`); `orders.internal.OrderCreatedNotifier` was added so `orders` could notify `shipping` directly, completing a real cycle. ArchUnit's real slice-cycle check reports it precisely:
 
 ```
 FAIL

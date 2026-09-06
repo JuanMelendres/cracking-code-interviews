@@ -4,7 +4,7 @@ slug: zero-downtime-schema-migration
 document_type: cheat-sheet
 domain: databases
 topic_id: T-616
-canonical: ../handbook/databases/zero-downtime-schema-migration.md
+canonical: ../syllabus/06-databases/zero-downtime-schema-migration.md
 last_updated: 2026-08-04
 ---
 

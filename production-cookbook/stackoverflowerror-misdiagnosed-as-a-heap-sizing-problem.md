@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md
-source: handbook/jvm/jvm-memory-layout-and-runtime-regions.md#production-scenarios
+source: syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md#production-scenarios
 ---
 
 # StackOverflowError Misdiagnosed as a Heap Sizing Problem

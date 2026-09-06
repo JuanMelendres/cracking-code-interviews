@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
   - ../syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md
-source: handbook/databases/locks-deadlocks-and-lock-escalation.md#production-scenarios
+source: syllabus/06-databases/locks-deadlocks-and-lock-escalation.md#production-scenarios
 ---
 
 # Deadlock from Opposite-Order Lock Acquisition in a Funds-Transfer Path
@@ -30,7 +30,7 @@ The transfer logic itself was suspected first, but the real evidence pointed dir
 
 ## Evidence
 
-[`deadlock-demo.sh`](../../practice/sql/locks-deadlocks-and-lock-escalation/README.md) reproduced this exactly: Session A locks row `id=1`, Session B locks row `id=2` (both real, granted `RowExclusiveLock`s, confirmed via a real `pg_locks` snapshot). Each then reaches for the other's row and blocks. A second real `pg_locks` snapshot, captured mid-deadlock, shows the actual cycle: `pid 94 waits ShareLock on transactionid 736 (granted=f)`, `pid 95 waits ShareLock on transactionid 737 (granted=f)` — a real, live circular wait. After `deadlock_timeout` elapses, PostgreSQL's detector kills one side:
+[`deadlock-demo.sh`](../practice/sql/locks-deadlocks-and-lock-escalation/README.md) reproduced this exactly: Session A locks row `id=1`, Session B locks row `id=2` (both real, granted `RowExclusiveLock`s, confirmed via a real `pg_locks` snapshot). Each then reaches for the other's row and blocks. A second real `pg_locks` snapshot, captured mid-deadlock, shows the actual cycle: `pid 94 waits ShareLock on transactionid 736 (granted=f)`, `pid 95 waits ShareLock on transactionid 737 (granted=f)` — a real, live circular wait. After `deadlock_timeout` elapses, PostgreSQL's detector kills one side:
 
 ```
 ERROR:  deadlock detected

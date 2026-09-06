@@ -8,7 +8,7 @@ prerequisites: [T-1101, T-1102]
 unlocks: []
 week: 18
 last_reviewed: 2026-08-02
-canonical: ../../handbook/testing/mutation-and-property-based-testing.md
+canonical: ../../syllabus/08-testing/mutation-and-property-based-testing.md
 ---
 
 # T-1107 · Mutation and Property-Based Testing

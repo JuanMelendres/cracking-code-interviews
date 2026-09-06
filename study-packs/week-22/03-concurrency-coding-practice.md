@@ -10,7 +10,7 @@ last_reviewed: 2026-08-03
 
 **4 problems. All code on this page was compiled and executed with real threads — see `MANIFEST.md` for the exact commands, real pass counts, and repeated-run stability evidence.** Brings this pattern's coverage from 3/8 to 7/8. Previous coverage (LC 1114 Print in Order, LC 1115 Print FooBar Alternately, LC 1116 Print Zero Even Odd, all `Semaphore`-based, in `practice/java/week-09/concurrency-coding/`) established the baton-passing semaphore pattern for two/three-thread ordering. This batch adds a three-role producer-style problem, a four-thread cooperative dispatch problem, deadlock-avoidance via resource ordering, and a hand-rolled blocking data structure. **Note:** LC 1242 (Web Crawler Multithreaded), a plausible 5th candidate, is a LeetCode Premium-only problem and was skipped rather than reconstructed from an unverifiable spec — this pattern remains at 7/8, not 8/8, for that reason.
 
-These are "implement a correct small concurrent Java class" problems — distinct from `handbook/concurrency/`'s Java Memory Model and deadlock-diagnostics *theory* chapters, which this practice complements rather than duplicates.
+These are "implement a correct small concurrent Java class" problems — distinct from `syllabus/02-java/concurrency/`'s Java Memory Model and deadlock-diagnostics *theory* chapters, which this practice complements rather than duplicates.
 
 ---
 

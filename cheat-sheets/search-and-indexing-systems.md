@@ -4,7 +4,7 @@ slug: search-and-indexing-systems
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-810
-canonical: ../handbook/system-design/search-and-indexing-systems.md
+canonical: ../syllabus/11-system-design/search-and-indexing-systems.md
 last_updated: 2026-09-01
 ---
 

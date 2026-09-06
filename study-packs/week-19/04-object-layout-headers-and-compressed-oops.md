@@ -8,7 +8,7 @@ prerequisites: [T-301]
 unlocks: []
 week: 19
 last_reviewed: 2026-08-02
-canonical: ../../handbook/jvm/object-layout-headers-and-compressed-oops.md
+canonical: ../../syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md
 ---
 
 # T-302 · Object Layout, Headers, and Compressed Oops

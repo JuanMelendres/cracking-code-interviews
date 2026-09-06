@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-101-F-104
 tier: Beginner
-canonical: ../handbook/frontend/react-fundamentals-jsx-components-props-and-state.md
+canonical: ../syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md
 last_updated: 2026-09-03
 ---
 

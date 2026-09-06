@@ -4,7 +4,7 @@ slug: realtime-delivery-websocket-sse-and-long-polling
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-812
-canonical: ../handbook/system-design/realtime-delivery-websocket-sse-and-long-polling.md
+canonical: ../syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md
 last_updated: 2026-09-01
 ---
 

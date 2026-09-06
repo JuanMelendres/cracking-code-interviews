@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 15
 last_reviewed: 2026-07-31
-canonical: ../../handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md
+canonical: ../../syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md
 ---
 
 # T-1003 · Kubernetes Resource Limits, Probes, and JVM Sizing

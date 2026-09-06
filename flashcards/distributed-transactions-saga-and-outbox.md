@@ -4,7 +4,7 @@ slug: distributed-transactions-saga-and-outbox
 document_type: flashcard-deck
 domain: system-design
 topic_id: T-618
-canonical: ../handbook/system-design/distributed-transactions-saga-and-outbox.md
+canonical: ../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 last_updated: 2026-08-06
 ---
 

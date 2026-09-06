@@ -4,7 +4,7 @@ slug: schema-registry-and-compatibility-evolution
 document_type: cheat-sheet
 domain: kafka
 topic_id: T-708
-canonical: ../handbook/kafka/schema-registry-and-compatibility-evolution.md
+canonical: ../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md
 last_updated: 2026-09-02
 ---
 

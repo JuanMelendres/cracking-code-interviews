@@ -4,7 +4,7 @@ slug: strangler-fig-and-migration-patterns
 document_type: flashcard-deck
 domain: architecture
 topic_id: T-912
-canonical: ../handbook/architecture/strangler-fig-and-migration-patterns.md
+canonical: ../syllabus/17-architecture/strangler-fig-and-migration-patterns.md
 last_updated: 2026-09-02
 ---
 
@@ -27,7 +27,7 @@ This chapter's own demo proves it directly: an identical rollback scenario loses
 Treating "we can roll back" as a permanent property of having built a migration plan, rather than a time-bounded state tied to dual-write's current status.
 
 **Related:**
-[handbook/architecture/strangler-fig-and-migration-patterns.md](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md)
+[syllabus/17-architecture/strangler-fig-and-migration-patterns.md](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md)
 
 ## Card: Strangler Fig vs. rewrite
 
@@ -44,7 +44,7 @@ This is the register's own named misconception, and a fast way to fail this spec
 Assuming legacy code has no value beyond being "old" and hard to work with.
 
 **Related:**
-[handbook/architecture/strangler-fig-and-migration-patterns.md](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md)
+[syllabus/17-architecture/strangler-fig-and-migration-patterns.md](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md)
 
 ## Card: Migration ACL vs. steady-state ACL
 
@@ -61,4 +61,4 @@ Conflating the two loses precision about exit criteria — a migration ACL shoul
 Treating every ACL as permanent infrastructure rather than asking whether this particular one has a retirement plan.
 
 **Related:**
-[handbook/architecture/strangler-fig-and-migration-patterns.md](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md), [handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)
+[syllabus/17-architecture/strangler-fig-and-migration-patterns.md](../syllabus/17-architecture/strangler-fig-and-migration-patterns.md), [syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md](../syllabus/17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md)

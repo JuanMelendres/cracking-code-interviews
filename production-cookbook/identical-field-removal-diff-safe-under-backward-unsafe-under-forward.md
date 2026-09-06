@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md
   - ../syllabus/17-architecture/cqrs-read-write-separation.md
-source: handbook/kafka/schema-registry-and-compatibility-evolution.md#production-scenarios
+source: syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#production-scenarios
 ---
 
 # Same Field-Removal Diff Passing Under BACKWARD and Failing Under FORWARD Compatibility

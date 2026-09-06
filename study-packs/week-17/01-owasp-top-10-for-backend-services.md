@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-1302, T-1303, T-1305]
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/owasp-top-10-for-backend-services.md
+canonical: ../../syllabus/12-security/owasp-top-10-for-backend-services.md
 ---
 
 # T-1301 · OWASP Top 10 for Backend Services

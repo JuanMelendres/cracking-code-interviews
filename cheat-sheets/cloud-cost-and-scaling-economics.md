@@ -4,7 +4,7 @@ slug: cloud-cost-and-scaling-economics
 document_type: cheat-sheet
 domain: cloud
 topic_id: T-1007
-canonical: ../handbook/cloud/cloud-cost-and-scaling-economics.md
+canonical: ../syllabus/15-cloud/cloud-cost-and-scaling-economics.md
 last_updated: 2026-08-05
 ---
 

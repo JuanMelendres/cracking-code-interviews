@@ -8,7 +8,7 @@ prerequisites: [T-306]
 unlocks: []
 week: 16
 last_reviewed: 2026-07-31
-canonical: ../../handbook/jvm/g1-remembered-sets-and-write-barriers.md
+canonical: ../../syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md
 ---
 
 # T-304 · G1 Internals: Remembered Sets and Write Barriers

@@ -10,7 +10,7 @@ last_reviewed: 2026-08-03
 
 **5 problems. All code on this page was compiled and executed — see `MANIFEST.md` for the exact commands and real pass counts.** Brings this pattern's coverage from 3/10 to 8/10. Previous coverage (LC 20 Valid Parentheses, LC 155 Min Stack, LC 739 Daily Temperatures, in `practice/java/week-02/src/StackProblems.java`) already established the monotonic-stack basics; this batch adds the canonical Daily-Temperatures pair, the classic hard monotonic-stack problem, expression evaluation, the stack-based queue design pair to Min Stack, and the circular-array follow-up.
 
-Note: LC 402 (Remove K Digits) and LC 42 (Trapping Rain Water) are monotonic-stack-*shaped* problems but are already solved and categorized elsewhere in this repo (Greedy and Two-pointers respectively, per `study-packs/week-20/02-greedy-coding-practice.md` and week-11's pattern map) — they are not re-added here to avoid double-counting.
+Note: LC 402 (Remove K Digits) and LC 42 (Trapping Rain Water) are monotonic-stack-*shaped* problems but are already solved and categorized elsewhere in this repo (Greedy and Two-pointers respectively, per `syllabus/03-data-structures-algorithms/greedy-and-the-exchange-argument.md` and week-11's pattern map) — they are not re-added here to avoid double-counting.
 
 ---
 

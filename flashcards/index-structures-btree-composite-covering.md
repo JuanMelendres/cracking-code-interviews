@@ -4,7 +4,7 @@ slug: index-structures-btree-composite-covering
 document_type: flashcard-deck
 domain: databases
 topic_id: T-609
-canonical: ../handbook/databases/index-structures-btree-composite-covering.md
+canonical: ../syllabus/06-databases/index-structures-btree-composite-covering.md
 last_updated: 2026-08-06
 ---
 

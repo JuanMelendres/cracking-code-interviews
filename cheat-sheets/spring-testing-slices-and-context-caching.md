@@ -4,7 +4,7 @@ slug: spring-testing-slices-and-context-caching
 document_type: cheat-sheet
 domain: spring
 topic_id: T-517
-canonical: ../handbook/spring/spring-testing-slices-and-context-caching.md
+canonical: ../syllabus/05-spring/spring-testing-slices-and-context-caching.md
 last_updated: 2026-09-01
 ---
 

@@ -4,7 +4,7 @@ slug: jpa-entity-lifecycle-and-the-n1-problem
 document_type: cheat-sheet
 domain: databases
 topic_id: T-601 / T-602
-canonical: ../handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md
+canonical: ../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md
 last_updated: 2026-09-02
 ---
 

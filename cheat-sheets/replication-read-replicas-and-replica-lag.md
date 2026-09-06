@@ -4,7 +4,7 @@ slug: replication-read-replicas-and-replica-lag
 document_type: cheat-sheet
 domain: databases
 topic_id: T-615
-canonical: ../handbook/databases/replication-read-replicas-and-replica-lag.md
+canonical: ../syllabus/06-databases/replication-read-replicas-and-replica-lag.md
 last_updated: 2026-09-02
 ---
 

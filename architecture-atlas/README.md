@@ -43,6 +43,6 @@ The remaining 5 weeks' exercises (Weeks 15–19) are differently shaped — doma
 
 ## How this relates to other deliverables
 
-- `handbook/` — canonical explanations of individual concepts (storage selection, partitioning, isolation levels) that a full system design draws on; this Atlas references them rather than re-teaching them.
-- `interview-playbook/system-design/` — the live-delivery discipline (time-boxing, handling mid-round changes) for running a design exercise like these under interview conditions.
+- `syllabus/` — canonical explanations of individual concepts (storage selection, partitioning, isolation levels) that a full system design draws on; this Atlas references them rather than re-teaching them.
+- `syllabus/20-interview-preparation/system-design/` — the live-delivery discipline (time-boxing, handling mid-round changes) for running a design exercise like these under interview conditions.
 - `cheat-sheets/` — one-page rapid review of a single canonical chapter's content, not a full worked system.

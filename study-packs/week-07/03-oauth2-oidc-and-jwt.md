@@ -8,7 +8,7 @@ prerequisites: [T-511]
 unlocks: []
 week: 7
 last_reviewed: 2026-07-30
-canonical: ../../handbook/security/oauth2-oidc-and-jwt.md
+canonical: ../../syllabus/12-security/oauth2-oidc-and-jwt.md
 ---
 
 # T-512 / T-513 · OAuth2, OIDC, and JWT

@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-118
 tier: Advanced
-canonical: ../handbook/frontend/react-testing.md
+canonical: ../syllabus/21-frontend-web/react-testing.md
 last_updated: 2026-09-03
 ---
 

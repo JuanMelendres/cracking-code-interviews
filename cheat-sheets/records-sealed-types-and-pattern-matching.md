@@ -4,7 +4,7 @@ slug: records-sealed-types-and-pattern-matching
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-110
-canonical: ../handbook/java-core/records-sealed-types-and-pattern-matching.md
+canonical: ../syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md
 last_updated: 2026-09-02
 ---
 

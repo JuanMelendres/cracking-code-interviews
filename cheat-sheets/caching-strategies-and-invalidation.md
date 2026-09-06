@@ -4,7 +4,7 @@ slug: caching-strategies-and-invalidation
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-804
-canonical: ../handbook/system-design/caching-strategies-and-invalidation.md
+canonical: ../syllabus/11-system-design/caching-strategies-and-invalidation.md
 last_updated: 2026-08-03
 ---
 

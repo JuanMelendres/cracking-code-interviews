@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/language-core/lambdas-and-functional-interfaces.md
-source: handbook/java-core/lambdas-and-functional-interfaces.md#production-scenarios
+source: syllabus/02-java/language-core/lambdas-and-functional-interfaces.md#production-scenarios
 ---
 
 # Lambda Capture Compile Error Blocking an Incident Hotfix

@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/collections/blockingqueue-family.md
-source: handbook/collections/blockingqueue-family.md#production-scenarios
+source: syllabus/02-java/collections/blockingqueue-family.md#production-scenarios
 ---
 
 # Unbounded BlockingQueue Losing Backpressure Into an OOM

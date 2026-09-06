@@ -4,7 +4,7 @@ slug: annotations-and-annotation-processing
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-112
-canonical: ../handbook/java-core/annotations-and-annotation-processing.md
+canonical: ../syllabus/02-java/language-core/annotations-and-annotation-processing.md
 last_updated: 2026-09-02
 ---
 

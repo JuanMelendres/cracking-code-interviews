@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/11-system-design/system-design-method-and-estimation.md
-source: handbook/system-design/system-design-method-and-estimation.md#production-scenarios
+source: syllabus/11-system-design/system-design-method-and-estimation.md#production-scenarios
 ---
 
 # Notification Service Failing at Launch for Skipping Capacity Estimation

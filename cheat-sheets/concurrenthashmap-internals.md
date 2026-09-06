@@ -4,7 +4,7 @@ slug: concurrenthashmap-internals
 document_type: cheat-sheet
 domain: collections
 topic_id: T-205
-canonical: ../handbook/collections/concurrenthashmap-internals.md
+canonical: ../syllabus/02-java/collections/concurrenthashmap-internals.md
 last_updated: 2026-08-04
 ---
 

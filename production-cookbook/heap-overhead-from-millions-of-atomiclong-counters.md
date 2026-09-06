@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-01
 related_handbook:
   - ../syllabus/02-java/concurrency/varhandles-and-unsafe.md
-source: handbook/concurrency/varhandles-and-unsafe.md#production-scenarios
+source: syllabus/02-java/concurrency/varhandles-and-unsafe.md#production-scenarios
 ---
 
 # Heap Overhead From Millions of AtomicLong Counters

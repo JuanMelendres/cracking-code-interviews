@@ -4,7 +4,7 @@ slug: injection-input-validation-output-encoding
 document_type: cheat-sheet
 domain: security
 topic_id: T-1305
-canonical: ../handbook/security/injection-input-validation-output-encoding.md
+canonical: ../syllabus/12-security/injection-input-validation-output-encoding.md
 last_updated: 2026-08-05
 ---
 

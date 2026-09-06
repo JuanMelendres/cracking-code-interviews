@@ -4,7 +4,7 @@ slug: query-planning-and-explain-analyze
 document_type: cheat-sheet
 domain: databases
 topic_id: T-610
-canonical: ../handbook/databases/query-planning-and-explain-analyze.md
+canonical: ../syllabus/06-databases/query-planning-and-explain-analyze.md
 last_updated: 2026-08-03
 ---
 

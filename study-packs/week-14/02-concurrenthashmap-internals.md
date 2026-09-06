@@ -8,7 +8,7 @@ prerequisites: [T-201]
 unlocks: []
 week: 14
 last_reviewed: 2026-07-30
-canonical: ../../handbook/collections/concurrenthashmap-internals.md
+canonical: ../../syllabus/02-java/collections/concurrenthashmap-internals.md
 ---
 
 # T-205 · ConcurrentHashMap Internals

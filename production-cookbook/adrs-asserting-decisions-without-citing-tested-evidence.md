@@ -8,14 +8,14 @@ related_handbook:
   - ../syllabus/17-architecture/architecture-decision-records.md
   - ../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md
   - ../syllabus/17-architecture/cqrs-read-write-separation.md
-source: handbook/architecture/architecture-decision-records.md#production-scenarios
+source: syllabus/17-architecture/architecture-decision-records.md#production-scenarios
 ---
 
 # ADRs That Assert a Decision Without Citing Tested Evidence
 
 ## Context
 
-Architecture Decision Records are a documentation practice rather than a running system, so this entry elevates the source chapter's own "production scenarios" faithfully to that shape: it uses this repository's own three worked ADRs — [`adr-001-cqrs-for-order-reporting.md`](../../practice/architecture/adr-examples/adr-001-cqrs-for-order-reporting.md), [`adr-002-streaming-replication-for-dr.md`](../../practice/architecture/adr-examples/adr-002-streaming-replication-for-dr.md), and [`adr-003-backward-compatibility-for-orders-topic.md`](../../practice/architecture/adr-examples/adr-003-backward-compatibility-for-orders-topic.md) — as labeled, representative decisions whose value comes specifically from citing real, already-executed evidence from elsewhere rather than general argument.
+Architecture Decision Records are a documentation practice rather than a running system, so this entry elevates the source chapter's own "production scenarios" faithfully to that shape: it uses this repository's own three worked ADRs — [`adr-001-cqrs-for-order-reporting.md`](../practice/architecture/adr-examples/adr-001-cqrs-for-order-reporting.md), [`adr-002-streaming-replication-for-dr.md`](../practice/architecture/adr-examples/adr-002-streaming-replication-for-dr.md), and [`adr-003-backward-compatibility-for-orders-topic.md`](../practice/architecture/adr-examples/adr-003-backward-compatibility-for-orders-topic.md) — as labeled, representative decisions whose value comes specifically from citing real, already-executed evidence from elsewhere rather than general argument.
 
 ## Symptoms
 
@@ -31,9 +31,9 @@ None applicable in the incident-diagnosis sense — this entry documents a gover
 
 ## Evidence
 
-`adr-001-cqrs-for-order-reporting.md` considers three options for a degrading reporting query and rejects two of them (an index; a read replica) for the same real reason: neither changes the query's fundamental shape problem. The chosen option cites the [CQRS chapter's](../architecture/cqrs-read-write-separation.md) own real, measured 4.6–5.4x speedup as the specific evidence tipping the decision — not a general claim that "CQRS is faster."
+`adr-001-cqrs-for-order-reporting.md` considers three options for a degrading reporting query and rejects two of them (an index; a read replica) for the same real reason: neither changes the query's fundamental shape problem. The chosen option cites the [CQRS chapter's](../syllabus/17-architecture/cqrs-read-write-separation.md) own real, measured 4.6–5.4x speedup as the specific evidence tipping the decision — not a general claim that "CQRS is faster."
 
-`adr-002-streaming-replication-for-dr.md` considers log-shipping DR first — the cheaper option — and rejects it not on theoretical grounds but because the [multi-region DR chapter's](../system-design/multi-region-failover-and-disaster-recovery.md) own real test showed it losing all 10 of 10 rows in a real 10-second window, directly failing the stated RPO target. The ADR's Consequences section can honestly state the cost accepted (a continuously-running standby) because the alternative's cost (real, unacceptable data loss) was actually measured, not assumed.
+`adr-002-streaming-replication-for-dr.md` considers log-shipping DR first — the cheaper option — and rejects it not on theoretical grounds but because the [multi-region DR chapter's](../syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md) own real test showed it losing all 10 of 10 rows in a real 10-second window, directly failing the stated RPO target. The ADR's Consequences section can honestly state the cost accepted (a continuously-running standby) because the alternative's cost (real, unacceptable data loss) was actually measured, not assumed.
 
 `adr-003-backward-compatibility-for-orders-topic.md` picks Confluent's own default compatibility mode — but the ADR's real value is naming, explicitly in Consequences, the real constraint that default imposes (every new field needs a meaningful default from day one) rather than presenting the default as a free, zero-cost choice.
 

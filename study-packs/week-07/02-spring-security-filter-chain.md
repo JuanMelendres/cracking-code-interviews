@@ -8,7 +8,7 @@ prerequisites: [T-501]
 unlocks: [T-512]
 week: 7
 last_reviewed: 2026-07-30
-canonical: ../../handbook/spring/security-filter-chain.md
+canonical: ../../syllabus/05-spring/security-filter-chain.md
 ---
 
 # T-511 · Spring Security Filter Chain

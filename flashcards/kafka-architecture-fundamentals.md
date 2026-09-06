@@ -4,7 +4,7 @@ slug: kafka-architecture-fundamentals
 document_type: flashcard-deck
 domain: kafka
 topic_id: T-701
-canonical: ../handbook/kafka/kafka-architecture-fundamentals.md
+canonical: ../syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md
 last_updated: 2026-08-06
 ---
 

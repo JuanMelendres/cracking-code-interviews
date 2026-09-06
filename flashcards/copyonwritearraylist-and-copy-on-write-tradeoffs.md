@@ -4,7 +4,7 @@ slug: copyonwritearraylist-and-copy-on-write-tradeoffs
 document_type: flashcard-deck
 domain: collections
 topic_id: T-206
-canonical: ../handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md
+canonical: ../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md
 last_updated: 2026-09-02
 ---
 

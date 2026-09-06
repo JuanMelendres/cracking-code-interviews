@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md
-source: handbook/performance/logging-metrics-tracing-and-opentelemetry.md#production-scenarios
+source: syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md#production-scenarios
 ---
 
 # Broken Trace Propagation at a Library Migration Boundary

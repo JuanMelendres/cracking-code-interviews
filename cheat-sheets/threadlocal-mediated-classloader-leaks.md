@@ -4,7 +4,7 @@ slug: threadlocal-mediated-classloader-leaks
 document_type: cheat-sheet
 domain: concurrency
 topic_id: T-413
-canonical: ../handbook/concurrency/threadlocal-mediated-classloader-leaks.md
+canonical: ../syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md
 last_updated: 2026-09-01
 ---
 

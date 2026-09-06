@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md
   - ../syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md
-source: handbook/architecture/technical-debt-and-evolutionary-architecture.md#production-scenarios
+source: syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md#production-scenarios
 ---
 
 # Gradual Coupling Erosion Turning a Core Class into the Slowest Part of Every Release

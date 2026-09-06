@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/13-observability/performance-methodology-and-slo-error-budgets.md
-source: handbook/performance/performance-methodology-and-slo-error-budgets.md#production-scenarios
+source: syllabus/13-observability/performance-methodology-and-slo-error-budgets.md#production-scenarios
 ---
 
 # Error-Budget Aggregate Hiding a Climbing Daily Trend

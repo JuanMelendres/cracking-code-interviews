@@ -4,7 +4,7 @@ slug: spring-cache-abstraction-and-pitfalls
 document_type: cheat-sheet
 domain: spring
 topic_id: T-514
-canonical: ../handbook/spring/spring-cache-abstraction-and-pitfalls.md
+canonical: ../syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md
 last_updated: 2026-09-01
 ---
 

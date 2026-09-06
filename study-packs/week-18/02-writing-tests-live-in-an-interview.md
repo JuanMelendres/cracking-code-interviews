@@ -8,7 +8,7 @@ prerequisites: [T-1101]
 unlocks: []
 week: 18
 last_reviewed: 2026-08-02
-canonical: ../../handbook/testing/writing-tests-live-in-an-interview.md
+canonical: ../../syllabus/08-testing/writing-tests-live-in-an-interview.md
 ---
 
 # T-1108 · Writing Tests Live in an Interview

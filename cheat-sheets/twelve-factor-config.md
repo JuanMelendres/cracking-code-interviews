@@ -4,7 +4,7 @@ slug: twelve-factor-config
 document_type: cheat-sheet
 domain: system-design
 topic_id: T-1008
-canonical: ../handbook/system-design/twelve-factor-config.md
+canonical: ../syllabus/15-cloud/twelve-factor-config.md
 last_updated: 2026-09-01
 ---
 

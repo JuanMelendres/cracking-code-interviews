@@ -4,7 +4,7 @@ slug: scoped-values-and-threadlocal-migration
 document_type: cheat-sheet
 domain: concurrency
 topic_id: T-412
-canonical: ../handbook/concurrency/scoped-values-and-threadlocal-migration.md
+canonical: ../syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md
 last_updated: 2026-09-02
 ---
 

@@ -4,7 +4,7 @@ slug: producer-semantics-and-partition-keys
 document_type: flashcard-deck
 domain: kafka
 topic_id: T-702/T-705
-canonical: ../handbook/kafka/producer-semantics-and-partition-keys.md
+canonical: ../syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md
 last_updated: 2026-08-06
 ---
 

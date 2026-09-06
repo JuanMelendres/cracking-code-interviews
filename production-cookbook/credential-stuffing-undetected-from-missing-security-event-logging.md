@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/12-security/owasp-top-10-for-backend-services.md
-source: handbook/security/owasp-top-10-for-backend-services.md#production-scenarios
+source: syllabus/12-security/owasp-top-10-for-backend-services.md#production-scenarios
 ---
 
 # Credential Stuffing Undetected From Missing Security-Event Logging

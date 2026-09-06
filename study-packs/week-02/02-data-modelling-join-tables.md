@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: [T-903]
 week: 2
 last_reviewed: 2026-07-30
-canonical: ../../handbook/databases/data-modelling-and-explicit-join-tables.md
+canonical: ../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md
 ---
 
 # T-605 / T-608 · Data Modelling and Explicit Join Tables

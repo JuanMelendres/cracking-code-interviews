@@ -4,7 +4,7 @@ slug: strings-interning-compact-strings-and-builders
 document_type: cheat-sheet
 domain: java-core
 topic_id: T-106
-canonical: ../handbook/java-core/strings-interning-compact-strings-and-builders.md
+canonical: ../syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md
 last_updated: 2026-09-02
 ---
 

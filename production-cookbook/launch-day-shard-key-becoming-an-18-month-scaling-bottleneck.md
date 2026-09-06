@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/06-databases/table-partitioning-and-sharding-strategies.md
-source: handbook/databases/table-partitioning-and-sharding-strategies.md#production-scenarios
+source: syllabus/06-databases/table-partitioning-and-sharding-strategies.md#production-scenarios
 ---
 
 # Launch-Day Shard Key Becoming an 18-Month Scaling Bottleneck

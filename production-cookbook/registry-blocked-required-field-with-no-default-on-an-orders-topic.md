@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md
   - ../syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md
-source: handbook/kafka/schema-registry-and-compatibility-evolution.md#production-scenarios
+source: syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#production-scenarios
 ---
 
 # Registry-Blocked Schema Change That Would Have Broken Every Consumer on Deploy
@@ -30,7 +30,7 @@ None needed — the team's intent was simply to add the field; the registry's re
 
 ## Evidence
 
-[`registry-demo.sh`](../../practice/java/kafka/schema-registry-and-compatibility-evolution/README.md) attempted exactly this registration against a real, running Schema Registry. Result: **HTTP 409**, with a structured error naming the exact problem — `READER_FIELD_MISSING_DEFAULT_VALUE`, `'shippingAddress' ... has no default value and is missing in the old schema`. [`AvroSchemaResolutionDemo.java`](../../practice/java/kafka/schema-registry-and-compatibility-evolution/README.md) demonstrates directly what would have happened had this shipped anyway: decoding real, existing v1-schema bytes with a reader schema requiring `shippingAddress` genuinely throws `AvroTypeException: ... missing required field shippingAddress` — a real deserialization failure that would have hit every consumer instance the moment it deployed and encountered a single pre-existing record.
+[`registry-demo.sh`](../practice/java/kafka/schema-registry-and-compatibility-evolution/README.md) attempted exactly this registration against a real, running Schema Registry. Result: **HTTP 409**, with a structured error naming the exact problem — `READER_FIELD_MISSING_DEFAULT_VALUE`, `'shippingAddress' ... has no default value and is missing in the old schema`. [`AvroSchemaResolutionDemo.java`](../practice/java/kafka/schema-registry-and-compatibility-evolution/README.md) demonstrates directly what would have happened had this shipped anyway: decoding real, existing v1-schema bytes with a reader schema requiring `shippingAddress` genuinely throws `AvroTypeException: ... missing required field shippingAddress` — a real deserialization failure that would have hit every consumer instance the moment it deployed and encountered a single pre-existing record.
 
 ## Investigation Timeline
 

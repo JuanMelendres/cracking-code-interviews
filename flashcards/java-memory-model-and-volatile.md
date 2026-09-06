@@ -4,7 +4,7 @@ slug: java-memory-model-and-volatile
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-401
-canonical: ../handbook/concurrency/java-memory-model-and-volatile.md
+canonical: ../syllabus/02-java/concurrency/java-memory-model-and-volatile.md
 last_updated: 2026-08-06
 ---
 

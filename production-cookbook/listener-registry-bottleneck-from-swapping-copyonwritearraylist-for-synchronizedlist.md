@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md
-source: handbook/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#production-scenarios
+source: syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md#production-scenarios
 ---
 
 # Listener Registry Bottleneck from Swapping CopyOnWriteArrayList for synchronizedList

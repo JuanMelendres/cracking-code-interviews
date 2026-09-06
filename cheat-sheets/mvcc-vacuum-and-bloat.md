@@ -4,7 +4,7 @@ slug: mvcc-vacuum-and-bloat
 document_type: cheat-sheet
 domain: databases
 topic_id: T-612
-canonical: ../handbook/databases/mvcc-vacuum-and-bloat.md
+canonical: ../syllabus/06-databases/mvcc-vacuum-and-bloat.md
 last_updated: 2026-09-02
 ---
 

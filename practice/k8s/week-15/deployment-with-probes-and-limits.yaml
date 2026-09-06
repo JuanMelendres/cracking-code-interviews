@@ -62,7 +62,7 @@ spec:
           env:
             # Deliberately NOT setting -Xmx here -- JDK 10+ container-aware
             # ergonomics derive it from the memory LIMIT above (512Mi),
-            # not the request. See handbook/cloud/kubernetes-resource-limits-probes-and-jvm-sizing.md
+            # not the request. See syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md
             - name: JAVA_TOOL_OPTIONS
               value: "-XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0"
 ---

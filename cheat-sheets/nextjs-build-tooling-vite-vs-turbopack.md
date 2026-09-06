@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-301
 tier: Intermediate
-canonical: ../handbook/frontend/nextjs-build-tooling-vite-vs-turbopack.md
+canonical: ../syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md
 last_updated: 2026-09-03
 ---
 

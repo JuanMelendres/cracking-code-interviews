@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/06-databases/locks-deadlocks-and-lock-escalation.md
   - ../syllabus/06-databases/query-planning-and-explain-analyze.md
-source: handbook/databases/locks-deadlocks-and-lock-escalation.md#production-scenarios
+source: syllabus/06-databases/locks-deadlocks-and-lock-escalation.md#production-scenarios
 ---
 
 # Assumed MySQL-Style Lock Escalation Risk That Didn't Transfer to PostgreSQL
@@ -30,7 +30,7 @@ The stated concern was that PostgreSQL might escalate row locks to a table-level
 
 ## Evidence
 
-[`no-escalation-demo.sh`](../../practice/sql/locks-deadlocks-and-lock-escalation/README.md) locked 1 row, then all 20,000 rows in a table, with an identical `pg_locks` query immediately after each. Result: **the exact same 5-row lock footprint both times** — one relation-level `RowShareLock`, regardless of whether 1 or 20,000 rows were touched. The same demo then showed what genuinely can exhaust PostgreSQL's shared lock table: not row count, but the count of *distinct lockable objects* in one transaction. 300 `pg_advisory_xact_lock()` calls in one transaction succeeded; 5,000 produced a real `ERROR: out of shared memory / HINT: You might need to increase max_locks_per_transaction.`
+[`no-escalation-demo.sh`](../practice/sql/locks-deadlocks-and-lock-escalation/README.md) locked 1 row, then all 20,000 rows in a table, with an identical `pg_locks` query immediately after each. Result: **the exact same 5-row lock footprint both times** — one relation-level `RowShareLock`, regardless of whether 1 or 20,000 rows were touched. The same demo then showed what genuinely can exhaust PostgreSQL's shared lock table: not row count, but the count of *distinct lockable objects* in one transaction. 300 `pg_advisory_xact_lock()` calls in one transaction succeeded; 5,000 produced a real `ERROR: out of shared memory / HINT: You might need to increase max_locks_per_transaction.`
 
 ## Investigation Timeline
 

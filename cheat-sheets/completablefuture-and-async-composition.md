@@ -4,7 +4,7 @@ slug: completablefuture-and-async-composition
 document_type: cheat-sheet
 domain: concurrency
 topic_id: T-407
-canonical: ../handbook/concurrency/completablefuture-and-async-composition.md
+canonical: ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
 last_updated: 2026-09-02
 ---
 

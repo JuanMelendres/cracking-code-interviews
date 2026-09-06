@@ -8,7 +8,7 @@ prerequisites: [T-1303]
 unlocks: []
 week: 17
 last_reviewed: 2026-08-02
-canonical: ../../handbook/security/secrets-management-and-key-rotation.md
+canonical: ../../syllabus/12-security/secrets-management-and-key-rotation.md
 ---
 
 # T-1304 · Secrets Management and Key Rotation

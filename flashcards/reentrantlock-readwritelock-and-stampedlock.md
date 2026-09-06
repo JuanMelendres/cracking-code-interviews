@@ -4,7 +4,7 @@ slug: reentrantlock-readwritelock-and-stampedlock
 document_type: flashcard-deck
 domain: concurrency
 topic_id: T-404
-canonical: ../handbook/concurrency/reentrantlock-readwritelock-and-stampedlock.md
+canonical: ../syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md
 last_updated: 2026-09-02
 ---
 

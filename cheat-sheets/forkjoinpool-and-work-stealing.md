@@ -4,7 +4,7 @@ slug: forkjoinpool-and-work-stealing
 document_type: cheat-sheet
 domain: concurrency
 topic_id: T-408
-canonical: ../handbook/concurrency/forkjoinpool-and-work-stealing.md
+canonical: ../syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md
 last_updated: 2026-09-02
 ---
 

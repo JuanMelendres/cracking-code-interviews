@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: frontend
 topic_id: F-120
 tier: Advanced
-canonical: ../handbook/frontend/react-state-management.md
+canonical: ../syllabus/21-frontend-web/react-state-management.md
 last_updated: 2026-09-03
 ---
 

@@ -8,7 +8,7 @@ prerequisites: [T-406]
 unlocks: []
 week: 9
 last_reviewed: 2026-07-30
-canonical: ../../handbook/concurrency/virtual-threads.md
+canonical: ../../syllabus/02-java/concurrency/virtual-threads.md
 ---
 
 # T-410 · Virtual Threads (Project Loom)

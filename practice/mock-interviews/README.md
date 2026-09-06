@@ -39,6 +39,6 @@ The programme's study packs contain 12 real, already-written mock interview file
 ## How this relates to other deliverables
 
 - `study-packs/` — the source material each round is elevated from; the original study-pack file remains in place, referenced from each round's front matter.
-- `handbook/` — the canonical chapters each round's competencies map to; remediation recommendations point back here.
-- `interview-playbook/system-design/` and `interview-playbook/coding/` — live-delivery discipline for running any of these rounds under real interview conditions.
+- `syllabus/` — the canonical chapters each round's competencies map to; remediation recommendations point back here.
+- `syllabus/20-interview-preparation/system-design/` and `syllabus/20-interview-preparation/coding/` — live-delivery discipline for running any of these rounds under real interview conditions.
 - `cheat-sheets/` and `flashcards/` — pre-round review material for the topics each mock interview covers.

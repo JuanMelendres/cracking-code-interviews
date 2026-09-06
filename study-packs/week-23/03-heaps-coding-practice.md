@@ -10,7 +10,7 @@ last_reviewed: 2026-08-03
 
 **5 problems. All code on this page was compiled and executed — see `MANIFEST.md` for the exact commands and real pass counts.** Brings this pattern's coverage from 5/12 to 10/12. Previous coverage (LC 215 Kth Largest Element, LC 347 Top K Frequent Elements, LC 23 Merge K Sorted Lists, LC 295 Find Median from Data Stream, LC 973 K Closest Points to Origin, across Weeks 10 and 12) established the core max-heap/min-heap/two-heap patterns. This batch adds a repeated-max-extraction simulation, a string-comparator top-k variant, a k-way merge over two arrays via a heap, greedy string construction, and a "spend a scarce resource on the most expensive item" heap pattern.
 
-Note: LC 253 (Meeting Rooms II), also a classic heap problem, is already solved but correctly filed under Intervals/T-1412 (`study-packs/week-20/03-intervals-coding-practice.md`) — not re-added here. LC 621 (Task Scheduler) is similarly already solved under Greedy/T-1413, not Heaps.
+Note: LC 253 (Meeting Rooms II), also a classic heap problem, is already solved but correctly filed under Intervals/T-1412 (`syllabus/03-data-structures-algorithms/intervals-merging-and-sweep-line.md`) — not re-added here. LC 621 (Task Scheduler) is similarly already solved under Greedy/T-1413, not Heaps.
 
 ---
 

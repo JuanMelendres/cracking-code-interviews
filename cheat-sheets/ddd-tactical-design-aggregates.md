@@ -4,7 +4,7 @@ slug: ddd-tactical-design-aggregates
 document_type: cheat-sheet
 domain: architecture
 topic_id: T-903
-canonical: ../handbook/architecture/ddd-tactical-design-aggregates.md
+canonical: ../syllabus/17-architecture/ddd-tactical-design-aggregates.md
 last_updated: 2026-08-04
 ---
 

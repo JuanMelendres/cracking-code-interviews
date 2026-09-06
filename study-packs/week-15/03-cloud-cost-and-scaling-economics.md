@@ -8,7 +8,7 @@ prerequisites: []
 unlocks: []
 week: 15
 last_reviewed: 2026-07-31
-canonical: ../../handbook/cloud/cloud-cost-and-scaling-economics.md
+canonical: ../../syllabus/15-cloud/cloud-cost-and-scaling-economics.md
 ---
 
 # T-1007 · Cloud Cost and Scaling Economics

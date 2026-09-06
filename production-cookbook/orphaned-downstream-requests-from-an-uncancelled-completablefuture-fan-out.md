@@ -7,7 +7,7 @@ last_updated: 2026-09-02
 related_handbook:
   - ../syllabus/02-java/concurrency/structured-concurrency.md
   - ../syllabus/02-java/concurrency/completablefuture-and-async-composition.md
-source: handbook/concurrency/structured-concurrency.md#production-scenarios
+source: syllabus/02-java/concurrency/structured-concurrency.md#production-scenarios
 ---
 
 # Orphaned Downstream Requests from an Uncancelled CompletableFuture Fan-Out

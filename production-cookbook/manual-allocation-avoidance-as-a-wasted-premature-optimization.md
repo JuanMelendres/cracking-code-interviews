@@ -6,7 +6,7 @@ status: draft
 last_updated: 2026-08-05
 related_handbook:
   - ../syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md
-source: handbook/jvm/escape-analysis-and-scalar-replacement.md#production-scenarios
+source: syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md#production-scenarios
 ---
 
 # Manual Allocation Avoidance as a Wasted Premature Optimization
