@@ -127,7 +127,7 @@ Changing the number of hash partitions in a single Postgres database remaps rows
 
 **Real `EXPLAIN`, querying by the partition key:**
 
-```
+```sql
 EXPLAIN (ANALYZE, COSTS OFF, TIMING OFF) SELECT count(*) FROM events WHERE customer_id = 42;
 
  Aggregate (actual rows=1 loops=1)
@@ -140,7 +140,7 @@ EXPLAIN (ANALYZE, COSTS OFF, TIMING OFF) SELECT count(*) FROM events WHERE custo
 
 **Real `EXPLAIN`, querying by a non-partition-key column:**
 
-```
+```sql
 EXPLAIN (ANALYZE, COSTS OFF, TIMING OFF) SELECT count(*) FROM events WHERE event_type = 'click';
 
  Aggregate (actual rows=1 loops=1)
