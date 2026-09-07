@@ -24,14 +24,15 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 
 ## Current status
 
+*(Note: the phase model below — Audit → Blueprint → Roadmap → Study Packs → Handbook → Complementary Deliverables — is this project's original bootstrap sequence, described in full in `CLAUDE.md`. That bootstrap is complete; canonical content now lives under `syllabus/`, not `handbook/` — see Repository structure below.)*
+
 | | |
 |---|---|
-| **Phase** | **Plan A and Plan B complete (Weeks 1–12). Study-pack sprint done — final readiness self-assessment pending in `study-packs/week-12/06-final-readiness-assessment.md`.** |
-| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-12`, in full** |
-| **In progress** | Phase 5 (per `CLAUDE.md`): canonical `handbook/` chapters for the full 198-topic register |
-| **Not started** | Interview playbook, Architecture Atlas, Production Cookbook, Behavioral Handbook (beyond what's embedded in study packs) |
-| **Topic register** | 198 topics scored across 16 domains |
-| **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the full register |
+| **Phase** | Original 7-phase bootstrap complete. Canonical content fully migrated to and organized under `syllabus/`, per `00-project/syllabus-transformation-plan.md` (all phases complete 2026-09-07). |
+| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-25`** · `syllabus/` — 21 domains, 222 canonical topic files, each L1 (Foundation) through L4 (Staff) · Interview Playbook, Architecture Atlas, Production Cookbook, and Behavioral content (now under `syllabus/20-interview-preparation/behavioral/`) all built out — see the counts below |
+| **Complementary deliverables** | 194 cheat sheets · 168 flashcard decks (593 cards) · 136 production-cookbook entries · 17 Architecture Atlas system-design write-ups |
+| **Topic register** | 198 original backend topics (16 domains) plus 4 new-writing domains (Computer Science Foundations, Data Structures & Algorithms, Engineering Practices, Leadership & Staff) and a separate React/Next.js register (`00-project/frontend-topic-register.md`) — 222 topic files total across all 21 `syllabus/` domains |
+| **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the original 198-topic backend register; does not include the four domains added after that estimate was made |
 
 Weeks 1–6 total **~60,400 words** across 74 chapter files, with every technical claim backed by real, executed code rather than description alone:
 
@@ -44,7 +45,7 @@ Weeks 1–6 total **~60,400 words** across 74 chapter files, with every technica
 | 5 | 23/23 assertions (Circular Queue errata fix) + idempotency-key mechanism | — |
 | 6 | Consolidation — no new technical claims (by design) | — |
 
-`handbook/` and `interview-playbook/` remain scaffolded but empty — the durable-reference extraction from study packs into `handbook/` is planned work, not yet done. See `CHANGELOG.md` for the full history and the archived-vs-real content distinction from initialization.
+The Weeks 1–6 table above reflects this project's earliest, most heavily-verified work; later weeks (through week-25) extend the same real-executed-code discipline across the full topic register and a dedicated coding-problem closure sprint. See `CHANGELOG.md` for the full history and the archived-vs-real content distinction from initialization, and `syllabus/00-overview/changelog.md` for the canonical-content migration's own history.
 
 ---
 
@@ -52,15 +53,19 @@ Weeks 1–6 total **~60,400 words** across 74 chapter files, with every technica
 
 ```
 cracking-code-interviews/
-├── 00-project/             Audit, blueprint, corrections, roadmap  (the "why")
-├── study-packs/            Week-by-week execution material         (the "do this week")
-│   └── week-01..12/        Plan A + Plan B — complete
-├── handbook/               Durable technical reference by domain   (the "look it up",
-│                           Phase 5 — canonical chapters, next up)
-├── interview-playbook/     How to communicate answers              (the "say it well")
-├── practice/               Runnable Java, SQL, design exercises    (the "do it")
-├── flashcards/             Spaced-repetition cards
-├── cheat-sheets/           Condensed pre-interview reference
+├── 00-project/             Audit, blueprint, corrections, roadmap, transformation plan  (the "why")
+├── study-packs/            Week-by-week execution material                (the "do this week")
+│   └── week-01..25/        Plan A/B/C study weeks — see Current status above
+├── syllabus/               Canonical technical reference, 21 domains     (the "look it up")
+│   ├── 00-overview/        Vision, taxonomy, topic spec, mastery model, learning-paths/
+│   └── 01-*/ .. 21-*/      One directory per domain (Java, DBs, Kafka, System Design,
+│                           Frontend/Next.js, Interview Prep, Leadership, etc.)
+├── interview-playbook/     README + private, real interview-loop notes (`company-prep/`)
+├── practice/               Runnable Java, SQL, design exercises          (the "do it")
+├── flashcards/             Spaced-repetition cards, one deck per topic
+├── cheat-sheets/           Condensed pre-interview reference, one per topic
+├── architecture-atlas/     System-design case studies with full diagrams and trade-offs
+├── production-cookbook/    Incident-postmortem-style troubleshooting entries
 ├── templates/              Reusable templates (ADR, STAR, retrospective)
 ├── resources/              Source bibliography
 ├── scripts/                Validation and maintenance tooling
@@ -73,13 +78,13 @@ cracking-code-interviews/
 |---|---|---|---|
 | **`00-project/`** | *Why is the plan shaped this way?* | Stable; amended by explicit correction documents | The roadmap, the scoring model |
 | **`study-packs/`** | *What do I do this week?* | Frozen once approved | Week 1: hexagonal architecture + B+Tree indexing |
-| **`handbook/`** | *How does this actually work?* | Long-lived reference, revised as understanding deepens | Chapter on `@Transactional` semantics |
-| **`interview-playbook/`** | *How do I say this out loud?* | Long-lived | The nine-layer answer stack |
+| **`syllabus/`** | *How does this actually work?* | Long-lived reference, revised as understanding deepens | `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md` |
+| **`interview-playbook/`** | *How do I say this out loud?* | Long-lived | `company-prep/nordstrom-senior-backend-remote.md` |
 | **`practice/`** | *Can I actually do it?* | Append-only | Runnable LRU cache with JUnit tests; PostgreSQL index lab |
 
-The separation is deliberate. **Study packs are time-boxed and disposable in the sense that they are executed once**; the handbook is what remains afterward.
+The separation is deliberate. **Study packs are time-boxed and disposable in the sense that they are executed once**; `syllabus/` is what remains afterward. Every complementary deliverable (cheat sheets, flashcards, Architecture Atlas, Production Cookbook) references its `syllabus/` canonical chapter rather than restating it — see `00-project/syllabus-transformation-plan.md` for the full canonical-ownership model and `syllabus/00-overview/INDEX.md` for the domain-by-domain index.
 
-> **Notion is a read-only historical source.** The original knowledge base remains in Notion and is never modified by this project. It was audited, not migrated. Anything of value is rewritten here from primary sources rather than copied — see `00-project/knowledge-base-audit.md` §6 for exactly what does and doesn't survive into the handbook.
+> **Notion is a read-only historical source.** The original knowledge base remains in Notion and is never modified by this project. It was audited, not migrated. Anything of value is rewritten here from primary sources rather than copied — see `00-project/knowledge-base-audit.md` §6 for exactly what does and doesn't survive into the canonical `syllabus/` chapters.
 
 ---
 

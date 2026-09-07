@@ -33,7 +33,7 @@ The user is a full-stack developer and requested a second domain covering React 
 Key differences from the Java backend domain, stated explicitly so they are never assumed away:
 
 - Depth ladder: the Java backend domain targets Senior/Staff depth almost exclusively (see Depth by Interview Level below). The frontend domain instead spans the full Junior through Staff ladder, since the user wants beginner-through-expert coverage, not an assumed-foundational baseline.
-- Canonical home: `handbook/frontend/` for chapters, `practice/frontend/` for real, executed JavaScript/TypeScript/React/Next.js code and demos, `interview-playbook/frontend/` for question-and-answer material, mirroring the existing backend structure's conventions (chapter template, interview answer framework, quality gates, no-duplication rule, YAML front matter) rather than inventing new ones.
+- Canonical home: `syllabus/21-frontend-web/` for chapters (originally `handbook/frontend/`; migrated 2026-09-03 under the Structural Update in Repository Structure below), `practice/frontend/` for real, executed JavaScript/TypeScript/React/Next.js code and demos, `interview-playbook/frontend/` for question-and-answer material, mirroring the existing backend structure's conventions (chapter template, interview answer framework, quality gates, no-duplication rule, YAML front matter) rather than inventing new ones.
 - Topic register: tracked in `00-project/frontend-topic-register.md`, structured like the Java backend's Master Topic Register (ID, tier, depth target, gap status) but as its own document — it is not merged into `00-project/knowledge-architecture-blueprint.md`, which remains the Java backend domain's canonical register.
 - Everything else in this file (Instruction Precedence, Working Principles, Quality Gates, cross-reference standards, source-quality standards, Notion safety rules) applies identically to the frontend domain — this addendum only carries the two differences above and the file/directory locations; it does not relax any other rule.
 
@@ -213,6 +213,10 @@ If a tool requests write access to Notion, do not use that capability.
 
 Repository Structure
 
+Structural Update: Syllabus Migration — effective 2026-09-07
+
+The structure originally specified in this section (`handbook/`, `behavioral-handbook/`, and `interview-playbook/{technical-answers,system-design,coding,behavioral}/`) has been fully migrated to a single canonical tree under `syllabus/`, per `00-project/syllabus-transformation-plan.md` (approved 2026-09-03, all phases complete 2026-09-07). This was an explicitly requested and approved migration, not a drift from this file — see that plan and `syllabus/00-overview/changelog.md` for the full rationale and phase-by-phase history. `handbook/` and `behavioral-handbook/` no longer exist on disk; their redirect stubs were removed in the migration's own Phase 7. The tree below reflects the real, current structure. Every subsequent section of this file that references a `handbook/<domain>/` path as an example is describing the pre-migration structure; read `handbook/<domain>/` in those examples as its `syllabus/NN-<domain>/` equivalent (see `00-project/migration-mapping.md` for the exhaustive old-to-new path mapping) unless the surrounding text is explicitly framed as historical record.
+
 Use and preserve this repository structure:
 
 cracking-code-interviews/
@@ -227,7 +231,10 @@ cracking-code-interviews/
 │   ├── knowledge-base-audit.md
 │   ├── knowledge-architecture-blueprint.md
 │   ├── blueprint-v1.1-corrections.md
-│   └── learning-roadmap.md
+│   ├── learning-roadmap.md
+│   ├── syllabus-transformation-plan.md   # canonical structure/taxonomy authority — see Structural Update above
+│   ├── migration-mapping.md              # exhaustive old-path → syllabus/ path mapping
+│   └── frontend-topic-register.md        # frontend's own topic register, see Scope Addendum above
 │
 ├── study-packs/
 │   ├── week-01/
@@ -245,28 +252,33 @@ cracking-code-interviews/
 │   │   └── ...
 │   └── week-03/
 │
-├── handbook/
-│   ├── java-core/
-│   ├── collections/
-│   ├── jvm/
-│   ├── concurrency/
-│   ├── spring/
-│   ├── databases/
-│   ├── kafka/
-│   ├── system-design/
-│   ├── architecture/
-│   ├── cloud/
-│   ├── testing/
-│   ├── performance/
-│   ├── security/
-│   └── frontend/          # React & Next.js — separate domain, see Scope Addendum above
+├── syllabus/                # canonical topic content — supersedes handbook/, see Structural Update above
+│   ├── 00-overview/         # vision, taxonomy, topic spec, mastery model, learning-paths/, changelog.md
+│   ├── 01-computer-science-foundations/
+│   ├── 02-java/
+│   ├── 03-data-structures-algorithms/
+│   ├── 04-software-design/
+│   ├── 05-spring/
+│   ├── 06-databases/
+│   ├── 07-api-design/
+│   ├── 08-testing/
+│   ├── 09-messaging-event-driven/
+│   ├── 10-distributed-systems/
+│   ├── 11-system-design/
+│   ├── 12-security/
+│   ├── 13-observability/
+│   ├── 14-devops-containers/
+│   ├── 15-cloud/
+│   ├── 16-performance-jvm/
+│   ├── 17-architecture/
+│   ├── 18-engineering-practices/
+│   ├── 19-leadership-staff/
+│   ├── 20-interview-preparation/   # technical-answers/, system-design/, coding/, behavioral/
+│   └── 21-frontend-web/            # React & Next.js — separate domain, see Scope Addendum above
 │
 ├── interview-playbook/
-│   ├── technical-answers/
-│   ├── system-design/
-│   ├── coding/
-│   ├── behavioral/
-│   └── frontend/
+│   ├── README.md
+│   └── company-prep/       # private, real interview-loop notes — not a canonical-content directory
 │
 ├── practice/
 │   ├── java/
@@ -280,14 +292,14 @@ cracking-code-interviews/
 ├── cheat-sheets/
 ├── architecture-atlas/
 ├── production-cookbook/
-├── behavioral-handbook/
 ├── templates/
 ├── resources/
+├── archive/                 # deliberately stale/superseded material, kept for provenance only
 └── scripts/
 
-Do not create an alternative top-level handbook structure unless the user explicitly requests a migration.
+Do not create an alternative top-level content structure unless the user explicitly requests a migration — the `syllabus/` migration above is the one standing exception, already completed under that rule.
 
-When older instructions refer to folders such as 01-Java-Core/, interpret those as conceptual sections now represented by handbook/java-core/, handbook/jvm/, and the other current directories.
+When older instructions refer to folders such as `01-Java-Core/` or `handbook/java-core/`, `handbook/jvm/`, etc., interpret those as conceptual sections now represented by `syllabus/02-java/language-core/`, `syllabus/02-java/jvm-internals/`, and the other current `syllabus/` directories (see `00-project/migration-mapping.md` for exact mappings).
 
 Working Principles
 
@@ -322,6 +334,8 @@ Do not claim completion until the requested deliverable has been validated.
 When the repository is empty, create the smallest necessary foundation before producing large volumes of content.
 
 Incremental Execution Model
+
+Status note (2026-09-07): the seven phases below describe how this repository was originally bootstrapped from the source Notion knowledge base — audit, then blueprint, then roadmap, then study packs, then canonical chapters, then complementary deliverables, then continuous improvement. That bootstrap is complete; canonical content now lives under `syllabus/` (see the Structural Update in Repository Structure above), organized by the 21-domain taxonomy and topic-file lifecycle defined in `00-project/syllabus-transformation-plan.md`, not by this section's original Phase 1–7 sequence. This section is preserved as historical record of that bootstrap and still describes the right instinct — audit before building, gate large work into reviewable phases, never generate everything in one operation — but for any new work inside `syllabus/`, follow the transformation plan's own phase governance (§10) instead of restarting at "Phase 1" here. A genuinely new domain not yet represented anywhere still benefits from this section's underlying audit-first discipline, applied against the current `syllabus/` taxonomy rather than the original `00-project/knowledge-architecture-blueprint.md`.
 
 Do not attempt to generate the entire project in one operation.
 
@@ -1202,17 +1216,17 @@ Every topic must have one canonical home.
 
 Examples:
 
-Java Memory Model → handbook/concurrency/
+Java Memory Model → syllabus/02-java/concurrency/
 
-Garbage collection → handbook/jvm/
+Garbage collection → syllabus/02-java/jvm-internals/
 
-PostgreSQL indexes → handbook/databases/
+PostgreSQL indexes → syllabus/06-databases/
 
-Clean Architecture → handbook/architecture/
+Clean Architecture → syllabus/17-architecture/
 
-Kafka delivery semantics → handbook/kafka/
+Kafka delivery semantics → syllabus/09-messaging-event-driven/
 
-How to answer an index question → interview-playbook/technical-answers/
+How to answer an index question → syllabus/20-interview-preparation/technical-answers/
 
 Index troubleshooting incident → production-cookbook/
 
@@ -2288,7 +2302,7 @@ Use relative Markdown links.
 
 Examples:
 
-See [Java Memory Model](../../handbook/concurrency/java-memory-model.md).
+See [Java Memory Model](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md).
 
 Use descriptive link text.
 
@@ -2304,7 +2318,7 @@ and links to files that do not exist unless marked as planned.
 
 When a referenced file is planned but not yet created, mark it explicitly:
 
-> Planned reference: `handbook/jvm/escape-analysis.md`
+> Planned reference: `syllabus/02-java/jvm-internals/some-not-yet-written-topic.md`
 
 After creating a new file, update the most relevant index or README.
 
