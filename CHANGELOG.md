@@ -2420,3 +2420,15 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - **New `.gitleaksignore`**: one manually-inspected, confirmed-safe fingerprint — a curl example in `practice/java/full-stack-integration-backend/README.md` using a header value literally named `f-214-demo-internal-shared-secret` against `localhost:8080`, not a real credential of any kind.
 - **`resources/repository-tree.md` regenerated** (originally generated 2026-07-29, before this became a Git repository — see `archive/pre-initialization-scaffolding/repository-tree-stale.md`, per `00-project/file-mapping.md`, for that first snapshot). The regeneration command in its own header now excludes the same noise directories as `EXCLUDED_DIRS` above; without that, a literal re-run of the original bare `find` command would have produced a multi-hundred-thousand-line dump dominated by installed `node_modules/` trees.
 - Full validator run after all of the above: **errors 1,871 → 3** (the 3 remaining are accepted, pre-existing illustrative examples — the Cross-Reference Standards "Examples:" line in `CLAUDE.md`/`AGENTS.md`, which by nature can't resolve as a real link from that file's own location, and `templates/adr-template.md`'s deliberate `adr-NNN-slug.md` placeholder pattern), **gitleaks: clean**, **stale cross-references: 0**.
+
+### Fixed (2 unlabelled EXPLAIN blocks)
+
+- `syllabus/06-databases/table-partitioning-and-sharding-strategies.md` had two real `EXPLAIN (ANALYZE)` blocks in bare fences, flagged by `scripts/validate.py`'s unlabelled-SQL-block check and inconsistent with the same domain's own convention (`index-structures-btree-composite-covering.md` labels its equivalent block ` ```sql `). Labelled both.
+
+### Added (flashcards/ — frontend leg closed, 31 decks, 62 cards, pure extraction)
+
+- Closed the last remaining coverage gap between `cheat-sheets/` (which got a 31-chapter frontend batch on 2026-09-03) and `flashcards/` (which had zero frontend decks): all 31 F-coded `syllabus/21-frontend-web/` chapters now have a deck.
+- Unlike the same-day Phase 5 new-writing-domain batch, this was pure extraction: every one of these 31 chapters already carries its own embedded `## Flashcards` section from when it was authored. Cards copied verbatim; `[[wikilink]]`-style `Related` references (self- and cross-chapter) mechanically translated to relative Markdown links using each target's own front-matter title — same convention as the 137 pre-existing backend decks.
+- Built as two parallel batches (14 React, 17 Next.js, mirroring `cheat-sheets/`'s own frontend split). `frontend-live-coding-and-debugging-protocol.md` excluded (no F-code), matching `cheat-sheets/README.md`'s identical existing exclusion.
+- Verified: all 31 files' YAML parses, one H1 each, zero unresolved wikilinks, every link resolves — 62 cards, zero broken.
+- Updated `flashcards/README.md` (199 decks / 655 cards total) and `syllabus/21-frontend-web/INDEX.md`. `flashcards/` now reaches the same domain coverage as `cheat-sheets/`.

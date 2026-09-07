@@ -584,3 +584,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - Nothing remains from the "Phase 5 new-writing chapters" complementary-deliverable backlog. The transformation plan and all of its follow-on gap-filling batches are now fully closed.
+
+## [2026-09-07] — Flashcards frontend leg closed (31 decks, 62 cards, pure extraction)
+
+### Added
+
+- Closed the flashcards/cheat-sheets coverage gap for `21-frontend-web`: unlike `cheat-sheets/`, which got a frontend batch back on 2026-09-03, `flashcards/` had zero frontend decks until now.
+- Unlike the Phase 5 new-writing-domain decks (2026-09-07, earlier same day), this was a pure extraction, not new authoring: all 31 F-coded chapters already carry their own embedded `## Flashcards` section, written when each chapter was authored. Cards were copied verbatim; `[[wikilink]]`-style `Related` references (self- and cross-chapter) were mechanically translated to relative Markdown links using each target's own front-matter title, matching the exact convention already established for the 137 pre-existing backend decks.
+- Built as two parallel batches (14 React, 17 Next.js — the same split `cheat-sheets/` used for its own frontend batch). `frontend-live-coding-and-debugging-protocol.md` deliberately excluded (no F-code; `playbook-technical-answer` type), matching the identical exclusion already established in `cheat-sheets/README.md`.
+- Verified: all 31 files' YAML parses, one H1 each, zero unresolved `[[wikilink]]` markers, every link resolves — 62 cards, zero broken.
+- Updated `flashcards/README.md` (new Frontend Decks table, 199 decks / 655 cards total) and `syllabus/21-frontend-web/INDEX.md`. **`flashcards/` now reaches the same domain coverage as `cheat-sheets/`.**

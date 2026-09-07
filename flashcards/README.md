@@ -211,6 +211,48 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 
 **Total: 168 decks** (137 pre-existing + 31 new-writing-domain), 593 cards. Unlike `cheat-sheets/`, this deliverable has no frontend-domain leg yet — that remains a separate, pre-existing, undocumented gap, not part of the "Phase 5 new-writing chapters" backlog this batch closes.
 
+## Frontend Decks (F-codes, no IWI)
+
+**Added 2026-09-07.** The frontend domain (`syllabus/21-frontend-web/`) uses the Master Topic Register's F-codes and a Beginner/Intermediate/Advanced/Expert tier instead of the backend's numeric IWI score, same as `cheat-sheets/`'s own Frontend Cheat Sheets section (which closed this same gap for cheat sheets on 2026-09-03). Unlike the new-writing-domain decks above, every one of these 31 chapters already has its own embedded `## Flashcards` section, written when the chapter itself was authored — this batch is a pure extraction, not new content, matching the same discipline used for the 137 pre-existing backend decks. `frontend-live-coding-and-debugging-protocol.md` (a `playbook-technical-answer`-typed chapter with no F-code) is deliberately excluded, matching the identical, already-established exclusion in `cheat-sheets/README.md`'s own Frontend Cheat Sheets table (31, not 32).
+
+Built as two parallel batches (14 React, 17 Next.js — the same split cheat-sheets used for its own frontend batch). Every card's Prompt/Answer/Why-it-matters/Common-trap text was copied verbatim from its chapter's own `## Flashcards` section; `[[wikilink]]`-style `Related` references (self- and cross-chapter) were mechanically translated to relative Markdown links resolving from `flashcards/`'s own directory, using each target chapter's own front-matter `title:` — the same convention already established for the backend batches above. Verified: all 31 files' YAML parses, one H1 each, zero unresolved `[[wikilink]]` markers, every link resolves — 62 cards total, zero broken.
+
+| # | Deck | Topic ID | Tier | Canonical Chapter |
+|---|---|---|---|---|
+| F1 | [React Fundamentals (JSX, Components, Props, and State)](react-fundamentals-jsx-components-props-and-state.md) | F-101-F-104 | Beginner | `syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md` |
+| F2 | [React Hooks (useEffect and useRef)](react-hooks-useeffect-and-useref.md) | F-105/F-106 | Intermediate | `syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md` |
+| F3 | [React Memoization and Context (useMemo, useCallback, useContext)](react-usememo-usecallback-and-usecontext.md) | F-107/F-108 | Intermediate | `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md` |
+| F4 | [React useReducer and Custom Hooks](react-usereducer-and-custom-hooks.md) | F-109/F-110 | Intermediate | `syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md` |
+| F5 | [React Component Patterns](react-component-patterns.md) | F-111 | Advanced | `syllabus/21-frontend-web/react-component-patterns.md` |
+| F6 | [React Reconciliation and the Fiber Architecture](react-reconciliation-and-fiber.md) | F-112 | Advanced | `syllabus/21-frontend-web/react-reconciliation-and-fiber.md` |
+| F7 | [Concurrent React (Transitions, Deferred Values, Suspense)](react-concurrent-rendering.md) | F-113 | Advanced | `syllabus/21-frontend-web/react-concurrent-rendering.md` |
+| F8 | [React Forms (Controlled vs. Uncontrolled, Validation, RHF/Zod)](react-forms.md) | F-114 | Intermediate | `syllabus/21-frontend-web/react-forms.md` |
+| F9 | [React Error Boundaries and Error Handling Strategy](react-error-boundaries.md) | F-115 | Intermediate | `syllabus/21-frontend-web/react-error-boundaries.md` |
+| F10 | [React Accessibility (Semantic HTML, ARIA, Keyboard, Focus)](react-accessibility.md) | F-116 | Intermediate | `syllabus/21-frontend-web/react-accessibility.md` |
+| F11 | [React Performance (Profiling, Memoization, Virtualization, Code-Splitting)](react-performance.md) | F-117 | Advanced | `syllabus/21-frontend-web/react-performance.md` |
+| F12 | [React Testing (RTL Philosophy, Mocking, E2E with Playwright)](react-testing.md) | F-118 | Advanced | `syllabus/21-frontend-web/react-testing.md` |
+| F13 | [TypeScript with React (Generics, Discriminated Unions, Exhaustiveness)](react-typescript.md) | F-119 | Advanced | `syllabus/21-frontend-web/react-typescript.md` |
+| F14 | [React State Management Landscape](react-state-management.md) | F-120 | Advanced | `syllabus/21-frontend-web/react-state-management.md` |
+| F15 | [Next.js Fundamentals](nextjs-fundamentals.md) | F-201 | Beginner | `syllabus/21-frontend-web/nextjs-fundamentals.md` |
+| F16 | [Next.js App Router Fundamentals](nextjs-app-router-fundamentals.md) | F-202 | Beginner | `syllabus/21-frontend-web/nextjs-app-router-fundamentals.md` |
+| F17 | [Next.js Server vs. Client Components](nextjs-server-vs-client-components.md) | F-203 | Intermediate | `syllabus/21-frontend-web/nextjs-server-vs-client-components.md` |
+| F18 | [Next.js Data Fetching and Caching](nextjs-data-fetching-and-caching.md) | F-204 | Intermediate | `syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md` |
+| F19 | [Next.js Rendering Strategies](nextjs-rendering-strategies.md) | F-205 | Intermediate | `syllabus/21-frontend-web/nextjs-rendering-strategies.md` |
+| F20 | [Next.js Streaming and Suspense](nextjs-streaming-and-suspense.md) | F-206 | Advanced | `syllabus/21-frontend-web/nextjs-streaming-and-suspense.md` |
+| F21 | [Next.js Route Handlers](nextjs-route-handlers.md) | F-207 | Intermediate | `syllabus/21-frontend-web/nextjs-route-handlers.md` |
+| F22 | [Next.js Proxy and Edge Runtime](nextjs-proxy-and-edge-runtime.md) | F-208 | Advanced | `syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md` |
+| F23 | [Next.js Metadata API and SEO](nextjs-metadata-api-and-seo.md) | F-209 | Intermediate | `syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md` |
+| F24 | [Next.js Image, Font Optimization and Web Vitals](nextjs-image-font-optimization-and-web-vitals.md) | F-210 | Intermediate | `syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md` |
+| F25 | [Next.js Authentication Patterns](nextjs-authentication-patterns.md) | F-211 | Advanced | `syllabus/21-frontend-web/nextjs-authentication-patterns.md` |
+| F26 | [Next.js Server Actions and Mutations](nextjs-server-actions-and-mutations.md) | F-212 | Advanced | `syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md` |
+| F27 | [Next.js Deployment Models](nextjs-deployment-models.md) | F-213 | Advanced | `syllabus/21-frontend-web/nextjs-deployment-models.md` |
+| F28 | [Next.js Full-Stack Integration](nextjs-fullstack-integration.md) | F-214 | Expert | `syllabus/21-frontend-web/nextjs-fullstack-integration.md` |
+| F29 | [Vite vs. Turbopack Build Tooling](nextjs-build-tooling-vite-vs-turbopack.md) | F-301 | Intermediate | `syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md` |
+| F30 | [Next.js Styling Approaches](nextjs-styling-approaches.md) | F-302 | Intermediate | `syllabus/21-frontend-web/nextjs-styling-approaches.md` |
+| F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
+
+**Total across all groups: 199 decks** (137 backend + 31 new-writing-domain + 31 frontend), 655 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
+
 ## How this relates to other deliverables
 
 - `syllabus/` — the canonical chapters these cards are drawn from. For the 137 pre-existing decks, each source chapter's own `## Flashcards` section remains in place (unchanged) as the chapter's own embedded review aid; the 31 new-writing-domain decks above have no such embedded section to leave in place, since their source template doesn't carry one.

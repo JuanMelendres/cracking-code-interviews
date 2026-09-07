@@ -2,8 +2,8 @@
 title: "Frontend & Web (React/Next.js) — Domain Index"
 document_type: syllabus-domain-index
 domain: 21-frontend-web
-status: 32 of 32 mapped chapters physically relocated (Phase 3, 2026-09-03); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05)
-last_updated: 2026-09-05
+status: 32 of 32 mapped chapters physically relocated (Phase 3, 2026-09-03); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 31 F-coded chapters added 2026-09-07
+last_updated: 2026-09-07
 ---
 
 # Frontend & Web (React/Next.js)
