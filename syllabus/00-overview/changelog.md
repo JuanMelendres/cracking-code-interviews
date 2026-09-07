@@ -556,3 +556,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - Flashcards and production-cookbook entries for these same 31 (32 including git-internals) new-writing chapters remain unbuilt — the only item left in the "Phase 5 new-writing chapters" backlog.
+
+## [2026-09-07] — Flashcards backlog closed for all four new-writing domains (31 decks, 174 cards)
+
+### Added
+
+- Closed the flashcards third of the standing "Phase 5 new-writing chapters" backlog (the cheat-sheets third closed 2026-09-06): 31 new decks in `flashcards/`, one per chapter in `01-computer-science-foundations` (5), `03-data-structures-algorithms` (17), `18-engineering-practices` (4), and `19-leadership-staff` (5) that lacked one (`git-internals-and-collaboration-workflows.md` already had one from an earlier batch).
+- These chapters use the newer 20-section syllabus topic template, which carries no embedded `## Flashcards` section — unlike the 137 pre-existing decks, every card here is genuinely new, authored from the full chapter text (not copied from a pre-existing section), same no-fabrication discipline as everywhere else in this repository.
+- Built as five parallel, bounded batches (one per domain, `03-data-structures-algorithms` split into two sub-batches of 9 and 8). Cards favor the chapter's own concrete numbers, named bugs, and named frameworks over generic restatements (e.g. the knapsack loop-direction rule, the discount-cliff characterization-test finding, GROW/SBI/Fowler's debt quadrant where a chapter actually states them).
+- Verified after writing: front-matter fields and YAML validity, exactly one H1 per file, every card's full Prompt/Answer/Why-it-matters/Common-trap/Related quintet present, and every canonical/Related link resolved against the real filesystem — 174 cards across 31 decks, zero broken links.
+- Updated `flashcards/README.md` with an expanded "New-Writing Domain Decks" table (168 decks, 593 cards total) and corrected a stale `handbook/` reference in its own "How this relates to other deliverables" section (now `syllabus/`). Updated all four domains' `INDEX.md` files.
+
+### Not yet done
+
+- Production-cookbook entries for these same 32 new-writing chapters (including git-internals) remain unbuilt — the only item left in the "Phase 5 new-writing chapters" backlog.
+- Flashcards has no frontend-domain leg (unlike `cheat-sheets/`, which covers 31 frontend chapters) — a separate, pre-existing gap, not part of this backlog and not closed here.

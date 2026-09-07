@@ -2280,6 +2280,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Updated `cheat-sheets/README.md` with a new "New-Writing Domain Cheat Sheets" table and scope note (194 total: 132 backend + 31 frontend + 31 new-writing-domain), and fixed a pre-existing stale `domain` field on git-internals' own table row (`cloud` → `engineering-practices`). Updated all four domains' `INDEX.md` files.
 - Flashcards and production-cookbook entries for these same chapters remain unbuilt — the only item left in this backlog.
 
+### Added (flashcards/ — four new-writing domains closed, 31 decks, 174 cards, 168 total)
+
+- Closed the flashcards third of the "Phase 5 new-writing chapters" backlog (cheat-sheets third closed 2026-09-06): 31 new decks in `flashcards/`, one per chapter in `01-computer-science-foundations` (5), `03-data-structures-algorithms` (17), `18-engineering-practices` (4), and `19-leadership-staff` (5) that lacked one (`git-internals-and-collaboration-workflows.md` already had one).
+- These chapters' newer 20-section template carries no embedded `## Flashcards` section, so every card is newly authored from the full chapter text — same no-fabrication discipline as everywhere else in this repo. Built as five parallel, bounded batches (one per domain, `03-data-structures-algorithms` split into two sub-batches of 9 and 8).
+- Verified after writing: front matter and YAML validity, one H1 per file, every card's full Prompt/Answer/Why-it-matters/Common-trap/Related quintet present, every link resolved — 174 cards across 31 decks, zero broken links.
+- Updated `flashcards/README.md` (168 decks, 593 cards total; fixed a stale `handbook/` reference to `syllabus/`) and all four domains' `INDEX.md` files.
+- Production-cookbook entries for these same 32 chapters remain unbuilt — the only item left in this backlog. Flashcards still has no frontend-domain leg (a separate, pre-existing gap, unlike `cheat-sheets/`).
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

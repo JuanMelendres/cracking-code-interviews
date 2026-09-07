@@ -2,7 +2,7 @@
 title: "Flashcards — Index"
 document_type: flashcard-index
 status: draft
-last_updated: 2026-09-02
+last_updated: 2026-09-07
 ---
 
 # Flashcards
@@ -169,8 +169,50 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 136 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 3 | `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md` |
 | 137 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | 2 | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
 
+## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
+
+**Added 2026-09-07.** `01-computer-science-foundations`, `03-data-structures-algorithms`, `18-engineering-practices`, and `19-leadership-staff` are the four "new-writing" syllabus domains from Phase 5 of `00-project/syllabus-transformation-plan.md` — written directly to L1–L4 depth from the start, using the newer 20-section syllabus topic template, which carries no embedded `## Flashcards` section to extract from. This is the flashcards third of the same "cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters" backlog whose cheat-sheets third closed 2026-09-06 (see `cheat-sheets/README.md`'s "New-Writing Domain Cheat Sheets" section) — every deck below is authored directly from its chapter's full text (definitions, decision points, and its own concrete measured numbers, named bugs, or named historical incidents/frameworks), not copied from a pre-existing section, and carries the same no-fabrication discipline as every other deck in this file. `git-internals-and-collaboration-workflows.md` (18-engineering-practices) already had a deck from an earlier batch (row 137 above) and is not repeated here.
+
+Built as five parallel, bounded batches (one per domain, `03-data-structures-algorithms` split into two sub-batches of 9 and 8), each reading its assigned chapter fully before writing. Verified after writing: front-matter fields and YAML validity, exactly one H1 per file, each card's full Prompt/Answer/Why-it-matters/Common-trap/Related quintet present, and every canonical/Related link resolved against the real filesystem — 31 decks, 174 cards, zero broken links.
+
+| # | Deck | Topic ID | Cards | Canonical Chapter |
+|---|---|---|---|---|
+| N1 | [Algorithmic Complexity and Big-O, From First Principles](algorithmic-complexity-and-big-o-from-first-principles.md) | T-2001 | 6 | `syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md` |
+| N2 | [How a Computer Executes a Program](how-a-computer-executes-a-program.md) | T-2002 | 6 | `syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md` |
+| N3 | [Number Representation](number-representation.md) | T-2003 | 6 | `syllabus/01-computer-science-foundations/number-representation.md` |
+| N4 | [The OS Process/Thread Model](os-process-thread-model.md) | T-2004 | 6 | `syllabus/01-computer-science-foundations/os-process-thread-model.md` |
+| N5 | [Networking Basics](networking-basics.md) | T-2005 | 6 | `syllabus/01-computer-science-foundations/networking-basics.md` |
+| N6 | [Arrays, Two Pointers, and Sliding Window](arrays-two-pointers-and-sliding-window.md) | T-2101 | 5 | `syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md` |
+| N7 | [Hashing Patterns and Frequency Maps](hashing-patterns-and-frequency-maps.md) | T-2102 | 5 | `syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md` |
+| N8 | [Binary Search and Search on Answer](binary-search-and-search-on-answer.md) | T-2103 | 5 | `syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md` |
+| N9 | [Linked Lists and In-Place Manipulation](linked-lists-and-in-place-manipulation.md) | T-2104 | 5 | `syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md` |
+| N10 | [Stacks and the Monotonic Stack](stacks-and-monotonic-stack.md) | T-2105 | 5 | `syllabus/03-data-structures-algorithms/stacks-and-monotonic-stack.md` |
+| N11 | [Heaps, Top-K, and K-Way Merge](heaps-top-k-and-k-way-merge.md) | T-2106 | 5 | `syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md` |
+| N12 | [Trees, BST, and Traversal Patterns](trees-bst-and-traversal-patterns.md) | T-2107 | 5 | `syllabus/03-data-structures-algorithms/trees-bst-and-traversal-patterns.md` |
+| N13 | [Graphs: BFS, DFS, and Shortest Paths](graphs-bfs-dfs-and-shortest-paths.md) | T-2108 | 5 | `syllabus/03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths.md` |
+| N14 | [Backtracking and Pruning](backtracking-and-pruning.md) | T-2109 | 6 | `syllabus/03-data-structures-algorithms/backtracking-and-pruning.md` |
+| N15 | [Dynamic Programming: 1D, 2D, Knapsack, and Intervals](dynamic-programming.md) | T-2110 | 6 | `syllabus/03-data-structures-algorithms/dynamic-programming.md` |
+| N16 | [Intervals: Merging and Sweep Line](intervals-merging-and-sweep-line.md) | T-2111 | 6 | `syllabus/03-data-structures-algorithms/intervals-merging-and-sweep-line.md` |
+| N17 | [Greedy and the Exchange Argument](greedy-and-the-exchange-argument.md) | T-2112 | 5 | `syllabus/03-data-structures-algorithms/greedy-and-the-exchange-argument.md` |
+| N18 | [Bit Manipulation](bit-manipulation.md) | T-2113 | 6 | `syllabus/03-data-structures-algorithms/bit-manipulation.md` |
+| N19 | [Tries and Prefix Structures](tries-and-prefix-structures.md) | T-2114 | 5 | `syllabus/03-data-structures-algorithms/tries-and-prefix-structures.md` |
+| N20 | [Design-Style Coding Problems](design-style-coding-problems.md) | T-2115 | 5 | `syllabus/03-data-structures-algorithms/design-style-coding-problems.md` |
+| N21 | [Concurrency Coding Problems](concurrency-coding-problems.md) | T-2116 | 6 | `syllabus/03-data-structures-algorithms/concurrency-coding-problems.md` |
+| N22 | [Advanced Structures: Segment Tree, Fenwick, Rolling Hash](advanced-structures-segment-tree-fenwick-rolling-hash.md) | T-2117 | 5 | `syllabus/03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash.md` |
+| N23 | [Code Review: Standards and Practice](code-review-standards-and-practice.md) | T-1801 | 6 | `syllabus/18-engineering-practices/code-review-standards-and-practice.md` |
+| N24 | [Architecture Decision Records and Technical Writing for Engineers](architecture-decision-records-and-technical-writing.md) | T-1802 | 6 | `syllabus/18-engineering-practices/architecture-decision-records-and-technical-writing.md` |
+| N25 | [Working with Legacy Code](working-with-legacy-code.md) | T-1803 | 6 | `syllabus/18-engineering-practices/working-with-legacy-code.md` |
+| N26 | [Refactoring Discipline](refactoring-discipline.md) | T-1804 | 6 | `syllabus/18-engineering-practices/refactoring-discipline.md` |
+| N27 | [Mentoring and Developing Others](mentoring-and-developing-others.md) | T-1901 | 6 | `syllabus/19-leadership-staff/mentoring-and-developing-others.md` |
+| N28 | [Cross-Team Influence Without Authority](cross-team-influence-without-authority.md) | T-1902 | 6 | `syllabus/19-leadership-staff/cross-team-influence-without-authority.md` |
+| N29 | [Leading Migrations and Large Technical Change](leading-migrations-and-large-technical-change.md) | T-1903 | 6 | `syllabus/19-leadership-staff/leading-migrations-and-large-technical-change.md` |
+| N30 | [Technical Debt Prioritization and Advocacy](technical-debt-prioritization-and-advocacy.md) | T-1904 | 6 | `syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md` |
+| N31 | [Design Reviews and RFCs as Organizational Practice](design-reviews-and-rfcs-as-organizational-practice.md) | T-1905 | 6 | `syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md` |
+
+**Total: 168 decks** (137 pre-existing + 31 new-writing-domain), 593 cards. Unlike `cheat-sheets/`, this deliverable has no frontend-domain leg yet — that remains a separate, pre-existing, undocumented gap, not part of the "Phase 5 new-writing chapters" backlog this batch closes.
+
 ## How this relates to other deliverables
 
-- `handbook/` — the canonical chapters these cards are extracted from; each card's `## Flashcards` section in its source chapter remains in place (unchanged) as the chapter's own embedded review aid.
+- `syllabus/` — the canonical chapters these cards are drawn from. For the 137 pre-existing decks, each source chapter's own `## Flashcards` section remains in place (unchanged) as the chapter's own embedded review aid; the 31 new-writing-domain decks above have no such embedded section to leave in place, since their source template doesn't carry one.
 - `cheat-sheets/` — a different grain and moment: a cheat sheet is a one-page whole-chapter refresh for the day before an interview; a flashcard is one atomic Q/A pair for ongoing spaced-repetition drilling. Neither restates the other's content verbatim.
 - `00-project/learning-roadmap.md` — the source of the `Rev` (revision interval) scheduling concept this deliverable exists to make mechanically possible.
