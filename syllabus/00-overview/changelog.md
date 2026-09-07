@@ -571,3 +571,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - Production-cookbook entries for these same 32 new-writing chapters (including git-internals) remain unbuilt — the only item left in the "Phase 5 new-writing chapters" backlog.
 - Flashcards has no frontend-domain leg (unlike `cheat-sheets/`, which covers 31 frontend chapters) — a separate, pre-existing gap, not part of this backlog and not closed here.
+
+## [2026-09-07] — Production-cookbook backlog investigated and closed (no new files)
+
+### Investigated
+
+- The last item in the "Phase 5 new-writing chapters" backlog was production-cookbook entries for the same 32 chapters covered by the cheat-sheets (2026-09-06) and flashcards (2026-09-07) batches. Before writing anything, checked each chapter's own `production_scenarios` front-matter field (or, for `git-internals-and-collaboration-workflows.md`, its inline `## Production Scenarios` section) against `production-cookbook/README.md`'s own long-standing rule: this deliverable only ever elevates a scenario a chapter has already worked out (symptoms, evidence, diagnosis), never invents one from scratch — stated repeatedly across its batch history, and the reason it declares itself "complete" between batches rather than perpetually open.
+- Result: 13 of the 32 chapters already cite an existing entry (no duplication needed, correctly resolved already). The other 19 (14 in `03-data-structures-algorithms`, 2 in `18-engineering-practices`, 2 in `19-leadership-staff`, 1 in `01-computer-science-foundations`) have no citation, but every one of their own Section 14/"Production Scenarios" texts already states this explicitly and gives a `Planned reference` describing the specific future scenario's shape — not a silent placeholder. None has a chapter-internal worked scenario to elevate; writing a new entry from just a `Planned reference` line would mean inventing the incident, which this deliverable's own rule forbids.
+- Conclusion: **no new production-cookbook files were warranted or written.** This closes the backlog item honestly, the same way the 5 no-IWI `jvm` cheat-sheet chapters and the 2 people-incident leadership chapters (`mentoring-and-developing-others.md`, `design-reviews-and-rfcs-as-organizational-practice.md`, already resolved when written) were closed — as a documented, permanent gap rather than forced content.
+- Updated `production-cookbook/README.md` with a note recording this investigation and its finding, and all four domains' `INDEX.md` files plus `syllabus/00-overview/INDEX.md`'s "What's next" section to state this accurately instead of "still deferred to a separate batch."
+
+### Not yet done
+
+- Nothing remains from the "Phase 5 new-writing chapters" complementary-deliverable backlog. The transformation plan and all of its follow-on gap-filling batches are now fully closed.

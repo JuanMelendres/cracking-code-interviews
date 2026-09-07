@@ -2288,6 +2288,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Updated `flashcards/README.md` (168 decks, 593 cards total; fixed a stale `handbook/` reference to `syllabus/`) and all four domains' `INDEX.md` files.
 - Production-cookbook entries for these same 32 chapters remain unbuilt — the only item left in this backlog. Flashcards still has no frontend-domain leg (a separate, pre-existing gap, unlike `cheat-sheets/`).
 
+### Investigated (production-cookbook/ — Phase 5 new-writing backlog closed, no new files)
+
+- Checked the same 32 chapters' own `production_scenarios` front matter (or inline section) against `production-cookbook/README.md`'s own rule that this deliverable only ever elevates a chapter's already-worked-out scenario, never invents one. 13 already cite an existing entry; the other 19 (14 DSA, 2 engineering-practices, 2 leadership) have no citation but each explicitly states why in its own text and gives a `Planned reference` for the future scenario's shape, not a silent placeholder.
+- No new production-cookbook files were warranted or written — none of the 19 has a worked scenario to elevate, and writing one from just a `Planned reference` line would mean inventing the incident. Closed honestly as a documented, permanent gap, the same way the 5 no-IWI `jvm` cheat-sheet chapters were closed.
+- Updated `production-cookbook/README.md`, all four domains' `INDEX.md` files, and `syllabus/00-overview/INDEX.md`. **Nothing remains from the "Phase 5 new-writing chapters" complementary-deliverable backlog.**
+
 ### Planned
 - New gap category (foundational topics beyond this handbook's original Senior/Staff-depth scope): OOP (T-102), Design Patterns (T-914), Hibernate/JPA entity lifecycle + N+1 (T-601/T-602), Spring vs Spring Boot (T-506/T-501), Java version-feature survey (T-110), and Git/GitHub (no blueprint T-code) — **all 5 closed. Category complete.** Optionally open: the rest of the Hibernate/JPA register (caching, locking, entity mapping, flush modes) — not committed to.
 - Coding-problem volume gap: **closed**, including the previously-excluded Expert tier. Core weekly arc 167/150–170; T-1418 (Advanced Structures) now **closed, 8/8**, as an explicitly-supplemental, roadmap-excluded addition — see `practice/java/advanced-structures/README.md`. No further coding-volume batches planned anywhere in the programme.

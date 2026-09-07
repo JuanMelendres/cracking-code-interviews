@@ -2,7 +2,7 @@
 title: "Production Cookbook — Index"
 document_type: production-cookbook-index
 status: draft
-last_updated: 2026-09-02
+last_updated: 2026-09-07
 ---
 
 # Production Cookbook
@@ -20,6 +20,8 @@ This deliverable was declared **complete** on 2026-08-05 at 70 entries across ei
 Built via two parallel, independently-scoped background-agent batches (23 chapters each), mirroring `production-cookbook/broken-equals-hashcode-contract-letting-duplicates-through.md`'s exact template. Two chapters needed a shape judgment call rather than a straightforward runtime-incident elevation: `architecture-decision-records.md`'s scenario showcases three worked ADRs citing real, checkable evidence rather than a technical outage, elevated faithfully as a documentation-practice entry rather than forced into an incident narrative it doesn't have; `git-internals-and-collaboration-workflows.md`'s force-push scenario is genuinely incident-shaped (symptoms, diagnosis, prevention already present in the source) and was elevated normally.
 
 **No invented incidents**, per the same discipline established in every prior batch: every entry's Context/Symptoms/Impact/Initial Hypotheses/Evidence/Root Cause/Immediate Mitigation/Permanent Fix/Trade-offs/Prevention was built by expanding that chapter's own `## Production Scenarios` text — new synthesis was limited to Investigation Timeline step-ordering, the Monitoring and Alerts section, and a fleshed-out Staff-Level Discussion, all grounded in the source scenario's own content. Verified before merging: all 51 files' YAML parses; every `source` path resolves to a real chapter; the two split-scenario chapters (`locks-deadlocks-and-lock-escalation.md`, spot-checked) were confirmed to genuinely contain two separate `### Scenario:` headings, not an artificial split. No further batches are planned; a new entry would only be added if a future `handbook/` chapter is written with its own new production scenario.
+
+**2026-09-07 — the four Phase 5 new-writing domains investigated, no new entries warranted.** `01-computer-science-foundations`, `03-data-structures-algorithms`, `18-engineering-practices`, and `19-leadership-staff` (32 chapters total) carried a standing changelog backlog line implying this deliverable owed them entries, same as `cheat-sheets/` and `flashcards/` did. Those two closed by building new content (2026-09-06 and 2026-09-07); this one did not, on investigation: every one of the 32 chapters' own `production_scenarios` front matter (or, for `git-internals-and-collaboration-workflows.md`, its own inline `## Production Scenarios` section) either already cites an existing entry here, or its own Section 14/"Production Scenarios" text explicitly states no existing entry fits and gives a `Planned reference` describing the future scenario's shape — never a placeholder silently awaiting action. None of the 32 has a chapter-internal worked scenario (symptoms, evidence, diagnosis) that this deliverable's own rule above requires before a new entry can be written; inventing one from just a `Planned reference` line would be exactly the kind of incident fabrication this note has never permitted. This is therefore a resolved, honest, permanently-open gap for those 19 uncited chapters (14 in `03-data-structures-algorithms`, 2 in `18-engineering-practices`, 2 in `19-leadership-staff`, 1 in `01-computer-science-foundations`) — closed the same way as the earlier 5 `jvm` cheat-sheet chapters were: documented rather than forced. No files were added in this pass.
 
 ## Entries
 
