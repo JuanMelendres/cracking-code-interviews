@@ -541,3 +541,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - Cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters (including this one) remain deferred to a separate batch — the one non-blocking item left across the entire transformation plan.
+
+## [2026-09-06] — Cheat-sheets backlog closed for all four new-writing domains (31 files)
+
+### Added
+
+- Closed the standing backlog line carried in every changelog entry since Phase 5 began ("cheat sheets, flashcards, and production-cookbook entries for the Phase 5 new-writing chapters — still deferred to a separate batch") for its cheat-sheets third: 31 new files in `cheat-sheets/`, one per chapter in `01-computer-science-foundations` (5), `03-data-structures-algorithms` (17), `18-engineering-practices` (4 — `git-internals-and-collaboration-workflows.md` already had one), and `19-leadership-staff` (5).
+- Built as five parallel, bounded batches (one per domain, `03-data-structures-algorithms` split into two sub-batches of 9 and 8), each reading its assigned chapter fully before writing, per `CLAUDE.md`'s instruction against one giant operation.
+- Every fact, complexity claim, recognition signal, and pitfall was extracted directly from its own chapter's text — no invented numbers, scenarios, frameworks, or first-person anecdotes. DSA pattern chapters use a "Recognition Signals / When to Use This Pattern" table plus a Complexity Reference section in place of a generic decision table; leadership chapters use a "Warning Signs" section instead of "Production Warning Signs" and stay general per `CLAUDE.md`'s Behavioral Handbook Standard (no invented company or person).
+- Verified after writing: front-matter fields and YAML validity, exactly one H1 per file, balanced code fences, and every `canonical:`/Related path resolved against the real filesystem — 169 references checked across the 31 files, zero broken.
+- Updated `cheat-sheets/README.md` with a new "New-Writing Domain Cheat Sheets" table and scope note (total now 194 cheat sheets: 132 backend + 31 frontend + 31 new-writing-domain), and corrected a pre-existing stale `domain` field for `git-internals-and-collaboration-workflows.md`'s own table row (`cloud` → `engineering-practices`, left over from its pre-migration `handbook/cloud/` location).
+- Updated all four domains' `INDEX.md` files to reflect that cheat sheets now exist, while leaving the flashcards/production-cookbook portion of the backlog explicitly still open.
+
+### Not yet done
+
+- Flashcards and production-cookbook entries for these same 31 (32 including git-internals) new-writing chapters remain unbuilt — the only item left in the "Phase 5 new-writing chapters" backlog.

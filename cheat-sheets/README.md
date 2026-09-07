@@ -2,7 +2,7 @@
 title: "Cheat Sheets — Index"
 document_type: cheat-sheet-index
 status: draft
-last_updated: 2026-09-03
+last_updated: 2026-09-06
 ---
 
 # Cheat Sheets
@@ -22,6 +22,8 @@ The 46 were built in two parallel batches of 23 (to keep each batch's own scope 
 **2026-09-03 — a third stale-count discovery, this time a whole missed domain.** Every audit above (86/86, then 132/132) only ever diffed `cheat-sheets/` against `handbook/`'s backend directories — it never checked `handbook/frontend/` at all, despite 31 frontend chapters existing since the Scope Addendum (2026-08-12) and every one of them already carrying its own embedded `## Cheat Sheet` section and Topic register line, exactly the qualifying shape this deliverable looks for. Closed in this same pass: see the new **Frontend Cheat Sheets** table below. Total across both domains: **163 cheat sheets** (132 backend + 31 frontend).
 
 Given that this is now the **third** time a "complete" claim in this note has turned out to understate the real backlog (86/86, then 132/132, now 163/163 once the frontend domain was included), any future session revisiting this deliverable should re-run the diff-against-full-handbook-list audit itself across **every** `handbook/` subdirectory, backend and frontend both — do not assume the count above is still accurate once new handbook chapters have landed since 2026-09-03.
+
+**2026-09-06 — the four new-writing `syllabus/` domains closed.** By this date, `handbook/` no longer exists (Phase 7 of the syllabus transformation plan removed its redirect stubs) and all content lives under `syllabus/`. This audit's own backend/frontend split above predates that migration and is left as-is (a historical record, not rewritten to say `syllabus/`), but the same "did we actually check every domain" discipline was applied to the four newest, genuinely new-writing domains added during that migration's Phase 5 (`01-computer-science-foundations`, `03-data-structures-algorithms`, `18-engineering-practices`, `19-leadership-staff`) — 31 of their 32 total chapters had zero cheat sheet. Closed in this pass; see the new **New-Writing Domain Cheat Sheets** table below. Total across all three groups: **194 cheat sheets**.
 
 Every fact in every cheat sheet below (definitions, decision tables, measured numbers, production incidents) was extracted directly from its canonical chapter — nothing here was written from memory or general knowledge. Extraction was done via a dedicated read-and-report pass per chapter before any cheat sheet was drafted, consistent with this repository's no-fabrication discipline.
 
@@ -160,7 +162,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 129 | [Annotations and Annotation Processing](annotations-and-annotation-processing.md) | T-112 | 4.3 | java-core | `syllabus/02-java/language-core/annotations-and-annotation-processing.md` |
 | 130 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 4.2 | java-core | `syllabus/02-java/language-core/enums-enummap-and-enumset.md` |
 | 131 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 4.1 | java-core | `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md` |
-| 132 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | — | cloud | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
+| 132 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | — | engineering-practices | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 
@@ -199,6 +201,48 @@ The frontend domain (`handbook/frontend/`) uses the Master Topic Register's F-co
 | F29 | [Vite vs. Turbopack Build Tooling](nextjs-build-tooling-vite-vs-turbopack.md) | F-301 | Intermediate | `syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md` |
 | F30 | [Next.js Styling Approaches](nextjs-styling-approaches.md) | F-302 | Intermediate | `syllabus/21-frontend-web/nextjs-styling-approaches.md` |
 | F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
+
+## New-Writing Domain Cheat Sheets (T-1800s/T-1900s/T-2000s, no IWI)
+
+**Added 2026-09-06.** `01-computer-science-foundations`, `03-data-structures-algorithms`, `18-engineering-practices`, and `19-leadership-staff` are the four "new-writing" syllabus domains created during Phase 5 of `00-project/syllabus-transformation-plan.md` — written directly to L1–L4 depth from the start, rather than migrated from an existing `handbook/` chapter. None of their chapters carry an IWI or a "Topic register" line in the old Master Topic Register sense (the selection criterion this deliverable otherwise relies on) — each instead has its own real `topic_id` in a dedicated reserved range (`T-1800`–`T-1899` for engineering practices, `T-1900`–`T-1999` for leadership/staff, `T-2000`+ for CS foundations and DSA), assigned when the domain was written. This batch closes the standing "cheat sheets ... for the Phase 5 new-writing chapters — still deferred to a separate batch" backlog line carried in every syllabus changelog entry since Phase 5 began: all 31 chapters across these four domains that lacked a cheat sheet now have one (a 32nd chapter in this group, `git-internals-and-collaboration-workflows.md`, already had one — see row 132 in the table above, not repeated here).
+
+Built as five parallel batches (one per domain, with `03-data-structures-algorithms`'s 17 chapters split into two sub-batches of 9 and 8 to keep each bounded), then merged into this single index update, per `CLAUDE.md`'s instruction against one giant operation. Every fact, complexity claim, recognition signal, and pitfall was extracted directly from its own chapter's text — verified per-file after writing (front matter fields, YAML validity, single H1, balanced code fences, and every `canonical:`/`related` path resolved against the real filesystem; 169 references checked across the 31 files, zero broken). DSA pattern chapters use a "Recognition Signals / When to Use This Pattern" table plus a Complexity Reference section in place of a generic decision table, since that is the shape those chapters' own content actually takes; leadership chapters use a "Warning Signs" section (organizational/team symptoms) instead of "Production Warning Signs," and deliberately invent no first-person anecdote, company, or person not already in the source chapter, per `CLAUDE.md`'s Behavioral Handbook Standard.
+
+| # | Cheat Sheet | Topic ID | Domain | Canonical Chapter |
+|---|---|---|---|---|
+| N1 | [Algorithmic Complexity and Big-O from First Principles](algorithmic-complexity-and-big-o-from-first-principles.md) | T-2001 | computer-science-foundations | `syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md` |
+| N2 | [How a Computer Executes a Program](how-a-computer-executes-a-program.md) | T-2002 | computer-science-foundations | `syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md` |
+| N3 | [Number Representation](number-representation.md) | T-2003 | computer-science-foundations | `syllabus/01-computer-science-foundations/number-representation.md` |
+| N4 | [OS Process/Thread Model](os-process-thread-model.md) | T-2004 | computer-science-foundations | `syllabus/01-computer-science-foundations/os-process-thread-model.md` |
+| N5 | [Networking Basics](networking-basics.md) | T-2005 | computer-science-foundations | `syllabus/01-computer-science-foundations/networking-basics.md` |
+| N6 | [Arrays, Two Pointers, and Sliding Window](arrays-two-pointers-and-sliding-window.md) | T-2101 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md` |
+| N7 | [Hashing Patterns and Frequency Maps](hashing-patterns-and-frequency-maps.md) | T-2102 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md` |
+| N8 | [Binary Search and Search on Answer](binary-search-and-search-on-answer.md) | T-2103 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md` |
+| N9 | [Linked Lists and In-Place Manipulation](linked-lists-and-in-place-manipulation.md) | T-2104 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md` |
+| N10 | [Stacks and the Monotonic Stack](stacks-and-monotonic-stack.md) | T-2105 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/stacks-and-monotonic-stack.md` |
+| N11 | [Heaps, Top-K, and K-Way Merge](heaps-top-k-and-k-way-merge.md) | T-2106 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md` |
+| N12 | [Trees, BST, and Traversal Patterns](trees-bst-and-traversal-patterns.md) | T-2107 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/trees-bst-and-traversal-patterns.md` |
+| N13 | [Graphs: BFS, DFS, and Shortest Paths](graphs-bfs-dfs-and-shortest-paths.md) | T-2108 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths.md` |
+| N14 | [Backtracking and Pruning](backtracking-and-pruning.md) | T-2109 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/backtracking-and-pruning.md` |
+| N15 | [Dynamic Programming: 1D, 2D, Knapsack, and Intervals](dynamic-programming.md) | T-2110 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/dynamic-programming.md` |
+| N16 | [Intervals: Merging and Sweep Line](intervals-merging-and-sweep-line.md) | T-2111 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/intervals-merging-and-sweep-line.md` |
+| N17 | [Greedy and the Exchange Argument](greedy-and-the-exchange-argument.md) | T-2112 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/greedy-and-the-exchange-argument.md` |
+| N18 | [Bit Manipulation](bit-manipulation.md) | T-2113 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/bit-manipulation.md` |
+| N19 | [Tries and Prefix Structures](tries-and-prefix-structures.md) | T-2114 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/tries-and-prefix-structures.md` |
+| N20 | [Design-Style Coding Problems](design-style-coding-problems.md) | T-2115 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/design-style-coding-problems.md` |
+| N21 | [Concurrency Coding Problems](concurrency-coding-problems.md) | T-2116 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/concurrency-coding-problems.md` |
+| N22 | [Advanced Structures: Segment Tree, Fenwick, Rolling Hash](advanced-structures-segment-tree-fenwick-rolling-hash.md) | T-2117 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash.md` |
+| N23 | [Code Review: Standards and Practice](code-review-standards-and-practice.md) | T-1801 | engineering-practices | `syllabus/18-engineering-practices/code-review-standards-and-practice.md` |
+| N24 | [Architecture Decision Records and Technical Writing for Engineers](architecture-decision-records-and-technical-writing.md) | T-1802 | engineering-practices | `syllabus/18-engineering-practices/architecture-decision-records-and-technical-writing.md` |
+| N25 | [Working with Legacy Code](working-with-legacy-code.md) | T-1803 | engineering-practices | `syllabus/18-engineering-practices/working-with-legacy-code.md` |
+| N26 | [Refactoring Discipline](refactoring-discipline.md) | T-1804 | engineering-practices | `syllabus/18-engineering-practices/refactoring-discipline.md` |
+| N27 | [Mentoring and Developing Others](mentoring-and-developing-others.md) | T-1901 | leadership-staff | `syllabus/19-leadership-staff/mentoring-and-developing-others.md` |
+| N28 | [Cross-Team Influence Without Authority](cross-team-influence-without-authority.md) | T-1902 | leadership-staff | `syllabus/19-leadership-staff/cross-team-influence-without-authority.md` |
+| N29 | [Leading Migrations and Large Technical Change](leading-migrations-and-large-technical-change.md) | T-1903 | leadership-staff | `syllabus/19-leadership-staff/leading-migrations-and-large-technical-change.md` |
+| N30 | [Technical Debt Prioritization and Advocacy](technical-debt-prioritization-and-advocacy.md) | T-1904 | leadership-staff | `syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md` |
+| N31 | [Design Reviews and RFCs as Organizational Practice](design-reviews-and-rfcs-as-organizational-practice.md) | T-1905 | leadership-staff | `syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md` |
+
+**Total across all three groups: 194 cheat sheets** (132 backend + 31 frontend + 31 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
 
 ## How this relates to `flashcards/`
 
