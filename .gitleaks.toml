@@ -1,0 +1,20 @@
+title = "cracking-code-interviews gitleaks config"
+
+# Extends gitleaks' own default ruleset rather than replacing it; this file
+# only adds a path allowlist for generated/installed artifacts that are
+# gitignored and never committed, so they don't produce noise when
+# scripts/validate.py runs `gitleaks detect --no-git` (which, unlike a
+# normal git-history scan, walks the raw filesystem and does not consult
+# .gitignore on its own).
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Generated build output and installed dependencies, never committed"
+paths = [
+  '''node_modules''',
+  '''\.next''',
+  '''\.cache''',
+  '''\.venv''',
+  '''graft''',
+]

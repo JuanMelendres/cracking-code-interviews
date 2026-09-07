@@ -31,7 +31,7 @@ official_references:
 # Executors and Thread Pool Sizing
 
 > **Topic register:** T-406 · IWI 7.15 (top-25 tied of 198) · Core tier · High interview frequency [H]
-> **Provenance:** both traces in this chapter are real, executed output from [`practice/java/week-09/executors/src/ExecutorSizingDemo.java`](../../practice/java/week-09/executors/src/ExecutorSizingDemo.java).
+> **Provenance:** both traces in this chapter are real, executed output from [`practice/java/week-09/executors/src/ExecutorSizingDemo.java`](../../../practice/java/week-09/executors/src/ExecutorSizingDemo.java).
 
 ## Table of Contents
 
@@ -369,7 +369,7 @@ Applying the same sizing rule to both workload types.
 
 ## Practice Exercises
 
-1. Reproduce both traces yourself: [`practice/java/week-09/executors/src/ExecutorSizingDemo.java`](../../practice/java/week-09/executors/src/ExecutorSizingDemo.java).
+1. Reproduce both traces yourself: [`practice/java/week-09/executors/src/ExecutorSizingDemo.java`](../../../practice/java/week-09/executors/src/ExecutorSizingDemo.java).
 2. Change the bounded-queue demo's `AbortPolicy` to `CallerRunsPolicy` and explain, from the real output, why the total wall time changes even though rejected-vs-accepted counts wouldn't apply the same way.
 3. Given a workload spending 90% of its time waiting on a downstream HTTP call and 10% computing, derive a pool size using Little's Law from a stated request rate.
 

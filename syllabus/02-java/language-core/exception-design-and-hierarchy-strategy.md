@@ -28,7 +28,7 @@ official_references:
 # Exception Design and Hierarchy Strategy
 
 > **Topic register:** T-105 · IWI 5.5 · Core tier, High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/exception-design/src/`](../../practice/java/week-13/exception-design/src/) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/exception-design/src/`](../../../practice/java/week-13/exception-design/src/) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -437,7 +437,7 @@ Assuming both approaches are equivalent as long as `close()` is called.
 
 ## Practice Exercises
 
-1. Reproduce both demos: [`SwallowedCauseDemo.java`](../../practice/java/week-13/exception-design/src/SwallowedCauseDemo.java) and [`SuppressedExceptionDemo.java`](../../practice/java/week-13/exception-design/src/SuppressedExceptionDemo.java).
+1. Reproduce both demos: [`SwallowedCauseDemo.java`](../../../practice/java/week-13/exception-design/src/SwallowedCauseDemo.java) and [`SuppressedExceptionDemo.java`](../../../practice/java/week-13/exception-design/src/SuppressedExceptionDemo.java).
 2. Modify `SuppressedExceptionDemo` to open two resources in one try-with-resources statement, both of whose `close()` methods throw, and predict (then verify) how many suppressed exceptions the primary exception ends up carrying.
 3. Design a custom exception hierarchy for a payment-processing service (e.g., `PaymentException`, `InsufficientFundsException`, `PaymentGatewayException`) and justify which should be checked versus unchecked.
 

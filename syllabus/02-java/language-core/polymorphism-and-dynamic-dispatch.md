@@ -30,7 +30,7 @@ official_references:
 # Polymorphism and Dynamic Dispatch Mechanics
 
 > **Topic register:** T-102 · IWI 5.6 · Foundation tier, Very High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/oop-fundamentals/polymorphism/src/`](../../practice/java/oop-fundamentals/polymorphism/src/) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/oop-fundamentals/polymorphism/src/`](../../../practice/java/oop-fundamentals/polymorphism/src/) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -439,7 +439,7 @@ Not recognizing this as a design smell to actively avoid in code review.
 
 ## Practice Exercises
 
-1. Reproduce all four demos: [`OverrideVsOverloadDemo.java`](../../practice/java/oop-fundamentals/polymorphism/src/OverrideVsOverloadDemo.java), [`FieldHidingDemo.java`](../../practice/java/oop-fundamentals/polymorphism/src/FieldHidingDemo.java), [`StaticMethodHidingDemo.java`](../../practice/java/oop-fundamentals/polymorphism/src/StaticMethodHidingDemo.java), [`ConstructorDispatchPitfallDemo.java`](../../practice/java/oop-fundamentals/polymorphism/src/ConstructorDispatchPitfallDemo.java).
+1. Reproduce all four demos: [`OverrideVsOverloadDemo.java`](../../../practice/java/oop-fundamentals/polymorphism/src/OverrideVsOverloadDemo.java), [`FieldHidingDemo.java`](../../../practice/java/oop-fundamentals/polymorphism/src/FieldHidingDemo.java), [`StaticMethodHidingDemo.java`](../../../practice/java/oop-fundamentals/polymorphism/src/StaticMethodHidingDemo.java), [`ConstructorDispatchPitfallDemo.java`](../../../practice/java/oop-fundamentals/polymorphism/src/ConstructorDispatchPitfallDemo.java).
 2. Modify `ConstructorDispatchPitfallDemo` to make `title` `final` and initialize it directly from the string literal `"Q3 Sales"` (no `StringBuilder`). Run it and explain, precisely, why the output changes.
 3. Redesign `Report`/`SalesReport` to eliminate the constructor-dispatch pitfall using a constructor parameter instead of calling `describe()` from `Report()`'s constructor body.
 

@@ -31,7 +31,7 @@ official_references:
 
 > **Topic register:** T-401 (Java Memory Model & happens-before, IWI 7.75, #22 of 198) / T-402 (`volatile` & final field semantics, IWI 6.60) · Advanced/Core tier · Very High interview frequency [H] · Deepest single technical topic in the handbook
 > **⛔ Errata correction, stated explicitly:** this project's own knowledge-base audit found the prior source material described `volatile` as "prevents caching" — a hardware-level framing that is not what the Java Memory Model actually specifies, and is factually wrong rather than merely shallow. This chapter reproduces the real, measured consequence of getting this wrong, then explains the correct model.
-> **Provenance:** the visibility trace in this chapter is real, executed output from [`practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java`](../../practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java) — a genuine unbounded hang (5+ seconds, self-terminated by a bounded `join()`), reproduced consistently across three runs, not a one-off fluke.
+> **Provenance:** the visibility trace in this chapter is real, executed output from [`practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java`](../../../practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java) — a genuine unbounded hang (5+ seconds, self-terminated by a bounded `join()`), reproduced consistently across three runs, not a one-off fluke.
 
 ## Table of Contents
 
@@ -467,7 +467,7 @@ Believing `synchronized` on the constructor block alone is sufficient without `v
 
 ## Practice Exercises
 
-1. Reproduce the visibility demo yourself: [`practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java`](../../practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java). Run it 3 times and confirm the non-volatile case hangs each time.
+1. Reproduce the visibility demo yourself: [`practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java`](../../../practice/java/week-09/concurrency-fundamentals/src/VisibilityDemo.java). Run it 3 times and confirm the non-volatile case hangs each time.
 2. Write a broken double-checked-locking singleton (no `volatile`), then explain in writing what specifically could go wrong, referencing the happens-before rule that's missing.
 3. Explain the difference between the monitor-lock happens-before rule and the volatile-variable happens-before rule — what does each actually order?
 

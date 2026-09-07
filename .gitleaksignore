@@ -1,0 +1,9 @@
+# Fingerprints for confirmed-safe findings, per gitleaks' own ignore mechanism.
+# Each entry was manually inspected before being added here — never add a
+# fingerprint without reading the actual matched content first.
+
+# practice/java/full-stack-integration-backend/README.md — a curl example
+# demonstrating an internal-API auth header. The value itself is literally
+# named "f-214-demo-internal-shared-secret" and targets localhost:8080 in a
+# local practice demo; it is not a real credential of any kind.
+practice/java/full-stack-integration-backend/README.md:curl-auth-header:48

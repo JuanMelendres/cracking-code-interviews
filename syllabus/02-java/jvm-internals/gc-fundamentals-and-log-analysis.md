@@ -35,7 +35,7 @@ official_references:
 # GC Fundamentals and Log Analysis
 
 > **Topic register:** T-303 / T-306 · IWI 7.35 (T-306) / 6.90 (T-303) · Advanced / Core tier · centre of gravity of the JVM chapter, per the blueprint: "the valuable framing is not 'name the GC algorithms' but 'here is a latency graph and a GC log — what happened?'"
-> **Provenance:** the GC log excerpts in this chapter are real, captured output from [`practice/java/week-09/gc/src/AllocationStormDemo.java`](../../practice/java/week-09/gc/src/AllocationStormDemo.java), run with `-Xlog:gc*` against a real, constrained heap — not synthesized or described from documentation.
+> **Provenance:** the GC log excerpts in this chapter are real, captured output from [`practice/java/week-09/gc/src/AllocationStormDemo.java`](../../../practice/java/week-09/gc/src/AllocationStormDemo.java), run with `-Xlog:gc*` against a real, constrained heap — not synthesized or described from documentation.
 
 ## Table of Contents
 
@@ -424,7 +424,7 @@ Treating all bad GC pauses as a sizing problem.
 
 ## Practice Exercises
 
-1. Reproduce: [`practice/java/week-09/gc/src/AllocationStormDemo.java`](../../practice/java/week-09/gc/src/AllocationStormDemo.java), run with `java -Xmx64m "-Xlog:gc*:file=gc.log:time,level,tags" -cp out AllocationStormDemo`.
+1. Reproduce: [`practice/java/week-09/gc/src/AllocationStormDemo.java`](../../../practice/java/week-09/gc/src/AllocationStormDemo.java), run with `java -Xmx64m "-Xlog:gc*:file=gc.log:time,level,tags" -cp out AllocationStormDemo`.
 2. Lower `-Xmx` further (e.g., to 32M) and observe how pause frequency and the occupancy trend change.
 3. Increase the demo's retained-object ratio and try to force a "Concurrent Start" / mixed-collection log line to appear — what allocation pattern was needed to trigger it?
 

@@ -34,7 +34,7 @@ official_references:
 # Virtual Threads (Project Loom)
 
 > **Topic register:** T-410 · IWI 6.75 (top-25 tied of 198) · Advanced tier · High interview frequency [H] — risen sharply, now standard in current-era Senior Java loops
-> **Provenance:** both traces in this chapter are real, executed output from [`practice/java/week-09/virtual-threads/src/VirtualThreadScaleDemo.java`](../../practice/java/week-09/virtual-threads/src/VirtualThreadScaleDemo.java) and [`VirtualThreadPinningDemo.java`](../../practice/java/week-09/virtual-threads/src/VirtualThreadPinningDemo.java), on OpenJDK 21 (virtual threads are stable/final since JDK 21, no preview flags needed).
+> **Provenance:** both traces in this chapter are real, executed output from [`practice/java/week-09/virtual-threads/src/VirtualThreadScaleDemo.java`](../../../practice/java/week-09/virtual-threads/src/VirtualThreadScaleDemo.java) and [`VirtualThreadPinningDemo.java`](../../../practice/java/week-09/virtual-threads/src/VirtualThreadPinningDemo.java), on OpenJDK 21 (virtual threads are stable/final since JDK 21, no preview flags needed).
 
 ## Table of Contents
 
@@ -471,7 +471,7 @@ Building a pool of virtual threads "to be safe," adding complexity for no benefi
 
 ## Practice Exercises
 
-1. Reproduce both demos yourself: [`VirtualThreadScaleDemo.java`](../../practice/java/week-09/virtual-threads/src/VirtualThreadScaleDemo.java) and [`VirtualThreadPinningDemo.java`](../../practice/java/week-09/virtual-threads/src/VirtualThreadPinningDemo.java) (the latter needs `-Djdk.virtualThreadScheduler.parallelism=2`).
+1. Reproduce both demos yourself: [`VirtualThreadScaleDemo.java`](../../../practice/java/week-09/virtual-threads/src/VirtualThreadScaleDemo.java) and [`VirtualThreadPinningDemo.java`](../../../practice/java/week-09/virtual-threads/src/VirtualThreadPinningDemo.java) (the latter needs `-Djdk.virtualThreadScheduler.parallelism=2`).
 2. Modify the pinning demo to use 4 carriers instead of 2 and predict the new wall-clock time for the pinned case before running it — does the arithmetic (`tasks/carriers * blockMs`) still hold?
 3. Find one real hazard beyond `synchronized` that also pins a virtual thread's carrier (check the JDK's virtual thread documentation) and explain why it has the same effect.
 

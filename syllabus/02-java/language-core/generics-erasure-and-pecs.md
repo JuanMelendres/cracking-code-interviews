@@ -29,7 +29,7 @@ official_references:
 # Generics: Erasure, Variance, and PECS
 
 > **Topic register:** T-104 · IWI 5.85 · Core tier, High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/generics-erasure/src/`](../../practice/java/week-13/generics-erasure/src/) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/generics-erasure/src/`](../../../practice/java/week-13/generics-erasure/src/) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -419,7 +419,7 @@ Reversing extends/super, or using a wildcard where a plain type parameter would 
 
 ## Practice Exercises
 
-1. Reproduce both demos: [`TypeErasureDemo.java`](../../practice/java/week-13/generics-erasure/src/TypeErasureDemo.java) and [`PecsDemo.java`](../../practice/java/week-13/generics-erasure/src/PecsDemo.java).
+1. Reproduce both demos: [`TypeErasureDemo.java`](../../../practice/java/week-13/generics-erasure/src/TypeErasureDemo.java) and [`PecsDemo.java`](../../../practice/java/week-13/generics-erasure/src/PecsDemo.java).
 2. Write a generic method `copy(List<? super T> dest, List<? extends T> src)` that copies all elements from `src` to `dest`, and verify it compiles for `copy(List<Object>, List<Integer>)`.
 3. Explain, without running code, why `List<String>[] arr = new List<String>[10];` does not compile in Java, connecting your answer directly to erasure.
 

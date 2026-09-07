@@ -30,7 +30,7 @@ official_references:
 # ConcurrentHashMap Internals
 
 > **Topic register:** T-205 · IWI 6.65 · Advanced tier, High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/concurrenthashmap/src/ConcurrentHashMapDemo.java`](../../practice/java/week-14/concurrenthashmap/src/ConcurrentHashMapDemo.java) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/concurrenthashmap/src/ConcurrentHashMapDemo.java`](../../../practice/java/week-14/concurrenthashmap/src/ConcurrentHashMapDemo.java) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -386,7 +386,7 @@ Using a manual get()/put() pair instead of the built-in atomic compound operatio
 
 ## Practice Exercises
 
-1. Reproduce: [`ConcurrentHashMapDemo.java`](../../practice/java/week-14/concurrenthashmap/src/ConcurrentHashMapDemo.java).
+1. Reproduce: [`ConcurrentHashMapDemo.java`](../../../practice/java/week-14/concurrenthashmap/src/ConcurrentHashMapDemo.java).
 2. Modify the naive increment demo to use `computeIfAbsent()` plus a mutable holder (e.g., an `AtomicInteger` value) instead of `merge()`, and confirm it also produces the correct count.
 3. Design a scenario where even `merge()` alone isn't sufficient — where two DIFFERENT keys must be updated as one atomic unit — and explain what mechanism (beyond `ConcurrentHashMap` itself) would be needed.
 

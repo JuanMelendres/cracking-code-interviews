@@ -29,7 +29,7 @@ official_references:
 # BlockingQueue Family and Producer-Consumer
 
 > **Topic register:** T-207 · IWI 5.8 · Core tier, High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java`](../../practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java`](../../../practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -376,7 +376,7 @@ Constructing a `LinkedBlockingQueue` with no capacity argument, silently default
 
 ## Practice Exercises
 
-1. Reproduce: [`BlockingQueueDemo.java`](../../practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java).
+1. Reproduce: [`BlockingQueueDemo.java`](../../../practice/java/week-14/blockingqueue/src/BlockingQueueDemo.java).
 2. Modify the `ArrayBlockingQueue` demo to use `offer()` with a timeout instead of blocking `put()`, and observe what happens when the timeout expires before a consumer takes an item.
 3. Design the queue configuration (implementation, capacity, rejection/blocking policy) for a service ingesting webhook events from an unreliable third party at a highly variable rate, feeding a downstream processing step with a much steadier throughput.
 

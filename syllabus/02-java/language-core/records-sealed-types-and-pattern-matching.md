@@ -34,7 +34,7 @@ official_references:
 
 > **Topic register:** T-110 · IWI 4.4 · Core tier · Moderate interview frequency
 > **Scope note:** this chapter covers the JDK 14→21 data-modeling and control-flow features (records, sealed types, pattern matching). It deliberately does not re-derive [Streams and Collectors](streams-and-collectors.md) (T-107, already covered) or [Virtual Threads](../concurrency/virtual-threads.md) (T-410, already covered) — those are the other two headline "modern Java" topics and have their own chapters.
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/records-sealed-pattern-matching/src/`](../../practice/java/records-sealed-pattern-matching/src/) on OpenJDK 21.0.12, including one genuine `javac` compile error captured on purpose.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/records-sealed-pattern-matching/src/`](../../../practice/java/records-sealed-pattern-matching/src/) on OpenJDK 21.0.12, including one genuine `javac` compile error captured on purpose.
 
 ## Table of Contents
 
@@ -149,7 +149,7 @@ Records guarantee the `equals`/`hashCode` *contract* (equal objects have equal h
 
 `SealedTypesDemo` declares `sealed interface Shape permits Circle, Rectangle, Triangle`, all three record implementations. The `area()` switch has no `default` branch and still compiles — because the compiler can enumerate every possible `Shape` value from the `permits` clause and confirm every one is handled.
 
-Deleting the `Triangle` case and recompiling produces a real, captured error (see [`sealed-exhaustiveness-compile-error.txt`](../../practice/java/records-sealed-pattern-matching/src/sealed-exhaustiveness-compile-error.txt)):
+Deleting the `Triangle` case and recompiling produces a real, captured error (see [`sealed-exhaustiveness-compile-error.txt`](../../../practice/java/records-sealed-pattern-matching/src/sealed-exhaustiveness-compile-error.txt)):
 
 ```
 Broken.java:9: error: the switch expression does not cover all possible input values
@@ -203,11 +203,11 @@ The unreachable branch in the diagram is not defensive code — with `Shape` sea
 
 ## Java Examples
 
-All three demos are real, compiled, and executed on OpenJDK 21.0.12 — see [`practice/java/records-sealed-pattern-matching/src/`](../../practice/java/records-sealed-pattern-matching/src/):
+All three demos are real, compiled, and executed on OpenJDK 21.0.12 — see [`practice/java/records-sealed-pattern-matching/src/`](../../../practice/java/records-sealed-pattern-matching/src/):
 
-- [`RecordFundamentalsDemo.java`](../../practice/java/records-sealed-pattern-matching/src/RecordFundamentalsDemo.java) — generated `equals`/`hashCode`/`toString`, compact-constructor validation with a real thrown/caught exception, records implementing an interface, reflective confirmation that a record class is `final` and extends `java.lang.Record`.
-- [`SealedTypesDemo.java`](../../practice/java/records-sealed-pattern-matching/src/SealedTypesDemo.java) — exhaustive switch with no `default`, plus the captured real compile error for a non-exhaustive variant.
-- [`PatternMatchingDemo.java`](../../practice/java/records-sealed-pattern-matching/src/PatternMatchingDemo.java) — `instanceof` patterns, switch type patterns, guarded patterns, `case null`, and nested record-pattern deconstruction.
+- [`RecordFundamentalsDemo.java`](../../../practice/java/records-sealed-pattern-matching/src/RecordFundamentalsDemo.java) — generated `equals`/`hashCode`/`toString`, compact-constructor validation with a real thrown/caught exception, records implementing an interface, reflective confirmation that a record class is `final` and extends `java.lang.Record`.
+- [`SealedTypesDemo.java`](../../../practice/java/records-sealed-pattern-matching/src/SealedTypesDemo.java) — exhaustive switch with no `default`, plus the captured real compile error for a non-exhaustive variant.
+- [`PatternMatchingDemo.java`](../../../practice/java/records-sealed-pattern-matching/src/PatternMatchingDemo.java) — `instanceof` patterns, switch type patterns, guarded patterns, `case null`, and nested record-pattern deconstruction.
 
 ## Production Scenarios
 

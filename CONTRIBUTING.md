@@ -135,7 +135,7 @@ Failing sequence: put(1,1); put(2,2); put(1,10); get(2) -> -1, expected 2
 ## Validation before committing
 
 ```bash
-./scripts/validate.sh
+python3 scripts/validate.py
 ```
 
 Checks:
@@ -154,7 +154,7 @@ Checks:
 Check 8 is a coarse regex scan, not a guarantee. Run [Gitleaks](https://github.com/gitleaks/gitleaks) if available:
 
 ```bash
-gitleaks detect --source . --no-git --verbose
+gitleaks detect --source . --no-git --verbose --config .gitleaks.toml
 ```
 
 ---

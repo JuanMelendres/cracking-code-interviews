@@ -31,7 +31,7 @@ official_references:
 # ArrayList and LinkedList Internals
 
 > **Topic register:** T-202 · IWI 5.6 · Foundation tier, Very High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/arraylist-linkedlist/src/`](../../practice/java/week-14/arraylist-linkedlist/src/) on OpenJDK 21.0.12, using `--add-opens java.base/java.util=ALL-UNNAMED` for the growth-factor demo.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/arraylist-linkedlist/src/`](../../../practice/java/week-14/arraylist-linkedlist/src/) on OpenJDK 21.0.12, using `--add-opens java.base/java.util=ALL-UNNAMED` for the growth-factor demo.
 
 ## Table of Contents
 
@@ -392,7 +392,7 @@ Assuming `add(k, x)` for an arbitrary `k` is O(1) on a `LinkedList`.
 
 ## Practice Exercises
 
-1. Reproduce both demos: [`ArrayListGrowthDemo.java`](../../practice/java/week-14/arraylist-linkedlist/src/ArrayListGrowthDemo.java) (requires `--add-opens java.base/java.util=ALL-UNNAMED`) and [`ArrayListVsLinkedListPerformanceDemo.java`](../../practice/java/week-14/arraylist-linkedlist/src/ArrayListVsLinkedListPerformanceDemo.java).
+1. Reproduce both demos: [`ArrayListGrowthDemo.java`](../../../practice/java/week-14/arraylist-linkedlist/src/ArrayListGrowthDemo.java) (requires `--add-opens java.base/java.util=ALL-UNNAMED`) and [`ArrayListVsLinkedListPerformanceDemo.java`](../../../practice/java/week-14/arraylist-linkedlist/src/ArrayListVsLinkedListPerformanceDemo.java).
 2. Modify the performance demo to measure `LinkedList` traversal via an iterator (`for (int x : linkedList)`) instead of indexed `get()`, and compare that against the indexed version — confirming iterator-based traversal avoids the O(n²) trap.
 3. Design the correct data structure choice for an LRU cache's internal ordering structure (frequent move-to-front and remove-from-back operations, no random-index access) and justify it against this chapter's decision framework.
 

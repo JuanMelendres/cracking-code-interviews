@@ -29,7 +29,7 @@ official_references:
 # equals(), hashCode(), and Comparable Contracts
 
 > **Topic register:** T-101 · IWI 5.9 · Foundation tier, Very High interview frequency
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/equality-contracts/src/`](../../practice/java/week-13/equality-contracts/src/) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/equality-contracts/src/`](../../../practice/java/week-13/equality-contracts/src/) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -411,7 +411,7 @@ Assuming `TreeSet` falls back to `equals()` the way `HashSet` does within a buck
 
 ## Practice Exercises
 
-1. Reproduce both demos: [`BrokenEqualsHashCodeDemo.java`](../../practice/java/week-13/equality-contracts/src/BrokenEqualsHashCodeDemo.java) and [`ComparableInconsistentWithEqualsDemo.java`](../../practice/java/week-13/equality-contracts/src/ComparableInconsistentWithEqualsDemo.java).
+1. Reproduce both demos: [`BrokenEqualsHashCodeDemo.java`](../../../practice/java/week-13/equality-contracts/src/BrokenEqualsHashCodeDemo.java) and [`ComparableInconsistentWithEqualsDemo.java`](../../../practice/java/week-13/equality-contracts/src/ComparableInconsistentWithEqualsDemo.java).
 2. Write an automated contract test (plain assertions, no framework needed) that would have caught the broken `BrokenPoint` class before it shipped.
 3. Design a class that needs both a natural sort order different from equality (e.g., sort by price for display) and correct `HashSet`/`HashMap` behavior. Show how to achieve both without violating either collection's assumptions.
 

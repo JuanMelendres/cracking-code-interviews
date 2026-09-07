@@ -28,7 +28,7 @@ official_references:
 # Immutability and Defensive Copying
 
 > **Topic register:** T-103 · IWI 5.4 · Foundation tier, High interview frequency
-> **Provenance:** the trace in this chapter is real, executed output from [`practice/java/week-13/immutability/src/MutableLeakDemo.java`](../../practice/java/week-13/immutability/src/MutableLeakDemo.java) on OpenJDK 21.0.12.
+> **Provenance:** the trace in this chapter is real, executed output from [`practice/java/week-13/immutability/src/MutableLeakDemo.java`](../../../practice/java/week-13/immutability/src/MutableLeakDemo.java) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -393,7 +393,7 @@ Treating a plain defensive copy as equivalent to an immutable view.
 
 ## Practice Exercises
 
-1. Reproduce: [`MutableLeakDemo.java`](../../practice/java/week-13/immutability/src/MutableLeakDemo.java).
+1. Reproduce: [`MutableLeakDemo.java`](../../../practice/java/week-13/immutability/src/MutableLeakDemo.java).
 2. Add a third leak to the demo: a constructor that stores an array field (`private final int[] scores`) directly rather than cloning it, and demonstrate the same class of bug with `int[]` instead of `List`/`Date`.
 3. Rewrite `LeakyEvent` to use `java.time.Instant` instead of `java.util.Date` for the `when` field, and explain why this eliminates the need for defensive copying on that field specifically.
 

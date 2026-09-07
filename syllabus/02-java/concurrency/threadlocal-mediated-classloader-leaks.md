@@ -183,11 +183,11 @@ consequence.
 
 ## Internal Implementation
 
-[`IsolatedClassLoader.java`](../../practice/java/concurrency/threadlocal-classloader-leak/src/IsolatedClassLoader.java)
+[`IsolatedClassLoader.java`](../../../practice/java/concurrency/threadlocal-classloader-leak/src/IsolatedClassLoader.java)
 overrides `loadClass` to `defineClass` a specific class (`PluginTask`)
 directly, without delegating to the parent classloader for it — the same
 real mechanism a servlet container uses to give each deployed webapp its
-own, independent classloader. [`ClassloaderLeakDemo.java`](../../practice/java/concurrency/threadlocal-classloader-leak/src/ClassloaderLeakDemo.java)
+own, independent classloader. [`ClassloaderLeakDemo.java`](../../../practice/java/concurrency/threadlocal-classloader-leak/src/ClassloaderLeakDemo.java)
 loads `PluginTask` through that isolated loader, runs it on a real,
 long-lived pooled thread (which calls `LeakyThreadLocalHolder.HOLDER.set(this)`
 with no matching `remove()`), then drops every direct reference and checks a

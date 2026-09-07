@@ -176,12 +176,12 @@ the module system can properly encapsulate.
 
 ## Internal Implementation
 
-[`VarHandleCounterDemo.java`](../../practice/java/concurrency/varhandles-and-unsafe/src/VarHandleCounterDemo.java)
+[`VarHandleCounterDemo.java`](../../../practice/java/concurrency/varhandles-and-unsafe/src/VarHandleCounterDemo.java)
 obtains a real `VarHandle` via `MethodHandles.lookup().findVarHandle(...)`
 over a plain `int` field, then runs a real CAS retry loop
 (`getVolatile`/`compareAndSet`) equivalent to `AtomicInteger.incrementAndGet()`,
 racing both implementations under identical real thread contention.
-[`MemoryOrderingAccessModesDemo.java`](../../practice/java/concurrency/varhandles-and-unsafe/src/MemoryOrderingAccessModesDemo.java)
+[`MemoryOrderingAccessModesDemo.java`](../../../practice/java/concurrency/varhandles-and-unsafe/src/MemoryOrderingAccessModesDemo.java)
 exercises all four real access-mode method families on one field, then runs
 a real, repeated safe-publication test: a writer thread fully initializes an
 object's fields with ordinary, unsynchronized writes, publishes the

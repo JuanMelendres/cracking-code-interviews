@@ -125,7 +125,7 @@ Stacking `@Async` and `@Transactional` on the same method is a well-known real g
 
 ## Internal Implementation
 
-**Real, observed lifecycle output** ([`BeanLifecycleDemo.java`](../../practice/java/week-07/spring-internals/BeanLifecycleDemo.java)):
+**Real, observed lifecycle output** ([`BeanLifecycleDemo.java`](../../practice/java/week-07/spring-internals/src/BeanLifecycleDemo.java)):
 
 ```
 3. constructor

@@ -32,7 +32,7 @@ official_references:
 # Streams and Collectors
 
 > **Topic register:** T-107 · IWI 6.2 · Core tier
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/streams-collectors/src/`](../../practice/java/week-13/streams-collectors/src/) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/streams-collectors/src/`](../../../practice/java/week-13/streams-collectors/src/) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -438,7 +438,7 @@ Assuming `parallel()` handles thread-safety of the stream's own side effects.
 
 ## Practice Exercises
 
-1. Reproduce all three demos: [`StreamLazinessDemo.java`](../../practice/java/week-13/streams-collectors/src/StreamLazinessDemo.java), [`ParallelStreamPitfallDemo.java`](../../practice/java/week-13/streams-collectors/src/ParallelStreamPitfallDemo.java), [`CustomCollectorDemo.java`](../../practice/java/week-13/streams-collectors/src/CustomCollectorDemo.java).
+1. Reproduce all three demos: [`StreamLazinessDemo.java`](../../../practice/java/week-13/streams-collectors/src/StreamLazinessDemo.java), [`ParallelStreamPitfallDemo.java`](../../../practice/java/week-13/streams-collectors/src/ParallelStreamPitfallDemo.java), [`CustomCollectorDemo.java`](../../../practice/java/week-13/streams-collectors/src/CustomCollectorDemo.java).
 2. Modify `ParallelStreamPitfallDemo` to use a much larger, genuinely CPU-heavy per-element computation (e.g., checking primality of large numbers) and confirm whether `parallel()` becomes faster than sequential at that workload size.
 3. Write a custom `Collector` that computes both the min and max of a stream of `Integer` in a single pass, using an `int[]` accumulator.
 

@@ -33,7 +33,7 @@ official_references:
 
 > **Topic register:** T-409 · IWI 6.70 (Mandatory Core via the ⛔ absent-and-wrong multiplier) · Core tier · Very High interview frequency [H]
 > **⛔ Errata correction, stated explicitly:** this project's own knowledge-base audit found the prior source material's thread-lifecycle diagram invented a "Running" state and omitted `TIMED_WAITING`. `java.lang.Thread.State` has exactly six real values — this chapter prints all six from a real running JVM, not from memory.
-> **Provenance:** every trace in this chapter is real, executed output: [`ThreadStateDemo.java`](../../practice/java/week-09/concurrency-fundamentals/src/ThreadStateDemo.java) (thread states), [`DeadlockDemo.java`](../../practice/java/week-09/deadlock-diagnostics/src/DeadlockDemo.java) (a genuine deadlock, detected via `ThreadMXBean`), [`RaceConditionDemo.java`](../../practice/java/week-09/deadlock-diagnostics/src/RaceConditionDemo.java) (measured lost updates).
+> **Provenance:** every trace in this chapter is real, executed output: [`ThreadStateDemo.java`](../../../practice/java/week-09/concurrency-fundamentals/src/ThreadStateDemo.java) (thread states), [`DeadlockDemo.java`](../../../practice/java/week-09/deadlock-diagnostics/src/DeadlockDemo.java) (a genuine deadlock, detected via `ThreadMXBean`), [`RaceConditionDemo.java`](../../../practice/java/week-09/deadlock-diagnostics/src/RaceConditionDemo.java) (measured lost updates).
 
 ## Table of Contents
 
@@ -489,7 +489,7 @@ Assuming this kind of bug is rare or unlikely to matter in practice.
 
 ## Practice Exercises
 
-1. Reproduce all three demos: [`ThreadStateDemo.java`](../../practice/java/week-09/concurrency-fundamentals/src/ThreadStateDemo.java), [`DeadlockDemo.java`](../../practice/java/week-09/deadlock-diagnostics/src/DeadlockDemo.java), [`RaceConditionDemo.java`](../../practice/java/week-09/deadlock-diagnostics/src/RaceConditionDemo.java).
+1. Reproduce all three demos: [`ThreadStateDemo.java`](../../../practice/java/week-09/concurrency-fundamentals/src/ThreadStateDemo.java), [`DeadlockDemo.java`](../../../practice/java/week-09/deadlock-diagnostics/src/DeadlockDemo.java), [`RaceConditionDemo.java`](../../../practice/java/week-09/deadlock-diagnostics/src/RaceConditionDemo.java).
 2. Modify `DeadlockDemo` to use a single consistent lock-acquisition order (both threads take `A` then `B`) and confirm no deadlock occurs.
 3. Change `RaceConditionDemo`'s thread count and increments-per-thread and observe how the lost-update percentage changes — is it linear in thread count?
 

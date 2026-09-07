@@ -32,7 +32,7 @@ official_references:
 # HashMap Internals
 
 > **Topic register:** T-201 · IWI 7.4 · Foundation tier, Near-Certain interview frequency — the single most-asked Java data structure question
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/hashmap-internals/src/`](../../practice/java/week-14/hashmap-internals/src/) on OpenJDK 21.0.12, using `--add-opens java.base/java.util=ALL-UNNAMED` to reflectively inspect `HashMap`'s private fields — stated explicitly since this flag is required and not a default.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-14/hashmap-internals/src/`](../../../practice/java/week-14/hashmap-internals/src/) on OpenJDK 21.0.12, using `--add-opens java.base/java.util=ALL-UNNAMED` to reflectively inspect `HashMap`'s private fields — stated explicitly since this flag is required and not a default.
 
 ## Table of Contents
 
@@ -394,7 +394,7 @@ Assuming a larger table always fixes slow HashMap lookups.
 
 ## Practice Exercises
 
-1. Reproduce both demos: [`HashMapResizeDemo.java`](../../practice/java/week-14/hashmap-internals/src/HashMapResizeDemo.java) and [`HashCollisionAndTreeificationDemo.java`](../../practice/java/week-14/hashmap-internals/src/HashCollisionAndTreeificationDemo.java) (both require `--add-opens java.base/java.util=ALL-UNNAMED`).
+1. Reproduce both demos: [`HashMapResizeDemo.java`](../../../practice/java/week-14/hashmap-internals/src/HashMapResizeDemo.java) and [`HashCollisionAndTreeificationDemo.java`](../../../practice/java/week-14/hashmap-internals/src/HashCollisionAndTreeificationDemo.java) (both require `--add-opens java.base/java.util=ALL-UNNAMED`).
 2. Modify the collision demo to use a hashCode() that collides only 4 keys per bucket (not 50,000) and confirm the bucket does NOT treeify (stays a linked list) even in a large table — connecting to the 8-node threshold specifically.
 3. Construct a `HashMap` with an explicit initial capacity sized for 10,000 known entries, and measure whether it avoids the resize events a default-capacity map exhibits during population.
 

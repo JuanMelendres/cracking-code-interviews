@@ -31,7 +31,7 @@ official_references:
 # TreeMap/TreeSet & the Navigable Hierarchy
 
 > **Topic register:** T-203 · IWI 5.2 · Core tier — `00-project/knowledge-architecture-blueprint.md`. Also closes two real, tracked Phase 1 audit defects (`CHANGELOG.md`'s own Errata register): the source material's inverted `Set` hierarchy diagram, and `NavigableSet` miscategorized as a peer implementation rather than the interface `TreeSet` actually implements.
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/collections/treemap-treeset-internals/src/`](../../practice/java/collections/treemap-treeset-internals/src/) on OpenJDK 21.0.12, including a real, reflective measurement of `TreeMap`'s actual Red-Black tree height (using `--add-opens java.base/java.util=ALL-UNNAMED`, stated explicitly since it's required and not a default) and a real, direct reflective proof of the corrected interface hierarchy via `Class.getInterfaces()`.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/collections/treemap-treeset-internals/src/`](../../../practice/java/collections/treemap-treeset-internals/src/) on OpenJDK 21.0.12, including a real, reflective measurement of `TreeMap`'s actual Red-Black tree height (using `--add-opens java.base/java.util=ALL-UNNAMED`, stated explicitly since it's required and not a default) and a real, direct reflective proof of the corrected interface hierarchy via `Class.getInterfaces()`.
 
 ## Table of Contents
 

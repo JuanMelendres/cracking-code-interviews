@@ -2,7 +2,7 @@
 """
 Repository validation for cracking-code-interviews.
 
-Invoked by scripts/validate.sh. Exit 0 = pass (warnings allowed), 1 = errors.
+Run directly: python3 scripts/validate.py. Exit 0 = pass (warnings allowed), 1 = errors.
 """
 from __future__ import annotations
 import os, re, sys, subprocess, shutil
@@ -10,6 +10,8 @@ from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
+
+EXCLUDED_DIRS = {".git", "node_modules", ".venv", ".next", ".cache", "graft"}
 
 errors: list[str] = []
 warnings: list[str] = []
@@ -26,7 +28,7 @@ def head(n, t): print(f"\n[{n}] {t}")
 def md_files():
     out = []
     for dirpath, dirnames, filenames in os.walk("."):
-        dirnames[:] = [d for d in dirnames if d not in {".git", "node_modules", ".venv"}]
+        dirnames[:] = [d for d in dirnames if d not in EXCLUDED_DIRS]
         for fn in filenames:
             if fn.endswith(".md"):
                 out.append(os.path.join(dirpath, fn))
@@ -150,12 +152,15 @@ else:
 
 # ---------------------------------------------------------------- 7
 head(7, "Relative link resolution")
-LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+LINK = re.compile(r"\[[^\]]*\]\(<([^>]+)>\)|\[[^\]]*\]\(([^)]+)\)")
 bad = False
 for f, t in texts.items():
+    if f.endswith("CHANGELOG.md") or f.startswith("./archive/"):
+        continue  # historical record — deliberately preserves now-removed paths, see CLAUDE.md's "never rewrite past-tense narrative" convention
     d = os.path.dirname(f)
     for _, line in strip_fences(t):
-        for target in LINK.findall(line):
+        for angle_target, plain_target in LINK.findall(line):
+            target = angle_target or plain_target
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
             path = target.split("#")[0]
@@ -169,7 +174,7 @@ if not bad:
 # ---------------------------------------------------------------- 8
 head(8, "Secret scan")
 PATTERNS = [
-    (r"eyJ[A-Za-z0-9_-]{20,}", "JWT"),
+    (r"eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}", "JWT"),
     (r"AKIA[0-9A-Z]{16}", "AWS access key"),
     (r"BEGIN [A-Z ]*PRIVATE KEY", "private key"),
     (r"ghp_[A-Za-z0-9]{30,}", "GitHub PAT"),
@@ -181,7 +186,7 @@ ALLOW = re.compile(r"example\.com|@param|@return|@Entity|@Table|@Override|@Test|
 scan_ext = (".md", ".java", ".sql", ".json", ".yml", ".yaml", ".sh", ".py")
 hits = 0
 for dirpath, dirnames, filenames in os.walk("."):
-    dirnames[:] = [d for d in dirnames if d != ".git"]
+    dirnames[:] = [d for d in dirnames if d not in EXCLUDED_DIRS]
     for fn in filenames:
         if not fn.endswith(scan_ext):
             continue
@@ -203,7 +208,8 @@ if hits == 0:
 
 if shutil.which("gitleaks"):
     print("\n[8b] Gitleaks")
-    r = subprocess.run(["gitleaks", "detect", "--source", ".", "--no-git", "--redact"],
+    r = subprocess.run(["gitleaks", "detect", "--source", ".", "--no-git", "--redact",
+                        "--config", ".gitleaks.toml"],
                        capture_output=True, text=True)
     if r.returncode == 0:
         ok("gitleaks: clean")
@@ -226,8 +232,15 @@ STALE = re.compile(
 stale_total = 0
 stale_by_file = {}
 for f, t in texts.items():
-    if f.endswith(("file-mapping.md", "CHANGELOG.md", "validate.py")):
+    # Frozen Phase 1/2 deliverables (status: "no chapters generated" / historical
+    # audit) — their own dated proposals intentionally predate the real file
+    # names later chosen; corrections belong in blueprint-v1.1-corrections.md,
+    # never as an in-place edit to the frozen document itself.
+    if f.endswith(("file-mapping.md", "CHANGELOG.md", "validate.py",
+                   "knowledge-architecture-blueprint.md", "knowledge-base-audit.md")):
         continue
+    if f.startswith("./archive/"):
+        continue  # deliberately preserved for provenance, per 00-project/file-mapping.md — never corrected in place
     n = len(STALE.findall(t))
     if n:
         stale_by_file[f] = n
