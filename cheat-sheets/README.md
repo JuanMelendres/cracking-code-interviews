@@ -2,7 +2,7 @@
 title: "Cheat Sheets — Index"
 document_type: cheat-sheet-index
 status: draft
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 ---
 
 # Cheat Sheets
@@ -242,7 +242,15 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | N30 | [Technical Debt Prioritization and Advocacy](technical-debt-prioritization-and-advocacy.md) | T-1904 | leadership-staff | `syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md` |
 | N31 | [Design Reviews and RFCs as Organizational Practice](design-reviews-and-rfcs-as-organizational-practice.md) | T-1905 | leadership-staff | `syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md` |
 
-**Total across all three groups: 194 cheat sheets** (132 backend + 31 frontend + 31 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
+**Added 2026-09-07 (batch 2): the 5 Junior Fundamentals chapters (T-2200s reserved range, `00-project/syllabus-transformation-plan.md`).** These postdate the batch above — they didn't exist when it closed — and were found and closed the same day they were discovered missing, rather than left as a second backlog.
+
+| N32 | [Java OOP Fundamentals: Classes, Objects, and Interfaces](java-oop-fundamentals-classes-objects-and-interfaces.md) | T-2201 | java | `syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md` |
+| N33 | [SQL and Relational Database Fundamentals](sql-and-relational-database-fundamentals.md) | T-2202 | databases | `syllabus/06-databases/sql-and-relational-database-fundamentals.md` |
+| N34 | [Spring MVC Fundamentals](spring-mvc-fundamentals.md) | T-2203 | spring | `syllabus/05-spring/spring-mvc-fundamentals.md` |
+| N35 | [Unit Testing Fundamentals with JUnit](unit-testing-fundamentals-with-junit.md) | T-2204 | testing | `syllabus/08-testing/unit-testing-fundamentals-with-junit.md` |
+| N36 | [REST API Fundamentals](rest-api-fundamentals.md) | T-2205 | api-design | `syllabus/07-api-design/rest-api-fundamentals.md` |
+
+**Total across all groups: 199 cheat sheets** (132 backend + 31 frontend + 36 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
 
 ## How this relates to `flashcards/`
 

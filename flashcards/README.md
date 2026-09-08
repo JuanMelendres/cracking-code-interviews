@@ -209,7 +209,15 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 | N30 | [Technical Debt Prioritization and Advocacy](technical-debt-prioritization-and-advocacy.md) | T-1904 | 6 | `syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md` |
 | N31 | [Design Reviews and RFCs as Organizational Practice](design-reviews-and-rfcs-as-organizational-practice.md) | T-1905 | 6 | `syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md` |
 
-**Total: 168 decks** (137 pre-existing + 31 new-writing-domain), 593 cards. Unlike `cheat-sheets/`, this deliverable has no frontend-domain leg yet — that remains a separate, pre-existing, undocumented gap, not part of the "Phase 5 new-writing chapters" backlog this batch closes.
+**Added 2026-09-07 (batch 2): the 5 Junior Fundamentals chapters (T-2200s reserved range).** These postdate the batch above — they didn't exist when it closed — and were found and closed the same day they were discovered missing, matching `cheat-sheets/README.md`'s own second batch for the same 5 chapters.
+
+| N32 | [Java OOP Fundamentals: Classes, Objects, and Interfaces](java-oop-fundamentals-classes-objects-and-interfaces.md) | T-2201 | 5 | `syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md` |
+| N33 | [SQL and Relational Database Fundamentals](sql-and-relational-database-fundamentals.md) | T-2202 | 5 | `syllabus/06-databases/sql-and-relational-database-fundamentals.md` |
+| N34 | [Spring MVC Fundamentals](spring-mvc-fundamentals.md) | T-2203 | 5 | `syllabus/05-spring/spring-mvc-fundamentals.md` |
+| N35 | [Unit Testing Fundamentals with JUnit](unit-testing-fundamentals-with-junit.md) | T-2204 | 5 | `syllabus/08-testing/unit-testing-fundamentals-with-junit.md` |
+| N36 | [REST API Fundamentals](rest-api-fundamentals.md) | T-2205 | 5 | `syllabus/07-api-design/rest-api-fundamentals.md` |
+
+173 decks in the two new-writing-domain batches combined (137 pre-existing + 36 new-writing-domain), 618 cards — see the Frontend Decks section below for the deliverable's actual, final total including the frontend batch.
 
 ## Frontend Decks (F-codes, no IWI)
 
@@ -251,7 +259,7 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | F30 | [Next.js Styling Approaches](nextjs-styling-approaches.md) | F-302 | Intermediate | `syllabus/21-frontend-web/nextjs-styling-approaches.md` |
 | F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
 
-**Total across all groups: 199 decks** (137 backend + 31 new-writing-domain + 31 frontend), 655 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
+**Total across all groups: 204 decks** (137 backend + 36 new-writing-domain, including the 5 Junior Fundamentals decks added 2026-09-07 — see above — + 31 frontend), 680 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
 
 ## How this relates to other deliverables
 

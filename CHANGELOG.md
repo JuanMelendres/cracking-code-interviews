@@ -2478,3 +2478,9 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - This learning path (built 2026-09-05, Phase 6) predates the Junior Fundamentals initiative (T-2201-T-2205, 2026-09-07) and never routed through it — despite its own stated audience ("someone who can write code that runs, but hasn't yet built a reliable mental model") being exactly who those 5 chapters were written for. It jumped straight into HashMap internals, index structures, and `@Test` usage without ever teaching what a class, a table, or a unit test actually is.
 - Inserted all 5 chapters at the points where the existing sequence's own topics assumed they were already known: OOP Fundamentals first (no prerequisites, everything else is written in Java), SQL Fundamentals before Index Structures, Unit Testing Fundamentals before Test Strategy, Spring MVC Fundamentals before Spring Framework vs. Spring Boot, and REST API Fundamentals added after Spring MVC (a genuinely new addition — this path never touched `07-api-design` before). Sequence grew from 14 to 19 topics; all topic-number cross-references in the file's own prose (completion criteria) renumbered to match. Time budget updated from ~5 to ~6-7 weeks with a stated reason.
 - Verified all 19 links resolve, one H1, full validator run: zero new errors.
+
+### Added (cheat-sheets/ + flashcards/ — 5 Junior Fundamentals chapters, T-2201-T-2205)
+
+- These 5 chapters postdated the cheat-sheets/flashcards backlog closures for the other new-writing domains and were never covered. Closed same-day: 5 cheat sheets and 5 flashcard decks (25 cards), drawn directly from each chapter's own real content (real demos, real Postgres error, real Spring MVC bug, real JUnit failure, real POST/PUT idempotency proof).
+- Updated `cheat-sheets/README.md` (199 total) and `flashcards/README.md` (204 total, 680 cards), and all five affected domains' `INDEX.md` files.
+- Full validator run: zero new errors.

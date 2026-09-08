@@ -681,3 +681,12 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Fixed
 
 - `syllabus/00-overview/learning-paths/junior-to-mid.md` predates the Junior Fundamentals initiative (same date, T-2201-T-2205) and never routed through it, despite its own stated audience being exactly who those chapters serve. Inserted all 5 at the points where the existing sequence's own topics silently assumed them: OOP Fundamentals first, SQL Fundamentals before Index Structures, Unit Testing Fundamentals before Test Strategy, Spring MVC Fundamentals before Spring Framework vs. Spring Boot, and REST API Fundamentals (a genuinely new domain addition to this path). Sequence: 14 -> 19 topics, all in-file topic-number references renumbered, time budget updated with a stated reason. Verified all links resolve; full validator run clean.
+
+## [2026-09-07] — Cheat sheets and flashcards for the 5 Junior Fundamentals chapters (T-2201–T-2205)
+
+### Added
+
+- The 5 Junior Fundamentals chapters (built the same day) postdated the cheat-sheets/flashcards backlog closures for the other new-writing domains and were never covered. Closed same-day rather than left as a new backlog: 5 cheat sheets and 5 flashcard decks (25 cards total), one pair per chapter.
+- Every fact, decision-table entry, and pitfall was drawn directly from its own chapter's real content (the real compiled demos, the real PostgreSQL error text, the real Spring MVC `@PathVariable` bug, the real JUnit failure, the real POST/PUT idempotency proof) — no invented content.
+- Updated `cheat-sheets/README.md` (199 total: 132 backend + 31 frontend + 36 new-writing-domain) and `flashcards/README.md` (204 total: 137 backend + 36 new-writing-domain + 31 frontend, 680 cards). Updated all five domains' `INDEX.md` files with a one-line pointer.
+- Full validator run: zero new errors.
