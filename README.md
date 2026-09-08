@@ -1,6 +1,6 @@
 # cracking-code-interviews
 
-Structured interview preparation for **Senior Java Backend Engineer** and **Staff Engineer** roles.
+Structured interview preparation for Java backend engineers across the full **Junior-through-Staff** ladder — start at true fundamentals with no prior experience assumed, or start wherever you already are and go deeper toward Senior or Staff.
 
 > ⚠️ **Public repository.** See [Privacy and confidentiality](#privacy-and-confidentiality) before committing anything derived from real work — STAR stories, production examples, and interview feedback are the highest-risk content this repo will eventually hold.
 
@@ -16,8 +16,9 @@ The programme is built around one organizing idea:
 
 Every chapter pairs technical depth with a spoken-answer instrument: layered answers, trade-off structures, recorded drills, and scored mock interviews.
 
-**Target roles**
-- Senior Java Backend Engineer *(primary)*
+**Target roles** — the full ladder, not one fixed point on it:
+- Junior/Mid Backend Engineer *(true fundamentals — `syllabus/01-computer-science-foundations/`, `syllabus/03-data-structures-algorithms/`, and the Junior Fundamentals chapters across `02-java`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`)*
+- Senior Java Backend Engineer *(the original primary focus, still the deepest-covered level)*
 - Staff Engineer *(secondary — Plan C)*
 
 ---

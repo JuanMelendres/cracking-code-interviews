@@ -667,3 +667,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - **The Junior Fundamentals initiative is complete: all 5 planned chapters (T-2201–T-2205) are written**, covering Java OOP, SQL/relational databases, Spring MVC, JUnit testing, and REST API design — closing the gap found when the user asked whether OOP itself was covered, in the context of selling this repository as Junior-through-Staff rather than Senior/Staff-only. Every chapter includes real, executed evidence (compiled Java demos, a live PostgreSQL lab, or a live Spring Boot app exercised with curl) — no topic content asserts a claim without backing it directly, and two chapters (Spring MVC, JUnit) kept a genuine bug/failure hit while building the demo as real teaching material rather than smoothing it over.
 - `CLAUDE.md`'s Target Audience section still states the primary reader "has at least five years of Java and backend experience" — now inconsistent with this completed initiative's own premise and still not reconciled; flagged, not yet fixed.
+
+## [2026-09-07] — CLAUDE.md/AGENTS.md/README.md Target Audience reconciled with Junior Fundamentals
+
+### Fixed
+
+- The Junior Fundamentals initiative (T-2201–T-2205, this same date) was flagged as complete but inconsistent with CLAUDE.md's own Target Audience section, which still assumed the reader "has at least five years of Java and backend experience" and targeted only Senior/Staff interviews. User explicitly asked for the reconciliation.
+- Rewrote CLAUDE.md's Target Audience, Project Identity opener, and Project Success Criteria opener to describe a reader anywhere on the Junior-through-Staff spectrum, tying the description directly to the 20-section Topic Specification template's own L1-L4 structure and naming which domains were Junior-inclusive by design versus retrofitted. Regenerated AGENTS.md as an exact mirror. Updated README.md's tagline and "Target roles" list to match.
+- Full validator run: zero new errors.
+
+## [2026-09-07] — Junior → Mid learning path updated to route through the 5 new Junior Fundamentals chapters
+
+### Fixed
+
+- `syllabus/00-overview/learning-paths/junior-to-mid.md` predates the Junior Fundamentals initiative (same date, T-2201-T-2205) and never routed through it, despite its own stated audience being exactly who those chapters serve. Inserted all 5 at the points where the existing sequence's own topics silently assumed them: OOP Fundamentals first, SQL Fundamentals before Index Structures, Unit Testing Fundamentals before Test Strategy, Spring MVC Fundamentals before Spring Framework vs. Spring Boot, and REST API Fundamentals (a genuinely new domain addition to this path). Sequence: 14 -> 19 topics, all in-file topic-number references renumbered, time budget updated with a stated reason. Verified all links resolve; full validator run clean.

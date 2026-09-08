@@ -1,6 +1,6 @@
 Project Identity
 
-Project: Cracking Code InterviewsPrimary workspace: cracking-code-interviews/Primary objective: Build a professional, modular, production-oriented interview preparation system for experienced Java backend engineers targeting Senior and Staff-level roles.
+Project: Cracking Code InterviewsPrimary workspace: cracking-code-interviews/Primary objective: Build a professional, modular, production-oriented interview preparation system for Java backend engineers across the full Junior-through-Staff ladder — a reader with no prior Java or backend experience can start at the true fundamentals and progress, through the same canonical content, all the way to Staff-level depth. (Updated 2026-09-07 — see Target Audience below and the Scope Addendum for the parallel decision already made for the frontend domain on 2026-08-12.)
 
 This repository is not a collection of disconnected notes. It is a structured learning system composed of complementary resources:
 
@@ -141,19 +141,25 @@ Technical writing
 
 Adult learning
 
-Do not merely summarize information. Teach concepts deeply enough that an experienced engineer can explain, apply, debug, compare, and defend them during Senior and Staff interviews.
+Do not merely summarize information. Teach concepts deeply enough that a reader at any level — Junior through Staff — can explain, apply, debug, compare, and defend them at the depth their target interview actually requires.
 
 Target Audience
 
-Assume the primary reader:
+Status note (2026-09-07): this section originally assumed a single reader profile (5+ years of experience, Senior/Staff-only). That assumption is no longer correct and has been replaced below — see `syllabus/00-overview/changelog.md`'s matching 2026-09-07 entries for the audit that found the gap (this project's own OOP coverage, and the same "assumes the basics" pattern across `06-databases`, `05-spring`, `08-testing`, `07-api-design`) and the user's explicit decision to fix it. This repository now targets the full Junior-through-Staff ladder, the same positioning already used for `01-computer-science-foundations`, `03-data-structures-algorithms`, and the frontend domain (Scope Addendum above, 2026-08-12).
 
-has at least five years of Java and backend experience,
+Assume the primary reader is somewhere on a spectrum, not fixed at one point on it:
 
-already understands basic programming and REST APIs,
+- at the Junior end, someone with little or no prior Java/backend experience, who needs true fundamentals taught from zero — what a class is, what a primary key is, what `@Autowired` does — before anything else makes sense;
+- at the Staff end, someone with years of production experience who needs cross-system depth, organizational judgment, and defensible trade-off reasoning;
+- and, most commonly, someone somewhere between the two, using this repository to move from wherever they currently are toward Senior or Staff.
 
-is preparing for Senior Backend Engineer and Staff Engineer interviews,
+Every canonical `syllabus/` topic file is written to serve this whole spectrum in one place — the 20-section Topic Specification template (`syllabus/00-overview/topic-specification.md`) explicitly sequences Foundation (L1) before Core Concepts (L2) before Senior-Level (L3) before Staff/System-Level (L4) content within a single file, so a reader starts wherever their own level actually is and reads forward, rather than needing a separate "beginner" book and "expert" book. `01-computer-science-foundations`, `03-data-structures-algorithms`, `21-frontend-web`, and the five Junior Fundamentals chapters (`syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md` and its four siblings, T-2200–T-2299) were built this way from the start; the remaining backend domains, migrated from a Senior/Staff-only source, received an additive Level 1/Level 2 retrofit (Phase 5 of `00-project/syllabus-transformation-plan.md`) to bring them to the same standard.
 
-wants stronger depth in Java, databases, architecture, system design, production engineering, and technical communication,
+The reader, regardless of starting level:
+
+wants working knowledge of Java, databases, architecture, system design, production engineering, and technical communication, built up from wherever their own baseline currently is,
+
+is preparing for a real interview loop — Junior through Staff Engineer, depending on where they are in their career,
 
 and needs to improve both technical knowledge and interview delivery.
 
@@ -2732,7 +2738,7 @@ and link every major item to a canonical or planned resource.
 
 Project Success Criteria
 
-The project succeeds when an experienced Java engineer can use it to:
+The project succeeds when a reader starting from true fundamentals — no prior Java or backend experience — can use it to build working knowledge from zero, and when an experienced engineer can use the same canonical content to:
 
 explain core Java and JVM concepts at Senior depth,
 
