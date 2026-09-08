@@ -268,6 +268,14 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **2026-09-08 — 3 new frontend Junior Fundamentals cheat sheets.** Closing the same "assumes the basics" gap found and fixed for the Java backend domain, 3 new floor-level frontend topics (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals) each got a cheat sheet — see the new rows at the top of the Frontend Cheat Sheets table above. **New total: 205 cheat sheets** (132 backend + 34 frontend + 39 new-writing-domain).
 
+**2026-09-08 (batch 5) — 3 more backend Junior Fundamentals chapters**, found the same day after the user asked directly whether `02-java` covered primitive types, JVM/JDK/JRE, access modifiers, `static`/`final`, abstract-vs-concrete method signatures, and a Java version-features timeline, and to cross-check a connected Notion knowledge base (read-only) for real, commonly-asked questions on these topics.
+
+| N40 | [Java Platform Basics: JVM, JDK, JRE, and Primitive Types](java-platform-basics-jvm-jdk-jre-and-primitive-types.md) | T-2209 | java | `syllabus/02-java/language-core/java-platform-basics-jvm-jdk-jre-and-primitive-types.md` |
+| N41 | [Java Modifiers and Method Signatures](java-modifiers-and-method-signatures.md) | T-2210 | java | `syllabus/02-java/language-core/java-modifiers-and-method-signatures.md` |
+| N42 | [Java Version Features Timeline](java-version-features-timeline.md) | T-2211 | java | `syllabus/02-java/language-core/java-version-features-timeline.md` |
+
+**New total, verified directly against the file system: 208 cheat sheets** (132 backend + 34 frontend + 42 new-writing-domain — these 3, like T-2206–T-2208 before them, are counted in the new-writing-domain bucket since they're Junior Fundamentals additions without an original IWI ranking, even though `02-java` itself is an existing backend domain).
+
 ## How this relates to `flashcards/`
 
 Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` is now closed (75/75 handbook chapters) — its individual cards draw from the same canonical chapters these cheat sheets do, not restated from a cheat sheet's content.

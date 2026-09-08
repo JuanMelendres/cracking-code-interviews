@@ -228,6 +228,12 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 
 176 decks across the four new-writing-domain batches combined (137 pre-existing + 39 new-writing-domain), 633 cards — see the Frontend Decks section below for the deliverable's actual, final total including the frontend batch.
 
+**Added 2026-09-08 (batch 5): 3 more backend Junior Fundamentals decks**, matching `cheat-sheets/README.md`'s own fifth batch for the same 3 chapters, found after the user asked directly whether `02-java` covered primitive types, JVM/JDK/JRE, access modifiers, `static`/`final`, and abstract-vs-concrete method signatures, plus a Java version-features timeline, and to cross-check a connected Notion knowledge base (read-only).
+
+| N40 | [Java Platform Basics: JVM, JDK, JRE, and Primitive Types](java-platform-basics-jvm-jdk-jre-and-primitive-types.md) | T-2209 | 5 | `syllabus/02-java/language-core/java-platform-basics-jvm-jdk-jre-and-primitive-types.md` |
+| N41 | [Java Modifiers and Method Signatures](java-modifiers-and-method-signatures.md) | T-2210 | 5 | `syllabus/02-java/language-core/java-modifiers-and-method-signatures.md` |
+| N42 | [Java Version Features Timeline](java-version-features-timeline.md) | T-2211 | 5 | `syllabus/02-java/language-core/java-version-features-timeline.md` |
+
 ## Frontend Decks (F-codes, no IWI)
 
 **Added 2026-09-07.** The frontend domain (`syllabus/21-frontend-web/`) uses the Master Topic Register's F-codes and a Beginner/Intermediate/Advanced/Expert tier instead of the backend's numeric IWI score, same as `cheat-sheets/`'s own Frontend Cheat Sheets section (which closed this same gap for cheat sheets on 2026-09-03). Unlike the new-writing-domain decks above, every one of these 31 chapters already has its own embedded `## Flashcards` section, written when the chapter itself was authored — this batch is a pure extraction, not new content, matching the same discipline used for the 137 pre-existing backend decks. `frontend-live-coding-and-debugging-protocol.md` (a `playbook-technical-answer`-typed chapter with no F-code) is deliberately excluded, matching the identical, already-established exclusion in `cheat-sheets/README.md`'s own Frontend Cheat Sheets table (31, not 32).
@@ -276,6 +282,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **Total across all groups: 207 decks** (137 backend + 39 new-writing-domain, including the 8 Junior Fundamentals decks added 2026-09-07/2026-09-08 — see above — + 31 frontend), 695 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
 
 **2026-09-08 — 3 new frontend Junior Fundamentals decks.** Closing the same "assumes the basics" gap found and fixed for the Java backend domain, 3 new floor-level frontend topics (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals) each got a 5-card deck — see the new rows at the top of the Frontend Decks table above. **New total, verified directly against the file system: 210 decks (137 backend + 39 new-writing-domain + 34 frontend), 710 cards.**
+
+**2026-09-08 — 3 more backend Junior Fundamentals decks** (T-2209, T-2210, T-2211 — see the new-writing-domain batch 5 rows above), each with 5 cards. **Final total, verified directly against the file system: 213 decks (137 backend + 42 new-writing-domain + 34 frontend), 725 cards.**
 
 ## How this relates to other deliverables
 
