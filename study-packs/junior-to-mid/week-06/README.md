@@ -1,58 +1,55 @@
 ---
-title: "Junior → Mid, Week 6 — Databases and Testing"
+title: "Junior → Mid, Week 6 — Coding Patterns, Part 2, and First SQL"
 document_type: study-pack
 week: 6
 track: junior-to-mid
 status: draft
-estimated_hours: 8
+estimated_hours: 7
 ---
 
-# Week 6 — Databases and Testing
+# Week 6 — Coding Patterns, Part 2, and First SQL
 
 ## Weekly Outcome
 
-By the end of this week you can explain why an index speeds up a query using a B+Tree's structure, model a many-to-many relationship with an explicit join table instead of a denormalized shortcut, write a correct JUnit test with setup/teardown, and explain the difference between a unit test, an integration test, and a mock.
+By the end of this week you can implement binary search correctly on the first try (including the search-on-answer variant), manipulate a linked list in place without losing a reference, and write a correct `SELECT` with a `JOIN` and a `WHERE` clause against a real schema.
 
 ## Why This Week Matters
 
-Week 5 taught SQL usage; this week goes one layer deeper into *why* queries are fast or slow ([Database Index Structures](../../../syllabus/06-databases/index-structures-btree-composite-covering.md)) and how to model relationships correctly ([Data Modelling and Explicit Join Tables](../../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md)) — the same usage-then-internals pattern already applied twice in this pack. Testing is introduced here, before Week 7's Spring/REST work, so that every controller and service built next week can be tested as it's written, not bolted on afterward.
+Binary search and linked-list manipulation are the two remaining foundational coding patterns this pack covers, closing out the DSA sequence started in Week 5. SQL is introduced this week as a deliberate pivot — [SQL and Relational Database Fundamentals](../../../syllabus/06-databases/sql-and-relational-database-fundamentals.md) (T-2202) is the direct prerequisite for Week 7's index-structures and data-modelling chapters, exactly the same "usage before internals" sequencing this pack already applied to Java collections in Weeks 3–4.
 
 ## Prerequisites
 
-Week 5 — comfortable writing a `SELECT` with a `JOIN` before this week's index and modelling material.
+Week 5 — comfortable narrating a coding approach before implementing it. No prior SQL exposure assumed.
 
 ## Schedule
 
 | Day | Focus |
 |---|---|
-| Mon–Tue | [Database Index Structures — B+Tree, Composite, Covering](../../../syllabus/06-databases/index-structures-btree-composite-covering.md) (T-609) |
-| Wed | [Data Modelling and Explicit Join Tables](../../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md) (T-605/T-608) |
-| Thu–Fri | [Unit Testing Fundamentals with JUnit](../../../syllabus/08-testing/unit-testing-fundamentals-with-junit.md) (T-2204) — read in full, reproduce the JUnit demo |
-| Sat | [Test Strategy, the Pyramid, and Test Doubles](../../../syllabus/08-testing/test-strategy-and-test-doubles.md) (T-1101/T-1103) |
+| Mon–Tue | [Binary Search, Including Search-on-Answer](../../../syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md) (T-2103) |
+| Wed–Thu | [Linked Lists and In-Place Manipulation](../../../syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md) (T-2104) |
+| Fri–Sat | [SQL and Relational Database Fundamentals](../../../syllabus/06-databases/sql-and-relational-database-fundamentals.md) (T-2202) — read in full, reproduce the fundamentals lab |
 | Sun | Review checklist below |
 
 ## Required Reading
 
 | # | Topic | Canonical Chapter |
 |---|---|---|
-| 1 | Database Index Structures (T-609) | [`syllabus/06-databases/index-structures-btree-composite-covering.md`](../../../syllabus/06-databases/index-structures-btree-composite-covering.md) |
-| 2 | Data Modelling and Explicit Join Tables (T-605/T-608) | [`syllabus/06-databases/data-modelling-and-explicit-join-tables.md`](../../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md) |
-| 3 | Unit Testing Fundamentals with JUnit (T-2204) | [`syllabus/08-testing/unit-testing-fundamentals-with-junit.md`](../../../syllabus/08-testing/unit-testing-fundamentals-with-junit.md) |
-| 4 | Test Strategy and Test Doubles (T-1101/T-1103) | [`syllabus/08-testing/test-strategy-and-test-doubles.md`](../../../syllabus/08-testing/test-strategy-and-test-doubles.md) |
+| 1 | Binary Search and Search-on-Answer (T-2103) | [`syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md`](../../../syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md) |
+| 2 | Linked Lists and In-Place Manipulation (T-2104) | [`syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md`](../../../syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md) |
+| 3 | SQL and Relational Database Fundamentals (T-2202) | [`syllabus/06-databases/sql-and-relational-database-fundamentals.md`](../../../syllabus/06-databases/sql-and-relational-database-fundamentals.md) |
 
 ## Hands-On Exercises
 
-- T-609 and T-605/T-608's own practice material — follow the links from each chapter.
-- [`practice/java/testing-fundamentals/junit-basics/`](../../../practice/java/testing-fundamentals/junit-basics/) — `Calculator.java`/`CalculatorTest.java`, with both a real passing test run (`test-run-output.txt`) and a real, deliberately-produced failing assertion (`real-failure-output.txt`, `expected: <6> but was: <5>`) kept as genuine evidence of what a real JUnit failure looks like.
-- T-1101/T-1103's own practice material on test doubles.
+- T-2103 and T-2104's own practice-problem lists — follow the links from each chapter.
+- [`practice/sql/sql-fundamentals/`](../../../practice/sql/sql-fundamentals/) — a real PostgreSQL 16 lab run in Docker (`fundamentals-lab.sql` plus its real captured `fundamentals-lab-output.txt`). Run it yourself against a local Postgres container rather than only reading the transcript.
 
 ## Interview Answer Drills
 
-Answer, out loud: "why does a composite index's column order matter?" and "what's the difference between a mock and a stub?" before checking each chapter's expected answer.
+For binary search specifically: state the loop-invariant you're maintaining (`lo`/`hi`/`mid`) out loud before writing any code — this is the single most common source of off-by-one bugs in this pattern.
 
 ## Coding Problems
 
-None dedicated this week — this week is conceptual (databases, testing), not DSA pattern practice.
+T-2103 and T-2104's own practice problems, timed at 25 minutes each, same discipline as Week 5.
 
 ## System Design Exercise
 
@@ -64,24 +61,24 @@ None this week.
 
 ## Mock Interview
 
-Self-check: given a slow query on a table with a two-column `WHERE` clause, explain what composite index you'd add and why, out loud, in under 2 minutes.
+Self-check: implement binary search from a blank file, cold, in under 10 minutes, including the boundary condition (`lo <= hi` vs. `lo < hi`) stated correctly before you type it.
 
 ## Review Checklist
 
-- [ ] Reproduced the JUnit demo, saw both the passing run and the real failing-assertion output.
-- [ ] Can explain a B+Tree index lookup's rough cost (why it's not a full table scan) unprompted.
-- [ ] Can state, from memory, the test pyramid's shape and why unit tests should outnumber integration tests.
+- [ ] Solved every practice problem in T-2103 and T-2104.
+- [ ] Reproduced the SQL fundamentals lab and got the same real output as `fundamentals-lab-output.txt`.
+- [ ] Can write a `JOIN` between two tables from memory, using correct PostgreSQL syntax, without copying from the chapter.
 
 ## Completion Criteria
 
-- [ ] Can design a join table for a stated many-to-many relationship (e.g., students and courses) with correct foreign keys.
-- [ ] Wrote a new JUnit test from scratch (not copied) for a small class of your own, including one `assertThrows` case.
-- [ ] Can explain when to reach for a mock versus a real test database, with a stated reason.
+- [ ] Implemented binary search and one search-on-answer variant correctly, unaided.
+- [ ] Solved at least one in-place linked-list manipulation problem (e.g., reversal) without losing a node reference.
+- [ ] Wrote and ran a `SELECT` with a `JOIN` against the fundamentals lab schema, got a correct result set.
 
 ## Retrospective
 
-Note whether the deliberately-broken JUnit test's failure message made the actual defect obvious or not — this is a preview of what real production test-failure triage feels like.
+Note whether your binary search bug (if any) was an off-by-one in the loop bound or in the midpoint calculation — this distinction matters for how you debug the next one.
 
 ## Next Week
 
-[Week 7 — Ship Something](../week-07/README.md).
+[Week 7 — Databases and Testing](../week-07/README.md).

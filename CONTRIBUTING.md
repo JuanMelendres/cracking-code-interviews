@@ -150,6 +150,7 @@ Checks:
 | 6 | No duplicate filenames across the repo | Ambiguous cross-references |
 | 7 | Relative links resolve | Broken navigation |
 | 8 | No secret patterns | **Stop and remediate** |
+| 9 | No stale pre-normalization filenames in prose | Cross-reference points to a name that no longer exists |
 
 Check 8 is a coarse regex scan, not a guarantee. Run [Gitleaks](https://github.com/gitleaks/gitleaks) if available:
 

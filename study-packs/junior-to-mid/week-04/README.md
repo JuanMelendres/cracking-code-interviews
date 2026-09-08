@@ -1,5 +1,5 @@
 ---
-title: "Junior → Mid, Week 4 — Coding Patterns, Part 1"
+title: "Junior → Mid, Week 4 — Collections, For Real This Time"
 document_type: study-pack
 week: 4
 track: junior-to-mid
@@ -7,47 +7,49 @@ status: draft
 estimated_hours: 7
 ---
 
-# Week 4 — Coding Patterns, Part 1
+# Week 4 — Collections, For Real This Time
 
 ## Weekly Outcome
 
-By the end of this week you can recognize when a problem calls for the two-pointer or sliding-window pattern versus a brute-force nested loop, and when a frequency map turns an O(n²) comparison into an O(n) pass — and you can implement both from scratch under time pressure.
+By the end of this week you can explain why `HashMap` needs a correct `equals()`/`hashCode()` pair to work at all, describe what actually happens inside a `HashMap` on a collision, and choose correctly between `ArrayList` and `LinkedList` for a stated access pattern with a reason tied to their internals, not folklore.
 
 ## Why This Week Matters
 
-This is the first week of actual coding-interview practice in this pack, deliberately placed after Weeks 1–3 built the prerequisites: arrays and strings (Week 1's syntax), Big-O vocabulary (Week 2), and HashMap internals (Week 3) are exactly what [Arrays, Two Pointers, and Sliding Window](../../../syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md) and [Hashing Patterns and Frequency Maps](../../../syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md) assume you already have.
+Week 3 taught *when* to reach for a `Map` or a `List`. This week explains *why* they behave the way they do underneath — [equals(), hashCode(), and Comparable Contracts](../../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md) is the direct prerequisite for [HashMap Internals](../../../syllabus/02-java/collections/hashmap-internals.md) actually making sense, and both interview constantly at every level from Mid up.
 
 ## Prerequisites
 
-Weeks 1–3 — in particular, you should be able to state a loop's Big-O complexity and know how a HashMap works internally before this week.
+Week 3 — you should already be comfortable using `List`, `Map`, and `Set` correctly before opening up how one of them works inside.
 
 ## Schedule
 
 | Day | Focus |
 |---|---|
-| Mon–Wed | [Arrays, Two Pointers, and Sliding Window](../../../syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md) (T-2101) |
-| Thu–Fri | [Hashing Patterns and Frequency Maps](../../../syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md) (T-2102) |
-| Sat | Solve every practice problem listed in both chapters, timed |
+| Mon–Tue | [equals(), hashCode(), and Comparable Contracts](../../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md) (T-101) |
+| Wed–Thu | [HashMap Internals](../../../syllabus/02-java/collections/hashmap-internals.md) (T-201) |
+| Fri | [ArrayList and LinkedList Internals](../../../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md) (T-202) |
+| Sat | Practice exercises from all three chapters' own practice sections |
 | Sun | Review checklist below |
 
 ## Required Reading
 
 | # | Topic | Canonical Chapter |
 |---|---|---|
-| 1 | Arrays, Two Pointers, and Sliding Window (T-2101) | [`syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md`](../../../syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md) |
-| 2 | Hashing Patterns and Frequency Maps (T-2102) | [`syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md`](../../../syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md) |
+| 1 | equals()/hashCode()/Comparable (T-101) | [`syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md`](../../../syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md) |
+| 2 | HashMap Internals (T-201) | [`syllabus/02-java/collections/hashmap-internals.md`](../../../syllabus/02-java/collections/hashmap-internals.md) |
+| 3 | ArrayList and LinkedList Internals (T-202) | [`syllabus/02-java/collections/arraylist-and-linkedlist-internals.md`](../../../syllabus/02-java/collections/arraylist-and-linkedlist-internals.md) |
 
 ## Hands-On Exercises
 
-Follow each chapter's own practice-problem list and worked solutions — this pack does not duplicate problem statements or solutions already written there.
+Each chapter above links its own real, compiled `practice/` demo — follow those links from the chapter itself rather than a copy here, since this pack does not duplicate chapter content. Reproduce each demo and confirm the behavior described (a broken `equals()` silently failing a `HashSet.contains()` check; a real bucket-collision walkthrough; a measured `ArrayList` vs. `LinkedList` insertion-cost comparison).
 
 ## Interview Answer Drills
 
-For each pattern, practice narrating your approach out loud before writing code: state the brute-force approach and its complexity first, then explain why the pattern improves it, before touching the keyboard.
+Answer, out loud, before checking the chapters: "why does overriding `equals()` without `hashCode()` break `HashMap`?" and "why is `ArrayList.add(0, x)` slow but `LinkedList.addFirst(x)` isn't?"
 
 ## Coding Problems
 
-The practice problems listed in T-2101 and T-2102 themselves — this is the first week this pack points directly at coding problems rather than deferring them.
+None dedicated this week — Week 5 starts applying this internals knowledge to real coding patterns.
 
 ## System Design Exercise
 
@@ -59,24 +61,24 @@ None this week.
 
 ## Mock Interview
 
-Self-check: pick one problem from each chapter you have not yet solved, set a 25-minute timer, and solve it cold while narrating out loud as if an interviewer were listening — including stating complexity at the end unprompted.
+Self-check: explain what happens, step by step, when you call `map.put(key, value)` on a `HashMap` that already has a colliding key at that bucket — say it out loud as if drawing it on a whiteboard, then check against T-201's own Whiteboard Explanation section.
 
 ## Review Checklist
 
-- [ ] Solved every practice problem in both chapters without looking at the solution first.
-- [ ] Can state the two-pointer pattern's recognition signal (sorted array, pair/triplet search) unprompted.
-- [ ] Can state the frequency-map pattern's recognition signal (counting, duplicates, anagram-style comparison) unprompted.
+- [ ] Completed all three chapters' own Mastery Checklists.
+- [ ] Reproduced each chapter's real demo and confirmed the described behavior on your own machine.
+- [ ] Can state, from memory, the equals/hashCode contract's three rules (reflexive, and consistent with hashCode).
 
 ## Completion Criteria
 
-- [ ] Solved at least 6 problems total across both chapters, timed under 25 minutes each.
-- [ ] Can explain, unprompted, why a two-pointer approach beats a nested-loop brute force for a sorted-array pair-sum problem.
-- [ ] Can implement a frequency-map solution from a blank file without referencing the chapter.
+- [ ] Can correctly implement `equals()` and `hashCode()` together for a small class from scratch.
+- [ ] Can explain a HashMap collision and how it's resolved, unprompted.
+- [ ] Can choose ArrayList vs. LinkedList correctly for 3 stated access patterns with a reason.
 
 ## Retrospective
 
-Note which pattern took longer to recognize on an unfamiliar problem — that is the pattern to drill again before Week 5 adds two more.
+Note any place you previously used a class in a `HashSet`/`HashMap` without a correct `equals()`/`hashCode()` override — this is one of the most common real bugs this week's material directly prevents.
 
 ## Next Week
 
-[Week 5 — Coding Patterns, Part 2, and First SQL](../week-05/README.md).
+[Week 5 — Coding Patterns, Part 1](../week-05/README.md).

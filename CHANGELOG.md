@@ -2575,3 +2575,16 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - Expanded `java-oop-fundamentals-classes-objects-and-interfaces.md` with real, compiled, executed evidence for default/static interface methods and the diamond-problem collision -- a real interface static-method call, a real inherited default method, a real `javac`-captured collision error (`class Duck inherits unrelated defaults for move() from types Flyer and Swimmer`), and the real fix via `InterfaceName.super.method()`.
 - Cheat sheet and flashcard deck added for T-2212. **New totals: 209 cheat sheets, 214 flashcard decks, 730 cards.**
 - Full validator run: zero new errors. See `syllabus/00-overview/changelog.md`'s matching, more detailed entry.
+
+### Fixed (study-packs/junior-to-mid/ re-sequenced from 7 to 8 weeks)
+
+- Closed a flagged follow-up: the study pack hadn't been re-sequenced after the learning path grew from 22 to 25 topics. Split the original Week 1 into a new Week 1 (Platform Basics, Syntax, Modifiers) and Week 2 (OOP, Version Timeline, How a Computer Executes a Program); shifted weeks 2-7 to 3-8 via git mv, then corrected every internal week-number reference (front matter, titles, prose, links) in each file.
+- Updated the pack's own README, the learning path's "Weekly study pack" note, study-packs/README.md, and root README.md (all still said 7 weeks / 22 topics).
+- Full validator run: zero new errors. See `syllabus/00-overview/changelog.md`'s matching, more detailed entry.
+
+### Verified (00-project/frontend-topic-register.md row-by-row audit)
+
+- Checked all 40 rows' Gap column against the real filesystem, not just the document's own top-level status claim: every distinct chapter file referenced (35 total) exists, has real content (no stubs — smallest file is ~2,900 words), and every file on disk under `syllabus/21-frontend-web/` is referenced by some row (no orphans in either direction). No corrections needed — the register's 2026-09-08 re-audit note already reflected reality.
+- Full validator run: 3 pre-existing, unrelated errors only (AGENTS.md/CLAUDE.md's broken link to `java-memory-model-and-volatile.md`, `templates/adr-template.md`'s self-link) — zero new errors.
+
+Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary follow-up flagged in `00-project/syllabus-transformation-plan.md` §11 is being handled directly between the user and the assistant rather than through a repository-tracked automated check — no tooling change was made for it.

@@ -7,7 +7,7 @@ last_updated: 2026-09-08
 
 # Study Packs
 
-This directory holds eight separate, non-overlapping programs across two domains (Java backend and React/Next.js frontend). All schedule the same canonical `syllabus/` content into a week-by-week (or, for one, a short daily-rotation) plan — none of them duplicate chapter content, per this repository's own no-duplication rule — but they exist for different readers with different timelines. **`week-01` through `week-25` (below), `junior-to-mid/week-01` through `week-07`, `mid-to-senior/week-01` through `week-10`, `senior-to-staff/week-01` through `week-08`, `backend-java-specialization/week-01` through `week-09`, `frontend-junior-to-mid/week-01` through `week-06`, and `frontend-mid-to-senior/week-01` through `week-10` all reuse the same "week-NN" numbering inside their own directory** — always go through this index or a learning path's own link rather than guessing from a bare "week-01" reference which program it belongs to.
+This directory holds eight separate, non-overlapping programs across two domains (Java backend and React/Next.js frontend). All schedule the same canonical `syllabus/` content into a week-by-week (or, for one, a short daily-rotation) plan — none of them duplicate chapter content, per this repository's own no-duplication rule — but they exist for different readers with different timelines. **`week-01` through `week-25` (below), `junior-to-mid/week-01` through `week-08`, `mid-to-senior/week-01` through `week-10`, `senior-to-staff/week-01` through `week-08`, `backend-java-specialization/week-01` through `week-09`, `frontend-junior-to-mid/week-01` through `week-06`, and `frontend-mid-to-senior/week-01` through `week-10` all reuse the same "week-NN" numbering inside their own directory** — always go through this index or a learning path's own link rather than guessing from a bare "week-01" reference which program it belongs to.
 
 ## Which program is this?
 
@@ -24,9 +24,9 @@ This directory holds eight separate, non-overlapping programs across two domains
 
 ## Programs — Java backend
 
-### [`junior-to-mid/`](junior-to-mid/README.md) — Junior → Mid, 7 weeks
+### [`junior-to-mid/`](junior-to-mid/README.md) — Junior → Mid, 8 weeks
 
-Schedules [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../syllabus/00-overview/learning-paths/junior-to-mid.md)'s 22-topic sequence: Java fundamentals, OOP, collections, DSA patterns, SQL, testing, Spring MVC, REST APIs, and Docker. ~48–56 hours total. Built 2026-09-08 using the lean README+MANIFEST convention (no duplicated content).
+Schedules [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../syllabus/00-overview/learning-paths/junior-to-mid.md)'s 25-topic sequence: Java platform basics, syntax, modifiers, OOP, version-features timeline, CS foundations, collections, DSA patterns, SQL, testing, Spring MVC, REST APIs, and Docker. ~60 hours total. Built 2026-09-08 using the lean README+MANIFEST convention (no duplicated content).
 
 ### [`mid-to-senior/`](mid-to-senior/README.md) — Mid → Senior, 10 weeks
 

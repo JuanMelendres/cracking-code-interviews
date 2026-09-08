@@ -7,27 +7,26 @@ last_reviewed: 2026-09-08
 
 # Week 5 — Manifest
 
-**Topics:** T-2103 (Binary Search and Search-on-Answer), T-2104 (Linked Lists and In-Place Manipulation), T-2202 (SQL and Relational Database Fundamentals). **Track:** Junior → Mid, Week 5 of 7.
+**Topics:** T-2101 (Arrays, Two Pointers, and Sliding Window), T-2102 (Hashing Patterns and Frequency Maps). **Track:** Junior → Mid, Week 5 of 8.
 **Files:** 1 (+ this manifest) — no chapter content duplicated, per this repository's no-duplication rule.
 
 ## Files
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | Weekly outcome, schedule, required reading, hands-on exercises, review checklist |
+| 1 | `README.md` | Weekly outcome, schedule, required reading, coding-problem pointer, review checklist |
 
 ## Verification
 
 | Item | Location | Status |
 |---|---|---|
-| T-2103's practice problems | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here |
-| T-2104's practice problems | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here |
-| SQL fundamentals lab | `practice/sql/sql-fundamentals/fundamentals-lab.sql` + `fundamentals-lab-output.txt` | Real, executed against PostgreSQL 16 in Docker — confirmed when T-2202 was written this session (2026-09-08) |
+| T-2101's practice problems and worked solutions | linked from the chapter itself | Predates this session's Junior Fundamentals work; cited by chapter link only, not re-verified here |
+| T-2102's practice problems and worked solutions | linked from the chapter itself | Predates this session's Junior Fundamentals work; cited by chapter link only, not re-verified here |
 
 ## Scope note
 
-First week this pack introduces SQL, deliberately after the DSA pattern sequence closes out — SQL usage (this week) is sequenced before index structures and data modelling (Week 6), the same usage-before-internals ordering already applied to Java collections in Weeks 2–3.
+First week this pack points at coding-interview problems directly, rather than conceptual reading — deliberately placed after 4 weeks of prerequisite building (syntax, OOP, Big-O, HashMap internals), matching this repository's stated stance that DSA pattern practice should never precede the vocabulary it depends on.
 
 ## Integrity note
 
-The SQL lab's real Postgres output was verified directly against the executed transcript when T-2202 was written this session; T-2103/T-2104's practice content predates this session and is cited by chapter link only, without re-verified counts.
+This manifest does not restate problem statements, solutions, or complexity claims already present in T-2101/T-2102 — the README links directly to both chapters as the authoritative source.

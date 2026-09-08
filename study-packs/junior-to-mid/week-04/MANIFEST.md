@@ -7,26 +7,27 @@ last_reviewed: 2026-09-08
 
 # Week 4 — Manifest
 
-**Topics:** T-2101 (Arrays, Two Pointers, and Sliding Window), T-2102 (Hashing Patterns and Frequency Maps). **Track:** Junior → Mid, Week 4 of 7.
+**Topics:** T-101 (equals/hashCode/Comparable), T-201 (HashMap Internals), T-202 (ArrayList/LinkedList Internals). **Track:** Junior → Mid, Week 4 of 8.
 **Files:** 1 (+ this manifest) — no chapter content duplicated, per this repository's no-duplication rule.
 
 ## Files
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | Weekly outcome, schedule, required reading, coding-problem pointer, review checklist |
+| 1 | `README.md` | Weekly outcome, schedule, required reading, hands-on exercises, review checklist |
 
 ## Verification
 
-| Item | Location | Status |
+| Demo | Location | Status |
 |---|---|---|
-| T-2101's practice problems and worked solutions | linked from the chapter itself | Predates this session's Junior Fundamentals work; cited by chapter link only, not re-verified here |
-| T-2102's practice problems and worked solutions | linked from the chapter itself | Predates this session's Junior Fundamentals work; cited by chapter link only, not re-verified here |
+| T-101's own practice demo | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here, cited by chapter link only |
+| T-201's own practice demo | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here, cited by chapter link only |
+| T-202's own practice demo | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here, cited by chapter link only |
 
 ## Scope note
 
-First week this pack points at coding-interview problems directly, rather than conceptual reading — deliberately placed after 3 weeks of prerequisite building (syntax, OOP, Big-O, HashMap internals), matching this repository's stated stance that DSA pattern practice should never precede the vocabulary it depends on.
+Unlike Weeks 1–3, this week's three chapters were not authored during this session's Junior Fundamentals initiative — they are original Senior-track chapters already present in the repository, being resequenced earlier in the Junior-to-Mid path because their L1/L2 material is exactly what a Junior/Mid reader needs, before the chapters continue on to L3 internals depth this pack does not require yet.
 
 ## Integrity note
 
-This manifest does not restate problem statements, solutions, or complexity claims already present in T-2101/T-2102 — the README links directly to both chapters as the authoritative source.
+This manifest deliberately does not restate assertion counts for T-101/T-201/T-202's demos, since those were not verified against the file system during this session — the README links directly to each chapter, which is the authoritative source for its own practice evidence.

@@ -66,7 +66,7 @@ This path is a hand-picked cross-domain subset, not a whole-domain sweep — it 
 
 ## Weekly study pack
 
-[`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) turns this sequence into a scheduled, week-by-week program — reading assignments, hands-on exercises, coding drills, and a lightweight mock-interview checkpoint per week — the same operational layer `study-packs/week-01` through `week-25` provide for the original Senior-focused program. This path's own 25 topics are the *content*; the study pack is the *schedule*. **Note:** the study pack itself has not yet been re-sequenced for these three new Topics 1, 3, and 5 as of this path's own 2026-09-08 fifth revision — its own Week 1 currently covers only the (now-renumbered) Topics 2 and 4, plus a CS-foundations topic; updating it is a real, flagged follow-up, not done here.
+[`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) turns this sequence into a scheduled, week-by-week program — reading assignments, hands-on exercises, coding drills, and a lightweight mock-interview checkpoint per week — the same operational layer `study-packs/week-01` through `week-25` provide for the original Senior-focused program. This path's own 25 topics are the *content*; the study pack is the *schedule*. **Re-sequenced 2026-09-08 (same day)** from 7 to 8 weeks to insert Topics 1, 3, and 5 — the original Week 1 split into a new Week 1 (Topics 1–3) and Week 2 (Topics 4–6), every subsequent week shifted forward by one.
 
 ## Next
 

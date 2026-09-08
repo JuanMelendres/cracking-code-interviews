@@ -1,5 +1,5 @@
 ---
-title: "Junior → Mid, Week 7 — Ship Something"
+title: "Junior → Mid, Week 7 — Databases and Testing"
 document_type: study-pack
 week: 7
 track: junior-to-mid
@@ -7,82 +7,81 @@ status: draft
 estimated_hours: 8
 ---
 
-# Week 7 — Ship Something
+# Week 7 — Databases and Testing
 
 ## Weekly Outcome
 
-By the end of this week you can build a small Spring Boot REST API from scratch — a controller, a service, a repository, correctly wired with constructor injection — design its endpoints using correct resource naming and HTTP status codes, and package it into a Docker image you build and run yourself.
+By the end of this week you can explain why an index speeds up a query using a B+Tree's structure, model a many-to-many relationship with an explicit join table instead of a denormalized shortcut, write a correct JUnit test with setup/teardown, and explain the difference between a unit test, an integration test, and a mock.
 
 ## Why This Week Matters
 
-This is the closing week of the pack: every prior week's material (OOP, collections, SQL, testing) comes together into one real, running application. [Spring MVC Fundamentals](../../../syllabus/05-spring/spring-mvc-fundamentals.md) and [REST API Fundamentals](../../../syllabus/07-api-design/rest-api-fundamentals.md) were both written this session specifically because the original repository jumped straight into Spring bean lifecycle and auto-configuration without ever teaching `@Controller`/`@Service`/`@Repository` first. Docker closes the loop by shipping what you just built.
+Week 6 taught SQL usage; this week goes one layer deeper into *why* queries are fast or slow ([Database Index Structures](../../../syllabus/06-databases/index-structures-btree-composite-covering.md)) and how to model relationships correctly ([Data Modelling and Explicit Join Tables](../../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md)) — the same usage-then-internals pattern already applied twice in this pack. Testing is introduced here, before Week 8's Spring/REST work, so that every controller and service built next week can be tested as it's written, not bolted on afterward.
 
 ## Prerequisites
 
-Weeks 1–6 — in particular, comfortable writing a class with a constructor (Week 1) and a `SELECT`/`JOIN` (Week 5) before this week's controller-service-repository stack.
+Week 6 — comfortable writing a `SELECT` with a `JOIN` before this week's index and modelling material.
 
 ## Schedule
 
 | Day | Focus |
 |---|---|
-| Mon–Tue | [Spring MVC Fundamentals](../../../syllabus/05-spring/spring-mvc-fundamentals.md) (T-2203) — read in full, reproduce the Task API demo, including the real `-parameters` bug and its fix |
-| Wed | [Spring Framework vs. Spring Boot](../../../syllabus/05-spring/spring-framework-vs-spring-boot.md) (T-506/T-501) |
-| Thu | [REST API Fundamentals](../../../syllabus/07-api-design/rest-api-fundamentals.md) (T-2205) — read in full, reproduce the Book API demo |
-| Fri–Sat | [Docker and Containers Fundamentals](../../../syllabus/14-devops-containers/docker-and-containers-fundamentals.md) (T-2208) — build and run the demo image yourself |
-| Sun | Review checklist below, then the full-pack retrospective |
+| Mon–Tue | [Database Index Structures — B+Tree, Composite, Covering](../../../syllabus/06-databases/index-structures-btree-composite-covering.md) (T-609) |
+| Wed | [Data Modelling and Explicit Join Tables](../../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md) (T-605/T-608) |
+| Thu–Fri | [Unit Testing Fundamentals with JUnit](../../../syllabus/08-testing/unit-testing-fundamentals-with-junit.md) (T-2204) — read in full, reproduce the JUnit demo |
+| Sat | [Test Strategy, the Pyramid, and Test Doubles](../../../syllabus/08-testing/test-strategy-and-test-doubles.md) (T-1101/T-1103) |
+| Sun | Review checklist below |
 
 ## Required Reading
 
 | # | Topic | Canonical Chapter |
 |---|---|---|
-| 1 | Spring MVC Fundamentals (T-2203) | [`syllabus/05-spring/spring-mvc-fundamentals.md`](../../../syllabus/05-spring/spring-mvc-fundamentals.md) |
-| 2 | Spring Framework vs. Spring Boot (T-506/T-501) | [`syllabus/05-spring/spring-framework-vs-spring-boot.md`](../../../syllabus/05-spring/spring-framework-vs-spring-boot.md) |
-| 3 | REST API Fundamentals (T-2205) | [`syllabus/07-api-design/rest-api-fundamentals.md`](../../../syllabus/07-api-design/rest-api-fundamentals.md) |
-| 4 | Docker and Containers Fundamentals (T-2208) | [`syllabus/14-devops-containers/docker-and-containers-fundamentals.md`](../../../syllabus/14-devops-containers/docker-and-containers-fundamentals.md) |
+| 1 | Database Index Structures (T-609) | [`syllabus/06-databases/index-structures-btree-composite-covering.md`](../../../syllabus/06-databases/index-structures-btree-composite-covering.md) |
+| 2 | Data Modelling and Explicit Join Tables (T-605/T-608) | [`syllabus/06-databases/data-modelling-and-explicit-join-tables.md`](../../../syllabus/06-databases/data-modelling-and-explicit-join-tables.md) |
+| 3 | Unit Testing Fundamentals with JUnit (T-2204) | [`syllabus/08-testing/unit-testing-fundamentals-with-junit.md`](../../../syllabus/08-testing/unit-testing-fundamentals-with-junit.md) |
+| 4 | Test Strategy and Test Doubles (T-1101/T-1103) | [`syllabus/08-testing/test-strategy-and-test-doubles.md`](../../../syllabus/08-testing/test-strategy-and-test-doubles.md) |
 
 ## Hands-On Exercises
 
-- [`practice/java/spring-mvc-fundamentals/`](../../../practice/java/spring-mvc-fundamentals/) — a real Task API, including `curl-transcript-before-fix.txt` (a genuine 500 error from a missing `-parameters` compiler flag) and `curl-transcript.txt` (the same request after the real fix). Reproduce both — the bug is as instructive as the fix.
-- [`practice/java/rest-api-fundamentals/`](../../../practice/java/rest-api-fundamentals/) — a real Book API with a full `curl-transcript.txt` covering create/read/update/delete and correct status codes.
-- [`practice/docker-fundamentals/`](../../../practice/docker-fundamentals/) — build the real `Dockerfile` yourself against Docker Engine, and reproduce the network-isolation proof (`curl` from the host fails without `-p`, `docker exec ... curl localhost:8080` succeeds from inside the container).
-- T-506/T-501's own practice material on auto-configuration.
+- T-609 and T-605/T-608's own practice material — follow the links from each chapter.
+- [`practice/java/testing-fundamentals/junit-basics/`](../../../practice/java/testing-fundamentals/junit-basics/) — `Calculator.java`/`CalculatorTest.java`, with both a real passing test run (`test-run-output.txt`) and a real, deliberately-produced failing assertion (`real-failure-output.txt`, `expected: <6> but was: <5>`) kept as genuine evidence of what a real JUnit failure looks like.
+- T-1101/T-1103's own practice material on test doubles.
 
 ## Interview Answer Drills
 
-Answer, out loud: "why did removing `@PathVariable("id")`'s explicit name break the Task API?" (the real bug from T-2203) and "why is `PUT` idempotent but `POST` isn't?" before checking each chapter's expected answer.
+Answer, out loud: "why does a composite index's column order matter?" and "what's the difference between a mock and a stub?" before checking each chapter's expected answer.
 
 ## Coding Problems
 
-None dedicated this week — the hands-on exercises above are the week's coding work.
+None dedicated this week — this week is conceptual (databases, testing), not DSA pattern practice.
 
 ## System Design Exercise
 
-Design the endpoints (resource paths, HTTP verbs, status codes) for a small API of your own choosing (e.g., a to-do list, a bookmark manager) before building it — a lightweight first exposure to the design thinking Mid → Senior's system-design material builds on directly.
+None this week.
 
 ## Behavioral Exercise
 
-None this week — see Week 1's note on where behavioral preparation lives in this repository.
+None this week.
 
 ## Mock Interview
 
-Self-check: build one new endpoint (not from either demo) on top of the Task or Book API from scratch, then containerize it, timed at 60 minutes total.
+Self-check: given a slow query on a table with a two-column `WHERE` clause, explain what composite index you'd add and why, out loud, in under 2 minutes.
 
 ## Review Checklist
 
-- [ ] Reproduced both the Task API's real bug and its fix.
-- [ ] Reproduced the Book API's full CRUD transcript with correct status codes.
-- [ ] Built and ran the Docker demo yourself, confirmed the network-isolation behavior firsthand.
+- [ ] Reproduced the JUnit demo, saw both the passing run and the real failing-assertion output.
+- [ ] Can explain a B+Tree index lookup's rough cost (why it's not a full table scan) unprompted.
+- [ ] Can state, from memory, the test pyramid's shape and why unit tests should outnumber integration tests.
 
 ## Completion Criteria
 
-- [ ] Built a small Spring Boot REST API from scratch (not copied) with at least one `GET` and one `POST` endpoint, correctly wired with constructor injection.
-- [ ] Can state, unprompted, what `spring-boot-starter-web` auto-configures that plain Spring would require manual setup for.
-- [ ] Built and ran a Docker image of your own small application, confirmed it runs correctly with a port mapped to the host.
+- [ ] Can design a join table for a stated many-to-many relationship (e.g., students and courses) with correct foreign keys.
+- [ ] Wrote a new JUnit test from scratch (not copied) for a small class of your own, including one `assertThrows` case.
+- [ ] Can explain when to reach for a mock versus a real test database, with a stated reason.
 
 ## Retrospective
 
-This is the pack's final retrospective: review every prior week's retrospective note and confirm each one is now resolved (no more equals/hashCode mistakes, binary-search bugs, or collection-choice errors) before moving on to [Mid → Senior](../../../syllabus/00-overview/learning-paths/mid-to-senior.md).
+Note whether the deliberately-broken JUnit test's failure message made the actual defect obvious or not — this is a preview of what real production test-failure triage feels like.
 
 ## Next Week
 
-This is the last week of the Junior → Mid pack. Continue with [Mid → Senior](../../../syllabus/00-overview/learning-paths/mid-to-senior.md).
+[Week 8 — Ship Something](../week-08/README.md).

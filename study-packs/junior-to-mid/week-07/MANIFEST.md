@@ -7,7 +7,7 @@ last_reviewed: 2026-09-08
 
 # Week 7 — Manifest
 
-**Topics:** T-2203 (Spring MVC Fundamentals), T-506/T-501 (Spring Framework vs. Spring Boot), T-2205 (REST API Fundamentals), T-2208 (Docker and Containers Fundamentals). **Track:** Junior → Mid, Week 7 of 7 (final week).
+**Topics:** T-609 (Database Index Structures), T-605/T-608 (Data Modelling and Explicit Join Tables), T-2204 (Unit Testing Fundamentals with JUnit), T-1101/T-1103 (Test Strategy and Test Doubles). **Track:** Junior → Mid, Week 7 of 8.
 **Files:** 1 (+ this manifest) — no chapter content duplicated, per this repository's no-duplication rule.
 
 ## Files
@@ -20,15 +20,15 @@ last_reviewed: 2026-09-08
 
 | Demo | Location | Status |
 |---|---|---|
-| Task API (`TaskApplication`, `Task`, `TaskRepository`, `TaskService`, `TaskController`) | `practice/java/spring-mvc-fundamentals/` | Real, compiled, executed — includes a genuine `500` error transcript (`curl-transcript-before-fix.txt`) caused by a missing `-parameters` compiler flag, and the real fixed transcript (`curl-transcript.txt`), both confirmed when T-2203 was written this session (2026-09-08) |
-| Book API (`Book`, `BookApplication`, `BookRepository`, `BookController`) | `practice/java/rest-api-fundamentals/` | Real, compiled, executed — full CRUD `curl-transcript.txt`, confirmed when T-2205 was written this session (2026-09-08) |
-| Docker demo (`Dockerfile`, `Server.java`) | `practice/docker-fundamentals/` | Real, built and run against Docker Engine 29.6.2 — network-isolation proof captured in `docker-transcript.txt`, confirmed when T-2208 was written this session (2026-09-08) |
-| T-506/T-501's practice material | linked from the chapter itself | Predates this session; not re-verified here |
+| `Calculator.java` / `CalculatorTest.java` | `practice/java/testing-fundamentals/junit-basics/` | Real, compiled, executed — a real passing run (`test-run-output.txt`) and a real, deliberately-produced failing assertion (`real-failure-output.txt`, `expected: <6> but was: <5>`), both confirmed when T-2204 was written this session (2026-09-08) |
+| T-609's practice material | linked from the chapter itself | Predates this session; not re-verified here |
+| T-605/T-608's practice material | linked from the chapter itself | Predates this session; not re-verified here |
+| T-1101/T-1103's practice material | linked from the chapter itself | Predates this session; not re-verified here |
 
 ## Scope note
 
-Closing week of the 7-week pack — deliberately the heaviest hands-on week, integrating Spring, REST design, and Docker into one working, shippable artifact. The real 500-error bug in the Task API demo is kept intentionally, not smoothed over, since debugging a real Spring configuration failure is itself part of what this week teaches.
+Heaviest week in this pack (4 topics, 8h) — deliberately placed right before Week 8's Spring/REST work so testing habits are in place before any controller or service is written.
 
 ## Integrity note
 
-All three practice demos' real transcripts (Task API's before/after fix, Book API's CRUD transcript, Docker's network-isolation proof) were verified directly against captured evidence when their respective chapters were written this session; T-506/T-501 predates this session and is cited by chapter link only.
+The JUnit demo's real passing and failing outputs were both verified directly against captured transcripts when T-2204 was written this session; the other three topics predate this session's Junior Fundamentals work and are cited by chapter link only.

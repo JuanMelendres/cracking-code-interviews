@@ -882,3 +882,23 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - Kanban (named as a real, different Agile framework in T-2212's own text) is not covered in depth — deliberately scoped out as beyond a fundamentals chapter, per that chapter's own Question 2 follow-up note.
+
+## [2026-09-08] — `study-packs/junior-to-mid/` re-sequenced from 7 to 8 weeks
+
+### Fixed
+
+- Closed a flagged follow-up from earlier the same day: the study pack had not been re-sequenced after the learning path grew from 22 to 25 topics (T-2209, T-2210, T-2211 inserted). Split the original Week 1 (Java Syntax Fundamentals, Java OOP Fundamentals, How a Computer Executes a Program) into a new Week 1 (Java Platform Basics, Java Syntax Fundamentals, Java Modifiers and Method Signatures) and Week 2 (Java OOP Fundamentals, Java Version Features Timeline, How a Computer Executes a Program) — both cite the same real, previously-verified assertion counts and compile-error transcripts as their respective chapters.
+- Shifted `week-02` through `week-07` to `week-03` through `week-08` via `git mv`, then corrected every internal week-number reference inside each file (front matter `week:` field, title, H1, self/previous/next-week prose mentions, and `week-NN/` link targets) — done with placeholder-token `sed` substitutions per directory to avoid double-shifting collisions where multiple distinct week numbers appear in the same file, followed by a manual pass for the one file (new Week 3, formerly Week 2) where the split of the old Week 1 meant a single "Week 1" prerequisite mention became "Weeks 1–2." One residual bug (Week 8's own front-matter `week:` field left at `7` after the first pass) was caught by a full end-to-end chain verification (every week's `week:` field and every "Next Week" link target checked in sequence) and fixed.
+- Updated the top-level `study-packs/junior-to-mid/README.md` (8-week table, ~60 total hours), `syllabus/00-overview/learning-paths/junior-to-mid.md`'s own "Weekly study pack" note (no longer flags the re-sequencing as undone), `study-packs/README.md`, and root `README.md` (both still said "7 weeks" / "22-topic sequence").
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
+## [2026-09-08] — `00-project/frontend-topic-register.md` row-by-row audit
+
+### Verified
+
+- Ran a row-by-row audit of `00-project/frontend-topic-register.md`'s Gap column, not just its top-level `status` header (which was already corrected in an earlier same-day entry, but every individual row had not been individually re-checked). Extracted all 40 rows' chapter links (35 distinct files, since several D-F1 rows share a grouped chapter), confirmed every one resolves to a real file on disk, confirmed every file in `syllabus/21-frontend-web/` is claimed by some row (no orphans in either direction), and confirmed no file is a stub (smallest file is ~2,900 words). No corrections were needed — the register's content matched reality.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
+### Not done (by decision, not oversight)
+
+- A validator check enforcing the `interview-playbook/company-prep/` / `*.private.md` privacy boundary (flagged in `00-project/syllabus-transformation-plan.md` §11/§12 rule 7, 2026-09-03) was built, tested against a real inserted leak, and then explicitly withdrawn the same day at the user's request: this boundary is being handled directly between the user and the assistant, not through repository-tracked tooling. `scripts/validate.py`, `CONTRIBUTING.md`, and this changelog were all reverted to their pre-check state.

@@ -7,7 +7,7 @@ last_reviewed: 2026-09-08
 
 # Week 3 — Manifest
 
-**Topics:** T-101 (equals/hashCode/Comparable), T-201 (HashMap Internals), T-202 (ArrayList/LinkedList Internals). **Track:** Junior → Mid, Week 3 of 7.
+**Topics:** T-2003 (Number Representation), T-2001 (Algorithmic Complexity and Big-O), T-2207 (Collections Usage Fundamentals). **Track:** Junior → Mid, Week 3 of 8.
 **Files:** 1 (+ this manifest) — no chapter content duplicated, per this repository's no-duplication rule.
 
 ## Files
@@ -20,14 +20,14 @@ last_reviewed: 2026-09-08
 
 | Demo | Location | Status |
 |---|---|---|
-| T-101's own practice demo | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here, cited by chapter link only |
-| T-201's own practice demo | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here, cited by chapter link only |
-| T-202's own practice demo | linked from the chapter itself | Predates this session's Junior Fundamentals work; not re-verified here, cited by chapter link only |
+| `WordFrequencyDemo.java` | `practice/java/oop-fundamentals/collections-basics/` | Real, compiled, executed — 14/14 assertions pass (confirmed when T-2207 was written, 2026-09-08) |
+| Number-representation demos | `practice/java/cs-foundations/number-representation/` | Real evidence backing T-2003 (built during original CS-foundations domain closure) |
+| Big-O demos | `practice/java/cs-foundations/algorithmic-complexity/` | Real evidence backing T-2001 (built during original CS-foundations domain closure) |
 
 ## Scope note
 
-Unlike Weeks 1–2, this week's three chapters were not authored during this session's Junior Fundamentals initiative — they are original Senior-track chapters already present in the repository, being resequenced earlier in the Junior-to-Mid path because their L1/L2 material is exactly what a Junior/Mid reader needs, before the chapters continue on to L3 internals depth this pack does not require yet.
+This week builds directly on Week 2's OOP foundation and is itself the direct prerequisite for Week 4's collections-internals deep dive — sequencing matters here more than in Weeks 1–2.
 
 ## Integrity note
 
-This manifest deliberately does not restate assertion counts for T-101/T-201/T-202's demos, since those were not verified against the file system during this session — the README links directly to each chapter, which is the authoritative source for its own practice evidence.
+The 14/14 assertion count for `WordFrequencyDemo.java` was verified directly against the file system when T-2207 was originally written this session (2026-09-08), not re-invented here. T-2003 and T-2001's demos predate this session's Junior Fundamentals work and are cited by location only, without a specific assertion count, since that count was not verified in this session.
