@@ -45,3 +45,7 @@ Unlike [Mid → Senior](mid-to-senior.md), this path names individual topics rat
 - Can defend each architecture decision above to a skeptical peer, naming the specific condition that would change the answer (per each chapter's own Staff-Level Discussion section).
 - Can connect at least three of the topics above across domains in a single answer (e.g., a migration story that cites both Strangler Fig's rollback-safety window and Cross-Team Influence's trust-building mechanism) — this cross-domain synthesis is itself the L4 signal, not any one topic in isolation.
 - Has a real or realistic story ready for each Leadership & Staff topic, per [Story Portfolio Design](../../20-interview-preparation/behavioral/02-story-portfolio-design.md).
+
+## Weekly study pack
+
+[`study-packs/senior-to-staff/`](../../../study-packs/senior-to-staff/) turns this sequence into a scheduled, 8-week program — reading assignments, hands-on exercises where a genuine practice demo exists, production-cookbook cross-references where a genuine match exists, and a real behavioral exercise for every Leadership & Staff topic — the same operational layer [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provides for the Mid → Senior path. This path's own 16 topics are the *content*; the study pack is the *schedule*.

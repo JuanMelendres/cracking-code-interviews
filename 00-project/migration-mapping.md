@@ -291,7 +291,7 @@ Per Section 3.2's taxonomy tree (`20-interview-preparation/behavioral/ = behavio
 | `interview-playbook/README.md` | `20-interview-preparation/INDEX.md` | Content merged, not a 1:1 rename |
 | `interview-playbook/behavioral/company-loop-structures-and-question-pattern-recognition.md` | `20-interview-preparation/behavioral/` | Per plan Section 7.5 item 2 — overlaps behavioral-handbook/'s scope; plan recommends consolidating under 20-interview-preparation/behavioral/ in Phase 1, not a plain relocation |
 | `interview-playbook/coding/coding-interview-communication-protocol.md` | `20-interview-preparation/coding/` |  |
-| `interview-playbook/company-prep/nordstrom-senior-backend-remote.md` | `20-interview-preparation/company-prep/ [PRIVATE — excluded from public/commercial build, Section 2.8]` | Names a real employer; plan proposes this stays a permanently private category, not sanitized (open question #3, Section 14) |
+| `interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md` | `20-interview-preparation/company-prep/ [PRIVATE — excluded from public/commercial build, Section 2.8]` | Names a real employer; plan proposes this stays a permanently private category, not sanitized (open question #3, Section 14) |
 | `interview-playbook/frontend/frontend-live-coding-and-debugging-protocol.md` | `21-frontend-web/` |  |
 | `interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md` | `20-interview-preparation/system-design/` |  |
 | `interview-playbook/system-design/time-boxing-and-mid-round-changes.md` | `20-interview-preparation/system-design/` |  |

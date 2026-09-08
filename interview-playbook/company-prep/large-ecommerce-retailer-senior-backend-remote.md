@@ -1,5 +1,5 @@
 ---
-title: "Nordstrom — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)"
+title: "A Large E-Commerce Retailer — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)"
 document_type: company-prep-guide
 domain: interview-playbook
 status: draft
@@ -15,7 +15,9 @@ related:
   - ../../syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md
 ---
 
-# Nordstrom — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)
+# A Large E-Commerce Retailer — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)
+
+> Anonymized 2026-09-08: the real employer name was removed and replaced with a generic descriptor, per this repository's own privacy discipline (`CONTRIBUTING.md` § Privacy). No other content changed.
 
 Guía de preparación puntual para esta entrevista específica, no un capítulo canónico del handbook. Cada sección enlaza al capítulo canónico correspondiente (donde ya existe una explicación completa, ejemplos y preguntas de entrevista) y agrega solo lo que ese capítulo no cubría todavía — verificado por lectura directa de cada archivo, no asumido. Ver `CLAUDE.md`'s Canonical Content Ownership: esta guía no duplica contenido ya canónico, lo referencia.
 

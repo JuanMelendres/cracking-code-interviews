@@ -23,11 +23,13 @@ Each domain below is taken in full — every topic in the domain's own `INDEX.md
 
 | # | Domain | Subdomains, in order | Topic count |
 |---|---|---|---|
-| 1 | [Java](../../02-java/INDEX.md) | `language-core` → `collections` → `concurrency` → `jvm-internals` | 30 |
-| 2 | [Spring](../../05-spring/INDEX.md) | Framework/Boot fundamentals → transactions/security → reactive/caching/observability/testing | 9 |
-| 3 | [Databases](../../06-databases/INDEX.md) | JPA/Hibernate mechanics → indexing/query planning → concurrency/replication/migration | 13 |
+| 1 | [Java](../../02-java/INDEX.md) | `language-core` (17) → `collections` (10) → `concurrency` (13) → `jvm-internals` (12) | 52 |
+| 2 | [Spring](../../05-spring/INDEX.md) | Framework/Boot fundamentals → transactions/security → reactive/caching/observability/testing | 10 |
+| 3 | [Databases](../../06-databases/INDEX.md) | JPA/Hibernate mechanics → indexing/query planning → concurrency/replication/migration | 15 |
 | 4 | [Messaging & Event-Driven Systems](../../09-messaging-event-driven/INDEX.md) | Kafka core mechanics → delivery/lag/schema → event sourcing/integration styles | 9 |
 | 5 | [Performance & JVM Tuning](../../16-performance-jvm/INDEX.md) | Profiling → benchmarking → capacity planning | 3 |
+
+*(Topic counts verified directly against each domain's file system on 2026-09-08, correcting stale counts — 30 Java, 13 Databases — carried since this path's original 2026-09-05 authoring, before the Junior Fundamentals and SQL Fundamentals additions grew both domains. See `syllabus/00-overview/changelog.md`'s matching 2026-09-08 entry.)*
 
 **Why this order:** Java's own subdomain order (language fundamentals → collections → concurrency → JVM internals) is itself a dependency chain — collections depend on `equals`/`hashCode` from language-core, concurrency depends on the memory model concepts that also explain collection thread-safety, and JVM internals (GC, JIT) is the layer underneath everything above it. Spring follows Java directly since its transaction and bean-lifecycle mechanics assume the concurrency and reflection material just covered. Databases follows Spring because its ORM chapters (JPA entity lifecycle, N+1) directly build on Spring's own persistence-layer chapters. Messaging and Performance/JVM close the path — both are genuinely usable once the rest of the stack is solid, and Performance/JVM's profiling and capacity-planning material is easiest to internalize once there's a real, complete backend system's worth of prior material to apply it to.
 
@@ -36,6 +38,10 @@ Each domain below is taken in full — every topic in the domain's own `INDEX.md
 - Every topic across all five domains passes its own chapter's L1–L4 Mastery Checklist (see the [Mastery Model](../mastery-model.md)).
 - Can trace a single realistic request through the full stack from memory — a Spring controller, through a transactional service method, an indexed database query, and (for at least one worked example) a Kafka event published as a side effect — naming the specific chapter that covers each hop.
 - Has built or extended at least one real demo from each domain's `practice/` companion code, not just read the chapter describing it.
+
+## Weekly study pack
+
+[`study-packs/backend-java-specialization/`](../../../study-packs/backend-java-specialization/) turns this sequence into a scheduled, 9-week program — reading assignments naming each subdomain's real topics, hands-on exercises against real `practice/` demos, and a lightweight mock-interview checkpoint per week — the same operational layer [`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) and [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provide for their own paths. This path's five domains are the *content*; the study pack is the *schedule*.
 
 ## Related paths
 

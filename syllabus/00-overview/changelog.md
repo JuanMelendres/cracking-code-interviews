@@ -741,8 +741,64 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 ### Added
 
-- `study-packs/mid-to-senior/` — a new 10-week study pack scheduling [`syllabus/00-overview/learning-paths/mid-to-senior.md`](00-overview/learning-paths/mid-to-senior.md)'s 12-domain sequence (concurrency, JVM internals, Spring internals, databases, testing, Kafka, distributed systems, system design, security, observability, DevOps/Kubernetes, architecture — combined into 10 weeks, pairing the two lighter 2-topic domains, security+observability and DevOps+architecture, into shared closing weeks). Same lean README+MANIFEST convention as `junior-to-mid/`. Each week additionally cross-references 1–2 real, verified-to-exist `production-cookbook/` incident entries matching that week's domain, per the learning path's own stated cross-reference principle.
+- `study-packs/mid-to-senior/` — a new 10-week study pack scheduling [`syllabus/00-overview/learning-paths/mid-to-senior.md`](learning-paths/mid-to-senior.md)'s 12-domain sequence (concurrency, JVM internals, Spring internals, databases, testing, Kafka, distributed systems, system design, security, observability, DevOps/Kubernetes, architecture — combined into 10 weeks, pairing the two lighter 2-topic domains, security+observability and DevOps+architecture, into shared closing weeks). Same lean README+MANIFEST convention as `junior-to-mid/`. Each week additionally cross-references 1–2 real, verified-to-exist `production-cookbook/` incident entries matching that week's domain, per the learning path's own stated cross-reference principle.
 - `syllabus/00-overview/learning-paths/mid-to-senior.md` gained a matching "Weekly study pack" section linking to the new pack.
 - `study-packs/README.md` — new top-level index for the whole `study-packs/` directory, explicitly disambiguating the three programs that now live there (Interview Emergency Sprint's `week-01`–`week-25`, `junior-to-mid/`, `mid-to-senior/`) and routing the reader to the right one by stated experience level.
 - Root `README.md`: added a "Choosing your starting point" section before the roadmap explanation, and updated the Current Status table's completed-deliverables row, so both new study packs are discoverable from the repository's own entry point rather than only from `syllabus/`.
 - Full validator run: zero new errors from these files (the 3 pre-existing errors in `AGENTS.md`, `CLAUDE.md`, and `templates/adr-template.md` are unrelated and predate this work).
+
+## [2026-09-08] — Privacy: anonymized the one file naming a real employer
+
+### Investigated
+
+- User asked what's still missing for a future public/commercial version of this repository. Re-checked a privacy finding first raised in `00-project/syllabus-transformation-plan.md` §2.8 (2026-09-03, never acted on): a file under `interview-playbook/company-prep/` named a real employer in its title, filename, and H1, directly contradicting the root `README.md`'s own privacy claim ("Nothing in it today identifies an employer, client, or colleague"). No other personal identifiers were found in a repository-wide grep.
+
+### Fixed
+
+- Renamed the file to `interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md`; rewrote its title and H1 to a generic descriptor ("A Large E-Commerce Retailer"); added a one-line note at the top of the file recording the anonymization. No other content changed — the file's technical analysis (idempotency, locking, Kubernetes, resilience patterns) never named the employer beyond the title.
+- Updated all 7 cross-references repository-wide: `README.md`, `CHANGELOG.md` (2 historical entries), `interview-playbook/README.md`, `resources/repository-tree.md`, `syllabus/20-interview-preparation/INDEX.md` (2 mentions), `00-project/syllabus-transformation-plan.md` (3 mentions — added a "Resolved 2026-09-08" note to §2.8 rather than deleting the original finding, preserving it as provenance), `00-project/migration-mapping.md`.
+- User's own decision, via an explicit choice among anonymize / remove from public repo / leave as-is: anonymize, keeping the file's technical content usable as a generic company-prep example rather than removing it entirely.
+- Full validator run: zero new errors (one self-introduced relative-link bug from the prior mid-to-senior changelog entry was caught and fixed in the same pass — `learning-paths/mid-to-senior.md` had an extra `00-overview/` prefix).
+
+## [2026-09-08] — Repository-wide gap audit: domains, phases, structure
+
+### Investigated
+
+- User asked what domains/topics still need work across the whole repository, whether any phase is unfinished, and whether the structure needs more reorganization. Checked: per-domain topic counts and completion status (all 21 `syllabus/` domains' own `INDEX.md` status lines), the 35 "Planned reference" notes across the new-writing domains, the 5 remaining "not yet written"/TODO-style hits, `00-project/syllabus-transformation-plan.md`'s own phase-completion status, and whether `00-project/frontend-topic-register.md` matches the frontend domain's real current state.
+
+### Findings — no action needed
+
+- All 21 `syllabus/` domains are structurally complete: every domain's `INDEX.md` states "fully L1–L4" for its topics. Domains that look thin by file count (`04-software-design` 1 file, `15-cloud`/`16-performance-jvm` 3 files each, `13-observability` 4, `10-distributed-systems` 5) are deliberately narrow-scoped by the transformation plan's own domain-splitting decisions (§3.2–3.3), not unfinished — confirmed by reading each one's own index rather than judging by file count alone.
+- All 35 "Planned reference" notes across the Phase-5 new-writing domains (`01-computer-science-foundations`, `03-data-structures-algorithms`, `18-engineering-practices`, `19-leadership-staff`, plus a handful elsewhere) are intentional, already-resolved, honestly-documented gaps per `production-cookbook/README.md`'s own "elevate a real worked scenario, never invent one" rule — not unbuilt work. Each one states exactly what future incident shape would justify a new cookbook entry.
+
+### Fixed
+
+- `syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md` — a stale inline note claimed the sibling chapter [Intervals, Merging, and Sweep Line](../03-data-structures-algorithms/intervals-merging-and-sweep-line.md) was "not yet written"; that chapter has existed since 2026-09-03. Corrected the note and fixed the link to point directly at the chapter instead of its domain `INDEX.md`.
+- `00-project/syllabus-transformation-plan.md` — front matter `status` field and its own closing §14 summary both still said "Phase 1 (Scaffolding) has not been authorized," contradicting reality: all phases 0–7 completed by 2026-09-07 per CLAUDE.md's own Structural Update note. Corrected both, with the closing section keeping the original stale text visible (with a dated correction note above it) rather than silently rewriting history.
+- `00-project/frontend-topic-register.md` — `status: draft` with "Gap: 🔴 absent (true for every row below — this is a new domain, nothing exists yet)" was accurate on 2026-08-12 but not today: `syllabus/21-frontend-web/` now has 32 real chapter files. Marked the document's `status` field stale rather than silently re-auditing all rows (a properly-done row-by-row Gap re-audit is a real, separate, larger task — flagged as an open follow-up, not done here).
+
+### Open questions for the user (not acted on without explicit direction)
+
+- Three of five backend learning paths — [Senior → Staff](learning-paths/senior-to-staff.md), [Backend Java Specialization](learning-paths/backend-java-specialization.md), and [Senior Interview Refresh](learning-paths/senior-interview-refresh.md) — have no weekly study pack of their own, unlike `junior-to-mid/` and `mid-to-senior/` (both built earlier this week) and the original Interview Emergency Sprint. Whether this is a real gap or an intentional "read straight through, no scheduling needed" design (these paths already read more like curated topic sequences than a 6-10-week onboarding program) is a scope decision for the user, not something to build unprompted.
+- `00-project/frontend-topic-register.md`'s row-level Gap markers need a real audit against `syllabus/21-frontend-web/`'s actual 32 chapters before the register can be trusted again — out of scope for this pass.
+
+### Not investigated
+
+- Individual chapter technical accuracy (spot-checked previously across many sessions, not re-verified in full here) and the frontend domain's own internal depth-ladder coverage (whether all of BEG→EXP is actually represented across its 32 chapters) were out of scope for this structural/phase-completion audit.
+
+## [2026-09-08] — Weekly study packs for the remaining 3 backend learning paths
+
+### Added
+
+- Closed the open question from the same day's earlier gap audit: user chose to build study packs for all three remaining backend learning paths, achieving full consistency across all five. Built via 3 parallel agents, one per pack, each independently verifying every cross-reference against the real file system before citing it (no fabricated assertion counts, practice paths, or cookbook filenames).
+- `study-packs/senior-to-staff/` (8 weeks, 2 of the path's 16 named topics per week) — schedules [Senior → Staff](learning-paths/senior-to-staff.md). Weeks 6–8 (the Leadership & Staff block) each carry a real Behavioral Exercise tied to a matching `syllabus/20-interview-preparation/behavioral/` chapter, discovered during construction: all five Leadership & Staff topics have a real 1:1 behavioral-narrative counterpart. Weeks 1–6 cite real `production-cookbook/` matches; Weeks 5, 7, 8 honestly state no genuine `practice/` demo exists for their topics rather than inventing one (Week 5 substitutes a real mock-interview round instead).
+- `study-packs/backend-java-specialization/` (9 weeks, one per subdomain-sized unit) — schedules [Backend Java Specialization](learning-paths/backend-java-specialization.md)'s 5-domain, full-L1–L4 track. Construction surfaced a real stale-count bug in the source learning path itself: its own table still said "30" Java topics and "13" Database topics from its 2026-09-05 authoring, before the Junior Fundamentals and SQL Fundamentals additions grew both domains to their real current 52 and 15. Fixed the source table directly (see below) rather than just noting the discrepancy in the pack's own manifests.
+- `study-packs/senior-interview-refresh/` — not a multi-week program by design (matching its source path's own shape: a short, repeatable 3-5-day recall rotation, not new-material onboarding). Just `README.md` + `MANIFEST.md`, no `week-NN/` subdirectories. Operationalizes the source path's cheat-sheet-sweep → flashcard-pass → explain-it-cold rotation into a concrete 5-day schedule, with real domain groupings verified against `cheat-sheets/README.md` at write time.
+- All three source learning-path files gained a matching "Weekly study pack" (or, for the refresh path, "Study pack") section linking to their new pack.
+- `study-packs/README.md` rewritten to index all 6 programs (was 3) with an updated "Which program is this?" routing table.
+- Root `README.md`'s "Choosing your starting point" table updated to list all 5 level-specific packs plus the Emergency Sprint fallback.
+
+### Fixed
+
+- `syllabus/00-overview/learning-paths/backend-java-specialization.md` — its own Sequence table stated stale topic counts (Java: 30, Databases: 13) from before this session's Junior Fundamentals (T-2201–T-2208) and SQL Fundamentals additions. Corrected to the real, file-system-verified current counts (Java: 52, split 17/10/13/12 across its four subdomains; Databases: 15) and added a dated correction note.
+- Full validator run: zero new errors from any of the above (the same 3 pre-existing, unrelated errors remain).

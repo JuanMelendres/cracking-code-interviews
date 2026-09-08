@@ -80,7 +80,7 @@ cracking-code-interviews/
 | **`00-project/`** | *Why is the plan shaped this way?* | Stable; amended by explicit correction documents | The roadmap, the scoring model |
 | **`study-packs/`** | *What do I do this week?* | Frozen once approved | Week 1: hexagonal architecture + B+Tree indexing |
 | **`syllabus/`** | *How does this actually work?* | Long-lived reference, revised as understanding deepens | `syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md` |
-| **`interview-playbook/`** | *How do I say this out loud?* | Long-lived | `company-prep/nordstrom-senior-backend-remote.md` |
+| **`interview-playbook/`** | *How do I say this out loud?* | Long-lived | `company-prep/large-ecommerce-retailer-senior-backend-remote.md` |
 | **`practice/`** | *Can I actually do it?* | Append-only | Runnable LRU cache with JUnit tests; PostgreSQL index lab |
 
 The separation is deliberate. **Study packs are time-boxed and disposable in the sense that they are executed once**; `syllabus/` is what remains afterward. Every complementary deliverable (cheat sheets, flashcards, Architecture Atlas, Production Cookbook) references its `syllabus/` canonical chapter rather than restating it — see `00-project/syllabus-transformation-plan.md` for the full canonical-ownership model and `syllabus/00-overview/INDEX.md` for the domain-by-domain index.
@@ -91,15 +91,18 @@ The separation is deliberate. **Study packs are time-boxed and disposable in the
 
 ## Choosing your starting point
 
-Three separate week-by-week programs exist under `study-packs/` — pick the one that matches your situation, not the first one you find:
+Six separate programs exist under `study-packs/` — pick the one that matches your situation, not the first one you find:
 
 | If you are... | Use... |
 |---|---|
 | New to backend development entirely (0–2 years, no prior Java/SQL/Spring) | [`study-packs/junior-to-mid/`](study-packs/junior-to-mid/README.md) — 7 weeks |
 | A working engineer (2–5 years) who ships features but needs Senior-level internals depth | [`study-packs/mid-to-senior/`](study-packs/mid-to-senior/README.md) — 10 weeks |
+| A Senior engineer building the systemic/organizational judgment a Staff loop tests | [`study-packs/senior-to-staff/`](study-packs/senior-to-staff/README.md) — 8 weeks |
+| Focused specifically on deep Java-stack mastery rather than broader domain breadth | [`study-packs/backend-java-specialization/`](study-packs/backend-java-specialization/README.md) — 9 weeks |
+| Already Senior/Staff-level with an interview loop coming up soon — recall, not new learning | [`study-packs/senior-interview-refresh/`](study-packs/senior-interview-refresh/README.md) — 3–5 days |
 | On an urgent interview timeline and need the highest-impact material fast, regardless of level | Plan A/B/C below (`study-packs/week-01` through `week-25`) |
 
-See [`study-packs/README.md`](study-packs/README.md) for the full breakdown. The rest of this section (**How to use the roadmap** through **Starting the programme**) describes the third option — the original Interview Emergency Sprint program this repository started with.
+See [`study-packs/README.md`](study-packs/README.md) for the full breakdown. The rest of this section (**How to use the roadmap** through **Starting the programme**) describes the last option — the original Interview Emergency Sprint program this repository started with.
 
 ---
 

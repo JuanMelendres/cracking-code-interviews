@@ -17,7 +17,7 @@ Opened 2026-09-03 at explicit user request, ahead of a specific, named interview
 
 | Entry | What it's about |
 |---|---|
-| [Nordstrom — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)](company-prep/nordstrom-senior-backend-remote.md) | Audited 8 user-specified topics against existing handbook coverage; 6 of 8 already covered with sufficient depth, 5 canonical chapters received targeted additions to close real gaps (atomic conditional UPDATE, HashMap's JDK 7 concurrent-resize infinite loop, a unified pool-exhaustion-plus-circuit-breaker narrative, ALB/Auto Scaling, a practical kubectl debugging workflow), plus a new synthesized p95-high-CPU-normal troubleshooting checklist. |
+| [A Large E-Commerce Retailer — Senior Software Engineer, Backend (Java/Spring/AWS/Kubernetes, Remote)](company-prep/large-ecommerce-retailer-senior-backend-remote.md) | Audited 8 user-specified topics against existing handbook coverage; 6 of 8 already covered with sufficient depth, 5 canonical chapters received targeted additions to close real gaps (atomic conditional UPDATE, HashMap's JDK 7 concurrent-resize infinite loop, a unified pool-exhaustion-plus-circuit-breaker narrative, ALB/Auto Scaling, a practical kubectl debugging workflow), plus a new synthesized p95-high-CPU-normal troubleshooting checklist. |
 
 ## technical-answers/
 

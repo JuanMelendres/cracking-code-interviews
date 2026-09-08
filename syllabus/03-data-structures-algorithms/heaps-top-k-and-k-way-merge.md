@@ -235,7 +235,7 @@ No existing `production-cookbook/` entry has a heap/top-k-specific algorithmic r
 
 - Run the [existing practice code](../../practice/java/week-23/heaps/) yourself and confirm the same 10/10 assertions pass.
 - This pattern has additional real, already-solved problems: LC 215 (Kth Largest Element), LC 347 (Top K Frequent Elements), LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 3's implicit-grid k-way merge.
-- Attempt LC 253 (Meeting Rooms II) from scratch — it's heap-shaped but already solved and correctly categorized under Intervals ([Intervals, Merging, and Sweep Line](../03-data-structures-algorithms/INDEX.md), not yet written) elsewhere in this repository; working through it here checks whether the heap primitive transfers to an interval-scheduling framing.
+- Attempt LC 253 (Meeting Rooms II) from scratch — it's heap-shaped but already solved and correctly categorized under [Intervals, Merging, and Sweep Line](intervals-merging-and-sweep-line.md) elsewhere in this repository; working through it here checks whether the heap primitive transfers to an interval-scheduling framing.
 
 ## 17. Debugging Exercises
 

@@ -1,7 +1,7 @@
 ---
 title: "Syllabus Transformation Plan"
 document_type: project-planning-document
-status: approved — 2026-09-03, all six open questions (§14) resolved; Phase 0 complete; Phase 1 not yet authorized
+status: approved — 2026-09-03, all six open questions (§14) resolved; all phases (0–7) complete as of 2026-09-07 — see `syllabus/00-overview/changelog.md` and CLAUDE.md's Structural Update note for the full phase-by-phase history
 version: 1.0
 last_updated: 2026-09-03
 author: Claude (Cowork), commissioned by the repository owner
@@ -126,11 +126,13 @@ These are small, single-file relocations — cited here because they are represe
 
 ### 2.8 Privacy finding: one file requires handling before any public/commercial use
 
-`interview-playbook/company-prep/nordstrom-senior-backend-remote.md` names a real employer and role and is written as live, in-progress interview preparation ("Auditoría de los 8 temas que pediste (2026-09-03)"). This is exactly the kind of content `CONTRIBUTING.md`'s own privacy section (§ Never commit → interviewer-identifying detail; § Local-only escape hatch) anticipates, and the repository's own discipline already has a mechanism for it (`*.private.md` / `local/`, both gitignored).
+**Resolved 2026-09-08** — the user chose anonymization over removal or a private/gitignored category. The file's original filename named a real employer; it was renamed to `interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md`, its title/H1 rewritten to a generic descriptor ("A Large E-Commerce Retailer"), and all cross-references repository-wide updated to match — see `syllabus/00-overview/changelog.md`'s matching 2026-09-08 entry. The analysis below is preserved as the original finding that prompted the fix, describing the file under its since-changed original name.
+
+The file's original name and its title both named a real employer and role, and it was written as live, in-progress interview preparation ("Auditoría de los 8 temas que pediste (2026-09-03)"). This is exactly the kind of content `CONTRIBUTING.md`'s own privacy section (§ Never commit → interviewer-identifying detail; § Local-only escape hatch) anticipates, and the repository's own discipline already has a mechanism for it (`*.private.md` / `local/`, both gitignored).
 
 No other personal identifiers, employer names, or client references were found in a repository-wide grep sample. This appears to be an isolated instance, not a systemic problem — the repository's sanitization discipline (per `CONTRIBUTING.md`) is otherwise being followed.
 
-**This plan does not move or alter this file.** It flags it for the user's own decision in §11 (Risks) and proposes, for approval, that `interview-playbook/company-prep/` become a permanently `.private`/local-only category in the new architecture — excluded by construction from anything that becomes public or commercial material, the same way STAR-story drafts already are.
+**This plan does not move or alter this file.** It flags it for the user's own decision in §11 (Risks) and proposes, for approval, that `interview-playbook/company-prep/` become a permanently `.private`/local-only category in the new architecture — excluded by construction from anything that becomes public or commercial material, the same way STAR-story drafts already are. (Superseded by the 2026-09-08 resolution above — the user chose anonymization instead of a private category.)
 
 ### 2.9 Explicitly out of scope for migration
 
@@ -351,7 +353,7 @@ A literal file-by-file table for 1,086 tracked Markdown files would be too large
 | `architecture-atlas/distributed-cache.md` | — (references T-801, T-806, T-515) | `11-system-design/case-studies/distributed-cache.md` | architecture case study |
 | `production-cookbook/cache-cluster-failover-...md` | — (linked from T-804) | stays in `production-cookbook/`, referenced from `11-system-design`'s caching topic | supporting resource, unmoved |
 | `behavioral-handbook/02-story-portfolio-design.md` | T-1502 | `20-interview-preparation/behavioral/02-story-portfolio-design.md` | canonical topic (interview-application framing, per §2.7) |
-| `interview-playbook/company-prep/nordstrom-senior-backend-remote.md` | — | `20-interview-preparation/company-prep/` **[private, excluded from public build]** | private — flagged, not migrated by default |
+| `interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md` | — | `20-interview-preparation/company-prep/` **[private, excluded from public build]** | private — flagged, not migrated by default |
 | `00-project/knowledge-architecture-blueprint.md` | — (the register itself) | `00-project/` (unchanged) + primary input to `00-overview/topic-register.md` | supporting resource / provenance |
 | `practice/java/week-01/src/LRUCacheFixed.java` | T-1416 (design-style coding) | `practice/` unchanged path, referenced from `03-data-structures-algorithms/design-style-problems.md` (new) | practice |
 | `study-packs/week-01/` (entire pack) | multiple | unchanged path, referenced wholesale from the **Interview emergency sprint** learning path | learning-path source, unmoved |
@@ -462,7 +464,7 @@ No phase below is authorized by this document. It defines what execution would l
 |---|---|---|---|
 | Migration mapping generated in Phase 0 finds the `topic_id` join is less complete than sampling suggested (some chapters lack a `topic_id`, or IDs collide) | Medium | Medium — would require hand-mapping the remainder | Phase 0's output is a reviewable artifact specifically so this surfaces before any file moves, not after |
 | The `practice/java/{domain}/` vs. `practice/java/week-XX/` overlap (§7.5) turns out to be a real, unintentional duplication rather than complementary material | Medium | Low — no user-facing harm, just wasted disk/attention until resolved | Explicit file-level diff task scheduled before Phase 4 touches `practice/` links |
-| `interview-playbook/company-prep/nordstrom-senior-backend-remote.md`, or similar files not yet written, leak into a future public/commercial build if the "private" domain boundary isn't enforced by tooling, not just convention | Medium | High — real privacy exposure once this repo is a product | Recommend a build-time check (extend `scripts/validate.py`) that fails if any `company-prep/` or `*.private.md` file is included in whatever "publishable" export/build step gets built later; not building that check is itself a decision the user should make explicitly, not by omission |
+| `interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md`, or similar files not yet written, leak into a future public/commercial build if the "private" domain boundary isn't enforced by tooling, not just convention | Medium | High — real privacy exposure once this repo is a product | Recommend a build-time check (extend `scripts/validate.py`) that fails if any `company-prep/` or `*.private.md` file is included in whatever "publishable" export/build step gets built later; not building that check is itself a decision the user should make explicitly, not by omission |
 | Adding L1/L2 sections to 181 chapters is a very large amount of new writing, risking scope creep that stalls the whole migration | High | Medium | Phase 3 is explicitly domain-by-domain and independently shippable; a domain can migrate its structure/front-matter/links first and have its L1/L2 content follow later without blocking other domains — "structure now, depth incrementally" is a valid, tracked partial state (see Definition of Done, §13, which allows `mastery_levels_covered: [L3, L4]` as a legitimate interim state) |
 | `graft/` (§2.9) is mistakenly excluded from migration if it actually contains content the user wants kept | Low | Medium if true | Flagged explicitly for user confirmation before Phase 1 |
 | Cross-reference rot: existing files link to `../../handbook/domain/file.md`-style relative paths; a domain relocation breaks every inbound link from `cheat-sheets/`, `flashcards/`, `study-packs/`, and other `handbook/` chapters that reference it | High if unmanaged | Medium — broken links, not data loss | This is precisely why Phase 3 is script-assisted and why `scripts/validate.py` is extended in Phase 0 to check link integrity as a gate before each domain's migration is considered done |
@@ -516,4 +518,6 @@ Explicit decisions this document surfaces but does not make unilaterally:
 6. **Decide the migration-order priority within Phase 3 (§10).**
    - **Resolved 2026-09-03 — `02-java` first, as the plan suggested** (largest, least ambiguous domain).
 
-**All six open questions are now resolved.** Per §13's Definition of Done, this plan itself is done: approved with the six decisions recorded above. Phase 0 (§10) is complete — see `00-project/migration-mapping.md`. Phase 1 (Scaffolding) has not been authorized and does not begin automatically; it requires its own explicit go/no-go per §10's governance model.
+**All six open questions are now resolved.** Per §13's Definition of Done, this plan itself is done: approved with the six decisions recorded above. Phase 0 (§10) is complete — see `00-project/migration-mapping.md`.
+
+**Status update (2026-09-08, correcting a stale status this section carried since 2026-09-03):** this section previously said "Phase 1 (Scaffolding) has not been authorized." That has since changed — all phases (1 Scaffolding through 7 Deprecation) were authorized and completed by 2026-09-07, per CLAUDE.md's own "Structural Update: Syllabus Migration" note and `syllabus/00-overview/changelog.md`'s complete phase-by-phase history. `handbook/` no longer exists on disk; the canonical tree is fully `syllabus/`. This status line was found stale during a repository-wide gap audit and corrected here rather than silently left to mislead a future reader of this plan.

@@ -46,6 +46,10 @@ Unlike the domain sweep above, these four are read start to finish, not skimmed 
 - The six delivery-mechanics chapters above have been re-read in the last 3 days before the loop, not just at some earlier point in preparation.
 - At least one full mock interview has been run against [`practice/mock-interviews/`](../../../practice/mock-interviews/README.md) since starting this refresh.
 
+## Study pack
+
+[`study-packs/senior-interview-refresh/`](../../../study-packs/senior-interview-refresh/) turns the rotation above into a concrete 3–5 day schedule — real domain groupings swept against the actual `cheat-sheets/` and `flashcards/` contents, plus the delivery-mechanics table reproduced as links. It adds scheduling only; the rotation method itself stays here.
+
 ## If time is genuinely short
 
 See [Interview Emergency Sprint](interview-emergency-sprint.md) instead — a structured ≤8-week compression of the full programme, not a pure refresh.

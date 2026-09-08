@@ -446,7 +446,7 @@ Excludes `.git/`, installed dependencies (`node_modules/`), Python virtualenvs (
 ./interview-playbook
 ./interview-playbook/README.md
 ./interview-playbook/company-prep
-./interview-playbook/company-prep/nordstrom-senior-backend-remote.md
+./interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md
 ./practice
 ./practice/architecture
 ./practice/architecture/.gitkeep

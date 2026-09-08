@@ -1,7 +1,7 @@
 ---
 title: Frontend Topic Register — React & Next.js
 document_type: project-register
-status: draft
+status: stale — written 2026-08-12 when the frontend domain was still 0 chapters; `syllabus/21-frontend-web/` now has 32 real chapter files (see its own `INDEX.md`), but this register's per-row Gap markers below were never re-audited against that reality and should not be trusted as current. Found stale during a 2026-09-08 repository-wide gap audit; re-auditing row-by-row was out of scope for that audit and is flagged here as its own follow-up.
 version: 1.0
 last_updated: 2026-08-12
 audience:
