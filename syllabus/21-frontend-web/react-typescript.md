@@ -4,8 +4,8 @@ slug: react-typescript
 document_type: handbook-chapter
 domain: 21-frontend-web
 status: draft
-version: 1.0
-last_updated: 2026-09-05
+version: 1.1
+last_updated: 2026-09-08
 source_history:
   - handbook/frontend/react-typescript.md
 topic_id: F-119
@@ -19,6 +19,7 @@ target_levels:
   - senior
   - staff
 prerequisites:
+  - typescript-fundamentals-types-interfaces-and-generics.md
   - react-testing.md
 related:
   - ../../00-project/frontend-topic-register.md
@@ -32,7 +33,7 @@ official_references:
 # TypeScript with React: Typing Props/State/Hooks, Generic Components, and Discriminated Unions
 
 > **Topic register:** F-119 (TypeScript with React — typing props/state/hooks, generic components, discriminated unions for variant props) · Advanced tier · `00-project/frontend-topic-register.md`
-> **Scope note:** per `CLAUDE.md`'s Scope Addendum, this is the thirteenth frontend chapter, continuing the register in sequence after Testing (F-118).
+> **Scope note:** per `CLAUDE.md`'s Scope Addendum, this is the thirteenth frontend chapter, continuing the register in sequence after Testing (F-118). This chapter assumes plain-TypeScript fluency (interfaces, generics, union types) rather than teaching it — [TypeScript Fundamentals: Types, Interfaces, and Generics](typescript-fundamentals-types-interfaces-and-generics.md) (F-003) is the prerequisite that closes that gap, teaching the same discriminated-union and generics mechanics this chapter applies to React, with no React involved at all.
 > **Provenance:** every claim is verified against a real, running React 19.2.8 + Vite 8.2.1 + TypeScript app at [`practice/frontend/react-typescript/`](../../practice/frontend/react-typescript/), including three deliberate misuses, each producing a real, captured `tsc -b` compiler error, then reverted to a clean compile.
 
 ## Table of Contents
@@ -299,7 +300,8 @@ Exercise 3: this version compiles cleanly because `default: return state` provid
 
 ## Additional Reading
 
-- [React Testing: RTL Philosophy, Mocking, and E2E with Playwright](react-testing.md) — this chapter's prerequisite, sharing the same "prove the mechanism, don't just assert it" evidentiary standard, applied to test queries instead of the type system.
+- [TypeScript Fundamentals: Types, Interfaces, and Generics](typescript-fundamentals-types-interfaces-and-generics.md) — this chapter's plain-TypeScript prerequisite: interfaces vs. type aliases, structural typing, unions and discriminated unions, and generics, all taught with no React involved, before this chapter applies them to component props.
+- [React Testing: RTL Philosophy, Mocking, and E2E with Playwright](react-testing.md) — this chapter's other prerequisite, sharing the same "prove the mechanism, don't just assert it" evidentiary standard, applied to test queries instead of the type system.
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the full register this chapter is F-119 of.
 
 ## Official References

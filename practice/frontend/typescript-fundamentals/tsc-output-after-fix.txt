@@ -1,0 +1,10 @@
+Command: npx tsc -p tsconfig.json  (run from practice/frontend/typescript-fundamentals/)
+TypeScript version: Version 6.0.3
+
+This transcript was captured with the bug REMOVED (line 19 of
+src/01-why-typescript-fix.ts commented back out), and covers the
+whole project - all six source files under src/.
+
+(no output above means zero errors)
+
+Exit code: 0

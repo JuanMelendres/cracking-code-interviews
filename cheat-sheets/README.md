@@ -168,8 +168,13 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 The frontend domain (`handbook/frontend/`) uses the Master Topic Register's F-codes and a Beginner/Intermediate/Advanced/Expert tier instead of the backend's numeric IWI score — see `00-project/frontend-topic-register.md` and `CLAUDE.md`'s Scope Addendum. **Added 2026-09-03**: all 31 `handbook/frontend/` chapters had zero cheat-sheet coverage before this batch, despite every one already carrying its own embedded `## Cheat Sheet` section and a genuine Topic register line — a gap this backend-focused deliverable's own repeated audits had never checked, since it only ever diffed against backend chapters. Closed in two parallel batches (14 React, 17 Next.js), each new file expanding (not copying) that chapter's own embedded summary. Ordered by F-code, not ranked by tier (unlike the IWI-sorted table above, since tier is a coarse 4-value bucket, not a fine-grained rank).
 
+**Added 2026-09-08**: 3 new "Web & Language Fundamentals" (D-F0) chapters, closing a real gap found in a repository-wide audit — this domain's own Beginner-tier chapters assumed plain JavaScript, HTML/CSS/HTTP, and TypeScript literacy that nothing here ever taught. See `00-project/frontend-topic-register.md`'s new D-F0 section.
+
 | # | Cheat Sheet | Topic ID | Tier | Canonical Chapter |
 |---|---|---|---|---|
+| F0.1 | [How the Web Works (HTML, CSS, the DOM, and HTTP)](how-the-web-works-html-css-dom-and-http.md) | F-001 | Beginner | `syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md` |
+| F0.2 | [JavaScript Fundamentals (Variables, Functions, Closures, Asynchrony)](javascript-fundamentals-variables-functions-and-asynchrony.md) | F-002 | Beginner | `syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md` |
+| F0.3 | [TypeScript Fundamentals (Types, Interfaces, Generics)](typescript-fundamentals-types-interfaces-and-generics.md) | F-003 | Beginner/Intermediate | `syllabus/21-frontend-web/typescript-fundamentals-types-interfaces-and-generics.md` |
 | F1 | [React Fundamentals (JSX, Components, Props, and State)](react-fundamentals-jsx-components-props-and-state.md) | F-101–F-104 | Beginner | `syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md` |
 | F2 | [React Hooks (useEffect and useRef)](react-hooks-useeffect-and-useref.md) | F-105/F-106 | Intermediate | `syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md` |
 | F3 | [React Memoization and Context (useMemo, useCallback, useContext)](react-usememo-usecallback-and-usecontext.md) | F-107/F-108 | Intermediate | `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md` |
@@ -260,6 +265,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | N39 | [Docker and Containers Fundamentals](docker-and-containers-fundamentals.md) | T-2208 | devops-containers | `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` |
 
 **Total across all groups: 202 cheat sheets** (132 backend + 31 frontend + 39 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
+
+**2026-09-08 — 3 new frontend Junior Fundamentals cheat sheets.** Closing the same "assumes the basics" gap found and fixed for the Java backend domain, 3 new floor-level frontend topics (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals) each got a cheat sheet — see the new rows at the top of the Frontend Cheat Sheets table above. **New total: 205 cheat sheets** (132 backend + 34 frontend + 39 new-writing-domain).
 
 ## How this relates to `flashcards/`
 

@@ -234,8 +234,13 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 
 Built as two parallel batches (14 React, 17 Next.js — the same split cheat-sheets used for its own frontend batch). Every card's Prompt/Answer/Why-it-matters/Common-trap text was copied verbatim from its chapter's own `## Flashcards` section; `[[wikilink]]`-style `Related` references (self- and cross-chapter) were mechanically translated to relative Markdown links resolving from `flashcards/`'s own directory, using each target chapter's own front-matter `title:` — the same convention already established for the backend batches above. Verified: all 31 files' YAML parses, one H1 each, zero unresolved `[[wikilink]]` markers, every link resolves — 62 cards total, zero broken.
 
+**Added 2026-09-08**: 3 new "Web & Language Fundamentals" (D-F0) decks, closing a real gap found in a repository-wide audit — this domain's own Beginner-tier chapters assumed plain JavaScript, HTML/CSS/HTTP, and TypeScript literacy that nothing here ever taught. See `00-project/frontend-topic-register.md`'s new D-F0 section.
+
 | # | Deck | Topic ID | Tier | Canonical Chapter |
 |---|---|---|---|---|
+| F0.1 | [How the Web Works (HTML, CSS, the DOM, and HTTP)](how-the-web-works-html-css-dom-and-http.md) | F-001 | Beginner | `syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md` |
+| F0.2 | [JavaScript Fundamentals (Variables, Functions, Closures, Asynchrony)](javascript-fundamentals-variables-functions-and-asynchrony.md) | F-002 | Beginner | `syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md` |
+| F0.3 | [TypeScript Fundamentals (Types, Interfaces, Generics)](typescript-fundamentals-types-interfaces-and-generics.md) | F-003 | Beginner/Intermediate | `syllabus/21-frontend-web/typescript-fundamentals-types-interfaces-and-generics.md` |
 | F1 | [React Fundamentals (JSX, Components, Props, and State)](react-fundamentals-jsx-components-props-and-state.md) | F-101-F-104 | Beginner | `syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md` |
 | F2 | [React Hooks (useEffect and useRef)](react-hooks-useeffect-and-useref.md) | F-105/F-106 | Intermediate | `syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md` |
 | F3 | [React Memoization and Context (useMemo, useCallback, useContext)](react-usememo-usecallback-and-usecontext.md) | F-107/F-108 | Intermediate | `syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md` |
@@ -269,6 +274,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
 
 **Total across all groups: 207 decks** (137 backend + 39 new-writing-domain, including the 8 Junior Fundamentals decks added 2026-09-07/2026-09-08 — see above — + 31 frontend), 695 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
+
+**2026-09-08 — 3 new frontend Junior Fundamentals decks.** Closing the same "assumes the basics" gap found and fixed for the Java backend domain, 3 new floor-level frontend topics (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals) each got a 5-card deck — see the new rows at the top of the Frontend Decks table above. **New total, verified directly against the file system: 210 decks (137 backend + 39 new-writing-domain + 34 frontend), 710 cards.**
 
 ## How this relates to other deliverables
 

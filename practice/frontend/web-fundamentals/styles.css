@@ -1,0 +1,92 @@
+/* Real, served stylesheet demonstrating box-model, Flexbox, and Grid concepts
+   referenced by syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1a1a1a;
+  background: #f7f7f5;
+}
+
+.site-header {
+  background: #1a1a2e;
+  color: white;
+  padding: 24px 32px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+
+.nav-list a {
+  color: #cbd5f5;
+  text-decoration: none;
+}
+
+.layout {
+  padding: 32px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Flexbox: a one-dimensional layout problem — lay cards out in a row,
+   let them wrap onto new lines when they run out of horizontal space. */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  /* Box model, made visible: content + padding + border + margin. */
+  flex: 1 1 240px;
+  padding: 20px;       /* space between content and border */
+  border: 2px solid #2a2a4a; /* the border layer itself */
+  margin-bottom: 8px;  /* space outside the border, between boxes */
+  background: white;
+  border-radius: 8px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+/* Grid: a two-dimensional layout problem — a fixed 2x2 arrangement
+   where rows AND columns matter simultaneously, unlike Flexbox's
+   single-axis model above. */
+.about-grid {
+  margin-top: 40px;
+}
+
+.grid-demo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 100px);
+  gap: 12px;
+  max-width: 400px;
+}
+
+.grid-item {
+  background: #4a4a8a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 1.5rem;
+}
+
+.site-footer {
+  padding: 20px 32px;
+  background: #1a1a2e;
+  color: #cbd5f5;
+  font-size: 0.9rem;
+}

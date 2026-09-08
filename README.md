@@ -31,7 +31,7 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 |---|---|
 | **Phase** | Original 7-phase bootstrap complete. Canonical content fully migrated to and organized under `syllabus/`, per `00-project/syllabus-transformation-plan.md` (all phases complete 2026-09-07). |
 | **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-25`** (Interview Emergency Sprint) · **`study-packs/junior-to-mid/`** (7 weeks) and **`study-packs/mid-to-senior/`** (10 weeks) — see [`study-packs/README.md`](study-packs/README.md) for which one to use · `syllabus/` — 21 domains, 222 canonical topic files, each L1 (Foundation) through L4 (Staff) · Interview Playbook, Architecture Atlas, Production Cookbook, and Behavioral content (now under `syllabus/20-interview-preparation/behavioral/`) all built out — see the counts below |
-| **Complementary deliverables** | 194 cheat sheets · 168 flashcard decks (593 cards) · 136 production-cookbook entries · 17 Architecture Atlas system-design write-ups |
+| **Complementary deliverables** | 202 cheat sheets · 207 flashcard decks (695 cards) · 136 production-cookbook entries · 17 Architecture Atlas system-design write-ups (counts verified against the file system 2026-09-08) |
 | **Topic register** | 198 original backend topics (16 domains) plus 4 new-writing domains (Computer Science Foundations, Data Structures & Algorithms, Engineering Practices, Leadership & Staff) and a separate React/Next.js register (`00-project/frontend-topic-register.md`) — 222 topic files total across all 21 `syllabus/` domains |
 | **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the original 198-topic backend register; does not include the four domains added after that estimate was made |
 
@@ -192,4 +192,6 @@ STAR stories will be the highest-risk content in this repository once written. S
 
 ## License
 
-None. Personal study material, not for distribution or reuse.
+Copyright © 2026 Juan Melendres. All rights reserved.
+
+No part of this repository may be reproduced, distributed, or used to create derivative works without explicit written permission from the copyright holder. This supersedes the repository's original "personal study material, not for distribution" framing — a deliberate change made once the repository's purpose shifted toward a possible future commercial release, per the 2026-09-08 decision recorded in `CHANGELOG.md`.

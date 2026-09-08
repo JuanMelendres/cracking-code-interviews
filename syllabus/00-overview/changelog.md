@@ -802,3 +802,25 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 
 - `syllabus/00-overview/learning-paths/backend-java-specialization.md` — its own Sequence table stated stale topic counts (Java: 30, Databases: 13) from before this session's Junior Fundamentals (T-2201–T-2208) and SQL Fundamentals additions. Corrected to the real, file-system-verified current counts (Java: 52, split 17/10/13/12 across its four subdomains; Databases: 15) and added a dated correction note.
 - Full validator run: zero new errors from any of the above (the same 3 pre-existing, unrelated errors remain).
+
+## [2026-09-08] — Frontend Junior Fundamentals initiative: closing the same gap on the other domain
+
+### Investigated
+
+- Continuing the same-day gap audit, re-did `00-project/frontend-topic-register.md`'s row-by-row Gap re-audit (flagged as an open follow-up in an earlier entry today). Confirmed all 37 originally-registered topics have a real, fully-written chapter — zero actual absence, only a stale Gap column that still said "🔴 absent (nothing exists yet)" from 2026-08-12. While re-auditing, opened `react-fundamentals-jsx-components-props-and-state.md` (this domain's supposed "Beginner tier" entry point) directly and found it has `prerequisites: []` and teaches JSX/props/`useState`/events assuming the reader already knows JavaScript functions, arrays, objects, destructuring, and `this` — none of which this domain ever taught. The same pattern held for `react-typescript.md` (F-119, assumes plain TypeScript) and every chapter's assumed HTML/CSS/DOM/HTTP literacy. This is the exact "assumes the basics" pattern already found and fixed on the Java backend side (T-2200–T-2299) — closed here the same way, per the user's explicit request to cover this domain Junior-through-Staff with real JavaScript/TypeScript/web-fundamentals content.
+
+### Added
+
+- Three new chapters, built via 3 parallel agents, each independently verifying every claim against real executed evidence:
+  - `syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md` (F-001) — HTML semantics, the CSS box model, the DOM, and the HTTP request/response cycle. Real evidence: a genuine static site served and inspected via `curl -v` (the sandbox blocks TCP loopback, so a Unix-domain-socket transport was used instead and disclosed explicitly, not hidden) — see `practice/frontend/web-fundamentals/curl-transcript.txt`.
+  - `syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md` (F-002) — variables/scope, functions and `this`, closures, the event loop, Promises/`async`/`await`. Real evidence: 7 real Node.js v24.18.0 scripts actually executed, captured verbatim in `practice/frontend/javascript-fundamentals/output.txt` — two claims were corrected mid-construction to match what Node actually did rather than what was assumed (a detached method call under optional chaining, and a `setTimeout` callback's real `this`).
+  - `syllabus/21-frontend-web/typescript-fundamentals-types-interfaces-and-generics.md` (F-003) — types, interfaces vs. type aliases, structural typing, unions/discriminated unions, generics. Real evidence: a genuine broken/fixed pair — `tsc` actually rejecting a type error (`error TS2345`), then the fixed version compiling cleanly — captured in `practice/frontend/typescript-fundamentals/tsc-output-before-fix.txt` and `-after-fix.txt`. `react-typescript.md` (F-119) updated to name this chapter as its own real prerequisite.
+- `00-project/frontend-topic-register.md` — added the 3 new topics as a "D-F0 · Web & Language Fundamentals" section, added a `Gap` + `Chapter` column to every existing table (all 🟢, cross-checked against real files), rewrote the stale "no chapters exist yet" closing section, bumped `status`/`version`.
+- `syllabus/21-frontend-web/INDEX.md` — status line updated (35 of 35 chapters), new blockquote documenting the fix.
+- Cheat sheets and flashcard decks added for all 3 new topics (5 cards each, verified against the file system, not estimated). **New totals: 205 cheat sheets, 210 flashcard decks, 710 cards.**
+- Two new frontend learning paths, since none existed before despite the domain being designed for Beginner-through-Expert from the start: `syllabus/00-overview/learning-paths/frontend-junior-to-mid.md` (14 topics, Beginner→Intermediate) and `frontend-mid-to-senior.md` (20 topics, Intermediate→Advanced, closing on F-214 Full-Stack Integration as the domain's Expert/Staff-equivalent capstone). Both cross-reference their Java-backend counterparts explicitly, framing this as genuine full-stack depth rather than backend-with-frontend-bolted-on. `syllabus/00-overview/learning-paths.md` (the central index) updated to list both.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
+### Not yet done
+
+- Neither new frontend learning path has a weekly study pack of its own yet, unlike all 5 backend paths. Flagged explicitly in `learning-paths.md` as an open follow-up, not silently skipped — same category of decision as the backend study-pack gap closed earlier today, left for the user to prioritize.

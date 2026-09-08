@@ -2,13 +2,15 @@
 title: "Frontend & Web (React/Next.js) — Domain Index"
 document_type: syllabus-domain-index
 domain: 21-frontend-web
-status: 32 of 32 mapped chapters physically relocated (Phase 3, 2026-09-03); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 31 F-coded chapters added 2026-09-07
-last_updated: 2026-09-07
+status: 35 of 35 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08)
+last_updated: 2026-09-08
 ---
 
 # Frontend & Web (React/Next.js)
 
-The additive, deliberately-separate React/Next.js track (31 `handbook/frontend/` chapters spanning Beginner→Expert by design since its 2026-08-12 Scope Addendum, plus 1 interview-craft entry from `interview-playbook/frontend/`). Kept structurally distinct from the Java backend track per `CLAUDE.md`'s explicit "additive, not merged" instruction.
+The additive, deliberately-separate React/Next.js track (34 F-coded chapters spanning Beginner→Expert by design since its 2026-08-12 Scope Addendum, plus 1 interview-craft entry from `interview-playbook/frontend/`). Kept structurally distinct from the Java backend track per `CLAUDE.md`'s explicit "additive, not merged" instruction.
+
+> **Junior Fundamentals gap closed (2026-09-08).** A repository-wide audit found this domain's own "Beginner tier" chapters (starting with `react-fundamentals-jsx-components-props-and-state.md`) silently assumed the reader already knew plain JavaScript, basic HTML/CSS/HTTP, and — for `react-typescript.md` specifically — plain TypeScript. This is the same "assumes the basics" pattern already found and fixed on the Java backend side (T-2200–T-2299). Closed the same way: three new, real, floor-level chapters (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals), each with genuine executed evidence (a real HTTP server + `curl` transcript, real Node.js script output, real `tsc` compiler output including a deliberate error-then-fix pair) rather than described behavior. `react-typescript.md` (F-119) was updated to name F-003 as its own real prerequisite. See `00-project/frontend-topic-register.md`'s new "D-F0 · Web & Language Fundamentals" section and `syllabus/00-overview/changelog.md`'s matching entry.
 
 > **Phase 3 update (2026-09-03).** All 31 `handbook/frontend/` chapters plus `interview-playbook/frontend/frontend-live-coding-and-debugging-protocol.md` have physically relocated here via `git mv`, preserving file history — 32 files total. `practice/frontend/` and `00-project/frontend-topic-register.md` stay at their current paths per the plan's Section 7.4 (`practice/` never relocates) and Section 7.3 (the register stays at `00-project/` as provenance), referenced from here rather than moved.
 >

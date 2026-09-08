@@ -1,8 +1,8 @@
 ---
 title: "Learning Paths"
 document_type: syllabus-overview
-status: Phase 1 outline extracted verbatim; Phase 6 assembly complete (2026-09-05) — all 6 real path documents now exist
-last_updated: 2026-09-05
+status: Phase 1 outline extracted verbatim; Phase 6 assembly complete (2026-09-05) — all 6 real path documents now exist; 2 new frontend paths added 2026-09-08 (Scope Addendum domain, additive to the original 6, not a Phase 6 revision)
+last_updated: 2026-09-08
 source: 00-project/syllabus-transformation-plan.md
 ---
 
@@ -43,5 +43,20 @@ The table above is the Phase 1 outline, kept verbatim per this file's own proven
 Two path-construction choices worth stating explicitly, since they shape how these six documents differ from each other structurally, not just in content: **Junior → Mid** and **Senior → Staff** name individual topics (a genuine cross-domain curation — picking specific chapters out of larger domains), while **Mid → Senior** and **Backend Java specialization** sequence whole domains and point to each domain's own `INDEX.md` as the exhaustive topic list, rather than re-listing every topic inside them — re-listing would duplicate the domain index rather than add sequencing value on top of it, which is exactly the duplication this project's canonical-ownership rule exists to prevent. **Interview emergency sprint** adds no new content at all — it points at `study-packs/`, unchanged, exactly as this Phase 1 outline already specified.
 
 All six documents' links were verified to resolve on disk (zero broken links) as part of this assembly pass.
+
+---
+
+## 2026-09-08 update — two frontend paths added
+
+The six paths above are all Java-backend paths. The frontend domain (`21-frontend-web`, per `CLAUDE.md`'s Scope Addendum) had no operational learning-path sequencing of its own until a repository-wide audit found the gap the same day it found — and closed — a related content gap: the domain's own "Beginner tier" chapters assumed JavaScript/TypeScript/web-fundamentals literacy that nothing in the domain actually taught (see `syllabus/21-frontend-web/INDEX.md`'s and `00-project/frontend-topic-register.md`'s matching 2026-09-08 entries for that fix).
+
+| Path | Audience / goal | Document | Stops at |
+|---|---|---|---|
+| Frontend Junior → Mid | New engineer with no prior JS/TS/web experience | [`learning-paths/frontend-junior-to-mid.md`](learning-paths/frontend-junior-to-mid.md) | Intermediate tier |
+| Frontend Mid → Senior/Staff | Working frontend/full-stack engineer building Next.js internals and React performance/testing/TypeScript depth | [`learning-paths/frontend-mid-to-senior.md`](learning-paths/frontend-mid-to-senior.md) | Advanced tier, Expert on the closing full-stack-integration topic |
+
+These two paths are additive to the six above, not a revision of them — same relationship the frontend domain itself has to the Java backend domain throughout this repository. A full-stack reader following a backend path and its matching frontend path together (e.g. Junior → Mid + Frontend Junior → Mid) reaches genuine dual-track depth rather than backend-only depth with frontend as an afterthought.
+
+Neither new path has a weekly study pack of its own yet — unlike the backend paths, which all have a matching program under `study-packs/` (see `study-packs/README.md`). This is an open, flagged follow-up, not silently skipped.
 
 ---
