@@ -2501,3 +2501,11 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - Updated `syllabus/14-devops-containers/INDEX.md` and the reserved-range note in `00-project/syllabus-transformation-plan.md`.
 - Added cheat sheet and flashcard deck. **Final counts, verified against the file system: 202 cheat sheets, 207 flashcard decks, 695 cards.**
 - Full validator run: zero new errors.
+
+### Added (`study-packs/junior-to-mid/` — weekly study pack for the Junior → Mid learning path)
+
+- New 7-week study pack turning the 22-topic [Junior → Mid learning path](syllabus/00-overview/learning-paths/junior-to-mid.md) into a scheduled program, mirroring what `study-packs/week-01` through `week-25` already provide for the Senior-focused program. Built using the newer, leaner `week-21`-style convention (README + MANIFEST, no duplicated content) rather than the older, heavier pre-migration convention, chosen for consistency with this repository's own no-duplication rule.
+- 7 weeks, each with `README.md` + `MANIFEST.md`: Week 1 Java from the ground up; Week 2 numbers/complexity/collections-as-a-concept; Week 3 collections internals; Week 4 coding patterns part 1; Week 5 coding patterns part 2 + first SQL; Week 6 databases and testing; Week 7 ship something (Spring MVC + REST + Docker).
+- Every real assertion count and transcript cited (9/9, 19/19, 14/14 Java demos; the real Spring MVC `-parameters` bug/fix; the real JUnit pass/fail runs; the real Docker network-isolation proof) was pulled from when each chapter was originally verified this session, not re-invented. Weeks covering pre-existing (non-Junior-Fundamentals) chapters cite those by link only, with an explicit note that their evidence wasn't re-verified in this pass.
+- Caught, while building this pack, that Topic 22 (Docker and Containers Fundamentals, T-2208) had been written earlier the same day but never added to `junior-to-mid.md`'s own sequence — fixed as part of this work; see the matching entry in `syllabus/00-overview/changelog.md`.
+- Full validator run: zero new errors from these files (the 3 pre-existing errors in `AGENTS.md`, `CLAUDE.md`, and `templates/adr-template.md` are unrelated and predate this work).

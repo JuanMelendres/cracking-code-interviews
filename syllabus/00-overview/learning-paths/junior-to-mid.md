@@ -23,6 +23,8 @@ This path is a hand-picked cross-domain subset, not a whole-domain sweep — it 
 
 **Updated again 2026-09-08** with two more chapters found the same way: even T-2201 (OOP Fundamentals) assumed the reader could already read an `if` statement and a `for` loop, and the path jumped from "here's a class" straight into `HashMap`/`ArrayList` internals with no "what is a List/Map/Set and when do you use each" stop first.
 
+**Updated a fourth time 2026-09-08** to add Topic 22, Docker and Containers Fundamentals (T-2208) — written the same day as a Junior Fundamentals chapter but never actually added to this sequence until now, caught while building this path's own weekly study pack (`study-packs/junior-to-mid/`).
+
 ## Sequence
 
 | # | Topic | Domain | Stop at | Why here |
@@ -48,12 +50,17 @@ This path is a hand-picked cross-domain subset, not a whole-domain sweep — it 
 | 19 | [Spring MVC Fundamentals](../../05-spring/spring-mvc-fundamentals.md) | Spring | L1/L2 | `@Controller`, `@Service`, `@Repository`, and constructor injection — needed before Spring Framework vs. Spring Boot (next) assumes you already know what a bean is. |
 | 20 | [Spring Framework vs. Spring Boot: Auto-Configuration and the Embedded Server](../../05-spring/spring-framework-vs-spring-boot.md) | Spring | L2 | The minimum Spring mental model needed before any of this path's graduate, [Mid → Senior](mid-to-senior.md), goes deeper. |
 | 21 | [REST API Fundamentals](../../07-api-design/rest-api-fundamentals.md) | API Design | L1/L2 | Resource naming, HTTP verbs, status codes, and idempotency — the API-design vocabulary every controller in Topic 19 was already speaking without naming it. |
+| 22 | [Docker and Containers Fundamentals](../../14-devops-containers/docker-and-containers-fundamentals.md) | DevOps & Containers | L1/L2 | How the API built in Topic 21 actually ships and runs — a natural closing topic once there's a real application worth containerizing. |
 
 ## Completion criteria
 
 - Can explain each topic above cold, at its stated stop level, without notes (see each chapter's own Interview Questions section).
-- Has solved the practice exercises for Topics 10–13 (see each DSA chapter's own `practice/` links), and reproduced the real executed evidence in Topics 1, 2, 6, 14, 17, and 19's own `practice/` demos (compiled Java syntax and collections demos, a live PostgreSQL lab, a live JUnit run, a live Spring Boot app).
+- Has solved the practice exercises for Topics 10–13 (see each DSA chapter's own `practice/` links), and reproduced the real executed evidence in Topics 1, 2, 6, 14, 17, 19, and 22's own `practice/` demos (compiled Java syntax and collections demos, a live PostgreSQL lab, a live JUnit run, a live Spring Boot app, a real built-and-run Docker image).
 - Can correctly choose between HashMap vs. TreeMap vs. LinkedHashMap, and ArrayList vs. LinkedList, for three stated scenarios each, with a reason — not just a definition.
+
+## Weekly study pack
+
+[`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) turns this sequence into a scheduled, week-by-week program — reading assignments, hands-on exercises, coding drills, and a lightweight mock-interview checkpoint per week — the same operational layer `study-packs/week-01` through `week-25` provide for the original Senior-focused program. This path's own 22 topics are the *content*; the study pack is the *schedule*.
 
 ## Next
 

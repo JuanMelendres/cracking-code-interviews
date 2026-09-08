@@ -722,3 +722,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - No further Junior Fundamentals gaps were found in this pass beyond the two investigated above. `12-security`'s existing entry point was judged sufficient; if a future audit finds otherwise, the same `T-2200`–`T-2299` range and template apply.
+
+## [2026-09-08] — Junior → Mid weekly study pack (`study-packs/junior-to-mid/`)
+
+### Added
+
+- `study-packs/junior-to-mid/README.md` — top-level index for a new 7-week study pack, the scheduled counterpart to [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../../syllabus/00-overview/learning-paths/junior-to-mid.md)'s 22-topic sequence. Built following the newer, leaner `study-packs/week-21`-style convention (README + MANIFEST only, no duplicated chapter content) rather than the older, heavier pre-migration `week-01`-style convention (11+ files per week, duplicated mock-interview scripts) — chosen explicitly because it matches this repository's own no-duplication rule.
+- `study-packs/junior-to-mid/week-01/` through `week-07/`, each with a `README.md` (Weekly Outcome through Next Week, per `CLAUDE.md`'s Study Pack Standard) and a `MANIFEST.md` (files table, verification table, scope note, integrity note). Weeks map the 22-topic sequence to 7 themed weeks: Java from the ground up; numbers/complexity/collections-as-a-concept; collections internals; coding patterns part 1; coding patterns part 2 + first SQL; databases and testing; ship something (Spring + REST + Docker).
+- Every real, previously-verified assertion count (9/9 `GradeReportDemo`, 19/19 OOP demos, 14/14 `WordFrequencyDemo`, the real Spring MVC `-parameters` bug and fix, the real JUnit passing/failing runs, the real Docker network-isolation proof) was cited exactly as originally verified when each Junior Fundamentals chapter was built — none re-invented or estimated for this study pack. Where a week's topics predate this session's Junior Fundamentals work (Weeks 3, 4, 5's DSA topics, Week 6's database/testing internals topics, Week 7's Spring-vs-Boot topic), the manifest says so explicitly and cites the chapter by link only, without a fabricated assertion count.
+- `syllabus/00-overview/learning-paths/junior-to-mid.md` gained a new "Weekly study pack" section linking to the new pack, plus a fourth "Updated" note: Topic 22 (Docker and Containers Fundamentals, T-2208) had been written but never actually added to this path's sequence — caught while building the study pack itself.
+- Full validator run: zero new errors from these files (3 pre-existing errors in `AGENTS.md`/`CLAUDE.md`/`templates/adr-template.md` are unrelated).
