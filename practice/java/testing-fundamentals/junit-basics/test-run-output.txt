@@ -1,0 +1,43 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mCalculatorTest[0m [32m✔[0m
+[36m│     ├─[0m [34mdivisionByZeroThrowsArithmeticException()[0m [32m✔[0m
+[36m│     ├─[0m [34maddsTwoPositiveNumbers()[0m [32m✔[0m
+[36m│     ├─[0m [34maddsNegativeNumbers()[0m [32m✔[0m
+[36m│     ├─[0m [36maddProducesExpectedSum(int, int, int)[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[1] 2, 3, 5[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[2] 0, 0, 0[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[3] -1, 1, 0[0m [32m✔[0m
+[36m│     │  └─[0m [34m[4] 100, 200, 300[0m [32m✔[0m
+[36m│     ├─[0m [36misEvenReturnsTrueForEvenNumbers(int)[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[1] 2[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[2] 4[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[3] 100[0m [32m✔[0m
+[36m│     │  ├─[0m [34m[4] 0[0m [32m✔[0m
+[36m│     │  └─[0m [34m[5] -6[0m [32m✔[0m
+[36m│     ├─[0m [34mdividesTwoNumbers()[0m [32m✔[0m
+[36m│     └─[0m [36misEvenReturnsFalseForOddNumbers(int)[0m [32m✔[0m
+[36m│        ├─[0m [34m[1] 1[0m [32m✔[0m
+[36m│        ├─[0m [34m[2] 3[0m [32m✔[0m
+[36m│        ├─[0m [34m[3] 99[0m [32m✔[0m
+[36m│        └─[0m [34m[4] -7[0m [32m✔[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+
+Test run finished after 55 ms
+[         7 containers found      ]
+[         0 containers skipped    ]
+[         7 containers started    ]
+[         0 containers aborted    ]
+[         7 containers successful ]
+[         0 containers failed     ]
+[        17 tests found           ]
+[         0 tests skipped         ]
+[        17 tests started         ]
+[         0 tests aborted         ]
+[        17 tests successful      ]
+[         0 tests failed          ]
+

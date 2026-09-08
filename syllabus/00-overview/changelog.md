@@ -594,3 +594,76 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Built as two parallel batches (14 React, 17 Next.js — the same split `cheat-sheets/` used for its own frontend batch). `frontend-live-coding-and-debugging-protocol.md` deliberately excluded (no F-code; `playbook-technical-answer` type), matching the identical exclusion already established in `cheat-sheets/README.md`.
 - Verified: all 31 files' YAML parses, one H1 each, zero unresolved `[[wikilink]]` markers, every link resolves — 62 cards, zero broken.
 - Updated `flashcards/README.md` (new Frontend Decks table, 199 decks / 655 cards total) and `syllabus/21-frontend-web/INDEX.md`. **`flashcards/` now reaches the same domain coverage as `cheat-sheets/`.**
+
+## [2026-09-07] — Junior Fundamentals gap found; T-2201 Java OOP Fundamentals written (1 of 5)
+
+### Investigated
+
+- User asked directly whether OOP itself was covered, in the context of selling this repository as Junior-through-Staff rather than Senior/Staff-only. Audit found: `syllabus/02-java`'s own Master Topic Register scopes "OOP" down to T-102 (Polymorphism and Dynamic Dispatch Mechanics) by original design — a deliberate, already-documented choice targeting the one Senior-differentiating mechanic, not the four pillars — and the same "assumes 5+ years experience, never teaches true basics" pattern repeats across every originally-migrated backend domain: `06-databases` (no SQL/schema basics), `05-spring` (no DI/@Controller basics), `08-testing` (no basic-JUnit-test basics), `07-api-design` (no REST/HTTP-verb basics). Only `01-computer-science-foundations`, `03-data-structures-algorithms`, and `21-frontend-web` were ever designed to be genuinely Junior-inclusive.
+- Presented the finding and three scope options via `AskUserQuestion`; user chose the full-scope fix — one true "101" chapter per affected domain (5 total), matching the design already used for the three Junior-inclusive domains.
+
+### Added
+
+- Reserved a new topic-ID range, `T-2200`–`T-2299`, in `00-project/syllabus-transformation-plan.md`, for Junior Fundamentals topics added to existing backend domains that already had a full Master Topic Register allocation and therefore no natural range of their own for a genuinely new topic.
+- Wrote `syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md` (T-2201), the first of the five planned chapters — full 20-section Topic Specification template, L1–L4 in one file, matching the same template used by `01-computer-science-foundations`/`03-data-structures-algorithms`/`18-engineering-practices`/`19-leadership-staff`.
+- Built 3 new, real, compiled-and-executed Java demos in `practice/java/oop-fundamentals/classes-and-objects/src/` (OpenJDK 21.0.12, 19/19 assertions passing): `EncapsulationDemo.java` (a broken public-field class vs. a fixed, validated one — 7/7), `AbstractionAndInheritanceDemo.java` (abstract class vs. interface, both used on the same problem — 6/6), `CompositionOverInheritanceDemo.java` (a real subclass-explosion comparison: 2 axes of variation need 4 subclasses under inheritance vs. 4 small classes assembled freely under composition — 6/6). No topic content in the chapter states a claim these demos don't back directly.
+- Deliberately does not re-teach polymorphism/dynamic dispatch mechanics — cross-links to the existing T-102 chapter instead, per the no-duplication rule, since that mechanism already has its own full, deep treatment.
+- Updated `syllabus/02-java/INDEX.md` (50th chapter, new context note explaining the gap and the plan) and reserved the ID range in the transformation plan.
+- Verified: TOC anchors resolve, front matter and related/practice paths all resolve on disk, one H1, full `scripts/validate.py` run introduces zero new errors.
+
+### Not yet done
+
+- 4 remaining Junior Fundamentals chapters: SQL and Relational Database Fundamentals (T-2202, `06-databases`), Spring MVC Fundamentals (T-2203, `05-spring`), Unit Testing Fundamentals with JUnit (T-2204, `08-testing`), REST API Fundamentals (T-2205, `07-api-design`) — same template, same real-code-demo bar, to be written in the same bounded-batch discipline as everything else in this repository.
+- `CLAUDE.md`'s Target Audience section still states the primary reader "has at least five years of Java and backend experience" — now inconsistent with this initiative's own premise (selling Junior-through-Staff) and not yet reconciled.
+
+## [2026-09-07] — T-2202 SQL and Relational Database Fundamentals written (2 of 5)
+
+### Added
+
+- Second of five planned Junior Fundamentals chapters (see the matching 2026-09-07 entry above for the full audit context): `syllabus/06-databases/sql-and-relational-database-fundamentals.md` (T-2202), full 20-section Topic Specification template, L1-L4 in one file.
+- Built a real PostgreSQL 16 lab in `practice/sql/sql-fundamentals/` (disposable Docker container, same convention as `practice/sql/week-01/`'s index lab): `CREATE TABLE` with a real primary/foreign key, `INSERT`/`SELECT`/`UPDATE`/`DELETE`, a foreign key constraint actually rejecting an orphan insert (real, unedited Postgres error text captured), and `INNER JOIN` vs. `LEFT JOIN` run against the identical data to show the actual row-count difference directly rather than describing it.
+- Updated `syllabus/06-databases/INDEX.md` (15th chapter, context note). Full validator run: zero new errors.
+
+### Not yet done
+
+- 3 remaining Junior Fundamentals chapters: Spring MVC Fundamentals (T-2203, `05-spring`), Unit Testing Fundamentals with JUnit (T-2204, `08-testing`), REST API Fundamentals (T-2205, `07-api-design`).
+
+## [2026-09-07] — T-2203 Spring MVC Fundamentals written (3 of 5)
+
+### Added
+
+- Third of five planned Junior Fundamentals chapters: `syllabus/05-spring/spring-mvc-fundamentals.md` (T-2203), full 20-section Topic Specification template, L1-L4 in one file.
+- Built a real Spring Boot 3.5.16 app in `practice/java/spring-mvc-fundamentals/` (embedded Tomcat, same working dependency set as `practice/java/full-stack-integration-backend`): a `TaskController` → `TaskService` → `TaskRepository` chain wired entirely by constructor-based dependency injection, exercised live with `curl` (`GET`/`POST /tasks`, `GET /tasks/{id}`, both a found and a missing id).
+- A genuine bug was hit and kept as real teaching material rather than smoothed over: the original `@PathVariable Long id` (no explicit name) produced a real `500 Internal Server Error` — `IllegalArgumentException: Name for argument of type [java.lang.Long] not specified, and parameter name information not available via reflection` — captured in `curl-transcript-before-fix.txt`. Fixed by naming the binding explicitly (`@PathVariable("id") Long id`); both the before and after transcripts are real, unedited output, and the chapter's Section 8 and Section 17 both use this exact failure rather than inventing a hypothetical one.
+- Updated `syllabus/05-spring/INDEX.md` (10th chapter, context note). Full validator run: zero new errors (one link-depth mistake of my own — `../../17-architecture/...` where `../17-architecture/...` was correct from `05-spring/`'s own 2-level depth — caught and fixed before commit).
+
+### Not yet done
+
+- 2 remaining Junior Fundamentals chapters: Unit Testing Fundamentals with JUnit (T-2204, `08-testing`), REST API Fundamentals (T-2205, `07-api-design`).
+
+## [2026-09-07] — T-2204 Unit Testing Fundamentals with JUnit written (4 of 5)
+
+### Added
+
+- Fourth of five planned Junior Fundamentals chapters: `syllabus/08-testing/unit-testing-fundamentals-with-junit.md` (T-2204), full 20-section Topic Specification template, L1-L4 in one file.
+- Built a real JUnit 5 suite in `practice/java/testing-fundamentals/junit-basics/` (run via the `junit-platform-console-standalone` shaded jar, no Maven/Gradle): `@Test`, `@BeforeEach`, `assertThrows`, and two `@ParameterizedTest` forms (`@ValueSource`, `@CsvSource`) — 17/17 tests passing.
+- A genuine test failure was deliberately produced (not invented) to capture real JUnit failure output: `addsTwoPositiveNumbers()`'s assertion was temporarily changed to an incorrect expected value, the real failure text (`expected: <6> but was: <5>`, full stack trace) captured in `real-failure-output.txt`, then reverted to the correct, passing version before commit. The chapter's Section 7, 8, and 17 all use this exact, real failure.
+- Updated `syllabus/08-testing/INDEX.md` (8th chapter, context note). Full validator run: zero new errors.
+
+### Not yet done
+
+- 1 remaining Junior Fundamentals chapter: REST API Fundamentals (T-2205, `07-api-design`).
+
+## [2026-09-07] — T-2205 REST API Fundamentals written — Junior Fundamentals initiative complete (5 of 5)
+
+### Added
+
+- Fifth and final Junior Fundamentals chapter: `syllabus/07-api-design/rest-api-fundamentals.md` (T-2205), full 20-section Topic Specification template, L1-L4 in one file.
+- Built a real Spring Boot 3.5.16 app in `practice/java/rest-api-fundamentals/` (embedded Tomcat, `localhost:8081`, separate from T-2203's own demo): a `BookController`/`BookRepository` REST API proving, with real curl transcripts, that `POST` is not idempotent (two identical request bodies produce two distinct resources with different ids) and `PUT` is idempotent (two identical calls produce the identical resulting state and status), plus correct `201 Created` + `Location` header, `204 No Content`, and `404` behavior.
+- Updated `syllabus/07-api-design/INDEX.md` (3rd chapter, closing note for the full initiative).
+- Full validator run: zero new errors.
+
+### Completed
+
+- **The Junior Fundamentals initiative is complete: all 5 planned chapters (T-2201–T-2205) are written**, covering Java OOP, SQL/relational databases, Spring MVC, JUnit testing, and REST API design — closing the gap found when the user asked whether OOP itself was covered, in the context of selling this repository as Junior-through-Staff rather than Senior/Staff-only. Every chapter includes real, executed evidence (compiled Java demos, a live PostgreSQL lab, or a live Spring Boot app exercised with curl) — no topic content asserts a claim without backing it directly, and two chapters (Spring MVC, JUnit) kept a genuine bug/failure hit while building the demo as real teaching material rather than smoothing it over.
+- `CLAUDE.md`'s Target Audience section still states the primary reader "has at least five years of Java and backend experience" — now inconsistent with this completed initiative's own premise and still not reconciled; flagged, not yet fixed.
