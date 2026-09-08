@@ -705,3 +705,20 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `syllabus/00-overview/learning-paths/junior-to-mid.md` re-sequenced a third time: T-2206 is now Topic 1 (the true starting point), T-2207 inserted as Topic 6 (right before `equals()`/`hashCode()` and `HashMap` Internals). Sequence: 19 → 21 topics; all in-file topic-number references renumbered; time budget updated to ~7 weeks.
 - Cheat sheets and flashcard decks added for both (`cheat-sheets/README.md`, `flashcards/README.md`) — **201 cheat sheets, 206 flashcard decks (690 cards) total, both counts verified against the real file system, not just arithmetic.**
 - Full validator run: zero new errors.
+
+## [2026-09-08] — Docker and Containers Fundamentals (T-2208)
+
+### Investigated
+
+- Continuing the same audit pattern, checked `12-security` and `14-devops-containers` for the "jumps straight to advanced content, no usage-level floor" pattern. `12-security`'s `authn-authz-rbac-vs-abac.md`, already L1/L2-retrofitted, was judged an adequate existing entry point — no new chapter added there. `14-devops-containers`'s `container-image-internals.md` — its own title says "internals" — never taught what a container or image actually is first: a real gap, same shape as the others closed this week.
+
+### Added
+
+- `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` (T-2208) — container vs. VM, image vs. container, Dockerfile basics, port publishing. Real demo: a genuine image built and run against Docker Engine 29.6.2 (`practice/docker-fundamentals/`) — a tiny JDK-only HTTP server, containerized, proving both a successful `-p`-mapped run (real `curl` response) and a real, observed network-isolation failure (`curl` from the host refused; the identical request succeeding via `docker exec` from inside the container's own network namespace).
+- Updated `syllabus/14-devops-containers/INDEX.md` (5 chapters) and the reserved-range note in `00-project/syllabus-transformation-plan.md` (T-2208 added to the `T-2200`–`T-2299` assignment list).
+- Cheat sheet and flashcard deck added. **Final counts, verified directly against the file system: 202 cheat sheets, 207 flashcard decks, 695 cards.**
+- Full validator run: zero new errors.
+
+### Not yet done
+
+- No further Junior Fundamentals gaps were found in this pass beyond the two investigated above. `12-security`'s existing entry point was judged sufficient; if a future audit finds otherwise, the same `T-2200`–`T-2299` range and template apply.

@@ -255,7 +255,11 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | N37 | [Java Syntax Fundamentals: Variables, Control Flow, and Methods](java-syntax-fundamentals-variables-control-flow-and-methods.md) | T-2206 | java | `syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md` |
 | N38 | [Collections Usage Fundamentals: List, Map, and Set](java-collections-usage-fundamentals-list-map-and-set.md) | T-2207 | java | `syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md` |
 
-**Total across all groups: 201 cheat sheets** (132 backend + 31 frontend + 38 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
+**Added 2026-09-08 (batch 4): Docker and Containers Fundamentals**, found the same way — `container-image-internals.md`'s own title says "internals," and never taught what a container or image actually is first.
+
+| N39 | [Docker and Containers Fundamentals](docker-and-containers-fundamentals.md) | T-2208 | devops-containers | `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` |
+
+**Total across all groups: 202 cheat sheets** (132 backend + 31 frontend + 39 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
 
 ## How this relates to `flashcards/`
 

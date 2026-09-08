@@ -222,7 +222,11 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 | N37 | [Java Syntax Fundamentals: Variables, Control Flow, and Methods](java-syntax-fundamentals-variables-control-flow-and-methods.md) | T-2206 | 5 | `syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md` |
 | N38 | [Collections Usage Fundamentals: List, Map, and Set](java-collections-usage-fundamentals-list-map-and-set.md) | T-2207 | 5 | `syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md` |
 
-175 decks across the three new-writing-domain batches combined (137 pre-existing + 38 new-writing-domain), 628 cards — see the Frontend Decks section below for the deliverable's actual, final total including the frontend batch.
+**Added 2026-09-08 (batch 4): Docker and Containers Fundamentals**, matching `cheat-sheets/README.md`'s own fourth batch, found the same way.
+
+| N39 | [Docker and Containers Fundamentals](docker-and-containers-fundamentals.md) | T-2208 | 5 | `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` |
+
+176 decks across the four new-writing-domain batches combined (137 pre-existing + 39 new-writing-domain), 633 cards — see the Frontend Decks section below for the deliverable's actual, final total including the frontend batch.
 
 ## Frontend Decks (F-codes, no IWI)
 
@@ -264,7 +268,7 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | F30 | [Next.js Styling Approaches](nextjs-styling-approaches.md) | F-302 | Intermediate | `syllabus/21-frontend-web/nextjs-styling-approaches.md` |
 | F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
 
-**Total across all groups: 206 decks** (137 backend + 38 new-writing-domain, including the 7 Junior Fundamentals decks added 2026-09-07/2026-09-08 — see above — + 31 frontend), 690 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
+**Total across all groups: 207 decks** (137 backend + 39 new-writing-domain, including the 8 Junior Fundamentals decks added 2026-09-07/2026-09-08 — see above — + 31 frontend), 695 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
 
 ## How this relates to other deliverables
 

@@ -2493,3 +2493,11 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - Updated `syllabus/02-java/INDEX.md` (52 chapters), T-2201's own prerequisites, and re-sequenced `syllabus/00-overview/learning-paths/junior-to-mid.md` a third time (19 -> 21 topics).
 - Added cheat sheets and flashcard decks for both. **201 cheat sheets, 206 flashcard decks (690 cards) - both counts verified against the real file system.**
 - Full validator run: zero new errors.
+
+### Added (Junior Fundamentals extended — T-2208 Docker and Containers Fundamentals)
+
+- Checked 12-security and 14-devops-containers for the same "no usage-level floor" pattern. 12-security's existing authn-authz-rbac-vs-abac.md (already L1/L2-retrofitted) judged adequate. 14-devops-containers's container-image-internals.md - title says "internals" - never taught what a container or image is first: a real gap.
+- `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` (T-2208) - container vs. VM, image vs. container, Dockerfile basics, port publishing. Real demo: a genuine image built and run against Docker Engine 29.6.2 (`practice/docker-fundamentals/`), including an observed network-isolation proof (curl refused from host, succeeds via `docker exec` inside the container).
+- Updated `syllabus/14-devops-containers/INDEX.md` and the reserved-range note in `00-project/syllabus-transformation-plan.md`.
+- Added cheat sheet and flashcard deck. **Final counts, verified against the file system: 202 cheat sheets, 207 flashcard decks, 695 cards.**
+- Full validator run: zero new errors.
