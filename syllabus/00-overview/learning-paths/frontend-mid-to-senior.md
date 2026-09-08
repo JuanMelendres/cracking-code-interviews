@@ -50,6 +50,10 @@ This path is the frontend counterpart to [Mid → Senior](mid-to-senior.md) (the
 - Can explain, from memory, how a component's fiber gets scheduled, why a given re-render happened, and how to fix an unnecessary one — the internals fluency Topics 8–10 build.
 - Has built or extended a real full-stack demo combining a Next.js frontend with a separate backend API (this repository's own Java/Spring material is the natural pairing), correctly placing CORS/BFF/auth-session logic per Topic 20's own Decision Framework.
 
+## Weekly study pack
+
+[`study-packs/frontend-mid-to-senior/`](../../../study-packs/frontend-mid-to-senior/) turns this sequence into a scheduled, 10-week program — reading assignments, hands-on exercises against real `practice/frontend/` and `practice/java/` demos, and a full System Design Exercise in its closing week — the same operational layer [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provides for the Java backend's own Mid → Senior path. This path's 20 topics are the *content*; the study pack is the *schedule*.
+
 ## Related paths
 
 - [Frontend Junior → Mid](frontend-junior-to-mid.md) — the direct prerequisite.

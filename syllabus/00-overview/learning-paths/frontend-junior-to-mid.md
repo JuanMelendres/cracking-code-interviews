@@ -46,6 +46,10 @@ This path is the frontend counterpart to [Junior → Mid](junior-to-mid.md) (the
 - Has reproduced the real executed evidence in Topics 1–3's own `practice/frontend/` demos (a real served page and `curl` transcript, real Node.js script output, real `tsc` compiler output including a genuine error-then-fix pair).
 - Has built and run at least one real Next.js app combining a form, client-side state, and at least one accessible, semantic page — not just read the chapters describing each piece separately.
 
+## Weekly study pack
+
+[`study-packs/frontend-junior-to-mid/`](../../../study-packs/frontend-junior-to-mid/) turns this sequence into a scheduled, 6-week program — reading assignments, hands-on exercises against real `practice/frontend/` demos, and a lightweight mock-interview checkpoint per week — the same operational layer [`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) provides for the Java backend's own Junior → Mid path. This path's 14 topics are the *content*; the study pack is the *schedule*.
+
 ## Next
 
 [Frontend Mid → Senior](frontend-mid-to-senior.md) — the direct continuation into Next.js internals, React performance/testing/TypeScript depth, and the full-stack-integration capstone.

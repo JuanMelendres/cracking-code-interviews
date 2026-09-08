@@ -57,6 +57,6 @@ The six paths above are all Java-backend paths. The frontend domain (`21-fronten
 
 These two paths are additive to the six above, not a revision of them — same relationship the frontend domain itself has to the Java backend domain throughout this repository. A full-stack reader following a backend path and its matching frontend path together (e.g. Junior → Mid + Frontend Junior → Mid) reaches genuine dual-track depth rather than backend-only depth with frontend as an afterthought.
 
-Neither new path has a weekly study pack of its own yet — unlike the backend paths, which all have a matching program under `study-packs/` (see `study-packs/README.md`). This is an open, flagged follow-up, not silently skipped.
+**Update 2026-09-08 (same day):** both paths now have a matching weekly study pack — [`study-packs/frontend-junior-to-mid/`](../../study-packs/frontend-junior-to-mid/) (6 weeks) and [`study-packs/frontend-mid-to-senior/`](../../study-packs/frontend-mid-to-senior/) (10 weeks) — closing the gap noted just above the same day it was flagged. See `study-packs/README.md` for the full breakdown across all 8 programs now in this repository.
 
 ---

@@ -824,3 +824,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Not yet done
 
 - Neither new frontend learning path has a weekly study pack of its own yet, unlike all 5 backend paths. Flagged explicitly in `learning-paths.md` as an open follow-up, not silently skipped — same category of decision as the backend study-pack gap closed earlier today, left for the user to prioritize.
+
+## [2026-09-08] — Frontend weekly study packs: closing the last operational-layer gap
+
+### Added
+
+- User asked to close the just-flagged gap: `study-packs/frontend-junior-to-mid/` (6 weeks, scheduling the 14-topic Frontend Junior → Mid path) and `study-packs/frontend-mid-to-senior/` (10 weeks, scheduling the 20-topic Frontend Mid → Senior path). Same lean README+MANIFEST convention as every other pack in this repository.
+- Construction started via 2 parallel background agents, each briefed with the exact template (junior-to-mid/mid-to-senior week-01 and week-03 as structural and honesty-pattern references) and instructed to verify every practice-demo citation against the real file system before writing it. Both agents hit a session-wide API rate limit mid-construction, after producing only each pack's top-level `README.md` and `week-01/README.md` (both high quality, verified on inspection — no rework needed). The remaining 28 files (week-01's two `MANIFEST.md`s, plus weeks 2–6 and 2–10 in full) were completed directly in the main session rather than re-dispatching agents, to avoid repeating the rate-limit failure.
+- Frontend Junior → Mid's 6 weeks: Week 1 (Web/JS/TS fundamentals, citing the real evidence — Node.js scripts, `tsc` output, `curl` transcript — built the same day as those chapters), Week 2 (React Fundamentals), Week 3 (the three hook families), Week 4 (Next.js's role and App Router), Week 5 (build tooling and styling), Week 6 (forms, error boundaries, accessibility — closing on production-shaped UI).
+- Frontend Mid → Senior's 10 weeks, 2 topics each except the closing week: Server/Client boundary and data fetching, rendering strategies and Route Handlers, SEO and Web Vitals, component patterns and fiber internals, concurrent rendering and performance, testing and TypeScript, state management and streaming, the edge runtime and auth, Server Actions and deployment models, and a closing Week 10 (Monorepo Layout + Full-Stack Integration) that — uniquely among all packs in this repository — cites specific, verified real evidence read directly from the F-214/F-303 chapters themselves: a real CORS failure/fix between two separately-running processes (`practice/frontend/react-nextjs-fundamentals/` and `practice/java/full-stack-integration-backend/`), the real BFF Route Handler file, and real measured `node_modules` duplication costs (435/39/60/55 MB) from a real monorepo symlink test. Week 10 carries this pack's only full System Design Exercise, matching its Expert-tier capstone status.
+- All prior "not yet done" notes about frontend study packs (this entry's own predecessor, `study-packs/README.md`, root `README.md`, and both frontend learning-path files) updated to reflect completion — both frontend learning paths gained a "Weekly study pack" section; `study-packs/README.md` and root `README.md` reorganized into backend/frontend sections listing all 8 programs.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
+### Not yet done
+
+- None — this was the last flagged gap from the same-day audit. All 5 backend and both frontend learning paths now have a matching operational study-pack layer.

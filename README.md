@@ -91,7 +91,7 @@ The separation is deliberate. **Study packs are time-boxed and disposable in the
 
 ## Choosing your starting point
 
-Six separate programs exist under `study-packs/` — pick the one that matches your situation, not the first one you find:
+Eight separate programs exist under `study-packs/` — pick the one that matches your situation, not the first one you find:
 
 | If you are... | Use... |
 |---|---|
@@ -100,6 +100,8 @@ Six separate programs exist under `study-packs/` — pick the one that matches y
 | A Senior engineer building the systemic/organizational judgment a Staff loop tests | [`study-packs/senior-to-staff/`](study-packs/senior-to-staff/README.md) — 8 weeks |
 | Focused specifically on deep Java-stack mastery rather than broader domain breadth | [`study-packs/backend-java-specialization/`](study-packs/backend-java-specialization/README.md) — 9 weeks |
 | Already Senior/Staff-level with an interview loop coming up soon — recall, not new learning | [`study-packs/senior-interview-refresh/`](study-packs/senior-interview-refresh/README.md) — 3–5 days |
+| New to frontend/web development entirely (0–2 years, no prior JS/TS/React) | [`study-packs/frontend-junior-to-mid/`](study-packs/frontend-junior-to-mid/README.md) — 6 weeks |
+| A working frontend/full-stack engineer who needs Senior-level Next.js/React internals depth | [`study-packs/frontend-mid-to-senior/`](study-packs/frontend-mid-to-senior/README.md) — 10 weeks |
 | On an urgent interview timeline and need the highest-impact material fast, regardless of level | Plan A/B/C below (`study-packs/week-01` through `week-25`) |
 
 See [`study-packs/README.md`](study-packs/README.md) for the full breakdown. The rest of this section (**How to use the roadmap** through **Starting the programme**) describes the last option — the original Interview Emergency Sprint program this repository started with.
