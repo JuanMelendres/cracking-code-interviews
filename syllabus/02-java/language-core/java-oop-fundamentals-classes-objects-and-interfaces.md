@@ -8,8 +8,10 @@ status: draft
 version: 1.0
 last_updated: 2026-09-07
 mastery_levels_covered: [L1, L2, L3, L4]
-prerequisites: []
+prerequisites:
+  - java-syntax-fundamentals-variables-control-flow-and-methods.md
 related:
+  - java-syntax-fundamentals-variables-control-flow-and-methods.md
   - polymorphism-and-dynamic-dispatch.md
   - equals-hashcode-and-comparable-contracts.md
   - immutability-and-defensive-copying.md
@@ -54,7 +56,7 @@ Every other Java topic in this syllabus assumes you can already read a class def
 
 ## 2. Prerequisites
 
-None. This is one of the true entry points into the Java track, alongside `01-computer-science-foundations`. If you have never written a class before, start here before anything else in `02-java`.
+[Java Syntax Fundamentals: Variables, Control Flow, and Methods](java-syntax-fundamentals-variables-control-flow-and-methods.md) — added 2026-09-08 as an even more foundational chapter once it became clear this one already assumed you could read an `if` statement and a `for` loop inside a method body. If you have never written a class before *and* are comfortable with basic Java syntax already, you can start directly here.
 
 ## 3. Foundation (L1)
 

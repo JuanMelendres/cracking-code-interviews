@@ -2,7 +2,7 @@
 title: "Flashcards — Index"
 document_type: flashcard-index
 status: draft
-last_updated: 2026-09-07
+last_updated: 2026-09-08
 ---
 
 # Flashcards
@@ -217,7 +217,12 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 | N35 | [Unit Testing Fundamentals with JUnit](unit-testing-fundamentals-with-junit.md) | T-2204 | 5 | `syllabus/08-testing/unit-testing-fundamentals-with-junit.md` |
 | N36 | [REST API Fundamentals](rest-api-fundamentals.md) | T-2205 | 5 | `syllabus/07-api-design/rest-api-fundamentals.md` |
 
-173 decks in the two new-writing-domain batches combined (137 pre-existing + 36 new-writing-domain), 618 cards — see the Frontend Decks section below for the deliverable's actual, final total including the frontend batch.
+**Added 2026-09-08 (batch 3): 2 more Junior Fundamentals decks**, matching `cheat-sheets/README.md`'s own third batch for the same 2 chapters, found after the user directly asked whether this repository genuinely served a low-to-high-seniority reader yet.
+
+| N37 | [Java Syntax Fundamentals: Variables, Control Flow, and Methods](java-syntax-fundamentals-variables-control-flow-and-methods.md) | T-2206 | 5 | `syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md` |
+| N38 | [Collections Usage Fundamentals: List, Map, and Set](java-collections-usage-fundamentals-list-map-and-set.md) | T-2207 | 5 | `syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md` |
+
+175 decks across the three new-writing-domain batches combined (137 pre-existing + 38 new-writing-domain), 628 cards — see the Frontend Decks section below for the deliverable's actual, final total including the frontend batch.
 
 ## Frontend Decks (F-codes, no IWI)
 
@@ -259,7 +264,7 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | F30 | [Next.js Styling Approaches](nextjs-styling-approaches.md) | F-302 | Intermediate | `syllabus/21-frontend-web/nextjs-styling-approaches.md` |
 | F31 | [Next.js Monorepo Layout](nextjs-monorepo-layout.md) | F-303 | Advanced | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
 
-**Total across all groups: 204 decks** (137 backend + 36 new-writing-domain, including the 5 Junior Fundamentals decks added 2026-09-07 — see above — + 31 frontend), 680 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
+**Total across all groups: 206 decks** (137 backend + 38 new-writing-domain, including the 7 Junior Fundamentals decks added 2026-09-07/2026-09-08 — see above — + 31 frontend), 690 cards. With this batch, `flashcards/` reaches the same domain coverage as `cheat-sheets/` — every syllabus chapter that has ever been flagged as missing a deck now has one.
 
 ## How this relates to other deliverables
 

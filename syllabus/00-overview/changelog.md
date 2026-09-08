@@ -690,3 +690,18 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Every fact, decision-table entry, and pitfall was drawn directly from its own chapter's real content (the real compiled demos, the real PostgreSQL error text, the real Spring MVC `@PathVariable` bug, the real JUnit failure, the real POST/PUT idempotency proof) — no invented content.
 - Updated `cheat-sheets/README.md` (199 total: 132 backend + 31 frontend + 36 new-writing-domain) and `flashcards/README.md` (204 total: 137 backend + 36 new-writing-domain + 31 frontend, 680 cards). Updated all five domains' `INDEX.md` files with a one-line pointer.
 - Full validator run: zero new errors.
+
+## [2026-09-08] — Two more Junior Fundamentals chapters: Java Syntax (T-2206), Collections Usage (T-2207)
+
+### Investigated
+
+- After completing the 5-chapter Junior Fundamentals initiative, the user asked directly whether this repository now genuinely served a reader from low to high seniority. Honest re-check found two more gaps: T-2201 (OOP Fundamentals) itself assumed the reader could already read an `if` statement and a `for` loop — true Java syntax literacy was never taught anywhere in this repository — and `02-java` jumped from "here's a class" straight into `HashMap`/`ArrayList` internals with no "what is a List/Map/Set and when do you use each" usage-level stop first.
+
+### Added
+
+- `syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md` (T-2206) — variables, operators, `if`/`else`/`switch`, `for`/`while`, methods, arrays. Now T-2201's own prerequisite. Real demo: [`GradeReportDemo.java`](../../practice/java/oop-fundamentals/syntax-basics/src/GradeReportDemo.java), 9/9 assertions passing, OpenJDK 21.0.12.
+- `syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md` (T-2207) — List/Map/Set at a usage level (what and when, not internals), sitting between OOP Fundamentals and this domain's internals-focused Collections chapters. Real demo: [`WordFrequencyDemo.java`](../../practice/java/oop-fundamentals/collections-basics/src/WordFrequencyDemo.java), 14/14 assertions passing.
+- Both use the same 20-section Topic Specification template as the other 5 Junior Fundamentals chapters. `syllabus/02-java/INDEX.md` updated (52 chapters total); T-2201's own front matter and Section 2 updated to point at T-2206 as its real prerequisite.
+- `syllabus/00-overview/learning-paths/junior-to-mid.md` re-sequenced a third time: T-2206 is now Topic 1 (the true starting point), T-2207 inserted as Topic 6 (right before `equals()`/`hashCode()` and `HashMap` Internals). Sequence: 19 → 21 topics; all in-file topic-number references renumbered; time budget updated to ~7 weeks.
+- Cheat sheets and flashcard decks added for both (`cheat-sheets/README.md`, `flashcards/README.md`) — **201 cheat sheets, 206 flashcard decks (690 cards) total, both counts verified against the real file system, not just arithmetic.**
+- Full validator run: zero new errors.

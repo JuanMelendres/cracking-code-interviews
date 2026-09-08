@@ -2484,3 +2484,12 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - These 5 chapters postdated the cheat-sheets/flashcards backlog closures for the other new-writing domains and were never covered. Closed same-day: 5 cheat sheets and 5 flashcard decks (25 cards), drawn directly from each chapter's own real content (real demos, real Postgres error, real Spring MVC bug, real JUnit failure, real POST/PUT idempotency proof).
 - Updated `cheat-sheets/README.md` (199 total) and `flashcards/README.md` (204 total, 680 cards), and all five affected domains' `INDEX.md` files.
 - Full validator run: zero new errors.
+
+### Added (Junior Fundamentals extended — T-2206 Java Syntax, T-2207 Collections Usage)
+
+- After the 5-chapter Junior Fundamentals initiative, the user asked directly whether this repository genuinely served a low-to-high-seniority reader. Found two more gaps: T-2201 (OOP Fundamentals) assumed the reader could already read an `if` statement and a `for` loop; the domain jumped from OOP straight into `HashMap`/`ArrayList` internals with no basic List/Map/Set usage stop first.
+- `syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md` (T-2206) - variables, control flow, methods, arrays. Now T-2201's own prerequisite. Real demo (`GradeReportDemo.java`, 9/9 assertions).
+- `syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md` (T-2207) - List/Map/Set usage, between OOP Fundamentals and this domain's internals-focused Collections chapters. Real demo (`WordFrequencyDemo.java`, 14/14 assertions).
+- Updated `syllabus/02-java/INDEX.md` (52 chapters), T-2201's own prerequisites, and re-sequenced `syllabus/00-overview/learning-paths/junior-to-mid.md` a third time (19 -> 21 topics).
+- Added cheat sheets and flashcard decks for both. **201 cheat sheets, 206 flashcard decks (690 cards) - both counts verified against the real file system.**
+- Full validator run: zero new errors.

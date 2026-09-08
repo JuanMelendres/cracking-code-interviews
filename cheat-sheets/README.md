@@ -2,7 +2,7 @@
 title: "Cheat Sheets — Index"
 document_type: cheat-sheet-index
 status: draft
-last_updated: 2026-09-07
+last_updated: 2026-09-08
 ---
 
 # Cheat Sheets
@@ -250,7 +250,12 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | N35 | [Unit Testing Fundamentals with JUnit](unit-testing-fundamentals-with-junit.md) | T-2204 | testing | `syllabus/08-testing/unit-testing-fundamentals-with-junit.md` |
 | N36 | [REST API Fundamentals](rest-api-fundamentals.md) | T-2205 | api-design | `syllabus/07-api-design/rest-api-fundamentals.md` |
 
-**Total across all groups: 199 cheat sheets** (132 backend + 31 frontend + 36 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
+**Added 2026-09-08 (batch 3): 2 more Junior Fundamentals chapters found after the user directly asked whether this repository genuinely served a low-to-high-seniority reader yet.** T-2201 itself assumed the reader could read an `if` statement and a `for` loop already; the domain also jumped from OOP straight into `HashMap`/`ArrayList` internals with no basic List/Map/Set usage stop first.
+
+| N37 | [Java Syntax Fundamentals: Variables, Control Flow, and Methods](java-syntax-fundamentals-variables-control-flow-and-methods.md) | T-2206 | java | `syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md` |
+| N38 | [Collections Usage Fundamentals: List, Map, and Set](java-collections-usage-fundamentals-list-map-and-set.md) | T-2207 | java | `syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md` |
+
+**Total across all groups: 201 cheat sheets** (132 backend + 31 frontend + 38 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
 
 ## How this relates to `flashcards/`
 
