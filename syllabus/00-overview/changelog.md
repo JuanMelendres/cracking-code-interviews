@@ -732,3 +732,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Every real, previously-verified assertion count (9/9 `GradeReportDemo`, 19/19 OOP demos, 14/14 `WordFrequencyDemo`, the real Spring MVC `-parameters` bug and fix, the real JUnit passing/failing runs, the real Docker network-isolation proof) was cited exactly as originally verified when each Junior Fundamentals chapter was built — none re-invented or estimated for this study pack. Where a week's topics predate this session's Junior Fundamentals work (Weeks 3, 4, 5's DSA topics, Week 6's database/testing internals topics, Week 7's Spring-vs-Boot topic), the manifest says so explicitly and cites the chapter by link only, without a fabricated assertion count.
 - `syllabus/00-overview/learning-paths/junior-to-mid.md` gained a new "Weekly study pack" section linking to the new pack, plus a fourth "Updated" note: Topic 22 (Docker and Containers Fundamentals, T-2208) had been written but never actually added to this path's sequence — caught while building the study pack itself.
 - Full validator run: zero new errors from these files (3 pre-existing errors in `AGENTS.md`/`CLAUDE.md`/`templates/adr-template.md` are unrelated).
+
+## [2026-09-08] — Mid → Senior weekly study pack, and `study-packs/` reorganization
+
+### Investigated
+
+- After building the Junior-to-Mid study pack, checked whether `study-packs/` as a whole was easy to navigate. Found two real organization gaps: `syllabus/00-overview/learning-paths/mid-to-senior.md` had no weekly study pack of its own (unlike the newly-built Junior → Mid path), and `study-packs/` itself had no top-level index — a reader would find `week-01` meaning two different things (Interview Emergency Sprint vs. the new Junior-to-Mid pack) with nothing disambiguating them.
+
+### Added
+
+- `study-packs/mid-to-senior/` — a new 10-week study pack scheduling [`syllabus/00-overview/learning-paths/mid-to-senior.md`](00-overview/learning-paths/mid-to-senior.md)'s 12-domain sequence (concurrency, JVM internals, Spring internals, databases, testing, Kafka, distributed systems, system design, security, observability, DevOps/Kubernetes, architecture — combined into 10 weeks, pairing the two lighter 2-topic domains, security+observability and DevOps+architecture, into shared closing weeks). Same lean README+MANIFEST convention as `junior-to-mid/`. Each week additionally cross-references 1–2 real, verified-to-exist `production-cookbook/` incident entries matching that week's domain, per the learning path's own stated cross-reference principle.
+- `syllabus/00-overview/learning-paths/mid-to-senior.md` gained a matching "Weekly study pack" section linking to the new pack.
+- `study-packs/README.md` — new top-level index for the whole `study-packs/` directory, explicitly disambiguating the three programs that now live there (Interview Emergency Sprint's `week-01`–`week-25`, `junior-to-mid/`, `mid-to-senior/`) and routing the reader to the right one by stated experience level.
+- Root `README.md`: added a "Choosing your starting point" section before the roadmap explanation, and updated the Current Status table's completed-deliverables row, so both new study packs are discoverable from the repository's own entry point rather than only from `syllabus/`.
+- Full validator run: zero new errors from these files (the 3 pre-existing errors in `AGENTS.md`, `CLAUDE.md`, and `templates/adr-template.md` are unrelated and predate this work).

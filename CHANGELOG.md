@@ -2509,3 +2509,12 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - Every real assertion count and transcript cited (9/9, 19/19, 14/14 Java demos; the real Spring MVC `-parameters` bug/fix; the real JUnit pass/fail runs; the real Docker network-isolation proof) was pulled from when each chapter was originally verified this session, not re-invented. Weeks covering pre-existing (non-Junior-Fundamentals) chapters cite those by link only, with an explicit note that their evidence wasn't re-verified in this pass.
 - Caught, while building this pack, that Topic 22 (Docker and Containers Fundamentals, T-2208) had been written earlier the same day but never added to `junior-to-mid.md`'s own sequence — fixed as part of this work; see the matching entry in `syllabus/00-overview/changelog.md`.
 - Full validator run: zero new errors from these files (the 3 pre-existing errors in `AGENTS.md`, `CLAUDE.md`, and `templates/adr-template.md` are unrelated and predate this work).
+
+### Added (`study-packs/mid-to-senior/` — weekly study pack, plus `study-packs/` reorganization)
+
+- After building the Junior-to-Mid pack, checked whether `study-packs/` as a whole was easy to navigate. Found two gaps: the Mid → Senior learning path had no weekly study pack of its own, and `study-packs/` had no top-level index — `week-01` meant two different things (Interview Emergency Sprint vs. Junior-to-Mid) with nothing disambiguating them.
+- New 10-week `study-packs/mid-to-senior/` pack scheduling the 12-domain Mid → Senior learning path (concurrency, JVM, Spring, databases, testing, Kafka, distributed systems, system design, security+observability combined, DevOps+architecture combined). Same lean README+MANIFEST convention as `junior-to-mid/`. Each week cross-references 1–2 real, verified-to-exist `production-cookbook/` entries matching its domain.
+- `syllabus/00-overview/learning-paths/mid-to-senior.md` gained a matching "Weekly study pack" section.
+- New `study-packs/README.md` top-level index disambiguating all three programs (Interview Emergency Sprint's `week-01`–`week-25`, `junior-to-mid/`, `mid-to-senior/`) and routing readers by experience level.
+- Root `README.md`: added a "Choosing your starting point" section and updated the Current Status table so both new study packs are discoverable from the repository's own entry point.
+- Full validator run: zero new errors from these files (the same 3 pre-existing, unrelated errors remain).

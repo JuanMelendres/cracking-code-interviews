@@ -44,6 +44,10 @@ This path's own differentiator over reading alone: for each domain above, cross-
 - Has read at least one matching `production-cookbook/` entry per domain and can restate its diagnosis without looking.
 - Can compare named alternatives within each domain (e.g., ReentrantLock vs. synchronized, SSR vs. SSG-equivalent trade-offs, Kafka vs. a simpler queue) and defend the choice for a stated scenario.
 
+## Weekly study pack
+
+[`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) turns this sequence into a scheduled, 10-week program — reading assignments, hands-on exercises, production-cookbook cross-references, and a lightweight mock-interview checkpoint per week — the same operational layer [`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) provides for the Junior → Mid path. This path's own 12 domains are the *content*; the study pack is the *schedule*.
+
 ## Next
 
 [Senior → Staff](senior-to-staff.md) — the direct continuation into L4 systemic and organizational judgment.
