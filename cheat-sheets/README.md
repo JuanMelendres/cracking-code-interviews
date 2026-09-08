@@ -276,6 +276,12 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **New total, verified directly against the file system: 208 cheat sheets** (132 backend + 34 frontend + 42 new-writing-domain — these 3, like T-2206–T-2208 before them, are counted in the new-writing-domain bucket since they're Junior Fundamentals additions without an original IWI ranking, even though `02-java` itself is an existing backend domain).
 
+**2026-09-08 (batch 6) — SDLC and Agile Methodology Fundamentals**, found via a review of 6 additional Notion databases/views — the SDLC/Agile/Waterfall/Scrum process model itself was never taught anywhere in this repository.
+
+| N43 | [SDLC and Agile Methodology Fundamentals](sdlc-and-agile-methodology-fundamentals.md) | T-2212 | engineering-practices | `syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md` |
+
+**New total, verified directly against the file system: 209 cheat sheets** (132 backend + 34 frontend + 43 new-writing-domain).
+
 ## How this relates to `flashcards/`
 
 Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` is now closed (75/75 handbook chapters) — its individual cards draw from the same canonical chapters these cheat sheets do, not restated from a cheat sheet's content.

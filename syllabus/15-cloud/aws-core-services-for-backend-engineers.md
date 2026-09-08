@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 15-cloud
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-08
 source_history:
   - handbook/cloud/aws-core-services-for-backend-engineers.md
 topic_id: T-1006
@@ -121,6 +121,24 @@ AWS's core services for backend engineering cluster into a few functional catego
 ### Traffic distribution and elasticity: ALB and Auto Scaling turn a fleet of instances into one service
 
 An **Application Load Balancer (ALB)** is a Layer-7 (HTTP/HTTPS-aware) load balancer that distributes incoming requests across a target group of instances or containers, health-checking each target and routing only to ones passing that check — the same conceptual role [Load Balancing, Service Discovery, and Health Checking](../11-system-design/load-balancing-service-discovery-and-health-checking.md) covers generally, with AWS managing the balancer itself. Being Layer-7 (as opposed to a Network Load Balancer's Layer-4) means an ALB can route on path or host header (`/api/orders` to one target group, `/api/payments` to another) and terminate TLS at the balancer, which a plain Layer-4 balancer cannot do. **Auto Scaling** (an Auto Scaling Group, or ASG, for EC2; a Service Auto Scaling policy for ECS; a HorizontalPodAutoscaler for EKS, per the previous chapters' Kubernetes coverage) adds or removes instances/tasks/pods in response to a metric — typically CPU or request-count target tracking — so fleet size tracks real load instead of being sized once for peak and left there. The two compose directly: the ALB's target group membership updates automatically as Auto Scaling adds or removes instances, so a scale-out event is invisible to callers — they keep hitting the same ALB endpoint while the pool of healthy targets behind it grows or shrinks.
+
+### Networking and access control: VPC, subnets, Security Groups, and IAM decide what can reach what, and who can do what
+
+**Added 2026-09-08**, closing a real gap found when the user asked directly whether this chapter covered VPC networking, IAM, and observability/IaC tooling — it did not, despite these being among the most commonly asked AWS interview questions.
+
+A **VPC (Virtual Private Cloud)** is an isolated, private network inside AWS — your own address space, with no default connectivity to anything outside it or to any other customer's VPC. A VPC is divided into **subnets**, each pinned to one Availability Zone: a **public subnet** has a route to an Internet Gateway (resources inside it can have a public IP and reach, or be reached from, the internet directly); a **private subnet** has no such route (resources inside it can only be reached from within the VPC, or reach the internet indirectly through a NAT Gateway sitting in a public subnet). The standard pattern places a backend application's database and internal services in a private subnet — reachable by the application tier, unreachable directly from the internet — with only the load balancer or a bastion host in a public subnet.
+
+**Security Groups** are a stateful, instance-level (or ALB/RDS-level) firewall: a set of allow rules for inbound and outbound traffic, evaluated per resource. "Stateful" specifically means a response to an allowed inbound request is automatically allowed back out, without needing a matching outbound rule — a genuinely different model from a stateless network ACL (which evaluates inbound and outbound independently and is applied at the subnet level, not the instance level). The default, secure posture is deny-all-inbound, explicitly allow only what's needed (e.g., port 443 from the ALB's security group, not from `0.0.0.0/0`, into the application tier).
+
+**IAM (Identity and Access Management)** controls *who* (a user, a service, an EC2 instance via an *instance role*) can perform *which actions* on *which resources* — the AWS-account-level analogue to the access-modifier and RBAC/ABAC concepts [AuthN vs AuthZ, RBAC vs ABAC](../12-security/authn-authz-rbac-vs-abac.md) covers for an application's own users. An **IAM role** attached to an EC2 instance or Lambda function is the standard way a running service gets AWS API permissions (to read from an S3 bucket, to write to DynamoDB) without embedding a long-lived credential in code or configuration — the instance/function assumes the role and receives short-lived, automatically rotated credentials instead.
+
+An **AMI (Amazon Machine Image)** is a template for an EC2 instance's root filesystem — the OS, plus whatever software and configuration was baked in when the image was created. Launching an EC2 instance always starts from some AMI (a public one, like a stock Amazon Linux image, or a custom one an organization built and versioned itself); Auto Scaling Groups launch every new instance from the same AMI specifically so that scale-out produces identical, predictable instances rather than each one being configured by hand after boot.
+
+### Infrastructure as Code and observability: CloudFormation and CloudWatch turn manual setup into a repeatable, watched system
+
+**CloudFormation** is AWS's native Infrastructure-as-Code service: a template (JSON or YAML) declares the desired resources — a VPC, subnets, an ALB, an Auto Scaling Group, an RDS instance — and CloudFormation creates, updates, or tears them down as a single managed **stack**, tracking what it created so a later `update` or `delete` operates on exactly those resources, not by re-discovering them. This is the same underlying idea [The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation](twelve-factor-config.md) applies to application configuration, extended to the infrastructure itself: the stack template, checked into version control, is the reviewable, reproducible source of truth for what exists, rather than a set of manual console clicks nobody can fully reconstruct later.
+
+**CloudWatch** is AWS's native monitoring and observability service: it collects **metrics** (CPU utilization, request count, queue depth), **logs** (from EC2, Lambda, ECS, and most other services), and can trigger **alarms** (e.g., "page someone if p99 latency exceeds 500ms for 5 minutes") that in turn can trigger an Auto Scaling action or a notification. It is the AWS-native instance of the same logging/metrics/tracing discipline [Logging, Metrics, Tracing, and OpenTelemetry](../13-observability/logging-metrics-tracing-and-opentelemetry.md) covers in vendor-neutral depth — CloudWatch Metrics is what an Auto Scaling target-tracking policy (mentioned above) actually reads to decide when to scale.
 
 ## Diagrams
 
@@ -311,6 +329,12 @@ AWS's core backend services cluster into compute, storage, database, and messagi
 | High-throughput, key-based access, known query patterns | DynamoDB |
 | Point-to-point, durable, buffered delivery | SQS |
 | Fan-out to multiple independent consumers | SNS (often with SQS per consumer) |
+| Isolated private network | VPC |
+| No direct internet route for a resource | Private subnet |
+| Instance/ALB/RDS-level stateful firewall | Security Group |
+| Who/what can call which AWS API | IAM (role, for a running service — not a long-lived key) |
+| Repeatable, version-controlled infrastructure | CloudFormation |
+| Metrics, logs, and alarms | CloudWatch |
 
 ## Flashcards
 
@@ -361,6 +385,23 @@ They solve different problems; a workflow needing both fan-out and durable per-c
 
 **Common trap:**
 Treating SQS and SNS as alternatives rather than complementary.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: Security Group vs. Network ACL
+
+**Prompt:**
+What's the actual difference between a Security Group and a Network ACL?
+
+**Answer:**
+A Security Group is stateful and applied per instance/resource — an allowed inbound request's response is automatically allowed back out. A Network ACL is stateless and applied per subnet — inbound and outbound rules are evaluated independently, so a return response needs its own explicit outbound rule too.
+
+**Why it matters:**
+"Stateful vs. stateless" is the real distinction interviewers probe for; most backend workloads only ever need Security Groups.
+
+**Common trap:**
+Assuming both work the same way just at different layers, rather than one genuinely tracking connection state and the other not.
 
 **Related:**
 [Core Concepts](#core-concepts)

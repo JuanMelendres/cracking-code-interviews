@@ -2,7 +2,7 @@
 title: "Engineering Practices — Domain Index"
 document_type: syllabus-domain-index
 domain: 18-engineering-practices
-status: 5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06)
+status: 5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06); 6th chapter added 2026-09-08 (SDLC and Agile Methodology Fundamentals, T-2212, a Junior Fundamentals addition found via a Notion knowledge-base review)
 last_updated: 2026-09-06
 ---
 
@@ -22,6 +22,7 @@ Git internals, code review, technical writing (ADRs), working with legacy code, 
 | T-1802 | [Architecture Decision Records and Technical Writing for Engineers](architecture-decision-records-and-technical-writing.md) | L1, L2, L3, L4 — fully written | `syllabus/18-engineering-practices/architecture-decision-records-and-technical-writing.md` |
 | T-1803 | [Working with Legacy Code](working-with-legacy-code.md) | L1, L2, L3, L4 — fully written | `syllabus/18-engineering-practices/working-with-legacy-code.md` |
 | T-1804 | [Refactoring Discipline](refactoring-discipline.md) | L1, L2, L3, L4 — fully written | `syllabus/18-engineering-practices/refactoring-discipline.md` |
+| T-2212 | [SDLC and Agile Methodology Fundamentals](sdlc-and-agile-methodology-fundamentals.md) | L1, L2 — fully written (2026-09-08) | `syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md` |
 
 **This domain is now complete.** T-1802 deliberately does not duplicate [Trade-off Narration and Architecture Decision Records](../20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md) (the interview-answer application of the same underlying skill, already migrated to `20-interview-preparation`) — it is the canonical, general engineering-practice reference that playbook entry's own "ADRs — the Written Form of the Same Skill" section points to. T-1803's practice code (`practice/java/engineering-practices/legacy-code/`) surfaced a genuine, real finding while being built — a discount-cliff quirk in the demo's own deliberately-legacy pricing method — used directly as the chapter's central worked example of characterization testing, rather than an invented one. T-1804's practice code (`practice/java/engineering-practices/refactoring-discipline/`) proves a real three-step Extract Method refactor is behavior-preserving via a parity test comparing before/after output across 10 real cases, all passing. Cheat sheets and flashcard decks for all four new topics were added 2026-09-06 and 2026-09-07 respectively (see `cheat-sheets/README.md`'s New-Writing Domain Cheat Sheets table and `flashcards/README.md`'s New-Writing Domain Decks table; `git-internals-and-collaboration-workflows.md` already had both from an earlier batch). Production-cookbook was investigated rather than batch-written (2026-09-07): `code-review-standards-and-practice.md` and `architecture-decision-records-and-technical-writing.md` already cite an existing entry; `refactoring-discipline.md` and `working-with-legacy-code.md` have no citation, but each one's own Section 14 explicitly documents why (no existing entry has that specific root cause) with a `Planned reference` note, not a placeholder awaiting action — per `production-cookbook/README.md`'s own "elevate an existing worked scenario, never invent one" rule, this is a resolved, honest gap.
 

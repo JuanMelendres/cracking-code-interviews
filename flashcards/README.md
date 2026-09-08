@@ -234,6 +234,10 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 | N41 | [Java Modifiers and Method Signatures](java-modifiers-and-method-signatures.md) | T-2210 | 5 | `syllabus/02-java/language-core/java-modifiers-and-method-signatures.md` |
 | N42 | [Java Version Features Timeline](java-version-features-timeline.md) | T-2211 | 5 | `syllabus/02-java/language-core/java-version-features-timeline.md` |
 
+**Added 2026-09-08 (batch 6): SDLC and Agile Methodology Fundamentals**, found via a review of 6 additional Notion databases/views — see `cheat-sheets/README.md`'s own sixth batch.
+
+| N43 | [SDLC and Agile Methodology Fundamentals](sdlc-and-agile-methodology-fundamentals.md) | T-2212 | 5 | `syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md` |
+
 ## Frontend Decks (F-codes, no IWI)
 
 **Added 2026-09-07.** The frontend domain (`syllabus/21-frontend-web/`) uses the Master Topic Register's F-codes and a Beginner/Intermediate/Advanced/Expert tier instead of the backend's numeric IWI score, same as `cheat-sheets/`'s own Frontend Cheat Sheets section (which closed this same gap for cheat sheets on 2026-09-03). Unlike the new-writing-domain decks above, every one of these 31 chapters already has its own embedded `## Flashcards` section, written when the chapter itself was authored — this batch is a pure extraction, not new content, matching the same discipline used for the 137 pre-existing backend decks. `frontend-live-coding-and-debugging-protocol.md` (a `playbook-technical-answer`-typed chapter with no F-code) is deliberately excluded, matching the identical, already-established exclusion in `cheat-sheets/README.md`'s own Frontend Cheat Sheets table (31, not 32).
@@ -283,7 +287,9 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 
 **2026-09-08 — 3 new frontend Junior Fundamentals decks.** Closing the same "assumes the basics" gap found and fixed for the Java backend domain, 3 new floor-level frontend topics (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals) each got a 5-card deck — see the new rows at the top of the Frontend Decks table above. **New total, verified directly against the file system: 210 decks (137 backend + 39 new-writing-domain + 34 frontend), 710 cards.**
 
-**2026-09-08 — 3 more backend Junior Fundamentals decks** (T-2209, T-2210, T-2211 — see the new-writing-domain batch 5 rows above), each with 5 cards. **Final total, verified directly against the file system: 213 decks (137 backend + 42 new-writing-domain + 34 frontend), 725 cards.**
+**2026-09-08 — 3 more backend Junior Fundamentals decks** (T-2209, T-2210, T-2211 — see the new-writing-domain batch 5 rows above), each with 5 cards. **New total, verified directly against the file system: 213 decks (137 backend + 42 new-writing-domain + 34 frontend), 725 cards.**
+
+**2026-09-08 — 1 more Junior Fundamentals deck** (T-2212, SDLC and Agile Methodology Fundamentals — see the new-writing-domain batch 6 row above), 5 cards. **Final total, verified directly against the file system: 214 decks (137 backend + 43 new-writing-domain + 34 frontend), 730 cards.**
 
 ## How this relates to other deliverables
 
