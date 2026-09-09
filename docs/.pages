@@ -1,0 +1,8 @@
+nav:
+  - Home: index.md
+  - Syllabus: syllabus
+  - Study Packs: study-packs
+  - Cheat Sheets: cheat-sheets
+  - Flashcards: flashcards
+  - Architecture Atlas: architecture-atlas
+  - Production Cookbook: production-cookbook

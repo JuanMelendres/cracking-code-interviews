@@ -38,10 +38,17 @@ markdown_extensions:
 
 plugins:
   - search
+  - awesome-pages
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
 
-# No explicit nav yet -- MkDocs auto-generates it from the folder structure.
-# This is an MVP; curated ordering (driven by each domain's own INDEX.md) is
-# a follow-up, not required to get a working, browsable site.
+extra_css:
+  - stylesheets/extra.css
+
+# Nav ordering/titles are curated per-directory via .pages files (the
+# mkdocs-awesome-pages-plugin convention) rather than one giant explicit
+# list here -- see study-packs/.pages, syllabus/*/.pages, and the many
+# study-pack week-NN/.pages files that hide MANIFEST.md from the sidebar
+# (still built, linked from its README, and searchable -- just not
+# cluttering the nav tree with two entries per week).

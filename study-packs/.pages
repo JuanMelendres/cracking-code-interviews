@@ -1,0 +1,11 @@
+title: Study Packs
+nav:
+  - README.md
+  - Junior → Mid: junior-to-mid
+  - Mid → Senior: mid-to-senior
+  - Senior → Staff: senior-to-staff
+  - Backend Java Specialization: backend-java-specialization
+  - Senior Interview Refresh: senior-interview-refresh
+  - Frontend Junior → Mid: frontend-junior-to-mid
+  - Frontend Mid → Senior: frontend-mid-to-senior
+  - ...

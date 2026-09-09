@@ -56,8 +56,14 @@ __pycache__/
 .venv/
 .venv-docs/
 
-# MkDocs site build
+# MkDocs site build (docs/index.md, docs/.pages, docs/stylesheets/ are hand-authored and stay tracked)
 site/
+docs/syllabus/
+docs/study-packs/
+docs/cheat-sheets/
+docs/flashcards/
+docs/architecture-atlas/
+docs/production-cookbook/
 
 # Node (frontend domain: practice/frontend/*)
 node_modules/
