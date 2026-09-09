@@ -6,7 +6,7 @@ domain: 01-computer-science-foundations
 topic_id: T-2003
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - how-a-computer-executes-a-program.md
@@ -38,6 +38,27 @@ Every one of Java's numeric types has a fixed size and a specific encoding, and 
 **A computer stores every number as a fixed-length sequence of bits — 0s and 1s — and the same sequence of bits can mean different numbers depending on how it's interpreted.** There is no way to look at `01000001` sitting in memory and know what number it represents without also knowing the encoding rule being applied to it: as an 8-bit unsigned integer, it's 65; interpreted as a signed integer, still 65 (the top bit is 0, meaning positive); as an ASCII character, it's the letter `A`. The bits never change — only the agreed-upon rule for reading them does.
 
 **For whole numbers, the encoding almost universally used today is called two's complement.** Its central, memorable property: to represent a negative number, you don't just flip a "sign bit" and store the positive value next to it (that's a different, older, less common scheme called sign-and-magnitude) — you invert every bit of the positive value and add 1. This sounds arbitrary until you see the payoff in Section 4: it makes addition and subtraction work identically for positive and negative numbers, using the exact same hardware circuit, with no special-case logic needed anywhere.
+
+```text
+  5 as an 8-bit two's complement value:      00000101
+
+  to get -5:
+    step 1, invert every bit:                11111010
+    step 2, add 1:                         + 00000001
+                                            -----------
+    -5 is:                                   11111011
+```
+
+Adding `5 + (-5)` using plain binary addition, no special-casing for the negative operand at all:
+
+```text
+    00000101   (5)
+  + 11111011   (-5)
+  -----------
+    00000000   (0, with a carry out of the top bit that's simply discarded)
+```
+
+The hardware doesn't know or care that one operand is "negative" — it just adds the bit patterns, and two's complement's construction guarantees the result is correct regardless. This is the entire payoff: one adder circuit, no separate subtraction circuit, no sign-checking logic anywhere in the arithmetic path.
 
 **For numbers with a fractional part, computers use a scheme called floating point**, modeled loosely on scientific notation (`1.23 × 10^4`) but in binary. The key, unavoidable consequence, worth internalizing at the Foundation level before any code: **most decimal fractions — including ordinary numbers like `0.1` — cannot be represented exactly in binary floating point**, for the same structural reason that `1/3` cannot be written exactly as a finite decimal. This isn't a Java bug, a rounding mistake, or something a "better" floating-point implementation would fix — it's an inherent property of representing base-10 fractions in base 2, true in every language and every runtime that uses this encoding (which is nearly all of them).
 

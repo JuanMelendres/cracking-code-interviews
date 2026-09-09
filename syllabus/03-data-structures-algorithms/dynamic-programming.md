@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2110
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -45,7 +45,16 @@ DP problems have a reputation for being the hardest, most anxiety-inducing categ
 
 ## 4. Core Concepts (L2)
 
-**Two-string grid DP** (Edit Distance, Section 7 Problem 1) is the general pattern behind an enormous family of two-sequence comparison problems — Longest Common Subsequence and Longest Palindromic Substring are both restricted special cases of the same `dp[i][j]`-over-two-indices shape, differing only in what operations the recurrence allows.
+**Two-string grid DP** (Edit Distance, Section 7 Problem 1) is the general pattern behind an enormous family of two-sequence comparison problems — Longest Common Subsequence and Longest Palindromic Substring are both restricted special cases of the same `dp[i][j]`-over-two-indices shape, differing only in what operations the recurrence allows. The filled grid for transforming `"cat"` into `"cut"` (one substitution: `a`→`u`):
+
+|       | ""  | c   | u   | t   |
+|-------|-----|-----|-----|-----|
+| **""**  | 0   | 1   | 2   | 3   |
+| **c**   | 1   | 0   | 1   | 2   |
+| **ca**  | 2   | 1   | 1   | 2   |
+| **cat** | 3   | 2   | 2   | **1** |
+
+`dp[i][j]` is the edit distance between the first `i` characters of `"cat"` and the first `j` characters of `"cut"`. Row 0 and column 0 are the base cases (turning a prefix into `""`, or `""` into a prefix, costs exactly its length in deletions/insertions). Every other cell reads only cells already filled above and to the left — the state definition and fill order aren't independent choices, the recurrence dictates the fill order.
 
 **Reduction to an already-solved subproblem** (House Robber II's circular variant, Section 7 Problem 2) is often more valuable than deriving a new recurrence — recognizing that a circular constraint decomposes into two runs of an already-known linear recurrence is a genuinely transferable insight, not specific to this one problem.
 

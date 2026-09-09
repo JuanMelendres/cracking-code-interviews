@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2115
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - linked-lists-and-in-place-manipulation.md
@@ -44,6 +44,19 @@ Design problems (LRU/LFU caches, rate limiters, browser history, time-indexed st
 **A design-style problem specifies a class with multiple methods, each with its own required time complexity, and the entire problem is choosing and combining data structures so every method meets its bound simultaneously.** Unlike a single-function algorithm problem, there's rarely one "correct" algorithm — there's a composition of already-familiar structures (a hash map for O(1) lookup, a linked list for O(1) reordering, a heap for O(log n) extremes) chosen specifically because their combined guarantees satisfy every required operation.
 
 **The single most common composition pattern in this family is "a hash map from key to node, plus a linked structure maintaining some order among those same nodes"** — the hash map gives O(1) lookup by key; the linked structure gives O(1) reordering or removal once a node is already found, without needing to search for it again.
+
+```mermaid
+graph LR
+    subgraph "HashMap: key -> node reference"
+        M["A -> nodeA<br/>B -> nodeB<br/>C -> nodeC"]
+    end
+    subgraph "Doubly-linked list: recency order"
+        Head((head, most recent)) --> nodeC --> nodeB --> nodeA --> Tail((tail, least recent))
+    end
+    M -.O(1) lookup.-> nodeB
+```
+
+This is exactly an LRU cache's structure: `get(B)` uses the hash map for O(1) lookup of `nodeB`'s direct reference — no scanning the list — then, having that reference in hand, splices it to the head in O(1) using only its own `prev`/`next` pointers, no search required to *find* its current position. Neither structure alone meets the requirement: a plain hash map has no notion of recency order, and a plain linked list would need an O(n) scan to find a node by key in the first place.
 
 ## 4. Core Concepts (L2)
 

@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2102
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -42,6 +42,15 @@ A huge share of coding-interview problems reduce to some version of "have I seen
 **A hash-based structure (`HashSet`, `HashMap`) answers "have I seen this value?" or "how many times have I seen this value?" in roughly constant time**, regardless of how many values it already holds — a dramatic improvement over scanning a list, which gets slower as the list grows. This single property — near-free membership and counting — is why hashing shows up as the fix for so many otherwise-slow brute-force approaches.
 
 **The general shape of a hashing-pattern problem: as you process a sequence once, left to right, maintain a hash-based structure recording something about what you've already seen — and use it to answer a question about the current element in O(1), instead of re-scanning everything seen so far.**
+
+```text
+array: [2, 7, 11, 15]     target = 9     (Two Sum)
+
+i=0, val=2:  need 9-2=7.  map={} -> not found.  record: map = {2: 0}
+i=1, val=7:  need 9-7=2.  map={2:0} -> FOUND (index 0)!  answer = [0, 1]
+```
+
+The map holds "every value seen so far, and at what index" — so at each new element, the question "does some *earlier* element complete a pair with this one" is answered by a single O(1) lookup of the complement, instead of an inner loop re-scanning every earlier index (which is what makes the brute-force version O(n²)).
 
 ## 4. Core Concepts (L2)
 

@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2109
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -37,6 +37,18 @@ Backtracking problems are exhaustive-search problems in disguise — generate ev
 ## 3. Foundation (L1)
 
 **Backtracking explores a tree of choices: at each step, try one option, recurse into the consequences of that choice, then undo it and try the next option** — the "undo" step is what makes it backtracking rather than plain recursion or brute force. The canonical template: pick a choice, add it to the current partial solution, recurse, then remove it from the partial solution before the loop tries the next choice at that same level.
+
+```mermaid
+graph TD
+    Root["[ ]"] -->|choose 1| A["[1]"]
+    Root -->|skip 1| B["[ ]"]
+    A -->|choose 2| C["[1,2] leaf"]
+    A -->|skip 2, undo| D["[1] leaf"]
+    B -->|choose 2| E["[2] leaf"]
+    B -->|skip 2| F["[ ] leaf"]
+```
+
+Generating every subset of `[1, 2]`: each node is a *partial* solution, each edge a choice, and every path root-to-leaf is one complete subset — all four leaves (`[1,2]`, `[1]`, `[2]`, `[]`) together are exactly the 2² subsets of a 2-element set. "Undo" (the backtrack step) is what lets the same shared node `[1]` explore *both* the `choose 2` and `skip 2` branches instead of only one.
 
 **Every backtracking problem in this chapter follows the identical three-step shape** (Section 7, Problem 1 is the clearest example of it in isolation): make a choice, recurse one level deeper, undo the choice — repeated for every available option at every level of the recursion, until a complete solution is assembled or a branch is abandoned as invalid.
 

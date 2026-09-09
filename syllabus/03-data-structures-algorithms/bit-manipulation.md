@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2113
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/number-representation.md
@@ -40,6 +40,20 @@ Bit manipulation problems trade a small number of well-known bit-level tricks fo
 **Every technique in this chapter operates on the raw bit pattern of an integer**, using three primitive bitwise operators: `&` (AND, both bits must be 1), `|` (OR, either bit is 1), and `^` (XOR, exactly one bit is 1, not both) — plus bit shifts (`<<`, `>>`) that move bits left or right.
 
 **XOR's defining algebraic properties — `x ^ x = 0` and `0 ^ x = x` — are the foundation of this chapter's most common technique**: XOR-ing a collection of values together cancels out every value that appears an even number of times, leaving only whatever appears an odd number of times.
+
+```text
+array: [4, 1, 2, 1, 2]     -- every value appears twice except 4
+
+  100  (4)
+^ 001  (1)  =  101  (5)
+^ 010  (2)  =  111  (7)
+^ 001  (1)  =  110  (6)   <- the second 1 cancels the first: 111 ^ 001 = 110
+^ 010  (2)  =  100  (4)   <- the second 2 cancels the second value: 110 ^ 010 = 100
+
+result: 100 = 4, the one value that appeared an odd number of times
+```
+
+Order doesn't matter — XOR is commutative and associative, so every pair of duplicate values cancels to `0` regardless of where they sit in the array, leaving only the unpaired value once every operation has run.
 
 ## 4. Core Concepts (L2)
 

@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2117
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - binary-search-and-search-on-answer.md
@@ -42,6 +42,18 @@ These three structures answer a shared question — "update part of a large coll
 **A Fenwick tree (Binary Indexed Tree, BIT) supports two operations over a fixed-size array in O(log n): point update (add a value at an index) and prefix-sum query (sum of everything up to an index)** — dramatically faster than an O(n) prefix re-scan after every update, at a much smaller constant-factor cost than the more general segment tree.
 
 **A segment tree covers a range with a binary tree of sub-ranges, each internal node summarizing its two children (sum, max, or another combinable aggregate)**, so both point/range updates and range queries run in O(log n) instead of O(n) — a strict generalization of what a Fenwick tree does, supporting a wider range of aggregate operations at a somewhat higher constant-factor cost.
+
+```mermaid
+graph TD
+    Root["[0,3] sum=16"] --> L["[0,1] sum=4"]
+    Root --> R["[2,3] sum=12"]
+    L --> LL["[0,0]=1"]
+    L --> LR["[1,1]=3"]
+    R --> RL["[2,2]=5"]
+    R --> RR["[3,3]=7"]
+```
+
+For the array `[1, 3, 5, 7]`, each internal node's value is the sum of its two children — the root's `16` is the sum of the whole array, computed once and reused rather than re-added on every query. A range-sum query for `[0,2]` (values `1+3+5`) doesn't need to touch all three individual leaves: it can use the precomputed `[0,1]=4` node directly and add just the one remaining leaf `[2,2]=5`, touching O(log n) nodes instead of O(n) array elements.
 
 **A rolling hash recomputes a fixed- or variable-length window's hash in O(1) as the window slides one position**, instead of rehashing the entire window from scratch on every slide — the same amortized-per-step idea behind a sliding window's O(1) incremental update, applied to a hash computation specifically.
 

@@ -6,7 +6,7 @@ domain: 01-computer-science-foundations
 topic_id: T-2001
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -47,6 +47,16 @@ A few everyday analogies before any code:
 - **Finding a name in a phone book by repeatedly opening to the middle of the remaining range and discarding half** — each guess eliminates half of what's left, so doubling the phone book's size costs you only *one more guess*, not twice as many. That's **O(log n)**, logarithmic time.
 - **Reading every page of a book to find one fact** — double the book, double the reading. That's **O(n)**, linear time: cost grows in direct proportion to input size.
 - **Comparing every person in a room to every other person** (a group photo where everyone must shake everyone else's hand) — doubling the room's headcount roughly *quadruples* the number of handshakes, because now both "how many people" and "how many people each person must reach" have doubled. That's **O(n²)**, quadratic time.
+
+The same four growth rates, as actual operation counts, not just names:
+
+| n | O(1) | O(log n) | O(n) | O(n²) |
+|---|---|---|---|---|
+| 10 | 1 | ~3 | 10 | 100 |
+| 100 | 1 | ~7 | 100 | 10,000 |
+| 1,000 | 1 | ~10 | 1,000 | 1,000,000 |
+
+Going from `n=10` to `n=1,000` (a 100x increase in input size): the O(1) column never moves, O(log n) barely moves (3 to 10), O(n) scales exactly with the input (100x), and O(n²) explodes to 10,000x — the same 100x input growth, squared. This table is the entire reason "just use a faster computer" doesn't rescue an O(n²) algorithm at scale: a computer 100x faster still hits the same wall, just at a 100x larger `n`.
 
 Big-O is a way of naming *which of these shapes* an operation's cost follows, deliberately ignoring the exact constant (how fast your specific CPU is) and focusing only on how the shape changes as the input grows. That's the entire idea at the Foundation level: **Big-O names the growth curve, not the speed.**
 

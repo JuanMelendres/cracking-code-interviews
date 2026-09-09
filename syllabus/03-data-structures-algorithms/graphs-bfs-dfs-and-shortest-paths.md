@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2108
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -41,6 +41,17 @@ Graphs model an enormous range of real problems — networks, dependencies, maps
 **A graph is a set of nodes (vertices) connected by edges**, which can be directed (one-way) or undirected (two-way), and weighted (each edge has a cost) or unweighted. Unlike a tree, a graph can have cycles (a path that returns to where it started) and multiple distinct paths between the same two nodes — both possibilities that every graph algorithm in this chapter has to account for explicitly, usually via a "visited" tracking structure to avoid infinite loops or redundant work.
 
 **BFS (breadth-first search) explores a graph level by level, all nodes at distance 1 before any node at distance 2** — the natural choice whenever a problem asks for the shortest path in an *unweighted* graph, since BFS guarantees the first time a node is reached is via the fewest possible edges. **DFS (depth-first search) explores as deep as possible along one path before backtracking** — the natural choice for reachability questions, cycle detection, and topological ordering.
+
+```mermaid
+graph TD
+    A((A)) --- B((B))
+    A --- C((C))
+    B --- D((D))
+    C --- E((E))
+    D --- E
+```
+
+Starting from `A`: **BFS visits `A, B, C, D, E`** — every distance-1 node (`B`, `C`) before any distance-2 node (`D`, `E`). **DFS visits `A, B, D, E, C`** (or `A, C, E, D, B`, depending on neighbor order) — it commits to one branch (`A`→`B`→`D`) all the way down before backtracking to explore `C`. Same graph, same starting node, structurally different visit orders — which is exactly why the choice between them changes what a graph algorithm can answer efficiently.
 
 ## 4. Core Concepts (L2)
 

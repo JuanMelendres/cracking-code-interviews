@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2116
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - design-style-coding-problems.md
@@ -44,6 +44,23 @@ Concurrency coding problems test something genuinely different from single-threa
 **A concurrency coding problem asks for a class whose methods are called from multiple threads simultaneously, and whose correctness must hold regardless of the exact order those threads actually get scheduled in.** This is fundamentally different from a single-threaded algorithm's correctness, which only needs to hold for one deterministic execution path per input.
 
 **The standard building blocks for these problems are `Semaphore` (permits controlling how many threads may proceed), intrinsic locks via `synchronized` (mutual exclusion around a critical section), and `wait()`/`notify()`/`notifyAll()` (a thread waiting for a condition to become true, and other threads signaling that it might now hold).** Every problem in this chapter composes these primitives to enforce a specific ordering or exclusion guarantee.
+
+```mermaid
+sequenceDiagram
+    participant P as Producer thread
+    participant Q as shared queue (lock)
+    participant C as Consumer thread
+
+    C->>Q: acquire lock, queue is empty
+    C->>C: wait() -- releases lock, blocks
+    P->>Q: acquire lock, add item
+    P->>C: notify() -- wake one waiting thread
+    P->>Q: release lock
+    C->>Q: re-acquire lock, re-check condition
+    C->>Q: remove item, release lock
+```
+
+`wait()` is only ever safe *inside* a loop that re-checks the condition after waking up — a woken thread doesn't get to assume the condition it was waiting for is still true (another thread could have raced it to the queue), it only gets to assume it's worth checking again. This exact "re-check after wake, don't assume" discipline is what separates a correct producer-consumer implementation from one with a rare, hard-to-reproduce race condition.
 
 ## 4. Core Concepts (L2)
 

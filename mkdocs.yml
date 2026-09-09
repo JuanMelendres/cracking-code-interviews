@@ -1,12 +1,17 @@
 site_name: Cracking Code Interviews
 site_description: Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.
 site_author: Juan Melendres
+site_url: https://juanmelendres.github.io/cracking-code-interviews/
 copyright: Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
 docs_dir: docs
 site_dir: site
 
 theme:
   name: material
+  custom_dir: overrides
+  favicon: assets/images/favicon.png
+  icon:
+    logo: material/code-braces
   palette:
     - scheme: default
       primary: indigo

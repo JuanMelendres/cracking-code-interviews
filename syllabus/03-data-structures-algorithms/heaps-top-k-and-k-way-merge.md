@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2106
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -38,6 +38,16 @@ A huge class of problems reduces to "repeatedly find and remove the current extr
 ## 3. Foundation (L1)
 
 **A heap is a data structure specialized for one job: quickly finding and removing the current minimum (or maximum) element from a changing collection.** Unlike a fully sorted structure, a heap doesn't maintain a total order over every element — it only guarantees the single smallest (or largest) is always immediately accessible, which is exactly why inserting or removing costs only O(log n) rather than the O(n log n) a full re-sort would cost.
+
+```mermaid
+graph TD
+    R((3)) --- L((8))
+    R --- Rt((5))
+    L --- LL((12))
+    L --- LR((9))
+```
+
+This is a valid min-heap: every parent is `<=` both its children (`3<=8`, `3<=5`, `8<=12`, `8<=9`) — but note `8` and `5` aren't ordered relative to each other at all, and neither are `12` and `9`. A heap only guarantees the *root* is the minimum; it deliberately does not sort siblings or cousins, which is exactly the relaxed guarantee that makes O(log n) insert/remove possible.
 
 **Java's `PriorityQueue` is a min-heap by default** — `poll()` always returns the smallest element currently in the queue. A max-heap is built by supplying a reversed comparator (`Collections.reverseOrder()`, or `(a, b) -> b - a`), not a different class.
 

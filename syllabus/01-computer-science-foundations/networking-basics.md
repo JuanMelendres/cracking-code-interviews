@@ -6,7 +6,7 @@ domain: 01-computer-science-foundations
 topic_id: T-2005
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - os-process-thread-model.md
@@ -40,6 +40,19 @@ official_references:
 **Two computers on a network exchange raw bytes over a connection, and TCP (Transmission Control Protocol) is the layer that turns an unreliable underlying network into something that feels like a reliable, ordered, byte-by-byte stream** — the bytes you write on one end arrive on the other end in the same order you wrote them, or the connection reports a failure; nothing arrives silently corrupted, duplicated, or out of order, however messy the actual physical network in between happens to be. Every one of Java's `Socket` reads and writes operates on top of exactly this guarantee.
 
 **Before either side can send anything, TCP requires a connection to be established — a "handshake"** — a brief up-front exchange whose entire purpose is for both sides to agree the connection is real and ready before any actual data flows. This handshake takes real, measurable time (at minimum, one full network round-trip), which is why "opening a new connection for every single request" is more expensive than reusing one already-open connection for several requests in a row — exactly the trade-off `HTTP/1.1`'s default `keep-alive` behavior (Section 5) is designed around.
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+    C->>S: SYN (I want to connect, my starting sequence number is X)
+    S->>C: SYN-ACK (I acknowledge X, here's my starting sequence number Y)
+    C->>S: ACK (I acknowledge Y -- connection established)
+    Note over C,S: One full round-trip elapsed before any real data is sent
+    C->>S: actual request data
+```
+
+Three messages, one and a half round-trips, before a single byte of the actual HTTP request goes out — this fixed cost is why connection reuse (`keep-alive`, connection pooling) matters so much in practice: a service making a fresh TCP connection for every request pays this handshake cost on every single one, while a pooled connection pays it once and amortizes it across many requests.
 
 **HTTP (Hypertext Transfer Protocol) is simply an agreed-upon text format sent over a TCP connection** — a request is a handful of plain-text lines (a method and a path, then headers, then optionally a body); a response is the same shape (a status line, then headers, then optionally a body). There is no special binary wire format most of the time (HTTP/1.1, still the most common version in ordinary backend work); it's genuinely just text, which the practice demo for this topic shows directly, byte for byte, with no HTTP library involved on either end.
 

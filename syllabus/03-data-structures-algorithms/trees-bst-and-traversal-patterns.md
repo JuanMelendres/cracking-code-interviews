@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2107
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -55,7 +55,19 @@ Tree problems are less about a single algorithm and more about correctly structu
 
 **Diameter of Binary Tree's single-pass efficiency**: computing "depth from every node" independently, from scratch, at every node would cost O(n) per node, O(n²) overall — but a single post-order pass computes each node's depth exactly once (returned to its parent) while simultaneously checking, at that same node, whether `leftDepth + rightDepth` beats the running maximum, since that sum is exactly the length of the longest path passing through this specific node. Every node gets to be a "candidate highest point" for the diameter exactly once, during the single pass that also computes its own depth — no redundant work.
 
-**BST reconstruction from preorder and inorder, precisely**: the *next* unconsumed value in the pre-order sequence is always the current subtree's root, since pre-order visits a node before either of its subtrees. But pre-order alone can't say where the left subtree ends and the right begins — that boundary comes from finding the root's value in the in-order sequence: everything to its left in-order is entirely the left subtree (regardless of that subtree's own internal structure), and everything to its right is entirely the right subtree. Precomputing a value-to-index hash map for the in-order sequence turns each boundary lookup into O(1) rather than an O(n) linear scan per recursive call — the exact difference between an O(n) and an O(n²) reconstruction, a direct, concrete application of [Hashing Patterns'](hashing-patterns-and-frequency-maps.md#3-foundation-l1) O(1)-lookup principle to a tree-construction problem. The shared, mutable pre-order index (an `int[1]`, the same side-channel technique as Diameter's `int[1]`) is necessary because pre-order values must be consumed strictly left-to-right across the *entire* recursion tree, not independently reset per subtree.
+**BST reconstruction from preorder and inorder, precisely**, worked through on one concrete tree:
+
+```mermaid
+graph TD
+    N5["5 (root)"] --> N3["3"]
+    N5 --> N8["8"]
+    N3 --> N1["1"]
+    N3 --> N4["4"]
+    N8 --> N7["7"]
+    N8 --> N9["9"]
+```
+
+For this tree, pre-order is `[5, 3, 1, 4, 8, 7, 9]` and in-order is `[1, 3, 4, 5, 7, 8, 9]`. The *next* unconsumed value in the pre-order sequence is always the current subtree's root, since pre-order visits a node before either of its subtrees. But pre-order alone can't say where the left subtree ends and the right begins — that boundary comes from finding the root's value in the in-order sequence: everything to its left in-order is entirely the left subtree (regardless of that subtree's own internal structure), and everything to its right is entirely the right subtree. Precomputing a value-to-index hash map for the in-order sequence turns each boundary lookup into O(1) rather than an O(n) linear scan per recursive call — the exact difference between an O(n) and an O(n²) reconstruction, a direct, concrete application of [Hashing Patterns'](hashing-patterns-and-frequency-maps.md#3-foundation-l1) O(1)-lookup principle to a tree-construction problem. The shared, mutable pre-order index (an `int[1]`, the same side-channel technique as Diameter's `int[1]`) is necessary because pre-order values must be consumed strictly left-to-right across the *entire* recursion tree, not independently reset per subtree.
 
 **Path Sum's "decrement on the way down" restructuring** (Section 7, Problem 5): rather than accumulating a running sum on the way down and comparing it against the target only at a leaf, subtracting the current node's value from the target *before* recursing means the leaf-level check is always the same simple comparison (`root.val == targetSum`) — the "how much has been spent so far" bookkeeping is folded entirely into what the target itself represents at each recursive depth, a small restructuring that removes the need for a separate accumulator parameter.
 

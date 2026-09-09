@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2112
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - dynamic-programming.md
@@ -40,6 +40,25 @@ Greedy algorithms are usually short and fast (often O(n) or O(n log n)) — but 
 **A greedy algorithm makes the choice that looks best right now, commits to it permanently, and moves on — it never backtracks or reconsiders an earlier decision.** This works only when the problem has a specific property: the locally-best choice at each step is provably part of *some* globally optimal solution, meaning no future information could ever make an earlier greedy choice look wrong in hindsight.
 
 **An exchange argument is the standard way to prove a greedy choice is safe**: assume some optimal solution makes a different choice than the greedy one at some step, then show that swapping in the greedy choice instead either produces an equally good or strictly better solution — proving the greedy choice is never worse.
+
+```text
+timeline:   1  2  3  4  5  6  7  8      (activity selection: pick max non-overlapping)
+
+[1,3]:      [=====]
+[2,5]:         [==========]
+[4,7]:                  [==========]
+[6,8]:                        [=====]
+
+greedy picks earliest FINISH time first:
+  pick [1,3] (finishes at 3, earliest of all four)
+  [2,5] starts at 2, before 3 -> skip (overlaps)
+  [4,7] starts at 4, at/after 3 -> pick (finishes at 7)
+  [6,8] starts at 6, before 7 -> skip (overlaps)
+
+result: [1,3] + [4,7] = 2 activities
+```
+
+Picking by earliest *finish* time (not earliest start, and not shortest duration) is the greedy choice an exchange argument proves safe here: whatever activity any optimal solution picks first, swapping in the earliest-finishing one instead can only leave *more* room for everything that comes after, never less — so it's never a worse choice than any alternative.
 
 ## 4. Core Concepts (L2)
 

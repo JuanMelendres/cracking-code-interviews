@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2103
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -38,6 +38,16 @@ Binary search on a plain sorted array is a warm-up most candidates clear easily;
 ## 3. Foundation (L1)
 
 **Binary search finds a target in a sorted collection by repeatedly checking the middle element and discarding the half that can't contain the answer** — exactly the phone-book analogy [Algorithmic Complexity's Foundation section](../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md#3-foundation-l1) uses. Each comparison eliminates half of what's left, which is why it takes only about 20 comparisons to search among a million items, rather than up to a million.
+
+```text
+index:   0    1    2    3    4    5    6
+array: [ 1 ][ 3 ][ 5 ][ 7 ][ 9 ][11 ][13 ]     target = 11
+
+step 1:  lo=0             mid=3(7)          hi=6     7 < 11 -> discard indices 0-3
+step 2:                        lo=4  mid=5(11)=hi=6  found at index 5
+```
+
+Two comparisons eliminated 5 of the 7 elements without ever inspecting them — the whole left half is discarded the instant `array[mid] < target` is known, because the array's sortedness guarantees nothing to the left of `mid` could possibly be larger.
 
 **The technique generalizes beyond "find a value in a sorted array" to "find the boundary point of a monotonic condition"** — anywhere a yes/no answer flips exactly once as you move across a range (true, true, true, false, false, false), binary search finds that flip point in O(log(range)), whether the range is array indices or something else entirely, like a candidate numeric answer.
 

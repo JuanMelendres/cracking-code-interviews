@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2114
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - backtracking-and-pruning.md
@@ -39,6 +39,18 @@ A `HashSet<String>` answers "is this exact string present" in O(1) average, but 
 ## 3. Foundation (L1)
 
 **A trie is a tree where each node represents one character, and a path from the root to a marked node spells out one complete stored string.** Two strings sharing a common prefix share the same path through the trie for that prefix's length, only diverging where the strings themselves diverge — this shared-path structure is exactly what makes prefix queries fast.
+
+```mermaid
+graph TD
+    Root((root)) --> C(c)
+    C --> A(a)
+    A --> T["t *(end: cat)*"]
+    A --> R(r)
+    R --> R2["*(end: car)*"]
+    R --> T2["t *(end: cart)*"]
+```
+
+Inserting `"cat"`, `"car"`, and `"cart"`: all three share the `c -> a` path (the common prefix `"ca"`), then diverge at the third character. `"car"` marks its own node as end-of-word *and* has a child (`"cart"` continues through it) — a node can be both a complete word and a prefix of a longer one, which is exactly why the end-of-word flag is a separate boolean, not implied by "has no children."
 
 **Each trie node typically holds an array (or map) of children — one slot per possible next character — plus a flag marking whether a complete word ends at this exact node.** Inserting a string walks or creates one node per character; searching for an exact match or a prefix walks the same path, checking either the end-of-word flag (exact match) or simply that the path exists at all (prefix match).
 

@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2104
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -49,6 +49,22 @@ Linked-list problems are less about a specific algorithm and more about careful,
 **The fixed-gap two-pointer technique** (Section 7, Problem 3) advances one pointer `n` steps ahead of the other, then moves both together — when the lead pointer reaches the end, the trailing pointer is exactly `n` nodes from the end, found in a single pass with no need to first count the list's total length.
 
 **In-place reversal** walks the list once, at each node redirecting its `next` pointer to point *backward* to the previous node instead of forward, using three tracked references (`prev`, `cur`, `next`) to avoid losing the rest of the list the instant a `next` pointer is overwritten. This is the single most-reused sub-technique across linked-list problems — Reorder List (Section 7, Problem 4) uses it as one step inside a larger three-step algorithm.
+
+```mermaid
+graph LR
+    subgraph "Before: 1 -> 2 -> 3 -> null"
+        A1["1"] --> A2["2"] --> A3["3"] --> A4["null"]
+    end
+```
+
+```mermaid
+graph RL
+    subgraph "After: null <- 1 <- 2 <- 3 (head is now 3)"
+        B4["null"] --> B1["1"] --> B2["2"] --> B3["3"]
+    end
+```
+
+The three tracked references exist precisely because of this rewiring: at the moment `cur`'s (say, node `2`'s) `next` pointer is overwritten to point back to `prev` (node `1`), the *original* forward link to node `3` is gone from that node forever — `next` must already be saved (pointing at node `3`) *before* the overwrite happens, or the rest of the list is unreachable.
 
 **The hash-map-clone technique** (Copy List with Random Pointer, Section 7, Problem 5) is what's needed whenever a structure has pointers that can reference *forward*, to a node not yet created in a single left-to-right pass — a plain single-pass copy can't resolve a `random` pointer to a node that doesn't exist yet, so the clone map must be fully built first, then wired in a second pass.
 

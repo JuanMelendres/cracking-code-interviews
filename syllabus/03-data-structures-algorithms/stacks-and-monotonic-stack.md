@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2105
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -40,6 +40,21 @@ A monotonic stack turns an O(n²) "for each element, scan forward or backward to
 **A stack is a last-in-first-out (LIFO) structure: the most recently added element is always the first one removed.** This single property makes it the natural tool for any problem involving matching or resolving something in the *reverse* order it was encountered — matching parentheses (the most recently opened bracket must be the next one closed), or evaluating a postfix expression (the most recently pushed operands are the ones the next operator applies to).
 
 **A monotonic stack maintains its elements in strictly increasing or strictly decreasing order at all times**, by popping (evicting) any element that violates that order before pushing a new one. The core insight: an evicted element can never again be useful for the specific question being asked, because a better (larger, or smaller) candidate has already been found — the same "evict dominated candidates" reasoning [Arrays, Two Pointers, and Sliding Window](arrays-two-pointers-and-sliding-window.md#4-core-concepts-l2) uses for its monotonic deque, here applied across the whole array rather than a bounded window.
+
+```text
+array: [2, 1, 1, 3]     -- find each element's "next greater" value
+
+i=0 (2): stack empty          -> push        stack (bottom->top): [2]
+i=1 (1): 1 is not > 2         -> push        stack: [2, 1]
+i=2 (1): 1 is not > 1         -> push        stack: [2, 1, 1]
+i=3 (3): 3 > 1 -> pop, next[2]=3
+          3 > 1 -> pop, next[1]=3
+          3 > 2 -> pop, next[0]=3            -> push        stack: [3]
+
+result: next-greater = [3, 3, 3, -1]   (index 3 has none: stack ends with just itself)
+```
+
+The `3` at index 3 evicts every smaller element still on the stack in one pass, because each of them just found its answer (`3` *is* their next-greater value) and can never be useful to any future element either — a later, even-larger value would evict `3` itself using the exact same rule, never reaching back past it to the already-resolved `1`s or `2`.
 
 ## 4. Core Concepts (L2)
 

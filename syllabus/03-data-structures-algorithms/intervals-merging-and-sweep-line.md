@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2111
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/number-representation.md
@@ -39,6 +39,20 @@ Interval problems model an enormous range of real scheduling and resource-alloca
 ## 3. Foundation (L1)
 
 **An interval is a range `[start, end]`, and most interval problems reduce to one core operation: determine whether two intervals overlap, and if so, how.** Two intervals `[a, b]` and `[c, d]` overlap exactly when `a <= d && c <= b` — both must start before the other ends.
+
+```text
+timeline:  1  2  3  4  5  6  7  8  9  10 ... 15 16 17 18
+
+[1,3]:     [======]
+[2,6]:        [============]
+[8,10]:                        [======]
+[15,18]:                                        [=========]
+
+merged:    [================]  [======]        [=========]
+              [1,6]              [8,10]           [15,18]
+```
+
+`[1,3]` and `[2,6]` overlap (`1 <= 6 && 2 <= 3`) and merge into `[1,6]`; `[8,10]` starts after `[1,6]` ends, so it stands alone; `[15,18]` likewise. Sorting by start first is what makes a single left-to-right sweep sufficient — once intervals are in start order, the *only* interval a new one could possibly overlap is the most recently merged one, never an earlier one already passed.
 
 **Sorting is almost always the first step**, and *which* field to sort by — start or end — depends on the specific question being asked, not on habit. Sorting by the wrong field is one of the most common interval-problem mistakes (Section 8).
 

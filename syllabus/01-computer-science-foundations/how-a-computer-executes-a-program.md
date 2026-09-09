@@ -6,7 +6,7 @@ domain: 01-computer-science-foundations
 topic_id: T-2002
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -43,6 +43,15 @@ None, by design — this is one of this domain's five foundational, prerequisite
 2. **Decode** — figure out what that instruction actually means: "add these two numbers," "store this value at that address," "jump to a different instruction if this condition is true."
 3. **Execute** — actually do it: perform the arithmetic, move the data, or change the program counter to point somewhere else (which is what an `if` or a loop or a function call ultimately compiles down to).
 4. **Repeat**, with the program counter now pointing at the next instruction — which might be the very next one in memory, or somewhere completely different, if step 3 was a jump.
+
+```mermaid
+graph LR
+    F["Fetch<br/>read instruction at PC"] --> D["Decode<br/>what does it mean?"]
+    D --> E["Execute<br/>do it"]
+    E -->|PC advances or jumps| F
+```
+
+This loop runs once per instruction, billions of times per second — a 3 GHz CPU completes roughly 3 billion of these cycles every second (fewer per second for instructions that take multiple cycles, more effective throughput for pipelined/superscalar designs that overlap stages, but the fetch-decode-execute shape underneath is unchanged). Every `if`, loop, and method call in a Java program eventually compiles down to nothing more exotic than this same four-step loop, repeated, with the **Execute** step occasionally changing the program counter to somewhere other than "the next instruction in memory" — which is the entire mechanism behind conditionals and jumps.
 
 **A "program" is, underneath every abstraction layered on top of it, a list of these tiny instructions in memory**, and a "variable" is, underneath its name and its type, a location in memory or a slot in one of the CPU's own tiny, extremely fast storage slots (**registers**) that a specific instruction reads from or writes to. Everything else — objects, methods, `for` loops, `HashMap`s — is a story humans tell so they don't have to think in these terms directly. The story is genuinely useful; it is also, at some point in a career, worth being able to see through.
 

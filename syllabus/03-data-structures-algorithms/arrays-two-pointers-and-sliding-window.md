@@ -6,7 +6,7 @@ domain: 03-data-structures-algorithms
 topic_id: T-2101
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -41,6 +41,16 @@ Two pointers and sliding window are the single most frequently tested pattern in
 **A two-pointer technique uses two index variables that move through an array (or string) according to some rule, instead of a nested loop that re-scans from the beginning for every outer step.** The canonical shape: one pointer starts at the beginning, one at the end, and they move toward each other based on a comparison — each step provably eliminates possibilities that could never be part of a better answer, so the pointers never need to backtrack.
 
 **A sliding window is the same idea applied to a contiguous subarray or substring**: instead of checking every possible start-and-end pair (an O(n²) count of subarrays), maintain a "window" — a `[left, right]` range — and grow or shrink it one side at a time, updating a running answer incrementally rather than recomputing it from scratch for every window.
+
+```text
+index:   0    1    2    3    4    5
+array: [ 4 ][ 2 ][ 1 ][ 7 ][ 3 ][ 5 ]
+             L....R                    step 1: window [1,2], sum=3
+             L.........R               step 2: grow right, window [1,3], sum=10
+                  L....R               step 3: shrink left, window [2,3], sum=8
+```
+
+`right` only ever moves forward and `left` only ever moves forward — neither pointer backtracks — which is exactly why a sliding window is O(n) total rather than O(n²): each index is added to the window (by `right`) and removed from it (by `left`) at most once across the entire pass.
 
 **Both techniques exist because of the same underlying insight**: for many problems, most of the pairs or subarrays a brute-force approach would check are *provably* not worth checking, given what's already been learned from checking a related pair or window. Recognizing which comparisons are safe to skip — and being able to justify *why* they're safe to skip — is the actual skill, not just knowing "use two pointers" as an incantation.
 

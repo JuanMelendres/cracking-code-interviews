@@ -6,7 +6,7 @@ domain: 01-computer-science-foundations
 topic_id: T-2004
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - how-a-computer-executes-a-program.md
@@ -41,6 +41,25 @@ official_references:
 **A process is a running program, together with everything it needs to run: its own private chunk of memory, its own open files, its own view of the world**, isolated from every other process on the same machine. When you launch two copies of the same application, the operating system gives each one its own separate process — they can't accidentally read or corrupt each other's memory, because as far as each process can tell, it has the entire machine's memory to itself (an illusion the OS maintains through virtual memory).
 
 **A thread is a single instruction stream running inside a process**, and a process can have more than one — all the threads inside one process share that process's memory (which is exactly how two threads in the same Java program can both read and write the same object), but each thread keeps its own private call stack (Section 5 of [How a Computer Executes a Program](how-a-computer-executes-a-program.md)) and its own copy of the CPU's registers, including its own program counter, so each can be at a different point in its own instruction stream at any moment.
+
+```mermaid
+graph TD
+    subgraph "Process (its own isolated memory)"
+        H["Shared heap<br/>(objects, static fields --<br/>every thread below can read/write this)"]
+        subgraph T1["Thread 1"]
+            S1["own call stack"]
+            R1["own registers, own program counter"]
+        end
+        subgraph T2["Thread 2"]
+            S2["own call stack"]
+            R2["own registers, own program counter"]
+        end
+        T1 -.reads/writes.-> H
+        T2 -.reads/writes.-> H
+    end
+```
+
+Two threads in the same process can corrupt each other's data by racing on the *shared* heap (exactly the problem `synchronized`, locks, and the Java Memory Model exist to manage) — but neither thread can ever accidentally read or overwrite the *other's* call stack or registers, because those aren't shared at all. Two separate *processes*, by contrast, share none of this — not even the heap — which is why processes need explicit IPC (sockets, pipes, shared memory segments) to communicate at all, while threads in the same process can communicate simply by reading and writing the same object.
 
 **A CPU core can only genuinely execute one thread's instructions at any single instant** — with, say, 4 cores and 50 runnable threads, the operating system cannot actually run all 50 at once. What it does instead is **context switching**: rapidly swapping which thread each core is running, many times per second, so fast that from a human's perspective everything appears to run simultaneously, even though at any precise instant only as many threads as there are cores are truly executing.
 
