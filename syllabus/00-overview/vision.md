@@ -2,7 +2,7 @@
 title: "Vision"
 document_type: syllabus-overview
 status: extracted from the approved Syllabus Transformation Plan — Phase 1 scaffolding
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 source: 00-project/syllabus-transformation-plan.md
 ---
 
@@ -20,8 +20,9 @@ The repository today is a **personal, time-boxed interview-preparation system** 
 
 The repository becomes a **general-purpose engineering learning system**, structured around a career-long progression:
 
-```
-Junior Software Engineer → Mid-Level Engineer → Senior Engineer → Staff Engineer
+```mermaid
+graph LR
+    J["Junior Software<br/>Engineer"] --> M["Mid-Level<br/>Engineer"] --> S["Senior<br/>Engineer"] --> St["Staff<br/>Engineer"]
 ```
 
 Java backend engineering remains the primary specialization and the deepest track, but the system now also teaches the surrounding disciplines a backend engineer needs across a career: computer science foundations, software design, data structures and algorithms, databases, distributed systems, cloud, DevOps, testing, observability, security, system design, and technical leadership. Its organizing question becomes *"what does someone need to know, at increasing depth, to grow from Junior to Staff — and can they prove it?"*

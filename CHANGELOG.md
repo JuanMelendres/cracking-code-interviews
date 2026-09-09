@@ -2666,3 +2666,9 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 
 - Closed `19-leadership-staff`'s remaining gap (0 of 5 had a diagram): a currency-exchange influence diagram, an RFC lifecycle diagram, a migration-progress "last 10%" curve, a mentoring-vs-sponsorship comparison, and Fowler's technical-debt quadrant (deliberate/inadvertent × reckless/prudent) — the last one a near-perfect fit for a diagram since the source prose already describes a literal 2x2 quadrant.
 - Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
+### Added (Mermaid diagrams: Overview, partial by design)
+
+- Reviewed all 13 `00-overview` files (5 top-level + 8 individual learning-path documents). Added 3 genuine new diagrams where they added real value: a Junior-to-Staff progression diagram in `vision.md` (upgrading an existing plain-text arrow to real Mermaid), an L1-L4 mastery-ladder diagram in `mastery-model.md`, and an 8-path relationship diagram in `learning-paths.md`.
+- Deliberately did **not** add a diagram to the other 10 files: `taxonomy.md` already uses an ASCII directory tree (the correct tool for a filesystem structure, per this repo's own diagram-standard guidance), `topic-specification.md`'s 20-section list is already a table (a linear ordered list doesn't gain clarity from being forced into a flowchart), and the 8 individual learning-path documents are already topic-sequence tables — the right visual form for "ordered list of topics with a stop-at level," not something a flowchart would improve. Chasing 13/13 mermaid coverage would have meant forcing decorative diagrams onto already-well-represented tabular data, which this repository's own quality bar treats as worse, not better.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).

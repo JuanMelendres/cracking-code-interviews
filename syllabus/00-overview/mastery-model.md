@@ -2,7 +2,7 @@
 title: "Mastery Model"
 document_type: syllabus-overview
 status: extracted from the approved Syllabus Transformation Plan — Phase 1 scaffolding
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 source: 00-project/syllabus-transformation-plan.md
 ---
 
@@ -13,6 +13,13 @@ source: 00-project/syllabus-transformation-plan.md
 ## 5. Mastery model
 
 ### 5.1 The four levels
+
+```mermaid
+graph LR
+    L1["L1 Foundation<br/>what it is, why it exists"] --> L2["L2 Practitioner<br/>use it correctly,<br/>compare alternatives"]
+    L2 --> L3["L3 Senior<br/>internals, performance,<br/>debug in production"]
+    L3 --> L4["L4 Staff<br/>systemic consequences,<br/>defend the trade-off"]
+```
 
 | Level | Name | What it verifies | Example criterion (HashMap, `T-201`) |
 |---|---|---|---|

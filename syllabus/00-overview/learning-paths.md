@@ -2,7 +2,7 @@
 title: "Learning Paths"
 document_type: syllabus-overview
 status: Phase 1 outline extracted verbatim; Phase 6 assembly complete (2026-09-05) — all 6 real path documents now exist; 2 new frontend paths added 2026-09-08 (Scope Addendum domain, additive to the original 6, not a Phase 6 revision)
-last_updated: 2026-09-08
+last_updated: 2026-09-09
 source: 00-project/syllabus-transformation-plan.md
 ---
 
@@ -13,6 +13,17 @@ source: 00-project/syllabus-transformation-plan.md
 ## 6. Learning paths
 
 Learning paths are **curated sequences of existing canonical topic references** — never copies of topic content. A path document is short: an ordered list of topic links, a stated time budget, and per-topic guidance on *which mastery level to stop at* for this path's purpose.
+
+```mermaid
+graph LR
+    JM["Junior -> Mid<br/>(stops L2)"] --> MS["Mid -> Senior<br/>(stops L3)"] --> SS["Senior -> Staff<br/>(stops L4)"]
+    FJM["Frontend Junior -> Mid"] --> FMS["Frontend Mid -> Senior"]
+    MS --> BJS["Backend Java Specialization<br/>(stops L4, one track deep)"]
+    SS -.recall only.-> SIR["Senior Interview Refresh"]
+    JM -.urgent timeline.-> IES["Interview Emergency Sprint"]
+```
+
+Backend and frontend are two parallel tracks (same Junior-to-Staff shape, additive rather than merged, per `CLAUDE.md`'s Scope Addendum); Senior Interview Refresh and the Interview Emergency Sprint are the two paths that don't teach new material at any point along the main progression — one recalls what a Senior/Staff reader already knows, the other compresses the Junior-to-Mid path's own material under real time pressure.
 
 | Path | Audience / goal | Primary source material | Stops at level |
 |---|---|---|---|
