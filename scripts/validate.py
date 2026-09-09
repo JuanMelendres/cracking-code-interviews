@@ -11,7 +11,7 @@ from collections import defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-EXCLUDED_DIRS = {".git", "node_modules", ".venv", ".next", ".cache", "graft"}
+EXCLUDED_DIRS = {".git", "node_modules", ".venv", ".venv-docs", ".next", ".cache", "graft", "site"}
 
 errors: list[str] = []
 warnings: list[str] = []

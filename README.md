@@ -153,6 +153,20 @@ Prerequisites: JDK 17+ (JDK 21 used throughout so far), Docker (for every Postgr
 
 ---
 
+## Browsing this as a website
+
+The `syllabus/`, `study-packs/`, `cheat-sheets/`, `flashcards/`, `architecture-atlas/`, and `production-cookbook/` directories can be rendered as a searchable, navigable static site via [MkDocs Material](https://squidfunk.github.io/mkdocs-material/), reading the exact same Markdown files in place (`docs/` holds symlinks into them, not copies — nothing is duplicated). To run it locally:
+
+```bash
+python3 -m venv .venv-docs
+.venv-docs/bin/pip install -r requirements-docs.txt
+.venv-docs/bin/mkdocs serve
+```
+
+Then open <http://127.0.0.1:8000>. `mkdocs build` produces a static `site/` directory deployable anywhere (GitHub Pages, Vercel, S3). Navigation is currently auto-generated from the folder structure — an MVP, not yet curated to match each domain's own `INDEX.md` ordering.
+
+---
+
 ## Contribution and review workflow
 
 Single-author repository, but the discipline is deliberate — approved weeks must stay stable so week-over-week scores remain comparable.

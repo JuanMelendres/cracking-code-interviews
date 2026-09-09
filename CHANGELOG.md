@@ -2602,6 +2602,14 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 
 - Confirmed programmatically (not just via front-matter labels) that `syllabus/21-frontend-web/`'s 35 chapters really span L1 (6 chapters) through L4 (13 chapters), each with an actual Foundation or Staff-level heading, not just a claimed tier.
 
+### Added (MkDocs Material website, MVP)
+
+- User asked how to turn the repository into a visual, easy-to-distribute "dynamic book." Set up MkDocs Material in this same repo (not a separate repo, to avoid the exact content-duplication/sync-drift problem this project's own conventions exist to prevent): `mkdocs.yml` plus a `docs/` directory holding symlinks into `syllabus/`, `study-packs/`, `cheat-sheets/`, `flashcards/`, `architecture-atlas/`, and `production-cookbook/` (not copies — the site reads the same canonical files).
+- Verified end to end: `mkdocs build` succeeds (Mermaid diagrams render via `pymdownx.superfences` + the Mermaid JS bundle), `mkdocs serve` serves real pages (home, a syllabus chapter, cheat sheets index all returned HTTP 200). Navigation is currently auto-generated from the folder structure — an MVP; curating it to match each domain's own `INDEX.md` ordering is a follow-up, not done here.
+- Added `requirements-docs.txt` and a "Browsing this as a website" section to root `README.md` with the exact local-run commands.
+- Excluded `.venv-docs/` and `site/` (the built output) from `scripts/validate.py`'s directory walk — the first attempt scanned third-party library source inside the virtualenv and produced 178 false-positive "possible email address" errors; fixed by adding both to `EXCLUDED_DIRS`.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
 ### Added (private companion repo)
 
 - Real future interview-specific material (company prep, actual interview feedback, personal performance notes) now goes in a new, separate, local-only private repo (`cracking-code-interviews-private`, sibling directory, no remote) — user's decision, closing the standing privacy question from `syllabus-transformation-plan.md` §11. This repo's own already-anonymized company-prep file is unaffected.

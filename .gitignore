@@ -54,6 +54,10 @@ recordings/
 __pycache__/
 *.pyc
 .venv/
+.venv-docs/
+
+# MkDocs site build
+site/
 
 # Node (frontend domain: practice/frontend/*)
 node_modules/
