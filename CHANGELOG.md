@@ -2661,3 +2661,8 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Continued into `18-engineering-practices`' remaining 5 diagram-less chapters (of 6; `git-internals-and-collaboration-workflows.md` already had one): an ADR status-lifecycle diagram (Proposed/Accepted/Rejected/Deprecated/Superseded), a code-review feedback-priority quadrant (impact vs. ease-of-spotting), a refactoring before/after diagram (same inputs/outputs, only internal structure changes), a Waterfall-vs-Agile diagram naming feedback-loop length as the real mechanism rather than "old vs. modern," and a characterization-testing workflow diagram (observe real behavior -> pin it down -> now safe to refactor).
 - 36 chapters covered so far across five domains (DSA, CS Foundations, Testing, Security, Engineering Practices); remaining zero-coverage domains (Overview, Leadership & Staff, Interview Preparation) are lower priority per the original audit — softer, less inherently spatial subject matter.
 - Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).
+
+### Added (Mermaid/ASCII diagrams: Leadership & Staff, 5 chapters — full domain now covered)
+
+- Closed `19-leadership-staff`'s remaining gap (0 of 5 had a diagram): a currency-exchange influence diagram, an RFC lifecycle diagram, a migration-progress "last 10%" curve, a mentoring-vs-sponsorship comparison, and Fowler's technical-debt quadrant (deliberate/inadvertent × reckless/prudent) — the last one a near-perfect fit for a diagram since the source prose already describes a literal 2x2 quadrant.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).

@@ -6,7 +6,7 @@ domain: 19-leadership-staff
 topic_id: T-1905
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - cross-team-influence-without-authority.md
@@ -42,6 +42,16 @@ An organization's biggest technical decisions are made or unmade during the revi
 **A design review is the process of one or more people examining a proposed technical approach before it's committed to**, distinct from a code review (which examines an already-chosen implementation) in that it can still change the fundamental approach, not just its execution details. An **RFC** ("Request for Comments," a term and lifecycle popularized publicly by processes such as Rust's RFC process and Kubernetes' Enhancement Proposals) is a specific, formalized instance of this: a written proposal that moves through explicit states — typically draft, under review, accepted or rejected, and later, possibly, superseded — rather than an informal conversation with no defined endpoint.
 
 **Decision rights must be explicit, not assumed.** Every review process has an implicit answer to "who can actually block this, versus who can only comment" — when that answer isn't stated explicitly, reviewers behave as if they all have equal veto power, which produces exactly the unbounded-cycle and bikeshedding failure modes covered in Section 5.
+
+```mermaid
+graph LR
+    Draft --> Review["Under Review<br/>(comments, decision-rights holder can block)"]
+    Review --> Accepted
+    Review --> Rejected
+    Accepted --> Superseded["Superseded by a later RFC"]
+```
+
+The explicit lifecycle states are what prevent an RFC from becoming a conversation with no defined endpoint: "Under Review" has a real exit condition (the decision-rights holder accepts or rejects it), not an implicit "until everyone stops commenting" — which is precisely the unbounded state a review process without explicit decision rights tends to drift into.
 
 ## 4. Core Concepts (L2)
 

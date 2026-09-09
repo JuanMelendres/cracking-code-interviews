@@ -6,7 +6,7 @@ domain: 19-leadership-staff
 topic_id: T-1903
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - cross-team-influence-without-authority.md
@@ -39,6 +39,23 @@ The technical design of a migration is rarely the reason it fails — a well-des
 **A migration, at the organizational level, is a sequence of decisions made by multiple people over an extended period, not a single technical execution.** Its central leadership challenge is that the people who benefit from the migration's completion (often the whole organization, diffusely) are frequently not the same people who bear its cost (the specific engineers whose sprint capacity it consumes) — which means a migration with a strong technical case can still fail to get sustained priority unless someone actively manages that misalignment.
 
 **The "last 10%" problem is close to universal in large migrations**: the bulk of callers, usages, or data typically migrates relatively quickly, while a long tail of edge cases, rarely-touched call sites, and "we'll get to it later" stragglers consumes a disproportionate share of the total calendar time. A migration plan that doesn't explicitly account for this tail from the start routinely and predictably runs over its estimated timeline.
+
+```text
+% migrated
+  100 |                                                    ______________
+      |                                            ________
+   90 |                                    ________
+      |                          _________/                <- "last 10%":
+   70 |                  _______/                              stragglers,
+      |          _______/                                      edge cases,
+   40 |    ______/                                              rarely-touched
+      |   /                                                     call sites
+    0 |__/
+      +----------------------------------------------------------------> time
+        fast, easy wins           steadily slower            long, flat tail
+```
+
+The shape, not just the existence, of this curve is the planning insight: the steep early section is genuinely representative of *most* of the work, but is a systematically misleading basis for estimating the *remaining* work, since what's left behind is disproportionately the hardest, most-avoided, least-documented cases — a migration plan built by extrapolating the early slope predictably underestimates the calendar time the tail actually consumes.
 
 ## 4. Core Concepts (L2)
 

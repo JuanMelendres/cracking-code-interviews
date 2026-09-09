@@ -6,7 +6,7 @@ domain: 19-leadership-staff
 topic_id: T-1902
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -38,6 +38,14 @@ None — this is a foundational people-practice topic, though it builds naturall
 **Influence without authority is getting someone to act differently when you have no formal power to require it** — no shared manager, no budget control, no ability to assign their team's work. The book that names this skill directly, *Influence Without Authority* (Allan Cohen and David Bradford), frames it as a currency-exchange problem: people act on requests that offer them something they value in return, and the influencer's job is correctly identifying what that other team actually values, which is frequently not what the influencer assumes it is.
 
 **This is structurally different from persuasion by argument alone.** A technically correct case for a change is necessary but often not sufficient — a team with its own roadmap, headcount pressure, and incentives will not reprioritize their quarter for a technically sound proposal that costs them time and offers them nothing they were already trying to achieve.
+
+```mermaid
+graph LR
+    You["You: need Team B<br/>to adopt your new API"] -->|offer something THEY value:<br/>e.g. it removes a maintenance burden<br/>currently on their team| TeamB["Team B: has their own<br/>roadmap, headcount pressure"]
+    TeamB -->|in exchange, agrees to| You2["adopt the API this quarter"]
+```
+
+The exchange only works if what's offered is something the *other* team already values on *their* terms, not something the influencer assumes should matter to them — a technically elegant API that happens to remove a maintenance burden Team B was already unhappy about is a real trade; the same API pitched purely on "it's more consistent with our architecture" offers Team B nothing they were already trying to achieve, and gets deprioritized accordingly, however technically correct the argument is.
 
 ## 4. Core Concepts (L2)
 

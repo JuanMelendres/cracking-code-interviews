@@ -6,7 +6,7 @@ domain: 19-leadership-staff
 topic_id: T-1904
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - cross-team-influence-without-authority.md
@@ -39,6 +39,20 @@ Every engineering organization accumulates technical debt; what separates organi
 **Technical debt, in Ward Cunningham's original metaphor**, is the accepted shortcut of shipping a simpler, faster solution now with the understood cost of extra work required later — like financial debt, it can be a deliberate, reasonable tool (borrowing time now, at a known future interest cost) or an unmanaged liability that compounds. The Foundation-level mistake is treating "technical debt" as a synonym for "code I don't like" — not every disliked pattern is debt, and conflating the two weakens the term's usefulness as a prioritization tool.
 
 **Martin Fowler's technical debt quadrant** splits debt along two axes: deliberate versus inadvertent (was the shortcut a conscious trade-off, or an accident of not knowing better at the time), and reckless versus prudent (was the trade-off made with a clear understanding of its cost, or carelessly). *Reckless, deliberate* debt ("we don't have time to design this properly, let's just ship it" with no plan to revisit) is the most dangerous quadrant, since it combines full awareness of the risk with no accountability plan for repaying it.
+
+```mermaid
+graph TD
+    subgraph "Deliberate"
+        DP["Prudent-Deliberate:<br/>'we know this isn't ideal,<br/>but we must ship now' -- with a plan to repay"]
+        DR["Reckless-Deliberate:<br/>'we don't have time to design this,<br/>let's just ship it' -- no repayment plan"]
+    end
+    subgraph "Inadvertent"
+        IP["Prudent-Inadvertent:<br/>'now we know how we should<br/>have done it' -- learned after the fact"]
+        IR["Reckless-Inadvertent:<br/>'what's a layer?' -- lack of<br/>basic design knowledge"]
+    end
+```
+
+The two axes are independent, which is exactly why they need to be a quadrant rather than a single scale: *Reckless-Deliberate* is the most dangerous cell not because it's the "most debt," but because it combines full awareness of the trade-off with zero accountability for repaying it — the team knew the cost and chose not to plan for it, as opposed to *Prudent-Deliberate* debt, which is the same conscious trade-off made *with* an explicit repayment plan.
 
 ## 4. Core Concepts (L2)
 

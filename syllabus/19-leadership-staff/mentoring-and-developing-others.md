@@ -6,7 +6,7 @@ domain: 19-leadership-staff
 topic_id: T-1901
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -36,6 +36,18 @@ None — this is a foundational people-practice topic assumed by everything else
 **Mentoring is the practice of deliberately helping another engineer grow their skills and judgment**, as distinct from simply working alongside them or reviewing their output. It differs from *management* in that a mentor typically has no formal authority over the other person's role, compensation, or performance rating — the relationship works only if the mentee finds it genuinely useful, not because it's mandated.
 
 **Sponsorship is a related but distinct practice: advocating for someone's advancement when they are not in the room**, as opposed to mentorship's coaching-when-together focus. Research on career advancement (notably Herminia Ibarra's work distinguishing the two) finds sponsorship — someone with influence naming you for a stretch project, a promotion case, or a visible opportunity — often matters more for advancement than mentorship alone, and the two are frequently conflated in casual usage.
+
+```mermaid
+graph LR
+    subgraph "Mentoring: happens WITH the person present"
+        M1["1:1 coaching conversation"] --> M2["mentee grows skills/judgment"]
+    end
+    subgraph "Sponsorship: happens WITHOUT the person present"
+        S1["'she should lead this project' --<br/>said in a room the mentee isn't in"] --> S2["mentee gets a visible opportunity<br/>they didn't ask for or negotiate directly"]
+    end
+```
+
+The two are easy to conflate because the same senior engineer often does both for the same junior engineer — but they're structurally different acts: mentoring is a conversation the mentee is part of and can actively steer; sponsorship is an advocacy act that happens entirely outside the mentee's presence or control, which is exactly why it requires the sponsor to have real influence in that room, not just goodwill toward the person being sponsored.
 
 ## 4. Core Concepts (L2)
 
