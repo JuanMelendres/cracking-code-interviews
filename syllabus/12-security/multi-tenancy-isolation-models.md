@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1307
 mastery_levels_covered:
   - L1
@@ -77,6 +77,24 @@ Multi-tenancy isolation questions probe whether a candidate understands that "wh
 Imagine three ways an apartment building landlord could house multiple tenants. **Silo** gives each tenant their own entirely separate building — nobody can accidentally wander into someone else's unit because there's no shared building at all, but the landlord now has to maintain N separate buildings. **Pool** puts everyone into one shared building with individually locked apartment doors — much cheaper to build and maintain, but every single door's lock has to actually be installed correctly, and one unlocked door is a real breach for whoever lives there. **Bridge** is a shared building where a few floors are reserved as fully separate, dedicated wings for specific high-value tenants who need extra guarantees — a practical middle ground.
 
 Now imagine the "pool" building goes a step further: instead of each door having its own separately-installed lock that some contractor might forget, the front door of the entire building has a smart system that automatically checks your key card against exactly which room you're allowed into, every single time, regardless of who built which door. That's **Row-Level Security** — the building itself (the database) enforces the rule, rather than depending on every individual door-installer (every query in the application) to remember to lock it correctly.
+
+```mermaid
+graph TD
+    subgraph "Silo: fully separate per tenant"
+        S1["Tenant A's own DB"]
+        S2["Tenant B's own DB"]
+    end
+    subgraph "Pool: shared DB, app-level filtering (or RLS)"
+        P["Shared database"] --> PA["Tenant A's rows"]
+        P --> PB["Tenant B's rows"]
+    end
+    subgraph "Bridge: pool, with select tenants siloed off"
+        B["Shared database (most tenants)"]
+        B2["Dedicated DB (one high-value tenant)"]
+    end
+```
+
+Isolation strength runs opposite to operational cost: Silo gives the strongest guarantee (no shared infrastructure at all to misconfigure) at the highest cost (N databases to provision, patch, and monitor); Pool is cheapest to run but every single query must correctly filter by tenant, forever, in every code path — Row-Level Security converts that from an application-code responsibility into a database-enforced one, without changing which model it's built on top of.
 
 ## Level 2 — Working Knowledge
 

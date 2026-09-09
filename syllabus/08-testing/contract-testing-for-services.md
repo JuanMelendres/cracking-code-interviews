@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 08-testing
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - handbook/testing/contract-testing-for-services.md
 topic_id: T-1105
@@ -77,6 +77,15 @@ Contract testing questions probe whether a candidate has actually worked in a mi
 Imagine two coworkers on different floors who communicate only via a shared document. Coworker A only ever reads three specific cells from that document; Coworker B (who maintains it) has no idea which cells anyone actually reads and worries that changing anything might break someone downstream. Contract testing is Coworker A writing down, explicitly, "I only ever read cells B2, C4, and D1" — so Coworker B can freely change every other cell in the document without asking anyone, and gets an immediate, specific warning ("you changed C4, which I depend on!") the moment something A actually needs changes.
 
 That written-down list of "exactly what I depend on" is the **contract**. The fact that coworker A (the **consumer**) writes it, not coworker B (the **provider**), matters: A is the only one who actually knows what A uses. If B tried to write the contract instead, B would probably just copy the entire document as "things someone might use," which defeats the purpose of the exercise.
+
+```mermaid
+graph LR
+    Consumer["Consumer service"] -->|writes| Contract["Contract:<br/>fields/endpoints actually used"]
+    Contract -->|verified against| Provider["Provider service"]
+    Provider -->|CI fails here if broken| Contract
+```
+
+The contract sits *between* the two services, checked in CI on both sides: the consumer's own test suite generates it from what the consumer actually calls, and the provider's CI pipeline replays it against the provider's real code before every deploy — catching a breaking change to a field the consumer depends on at the provider's build time, not months later when the consumer's production traffic actually hits the changed endpoint.
 
 ## Level 2 — Working Knowledge
 

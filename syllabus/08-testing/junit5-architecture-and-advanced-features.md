@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 08-testing
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - handbook/testing/junit5-architecture-and-advanced-features.md
 topic_id: T-1102
@@ -74,6 +74,15 @@ JUnit 5 questions at Foundational/Core tier can feel like trivia ("what's the an
 ## Level 1 — Foundation
 
 Think of JUnit 5 as a house with three rooms built on one shared foundation. The **Platform** is the foundation itself — plumbing and electrical wiring that doesn't care what furniture goes in each room. **Jupiter** is the modern living room, furnished with today's conveniences (`@Test`, `@ParameterizedTest`, and friends). **Vintage** is a room kept exactly as it was, furnished with your grandparents' old furniture (JUnit 3/4 tests) — it still sits on the same foundation, so you don't have to move out and rebuild everything at once just to add a new room.
+
+```mermaid
+graph TD
+    P["JUnit Platform<br/>(launcher, test discovery, IDE/build-tool integration)"]
+    P --> J["Jupiter engine<br/>runs @Test, @ParameterizedTest,<br/>modern JUnit 5 tests"]
+    P --> V["Vintage engine<br/>runs old JUnit 3/4 tests unchanged"]
+```
+
+Both engines plug into the same Platform, which is why a single `gradle test` or `mvn test` run can execute a brand-new Jupiter test and a decade-old JUnit 3 test side by side, in the same run, reported through the same output — the Platform doesn't know or care which engine actually ran a given test, only that the engine reports pass/fail through the same interface.
 
 The two most common everyday tools you'll reach for are `@Test` (one test, one fixed scenario) and `@ParameterizedTest` (the same test logic run automatically against a list of different inputs you write out, like `1, true`, `2, false`, `3, true`) — instead of copy-pasting the same test method five times with slightly different numbers.
 

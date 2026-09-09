@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 08-testing
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - handbook/testing/mutation-and-property-based-testing.md
 topic_id: T-1107
@@ -79,6 +79,22 @@ Imagine grading a student's essay by only checking that they used exactly the vo
 **Mutation testing** answers a different question entirely: not "is the code correct," but "would my tests actually notice if it weren't?" It's like a teacher secretly changing one correct answer in an already-graded exam to a wrong one, then checking whether the grading process still catches it. If it does, the grading process (your tests) is working. If the deliberately-wrong answer sails through ungraded, that's a real gap in the grading process itself — even though, in this analogy, no student was actually cheating.
 
 These two techniques are easy to mix up because both involve deliberately introducing something unusual — but property-based testing is looking for bugs *in the code*, and mutation testing is looking for bugs *in the tests*.
+
+```mermaid
+graph TD
+    subgraph "Property-based: finds bugs IN THE CODE"
+        R1["generate hundreds of random inputs"] --> C1["run the real code"]
+        C1 --> P1["check a general property still holds<br/>e.g. reverse(reverse(x)) == x"]
+    end
+    subgraph "Mutation testing: finds bugs IN THE TESTS"
+        M2["mutate the code<br/>e.g. flip > to >="] --> T2["rerun the existing test suite"]
+        T2 --> K2{"did a test fail?"}
+        K2 -->|yes| Killed["mutant KILLED -- tests are doing their job"]
+        K2 -->|no| Survived["mutant SURVIVED -- a real gap in test coverage"]
+    end
+```
+
+A "surviving" mutant is the concrete, actionable output of mutation testing: it names the *exact* line that was changed and the *exact* test run that failed to notice, which is a much more specific signal than a code-coverage percentage — 100% line coverage only proves every line *ran* during some test, not that any test would actually notice if that line's logic were wrong.
 
 ## Level 2 — Working Knowledge
 

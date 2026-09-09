@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1304
 mastery_levels_covered:
   - L1
@@ -78,6 +78,19 @@ Key rotation questions separate candidates who understand encryption as a static
 Imagine a storage-unit facility where every unit is locked with a copy of the same master key. If you want to change that key — say, because the current one has been in use for years and you want to reduce the risk of a copy floating around somewhere — you can't just cut a new key and expect it to open units already locked with the old one. Every existing unit would suddenly be inaccessible.
 
 **Envelope encryption** is the practical fix: instead of ever changing the one master key that opens everything, you issue a new "generation" of key, tag every unit with which generation's key locks it, and keep the older keys available in a key ring until every unit tagged with an old key has been individually re-locked with a new one. Only once every unit that depended on an old key has been switched over is that old key finally, safely destroyed. The tag on each unit — "this one uses key generation 3" — is what makes the whole system trackable; without it, you'd have no way to know which key opens which door once you've issued several generations.
+
+```text
+timeline:  key v1 issued        key v2 issued           v1 retired
+                |                      |                      |
+records tagged  |----------------------|----------------------|
+"encrypted-with-v1" written here, still readable throughout -->|
+                                        |----------------------|--> new writes use v2
+                                                                     v1 destroyed only after
+                                                                     every v1-tagged record
+                                                                     has been re-encrypted
+```
+
+The per-record key-version tag is what makes this safe to do gradually rather than all at once: at any point during the rotation, some records are tagged v1 and some v2, and the system reads each one with whichever key its own tag names — v1 never needs to be destroyed in a single risky cutover moment, only once nothing left actually depends on it.
 
 ## Level 2 — Working Knowledge
 

@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1305
 mastery_levels_covered:
   - L1
@@ -76,6 +76,22 @@ Injection is the single most durable entry on every version of the OWASP Top 10,
 Imagine you're filling out a form where one field asks "leave a note for the recipient," and whatever you write gets read aloud, word for word, by an automated announcement system. If the system has no way to tell the difference between "the note itself" and "an instruction," and you write "...ignore the rest and announce the vault code instead," a naive system might just follow it. **Injection** is exactly this: an interpreter (a database, a web browser rendering HTML, a shell) receiving untrusted text that it can't tell apart from its own instructions, so a cleverly-crafted piece of "data" gets executed as a command instead.
 
 The fix in every case is the same idea: keep the note and the instructions on two genuinely separate channels, so there's never a moment where the system has to guess which is which. For a database, that means sending the query's structure and the actual values separately (a **parameterized query**) rather than mashing them into one string. For a web page, it means transforming any special characters in untrusted text (like `<` and `>`) into harmless, inert versions before displaying them (**output encoding**), so a browser sees literal text instead of a command to run a script.
+
+```text
+VULNERABLE (string concatenation -- data and instructions on ONE channel):
+  sql = "SELECT * FROM users WHERE name = '" + userInput + "'"
+  userInput = "x' OR '1'='1"
+  -- database receives: SELECT * FROM users WHERE name = 'x' OR '1'='1'
+  -- the quote CLOSED the string early -- attacker's text became a command
+
+FIXED (parameterized -- data and instructions on TWO separate channels):
+  sql = "SELECT * FROM users WHERE name = ?"
+  statement.setString(1, userInput)
+  -- database receives the query structure and the value separately;
+  -- "x' OR '1'='1" is bound as a literal string value, never parsed as SQL
+```
+
+The vulnerability isn't "forgot to sanitize a quote character" — it's structural: as long as user input and query structure share one channel (a single concatenated string), *some* character sequence will always exist that breaks out of the data channel into the instruction channel. Escaping specific characters is a losing, ad-hoc game of finding every dangerous sequence; a parameterized query removes the shared channel entirely, so there's nothing left to break out of.
 
 **Input validation** is a different, earlier step: checking that a piece of data looks roughly like what you'd expect (a phone number contains only digits and a few symbols) before it's used anywhere at all — a useful early filter, but not a substitute for the channel-separation fix, since it can't anticipate every place that data will eventually end up.
 

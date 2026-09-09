@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1306
 mastery_levels_covered:
   - L1
@@ -78,6 +78,15 @@ Supply chain security questions probe whether a candidate thinks about a service
 Think of a complex packaged meal's ingredient label — food packaging is legally required to list not just "sauce," but every ingredient *inside* that sauce too, because an allergen buried three ingredients deep is exactly as real a risk to someone allergic to it as one printed in bold on the front of the box. A **Software Bill of Materials (SBOM)** is that same idea applied to software: a complete list of not just the libraries a team directly chose, but every library those libraries themselves quietly pull in, all the way down — because a security flaw three layers deep is exactly as real a risk as one in a library the team picked on purpose.
 
 This matters more than it might sound like at first, because most of what actually ends up running in production isn't code anyone on the team wrote or even consciously chose — it's the base container image (bringing along an entire operating system's worth of packages), the build tools, and the dependencies-of-dependencies nobody on the team has ever read the name of.
+
+```mermaid
+graph TD
+    App["Your application code"] --> D1["spring-boot-starter-web<br/>(direct dependency, chosen deliberately)"]
+    D1 --> D2["jackson-databind<br/>(transitive -- pulled in automatically)"]
+    D2 --> D3["a vulnerable, unaudited utility library<br/>3 layers deep -- nobody on the team chose this,<br/>or even knows its name"]
+```
+
+The team consciously chose exactly one thing in this chain — `spring-boot-starter-web` — and everything below it arrived automatically, unreviewed, as a side effect of that one choice. A real CVE in that buried third-layer library is exactly as exploitable as one in code the team wrote themselves; an SBOM's entire value is making that invisible third layer visible and searchable the moment a new CVE is published, rather than requiring someone to manually trace the dependency tree by hand after the fact.
 
 ## Level 2 — Working Knowledge
 

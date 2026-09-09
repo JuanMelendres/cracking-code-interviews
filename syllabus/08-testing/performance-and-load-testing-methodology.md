@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 08-testing
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - handbook/testing/performance-and-load-testing-methodology.md
 topic_id: T-1106
@@ -79,6 +79,23 @@ Performance-testing questions at Senior/Staff level rarely ask "what is a load t
 Think of three different ways to test a bridge before opening it to traffic. **Load testing** is driving the normal expected number of cars across it and confirming it holds up fine — a routine check before every opening. **Stress testing** is deliberately sending far more traffic than expected to find out exactly how much the bridge can take before it actually fails, and how it fails (does it sag gradually, or snap?) — something you'd do once, deliberately, not every single day. **Soak testing** is leaving a moderate, steady stream of traffic on the bridge for weeks, to catch a problem that only shows up from sustained wear over time — metal fatigue that a single day of traffic, however heavy, would never reveal.
 
 The key thing all three share: they're testing under realistic conditions, not just checking "does it technically work at all." A load test that only ever sends identical, simple traffic (all cars, no trucks, same route every time) can pass cleanly while missing exactly the mixed, uneven traffic pattern that would cause real problems — the traffic's *shape*, not just how many cars, matters.
+
+```text
+traffic
+level
+  |
+  |   LOAD TEST                STRESS TEST                    SOAK TEST
+  |   (expected volume,        (ramp until it breaks)          (moderate, sustained)
+  |    routine check)
+  |   ______                   _______________              ____________________
+  |  /      \                 /               \___ FAILS    \                    \
+  | /        \               /                                \                    \
+  |/          \_____________/                                  \____________________\
+  +------------------------------------------------------------------------------------> time
+       minutes                    minutes-hours                    hours-days
+```
+
+Load and stress testing are both short and deliberate; soak testing's entire value is in the *duration* — a memory leak that adds a few kilobytes per request is invisible in a 10-minute load test and only becomes an `OutOfMemoryError` after hours of the exact same, otherwise-unremarkable traffic level, which is why "we load-tested it and it was fine" and "it OOM'd after running in production for two days" are both true statements about the same, genuinely under-tested service.
 
 ## Level 2 — Working Knowledge
 

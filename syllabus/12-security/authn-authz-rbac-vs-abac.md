@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1302
 mastery_levels_covered:
   - L1
@@ -78,6 +78,22 @@ By the end of this chapter you can state the precise distinction between authent
 Think of visiting an office building. **Authentication** is showing your ID at the front desk and getting a visitor badge — it happens once, when you arrive, and confirms who you actually are. **Authorization** is every individual door in the building deciding whether your specific badge lets you through — this happens over and over, at every door, and is a completely separate question from "is this a real badge." Getting a badge (authentication) doesn't mean every door opens for you; each door still checks.
 
 **RBAC (Role-Based Access Control)** is like badges that come in fixed colors — a blue badge opens the blue doors, a red badge opens the red doors, decided once when the badge was issued. **ABAC (Attribute-Based Access Control)** is a smarter door that doesn't just check badge color — it also checks things like "is it currently business hours," "does this person already work on this floor," or "are they trying to enter the exact room they personally requested access removal from." A blue badge might open a door at 2pm but not at 2am — something a simple color-based rule could never express.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant Auth as Authentication (once, at login)
+    participant Door as Authorization check (every request)
+
+    U->>Auth: prove who I am (password, token)
+    Auth-->>U: identity confirmed (session/JWT issued)
+    U->>Door: request: view /orders/42
+    Door->>Door: RBAC: does role "customer" allow viewing orders?
+    Door->>Door: ABAC: does THIS order belong to THIS user?
+    Door-->>U: allowed only if both checks pass
+```
+
+Authentication happens once and answers "who are you"; authorization happens on *every single request* and answers a completely different question, "is this specific action allowed for this specific identity, right now." RBAC alone answers "can customers view orders" (yes); it takes an ABAC-style attribute check ("does this order's `userId` match the requester's own ID") to answer the question RBAC structurally cannot express: whether *this* customer can view *this specific* order rather than someone else's.
 
 ## Level 2 — Working Knowledge
 

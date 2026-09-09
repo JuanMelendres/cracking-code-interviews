@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 08-testing
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - handbook/testing/integration-testing-against-real-dependencies.md
 topic_id: T-1104
@@ -84,6 +84,22 @@ This topic tests whether a candidate can defend real-dependency testing against 
 Imagine learning a new language by practicing conversations only with a friend who's also learning — you both agree on made-up grammar rules that feel right to you, and every conversation "succeeds." That doesn't prove you can actually speak the language; it only proves you and your friend agree with each other. An integration test is like finally having a real conversation with a native speaker: it checks whether your Java code's SQL, HTTP calls, or messages actually work against the real system on the other end (a real database, a real API) — not just against a stand-in you built and configured yourself to agree with you.
 
 **Testcontainers** is a tool that automates spinning up a real, temporary copy of that "native speaker" — a real, disposable Postgres database, say — for the length of your test, then throws it away afterward. You get to have the real conversation without needing a permanent database sitting around, and without one test's leftover data confusing the next test.
+
+```mermaid
+sequenceDiagram
+    participant T as Test
+    participant TC as Testcontainers
+    participant DB as Real Postgres container
+
+    T->>TC: start container (before test)
+    TC->>DB: docker run postgres, wait until ready
+    TC-->>T: real JDBC URL for this container
+    T->>DB: run actual SQL against the real database
+    DB-->>T: real result set
+    T->>TC: stop and remove container (after test)
+```
+
+Every test gets a genuinely fresh database — no leftover rows from a previous test run silently making a test pass or fail differently than it would in isolation — at the cost of real startup time per test class (a real Postgres process actually starting, not a mock object being instantiated), which is the concrete trade-off Section 5 discusses.
 
 ## Level 2 — Working Knowledge
 

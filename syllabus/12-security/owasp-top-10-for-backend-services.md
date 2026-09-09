@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1301
 mastery_levels_covered:
   - L1
@@ -83,6 +83,19 @@ The OWASP Top 10 question rarely means "recite the list." Interviewers use it as
 Think of the OWASP Top 10 as a "most common ways burglars actually get in" list a security consultant hands a homeowner, based on real data from thousands of break-ins — not a complete list of every conceivable way a house could be broken into, but a ranked list of the ones that keep happening in practice: an unlocked back door (broken access control), a copied key that was never deactivated (authentication failures), leaving valuables visible through an unlocked window (security misconfiguration), or letting a "package delivery" person walk straight into the house without checking they're legitimate (SSRF — the server fetching a URL is a bit like letting a stranger's request walk right into your internal network).
 
 One category, **Insecure Design (A04)**, is different from all the others: it's not "the lock was installed badly," it's "nobody thought to put a lock on this door in the first place." No amount of careful installation fixes a door that was never designed to have a lock — that's a planning problem, not a workmanship problem.
+
+```mermaid
+graph LR
+    Client["Client request"] --> Auth["Authentication /<br/>Authorization<br/>(A01, A07)"]
+    Auth --> App["Application logic<br/>(A03 Injection, A04 Insecure Design,<br/>A08 Data Integrity)"]
+    App --> DB[("Database")]
+    App --> Ext["External URL fetch<br/>(A10 SSRF)"]
+    App --> Config["Runtime config<br/>(A05 Security Misconfiguration,<br/>A02 Cryptographic Failures)"]
+    Deps["Dependencies<br/>(A06 Vulnerable Components)"] -.loaded into.-> App
+    Logs["Logging/monitoring<br/>(A09)"] -.observes.-> App
+```
+
+Mapping each category to *where in a real request's path* it actually applies is the practical skill this list is for — most of the ten aren't abstract categories to memorize in order, they're specific places along this exact flow where a real, concrete mistake keeps recurring across real systems, which is why the list is built from actual incident data rather than a theoretical taxonomy.
 
 ## Level 2 — Working Knowledge
 

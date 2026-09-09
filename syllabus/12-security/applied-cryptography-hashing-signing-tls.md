@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 12-security
 status: canonical
 version: 1.0
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-09
 topic_id: T-1303
 mastery_levels_covered:
   - L1
@@ -77,6 +77,23 @@ By the end of this chapter you can explain why password hashing, digital signing
 Think of three different real-world tools that all get lumped together as "security" but do genuinely different jobs. **Hashing a password** is like a bouncer memorizing a very specific, deliberately hard-to-guess pattern rather than writing down your actual name — later, they can confirm "yes, that pattern matches" without ever having kept a copy of the actual secret. It only works one way: you can't work backward from the pattern to recover the original.
 
 **Signing** is like a notary stamping a document: anyone who sees the stamp and knows the notary's public seal can verify "yes, this specific notary really did approve this exact document, word for word, and nobody has altered it since" — but the document itself is still fully readable by anyone. A stamp doesn't hide the contents; it proves who approved them and that they haven't been tampered with.
+
+```mermaid
+graph LR
+    subgraph "Hashing: one-way, no key"
+        H1["password"] -->|hash function| H2["fixed pattern<br/>(can't reverse)"]
+    end
+    subgraph "Signing: proves origin + integrity, content stays readable"
+        S1["document<br/>(still readable by anyone)"] -->|sign with private key| S2["signature"]
+        S2 -->|verify with public key| S3["confirmed: this signer approved<br/>this exact, unaltered content"]
+    end
+    subgraph "Encryption: hides content, reversible with the right key"
+        E1["plaintext"] -->|encrypt with key| E2["ciphertext<br/>(unreadable without the key)"]
+        E2 -->|decrypt with same/paired key| E1
+    end
+```
+
+Three genuinely different guarantees, easy to blur together under "crypto": hashing proves "this matches a known pattern" without ever storing the original; signing proves "this specific party approved this exact content" while leaving it fully readable; encryption is the only one of the three that actually hides content, and the only one that's reversible by design.
 
 **TLS** is like sealing a letter in a tamper-evident envelope before mailing it to someone you've never met, using a quick, trusted introduction (the "handshake") to agree on a private code the two of you will use for the rest of that specific conversation. Once the conversation ends, that shared code is gone — TLS protects the letter in transit, not what happens to it once it's opened and read.
 

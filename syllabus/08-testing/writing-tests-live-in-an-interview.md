@@ -5,7 +5,7 @@ document_type: handbook-chapter
 domain: 08-testing
 status: canonical
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - handbook/testing/writing-tests-live-in-an-interview.md
 topic_id: T-1108
@@ -76,6 +76,15 @@ By the end of this chapter you can run a genuine red-green-refactor cycle live, 
 Think of assembling furniture with an instruction booklet that has you check each step before moving to the next ("does the shelf sit flush before you screw it in?") rather than assembling the whole thing silently and only checking at the very end whether it stands up. Test-first (writing a test before the code that makes it pass) works the same way: write one tiny check ("an empty input should return an empty result"), watch it fail because you haven't built anything yet, write just enough code to satisfy that one check, watch it pass, then add the next check. This "red, green" rhythm (test fails, then test passes) repeats in small steps instead of one big leap.
 
 In a live interview specifically, the reason this matters isn't really about testing best practice — it's about giving the interviewer something to actually watch. If you silently write a full solution and add a test at the end, the interviewer only sees the destination, not how you think. Narrating each small step ("I'll start with the empty-input case since it's the simplest thing that could exist") is what lets them evaluate your reasoning, not just your typing speed.
+
+```mermaid
+graph LR
+    Red["RED<br/>write one small failing test"] --> Green["GREEN<br/>write just enough code to pass it"]
+    Green --> Refactor["REFACTOR<br/>clean up, tests still passing"]
+    Refactor --> Red
+```
+
+Each lap around this cycle is small and visible on purpose: a red test proves the check actually detects the missing behavior (not a test that would have passed even before any code existed), and the immediate green afterward gives the interviewer a concrete, narratable checkpoint — "that's the empty-input case handled" — every minute or two, instead of one large, silent block of typing with nothing to evaluate until it's finished.
 
 ## Level 2 — Working Knowledge
 
