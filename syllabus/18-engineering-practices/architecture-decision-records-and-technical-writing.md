@@ -6,7 +6,7 @@ domain: 18-engineering-practices
 topic_id: T-1802
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - code-review-standards-and-practice.md
@@ -40,6 +40,16 @@ A technical decision made without a written record survives only as long as the 
 **An Architecture Decision Record (ADR) is a short, dated document capturing one significant technical decision, the context that led to it, the alternatives considered, and its consequences — written at (or near) the time the decision was made, not reconstructed afterward.** The format (per Michael Nygard's original 2011 proposal, still the dominant convention) is deliberately lightweight: a handful of short sections, not a comprehensive design document.
 
 **The standard sections are Status, Context, Decision, and Consequences** — this repository's own `templates/adr-template.md` follows exactly this structure, extended with a couple of practical additions (Decision Drivers, Considered Options, a Related section for cross-linking).
+
+```mermaid
+graph LR
+    Proposed --> Accepted
+    Proposed --> Rejected
+    Accepted --> Deprecated
+    Accepted -->|new decision reverses this one| Superseded["Superseded by ADR-NNN"]
+```
+
+An ADR's `Status` field is never edited to pretend the original decision was different than it was — a changed mind gets a *new* ADR that supersedes the old one, with the old one's status updated to point at it. This is the mechanism that makes ADRs a genuine historical record rather than a living document: reading ADR-003 later always shows exactly what was decided and why, at the time, even if ADR-017 later supersedes it for different reasons.
 
 ## 4. Core Concepts (L2)
 

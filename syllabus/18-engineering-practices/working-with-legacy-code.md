@@ -6,7 +6,7 @@ domain: 18-engineering-practices
 topic_id: T-1803
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - code-review-standards-and-practice.md
@@ -38,6 +38,15 @@ Most real engineering work happens inside existing, imperfect code, not on a gre
 **"Legacy code" is code without tests** — this is the specific, actionable definition this chapter uses (not "old code," not "code someone else wrote," not "code using an outdated framework"). Code without tests is legacy precisely because you cannot know, mechanically, whether a change preserved its existing behavior — you can only find out by inspection, which is slow and error-prone, or by observing production after the fact, which is far too late.
 
 **A characterization test captures what code *actually does*, right now, as observed by running it — not what it *should* do, and not what a specification says it should do.** Writing one requires no understanding of the code's internals; it requires only running the code with real inputs and recording the real outputs it actually produces, including any surprising or seemingly-wrong behavior.
+
+```mermaid
+graph LR
+    A["Untested legacy code<br/>(behavior unknown/undocumented)"] -->|run with real inputs| B["Observe actual outputs,<br/>including surprising ones"]
+    B -->|pin down as assertions| C["Characterization test suite<br/>(now a safety net exists)"]
+    C -->|safe to change internals now| D["Refactor with confidence"]
+```
+
+The order matters: characterization tests get written *before* any refactoring or bug-fixing begins, and they pin down what the code *does*, not what a reader thinks it *should* do — even a genuinely buggy behavior gets captured as-is first. Only once that safety net exists does it become possible to change the code's internals and know, mechanically, whether behavior actually changed — the exact prerequisite [Refactoring Discipline](refactoring-discipline.md) names as non-negotiable.
 
 ## 4. Core Concepts (L2)
 

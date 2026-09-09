@@ -6,7 +6,7 @@ domain: 18-engineering-practices
 topic_id: T-1804
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - working-with-legacy-code.md
@@ -38,6 +38,18 @@ This is **T-1804** in `18-engineering-practices`, the last of this domain's four
 **A refactoring is a structural change to code that does not alter its observable behavior** — the same inputs must produce the same outputs, before and after, for every case that mattered before. If behavior changes, even in a way that seems like an obvious improvement, it isn't a refactor; it's a behavior change, and should be labeled, reviewed, and tested as one.
 
 **Refactoring requires an existing, passing test suite (or a characterization test suite, per [Working with Legacy Code](working-with-legacy-code.md)) covering the behavior being restructured** — without one, "the behavior didn't change" is an unverified assumption, not a verified fact.
+
+```mermaid
+graph LR
+    subgraph "Before"
+        I1["input"] --> C1["messy internal structure"] --> O1["output"]
+    end
+    subgraph "After refactoring"
+        I2["same input"] --> C2["cleaner internal structure"] --> O2["same output"]
+    end
+```
+
+The internals (`C1` -> `C2`) are exactly what's allowed to change — that's the entire point of the exercise. The inputs and outputs on either side are exactly what's *not* allowed to change, and the only way to actually verify that (rather than just believe it) is a test suite that exercises those same inputs and checks those same outputs both before and after the internal restructuring.
 
 ## 4. Core Concepts (L2)
 

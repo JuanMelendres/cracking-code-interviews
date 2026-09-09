@@ -6,7 +6,7 @@ domain: 18-engineering-practices
 topic_id: T-1801
 status: canonical
 version: 1.0
-last_updated: 2026-09-03
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -38,6 +38,20 @@ None — this is a foundational engineering-practice topic assumed by everything
 **Code review is the practice of having at least one other engineer read a proposed change before it merges**, checking it for correctness, clarity, and fit with the codebase's existing conventions before it becomes part of the shared, shipped system. Its two primary purposes are catching problems before they reach production and spreading knowledge of the codebase across more than one person's head.
 
 **Feedback in a review should be prioritized by actual impact, not by how easy it is to spot.** A typo in a comment and a genuine race condition are not equally important, even though the typo is far easier to notice — a reviewer who spends their attention on the easiest-to-spot issues rather than the most consequential ones is optimizing for the wrong thing.
+
+```text
+                    HIGH IMPACT
+                         |
+   easy to miss,    [ race condition ]    hard to spot,
+   high priority         |               high priority
+   -----------------------+----------------------------
+                         |
+   [ typo in comment ]   |   [ inconsistent naming ]
+                         |
+                    LOW IMPACT
+```
+
+The typo sits in the "easy to spot, low impact" quadrant — genuinely worth a quick mention, but not worth spending review time hunting for at the expense of the race condition sitting in "hard to spot, high impact." A review comment's *tone* should scale with this same axis too: a blocking, must-fix comment for the race condition, a low-stakes optional suggestion for the naming — conflating the two trains authors to either ignore all feedback as equally optional, or treat every nitpick as equally urgent.
 
 ## 4. Core Concepts (L2)
 

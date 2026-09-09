@@ -6,7 +6,7 @@ domain: 18-engineering-practices
 topic_id: T-2212
 status: canonical
 version: 1.0
-last_updated: 2026-09-08
+last_updated: 2026-09-09
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
@@ -41,6 +41,18 @@ None — this is a true entry point, independent of any specific programming lan
 **The Waterfall model** runs through all six SDLC phases exactly once, strictly in order, with each phase fully completing before the next begins — Requirements are entirely finalized before Design starts, Design is entirely finalized before Implementation starts, and so on. It is called "Waterfall" because progress flows in one direction, like water over a series of steps, with no expected return to an earlier phase.
 
 **The Agile model** runs through the same six phases repeatedly, in short cycles (commonly called **sprints**, typically 1–4 weeks), each cycle producing a small, working increment of the software rather than waiting for the entire system to be complete. **Scrum** is the most widely used Agile framework in industry: it organizes work into fixed-length sprints, with a **sprint planning** meeting at the start, a **daily standup** to surface blockers, and a **sprint review**/**retrospective** at the end.
+
+```mermaid
+graph TD
+    subgraph "Waterfall: each phase completes fully, once, in order"
+        R1[Requirements] --> D1[Design] --> I1[Implementation] --> T1[Testing] --> DP1[Deployment]
+    end
+    subgraph "Agile/Scrum: same six phases, repeated every sprint"
+        Sprint["Sprint (1-4 weeks):<br/>Requirements -> Design -> Implementation -> Testing -> Deployment"] --> Sprint
+    end
+```
+
+The real mechanism separating the two isn't "old vs. modern" — it's **feedback-loop length**. Waterfall commits to a full Requirements-through-Testing pass before any working software exists to react to; Agile deliberately shrinks that same loop down to a sprint, so a wrong assumption in Requirements surfaces after one or two weeks of wasted work instead of after months. Waterfall isn't obsolete because the loop is long — it remains the defensible choice whenever requirements are genuinely stable and verifiable up front (regulated hardware-adjacent systems, for instance), where Agile's short-feedback-loop advantage has nothing to offer against genuinely fixed, well-understood requirements.
 
 ## 4. Core Concepts (L2)
 
