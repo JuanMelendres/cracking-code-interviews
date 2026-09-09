@@ -5,7 +5,7 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/technical-answers
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - interview-playbook/technical-answers/technical-answer-framework.md
 topic_id: T-1601
@@ -71,6 +71,20 @@ At this level, the working discipline is exactly the kitchen's own prep schedule
 The working test for whether a course is real prep or an improvised stall is the same one a head chef applies watching a line cook plate the fourth course: is this genuinely different from what was already served, or is it the same dish with a different garnish? This chapter names exactly this failure for layer 3 (the deep dive) — repeating layer 2's content more slowly is serving the same course twice and calling it new, which a discerning diner (or interviewer) notices immediately.
 
 ## The Nine-Layer Stack
+
+```mermaid
+graph TD
+    L1["1. Opening (30s)"] -->|interviewer probes deeper| L2["2. Senior answer (2min)"]
+    L2 -->|probes deeper| L3["3. Deep dive (10min)"]
+    L3 --> L4["4. Whiteboard"]
+    L4 --> L5["5. Production example"]
+    L5 --> L6["6. Trade-offs"]
+    L6 --> L7["7. Traps"]
+    L7 --> L8["8. Follow-up chain"]
+    L8 --> L9["9. Staff extension"]
+```
+
+Each layer is only reached if the interviewer keeps probing — stopping after layer 1 or 2 is a completely normal, successful outcome, not a sign the answer was thin. The layers exist *pre-built*, before the interview, specifically so that reaching layer 7 or 9 under real pressure feels like recall, not on-the-spot invention.
 
 | # | Layer | Length | Purpose | Common failure |
 |---|---|---|---|---|

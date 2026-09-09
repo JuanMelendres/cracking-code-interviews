@@ -5,7 +5,7 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/coding
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - interview-playbook/coding/coding-interview-communication-protocol.md
 topic_id: T-1419
@@ -68,6 +68,12 @@ At this level, the working discipline is the same one a commentary-drive examine
 The working test for phase 5 (testing before declaring done) is the commentary-drive equivalent of checking your blind spot before changing lanes rather than after a near-miss reveals you should have: a self-caught issue during a declared check reads as competence; the identical issue caught only because someone else noticed reads as a real gap in habit, even though the underlying skill might be the same. Practice narrating every phase until it's as automatic as a trained driver's habitual mirror-check — not something invented under the pressure of the actual test.
 
 ## The Six-Phase Protocol
+
+```mermaid
+graph LR
+    P1["1. Clarify"] --> P2["2. State<br/>the invariant"] --> P3["3. Complexity<br/>upfront"] --> P4["4. Narrate<br/>while coding"] --> P5["5. Test<br/>before declaring done"] --> P6["6. Confirm complexity<br/>matches phase 3"]
+    P6 -.checks against.-> P3
+```
 
 | Phase | What happens | What to say |
 |---|---|---|

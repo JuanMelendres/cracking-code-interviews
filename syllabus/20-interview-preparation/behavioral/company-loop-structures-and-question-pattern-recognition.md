@@ -5,7 +5,7 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - interview-playbook/behavioral/company-loop-structures-and-question-pattern-recognition.md
 topic_id: T-1604
@@ -87,6 +87,16 @@ The practical skill is a half-second triage at the start of every question: is t
 Loop structures vary in ways that change what actually needs preparing, and a candidate rarely knows the exact structure in advance — preparation should target the range of likely shapes, not a single assumed format.
 
 **Phone screen vs. full loop.** A recruiter or hiring-manager phone screen typically embeds one or two behavioral questions inside a broader conversation — short, often less rigorously scored, more about basic fit-checking than deep evaluation. A full onsite or virtual loop is where multiple-round depth actually happens: several 45–60 minute rounds, frequently including at least one round explicitly labeled behavioral, plus behavioral questions woven into technical rounds as a secondary probe even when the round's primary focus is technical.
+
+```mermaid
+graph LR
+    Screen["Phone screen<br/>(1-2 embedded questions,<br/>lighter scoring)"] --> Loop["Full onsite/virtual loop"]
+    Loop --> R1["Technical round<br/>(behavioral woven in as secondary probe)"]
+    Loop --> R2["Dedicated behavioral round"]
+    Loop --> R3["Possible bar-raiser round<br/>(usually unidentifiable in advance)"]
+```
+
+The candidate typically cannot tell in advance which round is the bar-raiser, or whether a given technical round will include a behavioral probe — the practical implication is preparing full depth uniformly across every round, not trying to guess which single round matters most.
 
 **Panel vs. one-on-one.** Some companies run behavioral rounds as a single interviewer, one-on-one; others use a two-interviewer panel for at least one round, which changes the room dynamic (two sets of follow-up questions, sometimes from different angles) but not the underlying answer shape required.
 

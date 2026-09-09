@@ -5,7 +5,7 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - behavioral-handbook/15-offer-evaluation-and-negotiation.md
 topic_id: T-1515
@@ -83,6 +83,19 @@ Because level is often the least negotiable but most consequential lever (it set
 A genuine competing offer is one of the strongest and most legitimate levers in a negotiation — companies routinely account for this reality in their own process. Using it well means being honest about what the competing offer actually is; fabricating or exaggerating a competing offer is both an ethical problem and a practical risk, since recruiters occasionally verify or the exaggeration surfaces later. Being transparent about a real competing offer's specific terms is a normal, well-accepted negotiation practice — but note that expecting an exact match, rather than a good-faith consideration, is unrealistic, since companies have different bands, different equity structures, and different levels even for similar-sounding roles.
 
 ## Negotiation Mechanics
+
+```mermaid
+sequenceDiagram
+    participant C as Candidate
+    participant R as Recruiter/Company
+
+    R->>C: Formal offer (base, equity, level)
+    Note over C: NOW is when negotiation starts -- not before
+    C->>R: Specific, justified ask ("based on X, hoping for Y in base")
+    R->>C: Response (may counter, may hold)
+    C->>R: Accept or further discussion
+    R->>C: Updated offer in writing
+```
 
 **Timing.** Negotiate after receiving a formal offer, not during the interview process itself — negotiating before an offer exists puts a candidate in a weaker position, since there's nothing concrete yet to negotiate against.
 

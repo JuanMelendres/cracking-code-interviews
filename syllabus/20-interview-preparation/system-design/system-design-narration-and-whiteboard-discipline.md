@@ -5,7 +5,7 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - interview-playbook/system-design/system-design-narration-and-whiteboard-discipline.md
 topic_id: T-1602
@@ -69,6 +69,15 @@ At this level, the working test is the tour guide's own test: could a visitor wh
 The working move for handling the river-flooding question is the guide's own instinct: treat it as new information the map didn't yet have, not as a challenge to the map's validity. A guide who insists the map is fine as drawn, or who scraps it and starts over, both fail the same way — the first looks like they didn't understand the question, the second looks like the original map was never actually reasoned through. Adding a small annotation near the riverbank, narrating exactly what it changes, is what a guide who actually knows the city does.
 
 ## The Four-Part Discipline
+
+```mermaid
+graph TD
+    W["Structured verbal walkthrough<br/>(narrate before drawing)"] --> N["Diagram/notation discipline<br/>(consistent arrows, shapes, line styles)"]
+    N --> S["Signposting<br/>('happy path covered -- now failure modes')"]
+    S --> R["Redirection without defensiveness<br/>(integrate 'what about X' into the diagram)"]
+```
+
+These four run *simultaneously* from the first box drawn, not as sequential phases — the diagram above shows a reading order for learning them, not the order they're applied in a real round.
 
 | Part | What it means | Failure without it |
 |---|---|---|

@@ -5,7 +5,7 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - behavioral-handbook/02-story-portfolio-design.md
 topic_id: T-1502
@@ -122,6 +122,15 @@ Don't try to write all thirteen stories at once. The sequencing already embedded
 ## One Story, Multiple Competencies
 
 A single real event often demonstrates more than one competency — a production incident you diagnosed (T-1504) might also have involved disagreeing with a teammate about the root cause (T-1506) and later mentoring someone through a similar diagnosis (T-1507). This is normal and doesn't mean the event only needs one slot; it means the *same underlying event* can be told with a different emphasis depending on which competency the question is actually probing. Prepare the emphasis-shift, not three entirely separate stories, when this overlap happens — trying to force every competency slot to map to a completely distinct life event produces strained, thin material for the less-common competencies.
+
+```mermaid
+graph LR
+    Event["One real event:<br/>a production incident you diagnosed"] --> C1["T-1504: Production incident<br/>(the diagnosis itself)"]
+    Event --> C2["T-1506: Conflict<br/>(disagreeing on root cause)"]
+    Event --> C3["T-1507: Mentoring<br/>(teaching someone the same diagnosis later)"]
+```
+
+The portfolio doesn't need three separate life events for these three competency slots — it needs the same event told three times with a different emphasis, which is a much smaller, more realistic preparation load than manufacturing distinct stories for every slot.
 
 ## Coverage Gaps in This Repository, Named Honestly
 

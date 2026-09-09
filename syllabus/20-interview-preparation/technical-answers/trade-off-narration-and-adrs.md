@@ -5,7 +5,7 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/technical-answers
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - interview-playbook/technical-answers/trade-off-narration-and-adrs.md
 topic_id: T-1505/T-916
@@ -72,6 +72,15 @@ At this level, the working discipline is naming beat 3 — the specific deciding
 The working discipline for beat 4 is the one most trail reports skip and the one this chapter's own named feedback is specifically about: actually naming what was given up, not just that a safe choice was made. "We took the valley route and got back safely" tells a listener nothing about the trade; "we took the valley route, which meant skipping the summit view we'd planned the whole trip around" is the honest, complete report — the same distinction between an answer that lists only the decision and one that names the real thing it cost.
 
 ## The Four-Beat Structure
+
+```mermaid
+graph LR
+    B1["1. Context<br/>the real constraint"] --> B2["2. Options<br/>genuine alternatives, stated honestly"]
+    B2 --> B3["3. Decision criterion<br/>the SPECIFIC reason this won"]
+    B3 --> B4["4. What it cost<br/>the real trade-off accepted"]
+```
+
+Beat 4 is the one most answers skip entirely, and it's the one this chapter's own named feedback was about: an answer that lists only benefits ("we chose X because it's fast and scalable") never actually proves a trade-off was understood, since every real engineering decision costs something — the beat exists specifically to force stating what that something was.
 
 | Beat | Content | Common failure if skipped |
 |---|---|---|

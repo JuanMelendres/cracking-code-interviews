@@ -5,7 +5,7 @@ document_type: playbook-technical-answer
 domain: 20-interview-preparation/system-design
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - interview-playbook/system-design/time-boxing-and-mid-round-changes.md
 mastery_levels_covered:
@@ -71,6 +71,17 @@ The working test for handling the mid-meal allergy announcement is whether you r
 ## Time-Boxing the Six Phases
 
 The six-phase method's own budget, as practiced across every worked design exercise in this programme:
+
+```mermaid
+pie showData
+    title Approximate share of a 45-minute round (midpoint of each range)
+    "Clarify (2-3 min)" : 3
+    "Estimate (3-5 min)" : 4
+    "API (2-3 min)" : 3
+    "Data (3-5 min)" : 4
+    "Architecture (10-15 min)" : 13
+    "Bottlenecks (5-10 min)" : 8
+```
 
 | Phase | Budget |
 |---|---|

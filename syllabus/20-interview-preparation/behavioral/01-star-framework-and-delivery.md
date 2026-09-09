@@ -5,7 +5,7 @@ document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
 version: 1.0
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 source_history:
   - behavioral-handbook/01-star-framework-and-delivery.md
 topic_id: T-1501
@@ -56,6 +56,15 @@ Every behavioral round scores structure independently of content. A strong story
 ## Level 1 — Foundation
 
 Think about an emergency-room intake form. A nurse under real time pressure doesn't freestyle a description of the patient — they fill four fixed fields (chief complaint, onset, action taken, outcome), because the form guarantees nothing critical gets skipped and gives the nurse a clear signal for when the intake is actually done. STAR is that same intake form applied to a behavioral answer: Situation, Task, Action, Result aren't a script to recite word-for-word, they're the fields that make sure you don't ramble past the point where the answer was already complete.
+
+```mermaid
+graph LR
+    S["Situation<br/>brief context, 1-2 sentences"] --> T["Task<br/>what specifically was YOUR responsibility"]
+    T --> A["Action<br/>what YOU actually did -- the longest beat"]
+    A --> R["Result<br/>the outcome, ideally measurable"]
+```
+
+`Action` is deliberately the longest of the four beats — it's the only one that actually demonstrates the candidate's own judgment and skill, while `Situation` and `Task` exist only to give `Action` enough context to make sense. A common, avoidable failure is spending most of the answer's time on `Situation` (describing the company/project in exhaustive detail) and rushing `Action`, which inverts exactly where the evaluative signal actually lives.
 
 ## Level 2 — Working Knowledge
 
