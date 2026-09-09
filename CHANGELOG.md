@@ -2605,3 +2605,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 ### Added (private companion repo)
 
 - Real future interview-specific material (company prep, actual interview feedback, personal performance notes) now goes in a new, separate, local-only private repo (`cracking-code-interviews-private`, sibling directory, no remote) — user's decision, closing the standing privacy question from `syllabus-transformation-plan.md` §11. This repo's own already-anonymized company-prep file is unaffected.
+
+### Fixed (root README.md still read as a personal Senior-focused study journal)
+
+- User flagged that root `README.md` still centered Senior as "the original primary focus" in its Target Roles list, and that its Privacy section still described the repo as holding "drafts of professional experience" and "a personal study programme" — both stale holdovers from before the Junior-through-Staff, possible-commercial-release positioning (`CLAUDE.md`'s Target Audience section, and this file's own License-section note from earlier the same day).
+- Rewrote the Target Roles list so all three levels (Junior/Mid, Senior, Staff) are presented as equally served, not Senior-primary-with-others-secondary. Rewrote the Privacy section to address any reader using the repo ("anyone using it"), not a single personal author, and to point real identifying material at the new private companion repo instead of implying it belongs here "eventually."
+- Also reviewed whether the repository's 226 `README.md` files should be consolidated (user's second question). Conclusion: no — all but ~15 are one-per-demo (`practice/*/README.md`, documenting that specific demo's real run commands) or one-per-week (`study-packs/*/week-NN/README.md`, unique weekly content), both required by this repo's own no-duplication convention; merging them would break per-unit navigability. Confirmed `AGENTS.md` is an intentional byte-for-byte mirror of `CLAUDE.md` (for agent tools that read the `AGENTS.md` convention instead), not accidental duplication.
+- Full validator run: zero new errors (the same 3 pre-existing, unrelated errors remain).

@@ -16,10 +16,10 @@ The programme is built around one organizing idea:
 
 Every chapter pairs technical depth with a spoken-answer instrument: layered answers, trade-off structures, recorded drills, and scored mock interviews.
 
-**Target roles** — the full ladder, not one fixed point on it:
-- Junior/Mid Backend Engineer *(true fundamentals — `syllabus/01-computer-science-foundations/`, `syllabus/03-data-structures-algorithms/`, and the Junior Fundamentals chapters across `02-java`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`)*
-- Senior Java Backend Engineer *(the original primary focus, still the deepest-covered level)*
-- Staff Engineer *(secondary — Plan C)*
+**Target roles** — the full ladder, served in one place rather than as separate books:
+- Junior/Mid Backend Engineer — true fundamentals: `syllabus/01-computer-science-foundations/`, `syllabus/03-data-structures-algorithms/`, and the Junior Fundamentals chapters across `02-java`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`
+- Senior Java Backend Engineer — internals, trade-offs, production troubleshooting across all 21 domains
+- Staff Engineer — cross-system judgment, migration strategy, and organizational trade-offs (`syllabus/19-leadership-staff/`, the Senior → Staff and Backend Java Specialization programs)
 
 ---
 
@@ -172,7 +172,7 @@ Full detail in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Privacy and confidentiality
 
-**This repository is public.** It will eventually contain drafts of professional experience, self-assessment scores, and notes derived from real interview feedback. Nothing in it today identifies an employer, client, or colleague — the four documents in `00-project/` are Notion-audit and planning artifacts about a personal study programme, not accounts of specific work. Keep it that way as content is added.
+**This repository is public.** Anyone using it to prepare for real interviews will eventually add company-specific prep notes, self-assessment scores, and real interview feedback to their own copy or fork. Nothing in this repository today identifies an employer, client, or colleague — the four documents in `00-project/` are Notion-audit and planning artifacts about how this material was built, not accounts of anyone's specific work history. Keep it that way as content is added: real, identifying interview material belongs in a private, unshared location (see `interview-playbook/README.md`), never in this repository.
 
 Before committing anything derived from real work, read [`CONTRIBUTING.md` § Privacy](CONTRIBUTING.md#privacy-and-sanitisation). Short version: **never commit** employer secrets · confidential client names · production credentials · internal URLs or hostnames · real customer data · proprietary source code · personal information about colleagues · interviewer-identifying detail · tokens embedded in URLs. **Anonymize instead** — `financial-services client`, `logistics platform`, `internal migration project`, `production service`, `a senior colleague`.
 
