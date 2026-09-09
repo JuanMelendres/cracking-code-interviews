@@ -3,7 +3,7 @@ title: "OWASP Top 10 for Backend Services"
 slug: owasp-top-10-for-backend-services
 document_type: handbook-chapter
 domain: 12-security
-status: draft
+status: canonical
 version: 1.0
 last_reviewed: 2026-09-04
 topic_id: T-1301

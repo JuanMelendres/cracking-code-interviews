@@ -3,7 +3,7 @@ title: Spring Security Filter Chain
 slug: security-filter-chain
 document_type: handbook-chapter
 domain: 05-spring
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 source_history:

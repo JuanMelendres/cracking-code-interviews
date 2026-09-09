@@ -3,7 +3,7 @@ title: "Cloud Cost and Scaling Economics"
 slug: cloud-cost-and-scaling-economics
 document_type: handbook-chapter
 domain: 15-cloud
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

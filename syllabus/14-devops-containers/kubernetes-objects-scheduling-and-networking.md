@@ -3,7 +3,7 @@ title: "Kubernetes Objects, Scheduling, and Networking"
 slug: kubernetes-objects-scheduling-and-networking
 document_type: handbook-chapter
 domain: 14-devops-containers
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

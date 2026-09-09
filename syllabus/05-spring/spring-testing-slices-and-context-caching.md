@@ -3,7 +3,7 @@ title: "Spring Testing: Slices and Context Caching"
 slug: spring-testing-slices-and-context-caching
 document_type: handbook-chapter
 domain: 05-spring
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 source_history:

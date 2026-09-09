@@ -3,7 +3,7 @@ title: "Percentiles, Tail Latency, and Coordinated Omission"
 slug: percentiles-tail-latency-and-coordinated-omission
 document_type: handbook-chapter
 domain: 13-observability
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

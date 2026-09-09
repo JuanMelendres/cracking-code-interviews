@@ -3,7 +3,7 @@ title: "CI/CD Pipeline Design and Deployment Strategies"
 slug: cicd-pipeline-design-and-deployment-strategies
 document_type: handbook-chapter
 domain: 14-devops-containers
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

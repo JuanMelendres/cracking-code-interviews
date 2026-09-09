@@ -3,7 +3,7 @@ title: "Storage Selection Trade-offs"
 slug: storage-selection-tradeoffs
 document_type: handbook-chapter
 domain: 11-system-design
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

@@ -3,7 +3,7 @@ title: "Monorepo and Full-Stack Repo Layout: Where Code Actually Lives, Verified
 slug: nextjs-monorepo-layout
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

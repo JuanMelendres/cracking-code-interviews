@@ -3,7 +3,7 @@ title: "How the Web Works: HTML, CSS, the DOM, and HTTP"
 slug: how-the-web-works-html-css-dom-and-http
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-08
 topic_id: F-001

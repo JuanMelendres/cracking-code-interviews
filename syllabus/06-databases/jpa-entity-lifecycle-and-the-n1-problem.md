@@ -3,7 +3,7 @@ title: "JPA Entity Lifecycle, the Persistence Context, and the N+1 Problem"
 slug: jpa-entity-lifecycle-and-the-n1-problem
 document_type: handbook-chapter
 domain: 06-databases
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 source_history:

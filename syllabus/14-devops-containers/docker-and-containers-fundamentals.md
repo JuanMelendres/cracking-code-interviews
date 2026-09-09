@@ -4,7 +4,7 @@ slug: docker-and-containers-fundamentals
 document_type: syllabus-topic
 domain: 14-devops-containers
 topic_id: T-2208
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-08
 mastery_levels_covered: [L1, L2]

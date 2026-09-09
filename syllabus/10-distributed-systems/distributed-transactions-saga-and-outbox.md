@@ -3,7 +3,7 @@ title: "Distributed Transactions: Saga, Outbox, and 2PC"
 slug: distributed-transactions-saga-and-outbox
 document_type: handbook-chapter
 domain: 10-distributed-systems
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

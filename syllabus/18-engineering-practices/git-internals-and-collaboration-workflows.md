@@ -3,7 +3,7 @@ title: "Git Internals and Collaboration Workflows"
 slug: git-internals-and-collaboration-workflows
 document_type: handbook-chapter
 domain: 18-engineering-practices
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-06
 source_history:

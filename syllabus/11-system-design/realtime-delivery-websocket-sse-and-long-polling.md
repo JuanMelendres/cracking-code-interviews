@@ -3,7 +3,7 @@ title: "Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push"
 slug: realtime-delivery-websocket-sse-and-long-polling
 document_type: handbook-chapter
 domain: 11-system-design
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

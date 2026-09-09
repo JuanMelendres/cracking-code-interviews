@@ -4,7 +4,7 @@ slug: design-reviews-and-rfcs-as-organizational-practice
 document_type: syllabus-topic
 domain: 19-leadership-staff
 topic_id: T-1905
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 mastery_levels_covered: [L1, L2, L3, L4]

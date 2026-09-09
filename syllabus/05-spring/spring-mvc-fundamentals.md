@@ -4,7 +4,7 @@ slug: spring-mvc-fundamentals
 document_type: syllabus-topic
 domain: 05-spring
 topic_id: T-2203
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-07
 mastery_levels_covered: [L1, L2, L3, L4]

@@ -3,7 +3,7 @@ title: CAP Theorem and Consistency Models
 slug: cap-theorem-and-consistency-models
 document_type: handbook-chapter
 domain: 10-distributed-systems
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

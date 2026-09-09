@@ -3,7 +3,7 @@ title: "Mutation and Property-Based Testing"
 slug: mutation-and-property-based-testing
 document_type: handbook-chapter
 domain: 08-testing
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

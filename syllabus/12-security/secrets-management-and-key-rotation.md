@@ -3,7 +3,7 @@ title: "Secrets Management and Key Rotation"
 slug: secrets-management-and-key-rotation
 document_type: handbook-chapter
 domain: 12-security
-status: draft
+status: canonical
 version: 1.0
 last_reviewed: 2026-09-04
 topic_id: T-1304

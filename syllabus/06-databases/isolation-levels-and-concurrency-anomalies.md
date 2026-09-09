@@ -3,7 +3,7 @@ title: Isolation Levels and Concurrency Anomalies
 slug: isolation-levels-and-concurrency-anomalies
 document_type: handbook-chapter
 domain: 06-databases
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 source_history:

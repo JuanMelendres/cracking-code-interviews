@@ -3,7 +3,7 @@ title: "Next.js's Role: File-Based Routing and Why a Meta-Framework Over Plain R
 slug: nextjs-fundamentals
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

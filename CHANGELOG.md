@@ -2588,3 +2588,20 @@ The remaining items above are not fixed yet — they are documented so the wrong
 - Full validator run: 3 pre-existing, unrelated errors only (AGENTS.md/CLAUDE.md's broken link to `java-memory-model-and-volatile.md`, `templates/adr-template.md`'s self-link) — zero new errors.
 
 Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary follow-up flagged in `00-project/syllabus-transformation-plan.md` §11 is being handled directly between the user and the assistant rather than through a repository-tracked automated check — no tooling change was made for it.
+
+### Fixed (status field promotion: draft -> canonical, 160 chapters)
+
+- Every `syllabus/` chapter using the `topic-specification.md` lifecycle field (`status: draft | reviewed | canonical`) was still `draft` despite every domain's own INDEX.md already declaring itself complete. Promoted all 160 to `canonical`. Full validator run: zero new errors.
+
+### Verified (exhaustive re-execution of practice/java, practice/frontend, practice/sql)
+
+- Recompiled and re-ran essentially the entire `practice/` corpus rather than re-reading claims: 131 pure-JDK Java directories, all Kafka/Avro/Postgres/OpenTelemetry/JMH external-dependency demos (real brokers/registries/databases stood up via Docker), several Spring demos (bean scopes, cache, lifecycle, REST/MVC with embedded Tomcat), 16 React/Vite apps plus a Next.js build, TypeScript, the npm-workspaces monorepo demo, and a SQL lab against a fresh Postgres 16 container.
+- Net finding: zero fabricated claims, zero real regressions. Every initial mismatch traced back to the verification script's own missing flag/infra/cwd, never to the repository's content. Full detail, including the ~15 directories not re-executed this pass (time-boxed) and one deliberately-skipped destructive script (`docker builder prune -af`), in `syllabus/00-overview/changelog.md`'s matching entry.
+
+### Verified (frontend BEG->EXP depth ladder)
+
+- Confirmed programmatically (not just via front-matter labels) that `syllabus/21-frontend-web/`'s 35 chapters really span L1 (6 chapters) through L4 (13 chapters), each with an actual Foundation or Staff-level heading, not just a claimed tier.
+
+### Added (private companion repo)
+
+- Real future interview-specific material (company prep, actual interview feedback, personal performance notes) now goes in a new, separate, local-only private repo (`cracking-code-interviews-private`, sibling directory, no remote) — user's decision, closing the standing privacy question from `syllabus-transformation-plan.md` §11. This repo's own already-anonymized company-prep file is unaffected.

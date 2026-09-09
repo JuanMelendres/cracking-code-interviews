@@ -3,7 +3,7 @@ title: "Frontend Live-Coding & Debugging Protocol"
 slug: frontend-live-coding-and-debugging-protocol
 document_type: playbook-technical-answer
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

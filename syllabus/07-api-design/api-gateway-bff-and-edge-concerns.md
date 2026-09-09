@@ -3,7 +3,7 @@ title: "API Gateway, BFF, and Edge Concerns"
 slug: api-gateway-bff-and-edge-concerns
 document_type: handbook-chapter
 domain: 07-api-design
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

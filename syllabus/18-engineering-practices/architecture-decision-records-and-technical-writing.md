@@ -4,7 +4,7 @@ slug: architecture-decision-records-and-technical-writing
 document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-1802
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 mastery_levels_covered: [L1, L2, L3, L4]

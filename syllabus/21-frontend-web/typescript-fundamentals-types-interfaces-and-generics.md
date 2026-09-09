@@ -3,7 +3,7 @@ title: "TypeScript Fundamentals: Types, Interfaces, and Generics"
 slug: typescript-fundamentals-types-interfaces-and-generics
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-08
 topic_id: F-003

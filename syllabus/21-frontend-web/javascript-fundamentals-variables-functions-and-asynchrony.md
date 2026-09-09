@@ -3,7 +3,7 @@ title: "JavaScript Fundamentals: Variables, Functions, Objects, Closures, and As
 slug: javascript-fundamentals-variables-functions-and-asynchrony
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-08
 topic_id: F-002

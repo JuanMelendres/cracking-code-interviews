@@ -3,7 +3,7 @@ title: "AWS Core Services for Backend Engineers"
 slug: aws-core-services-for-backend-engineers
 document_type: handbook-chapter
 domain: 15-cloud
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-08
 source_history:

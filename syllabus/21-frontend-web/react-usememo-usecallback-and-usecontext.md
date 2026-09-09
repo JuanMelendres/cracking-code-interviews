@@ -3,7 +3,7 @@ title: "React Memoization and Context: useMemo, useCallback, useContext"
 slug: react-usememo-usecallback-and-usecontext
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

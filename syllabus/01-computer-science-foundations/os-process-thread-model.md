@@ -4,7 +4,7 @@ slug: os-process-thread-model
 document_type: syllabus-topic
 domain: 01-computer-science-foundations
 topic_id: T-2004
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 mastery_levels_covered: [L1, L2, L3, L4]

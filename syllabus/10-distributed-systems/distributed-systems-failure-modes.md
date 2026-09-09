@@ -3,7 +3,7 @@ title: Distributed Systems Failure Modes
 slug: distributed-systems-failure-modes
 document_type: handbook-chapter
 domain: 10-distributed-systems
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

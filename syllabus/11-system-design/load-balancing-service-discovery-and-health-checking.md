@@ -3,7 +3,7 @@ title: Load Balancing, Service Discovery, and Health Checking
 slug: load-balancing-service-discovery-and-health-checking
 document_type: handbook-chapter
 domain: 11-system-design
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

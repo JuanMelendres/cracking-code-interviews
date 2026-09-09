@@ -3,7 +3,7 @@ title: "Data Fetching in the App Router: fetch Caching Semantics, revalidate, an
 slug: nextjs-data-fetching-and-caching
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

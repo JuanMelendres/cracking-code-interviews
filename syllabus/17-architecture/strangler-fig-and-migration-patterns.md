@@ -3,7 +3,7 @@ title: "Strangler Fig, Anti-Corruption Layer, and Migration Patterns"
 slug: strangler-fig-and-migration-patterns
 document_type: handbook-chapter
 domain: 17-architecture
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

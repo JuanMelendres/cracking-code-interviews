@@ -3,7 +3,7 @@ title: "Applied Cryptography: Hashing, Signing, and TLS"
 slug: applied-cryptography-hashing-signing-tls
 document_type: handbook-chapter
 domain: 12-security
-status: draft
+status: canonical
 version: 1.0
 last_reviewed: 2026-09-04
 topic_id: T-1303

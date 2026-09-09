@@ -3,7 +3,7 @@ title: "Server Actions and Mutations in Next.js: No API Layer, Real Progressive 
 slug: nextjs-server-actions-and-mutations
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

@@ -3,7 +3,7 @@ title: Data Partitioning and Consistent Hashing
 slug: data-partitioning-and-consistent-hashing
 document_type: handbook-chapter
 domain: 10-distributed-systems
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

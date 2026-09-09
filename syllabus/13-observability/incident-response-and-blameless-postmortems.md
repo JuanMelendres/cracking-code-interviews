@@ -3,7 +3,7 @@ title: "Incident Response and Blameless Postmortems"
 slug: incident-response-and-blameless-postmortems
 document_type: handbook-chapter
 domain: 13-observability
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

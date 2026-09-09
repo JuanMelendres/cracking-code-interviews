@@ -3,7 +3,7 @@ title: "Route Handlers: Building a Backend-for-Frontend Layer in Next.js"
 slug: nextjs-route-handlers
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

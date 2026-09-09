@@ -3,7 +3,7 @@ title: Idempotency at System Edges
 slug: idempotency
 document_type: handbook-chapter
 domain: 11-system-design
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

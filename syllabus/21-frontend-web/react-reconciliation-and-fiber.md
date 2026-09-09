@@ -3,7 +3,7 @@ title: "React Reconciliation and the Fiber Architecture"
 slug: react-reconciliation-and-fiber
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

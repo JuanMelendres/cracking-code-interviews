@@ -3,7 +3,7 @@ title: "OAuth2, OIDC, and JWT"
 slug: oauth2-oidc-and-jwt
 document_type: handbook-chapter
 domain: 12-security
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

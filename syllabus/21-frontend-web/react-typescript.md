@@ -3,7 +3,7 @@ title: "TypeScript with React: Typing Props/State/Hooks, Generic Components, and
 slug: react-typescript
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.1
 last_updated: 2026-09-08
 source_history:

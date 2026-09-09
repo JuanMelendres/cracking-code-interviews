@@ -3,7 +3,7 @@ title: "React Testing: RTL Philosophy, Mocking, and E2E with Playwright"
 slug: react-testing
 document_type: handbook-chapter
 domain: 21-frontend-web
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-05
 source_history:

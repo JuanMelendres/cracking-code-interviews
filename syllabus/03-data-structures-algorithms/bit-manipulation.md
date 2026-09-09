@@ -4,7 +4,7 @@ slug: bit-manipulation
 document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2113
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 mastery_levels_covered: [L1, L2, L3, L4]

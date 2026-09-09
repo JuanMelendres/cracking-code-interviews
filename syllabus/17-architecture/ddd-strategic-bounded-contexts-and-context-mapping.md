@@ -3,7 +3,7 @@ title: "DDD Strategic Design — Bounded Contexts and Context Mapping"
 slug: ddd-strategic-bounded-contexts-and-context-mapping
 document_type: handbook-chapter
 domain: 17-architecture
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

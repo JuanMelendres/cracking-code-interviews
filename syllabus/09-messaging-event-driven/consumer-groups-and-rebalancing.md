@@ -3,7 +3,7 @@ title: "Kafka Consumer Groups, Rebalancing, and Offset Management"
 slug: consumer-groups-and-rebalancing
 document_type: handbook-chapter
 domain: 09-messaging-event-driven
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

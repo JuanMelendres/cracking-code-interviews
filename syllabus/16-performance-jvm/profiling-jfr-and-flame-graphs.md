@@ -3,7 +3,7 @@ title: "Profiling: async-profiler, JFR, and Flame Graphs"
 slug: profiling-jfr-and-flame-graphs
 document_type: handbook-chapter
 domain: 16-performance-jvm
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

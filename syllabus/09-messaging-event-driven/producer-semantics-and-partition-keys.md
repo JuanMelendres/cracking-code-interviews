@@ -3,7 +3,7 @@ title: "Kafka Producer Semantics: acks, Idempotence, and Partition Key Design"
 slug: producer-semantics-and-partition-keys
 document_type: handbook-chapter
 domain: 09-messaging-event-driven
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

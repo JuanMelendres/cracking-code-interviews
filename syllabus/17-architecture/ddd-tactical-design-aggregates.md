@@ -3,7 +3,7 @@ title: "DDD Tactical Design — Aggregates"
 slug: ddd-tactical-design-aggregates
 document_type: handbook-chapter
 domain: 17-architecture
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

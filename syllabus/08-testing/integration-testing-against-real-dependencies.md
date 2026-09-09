@@ -3,7 +3,7 @@ title: "Integration Testing Against Real Dependencies"
 slug: integration-testing-against-real-dependencies
 document_type: handbook-chapter
 domain: 08-testing
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-04
 source_history:

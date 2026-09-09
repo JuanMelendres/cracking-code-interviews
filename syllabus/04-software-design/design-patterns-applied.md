@@ -3,7 +3,7 @@ title: "Design Patterns Applied (GoF in Production)"
 slug: design-patterns-applied
 document_type: handbook-chapter
 domain: 04-software-design
-status: draft
+status: canonical
 version: 1.0
 last_updated: 2026-09-03
 source_history:
