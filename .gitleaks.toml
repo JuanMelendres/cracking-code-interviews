@@ -16,5 +16,8 @@ paths = [
   '''\.next''',
   '''\.cache''',
   '''\.venv''',
+  '''\.venv-docs''',
   '''graft''',
+  '''^site/''',
+  '''^docs/(syllabus|study-packs|cheat-sheets|flashcards|architecture-atlas|production-cookbook|practice)/''',
 ]

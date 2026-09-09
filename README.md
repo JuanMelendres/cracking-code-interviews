@@ -208,6 +208,6 @@ STAR stories will be the highest-risk content in this repository once written. S
 
 ## License
 
-Copyright © 2026 Juan Melendres. All rights reserved.
+Copyright © 2026 Juan Melendres.
 
-No part of this repository may be reproduced, distributed, or used to create derivative works without explicit written permission from the copyright holder. This supersedes the repository's original "personal study material, not for distribution" framing — a deliberate change made once the repository's purpose shifted toward a possible future commercial release, per the 2026-09-08 decision recorded in `CHANGELOG.md`.
+**Free to read, use for your own interview preparation, and share** — link to it, star it, tell people about it, fork it for your own personal study. **Not for resale or republishing as your own work** — you may not sell this content, repackage it into a paid product or course, or redistribute it (in whole or substantial part) under a different name or as though you authored it. This is a deliberate choice to prioritize reach over gatekeeping while this repository is still building an audience — see `CHANGELOG.md` for the reasoning. If you want to build something commercial on top of this material, reach out for permission first rather than assuming.

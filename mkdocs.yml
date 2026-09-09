@@ -1,5 +1,7 @@
 site_name: Cracking Code Interviews
 site_description: Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.
+site_author: Juan Melendres
+copyright: Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
 docs_dir: docs
 site_dir: site
 
@@ -7,10 +9,14 @@ theme:
   name: material
   palette:
     - scheme: default
+      primary: indigo
+      accent: cyan
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
+      primary: indigo
+      accent: cyan
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -39,6 +45,9 @@ markdown_extensions:
 plugins:
   - search
   - awesome-pages
+
+exclude_docs: |
+  syllabus/00-overview/changelog.md
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
