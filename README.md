@@ -155,15 +155,18 @@ Prerequisites: JDK 17+ (JDK 21 used throughout so far), Docker (for every Postgr
 
 ## Browsing this as a website
 
-The `syllabus/`, `study-packs/`, `cheat-sheets/`, `flashcards/`, `architecture-atlas/`, and `production-cookbook/` directories can be rendered as a searchable, navigable static site via [MkDocs Material](https://squidfunk.github.io/mkdocs-material/), reading the exact same Markdown files in place (`docs/` holds symlinks into them, not copies — nothing is duplicated). To run it locally:
+**Live site:** <https://juanmelendres.github.io/cracking-code-interviews/> — rebuilt and redeployed automatically on every push to `main` via `.github/workflows/deploy-docs.yml`.
+
+The `syllabus/`, `study-packs/`, `cheat-sheets/`, `flashcards/`, `architecture-atlas/`, `production-cookbook/`, and `practice/` directories render as a searchable, navigable static site via [MkDocs Material](https://squidfunk.github.io/mkdocs-material/), reading the exact same Markdown files — `scripts/build_docs_site.sh` mirrors them into `docs/` (regenerated every run, gitignored, never a second copy of record) since [mkdocs-awesome-pages-plugin](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin) (used for nav titles/ordering) doesn't follow symlinks. To run it locally:
 
 ```bash
 python3 -m venv .venv-docs
 .venv-docs/bin/pip install -r requirements-docs.txt
+./scripts/build_docs_site.sh
 .venv-docs/bin/mkdocs serve
 ```
 
-Then open <http://127.0.0.1:8000>. `mkdocs build` produces a static `site/` directory deployable anywhere (GitHub Pages, Vercel, S3). Navigation is currently auto-generated from the folder structure — an MVP, not yet curated to match each domain's own `INDEX.md` ordering.
+Then open <http://127.0.0.1:8000>. Re-run `build_docs_site.sh` after any content change before serving/building again — it's what regenerates the mirror.
 
 ---
 
