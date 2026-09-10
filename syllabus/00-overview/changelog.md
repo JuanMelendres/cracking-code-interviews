@@ -1027,3 +1027,11 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/collections/priorityqueue-internals/`): the ordering guarantee applies only to `poll()`/`peek()`, demonstrated side-by-side against the identical queue's non-sorted iteration order; real, measured O(log n) `poll()` via a comparison-counting `Comparator` across five heap sizes; a real `ConcurrentModificationException` confirming fail-fast behavior.
 - `02-java` still missing `java.time`, JPMS, `MethodHandle`, bytecode fundamentals, and concurrency synchronizers (`CountDownLatch`/`CyclicBarrier`/`Semaphore`) — recorded as open in the domain's own INDEX.md for follow-up.
 - Updated `syllabus/02-java/INDEX.md` (55 → 56), `syllabus/00-overview/INDEX.md`, `treemap-treeset-and-navigable-hierarchy.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `02-java` gains a 57th chapter: java.time API
+
+### Added (`syllabus/02-java/language-core/java-time-api.md` — T-116)
+
+- Same gap audit, same day. `02-java/language-core` had zero coverage of `java.time` (JSR-310) despite it being explicitly named in `CLAUDE.md`'s own gap list and Very High interview frequency. Closed continuing the subdomain's own existing `T-1xx` sequence.
+- Real demo (`practice/java/language-core/java-time-api/`): real immutability contrasted against a real `Calendar` in-place mutation; a real `Period`-vs-`Duration` divergence on an actual US DST transition date (12:00 vs. 13:00 from the identical starting point); and the marquee finding — a real, reproduced `SimpleDateFormat` thread-safety corruption under concurrent load (6,969/10,000 in one captured run) versus zero corruption for the identical workload against `DateTimeFormatter`.
+- Updated `syllabus/02-java/INDEX.md` (56 → 57), `syllabus/00-overview/INDEX.md`, `immutability-and-defensive-copying.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.

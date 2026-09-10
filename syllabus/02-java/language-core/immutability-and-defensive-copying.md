@@ -19,6 +19,7 @@ mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - equals-hashcode-and-comparable-contracts.md
+  - java-time-api.md
   - ../concurrency/java-memory-model-and-volatile.md
   - ../../../study-packs/week-13/05-immutability-and-defensive-copying.md
 official_references:
