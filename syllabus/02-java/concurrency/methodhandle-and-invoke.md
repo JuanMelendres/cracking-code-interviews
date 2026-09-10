@@ -21,6 +21,7 @@ related:
   - ../language-core/reflection-and-dynamic-proxies.md
   - ../language-core/lambdas-and-functional-interfaces.md
   - varhandles-and-unsafe.md
+  - ../jvm-internals/bytecode-and-class-file-fundamentals.md
   - ../../../practice/java/concurrency/methodhandle-and-invoke/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/invoke/MethodHandle.html

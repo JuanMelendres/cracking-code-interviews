@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — `02-java` gains a 61st chapter: Bytecode and Class File Fundamentals — all three named Java Core gaps now closed
+
+### Added (`syllabus/02-java/jvm-internals/bytecode-and-class-file-fundamentals.md` — T-2406)
+
+- Same gap audit, closing the third and last of `CLAUDE.md`'s three named `02-java` gaps (JPMS, `MethodHandle`, bytecode/class-file fundamentals). Confirmed genuinely absent from the original Master Topic Register; assigned `T-2406` (continuing `T-2400`–`T-2499`).
+- Real demo (`practice/java/jvm/bytecode-and-class-file-fundamentals/`, pure JDK plus a tiny pure-Java byte-patcher): a real hex dump of the magic number and version; a full real `javap -v` disassembly of a compiled loop with real bytecode instructions and a real `StackMapTable`.
+- Marquee finding: two real JVM failures, each from patching exactly one byte — a real `UnsupportedClassVersionError` (major-version bytes patched) and a real `VerifyError` (`iadd` → `iaload` opcode patched), proving the version check and bytecode verification are two real, independent JVM safety gates.
+- Updated `syllabus/02-java/INDEX.md` (60 → 61, all three named gaps declared closed), `syllabus/00-overview/INDEX.md`, four sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — `02-java` gains a 60th chapter: MethodHandle and java.lang.invoke
 
 ### Added (`syllabus/02-java/concurrency/methodhandle-and-invoke.md` — T-2405)

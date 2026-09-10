@@ -21,6 +21,7 @@ related:
   - classloaders-and-class-initialization.md
   - reflection-and-dynamic-proxies.md
   - ../jvm-internals/jvm-flags-and-container-ergonomics.md
+  - ../jvm-internals/bytecode-and-class-file-fundamentals.md
   - ../../../practice/java/language-core/jpms-module-system/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/module/ModuleDescriptor.html

@@ -1,0 +1,130 @@
+### 1. Compile and run normally
+sumTo(5) = 15
+
+### 2. Raw class file bytes: magic number + version (first 16 bytes)
+00000000: cafe babe 0000 0041 0014 0a00 0200 0307  .......A........
+
+### 3. javap -v — constant pool, bytecode instructions, StackMapTable
+Classfile /Users/juanmelendres/Developer/cracking-code-interviews/practice/java/jvm/bytecode-and-class-file-fundamentals/out/SumLoop.class
+  Last modified 10 sept 2026; size 349 bytes
+  SHA-256 checksum dff5faf5e5b2d371185fdae461afd7346fe74451981a57dcbcf9a8301fe85e8e
+  Compiled from "SumLoop.java"
+public class SumLoop
+  minor version: 0
+  major version: 65
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #8                          // SumLoop
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 2, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."<init>":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Fieldref           #8.#9          // SumLoop.total:I
+   #8 = Class              #10            // SumLoop
+   #9 = NameAndType        #11:#12        // total:I
+  #10 = Utf8               SumLoop
+  #11 = Utf8               total
+  #12 = Utf8               I
+  #13 = Utf8               Code
+  #14 = Utf8               LineNumberTable
+  #15 = Utf8               sumTo
+  #16 = Utf8               (I)I
+  #17 = Utf8               StackMapTable
+  #18 = Utf8               SourceFile
+  #19 = Utf8               SumLoop.java
+{
+  private int total;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public SumLoop();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 1: 0
+
+  public int sumTo(int);
+    descriptor: (I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=2
+         0: iconst_0
+         1: istore_2
+         2: iconst_1
+         3: istore_3
+         4: iload_3
+         5: iload_1
+         6: if_icmpgt     19
+         9: iload_2
+        10: iload_3
+        11: iadd
+        12: istore_2
+        13: iinc          3, 1
+        16: goto          4
+        19: aload_0
+        20: iload_2
+        21: putfield      #7                  // Field total:I
+        24: iload_2
+        25: ireturn
+      LineNumberTable:
+        line 5: 0
+        line 6: 2
+        line 7: 9
+        line 6: 13
+        line 9: 19
+        line 10: 24
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 4
+          locals = [ int, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 14
+}
+SourceFile: "SumLoop.java"
+
+### 4. Patch the major version upward (simulate a too-new class file) and rerun
+patched major version bytes to 99
+--- rerunning; expect a real UnsupportedClassVersionError ---
+Exception in thread "main" java.lang.UnsupportedClassVersionError: SumLoop has been compiled by a more recent version of the Java Runtime (class file version 99.0), this version of the Java Runtime only recognizes class file versions up to 65.0
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	at RunSumLoop.main(RunSumLoop.java:3)
+
+### 5. Restore, then patch one opcode (iadd 0x60 -> iaload 0x2e) and rerun
+patched first 0x60 byte at file offset 272 to 0x2e
+--- rerunning; expect a real VerifyError from the bytecode verifier ---
+Exception in thread "main" java.lang.VerifyError: Bad type on operand stack
+Exception Details:
+  Location:
+    SumLoop.sumTo(I)I @11: iaload
+  Reason:
+    Type integer (current frame, stack[0]) is not assignable to reference type
+  Current Frame:
+    bci: @11
+    flags: { }
+    locals: { 'SumLoop', integer, integer, integer }
+    stack: { integer, integer }
+  Bytecode:
+    0000000: 033d 043e 1d1b a300 0d1c 1d2e 3d84 0301
+    0000010: a7ff f42a 1cb5 0007 1cac               
+  Stackmap Table:
+    append_frame(@4,Integer,Integer)
+    chop_frame(@19,1)
+
+	at RunSumLoop.main(RunSumLoop.java:3)

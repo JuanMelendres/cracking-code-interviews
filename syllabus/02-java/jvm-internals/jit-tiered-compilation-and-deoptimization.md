@@ -18,6 +18,7 @@ related:
   - jvm-memory-layout-and-runtime-regions.md
   - safepoints-and-stop-the-world-mechanics.md
   - escape-analysis-and-scalar-replacement.md
+  - bytecode-and-class-file-fundamentals.md
   - ../../16-performance-jvm/benchmarking-and-jmh-pitfalls.md
   - ../../../study-packs/week-16/05-jit-tiered-compilation-and-deoptimization.md
 official_references:
