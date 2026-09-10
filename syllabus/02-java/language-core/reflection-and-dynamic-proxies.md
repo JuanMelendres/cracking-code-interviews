@@ -23,6 +23,7 @@ related:
   - classloaders-and-class-initialization.md
   - annotations-and-annotation-processing.md
   - java-platform-module-system.md
+  - ../concurrency/methodhandle-and-invoke.md
   - ../../../practice/java/java-core/reflection-and-dynamic-proxies/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/reflect/package-summary.html

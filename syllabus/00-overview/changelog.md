@@ -1085,6 +1085,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — `02-java` gains a 60th chapter: MethodHandle and java.lang.invoke
+
+### Added (`syllabus/02-java/concurrency/methodhandle-and-invoke.md` — T-2405)
+
+- Same gap audit, closing the second of `CLAUDE.md`'s three named `02-java` gaps. `MethodHandle` was only a comparison point inside T-113 (Reflection and Dynamic Proxies), never its own topic; confirmed genuinely absent from the original Master Topic Register, so assigned `T-2405` (continuing `T-2400`–`T-2499`).
+- Real demo (`practice/java/concurrency/methodhandle-and-invoke/`, pure JDK): real `findStatic`/`findConstructor`/`findVirtual`/`bindTo`; a real `WrongMethodTypeException` from `invokeExact()` versus `invoke()`'s automatic adaptation; real `filterReturnValue`/`dropArguments` combinators.
+- Marquee finding: a real `javap -v` disassembly showing a compiled lambda's `invokedynamic`/`LambdaMetafactory` bootstrap, contrasted against a real, extra `$1.class` file the equivalent anonymous inner class produces (the lambda produces none).
+- Caught and fixed a citation error before shipping: an initial "JEP 107" citation was verified via `WebFetch` and found wrong (that JEP is Java 8 Streams, unrelated) — corrected to the real source, JSR 292, also verified live.
+- Updated `syllabus/02-java/INDEX.md` (59 → 60), `syllabus/00-overview/INDEX.md`, two sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — `02-java` gains a 59th chapter: Java Platform Module System, filling its own long-reserved T-116 slot
 
 ### Added (`syllabus/02-java/language-core/java-platform-module-system.md` — T-116)
