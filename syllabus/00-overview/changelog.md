@@ -1067,3 +1067,11 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Same gap audit, new domain. `05-spring` had zero coverage of Bean Validation or global exception handling — everyday Spring MVC topics. Closed continuing the domain's own existing `T-5xx` sequence.
 - Real Spring Boot 3.5.16 app (`practice/java/bean-validation-and-exception-handling/`): a real custom, class-level `@ValidPayment` constraint correctly enforcing a cross-field rule field-level annotations can't express; real evidence `MethodArgumentNotValidException` collects every field violation from one request together. The marquee finding: real, captured, side-by-side proof a catch-all `@ExceptionHandler(Exception.class)` keeps a sensitive detail (a database connection string with a credential) out of the client response while it's fully logged server-side.
 - Updated `syllabus/05-spring/INDEX.md` (10 → 11), `syllabus/00-overview/INDEX.md`, `spring-mvc-fundamentals.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — Topic-ID collision correction
+
+### Fixed
+
+- Three gap-topic IDs assigned earlier the same day (`T-116` java.time, `T-617` Window Functions and CTEs, `T-618` JSONB and Advanced Index Types) collided with pre-existing entries in the original Master Topic Register (`T-116` = Java Platform Module System; `T-617` = `11-system-design/storage-selection-tradeoffs.md`; `T-618` = `10-distributed-systems/distributed-transactions-saga-and-outbox.md`). Caused by scanning only the target domain's own `INDEX.md` for the next free number, on the mistaken assumption a domain's `T-Nxx` prefix was private — the register is one shared global ID space across all 16 original domains.
+- Renumbered: `T-116` → `T-2400`, `T-617` → `T-2401`, `T-618` → `T-2402`. All front matter, in-body "Topic register" lines, and `INDEX.md`/tracking-file references updated.
+- Reserved `T-2400`–`T-2499` for future gap topics in existing domains lacking their own dedicated reserved range — see `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection for the full account. Other same-day assignments (`T-1308`, `T-1701`/`T-1702`, `T-210`, `T-417`, `T-518`) were cross-checked and found collision-free.

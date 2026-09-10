@@ -14,7 +14,7 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
-topic_id: T-617
+topic_id: T-2401
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - sql-and-relational-database-fundamentals.md
@@ -30,7 +30,7 @@ official_references:
 
 # Window Functions and Common Table Expressions
 
-> **Topic register:** T-617 · IWI 6.4 · Core tier · Very High interview frequency [H]
+> **Topic register:** T-2401 · IWI 6.4 · Core tier · Very High interview frequency [H]
 > **Provenance:** every result in this chapter is real, executed PostgreSQL 16 output from a
 > disposable Docker container. Reproducible source: [`practice/sql/window-functions-and-ctes/window-functions-lab.sql`](../../practice/sql/window-functions-and-ctes/window-functions-lab.sql),
 > full output in [`window-functions-lab-output.txt`](../../practice/sql/window-functions-and-ctes/window-functions-lab-output.txt).

@@ -1,6 +1,6 @@
 # JSONB and Advanced PostgreSQL Index Types — Real Lab
 
-Backs [`syllabus/06-databases/jsonb-and-advanced-index-types.md`](../../../syllabus/06-databases/jsonb-and-advanced-index-types.md) (T-618).
+Backs [`syllabus/06-databases/jsonb-and-advanced-index-types.md`](../../../syllabus/06-databases/jsonb-and-advanced-index-types.md) (T-2402).
 
 Real PostgreSQL 16, run in a disposable Docker container. No app code —
 pure SQL.

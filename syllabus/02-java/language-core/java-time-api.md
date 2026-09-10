@@ -14,7 +14,7 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 24
-topic_id: T-116
+topic_id: T-2400
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - immutability-and-defensive-copying.md
@@ -28,7 +28,7 @@ official_references:
 
 # java.time API: Dates, Times, and Durations
 
-> **Topic register:** T-116 · IWI 6.0 · Core tier · Very High interview frequency [H]
+> **Topic register:** T-2400 · IWI 6.0 · Core tier · Very High interview frequency [H]
 > **Provenance:** all evidence in this chapter is real, executed output from
 > [`practice/java/language-core/java-time-api/`](../../../practice/java/language-core/java-time-api/README.md)
 > (OpenJDK 21.0.12), including a real, reproduced `SimpleDateFormat` thread-safety

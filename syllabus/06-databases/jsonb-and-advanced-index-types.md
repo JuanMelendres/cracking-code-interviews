@@ -14,7 +14,7 @@ target_levels:
   - senior
   - staff
 estimated_reading_minutes: 35
-topic_id: T-618
+topic_id: T-2402
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - index-structures-btree-composite-covering.md
@@ -32,7 +32,7 @@ official_references:
 
 # JSONB and Advanced PostgreSQL Index Types
 
-> **Topic register:** T-618 · IWI 6.2 · Core tier · High interview frequency [H]
+> **Topic register:** T-2402 · IWI 6.2 · Core tier · High interview frequency [H]
 > **Provenance:** every result in this chapter is real, executed PostgreSQL 16 output from a
 > disposable Docker container. Reproducible source: [`practice/sql/jsonb-and-advanced-indexes/jsonb-and-indexes-lab.sql`](../../practice/sql/jsonb-and-advanced-indexes/jsonb-and-indexes-lab.sql),
 > full output in [`jsonb-and-indexes-lab-output.txt`](../../practice/sql/jsonb-and-advanced-indexes/jsonb-and-indexes-lab-output.txt).

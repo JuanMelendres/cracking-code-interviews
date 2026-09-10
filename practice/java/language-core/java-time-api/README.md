@@ -1,6 +1,6 @@
 # java.time API — Real Demo
 
-Backs [`syllabus/02-java/language-core/java-time-api.md`](../../../../syllabus/02-java/language-core/java-time-api.md) (T-116).
+Backs [`syllabus/02-java/language-core/java-time-api.md`](../../../../syllabus/02-java/language-core/java-time-api.md) (T-2400).
 
 Pure JDK, no dependencies.
 

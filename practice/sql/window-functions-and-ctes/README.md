@@ -1,6 +1,6 @@
 # Window Functions and CTEs — Real Lab
 
-Backs [`syllabus/06-databases/window-functions-and-ctes.md`](../../../syllabus/06-databases/window-functions-and-ctes.md) (T-617).
+Backs [`syllabus/06-databases/window-functions-and-ctes.md`](../../../syllabus/06-databases/window-functions-and-ctes.md) (T-2401).
 
 Real PostgreSQL 16, run in a disposable Docker container. No app code —
 pure SQL.
