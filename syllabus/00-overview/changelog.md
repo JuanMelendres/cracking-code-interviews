@@ -1035,3 +1035,11 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Same gap audit, same day. `02-java/language-core` had zero coverage of `java.time` (JSR-310) despite it being explicitly named in `CLAUDE.md`'s own gap list and Very High interview frequency. Closed continuing the subdomain's own existing `T-1xx` sequence.
 - Real demo (`practice/java/language-core/java-time-api/`): real immutability contrasted against a real `Calendar` in-place mutation; a real `Period`-vs-`Duration` divergence on an actual US DST transition date (12:00 vs. 13:00 from the identical starting point); and the marquee finding — a real, reproduced `SimpleDateFormat` thread-safety corruption under concurrent load (6,969/10,000 in one captured run) versus zero corruption for the identical workload against `DateTimeFormatter`.
 - Updated `syllabus/02-java/INDEX.md` (56 → 57), `syllabus/00-overview/INDEX.md`, `immutability-and-defensive-copying.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `02-java` gains a 58th chapter: java.util.concurrent Synchronizers
+
+### Added (`syllabus/02-java/concurrency/synchronizers-countdownlatch-cyclicbarrier-semaphore.md` — T-417)
+
+- Same gap audit, same day. `02-java/concurrency` had zero coverage of `CountDownLatch`, `CyclicBarrier`, or `Semaphore` despite them being explicitly named in `CLAUDE.md`'s own gap list. Closed continuing the subdomain's own existing `T-4xx` sequence.
+- Real demo (`practice/java/concurrency/synchronizers/`): real `CountDownLatch` blocking-until-all-signal with staggered real worker delays; real evidence it cannot be reset; a real `CyclicBarrier` reused across two independent rounds, its action firing exactly twice; a real, measured `Semaphore` maximum-concurrent-holder count under genuine contention that never exceeded the configured permit count.
+- Updated `syllabus/02-java/INDEX.md` (57 → 58), `syllabus/00-overview/INDEX.md`, `reentrantlock-readwritelock-and-stampedlock.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.

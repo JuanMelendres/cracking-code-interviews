@@ -23,6 +23,7 @@ prerequisites:
 related:
   - atomics-cas-and-the-aba-problem.md
   - executors-and-thread-pool-sizing.md
+  - synchronizers-countdownlatch-cyclicbarrier-semaphore.md
   - ../../../practice/java/concurrency/locks-reentrant-rw-stamped/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html
