@@ -45,23 +45,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -161,6 +163,20 @@ Detected 3 vulnerable packages with a total of 13 vulnerabilities
 
 This is the concrete point the mental model makes abstractly: `golang.org/x/net`, a package neither this project nor most consumers of `eclipse-temurin:21-jre` chose directly or are even likely aware they're shipping, carries a real, currently-unpatched (in this image tag as scanned) CRITICAL-severity CVE. No application code written for a service running on this base image is at fault — the exposure exists entirely because of what's bundled into the base image, several layers below any code a typical backend team ever reviews.
 
+## Diagrams
+
+The two real commands run above are two separate, sequential steps — the SBOM is a pure inventory with no risk judgment at all; scanning is where "what's here" becomes "what's actually dangerous":
+
+```mermaid
+flowchart LR
+    A["eclipse-temurin:21-jre<br/>(the running image)"] -->|"docker scout sbom"| B["SBOM: 213 packages<br/>(deb + golang ecosystems)<br/>-- pure inventory, no risk info"]
+    B -->|"docker scout cves<br/>(match against CVE database)"| C["13 findings across 3 packages<br/>1 CRITICAL, 1 HIGH, 7 MEDIUM, 1 LOW, 3 UNSPECIFIED"]
+    C --> D{"Triage by exploitability/exposure,<br/>not raw severity alone"}
+    D --> E["golang.org/x/net CVE-2026-39821 (CRITICAL)<br/>-- fix: update to 0.55.0"]
+```
+
+Notice the SBOM step (`B`) produces zero severity information by itself — a package list alone can't tell you anything is wrong. Every actionable fact in this chapter (the CRITICAL finding, the fixed version) comes only after the second step, which is exactly why "we generated an SBOM" and "we know our actual risk" are not the same claim.
+
 ## Production Scenarios
 
 **A security team runs a routine SBOM audit across the company's container fleet and discovers dozens of services share an identical CRITICAL-severity transitive dependency vulnerability — not because any team made the same mistake, but because they all built from the same organizational base image, which itself was affected.** This is a common real pattern: fixing the vulnerability doesn't require dozens of independent application-level fixes, but a single update to the shared base image, followed by dozens of services rebuilding against the updated base — illustrating why base-image currency is itself a cross-cutting, centrally-manageable risk rather than something each service team should independently discover and remediate.
@@ -180,6 +196,17 @@ Generating and continuously scanning an SBOM adds real pipeline overhead (build-
 ## Decision Framework
 
 Generate an SBOM as a standard, automated build-pipeline step for any production service — not a manual, occasional audit exercise — since its value depends on being current, and a stale SBOM from months ago is a poor substitute for one reflecting the actual currently-deployed dependency set. Prioritize triage of SBOM-surfaced vulnerabilities by actual exploitability and exposure (is the vulnerable code path even reachable in this service's actual usage of the package; is the package internet-facing or purely internal-tooling) rather than by CVSS severity score alone, which doesn't account for a specific deployment's actual risk context. Treat base-image currency as an organization-wide, centrally-owned concern rather than each service team's individual responsibility, given how many services typically inherit risk from the same shared base images.
+
+## Comparisons
+
+This chapter's `docker scout sbom` output is one specific tool's implementation of a format — the two dominant SBOM *standards* it (and most other SBOM tooling) can target are worth distinguishing, since "which SBOM format" is a real, practical follow-up to "generate an SBOM":
+
+| Standard | Maintained by | Primary strength | Typical use |
+|---|---|---|---|
+| CycloneDX | OWASP | Purpose-built for security use cases — vulnerability and risk data fields are first-class | Vulnerability scanning pipelines, dependency-risk tooling (the ecosystem this chapter's workflow fits into) |
+| SPDX | Linux Foundation / ISO standard (ISO/IEC 5962) | Broader scope — also covers license compliance and provenance, longer-established as a formal standard | License-compliance audits, procurement/legal requirements, government supply-chain mandates |
+
+Both are machine-readable, both can describe the same transitive-dependency-plus-base-image inventory this chapter's real `eclipse-temurin:21-jre` scan produced — the practical choice usually comes down to which downstream tooling (a vulnerability scanner versus a license-compliance system) needs to consume the output, and many organizations end up generating both from the same underlying dependency graph rather than picking one exclusively.
 
 ## Common Mistakes
 

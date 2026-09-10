@@ -45,23 +45,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -150,6 +152,23 @@ v1 record now fails: no key for version 1  (this is why rotation runbooks re-enc
 
 Removing key v1 from the ring — simulating its deletion after retirement — immediately and permanently breaks decryption for any record still tagged with version 1. In a real system, this step would only be safe after a background job has re-encrypted every v1-tagged record under a current key version and verified the re-encryption succeeded; deleting a key before that sweep completes is equivalent to permanently destroying whatever data still depends on it.
 
+## Diagrams
+
+The full lifecycle `KeyRotationDemo.java` walks through, as a state diagram — note that a key only leaves the ring in the final transition, and only from the "swept" state, never directly from "active":
+
+```mermaid
+stateDiagram-v2
+    [*] --> v1_active: key v1 generated
+    v1_active --> v1_and_v2_active: rotate() -- v2 generated,<br/>new writes use v2 (zero downtime)
+    v1_and_v2_active --> v1_and_v2_active: both v1- and v2-tagged<br/>records decrypt correctly
+    v1_and_v2_active --> v1_swept: background re-encryption sweep<br/>re-encrypts every v1 record under v2, verified
+    v1_swept --> v2_only: v1 removed from ring (safe --<br/>nothing depends on it anymore)
+    v1_and_v2_active --> data_loss: v1 removed from ring<br/>BEFORE sweep completes
+    data_loss --> [*]: any still-v1-tagged record<br/>permanently undecryptable (demonstrated above)
+```
+
+The demo's third code block is exactly the `data_loss` transition taken directly from `v1_and_v2_active` — skipping the sweep step entirely — which is why it fails immediately and permanently rather than degrading gracefully.
+
 ## Production Scenarios
 
 **A compliance audit requires proof that encryption keys protecting customer PII are rotated at least annually, and the team discovers their current architecture encrypts all historical data under one key with no versioning at all.** Implementing rotation retroactively on a system not designed for it requires a real migration project: introducing a key-version tag to the existing schema (a backfill, since existing records have no such tag and are implicitly "version 0" or the original key), standing up envelope-encryption logic for all new writes, and running a background re-encryption sweep across the entire existing dataset before the original key can be considered rotated at all. This is meaningfully more expensive than designing rotation in from the start, which is the practical argument for treating key versioning as a day-one architectural decision even before any rotation is imminently required.
@@ -169,6 +188,18 @@ More frequent key rotation reduces the exposure window and blast radius of a pot
 ## Decision Framework
 
 Design key versioning and envelope encryption into any system handling sensitive data from the start, even if rotation isn't immediately required by policy — retrofitting it onto an unversioned system, as the compliance-audit production scenario shows, is a substantially larger project than building it in from day one. Choose a rotation cadence driven by the more conservative of: an applicable compliance requirement's explicit schedule, and an internally-assessed acceptable exposure window for the specific data's sensitivity — not an arbitrary default cadence. Never delete a key without first confirming (via an automated check, not a manual assumption) that zero records remain tagged with that version, or that any remaining records have been deliberately, knowingly accepted as permanently unrecoverable.
+
+## Comparisons
+
+Three ways a team might approach "rotate the key," differing sharply in downtime and risk — only one of them is what `KeyRotationDemo.java` actually demonstrates:
+
+| Approach | Downtime for new writes | Old data | Risk |
+|---|---|---|---|
+| Naive replace (no versioning) | None for writes, but reads break | Immediately undecryptable — no tag says which key protected it | Silent, irreversible data loss the moment old records are read |
+| Synchronous re-encrypt-then-swap | Full downtime for the duration of the re-encryption pass | Re-encrypted before the new key goes live | Operationally safe but doesn't scale — downtime grows with dataset size |
+| Envelope encryption (this chapter, the real demo) | None — new key active immediately, old key stays in the ring | Decryptable throughout, via its own version tag, until swept in the background | The only approach that's both zero-downtime and lossless, at the cost of a versioning scheme built in up front |
+
+The synchronous approach is a real, sometimes-chosen option for a small dataset where downtime is acceptable — it's not wrong, just a different point on the same trade-off envelope encryption is designed to avoid needing at all once a system has real production scale.
 
 ## Common Mistakes
 

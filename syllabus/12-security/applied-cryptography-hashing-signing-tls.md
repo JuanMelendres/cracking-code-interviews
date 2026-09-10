@@ -44,23 +44,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -127,6 +129,10 @@ A signed message is not encrypted — anyone can read a signed message's content
 
 TLS 1.3 (RFC 8446) is a meaningful protocol redesign, not an incremental version bump: it removed support for the older, weaker cipher suites and key-exchange modes that enabled attacks like BEAST, POODLE, and Logjam in earlier TLS/SSL versions, and reduced the handshake to one round trip (down from two in TLS 1.2) by committing to a smaller, modern set of algorithm choices instead of negotiating from a large legacy menu.
 
+### One-way TLS proves the server's identity to the client; mutual TLS (mTLS) proves both directions
+
+Everything above this point is **one-way TLS**: the client verifies the server's certificate, but the server has no cryptographic proof of who the client is — that's a separate, application-layer concern (a password, a bearer token, an API key). **Mutual TLS (mTLS)** adds a second certificate check in the same handshake: the server also requests and verifies a client certificate, signed by a CA the server trusts, before completing the connection at all. This is the standard pattern for service-to-service authentication inside a private network (or a service mesh's sidecar-to-sidecar links) — it proves "this connection really is from the payments service" at the transport layer, before any application code (and before any bearer token) is even involved.
+
 ## Internal Implementation
 
 **Real PBKDF2 cost demonstration** (`practice/java/week-17/crypto/src/PasswordHashingCostDemo.java`, `PBKDF2WithHmacSHA256`, each run in its own fresh JVM process so JIT warmup from one measurement can't leak into another):
@@ -182,6 +188,68 @@ Negotiated TLS1.3 group: X25519MLKEM768
 
 Two details worth citing directly: the negotiated cipher suite (`TLS_AES_256_GCM_SHA384`) is one of the small, fixed set TLS 1.3 supports (no negotiation into a weak legacy suite is even possible); and the negotiated key-exchange group (`X25519MLKEM768`) is a hybrid classical/post-quantum group — real evidence that this specific OpenSSL/negotiation stack, as tested, already defaults to post-quantum-resistant key exchange, not a hypothetical future capability. The `verify error: self-signed certificate` line is expected and correct — it's exactly what should happen when a client doesn't have the self-signed cert's issuer in its trust store, which is why production TLS uses certificates from a trusted CA instead.
 
+**Real mutual TLS (mTLS) handshake** — a local CA signs both a server cert and a client cert; `openssl s_server` is started with `-Verify 1 -verify_return_error` (require and enforce a valid client certificate), then tested twice: once with no client cert offered, once with the CA-signed client cert:
+
+```
+$ openssl s_server -accept 15702 -cert server.pem -key server.key -CAfile ca.pem -Verify 1 -verify_return_error -quiet &
+
+$ printf 'GET / HTTP/1.0\r\n\r\n' | openssl s_client -connect 127.0.0.1:15702 -CAfile ca.pem -brief
+CONNECTION ESTABLISHED
+Protocol version: TLSv1.3
+...
+Verification: OK
+80614DFC01000000:error:0A00045C:SSL routines:ssl3_read_bytes:tlsv13 alert certificate required:...
+```
+
+```
+$ printf 'GET / HTTP/1.0\r\n\r\n' | openssl s_client -connect 127.0.0.1:15702 -CAfile ca.pem -cert client.pem -key client.key -brief
+CONNECTION ESTABLISHED
+Protocol version: TLSv1.3
+...
+Verification: OK
+DONE
+```
+
+Server-side log for the second attempt, showing the client certificate chain actually being validated against the CA before the connection is allowed to complete:
+
+```
+depth=1 C=US, O=Demo-CA, CN=Demo-Root-CA
+verify return:1
+depth=0 C=US, O=Demo, CN=service-b-client
+verify return:1
+```
+
+The first attempt establishes a TLS connection (the server's own certificate verifies fine) but the server then sends a fatal `certificate required` alert and tears the connection down the moment it needs the client's certificate and doesn't get one — proving the client-identity check happens inside the TLS handshake itself, before any HTTP request is ever processed. The second attempt, identical in every way except for presenting the CA-signed client certificate, completes normally (`DONE`). This is the concrete mechanism behind "the mesh rejected the connection before it reached my service" — from the application's point of view, an unauthenticated peer never gets far enough to generate an HTTP-level error at all.
+
+## Diagrams
+
+One-way TLS versus mutual TLS, matching the real handshakes captured above — the only difference is the two extra steps in the shaded box, and that difference is exactly what turns "server proves itself" into "both sides prove themselves":
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    Note over C,S: One-way TLS (both demos above, non-mTLS run)
+    C->>S: ClientHello
+    S-->>C: ServerHello + server certificate
+    C->>C: Verify server cert against trusted CAs
+    C-->>S: Finished (symmetric session key agreed)
+    Note over C,S: Server identity proven. Client identity: not yet -- an application-layer concern.
+
+    Note over C,S: Mutual TLS (mTLS) -- the CertificateRequest demo above
+    C->>S: ClientHello
+    S-->>C: ServerHello + server certificate + CertificateRequest
+    C->>C: Verify server cert against trusted CAs
+    C-->>S: Client certificate + proof of private-key possession
+    S->>S: Verify client cert against trusted CAs (the depth=1/depth=0 log lines)
+    alt No client cert presented
+        S-->>C: Fatal alert: certificate required (connection torn down)
+    else Valid CA-signed client cert presented
+        S-->>C: Finished (symmetric session key agreed)
+    end
+```
+
 ## Production Scenarios
 
 **A security review finds user passwords hashed with plain SHA-256 and a per-user salt.** The salt correctly defeats rainbow-table attacks (precomputed hash tables), but does nothing about the *speed* problem: an attacker with the stolen hash database can still try billions of salted-SHA-256 guesses per second per password on GPU hardware, because SHA-256 itself is fast. The fix is migrating to a password-hashing function with a tunable cost parameter (Argon2id is the current OWASP-recommended default; PBKDF2 remains acceptable, especially where FIPS compliance is required) — and because the old hashes can't be "upgraded" without the plaintext password, this typically means re-hashing opportunistically at the next successful login rather than a bulk migration.
@@ -200,7 +268,19 @@ Higher password-hashing cost parameters increase resistance to offline brute-for
 
 ## Decision Framework
 
-Choose Argon2id for new password-hashing implementations absent a specific constraint (e.g., FIPS 140 compliance, which currently favors PBKDF2) — it is the current OWASP-recommended default, designed to resist both GPU-parallelized and memory-constrained attacks. Choose ECDSA/EdDSA over RSA for new signing implementations where key size and signature size matter (smaller keys for equivalent security strength) — RSA remains common in legacy systems and specific compliance contexts. Never implement a custom TLS-equivalent "secure channel"; use the platform's TLS implementation and keep it current, since TLS's security properties come from years of adversarial cryptographic review that a bespoke implementation cannot replicate.
+Choose Argon2id for new password-hashing implementations absent a specific constraint (e.g., FIPS 140 compliance, which currently favors PBKDF2) — it is the current OWASP-recommended default, designed to resist both GPU-parallelized and memory-constrained attacks. Choose ECDSA/EdDSA over RSA for new signing implementations where key size and signature size matter (smaller keys for equivalent security strength) — RSA remains common in legacy systems and specific compliance contexts. Never implement a custom TLS-equivalent "secure channel"; use the platform's TLS implementation and keep it current, since TLS's security properties come from years of adversarial cryptographic review that a bespoke implementation cannot replicate. For service-to-service authentication specifically, default to mTLS when a service mesh or platform already provisions and rotates certificates for you (the identity check happens before any application code runs, and there's no bearer token to leak or replay); reach for a bearer token (a signed JWT, per [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md)) instead when the caller isn't a fixed, cert-provisioned service — a third-party client, an end user, or any caller the platform doesn't already manage certificate lifecycle for.
+
+## Comparisons
+
+Three ways two backend services can prove who they are to each other, since this is where "just use mTLS" or "just use a signed token" gets asked as a follow-up to this chapter's own content:
+
+| Mechanism | Proves identity at | Revocable before expiry? | Needs |
+|---|---|---|---|
+| Mutual TLS (mTLS) | Transport layer, during the handshake, before any request is processed | Yes — revoke/rotate the cert (e.g., short-lived certs from a mesh's certificate authority) | A CA the server trusts, and a way to provision + rotate client certs |
+| Signed JWT (bearer token) | Application layer, read by the receiving service's code | No — a bearer JWT is valid until it expires (see [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md)'s revocation discussion) | A signing key, a token-issuance flow, and code that actually verifies the token on every path |
+| Shared API key | Application layer, a single static secret | Only by rotating the key everywhere it's configured | Secure storage and distribution of one shared secret (see [Secrets Management and Key Rotation](secrets-management-and-key-rotation.md)) |
+
+mTLS and a signed JWT are not competitors so much as different layers of the same stack — a common real pattern is mTLS proving *which service* is calling (transport-layer, hard to spoof without the private key) while a JWT or similar token separately proves *on whose behalf* it's calling (application-layer, e.g., the original end user's identity, propagated through several service hops).
 
 ## Common Mistakes
 

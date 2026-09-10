@@ -44,23 +44,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -180,6 +182,26 @@ Zero rows, not an error and not all rows — `current_setting('app.tenant_id', t
 
 Connected as the PostgreSQL superuser (which has the `BYPASSRLS` attribute by default), the identical `SELECT * FROM orders` query — no `SET` of tenant context at all — returns every tenant's rows unconditionally. This is not a bug in RLS; it's documented, intended behavior (superusers and roles explicitly granted `BYPASSRLS` are exempt) — but it means the entire isolation guarantee depends on the application's actual database connection using a non-superuser, non-`BYPASSRLS` role. An application accidentally connecting as a superuser (a surprisingly common default in local development that sometimes leaks into production configuration) has zero RLS protection despite the policy being correctly defined.
 
+## Diagrams
+
+The same `SELECT * FROM orders` query, three ways, matching the three real result sets captured above — the row count returned depends entirely on which role and which session context issued an otherwise-identical query:
+
+```mermaid
+flowchart TD
+    Q["SELECT * FROM orders"] --> R{"Which role issued it?"}
+
+    R -->|"app_user, app.tenant_id='tenant_a'"| A["RLS policy evaluates:<br/>tenant_id = 'tenant_a'"]
+    A --> A2["2 rows -- tenant_a only"]
+
+    R -->|"app_user, no tenant_id SET"| B["RLS policy evaluates:<br/>tenant_id = NULL"]
+    B --> B2["0 rows -- fail closed<br/>(NULL comparison never true)"]
+
+    R -->|"superuser (BYPASSRLS)"| C["RLS policy not evaluated at all"]
+    C --> C2["3 rows -- every tenant<br/>regardless of any SET"]
+```
+
+The left two branches are the isolation guarantee working exactly as designed — different results because the *policy* saw different context. The right branch is the caveat: the policy is never even consulted, because `BYPASSRLS` skips the enforcement point entirely rather than evaluating it and returning a wider match.
+
 ## Production Scenarios
 
 **A SaaS company scales from a handful of enterprise customers to thousands of small-business tenants, and the original per-tenant-database (silo) model becomes an operational bottleneck** — migrations must run against every tenant database individually, and infrastructure cost scales linearly with tenant count regardless of how small some tenants' actual usage is. The company migrates its small-tenant tier to a shared pool model with RLS-enforced isolation, while keeping its largest enterprise customers (who specifically contracted for dedicated infrastructure as a compliance requirement) on the silo model — a real bridge/hybrid architecture driven by the actual difference in tenant needs, not a uniform default.
@@ -199,6 +221,19 @@ Silo isolation provides the strongest security boundary and the simplest reasoni
 ## Decision Framework
 
 Default to pool (shared schema) with database-enforced RLS for the common case — it captures most of the operational-cost benefit of a shared architecture while meaningfully strengthening the isolation guarantee beyond application-code-only filtering. Escalate specific tenants to silo isolation when there's a concrete, named requirement driving it — a compliance mandate (data residency, dedicated infrastructure contractual terms), a scale/noisy-neighbor concern for a very large tenant, or a genuinely different reliability SLA for that tier — rather than defaulting every tenant to the most expensive model preemptively. Treat "which database roles have `BYPASSRLS` or superuser status, and which code paths use them" as a standing audit item, not a one-time setup check, since new tools (analytics jobs, admin scripts, migration tooling) are a recurring source of accidentally-exempt access paths.
+
+## Comparisons
+
+Row-Level Security is one specific enforcement point among several that all claim to give "tenant isolation" — worth placing side by side, since the cheap-sounding options are exactly the ones this chapter's demo shows failing silently:
+
+| Enforcement point | Where the check lives | Bypassed by | Cost to add a new tenant |
+|---|---|---|---|
+| Application-level `WHERE tenant_id = ?` | Every individual query, in every code path | Any single missed filter, in any code path, ever written | Zero (just a data row) |
+| Row-Level Security (this chapter) | The database, on every query against the table | `BYPASSRLS` / superuser roles, as demonstrated above | Zero (just a data row) |
+| Separate schema per tenant | Database connection/`search_path` selects the schema | A connection using the wrong schema, or a superuser cross-schema query | A new schema + migration run |
+| Separate database (silo) | Infrastructure — a different database instance entirely | Nothing at the query level; only infrastructure-level access | A new database instance to provision |
+
+Moving down the table trades "how much can a single application bug leak" against "how much infrastructure exists per tenant" — RLS and application-level filtering share the same infrastructure cost (zero) but differ sharply in what kind of mistake it takes to breach them: an application bug for the top row, a database-role misconfiguration for RLS.
 
 ## Common Mistakes
 

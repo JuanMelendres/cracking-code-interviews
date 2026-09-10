@@ -26,6 +26,7 @@ related:
   - secrets-management-and-key-rotation.md
   - supply-chain-security-sbom-and-dependency-risk.md
   - multi-tenancy-isolation-models.md
+  - csrf-cors-and-session-security.md
   - ../02-java/language-core/serialization-hazards-and-alternatives.md
   - oauth2-oidc-and-jwt.md
   - ../05-spring/security-filter-chain.md
@@ -50,23 +51,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -172,6 +175,31 @@ Blocked: target host:port not in allowlist: 127.0.0.1:15601
 
 The fixed version's defense is a strict **allowlist** of permitted destination hosts, checked against the *resolved* target after parsing the URL — not a denylist of "known-bad" hosts, and not a check on the URL string's syntax alone. Denylists for SSRF are notoriously bypassable (redirects, DNS rebinding, alternate IP representations of loopback addresses); an allowlist of legitimate external destinations is the only defense that doesn't require anticipating every attacker encoding trick.
 
+## Diagrams
+
+Both real demos above share the same shape as the Mental Model's "shape 1" (a trust boundary crossed without a check) — the vulnerable path has no decision point at all where the fixed path has one:
+
+```mermaid
+flowchart TD
+    subgraph idor["IDOR (A01) -- IdorDemo.java"]
+        I1["bob requests invoice 101"] --> I2["DB.get(101)"]
+        I2 --> I3{"FIXED handler only:<br/>invoice.ownerUserId == requester?"}
+        I3 -->|"vulnerable handler: check doesn't exist"| I4["Returns alice's invoice to bob"]
+        I3 -->|"no (fixed handler)"| I5["Blocked"]
+        I3 -->|"yes (fixed handler)"| I4b["Returns invoice to its actual owner"]
+    end
+
+    subgraph ssrf["SSRF (A10) -- SsrfDemo.java"]
+        S1["Preview service given a URL"] --> S2["Parse and resolve target host:port"]
+        S2 --> S3{"FIXED handler only:<br/>resolved host:port in allowlist?"}
+        S3 -->|"vulnerable handler: check doesn't exist"| S4["Fetches internal metadata endpoint,<br/>leaks credentials"]
+        S3 -->|"no (fixed handler)"| S5["Blocked"]
+        S3 -->|"yes (fixed handler)"| S4b["Fetches the legitimate public target"]
+    end
+```
+
+In both cases, the vulnerable path isn't *missing a step in a chain of checks* — it never reaches a decision point at all, which is exactly why the fix is one added condition (`I3`/`S3`), not a rewrite of the surrounding logic.
+
 ## Production Scenarios
 
 **A05, Security Misconfiguration — a service exposes verbose stack traces in production error responses.** This is one of the most common real-world A05 findings: a framework's default development error page (full stack trace, sometimes including internal class names, file paths, or SQL fragments) is left enabled after deployment. The fix is configuration, not code — disable detailed error pages outside a development profile — but it requires someone to have explicitly verified production configuration differs from development defaults, which is exactly the kind of check that's easy to skip when "it works" is the only acceptance criterion being tested.
@@ -191,6 +219,21 @@ Treating the OWASP Top 10 as a compliance checklist ("we checked all ten boxes")
 ## Decision Framework
 
 Use the Top 10 as a starting checklist for a security review's *scope*, not its *completion criteria* — for each category, ask "does this service have a feature shaped like this risk" (does it fetch user-influenced URLs server-side? does it deserialize untrusted input? does it expose object IDs that another user could guess or enumerate?) rather than treating "no known CVE in this category" as sufficient. Escalate straight to a design-level review (A04's territory) rather than a code-level fix whenever the finding is "this feature has no control for X" rather than "this feature's control for X has a bug."
+
+## Comparisons
+
+Two categories from this chapter's own demos (A01, A10) are each defended by a family of superficially-similar controls that differ sharply in whether they're a real fix or defense-in-depth on top of one:
+
+| Category | Control | Is it the actual fix? | Why |
+|---|---|---|---|
+| A01 (IDOR) | Explicit ownership/permission check (this chapter's fix) | Yes | Directly answers "may *this* requester access *this* object" |
+| A01 (IDOR) | Unguessable/random-looking object IDs | No — defense-in-depth only | An ID still leaks via a shared link, log, or cache; doesn't answer the authorization question at all (see Anti-Patterns) |
+| A01 (IDOR) | Rate limiting on the endpoint | No — defense-in-depth only | Slows brute-force ID guessing but does nothing if the attacker already has a valid ID for someone else's object |
+| A10 (SSRF) | Allowlist of resolved destination hosts (this chapter's fix) | Yes | Only IPs/hosts explicitly deemed safe can ever be reached, regardless of encoding tricks |
+| A10 (SSRF) | Denylist of "known-bad" strings (`169.254`, `localhost`) | No | Bypassable via alternate IP encodings, DNS rebinding, redirects — see Interview Question 2 |
+| A10 (SSRF) | Network-level egress firewall rules | Partial — defense-in-depth | Reduces blast radius if the allowlist is ever misconfigured, but doesn't replace an application-level check tailored to the specific feature's legitimate destinations |
+
+The pattern across both categories: a control that reduces *how likely* an attacker is to succeed (obscure IDs, a denylist, rate limiting) is not the same as a control that makes the attack *impossible by construction* (an explicit authorization check, an allowlist) — interviewers probing this chapter's categories are usually listening for which side of that line a candidate's proposed fix actually falls on.
 
 ## Common Mistakes
 

@@ -23,6 +23,7 @@ related:
   - owasp-top-10-for-backend-services.md
   - oauth2-oidc-and-jwt.md
   - multi-tenancy-isolation-models.md
+  - csrf-cors-and-session-security.md
   - ../05-spring/security-filter-chain.md
   - ../../study-packs/week-17/03-authn-authz-rbac-vs-abac.md
 official_references:
@@ -45,23 +46,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -151,6 +154,26 @@ bob    abacAllow(chg-42) @ 02:00 = false
 
 The identical user, identical change, identical role — only the environment attribute (time) differs — produces a different, correct decision. This is the concrete evidence that ABAC's decision depends on request-time context that a static role-permission table structurally cannot represent.
 
+## Diagrams
+
+The real demo's `chg-42` scenario, as a decision flow — RBAC's single static lookup versus ABAC's multi-attribute evaluation for the same three users:
+
+```mermaid
+flowchart TD
+    A["Request: approve chg-42<br/>(subject, resource, action, environment)"] --> B{"RBAC: does subject's<br/>role include deploy:approve?"}
+    B -->|"role=engineer -> yes, for alice, bob, AND carol"| C["RBAC allows all three<br/>(no context considered)"]
+
+    A --> D{"ABAC: is subject on<br/>chg-42's team (payments)?"}
+    D -->|"no (carol, team=search)"| F["ABAC denies"]
+    D -->|"yes (alice, bob)"| E{"Is subject the<br/>change's author?"}
+    E -->|"yes (alice)"| F
+    E -->|"no (bob)"| G{"Is it currently<br/>business hours?"}
+    G -->|"no (02:00)"| F
+    G -->|"yes (14:00)"| H["ABAC allows"]
+```
+
+RBAC's box (top) has one input — role — so it returns the same answer for all three identically-roled users. ABAC's box (bottom) walks team, authorship, and time as independent, request-time attributes, which is exactly why the same user (bob) gets a different answer at 14:00 versus 02:00: the diagram has a branch RBAC's model has no equivalent input for.
+
 ## Production Scenarios
 
 **A support team is granted a broad "support-agent" role so they can look up any customer's order for troubleshooting, and this later shows up as a data-access finding in a compliance audit.** RBAC's static grant ("support-agent role can read all orders") is technically correct for the legitimate use case but overprovisions access far beyond what any single support interaction actually needs — an ABAC policy expressing "may read an order if there is an open support ticket referencing that order ID, assigned to this agent" grants exactly the access needed for the actual task, and nothing more, directly addressing the audit finding without removing the team's ability to do their job.
@@ -170,6 +193,18 @@ RBAC is simple to reason about, audit, and implement — a role-to-permission ta
 ## Decision Framework
 
 Default to RBAC for coarse-grained access control where the permission genuinely depends only on "what kind of actor is this" (an admin dashboard, a read-only reporting role) — it's simpler to build, audit, and reason about, and simplicity itself is a security property (fewer things to get wrong). Reach for ABAC (or a narrower attribute-based extension layered on top of an existing RBAC system, which is common in practice — the two are not mutually exclusive) specifically when a real requirement is conditional on a relationship (ownership, team membership, ticket reference) or environment (time, location, risk score) that a static role cannot express — and treat "we need a new role for every combination of conditions" as the signal that ABAC, not more roles, is the right tool.
+
+## Comparisons
+
+Practice Exercise 2 (below) sketches a third model, ReBAC, worth placing next to RBAC and ABAC explicitly — it's the one most engineers reach for once they notice "attribute" isn't quite the right word for "has this team approved a change from this author before":
+
+| Model | Access decided by | Example rule it can express | What it needs at decision time |
+|---|---|---|---|
+| RBAC | Static role membership | "Any engineer may approve a deploy" | Just the subject's role |
+| ABAC | Subject/resource/action/environment attributes, evaluated per request | "An engineer on the same team, not the author, during business hours, may approve" | Attributes on the subject, resource, and environment, all correct and available at decision time |
+| ReBAC | Graph relationships between subjects and resources (or between subjects) | "A team that has previously approved a change from this author may approve again" | A queryable relationship/history graph, not just flat attributes |
+
+RBAC and ABAC both evaluate a single request in isolation; ReBAC's distinguishing trait is that its rule can depend on *history* or a *relationship graph* — data ABAC's flat subject/resource/environment attribute model doesn't naturally represent, even though ABAC's own attributes are sometimes read from that same underlying data.
 
 ## Common Mistakes
 

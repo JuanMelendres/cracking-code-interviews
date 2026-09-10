@@ -43,23 +43,25 @@ source_history:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Comparisons](#comparisons)
+15. [Common Mistakes](#common-mistakes)
+16. [Anti-Patterns](#anti-patterns)
+17. [Best Practices](#best-practices)
+18. [Interview Answer Framework](#interview-answer-framework)
+19. [Interview Questions](#interview-questions)
+20. [Summary](#summary)
+21. [Key Takeaways](#key-takeaways)
+22. [Cheat Sheet](#cheat-sheet)
+23. [Flashcards](#flashcards)
+24. [Practice Exercises](#practice-exercises)
+25. [Solutions](#solutions)
+26. [Additional Reading](#additional-reading)
+27. [Official References](#official-references)
 
 ---
 
@@ -157,6 +159,29 @@ Contains a live <script> tag? false  (the text is inert -- displayed as literal 
 
 The vulnerable render concatenates the stored comment directly into the HTML response; any browser rendering that page executes the injected `<script>` tag as if it were the page author's own markup. The fixed render HTML-entity-encodes the comment text at the point of rendering — the exact same stored string, but now every special character (`<`, `>`, `'`) is transformed into its inert entity form, so the browser displays it as literal text rather than parsing it as markup.
 
+## Diagrams
+
+Both real demos above follow the identical shape — a single shared channel lets attacker data become interpreter syntax; splitting the channel closes it:
+
+```mermaid
+flowchart TD
+    subgraph vuln["VULNERABLE -- one shared channel"]
+        A1["Trusted query/markup structure"] --> A3["Concatenated into ONE string"]
+        A2["Untrusted user input"] --> A3
+        A3 --> A4["Interpreter (SQL engine / browser)"]
+        A4 --> A5["Can't tell where structure ends and data begins --<br/>special characters (', --, &lt;script&gt;) parsed as syntax"]
+    end
+
+    subgraph fixed["FIXED -- two separate channels"]
+        B1["Trusted query/markup structure<br/>(placeholders only)"] --> B3["Interpreter compiles structure FIRST"]
+        B2["Untrusted user input"] --> B4["Bound / encoded as pure data<br/>(PreparedStatement param, or HTML-entity encoded)"]
+        B4 --> B3
+        B3 --> B5["Data can never be re-parsed as syntax --<br/>nothing left to break out of"]
+    end
+```
+
+`SqlInjectionDemo.java`'s vulnerable path is the top branch (`admin' --` becomes query syntax via string concatenation); its fixed path and `OutputEncodingDemo.java`'s fixed render are both the bottom branch — structurally the same fix, applied to two different interpreters.
+
 ## Production Scenarios
 
 **A search feature builds a query by string-concatenating a user-supplied search term directly into a SQL `LIKE` clause, and passes a security review's automated SQL-injection scanner cleanly because the scanner only tests common attack patterns against common field names.** A manual review later finds the vulnerability is real but requires an attack pattern specific to how the search term is embedded (inside a `LIKE '%...%'` wildcard context, requiring `%` escaping in addition to quote-breaking). This illustrates that automated scanning is a useful but incomplete defense — the underlying architectural fix (parameterize the query, including correctly escaping `LIKE` wildcard characters as data rather than pattern syntax) closes the entire vulnerability class regardless of which specific attack pattern a scanner does or doesn't happen to test.
@@ -176,6 +201,20 @@ Strict input validation (rejecting anything outside an expected format) reduces 
 ## Decision Framework
 
 Apply input validation as an early, coarse filter calibrated to the field's actual legitimate range (reject a phone-number field containing SQL syntax, since no legitimate phone number needs it) — but never treat validation passing as sufficient evidence that downstream use is safe. Apply parameterized queries (never string-concatenated SQL) as a non-negotiable default for any database access, with zero exceptions for "this one field is probably safe." Apply context-specific output encoding at every single point where untrusted data is rendered into any interpreted format (HTML, JS, shell, LDAP), treating each new consumer of previously-validated data as needing its own correct encoding rather than assuming protection is inherited.
+
+## Comparisons
+
+The same untrusted string needs a *different* encoding depending on exactly where it lands — reusing one context's encoding in another context is Practice Exercise 2's own finding (HTML-body encoding does not neutralize a `javascript:` URI in an `href`):
+
+| Output context | What's dangerous there | Correct defense | Why HTML-body encoding alone fails here |
+|---|---|---|---|
+| HTML body | `<`, `>`, `&` open new markup/tags | HTML-entity encoding (`&lt;`, `&gt;`) | — (this is what HTML-body encoding is for) |
+| HTML attribute value | `"` closes the attribute early, letting new attributes/handlers (`onerror=`) be injected | Attribute-aware encoding, quote every attribute value | A quote character isn't escaped by body encoding rules alone |
+| URL / `href` | A `javascript:` or `data:` scheme executes instead of navigating | Scheme allowlist (`http:`/`https:`/`mailto:`) plus URL encoding | Entity-encoding the text doesn't stop the browser from parsing the scheme prefix |
+| `<script>` block / JS string | `'`, `"`, `` ` ``, and `</script>` all have JS-syntax meaning | JS-string-aware encoding (distinct escape rules from HTML) | HTML entities like `&lt;` are not valid JS escape syntax — the browser's JS parser doesn't decode them |
+| Shell command | `;`, `\|`, `` ` ``, `$()` chain or substitute commands | Avoid shelling out to untrusted input; use a typed API instead | HTML/SQL-style encoding has no meaning to a shell at all — a different interpreter, different syntax |
+
+The pattern across every row: "encode for this specific interpreter's syntax," never "run it through one generic encoder and assume every downstream interpreter is covered."
 
 ## Common Mistakes
 
