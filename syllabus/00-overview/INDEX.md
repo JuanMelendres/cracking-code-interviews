@@ -38,7 +38,7 @@ Vision, Taxonomy, Topic Specification, and Mastery Model are extracted verbatim 
 | 12 | [Security](../12-security/INDEX.md) | 8/8 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 8/8** — fully L1–L4 (Phase 5, 2026-09-04); gap-audited and closed, 9/9 (2026-09-10, added CSRF/CORS/session security) |
 | 13 | [Observability](../13-observability/INDEX.md) | 4/4 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 4/4** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 14 | [DevOps & Containers](../14-devops-containers/INDEX.md) | 4/4 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 4/4** — fully L1–L4 (Phase 5, 2026-09-04) |
-| 15 | [Cloud](../15-cloud/INDEX.md) | 3/3 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 3/3** — fully L1–L4 (Phase 5, 2026-09-04) |
+| 15 | [Cloud](../15-cloud/INDEX.md) | 3/3 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 3/3** — fully L1–L4 (Phase 5, 2026-09-04); 4 chapters as of 2026-09-10 (gap audit added Azure and GCP for Backend Engineers — the domain was AWS-only despite the program's own multi-cloud target companies) |
 | 16 | [Performance & JVM Tuning](../16-performance-jvm/INDEX.md) | 3/3 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 3/3** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 17 | [Architecture](../17-architecture/INDEX.md) | 9/9 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 9/9** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 18 | [Engineering Practices](../18-engineering-practices/INDEX.md) | 5/5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06) |

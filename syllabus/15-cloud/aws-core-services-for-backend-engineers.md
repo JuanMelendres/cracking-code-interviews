@@ -25,6 +25,7 @@ prerequisites:
 related:
   - ../14-devops-containers/kubernetes-objects-scheduling-and-networking.md
   - cloud-cost-and-scaling-economics.md
+  - azure-and-gcp-for-backend-engineers.md
   - ../11-system-design/storage-selection-tradeoffs.md
   - ../10-distributed-systems/multi-region-failover-and-disaster-recovery.md
   - ../../study-packs/week-15/05-aws-core-services-for-backend-engineers.md

@@ -1084,3 +1084,12 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Fixed PACELC directly in the existing CAP chapter (T-807): a real Core Concepts subsection, a real DynamoDB (PA/EL) / Spanner (PC/EC) classification table, citing Daniel Abadi's original proposal — verified via `WebFetch` against the real source before citing.
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `15-cloud` gains a 4th chapter: Azure and GCP for Backend Engineers
+
+### Added (`syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md` — T-2404)
+
+- Same gap audit, new domain. `15-cloud`'s own description named "AWS core services" and its content was AWS-only — a real single-provider gap against this program's own multi-cloud target-company list (Microsoft, any GCP-based org).
+- New chapter maps every AWS service the existing chapter (T-1006) teaches to its real Azure/GCP counterpart by underlying trade-off, not by name: compute, storage, database (naming GCP's real Firestore/Bigtable split and Cosmos DB's tunable consistency as genuine differences, not just names), messaging, and networking/identity.
+- Two facts verified live via `WebFetch` before writing: Azure AD → Microsoft Entra ID (renamed 2023, confirmed against Microsoft's own page); GCP's native IaC direction is now Infrastructure Manager, Terraform-based (Deployment Manager's docs page now 404s; confirmed against Google Cloud's own overview page).
+- Updated `syllabus/15-cloud/INDEX.md` (3 → 4), `syllabus/00-overview/INDEX.md`, `aws-core-services-for-backend-engineers.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
