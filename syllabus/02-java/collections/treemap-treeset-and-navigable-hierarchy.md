@@ -23,6 +23,7 @@ prerequisites:
 related:
   - collection-selection-decision-matrix.md
   - concurrenthashmap-internals.md
+  - priorityqueue-internals.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/NavigableSet.html

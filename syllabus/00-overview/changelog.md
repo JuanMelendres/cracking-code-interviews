@@ -1018,3 +1018,12 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `solid-principles.md`: real demo (`practice/java/solid-principles/`) with one violation and one fix per principle — reflection-based SRP evidence; a new shape added with zero edits to an OCP-compliant calculator; a real failing Liskov-invariant assertion (expected 20, actual 16) despite compiling cleanly; a real thrown `UnsupportedOperationException` from a fat ISP-violating interface; one unmodified DIP-compliant class run against two injected implementations.
 - `ood-interview-problems.md`: two real, fully worked demos (`practice/java/ood-interview-problems/`) — a parking lot with real size-based spot matching and real `Duration`-based fee calculation; a vending machine modeled as an explicit state machine correctly rejecting illegal action sequences.
 - Updated `syllabus/04-software-design/INDEX.md` (1/1 → 3/3), `syllabus/00-overview/INDEX.md`, `design-patterns-applied.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `02-java` gains a 56th chapter: PriorityQueue Internals
+
+### Added (`syllabus/02-java/collections/priorityqueue-internals.md` — T-210)
+
+- Same gap audit found `02-java/collections` had zero dedicated `PriorityQueue` coverage despite every sibling core collection already having its own chapter — a real, high-frequency gap given its role in Dijkstra's algorithm and top-K problems. Closed continuing the domain's own existing `T-2xx` sequence.
+- Real demo (`practice/java/collections/priorityqueue-internals/`): the ordering guarantee applies only to `poll()`/`peek()`, demonstrated side-by-side against the identical queue's non-sorted iteration order; real, measured O(log n) `poll()` via a comparison-counting `Comparator` across five heap sizes; a real `ConcurrentModificationException` confirming fail-fast behavior.
+- `02-java` still missing `java.time`, JPMS, `MethodHandle`, bytecode fundamentals, and concurrency synchronizers (`CountDownLatch`/`CyclicBarrier`/`Semaphore`) — recorded as open in the domain's own INDEX.md for follow-up.
+- Updated `syllabus/02-java/INDEX.md` (55 → 56), `syllabus/00-overview/INDEX.md`, `treemap-treeset-and-navigable-hierarchy.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
