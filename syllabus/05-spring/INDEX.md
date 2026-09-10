@@ -2,8 +2,8 @@
 title: "Spring — Domain Index"
 document_type: syllabus-domain-index
 domain: 05-spring
-status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-07 (Spring MVC Fundamentals, T-2203), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning
-last_updated: 2026-09-07
+status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-07 (Spring MVC Fundamentals, T-2203), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 11th chapter added 2026-09-10 (Bean Validation and Global Exception Handling, T-518 — gap found in a full 22-domain audit, real Spring Boot app including verified proof a sensitive exception detail is logged server-side but never reaches the client)
+last_updated: 2026-09-10
 ---
 
 # Spring
@@ -15,6 +15,8 @@ Dependency injection, auto-configuration, transactions, testing slices, WebFlux,
 > **Phase 5 update (2026-09-04) — domain complete.** All 9 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion, verified by diff, on every chapter. Each Level 1/Level 2 pair is grounded in that chapter's own real subject (a bank-transfer analogy for `@Transactional`, a dashboard-warning-lights analogy for Actuator, the shared self-invocation gotcha called out explicitly for both `@Transactional` and `@Cacheable`) rather than a generic template. Every chapter also gained `topic_id`/`mastery_levels_covered: [L1, L2, L3, L4]` front matter. **`05-spring` is now fully L1–L4 (9/9)** — the third fully-retrofitted domain in the syllabus.
 >
 > **Junior Fundamentals gap closed (2026-09-07).** The Phase 5 retrofit above added intuition for existing Senior-level topics; it never taught what `@Autowired` or a `@RestController` actually is, because this domain's original scope assumed that baseline already. Part of a repository-wide audit (see `syllabus/02-java/INDEX.md`'s matching note) triggered by the user's decision to sell this repository as Junior-through-Staff. [Spring MVC Fundamentals](spring-mvc-fundamentals.md) (T-2203, reserved range `T-2200`–`T-2299`) is the third of five planned Junior Fundamentals chapters — a real Spring Boot 3.5.16 app with embedded Tomcat, exercised live with `curl`, including a genuine `500` error and fix (a `@PathVariable` binding bug) hit while building the demo itself and kept in the chapter as real, not staged, teaching material. Cheat sheet and flashcard deck added 2026-09-07 (`cheat-sheets/README.md`, `flashcards/README.md`).
+>
+> **Gap found and closed: Bean Validation and Global Exception Handling (2026-09-10).** A full repository-wide 22-domain gap audit found this domain had zero coverage of Bean Validation (`@Valid`, Jakarta constraint annotations, custom cross-field `ConstraintValidator`s) or global exception handling (`@RestControllerAdvice`/`@ExceptionHandler`) — everyday Spring MVC topics, and explicitly flagged in the audit. Closed with [Bean Validation and Global Exception Handling](bean-validation-and-global-exception-handling.md) (T-518), backed by a real Spring Boot 3.5.16 app (`practice/java/bean-validation-and-exception-handling/`) proving a custom, class-level `@ValidPayment` constraint correctly enforcing a real cross-field business rule ("cardNumber required only for CREDIT_CARD"), real evidence `MethodArgumentNotValidException` collects every field violation from one request in a single pass, and — the marquee finding — real, captured proof that an unhandled exception's sensitive detail (a database connection string with a credential) is fully logged server-side while a deliberate catch-all `@ExceptionHandler(Exception.class)` keeps it from ever reaching the client. This domain still lacks a dedicated Spring Data JPA repository-abstraction chapter (derived query methods, `@Query`, Specifications) — also flagged by the same audit — remaining open for a follow-up pass.
 
 ## Topics
 
@@ -30,6 +32,7 @@ Dependency injection, auto-configuration, transactions, testing slices, WebFlux,
 | T-514 | Spring Cache Abstraction and Pitfalls | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md` |
 | T-516 | Spring Boot Actuator, Health, and Observability Hooks | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/05-spring/spring-actuator-health-and-observability-hooks.md` |
 | T-517 | Spring Testing: Slices and Context Caching | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/05-spring/spring-testing-slices-and-context-caching.md` |
+| T-518 | Bean Validation and Global Exception Handling | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/05-spring/bean-validation-and-global-exception-handling.md` |
 
 ## Where this domain's boundary comes from
 

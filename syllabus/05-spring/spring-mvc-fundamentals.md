@@ -14,6 +14,7 @@ related:
   - auto-configuration-and-bean-lifecycle.md
   - spring-bean-scopes-and-proxy-modes.md
   - spring-framework-vs-spring-boot.md
+  - bean-validation-and-global-exception-handling.md
   - ../07-api-design/api-design.md
 practice: ../../practice/java/spring-mvc-fundamentals/
 production_scenarios: []

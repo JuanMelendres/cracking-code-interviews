@@ -1059,3 +1059,11 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Same gap audit, same day. `06-databases` had zero coverage of JSONB or GIN/GiST/BRIN index types. Closed continuing the domain's own existing `T-6xx` sequence; full-text search covered as a GIN use case within this chapter, closing the domain's full SQL-topic gap list.
 - Real PostgreSQL 16 lab (`practice/sql/jsonb-and-advanced-indexes/`): JSONB containment queries; a real, honestly-reported GIN regression (11.988ms → 13.896ms at ~4% selectivity) contrasted against a real ~3,780× GIN win for full-text search (721.775ms → 0.191ms at 0.02% selectivity); a real GiST `EXCLUDE` constraint rejecting an overlapping booking; a real BRIN index ~1,834× smaller than an equivalent B-tree, with a real finding that the planner declined to use it by default (only forcing it revealed its real ~3.08× advantage).
 - Updated `syllabus/06-databases/INDEX.md` (16 → 17), `syllabus/00-overview/INDEX.md`, `index-structures-btree-composite-covering.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `05-spring` gains an 11th chapter: Bean Validation and Global Exception Handling
+
+### Added (`syllabus/05-spring/bean-validation-and-global-exception-handling.md` — T-518)
+
+- Same gap audit, new domain. `05-spring` had zero coverage of Bean Validation or global exception handling — everyday Spring MVC topics. Closed continuing the domain's own existing `T-5xx` sequence.
+- Real Spring Boot 3.5.16 app (`practice/java/bean-validation-and-exception-handling/`): a real custom, class-level `@ValidPayment` constraint correctly enforcing a cross-field rule field-level annotations can't express; real evidence `MethodArgumentNotValidException` collects every field violation from one request together. The marquee finding: real, captured, side-by-side proof a catch-all `@ExceptionHandler(Exception.class)` keeps a sensitive detail (a database connection string with a credential) out of the client response while it's fully logged server-side.
+- Updated `syllabus/05-spring/INDEX.md` (10 → 11), `syllabus/00-overview/INDEX.md`, `spring-mvc-fundamentals.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
