@@ -26,6 +26,7 @@ related:
   - ../11-system-design/system-design-method-and-estimation.md
   - ../06-databases/isolation-levels-and-concurrency-anomalies.md
   - multi-region-failover-and-disaster-recovery.md
+  - consensus-algorithms-raft-and-paxos.md
   - ../11-system-design/load-balancing-service-discovery-and-health-checking.md
   - ../../study-packs/week-04/02-distributed-failure-modes.md
 official_references:

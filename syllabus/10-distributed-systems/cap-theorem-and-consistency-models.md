@@ -77,6 +77,7 @@ By the end of this chapter you can:
 - Classify a real or hypothetical system as CP or AP and name the specific guarantee it relaxes, in user-facing terms.
 - Explain eventual vs. strong consistency in terms of what a user actually experiences, not just the formal definition.
 - Partition consistency requirements by data type within a single system, rather than applying one model uniformly.
+- State the PACELC extension precisely and classify a real system on both of its axes — not just its CAP (partition) behavior, but its latency-vs-consistency trade-off during ordinary, no-partition operation too.
 
 ## Why This Matters in Interviews
 
@@ -109,6 +110,14 @@ You should also be comfortable with the more sophisticated, working-level insigh
 A **CP** system (e.g., a strongly consistent configuration store like `etcd` or `ZooKeeper`) refuses to serve a read or accept a write on the minority side of a partition, returning an error rather than risk returning stale or conflicting data. What it gives up: availability, specifically for the partitioned-off minority. An **AP** system (e.g., DNS, or a shopping cart service designed to always accept an "add to cart") continues to serve reads and writes on both sides of a partition, accepting that the two sides may now disagree and will need to be reconciled once the partition heals. What it gives up: consistency, specifically the guarantee that a read reflects the most recent write from the other side.
 
 **The Staff-level answer to "what does your system give up" is never "it depends" in the abstract** — it names the actual system and the actual guarantee relaxed. Applied to a session store: during a partition, the system chooses availability — a user should never be logged out because of a network blip between data centers — accepting that a session update made on one side might not be visible on the other side until the partition heals. The specific, nameable thing given up: a session attribute changed on side A (e.g., "user upgraded to premium") may not be visible to a request served from side B until reconciliation completes.
+
+### PACELC: the trade-off CAP is silent about — what happens when there's no partition at all
+
+CAP only ever discusses what a system must give up **during an actual partition**. It says nothing about the far more common case — normal operation, no partition — even though a real, unavoidable trade-off exists there too: **PACELC** (Daniel Abadi, 2010) makes that second trade-off explicit. Read literally: **if there's a Partition (P)**, choose between **Availability (A)** and **Consistency (C)** — this half is just CAP. **Else (E)**, i.e. during normal operation with no partition, choose between **Latency (L)** and **Consistency (C)** — a trade-off a system faces essentially *always*, not just during the rare partition window.
+
+The "else" half is the part most candidates who only know CAP have never been asked about: achieving strong consistency across replicas — waiting for a write to be confirmed by a quorum, or by every replica, before acknowledging it — costs real, measured latency on every single write, partition or not. A system that instead acknowledges a write as soon as the local/nearest replica has it, replicating to the others asynchronously, gets real, lower latency at the cost of a real window where a read from a different replica can return stale data — with no partition involved at all. This is why two systems can both be "AP" under CAP (both choose availability during a partition) and still differ meaningfully in their everyday, no-partition behavior — PACELC is what actually distinguishes them.
+
+Naming a real system on both axes is the concrete, Staff-level version of this answer: **DynamoDB** is commonly characterized as **PA/EL** — available (not consistent) during a partition, and tuned for low latency (not strict consistency) during normal operation too, matching its default eventually-consistent read behavior. **Google Cloud Spanner** is **PC/EC** — it chooses consistency both during a partition *and* during normal operation, accepting real, measured latency cost (via TrueTime-coordinated commits) as the price of never serving a stale read, partition or not. A system being "AP" under CAP alone doesn't tell you which of these two it resembles day to day — PACELC is the missing half of the answer.
 
 ### Eventual vs. strong consistency, for the user
 
@@ -173,6 +182,17 @@ graph TD
 |---|---|---|
 | CP | `etcd`, `ZooKeeper`, a strongly consistent configuration store | Availability on the partitioned-off minority side |
 | AP | DNS, a shopping-cart "add to cart" service, a session store prioritizing uptime | Consistency — the two sides may disagree until reconciliation |
+
+PACELC extends this table with the trade-off CAP alone never asks about — what the same system does when there's **no** partition at all:
+
+| System | Partition (CAP half) | Else, no partition (the PACELC half) | PACELC classification |
+|---|---|---|---|
+| DynamoDB (default settings) | Chooses Availability | Tuned for low Latency, weaker default consistency | PA/EL |
+| Google Cloud Spanner | Chooses Consistency | Chooses Consistency, accepting real, measured latency cost every write | PC/EC |
+| Traditional single-region RDBMS with synchronous replicas | Chooses Consistency (replicas unreachable → refuse) | Chooses Consistency (waits for replica ack) | PC/EC |
+| Cassandra (default `ONE`/`LOCAL_ONE` settings) | Chooses Availability | Tuned for low Latency over strict consistency | PA/EL |
+
+Two systems can share the exact same CAP classification (both AP, say) and still behave very differently every single day — PACELC's second half is what actually distinguishes them.
 
 ## Common Mistakes
 
@@ -350,6 +370,23 @@ Stating the label without describing the reconciliation implication.
 **Related:**
 [Core Concepts](#core-concepts)
 
+### Card: PACELC's second half
+
+**Prompt:**
+CAP only describes what a system gives up during a partition. What trade-off does PACELC add that CAP is completely silent about?
+
+**Answer:**
+The "Else" half: during *normal* operation, with no partition at all, a system still must choose between Latency and Consistency — strong consistency across replicas costs real, measured write latency, partition or not.
+
+**Why it matters:**
+Two systems can share the identical CAP classification (both AP, say) and still behave very differently day to day — PACELC's second half is what actually distinguishes them (e.g., DynamoDB's PA/EL vs. a hypothetical PA/EC system).
+
+**Common trap:**
+Treating CAP's classification alone as a complete description of a system's consistency behavior, when it only ever describes the rare partition case.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
 ### Card: One model for a whole system?
 
 **Prompt:**
@@ -384,6 +421,7 @@ Choosing one consistency model for an entire system rather than per data type.
 ## Additional Reading
 
 - Eric Brewer, ["CAP Twelve Years Later: How the 'Rules' Have Changed"](https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/) — the original theorem's author revisiting and refining it
+- Daniel Abadi, ["Problems with CAP, and Yahoo's little known NoSQL system"](http://dbmsmusings.blogspot.com/2010/04/problems-with-cap-and-yahoos-little.html) — the original PACELC proposal, extending CAP with the latency-vs-consistency trade-off that exists even absent a partition
 - [Replication, Read Replicas, and Replica Lag](../06-databases/replication-read-replicas-and-replica-lag.md) — a real, concrete, PostgreSQL-specific instance of this chapter's CP-vs-AP trade-offs, measured directly rather than described abstractly.
 
 ## Official References
