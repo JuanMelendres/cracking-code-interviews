@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — `10-distributed-systems` gains a 7th chapter: Vector Clocks and Quorum-Based Replication — this domain's audit gaps now fully closed
+
+### Added (`syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` — T-2407)
+
+- Closes the one remaining gap `T-2403` (Consensus Algorithms) flagged open earlier the same day. Genuinely absent from the Master Topic Register; assigned `T-2407` (continuing `T-2400`–`T-2499`).
+- Real demo (`practice/java/vector-clocks-and-quorum-replication/`, pure JDK): a real vector clock correctly distinguishes a `CONCURRENT` conflict from a `DOMINATES` causal supersession; a real, exhaustive enumeration of every write/read-quorum pair for a 5-replica set proves `W+R>N` (100/100 overlap) while `W+R=N` yields a real, named counterexample.
+- Two well-known official references (Dynamo SOSP 2007, Lamport 1978) cited from high-confidence background knowledge, with both URLs confirmed live via `WebFetch`.
+- Updated `syllabus/10-distributed-systems/INDEX.md` (6 → 7), `syllabus/00-overview/INDEX.md`, two sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — `09-messaging-event-driven` gains two chapters: Retention/Log Compaction and Kafka Streams
 
 ### Added (`retention-log-compaction-and-tiered-storage.md` T-706, `kafka-streams-and-stateful-processing.md` T-709)

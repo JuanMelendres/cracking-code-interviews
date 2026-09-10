@@ -23,6 +23,7 @@ prerequisites:
 related:
   - cap-theorem-and-consistency-models.md
   - distributed-systems-failure-modes.md
+  - vector-clocks-and-quorum-based-replication.md
   - ../06-databases/replication-read-replicas-and-replica-lag.md
   - ../../practice/java/consensus-raft/README.md
 official_references:

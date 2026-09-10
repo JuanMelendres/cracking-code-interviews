@@ -29,6 +29,7 @@ related:
   - ../../architecture-atlas/distributed-key-value-store.md
   - ../17-architecture/cqrs-read-write-separation.md
   - multi-region-failover-and-disaster-recovery.md
+  - vector-clocks-and-quorum-based-replication.md
   - ../../study-packs/week-05/03-cap-and-consistency.md
 official_references:
   - https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/
