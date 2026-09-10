@@ -27,6 +27,8 @@ related:
   - consumer-groups-and-rebalancing.md
   - delivery-semantics-and-exactly-once.md
   - schema-registry-and-compatibility-evolution.md
+  - retention-log-compaction-and-tiered-storage.md
+  - kafka-streams-and-stateful-processing.md
   - ../../study-packs/week-08/01-kafka-architecture-fundamentals.md
 official_references:
   - https://kafka.apache.org/documentation/#design

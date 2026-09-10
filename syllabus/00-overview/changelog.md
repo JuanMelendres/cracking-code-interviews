@@ -1085,6 +1085,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — `09-messaging-event-driven` gains two chapters: Retention/Log Compaction and Kafka Streams
+
+### Added (`retention-log-compaction-and-tiered-storage.md` T-706, `kafka-streams-and-stateful-processing.md` T-709)
+
+- Same gap audit, new domain. Zero coverage of Kafka Streams, log compaction, or Kafka Connect. `T-706` and `T-709` were both real, correctly-reserved, never-written register slots (the `T-116` pattern repeating) — closed together since Kafka Streams' `KTable` durability is a direct application of log compaction.
+- Real demo, T-706 (real Kafka 3.8.0 broker, Docker/KRaft): eight keyed records (including duplicate updates and a tombstone) reduced to five real surviving records after a real, observed compaction pass; a real on-disk segment-count drop confirms physical removal.
+- Real demo, T-709 (real `kafka-streams`/`kafka-clients` jars, no Maven/Gradle): a real, compiling word-count topology producing correct aggregated output; `kafka-topics.sh --describe` confirms the auto-created `KTable` changelog topic really is `cleanup.policy=compact`, with zero manual config.
+- Caught and fixed before shipping: an initial "tiered storage since Kafka 3.6+" claim was imprecise — verified via `WebFetch` against the real KIP-405 page (early access 3.6, GA only since 3.9) and corrected.
+- Updated `syllabus/09-messaging-event-driven/INDEX.md` (9 → 11), `syllabus/00-overview/INDEX.md`, `kafka-architecture-fundamentals.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — `03-data-structures-algorithms` gains an 18th chapter: Sorting Algorithms
 
 ### Added (`syllabus/03-data-structures-algorithms/sorting-algorithms.md` — T-2119)

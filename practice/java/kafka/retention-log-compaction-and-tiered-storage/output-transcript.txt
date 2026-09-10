@@ -1,0 +1,28 @@
+### Waiting for the broker to accept requests...
+### Creating a compacted topic with tiny segments (to force fast, observable compaction)
+Created topic user-profile-compacted.
+### Producing keyed records, spaced >1s apart so each lands in its own rolled segment:
+###   user-1 -> v1, user-2 -> v1, user-1 -> v2, user-3 -> v1, user-1 -> v3,
+###   user-2 -> v2, user-4 -> v1, user-4 -> <tombstone>
+
+### Waiting for the log cleaner to compact the now-closed segments...
+
+### Consuming the full topic from-beginning (post-compaction state):
+user-3:v1
+user-1:v3
+user-2:v2
+user-4:v1
+user-4:null
+
+### Real on-disk segment listing (note the .deleted segments compaction has already merged away):
+drwxr-xr-x    2 appuser  appuser       4096 Sep 10 21:53 .
+drwxr-xr-x   58 appuser  appuser       4096 Sep 10 21:53 ..
+-rw-r--r--    1 appuser  appuser          0 Sep 10 21:53 00000000000000000000.index
+-rw-r--r--    1 appuser  appuser        487 Sep 10 21:53 00000000000000000000.log
+-rw-r--r--    1 appuser  appuser         12 Sep 10 21:53 00000000000000000000.timeindex
+-rw-r--r--    1 appuser  appuser   10485760 Sep 10 21:53 00000000000000000007.index
+-rw-r--r--    1 appuser  appuser         74 Sep 10 21:53 00000000000000000007.log
+-rw-r--r--    1 appuser  appuser        332 Sep 10 21:53 00000000000000000007.snapshot
+-rw-r--r--    1 appuser  appuser   10485756 Sep 10 21:53 00000000000000000007.timeindex
+-rw-r--r--    1 appuser  appuser          8 Sep 10 21:53 leader-epoch-checkpoint
+-rw-r--r--    1 appuser  appuser         43 Sep 10 21:53 partition.metadata
