@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — Architecture Atlas gains an 18th entry: Video Streaming Platform
+
+### Added (`architecture-atlas/video-streaming-platform.md`)
+
+- Same gap audit. The Atlas closed its own T-813 "12-problem set" target by count on 2026-09-01, but the audit found three specific case studies still missing: video streaming, distributed file storage, web crawler/autocomplete. Closed the first — new, original content, additive beyond T-813's closed accounting, not a reopening of it (no `topic_id` needed for Atlas entries).
+- Central tension: upload/transcoding (async, write-heavy) and CDN-fronted adaptive-bitrate playback (sync, read-heavy) share almost no infrastructure; per-rendition status lets playback start before all renditions finish; immutable chunked segments mean no cache-invalidation problem, mirroring the existing URL Shortener entry's own insight.
+- Real capacity math: ~250TB/day ingest vs. ~3.6 exabytes/day egress — roughly four orders of magnitude apart — reframing the design toward CDN/delivery efficiency as the dominant cost driver.
+- Updated `architecture-atlas/README.md`, `syllabus/00-overview/INDEX.md` and `syllabus/11-system-design/INDEX.md` (17 → 18 Atlas entries), `url-shortener-system.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection. Distributed file storage and web crawler/autocomplete remain open.
+
 ## [2026-09-10] — `10-distributed-systems` gains a 7th chapter: Vector Clocks and Quorum-Based Replication — this domain's audit gaps now fully closed
 
 ### Added (`syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` — T-2407)

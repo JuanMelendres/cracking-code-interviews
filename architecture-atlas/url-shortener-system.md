@@ -21,6 +21,7 @@ related:
   - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
   - ../syllabus/16-performance-jvm/capacity-planning-and-headroom.md
   - distributed-cache.md
+  - video-streaming-platform.md
 official_references: []
 ---
 
