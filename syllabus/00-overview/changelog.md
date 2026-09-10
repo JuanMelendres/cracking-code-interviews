@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — `03-data-structures-algorithms` gains an 18th chapter: Sorting Algorithms
+
+### Added (`syllabus/03-data-structures-algorithms/sorting-algorithms.md` — T-2119)
+
+- Same gap audit, new domain. Sorting was covered only incidentally (a step inside Heaps/Intervals), never as its own chapter — a real gap since it's one of the domain's most reused primitives. Never part of the original D14 register or this domain's 18-item plan (all 18 of its own reserved IDs already in use); assigned `T-2119`, continuing the domain's own `T-2100`–`T-2199` range.
+- Real demo (`practice/java/algorithms/sorting-algorithms/`, pure JDK): a naive first-element-pivot QuickSort's real O(n²) worst case (exactly `n(n-1)/2` comparisons) on sorted/reverse-sorted input, fixed by a random pivot; a real, programmatically-checked proof that `Arrays.sort(Object[])` (TimSort) is stable while a naive QuickSort is not; a real InsertionSort-vs-MergeSort crossover (insertion sort wins small/nearly-sorted, loses by two orders of magnitude on large/random input).
+- `Arrays.sort()`'s real, documented algorithm choices (Dual-Pivot QuickSort for primitives, TimSort for objects) verified via `WebFetch` against the real Javadoc before citing.
+- Updated `syllabus/03-data-structures-algorithms/INDEX.md` (17 → 18), `syllabus/00-overview/INDEX.md`, `heaps-top-k-and-k-way-merge.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — `02-java` gains a 61st chapter: Bytecode and Class File Fundamentals — all three named Java Core gaps now closed
 
 ### Added (`syllabus/02-java/jvm-internals/bytecode-and-class-file-fundamentals.md` — T-2406)

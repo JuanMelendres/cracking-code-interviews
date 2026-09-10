@@ -12,6 +12,7 @@ prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
 related:
   - stacks-and-monotonic-stack.md
+  - sorting-algorithms.md
 practice: ../../practice/java/week-23/heaps/
 production_scenarios: []
 interview_paths: [interview-emergency-sprint, senior-to-staff]
