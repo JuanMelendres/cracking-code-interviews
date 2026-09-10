@@ -22,6 +22,7 @@ related:
   - ../jvm-internals/jvm-memory-layout-and-runtime-regions.md
   - annotations-and-annotation-processing.md
   - ../concurrency/threadlocal-mediated-classloader-leaks.md
+  - java-platform-module-system.md
   - ../../../practice/java/java-core/classloaders-and-class-initialization/README.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html

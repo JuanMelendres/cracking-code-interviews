@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-10] — `02-java` gains a 59th chapter: Java Platform Module System, filling its own long-reserved T-116 slot
+
+### Added (`syllabus/02-java/language-core/java-platform-module-system.md` — T-116)
+
+- Same gap audit, closing one of `CLAUDE.md`'s three named `02-java` gaps (JPMS, `MethodHandle`, bytecode fundamentals — the other two remain open). Unusually, `T-116` was already a real, correctly-reserved Master Topic Register slot for this exact topic, never written — and had briefly, mistakenly held java.time API earlier the same day before that collision was caught and fixed.
+- Real demo (`practice/java/language-core/jpms-module-system/`, pure JDK, two real module graphs): a real `InaccessibleObjectException` under `exports`-only, fixed by adding a qualified `opens`; a real `ServiceLoader` call resolving a provider module the consumer never `requires`, while a direct import of that provider's internal package still fails to compile with a real javac error.
+- Two supporting facts (JEP 396/403's two-step `--illegal-access` enforcement change) verified live via `WebFetch` against the real JEP text before citing.
+- Updated `syllabus/02-java/INDEX.md` (58 → 59), `syllabus/00-overview/INDEX.md`, two sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — `15-cloud` gains a 4th chapter: Azure and GCP for Backend Engineers
 
 ### Added (`syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md` — T-2404)
