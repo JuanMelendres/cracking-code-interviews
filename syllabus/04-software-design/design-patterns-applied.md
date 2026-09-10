@@ -20,6 +20,8 @@ mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/polymorphism-and-dynamic-dispatch.md
 related:
+  - solid-principles.md
+  - ood-interview-problems.md
   - ../17-architecture/clean-hexagonal-architecture.md
   - ../02-java/concurrency/java-memory-model-and-volatile.md
   - ../05-spring/transactional-proxy-mechanics-and-propagation.md
