@@ -1043,3 +1043,11 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Same gap audit, same day. `02-java/concurrency` had zero coverage of `CountDownLatch`, `CyclicBarrier`, or `Semaphore` despite them being explicitly named in `CLAUDE.md`'s own gap list. Closed continuing the subdomain's own existing `T-4xx` sequence.
 - Real demo (`practice/java/concurrency/synchronizers/`): real `CountDownLatch` blocking-until-all-signal with staggered real worker delays; real evidence it cannot be reset; a real `CyclicBarrier` reused across two independent rounds, its action firing exactly twice; a real, measured `Semaphore` maximum-concurrent-holder count under genuine contention that never exceeded the configured permit count.
 - Updated `syllabus/02-java/INDEX.md` (57 → 58), `syllabus/00-overview/INDEX.md`, `reentrantlock-readwritelock-and-stampedlock.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `06-databases` gains a 16th chapter: Window Functions and CTEs
+
+### Added (`syllabus/06-databases/window-functions-and-ctes.md` — T-617)
+
+- Same gap audit, same day, new domain. `06-databases` had zero coverage of window functions or CTEs — among the most commonly asked SQL interview topics. Closed continuing the domain's own existing `T-6xx` sequence.
+- Real PostgreSQL 16 lab (`practice/sql/window-functions-and-ctes/`, disposable Docker container): a real tie-handling divergence between `ROW_NUMBER()` and `RANK()` changing an actual "top 2 per department" result set (4 rows vs. 6); a real recursive CTE correctly traversing a 3-level org chart; and a real, measured `EXPLAIN ANALYZE` comparison on a 200,000-row table showing a window-function approach beating a logically equivalent correlated subquery by three to four orders of magnitude (a captured run: 40.6ms vs. 201,295ms, ~4,957×).
+- Updated `syllabus/06-databases/INDEX.md` (15 → 16), `syllabus/00-overview/INDEX.md`, `index-structures-btree-composite-covering.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.

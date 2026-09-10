@@ -1,0 +1,191 @@
+-- Real PostgreSQL 16 lab backing syllabus/06-databases/window-functions-and-ctes.md (T-617).
+-- Run against a disposable container:
+--   docker run -d --name wf-demo -e POSTGRES_PASSWORD=demo -p 15920:5432 postgres:16
+--   docker exec -i wf-demo psql -U postgres < window-functions-lab.sql
+-- ===================== Schema and seed data =====================
+CREATE TABLE employees (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    department TEXT NOT NULL,
+    salary NUMERIC NOT NULL,
+    manager_id INTEGER REFERENCES employees(id)
+);
+CREATE TABLE
+INSERT INTO employees (name, department, salary, manager_id) VALUES
+  ('Alice',   'Engineering', 190000, NULL),
+  ('Bob',     'Engineering', 150000, 1),
+  ('Carol',   'Engineering', 150000, 1),
+  ('Dave',    'Engineering', 130000, 2),
+  ('Erin',    'Engineering', 120000, 2),
+  ('Frank',   'Sales',       160000, NULL),
+  ('Grace',   'Sales',       140000, 6),
+  ('Heidi',   'Sales',       140000, 6),
+  ('Ivan',    'Sales',       110000, 7);
+INSERT 0 9
+CREATE TABLE daily_sales (
+    day DATE PRIMARY KEY,
+    amount_usd NUMERIC NOT NULL
+);
+CREATE TABLE
+INSERT INTO daily_sales VALUES
+  ('2026-01-01', 1000), ('2026-01-02', 1500), ('2026-01-03', 900),
+  ('2026-01-04', 2000), ('2026-01-05', 1200), ('2026-01-06', 1800),
+  ('2026-01-07', 2200);
+INSERT 0 7
+-- ===================== 1. ROW_NUMBER vs RANK vs DENSE_RANK, with real ties =====================
+SELECT name, department, salary,
+       ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS row_num,
+       RANK()       OVER (PARTITION BY department ORDER BY salary DESC) AS rank,
+       DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dense_rank
+FROM employees
+ORDER BY department, salary DESC;
+ name  | department  | salary | row_num | rank | dense_rank 
+-------+-------------+--------+---------+------+------------
+ Alice | Engineering | 190000 |       1 |    1 |          1
+ Bob   | Engineering | 150000 |       2 |    2 |          2
+ Carol | Engineering | 150000 |       3 |    2 |          2
+ Dave  | Engineering | 130000 |       4 |    4 |          3
+ Erin  | Engineering | 120000 |       5 |    5 |          4
+ Frank | Sales       | 160000 |       1 |    1 |          1
+ Grace | Sales       | 140000 |       2 |    2 |          2
+ Heidi | Sales       | 140000 |       3 |    2 |          2
+ Ivan  | Sales       | 110000 |       4 |    4 |          3
+(9 rows)
+
+-- ===================== 2. Top-2-per-department: ROW_NUMBER vs RANK give DIFFERENT results at a tie =====================
+SELECT name, department, salary FROM (
+  SELECT name, department, salary,
+         ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn
+  FROM employees
+) ranked
+WHERE rn <= 2
+ORDER BY department, salary DESC;
+ name  | department  | salary 
+-------+-------------+--------
+ Alice | Engineering | 190000
+ Bob   | Engineering | 150000
+ Frank | Sales       | 160000
+ Grace | Sales       | 140000
+(4 rows)
+
+SELECT name, department, salary FROM (
+  SELECT name, department, salary,
+         RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
+  FROM employees
+) ranked
+WHERE rnk <= 2
+ORDER BY department, salary DESC;
+ name  | department  | salary 
+-------+-------------+--------
+ Alice | Engineering | 190000
+ Bob   | Engineering | 150000
+ Carol | Engineering | 150000
+ Frank | Sales       | 160000
+ Grace | Sales       | 140000
+ Heidi | Sales       | 140000
+(6 rows)
+
+-- ===================== 3. Running total and 3-day moving average =====================
+SELECT day, amount_usd,
+       SUM(amount_usd) OVER (ORDER BY day ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total,
+       ROUND(AVG(amount_usd) OVER (ORDER BY day ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS moving_avg_3day
+FROM daily_sales
+ORDER BY day;
+    day     | amount_usd | running_total | moving_avg_3day 
+------------+------------+---------------+-----------------
+ 2026-01-01 |       1000 |          1000 |         1000.00
+ 2026-01-02 |       1500 |          2500 |         1250.00
+ 2026-01-03 |        900 |          3400 |         1133.33
+ 2026-01-04 |       2000 |          5400 |         1466.67
+ 2026-01-05 |       1200 |          6600 |         1366.67
+ 2026-01-06 |       1800 |          8400 |         1666.67
+ 2026-01-07 |       2200 |         10600 |         1733.33
+(7 rows)
+
+-- ===================== 4. Recursive CTE: org chart traversal with depth =====================
+WITH RECURSIVE org_chart AS (
+    SELECT id, name, manager_id, 0 AS depth, name::text AS path
+    FROM employees
+    WHERE name = 'Alice'
+  UNION ALL
+    SELECT e.id, e.name, e.manager_id, oc.depth + 1, oc.path || ' -> ' || e.name
+    FROM employees e
+    JOIN org_chart oc ON e.manager_id = oc.id
+)
+SELECT name, depth, path FROM org_chart ORDER BY depth, name;
+ name  | depth |         path         
+-------+-------+----------------------
+ Alice |     0 | Alice
+ Bob   |     1 | Alice -> Bob
+ Carol |     1 | Alice -> Carol
+ Dave  |     2 | Alice -> Bob -> Dave
+ Erin  |     2 | Alice -> Bob -> Erin
+(5 rows)
+
+-- ===================== 5. Real EXPLAIN ANALYZE: window function vs correlated subquery =====================
+-- 200,000-row table, 20 departments, indexed on (department, salary DESC).
+CREATE TABLE big_employees AS
+SELECT
+  gs AS id,
+  'emp' || gs AS name,
+  'dept' || (gs % 20) AS department,
+  (random() * 100000 + 50000)::numeric(10,2) AS salary
+FROM generate_series(1, 200000) gs;
+SELECT 200000
+CREATE INDEX idx_big_employees_dept_salary ON big_employees(department, salary DESC);
+CREATE INDEX
+ANALYZE big_employees;
+ANALYZE
+-- Window function approach:
+EXPLAIN (ANALYZE, BUFFERS, TIMING)
+SELECT name, department, salary FROM (
+  SELECT name, department, salary,
+         ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn
+  FROM big_employees
+) t WHERE rn <= 3;
+                                                                               QUERY PLAN                                                                                
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Subquery Scan on t  (cost=0.42..17470.61 rows=200000 width=23) (actual time=0.014..40.590 rows=60 loops=1)
+   Buffers: shared hit=199885 read=769
+   ->  WindowAgg  (cost=0.42..15470.61 rows=200000 width=31) (actual time=0.013..40.585 rows=60 loops=1)
+         Run Condition: (row_number() OVER (?) <= 3)
+         Buffers: shared hit=199885 read=769
+         ->  Index Scan using idx_big_employees_dept_salary on big_employees  (cost=0.42..11970.61 rows=200000 width=23) (actual time=0.010..34.844 rows=200000 loops=1)
+               Buffers: shared hit=199885 read=769
+ Planning:
+   Buffers: shared hit=11 read=1
+ Planning Time: 0.051 ms
+ Execution Time: 40.603 ms
+(11 rows)
+
+-- Correlated-subquery equivalent (same logical result, no window function):
+EXPLAIN (ANALYZE, BUFFERS, TIMING)
+SELECT name, department, salary FROM big_employees e1
+WHERE (SELECT COUNT(*) FROM big_employees e2
+       WHERE e2.department = e1.department AND e2.salary > e1.salary) < 3;
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on big_employees e1  (cost=0.00..323388122.00 rows=66667 width=23) (actual time=157.903..201283.757 rows=60 loops=1)
+   Filter: ((SubPlan 1) < 3)
+   Rows Removed by Filter: 199940
+   Buffers: shared hit=260843833 read=3
+   SubPlan 1
+     ->  Aggregate  (cost=1616.91..1616.92 rows=1 width=8) (actual time=1.006..1.006 rows=1 loops=200000)
+           Buffers: shared hit=260842361 read=3
+           ->  Bitmap Heap Scan on big_employees e2  (cost=86.58..1608.58 rows=3333 width=0) (actual time=0.332..0.889 rows=4999 loops=200000)
+                 Recheck Cond: ((department = e1.department) AND (salary > e1.salary))
+                 Heap Blocks: exact=256414751
+                 Buffers: shared hit=260842361 read=3
+                 ->  Bitmap Index Scan on idx_big_employees_dept_salary  (cost=0.00..85.75 rows=3333 width=0) (actual time=0.261..0.261 rows=4999 loops=200000)
+                       Index Cond: ((department = e1.department) AND (salary > e1.salary))
+                       Buffers: shared hit=4427610 read=3
+ Planning:
+   Buffers: shared hit=2 read=1
+ Planning Time: 0.055 ms
+ JIT:
+   Functions: 15
+   Options: Inlining true, Optimization true, Expressions true, Deforming true
+   Timing: Generation 0.211 ms, Inlining 27.816 ms, Optimization 21.905 ms, Emission 18.730 ms, Total 68.662 ms
+ Execution Time: 201295.253 ms
+(22 rows)
+
