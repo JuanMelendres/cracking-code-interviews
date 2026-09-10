@@ -2,8 +2,8 @@
 title: "API Design — Domain Index"
 document_type: syllabus-domain-index
 domain: 07-api-design
-status: 2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning
-last_updated: 2026-09-07
+status: 2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 4th and 5th chapters added 2026-09-09 (GraphQL API Design T-917, gRPC API Design T-918) closing the gap where T-803's title promised both protocols but neither was ever written
+last_updated: 2026-09-09
 ---
 
 # API Design
@@ -23,6 +23,8 @@ REST/gRPC/GraphQL design, versioning, and pagination — foundational-through-Se
 | T-2205 | REST API Fundamentals | L1, L2, L3, L4 — fully written, real executed demo (2026-09-07) | `syllabus/07-api-design/rest-api-fundamentals.md` |
 | T-803 | API Design | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/07-api-design/api-design.md` |
 | T-911 | API Gateway, BFF, and Edge Concerns | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md` |
+| T-917 | GraphQL API Design | L1, L2, L3, L4 — fully written, real graphql-java N+1/DataLoader demo (2026-09-09) | `syllabus/07-api-design/graphql-api-design.md` |
+| T-918 | gRPC API Design | L1, L2, L3, L4 — fully written, real protoc-generated client/server demo (2026-09-09) | `syllabus/07-api-design/grpc-api-design.md` |
 
 ## Where this domain's boundary comes from
 

@@ -39,23 +39,24 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -116,6 +117,21 @@ GC pauses: 362
 ```
 
 Six hundred million potential allocations — with escape analysis enabled (the JIT default), **zero** GC pauses occurred across the entire run: every single `Point` allocation site, once the hot loop was JIT-compiled, was scalar-replaced, meaning no `Point` object was ever actually allocated on the heap at all, producing zero garbage and therefore zero collection pressure. With the identical source code compiled with escape analysis explicitly disabled, the identical 600 million allocation attempts produced 362 real, measured GC pauses — genuine heap pressure from genuinely-occurring allocations, since without escape analysis the JIT has no basis for eliminating them. This is one of the most dramatic, unambiguous measured contrasts in this handbook: the same Java source code, same JVM, same iteration count, producing either zero or hundreds of real garbage-collection events purely based on one JIT optimization flag.
+
+## Diagrams
+
+```mermaid
+flowchart TD
+    New["new Point(x, y)"] --> Compiled{"Method JIT-compiled yet?"}
+    Compiled -->|"No — still interpreted"| Heap1["Real heap allocation<br/>(no EA applied yet)"]
+    Compiled -->|"Yes"| EA{"Escape analysis:<br/>does the object escape<br/>this method?"}
+    EA -->|"Yes — returned, stored,<br/>passed to another thread"| Heap2["Real heap allocation<br/>GC must eventually collect it"]
+    EA -->|"No — provably confined<br/>to this method"| Scalar["Scalar replacement:<br/>fields become locals/registers<br/>NO heap allocation at all"]
+    Heap2 --> Measured1["362 real GC pauses measured<br/>(-XX:-DoEscapeAnalysis, 600M allocations)"]
+    Scalar --> Measured2["0 GC pauses measured<br/>(escape analysis on, same 600M allocations)"]
+```
+
+The two bottom boxes are this chapter's own real, measured numbers, not illustrative placeholders — the diagram's branch point (does the object escape?) is the exact fork that separates a run with 362 real GC pauses from one with zero.
 
 ## Production Scenarios
 

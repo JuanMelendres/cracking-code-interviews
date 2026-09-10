@@ -74,6 +74,23 @@ The conventional three-layer shape this chapter's demo uses, and the reason it e
 
 **Constructor-based dependency injection**, the only kind this chapter uses, works like this: a class declares one constructor listing what it needs as parameters, and — since Spring Framework 4.3 — a class with exactly one constructor does not even need an `@Autowired` annotation; Spring uses that single constructor automatically. [`TaskController`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java)'s constructor asks for a `TaskService`; [`TaskService`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java)'s constructor asks for a `TaskRepository`. Spring builds the `TaskRepository` first, then the `TaskService` (handing in the repository), then the `TaskController` (handing in the service) — resolving the whole chain without any class in it ever writing `new` for another bean.
 
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Controller as TaskController<br/>(@RestController)
+    participant Service as TaskService<br/>(@Service)
+    participant Repo as TaskRepository<br/>(@Repository)
+
+    Client->>Controller: GET /tasks/{id}
+    Controller->>Service: getTask(id)
+    Service->>Repo: findById(id)
+    Repo-->>Service: Task
+    Service-->>Controller: Task
+    Controller-->>Client: 200 OK, JSON body
+```
+
+Startup wiring runs in the opposite, dependency-first order: Spring builds `TaskRepository` first (it needs nothing), then `TaskService` (handing in the repository), then `TaskController` (handing in the service) — no class in the chain ever writes `new` for another bean.
+
 Three annotations bind pieces of the incoming HTTP request directly to method parameters: `@PathVariable` binds a segment of the URL path (`/tasks/{id}` → the method parameter matching `id`), `@RequestParam` binds a query-string parameter (`?status=done`), and `@RequestBody` binds the entire request body, deserialized from JSON into a Java object by Jackson (already on the classpath).
 
 ## 5. How It Works Internally (L3)

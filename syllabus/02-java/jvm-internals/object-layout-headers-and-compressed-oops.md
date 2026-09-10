@@ -37,23 +37,24 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -116,6 +117,24 @@ bytes per node (approx): 40
 ```
 
 The identical object graph, identical count, occupies 134MB with compressed oops active versus 191MB with it explicitly disabled — a real, measured ~42% increase in total heap footprint purely from the pointer-representation flag, with no change to the actual data being stored. Per-object, this is a real 12-byte-per-node difference (28 versus 40 bytes), consistent with the header staying the same size while the single reference field's cost doubles from 4 to 8 bytes, plus alignment-padding effects — exactly the mechanism this chapter's Core Concepts section describes, made concrete with real numbers rather than theoretical estimation.
+
+## Diagrams
+
+```mermaid
+flowchart TD
+    subgraph Layout["Object layout, 64-bit HotSpot"]
+        direction LR
+        Mark["Mark word<br/>8 bytes"] --> Klass["Compressed class pointer<br/>4 bytes<br/>(compressed oops ON)"]
+        Klass --> Fields["Declared fields<br/>ref field: 4 bytes ON / 8 bytes OFF"]
+        Fields --> Pad["Padding to 8-byte boundary"]
+    end
+
+    HeapSize["Heap size at startup"] --> Ceiling{"Heap > ~32GB?"}
+    Ceiling -->|"No"| On["Compressed oops ON (default)<br/>measured: 28 bytes/node, 134MB for 5M nodes"]
+    Ceiling -->|"Yes"| Off["Falls back to full 64-bit refs<br/>measured: 40 bytes/node, 191MB for 5M nodes"]
+```
+
+The 12-vs-8-byte-per-reference-field difference this diagram's layout box shows is exactly what produced this chapter's real, measured ~42% heap-footprint increase (134MB to 191MB, identical 5-million-node object graph) when compressed oops was explicitly disabled — and it's the same mechanism that fires silently once a heap crosses the ~32GB addressability ceiling.
 
 ## Production Scenarios
 

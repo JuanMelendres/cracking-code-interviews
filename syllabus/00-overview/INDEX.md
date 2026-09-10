@@ -20,7 +20,7 @@ This is the entry point to the repository's new `syllabus/` structure, created d
 
 Vision, Taxonomy, Topic Specification, and Mastery Model are extracted verbatim from the approved plan, not newly authored — see each file's own provenance note. Learning Paths' outline table is likewise verbatim; its six real path documents (Phase 6) are newly authored, referencing only existing canonical content per §6's own "curated sequence, never a copy" rule.
 
-## The 21 domains
+## The 22 domains
 
 | # | Domain | Status |
 |---|---|---|
@@ -45,6 +45,7 @@ Vision, Taxonomy, Topic Specification, and Mastery Model are extracted verbatim 
 | 19 | [Leadership & Staff Engineering](../19-leadership-staff/INDEX.md) | 5/5 planned topics written — domain complete (Phase 5, 2026-09-04) |
 | 20 | [Interview Preparation](../20-interview-preparation/INDEX.md) | 19/19 chapters relocated (Phase 3, 2026-09-03); `practice/mock-interviews/` referenced, `company-prep/` private and untouched; **L1/L2 retrofit complete, 21/21** — fully L1–L4 (Phase 5, 2026-09-04) |
 | 21 | [Frontend & Web (React/Next.js)](../21-frontend-web/INDEX.md) | 32/32 chapters relocated (Phase 3, 2026-09-03); **L1–L4 mastery equivalence formally mapped, 32/32** (Phase 5, 2026-09-05) — domain was exempt from content retrofit, already Beginner–Expert by design |
+| 22 | [AI/LLM Engineering](../22-ai-llm-engineering/INDEX.md) | 6/6 originally-planned topics written (2026-09-10), domain remains open — new-writing, L1–L4 from the start |
 
 ## What's next
 

@@ -929,3 +929,74 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 ### Added (private companion repo)
 
 - User's decision on the standing `company-prep`/`*.private.md` privacy question (open since `syllabus-transformation-plan.md` §11, 2026-09-03): rather than repo-internal tooling, real future interview-specific material (company prep, actual interview feedback, personal performance notes) goes in a new, separate, local-only private repository (`cracking-code-interviews-private`, sibling directory, no remote yet), never merged or synced into this one. This repo's own already-anonymized `interview-playbook/company-prep/large-ecommerce-retailer-senior-backend-remote.md` stays here unchanged — that decision (§2.8, resolved 2026-09-08 earlier the same day) is unrelated and not reopened.
+
+## [2026-09-09] — `07-api-design`'s GraphQL/gRPC gap closed; new domain `22-ai-llm-engineering` opened
+
+### Added (`07-api-design/graphql-api-design.md` and `grpc-api-design.md` — T-917, T-918)
+
+- Gap audit found `07-api-design/INDEX.md` and its own T-803 ("API design: REST, gRPC, GraphQL, versioning") named all three protocols, but the physical chapter had zero mentions of either GraphQL or gRPC — confirmed by grep, not assumed. Closed as two new chapters rather than expanding T-803, matching the precedent T-2205 (REST) already set for this same domain.
+- Both chapters use the domain's existing `handbook-chapter` template (matching `api-design.md`), backed by real, executed demos: `practice/java/graphql-api-design/` (real graphql-java 26.1, measuring a real 3-call-to-1-call N+1/DataLoader reduction and a real nullability-dependent null-propagation difference) and `practice/java/grpc-api-design/` (a real `protoc`-generated client/server pair exercising all four gRPC call shapes and a real caught `StatusRuntimeException`).
+- Registered in `00-project/knowledge-architecture-blueprint.md`'s D9 table with a split-from-T-803 note; `07-api-design/INDEX.md` and `api-design.md`'s `related` front matter updated.
+
+### Added (new domain `syllabus/22-ai-llm-engineering/` — T-2300, LLM API Integration Fundamentals)
+
+- Found during the same gap audit: zero LLM/AI-engineering coverage anywhere in `syllabus/`, an increasingly common 2026 backend-interview topic. Presented the user two placement options (new top-level domain vs. a subsection of `17-architecture` or `11-system-design`) plus a scoping choice for the first chapter; user chose a new domain and "LLM API Integration Fundamentals" as the foundational entry point.
+- `syllabus/22-ai-llm-engineering/llm-api-integration-fundamentals.md` (T-2300) — written against the 20-section Topic Specification template (matching `rest-api-fundamentals.md`'s precedent for a genuinely new, L1-from-zero topic), covering statelessness/conversation-growth cost, streaming, function/tool calling's real two-round protocol, and rate-limit backoff.
+- Backed by a real, executed demo (`practice/java/llm-api-integration-fundamentals/`): a real `java.net.http.HttpClient` talking real HTTP to a real local `com.sun.net.httpserver.HttpServer` implementing Anthropic's real documented Messages API wire contract (request/response shape, SSE streaming event types, tool-use content blocks, usage accounting, 429 responses) — explicitly not a call to the live API (no key, no network dependency, fully reproducible), stated plainly in both the chapter and the pack's README rather than implied otherwise.
+- Reserved ID range `T-2300`–`T-2399` for this domain, documented in `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection. Added `syllabus/22-ai-llm-engineering/INDEX.md` and a new domain row in `syllabus/00-overview/INDEX.md` (now 22 domains). Updated root `CLAUDE.md`'s Repository Structure tree with the new domain directory.
+
+## [2026-09-10] — Second `22-ai-llm-engineering` chapter: RAG and Vector Databases (pgvector)
+
+### Added (`syllabus/22-ai-llm-engineering/rag-and-vector-databases.md` — T-2301)
+
+- User asked to continue with the next planned topic in the domain. Per T-2300's own note, RAG/vector-DB is the natural next topic since it assumes a reader already knows how to call an LLM API.
+- Written against the same 20-section Topic Specification template as T-2300. Covers embeddings, distance metrics (cosine vs. L2, and the real normalization pitfall between them), HNSW approximate nearest-neighbor indexing, and RAG prompt assembly.
+- Backed by a real, executed demo (`practice/java/rag-and-vector-databases/`): a real PostgreSQL 16 + `pgvector` Docker container, real JDBC calls, real vector storage and distance queries, a real `CREATE INDEX ... USING hnsw`, and real `EXPLAIN ANALYZE` evidence of a measured ~7x execution-time drop (Seq Scan to Index Scan) at 5,000 rows.
+- Embeddings are computed by a real, deterministic hashing scheme (feature hashing / "hashing trick", L2-normalized) rather than a live embedding-API call — stated explicitly, the same honesty discipline as T-2300's "not a live API call" framing. The demo goes further: it deliberately proves, with real output, where that toy scheme's limitation shows up — a literal-keyword query retrieves the correct document at rank #1, but a meaning-equivalent paraphrase of the identical question drops that same document to rank #3, behind two unrelated documents. This real, unflattering result is used directly as the chapter's evidence for why production RAG requires a real trained embedding model, rather than being hidden or worked around.
+- Docker pull environment note: pulling `pgvector/pgvector:pg16` (and even a small sanity-check `alpine` pull) took several minutes in this session's sandbox — slow, not blocked; confirmed via a direct registry connectivity check before concluding it would eventually succeed, rather than abandoning the real-container approach for a lower-fidelity substitute.
+- Updated `syllabus/22-ai-llm-engineering/INDEX.md` (new row, updated status/last_updated, shortened "planned" list), `llm-api-integration-fundamentals.md`'s `related` front matter (cross-link to the new chapter), `syllabus/00-overview/INDEX.md` (2/N topics), and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection (T-2301 assignment recorded).
+
+## [2026-09-10] — Illustration audit started: `02-java/jvm-internals` (11 diagrams), Phase 1 of a larger scope
+
+### Added (real Mermaid diagrams, 11 `jvm-internals` chapters)
+
+- User asked whether more diagrams/tables could be added, feeling the repository under-illustrated. A real census (grep for a fenced mermaid block across every `syllabus/` chapter, not a guess) found 57 chapters with zero diagrams; after excluding 13 legitimately diagram-less `behavioral/` narrative chapters and 3 `00-overview` meta docs, ~41 real candidates remain.
+- Closed the single largest, highest-value cluster first: `02-java/jvm-internals`, 11 of 12 chapters. Full detail (which diagram per chapter, and why) is in `syllabus/02-java/INDEX.md`'s own 2026-09-10 note rather than duplicated here.
+- Remaining scope, not yet done: `03-data-structures-algorithms` (8 pattern chapters), `02-java/language-core` Junior Fundamentals (5) + 2 more, newer Junior Fundamentals chapters in other domains (5), and single scattered chapters across six more domains including this session's own new `22-ai-llm-engineering` T-2300/T-2301.
+
+### Corrected (illustration audit closed — false-positive caught, 11 real diagrams added, 11 judged adequate)
+
+- The grep-for-mermaid census was a flawed gap detector: spot-checking `03-data-structures-algorithms` before touching it found 7 of 8 chapters already had a real, well-made ASCII diagram and the 8th a real worked-example table — zero actual gap, despite zero Mermaid. Reported this to the user rather than mechanically continuing; user asked for a full manual review of the rest of the scope instead.
+- Manually reviewed all ~22 remaining candidates, judging each on whether it lacks a real diagram of a flow/mechanism/relationship (not whether it lacks a table — a comparison table is often the correct format, not a gap). 11 genuinely needed and got one; 11 were already adequate and got none, by decision. Full per-file list is in the root `CHANGELOG.md`'s matching entry. **The illustration audit is now complete — no remaining scope.**
+
+## [2026-09-10] — Third `22-ai-llm-engineering` chapter: Embeddings
+
+### Added (`syllabus/22-ai-llm-engineering/embeddings.md` — T-2302)
+
+- User asked which domain/topic to continue with next; chose Embeddings, the topic T-2301 itself flagged as needing deeper treatment.
+- Real demo (pure JDK, `practice/java/embeddings-fundamentals/`): real cosine similarity across 4 sentence-pair categories (true positive, paraphrase, polysemy, true negative) at 32 vs. 512 dimensions. Genuinely striking real finding, not designed in advance: at 32 dimensions the true-negative pair scores 0.5634 — nearly tying the true-positive pair's 0.7591 — while at 512 dimensions it correctly drops to 0.0909. Includes an inline Mermaid diagram of the embed-then-cosine-similarity pipeline, embedded within Section 5 per this domain's established pattern (the 20-section template has no dedicated Diagrams slot).
+- Updated `syllabus/22-ai-llm-engineering/INDEX.md` (3/N), `rag-and-vector-databases.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — Fourth `22-ai-llm-engineering` chapter: Prompt Engineering Patterns
+
+### Added (`syllabus/22-ai-llm-engineering/prompt-engineering-patterns.md` — T-2303)
+
+- Continued the domain's own "planned" list. Organized the chapter around a real, useful distinction: which prompting patterns are just careful wording (few-shot, "think step by step") versus real, distinct request parameters (`temperature`, `response_format`, the system/user role split) — no live model call anywhere.
+- Real demo (`practice/java/prompt-engineering-patterns/`): a real seeded sampler proving `temperature` genuinely controls output variance (20/20 identical outputs at `temperature=0.0`; a real 3-way split across 20 trials at `0.9`); a real measured 8-vs-0 JSON-parse-failure gap between prompt-wording-only and a real structured-output parameter; real deterministic logic showing a system-role instruction resists an override attempt that the identical instruction, concatenated directly into user text, does not.
+- Updated `syllabus/22-ai-llm-engineering/INDEX.md` (4/N), `llm-api-integration-fundamentals.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — Fifth `22-ai-llm-engineering` chapter: Agentic Workflows and Tool Orchestration
+
+### Added (`syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` — T-2304)
+
+- Continued the domain's own "planned" list. T-2300 covered one tool call's round-trip; this chapter covers what happens when a task needs several chained calls — no live model call anywhere, the "agent's" decisions are real, deterministic Java logic standing in for a real model's `tool_use` choices.
+- Real demo (`practice/java/agentic-workflows-and-tool-orchestration/`, pure JDK): a real 3-iteration multi-step chain (capital lookup -> weather lookup, second call's real argument depends on the first call's real result); a real runaway-loop safety demo (a task that never resolves, correctly stopped at a real 5-iteration cap); and a real, measured ~2x wall-clock speedup (408ms sequential vs. 207ms parallel, via a real `ExecutorService`) running two independent tool calls concurrently.
+- Updated `syllabus/22-ai-llm-engineering/INDEX.md` (5/N), `llm-api-integration-fundamentals.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — Sixth `22-ai-llm-engineering` chapter: LLM Evaluation and Testing — originally-planned list complete
+
+### Added (`syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` — T-2305)
+
+- Closed the domain's originally-planned six-topic list. T-2303's own Staff-level note named the real risk (a prompt change is a real behavior change with no test suite unless one exists); this chapter is that suite's real design — no live model call anywhere.
+- Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
+- Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.

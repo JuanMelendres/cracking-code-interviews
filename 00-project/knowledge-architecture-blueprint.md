@@ -293,6 +293,10 @@ Tiers describe **the nature of the knowledge**, not its priority. A Foundation t
 | T-914 | Design patterns applied (GoF in production) | COR | 5.8 | 6 | 6 | Very High | 5 | 4 | 6w | 🟠 |
 | T-915 | SOLID at architectural scale | COR | 5.6 | 6 | 6 | Very High | 2 | 2 | 8w | 🟠 |
 | T-916 | Architecture Decision Records & documentation | STF | 6.2 | 6 | 7 | Moderate | 2 | 2 | 8w | 🔴 |
+| T-917 | GraphQL API design: schema, resolvers, N+1, DataLoader | COR | 6.6 | 7 | 7 | High | 4 | 3 | 5w | 🟢 |
+| T-918 | gRPC API design: protobuf, streaming, status codes, deadlines | COR | 6.5 | 7 | 7 | High | 4 | 3 | 5w | 🟢 |
+
+> **Split from T-803, 2026-09-09.** T-803 ("API design: REST, gRPC, GraphQL, versioning") named all three protocols but the physical chapter (`syllabus/07-api-design/api-design.md`) only ever covered REST — confirmed by grep, zero mentions of either protocol in that file. T-917 and T-918 close this gap as their own full canonical chapters rather than expanding T-803 into an unwieldy three-protocol chapter, matching the precedent of REST getting its own T-2205 chapter rather than being folded into T-803. Physically located in `syllabus/07-api-design/` alongside T-803 and T-911, per this domain's established pattern (see `07-api-design/INDEX.md`) of pulling IDs from both the D8 and D9 ranges into one physical directory. Both chapters ship with real, executed demos (`practice/java/graphql-api-design/`, `practice/java/grpc-api-design/`) — real graphql-java N+1/DataLoader call counts, and a real protoc-generated gRPC client/server exercising all four call shapes — so status is 🟢, not 🔴.
 
 ### D10 · Cloud & Infrastructure
 

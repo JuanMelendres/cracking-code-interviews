@@ -17,6 +17,11 @@ build/
 !templates/**/*.jar
 *.hprof
 
+# gRPC generated stubs (regenerate via practice/java/grpc-api-design/generate.sh)
+practice/java/grpc-api-design/generated/
+practice/java/grpc-api-design/lib/protoc
+practice/java/grpc-api-design/lib/protoc-gen-grpc-java
+
 # Env / secrets
 .env
 .env.*

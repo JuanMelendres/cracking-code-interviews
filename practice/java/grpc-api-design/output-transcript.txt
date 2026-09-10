@@ -1,0 +1,19 @@
+=== 1. Unary: GetBook("b2") ===
+got: id: "b2"
+title: "Database Internals"
+author: "Petrov"
+
+=== 2. Unary error path: GetBook("does-not-exist") -> real gRPC status code ===
+caught: NOT_FOUND - no book with id does-not-exist
+=== 3. Server streaming: ListBooks() ===
+  streamed[1]: Designing Data-Intensive Applications
+  streamed[2]: Database Internals
+  streamed[3]: Release It!
+>>> received 3 books over one server-streaming call
+=== 4. Client streaming: AddBooks(3 books) ===
+>>> server accepted 3 books in one client-streaming call
+>>> server-side counter confirms: 3 onNext() calls received
+=== 5. Bidirectional streaming: Chat() -- interleaved send/receive on one call ===
+  client received: [server] echo: ping-1
+  client received: [server] echo: ping-2
+>>> post-call catalog size after AddBooks: 6

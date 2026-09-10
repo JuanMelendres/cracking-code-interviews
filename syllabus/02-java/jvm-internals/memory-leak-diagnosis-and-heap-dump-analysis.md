@@ -37,22 +37,23 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -140,6 +141,21 @@ $ xxd -l 16 out/leaky-heap.hprof
 ```
 
 This file is not committed to the repository (heap dumps are large, environment-specific binary artifacts — `.hprof` is in `.gitignore`); reproduce it yourself with the command above and open it in Eclipse MAT, VisualVM, or `jhat`'s successor tooling to see the "path to GC roots" view, which would show, for every leaked `Session`, the exact chain: `Session → Subject.listeners (CopyOnWriteArrayList) → static field APP_SCOPED_SUBJECT`.
+
+## Diagrams
+
+```mermaid
+flowchart TD
+    Suspect["Suspect a leak:<br/>heap grows, never shrinks after GC"] --> Histo["jmap -histo:live<br/>forces GC first, then counts"]
+    Histo --> Grow{"One class's live count<br/>climbing, unjustified by workload?"}
+    Grow -->|"No"| Healthy["Not a leak — GC is doing its job<br/>(this chapter's 'fixed' run: 0 live Session)"]
+    Grow -->|"Yes"| Dump["jcmd pid GC.heap_dump out.hprof<br/>real .hprof file"]
+    Dump --> MAT["Open in Eclipse MAT / VisualVM:<br/>'path to GC roots' view"]
+    MAT --> Chain["Session -> Subject.listeners (CopyOnWriteArrayList)<br/>-> static field APP_SCOPED_SUBJECT"]
+    Chain --> Fix["Break the reference:<br/>unregister() when the session ends"]
+```
+
+The histogram identifies *which* class (this chapter's real numbers: 32,701 then 67,167 live `Session` instances, climbing); the heap dump's path-to-GC-roots view is what answers the histogram *can't* — the exact reference chain keeping every instance alive, ending at the specific fix this chapter's "fixed" run applies.
 
 ## Production Scenarios
 

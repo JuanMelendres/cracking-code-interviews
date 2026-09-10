@@ -91,9 +91,23 @@ The decision rule this produces: reach for an abstract class when you have real,
 
 Every object created with `new` lives on the heap. A variable holding that object — `House h = new House(3);` — does not hold the object itself; it holds a **reference** (conceptually, an address) pointing at it. `House h2 = h;` copies the reference, not the object — `h` and `h2` now point at the exact same object in memory, so a change made through `h2` is visible through `h` too. This is why Section 8's most common bug (accidentally sharing a mutable object between two places that each assume they own it privately) is possible at all: two references, one object.
 
+```mermaid
+flowchart LR
+    h["h (variable)"] --> Obj["House object<br/>rooms = 3<br/>(one copy, on the heap)"]
+    h2["h2 = h (copies the reference, not the object)"] --> Obj
+```
+
 Fields declared in a class are laid out as part of every object built from it — a `House` with an `int rooms` field means every single `House` object carries its own 4 bytes for `rooms`, at the same offset within the object, regardless of how many `House` objects exist. Methods are not duplicated per object this way — there is exactly one copy of a method's compiled bytecode regardless of how many objects call it; calling `h.paintWalls()` and `h2.paintWalls()` both jump into the same compiled method, just supplied with a different object reference (`this`) each time.
 
 Why can a class `extend` only one other class, but `implement` many interfaces? Multiple inheritance of actual field state creates a genuine, unsolvable ambiguity the JVM has no consistent way to resolve on its own: if `class C extends A, B` and both `A` and `B` declare a field or method named `x`, which `x` does `C` inherit — a problem languages with multiple class inheritance (like C++) solve with extra rules (virtual inheritance) that Java's designers deliberately chose not to take on. Interfaces sidestep the problem entirely because, until default methods arrived in Java 8, they contributed no state and no method bodies to inherit a conflict from; default methods can still collide today — this is Java's real version of "the diamond problem" — but Java resolves that specific, narrower case with an explicit rule: a class implementing two interfaces with clashing default methods must override the method itself, rather than the JVM guessing. Section 7's second and third demos prove this directly, not just in prose: a real `Duck implements Flyer, Swimmer` where both interfaces declare a conflicting `default move()` produces a genuine `javac` compile error (`class Duck inherits unrelated defaults for move() from types Flyer and Swimmer`) — refusing to compile at all until `Duck` explicitly overrides `move()` itself, at which point it can still reach either parent's own version explicitly via `Flyer.super.move()` / `Swimmer.super.move()`.
+
+```mermaid
+flowchart TD
+    Flyer["interface Flyer<br/>default move() {...}"] --> Duck["class Duck implements Flyer, Swimmer"]
+    Swimmer["interface Swimmer<br/>default move() {...}"] --> Duck
+    Duck -->|"no override"| Error["javac error:<br/>inherits unrelated defaults for move()"]
+    Duck -->|"Duck overrides move()"| OK["Compiles.<br/>Can still call Flyer.super.move() / Swimmer.super.move() explicitly"]
+```
 
 ## 6. Practical Usage
 

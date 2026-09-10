@@ -38,23 +38,24 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -119,6 +120,27 @@ Shenandoah: GC(15) Pause Final Update Refs 0.010ms
 ```
 
 A real, directly captured Shenandoah pause of 0.010ms — consistent with its design goal of pause times independent of heap size, via its own (Brooks-forwarding-pointer-based) mechanism. This chapter does not present a full Shenandoah throughput comparison alongside G1/ZGC's, since the specific run on this environment showed substantially different (and less directly comparable) allocation throughput than the G1/ZGC pair — the one clean data point above is cited specifically as confirmation of real, working sub-millisecond pauses, not as a quantitative throughput claim.
+
+## Diagrams
+
+```mermaid
+flowchart TB
+    subgraph G1["G1: evacuation-pause model"]
+        G1Mark["Mark live objects"] --> G1Stop["STOP application threads"]
+        G1Stop --> G1Evac["Evacuate (move) chosen regions<br/>-- the expensive part happens INSIDE the pause"]
+        G1Evac --> G1Resume["Resume application<br/>measured: max 0.748ms pause"]
+    end
+
+    subgraph ZGC["ZGC/Shenandoah: concurrent relocation"]
+        ZMark["Concurrent marking<br/>(app threads keep running)"] --> ZRelocate["Concurrent relocation<br/>via colored pointers / forwarding pointers<br/>-- app threads keep running THROUGH this"]
+        ZRelocate --> ZBrief["Only brief, fixed-cost safepoints<br/>measured: 1,125ns - 40,250ns"]
+        ZBrief --> ZStall{"Allocation rate ><br/>reclamation rate?"}
+        ZStall -->|"No"| ZFine["No stall"]
+        ZStall -->|"Yes"| ZStallEvent["Allocation stall<br/>measured: 218 events, 3-5ms each"]
+    end
+```
+
+The two subgraphs show *why* the trade-off in this chapter's real numbers exists: G1 puts the expensive evacuation work inside a short-but-real pause (measured max 0.748ms); ZGC moves that work outside the pause entirely (measured 1-40 microsecond pauses), at the cost of a genuinely different failure mode — an allocation stall — when the concurrent work can't keep up, measured here as 218 real stalls and ~22% fewer completed allocations than G1 in the identical window.
 
 ## Production Scenarios
 

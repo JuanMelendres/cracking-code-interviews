@@ -65,6 +65,22 @@ A **foreign key** is a column in one table that references a primary key in anot
 
 The four operations you do to data are commonly abbreviated **CRUD**: `INSERT` (Create), `SELECT` (Read), `UPDATE`, and `DELETE`. Every one of Section 7's demos runs at least one of these against a real, disposable PostgreSQL database.
 
+```mermaid
+erDiagram
+    authors ||--o{ books : "author_id"
+    authors {
+        int author_id PK
+        string name
+    }
+    books {
+        int book_id PK
+        int author_id FK
+        string title
+    }
+```
+
+`books.author_id` (the foreign key) points at `authors.author_id` (the primary key) — Section 7's Example F proves the database itself refuses a `books` row whose `author_id` doesn't point at a real `authors` row.
+
 ## 4. Core Concepts (L2)
 
 A **`JOIN`** combines rows from two tables based on a matching condition — almost always "this table's foreign key equals that table's primary key." The two most common kinds answer genuinely different questions, not just stylistic variants of the same query:

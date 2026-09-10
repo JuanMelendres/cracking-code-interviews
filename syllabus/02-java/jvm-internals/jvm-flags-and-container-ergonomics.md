@@ -37,22 +37,23 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -126,6 +127,24 @@ maxMemory (MB): 742
 ```
 
 Container memory limit unchanged (1GB) in both runs; only `MaxRAMPercentage` changed from its default 25.0 to 75.0, and the computed heap cap scaled almost exactly proportionally (247MB → 742MB, a ~3x increase for a 3x percentage increase) — direct, measured proof that the heap-to-container-memory ratio is a tunable ergonomic default, not the container's memory limit read directly as the heap size.
+
+## Diagrams
+
+```mermaid
+flowchart TD
+    Cgroup["Container cgroup limits<br/>(--memory, --cpus)"] --> Detect["JVM startup detection<br/>-XX:+UseContainerSupport (default since JDK 10)"]
+    Detect --> Mem["Detected memory limit<br/>e.g. 1024M"]
+    Detect --> Cpu["Detected CPU quota<br/>'available', NOT host's real 'total'"]
+
+    Mem --> Pct["-XX:MaxRAMPercentage<br/>default 25.0"]
+    Pct --> Heap["Heap cap<br/>25% -> 247MB measured<br/>75% -> 742MB measured (same 1GB container)"]
+
+    Cpu --> AP["Runtime.availableProcessors()"]
+    AP --> GCThreads["ParallelGCThreads / ConcGCThreads"]
+    AP --> FJP["ForkJoinPool.commonPool() default size"]
+```
+
+Two independent detections feed two independent ergonomic defaults — this chapter's own measured evidence tracks both paths directly: the same 1GB container produced a 247MB heap at the default 25% and a 742MB heap at 75%, memory limit unchanged; and a `--cpus=2` container reported `available: 2` while the same host's `--cpus=6` run reported `available: 6`, both against the identical `total: 10`.
 
 ## Production Scenarios
 

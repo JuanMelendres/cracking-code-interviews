@@ -64,6 +64,23 @@ Java's Collections Framework centers on three interfaces answering three differe
 
 `ArrayList` is the most common `List` implementation; `HashMap` the most common `Map`; `HashSet` the most common `Set`. This chapter uses exactly these three.
 
+```mermaid
+flowchart LR
+    subgraph List["List — ordered, duplicates allowed"]
+        L0["[0] cat"] --> L1["[1] dog"] --> L2["[2] cat"]
+    end
+    subgraph Set["Set — no order guarantee, no duplicates"]
+        S1["cat"]
+        S2["dog"]
+    end
+    subgraph Map["Map — key to exactly one value"]
+        K1["cat"] --> V1["3"]
+        K2["dog"] --> V2["1"]
+    end
+```
+
+The same three words ("cat", "dog", "cat") land differently in each: the `List` keeps both `cat` entries in their original positions; the `Set` collapses them to one `cat`; the `Map` keeps one `cat` key mapped to a count of how many times it appeared.
+
 ## 4. Core Concepts (L2)
 
 The basic operations that matter at this level:

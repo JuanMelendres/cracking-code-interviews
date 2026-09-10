@@ -39,23 +39,24 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -122,6 +123,23 @@ queue.remove() returned: the phantom reference itself, now enqueued
 ```
 
 Four distinct, real behaviors from four reference types wrapping otherwise-identical objects: the strong reference survives unconditionally; the weak reference is cleared the instant `System.gc()` runs after its only strong path is removed; the soft reference *survives* the identical operation, under no real memory pressure — the concrete evidence of soft references' discretionary, pressure-aware clearing policy versus weak references' immediate clearing; the phantom reference never returns a usable object at all (even before collection), and is instead delivered through the `ReferenceQueue` after the collector processes it — real, direct evidence of the cleanup-notification mechanism distinct from every other reference type's "give me the object back" model.
+
+## Diagrams
+
+```mermaid
+flowchart LR
+    Root["GC Root<br/>(stack var, static field, JNI ref)"] --> Strong["Strong reference<br/>never cleared while reachable"]
+    Root --> Soft["Soft reference<br/>cleared only under real memory pressure<br/>(all cleared before OOME)"]
+    Root --> Weak["Weak reference<br/>cleared as soon as unreachable<br/>via any strong path — WeakHashMap keys"]
+    Root --> Phantom["Phantom reference<br/>get() always returns null<br/>enqueued AFTER finalization, for cleanup"]
+
+    Strong --> Obj1["Object stays alive"]
+    Soft --> Obj2["Object alive unless<br/>memory pressure forces clearing"]
+    Weak --> Obj3["Object collected;<br/>reference cleared promptly"]
+    Phantom --> Obj4["Object about to be reclaimed;<br/>ReferenceQueue notified"]
+```
+
+This chapter's own real demo output threads through this diagram directly: the strong path survives `System.gc()` unconditionally; the weak path clears immediately once its only strong path is removed; the soft path survives the identical operation under no real memory pressure; the phantom path never lets `get()` return the object at all, only delivering it through the `ReferenceQueue` after the collector has already decided to reclaim it.
 
 ## Production Scenarios
 

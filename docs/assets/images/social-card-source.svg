@@ -23,13 +23,13 @@
 
   <!-- bottom tag row -->
   <g font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#80CBC4">
-    <rect x="90" y="510" width="230" height="54" rx="27" fill="#00363A"/>
-    <text x="112" y="545">21 domains</text>
+    <rect x="90" y="510" width="190" height="54" rx="27" fill="#00363A"/>
+    <text x="112" y="545">22 domains</text>
 
-    <rect x="340" y="510" width="240" height="54" rx="27" fill="#00363A"/>
-    <text x="362" y="545">Real, not theoretical</text>
+    <rect x="300" y="510" width="340" height="54" rx="27" fill="#00363A"/>
+    <text x="322" y="545">Real, not theoretical</text>
 
-    <rect x="600" y="510" width="220" height="54" rx="27" fill="#00363A"/>
-    <text x="622" y="545">Free to share</text>
+    <rect x="660" y="510" width="230" height="54" rx="27" fill="#00363A"/>
+    <text x="682" y="545">Free to share</text>
   </g>
 </svg>

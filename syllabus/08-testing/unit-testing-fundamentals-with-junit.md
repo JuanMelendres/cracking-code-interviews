@@ -64,6 +64,18 @@ A test class groups related test methods together — [`CalculatorTest`](../../p
 
 **`@BeforeEach`** marks a method that runs immediately before *every* `@Test` method in the class — [`CalculatorTest.setUp()`](../../practice/java/testing-fundamentals/junit-basics/src/CalculatorTest.java) constructs a brand-new `Calculator` before each test, which is what makes every test start from a known, identical state regardless of what any other test already did. This is the mechanism behind **test isolation**: a well-written test's outcome does not depend on which other tests ran before it, or in what order.
 
+```mermaid
+flowchart LR
+    subgraph T1["testAdd()"]
+        B1["@BeforeEach<br/>fresh Calculator"] --> Run1["test body"]
+    end
+    subgraph T2["testDivide()"]
+        B2["@BeforeEach<br/>fresh Calculator<br/>(NEW instance, not T1's)"] --> Run2["test body"]
+    end
+```
+
+Each test method gets its own, freshly-constructed `Calculator` — nothing `testAdd()` does to its instance can leak into `testDivide()`'s, which is the entire mechanism behind test isolation, not just a stated rule.
+
 Testing that an exception is thrown correctly uses **`assertThrows`**, not a manual `try`/`catch` with a `fail()` call in the `try` block — `assertThrows(ArithmeticException.class, () -> calculator.divide(10, 0))` runs the given code, and the test passes only if that exact exception type is thrown; if no exception is thrown at all, `assertThrows` itself fails the test with a clear message, rather than the test silently passing because nothing crashed.
 
 A **`@ParameterizedTest`** runs the same test logic once per input value, instead of writing near-identical `@Test` methods by hand. `@ValueSource(ints = {2, 4, 100, 0, -6})` supplies five single values, one test execution each; `@CsvSource` supplies multiple values per execution, unpacked directly into the test method's parameters — Section 7's `addProducesExpectedSum` demonstrates this directly, one test method producing four real, independently-reported test executions.

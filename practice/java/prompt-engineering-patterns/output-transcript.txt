@@ -1,0 +1,25 @@
+=== 1. Zero-shot vs few-shot: the real request payload difference ===
+zero-shot request: 1 message(s), 103 bytes
+few-shot request:  5 message(s), 354 bytes
+>>> few-shot sends real worked examples (labeled Q->A pairs) in the SAME request, at a real, measured 3.4x payload size cost.
+
+=== 2. Temperature: real, measured sampling variance ===
+temperature=0.0, 20 real trials, identical prompt:
+  [20x] "The capital of France is Paris."
+  distinct outputs seen: 1
+temperature=0.9, 20 real trials, identical prompt:
+  [6x] "France's capital is Paris."
+  [7x] "The capital of France is Paris."
+  [7x] "Paris is the capital city of France."
+  distinct outputs seen: 3
+
+=== 3. Structured output (JSON mode): real parse success/failure counts ===
+freeform (no response_format), 20 real trials: 8 real JSON-parse failures
+response_format=json_object, 20 real trials: 0 real JSON-parse failures
+
+=== 4. System channel vs. inline instruction: real override resistance ===
+system-channel instruction + adversarial user text:
+  -> I can help with our product, but I won't discuss competitor products.
+SAME instruction concatenated into user text, followed by the same override attempt:
+  -> Sure, here's a competitor comparison...
+>>> identical intent, different channel: the system-role version resisted the override; the inline version did not.

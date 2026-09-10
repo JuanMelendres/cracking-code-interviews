@@ -39,23 +39,24 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Anti-Patterns](#anti-patterns)
-15. [Best Practices](#best-practices)
-16. [Interview Answer Framework](#interview-answer-framework)
-17. [Interview Questions](#interview-questions)
-18. [Summary](#summary)
-19. [Key Takeaways](#key-takeaways)
-20. [Cheat Sheet](#cheat-sheet)
-21. [Flashcards](#flashcards)
-22. [Practice Exercises](#practice-exercises)
-23. [Solutions](#solutions)
-24. [Additional Reading](#additional-reading)
-25. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Anti-Patterns](#anti-patterns)
+16. [Best Practices](#best-practices)
+17. [Interview Answer Framework](#interview-answer-framework)
+18. [Interview Questions](#interview-questions)
+19. [Summary](#summary)
+20. [Key Takeaways](#key-takeaways)
+21. [Cheat Sheet](#cheat-sheet)
+22. [Flashcards](#flashcards)
+23. [Practice Exercises](#practice-exercises)
+24. [Solutions](#solutions)
+25. [Additional Reading](#additional-reading)
+26. [Official References](#official-references)
 
 ---
 
@@ -126,6 +127,25 @@ A process with `-Xmx32m` successfully allocates a full 256MB of direct memory �
 ```
 
 `Java Heap` shows exactly 65536KB (64MB, matching `-Xmx64m` precisely) — unaffected by the direct-buffer allocations. `Other` shows exactly 102400KB (100MB, matching the 10×10MB direct buffers exactly) with `#10` malloc calls, matching the 10 buffers allocated one-for-one — real, precise confirmation that direct-buffer memory lives entirely outside the Java Heap category, tracked separately, and would be completely invisible to any tool that only reports on-heap memory usage.
+
+## Diagrams
+
+```mermaid
+flowchart LR
+    subgraph HeapPath["Heap-allocated ByteBuffer"]
+        HB["byte[] on the Java heap<br/>bounded by -Xmx"] --> Copy["Copy to a native,<br/>non-moving location<br/>(GC can move heap objects)"]
+        Copy --> OS1["OS-level I/O call"]
+    end
+
+    subgraph DirectPath["Direct (off-heap) ByteBuffer"]
+        DB["ByteBuffer.allocateDirect()<br/>bounded by -XX:MaxDirectMemorySize<br/>completely separate budget from -Xmx"] --> OS2["OS-level I/O call<br/>NO copy needed — already native"]
+    end
+
+    HB -.->|"OutOfMemoryError: Java heap space"| OOM1["heap OOM"]
+    DB -.->|"OutOfMemoryError: Direct buffer memory"| OOM2["direct-memory OOM<br/>invisible to heap histograms/dumps"]
+```
+
+This chapter's own real evidence proves both boxes' budgets are genuinely separate: a process with `-Xmx32m` allocated a full 256MB of direct memory — 8x the heap ceiling — before hitting its own distinct `OutOfMemoryError: Direct buffer memory` at exactly the `-XX:MaxDirectMemorySize` limit, not the 32MB heap limit; and real NMT output showed `Java Heap` at exactly 64MB (unaffected) while `Other` showed exactly the 100MB of direct buffers allocated, tracked under a category no heap-only tool would ever see.
 
 ## Production Scenarios
 

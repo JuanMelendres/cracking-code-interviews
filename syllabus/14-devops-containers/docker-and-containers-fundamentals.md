@@ -57,6 +57,20 @@ None specific to this repository, though basic command-line comfort (running a c
 
 A **container** is a running process (or small group of processes) that has been given its own isolated view of the filesystem, network, and process list — it *looks* to the software inside it like a whole separate machine, but it is actually just an ordinary process on the host's own kernel, isolated using kernel features (Linux namespaces and cgroups) rather than running its own separate kernel or hardware. This is the single biggest conceptual difference from a **virtual machine**, which really does run its own complete guest operating system and kernel on top of virtualized hardware — a VM is heavier and slower to start (booting a real kernel) specifically because it isn't taking this shortcut.
 
+```mermaid
+flowchart TB
+    subgraph VM["Virtual Machine"]
+        HW1["Host hardware"] --> Hyp["Hypervisor"]
+        Hyp --> GuestOS["Full guest OS + kernel<br/>(booted separately, heavier/slower)"]
+        GuestOS --> App1["App"]
+    end
+    subgraph Container["Container"]
+        HW2["Host hardware"] --> HostKernel["Host OS kernel<br/>(shared, not duplicated)"]
+        HostKernel --> NS["Linux namespaces + cgroups<br/>(isolated view, not a separate kernel)"]
+        NS --> App2["App<br/>(just an ordinary host process)"]
+    end
+```
+
 An **image** is a read-only template a container is created from — a packaged filesystem plus metadata (what command to run, what port the app listens on) that never changes once built. A **container** is one running (or stopped) instance created from an image, the same relationship [Java OOP Fundamentals](../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md) describes between a class and an object: one image, many containers, each with its own independent runtime state.
 
 A **`Dockerfile`** is a plain-text recipe for building an image: `FROM` picks a starting base image (usually a minimal OS or language runtime), `WORKDIR` sets the working directory for later instructions, `COPY` adds files from your machine into the image, and `CMD` states what command runs when a container starts from the finished image.

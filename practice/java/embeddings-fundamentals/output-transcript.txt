@@ -1,0 +1,12 @@
+=== dimensions = 32 ===
+TRUE POSITIVE (shared vocabulary, same meaning)         cosine similarity = 0.7591
+PARAPHRASE (same meaning, different words)              cosine similarity = 0.5164
+POLYSEMY (shared word, different meaning)               cosine similarity = 0.1632
+TRUE NEGATIVE (unrelated, no shared vocabulary)         cosine similarity = 0.5634
+
+=== dimensions = 512 ===
+TRUE POSITIVE (shared vocabulary, same meaning)         cosine similarity = 0.6963
+PARAPHRASE (same meaning, different words)              cosine similarity = 0.2611
+POLYSEMY (shared word, different meaning)               cosine similarity = 0.0806
+TRUE NEGATIVE (unrelated, no shared vocabulary)         cosine similarity = 0.0909
+

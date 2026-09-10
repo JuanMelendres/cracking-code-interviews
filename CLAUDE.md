@@ -280,7 +280,8 @@ cracking-code-interviews/
 │   ├── 18-engineering-practices/
 │   ├── 19-leadership-staff/
 │   ├── 20-interview-preparation/   # technical-answers/, system-design/, coding/, behavioral/
-│   └── 21-frontend-web/            # React & Next.js — separate domain, see Scope Addendum above
+│   ├── 21-frontend-web/            # React & Next.js — separate domain, see Scope Addendum above
+│   └── 22-ai-llm-engineering/      # LLM API integration, RAG, vector DBs — new backend domain, added 2026-09-09
 │
 ├── interview-playbook/
 │   ├── README.md

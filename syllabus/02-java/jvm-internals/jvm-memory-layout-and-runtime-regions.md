@@ -37,22 +37,23 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -144,6 +145,25 @@ Heap max (MB):
 | 8m | 413,005 |
 
 Same heap size in every run; only `-Xss` changed, and recursion depth scaled by roughly two orders of magnitude across the range — direct, measured proof that stack capacity is governed entirely by its own flag, with zero dependency on heap size.
+
+## Diagrams
+
+```mermaid
+flowchart TB
+    subgraph Process["JVM process memory"]
+        Heap["Java Heap<br/>objects, GC-managed"]
+        Meta["Metaspace (Class)<br/>class metadata — replaced PermGen in Java 8<br/>-XX:MaxMetaspaceSize"]
+        Threads["Thread stacks<br/>one per thread — -Xss each<br/>total = threads x -Xss"]
+        Code["Code cache<br/>JIT-compiled native code"]
+        GC["GC bookkeeping<br/>collector-internal structures"]
+    end
+
+    Heap -.->|"independent region, own OOM"| OOM1["OutOfMemoryError: Java heap space"]
+    Meta -.->|"independent region, own OOM"| OOM2["OutOfMemoryError: Metaspace"]
+    Threads -.->|"independent per-thread limit"| OOM3["StackOverflowError"]
+```
+
+Each region is separately reserved and committed, exactly as the real NMT output above shows — this is why a metaspace leak (Section "Internal Implementation") can exhaust its own region and throw its own distinct `OutOfMemoryError: Metaspace` while heap usage stays at 18MB out of a 512MB max: there is no shared pool for the diagram's dotted arrows to contend over, only independent accounting per box.
 
 ## Production Scenarios
 

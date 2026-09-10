@@ -142,6 +142,21 @@ path that didn't exist before.
   call — proven directly in this chapter's demo calling libc's `strlen`
   with zero hand-written glue code.
 
+## Diagrams
+
+```mermaid
+flowchart TD
+    Arena["Arena.ofConfined()"] --> Segment["MemorySegment<br/>(bounds-checked, off-heap)"]
+    Segment --> Use["Use segment: read/write"]
+    Arena -->|"close()"| Closed["Arena closed"]
+    Closed -.->|"any further use"| Ex["Real IllegalStateException: Already closed<br/>(not a crash, not a silent garbage read)"]
+
+    Linker["Linker"] --> MH["real MethodHandle"]
+    MH -->|"invoke"| Native["genuine native call<br/>e.g. libc strlen() — zero JNI glue code"]
+```
+
+Both real demo results trace directly through this diagram: using a `MemorySegment` after its owning `Arena` closes hits the right-hand branch (a real, caught `IllegalStateException`, not memory corruption); calling `strlen()` through a `Linker`-built `MethodHandle` is the bottom path, with no hand-written JNI glue at any step.
+
 ## Java Examples
 
 The real, decisive off-heap safety result:

@@ -36,22 +36,23 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -153,6 +154,27 @@ Real `-XX:+PrintCompilation` output, filtered to the relevant method, timestamps
 | Phase 3 | Same mixed workload, re-run after recompilation | 1.27 ms |
 
 Phase 3 is roughly **2x faster than phase 2 on the identical workload** — direct, measured evidence that the deoptimization-and-recompilation cycle itself has a real, non-trivial one-time cost, distinct from the steady-state cost of running polymorphic (rather than monomorphic) code at all.
+
+## Diagrams
+
+```mermaid
+stateDiagram-v2
+    Interp: Level 0 — Interpreter
+    C1_0: Level 1 — C1, no profiling
+    C1_2: Level 2 — C1, limited profiling
+    C1_3: Level 3 — C1, full profiling
+    C2: Level 4 — C2, fully optimized
+
+    [*] --> Interp
+    Interp --> C1_3: hot enough to profile
+    Interp --> C1_0: too simple to benefit from profiling
+    C1_3 --> C2: hot + profiling data ready
+    C2 --> Interp: DEOPTIMIZATION<br/>(speculative assumption violated —<br/>e.g. monomorphic call site sees a 2nd type)
+    Interp --> C1_3: recompile with wider type profile
+    C1_3 --> C1_3: superseded version marked<br/>"made not entrant" (routine, not a deopt)
+```
+
+This chapter's own real `-XX:+PrintCompilation` trace walks exactly this path: `compute()` compiles at level 3, then level 4 almost immediately after, with the level-3 version marked "made not entrant" — routine housekeeping, the diagram's self-loop, not the deoptimization arrow. `sumAreas()`, by contrast, takes the deoptimization arrow for real: warmed up monomorphic against `Circle` only, then forced back to the interpreter the moment a `Square` appears at the same call site.
 
 ## Production Scenarios
 

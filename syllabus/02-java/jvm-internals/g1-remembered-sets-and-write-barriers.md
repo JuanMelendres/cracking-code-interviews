@@ -34,22 +34,23 @@ official_references:
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
-9. [Production Scenarios](#production-scenarios)
-10. [Failure Modes and Debugging](#failure-modes-and-debugging)
-11. [Trade-offs](#trade-offs)
-12. [Decision Framework](#decision-framework)
-13. [Common Mistakes](#common-mistakes)
-14. [Best Practices](#best-practices)
-15. [Interview Answer Framework](#interview-answer-framework)
-16. [Interview Questions](#interview-questions)
-17. [Summary](#summary)
-18. [Key Takeaways](#key-takeaways)
-19. [Cheat Sheet](#cheat-sheet)
-20. [Flashcards](#flashcards)
-21. [Practice Exercises](#practice-exercises)
-22. [Solutions](#solutions)
-23. [Additional Reading](#additional-reading)
-24. [Official References](#official-references)
+9. [Diagrams](#diagrams)
+10. [Production Scenarios](#production-scenarios)
+11. [Failure Modes and Debugging](#failure-modes-and-debugging)
+12. [Trade-offs](#trade-offs)
+13. [Decision Framework](#decision-framework)
+14. [Common Mistakes](#common-mistakes)
+15. [Best Practices](#best-practices)
+16. [Interview Answer Framework](#interview-answer-framework)
+17. [Interview Questions](#interview-questions)
+18. [Summary](#summary)
+19. [Key Takeaways](#key-takeaways)
+20. [Cheat Sheet](#cheat-sheet)
+21. [Flashcards](#flashcards)
+22. [Practice Exercises](#practice-exercises)
+23. [Solutions](#solutions)
+24. [Additional Reading](#additional-reading)
+25. [Official References](#official-references)
 
 ---
 
@@ -138,6 +139,32 @@ GC(1)         Redirtied Cards: Min: 0,  Avg: 53.0, Max: 159, Sum: 159, Workers: 
 ```
 
 `Dirty Cards` is how many cards the write barriers marked since the last pause. `Merged Cards` is how many of those were folded into a target region's RSet (the rest were same-region writes, filtered out). `Scanned Cards` is how many card-referenced objects were walked to find roots. `Redirtied Cards` — cards marked dirty again *during* the pause itself, because the collector's own copying work can itself trigger further barrier-tracked writes.
+
+## Diagrams
+
+```mermaid
+sequenceDiagram
+    participant App as Application write<br/>(objRef stored into a field)
+    participant WB as Write barrier
+    participant Card as Card table
+    participant Pause as Next GC pause:<br/>Merge Heap Roots
+    participant RSet as Target region's<br/>Remembered Set
+    participant Scan as Scan Cards phase
+
+    App->>WB: store reference
+    WB->>WB: is this a cross-region store?
+    alt Same region (filtered out)
+        WB--xCard: no card dirtied
+    else Cross-region
+        WB->>Card: dirty the card (single conditional store)
+    end
+    Pause->>Card: read accumulated dirty cards
+    Pause->>RSet: merge cross-region cards in
+    Scan->>RSet: walk only objects RSet points at
+    Scan->>Scan: find roots for evacuation
+```
+
+The write barrier's cost (a single conditional store) happens on every reference write, but the expensive work — merging and scanning — happens only for cards that turn out to matter, and only at pause time. This chapter's own measured 23,938-vs-13 dirty-card contrast is exactly the volume difference this diagram's "cross-region?" branch controls.
 
 ## Production Scenarios
 

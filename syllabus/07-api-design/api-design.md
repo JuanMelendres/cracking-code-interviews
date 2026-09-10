@@ -24,6 +24,8 @@ estimated_reading_minutes: 30
 prerequisites:
   - ../11-system-design/caching-strategies-and-invalidation.md
 related:
+  - graphql-api-design.md
+  - grpc-api-design.md
   - ../11-system-design/system-design-method-and-estimation.md
   - ../10-distributed-systems/distributed-systems-failure-modes.md
   - ../11-system-design/idempotency.md

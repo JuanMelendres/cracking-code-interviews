@@ -72,6 +72,20 @@ An HTTP **status code** tells the caller what actually happened, in a single num
 
 **Idempotency** — the property that calling an operation multiple times produces the same end state as calling it once — is the single most interview-relevant REST concept, and it is a real, verb-specific guarantee, not a vague notion of "safety." `GET`, `PUT`, and `DELETE` are all idempotent by convention: repeating any of them leaves the system in the same state as doing it once (Section 7's `PUT` demo shows this directly: two identical calls, identical resulting resource, identical status both times). `POST` is deliberately **not** idempotent: it means "create a new thing," and calling it twice with the identical body genuinely creates two separate resources — Section 7's `POST` demo proves this directly with two different `id` values from an identical request body, not by assertion.
 
+```mermaid
+flowchart LR
+    subgraph POST["POST /books (same body, twice)"]
+        P1["Call 1"] --> R1["id=1 created"]
+        P2["Call 2"] --> R2["id=2 created<br/>-- a SECOND resource"]
+    end
+    subgraph PUT["PUT /books/1 (same body, twice)"]
+        U1["Call 1"] --> S1["id=1 updated"]
+        U2["Call 2"] --> S2["id=1, SAME state<br/>-- no new resource"]
+    end
+```
+
+This is exactly what Section 7's real transcript proves with actual `curl` output: two identical `POST` calls produce two different `id`s; two identical `PUT` calls on the same URL leave the resource in the identical end state both times.
+
 Resource naming follows a small number of real conventions worth internalizing: plural nouns for collections (`/books`, not `/book`), a nested path for a specific item within that collection (`/books/{id}`), and no verbs in the path at all — the verb is the HTTP method, stated once, not duplicated into the URL as well.
 
 `201 Created`'s real convention includes more than the status number: a **`Location` header** pointing at the URL of the newly created resource (Section 7's `POST` response: `Location: /books/1`), so a client can immediately `GET` the resource it just created without having to construct that URL itself from the response body.
