@@ -1051,3 +1051,11 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Same gap audit, same day, new domain. `06-databases` had zero coverage of window functions or CTEs — among the most commonly asked SQL interview topics. Closed continuing the domain's own existing `T-6xx` sequence.
 - Real PostgreSQL 16 lab (`practice/sql/window-functions-and-ctes/`, disposable Docker container): a real tie-handling divergence between `ROW_NUMBER()` and `RANK()` changing an actual "top 2 per department" result set (4 rows vs. 6); a real recursive CTE correctly traversing a 3-level org chart; and a real, measured `EXPLAIN ANALYZE` comparison on a 200,000-row table showing a window-function approach beating a logically equivalent correlated subquery by three to four orders of magnitude (a captured run: 40.6ms vs. 201,295ms, ~4,957×).
 - Updated `syllabus/06-databases/INDEX.md` (15 → 16), `syllabus/00-overview/INDEX.md`, `index-structures-btree-composite-covering.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
+## [2026-09-10] — `06-databases` gains a 17th chapter: JSONB and Advanced Index Types
+
+### Added (`syllabus/06-databases/jsonb-and-advanced-index-types.md` — T-618)
+
+- Same gap audit, same day. `06-databases` had zero coverage of JSONB or GIN/GiST/BRIN index types. Closed continuing the domain's own existing `T-6xx` sequence; full-text search covered as a GIN use case within this chapter, closing the domain's full SQL-topic gap list.
+- Real PostgreSQL 16 lab (`practice/sql/jsonb-and-advanced-indexes/`): JSONB containment queries; a real, honestly-reported GIN regression (11.988ms → 13.896ms at ~4% selectivity) contrasted against a real ~3,780× GIN win for full-text search (721.775ms → 0.191ms at 0.02% selectivity); a real GiST `EXCLUDE` constraint rejecting an overlapping booking; a real BRIN index ~1,834× smaller than an equivalent B-tree, with a real finding that the planner declined to use it by default (only forcing it revealed its real ~3.08× advantage).
+- Updated `syllabus/06-databases/INDEX.md` (16 → 17), `syllabus/00-overview/INDEX.md`, `index-structures-btree-composite-covering.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.

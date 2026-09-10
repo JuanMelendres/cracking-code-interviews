@@ -1,0 +1,294 @@
+-- Real PostgreSQL 16 lab backing syllabus/06-databases/jsonb-and-advanced-index-types.md (T-618).
+-- Run against a disposable container:
+--   docker run -d --name idx-demo -e POSTGRES_PASSWORD=demo -p 15930:5432 postgres:16
+--   docker exec -i idx-demo psql -U postgres < jsonb-and-indexes-lab.sql
+-- ===================== 1. JSONB basics: containment and path operators =====================
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    attributes JSONB NOT NULL
+);
+CREATE TABLE
+INSERT INTO products (name, attributes) VALUES
+  ('Trail Runner 200', '{"category": "shoes", "color": "red", "sizes": [8,9,10], "waterproof": true}'),
+  ('Trail Runner 200 (blue)', '{"category": "shoes", "color": "blue", "sizes": [7,8,9], "waterproof": true}'),
+  ('Office Chair Pro', '{"category": "furniture", "material": "mesh", "adjustable": true}'),
+  ('Desk Lamp Mini', '{"category": "lighting", "color": "black", "dimmable": true}');
+INSERT 0 4
+-- Containment operator @>
+SELECT name, attributes->>'color' AS color
+FROM products
+WHERE attributes @> '{"category": "shoes"}';
+          name           | color 
+-------------------------+-------
+ Trail Runner 200        | red
+ Trail Runner 200 (blue) | blue
+(2 rows)
+
+-- Array containment
+SELECT name FROM products WHERE attributes -> 'sizes' @> '[9]';
+          name           
+-------------------------
+ Trail Runner 200
+ Trail Runner 200 (blue)
+(2 rows)
+
+-- ===================== 2. GIN index on JSONB: a real, honestly modest win =====================
+-- 300,000 rows, independent random category/color, GIN index on the whole jsonb column.
+CREATE TABLE big_products AS
+SELECT
+  gs AS id,
+  'product' || gs AS name,
+  jsonb_build_object(
+    'category', (ARRAY['shoes','furniture','lighting','electronics','apparel'])[1 + floor(random()*5)::int],
+    'color', (ARRAY['red','blue','black','white','green'])[1 + floor(random()*5)::int],
+    'price', (random() * 500)::numeric(10,2)
+  ) AS attributes
+FROM generate_series(1, 300000) gs;
+SELECT 300000
+-- Before any GIN index
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM big_products WHERE attributes @> '{"category": "electronics", "color": "green"}';
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=7467.52..7467.53 rows=1 width=8) (actual time=11.242..11.976 rows=1 loops=1)
+   Buffers: shared hit=2048 read=2432 dirtied=2432 written=2336
+   ->  Gather  (cost=7467.30..7467.51 rows=2 width=8) (actual time=11.179..11.973 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=2048 read=2432 dirtied=2432 written=2336
+         ->  Partial Aggregate  (cost=6467.30..6467.31 rows=1 width=8) (actual time=10.292..10.293 rows=1 loops=3)
+               Buffers: shared hit=2048 read=2432 dirtied=2432 written=2336
+               ->  Parallel Seq Scan on big_products  (cost=0.00..6463.33 rows=1587 width=0) (actual time=0.011..10.175 rows=3995 loops=3)
+                     Filter: (attributes @> '{"color": "green", "category": "electronics"}'::jsonb)
+                     Rows Removed by Filter: 96005
+                     Buffers: shared hit=2048 read=2432 dirtied=2432 written=2336
+ Planning:
+   Buffers: shared hit=13 read=1
+ Planning Time: 0.048 ms
+ Execution Time: 11.988 ms
+(16 rows)
+
+CREATE INDEX idx_big_products_attrs_gin ON big_products USING GIN (attributes);
+CREATE INDEX
+-- After the GIN index
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM big_products WHERE attributes @> '{"category": "electronics", "color": "green"}';
+                                                                   QUERY PLAN                                                                    
+-------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=4335.59..4335.60 rows=1 width=8) (actual time=13.877..13.878 rows=1 loops=1)
+   Buffers: shared hit=2194 read=2181
+   ->  Bitmap Heap Scan on big_products  (cost=75.83..4328.09 rows=3000 width=0) (actual time=4.792..13.565 rows=11986 loops=1)
+         Recheck Cond: (attributes @> '{"color": "green", "category": "electronics"}'::jsonb)
+         Heap Blocks: exact=4192
+         Buffers: shared hit=2194 read=2181
+         ->  Bitmap Index Scan on idx_big_products_attrs_gin  (cost=0.00..75.08 rows=3000 width=0) (actual time=4.514..4.514 rows=11986 loops=1)
+               Index Cond: (attributes @> '{"color": "green", "category": "electronics"}'::jsonb)
+               Buffers: shared hit=183
+ Planning:
+   Buffers: shared hit=19 read=4
+ Planning Time: 0.132 ms
+ Execution Time: 13.896 ms
+(13 rows)
+
+-- ===================== 3. GIN for full-text search: a real, dramatic win =====================
+-- 500,000 rows of article text; a GIN index on a to_tsvector expression.
+CREATE TABLE articles (
+    id SERIAL PRIMARY KEY,
+    body TEXT NOT NULL
+);
+CREATE TABLE
+INSERT INTO articles (body)
+SELECT
+  CASE WHEN gs % 5000 = 0
+       THEN 'PostgreSQL query planning and vacuum internals explained for backend engineers, article number ' || gs
+       ELSE 'A generic filler article about ' || (ARRAY['cooking','travel','gardening','finance','sports'])[1 + floor(random()*5)::int]
+            || ' with random padding text number ' || gs
+  END AS body
+FROM generate_series(1, 500000) gs;
+INSERT 0 500000
+-- Before any full-text index
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM articles WHERE to_tsvector('english', body) @@ to_tsquery('english', 'vacuum & internals');
+                                                              QUERY PLAN                                                               
+---------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=106738.57..106738.58 rows=1 width=8) (actual time=701.552..704.545 rows=1 loops=1)
+   Buffers: shared hit=7349
+   ->  Gather  (cost=106738.35..106738.56 rows=2 width=8) (actual time=701.184..704.520 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=7349
+         ->  Partial Aggregate  (cost=105738.35..105738.36 rows=1 width=8) (actual time=696.118..696.119 rows=1 loops=3)
+               Buffers: shared hit=7349
+               ->  Parallel Seq Scan on articles  (cost=0.00..105738.33 rows=10 width=0) (actual time=15.844..696.074 rows=33 loops=3)
+                     Filter: (to_tsvector('english'::regconfig, body) @@ '''vacuum'' & ''intern'''::tsquery)
+                     Rows Removed by Filter: 166633
+                     Buffers: shared hit=7349
+ Planning:
+   Buffers: shared hit=9 read=15
+ Planning Time: 0.470 ms
+ JIT:
+   Functions: 14
+   Options: Inlining false, Optimization false, Expressions true, Deforming true
+   Timing: Generation 0.424 ms, Inlining 0.000 ms, Optimization 0.437 ms, Emission 5.451 ms, Total 6.311 ms
+ Execution Time: 721.775 ms
+(20 rows)
+
+CREATE INDEX idx_articles_body_fts ON articles USING GIN (to_tsvector('english', body));
+CREATE INDEX
+-- After the GIN full-text index
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM articles WHERE to_tsvector('english', body) @@ to_tsquery('english', 'vacuum & internals');
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=79.84..79.85 rows=1 width=8) (actual time=0.156..0.156 rows=1 loops=1)
+   Buffers: shared hit=107
+   ->  Bitmap Heap Scan on articles  (cost=30.14..79.81 rows=12 width=0) (actual time=0.027..0.148 rows=100 loops=1)
+         Recheck Cond: (to_tsvector('english'::regconfig, body) @@ '''vacuum'' & ''intern'''::tsquery)
+         Heap Blocks: exact=100
+         Buffers: shared hit=107
+         ->  Bitmap Index Scan on idx_articles_body_fts  (cost=0.00..30.13 rows=12 width=0) (actual time=0.017..0.017 rows=100 loops=1)
+               Index Cond: (to_tsvector('english'::regconfig, body) @@ '''vacuum'' & ''intern'''::tsquery)
+               Buffers: shared hit=7
+ Planning:
+   Buffers: shared hit=22 read=3
+ Planning Time: 0.239 ms
+ Execution Time: 0.191 ms
+(13 rows)
+
+-- ===================== 4. GiST: a real EXCLUDE constraint preventing overlapping bookings =====================
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+CREATE EXTENSION
+CREATE TABLE room_bookings (
+    id SERIAL PRIMARY KEY,
+    room_id INTEGER NOT NULL,
+    during DATERANGE NOT NULL,
+    EXCLUDE USING GIST (room_id WITH =, during WITH &&)
+);
+CREATE TABLE
+INSERT INTO room_bookings (room_id, during) VALUES (101, '[2026-06-01, 2026-06-05)');
+INSERT 0 1
+INSERT INTO room_bookings (room_id, during) VALUES (102, '[2026-06-02, 2026-06-04)'); -- different room, overlapping dates: OK
+INSERT 0 1
+INSERT INTO room_bookings (room_id, during) VALUES (101, '[2026-06-05, 2026-06-08)'); -- same room, non-overlapping dates: OK
+INSERT 0 1
+SELECT * FROM room_bookings ORDER BY id;
+ id | room_id |         during          
+----+---------+-------------------------
+  1 |     101 | [2026-06-01,2026-06-05)
+  2 |     102 | [2026-06-02,2026-06-04)
+  3 |     101 | [2026-06-05,2026-06-08)
+(3 rows)
+
+-- Same room, genuinely overlapping dates: real constraint violation
+INSERT INTO room_bookings (room_id, during) VALUES (101, '[2026-06-03, 2026-06-06)');
+-- ===================== 5. BRIN: real, dramatic index-size win on naturally-ordered data =====================
+-- 2,000,000 sensor readings, inserted in timestamp order (the natural case BRIN targets).
+CREATE TABLE sensor_readings (
+    id BIGSERIAL PRIMARY KEY,
+    recorded_at TIMESTAMP NOT NULL,
+    value NUMERIC NOT NULL
+);
+ERROR:  conflicting key value violates exclusion constraint "room_bookings_room_id_during_excl"
+DETAIL:  Key (room_id, during)=(101, [2026-06-03,2026-06-06)) conflicts with existing key (room_id, during)=(101, [2026-06-01,2026-06-05)).
+CREATE TABLE
+INSERT INTO sensor_readings (recorded_at, value)
+SELECT
+  TIMESTAMP '2026-01-01 00:00:00' + (gs || ' seconds')::interval,
+  (random() * 100)::numeric(10,2)
+FROM generate_series(1, 2000000) gs;
+INSERT 0 2000000
+CREATE INDEX idx_sensor_readings_btree ON sensor_readings USING BTREE (recorded_at);
+CREATE INDEX
+CREATE INDEX idx_sensor_readings_brin ON sensor_readings USING BRIN (recorded_at);
+CREATE INDEX
+SELECT
+  pg_size_pretty(pg_relation_size('idx_sensor_readings_btree')) AS btree_size,
+  pg_size_pretty(pg_relation_size('idx_sensor_readings_brin')) AS brin_size;
+ btree_size | brin_size 
+------------+-----------
+ 43 MB      | 24 kB
+(1 row)
+
+-- Real range query with BOTH indexes present -- the planner's free choice
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM sensor_readings
+WHERE recorded_at BETWEEN '2026-01-10 00:00:00' AND '2026-01-11 00:00:00';
+                                                                                QUERY PLAN                                                                                 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=26249.63..26249.64 rows=1 width=8) (actual time=38.235..39.691 rows=1 loops=1)
+   Buffers: shared hit=11453 read=1286
+   ->  Gather  (cost=26249.42..26249.63 rows=2 width=8) (actual time=38.143..39.686 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=11453 read=1286
+         ->  Partial Aggregate  (cost=25249.42..25249.43 rows=1 width=8) (actual time=29.876..29.876 rows=1 loops=3)
+               Buffers: shared hit=11453 read=1286
+               ->  Parallel Seq Scan on sensor_readings  (cost=0.00..25239.00 rows=4167 width=0) (actual time=9.075..27.835 rows=28800 loops=3)
+                     Filter: ((recorded_at >= '2026-01-10 00:00:00'::timestamp without time zone) AND (recorded_at <= '2026-01-11 00:00:00'::timestamp without time zone))
+                     Rows Removed by Filter: 637866
+                     Buffers: shared hit=11453 read=1286
+ Planning:
+   Buffers: shared hit=14 read=4
+ Planning Time: 0.067 ms
+ Execution Time: 39.703 ms
+(16 rows)
+
+-- Drop the B-tree; same query, BRIN-only, planner's free choice
+DROP INDEX idx_sensor_readings_btree;
+DROP INDEX
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM sensor_readings
+WHERE recorded_at BETWEEN '2026-01-10 00:00:00' AND '2026-01-11 00:00:00';
+                                                                                QUERY PLAN                                                                                 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=26249.63..26249.64 rows=1 width=8) (actual time=25.147..26.558 rows=1 loops=1)
+   Buffers: shared hit=11485 read=1254
+   ->  Gather  (cost=26249.42..26249.63 rows=2 width=8) (actual time=25.091..26.555 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=11485 read=1254
+         ->  Partial Aggregate  (cost=25249.42..25249.43 rows=1 width=8) (actual time=20.274..20.274 rows=1 loops=3)
+               Buffers: shared hit=11485 read=1254
+               ->  Parallel Seq Scan on sensor_readings  (cost=0.00..25239.00 rows=4167 width=0) (actual time=7.152..19.507 rows=28800 loops=3)
+                     Filter: ((recorded_at >= '2026-01-10 00:00:00'::timestamp without time zone) AND (recorded_at <= '2026-01-11 00:00:00'::timestamp without time zone))
+                     Rows Removed by Filter: 637866
+                     Buffers: shared hit=11485 read=1254
+ Planning:
+   Buffers: shared hit=6
+ Planning Time: 0.053 ms
+ Execution Time: 26.571 ms
+(16 rows)
+
+-- Same query, BRIN forced (enable_seqscan off is a diagnostic override, never a production setting)
+SET enable_seqscan = off;
+SET
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT count(*) FROM sensor_readings
+WHERE recorded_at BETWEEN '2026-01-10 00:00:00' AND '2026-01-11 00:00:00';
+                                                                                     QUERY PLAN                                                                                      
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=26267.33..26267.34 rows=1 width=8) (actual time=7.690..8.620 rows=1 loops=1)
+   Buffers: shared hit=648
+   ->  Gather  (cost=26267.12..26267.33 rows=2 width=8) (actual time=7.437..8.617 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=648
+         ->  Partial Aggregate  (cost=25267.12..25267.13 rows=1 width=8) (actual time=2.451..2.451 rows=1 loops=3)
+               Buffers: shared hit=648
+               ->  Parallel Bitmap Heap Scan on sensor_readings  (cost=17.70..25256.70 rows=4167 width=0) (actual time=0.207..1.725 rows=28800 loops=3)
+                     Recheck Cond: ((recorded_at >= '2026-01-10 00:00:00'::timestamp without time zone) AND (recorded_at <= '2026-01-11 00:00:00'::timestamp without time zone))
+                     Rows Removed by Index Recheck: 4693
+                     Heap Blocks: lossy=640
+                     Buffers: shared hit=648
+                     ->  Bitmap Index Scan on idx_sensor_readings_brin  (cost=0.00..15.20 rows=2000000 width=0) (actual time=0.091..0.091 rows=6400 loops=1)
+                           Index Cond: ((recorded_at >= '2026-01-10 00:00:00'::timestamp without time zone) AND (recorded_at <= '2026-01-11 00:00:00'::timestamp without time zone))
+                           Buffers: shared hit=8
+ Planning:
+   Buffers: shared hit=1
+ Planning Time: 0.053 ms
+ Execution Time: 8.637 ms
+(20 rows)
+
+RESET enable_seqscan;
+RESET

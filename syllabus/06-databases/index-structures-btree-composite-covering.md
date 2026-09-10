@@ -21,6 +21,7 @@ related:
   - query-planning-and-explain-analyze.md
   - isolation-levels-and-concurrency-anomalies.md
   - window-functions-and-ctes.md
+  - jsonb-and-advanced-index-types.md
   - ../11-system-design/search-and-indexing-systems.md
   - ../../study-packs/week-01/02-database-index-fundamentals.md
 official_references:
