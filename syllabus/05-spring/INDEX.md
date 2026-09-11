@@ -2,8 +2,8 @@
 title: "Spring — Domain Index"
 document_type: syllabus-domain-index
 domain: 05-spring
-status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-07 (Spring MVC Fundamentals, T-2203), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 11th chapter added 2026-09-10 (Bean Validation and Global Exception Handling, T-518 — gap found in a full 22-domain audit, real Spring Boot app including verified proof a sensitive exception detail is logged server-side but never reaches the client)
-last_updated: 2026-09-10
+status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-07 (Spring MVC Fundamentals, T-2203), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 11th chapter added 2026-09-10 (Bean Validation and Global Exception Handling, T-518 — gap found in a full 22-domain audit, real Spring Boot app including verified proof a sensitive exception detail is logged server-side but never reaches the client); 12th chapter added 2026-09-11 (Spring Data JPA Repository Abstraction, T-510 — this domain's full 22-domain-audit gap list is now closed)
+last_updated: 2026-09-11
 ---
 
 # Spring
@@ -33,6 +33,7 @@ Dependency injection, auto-configuration, transactions, testing slices, WebFlux,
 | T-516 | Spring Boot Actuator, Health, and Observability Hooks | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/05-spring/spring-actuator-health-and-observability-hooks.md` |
 | T-517 | Spring Testing: Slices and Context Caching | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/05-spring/spring-testing-slices-and-context-caching.md` |
 | T-518 | Bean Validation and Global Exception Handling | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/05-spring/bean-validation-and-global-exception-handling.md` |
+| T-510 | Spring Data JPA Repository Abstraction | L1, L2, L3, L4 — fully written, real demo (2026-09-11) | `syllabus/05-spring/spring-data-jpa-repository-abstraction.md` |
 
 ## Where this domain's boundary comes from
 

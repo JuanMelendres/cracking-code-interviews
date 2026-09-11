@@ -28,6 +28,7 @@ related:
   - ../05-spring/transactional-proxy-mechanics-and-propagation.md
   - ../02-java/language-core/polymorphism-and-dynamic-dispatch.md
   - hibernate-second-level-and-query-cache.md
+  - ../05-spring/spring-data-jpa-repository-abstraction.md
 official_references:
   - https://jakarta.ee/specifications/persistence/3.1/
   - https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html

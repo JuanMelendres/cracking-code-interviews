@@ -19,6 +19,7 @@ prerequisites:
   - spring-mvc-fundamentals.md
 related:
   - spring-mvc-fundamentals.md
+  - spring-data-jpa-repository-abstraction.md
   - ../12-security/owasp-top-10-for-backend-services.md
   - ../../study-packs/week-07/01-spring-mvc-fundamentals.md
 official_references:
