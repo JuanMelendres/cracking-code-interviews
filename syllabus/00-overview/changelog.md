@@ -1085,6 +1085,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — Architecture Atlas gains a 20th entry: Web Crawler System
+
+### Added (`architecture-atlas/web-crawler-system.md`)
+
+- Third and last of the follow-up set. New, original 17-section entry, additive beyond T-813's closed accounting.
+- Central tension: a domain-sharded URL frontier with per-domain politeness queues — aggregate throughput is a function of concurrent distinct-domain count, not per-domain speed, quantified directly (~385 pages/s target requiring hundreds of concurrent domains).
+- Real, worked Bloom-filter sizing math for seen-URL dedup (~1.2GB per billion entries at 1% false-positive rate), computed against the standard formula, not asserted.
+- The audit's "web crawler/autocomplete" item was two different problems bundled together; this closes the crawler half only — autocomplete/typeahead remains open, named explicitly.
+- Updated `architecture-atlas/README.md`, `syllabus/00-overview/INDEX.md` and `syllabus/11-system-design/INDEX.md` (19 → 20 Atlas entries), two sibling entries' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-11] — Architecture Atlas gains a 19th entry: Distributed File Storage System
 
 ### Added (`architecture-atlas/distributed-file-storage-system.md`)

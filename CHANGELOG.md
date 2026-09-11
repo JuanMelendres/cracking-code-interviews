@@ -2848,6 +2848,16 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6 chapters, gap-audit note), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter (cross-link added), `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection (T-2403 recorded).
 - Verified: YAML/H1/fence-balance/ToC-sequencing checks pass on the new 28-heading chapter; every relative link resolves; the demo compiles and its real output was re-captured after the logic-bug fix, not before; `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 
+### Added (`architecture-atlas/web-crawler-system.md`, 20th Architecture Atlas entry, gap audit closure)
+
+- Third and last of the same Architecture Atlas follow-up set (video streaming and distributed file storage closed 2026-09-10/11). A new, original 17-section entry, additive beyond T-813's own closed accounting.
+- Central tension: a domain-sharded URL frontier with per-domain politeness queues resolves the real conflict between aggregate crawl throughput and never overwhelming any single site — quantified directly (~385 pages/s aggregate target requiring hundreds of concurrent distinct domains, not faster per-domain fetching, since politeness caps any single domain well under 1 page/s).
+- Real, worked Bloom-filter sizing math for seen-URL deduplication (`m = -n·ln(p)/(ln 2)²`): ~1.2GB per billion entries at a 1% false-positive rate, ~12GB total at a 10-billion-URL scale — computed and verified against the standard formula, not asserted.
+- The audit's own "web crawler/autocomplete" gap item was itself two genuinely different problems (URL discovery/fetch-scheduling vs. prefix search/ranking) bundled as one line item. This entry closes the web crawler half only; autocomplete/typeahead is named explicitly as a distinct, still-open gap rather than silently folded in or dropped.
+- Official reference verified live via `WebFetch` (Google's own Googlebot crawling documentation, confirming link-discovery, politeness/crawl-rate, and `robots.txt` behavior) — chosen over an academic PDF specifically because it renders and can be quoted directly, unlike the two PDF references used in the two prior entries this same day/week, which `WebFetch` could not render for a full quote-level check.
+- Updated `architecture-atlas/README.md` (15th classic entry beyond T-813, entries table row added, third-item bundling explicitly documented), `syllabus/00-overview/INDEX.md` and `syllabus/11-system-design/INDEX.md` (19 → 20 Atlas entries), `search-and-indexing-systems.md` and `distributed-file-storage-system.md`'s `related` front matter (cross-links added), `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+- Verified: YAML/H1/fence-balance/ToC-sequencing checks pass on the new 17-section entry; every relative link resolves; `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ### Added (`architecture-atlas/distributed-file-storage-system.md`, 19th Architecture Atlas entry, gap audit closure)
 
 - Second of the same Architecture Atlas follow-up set (video streaming closed 2026-09-10; web crawler/autocomplete remains open). A new, original 17-section entry designing a GFS/HDFS-shaped system, additive beyond T-813's own closed accounting.

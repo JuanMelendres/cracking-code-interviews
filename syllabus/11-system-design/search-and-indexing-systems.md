@@ -30,6 +30,7 @@ related:
   - ../17-architecture/cqrs-read-write-separation.md
   - ../../practice/java/system-design/search-and-indexing-systems/README.md
   - ../../practice/sql/search-and-indexing-systems/README.md
+  - ../../architecture-atlas/web-crawler-system.md
 official_references:
   - https://www.postgresql.org/docs/current/textsearch.html
   - https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-similarity.html

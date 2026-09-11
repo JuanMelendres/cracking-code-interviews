@@ -20,6 +20,7 @@ related:
   - ../syllabus/10-distributed-systems/consensus-algorithms-raft-and-paxos.md
   - distributed-key-value-store.md
   - video-streaming-platform.md
+  - web-crawler-system.md
 official_references:
   - https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf
 ---

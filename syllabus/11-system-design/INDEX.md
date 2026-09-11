@@ -8,7 +8,7 @@ last_updated: 2026-09-04
 
 # System Design
 
-The applied method and case studies: the six-phase design method plus all 19 Architecture Atlas systems (referenced from `architecture-atlas/`, not duplicated) — "how to design one, live, in 45 minutes."
+The applied method and case studies: the six-phase design method plus all 20 Architecture Atlas systems (referenced from `architecture-atlas/`, not duplicated) — "how to design one, live, in 45 minutes."
 
 > **Phase 3 update (2026-09-03).** This domain's full existing content (9 chapter(s)) has physically relocated via `git mv`, preserving file history. See the repository-root `CHANGELOG.md` for the full batch account.
 >
