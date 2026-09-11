@@ -23,6 +23,7 @@ related:
   - ../../00-project/frontend-topic-register.md
   - ../18-engineering-practices/git-internals-and-collaboration-workflows.md
   - ../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
+  - micro-frontends-and-module-federation.md
 official_references:
   - https://docs.npmjs.com/cli/v10/using-npm/workspaces
 ---
