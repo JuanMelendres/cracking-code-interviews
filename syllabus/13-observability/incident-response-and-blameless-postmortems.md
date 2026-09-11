@@ -28,6 +28,7 @@ related:
   - ../17-architecture/architecture-decision-records.md
   - ../11-system-design/resilience-patterns.md
   - ../20-interview-preparation/behavioral/04-production-incident-narratives.md
+  - ../19-leadership-staff/incident-command-roles-and-real-time-coordination.md
   - ../../practice/production/postmortem-examples/README.md
 official_references:
   - https://sre.google/sre-book/postmortem-culture/

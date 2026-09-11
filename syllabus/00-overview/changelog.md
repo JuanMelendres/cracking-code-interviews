@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `19-leadership-staff` gains a 6th chapter: Incident Command
+
+### Added (`syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` — T-1906)
+
+- Same gap audit, new domain. This domain's own five-topic plan was already closed; the audit found no coverage of real-time, during-incident coordination — distinct from `13-observability`'s post-incident chapter and `20-interview-preparation/behavioral`'s narration chapter on the same general subject. Assigned `T-1906`, continuing this domain's own `T-1900`–`T-1999` range, additive beyond its closed plan.
+- Built on Google's own SRE book chapter on managing incidents, verified live via `WebFetch`: the real four-role structure (IC, Ops Lead, Communications, Planning) and the real principle that the IC coordinates and does not personally debug.
+- No code demo — consistent with this domain's own behavioral-handbook-style evidence discipline (real, cited frameworks, a labeled representative scenario) rather than the Java/SQL-demo pattern used elsewhere this session.
+- Updated `syllabus/19-leadership-staff/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `incident-response-and-blameless-postmortems.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection. Hiring/team-building remains open.
+
 ## [2026-09-11] — `13-observability` gains a 5th chapter: Metric Cardinality and Alert Fatigue
 
 ### Added (`syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` — T-2409)
