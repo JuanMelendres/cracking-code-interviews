@@ -2,13 +2,15 @@
 title: "Frontend & Web (React/Next.js) — Domain Index"
 document_type: syllabus-domain-index
 domain: 21-frontend-web
-status: 35 of 35 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08)
-last_updated: 2026-09-08
+status: 36 of 36 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08; 1 new Frontend Security chapter added 2026-09-11 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08)
+last_updated: 2026-09-11
 ---
 
 # Frontend & Web (React/Next.js)
 
-The additive, deliberately-separate React/Next.js track (34 F-coded chapters spanning Beginner→Expert by design since its 2026-08-12 Scope Addendum, plus 1 interview-craft entry from `interview-playbook/frontend/`). Kept structurally distinct from the Java backend track per `CLAUDE.md`'s explicit "additive, not merged" instruction.
+The additive, deliberately-separate React/Next.js track (35 F-coded chapters spanning Beginner→Expert by design since its 2026-08-12 Scope Addendum, plus 1 interview-craft entry from `interview-playbook/frontend/`). Kept structurally distinct from the Java backend track per `CLAUDE.md`'s explicit "additive, not merged" instruction.
+
+> **Frontend Security gap closed (2026-09-11).** A repository-wide gap audit found this domain had zero coverage of frontend security (XSS, CSRF, CSP), WebSocket/real-time, or micro-frontends. Closed the Frontend Security sub-item specifically: one new chapter, F-401 (`frontend-security-xss-csrf-and-csp.md`), opening a new "D-F4 · Advanced Frontend Architecture & Security" tier in `00-project/frontend-topic-register.md`, backed by real, headless-Chromium-executed evidence (Playwright, not jsdom) — a real reflected-XSS payload firing, the identical payload neutralized by HTML-escaping, and a real CSP header genuinely blocking inline script execution with the browser's own captured console violation message. WebSocket/real-time and micro-frontends remain explicitly open, un-closed sub-items of the same audit finding for a future pass.
 
 > **Junior Fundamentals gap closed (2026-09-08).** A repository-wide audit found this domain's own "Beginner tier" chapters (starting with `react-fundamentals-jsx-components-props-and-state.md`) silently assumed the reader already knew plain JavaScript, basic HTML/CSS/HTTP, and — for `react-typescript.md` specifically — plain TypeScript. This is the same "assumes the basics" pattern already found and fixed on the Java backend side (T-2200–T-2299). Closed the same way: three new, real, floor-level chapters (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals), each with genuine executed evidence (a real HTTP server + `curl` transcript, real Node.js script output, real `tsc` compiler output including a deliberate error-then-fix pair) rather than described behavior. `react-typescript.md` (F-119) was updated to name F-003 as its own real prerequisite. See `00-project/frontend-topic-register.md`'s new "D-F0 · Web & Language Fundamentals" section and `syllabus/00-overview/changelog.md`'s matching entry.
 
@@ -51,6 +53,7 @@ The additive, deliberately-separate React/Next.js track (34 F-coded chapters spa
 | F-301 | Build Tooling: Vite vs. Next.js's Turbopack, What a Bundler Actually Does | Intermediate tier → **L2, L3** | `syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md` |
 | F-302 | Styling Approaches: CSS Modules, Tailwind, and CSS-in-JS, Verified | Intermediate tier → **L2, L3** | `syllabus/21-frontend-web/nextjs-styling-approaches.md` |
 | F-303 | Monorepo and Full-Stack Repo Layout: Where Code Actually Lives, Verified | Advanced tier → **L3, L4** | `syllabus/21-frontend-web/nextjs-monorepo-layout.md` |
+| F-401 | Frontend Security: XSS, CSRF, and Content Security Policy | Advanced tier → **L2, L3, L4** | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | — | Frontend Live-Coding & Debugging Protocol (interview-craft, from `interview-playbook/frontend/`) | Interview-application skill (no register tier) → **L2, L3, L4** | `syllabus/21-frontend-web/frontend-live-coding-and-debugging-protocol.md` |
 
 ## Where this domain's boundary comes from

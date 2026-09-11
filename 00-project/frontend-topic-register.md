@@ -79,6 +79,14 @@ Companion register to `00-project/knowledge-architecture-blueprint.md`, but for 
 | F-302 | Styling approaches: CSS Modules, Tailwind, CSS-in-JS — trade-offs, not just preference | INT | | 🟢 | [`nextjs-styling-approaches.md`](../syllabus/21-frontend-web/nextjs-styling-approaches.md) |
 | F-303 | Monorepo/full-stack repo layout: where frontend and backend code live together sanely | ADV | Relevant to how this repo itself is structured for a full-stack learner | 🟢 | [`nextjs-monorepo-layout.md`](../syllabus/21-frontend-web/nextjs-monorepo-layout.md) |
 
+## D-F4 · Advanced Frontend Architecture & Security
+
+**Added 2026-09-11.** Found during a full repository-wide gap audit: this domain's 40 originally-registered topics (D-F0–D-F3) had zero dedicated coverage of frontend security, despite the backend's own `12-security` domain covering the equivalent server-side ground (authN/authZ, injection, CORS). Opened as a new tier rather than folded into an existing one, since it targets a genuinely different concern (what a frontend engineer controls at the rendering/browser layer) than any existing D-F0–D-F3 tier. WebSocket/real-time and micro-frontends were also flagged as absent from this domain during the same audit and remain open, un-closed sub-items of this tier for a future pass — not yet given topic IDs.
+
+| ID | Topic | Tier | Notes | Gap | Chapter |
+|---|---|---|---|---|---|
+| F-401 | Frontend Security: XSS, CSRF, and Content Security Policy | ADV | Real, browser-executed evidence (Playwright/Chromium, not jsdom): a real reflected-XSS payload firing, HTML-escaping neutralizing it, and a real CSP header genuinely blocking inline script execution with the browser's own captured console violation. | 🟢 | [`frontend-security-xss-csrf-and-csp.md`](../syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md) |
+
 ## Interview-craft (no register tier)
 
 | Topic | Notes | Gap | Chapter |

@@ -1085,6 +1085,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `21-frontend-web` gains a 36th chapter: Frontend Security (XSS, CSRF, and CSP) — new F-401, opens D-F4 tier
+
+### Added (`syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` — F-401)
+
+- Same gap audit. `21-frontend-web`'s 40 originally-registered topics (D-F0–D-F3) had zero dedicated coverage of frontend security, despite the backend's own `12-security` domain covering the equivalent server-side ground. Also found: zero coverage of WebSocket/real-time and micro-frontends — both left explicitly open for a future pass, closing only the Frontend Security sub-item this time.
+- Opened a new "D-F4 · Advanced Frontend Architecture & Security" tier in `00-project/frontend-topic-register.md`, `F-401`, following the register's own stated extension precedent (F-001–F-003).
+- Real demo (`practice/frontend/frontend-security-xss-and-csp/`, a real Node HTTP server driven by real headless Chromium via Playwright, not jsdom): a real reflected-XSS payload (`<img src=x onerror=...>`) genuinely executing (`window.xssFired === true`) through naive, unescaped server-side templating; the identical payload rendered inert as literal text once HTML-escaped; an identical inline `<script>` running normally with no CSP header and genuinely blocked once served with `Content-Security-Policy: script-src 'self'`, with Chromium's own real console violation message captured verbatim.
+- Caught and fixed a real bug during the demo's own development, before ever running it against Playwright: an initial design tried a raw `<script>` payload injected via a client-side JS string, where the payload's own quotes collided with and broke the surrounding string literal — fixed by switching to the more realistic, textbook-correct vulnerable pattern (direct server-side HTML templating), which also structurally avoids the collision.
+- Updated `syllabus/21-frontend-web/INDEX.md` (35 → 36 chapters, gap-audit note), `syllabus/00-overview/INDEX.md`, `react-error-boundaries.md` and `nextjs-authentication-patterns.md`'s `related` front matter (cross-links added), `00-project/frontend-topic-register.md` (new D-F4 tier).
+- Verified: YAML/H1/ToC-sequencing checks pass on the new 24-heading chapter; every relative link resolves; `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ## [2026-09-11] — `19-leadership-staff` gains a 7th chapter: Hiring and Team Building — this domain's audit gaps now fully closed
 
 ### Added (`syllabus/19-leadership-staff/hiring-and-team-building.md` — T-1907)

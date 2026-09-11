@@ -24,6 +24,7 @@ related:
   - ../../00-project/frontend-topic-register.md
   - ../12-security/oauth2-oidc-and-jwt.md
   - ../12-security/authn-authz-rbac-vs-abac.md
+  - frontend-security-xss-csrf-and-csp.md
 official_references:
   - https://nextjs.org/docs/app/guides/authentication
   - https://nextjs.org/docs/app/api-reference/functions/unauthorized

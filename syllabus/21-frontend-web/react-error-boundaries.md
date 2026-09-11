@@ -22,6 +22,7 @@ prerequisites:
   - react-forms.md
 related:
   - ../../00-project/frontend-topic-register.md
+  - frontend-security-xss-csrf-and-csp.md
 official_references:
   - https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
   - https://legacy.reactjs.org/docs/error-boundaries.html
