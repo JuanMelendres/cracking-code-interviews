@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `09-messaging-event-driven` gains a 12th chapter: Kafka Connect — this domain's audit gaps now fully closed
+
+### Added (`syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` — T-2408)
+
+- Third and last item the domain's own gap audit named (Retention/Log Compaction and Kafka Streams closed 2026-09-10). Genuinely new topic; assigned `T-2408` (continuing `T-2400`–`T-2499`).
+- Real demo (`practice/java/kafka/kafka-connect-source-and-sink/`, real Kafka Connect standalone worker, built-in `FileStreamSource`/`FileStreamSink` connectors, real Kafka 3.8.0 broker): zero custom producer/consumer code — a real end-to-end round trip through a real Kafka topic, real incremental streaming while the worker runs.
+- Marquee finding: a real kill-and-restart of the worker resumes from exactly the last durably-committed offset — zero data loss, zero duplication of already-delivered records — the concrete mechanism behind Connect's fault tolerance, verified directly via the real, raw offset file.
+- Updated `syllabus/09-messaging-event-driven/INDEX.md` (11 → 12, all audit gaps now closed), `syllabus/00-overview/INDEX.md`, two sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-11] — Architecture Atlas gains a 20th entry: Web Crawler System
 
 ### Added (`architecture-atlas/web-crawler-system.md`)

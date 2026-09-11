@@ -1,0 +1,28 @@
+### Waiting for the broker to accept requests...
+### Setting up worker + connector configs and a fresh input file
+### Starting the Kafka Connect standalone worker (source + sink connectors, no custom code)
+
+### Real topic content (FileStreamSource wrote these, JsonConverter-wrapped):
+{"schema":{"type":"string","optional":false},"payload":"line-1"}
+{"schema":{"type":"string","optional":false},"payload":"line-2"}
+
+### output.txt after the initial round trip (input file -> Kafka -> output file):
+line-1
+line-2
+
+### Appending 2 more lines to the input file WHILE the worker is running:
+output.txt now:
+line-1
+line-2
+line-3
+line-4
+
+### Killing the worker (simulating a crash), then restarting it from the SAME offset file:
+
+### Appending exactly ONE new line after the restart:
+### Final output.txt (expect line-1..line-5, no duplicates, no reprocessing):
+line-1
+line-2
+line-3
+line-4
+line-5

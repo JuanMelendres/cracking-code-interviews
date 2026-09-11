@@ -26,6 +26,7 @@ related:
   - retention-log-compaction-and-tiered-storage.md
   - consumer-groups-and-rebalancing.md
   - event-driven-architecture-integration-styles.md
+  - kafka-connect-source-and-sink-connectors.md
   - ../../practice/java/kafka/kafka-streams-and-stateful-processing/README.md
 official_references:
   - https://kafka.apache.org/38/documentation/streams/
