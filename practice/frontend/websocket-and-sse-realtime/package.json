@@ -1,0 +1,13 @@
+{
+  "name": "websocket-realtime-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node run.js"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0",
+    "ws": "^8.21.3"
+  }
+}

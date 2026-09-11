@@ -1085,6 +1085,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `21-frontend-web` gains a 37th chapter: WebSocket and Server-Sent Events for Real-Time UI — F-402, same day as F-401
+
+### Added (`syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` — F-402)
+
+- Second of the same audit's three `21-frontend-web` sub-items (frontend security, WebSocket/real-time, micro-frontends). Closed the WebSocket/real-time sub-item; micro-frontends remains open.
+- Real demo (`practice/frontend/websocket-and-sse-realtime/`, a real Node `ws` WebSocket server plus real headless Chromium via Playwright using native `WebSocket`/`EventSource`): a real closed WebSocket that stays closed for a real 1.5-second observation window (no auto-reconnect); a real, measured manual exponential-backoff reconnect wrapper (301ms/601ms/1202ms actual elapsed against a 300/600/1200ms requested schedule); a real `EventSource` reconnecting three times fully automatically over 2.2 real seconds with zero client-side retry code, using the server's own `retry: 300` wire-format field to shorten the default delay.
+- Verified via `WebFetch` against both real specs before writing, not assumed from memory: RFC 6455 defines WebSocket open/close mechanics and close codes (§7.4) but nothing about reconnection; the WHATWG HTML Living Standard's Server-Sent Events section defines EventSource's reconnection algorithm explicitly, including the server-overridable `retry:` field.
+- Caught and fixed a real bug during the demo's own development: the first run showed zero `EventSource` `open` events at all — traced to the Playwright page still being on `about:blank` (no real origin) when `EventSource`/`WebSocket` were constructed; fixed by navigating the page to a real page on the same origin (`page.goto('http://localhost:8918/')`) before each scenario's `page.evaluate` call.
+- Updated `syllabus/21-frontend-web/INDEX.md` (36 → 37 chapters), `syllabus/00-overview/INDEX.md`, `react-hooks-useeffect-and-useref.md` and `frontend-security-xss-csrf-and-csp.md`'s `related` front matter (cross-links added), `00-project/frontend-topic-register.md` (F-402 row added to the D-F4 tier).
+- Verified: YAML/H1/ToC-sequencing checks pass on the new 24-heading chapter; every relative link resolves; `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ## [2026-09-11] — `21-frontend-web` gains a 36th chapter: Frontend Security (XSS, CSRF, and CSP) — new F-401, opens D-F4 tier
 
 ### Added (`syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` — F-401)

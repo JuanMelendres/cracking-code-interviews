@@ -1,0 +1,30 @@
+npm notice run websocket-realtime-demo@1.0.0 start
+npm notice run node run.js
+listening on 8918
+
+=== 1. Native WebSocket: connect, echo round trip, server-initiated close ===
+Event log: ["open","message:echo:1:hello-server","close:code=4001:reason=demo-server-initiated-close"]
+readyState after close (expect 3 = CLOSED): 3
+Server ws connection count 1.5s after close (expect: still 1, no auto-reconnect): 1
+
+=== 2. Native WebSocket has NO built-in reconnection — a manual backoff wrapper is required and measured here ===
+Measured manual reconnect backoff schedule (real elapsed ms, not asserted):
+  attempt 1: requested 300ms, actual elapsed 301ms
+  attempt 2: requested 600ms, actual elapsed 601ms
+  attempt 3: requested 1200ms, actual elapsed 1202ms
+Server ws connection count after 3 manual reconnects (expect 5: 1 initial + 1 from scenario 1 + 3 here... actual count reported below): 5
+
+=== 3. Native EventSource (SSE) auto-reconnects on its own -- zero reconnect code written ===
+Total distinct 'open' events observed (expect >= 2, proving real automatic reconnection with zero client reconnect code): 3
+Full event log:
+  open#1
+  message:connection 1, tick 1
+  message:connection 1, tick 2
+  message:connection 1, tick 3
+  open#2
+  message:connection 2, tick 1
+  message:connection 2, tick 2
+  message:connection 2, tick 3
+  open#3
+  message:connection 3, tick 1
+Server sse connection count (expect >= 2, each a genuine new HTTP request the browser made on its own): 3

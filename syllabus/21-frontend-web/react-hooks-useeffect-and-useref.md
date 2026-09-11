@@ -22,6 +22,7 @@ prerequisites:
   - react-fundamentals-jsx-components-props-and-state.md
 related:
   - ../../00-project/frontend-topic-register.md
+  - websocket-and-server-sent-events-for-realtime-ui.md
 official_references:
   - https://react.dev/reference/react/useEffect
   - https://react.dev/reference/react/useRef

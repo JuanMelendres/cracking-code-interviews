@@ -23,6 +23,7 @@ prerequisites:
 related:
   - ../12-security/authn-authz-rbac-vs-abac.md
   - ../../00-project/frontend-topic-register.md
+  - websocket-and-server-sent-events-for-realtime-ui.md
 official_references:
   - https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP
   - https://owasp.org/www-community/attacks/xss/
