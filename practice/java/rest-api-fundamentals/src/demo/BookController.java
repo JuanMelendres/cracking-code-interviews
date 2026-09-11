@@ -31,15 +31,46 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody Book request) {
+    public ResponseEntity<?> createBook(@RequestBody Book request) {
+        // 422 Unprocessable Entity: the JSON is syntactically valid (it
+        // parsed correctly -- otherwise Spring itself would already have
+        // returned 400 before this method ever ran), but its CONTENT
+        // violates a semantic business rule (a book must have a real
+        // title). This is the real, practical distinction between 400 and
+        // 422 that "both mean invalid request" glosses over.
+        if (request.getTitle() == null || request.getTitle().isBlank()) {
+            return ResponseEntity.unprocessableEntity()
+                    .body(new ErrorBody("title must not be blank"));
+        }
+        // 409 Conflict: a genuine data conflict on a real-world business
+        // key (isbn), distinct from the server-generated id -- two books
+        // MAY legitimately share a title (proved above), but not the same
+        // isbn.
+        if (request.getIsbn() != null && repository.existsByIsbn(request.getIsbn())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErrorBody("isbn " + request.getIsbn() + " already exists"));
+        }
         // POST creates a NEW resource every time it's called -- it is
         // deliberately NOT idempotent. 201 Created (not 200 OK) is the
         // correct status for "a new resource now exists," and the Location
         // header points the client at the real URL of the resource just
         // created -- both are real REST conventions, not stylistic choices.
-        Book created = repository.create(new Book(null, request.getTitle(), true));
+        Book created = repository.create(new Book(null, request.getTitle(), true, request.getIsbn()));
         URI location = URI.create("/books/" + created.getId());
         return ResponseEntity.created(location).body(created);
+    }
+
+    // A minimal, real error-response body -- not the full, dedicated
+    // exception-handling machinery Bean Validation and Global Exception
+    // Handling (T-518) covers; that chapter's @RestControllerAdvice pattern
+    // is the correct, scalable version of this same idea once a real app
+    // has more than two ad hoc validation rules.
+    static class ErrorBody {
+        public String error;
+
+        ErrorBody(String error) {
+            this.error = error;
+        }
     }
 
     @PutMapping("/{id}")
@@ -47,7 +78,12 @@ public class BookController {
         // PUT replaces an EXISTING resource's full state at a known id. It
         // IS idempotent by convention: calling it twice with the same body
         // leaves the resource in the same end state both times, unlike POST.
-        Book toStore = new Book(id, request.getTitle(), request.isAvailable());
+        // A real bug caught while building this pack's own 304 demo: this
+        // line originally used the 3-arg constructor, silently dropping
+        // isbn even when a PUT body explicitly included it -- exactly the
+        // kind of accidental field-loss PUT's "full replacement" semantics
+        // are supposed to prevent, not cause.
+        Book toStore = new Book(id, request.getTitle(), request.isAvailable(), request.getIsbn());
         boolean existed = repository.replace(id, toStore);
         if (!existed) {
             return ResponseEntity.notFound().build();

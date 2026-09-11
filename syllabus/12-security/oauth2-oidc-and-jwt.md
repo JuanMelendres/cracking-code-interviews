@@ -29,6 +29,7 @@ related:
   - owasp-top-10-for-backend-services.md
   - authn-authz-rbac-vs-abac.md
   - csrf-cors-and-session-security.md
+  - ../07-api-design/rest-api-fundamentals.md
   - ../../study-packs/week-07/03-oauth2-oidc-and-jwt.md
 official_references:
   - https://www.rfc-editor.org/rfc/rfc6749

@@ -1,0 +1,65 @@
+=== 1. POST /books with malformed JSON -- expect 400 Bad Request ===
+HTTP/1.1 400
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Fri, 11 Sep 2026 22:07:18 GMT
+Connection: close
+
+{"timestamp":"2026-09-11T22:07:18.152+00:00","status":400,"error":"Bad Request","path":"/books"}
+
+=== 2. PATCH /books/1 -- no PATCH mapping exists -- expect 405 Method Not Allowed ===
+HTTP/1.1 405
+Allow: PUT, DELETE, GET
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Fri, 11 Sep 2026 22:07:18 GMT
+
+{"timestamp":"2026-09-11T22:07:18.178+00:00","status":405,"error":"Method Not Allowed","path":"/books/1"}
+
+=== 3. POST /books with blank title -- expect 422 Unprocessable Entity ===
+HTTP/1.1 422
+Content-Type: application/json
+Content-Length: 35
+Date: Fri, 11 Sep 2026 22:07:18 GMT
+
+{"error":"title must not be blank"}
+
+=== 4. POST /books with a real isbn -- expect 201 ===
+HTTP/1.1 201
+Location: /books/1
+Content-Type: application/json
+Content-Length: 74
+Date: Fri, 11 Sep 2026 22:07:18 GMT
+
+{"id":1,"title":"Refactoring","available":true,"isbn":"978-0-13-475759-9"}
+
+=== 5. POST /books with the SAME isbn again -- expect 409 Conflict ===
+HTTP/1.1 409
+Content-Type: application/json
+Content-Length: 49
+Date: Fri, 11 Sep 2026 22:07:18 GMT
+
+{"error":"isbn 978-0-13-475759-9 already exists"}
+
+=== 6. GET /books/1 -- capture real ETag ===
+HTTP/1.1 200
+ETag: "0e0d0607f2ab905eb95c27d74732f1aa2"
+Content-Type: application/json
+Content-Length: 74
+Date: Fri, 11 Sep 2026 22:07:18 GMT
+
+{"id":1,"title":"Refactoring","available":true,"isbn":"978-0-13-475759-9"}
+
+=== 7. GET /books/1 again with If-None-Match: <same ETag> -- expect 304, no body ===
+HTTP/1.1 304
+ETag: "0e0d0607f2ab905eb95c27d74732f1aa2"
+Date: Fri, 11 Sep 2026 22:07:24 GMT
+
+=== 8. PUT /books/1 (now correctly preserving isbn), then GET again with the SAME old ETag -- expect 200 with a NEW ETag AND isbn still present ===
+HTTP/1.1 200
+ETag: "06258bb760a3545b16fda4bedecd16a72"
+Content-Type: application/json
+Content-Length: 87
+Date: Fri, 11 Sep 2026 22:07:24 GMT
+
+{"id":1,"title":"Refactoring, 2nd Edition","available":true,"isbn":"978-0-13-475759-9"}

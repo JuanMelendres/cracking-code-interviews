@@ -26,6 +26,14 @@ public class BookRepository {
         return Optional.ofNullable(books.get(id));
     }
 
+    // Real business-key conflict check, distinct from the server-generated
+    // id: two books MAY share a title (Section 4's own POST-twice demo
+    // proves that), but two books sharing the same real-world isbn is a
+    // genuine data conflict, the actual trigger for a 409 response.
+    public boolean existsByIsbn(String isbn) {
+        return books.values().stream().anyMatch(b -> isbn.equals(b.getIsbn()));
+    }
+
     // Returns true if a book with this id existed and was replaced.
     public boolean replace(Long id, Book updated) {
         if (!books.containsKey(id)) {

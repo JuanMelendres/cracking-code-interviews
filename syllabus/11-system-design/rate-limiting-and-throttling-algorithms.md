@@ -31,6 +31,7 @@ related:
   - ../05-spring/security-filter-chain.md
   - ../02-java/concurrency/virtual-threads.md
   - ../07-api-design/api-gateway-bff-and-edge-concerns.md
+  - ../07-api-design/rest-api-fundamentals.md
   - ../../practice/java/system-design/rate-limiting-and-throttling/README.md
 official_references:
   - https://blog.cloudflare.com/counting-things-a-lot-of-different-things/

@@ -26,6 +26,7 @@ related:
   - applied-cryptography-hashing-signing-tls.md
   - oauth2-oidc-and-jwt.md
   - ../05-spring/security-filter-chain.md
+  - ../07-api-design/rest-api-fundamentals.md
 official_references:
   - https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
   - https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html

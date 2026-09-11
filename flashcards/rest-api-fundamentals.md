@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 07-api-design
 topic_id: T-2205
 canonical: ../syllabus/07-api-design/rest-api-fundamentals.md
-last_updated: 2026-09-07
+last_updated: 2026-09-11
 ---
 
 # Flashcards: REST API Fundamentals
@@ -93,6 +93,74 @@ A fast, visible signal interviewers use to gauge whether a candidate actually un
 
 **Common trap:**
 Designing endpoints around actions ("what should this button call?") instead of resources.
+
+**Related:**
+[REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)
+
+## Card: 400 vs. 422
+
+**Prompt:**
+A client sends valid JSON with a blank `title` field. Should the API return `400` or `422`?
+
+**Answer:**
+`422 Unprocessable Entity` — the JSON parsed fine (that's what would make it a `400`), but its content violates a semantic rule (a book needs a real title). `400` means the request couldn't even be read; `422` means it was read and found invalid.
+
+**Why it matters:**
+The real, practical distinction most candidates only gesture at without being able to state precisely.
+
+**Common trap:**
+Using `400` for every kind of "invalid request," collapsing a parsing failure and a business-rule failure into one signal.
+
+**Related:**
+[REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)
+
+## Card: 401 vs. 403
+
+**Prompt:**
+What's the real difference between `401 Unauthorized` and `403 Forbidden`?
+
+**Answer:**
+`401` means the caller's identity isn't established at all (no credentials, or invalid ones) — an authentication failure. `403` means identity *is* established, but this specific caller isn't allowed to do this specific thing — an authorization failure.
+
+**Why it matters:**
+Retrying a `403` with the same, already-valid credentials will never succeed — a client needs to know which failure it's looking at to react correctly.
+
+**Common trap:**
+Treating both as interchangeable "access denied" signals.
+
+**Related:**
+[REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)
+
+## Card: A real business-key conflict (409)
+
+**Prompt:**
+Two `POST /books` requests use the same `title` but different `isbn` values — no conflict. A third uses a *different* title but the *same* `isbn` as an existing book. What should happen?
+
+**Answer:**
+A real `409 Conflict` — `isbn` is a business key, and this API's own real demo proves title duplication is a legitimate, expected feature of `POST` (each call creates a new resource), while isbn duplication is a genuine data conflict on a different field entirely.
+
+**Why it matters:**
+Shows that "does this API allow duplicates" isn't a single yes/no question — it depends on which specific field.
+
+**Common trap:**
+Applying one blanket "no duplicates" or "duplicates are fine" rule to every field on a resource.
+
+**Related:**
+[REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)
+
+## Card: Conditional GET (304)
+
+**Prompt:**
+How does a client avoid re-downloading a resource's full body on every `GET` when nothing has changed?
+
+**Answer:**
+Conditional `GET` via `ETag`/`If-None-Match`: the server computes a real `ETag` for the current representation; if the client resends that same value in `If-None-Match` and nothing changed, the server returns a real, empty-bodied `304 Not Modified` instead of the full body. Spring provides this via `ShallowEtagHeaderFilter` with zero hand-rolled hashing code.
+
+**Why it matters:**
+A real, commonly-asked caching mechanism that's easy to describe vaguely ("caching headers") without naming the actual mechanism.
+
+**Common trap:**
+Confusing `304` with a client-side-only cache — it's a real, server-computed, per-request check, not just the client deciding not to ask.
 
 **Related:**
 [REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)

@@ -315,6 +315,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **New total, verified directly against the file system: 235 cheat sheets** (209 prior + 26 gap-audit batch). Every fact in each of the 26 was extracted directly from its canonical chapter's own existing text — most chapters already carried their own inline "Cheat Sheet"/"Key Takeaways" sections (per the canonical template), so this batch elevated existing, already-verified content into the standalone deliverable rather than deriving new claims.
 
+**2026-09-11 (same day) — REST API Fundamentals (N36, T-2205) cheat sheet updated in place, closing a real status-code gap.** A direct user question found this cheat sheet covered only `200`/`201`/`204`/`404`/`500`. The canonical chapter and its practice demo were expanded the same day with real, executed evidence for `400`, `405`, `409`, `422`, and `304`; this cheat sheet's Decision Table and Common Pitfalls sections were updated to match, plus a full-vocabulary reference row for `401`/`403`/`429`/`502`-`504` (covered conceptually, cross-linked to `12-security` and `11-system-design/rate-limiting-and-throttling-algorithms.md`'s own real depth rather than duplicated here). No new file added — 235 remains the correct count.
+
 ## How this relates to `flashcards/`
 
 Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` is now closed (75/75 handbook chapters) — its individual cards draw from the same canonical chapters these cheat sheets do, not restated from a cheat sheet's content.

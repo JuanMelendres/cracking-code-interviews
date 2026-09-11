@@ -1001,6 +1001,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
 - Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `rest-api-fundamentals.md` (T-2205) closes a real HTTP status-code gap, found by direct user question
+
+### Changed (`syllabus/07-api-design/rest-api-fundamentals.md` — T-2205)
+
+- User asked directly whether this repository covers API status codes. Direct audit found this chapter (and its cheat sheet/flashcard deck) covered only `200`/`201`/`204`/`404`/`500` since first written 2026-09-07 — missing `400`, `401`/`403`, `405`, `409`, `422`, `304`, `429`, `502`/`503`/`504`.
+- Closed in place, per the user's own chosen scope (expand this chapter + its cheat sheet, not a new topic): extended the real Spring Boot demo with an optional `isbn` field (kept out of existing JSON via `@JsonInclude(NON_NULL)`, zero regression to prior transcripts) and real, executed evidence for `400` (malformed JSON), `405` (unmapped verb, real `Allow` header), `422` (semantic validation, distinct from `400`), `409` (a real isbn conflict, deliberately distinct from the chapter's own title-duplication feature), and `304` (real conditional `GET` via Spring's built-in `ShallowEtagHeaderFilter`).
+- A real bug caught by this exact demo before shipping: the `PUT` handler's 3-argument constructor silently dropped `isbn` even when explicitly sent — fixed.
+- `401`/`403`/`429`/`502`-`504` covered conceptually with real, bidirectional cross-links to where their own depth already lives, rather than duplicated: `12-security/oauth2-oidc-and-jwt.md`, `12-security/csrf-cors-and-session-security.md`, `11-system-design/rate-limiting-and-throttling-algorithms.md`, `api-gateway-bff-and-edge-concerns.md`.
+- Updated `cheat-sheets/rest-api-fundamentals.md`, `flashcards/rest-api-fundamentals.md` (+4 cards), both directories' `README.md`, and `syllabus/07-api-design/INDEX.md`. `scripts/validate.py` shows the same pre-existing 3 errors, zero new; original transcript re-verified byte-for-byte unchanged.
+
 ## [2026-09-11] — `cheat-sheets/` and `flashcards/` gain a 26-chapter backlog batch from the full 22-domain gap audit
 
 ### Added (`cheat-sheets/` — 26 new files, 209 → 235; `flashcards/` — 26 new decks, 214 → 240, 75 new cards, 730 → 805)
