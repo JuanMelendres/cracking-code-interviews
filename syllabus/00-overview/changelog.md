@@ -1085,6 +1085,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `13-observability` gains a 5th chapter: Metric Cardinality and Alert Fatigue
+
+### Added (`syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` — T-2409)
+
+- Same gap audit, new domain. Zero coverage of metric cardinality or alert fatigue/runbook discipline, both real, common production problems with no register entry. Assigned `T-2409` (continuing `T-2400`–`T-2499`).
+- Real demo (`practice/java/observability/metric-cardinality-and-alert-fatigue/`, real Micrometer `SimpleMeterRegistry`): identical 20,000-request volume through a bounded-label vs. unbounded-label registry produces a real 6,667x more distinct time series (3 vs. 20,000) and ~43x more heap.
+- Marquee finding: a real, seeded 7-day synthetic error-rate simulation shows Google's real, published multi-window burn-rate alerting rule (verified live via `WebFetch`) firing 14x less often than a naive threshold rule, while both real injected incidents are still caught by both rules.
+- Updated `syllabus/13-observability/INDEX.md` (4 → 5), `syllabus/00-overview/INDEX.md`, two sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-11] — `09-messaging-event-driven` gains a 12th chapter: Kafka Connect — this domain's audit gaps now fully closed
 
 ### Added (`syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` — T-2408)

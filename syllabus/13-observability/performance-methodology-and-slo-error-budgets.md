@@ -27,6 +27,7 @@ related:
   - ../16-performance-jvm/capacity-planning-and-headroom.md
   - logging-metrics-tracing-and-opentelemetry.md
   - incident-response-and-blameless-postmortems.md
+  - metric-cardinality-and-alert-fatigue.md
   - ../16-performance-jvm/profiling-jfr-and-flame-graphs.md
   - ../02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
   - ../09-messaging-event-driven/consumer-groups-and-rebalancing.md

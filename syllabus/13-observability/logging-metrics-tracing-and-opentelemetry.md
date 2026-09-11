@@ -26,6 +26,7 @@ related:
   - percentiles-tail-latency-and-coordinated-omission.md
   - performance-methodology-and-slo-error-budgets.md
   - incident-response-and-blameless-postmortems.md
+  - metric-cardinality-and-alert-fatigue.md
   - ../16-performance-jvm/profiling-jfr-and-flame-graphs.md
   - ../02-java/jvm-internals/gc-fundamentals-and-log-analysis.md
   - ../05-spring/spring-actuator-health-and-observability-hooks.md
