@@ -282,6 +282,39 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **New total, verified directly against the file system: 209 cheat sheets** (132 backend + 34 frontend + 43 new-writing-domain).
 
+**2026-09-11 (batch 7) — 26-chapter backlog from the full 22-domain gap audit.** Re-auditing this deliverable by diffing every `syllabus/` chapter's filename against `cheat-sheets/`'s own file list — rather than trusting any prior "closed" note — found that every chapter added by the full 22-domain gap audit run across 2026-09-10/09-11 had zero cheat sheet: the audit's own real, executed demos and canonical chapters had shipped, but this complementary deliverable's own batch process was never re-run against them. All 26 verified missing by direct file-existence check, not assumed from a domain pattern, then closed in this single batch (an explicit exception to small-bounded-batch convention, per the same precedent as batches 15/16 — these chapters were never subject to a prioritization decision, they simply postdated this deliverable's last audit).
+
+| Cheat Sheet | Topic ID | Domain | Canonical Chapter |
+|---|---|---|---|
+| [Azure and GCP for Backend Engineers](azure-and-gcp-for-backend-engineers.md) | T-2404 | cloud | `syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md` |
+| [Bean Validation and Global Exception Handling](bean-validation-and-global-exception-handling.md) | T-518 | spring | `syllabus/05-spring/bean-validation-and-global-exception-handling.md` |
+| [Spring Data JPA Repository Abstraction](spring-data-jpa-repository-abstraction.md) | T-510 | spring | `syllabus/05-spring/spring-data-jpa-repository-abstraction.md` |
+| [Bytecode and Class File Fundamentals](bytecode-and-class-file-fundamentals.md) | T-2406 | java | `syllabus/02-java/jvm-internals/bytecode-and-class-file-fundamentals.md` |
+| [Java Platform Module System (JPMS)](java-platform-module-system.md) | T-116 | java | `syllabus/02-java/language-core/java-platform-module-system.md` |
+| [java.time API](java-time-api.md) | T-2400 | java | `syllabus/02-java/language-core/java-time-api.md` |
+| [MethodHandle and java.lang.invoke](methodhandle-and-invoke.md) | T-2405 | java | `syllabus/02-java/concurrency/methodhandle-and-invoke.md` |
+| [PriorityQueue Internals](priorityqueue-internals.md) | T-210 | java | `syllabus/02-java/collections/priorityqueue-internals.md` |
+| [java.util.concurrent Synchronizers](synchronizers-countdownlatch-cyclicbarrier-semaphore.md) | T-417 | java | `syllabus/02-java/concurrency/synchronizers-countdownlatch-cyclicbarrier-semaphore.md` |
+| [Window Functions and CTEs](window-functions-and-ctes.md) | T-2401 | databases | `syllabus/06-databases/window-functions-and-ctes.md` |
+| [JSONB and Advanced Index Types](jsonb-and-advanced-index-types.md) | T-2402 | databases | `syllabus/06-databases/jsonb-and-advanced-index-types.md` |
+| [Kafka Connect: Source and Sink Connectors](kafka-connect-source-and-sink-connectors.md) | T-2408 | kafka | `syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` |
+| [Kafka Streams and Stateful Processing](kafka-streams-and-stateful-processing.md) | T-709 | kafka | `syllabus/09-messaging-event-driven/kafka-streams-and-stateful-processing.md` |
+| [Retention, Log Compaction, and Tiered Storage](retention-log-compaction-and-tiered-storage.md) | T-706 | kafka | `syllabus/09-messaging-event-driven/retention-log-compaction-and-tiered-storage.md` |
+| [Consensus Algorithms: Raft and Paxos](consensus-algorithms-raft-and-paxos.md) | T-2403 | system-design | `syllabus/10-distributed-systems/consensus-algorithms-raft-and-paxos.md` |
+| [Vector Clocks and Quorum-Based Replication](vector-clocks-and-quorum-based-replication.md) | T-2407 | system-design | `syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` |
+| [CSRF, CORS, and Session Security](csrf-cors-and-session-security.md) | T-1308 | security | `syllabus/12-security/csrf-cors-and-session-security.md` |
+| [Metric Cardinality and Alert Fatigue](metric-cardinality-and-alert-fatigue.md) | T-2409 | observability | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |
+| [Hiring and Team Building](hiring-and-team-building.md) | T-1907 | leadership-staff | `syllabus/19-leadership-staff/hiring-and-team-building.md` |
+| [Incident Command: Roles and Real-Time Coordination](incident-command-roles-and-real-time-coordination.md) | T-1906 | leadership-staff | `syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` |
+| [Frontend Security: XSS, CSRF, and CSP](frontend-security-xss-csrf-and-csp.md) | F-401 | frontend-web | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
+| [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | frontend-web | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
+| [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | frontend-web | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
+| [SOLID Principles](solid-principles.md) | T-1701 | software-design | `syllabus/04-software-design/solid-principles.md` |
+| [Object-Oriented Design Interview Problems](ood-interview-problems.md) | T-1702 | software-design | `syllabus/04-software-design/ood-interview-problems.md` |
+| [Sorting Algorithms](sorting-algorithms.md) | T-2119 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/sorting-algorithms.md` |
+
+**New total, verified directly against the file system: 235 cheat sheets** (209 prior + 26 gap-audit batch). Every fact in each of the 26 was extracted directly from its canonical chapter's own existing text — most chapters already carried their own inline "Cheat Sheet"/"Key Takeaways" sections (per the canonical template), so this batch elevated existing, already-verified content into the standalone deliverable rather than deriving new claims.
+
 ## How this relates to `flashcards/`
 
 Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` is now closed (75/75 handbook chapters) — its individual cards draw from the same canonical chapters these cheat sheets do, not restated from a cheat sheet's content.
