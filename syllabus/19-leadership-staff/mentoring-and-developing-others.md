@@ -11,6 +11,7 @@ mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - cross-team-influence-without-authority.md
+  - hiring-and-team-building.md
   - ../20-interview-preparation/behavioral/07-mentoring-and-developing-others.md
 practice: []
 production_scenarios: []

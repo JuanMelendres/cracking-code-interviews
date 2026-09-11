@@ -1085,6 +1085,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `19-leadership-staff` gains a 7th chapter: Hiring and Team Building — this domain's audit gaps now fully closed
+
+### Added (`syllabus/19-leadership-staff/hiring-and-team-building.md` — T-1907)
+
+- Second and last item the domain's gap audit named. No prior coverage of hiring as a structured skill or team composition as a deliberate responsibility. Assigned `T-1907` (continuing `T-1900`–`T-1999`).
+- Built on Google's own re:Work research, verified live via `WebFetch`: structured interviewing is measurably more predictive of job performance than unstructured interviewing. Grounds independent-assessment-before-debrief practice in the real, established anchoring-bias finding.
+- Caught and avoided an over-claim before shipping: an initial "hiring committee" citation was checked against the live source and found unconfirmed there — described as a general principle instead, not attributed to an unverified specific source.
+- No code demo, consistent with this domain's own behavioral-handbook-style evidence discipline.
+- Updated `syllabus/19-leadership-staff/INDEX.md` (6 → 7, all audit gaps now closed), `syllabus/00-overview/INDEX.md`, `mentoring-and-developing-others.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-11] — `19-leadership-staff` gains a 6th chapter: Incident Command
 
 ### Added (`syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` — T-1906)
