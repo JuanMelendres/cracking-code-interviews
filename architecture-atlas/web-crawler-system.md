@@ -19,6 +19,7 @@ related:
   - ../syllabus/11-system-design/search-and-indexing-systems.md
   - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
   - distributed-file-storage-system.md
+  - autocomplete-typeahead-system.md
 official_references:
   - https://developers.google.com/search/docs/crawling-indexing/googlebot
 ---

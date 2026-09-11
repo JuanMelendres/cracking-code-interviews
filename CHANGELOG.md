@@ -2856,6 +2856,14 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Updated `syllabus/09-messaging-event-driven/INDEX.md` (11 → 12 chapters, gap-audit note declaring this domain's full audit gap list closed, `T-2408` row added), `syllabus/00-overview/INDEX.md`, `kafka-architecture-fundamentals.md` and `kafka-streams-and-stateful-processing.md`'s `related` front matter (cross-links added), `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 - Verified: YAML/H1/fence-balance/ToC-sequencing checks pass on the new 30-heading chapter; every relative link resolves; `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 
+### Added (`architecture-atlas/autocomplete-typeahead-system.md`, 21st Architecture Atlas entry, gap audit closure — Atlas follow-up set now fully closed)
+
+- Fourth and last of the Architecture Atlas follow-up set (video streaming, distributed file storage, and web crawler closed 2026-09-10/11). A new, original 17-section entry, additive beyond T-813's own closed accounting, closing the audit's "web crawler/autocomplete" item in full by treating it as the two genuinely different problems it actually is.
+- Central tension: fast prefix matching and fast ranked (top-K) retrieval are two different problems a naive trie-plus-sort design conflates. Precomputing and caching each trie node's own top-K completions (combining tries with the bounded-heap top-K technique this program's own DSA chapters already cover) keeps read latency a single trie descent independent of how many completions exist under a prefix, with popularity ranking recomputed by a fully decoupled, periodic offline pipeline rather than synchronously per query.
+- Real, worked capacity math: a ~15x multiplier between completed-search rate and actual per-keystroke typeahead request volume (50,000 searches/s x ~15 keystrokes/search ≈ 750,000 requests/s), and a real memory estimate (~7.5GB of cached top-K ranking data alone at ~50M trie nodes) — both computed, not asserted.
+- Updated `architecture-atlas/README.md` (16th classic entry beyond T-813, entries table row added, the "web crawler/autocomplete" bundling now fully resolved as two separate entries), `syllabus/00-overview/INDEX.md` and `syllabus/11-system-design/INDEX.md` (20 → 21 Atlas entries), `web-crawler-system.md`'s `related` front matter (cross-link added), `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+- Verified: YAML/H1/fence-balance/ToC-sequencing checks pass on the new 17-section entry; every relative link resolves; `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ### Added (`architecture-atlas/web-crawler-system.md`, 20th Architecture Atlas entry, gap audit closure)
 
 - Third and last of the same Architecture Atlas follow-up set (video streaming and distributed file storage closed 2026-09-10/11). A new, original 17-section entry, additive beyond T-813's own closed accounting.

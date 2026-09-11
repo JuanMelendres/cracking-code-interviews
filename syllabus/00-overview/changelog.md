@@ -1094,6 +1094,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Marquee finding: a real kill-and-restart of the worker resumes from exactly the last durably-committed offset — zero data loss, zero duplication of already-delivered records — the concrete mechanism behind Connect's fault tolerance, verified directly via the real, raw offset file.
 - Updated `syllabus/09-messaging-event-driven/INDEX.md` (11 → 12, all audit gaps now closed), `syllabus/00-overview/INDEX.md`, two sibling chapters' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — Architecture Atlas gains a 21st entry: Autocomplete/Typeahead System — follow-up set now fully closed
+
+### Added (`architecture-atlas/autocomplete-typeahead-system.md`)
+
+- Fourth and last of the follow-up set (video streaming, distributed file storage, web crawler closed prior). New, original 17-section entry, closing the audit's "web crawler/autocomplete" item in full as two separate entries.
+- Central tension: fast prefix matching and fast ranked (top-K) retrieval are two different problems; precomputing/caching each trie node's own top-K completions keeps read latency a single trie descent, with ranking recomputed by a decoupled, periodic pipeline.
+- Real capacity math: a ~15x multiplier between completed-search rate and per-keystroke typeahead request volume; ~7.5GB of cached top-K data at ~50M trie nodes — both computed, not asserted.
+- Updated `architecture-atlas/README.md`, `syllabus/00-overview/INDEX.md` and `syllabus/11-system-design/INDEX.md` (20 → 21 Atlas entries), `web-crawler-system.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-11] — Architecture Atlas gains a 20th entry: Web Crawler System
 
 ### Added (`architecture-atlas/web-crawler-system.md`)
