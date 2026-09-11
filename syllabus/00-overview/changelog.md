@@ -1085,6 +1085,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added the new chapter, backed by a real deterministic Raft leader-election simulation (`practice/java/consensus-raft/`): a real normal election, a real partition where only the majority side reaches quorum, a real genuine split vote with no winner, and a real stale leader stepping down on a higher term. A real logic bug in the split-vote scenario (one candidate accidentally reaching a real majority, contradicting the "no winner" narrative) was caught and fixed before shipping.
 - Updated `syllabus/10-distributed-systems/INDEX.md` (5 → 6), `syllabus/00-overview/INDEX.md`, `distributed-systems-failure-modes.md`'s `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — Architecture Atlas gains a 19th entry: Distributed File Storage System
+
+### Added (`architecture-atlas/distributed-file-storage-system.md`)
+
+- Second of the same follow-up set (video streaming closed 2026-09-10; web crawler/autocomplete remains open). New, original 17-section entry, additive beyond T-813's closed accounting.
+- Central tension: a GFS/HDFS-shaped design separating the master's tiny, in-memory metadata path from the chunkservers' huge, throughput-bound data path; real capacity math (82M chunks, ~8.2GB metadata at 128MB chunk size) shows why chunk size controls the real scaling ceiling.
+- Master failover via an operation log plus standby is named as the deliberately simpler, correctly-scoped fix, contrasted against over-engineering a fully distributed metadata layer.
+- Caught and fixed before shipping: an initial draft wrongly attributed 128MB to "GFS's own real default" — verified and corrected (GFS's paper published 64MB; 128MB is HDFS's later default).
+- Updated `architecture-atlas/README.md`, `syllabus/00-overview/INDEX.md` and `syllabus/11-system-design/INDEX.md` (18 → 19 Atlas entries), two sibling entries' `related` front matter, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
+
 ## [2026-09-10] — Architecture Atlas gains an 18th entry: Video Streaming Platform
 
 ### Added (`architecture-atlas/video-streaming-platform.md`)

@@ -22,6 +22,7 @@ related:
   - ../syllabus/06-databases/replication-read-replicas-and-replica-lag.md
   - ../syllabus/10-distributed-systems/distributed-systems-failure-modes.md
   - distributed-cache.md
+  - distributed-file-storage-system.md
 official_references: []
 ---
 

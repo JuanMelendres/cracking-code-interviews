@@ -19,6 +19,7 @@ related:
   - ../syllabus/11-system-design/caching-strategies-and-invalidation.md
   - ../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md
   - url-shortener-system.md
+  - distributed-file-storage-system.md
 official_references: []
 ---
 
