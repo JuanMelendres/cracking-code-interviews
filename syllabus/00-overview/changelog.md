@@ -1001,6 +1001,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
 - Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-11] — `rest-api-fundamentals.md` (T-2205) closes a real status-code *range* gap, same-day follow-up
+
+### Changed (`syllabus/07-api-design/rest-api-fundamentals.md` — T-2205)
+
+- Same-day follow-up to the entry below: user asked whether the `2xx`/`3xx`/`4xx`/`5xx` ranges themselves were actually covered, not just individual codes. They weren't — no real `3xx` member beyond `304` existed, and the status-code content had no explicit range structure.
+- Added a real, new `GET /books/latest` endpoint: a genuinely computed `302 Found` redirect (the target changes as new books are created, proven across three real creates) — `302`, not `301`, since the target is deliberately not permanent. Added real, zero-code `415 Unsupported Media Type` evidence (wrong `Content-Type`, rejected automatically).
+- Restructured the chapter's status-code content into an explicit per-range reference table (`1xx`–`5xx`), naming every practically-relevant code and marking each real-demoed or conceptual-with-a-stated-reason (`202`/`206` have no honest real demo available in this synchronous JSON CRUD API — named and left conceptual rather than faked).
+- Updated `cheat-sheets/rest-api-fundamentals.md`, `flashcards/rest-api-fundamentals.md` (+2 cards), both directories' `README.md`, and `syllabus/07-api-design/INDEX.md`. `scripts/validate.py` shows the same pre-existing 3 errors, zero new; original transcript re-verified byte-for-byte unchanged.
+
 ## [2026-09-11] — `rest-api-fundamentals.md` (T-2205) closes a real HTTP status-code gap, found by direct user question
 
 ### Changed (`syllabus/07-api-design/rest-api-fundamentals.md` — T-2205)

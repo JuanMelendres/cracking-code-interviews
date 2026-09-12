@@ -26,6 +26,14 @@ public class BookRepository {
         return Optional.ofNullable(books.get(id));
     }
 
+    // Real evidence for the 3xx redirect demo: the "latest" book is
+    // whichever real id is currently highest -- a genuinely computed
+    // location, not a hardcoded one, so the redirect target actually
+    // changes as new books are created.
+    public Optional<Long> latestId() {
+        return books.keySet().stream().max(Long::compareTo);
+    }
+
     // Real business-key conflict check, distinct from the server-generated
     // id: two books MAY share a title (Section 4's own POST-twice demo
     // proves that), but two books sharing the same real-world isbn is a

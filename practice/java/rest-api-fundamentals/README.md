@@ -40,3 +40,18 @@ javac -cp "lib/*" -d out src/demo/*.java
 java -cp "out:lib/*" demo.BookApplication
 # then run the curl sequence in curl-transcript-status-codes.txt
 ```
+
+## Status-code ranges (`curl-transcript-status-ranges.txt`)
+
+A follow-up gap, real and structural, not just a missing individual code: the chapter's status-code coverage was a flat list with no `2xx`/`3xx`/`4xx`/`5xx` range framing, and no real member of the `3xx` range beyond `304`. Two more real additions:
+
+6. **`302 Found`** — a new `GET /books/latest` endpoint. `BookRepository.latestId()` really recomputes the current highest id on every call, so the redirect target genuinely changes as books are created — proven directly: `latest` points at `/books/2` after two creates, then at `/books/3` once a third book exists. `302` (not `301`) is the deliberately correct choice here, since a permanently-cached redirect would eventually point a client at a stale id.
+7. **`415 Unsupported Media Type`** — `POST /books` with `Content-Type: text/plain` instead of `application/json`, identical valid JSON body otherwise. Real, automatic Spring behavior, zero controller code — the same "rejected before the controller runs" shape as `400`, for a different reason.
+
+```bash
+./fetch-deps.sh
+mkdir -p out
+javac -cp "lib/*" -d out src/demo/*.java
+java -cp "out:lib/*" demo.BookApplication
+# then run the curl sequence in curl-transcript-status-ranges.txt
+```

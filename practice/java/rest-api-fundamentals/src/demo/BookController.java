@@ -23,6 +23,20 @@ public class BookController {
         return repository.findAll();
     }
 
+    @GetMapping("/latest")
+    public ResponseEntity<Void> latestBook() {
+        // 302 Found: a real, computed redirect -- "latest" is not itself a
+        // resource, it is a pointer to whichever real book id is currently
+        // highest. 302 (not 301) is deliberate: the target genuinely
+        // changes over time as new books are created, so this is NOT a
+        // permanent redirect a client should cache indefinitely.
+        return repository.latestId()
+                .map(id -> ResponseEntity.status(HttpStatus.FOUND)
+                        .location(URI.create("/books/" + id))
+                        .<Void>build())
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBook(@PathVariable("id") Long id) {
         return repository.findById(id)

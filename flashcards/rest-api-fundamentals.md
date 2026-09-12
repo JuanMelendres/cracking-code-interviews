@@ -164,3 +164,37 @@ Confusing `304` with a client-side-only cache — it's a real, server-computed, 
 
 **Related:**
 [REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)
+
+## Card: What each range's first digit means
+
+**Prompt:**
+Without naming a single specific code, what does a status code's first digit tell you?
+
+**Answer:**
+`1xx` = the exchange isn't finished yet; `2xx` = success; `3xx` = the resource exists but do something else first (use a cache, go elsewhere); `4xx` = the client's request is the problem; `5xx` = the server is the problem. A code's exact number refines that meaning — it never contradicts it.
+
+**Why it matters:**
+Even an unfamiliar 3-digit code can be reasoned about correctly from its first digit alone — a real, transferable mental model, not memorization of a lookup table.
+
+**Common trap:**
+Trying to memorize a flat list of codes with no organizing structure, then guessing at anything unfamiliar.
+
+**Related:**
+[REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)
+
+## Card: A real, computed redirect (302)
+
+**Prompt:**
+Why does `GET /books/latest` return `302 Found` rather than `301 Moved Permanently`?
+
+**Answer:**
+Because the target genuinely changes over time — this chapter's own real demo shows `/books/latest` redirecting to `/books/2`, then to `/books/3` once a third book is created. `301`/`308` tell a client "cache this redirect forever," which would be wrong here; `302` (like `307`) means "use this for now."
+
+**Why it matters:**
+A real, common mistake is treating all redirects as interchangeable — using a permanent redirect for a target that isn't actually permanent causes real, hard-to-debug staleness once clients start caching it.
+
+**Common trap:**
+Defaulting to `301` for any redirect without checking whether the target is genuinely permanent.
+
+**Related:**
+[REST API Fundamentals](../syllabus/07-api-design/rest-api-fundamentals.md)

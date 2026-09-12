@@ -28,24 +28,32 @@ REST APIs name endpoints after the resource (a noun: `/books`, `/books/42`) and 
 - **`422 Unprocessable Entity`** — the body parsed fine; its *content* violates a semantic rule. Distinct from `400` (couldn't even parse it).
 - **`ETag`/`If-None-Match`/`304`** — conditional `GET`: a real, empty-bodied `304` when the client's cached copy is still current.
 
-## Decision Table
+## Decision Table, by Range
+
+Range meaning: `1xx` not finished yet · `2xx` success · `3xx` go elsewhere/use cache · `4xx` client's fault · `5xx` server's fault.
 
 | Outcome | Status code |
 |---|---|
-| Successful `GET`/`PUT` with a body | `200 OK` |
-| Successful resource creation | `201 Created` + `Location` header |
-| Successful `DELETE` | `204 No Content` |
-| Malformed request body (unparseable) | `400 Bad Request` |
-| No/invalid credentials (authentication) | `401 Unauthorized` |
-| Valid identity, not allowed (authorization) | `403 Forbidden` |
-| Requested resource doesn't exist | `404 Not Found` |
-| Verb not mapped on this path | `405 Method Not Allowed` (+ real `Allow` header) |
-| Business-key conflict (not the generated id) | `409 Conflict` |
-| Parsed fine, semantically invalid content | `422 Unprocessable Entity` |
-| Rate-limited caller | `429 Too Many Requests` |
-| Client's cached copy still valid | `304 Not Modified` (via `ETag`/`If-None-Match`) |
-| The server itself failed | `500 Internal Server Error` (never used for "not found") |
-| Upstream/gateway failure (never from one service alone) | `502`/`503`/`504` |
+| **2xx** Successful `GET`/`PUT` with a body | `200 OK` |
+| **2xx** Successful resource creation | `201 Created` + `Location` header |
+| **2xx** Accepted, not finished yet (async job) | `202 Accepted` (conceptual — no async op in this demo) |
+| **2xx** Successful `DELETE` | `204 No Content` |
+| **2xx** Partial response to a `Range` request | `206 Partial Content` (conceptual — no byte-range endpoint here) |
+| **3xx** Go here for now, target may change | `302 Found` (real: `GET /books/latest`) |
+| **3xx** Client's cached copy still valid | `304 Not Modified` (real, via `ETag`/`If-None-Match`) |
+| **3xx** Permanent move / guaranteed-same-method variants | `301`/`307`/`308` (conceptual) |
+| **4xx** Malformed request body (unparseable) | `400 Bad Request` |
+| **4xx** No/invalid credentials (authentication) | `401 Unauthorized` |
+| **4xx** Valid identity, not allowed (authorization) | `403 Forbidden` |
+| **4xx** Requested resource doesn't exist | `404 Not Found` |
+| **4xx** Verb not mapped on this path | `405 Method Not Allowed` (+ real `Allow` header) |
+| **4xx** Business-key conflict (not the generated id) | `409 Conflict` |
+| **4xx** Permanently, deliberately removed (vs. never existed) | `410 Gone` (conceptual — Section 9's repeat-`DELETE` debate) |
+| **4xx** Wrong declared `Content-Type` | `415 Unsupported Media Type` (real, zero code) |
+| **4xx** Parsed fine, semantically invalid content | `422 Unprocessable Entity` |
+| **4xx** Rate-limited caller | `429 Too Many Requests` (real depth in the rate-limiting chapter) |
+| **5xx** The server itself failed | `500 Internal Server Error` (never used for "not found") |
+| **5xx** Upstream/gateway failure (never from one service alone) | `502`/`503`/`504` (conceptual) |
 
 ## Common Pitfalls
 
@@ -55,6 +63,7 @@ REST APIs name endpoints after the resource (a noun: `/books`, `/books/42`) and 
 - Returning `500` for "resource not found" instead of `404` — conflates "server is broken" with "you asked for something that doesn't exist."
 - Using `400` and `422` interchangeably — `400` couldn't parse the request; `422` parsed fine but violated a semantic rule.
 - Confusing `401` (who are you) with `403` (you, specifically, can't) — retrying with the same valid credentials never fixes a real `403`.
+- Using `301`/`308` (permanent) when the target genuinely changes over time — a client that caches a permanent redirect will eventually follow it to a stale location; that's exactly why this chapter's own `/books/latest` demo uses `302`.
 
 ## Interview Answer Skeleton
 
