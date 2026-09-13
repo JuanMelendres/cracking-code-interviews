@@ -1089,6 +1089,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Incidental finding, not fixed here: `site/practice/` is 430MB of the build's 664MB total (vs. 61MB for `syllabus/`) — likely a `build_docs_site.sh` rsync-exclude gap for frontend build artifacts, flagged for a separate pass.
 - Verified with a real build: exit 0, same pre-existing warnings. `validate.py`: same pre-existing 3 errors, 0 new.
 
+## [2026-09-13] — 430MB of build-only jars excluded + checklist checkboxes made clickable and persistent
+
+### Fixed
+
+- `site/practice/` bloat traced to `practice/java/**/lib/*.jar` — already-`.gitignore`d Maven/Gradle dependency jars (419 files, 394MB) the rsync mirror copied wholesale, since only `*.class` was excluded, not the binary dependencies themselves. A blanket `--exclude='lib'` was considered and rejected — `practice/frontend/react-nextjs-fundamentals/lib/` holds real demo source (`dal.js`, `notes-store.js`), a legitimate Next.js convention. Used `--exclude='*.jar'` instead. `docs/practice/` dropped from 430MB to 21MB; total `site/` from 664MB to 270MB. Verified with `diff` that real `.md`/`.java` content is unaffected.
+- User reported Mastery Checklist checkboxes couldn't be marked. `pymdownx.tasklist.custom_checkbox: true` alone still leaves the checkbox `disabled` — added `clickable_checkbox: true`. A clickable-but-unpersisted checkbox still forgets its state on reload, so added `docs/javascripts/checklist-progress.js`: saves checked state to the reader's own `localStorage`, keyed by page path + position, restoring on load and on every Material `document$` instant-nav event.
+- Verified end-to-end with a real headless-browser test (Playwright/chromium, already available under `practice/frontend/react-testing/`) against a real local build: clicked a checkbox, confirmed it toggled and survived a reload, and confirmed a second checkbox on the same page stayed independently unchecked. Along the way confirmed Material's `custom_checkbox` CSS (real `<input>` at `opacity:0`, visible checkmark drawn by a sibling `::before`) still responds correctly to a real, unforced mouse click at its own on-screen coordinates.
+- `validate.py`: same pre-existing 3 errors, 0 new.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

@@ -75,6 +75,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tasklist:
       custom_checkbox: true
+      clickable_checkbox: true
 
 plugins:
   - search:
@@ -103,6 +104,12 @@ exclude_docs: |
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  # Makes Mastery Checklist / Completion Criteria checkboxes clickable
+  # (pymdownx.tasklist's clickable_checkbox above only removes the HTML
+  # `disabled` attribute -- a plain checkbox toggle still forgets its state
+  # on the next page load or instant-nav swap without this) and remembers
+  # each reader's own checked state in their browser's localStorage.
+  - javascripts/checklist-progress.js
 
 extra_css:
   - stylesheets/extra.css

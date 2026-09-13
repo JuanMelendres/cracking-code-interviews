@@ -20,6 +20,7 @@ for d in "${MIRROR_DIRS[@]}"; do
     --exclude='out' \
     --exclude='target' \
     --exclude='*.class' \
+    --exclude='*.jar' \
     "$d/" "docs/$d/"
 done
 
