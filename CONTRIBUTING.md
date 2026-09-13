@@ -77,7 +77,7 @@ Interview recordings are also gitignored (`recordings/`, `*.m4a`, `*.mp3`, …) 
 |---|---|---|
 | New study pack | `study/week-XX` | `study/week-03` |
 | Correcting an approved week | `fix/week-XX-description` | `fix/week-01-lru-tests` |
-| Handbook chapter | `feat/handbook-<domain>-<topic>` | `feat/handbook-spring-transactional` |
+| Syllabus chapter | `feat/syllabus-<domain>-<topic>` | `feat/syllabus-05-spring-transactional` |
 | Practice exercises | `feat/practice-<area>` | `feat/practice-sql-index-lab` |
 | Repo maintenance | `chore/description` | `chore/add-validation-script` |
 
@@ -103,7 +103,7 @@ Interview recordings are also gitignored (`recordings/`, `*.m4a`, `*.mp3`, …) 
 | Type | Use for |
 |---|---|
 | `docs:` | Study packs, project documents, README |
-| `feat:` | New exercises, scripts, templates, handbook chapters |
+| `feat:` | New exercises, scripts, templates, syllabus chapters |
 | `fix:` | Corrections to previously committed content |
 | `chore:` | Tooling, config, structure |
 | `refactor:` | Reorganisation without content change |

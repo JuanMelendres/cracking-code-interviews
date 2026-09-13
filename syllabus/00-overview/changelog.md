@@ -1011,6 +1011,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `production-cookbook/README.md` (136 → 165 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - The 37-chapter `21-frontend-web` gap remains open, flagged for a future batch.
 
+## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
+
+### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
+
+- User asked to review planning docs, `CONTRIBUTING.md`, `templates/`, and `resources/` next. `resources/repository-tree.md` (generated 2026-09-07) had a regeneration command whose exclude list had drifted: it didn't account for `.venv-docs/` (distinct from the already-excluded `.venv/`) or `site/`/`docs/*` (MkDocs build output) — a fresh run of the old `find`-based command produced over 33,000 lines, more than 10x real content. Replaced with `git ls-files`, which by definition lists only tracked content and cannot drift the way a manual exclude list can. Regenerated (2,992 files).
+- `CONTRIBUTING.md` (branch-naming table, commit-type table) and `templates/adr-template.md` (Related section) still referenced pre-migration `handbook/` terminology — updated to `syllabus/`.
+- `00-project/frontend-topic-register.md`'s front matter was stale relative to its own body (a 2026-09-11 "D-F4"/F-401–F-403 addition the front matter never reflected) — synced.
+- `scripts/validate.py` shows the same pre-existing 3 errors, zero new. The 3 remaining errors (`AGENTS.md`/`CLAUDE.md`'s Cross-Reference Standards example link, `templates/adr-template.md`'s own `./adr-NNN-slug.md` placeholder) are confirmed intentional illustrative examples, not real broken links — left as-is, consistent with this session's standing precedent.
+
 ## [2026-09-12] — Frontend freshness and junior-to-mid closed, completing the learning-paths audit
 
 ### Added (`syllabus/00-overview/learning-paths/frontend-mid-to-senior.md`, `junior-to-mid.md`)

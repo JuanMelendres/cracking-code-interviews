@@ -1,9 +1,9 @@
 ---
 title: Frontend Topic Register — React & Next.js
 document_type: project-register
-status: re-audited 2026-09-08 — all 37 originally-registered topics confirmed to have a real, fully-written chapter in `syllabus/21-frontend-web/` (cross-checked against its own `INDEX.md`, not assumed); Gap column below now reflects reality instead of the 2026-08-12 "nothing exists yet" placeholder. 3 new topics (F-001–F-003, a "D-F0 · Web & Language Fundamentals" section) added the same day to close a real floor gap — see `syllabus/00-overview/changelog.md`'s matching entry.
-version: 1.1
-last_updated: 2026-09-08
+status: re-audited 2026-09-08 — all 37 originally-registered topics confirmed to have a real, fully-written chapter in `syllabus/21-frontend-web/` (cross-checked against its own `INDEX.md`, not assumed); Gap column below now reflects reality instead of the 2026-08-12 "nothing exists yet" placeholder. 3 new topics (F-001–F-003, a "D-F0 · Web & Language Fundamentals" section) added the same day to close a real floor gap. **Updated 2026-09-11** — a new "D-F4 · Advanced Frontend Architecture & Security" tier (F-401–F-403) closed a separate gap-audit finding (frontend security, WebSocket/real-time, micro-frontends); see `syllabus/00-overview/changelog.md`'s matching entries for both.
+version: 1.2
+last_updated: 2026-09-11
 audience:
   - Full-Stack Developer (Junior through Staff)
 ---

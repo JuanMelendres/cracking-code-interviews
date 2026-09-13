@@ -61,5 +61,5 @@ We will <chosen option>, because <the specific decision driver(s) that tipped it
 
 ## Related
 
-- <links to the canonical handbook chapter(s) whose evidence informed this decision>
+- <links to the canonical syllabus chapter(s) whose evidence informed this decision>
 - <links to other ADRs this supersedes, is superseded by, or depends on>
