@@ -1046,6 +1046,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added `navigation.footer` (prev/next chapter links) and `search.highlight`/`search.share`. Both verified present in the built site's HTML/JS output.
 - Verified with a real, local `mkdocs build` matching the CI deploy workflow's exact command — exit 0, only pre-existing, unrelated TOC-anchor warnings.
 
+## [2026-09-13] — 4 more UI improvements to the published docs site (`mkdocs.yml`)
+
+### Added
+
+- Enabled 4 more free/open-source `theme.features` from the installed `mkdocs-material` 9.7.7 package (checked the package's own template guards and JS bundle first — none Insiders-gated): `navigation.path` (breadcrumb trail), `navigation.tracking` (URL hash follows scroll), `header.autohide` (header hides on scroll-down), `content.action.view` ("view source" link next to "edit this page").
+- Checked `syllabus/` for other unrendered-syntax bugs like the tasklist one before adding anything else (footnotes, content tabs, strikethrough/mark/superscript, keyboard-key syntax) — all zero real hits, so no unused extension added.
+- Verified with a real local `mkdocs build` (exit 0, same pre-existing warnings only): confirmed `class="md-path"` breadcrumb markup, `header.autohide`/`navigation.tracking` reaching the page's JS config, and a "View source of this page" link.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

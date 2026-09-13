@@ -42,12 +42,16 @@ theme:
     - navigation.sections
     - navigation.top
     - navigation.footer
+    - navigation.path
+    - navigation.tracking
+    - header.autohide
     - toc.follow
     - search.suggest
     - search.highlight
     - search.share
     - content.code.copy
     - content.action.edit
+    - content.action.view
 
 markdown_extensions:
   - tables
