@@ -3070,3 +3070,11 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - All 5 already carry an inline `## Cheat Sheet` section (handbook-chapter template) — elevated existing, already-verified content (mental model, decision table, decision framework, common mistakes) into the standalone deliverable, nothing derived from memory.
 - Updated `cheat-sheets/README.md` (244 → 249, full parity with `flashcards/`'s 249 decks — no remaining gap in either direction) and `flashcards/README.md` (cross-reference note only, no new decks needed).
 - Verified: `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
+### Added (`production-cookbook/` — 26-chapter backend backlog, 136 → 165 entries)
+
+- User asked to check `production-cookbook/` next for the same "new chapters never get their complementary deliverable" pattern. Re-diffed every `syllabus/` chapter carrying a genuine `## Production Scenarios` section against this directory's own citations (never done before for this deliverable) and found two gaps: a 26-chapter backend backlog (mixing old chapters that predate this deliverable's original batches and every new chapter added this session) and a 37-chapter `21-frontend-web` domain never once audited. User chose to close backend first.
+- Closed 25 of the 26 backend chapters (29 entries — 5 chapters had two genuinely distinct scenarios; `ood-interview-problems.md` contributed only 1 of its 2). Deliberately excluded `writing-tests-live-in-an-interview.md` (both scenarios are about candidate behavior in a live-coding interview, not a production system incident) and `ood-interview-problems.md`'s first scenario (an interviewer follow-up question, not a production incident) — same honest-exclusion discipline as the existing `foreign-function-and-memory-api.md` exception.
+- Every entry's fields were built by expanding the source chapter's own `## Production Scenarios` text; no invented incidents.
+- Updated `production-cookbook/README.md` (136 → 165 entries) with a dated note and 29 new table rows. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- Frontend domain (37 chapters) flagged as a known, open gap, not yet closed.

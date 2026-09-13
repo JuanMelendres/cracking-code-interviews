@@ -1001,6 +1001,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
 - Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-12] — `production-cookbook/` gains a 26-chapter backend backlog (136 → 165 entries), 37-chapter frontend gap flagged
+
+### Added (`production-cookbook/`, backend domains)
+
+- Re-diffed every `syllabus/` chapter carrying a genuine `## Production Scenarios` section against `production-cookbook/`'s own citations — never done before for this deliverable — and found a 26-chapter backend backlog (chapters predating this deliverable's original batches, plus every chapter added this session) and a 37-chapter `21-frontend-web` domain never once audited. User chose backend first.
+- Closed 25 of the 26 backend chapters as 29 entries (5 chapters had two genuinely distinct scenarios; `ood-interview-problems.md` contributed only 1 of its 2). Deliberately excluded `writing-tests-live-in-an-interview.md` (its two scenarios are about candidate behavior in a live-coding interview, not a production system incident) and `ood-interview-problems.md`'s interviewer-follow-up scenario (interview evaluation, not a production incident) — the same honest-exclusion discipline already established for `foreign-function-and-memory-api.md`.
+- Every entry's fields were built by expanding the source chapter's own `## Production Scenarios` text — no invented incidents.
+- Updated `production-cookbook/README.md` (136 → 165 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- The 37-chapter `21-frontend-web` gap remains open, flagged for a future batch.
+
 ## [2026-09-12] — The 5 permanently-open no-IWI `jvm` chapters gain cheat sheets, closing the 2026-08-05 exception
 
 ### Added (`cheat-sheets/`, `02-java/jvm-internals` domain)
