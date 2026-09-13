@@ -1,0 +1,14 @@
+=== GET /tasks (empty list) ===
+[]
+=== POST /tasks (create) ===
+{"id":1,"title":"Write chapter","done":false}
+=== POST /tasks (create a second one) ===
+{"id":2,"title":"Run the demo","done":false}
+=== GET /tasks (now has 2) ===
+[{"id":1,"title":"Write chapter","done":false},{"id":2,"title":"Run the demo","done":false}]
+=== GET /tasks/1 (real id) ===
+{"id":1,"title":"Write chapter","done":false}
+HTTP status: 200
+=== GET /tasks/999 (missing id) ===
+
+HTTP status: 404

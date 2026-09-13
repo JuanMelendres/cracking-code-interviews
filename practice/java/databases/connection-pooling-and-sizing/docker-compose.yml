@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pool-pg
+    environment:
+      POSTGRES_PASSWORD: pooltest
+      POSTGRES_USER: postgres
+      POSTGRES_DB: appdb
+    ports:
+      - "55634:5432"
+    cpus: 2.0
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d

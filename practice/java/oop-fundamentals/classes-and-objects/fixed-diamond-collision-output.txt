@@ -1,0 +1,4 @@
+duck.move() = "flying and swimming"
+PASS: explicit override resolves the collision, and InterfaceName.super.method() reaches each parent's own default explicitly
+
+1 / 1 assertions passed

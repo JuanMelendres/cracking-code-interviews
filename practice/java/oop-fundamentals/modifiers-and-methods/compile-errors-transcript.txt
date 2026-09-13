@@ -1,0 +1,30 @@
+=== BrokenFinalReassignment (real error) ===
+src/BrokenFinalReassignment.java:4: error: cannot assign a value to final variable x
+        x = 10; // ERROR: cannot assign a value to final variable x
+        ^
+1 error
+
+=== BrokenFinalMethodOverride (real error) ===
+src/BrokenFinalMethodOverride.java:10: error: greet() in Child cannot override greet() in Parent
+        void greet() { // ERROR: greet() in Child cannot override greet() in Parent; overridden method is final
+             ^
+  overridden method is final
+1 error
+
+=== BrokenFinalClassExtension (real error) ===
+src/BrokenFinalClassExtension.java:8: error: cannot inherit from final Sealed
+    static class Attempt extends Sealed { // ERROR: cannot inherit from final Sealed
+                                 ^
+1 error
+
+=== BrokenAbstractInstantiation (real error) ===
+src/BrokenAbstractInstantiation.java:7: error: Shape is abstract; cannot be instantiated
+        Shape s = new Shape(); // ERROR: Shape is abstract; cannot be instantiated
+                  ^
+1 error
+
+=== BrokenPrivateAccess (real error, genuinely different top-level classes) ===
+src/BrokenPrivateAccess.java:4: error: balance has private access in BankAccount
+        System.out.println(acc.balance); // ERROR: balance has private access in BankAccount (different top-level class)
+                              ^
+1 error

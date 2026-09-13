@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Fundamentals Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Web Fundamentals Demo</h1>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section id="articles" class="card-grid">
+      <article class="card">
+        <h2>Semantic HTML</h2>
+        <p>
+          This page uses <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+          <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>,
+          <code>&lt;article&gt;</code>, and <code>&lt;footer&gt;</code> instead
+          of generic <code>&lt;div&gt;</code> wrappers everywhere.
+        </p>
+      </article>
+      <article class="card">
+        <h2>The Box Model</h2>
+        <p>
+          Every element on this page is a box: content, then
+          <code>padding</code>, then <code>border</code>, then
+          <code>margin</code>. Inspect <code>.card</code> in DevTools to see
+          the four layers directly.
+        </p>
+      </article>
+      <article class="card">
+        <h2>Flexbox Layout</h2>
+        <p>
+          <code>.card-grid</code> is a real <code>display: flex</code>
+          container with <code>flex-wrap: wrap</code> — resize the window and
+          the three cards reflow instead of overflowing.
+        </p>
+      </article>
+    </section>
+
+    <section id="about" class="about-grid">
+      <h2>CSS Grid Layout</h2>
+      <div class="grid-demo">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <p>&copy; 2026 Web Fundamentals Demo &mdash; served with <code>python3 -m http.server</code>.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

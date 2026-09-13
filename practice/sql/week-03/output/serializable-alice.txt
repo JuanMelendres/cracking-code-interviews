@@ -1,0 +1,16 @@
+BEGIN
+ on_call_count 
+---------------
+             2
+(1 row)
+
+UPDATE 1
+psql:/tmp/sz-alice.sql:5: ERROR:  could not serialize access due to read/write dependencies among transactions
+DETAIL:  Reason code: Canceled on identification as a pivot, during commit attempt.
+HINT:  The transaction might succeed if retried.
+ doctor | is_on_call 
+--------+------------
+ Alice  | t
+ Bob    | t
+(2 rows)
+

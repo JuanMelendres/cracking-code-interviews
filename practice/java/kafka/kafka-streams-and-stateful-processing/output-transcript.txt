@@ -1,0 +1,47 @@
+### Waiting for the broker to accept requests...
+### Creating the input/output topics
+### Starting the real Kafka Streams application in the background
+
+### The real topology, printed by the app itself at startup:
+Topologies:
+   Sub-topology: 0
+    Source: KSTREAM-SOURCE-0000000000 (topics: [streams-input])
+      --> KSTREAM-FLATMAPVALUES-0000000001
+    Processor: KSTREAM-FLATMAPVALUES-0000000001 (stores: [])
+      --> KSTREAM-KEY-SELECT-0000000002
+      <-- KSTREAM-SOURCE-0000000000
+    Processor: KSTREAM-KEY-SELECT-0000000002 (stores: [])
+      --> word-counts-store-repartition-filter
+      <-- KSTREAM-FLATMAPVALUES-0000000001
+    Processor: word-counts-store-repartition-filter (stores: [])
+      --> word-counts-store-repartition-sink
+      <-- KSTREAM-KEY-SELECT-0000000002
+    Sink: word-counts-store-repartition-sink (topic: word-counts-store-repartition)
+      <-- word-counts-store-repartition-filter
+
+  Sub-topology: 1
+    Source: word-counts-store-repartition-source (topics: [word-counts-store-repartition])
+      --> KSTREAM-AGGREGATE-0000000003
+    Processor: KSTREAM-AGGREGATE-0000000003 (stores: [word-counts-store])
+      --> KTABLE-TOSTREAM-0000000007
+      <-- word-counts-store-repartition-source
+    Processor: KTABLE-TOSTREAM-0000000007 (stores: [])
+      --> KSTREAM-SINK-0000000008
+      <-- KSTREAM-AGGREGATE-0000000003
+
+### Producing three lines of input
+
+### Consuming the aggregated KTable output (word -> running count):
+quick:1
+brown:1
+lazy:1
+dog:1
+the:3
+fox:2
+runs:1
+
+### Describing the changelog topic Kafka Streams created automatically for the KTable's state store:
+Topic: word-count-demo-app-word-counts-store-changelog	TopicId: leVG58qAR6af-KFXGHpj5g	PartitionCount: 1	ReplicationFactor: 1	Configs: cleanup.policy=compact,message.timestamp.type=CreateTime
+	Topic: word-count-demo-app-word-counts-store-changelog	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+
+### Stopping the application

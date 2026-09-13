@@ -1,0 +1,61 @@
+=== 1. Insert a small real document set with real hashed-BoW embeddings ===
+inserted 10 documents
+
+=== 2. Real top-k retrieval by cosine distance -- literal keyword overlap ===
+  #1 (distance=0.3795): The JVM garbage collector reclaims heap memory by tracing reachable objects from GC roots and discarding the rest.
+  #2 (distance=0.3970): A well-brewed espresso depends on grind size, water temperature, and extraction time.
+  #3 (distance=0.5477): Kafka partitions provide ordering only within a single partition, not across the whole topic.
+
+=== 2b. Real, honest limitation: a PARAPHRASE of the same question retrieves worse ===
+query: "How is unused memory automatically freed in a Java program?" (means the same thing, shares almost no literal words)
+  #1 (distance=0.5257): A B-tree index lets Postgres seek directly to a row range instead of scanning the entire table.
+  #2 (distance=0.5833): Vector databases store high-dimensional embeddings and support approximate nearest-neighbor search.
+  #3 (distance=0.6039): The JVM garbage collector reclaims heap memory by tracing reachable objects from GC roots and discarding the rest.
+>>> real result: this hashed bag-of-words scheme ranks by literal word/hash overlap only.
+>>> a paraphrase with the same MEANING but different WORDS does not reliably retrieve the GC document --
+>>> a real trained embedding model captures meaning, not just shared vocabulary; this is exactly why production RAG uses one.
+
+=== 3. Real pitfall: raw (unnormalized) vectors + L2 distance rank differently than cosine ===
+cosine distance on NORMALIZED vectors (embedding <=> ...):
+  distance=0.5852: PostgreSQL's query planner chooses between a sequential scan and an index scan based on estimated cost.
+  distance=0.6838: A B-tree index lets Postgres seek directly to a row range instead of scanning the entire table.
+  distance=0.7226: REST APIs use HTTP status codes to signal success, client error, or server error to the caller.
+L2 distance on RAW, unnormalized vectors (embedding_raw <-> ...) -- same query:
+  distance=3.6056: Vector databases store high-dimensional embeddings and support approximate nearest-neighbor search.
+  distance=4.3589: Kafka partitions provide ordering only within a single partition, not across the whole topic.
+  distance=4.3589: HNSW builds a multi-layer graph of vectors to make nearest-neighbor search fast at scale.
+>>> real ranking differs between the two -- L2 distance on raw term counts is sensitive to document length in a way normalized cosine distance is not.
+
+=== 4. Scale test: 5,000 synthetic rows, EXPLAIN ANALYZE before vs. after a real HNSW index ===
+inserting 5000 synthetic rows...
+insert took 71ms
+
+--- EXPLAIN ANALYZE BEFORE any vector index (real Seq Scan) ---
+  Limit  (cost=510.81..510.84 rows=10 width=40) (actual time=0.600..0.601 rows=10 loops=1)
+    ->  Sort  (cost=510.81..538.65 rows=11135 width=40) (actual time=0.600..0.600 rows=10 loops=1)
+          Sort Key: ((embedding <=> '[0,0.4082483,0,0,0,0,0,0,0,0,0,0,0.4082483,0.4082483,0,0,0,0,0,0,0,0.4082483,0,0.4082483,0,0,0,0,0,0,0.4082483,0]'::vector))
+          Sort Method: top-N heapsort  Memory: 26kB
+          ->  Seq Scan on documents_scale  (cost=0.00..270.19 rows=11135 width=40) (actual time=0.005..0.367 rows=5000 loops=1)
+  Planning Time: 0.043 ms
+  Execution Time: 0.606 ms
+
+real HNSW index build took 115ms
+
+--- EXPLAIN ANALYZE AFTER the real HNSW index (real Index Scan) ---
+  Limit  (cost=17.67..19.15 rows=10 width=40) (actual time=0.056..0.064 rows=10 loops=1)
+    ->  Index Scan using documents_scale_hnsw_idx on documents_scale  (cost=17.67..760.00 rows=5000 width=40) (actual time=0.055..0.060 rows=10 loops=1)
+          Order By: (embedding <=> '[0,0.4082483,0,0,0,0,0,0,0,0,0,0,0.4082483,0.4082483,0,0,0,0,0,0,0,0.4082483,0,0.4082483,0,0,0,0,0,0,0.4082483,0]'::vector)
+  Planning Time: 0.061 ms
+  Execution Time: 0.071 ms
+
+=== 5. Assembled RAG prompt: real top-k retrieval feeding a real augmented prompt ===
+real top-2 retrieved context, assembled into the real prompt sent to the LLM:
+----
+Answer the question using ONLY the context below.
+
+Context:
+- The JVM garbage collector reclaims heap memory by tracing reachable objects from GC roots and discarding the rest.
+- A well-brewed espresso depends on grind size, water temperature, and extraction time.
+
+Question: JVM garbage collector heap memory reachable objects
+----

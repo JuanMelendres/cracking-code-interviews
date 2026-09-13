@@ -1,0 +1,74 @@
+Real output from running setup.sh (git 2.55.0). Commit hashes differ run-to-
+run (they embed a timestamp); the conflict, the resulting graph SHAPES, and
+the parent-count/linearity facts are identical on every run -- that structural
+behavior, not the specific hashes, is what this demo proves.
+
+=== history graph BEFORE merge/rebase: two divergent branches ===
+* 656a18e C3 (feature): add line2
+| * 614f97a C4 (main): diverging change to same line
+|/
+* c3e752d C2: unrelated feature groundwork
+* ea07003 C1: initial file
+
+########## PATH A: git merge ##########
+=== git merge feature (real conflict, both touched the same line) ===
+Auto-merging shared.txt
+CONFLICT (content): Merge conflict in shared.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+=== conflict markers in shared.txt ===
+line1
+<<<<<<< HEAD
+line2 (main, different)
+=======
+line2 (feature)
+>>>>>>> feature
+
+=== history AFTER merge: a merge commit with TWO parents preserves both branch histories exactly as they happened ===
+*   2e5eaed M: merge feature into main, resolve conflict
+|\
+| * 656a18e C3 (feature): add line2
+* | 614f97a C4 (main): diverging change to same line
+|/
+* c3e752d C2: unrelated feature groundwork
+* ea07003 C1: initial file
+
+=== merge commit parent list (real DAG fact, not a diagram simplification) ===
+parent 614f97ab1f41f0fce9f97d64172a80e462480275
+parent 656a18e4aa57fb582ac7f7c765d359c5510880e0
+
+########## PATH B: git rebase (same starting point) ##########
+=== git rebase main (from feature branch): replay C3 on top of C4 ==="
+Rebasing (1/1)Auto-merging shared.txt
+CONFLICT (content): Merge conflict in shared.txt
+error: could not apply 656a18e... C3 (feature): add line2
+
+=== same conflict, but hit during the replay, not at a merge point ===
+line1
+<<<<<<< HEAD
+line2 (main, different)
+=======
+line2 (feature)
+>>>>>>> 656a18e (C3 (feature): add line2)
+
+[detached HEAD 585ef61] C3 (feature): add line2
+Successfully rebased and updated refs/heads/feature.
+
+=== history AFTER rebase: LINEAR -- feature's commit is a NEW commit object replayed on top of main, no merge commit ===
+* 585ef61 C3 (feature): add line2
+* 614f97a C4 (main): diverging change to same line
+* c3e752d C2: unrelated feature groundwork
+* ea07003 C1: initial file
+
+Key structural facts, true on every run regardless of hash values:
+- The conflict happens on BOTH paths -- rebase does not avoid conflicts, it
+  just resolves them one replayed commit at a time instead of once at a merge
+  point.
+- git merge: 5 commits total, 1 merge commit with 2 parents, both original
+  branch tips (C3, C4) preserved unchanged in history.
+- git rebase: 4 commits total, fully linear, no merge commit -- but C3's
+  commit hash changed (585ef61, not the original 656a18e) because it is
+  LITERALLY A NEW commit object with a different parent and therefore a
+  different hash. This is why rebasing PUBLISHED/shared commits is dangerous:
+  anyone who already pulled the old C3 now has a commit that no longer exists
+  on the rewritten branch.

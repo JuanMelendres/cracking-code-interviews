@@ -1,0 +1,39 @@
+services:
+  primary:
+    image: postgres:16
+    container_name: repl-primary
+    environment:
+      POSTGRES_PASSWORD: primarypass
+      POSTGRES_USER: postgres
+      POSTGRES_DB: appdb
+    command: >
+      postgres
+      -c wal_level=replica
+      -c max_wal_senders=5
+      -c max_replication_slots=5
+      -c hot_standby=on
+    ports:
+      - "55432:5432"
+    volumes:
+      - ./primary-init:/docker-entrypoint-initdb.d
+    networks:
+      - repl-net
+
+  replica:
+    image: postgres:16
+    container_name: repl-replica
+    depends_on:
+      - primary
+    environment:
+      POSTGRES_PASSWORD: primarypass
+    ports:
+      - "55433:5432"
+    entrypoint: ["/bin/bash", "/replica-entrypoint.sh"]
+    volumes:
+      - ./replica-entrypoint.sh:/replica-entrypoint.sh
+    networks:
+      - repl-net
+
+networks:
+  repl-net:
+    driver: bridge

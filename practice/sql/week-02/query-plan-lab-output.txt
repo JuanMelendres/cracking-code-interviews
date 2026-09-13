@@ -1,0 +1,198 @@
+CREATE TABLE
+CREATE TABLE
+INSERT 0 5000
+INSERT 0 300000
+ANALYZE
+ANALYZE
+--- Scenario 1: join with no index on the foreign key ---
+[1-before] Join customers to their orders, filtered by region
+                                                                   QUERY PLAN                                                                    
+-------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize HashAggregate  (cost=6400.80..6413.30 rows=1250 width=12) (actual time=17.876..18.408 rows=1250 loops=1)
+   Group Key: c.id
+   Batches: 1  Memory Usage: 193kB
+   Buffers: shared hit=2761
+   ->  Gather  (cost=6257.05..6394.55 rows=1250 width=12) (actual time=17.534..18.148 rows=2500 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=2761
+         ->  Partial HashAggregate  (cost=5257.05..5269.55 rows=1250 width=12) (actual time=16.592..16.652 rows=1250 loops=2)
+               Group Key: c.id
+               Batches: 1  Memory Usage: 193kB
+               Buffers: shared hit=2761
+               Worker 0:  Batches: 1  Memory Usage: 193kB
+               ->  Hash Join  (cost=106.12..5036.46 rows=44118 width=12) (actual time=0.270..13.813 rows=37500 loops=2)
+                     Hash Cond: (o.customer_id = c.id)
+                     Buffers: shared hit=2761
+                     ->  Parallel Seq Scan on orders o  (cost=0.00..4466.71 rows=176471 width=12) (actual time=0.003..6.105 rows=150000 loops=2)
+                           Buffers: shared hit=2702
+                     ->  Hash  (cost=90.50..90.50 rows=1250 width=4) (actual time=0.261..0.261 rows=1250 loops=2)
+                           Buckets: 2048  Batches: 1  Memory Usage: 60kB
+                           Buffers: shared hit=56
+                           ->  Seq Scan on customers c  (cost=0.00..90.50 rows=1250 width=4) (actual time=0.004..0.191 rows=1250 loops=2)
+                                 Filter: (region = 'eu'::text)
+                                 Rows Removed by Filter: 3750
+                                 Buffers: shared hit=56
+ Planning:
+   Buffers: shared hit=74 read=2
+ Planning Time: 0.140 ms
+ Execution Time: 18.446 ms
+(29 rows)
+
+[1-fix] Add the index the join and filter both need
+CREATE INDEX
+CREATE INDEX
+[1-after] Same query, after both indexes exist
+                                                                            QUERY PLAN                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize HashAggregate  (cost=6371.89..6384.39 rows=1250 width=12) (actual time=17.572..18.026 rows=1250 loops=1)
+   Group Key: c.id
+   Batches: 1  Memory Usage: 193kB
+   Buffers: shared hit=2765 read=3
+   ->  Gather  (cost=6228.14..6365.64 rows=1250 width=12) (actual time=17.232..17.771 rows=2500 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=2765 read=3
+         ->  Partial HashAggregate  (cost=5228.14..5240.64 rows=1250 width=12) (actual time=16.657..16.717 rows=1250 loops=2)
+               Group Key: c.id
+               Batches: 1  Memory Usage: 193kB
+               Buffers: shared hit=2765 read=3
+               Worker 0:  Batches: 1  Memory Usage: 193kB
+               ->  Hash Join  (cost=77.22..5007.55 rows=44118 width=12) (actual time=0.153..14.029 rows=37500 loops=2)
+                     Hash Cond: (o.customer_id = c.id)
+                     Buffers: shared hit=2765 read=3
+                     ->  Parallel Seq Scan on orders o  (cost=0.00..4466.71 rows=176471 width=12) (actual time=0.002..6.297 rows=150000 loops=2)
+                           Buffers: shared hit=2702
+                     ->  Hash  (cost=61.59..61.59 rows=1250 width=4) (actual time=0.145..0.145 rows=1250 loops=2)
+                           Buckets: 2048  Batches: 1  Memory Usage: 60kB
+                           Buffers: shared hit=60 read=3
+                           ->  Bitmap Heap Scan on customers c  (cost=17.97..61.59 rows=1250 width=4) (actual time=0.019..0.088 rows=1250 loops=2)
+                                 Recheck Cond: (region = 'eu'::text)
+                                 Heap Blocks: exact=28
+                                 Buffers: shared hit=60 read=3
+                                 ->  Bitmap Index Scan on idx_customers_region  (cost=0.00..17.66 rows=1250 width=0) (actual time=0.015..0.015 rows=1250 loops=2)
+                                       Index Cond: (region = 'eu'::text)
+                                       Buffers: shared hit=4 read=3
+ Planning:
+   Buffers: shared hit=45 read=5
+ Planning Time: 0.133 ms
+ Execution Time: 18.074 ms
+(32 rows)
+
+--- Scenario 2: function wrapped around an indexed column defeats the index ---
+CREATE INDEX
+[2-before] Filtering with UPPER(status) — the plain index on status cannot be used
+                                                        QUERY PLAN                                                        
+--------------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..6499.06 rows=1500 width=35) (actual time=0.090..20.613 rows=49635 loops=1)
+   Workers Planned: 1
+   Workers Launched: 1
+   Buffers: shared hit=2702
+   ->  Parallel Seq Scan on orders  (cost=0.00..5349.06 rows=882 width=35) (actual time=0.024..18.575 rows=24818 loops=2)
+         Filter: (upper(status) = 'REFUNDED'::text)
+         Rows Removed by Filter: 125182
+         Buffers: shared hit=2702
+ Planning:
+   Buffers: shared hit=26 read=1
+ Planning Time: 0.066 ms
+ Execution Time: 21.614 ms
+(12 rows)
+
+[2-fix] Build a matching expression index
+CREATE INDEX
+[2-after] Same query, expression index now usable
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Bitmap Heap Scan on orders  (cost=20.05..2418.02 rows=1500 width=35) (actual time=0.806..4.850 rows=49635 loops=1)
+   Recheck Cond: (upper(status) = 'REFUNDED'::text)
+   Heap Blocks: exact=2702
+   Buffers: shared hit=2702 read=45
+   ->  Bitmap Index Scan on idx_orders_status_upper  (cost=0.00..19.67 rows=1500 width=0) (actual time=0.625..0.625 rows=49635 loops=1)
+         Index Cond: (upper(status) = 'REFUNDED'::text)
+         Buffers: shared read=45
+ Planning:
+   Buffers: shared hit=19 read=1
+ Planning Time: 0.071 ms
+ Execution Time: 5.805 ms
+(11 rows)
+
+--- Scenario 3: nested loop vs hash join, driven by join-column statistics ---
+[3-before] Force a nested loop to show its cost on this data volume
+SET
+SET
+                                                                             QUERY PLAN                                                                              
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize GroupAggregate  (cost=12264.82..12265.36 rows=4 width=38) (actual time=47.083..47.793 rows=4 loops=1)
+   Group Key: c.region
+   Buffers: shared hit=32711
+   ->  Gather Merge  (cost=12264.82..12265.28 rows=4 width=38) (actual time=47.078..47.786 rows=8 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=32711
+         ->  Sort  (cost=11264.81..11264.82 rows=4 width=38) (actual time=46.504..46.505 rows=4 loops=2)
+               Sort Key: c.region
+               Sort Method: quicksort  Memory: 25kB
+               Buffers: shared hit=32711
+               Worker 0:  Sort Method: quicksort  Memory: 25kB
+               ->  Partial HashAggregate  (cost=11264.72..11264.77 rows=4 width=38) (actual time=46.497..46.498 rows=4 loops=2)
+                     Group Key: c.region
+                     Batches: 1  Memory Usage: 24kB
+                     Buffers: shared hit=32703
+                     Worker 0:  Batches: 1  Memory Usage: 24kB
+                     ->  Nested Loop  (cost=0.29..10382.36 rows=176471 width=12) (actual time=0.008..32.484 rows=150000 loops=2)
+                           Buffers: shared hit=32703
+                           ->  Parallel Seq Scan on orders o  (cost=0.00..4466.71 rows=176471 width=10) (actual time=0.002..5.878 rows=150000 loops=2)
+                                 Buffers: shared hit=2702
+                           ->  Memoize  (cost=0.29..0.31 rows=1 width=10) (actual time=0.000..0.000 rows=1 loops=300000)
+                                 Cache Key: o.customer_id
+                                 Cache Mode: logical
+                                 Hits: 148741  Misses: 5000  Evictions: 0  Overflows: 0  Memory Usage: 542kB
+                                 Buffers: shared hit=30001
+                                 Worker 0:  Hits: 141259  Misses: 5000  Evictions: 0  Overflows: 0  Memory Usage: 542kB
+                                 ->  Index Scan using customers_pkey on customers c  (cost=0.28..0.30 rows=1 width=10) (actual time=0.000..0.000 rows=1 loops=10000)
+                                       Index Cond: (id = o.customer_id)
+                                       Buffers: shared hit=30001
+ Planning:
+   Buffers: shared hit=16 read=4
+ Planning Time: 0.101 ms
+ Execution Time: 47.811 ms
+(34 rows)
+
+RESET
+RESET
+[3-after] Let the planner choose freely — it picks a hash join instead
+                                                                      QUERY PLAN                                                                       
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize GroupAggregate  (cost=6953.29..6953.83 rows=4 width=38) (actual time=34.364..35.033 rows=4 loops=1)
+   Group Key: c.region
+   Buffers: shared hit=2780
+   ->  Gather Merge  (cost=6953.29..6953.75 rows=4 width=38) (actual time=34.358..35.026 rows=8 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=2780
+         ->  Sort  (cost=5953.28..5953.29 rows=4 width=38) (actual time=33.749..33.750 rows=4 loops=2)
+               Sort Key: c.region
+               Sort Method: quicksort  Memory: 25kB
+               Buffers: shared hit=2780
+               Worker 0:  Sort Method: quicksort  Memory: 25kB
+               ->  Partial HashAggregate  (cost=5953.19..5953.24 rows=4 width=38) (actual time=33.741..33.743 rows=4 loops=2)
+                     Group Key: c.region
+                     Batches: 1  Memory Usage: 24kB
+                     Buffers: shared hit=2772
+                     Worker 0:  Batches: 1  Memory Usage: 24kB
+                     ->  Hash Join  (cost=140.50..5070.83 rows=176471 width=12) (actual time=0.538..19.539 rows=150000 loops=2)
+                           Hash Cond: (o.customer_id = c.id)
+                           Buffers: shared hit=2772
+                           ->  Parallel Seq Scan on orders o  (cost=0.00..4466.71 rows=176471 width=10) (actual time=0.003..5.881 rows=150000 loops=2)
+                                 Buffers: shared hit=2702
+                           ->  Hash  (cost=78.00..78.00 rows=5000 width=10) (actual time=0.522..0.522 rows=5000 loops=2)
+                                 Buckets: 8192  Batches: 1  Memory Usage: 274kB
+                                 Buffers: shared hit=56
+                                 ->  Seq Scan on customers c  (cost=0.00..78.00 rows=5000 width=10) (actual time=0.003..0.236 rows=5000 loops=2)
+                                       Buffers: shared hit=56
+ Planning:
+   Buffers: shared hit=12
+ Planning Time: 0.101 ms
+ Execution Time: 35.048 ms
+(31 rows)
+

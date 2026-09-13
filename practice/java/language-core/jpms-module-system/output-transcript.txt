@@ -1,0 +1,28 @@
+### Scenario A.1 — reflective access into a package that is EXPORTED but NOT OPENED
+### (temporarily strips the 'opens' line to reproduce the original, unopened module)
+--- running ReflectiveProbe against the export-only module ---
+Exception in thread "main" java.lang.reflect.InaccessibleObjectException: Unable to make field private java.lang.String com.example.modA.Secret.value accessible: module com.example.modA does not "opens com.example.modA" to module com.example.modB
+	at java.base/java.lang.reflect.AccessibleObject.throwInaccessibleObjectException(AccessibleObject.java:391)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:367)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:315)
+	at java.base/java.lang.reflect.Field.checkCanSetAccessible(Field.java:183)
+	at java.base/java.lang.reflect.Field.setAccessible(Field.java:177)
+	at com.example.modB/com.example.modB.ReflectiveProbe.main(ReflectiveProbe.java:10)
+
+### Scenario A.2 — same reflective call, now that modA declares 'opens com.example.modA to com.example.modB'
+--- running ReflectiveProbe again, module descriptor now includes the qualified opens ---
+read private field via reflection: classified-42
+
+### Scenario B.1 — ServiceLoader resolves a provider module the consumer never 'requires'
+### (com.example.svc.app has no 'requires com.example.svc.provider' in its module-info.java)
+--- running: java --module-path out-b -m com.example.svc.app/com.example.svc.app.Main ---
+com.example.svc.provider.internal.EnglishGreeter -> Hello, World!
+providers found: 1
+
+### Scenario B.2 — a DIRECT import of that same provider's internal, non-exported package fails at compile time
+--- compiling the illegal direct import (real javac error expected) ---
+src-b/com.example.svc.app/com/example/svc/app/Main.java:4: error: package com.example.svc.provider.internal is not visible
+import com.example.svc.provider.internal.EnglishGreeter;
+                               ^
+  (package com.example.svc.provider.internal is declared in module com.example.svc.provider, but module com.example.svc.app does not read it)
+1 error

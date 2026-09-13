@@ -1,0 +1,8 @@
+/* F-302: `source(none)` disables Tailwind v4's DEFAULT automatic content
+   detection (which scans the whole project, respecting .gitignore --
+   including this app's own README.md, a real, decisive, unexpectedly
+   broad finding this chapter's own testing surfaced) in favor of an
+   explicit, narrow allowlist -- the real, documented fix. */
+@import "tailwindcss" source(none);
+@source "./";
+

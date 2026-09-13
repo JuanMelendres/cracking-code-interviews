@@ -1,0 +1,40 @@
+Real output from running setup.sh (git 2.55.0). The blob hash for "hello
+world" is byte-for-byte deterministic (SHA-1 of a fixed content+header) and
+will be IDENTICAL on any run, anywhere -- that is the entire point of
+content-addressable storage. Commit hashes include a timestamp and therefore
+differ run-to-run; the ones below are from one real execution, kept verbatim
+rather than redacted.
+
+=== blob hash for 'hello world' ===
+3b18e512dba79e4c8300dd08aeb37f8e728b8dad
+=== git cat-file -t (type) and -p (content) ===
+blob
+hello world
+
+=== identical content in a second file produces the SAME blob hash (content-addressable) ===
+100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad	file-copy.txt
+100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad	file.txt
+
+=== commit object content: tree pointer + parent pointer + author/committer ===
+tree 2708b3ad01ccbd746bbe56ff4aacb8c0aa4d9abe
+parent 28af30681a93f7510fc2ed66c25d970be062ac31
+author Demo <demo@example.com> 1786574948 -0600
+committer Demo <demo@example.com> 1786574948 -0600
+
+add duplicate content file
+
+=== the commit hash is itself derived from its content (tree+parent+message+timestamps) ===
+HEAD commit hash: eda0b7098816374cfdf86497a5d9bc4a4ce538b2
+
+=== a commit's hash changes if ANY of that content changes -- amend and compare ===
+before amend: eda0b7098816374cfdf86497a5d9bc4a4ce538b2
+after amend:  39fa58909975eb0ee846b88f7a4875eadccb9845
+same tree, different commit hash (message changed): true
+
+Note: file-copy.txt and file.txt are two different FILENAMES pointing to the
+exact same blob object (3b18e512...) in the tree listing above -- git never
+stores the same content twice, regardless of how many files or commits
+reference it. This is the mechanism that makes git repos with many similar
+file revisions (e.g. large refactors, renamed files with unchanged content)
+storage-efficient: renames and duplicate content cost effectively nothing in
+the object store, only a new tree entry.

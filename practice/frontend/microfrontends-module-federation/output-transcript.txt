@@ -1,0 +1,45 @@
+npm notice run microfrontends-module-federation-demo@1.0.0 start
+npm notice run npm run build && node run.js
+npm notice run microfrontends-module-federation-demo@1.0.0 build
+npm notice run npm run build:remote && npm run build:host
+npm notice run microfrontends-module-federation-demo@1.0.0 build:remote
+npm notice run webpack --config remote/webpack.config.js
+asset remoteEntry.js 10.4 KiB [emitted] (name: remoteApp)
+asset src_Button_js.js 988 bytes [emitted]
+runtime modules 5.36 KiB 8 modules
+built modules 553 bytes [built]
+  container entry 42 bytes [built] [code generated]
+  ./src/Button.js 511 bytes [built] [code generated]
+webpack 5.110.3 compiled successfully in 54 ms
+npm notice run microfrontends-module-federation-demo@1.0.0 build:host
+npm notice run webpack --config host/webpack.config.js
+asset bundle.js 15.9 KiB [emitted] (name: main)
+asset src_bootstrap_js.bundle.js 1.26 KiB [emitted]
+runtime modules 9.29 KiB 11 modules
+built modules 676 bytes (javascript) 6 bytes (remote) 6 bytes (share-init) [built]
+  cacheable modules 634 bytes
+    ./src/index.js 23 bytes [built] [code generated]
+    ./src/bootstrap.js 611 bytes [built] [code generated]
+  remote remoteApp/Button 6 bytes (remote) 6 bytes (share-init) [built] [code generated]
+  external "remoteApp@http://localhost:3001/remoteEntry.js" 42 bytes [built] [code generated]
+webpack 5.110.3 compiled successfully in 48 ms
+
+=== 1. Host shell renders a component whose actual code came from a separately built remote bundle ===
+Host page label (host's own code): Host shell loaded a component from a separately built remote:
+Rendered button text (came from remote): Remote Button v1
+Host page fetched remote's remoteEntry.js at runtime: true
+Host page fetched remote's Button chunk at runtime: true
+
+=== 2. Rebuilding ONLY the remote, with the host never rebuilt, changes what the host renders ===
+Editing remote/src/Button.js and rebuilding ONLY the remote (no host rebuild)...
+npm notice run microfrontends-module-federation-demo@1.0.0 npx
+npm notice run 'webpack' --config remote/webpack.config.js
+asset remoteEntry.js 10.4 KiB [compared for emit] (name: remoteApp)
+asset src_Button_js.js 1010 bytes [emitted]
+runtime modules 5.36 KiB 8 modules
+built modules 579 bytes [built]
+  container entry 42 bytes [built] [code generated]
+  ./src/Button.js 537 bytes [built] [code generated]
+webpack 5.110.3 compiled successfully in 44 ms
+Rendered button text after remote-only rebuild (host bundle.js untouched): Remote Button v2 -- deployed independently
+Rendered button background-color after remote-only rebuild: rgb(197, 48, 48)

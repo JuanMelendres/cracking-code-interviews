@@ -1,0 +1,25 @@
+=== 1. Client-shaped query: only `title`, nothing else ===
+data:   {books=[{title=Designing Data-Intensive Applications}, {title=Database Internals}, {title=Release It!}]}
+
+=== 2. Naive per-object resolver: N+1 in action (3 books -> author backend calls) ===
+data:   {books=[{title=Designing Data-Intensive Applications, author={name=Martin Kleppmann}}, {title=Database Internals, author={name=Alex Petrov}}, {title=Release It!, author={name=Michael Nygard}}]}
+>>> author backend was called 3 times for 3 books (N+1)
+
+=== 3. Same query, DataLoader-batched resolver: exactly 1 backend call ===
+data:   {books=[{title=Designing Data-Intensive Applications, author={name=Martin Kleppmann}}, {title=Database Internals, author={name=Alex Petrov}}, {title=Release It!, author={name=Michael Nygard}}]}
+>>> author backend was called 1 time(s) for the same 3 books
+
+=== 4. Mutation: addBook ===
+data:   {addBook={id=b4, title=The Phoenix Project, author={name=Michael Nygard}}}
+
+=== 5. Validation-time error: rejects the WHOLE request, data is null (still HTTP 200) ===
+data:   null
+errors: [ValidationError{validationErrorType=FieldUndefined, queryPath=[missingTopLevelField], message=Validation error (FieldUndefined@[missingTopLevelField]) : Field 'missingTopLevelField' in type 'Query' is undefined, locations=[SourceLocation{line=1, column=19}], description='Validation error (FieldUndefined@[missingTopLevelField]) : Field 'missingTopLevelField' in type 'Query' is undefined', extensions=[]}]
+
+=== 6. Execution error under a NON-NULL field: null bubbles up and wipes the whole response ===
+data:   null
+errors: [ExceptionWhileDataFetching{path=[books, 1, author], exception=java.lang.RuntimeException: author service unavailable for book b2, locations=[SourceLocation{line=1, column=17}]}]
+
+=== 7. Same failure, `author` declared NULLABLE: the rest of the data really does survive ===
+data:   {books=[{title=Designing Data-Intensive Applications, author={name=Martin Kleppmann}}, {title=Database Internals, author=null}, {title=Release It!, author={name=Michael Nygard}}, {title=The Phoenix Project, author={name=Michael Nygard}}]}
+errors: [ExceptionWhileDataFetching{path=[books, 1, author], exception=java.lang.RuntimeException: author service unavailable for book b2, locations=[SourceLocation{line=1, column=17}]}]
