@@ -2,6 +2,17 @@ site_name: Cracking Code Interviews
 site_description: Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.
 site_author: Juan Melendres
 site_url: https://juanmelendres.github.io/cracking-code-interviews/
+repo_url: https://github.com/JuanMelendres/cracking-code-interviews
+repo_name: JuanMelendres/cracking-code-interviews
+# Points at the repo root, not docs/: every mirrored directory (syllabus/,
+# cheat-sheets/, study-packs/, etc. -- see scripts/build_docs_site.sh) has
+# the identical relative path under docs/ and under the repo root, so an
+# edit link built from a mirrored page's docs_dir-relative path resolves
+# correctly against the real source file. The only exception is the small
+# set of hand-authored docs/ files (index.md, stylesheets/) themselves,
+# whose "edit" link will point one directory too shallow -- accepted,
+# since those are a handful of files versus hundreds of mirrored ones.
+edit_uri: edit/main/
 copyright: Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
 docs_dir: docs
 site_dir: site
@@ -30,9 +41,13 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - toc.follow
     - search.suggest
+    - search.highlight
+    - search.share
     - content.code.copy
+    - content.action.edit
 
 markdown_extensions:
   - tables
@@ -46,6 +61,8 @@ markdown_extensions:
   - pymdownx.highlight
   - admonition
   - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
   - search

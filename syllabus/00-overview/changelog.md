@@ -1037,6 +1037,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `practice/mock-interviews/README.md` (14 → 15 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - **This closes the mock-interview freshness audit in full — no known outstanding gap remains across any domain.**
 
+## [2026-09-13] — 4 UI improvements to the published docs site (`mkdocs.yml`)
+
+### Fixed
+
+- User asked whether the site's UI could be improved. Found checklist items (`- [ ] ...`, present in every syllabus-topic chapter's Mastery Checklist and every study-pack week's Completion Criteria) rendered as literal `[ ] text` in the built HTML rather than real checkboxes — `pymdownx.tasklist` was never enabled. Fixed, verified via a real local `mkdocs build` that `<li class="task-list-item">` with a real `<input>` checkbox now renders.
+- Added `repo_url`/`edit_uri` (GitHub header link, "edit this page" on every chapter) — verified the generated edit link resolves to the exact real source file, since `docs_dir`'s mirrored directories share an identical relative path with the repo root.
+- Added `navigation.footer` (prev/next chapter links) and `search.highlight`/`search.share`. Both verified present in the built site's HTML/JS output.
+- Verified with a real, local `mkdocs build` matching the CI deploy workflow's exact command — exit 0, only pre-existing, unrelated TOC-anchor warnings.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
