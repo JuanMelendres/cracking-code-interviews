@@ -71,7 +71,13 @@ markdown_extensions:
       custom_checkbox: true
 
 plugins:
-  - search
+  - search:
+      # Default separator (`[\s\-]+`) only splits on whitespace/hyphen, so
+      # technical tokens this content is full of -- `@Transactional`,
+      # `java.util.concurrent`, `getUser()`, `camelCaseIdentifiers` -- index
+      # as one glued token each, unsearchable by their meaningful part alone.
+      # This also splits on punctuation and camelCase/PascalCase boundaries.
+      separator: '[\s\-,:!=\[\]()"`/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)'
   - awesome-pages
   - git-revision-date-localized:
       type: date

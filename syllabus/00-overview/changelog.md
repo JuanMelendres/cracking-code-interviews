@@ -1072,6 +1072,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Verified: a symlinked file rendered "September 8, 2026", matching `git log` on the real file exactly; a rewritten (non-symlinked) file fell back to the build date with no error. `validate.py`: same pre-existing 3 errors, 0 new.
 - Also evaluated `mkdocs-redirects` for the `handbook/` → `syllabus/` migration — `mkdocs.yml` was first added 2026-09-08, one day after the 2026-09-07 migration, so the published site never served `handbook/` URLs. No real broken link exists; installed the package to check, then uninstalled it rather than fix a non-existent problem.
 
+## [2026-09-13] — Search tokenization fix + custom 404 page
+
+### Added
+
+- Confirmed via the installed `mkdocs-material` package's own bundled English config that the real default search `separator` is `[\s\-]+` (whitespace/hyphen only) — technical tokens like `@Transactional`, `java.util.concurrent`, `getUser()` each index as one glued token. Configured `plugins.search.separator` to also split on punctuation and camelCase/PascalCase boundaries; verified the built `search_index.json` carries the new value.
+- Added `docs/404.md` — the default 404 page had no guidance text (just "404 - Not found", though header/search/nav were already present via `overrides/main.html`). New copy explains the likely cause (the `syllabus/` migration) and links to the front page, the Syllabus index, and search.
+- `validate.py`: same pre-existing 3 errors, 0 new.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
