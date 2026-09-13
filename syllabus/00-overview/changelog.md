@@ -1029,6 +1029,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `practice/mock-interviews/README.md` (13 → 14 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - Frontend (F-401–F-403) mock round remains the last open, flagged item.
 
+## [2026-09-13] — `practice/mock-interviews/` gains a Frontend Security/Real-Time/Micro-Frontends round (14 → 15), closing the mock-interview freshness audit
+
+### Added (`practice/mock-interviews/frontend-security-realtime-and-microfrontends-round.md`)
+
+- Closed the last flagged item from the two entries above. Built covering F-401 (Frontend Security), F-402 (WebSocket/SSE), and F-403 (Micro-Frontends) — the newest `21-frontend-web` chapters, again with no prior study-pack mock source. All 6 technical questions are each chapter's own already-written Interview Questions (2 per chapter); cross-references all 3 real `production-cookbook/` entries already covering these exact scenarios (`reflected-xss-from-a-bypassed-default-escaping-path.md`, `websocket-dashboard-silently-freezing-after-a-dropped-connection.md`, `two-teams-colliding-on-release-schedules-for-one-shared-frontend-bundle.md`).
+- Updated `practice/mock-interviews/README.md` (14 → 15 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- **This closes the mock-interview freshness audit in full — no known outstanding gap remains across any domain.**
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

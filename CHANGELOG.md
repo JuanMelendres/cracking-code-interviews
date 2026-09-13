@@ -3121,3 +3121,9 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Continuing the same freshness pass: built [`graphql-grpc-api-design-round.md`](practice/mock-interviews/graphql-grpc-api-design-round.md), again with no prior study-pack mock source (both chapters added 2026-09-09, after every study-pack program). 4 of 6 technical questions are each chapter's own already-written Interview Questions; the other 2 (GraphQL's HTTP-200-on-error, gRPC's shared-codegen guarantee) are drawn from each chapter's own already-written `flashcards/` deck — nothing independently re-derived. Cross-references the two real `production-cookbook/` entries already covering these exact failure modes (`graphql-n-plus-one-overloading-a-downstream-author-service.md`, `deadline-less-grpc-call-cascading-into-thread-pool-exhaustion.md`).
 - Updated `practice/mock-interviews/README.md` (13 → 14 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - Frontend (F-401–F-403) mock round remains the last open, flagged item.
+
+### Added (`practice/mock-interviews/` — Frontend Security/Real-Time/Micro-Frontends Round, 14 → 15)
+
+- Closed the last flagged item. Built [`frontend-security-realtime-and-microfrontends-round.md`](practice/mock-interviews/frontend-security-realtime-and-microfrontends-round.md) covering F-401/F-402/F-403 (the newest `21-frontend-web` chapters), again with no prior study-pack mock source. All 6 technical questions are each chapter's own already-written Interview Questions (2 per chapter); cross-references all 3 real `production-cookbook/` entries already covering these exact scenarios.
+- Updated `practice/mock-interviews/README.md` (14 → 15 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- **This closes the mock-interview freshness audit in full — no known outstanding gap remains across any domain.**
