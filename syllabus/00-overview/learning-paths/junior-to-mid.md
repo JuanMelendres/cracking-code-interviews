@@ -13,7 +13,7 @@ source: 00-project/syllabus-transformation-plan.md §6
 
 **Goal:** reach L2 (Practitioner) on the topics below — correct usage, and the ability to choose between named alternatives with a stated reason — not L3 internals depth yet.
 
-**Time budget:** ~7–8 weeks, part-time (5–8 hours/week) — this path's fifth revision: originally ~5 weeks, extended to ~6–7 for the first five Junior Fundamentals chapters, then to include Java syntax and basic List/Map/Set usage, then Docker, and now three more (platform basics, modifiers/method signatures, and a Java version-features timeline) found necessary when the user directly asked whether the repository's coverage of true Java basics — primitives, JVM/JDK/JRE, access modifiers, static/final, abstract vs. concrete methods, and what each Java version actually added — was real or assumed.
+**Time budget:** ~8–9 weeks, part-time (5–8 hours/week) — this path's sixth revision: originally ~5 weeks, extended to ~6–7 for the first five Junior Fundamentals chapters, then to include Java syntax and basic List/Map/Set usage, then Docker, then three more (platform basics, modifiers/method signatures, and a Java version-features timeline) found necessary when the user directly asked whether the repository's coverage of true Java basics — primitives, JVM/JDK/JRE, access modifiers, static/final, abstract vs. concrete methods, and what each Java version actually added — was real or assumed, and now a ninth week (SDLC and Agile Methodology Fundamentals) found via a learning-path freshness audit.
 
 **Stops at:** L2 for every topic listed. Each topic's own chapter continues to L3/L4 — stop reading once L2's criteria are met; L3/L4 is this path's own follow-on, [Mid → Senior](mid-to-senior.md).
 
@@ -26,6 +26,8 @@ This path is a hand-picked cross-domain subset, not a whole-domain sweep — it 
 **Updated a fourth time 2026-09-08** to add Topic 22 (now Topic 25), Docker and Containers Fundamentals (T-2208) — written the same day as a Junior Fundamentals chapter but never actually added to this sequence until now, caught while building this path's own weekly study pack (`study-packs/junior-to-mid/`).
 
 **Updated a fifth time 2026-09-08** to add three more chapters at the true front of this path: even T-2206 (Java Syntax Fundamentals) never explained the JVM/JDK/JRE distinction or listed Java's eight primitive types with their real ranges, and nothing in `02-java` explained access modifiers, `static`/`final`, or abstract-vs-concrete method signatures from zero, or gave a single accurate timeline of what each Java version (8 through 25) actually added. Closed with [Java Platform Basics](../../02-java/language-core/java-platform-basics-jvm-jdk-jre-and-primitive-types.md) (T-2209, now the true Topic 1), [Java Modifiers and Method Signatures](../../02-java/language-core/java-modifiers-and-method-signatures.md) (T-2210, Topic 3), and [Java Version Features Timeline](../../02-java/language-core/java-version-features-timeline.md) (T-2211, Topic 5) — every prior topic renumbered accordingly.
+
+**Updated a sixth time 2026-09-12** to add Topic 26, [SDLC and Agile Methodology Fundamentals](../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md) (T-2212) — this chapter's own front matter explicitly states `interview_paths: [junior-to-mid, interview-emergency-sprint]`, a direct signal this path had never acted on. Placed as a genuine closing topic: sprints, standups, and the SDLC/Agile process vocabulary make the most sense once a reader has actually built and shipped something (Topics 22–25), not before.
 
 ## Sequence
 
@@ -56,6 +58,7 @@ This path is a hand-picked cross-domain subset, not a whole-domain sweep — it 
 | 23 | [Spring Framework vs. Spring Boot: Auto-Configuration and the Embedded Server](../../05-spring/spring-framework-vs-spring-boot.md) | Spring | L2 | The minimum Spring mental model needed before any of this path's graduate, [Mid → Senior](mid-to-senior.md), goes deeper. |
 | 24 | [REST API Fundamentals](../../07-api-design/rest-api-fundamentals.md) | API Design | L1/L2 | Resource naming, HTTP verbs, status codes, and idempotency — the API-design vocabulary every controller in Topic 22 was already speaking without naming it. |
 | 25 | [Docker and Containers Fundamentals](../../14-devops-containers/docker-and-containers-fundamentals.md) | DevOps & Containers | L1/L2 | How the API built in Topic 24 actually ships and runs — a natural closing topic once there's a real application worth containerizing. |
+| 26 | [SDLC and Agile Methodology Fundamentals](../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md) | Engineering Practices | L1/L2 | Sprints, standups, and the Agile/Scrum/Waterfall vocabulary every team actually uses day to day — makes the most sense once Topics 22–25 have you actually building and shipping something to organize the process around. |
 
 ## Completion criteria
 
@@ -66,7 +69,7 @@ This path is a hand-picked cross-domain subset, not a whole-domain sweep — it 
 
 ## Weekly study pack
 
-[`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) turns this sequence into a scheduled, week-by-week program — reading assignments, hands-on exercises, coding drills, and a lightweight mock-interview checkpoint per week — the same operational layer `study-packs/week-01` through `week-25` provide for the original Senior-focused program. This path's own 25 topics are the *content*; the study pack is the *schedule*. **Re-sequenced 2026-09-08 (same day)** from 7 to 8 weeks to insert Topics 1, 3, and 5 — the original Week 1 split into a new Week 1 (Topics 1–3) and Week 2 (Topics 4–6), every subsequent week shifted forward by one.
+[`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) turns this sequence into a scheduled, week-by-week program — reading assignments, hands-on exercises, coding drills, and a lightweight mock-interview checkpoint per week — the same operational layer `study-packs/week-01` through `week-25` provide for the original Senior-focused program. This path's own 26 topics are the *content*; the study pack is the *schedule*. **Re-sequenced 2026-09-08 (same day)** from 7 to 8 weeks to insert Topics 1, 3, and 5 — the original Week 1 split into a new Week 1 (Topics 1–3) and Week 2 (Topics 4–6), every subsequent week shifted forward by one. **Extended 2026-09-12** to a 9th week for Topic 26.
 
 ## Next
 

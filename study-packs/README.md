@@ -24,9 +24,9 @@ This directory holds eight separate, non-overlapping programs across two domains
 
 ## Programs — Java backend
 
-### [`junior-to-mid/`](junior-to-mid/README.md) — Junior → Mid, 8 weeks
+### [`junior-to-mid/`](junior-to-mid/README.md) — Junior → Mid, 9 weeks
 
-Schedules [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../syllabus/00-overview/learning-paths/junior-to-mid.md)'s 25-topic sequence: Java platform basics, syntax, modifiers, OOP, version-features timeline, CS foundations, collections, DSA patterns, SQL, testing, Spring MVC, REST APIs, and Docker. ~60 hours total. Built 2026-09-08 using the lean README+MANIFEST convention (no duplicated content).
+Schedules [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../syllabus/00-overview/learning-paths/junior-to-mid.md)'s 26-topic sequence: Java platform basics, syntax, modifiers, OOP, version-features timeline, CS foundations, collections, DSA patterns, SQL, testing, Spring MVC, REST APIs, Docker, and SDLC/Agile methodology. ~63 hours total. Built 2026-09-08 using the lean README+MANIFEST convention (no duplicated content); extended 2026-09-12 (Week 9).
 
 ### [`mid-to-senior/`](mid-to-senior/README.md) — Mid → Senior, 12 weeks
 
@@ -54,9 +54,9 @@ Schedules [`syllabus/00-overview/learning-paths/interview-emergency-sprint.md`](
 
 Schedules [`syllabus/00-overview/learning-paths/frontend-junior-to-mid.md`](../syllabus/00-overview/learning-paths/frontend-junior-to-mid.md)'s 14-topic sequence: web/JavaScript/TypeScript fundamentals, core React (JSX, state, hooks), Next.js basics, build tooling, styling, and production-shaped UI (forms, error boundaries, accessibility). ~44–48 hours total. Built 2026-09-08, same lean convention as the backend packs.
 
-### [`frontend-mid-to-senior/`](frontend-mid-to-senior/README.md) — Frontend Mid → Senior, 10 weeks
+### [`frontend-mid-to-senior/`](frontend-mid-to-senior/README.md) — Frontend Mid → Senior, 11 weeks
 
-Schedules [`syllabus/00-overview/learning-paths/frontend-mid-to-senior.md`](../syllabus/00-overview/learning-paths/frontend-mid-to-senior.md)'s 20-topic sequence: Next.js internals (Server/Client boundary, rendering strategies, streaming, the edge runtime), React internals (fiber, concurrent rendering, performance, testing), and a closing Expert-tier capstone (Full-Stack Integration with a Java/Spring backend) with a real System Design Exercise. ~62–78 hours total. Built 2026-09-08; the only pack in this repository whose closing week cites real, verified evidence from two separately-running processes (a Next.js app and a Spring Boot backend) proving a real CORS failure, its fix, and the BFF pattern's full credential chain.
+Schedules [`syllabus/00-overview/learning-paths/frontend-mid-to-senior.md`](../syllabus/00-overview/learning-paths/frontend-mid-to-senior.md)'s 23-topic sequence: Next.js internals (Server/Client boundary, rendering strategies, streaming, the edge runtime), React internals (fiber, concurrent rendering, performance, testing), frontend security/real-time UI/multi-team architecture (F-401–F-403, added 2026-09-12), and a closing Expert-tier capstone (Full-Stack Integration with a Java/Spring backend) with a real System Design Exercise. ~70–86 hours total. Built 2026-09-08, extended 2026-09-12 (Week 11); the only pack in this repository whose closing week cites real, verified evidence from two separately-running processes (a Next.js app and a Spring Boot backend) proving a real CORS failure, its fix, and the BFF pattern's full credential chain.
 
 ## All backend and frontend learning paths now have an operational layer
 

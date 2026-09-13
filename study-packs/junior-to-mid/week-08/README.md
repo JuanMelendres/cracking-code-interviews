@@ -85,4 +85,4 @@ This is the pack's final retrospective: review every prior week's retrospective 
 
 ## Next Week
 
-This is the last week of the Junior → Mid pack. Continue with [Mid → Senior](../../../syllabus/00-overview/learning-paths/mid-to-senior.md).
+[Week 9 — How the Work Itself Gets Organized](../week-09/README.md).

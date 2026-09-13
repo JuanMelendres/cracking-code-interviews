@@ -1011,6 +1011,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `production-cookbook/README.md` (136 → 165 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - The 37-chapter `21-frontend-web` gap remains open, flagged for a future batch.
 
+## [2026-09-12] — Frontend freshness and junior-to-mid closed, completing the learning-paths audit
+
+### Added (`syllabus/00-overview/learning-paths/frontend-mid-to-senior.md`, `junior-to-mid.md`)
+
+- Closed the two remaining flagged items from the backend-domains entry below. `frontend-mid-to-senior.md` gained Topics 21–23 (F-401 Frontend Security, XSS/CSRF/CSP; F-402 WebSocket/SSE; F-403 Micro-Frontends and Module Federation) — 20 → 23 topics, ~8–10 → ~9–11 weeks — the newest `21-frontend-web` additions, never previously scheduled despite matching this path's Advanced-tier scope.
+- `junior-to-mid.md` gained Topic 26 (`sdlc-and-agile-methodology-fundamentals.md`, T-2212) — its own front matter explicitly states `interview_paths: [junior-to-mid, interview-emergency-sprint]`, placed as a deliberate closing topic once a real shipped project (Week 8) exists to reference.
+- New `study-packs/frontend-mid-to-senior/week-11/` and `study-packs/junior-to-mid/week-09/` (README + MANIFEST each); the former cites 3 real, already-built cookbook entries and 3 real practice demos, the latter honestly states no practice demo or cookbook entry exists for its single chapter (confirmed via `practice: []`/`production_scenarios: []`).
+- Updated `study-packs/README.md` and both packs' own READMEs. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- **This closes the full study-packs/learning-paths freshness audit — no known outstanding gap remains across any backend or frontend path.**
+
 ## [2026-09-12] — Learning paths gain 3 backend domains and API Design's advanced topics, closing a study-packs freshness gap
 
 ### Added (`syllabus/00-overview/learning-paths/mid-to-senior.md`, `senior-to-staff.md`)

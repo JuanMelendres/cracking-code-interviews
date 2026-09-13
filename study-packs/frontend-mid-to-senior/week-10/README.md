@@ -83,4 +83,4 @@ This is the pack's final retrospective: review every prior week's retrospective 
 
 ## Next Week
 
-This is the last week of the Frontend Mid → Senior pack. There is no further pack in the frontend ladder — return to [`syllabus/00-overview/learning-paths/`](../../../syllabus/00-overview/learning-paths/) for the full set of paths, or continue the Java backend track with [Senior → Staff](../../../syllabus/00-overview/learning-paths/senior-to-staff.md) for full-stack dual-track depth.
+[Week 11 — Security, Real-Time UI, and Multi-Team Architecture](../week-11/README.md).

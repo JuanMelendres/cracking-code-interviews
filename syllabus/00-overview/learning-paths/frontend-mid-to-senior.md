@@ -13,11 +13,13 @@ source: 00-project/frontend-topic-register.md
 
 **Goal:** reach Advanced tier throughout (this domain's own equivalent of L3, with the closing topic reaching Expert/L4 per `syllabus/21-frontend-web/INDEX.md`'s Phase 5 mastery-equivalence mapping).
 
-**Time budget:** ~8–10 weeks, part-time (6–8 hours/week).
+**Time budget:** ~9–11 weeks, part-time (6–8 hours/week).
 
 **Stops at:** Advanced tier for most topics, Expert for the closing topic (Full-Stack Integration) — the frontend domain's own Staff-equivalent signal, per the mastery-equivalence mapping.
 
 This path is the frontend counterpart to [Mid → Senior](mid-to-senior.md) (the Java backend path) — additive, not merged, per `CLAUDE.md`'s Scope Addendum. A full-stack reader following both paths gets genuine dual-track Senior depth: JVM/Spring/database internals on one side, React fiber internals/Next.js rendering strategies/full-stack integration on the other.
+
+**Updated 2026-09-12** to add Topics 21–23 (F-401, F-402, F-403) — the same freshness audit that found gaps in the Java backend paths checked this path too: these three chapters, the newest additions to `21-frontend-web` (a "D-F4" tier, per their own commit history), had never been scheduled here despite all three stating `target_levels` matching this path's Advanced/Expert scope.
 
 ## Sequence
 
@@ -43,6 +45,9 @@ This path is the frontend counterpart to [Mid → Senior](mid-to-senior.md) (the
 | 18 | [Deployment Models: Vercel-Native vs. Self-Hosting](../../21-frontend-web/nextjs-deployment-models.md) (F-213) | Advanced | Real operational trade-offs, not marketing — a direct parallel to the backend's own cloud-cost-and-scaling-economics chapter. |
 | 19 | [Monorepo and Full-Stack Repo Layout](../../21-frontend-web/nextjs-monorepo-layout.md) (F-303) | Advanced | Where frontend and backend code actually live together sanely — directly relevant to how this repository itself is structured for a full-stack learner. |
 | 20 | [Full-Stack Integration: Next.js with a Separate Java/Spring Backend](../../21-frontend-web/nextjs-fullstack-integration.md) (F-214) | **Expert** | The path's closing, Staff-equivalent topic — CORS, the BFF pattern, and where auth/session logic should live when the API is a separate service. The single chapter that most directly serves a full-stack Java+React developer, tying this entire path back to the Java backend domain. |
+| 21 | [Frontend Security: XSS, CSRF, and CSP](../../21-frontend-web/frontend-security-xss-csrf-and-csp.md) (F-401) | Advanced | A real reflected-XSS payload actually executing in a real browser, and a real CSP header actually blocking it — the frontend-specific security depth this path had never scheduled. |
+| 22 | [WebSocket and Server-Sent Events for Real-Time UI](../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md) (F-402) | Advanced | Real-time UI patterns beyond request/response — a real, measured reconnection-behavior contrast between `WebSocket` and `EventSource`. |
+| 23 | [Micro-Frontends and Module Federation](../../21-frontend-web/micro-frontends-and-module-federation.md) (F-403) | Advanced | Multi-team frontend architecture — two genuinely separate builds composed at runtime, directly relevant once a frontend org outgrows a single deployable bundle. |
 
 ## Completion criteria
 
@@ -52,7 +57,7 @@ This path is the frontend counterpart to [Mid → Senior](mid-to-senior.md) (the
 
 ## Weekly study pack
 
-[`study-packs/frontend-mid-to-senior/`](../../../study-packs/frontend-mid-to-senior/) turns this sequence into a scheduled, 10-week program — reading assignments, hands-on exercises against real `practice/frontend/` and `practice/java/` demos, and a full System Design Exercise in its closing week — the same operational layer [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provides for the Java backend's own Mid → Senior path. This path's 20 topics are the *content*; the study pack is the *schedule*.
+[`study-packs/frontend-mid-to-senior/`](../../../study-packs/frontend-mid-to-senior/) turns this sequence into a scheduled, 11-week program — reading assignments, hands-on exercises against real `practice/frontend/` and `practice/java/` demos, and a full System Design Exercise in its closing week — the same operational layer [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provides for the Java backend's own Mid → Senior path. This path's 23 topics are the *content*; the study pack is the *schedule*.
 
 ## Related paths
 

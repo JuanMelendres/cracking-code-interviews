@@ -7,7 +7,7 @@ last_updated: 2026-09-08
 
 # Junior → Mid Study Pack
 
-The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../../syllabus/00-overview/learning-paths/junior-to-mid.md) — that path is the *content* (25 topics, in dependency order, with a stated stop-at level and a one-line reason for each); this is the *schedule* built on top of it, the same relationship `study-packs/week-01` through `week-25` have to the original Senior-focused program's own roadmap.
+The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../../syllabus/00-overview/learning-paths/junior-to-mid.md) — that path is the *content* (26 topics, in dependency order, with a stated stop-at level and a one-line reason for each); this is the *schedule* built on top of it, the same relationship `study-packs/week-01` through `week-25` have to the original Senior-focused program's own roadmap.
 
 ## Audience and scope
 
@@ -33,8 +33,9 @@ The Junior Fundamentals initiative (T-2201–T-2212, built 2026-09-07/08) closed
 | [06](week-06/README.md) | Coding patterns, part 2 + first SQL | Binary Search (T-2103), Linked Lists (T-2104), SQL and Relational Database Fundamentals (T-2202) | 7h |
 | [07](week-07/README.md) | Databases and testing | Database Index Structures (T-609), Data Modelling and Explicit Join Tables (T-605/T-608), Unit Testing Fundamentals with JUnit (T-2204), Test Strategy and Test Doubles (T-1101/T-1103) | 8h |
 | [08](week-08/README.md) | Ship something | Spring MVC Fundamentals (T-2203), Spring Framework vs. Spring Boot (T-506/T-501), REST API Fundamentals (T-2205), Docker and Containers Fundamentals (T-2208) | 8h |
+| [09](week-09/README.md) | How the work itself gets organized | SDLC and Agile Methodology Fundamentals (T-2212) | 3h |
 
-**Total: ~60 hours across 8 weeks**, matching the learning path's own ~7–8-week, 5–8h/week estimate.
+**Total: ~63 hours across 9 weeks**, matching the learning path's own ~8–9-week, 5–8h/week estimate. Week 9 added 2026-09-12 — see the learning path's own updated note for the audit that found the gap.
 
 ## After this pack
 

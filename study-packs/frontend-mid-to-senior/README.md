@@ -7,7 +7,7 @@ last_updated: 2026-09-08
 
 # Frontend Mid → Senior Study Pack
 
-The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/frontend-mid-to-senior.md`](../../syllabus/00-overview/learning-paths/frontend-mid-to-senior.md) — that path is the *content* (20 topics, in sequence, each with a stated reason for its place in the order); this is the *schedule* built on top of it, the same relationship [`study-packs/mid-to-senior/`](../mid-to-senior/README.md) has to its own Java backend learning path.
+The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/frontend-mid-to-senior.md`](../../syllabus/00-overview/learning-paths/frontend-mid-to-senior.md) — that path is the *content* (23 topics, in sequence, each with a stated reason for its place in the order); this is the *schedule* built on top of it, the same relationship [`study-packs/mid-to-senior/`](../mid-to-senior/README.md) has to its own Java backend learning path.
 
 ## Audience and scope
 
@@ -33,8 +33,9 @@ A working frontend or full-stack engineer who can already ship a React/Next.js f
 | [08](week-08/README.md) | Edge-level request logic and real authentication | Proxy/Middleware and the Edge Runtime (F-208); Authentication Patterns (F-211) | 6–8h |
 | [09](week-09/README.md) | Mutations without an API layer, and real deployment trade-offs | Server Actions and Mutations (F-212); Deployment Models (F-213) | 6–8h |
 | [10](week-10/README.md) | Where frontend and backend code live together, and the Expert-tier capstone | Monorepo and Full-Stack Repo Layout (F-303); Full-Stack Integration with a Java/Spring Backend (F-214) | 8–10h |
+| [11](week-11/README.md) | Security, real-time UI, and multi-team architecture | Frontend Security: XSS, CSRF, and CSP (F-401); WebSocket and Server-Sent Events (F-402); Micro-Frontends and Module Federation (F-403) | 8h |
 
-**Total: ~62–78 hours across 10 weeks**, matching the learning path's own ~8–10-week, 6–8h/week estimate (Week 10 runs slightly longer given F-214's Expert-tier capstone status).
+**Total: ~70–86 hours across 11 weeks**, matching the learning path's own ~9–11-week, 6–8h/week estimate (Week 10 runs slightly longer given F-214's Expert-tier capstone status). Week 11 added 2026-09-12 — see the learning path's own updated note for the audit that found the gap.
 
 Week 10 is deliberately the heaviest week: F-214 is this path's closing, Expert/Staff-equivalent topic, and it is the one chapter that most directly serves a full-stack Java+React developer — the reader this whole repository is built for. Unlike every other week in this pack, Week 10 carries a real System Design Exercise, for that reason specifically.
 
