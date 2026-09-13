@@ -3078,3 +3078,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Every entry's fields were built by expanding the source chapter's own `## Production Scenarios` text; no invented incidents.
 - Updated `production-cookbook/README.md` (136 → 165 entries) with a dated note and 29 new table rows. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - Frontend domain (37 chapters) flagged as a known, open gap, not yet closed.
+
+### Added (`production-cookbook/` — 37-chapter `21-frontend-web` domain closed, 165 → 201 entries)
+
+- User confirmed continuing with the flagged `21-frontend-web` gap. Closed 35 of the 37 frontend chapters as 36 entries (`how-the-web-works-html-css-dom-and-http.md` had two distinct scenarios). Deliberately excluded `nextjs-build-tooling-vite-vs-turbopack.md` (its own scenario states "Fix: none needed" — a dev-server behavior difference, not an incident) and `nextjs-app-router-fundamentals.md` (a pure design comparison with no manifested symptom), same honest-exclusion discipline as the backend batch's two exclusions.
+- Every entry's fields were built by expanding the source chapter's own `## Production Scenarios` text; no invented incidents. Domain recorded as `frontend-web` (new value for this deliverable, matching `syllabus/21-frontend-web/*.md`'s own front matter).
+- Updated `production-cookbook/README.md` (165 → 201 entries) with a dated note and 36 new table rows. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- This closes production-cookbook's chapter-coverage audit entirely — no known outstanding gap remains.

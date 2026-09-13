@@ -1011,6 +1011,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `production-cookbook/README.md` (136 → 165 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - The 37-chapter `21-frontend-web` gap remains open, flagged for a future batch.
 
+## [2026-09-12] — `production-cookbook/` gains a 37-chapter `21-frontend-web` domain (165 → 201 entries), closing the chapter-coverage audit entirely
+
+### Added (`production-cookbook/`, `21-frontend-web` domain)
+
+- Closed the frontend gap flagged in the backend-batch entry above. 35 of the 37 frontend chapters elevated as 36 entries (`how-the-web-works-html-css-dom-and-http.md` contributed 2 distinct scenarios). Deliberately excluded `nextjs-build-tooling-vite-vs-turbopack.md` (its own scenario states "Fix: none needed" — a dev-server behavior difference to understand, not an incident) and `nextjs-app-router-fundamentals.md` (a pure design comparison, no manifested symptom) — same honest-exclusion discipline as the backend batch.
+- Domain recorded as `frontend-web` for all 36 entries, matching `syllabus/21-frontend-web/*.md`'s own front matter convention. Every entry's fields built by expanding the source chapter's own `## Production Scenarios` text — no invented incidents.
+- Updated `production-cookbook/README.md` (165 → 201 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- This closes production-cookbook's chapter-coverage audit entirely — no known outstanding gap remains across backend or frontend.
+
 ## [2026-09-12] — The 5 permanently-open no-IWI `jvm` chapters gain cheat sheets, closing the 2026-08-05 exception
 
 ### Added (`cheat-sheets/`, `02-java/jvm-internals` domain)
