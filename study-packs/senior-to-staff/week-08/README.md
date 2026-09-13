@@ -93,4 +93,4 @@ Look back across all eight weeks' Retrospective notes together. Identify the one
 
 ## Next Week
 
-None — this is the final week of the Senior → Staff pack. There is no further pack in this repository's ladder; see [`syllabus/00-overview/learning-paths/`](../../../syllabus/00-overview/learning-paths/) for the full set of paths.
+[Week 9 — Applying Patterns Judiciously, Reviewing Code at Scale](../week-09/README.md).

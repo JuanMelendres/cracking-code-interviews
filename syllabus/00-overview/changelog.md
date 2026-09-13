@@ -1011,6 +1011,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `production-cookbook/README.md` (136 → 165 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - The 37-chapter `21-frontend-web` gap remains open, flagged for a future batch.
 
+## [2026-09-12] — Learning paths gain 3 backend domains and API Design's advanced topics, closing a study-packs freshness gap
+
+### Added (`syllabus/00-overview/learning-paths/mid-to-senior.md`, `senior-to-staff.md`)
+
+- User asked to check `study-packs/` freshness next. Diffing every chapter's own `interview_paths`/`target_levels` front matter against every learning path found `04-software-design`, `18-engineering-practices`, and `22-ai-llm-engineering` entirely unreferenced in any backend path, and `07-api-design`'s advanced topics (GraphQL, gRPC, API Gateway/BFF, API Design) unreferenced outside Junior → Mid's REST-fundamentals-only mention.
+- `mid-to-senior.md` gained Domains 13–15 (Software Design; API Design — Advanced; AI/LLM Engineering), 12 → 15 domains, ~10 → ~12 weeks. `senior-to-staff.md` gained Topics 17–21 (Design Patterns Applied; Code Review Standards; Refactoring Discipline; Working with Legacy Code; Git Internals and Collaboration Workflows), 16 → 21 topics, ~8 → ~11 weeks.
+- `solid-principles.md`/`ood-interview-problems.md` routed to Mid → Senior (Mid-level fundamentals); `architecture-decision-records-and-technical-writing.md` deliberately excluded from Senior → Staff to avoid duplicating Topic 6's existing ADR coverage.
+- New `study-packs/mid-to-senior/week-11/`, `week-12/` and `study-packs/senior-to-staff/week-09/`, `week-10/`, `week-11/` (README + MANIFEST each), with real cookbook cross-references verified before citing, and 2 weeks honestly stating no cookbook entry exists yet (confirmed via each chapter's own `production_scenarios: []`).
+- Updated `study-packs/README.md` and both packs' own README week tables/totals. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- Frontend freshness (F-401/F-402/F-403) and `junior-to-mid`'s `sdlc-and-agile-methodology-fundamentals.md` gap remain open, flagged, smaller items.
+
 ## [2026-09-12] — `production-cookbook/` gains a 37-chapter `21-frontend-web` domain (165 → 201 entries), closing the chapter-coverage audit entirely
 
 ### Added (`production-cookbook/`, `21-frontend-web` domain)

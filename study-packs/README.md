@@ -28,13 +28,13 @@ This directory holds eight separate, non-overlapping programs across two domains
 
 Schedules [`syllabus/00-overview/learning-paths/junior-to-mid.md`](../syllabus/00-overview/learning-paths/junior-to-mid.md)'s 25-topic sequence: Java platform basics, syntax, modifiers, OOP, version-features timeline, CS foundations, collections, DSA patterns, SQL, testing, Spring MVC, REST APIs, and Docker. ~60 hours total. Built 2026-09-08 using the lean README+MANIFEST convention (no duplicated content).
 
-### [`mid-to-senior/`](mid-to-senior/README.md) — Mid → Senior, 10 weeks
+### [`mid-to-senior/`](mid-to-senior/README.md) — Mid → Senior, 12 weeks
 
-Schedules [`syllabus/00-overview/learning-paths/mid-to-senior.md`](../syllabus/00-overview/learning-paths/mid-to-senior.md)'s 12-domain sequence: concurrency, JVM internals, Spring internals, database internals, testing, Kafka, distributed systems, system design, security/observability, and delivery/architecture. ~76–96 hours total. Built 2026-09-08, same lean convention, each week cross-referenced against real, already-diagnosed `production-cookbook/` incidents.
+Schedules [`syllabus/00-overview/learning-paths/mid-to-senior.md`](../syllabus/00-overview/learning-paths/mid-to-senior.md)'s 15-domain sequence: concurrency, JVM internals, Spring internals, database internals, testing, Kafka, distributed systems, system design, security/observability, delivery/architecture, software design, advanced API design (GraphQL/gRPC), and AI/LLM engineering. ~93–116 hours total. Built 2026-09-08, extended 2026-09-12 (Weeks 11–12) after a direct front-matter audit found three domains this path had never scheduled; same lean convention, each week cross-referenced against real, already-diagnosed `production-cookbook/` incidents where one exists.
 
-### [`senior-to-staff/`](senior-to-staff/README.md) — Senior → Staff, 8 weeks
+### [`senior-to-staff/`](senior-to-staff/README.md) — Senior → Staff, 11 weeks
 
-Schedules [`syllabus/00-overview/learning-paths/senior-to-staff.md`](../syllabus/00-overview/learning-paths/senior-to-staff.md)'s 16 named topics (2 per week): microservice decomposition, modular monoliths, CQRS, migration patterns, technical debt as an economic decision, ADRs, multi-region/DR, consistent hashing, storage trade-offs, cloud cost, capacity planning, and five Leadership & Staff topics (mentoring, cross-team influence, leading migrations, debt advocacy, design reviews). ~48–64 hours total. Built 2026-09-08; Weeks 6–8 each carry a real Behavioral Exercise tied to the path's own Story Portfolio Design requirement.
+Schedules [`syllabus/00-overview/learning-paths/senior-to-staff.md`](../syllabus/00-overview/learning-paths/senior-to-staff.md)'s 21 named topics (2 per week, mostly): microservice decomposition, modular monoliths, CQRS, migration patterns, technical debt as an economic decision, ADRs, multi-region/DR, consistent hashing, storage trade-offs, cloud cost, capacity planning, five Leadership & Staff topics (mentoring, cross-team influence, leading migrations, debt advocacy, design reviews), and, added 2026-09-12, judicious design-pattern application, code review standards, refactoring discipline, legacy-code strategy, and Git internals. ~68–84 hours total. Built 2026-09-08, extended 2026-09-12 (Weeks 9–11); Weeks 6–8 each carry a real Behavioral Exercise tied to the path's own Story Portfolio Design requirement.
 
 ### [`backend-java-specialization/`](backend-java-specialization/README.md) — Backend Java Specialization, 9 weeks
 

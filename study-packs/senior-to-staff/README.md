@@ -31,8 +31,11 @@ A Senior engineer who already has L3 internals depth and production-debugging ju
 | [06](week-06/README.md) | Provisioning ahead of load, multiplying the team | Capacity Planning & Headroom; Mentoring and Developing Others | 6–8h |
 | [07](week-07/README.md) | Moving an organization | Cross-Team Influence Without Authority; Leading Migrations and Large-Scale Technical Change | 6–8h |
 | [08](week-08/README.md) | Advocacy and the review process itself | Technical Debt: Prioritization and Advocacy; Design Reviews and RFCs as an Organizational Practice | 6–8h |
+| [09](week-09/README.md) | Applying patterns judiciously, reviewing code at scale | Design Patterns, Applied; Code Review Standards and Practice | 7h |
+| [10](week-10/README.md) | Refactoring discipline and legacy code | Refactoring Discipline; Working with Legacy Code | 7h |
+| [11](week-11/README.md) | Git internals and collaboration workflows | Git Internals and Collaboration Workflows | 6h |
 
-**Total: ~48–64 hours across 8 weeks**, matching the learning path's own ~8-week, part-time estimate.
+**Total: ~68–84 hours across 11 weeks**, matching the learning path's own ~11-week, part-time estimate. Weeks 9–11 added 2026-09-12 — see the learning path's own updated note for the audit that found the gap.
 
 Week 6 is deliberately a transition: it closes the technical/architecture block (Topics 1–11) and opens the Leadership & Staff block (Topics 12–16). Weeks 6 through 8, covering the Leadership & Staff domain, each carry a real Behavioral Exercise — the learning path's own Completion Criteria require a real or realistic story for every Leadership & Staff topic, per [Story Portfolio Design](../../syllabus/20-interview-preparation/behavioral/02-story-portfolio-design.md).
 

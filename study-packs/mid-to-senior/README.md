@@ -33,8 +33,10 @@ A working engineer (roughly 2–5 years) who can ship features correctly but has
 | [08](week-08/README.md) | System design | System Design | 8–10h |
 | [09](week-09/README.md) | Security and observability | Security + Observability | 8–10h |
 | [10](week-10/README.md) | Delivery and architecture | DevOps & Containers + Architecture | 8–10h |
+| [11](week-11/README.md) | Software design and API design (advanced) | Software Design + API Design (Advanced) | 8–10h |
+| [12](week-12/README.md) | AI/LLM engineering | AI/LLM Engineering | 9–10h |
 
-**Total: ~76–96 hours across 10 weeks**, matching the learning path's own ~10-week, 6–10h/week estimate.
+**Total: ~93–116 hours across 12 weeks**, matching the learning path's own ~12-week, 6–10h/week estimate. Weeks 11 and 12 added 2026-09-12 — see the learning path's own updated note for the audit that found the gap.
 
 ## After this pack
 

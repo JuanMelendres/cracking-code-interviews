@@ -13,11 +13,13 @@ source: 00-project/syllabus-transformation-plan.md §6
 
 **Goal:** reach L4 (Staff) — reasoning about systemic consequences and defending an architectural decision to a skeptical peer — on every topic below.
 
-**Time budget:** ~8 weeks, part-time.
+**Time budget:** ~11 weeks, part-time.
 
 **Stops at:** L4. This path assumes [Mid → Senior](mid-to-senior.md)'s L3 material is already solid; it does not re-cover internals depth.
 
 Unlike [Mid → Senior](mid-to-senior.md), this path names individual topics rather than whole domains — the domains here (`17-architecture`, `19-leadership-staff`) are small and every topic in them is genuinely Staff-relevant, so the curation *is* close to the full domain, stated explicitly rather than left implicit.
+
+**Updated 2026-09-12** to add Topics 17–21 from `18-engineering-practices` and `04-software-design` — a direct audit of every canonical chapter's own front matter found four `18-engineering-practices` chapters (`code-review-standards-and-practice.md`, `refactoring-discipline.md`, `working-with-legacy-code.md`) explicitly stating `interview_paths: [senior-to-staff]`, and `git-internals-and-collaboration-workflows.md` stating `target_levels: [senior, staff]` — none previously referenced by this path. `design-patterns-applied.md` (`04-software-design`, `target_levels: [senior, staff]`) is added alongside them: judicious pattern application (knowing when *not* to reach for one) is a Staff judgment call, not a Mid-level usage question, and its own real demo includes a genuine over-engineering pitfall (a premature Strategy pattern) matching this path's own trade-off-defense framing. `architecture-decision-records-and-technical-writing.md` (also `18-engineering-practices`, also self-declaring `senior-to-staff`) is deliberately **not** added — Topic 6 above already covers Architecture Decision Records via the canonical `17-architecture` chapter, and adding a second ADR-focused topic would duplicate content this path's own no-duplication rule prohibits; `04-software-design`'s other two chapters (`solid-principles.md`, `ood-interview-problems.md`) are Mid-level design fundamentals, not Staff judgment calls, and instead were added to [Mid → Senior](mid-to-senior.md) (Domain 13).
 
 ## Sequence
 
@@ -39,6 +41,11 @@ Unlike [Mid → Senior](mid-to-senior.md), this path names individual topics rat
 | 14 | [Leading Migrations and Large-Scale Technical Change](../../19-leadership-staff/leading-migrations-and-large-technical-change.md) | Leadership & Staff | Sequencing and risk management at organizational scale, directly building on Topic 4. |
 | 15 | [Technical Debt: Prioritization and Advocacy](../../19-leadership-staff/technical-debt-prioritization-and-advocacy.md) | Leadership & Staff | The organizational-advocacy half of Topic 5's technical framing. |
 | 16 | [Design Reviews and RFCs as an Organizational Practice](../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md) | Leadership & Staff | Shaping decisions through the review process itself, at scale. |
+| 17 | [Design Patterns, Applied: When a Pattern Earns Its Complexity](../../04-software-design/design-patterns-applied.md) | Software Design | Judicious application — including a real, demonstrated over-engineering pitfall — is the Staff-level half of pattern knowledge; reciting pattern names is the Mid-level half. |
+| 18 | [Code Review Standards and Practice](../../18-engineering-practices/code-review-standards-and-practice.md) | Engineering Practices | Shaping code quality across a team through the review process, not just one's own commits — the technical counterpart to Topic 16's organizational review practice. |
+| 19 | [Refactoring Discipline](../../18-engineering-practices/refactoring-discipline.md) | Engineering Practices | Structural change without behavior change, at a scale and risk tolerance a Staff engineer is expected to reason about explicitly. |
+| 20 | [Working with Legacy Code](../../18-engineering-practices/working-with-legacy-code.md) | Engineering Practices | Safe-change strategy for code without tests or a clear owner — directly extends Topic 4's Strangler Fig migration reasoning to the code level. |
+| 21 | [Git Internals and Collaboration Workflows](../../18-engineering-practices/git-internals-and-collaboration-workflows.md) | Engineering Practices | The mechanics underneath every collaboration failure this path's other topics assume a Staff engineer can already diagnose and prevent. |
 
 ## Completion criteria
 
@@ -48,4 +55,4 @@ Unlike [Mid → Senior](mid-to-senior.md), this path names individual topics rat
 
 ## Weekly study pack
 
-[`study-packs/senior-to-staff/`](../../../study-packs/senior-to-staff/) turns this sequence into a scheduled, 8-week program — reading assignments, hands-on exercises where a genuine practice demo exists, production-cookbook cross-references where a genuine match exists, and a real behavioral exercise for every Leadership & Staff topic — the same operational layer [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provides for the Mid → Senior path. This path's own 16 topics are the *content*; the study pack is the *schedule*.
+[`study-packs/senior-to-staff/`](../../../study-packs/senior-to-staff/) turns this sequence into a scheduled, 11-week program — reading assignments, hands-on exercises where a genuine practice demo exists, production-cookbook cross-references where a genuine match exists, and a real behavioral exercise for every Leadership & Staff topic — the same operational layer [`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) provides for the Mid → Senior path. This path's own 21 topics are the *content*; the study pack is the *schedule*.

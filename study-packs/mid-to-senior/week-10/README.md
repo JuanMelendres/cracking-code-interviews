@@ -82,4 +82,4 @@ This is the pack's final retrospective: review every prior week's retrospective 
 
 ## Next Week
 
-This is the last week of the Mid → Senior pack. Continue with [Senior → Staff](../../../syllabus/00-overview/learning-paths/senior-to-staff.md).
+[Week 11 — Software Design and API Design (Advanced)](../week-11/README.md).
