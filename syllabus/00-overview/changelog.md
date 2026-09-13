@@ -1062,6 +1062,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Deliberately skipped `navigation.expand` (would auto-expand the whole 271-chapter tree — worse at this size) and `toc.integrate` (debatable layout change, no evidence of improvement). Re-checked `syllabus/` for `attr_list` syntax first — all matches were mermaid arrows/code braces, not real usage, so not added.
 - Verified with a real local `mkdocs build` (exit 0, same pre-existing warnings only).
 
+## [2026-09-13] — Real per-page "last updated" dates (`mkdocs-git-revision-date-localized-plugin`)
+
+### Added
+
+- Before wiring the plugin in, inspected its source: it derives each page's date from `git log` on the page's `docs_dir` path. Since `docs/` is an rsync copy (gitignored, rebuilt every run), the mirrored files have no git history — the plugin would have fallen back to the build date for every one of 1,626 pages, a false "identical freshness" signal.
+- Fixed in `scripts/build_docs_site.sh`: any mirrored `.md` file byte-identical to its real source (1,431 of 1,626) is now replaced with a relative symlink to that source, so `os.path.realpath()` resolves to the real, git-tracked file and the plugin sees its actual commit history. The 195 files the README.md link-rewrite step changes are left as real copies (symlinking would undo that fix) and fall back to the build date — a documented, narrow (12%) gap.
+- Added `git-revision-date-localized` to `mkdocs.yml` (`type: date`, `fallback_to_build_date: true`); Material's `source-file.html` renders it automatically.
+- Verified: a symlinked file rendered "September 8, 2026", matching `git log` on the real file exactly; a rewritten (non-symlinked) file fell back to the build date with no error. `validate.py`: same pre-existing 3 errors, 0 new.
+- Also evaluated `mkdocs-redirects` for the `handbook/` → `syllabus/` migration — `mkdocs.yml` was first added 2026-09-08, one day after the 2026-09-07 migration, so the published site never served `handbook/` URLs. No real broken link exists; installed the package to check, then uninstalled it rather than fix a non-existent problem.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

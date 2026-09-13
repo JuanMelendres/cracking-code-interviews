@@ -46,4 +46,39 @@ for d in mirror_dirs:
 print(f"Rewrote {count} README.md link targets to bare directory links (site build only)")
 PYEOF
 
+# mkdocs-git-revision-date-localized-plugin resolves each page's real commit
+# history via `os.path.realpath()` on its docs_dir path, then runs `git log`
+# on that resolved path -- an rsync *copy* under docs/ has no git history of
+# its own (it's gitignored and regenerated every run), so the plugin would
+# silently fall back to today's build date for every single page. Fix: any
+# mirrored .md file whose content is byte-identical to its real source (i.e.
+# untouched by the README.md rewrite above) is replaced with a relative
+# symlink to that source file instead of a copy -- realpath() then resolves
+# straight through to the real, git-tracked file, and the plugin sees its
+# actual commit history. Files the rewrite step *did* change are left as
+# real copies (symlinking would serve the original, un-rewritten content and
+# reintroduce the README.md 404 this script already fixes for them); those
+# pages fall back to the build date, a known and accepted gap. Directories
+# and .pages files are never touched, so awesome-pages-plugin's discovery
+# (which does not follow symlinked directories) is unaffected.
+python3 - <<PYEOF
+import os
+import pathlib
+
+mirror_dirs = "${MIRROR_DIRS[@]}".split()
+symlinked = 0
+for d in mirror_dirs:
+    for mirrored in pathlib.Path("docs", d).rglob("*.md"):
+        source = pathlib.Path(d, mirrored.relative_to(pathlib.Path("docs", d)))
+        if not source.is_file():
+            continue
+        if mirrored.read_bytes() != source.read_bytes():
+            continue
+        mirrored.unlink()
+        relative_target = os.path.relpath(source, start=mirrored.parent)
+        mirrored.symlink_to(relative_target)
+        symlinked += 1
+print(f"Symlinked {symlinked} unmodified mirrored files back to their real source (real git history for git-revision-date-localized)")
+PYEOF
+
 echo "Mirrored ${#MIRROR_DIRS[@]} directories into docs/. Run: .venv-docs/bin/mkdocs serve"

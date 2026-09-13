@@ -73,6 +73,9 @@ markdown_extensions:
 plugins:
   - search
   - awesome-pages
+  - git-revision-date-localized:
+      type: date
+      fallback_to_build_date: true
 
 exclude_docs: |
   syllabus/00-overview/changelog.md
