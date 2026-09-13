@@ -1001,6 +1001,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
 - Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-12] — The 5 permanently-open no-IWI `jvm` chapters gain cheat sheets, closing the 2026-08-05 exception
+
+### Added (`cheat-sheets/`, `02-java/jvm-internals` domain)
+
+- A final re-diff of every `syllabus/` chapter against `cheat-sheets/` and `flashcards/`, run right after the Frontend Live-Coding batch below, found the flashcard-missing list fully empty and the only remaining cheat-sheet gap was 5 `jvm-internals` chapters left open per the user's explicit 2026-08-05 decision (`g1-remembered-sets-and-write-barriers.md`, `jit-tiered-compilation-and-deoptimization.md`, `jvm-flags-and-container-ergonomics.md`, `jvm-memory-layout-and-runtime-regions.md`, `memory-leak-diagnosis-and-heap-dump-analysis.md`) — re-confirmed via fresh grep that none states an IWI/Topic-register line.
+- User was asked directly whether to leave the exception standing or define an alternative closure criterion, and chose to close it: source the Topic ID and IWI from `00-project/knowledge-architecture-blueprint.md`'s Master Topic Register instead of the chapter's own front matter (T-301/6.3, T-304/6.8, T-307/6.75, T-308/5.45, T-312/5.9) — the identical criterion `flashcards/`'s 2026-08-06 batch already used to close these same 5 chapters, not an invented one-off.
+- All 5 already carry a real inline `## Cheat Sheet` section (handbook-chapter template) — elevated existing, already-verified content (mental model, decision table, decision framework, common mistakes) into the standalone deliverable.
+- Updated `cheat-sheets/README.md` (244 → 249, full parity with `flashcards/`'s 249 decks) and `flashcards/README.md` (cross-reference note). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ## [2026-09-12] — Frontend Live-Coding & Debugging Protocol gains a cheat sheet and flashcard deck, same-day follow-up
 
 ### Added (`cheat-sheets/` and `flashcards/`, `21-frontend-web` domain)
