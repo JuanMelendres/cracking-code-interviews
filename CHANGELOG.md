@@ -3108,3 +3108,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - `CONTRIBUTING.md` and `templates/adr-template.md` still referenced `handbook/` (pre-migration terminology) in a branch-naming convention, a commit-type table, and an ADR template's "Related" section — updated to `syllabus/` terminology, consistent with `CLAUDE.md`'s own Structural Update note.
 - `00-project/frontend-topic-register.md`'s front matter (`status`, `version`, `last_updated`) was stale relative to its own body — the body already documented a 2026-09-11 "D-F4" tier addition (F-401–F-403) the front matter never reflected. Synced.
 - `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
+### Added (`practice/mock-interviews/` — AI/LLM Engineering Technical Round, 12 → 13)
+
+- User asked whether the project structure was missing anything; identified that `practice/mock-interviews/` (closed 12/12 in 2026-08-11) had never been re-checked against domains added afterward, the same blind spot already found and fixed in `study-packs/`, `cheat-sheets/`, and `production-cookbook/` this session. Confirmed via direct grep: zero existing rounds mention frontend, GraphQL, gRPC, or AI/LLM.
+- User chose AI/LLM Engineering first. Built [`ai-llm-engineering-technical-round.md`](practice/mock-interviews/ai-llm-engineering-technical-round.md) with no prior study-pack mock source to elevate (this domain postdates every study-pack program) — instead built from the 6 canonical chapters' own already-written Interview Questions (Section 15 of each), restructured into the Mock Interview Standard (competencies, interviewer script, candidate/evaluator split with pass/borderline/fail signals, scoring rubric, debrief, remediation). 6 technical questions (one per chapter) plus a closing production/technical story question.
+- Updated `practice/mock-interviews/README.md` (12 → 13 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- GraphQL/gRPC and frontend (F-401–F-403) mock rounds remain open, flagged items.

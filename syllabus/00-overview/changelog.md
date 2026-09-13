@@ -1011,6 +1011,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `production-cookbook/README.md` (136 → 165 entries). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - The 37-chapter `21-frontend-web` gap remains open, flagged for a future batch.
 
+## [2026-09-13] — `practice/mock-interviews/` gains an AI/LLM Engineering round (12 → 13), reopening a closed deliverable for a fresh domain
+
+### Added (`practice/mock-interviews/ai-llm-engineering-technical-round.md`)
+
+- User asked whether the project structure was missing anything. Identified that `practice/mock-interviews/` (closed 12/12, 2026-08-11) had never been re-checked against domains added afterward — the same blind spot already found and fixed in `study-packs/`, `cheat-sheets/`, and `production-cookbook/` this session. Confirmed via grep: zero existing rounds mention frontend, GraphQL, gRPC, or AI/LLM.
+- Built the first new round with no prior study-pack mock source to elevate (this domain postdates every study-pack program) — instead built from the 6 `22-ai-llm-engineering` chapters' own already-written Interview Questions (Section 15 of each), restructured into the Mock Interview Standard. 6 technical questions (one per chapter: cost mechanics, RAG diagnosis, cross-model embeddings, prompt-injection trust boundary, agentic-loop cost, golden-dataset regression) plus a closing production/technical story question.
+- Updated `practice/mock-interviews/README.md` (12 → 13 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- GraphQL/gRPC and frontend (F-401–F-403) mock rounds remain open, flagged items.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
