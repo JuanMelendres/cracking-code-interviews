@@ -1020,6 +1020,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `practice/mock-interviews/README.md` (12 → 13 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
 - GraphQL/gRPC and frontend (F-401–F-403) mock rounds remain open, flagged items.
 
+## [2026-09-13] — `practice/mock-interviews/` gains a GraphQL and gRPC round (13 → 14)
+
+### Added (`practice/mock-interviews/graphql-grpc-api-design-round.md`)
+
+- Continuing the same freshness pass: built with no prior study-pack mock source (both chapters added 2026-09-09, after every study-pack program). 4 of 6 technical questions are each chapter's own already-written Interview Questions; the other 2 (HTTP-200-on-error, shared-codegen guarantee) are drawn from each chapter's own already-written `flashcards/` deck.
+- Cross-references the two real `production-cookbook/` entries already covering these exact failure modes (`graphql-n-plus-one-overloading-a-downstream-author-service.md`, `deadline-less-grpc-call-cascading-into-thread-pool-exhaustion.md`).
+- Updated `practice/mock-interviews/README.md` (13 → 14 rounds). `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+- Frontend (F-401–F-403) mock round remains the last open, flagged item.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
