@@ -3,7 +3,7 @@ title: "Frontend & Web (React/Next.js) — Domain Index"
 document_type: syllabus-domain-index
 domain: 21-frontend-web
 status: 38 of 38 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08; 3 new D-F4 chapters — Frontend Security, WebSocket/SSE, Micro-Frontends — added 2026-09-11 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08)
-last_updated: 2026-09-11
+last_updated: 2026-09-12
 ---
 
 # Frontend & Web (React/Next.js)
@@ -61,6 +61,8 @@ The additive, deliberately-separate React/Next.js track (37 F-coded chapters spa
 | F-402 | WebSocket and Server-Sent Events for Real-Time UI | Advanced tier → **L2, L3, L4** | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F-403 | Micro-Frontends and Module Federation | Advanced tier → **L3, L4** | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
 | — | Frontend Live-Coding & Debugging Protocol (interview-craft, from `interview-playbook/frontend/`) | Interview-application skill (no register tier) → **L2, L3, L4** | `syllabus/21-frontend-web/frontend-live-coding-and-debugging-protocol.md` |
+
+> **Complementary-deliverable gap closed (2026-09-12).** [Frontend Live-Coding & Debugging Protocol](frontend-live-coding-and-debugging-protocol.md) — added 2026-09-05, carries no blueprint `topic_id` by design (an interview-craft document, not a register topic) — had zero cheat sheet and zero flashcard deck despite already carrying real inline "Cheat Sheet"/"Flashcards" sections. Closed by elevating that existing content into the standalone deliverables; `topic_id` recorded as N/A per the same convention `git-internals-and-collaboration-workflows.md` already established.
 
 ## Where this domain's boundary comes from
 

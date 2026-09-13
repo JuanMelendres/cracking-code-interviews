@@ -323,6 +323,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **2026-09-12 (same day, follow-up) — GraphQL and gRPC API Design (T-917/T-918) gain cheat sheets.** Continuing the same discovery pass: these two `07-api-design` chapters (added 2026-09-09 alongside the domain's other chapters) also had zero cheat sheet — both already carry a real inline "Cheat Sheet"/"Flashcards" section per the handbook-chapter template, so this batch elevated existing, already-verified content rather than deriving new claims. **New total: 243 cheat sheets** (241 prior + 2).
 
+**2026-09-12 (same day, follow-up) — Frontend Live-Coding & Debugging Protocol gains a cheat sheet.** Continuing the same discovery pass: this `21-frontend-web` document (`document_type: playbook-technical-answer`, added 2026-09-05, carries no blueprint `topic_id` by design — see its own scope note) also had zero cheat sheet despite already carrying a real inline "Cheat Sheet"/"Flashcards" section. Elevated that existing content; `topic_id` recorded as N/A per the same convention `git-internals-and-collaboration-workflows.md` already established for a no-register-ID chapter. **New total: 244 cheat sheets** (243 prior + 1).
+
 ## How this relates to `flashcards/`
 
 Cheat sheets and flashcards serve different grain sizes and different moments, and are meant to coexist without duplicating each other: a flashcard is one atomic Q/A pair for spaced-repetition drilling; a cheat sheet is a one-page whole-chapter refresh for the day before an interview. `flashcards/` is now closed (75/75 handbook chapters) — its individual cards draw from the same canonical chapters these cheat sheets do, not restated from a cheat sheet's content.

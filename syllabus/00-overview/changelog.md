@@ -1001,6 +1001,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
 - Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-12] — Frontend Live-Coding & Debugging Protocol gains a cheat sheet and flashcard deck, same-day follow-up
+
+### Added (`cheat-sheets/` and `flashcards/`, `21-frontend-web` domain)
+
+- Continuing the same discovery pass: `frontend-live-coding-and-debugging-protocol.md` (`document_type: playbook-technical-answer`, added 2026-09-05, carries no blueprint `topic_id` by design — an interview-craft document, not a register topic) had zero cheat sheet and zero flashcard deck despite already carrying real, existing inline sections.
+- Closed by elevating that existing content: the two frontend round formats (build/debug) and their primary risks, the six-phase-protocol decision table, and why real-browser testing is the most frequently skipped, highest-leverage phase. `topic_id` recorded as N/A, the same convention already established for `git-internals-and-collaboration-workflows.md`.
+- Updated `cheat-sheets/README.md` (243 → 244), `flashcards/README.md` (248 → 249 decks, 835 → 838 cards), and `syllabus/21-frontend-web/INDEX.md`. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ## [2026-09-12] — GraphQL and gRPC API Design (T-917/T-918) gain cheat sheets and flashcards, same-day follow-up
 
 ### Added (`cheat-sheets/` and `flashcards/`, `07-api-design` domain)

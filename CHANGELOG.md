@@ -3055,3 +3055,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Closed by elevating that existing content into the standalone deliverables rather than deriving new claims: `graphql-api-design` (N+1/`DataLoader` batching, null-propagation blast radius, HTTP `200`-on-error), `grpc-api-design` (shared-codegen contract enforcement, the four call shapes by `stream` placement, deadline-less-call cascading failure).
 - Updated `cheat-sheets/README.md` (241 → 243), `flashcards/README.md` (246 → 248 decks, 829 → 835 cards), and `syllabus/07-api-design/INDEX.md`.
 - Verified: `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
+### Added (`cheat-sheets/` + `flashcards/` — Frontend Live-Coding & Debugging Protocol)
+
+- Continuing the same discovery pass: `frontend-live-coding-and-debugging-protocol.md` (`21-frontend-web`, `document_type: playbook-technical-answer`, added 2026-09-05, carries no blueprint `topic_id` by design) had zero cheat sheet and zero flashcard deck despite already carrying real, existing inline "Cheat Sheet"/"Flashcards" sections.
+- Closed by elevating that existing content: the two frontend round formats (build/debug) and each one's primary risk, the six-phase-protocol decision table, and why the highest-leverage phase (real-browser testing) is the most frequently skipped. `topic_id` recorded as N/A, the same convention already established for `git-internals-and-collaboration-workflows.md`.
+- Updated `cheat-sheets/README.md` (243 → 244), `flashcards/README.md` (248 → 249 decks, 835 → 838 cards), and `syllabus/21-frontend-web/INDEX.md`.
+- Verified: `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
