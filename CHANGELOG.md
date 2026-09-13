@@ -3048,3 +3048,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Every fact extracted directly from each chapter's own real, executed demo output (Foundation/Core Concepts/Common Mistakes sections) — this domain's chapters use the 20-section topic-spec template with no inline Cheat Sheet section, so extraction required reading each chapter's real evidence directly rather than lifting an existing summary.
 - Updated `cheat-sheets/README.md` (235 → 241) and `flashcards/README.md` (240 → 246 decks, 811 → 829 cards), plus `syllabus/22-ai-llm-engineering/INDEX.md`.
 - Verified: `scripts/validate.py` shows the same pre-existing 3 errors, zero new; every `Related` reference in all 12 new files checked to resolve to a real, existing file.
+
+### Added (`cheat-sheets/` + `flashcards/` — GraphQL and gRPC API Design, T-917/T-918)
+
+- Continuing the same discovery pass: `graphql-api-design.md` (T-917) and `grpc-api-design.md` (T-918) — added 2026-09-09 alongside `07-api-design`'s other same-day additions — had zero cheat sheet and zero flashcard deck, despite both already carrying real, existing inline "Cheat Sheet"/"Flashcards" sections per the handbook-chapter template.
+- Closed by elevating that existing content into the standalone deliverables rather than deriving new claims: `graphql-api-design` (N+1/`DataLoader` batching, null-propagation blast radius, HTTP `200`-on-error), `grpc-api-design` (shared-codegen contract enforcement, the four call shapes by `stream` placement, deadline-less-call cascading failure).
+- Updated `cheat-sheets/README.md` (241 → 243), `flashcards/README.md` (246 → 248 decks, 829 → 835 cards), and `syllabus/07-api-design/INDEX.md`.
+- Verified: `scripts/validate.py` shows the same pre-existing 3 errors, zero new.

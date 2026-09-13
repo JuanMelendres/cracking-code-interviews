@@ -3,7 +3,7 @@ title: "API Design — Domain Index"
 document_type: syllabus-domain-index
 domain: 07-api-design
 status: 2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 4th and 5th chapters added 2026-09-09 (GraphQL API Design T-917, gRPC API Design T-918) closing the gap where T-803's title promised both protocols but neither was ever written
-last_updated: 2026-09-11
+last_updated: 2026-09-12
 ---
 
 # API Design
@@ -19,6 +19,8 @@ REST/gRPC/GraphQL design, versioning, and pagination — foundational-through-Se
 > **Status-code gap closed (2026-09-11).** A direct user question ("do we have API status codes?") found [REST API Fundamentals](rest-api-fundamentals.md) covered only `200`/`201`/`204`/`404`/`500` — real gaps in `400`, `401`/`403`, `405`, `409`, `422`, `304`, `429`, and `502`/`503`/`504`. Closed in place (same chapter, no new topic_id): real, executed evidence added for `400` (malformed JSON), `405` (unmapped verb, real `Allow` header), `409` (a genuine business-key conflict, deliberately distinct from the chapter's own title-duplication proof), `422` (semantic validation), and `304` (a real conditional `GET` via Spring's built-in `ShallowEtagHeaderFilter`) — a real bug (a `PUT` handler silently dropping a field) was caught and fixed by this same demo before shipping. `401`/`403`/`429`/`502`-`504` are covered conceptually with real cross-links to where their own deep, already-executed evidence lives (`12-security`'s OAuth2/CSRF chapters, `11-system-design`'s rate-limiting chapter, `api-gateway-bff-and-edge-concerns.md`) rather than duplicated. Cheat sheet and flashcard deck updated in place the same day.
 >
 > **Full-range gap closed (2026-09-11, same day, follow-up).** User pushed further: were the `2xx`/`3xx`/`4xx`/`5xx` *ranges* themselves actually covered, not just individual codes? They weren't — no `3xx` member existed beyond `304`, and the chapter's status-code content had no explicit range structure at all. Closed the same day: a new, real `GET /books/latest` endpoint (a genuinely computed `302 Found` redirect whose target changes as new books are created) and real, zero-code `415 Unsupported Media Type` evidence, plus an explicit per-range reference table (`1xx`–`5xx`) naming every code and marking each as real-demoed or conceptual-with-a-stated-reason (`202`/`206`/`301`/`307`/`308`/`410`/`501` — no honest real demo available for these in a synchronous JSON CRUD API). Cheat sheet and flashcard deck (+2 cards) updated in place the same day.
+>
+> **Complementary-deliverable gap closed (2026-09-12).** User asked what else needed checking; a direct diff found [GraphQL API Design](graphql-api-design.md) (T-917) and [gRPC API Design](grpc-api-design.md) (T-918) — added 2026-09-09 alongside `07-api-design`'s other same-day additions — had zero cheat sheet and zero flashcard deck, despite both chapters already carrying their own real inline "Cheat Sheet"/"Flashcards" sections. Closed by elevating that existing, already-verified content into the standalone `cheat-sheets/`/`flashcards/` deliverables, per this deliverable's own established convention.
 
 ## Topics
 
