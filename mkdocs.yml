@@ -59,6 +59,12 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+      # Some chapters (e.g. transactional-proxy-mechanics-and-propagation.md)
+      # have 60+ headings down to H3 -- the right-hand TOC becomes an
+      # unusable wall of text at full depth. Cap it to H2 for a scannable
+      # section-level outline; deeper anchors (permalinks) still work when
+      # linked to directly, just aren't listed in the floating TOC.
+      toc_depth: 2
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -82,6 +88,15 @@ plugins:
   - git-revision-date-localized:
       type: date
       fallback_to_build_date: true
+  # Real request: printable/PDF chapters for interview cramming, not one
+  # combined 1,600+-page mega-document. The plugin's only mode is building
+  # that single all-pages page (kept out of the nav below), but it also
+  # injects @media print CSS site-wide -- that part is what actually serves
+  # this use case: File > Print / Save as PDF on any one chapter now hides
+  # the sidebar/search/nav chrome and prints just the content cleanly. Must
+  # be the last plugin listed (the plugin's own on_config assertion).
+  - print-site:
+      add_to_navigation: false
 
 exclude_docs: |
   syllabus/00-overview/changelog.md

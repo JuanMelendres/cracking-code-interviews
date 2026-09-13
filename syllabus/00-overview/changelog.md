@@ -1080,6 +1080,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Added `docs/404.md` — the default 404 page had no guidance text (just "404 - Not found", though header/search/nav were already present via `overrides/main.html`). New copy explains the likely cause (the `syllabus/` migration) and links to the front page, the Syllabus index, and search.
 - `validate.py`: same pre-existing 3 errors, 0 new.
 
+## [2026-09-13] — TOC depth cap + printable chapters (`mkdocs-print-site-plugin`)
+
+### Added
+
+- Capped `toc_depth: 2` — some chapters (64 headings down to H3) made the floating TOC unusable. Verified the same chapter's TOC dropped from 64 to 35 links (H2-only); deep headings still work as direct permalinks.
+- Added `mkdocs-print-site-plugin` for printable/PDF chapters. Its only real feature combines every nav page into one file (22MB for 1,626+ pages here) — not wanted, so `add_to_navigation: false` keeps it built but unlinked. The actually useful part is its site-wide `@media print` CSS (verified present on a regular page), which hides sidebar/search/nav chrome so printing/saving-as-PDF any single chapter now works cleanly.
+- Incidental finding, not fixed here: `site/practice/` is 430MB of the build's 664MB total (vs. 61MB for `syllabus/`) — likely a `build_docs_site.sh` rsync-exclude gap for frontend build artifacts, flagged for a separate pass.
+- Verified with a real build: exit 0, same pre-existing warnings. `validate.py`: same pre-existing 3 errors, 0 new.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
