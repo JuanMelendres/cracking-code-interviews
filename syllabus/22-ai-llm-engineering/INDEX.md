@@ -3,7 +3,7 @@ title: "AI/LLM Engineering — Domain Index"
 document_type: syllabus-domain-index
 domain: 22-ai-llm-engineering
 status: 6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics
-last_updated: 2026-09-10
+last_updated: 2026-09-12
 ---
 
 # AI/LLM Engineering
@@ -34,6 +34,8 @@ LLM API integration, prompting, retrieval-augmented generation (RAG), vector dat
 | T-2305 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
 
 **Planned list complete.** This domain remains open — further topics (e.g., fine-tuning, multi-agent systems, cost optimization at scale) may be added later, using the next free ID in the `T-2300`–`T-2399` range.
+
+> **Complementary-deliverable gap closed (2026-09-12).** User asked what else needed checking; a direct diff found all 6 chapters in this domain had zero cheat sheet and zero flashcard deck since they were written (2026-09-09/10) — this deliverable's batch process had simply never run against a domain this new. Closed in one pass: `cheat-sheets/README.md` and `flashcards/README.md` each gain 6 new entries (18 new flashcards total, 3 per deck), every fact extracted directly from each chapter's own Foundation/Core Concepts/Common Mistakes sections.
 
 ## Where this domain's boundary comes from
 

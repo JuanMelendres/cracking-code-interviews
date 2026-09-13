@@ -1001,6 +1001,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real demo (`practice/java/llm-evaluation-and-testing/`, pure JDK + Jackson): real proof `assertEquals`-style exact-match fails a genuinely correct answer purely from wording; real, deterministic rule-based/structured checks (JSON/schema validation); real embedding-based similarity scoring (reusing T-2302's mechanics) that catches a literal-overlap match but produces a real, honest false negative on a genuine paraphrase (0.2860 against a 0.30 threshold); and a real golden-dataset regression matrix across 5 test cases and two simulated model versions, finding a real regression and a real improvement in the same run.
 - Updated `syllabus/22-ai-llm-engineering/INDEX.md` (6/6 originally-planned, domain remains open), `prompt-engineering-patterns.md` and `agentic-workflows-and-tool-orchestration.md`'s `related` front matter, `syllabus/00-overview/INDEX.md`, and `00-project/syllabus-transformation-plan.md`'s Topic IDs subsection.
 
+## [2026-09-12] — `22-ai-llm-engineering` gains cheat sheets and flashcards for all 6 chapters, closing a 6-chapter complementary-deliverable backlog
+
+### Added (`cheat-sheets/` and `flashcards/`, 22-ai-llm-engineering domain)
+
+- User asked what else needed checking after the REST API status-code fixes. The same chapters-vs-complementary-deliverables diff used for the earlier 26-chapter batch found this whole domain (added 2026-09-09/10) had zero cheat sheet and zero flashcard deck across all 6 chapters — this deliverable's batch process had never run against a domain this new.
+- Closed in one pass: `llm-api-integration-fundamentals` (T-2300), `rag-and-vector-databases` (T-2301), `embeddings` (T-2302), `prompt-engineering-patterns` (T-2303), `agentic-workflows-and-tool-orchestration` (T-2304), `llm-evaluation-and-testing` (T-2305) — 6 cheat sheets, 6 flashcard decks (18 cards).
+- Every fact extracted directly from each chapter's own real, executed demo output — this domain's chapters use the 20-section topic-spec template (no inline Cheat Sheet section), so extraction read each chapter's Foundation/Core Concepts/Common Mistakes sections directly.
+- Updated `cheat-sheets/README.md` (235 → 241), `flashcards/README.md` (240 → 246 decks, 811 → 829 cards), and `syllabus/22-ai-llm-engineering/INDEX.md`. `scripts/validate.py` shows the same pre-existing 3 errors, zero new.
+
 ## [2026-09-11] — `rest-api-fundamentals.md` (T-2205) closes a real status-code *range* gap, same-day follow-up
 
 ### Changed (`syllabus/07-api-design/rest-api-fundamentals.md` — T-2205)
