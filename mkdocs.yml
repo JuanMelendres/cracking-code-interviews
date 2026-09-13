@@ -38,12 +38,14 @@ theme:
         name: Switch to light mode
   features:
     - navigation.instant
+    - navigation.instant.progress
     - navigation.tabs
     - navigation.sections
     - navigation.top
     - navigation.footer
     - navigation.path
     - navigation.tracking
+    - navigation.prune
     - header.autohide
     - toc.follow
     - search.suggest

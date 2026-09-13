@@ -1054,6 +1054,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Checked `syllabus/` for other unrendered-syntax bugs like the tasklist one before adding anything else (footnotes, content tabs, strikethrough/mark/superscript, keyboard-key syntax) — all zero real hits, so no unused extension added.
 - Verified with a real local `mkdocs build` (exit 0, same pre-existing warnings only): confirmed `class="md-path"` breadcrumb markup, `header.autohide`/`navigation.tracking` reaching the page's JS config, and a "View source of this page" link.
 
+## [2026-09-13] — 2 more UI improvements to the published docs site (`mkdocs.yml`)
+
+### Added
+
+- Enabled `navigation.prune` (trims the rendered nav DOM to the current section — a real win given 271+ syllabus chapters across 22 domains) and `navigation.instant.progress` (progress bar during instant page transitions).
+- Deliberately skipped `navigation.expand` (would auto-expand the whole 271-chapter tree — worse at this size) and `toc.integrate` (debatable layout change, no evidence of improvement). Re-checked `syllabus/` for `attr_list` syntax first — all matches were mermaid arrows/code braces, not real usage, so not added.
+- Verified with a real local `mkdocs build` (exit 0, same pre-existing warnings only).
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
