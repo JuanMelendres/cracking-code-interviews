@@ -3326,3 +3326,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **925 real questions across 16 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `18-engineering-practices`, 14 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/18-engineering-practices.md`. 6 chapters yielded 12 deep questions + 2 quick-fire questions = **14 real questions**. No Junior Fundamentals chapter in this domain. 5 of 6 chapters use the older numbered `## 15. Interview Questions` template with no Flashcards section at all; only `git-internals-and-collaboration-workflows.md` has a `### Card:` section.
+- **939 real questions across 17 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
