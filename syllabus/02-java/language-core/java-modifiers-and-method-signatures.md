@@ -62,7 +62,7 @@ Access modifiers, `static`, `final`, and the abstract-vs-concrete method distinc
 | Modifier | Same class | Same package | Subclass (different package) | Everywhere |
 |---|---|---|---|---|
 | `private` | ✅ | ❌ | ❌ | ❌ |
-| *(no modifier — "package-private")* | ✅ | ✅ | ❌ | ❌ |
+| *(no modifier — "package-private", commonly called* **Default (no keyword)** *)* | ✅ | ✅ | ❌ | ❌ |
 | `protected` | ✅ | ✅ | ✅ | ❌ |
 | `public` | ✅ | ✅ | ✅ | ✅ |
 
