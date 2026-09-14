@@ -11081,9 +11081,8 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/05-spring/spring-mvc-fundamentals.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    <a href="javascript:void(0)" onclick="window.print()" title="Print / Save as PDF" class="md-content__button md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3"/></svg>
     </a>
   
   
@@ -11136,7 +11135,146 @@
 <li><strong>Service</strong> (<code>@Service</code>) — the business logic. <a href="../../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java"><code>TaskService</code></a> never mentions HTTP at all — it is just as usable from a test, a CLI tool, or a background job as from a web request, which is the actual point of keeping it separate from the controller.</li>
 <li><strong>Repository</strong> (<code>@Repository</code>) — data access. This chapter's demo uses a plain in-memory list on purpose, so the pattern (controller depends on service depends on repository) stays visible without a real database's own concerns mixed in.</li>
 </ul>
-<p><strong>Constructor-based dependency injection</strong>, the only kind this chapter uses, works like this: a class declares one constructor listing what it needs as parameters, and — since Spring Framework 4.3 — a class with exactly one constructor does not even need an <code>@Autowired</code> annotation; Spring uses that single constructor automatically. <a href="../../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java"><code>TaskController</code></a>'s constructor asks for a <code>TaskService</code>; <a href="../../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java"><code>TaskService</code></a>'s constructor asks for a <code>TaskRepository</code>. Spring builds the <code>TaskRepository</code> first, then the <code>TaskService</code> (handing in the repository), then the <code>TaskController</code> (handing in the service) — resolving the whole chain without any class in it ever writing <code>new</code> for another bean.</p>
+<p><strong>Stereotype annotations, side by side</strong> — all four are the same underlying mechanism (<code>@Component</code> scanning); the specific names exist purely to self-document a class's layer, and two of them add real behavior on top:</p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Layer / meaning</th>
+<th>What it adds beyond <code>@Component</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Component</code></td>
+<td>Generic — any Spring-managed bean that doesn't fit a more specific stereotype</td>
+<td>Nothing; the plain base case</td>
+</tr>
+<tr>
+<td><code>@Service</code></td>
+<td>Business logic</td>
+<td>Nothing functionally over <code>@Component</code> — purely a self-documenting label for "this is a business/domain-logic class"</td>
+</tr>
+<tr>
+<td><code>@Repository</code></td>
+<td>Data access</td>
+<td>Enables Spring's <strong>persistence exception translation</strong> — a data-access-technology-specific exception (e.g. a JDBC <code>SQLException</code>) is caught and rethrown as one of Spring's own unchecked <code>DataAccessException</code> subtypes, so calling code doesn't need to know which persistence technology is underneath</td>
+</tr>
+<tr>
+<td><code>@Controller</code></td>
+<td>Web layer, classic MVC</td>
+<td>Return values are resolved as <em>view names</em> (e.g. a Thymeleaf template) unless a method is also annotated <code>@ResponseBody</code></td>
+</tr>
+<tr>
+<td><code>@RestController</code></td>
+<td>Web layer, REST APIs</td>
+<td>Shorthand for <code>@Controller</code> + <code>@ResponseBody</code> on every method — every return value is serialized straight into the HTTP response body (JSON, by default), which is why this chapter's <a href="../../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java"><code>TaskController</code></a> uses it and not plain <code>@Controller</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Other annotations this chapter's demo doesn't use but every Spring codebase has</strong>, since "what stereotype annotations exist and what do they do" is rarely asked in isolation from these:</p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Where it goes</th>
+<th>What it's for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Configuration</code></td>
+<td>A class</td>
+<td>Marks a class as a source of bean definitions — its <code>@Bean</code>-annotated methods are called once and their return values registered as beans, an alternative to component-scanning for beans you don't control the source of (a third-party class, for instance)</td>
+</tr>
+<tr>
+<td><code>@Bean</code></td>
+<td>A method inside an <code>@Configuration</code> class</td>
+<td>Registers that method's return value as a bean — the go-to for beans of types you can't add <code>@Component</code> to directly</td>
+</tr>
+<tr>
+<td><code>@Autowired</code></td>
+<td>A constructor, field, or setter</td>
+<td>Tells Spring to inject a matching bean there. Unnecessary on a class's <em>only</em> constructor since Spring Framework 4.3 (Section 4 above), still required for field/setter injection or when a class has multiple constructors</td>
+</tr>
+<tr>
+<td><code>@Qualifier("beanName")</code></td>
+<td>Alongside <code>@Autowired</code>, on a parameter</td>
+<td>Disambiguates which specific bean to inject when more than one bean of the same type exists (e.g. two different <code>PaymentGateway</code> implementations)</td>
+</tr>
+<tr>
+<td><code>@Primary</code></td>
+<td>On a bean's class or <code>@Bean</code> method</td>
+<td>Marks that bean as the default choice when multiple candidates of the same type exist and no <code>@Qualifier</code> narrows it — the "pick this one unless told otherwise" annotation</td>
+</tr>
+<tr>
+<td><code>@Value("${property.name}")</code></td>
+<td>A field or constructor parameter</td>
+<td>Injects a single configuration property value (from <code>application.properties</code>/<code>application.yml</code> or an environment variable), rather than a whole bean</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The three ways to get a dependency injected</strong>, since Spring supports all three and only one of them is actually recommended by default:</p>
+<ul>
+<li><strong>Constructor injection</strong> — dependencies are declared as constructor parameters; Spring calls the constructor with the resolved beans. The recommended default (Section 6 explains why).</li>
+<li><strong>Setter injection</strong> — dependencies are declared as parameters to a <code>public</code> setter method annotated <code>@Autowired</code>; Spring calls the setter after constructing the bean. Mainly useful for a genuinely <em>optional</em> dependency, since the bean is fully constructable without it.</li>
+<li><strong>Field injection</strong> — <code>@Autowired</code> directly on a field, with no constructor or setter involved; Spring assigns the field via reflection after construction. The shortest to write, and the one this chapter recommends against by default.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Constructor injection</th>
+<th>Setter injection</th>
+<th>Field injection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where <code>@Autowired</code> goes</td>
+<td>Not needed (single constructor) or on the constructor</td>
+<td>On the setter method</td>
+<td>Directly on the field</td>
+</tr>
+<tr>
+<td>Dependency visibility</td>
+<td>All required dependencies visible in one signature</td>
+<td>Spread across setter methods</td>
+<td>Invisible from outside the class — only reflection sees it</td>
+</tr>
+<tr>
+<td>Can use <code>final</code> fields</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Immutability</td>
+<td>Fully immutable once constructed</td>
+<td>Mutable after construction</td>
+<td>Mutable after construction</td>
+</tr>
+<tr>
+<td>Plain <code>new</code> in a unit test</td>
+<td>Works directly, no Spring needed</td>
+<td>Needs the setter called manually</td>
+<td>Needs reflection or a Spring test context — can't set a <code>private</code> field with plain <code>new</code></td>
+</tr>
+<tr>
+<td>Makes "too many dependencies" visible</td>
+<td>Yes — a 10-parameter constructor is an obvious smell</td>
+<td>Not really</td>
+<td>No — fields can silently accumulate indefinitely</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>The default — required dependencies</td>
+<td>A genuinely optional dependency</td>
+<td>Generally avoided; occasionally seen in legacy code or <code>@Configuration</code> classes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constructor-based dependency injection</strong>, the one this chapter's own demo uses, works like this: a class declares one constructor listing what it needs as parameters, and — since Spring Framework 4.3 — a class with exactly one constructor does not even need an <code>@Autowired</code> annotation; Spring uses that single constructor automatically. <a href="../../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java"><code>TaskController</code></a>'s constructor asks for a <code>TaskService</code>; <a href="../../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java"><code>TaskService</code></a>'s constructor asks for a <code>TaskRepository</code>. Spring builds the <code>TaskRepository</code> first, then the <code>TaskService</code> (handing in the repository), then the <code>TaskController</code> (handing in the service) — resolving the whole chain without any class in it ever writing <code>new</code> for another bean.</p>
 <pre class="mermaid"><code>sequenceDiagram
     participant Client
     participant Controller as TaskController&lt;br/&gt;(@RestController)
@@ -11151,6 +11289,54 @@
     Controller--&gt;&gt;Client: 200 OK, JSON body</code></pre>
 <p>Startup wiring runs in the opposite, dependency-first order: Spring builds <code>TaskRepository</code> first (it needs nothing), then <code>TaskService</code> (handing in the repository), then <code>TaskController</code> (handing in the service) — no class in the chain ever writes <code>new</code> for another bean.</p>
 <p>Three annotations bind pieces of the incoming HTTP request directly to method parameters: <code>@PathVariable</code> binds a segment of the URL path (<code>/tasks/{id}</code> → the method parameter matching <code>id</code>), <code>@RequestParam</code> binds a query-string parameter (<code>?status=done</code>), and <code>@RequestBody</code> binds the entire request body, deserialized from JSON into a Java object by Jackson (already on the classpath).</p>
+<p><strong>Design patterns Spring resolves for you</strong>, since "which design patterns does Spring use internally" is a recurring interview question in its own right — Spring is, in large part, a set of classic Gang-of-Four patterns applied consistently so application code doesn't have to hand-roll them:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Where Spring uses it</th>
+<th>What it buys you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Singleton</strong></td>
+<td>Every bean's default scope (<code>@Scope</code> unset)</td>
+<td>One shared instance per application context, handed to every injection point — see <a href="../spring-bean-scopes-and-proxy-modes/">Spring Bean Scopes and Proxy Modes</a> for the real mechanics and its gotchas</td>
+</tr>
+<tr>
+<td><strong>Factory</strong></td>
+<td><code>BeanFactory</code>/<code>ApplicationContext</code> (Spring's container itself); <code>@Bean</code> methods in an <code>@Configuration</code> class</td>
+<td>Object creation is centralized in the container instead of scattered <code>new</code> calls across the codebase — this chapter's own dependency-injection model (Section 4) <em>is</em> the Factory pattern in practice</td>
+</tr>
+<tr>
+<td><strong>Proxy</strong></td>
+<td>AOP in general; <code>@Transactional</code>, <code>@Async</code>, <code>@Cacheable</code> specifically</td>
+<td>Spring wraps a bean in a dynamically-generated proxy that adds behavior (starting a transaction, running async, checking a cache) around the real method call, without the real class containing any of that cross-cutting code itself — see <a href="../transactional-proxy-mechanics-and-propagation/">Transactional Proxy Mechanics and Propagation</a> for exactly how, including the self-invocation pitfall it causes</td>
+</tr>
+<tr>
+<td><strong>Template Method</strong></td>
+<td><code>JdbcTemplate</code>, <code>RestTemplate</code>, <code>TransactionTemplate</code></td>
+<td>Each <code>*Template</code> class fixes the invariant steps of an operation (open a connection, handle exceptions, clean up) and leaves only the actually-variable part (your SQL, your request) to the caller — you provide a callback, the template handles everything around it</td>
+</tr>
+<tr>
+<td><strong>Observer</strong></td>
+<td><code>ApplicationEvent</code> + <code>@EventListener</code>/<code>ApplicationListener</code></td>
+<td>A bean publishes an event (<code>applicationEventPublisher.publishEvent(...)</code>) without knowing or caring who's listening; any number of other beans react to it independently — decouples the publisher from every subscriber</td>
+</tr>
+<tr>
+<td><strong>Strategy</strong></td>
+<td>Any interface with multiple <code>@Component</code> implementations, selected via <code>@Qualifier</code>/<code>@Primary</code> (Section 4's stereotype-annotation table above)</td>
+<td>The calling code depends only on the interface; which concrete algorithm/implementation runs is a wiring decision, not a code change</td>
+</tr>
+<tr>
+<td><strong>Decorator</strong></td>
+<td><code>HttpServletRequestWrapper</code>/<code>HttpServletResponseWrapper</code> and Spring Security's filter chain</td>
+<td>Each filter/wrapper adds behavior around the request/response while still exposing the same interface, so wrapping is transparent to whatever runs next in the chain</td>
+</tr>
+</tbody>
+</table>
+<p>Most of these are worth recognizing by name rather than reimplementing — the Proxy and Singleton rows in particular explain real, observable behavior (why a <code>@Transactional</code> self-invocation silently does nothing; why a mutable field on a default-scoped bean is a concurrency bug) that this domain's other chapters cover in depth.</p>
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p>At startup, <code>@SpringBootApplication</code> triggers <strong>component scanning</strong>: Spring walks the application's packages looking for classes annotated <code>@Component</code> (or one of its stereotype specializations), and constructs the <strong>application context</strong> — the actual container holding every bean instance. Dependency injection happens as this container is built: Spring inspects each bean class's constructor, sees what types it asks for, and either supplies an already-built bean of that type or builds it first if it doesn't exist yet — recursively, until the whole graph (repository → service → controller, in this chapter's demo) is resolved. If two beans depended on each other's constructors directly, this resolution would have no valid starting point — a genuine circular-dependency failure Spring detects and reports at startup, not silently.</p>
 <p>For the web layer specifically, Spring Boot starts an <strong>embedded servlet container</strong> (Tomcat, by default) as part of the same application process — no separate application-server installation or deployment step. Every incoming HTTP request passes through Spring's own <code>DispatcherServlet</code>, which matches the request's path and method against every <code>@GetMapping</code>/<code>@PostMapping</code>/etc. across every controller bean, invokes the matching method, and converts its return value to the HTTP response using a registered <code>HttpMessageConverter</code> (Jackson, for JSON, in this chapter's demo).</p>
@@ -11297,7 +11483,7 @@ Expected answer: Section 13's framing — this is a convention-erosion problem, 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 16:08:44 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 15:38:30 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11393,13 +11579,11 @@ Expected answer: Section 13's framing — this is a convention-erosion problem, 
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-    
     
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
@@ -11409,6 +11593,8 @@ Expected answer: Section 13's framing — this is a convention-erosion problem, 
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
         <script src="../../../javascripts/checklist-progress.js"></script>
+      
+        <script src="../../../javascripts/diagram-zoom.js"></script>
       
     
   </body>

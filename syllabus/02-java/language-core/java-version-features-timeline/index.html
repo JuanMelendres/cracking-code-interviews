@@ -11879,9 +11879,8 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/02-java/language-core/java-version-features-timeline.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    <a href="javascript:void(0)" onclick="window.print()" title="Print / Save as PDF" class="md-content__button md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3"/></svg>
     </a>
   
   
@@ -11961,6 +11960,103 @@
 <td><strong>Java 25</strong></td>
 <td>2025</td>
 <td>Scoped values finalized, flexible constructor bodies finalized, module import declarations finalized, compact object headers — see Section 9 for an explicit accuracy caveat on this row</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The full release-by-release picture, including non-LTS releases</strong> (each one's headline <em>final</em> feature — a non-LTS release's own preview-only features are covered by the LTS row where they finalize, not repeated here):</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Released</th>
+<th>Headline final features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>2017</td>
+<td>The Java Platform Module System (<code>module-info.java</code>, JPMS), <code>jshell</code> (the REPL), private interface methods</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2018</td>
+<td>Local-variable type inference (<code>var</code>)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2018</td>
+<td><em>(LTS — see table above)</em></td>
+</tr>
+<tr>
+<td>12</td>
+<td>2019</td>
+<td>Small <code>String</code> methods (<code>indent</code>, <code>transform</code>); switch expressions still preview</td>
+</tr>
+<tr>
+<td>13</td>
+<td>2019</td>
+<td>Text blocks (<code>"""</code>) as preview; switch expressions preview continues</td>
+</tr>
+<tr>
+<td>14</td>
+<td>2020</td>
+<td>Switch expressions finalized (JEP 361); records and pattern matching for <code>instanceof</code> both preview for the first time; helpful <code>NullPointerException</code> messages finalized</td>
+</tr>
+<tr>
+<td>15</td>
+<td>2020</td>
+<td>Text blocks finalized (JEP 378); sealed classes preview begins</td>
+</tr>
+<tr>
+<td>16</td>
+<td>2021</td>
+<td>Records finalized (JEP 395); pattern matching for <code>instanceof</code> finalized (JEP 394)</td>
+</tr>
+<tr>
+<td>17</td>
+<td>2021</td>
+<td><em>(LTS — see table above)</em></td>
+</tr>
+<tr>
+<td>18</td>
+<td>2022</td>
+<td>UTF-8 as the default <code>Charset</code> (JEP 400) — a real, silent-failure-avoiding portability fix; simple web server (<code>jwebserver</code>)</td>
+</tr>
+<tr>
+<td>19</td>
+<td>2022</td>
+<td>Virtual threads preview begins (JEP 425); structured concurrency preview begins (JEP 428); record patterns preview begins</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2023</td>
+<td>Scoped values preview begins; virtual threads/structured concurrency second preview round</td>
+</tr>
+<tr>
+<td>21</td>
+<td>2023</td>
+<td><em>(LTS — see table above)</em></td>
+</tr>
+<tr>
+<td>22</td>
+<td>2024</td>
+<td>Unnamed variables and patterns (<code>_</code>) finalized; the Foreign Function &amp; Memory API finalized (JEP 454) — see <a href="../../concurrency/foreign-function-and-memory-api/">Foreign Function and Memory API</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>2024</td>
+<td>Primitive types in patterns/<code>instanceof</code>/<code>switch</code> preview; markdown documentation comments (JEP 467)</td>
+</tr>
+<tr>
+<td>24</td>
+<td>2024</td>
+<td>Stream gatherers finalized (JEP 485); quantum-resistant cryptography algorithms (ML-KEM, ML-DSA)</td>
+</tr>
+<tr>
+<td>25</td>
+<td>2025</td>
+<td><em>(LTS — see table above; Section 9 accuracy caveat applies most strongly to this and the 22–24 rows above)</em></td>
 </tr>
 </tbody>
 </table>
@@ -12112,7 +12208,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 20:29:54 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 14:59:37 UTC">September 14, 2026</span>
   </span>
 
     
@@ -12208,13 +12304,11 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-    
     
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
@@ -12224,6 +12318,8 @@
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
         <script src="../../../../javascripts/checklist-progress.js"></script>
+      
+        <script src="../../../../javascripts/diagram-zoom.js"></script>
       
     
   </body>

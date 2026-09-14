@@ -11879,9 +11879,8 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/02-java/language-core/java-modifiers-and-method-signatures.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    <a href="javascript:void(0)" onclick="window.print()" title="Print / Save as PDF" class="md-content__button md-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3"/></svg>
     </a>
   
   
@@ -11974,6 +11973,58 @@
 <p><strong><code>private</code> is scoped to the top-level enclosing class, not the immediate class body</strong> — a genuinely surprising rule the first time you encounter it: two <em>nested</em> classes inside the same outer class <em>can</em> read each other's <code>private</code> members directly, because the JLS's actual rule is "accessible anywhere within the body of the top-level class that encloses the declaration," not "accessible only within this exact class." This chapter's own practice code discovered this by accident while building a private-access demo (Section 7) — worth internalizing precisely because it contradicts the simplified mental model most people carry.</p>
 <p><strong>A class can only be <code>abstract</code> if it has at least one unimplemented method, OR if it is deliberately declared abstract to prevent direct instantiation even though every method has a body</strong> — both are valid; the first is by far the more common shape. An abstract class can still have real fields, real constructors (called only via <code>super()</code> from a subclass, since it can never be instantiated directly), and real concrete methods alongside its abstract ones.</p>
 <p><strong><code>static</code> and <code>final</code> combine to make a true constant</strong>: <code>static final int MAX_RETRIES = 3;</code> is shared across every instance (static) and can never change after class initialization (final) — this is Java's actual mechanism for what other languages might call a named constant, and it is why interface fields (which are implicitly <code>public static final</code>, per <a href="../java-oop-fundamentals-classes-objects-and-interfaces/">Java OOP Fundamentals</a>'s own Section 8) behave the way they do.</p>
+<p><strong>Overloading vs. overriding</strong>, since both terms describe a subclass or class having "another version" of a method with the same name, and the two are routinely confused:</p>
+<ul>
+<li><strong>Overloading</strong> is having <em>multiple methods with the same name but different parameter lists</em> in the <em>same class</em> (or a subclass adding a new signature). Which overload runs is decided by the compiler, once, from the argument types written at the call site.</li>
+<li><strong>Overriding</strong> is a <em>subclass redefining an inherited instance method with the identical signature</em> (same name, same parameter types). Which override runs is decided by the JVM, at runtime, from the actual object's class — this is what makes polymorphism work.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Overloading</th>
+<th>Overriding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Method signature</td>
+<td>Must differ (parameter types/count/order)</td>
+<td>Must be identical to the parent's</td>
+</tr>
+<tr>
+<td>Where it happens</td>
+<td>Same class, or a subclass adding a new variant</td>
+<td>A subclass redefining an inherited method</td>
+</tr>
+<tr>
+<td>Resolved by</td>
+<td>Compiler, from the declared argument types (static/compile-time binding)</td>
+<td>JVM, from the object's actual runtime class (dynamic/virtual dispatch)</td>
+</tr>
+<tr>
+<td>Return type</td>
+<td>Can differ freely</td>
+<td>Must be the same, or a covariant subtype</td>
+</tr>
+<tr>
+<td>Access modifier</td>
+<td>No constraint relative to other overloads</td>
+<td>Cannot be more restrictive than the overridden method</td>
+</tr>
+<tr>
+<td><code>private</code>/<code>static</code>/<code>final</code> methods</td>
+<td>Can be overloaded normally</td>
+<td>Cannot be overridden at all — see Section 9 (a subclass "redefining" one hides it instead)</td>
+</tr>
+<tr>
+<td>Annotation</td>
+<td>None (there's no <code>@Overload</code>)</td>
+<td><code>@Override</code> — always use it; it makes <code>javac</code> verify a real match exists</td>
+</tr>
+</tbody>
+</table>
+<p>This chapter stops at the signature-and-modifier rules above; the actual dispatch mechanism — <em>why</em> overload resolution is a compile-time decision and override resolution is a runtime one, down to the <code>invokestatic</code> vs. <code>invokevirtual</code> bytecode difference — is <a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch</a>'s own job, including the field-hiding and static-hiding gotchas that follow directly from this same static-vs-dynamic distinction.</p>
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p>Access control is enforced entirely at <strong>compile time</strong> by <code>javac</code> — there is no runtime access check for a normal field/method access (reflection can bypass it deliberately via <code>setAccessible(true)</code>, which is exactly why <a href="../reflection-and-dynamic-proxies/">reflection-and-dynamic-proxies.md</a> treats that call as a real security-relevant decision, not a routine one). A <code>private</code> field access from outside its permitted scope is a real compilation failure, not a runtime exception — demonstrated concretely in Section 7.</p>
 <p><code>static</code> fields live in the class's own storage, allocated once when the class is loaded by the JVM's classloader, before any instance of that class is ever created — this is why <code>Counter.totalCreated</code> in Section 7's demo already has a defined value (<code>0</code>) even before the first <code>new Counter()</code> call. <code>final</code> local variables and fields are enforced by the compiler's definite-assignment analysis: it tracks, at compile time, every possible code path to guarantee a <code>final</code> variable is assigned exactly once before any read, which is also what makes a <code>final</code> local variable safely capturable by a lambda or anonymous inner class (the compiler can prove it will never change).</p>
@@ -12117,7 +12168,7 @@ src/BrokenPrivateAccess.java:4: error: balance has private access in BankAccount
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 00:14:11 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 14:59:37 UTC">September 14, 2026</span>
   </span>
 
     
@@ -12213,13 +12264,11 @@ src/BrokenPrivateAccess.java:4: error: balance has private access in BankAccount
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-    
     
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
@@ -12229,6 +12278,8 @@ src/BrokenPrivateAccess.java:4: error: balance has private access in BankAccount
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
         <script src="../../../../javascripts/checklist-progress.js"></script>
+      
+        <script src="../../../../javascripts/diagram-zoom.js"></script>
       
     
   </body>

@@ -43,3 +43,21 @@
   margin: 1.5rem auto;
   max-width: 100%;
 }
+
+/* Click-to-enlarge overlay for Mermaid diagrams (see diagram-zoom.js). */
+#cci-diagram-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  cursor: zoom-out;
+}
+
+#cci-diagram-zoom-overlay svg {
+  background: var(--md-default-bg-color);
+  border-radius: 0.2rem;
+  padding: 1rem;
+}
