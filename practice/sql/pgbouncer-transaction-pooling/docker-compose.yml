@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pgbouncer-demo-postgres
+    environment:
+      POSTGRES_PASSWORD: demopass
+      POSTGRES_USER: postgres
+      POSTGRES_DB: demo
+
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    container_name: pgbouncer-demo-bouncer
+    depends_on:
+      - db
+    volumes:
+      - ./pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini
+      - ./userlist.txt:/etc/pgbouncer/userlist.txt
+    ports:
+      - "16432:6432"

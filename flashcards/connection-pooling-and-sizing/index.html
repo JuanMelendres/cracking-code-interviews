@@ -1842,6 +1842,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-pgbouncers-transaction-pooling-session-leak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: PgBouncer's transaction-pooling session leak
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-what-exception-does-pool-exhaustion-actually-throw" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8012,6 +8023,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-pgbouncers-transaction-pooling-session-leak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: PgBouncer's transaction-pooling session leak
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-what-exception-does-pool-exhaustion-actually-throw" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8136,6 +8158,26 @@ disabled the feature entirely without realizing it.</p>
 Assuming any positive value for <code>leakDetectionThreshold</code> takes effect as configured.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/06-databases/connection-pooling-and-sizing/">syllabus/06-databases/connection-pooling-and-sizing.md</a></p>
+<h2 id="card-pgbouncers-transaction-pooling-session-leak">Card: PgBouncer's transaction-pooling session leak<a class="headerlink" href="#card-pgbouncers-transaction-pooling-session-leak" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Under PgBouncer's <code>pool_mode = transaction</code>, if a session takes an advisory lock
+and never explicitly releases it, what happens?</p>
+<p><strong>Answer:</strong>
+The lock can silently remain held on the real backend connection after that
+"session" ends from the app's point of view — measured directly: two sequential,
+unrelated <code>psql</code> clients landed on the identical real backend PID with no
+concurrent demand forcing a different one, and the second client's
+<code>pg_try_advisory_lock</code> on the same lock ID succeeded instantly because it was, in
+reality, the same PostgreSQL session re-acquiring its own already-held lock.</p>
+<p><strong>Why it matters:</strong>
+Session-scoped resources (advisory locks, <code>SET</code> variables, temp tables, prepared
+statements) are not safe to assume "gone" just because a transaction committed
+under transaction pooling.</p>
+<p><strong>Common trap:</strong>
+Assuming <code>pool_mode = transaction</code> behaves identically to a direct connection for
+anything beyond the transaction itself.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/connection-pooling-and-sizing/">syllabus/06-databases/connection-pooling-and-sizing.md</a></p>
 <h2 id="card-what-exception-does-pool-exhaustion-actually-throw">Card: What exception does pool exhaustion actually throw?<a class="headerlink" href="#card-what-exception-does-pool-exhaustion-actually-throw" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 What real exception does HikariCP throw when a caller waits past
@@ -8173,7 +8215,7 @@ checking whether it's actually a pool-level exhaustion signal.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 02:12:39 UTC">September 14, 2026</span>
   </span>
 
     
