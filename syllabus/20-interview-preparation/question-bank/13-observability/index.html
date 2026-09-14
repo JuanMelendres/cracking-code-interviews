@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/react-testing/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/13-observability/">
       
       
-        <link rel="prev" href="../react-state-management/">
+        <link rel="prev" href="../12-security/">
       
       
-        <link rel="next" href="../react-typescript/">
+        <link rel="next" href="../../system-design/system-design-narration-and-whiteboard-discipline/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>React Testing: RTL Philosophy, Mocking, and E2E with Playwright - Cracking Code Interviews</title>
+        <title>Interview Question Bank — 13-observability - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/react-testing/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/13-observability/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#react-testing-rtl-philosophy-mocking-and-e2e-with-playwright" class="md-skip">
+        <a href="#interview-question-bank-observability" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -131,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              React Testing: RTL Philosophy, Mocking, and E2E with Playwright
+              Interview Question Bank — 13-observability
             
           </span>
         </div>
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -384,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -404,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1215,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
   
-    <a href="../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
+    <a href="../../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
       
   
   
@@ -1324,7 +1324,7 @@
   
   
   
-    <a href="../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
       
   
   
@@ -1378,7 +1378,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1432,7 +1432,7 @@
   
   
   
-    <a href="../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
+    <a href="../../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
       
   
   
@@ -1531,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -1601,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1706,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -1741,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -1776,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -1811,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1846,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1881,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -1916,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1951,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1986,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2021,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -2056,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -2091,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -2126,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -2161,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2261,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2296,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2466,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2501,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2536,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2606,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -2641,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2676,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2711,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2746,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2781,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2816,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -2851,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2886,7 +2886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2986,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3021,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3056,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3091,7 +3091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3126,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3161,7 +3161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3196,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3231,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3266,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -3301,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3336,7 +3336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3371,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3406,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3441,7 +3441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -3476,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3511,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -3546,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -3581,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -3681,7 +3681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -3716,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -3751,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -3786,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -3821,7 +3821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -3856,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -3956,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -3991,7 +3991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4026,7 +4026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4061,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4096,7 +4096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -4131,7 +4131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -4166,7 +4166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4201,7 +4201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4236,7 +4236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -4336,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -4371,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -4406,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -4441,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -4476,7 +4476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -4511,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -4546,7 +4546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -4581,7 +4581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -4616,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -4651,7 +4651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -4686,7 +4686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -4721,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -4756,7 +4756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -4856,7 +4856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -4884,7 +4884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -4919,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -4947,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -4982,7 +4982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5017,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5052,7 +5052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5087,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -5187,7 +5187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -5222,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -5257,7 +5257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -5292,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -5327,7 +5327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -5362,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -5397,7 +5397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -5432,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -5467,7 +5467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -5502,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -5602,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -5637,7 +5637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -5672,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -5707,7 +5707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -5742,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -5777,7 +5777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -5812,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -5847,7 +5847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -5882,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -5917,7 +5917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6017,7 +6017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6052,7 +6052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -6087,7 +6087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -6122,7 +6122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -6157,7 +6157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -6192,7 +6192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -6292,7 +6292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -6327,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -6362,7 +6362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -6397,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -6432,7 +6432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -6467,7 +6467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -6567,7 +6567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -6602,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6637,7 +6637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6672,7 +6672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -6707,7 +6707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -6807,7 +6807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -6842,7 +6842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -6877,7 +6877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -6912,7 +6912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7012,7 +7012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -7047,7 +7047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -7082,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -7117,7 +7117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -7152,7 +7152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -7187,7 +7187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -7222,7 +7222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -7257,7 +7257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -7292,7 +7292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -7327,7 +7327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -7427,7 +7427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -7462,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -7497,7 +7497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -7532,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -7567,7 +7567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -7602,7 +7602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -7637,7 +7637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -7737,7 +7737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -7765,7 +7765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -7800,7 +7800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -7835,7 +7835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -7870,7 +7870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -7905,7 +7905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -7940,7 +7940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -7975,7 +7975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8015,6 +8015,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8032,11 +8034,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -8057,7 +8059,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8075,7 +8077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -8130,7 +8132,7 @@
   
   
   
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
+    <a href="../../behavioral/" class="md-nav__link">
       
   
   
@@ -8184,7 +8186,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -8215,6 +8217,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8228,18 +8232,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/question-bank/02-java-collections/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_4" id="__nav_2_21_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -8253,12 +8255,678 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Question bank
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/collections
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/concurrency
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-jvm-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/jvm-internals
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-language-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/language-core
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 03-data-structures-algorithms
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-software-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 04-software-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 05-spring
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 06-databases
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 08-testing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-messaging-event-driven/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 09-messaging-event-driven
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-distributed-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 10-distributed-systems
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 11-system-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 12-security
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 13-observability
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 13-observability
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#incident-response-and-blameless-postmortems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Response and Blameless Postmortems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-metrics-tracing-and-opentelemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging, Metrics, Tracing, and OpenTelemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metric-cardinality-and-alert-fatigue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metric Cardinality and Alert Fatigue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#percentiles-tail-latency-and-coordinated-omission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percentiles, Tail Latency, and Coordinated Omission
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-methodology-usered-and-slisloerror-budgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Methodology (USE/RED) and SLI/SLO/Error Budgets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-fire questions (from this domain's Flashcards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -8292,7 +8960,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -8346,7 +9014,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -8385,8 +9053,6 @@
                 
   
   
-    
-  
   
   
     
@@ -8404,11 +9070,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" >
         
           
           <label class="md-nav__link" for="__nav_2_22" id="__nav_2_22_label" tabindex="">
@@ -8429,7 +9095,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_22">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8447,7 +9113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -8482,7 +9148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -8517,7 +9183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -8552,7 +9218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -8587,7 +9253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -8622,7 +9288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -8657,7 +9323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-app-router-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -8692,7 +9358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -8727,7 +9393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -8762,7 +9428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -8797,7 +9463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -8832,7 +9498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -8867,7 +9533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -8902,7 +9568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -8937,7 +9603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -8972,7 +9638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -9007,7 +9673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -9042,7 +9708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -9077,7 +9743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -9112,7 +9778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -9147,7 +9813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -9182,7 +9848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -9217,7 +9883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -9252,7 +9918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9287,7 +9953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9322,7 +9988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9357,7 +10023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9392,7 +10058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9427,7 +10093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9462,7 +10128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9497,7 +10163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-performance/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -9532,7 +10198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9567,7 +10233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -9599,44 +10265,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    React Testing: RTL Philosophy, Mocking, and E2E with Playwright
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -9659,301 +10291,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -9966,7 +10303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10001,7 +10338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -10036,7 +10373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -10071,7 +10408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -10106,7 +10443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10206,7 +10543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10241,7 +10578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -10276,7 +10613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -10311,7 +10648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10346,7 +10683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -10381,7 +10718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -10416,7 +10753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -10486,7 +10823,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -10539,7 +10876,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -10592,7 +10929,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -10645,7 +10982,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -10698,7 +11035,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -10751,7 +11088,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -10804,10 +11141,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#incident-response-and-blameless-postmortems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        Incident Response and Blameless Postmortems
       
     </span>
   </a>
@@ -10815,10 +11152,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#logging-metrics-tracing-and-opentelemetry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning Objectives
+        Logging, Metrics, Tracing, and OpenTelemetry
       
     </span>
   </a>
@@ -10826,10 +11163,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+  <a href="#metric-cardinality-and-alert-fatigue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters in Interviews
+        Metric Cardinality and Alert Fatigue
       
     </span>
   </a>
@@ -10837,10 +11174,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
+  <a href="#percentiles-tail-latency-and-coordinated-omission" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mental Model
+        Percentiles, Tail Latency, and Coordinated Omission
       
     </span>
   </a>
@@ -10848,10 +11185,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
+  <a href="#performance-methodology-usered-and-slisloerror-budgets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Definition and Purpose
+        Performance Methodology (USE/RED) and SLI/SLO/Error Budgets
       
     </span>
   </a>
@@ -10859,10 +11196,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Quick-fire questions (from this domain's Flashcards)
       
     </span>
   </a>
@@ -10870,208 +11207,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11103,7 +11242,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11126,7 +11265,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11147,10 +11286,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Frontend (React/Next.js)
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../02-java-collections/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Question bank
   </span>
 
         </a>
@@ -11169,7 +11326,7 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/21-frontend-web/react-testing.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/20-interview-preparation/question-bank/13-observability.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -11178,250 +11335,189 @@
     
       
     
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/21-frontend-web/react-testing.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/20-interview-preparation/question-bank/13-observability.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="react-testing-rtl-philosophy-mocking-and-e2e-with-playwright">React Testing: RTL Philosophy, Mocking, and E2E with Playwright<a class="headerlink" href="#react-testing-rtl-philosophy-mocking-and-e2e-with-playwright" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> F-118 (Testing — React Testing Library philosophy, Jest/Vitest, mocking, Playwright/Cypress for E2E) · Advanced tier · <code>00-project/frontend-topic-register.md</code> — noted there as a direct parallel to the backend <a href="../../08-testing/test-strategy-and-test-doubles/"><code>test-strategy-and-test-doubles.md</code></a> chapter.
-<strong>Scope note:</strong> per <code>CLAUDE.md</code>'s Scope Addendum, this is the twelfth frontend chapter, continuing the register in sequence after Performance (F-117).
-<strong>Provenance:</strong> every claim is verified against a real, running React 19.2.8 + Vite 8.2.1 app at <a href="../../practice/frontend/react-testing/"><code>practice/frontend/react-testing/</code></a>, including a real Vitest/React Testing Library suite, a real live-refactor that broke one query strategy and not another, and a real Playwright run against a real Chromium instance that caught a genuine locator bug mid-session.</p>
-</blockquote>
-<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#real-verified-demos">Real Verified Demos</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
+<h1 id="interview-question-bank-observability">Interview Question Bank — Observability<a class="headerlink" href="#interview-question-bank-observability" title="Permanent link">&para;</a></h1>
+<p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
+tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
+22-domain plan and sourcing discipline.</p>
+<p><strong>Honest count for this domain:</strong> 5 chapters yielded 10 deep questions + 14 quick-fire
+questions = <strong>24 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain — observability presupposes backend fundamentals already covered elsewhere.
+This is a genuinely small domain (5 chapters).</p>
 <hr />
-<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>By the end of this chapter you can:</p>
-<ul>
-<li>Explain React Testing Library's core philosophy ("test behavior, not implementation") precisely enough to defend it with a real, reproducible example of what it prevents.</li>
-<li>Choose correctly between a query that survives a refactor and one that doesn't, having watched a real refactor break one and not the other.</li>
-<li>Mock an async dependency with <code>vi.mock</code>, and verify both a component's resulting behavior AND the interaction itself (what was called, with what arguments).</li>
-<li>Write and run a real Playwright E2E test, and reason about what an E2E test can catch that a component test cannot (and the reverse).</li>
-</ul>
-<h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>Testing questions separate candidates who've internalized a philosophy from candidates who've memorized an API. "I use React Testing Library" is a tooling fact; "I query by role and label because that's what survives a refactor that doesn't change user-facing behavior, and I watched a class-name-based query break on exactly that kind of refactor" is the difference this chapter is built to produce — directly mirroring the backend's <a href="../../08-testing/test-strategy-and-test-doubles/">test-strategy-and-test-doubles.md</a>, which asks the same question about mocks and test doubles rather than DOM queries.</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p><strong>Every testing decision in this chapter answers one question: does this test verify something a USER (or a real dependency) actually cares about, or does it verify an incidental detail of the current implementation?</strong> A query by CSS class or DOM position cares about implementation; a query by role or accessible label cares about what a user perceives — the same distinction, at a different layer, as choosing to mock a payment gateway's INTERFACE (call it, verify it was called correctly) rather than its INTERNAL retry logic. Testing Library's <code>getByRole</code>/<code>getByLabelText</code> and Playwright's <code>page.getByRole</code> both exist specifically to make "test like a user" the path of least resistance, not an extra discipline you have to remember to apply.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>React Testing Library (RTL)</strong> is a testing utility built on <code>@testing-library/dom</code> whose stated guiding principle is "the more your tests resemble the way your software is used, the more confidence they can give you" — it deliberately makes implementation details (component internals, state, class names) harder to query than user-facing output (accessible roles, labels, visible text), because a test coupled to implementation breaks on refactors that change nothing a user would notice, producing false negatives that erode trust in the suite. <strong>Vitest</strong> is this repository's unit/component test runner (Jest-API-compatible, Vite-native, used throughout this chapter instead of Jest per the register's naming), providing <code>describe</code>/<code>it</code>/<code>expect</code>, a <code>jsdom</code> environment, and <code>vi.fn()</code>/<code>vi.mock()</code> for test doubles. <strong>Mocking</strong> replaces a real dependency (a network call, a timer, a third-party module) with a controllable stand-in so a test can isolate the component under test — the same purpose the backend's Mockito-based mocks serve, addressed in identical terms in <code>test-strategy-and-test-doubles.md</code>. <strong>End-to-end (E2E) testing</strong> with Playwright (or Cypress) drives a REAL browser against a REAL running app, verifying the fully integrated system — routing, real network requests, real CSS, real browser APIs — that a component test's <code>jsdom</code> environment does not exercise at all.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="behavior-vs-implementation-detail-queries-proven-with-a-real-live-refactor">Behavior vs. implementation-detail queries: proven with a real live refactor<a class="headerlink" href="#behavior-vs-implementation-detail-queries-proven-with-a-real-live-refactor" title="Permanent link">&para;</a></h3>
-<p><code>LoginForm.behavior.test.jsx</code> queries via <code>screen.getByLabelText('Username')</code> and <code>screen.getByRole('button', { name: 'Log in' })</code>. <code>LoginForm.implementation-detail.test.jsx</code> queries via <code>container.querySelectorAll('.field-wrap input')</code>, addressing fields by class name and array position. Both suites passed identically against the original markup. <code>LoginForm.jsx</code> was then edited live — the wrapper class renamed <code>.field-wrap</code> → <code>.input-group</code>, and the two fields reordered — a pure markup change with zero effect on what a user sees or can do. Re-running immediately: the implementation-detail test FAILED (<code>Unable to fire a "change" event - please provide a DOM element</code>, because <code>.field-wrap</code> no longer matched anything and <code>inputs[0]</code> was <code>undefined</code>); the behavior test suite passed WITHOUT modification. This is not a hypothetical illustration — it is a real class of bug this chapter reproduced on demand.</p>
-<h3 id="mocking-proves-interaction-not-just-return-value">Mocking proves interaction, not just return value<a class="headerlink" href="#mocking-proves-interaction-not-just-return-value" title="Permanent link">&para;</a></h3>
-<p><code>UserProfile.test.jsx</code> mocks <code>fetchUser</code> with <code>vi.mock('../api/fetchUser', () =&gt; ({ fetchUser: vi.fn() }))</code>, then configures it per-test with <code>mockResolvedValue</code>/<code>mockRejectedValue</code>. One assertion checks the resulting behavior (<code>await screen.findByText('Ada Lovelace')</code>); a separate assertion checks the interaction itself: <code>expect(fetchUser).toHaveBeenCalledWith(42)</code>. The interaction assertion is the one a stub-only approach (hard-coding a returned value with no call-tracking) cannot make — exactly the same "what a mock proves beyond a stub" point <code>test-strategy-and-test-doubles.md</code> makes for <code>PaymentService</code>'s retry logic on the backend.</p>
-<h3 id="a-real-playwright-run-caught-a-genuine-bug-this-chapter-didnt-plan-for">A real Playwright run caught a genuine bug this chapter didn't plan for<a class="headerlink" href="#a-real-playwright-run-caught-a-genuine-bug-this-chapter-didnt-plan-for" title="Permanent link">&para;</a></h3>
-<p><code>e2e/login.spec.js</code> drives a real installed Chromium against the real Vite dev server (<code>npx playwright install chromium</code>, then <code>playwright test</code> with a <code>webServer</code> config). The first real run: one test passed, one failed with <code>strict mode violation: getByRole('alert') resolved to 2 elements</code>. This was not staged — <code>UserProfile</code> genuinely calls <code>fetch('/api/users/7')</code> against a dev server with no backend, which genuinely rejects and renders its OWN <code>role="alert"</code> element on the same page, so an unscoped <code>page.getByRole('alert')</code> genuinely matched two real elements. Fixed by scoping the locator to the login form itself (<code>page.getByRole('form', { name: 'login' }).getByRole('alert')</code>); the re-run passed both tests. This is exactly the class of integration surprise a component test (which renders <code>LoginForm</code> in isolation, with no <code>UserProfile</code> sibling) structurally cannot catch.</p>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p>Testing Library's <code>render()</code> (in <code>jsdom</code>) mounts a React tree into a detached DOM node and returns query functions scoped to that container; <code>screen</code> is a pre-bound set of the same queries against <code>document.body</code>, which is what most of this chapter's tests use. Its queries are deliberately prioritized (<code>getByRole</code> first, then <code>getByLabelText</code>, <code>getByPlaceholderText</code>, <code>getByText</code>, and <code>getByTestId</code> explicitly last-resort) — a priority order that IS the "test behavior" philosophy encoded directly into the API's ergonomics, not just stated in documentation. <code>@testing-library/user-event</code> dispatches sequences of real DOM events (<code>keydown</code>/<code>keypress</code>/<code>input</code>/<code>keyup</code> per character typed, not one synthetic <code>change</code> event) to more closely approximate actual browser input than <code>fireEvent</code> does, which is why <code>LoginForm.behavior.test.jsx</code> uses <code>userEvent.type</code> while the implementation-detail suite uses the lower-level <code>fireEvent.change</code> directly. <code>vi.mock(path, factory)</code> intercepts the module system at import time (hoisted above other imports by Vitest, mirroring Jest's <code>jest.mock</code> hoisting) so every import of <code>fetchUser</code> anywhere in the tested module graph resolves to the mock, not the real implementation — no real <code>fetch()</code>, and therefore no real network dependency or non-determinism, ever runs in that suite. Playwright's <code>webServer</code> config in <code>playwright.config.js</code> starts (and tears down) the real dev server itself before running specs, and drives an actual browser process (Chromium here) via the Chrome DevTools Protocol — every DOM query, click, and assertion in <code>e2e/login.spec.js</code> happens against a REAL rendered page, not a <code>jsdom</code> approximation, which is precisely why it caught a real cross-component alert collision a <code>jsdom</code>-only component test never would have rendered together in the first place.</p>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
-    A["Write a query"] --&gt; B{"What does it target?"}
-    B -- "role / accessible label / visible text" --&gt; C["Survives markup refactors\n(class renames, DOM reordering,\nwrapper element changes)"]
-    B -- "CSS class / DOM position / testid" --&gt; D["Coupled to implementation\n-&gt; breaks on refactors that change\nnothing a user would notice"]
-    C --&gt; E["High confidence, low maintenance\n(this chapter's behavior suite:\nunchanged across the live refactor)"]
-    D --&gt; F["Requires updating the test\nitself on every such refactor\n(this chapter's implementation-detail\nsuite: broke, then had to be fixed)"]</code></pre>
-<h2 id="real-verified-demos">Real Verified Demos<a class="headerlink" href="#real-verified-demos" title="Permanent link">&para;</a></h2>
-<p>All demos are real, executed test suites — <a href="../../practice/frontend/react-testing/"><code>practice/frontend/react-testing/</code></a>, including a real live-refactor experiment and a real Playwright/Chromium run. Full captured terminal output in the app's own <a href="../../practice/frontend/react-testing/">README.md</a>:</p>
-<ul>
-<li><a href="../../../practice/frontend/react-testing/src/demos/LoginForm.behavior.test.jsx"><code>LoginForm.behavior.test.jsx</code></a> vs. <a href="../../../practice/frontend/react-testing/src/demos/LoginForm.implementation-detail.test.jsx"><code>LoginForm.implementation-detail.test.jsx</code></a> — real before/after refactor proof.</li>
-<li><a href="../../../practice/frontend/react-testing/src/demos/UserProfile.test.jsx"><code>UserProfile.test.jsx</code></a> — real <code>vi.mock</code>-based async mocking, behavior AND interaction assertions.</li>
-<li><a href="../../../practice/frontend/react-testing/e2e/login.spec.js"><code>e2e/login.spec.js</code></a> — real Playwright/Chromium run, including the genuine locator bug it caught and the fix.</li>
-</ul>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<p><strong>Scenario: a routine icon-library swap breaks 40 "passing-looking" tests overnight, and the team stops trusting the suite.</strong> A team migrates their icon components from one library to another; the visual result and all user-facing behavior are identical, but the new library renders different wrapper <code>div</code>s and class names. CI goes red across ~40 tests. Initial hypothesis: the migration introduced real regressions. Evidence, gathered using this chapter's method: every failing test queries by class name (<code>.icon-wrapper</code>, <code>.btn-icon-left</code>) or DOM structure, none by role or accessible name; manually clicking through the actual app shows every one of those 40 features working correctly for a real user. Diagnosis: the tests were coupled to implementation details that were never contractually meaningful — exactly what this chapter's live <code>.field-wrap</code> → <code>.input-group</code> refactor demonstrated on a smaller scale. Immediate mitigation: triage the 40 failures as false negatives, not regressions, unblocking the release. Permanent remediation: rewrite the failing queries to <code>getByRole</code>/<code>getByLabelText</code> equivalents, and add this chapter's principle (query by role/label first, testid last-resort only) as an explicit code-review checklist item, so the NEXT unrelated visual refactor doesn't repeat the same false-alarm cost. Prevention's real cost is cultural, not technical: a team that has been burned by false negatives starts distrusting red CI in general, which is a far more dangerous failure mode than the original brittle tests.</p>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
+<h2 id="incident-response-and-blameless-postmortems">Incident Response and Blameless Postmortems<a class="headerlink" href="#incident-response-and-blameless-postmortems" title="Permanent link">&para;</a></h2>
+<h3 id="q1-mitigate-or-diagnose-first-defend-it">Q1 — Mitigate or diagnose first? Defend it.<a class="headerlink" href="#q1-mitigate-or-diagnose-first-defend-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/incident-response-and-blameless-postmortems/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States a preference for mitigating first without a concrete justification.
+- <strong>Senior:</strong> States the compounding-impact justification explicitly — user-facing impact compounds with every minute, and a mitigation is usually far faster than a full diagnosis — with a concrete example.
+- <strong>Staff:</strong> Names the real exception: when the available mitigation is itself risky or hard to reverse (an irreversible data migration), the calculus shifts toward more diagnosis before acting.</p>
+<h3 id="q2-whats-wrong-with-a-postmortem-that-identifies-a-single-root-cause">Q2 — What's wrong with a postmortem that identifies a single root cause?<a class="headerlink" href="#q2-whats-wrong-with-a-postmortem-that-identifies-a-single-root-cause" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/incident-response-and-blameless-postmortems/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that incidents can have multiple causes without being specific about the consequence of ignoring that.
+- <strong>Senior:</strong> Gives a concrete example of two independent contributing factors to the same incident, each worth its own fix.
+- <strong>Staff:</strong> Connects this to blameless culture — naming a single root cause is often, in practice, a proxy for naming a single person or team, since a technical root cause is frequently easier to isolate than the full, honest set of contributing factors.</p>
+<hr />
+<h2 id="logging-metrics-tracing-and-opentelemetry">Logging, Metrics, Tracing, and OpenTelemetry<a class="headerlink" href="#logging-metrics-tracing-and-opentelemetry" title="Permanent link">&para;</a></h2>
+<h3 id="q1-trace-a-request-across-seven-services">Q1 — Trace a request across seven services.<a class="headerlink" href="#q1-trace-a-request-across-seven-services" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes tracing generally, even without naming <code>traceId</code>/<code>spanId</code> precisely — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly describes the shared-<code>traceId</code>, parent-child-<code>spanId</code> mechanism — every span shares the request's <code>traceId</code>, each service's span is a child of whichever upstream call invoked it.
+- <strong>Staff:</strong> Identifies that a service failing to propagate trace context breaks the chain at exactly that point, and explains why context propagation must be part of every service's instrumentation, not just the ones a team happens to own.</p>
+<h3 id="q2-pauses-hit-4-seconds-diagnose-from-this-log">Q2 — Pauses hit 4 seconds. Diagnose from this log.<a class="headerlink" href="#q2-pauses-hit-4-seconds-diagnose-from-this-log" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Recognizes the question as an artifact-reading exercise, even without connecting it explicitly to GC logs.
+- <strong>Senior:</strong> Proposes checking the trace first to localize WHERE the time went, then the GC log if the slow span points at JVM-level behavior.
+- <strong>Staff:</strong> Explicitly sequences the diagnostic funnel — metrics alerted something's wrong, trace localizes which span, logs/GC-log/<code>EXPLAIN</code>-plan give the detailed why — as one shared discipline regardless of artifact type.</p>
+<hr />
+<h2 id="metric-cardinality-and-alert-fatigue">Metric Cardinality and Alert Fatigue<a class="headerlink" href="#metric-cardinality-and-alert-fatigue" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-metrics-backends-cost-tripled-after-a-routine-deployment-with-no-traffic-increase-walk-me-through-how-youd-diagnose-it">Q1 — A metrics backend's cost tripled after a routine deployment with no traffic increase. Walk me through how you'd diagnose it.<a class="headerlink" href="#q1-a-metrics-backends-cost-tripled-after-a-routine-deployment-with-no-traffic-increase-walk-me-through-how-youd-diagnose-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Identifies cardinality as a plausible cause, even without the specific before/after series-count diagnostic method.
+- <strong>Senior:</strong> Correctly names the diagnostic method (comparing per-metric distinct time-series counts before and after) and the structural fix (bounding the offending label).
+- <strong>Staff:</strong> Proposes an automated, enforced cardinality-limit check as prevention, framing this as a platform-governance decision, not a one-off fix.</p>
+<h3 id="q2-why-does-requiring-two-time-windows-to-agree-reduce-alert-noise-without-losing-real-incident-detection">Q2 — Why does requiring two time windows to agree reduce alert noise without losing real-incident detection?<a class="headerlink" href="#q2-why-does-requiring-two-time-windows-to-agree-reduce-alert-noise-without-losing-real-incident-detection" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that using two windows reduces noise, even without the precise mechanism of why a blip fails the long-window check.
+- <strong>Senior:</strong> Correctly explains why a brief spike satisfies only the short window while a genuine, sustained incident satisfies both.
+- <strong>Staff:</strong> Names the real, published parameter choices (burn rate 14.4 for a 1-hour/5-minute pair at page severity, per Google's SRE Workbook) and connects severity tiers to different window/burn-rate combinations.</p>
+<hr />
+<h2 id="percentiles-tail-latency-and-coordinated-omission">Percentiles, Tail Latency, and Coordinated Omission<a class="headerlink" href="#percentiles-tail-latency-and-coordinated-omission" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-load-test-shows-p99-200ms-but-users-report-much-worse-in-production-why-the-gap">Q1 — Your load test shows p99 = 200ms, but users report much worse in production. Why the gap?<a class="headerlink" href="#q1-your-load-test-shows-p99-200ms-but-users-report-much-worse-in-production-why-the-gap" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Suspects a methodology issue with the load test, even without naming coordinated omission specifically.
+- <strong>Senior:</strong> Names coordinated omission by name and its root cause — a closed-loop load test doesn't account for requests queueing behind a slowdown.
+- <strong>Staff:</strong> Proposes a concrete fix (an open-loop load generator, or a coordinated-omission-corrected percentile calculation) and can explain, numerically, roughly how large the understatement typically is.</p>
+<h3 id="q2-justify-a-percentile-based-slo-instead-of-an-average-based-one">Q2 — Justify a percentile-based SLO instead of an average-based one.<a class="headerlink" href="#q2-justify-a-percentile-based-slo-instead-of-an-average-based-one" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that percentiles are more representative of user experience than an average.
+- <strong>Senior:</strong> Correctly rejects average-based SLOs — an average can't distinguish "uniformly mediocre" from "mostly great, occasionally terrible."
+- <strong>Staff:</strong> Explains why p100/max is also a poor SLO target — it's dominated by rare, often environmental outliers, and chasing it produces diminishing, expensive returns.</p>
+<hr />
+<h2 id="performance-methodology-usered-and-slisloerror-budgets">Performance Methodology (USE/RED) and SLI/SLO/Error Budgets<a class="headerlink" href="#performance-methodology-usered-and-slisloerror-budgets" title="Permanent link">&para;</a></h2>
+<h3 id="q1-were-at-35-of-our-monthly-error-budget-with-two-weeks-left-do-we-ship-the-risky-migration-this-week">Q1 — We're at 35% of our monthly error budget with two weeks left. Do we ship the risky migration this week?<a class="headerlink" href="#q1-were-at-35-of-our-monthly-error-budget-with-two-weeks-left-do-we-ship-the-risky-migration-this-week" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Asks for more information before answering, even without specifying the daily-trend breakdown precisely.
+- <strong>Senior:</strong> Asks for the daily burn-rate breakdown before answering — a steadily climbing background rate versus one isolated incident changes the answer.
+- <strong>Staff:</strong> Frames the error budget as a genuine resource-allocation decision — it exists specifically to make "can we ship something risky" answerable with data.</p>
+<h3 id="q2-set-the-timeout-from-what-data">Q2 — Set the timeout — from what data?<a class="headerlink" href="#q2-set-the-timeout-from-what-data" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States the timeout should come from real latency data, without connecting it to a named signal.
+- <strong>Senior:</strong> Connects RED's Duration signal to percentile selection — from a high percentile (p99), not a round number.
+- <strong>Staff:</strong> Notes that a closed-loop-measured Duration distribution would understate the real tail (per coordinated omission), meaning a timeout set from that data could be miscalibrated — tying resilience, percentiles, and RED into one coherent answer.</p>
+<hr />
+<h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Concern</th>
-<th>Component tests (Vitest + RTL)</th>
-<th>E2E tests (Playwright)</th>
+<th>#</th>
+<th>Question</th>
+<th>Canonical chapter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Environment</td>
-<td><code>jsdom</code> — fast, no real browser, no real network</td>
-<td>Real browser, real dev/staging server</td>
+<td>1</td>
+<td>During an active incident, should you mitigate or fully diagnose first?</td>
+<td><a href="../../../13-observability/incident-response-and-blameless-postmortems/#flashcards">Incident Response and Blameless Postmortems</a></td>
 </tr>
 <tr>
-<td>Speed</td>
-<td>Milliseconds per test (this chapter's 6 tests: ~200ms total)</td>
-<td>Seconds per test (this chapter's 2 tests: ~1.3s total, plus server startup)</td>
+<td>2</td>
+<td>Why is "Contributing Factors" the correct postmortem frame, not "Root Cause"?</td>
+<td><a href="../../../13-observability/incident-response-and-blameless-postmortems/#flashcards">Incident Response and Blameless Postmortems</a></td>
 </tr>
 <tr>
-<td>What it can catch</td>
-<td>Component logic, rendering, local state, mocked-dependency interaction</td>
-<td>Cross-component integration, real routing, real network behavior, real browser quirks — this chapter's real locator-collision bug was only visible here</td>
+<td>3</td>
+<td>Is a postmortem blameless simply because it doesn't name an individual?</td>
+<td><a href="../../../13-observability/incident-response-and-blameless-postmortems/#flashcards">Incident Response and Blameless Postmortems</a></td>
 </tr>
 <tr>
-<td>What it can't catch</td>
-<td>Anything only observable when multiple real components/routes/network calls interact together</td>
-<td>Fine-grained internal logic branches better isolated with a mock</td>
+<td>4</td>
+<td>What single piece of data lets a tracing backend reconstruct a whole multi-service request's path?</td>
+<td><a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/#flashcards">Logging, Metrics, Tracing, and OpenTelemetry</a></td>
 </tr>
 <tr>
-<td>Flakiness risk</td>
-<td>Low — deterministic, mocked dependencies</td>
-<td>Higher — real timing, real network, real browser; mitigated but not eliminated by Playwright's auto-waiting</td>
+<td>5</td>
+<td>What does a metric alone fail to tell you that a trace can?</td>
+<td><a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/#flashcards">Logging, Metrics, Tracing, and OpenTelemetry</a></td>
 </tr>
 <tr>
-<td>Typical volume in a healthy suite</td>
-<td>Many (the base of the testing pyramid)</td>
-<td>Few, covering critical user journeys only</td>
+<td>6</td>
+<td>Why is inconsistent trace-context propagation across services a serious problem?</td>
+<td><a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/#flashcards">Logging, Metrics, Tracing, and OpenTelemetry</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Why does adding one unbounded label to a metric multiply its cost, rather than just adding to it?</td>
+<td><a href="../../../13-observability/metric-cardinality-and-alert-fatigue/#flashcards">Metric Cardinality and Alert Fatigue</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Why does requiring both a short AND a long window to show a high burn rate reduce alert noise better than a single threshold?</td>
+<td><a href="../../../13-observability/metric-cardinality-and-alert-fatigue/#flashcards">Metric Cardinality and Alert Fatigue</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>What is coordinated omission?</td>
+<td><a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/#flashcards">Percentiles, Tail Latency, and Coordinated Omission</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Why can't average latency characterize user experience?</td>
+<td><a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/#flashcards">Percentiles, Tail Latency, and Coordinated Omission</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Why is p99.9 usually a better SLO target than max/p100?</td>
+<td><a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/#flashcards">Percentiles, Tail Latency, and Coordinated Omission</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>What does USE stand for, and what does it diagnose?</td>
+<td><a href="../../../13-observability/performance-methodology-and-slo-error-budgets/#flashcards">Performance Methodology (USE/RED) and SLI/SLO/Error Budgets</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>What does RED stand for, and what does it diagnose?</td>
+<td><a href="../../../13-observability/performance-methodology-and-slo-error-budgets/#flashcards">Performance Methodology (USE/RED) and SLI/SLO/Error Budgets</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Why can a monthly error-budget aggregate be misleading on its own?</td>
+<td><a href="../../../13-observability/performance-methodology-and-slo-error-budgets/#flashcards">Performance Methodology (USE/RED) and SLI/SLO/Error Budgets</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Am I querying by something a user (or screen reader) would actually perceive, or by an implementation detail?</strong> → Prefer <code>getByRole</code>/<code>getByLabelText</code>/visible text; reach for <code>getByTestId</code> only when no accessible query genuinely exists — the same priority order RTL's own API encodes.</li>
-<li><strong>Does the behavior I'm testing depend on a real network call, a real timer, or another real external dependency?</strong> → Mock it with <code>vi.mock</code>/<code>vi.fn</code>, and assert both the resulting behavior AND (when the interaction itself matters, e.g. "was the retry called twice") the call arguments.</li>
-<li><strong>Does the thing I need confidence about only exist when multiple real components/pages/network calls interact together?</strong> → That's an E2E concern, not a component-test concern — this chapter's cross-component alert collision is the concrete example of a bug structurally invisible to an isolated component test.</li>
-<li><strong>Am I about to add another E2E test for something a much cheaper, much faster component test could already cover?</strong> → Reconsider; E2E tests are for critical journeys, not exhaustive coverage — the testing-pyramid trade-off applies here exactly as it does on the backend.</li>
-</ol>
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Reaching for <code>getByTestId</code> or a CSS-class query as the default, rather than the explicit last resort RTL's own query-priority order recommends — proven costly in this chapter's live refactor, where the class-based query broke and the role/label-based one didn't.</li>
-<li>Mocking a dependency and only asserting on the resulting return value/render, never on the mock's call arguments — missing exactly the class of bug (wrong retry count, wrong id passed) an interaction assertion like <code>toHaveBeenCalledWith</code> is built to catch.</li>
-<li>Writing E2E tests for logic a component test could verify far faster and more deterministically, inflating CI time and flakiness risk for no added confidence.</li>
-<li>Letting Vitest's default file-include glob (<code>*.spec.js</code> as well as <code>*.test.js</code>) collide with Playwright's own <code>*.spec.js</code> convention — this chapter's own <code>npm run test</code> genuinely tried to execute a Playwright spec as a Vitest test on first run (<code>Playwright Test did not expect test() to be called here</code>) until an explicit <code>exclude: ['e2e/**']</code> was added to <code>vite.config.js</code>.</li>
-</ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Snapshot-testing entire component trees as the primary test strategy.</strong> A snapshot diff on an unrelated markup change (like this chapter's class rename) produces the same false-negative noise as an implementation-detail query, but with even less signal about WHAT specifically changed or whether it matters to a user.</li>
-<li><strong>An E2E suite as the only tests in a codebase ("ice-cream-cone" from <code>test-strategy-and-test-doubles.md</code>, applied to the frontend).</strong> Slow, flaky, and expensive to run; a component-test base with a small, critical-path E2E layer on top gives far more confidence per second of CI time.</li>
-</ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Default to RTL's own query priority order (role → label → text → testid-as-last-resort) as a team convention, not a per-test judgment call — it's the mechanism, proven in this chapter, that keeps tests decoupled from markup refactors.</li>
-<li>When mocking an async dependency, assert the interaction (call count, call arguments) whenever the interaction itself is part of the contract being tested, not only the eventual rendered output.</li>
-<li>Reserve E2E tests for genuinely cross-cutting, critical user journeys, and be deliberate about locator scoping — this chapter's real <code>getByRole('alert')</code> collision is a concrete reminder that a page can contain more than the one component a test author had in mind.</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>React Testing Library's philosophy is "test behavior, not implementation" — query by role/label/text, not class names or DOM structure, because implementation-detail queries break on refactors that change nothing a user would notice. Mocking (<code>vi.mock</code>) isolates a component from real dependencies and lets you verify both outcome and interaction. E2E tests (Playwright) drive a real browser against a real app, catching integration issues — like a locator matching an unrelated component's alert — that isolated component tests structurally cannot see.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Start from the mental model: does a query/test care about what a user perceives, or an implementation detail? Cite the real evidence: a live refactor (renaming <code>.field-wrap</code> to <code>.input-group</code>, reordering two fields) broke a class-name-based test with a real <code>Unable to fire a "change" event</code> error, while a role/label-based test needed zero changes. Cover mocking: <code>vi.mock</code> replaced a real <code>fetchUser</code> call, and the suite asserted both the resulting UI state (loading → name) and the interaction (<code>toHaveBeenCalledWith(42)</code>) — the second being something a stub-only approach can't verify. Close with E2E: a real Playwright run against real Chromium caught a genuine <code>strict mode violation</code> — two <code>role="alert"</code> elements on the same page — that a component test (rendering <code>LoginForm</code> alone) never would have produced together, fixed by scoping the locator to the form.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover: RTL's query-priority API as philosophy-encoded-into-ergonomics, not just documented guidance; the exact mechanism of the live refactor experiment (why <code>.field-wrap</code> disappearing left <code>inputs[0]</code> <code>undefined</code>, producing a real, specific error rather than a vague failure); <code>userEvent</code> vs. <code>fireEvent</code>'s event-fidelity difference and why that matters for realistic keystroke-driven behavior; <code>vi.mock</code>'s import-time interception and hoisting; the return-value-vs-interaction distinction for mocks, directly parallel to the backend's Mockito <code>verify()</code> discussion in <code>test-strategy-and-test-doubles.md</code>; and Playwright's <code>webServer</code>-managed real-browser architecture, illustrated by the genuine cross-component locator collision this chapter's own test suite produced and then fixed.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw a triangle (the testing pyramid): many component tests at the base, few E2E tests at the top. Beside the base, draw two competing query styles pointing at the same rendered <code>&lt;input&gt;</code> — one labeled "role/label" with an arrow to "survives refactor," one labeled "class name" with an arrow to "breaks on refactor" — and annotate it with the real captured error string (<code>Unable to fire a "change" event</code>) as the concrete proof. At the top of the triangle, draw a browser icon with two components inside it (<code>LoginForm</code> and <code>UserProfile</code>) and a single shared "role=alert" collision arrow between them, labeled with the real Playwright error.</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>A team's icon-library migration broke ~40 tests that queried by class name/DOM structure despite zero user-facing behavior change, eroding trust in CI until the failures were correctly triaged as false negatives and the queries rewritten to role/label-based equivalents — the same failure mode this chapter reproduced directly and at much smaller scale.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>Component tests are fast and deterministic but can't see cross-component/integration issues; E2E tests see the real integrated system but cost more time and carry more flakiness risk — a healthy suite uses many of the former and few, critical-path instances of the latter.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Describing RTL as "just React's version of Enzyme" without articulating the philosophical difference (Enzyme historically made implementation-detail access, like component instance state, easy — RTL deliberately makes it hard). Treating <code>vi.mock</code>/<code>jest.mock</code> as interchangeable with a manual stub object without mentioning the interaction-assertion capability that's the actual reason to reach for a full mock. Writing E2E tests as a superset replacement for component tests rather than a distinct, smaller layer.</p>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>Explains WHY implementation-detail queries are risky with a concrete failure mode (not just "it's best practice"), and can describe a real or plausible scenario (like this chapter's icon-migration Production Scenario) where that risk materialized.</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Not the primary focus of this chapter's demos, but briefly: a Staff-level engineer treats a brittle, class-name-coupled test suite as an organizational trust problem, not just a technical one — repeated false negatives train a team to ignore red CI, which is strictly worse than having no tests at all, because it creates false confidence. Establishing query-priority conventions, code-review checks, and E2E-suite scope discipline (few, critical-path tests, not exhaustive coverage) are the kind of low-glamour, high-leverage interventions that prevent that trust erosion at the team or org level, mirroring the measure-first and mock-discipline cultures this repository has established on both the JVM testing side (<code>test-strategy-and-test-doubles.md</code>) and the frontend performance side (<code>react-performance.md</code>'s render-counter verification habit).</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1">Question 1<a class="headerlink" href="#question-1" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "A teammate's test queries an element with <code>container.querySelector('.btn-primary')</code>. What's your concern, and what would you suggest instead?"</p>
-<p><strong>Expected answer:</strong> Concern: the test is coupled to a CSS class, an implementation detail with no guaranteed relationship to user-facing behavior — a purely cosmetic refactor (renaming the class, restructuring wrapper elements) can break the test with zero actual regression, producing a false negative. Suggest replacing it with a query by role and accessible name (e.g. <code>getByRole('button', { name: 'Save' })</code>), which targets what a user (or assistive technology) actually perceives and is far more resistant to markup-only refactors — citing, if pressed, a concrete example of exactly this class of breakage (this chapter's <code>.field-wrap</code> → <code>.input-group</code> rename genuinely broke a class-based query with zero behavior change).</p>
-<p><strong>Common mistakes:</strong> Framing this as a purely stylistic preference ("RTL recommends it") rather than explaining the concrete failure mode it prevents.</p>
-<p><strong>Follow-up questions:</strong> "When IS <code>getByTestId</code> appropriate?" (when no accessible role/label genuinely exists for the element being tested — RTL's own docs list it explicitly as the last-resort query, not a forbidden one). "How would you migrate an existing suite full of implementation-detail queries without a risky big-bang rewrite?" (incrementally, file by file, ideally alongside otherwise-planned refactors, treating query-style debt like any other tech debt with a migration plan rather than a mandate).</p>
-<p><strong>Senior-level expectations:</strong> Explains the WHY (implementation coupling → false negatives) unprompted, with a concrete example, not just a rule to follow.</p>
-<p><strong>Staff-level expectations:</strong> Frames repeated false negatives as an organizational trust cost, and proposes a durable prevention mechanism (lint rule, code-review checklist, migration plan) rather than a one-off fix.</p>
-<h3 id="question-2">Question 2<a class="headerlink" href="#question-2" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "You need to test a component that fetches data from an API on mount. Walk through your approach, including what you would and wouldn't verify."</p>
-<p><strong>Expected answer:</strong> Mock the fetch dependency (<code>vi.mock</code>) rather than hitting a real network — real component tests should be deterministic and fast, not dependent on network availability or an external service's actual state. Verify the resulting behavior across states (loading → success, loading → error), using <code>findBy*</code> queries for the async transition rather than arbitrary waits. Additionally verify the INTERACTION when it's part of the actual contract being tested — e.g., that the fetch function was called with the correct id (<code>toHaveBeenCalledWith(id)</code>), not just that SOME data eventually rendered, since a wrong-id bug could otherwise render successfully-looking-but-wrong data and pass a return-value-only test.</p>
-<p><strong>Common mistakes:</strong> Testing against a real network call (flaky, slow, and dependent on external state) instead of mocking. Verifying only the final rendered output and never the call arguments, missing wrong-argument bugs entirely.</p>
-<p><strong>Follow-up questions:</strong> "How is this different from what you'd verify in an E2E test for the same feature?" (E2E would additionally exercise the REAL network layer/backend contract and any cross-component integration — the component test's mock only proves the component reacts correctly to different fetch OUTCOMES, not that the real fetch call itself is correctly formed against a real backend). "What's a concrete case where mocking hid a real bug from you?" (any scenario where the mock's shape silently drifted from the real API's actual response shape — a class of risk contract testing, covered on the backend in <code>../testing/contract-testing-for-services.md</code>, exists specifically to catch).</p>
-<p><strong>Senior-level expectations:</strong> Distinguishes what a mocked component test proves from what only an E2E or contract test can prove, unprompted.</p>
-<p><strong>Staff-level expectations:</strong> Connects the mock-drift risk to the broader need for contract or E2E coverage at team/org scale, not just per-component test design.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>RTL's "test behavior, not implementation" philosophy was proven directly in this chapter: a live, purely cosmetic markup refactor broke a class-name-based query test with a real, specific error, while a role/label-based query test needed zero changes. Mocking with <code>vi.mock</code> isolates components from real dependencies and — critically — lets tests verify the INTERACTION (call arguments), not just the resulting output. A real Playwright E2E run caught a genuine cross-component locator collision that no isolated component test could structurally have produced, then was fixed by scoping the locator correctly. Component tests and E2E tests occupy different, complementary layers of the testing pyramid, each catching a different class of bug.</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Query by role/label/text, not CSS class or DOM position — proven here with a real refactor that broke the latter and not the former.</li>
-<li><code>vi.mock</code> lets a test assert the INTERACTION (<code>toHaveBeenCalledWith</code>) as well as the resulting behavior — the same "what does a mock prove beyond a stub" point the backend testing chapter makes.</li>
-<li>Component tests (fast, deterministic, <code>jsdom</code>) and E2E tests (slower, real browser, real integration) catch different bug classes — this chapter's cross-component alert collision was only visible to the E2E layer.</li>
-<li>A "passing-looking" implementation-detail-heavy suite that breaks on cosmetic refactors erodes team trust in CI — a real organizational cost, not just a technical inconvenience.</li>
-<li>Locator scoping matters in E2E tests exactly because a real page can contain more than the one component a test author had in mind — proven by a real, unplanned <code>strict mode violation</code>.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Query priority</strong> → role → label → text → testid (last resort). Class/DOM-position queries break on cosmetic refactors — proven here.</li>
-<li><strong><code>vi.mock</code></strong> → replaces a real dependency; assert BOTH resulting behavior and call arguments (<code>toHaveBeenCalledWith</code>) when the interaction is part of the contract.</li>
-<li><strong>Component tests</strong> → fast, <code>jsdom</code>, deterministic; can't see cross-component/integration issues.</li>
-<li><strong>E2E (Playwright)</strong> → real browser, real server; catches integration bugs component tests structurally cannot, at higher time/flakiness cost — scope locators carefully.</li>
-<li><strong>Pyramid</strong> → many component tests, few critical-path E2E tests, not the inverse.</li>
-</ul>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h3 id="card-why-class-namedom-position-queries-are-risky">Card: Why class-name/DOM-position queries are risky<a class="headerlink" href="#card-why-class-namedom-position-queries-are-risky" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-A test queries an element with <code>container.querySelector('.field-wrap input')</code>. What's the concrete risk, and what happened when this chapter tested it directly?</p>
-<p><strong>Answer:</strong>
-The query is coupled to markup, not user-facing behavior — a purely cosmetic refactor can break it with zero real regression. Verified directly: renaming <code>.field-wrap</code> to <code>.input-group</code> (plus reordering two fields) made <code>inputs[0]</code> <code>undefined</code>, producing a real <code>Unable to fire a "change" event - please provide a DOM element</code> error — while a role/label-based test on the same component needed zero changes through the same refactor.</p>
-<p><strong>Why it matters:</strong>
-This is the concrete mechanism behind "test behavior, not implementation" — not just a stated principle.</p>
-<p><strong>Common trap:</strong>
-Treating query style as a stylistic preference rather than a real, demonstrated source of false-negative test failures.</p>
-<p><strong>Related:</strong>
-[[react-testing]]</p>
-<h3 id="card-what-a-mock-proves-beyond-a-stub-on-the-frontend">Card: What a mock proves beyond a stub, on the frontend<a class="headerlink" href="#card-what-a-mock-proves-beyond-a-stub-on-the-frontend" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-<code>fetchUser</code> is mocked and a component test asserts the final rendered output. What additional assertion makes this a genuine interaction check, not just a return-value check?</p>
-<p><strong>Answer:</strong>
-<code>expect(fetchUser).toHaveBeenCalledWith(42)</code> — asserting the mock was called with the CORRECT arguments, not just that it eventually returned something the component rendered. A wrong-id bug could otherwise still render successfully-looking (but wrong) data and pass a return-value-only test.</p>
-<p><strong>Why it matters:</strong>
-Directly parallels the backend's Mockito <code>verify()</code> point in <code>test-strategy-and-test-doubles.md</code> — the interaction itself is often the real bug surface.</p>
-<p><strong>Common trap:</strong>
-Mocking a dependency and only checking the resulting UI state, never the call arguments.</p>
-<p><strong>Related:</strong>
-[[react-testing]]</p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>In <code>LoginForm.jsx</code>, change the <code>error</code> paragraph's <code>role="alert"</code> to a plain <code>&lt;p className="error"&gt;</code>. Predict which of the two <code>LoginForm</code> test files (<code>behavior</code> or <code>implementation-detail</code>) would break, and why, given each one's query strategy.</li>
-<li>In <code>UserProfile.test.jsx</code>, remove the <code>vi.mocked(fetchUser).mockReset()</code> call from <code>beforeEach</code>. Predict what would happen to the "shows an error message when fetchUser rejects" test if it ran AFTER the "shows a loading state..." test in file order, and explain the mechanism (mock state leaking between tests).</li>
-<li>In <code>e2e/login.spec.js</code>, revert the second test's locator back to the unscoped <code>page.getByRole('alert')</code> this chapter's README documents as having genuinely failed. Run <code>npm run test:e2e</code> and confirm you reproduce the exact <code>strict mode violation</code> error captured in the README, then explain in one sentence why a component test rendering <code>LoginForm</code> alone could never have produced this specific failure.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p>Exercise 1: the BEHAVIOR test would break — <code>screen.getByRole('alert')</code> depends on the <code>role="alert"</code> attribute existing; removing it means there's no longer an element with that role to query, and <code>getByRole('alert')</code> would throw a "unable to find an accessible element" error. The IMPLEMENTATION-DETAIL test wouldn't directly break from this specific change (it doesn't query the error element at all in this chapter's version) — but this itself illustrates the deeper point: <code>role="alert"</code> isn't just a testing convenience, it's a real accessibility attribute (screen readers announce it), so this exercise shows that a role-based query failing here is actually flagging a REAL accessibility regression, not a testing false-negative — the query strategy and the accessibility contract are the same underlying thing.</p>
-<p>Exercise 2: without the reset, <code>fetchUser</code>'s mock implementation from the PRIOR test (<code>mockResolvedValue({ id: 7, name: 'Ada Lovelace' })</code>) would still be active when the "rejects" test runs, because <code>vi.mock</code> factories persist their mock function across tests within a file unless explicitly reset — the "rejects" test's own <code>mockRejectedValue</code> call happens before <code>render</code>, so in this specific ordering it would still correctly overwrite the prior mock before use. The real risk <code>mockReset()</code> guards against is a DIFFERENT ordering or an added test that forgets to configure the mock at all — it would then silently inherit whatever the previous test left behind, a classic source of order-dependent test flakiness.</p>
-<p>Exercise 3: reverting the locator reproduces <code>strict mode violation: getByRole('alert') resolved to 2 elements</code> exactly, because <code>UserProfile</code> (rendered alongside <code>LoginForm</code> in the same real page) genuinely renders its own <code>role="alert"</code> element when its mocked-nonexistent backend fetch fails. A component test rendering <code>LoginForm</code> in isolation never mounts <code>UserProfile</code> at all, so there is structurally no second <code>role="alert"</code> element for such a test to ever collide with — this is specifically an INTEGRATION-level bug, visible only when the real, fully composed page is tested together, which is precisely what distinguishes E2E coverage from component coverage.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../react-performance/">React Performance: Profiling, Memoization Strategy, Virtualization, and Code-Splitting</a> — this chapter's prerequisite domain area (measure-first discipline, applied here to test confidence instead of runtime performance).</li>
-<li><a href="../../08-testing/test-strategy-and-test-doubles/">Test Strategy, the Pyramid, and Test Doubles</a> — the backend chapter this one directly parallels, per the register's own note.</li>
-<li><a href="../../00-project/frontend-topic-register.md">00-project/frontend-topic-register.md</a> — the full register this chapter is F-118 of.</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://testing-library.com/docs/guiding-principles/">testing-library.com: Guiding Principles</a></li>
-<li><a href="https://vitest.dev/guide/">Vitest: Guide</a></li>
-<li><a href="https://playwright.dev/docs/intro">Playwright: Getting Started</a></li>
-<li><a href="https://testing-library.com/docs/react-testing-library/intro/">testing-library.com: React Testing Library</a></li>
+<li><a href="../12-security/"><code>12-security.md</code></a></li>
+<li><a href="../11-system-design/"><code>11-system-design.md</code></a></li>
+<li><a href="../10-distributed-systems/"><code>10-distributed-systems.md</code></a></li>
+<li><a href="../09-messaging-event-driven/"><code>09-messaging-event-driven.md</code></a></li>
+<li><a href="../08-testing/"><code>08-testing.md</code></a></li>
+<li><a href="../07-api-design/"><code>07-api-design.md</code></a></li>
+<li><a href="../05-spring/"><code>05-spring.md</code></a></li>
+<li><a href="../04-software-design/"><code>04-software-design.md</code></a></li>
+<li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
+<li><a href="../06-databases/"><code>06-databases.md</code></a></li>
+<li><a href="../02-java-collections/"><code>02-java-collections.md</code></a>, <a href="../02-java-concurrency/"><code>02-java-concurrency.md</code></a>, <a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a>, <a href="../02-java-language-core/"><code>02-java-language-core.md</code></a></li>
+<li><a href="../../../00-project/interview-question-bank-plan.md"><code>00-project/interview-question-bank-plan.md</code></a></li>
 </ul>
 
 
@@ -11443,7 +11539,7 @@ Mocking a dependency and only checking the resulting UI state, never the call ar
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:18:49 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:14:25 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11479,7 +11575,7 @@ Mocking a dependency and only checking the resulting UI state, never the call ar
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../react-state-management/" class="md-footer__link md-footer__link--prev" aria-label="Previous: React State Management Landscape: Context vs. Redux Toolkit vs. Zustand vs. Server State">
+          <a href="../12-security/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interview Question Bank — 12-security">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11489,20 +11585,20 @@ Mocking a dependency and only checking the resulting UI state, never the call ar
                 Previous
               </span>
               <div class="md-ellipsis">
-                React State Management Landscape: Context vs. Redux Toolkit vs. Zustand vs. Server State
+                Interview Question Bank — 12-security
               </div>
             </div>
           </a>
         
         
           
-          <a href="../react-typescript/" class="md-footer__link md-footer__link--next" aria-label="Next: TypeScript with React: Typing Props/State/Hooks, Generic Components, and Discriminated Unions">
+          <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Narration and Whiteboard Discipline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                TypeScript with React: Typing Props/State/Hooks, Generic Components, and Discriminated Unions
+                System Design Narration and Whiteboard Discipline
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -11545,16 +11641,16 @@ Mocking a dependency and only checking the resulting UI state, never the call ar
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
     
   </body>
