@@ -11625,7 +11625,7 @@ to a shared executor) means multiple events for the same business entity can be
 processed concurrently by different handlers with no inherent ordering guarantee
 beyond whatever the underlying broker provides — the same partition-key-ordering
 concern covered in
-<a href="../schema-registry-and-compatibility-evolution/">Kafka: Producer Semantics and Partition Keys</a>
+<a href="../producer-semantics-and-partition-keys/">Kafka: Producer Semantics and Partition Keys</a>
 applies directly here. Orchestration's sequential, single-threaded step execution has
 no such concern by construction — each step genuinely completes before the next
 begins, in the same thread, unless the orchestrator itself is explicitly built to
@@ -11906,7 +11906,7 @@ asserting it.</p>
 <li><strong>Event-carried state transfer</strong>: fat event, consumer self-sufficient. Coupling →
   schema.</li>
 <li><strong>Event sourcing</strong>: the event stream is the system of record. Coupling → schema +
-  storage/replay cost. (Deep dive: separate, planned topic.)</li>
+  storage/replay cost. (Deep dive: <a href="../event-sourcing-and-its-real-costs/">Event Sourcing and Its Real Costs</a>.)</li>
 <li><strong>Choreography</strong>: no central coordinator, hard to trace without deliberate tooling.</li>
 <li><strong>Orchestration</strong>: central coordinator, native debuggability, coordinator is a
   structural dependency.</li>
@@ -11987,10 +11987,11 @@ versa.</p>
 left as self-directed practice since the existing files provide every piece needed.
 Exercise 2 requires the Docker-based Kafka infrastructure already set up in the
 Schema Registry chapter's practice directory and is intentionally left unimplemented
-here to avoid duplicating that setup — reuse it directly. Exercise 3 is a preview of
-the still-open Event Sourcing topic (T-905) and is deliberately left unimplemented in
-this chapter, since a full treatment of snapshotting and replay cost belongs in that
-topic's own deep dive, not as a side exercise here.</p>
+here to avoid duplicating that setup — reuse it directly. Exercise 3 previews the
+territory <a href="../event-sourcing-and-its-real-costs/">Event Sourcing and Its Real Costs</a>
+(T-905) covers in full and is deliberately left unimplemented in this chapter, since a
+full treatment of snapshotting and replay cost belongs in that chapter's own deep dive,
+not as a side exercise here.</p>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Martin Fowler's original articles on event-driven architecture styles (see
@@ -12000,9 +12001,9 @@ topic's own deep dive, not as a side exercise here.</p>
   covers choreography vs. orchestration specifically for compensating transactions —
   read it for the transaction-recovery mechanics this chapter deliberately does not
   repeat.</li>
-<li>Event Sourcing (T-905) is a distinct, lower-frequency topic covering the third
-  integration style in depth, including replay cost and snapshotting, and remains a
-  planned deep dive rather than covered here.</li>
+<li><a href="../event-sourcing-and-its-real-costs/">Event Sourcing and Its Real Costs</a> (T-905) is
+  a distinct, lower-frequency topic covering the third integration style in depth,
+  including replay cost and snapshotting, rather than repeated here.</li>
 </ul>
 <h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12029,7 +12030,7 @@ topic's own deep dive, not as a side exercise here.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 21:26:24 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 21:33:26 UTC">September 14, 2026</span>
   </span>
 
     
