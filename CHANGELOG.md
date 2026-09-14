@@ -3207,3 +3207,15 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - New `syllabus/20-interview-preparation/question-bank/06-databases.md` (pilot): 40 deep questions (mined from all 16 chapters' own `## Interview Questions` sections, re-organized into a 4-tier "what's expected at each level" view per question, honestly marking tiers a question genuinely doesn't apply to rather than inventing a strained answer) + 5 already-leveled Junior/Mid questions from the domain's one Junior Fundamentals chapter + 48 lighter quick-fire questions (from Flashcards) = **93 real questions**, short of ~150 by design (documented why, and what closing the gap would require, rather than padding).
 - Updated `syllabus/20-interview-preparation/INDEX.md` to reference the pilot.
 - `validate.py`: same pre-existing 3 errors, 0 new. Verified with a real local `mkdocs build`: exit 0, only the same pre-existing warning categories (the new file's one `00-project/` link is the same pre-existing, accepted "not part of the published site" pattern already present on ~40 other files in this repo).
+
+### Added (Interview Question Bank — `02-java` complete, 249 real questions)
+
+- User approved the pilot's format and asked to continue with the domain. `02-java` (61 chapters, the largest domain) yields far more real questions than one file can hold at pilot depth, so it's split into 4 files matching the domain's own real subdirectory structure:
+  - `syllabus/20-interview-preparation/question-bank/02-java-collections.md` — 20 deep + 5 leveled (from the domain's Junior Fundamentals chapter) + 27 quick-fire = 52.
+  - `syllabus/20-interview-preparation/question-bank/02-java-concurrency.md` — 29 deep + 41 quick-fire = 70 (no Junior Fundamentals chapter in this subdomain; concurrency questions are honestly marked "not typically asked" at Junior/Mid where that's genuinely true).
+  - `syllabus/20-interview-preparation/question-bank/02-java-jvm-internals.md` — 26 deep + 5 quick-fire = 31; all 13 chapters genuinely target `senior`/`staff` only, so Junior/Mid tiers are marked not-applicable throughout rather than padded.
+  - `syllabus/20-interview-preparation/question-bank/02-java-language-core.md` — 38 deep + 10 leveled (from two Junior Fundamentals chapters) + 48 quick-fire = 96.
+  - **249 real questions total for `02-java`** — the largest of the 22 domains, matching it being the largest domain in the syllabus.
+- Caught and fixed one real bug during verification: two chapters (`java-modifiers-and-method-signatures.md`, `java-version-features-timeline.md`) use the older numbered-section template (`## 15. Interview Questions`), so their anchor is `#15-interview-questions`, not `#interview-questions` like the rest of the domain — a real local `mkdocs build` surfaced both as broken-anchor warnings, fixed before commit.
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.

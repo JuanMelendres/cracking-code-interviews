@@ -1125,6 +1125,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
 
+## [2026-09-13] — Interview Question Bank: `02-java` complete, 249 real questions
+
+### Added
+
+- User approved the pilot's format and asked to continue. `02-java` (61 chapters, the largest domain) split into 4 files matching its own real subdirectory structure: `question-bank/02-java-collections.md` (52), `question-bank/02-java-concurrency.md` (70, no Junior Fundamentals chapter in this subdomain — honestly marked where Junior/Mid genuinely don't apply), `question-bank/02-java-jvm-internals.md` (31, all 13 chapters genuinely target senior/staff only), `question-bank/02-java-language-core.md` (96) — **249 real questions total**.
+- Caught and fixed a real bug during verification: two chapters use the older numbered-section template (`## 15. Interview Questions`), giving a different anchor (`#15-interview-questions`) than the rest of the domain — a real local `mkdocs build` surfaced both as broken-anchor warnings, fixed before commit.
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
