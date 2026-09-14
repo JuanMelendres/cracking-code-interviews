@@ -70,7 +70,7 @@ Treat security-relevant event logging (authentication failures, authorization de
 
 ## Interview Story
 
-This maps to a direct OWASP A09 (Security Logging and Monitoring Failures) scenario. Present it as a representative scenario unless you have lived through an equivalent incident:
+This maps to a direct OWASP A09 (Security Logging & Alerting Failures, per the current 2025 edition — "and Monitoring" was the 2021 name) scenario. Present it as a representative scenario unless you have lived through an equivalent incident:
 
 - **Situation:** a credential-stuffing attack against the login endpoint ran undetected for weeks, discovered only via an external signal.
 - **Task:** explain why an attack of that scale produced no internal alert.
@@ -83,5 +83,5 @@ This incident demonstrates that "we have logging" and "we have security observab
 
 ## Related Handbook Chapters
 
-- [OWASP Top 10 for Backend Services](../syllabus/12-security/owasp-top-10-for-backend-services.md) — canonical A09 security logging and monitoring failure category used here.
+- [OWASP Top 10 for Backend Services](../syllabus/12-security/owasp-top-10-for-backend-services.md) — canonical A09 security logging & alerting failure category used here.
 - [AuthN/AuthZ: RBAC vs. ABAC](../syllabus/12-security/authn-authz-rbac-vs-abac.md) — the authorization model whose failures this logging discipline also covers.

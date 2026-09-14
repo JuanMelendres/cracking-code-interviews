@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: security
 topic_id: T-1301
 canonical: ../syllabus/12-security/owasp-top-10-for-backend-services.md
-last_updated: 2026-08-05
+last_updated: 2026-09-14
 ---
 
 # OWASP Top 10 for Backend Services
@@ -18,25 +18,26 @@ Treat the OWASP Top 10 not as ten independent bugs to memorize but as three recu
 
 ## Essential Definitions
 
-- **OWASP Top 10** — a periodically updated (~every 3–4 years; 2021 is current) ranked list of the most critical web-application security risk *categories*, from vulnerability data and practitioner survey. A prioritization tool, not an exhaustive checklist.
+- **OWASP Top 10** — a periodically updated (~every 3–4 years) ranked list of the most critical web-application security risk *categories*, from vulnerability data and practitioner survey. A prioritization tool, not an exhaustive checklist. **The 2025 edition is current**, superseding 2021 — most category numbers changed.
 - **IDOR (A01)** — Insecure Direct Object Reference: fetching an object by ID with no ownership check. An *absence*, not a visibly wrong line.
-- **A04, Insecure Design** — a category about a *missing* control, not a broken one; a design-review finding, not a code-review finding.
-- **SSRF (A10)** — server-side request forgery: the server fetches a URL an attacker influenced, potentially reaching internal/cloud-metadata targets. Newest addition (2021), tied to cloud metadata endpoints turning "fetched a URL" into credential theft.
+- **A06:2025 (was A04:2021), Insecure Design** — a category about a *missing* control, not a broken one; a design-review finding, not a code-review finding.
+- **SSRF — no longer its own category as of 2025.** Folded into Broken Access Control (A01); was standalone A10 in 2021. The server fetches a URL an attacker influenced, potentially reaching internal/cloud-metadata targets.
+- **A10:2025, Mishandling of Exceptional Conditions** — new in 2025, no 2021 equivalent. Covers error paths that fail open instead of closed (e.g., a fraud check defaulting to "approved" on an uncaught exception).
 
-## Decision Table
+## Decision Table (2025 numbering)
 
 | Category | One-line risk | Primary defense | Deep-dive |
 |---|---|---|---|
-| A01 Broken Access Control | Object-level authorization check missing | Explicit ownership/permission check on every fetch | This chapter + `authn-authz-rbac-vs-abac.md` |
-| A02 Cryptographic Failures | Weak/absent crypto for data at rest or in transit | Modern algorithms, correct key handling | `applied-cryptography-hashing-signing-tls.md` |
-| A03 Injection | Untrusted data parsed as code/syntax | Parameterized queries, output encoding | `injection-input-validation-output-encoding.md` |
-| A04 Insecure Design | Control never designed in | Threat modeling before implementation | This chapter |
-| A05 Security Misconfiguration | Insecure default left enabled | Explicit prod-vs-dev config review | This chapter |
-| A06 Vulnerable/Outdated Components | Known-vulnerable dependency in use | SBOM + dependency scanning | `supply-chain-security-sbom-and-dependency-risk.md` |
-| A07 Identification/Auth Failures | Weak auth flow or session handling | Standard OAuth2/OIDC/JWT patterns | `oauth2-oidc-and-jwt.md` |
+| A01 Broken Access Control (incl. SSRF) | Object-level authorization check missing, or server-side fetch reaches unintended target | Explicit ownership check; allowlist on **resolved** destination | This chapter + `authn-authz-rbac-vs-abac.md` |
+| A02 Security Misconfiguration | Insecure default left enabled | Explicit prod-vs-dev config review | This chapter |
+| A03 Software Supply Chain Failures | Vulnerable dependency, or compromised build/distribution step | SBOM + dependency scanning + verified pipelines | `supply-chain-security-sbom-and-dependency-risk.md` |
+| A04 Cryptographic Failures | Weak/absent crypto for data at rest or in transit | Modern algorithms, correct key handling | `applied-cryptography-hashing-signing-tls.md` |
+| A05 Injection | Untrusted data parsed as code/syntax | Parameterized queries, output encoding | `injection-input-validation-output-encoding.md` |
+| A06 Insecure Design | Control never designed in | Threat modeling before implementation | This chapter |
+| A07 Authentication Failures | Weak auth flow or session handling | Standard OAuth2/OIDC/JWT patterns | `oauth2-oidc-and-jwt.md` |
 | A08 Software/Data Integrity Failures | Unsigned/unverified code or data | Signing, verified pipelines | `applied-cryptography-hashing-signing-tls.md` |
-| A09 Logging/Monitoring Failures | Attack undetected due to insufficient logging | Security-event logging as first-class category | This chapter |
-| A10 SSRF | Server-side fetch reaches unintended target | Allowlist on **resolved** destination | This chapter |
+| A09 Logging & Alerting Failures | Attack undetected due to insufficient logging/alerting | Security-event logging as first-class category | This chapter |
+| A10 Mishandling of Exceptional Conditions | Error path fails open instead of closed | Explicit fail-closed default on security-relevant exceptions | This chapter |
 
 ## Key Numbers (real, executed — `IdorDemo.java`, `SsrfDemo.java`)
 
@@ -60,9 +61,10 @@ The fix is a strict **allowlist** checked against the *resolved* target — not 
 ## Common Pitfalls
 
 - Reciting the ten category names without a concrete code-level example for the top few.
-- Treating "we have a WAF" as covering A03 — a valuable additional layer, not a substitute for parameterized queries and output encoding at the source.
-- Missing that A10 (SSRF) applies to *any* server-side URL fetch — webhooks, PDF generators, image proxies are all SSRF-shaped, not just an obvious "URL parameter" feature.
+- Treating "we have a WAF" as covering Injection (A05:2025) — a valuable additional layer, not a substitute for parameterized queries and output encoding at the source.
+- Missing that SSRF applies to *any* server-side URL fetch — webhooks, PDF generators, image proxies are all SSRF-shaped, not just an obvious "URL parameter" feature; as of 2025 it's filed under A01, not its own category.
 - Assuming IDOR requires a scanner to find — routinely found by manually changing an ID in a request and observing whether authorization is enforced.
+- Citing 2021 category numbers (A02 Crypto, A03 Injection, A06 Vulnerable Components, A10 SSRF) as current — most of the list was renumbered in 2025.
 
 ## Interview Answer Skeleton
 
@@ -70,15 +72,16 @@ The fix is a strict **allowlist** checked against the *resolved* target — not 
 
 **2-min:** Add why it exists (focus limited review time on highest-prevalence/impact categories) + how it works (each category is a *shape*, not a specific bug) + the IDOR example (works perfectly on the happy-path test, only fails when a different user's ID is substituted — invisible to functional testing that only tests correct credentials).
 
-**Whiteboard:** Three columns — "Trust boundary crossed" (A01/A10), "Data treated as code/target" (A03/A08), "Control missing or broken" (A02/A05/A06/A07/A09). Circle A04 outside all three, labeled "design-level absence, not implementation defect."
+**Whiteboard:** Three columns — "Trust boundary crossed" (A01, incl. SSRF), "Data treated as code/target" (A05/A08), "Control missing, broken, or fails open" (A02/A03/A04/A07/A09/A10). Circle A06 outside all three, labeled "design-level absence, not implementation defect."
 
-**Staff-level framing:** treat the Top 10 as scope, not completion criteria. A04 and A09 findings typically indicate a process gap (no threat modeling; no security-event logging standard), not a single fixable bug — propose the process change alongside the immediate fix.
+**Staff-level framing:** treat the Top 10 as scope, not completion criteria. A06 and A09 findings typically indicate a process gap (no threat modeling; no security-event logging standard), not a single fixable bug — propose the process change alongside the immediate fix.
 
 ## Production Warning Signs
 
-- Verbose stack traces (internal class names, file paths, SQL fragments) in production error responses — A05, a framework's dev error page left enabled; fix is configuration, requiring someone to have explicitly verified prod config differs from dev defaults.
+- Verbose stack traces (internal class names, file paths, SQL fragments) in production error responses — A02, a framework's dev error page left enabled; fix is configuration, requiring someone to have explicitly verified prod config differs from dev defaults.
 - A credential-stuffing attack against login runs undetected for weeks — A09; failed-auth attempts weren't logged with enough context (source IP, username, timestamp) to distinguish a mistyped password from an automated attack — a missing decision, not a missing feature.
-- **Prevention:** default every object-fetching endpoint to requiring an explicit authorization check as part of its implementation template, and every server-side URL-fetch feature to allowlist validation as shared middleware — structural requirements, not add-ons to remember.
+- A fraud/authorization check silently defaults to "approved" when an upstream dependency times out — A10 (new in 2025), failing open instead of closed on an exceptional condition.
+- **Prevention:** default every object-fetching endpoint to requiring an explicit authorization check as part of its implementation template, every server-side URL-fetch feature to allowlist validation as shared middleware, and every security-relevant exception path to fail closed — structural requirements, not add-ons to remember.
 
 ## Related
 

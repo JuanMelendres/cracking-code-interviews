@@ -84,4 +84,4 @@ The most important lesson here is epistemic, not technical: "the scanner passed"
 ## Related Handbook Chapters
 
 - [Injection, Input Validation, and Output Encoding](../syllabus/12-security/injection-input-validation-output-encoding.md) — canonical parameterization and `LIKE`-wildcard-escaping mechanics used here.
-- [OWASP Top 10 for Backend Services](../syllabus/12-security/owasp-top-10-for-backend-services.md) — the broader injection risk category (A03) this incident is an instance of.
+- [OWASP Top 10 for Backend Services](../syllabus/12-security/owasp-top-10-for-backend-services.md) — the broader injection risk category (A05 in the current 2025 edition; was A03 in 2021) this incident is an instance of.

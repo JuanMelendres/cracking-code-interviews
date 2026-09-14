@@ -67,7 +67,7 @@ Reciting category names without a concrete code-level example; treating a WAF as
 
 ## 7. Staff-level discussion
 
-Treats the Top 10 as a review-scoping starting point, not completion criteria; recognizes A04 (Insecure Design) and A09 (Logging Failures) as process gaps, not single fixable bugs. → [Staff-Level Discussion](../../syllabus/12-security/owasp-top-10-for-backend-services.md#interview-answer-framework).
+Treats the Top 10 as a review-scoping starting point, not completion criteria; recognizes A06 (Insecure Design) and A09 (Logging & Alerting Failures) as process gaps, not single fixable bugs — 2025 edition numbering; see the canonical chapter's 2021→2025 mapping table. → [Staff-Level Discussion](../../syllabus/12-security/owasp-top-10-for-backend-services.md#interview-answer-framework).
 
 ## 8. Summary
 

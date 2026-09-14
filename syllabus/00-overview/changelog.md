@@ -1353,6 +1353,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `java-modifiers-and-method-signatures.md`, `java-version-features-timeline.md`, `spring-mvc-fundamentals.md` gained new canonical content earlier today (overload/override table, full Java 9-25 version table, Spring DI-types and design-patterns tables) that their own standalone `cheat-sheets/*.md`/`flashcards/*.md` files never picked up — a known recurring gap (see this project's own complementary-deliverable-lag pattern). Synced all six files: new "Overloading vs. Overriding" table + pitfall + 1 flashcard on java-modifiers; a non-LTS-highlights line + 1 flashcard (JPMS) on java-version-features-timeline; new DI-types and design-patterns tables + 2 flashcards (setter injection's real use case, `@Transactional` as Proxy) on spring-mvc-fundamentals.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Content-quality audit: `12-security` and `10-distributed-systems`, and a real OWASP Top 10:2025 edition update
+
+### Fixed
+
+- Ran the same content-quality deep-dive method already used on `02-java`/`05-spring`/`06-databases` against the two remaining flagged domains. `10-distributed-systems` (7 chapters) came back fully clean — no factual errors, no fabrication, all quorum/Raft/consistent-hashing math verified correct, no coverage gaps. `12-security` (9 chapters) came back clean on 8 of 9 chapters, with one real, verified-live finding on the 9th.
+- `owasp-top-10-for-backend-services.md` stated "2021 is the current published edition" — confirmed via live `WebSearch`/`WebFetch` against `owasp.org` that OWASP published a genuine Top 10:2025 edition. Real changes: Security Misconfiguration #5→#2 (now A02); SSRF folded into Broken Access Control (A01), losing its standalone A10 slot; "Vulnerable and Outdated Components" renamed/widened to "Software Supply Chain Failures" (A03); a genuinely new category, "Mishandling of Exceptional Conditions" (A10), added for fail-open error handling; remaining categories renumbered or minor-renamed only.
+- Rewrote the chapter throughout to the 2025 numbering (diagrams, category mapping table with an explicit 2021→2025 column, Production Scenarios — new A10:2025 fail-open payment-authorization scenario, Comparisons, Interview Answer Framework, a new Interview Question 3 on the taxonomy change itself, Cheat Sheet, Flashcards), and synced the standalone `cheat-sheets/`/`flashcards/` files.
+- Fixed three stale 2021-era A-number citations found elsewhere: `study-packs/week-17/01-owasp-top-10-for-backend-services.md`, `production-cookbook/credential-stuffing-undetected-from-missing-security-event-logging.md`, `production-cookbook/like-clause-sql-injection-surviving-an-automated-scan.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
