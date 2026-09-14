@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/react-performance/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/15-cloud/">
       
       
-        <link rel="prev" href="../react-hooks-useeffect-and-useref/">
+        <link rel="prev" href="../14-devops-containers/">
       
       
-        <link rel="next" href="../react-reconciliation-and-fiber/">
+        <link rel="next" href="../../system-design/system-design-narration-and-whiteboard-discipline/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>React Performance: Profiling, Memoization Strategy, Virtualization, and Code-Splitting - Cracking Code Interviews</title>
+        <title>Interview Question Bank — 15-cloud - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/react-performance/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/15-cloud/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#react-performance-profiling-memoization-strategy-virtualization-and-code-splitting" class="md-skip">
+        <a href="#interview-question-bank-cloud" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -131,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              React Performance: Profiling, Memoization Strategy, Virtualization, and Code-Splitting
+              Interview Question Bank — 15-cloud
             
           </span>
         </div>
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -384,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -404,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1215,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
   
-    <a href="../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
+    <a href="../../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
       
   
   
@@ -1324,7 +1324,7 @@
   
   
   
-    <a href="../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
       
   
   
@@ -1378,7 +1378,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1432,7 +1432,7 @@
   
   
   
-    <a href="../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
+    <a href="../../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
       
   
   
@@ -1531,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -1601,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1706,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -1741,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -1776,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -1811,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1846,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1881,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -1916,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1951,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1986,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2021,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -2056,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -2091,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -2126,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -2161,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2261,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2296,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2466,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2501,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2536,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2606,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -2641,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2676,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2711,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2746,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2781,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2816,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -2851,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2886,7 +2886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2986,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3021,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3056,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3091,7 +3091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3126,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3161,7 +3161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3196,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3231,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3266,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -3301,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3336,7 +3336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3371,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3406,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3441,7 +3441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -3476,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3511,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -3546,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -3581,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -3681,7 +3681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -3716,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -3751,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -3786,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -3821,7 +3821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -3856,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -3956,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -3991,7 +3991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4026,7 +4026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4061,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4096,7 +4096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -4131,7 +4131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -4166,7 +4166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4201,7 +4201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4236,7 +4236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -4336,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -4371,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -4406,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -4441,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -4476,7 +4476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -4511,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -4546,7 +4546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -4581,7 +4581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -4616,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -4651,7 +4651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -4686,7 +4686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -4721,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -4756,7 +4756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -4856,7 +4856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -4884,7 +4884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -4919,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -4947,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -4982,7 +4982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5017,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5052,7 +5052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5087,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -5187,7 +5187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -5222,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -5257,7 +5257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -5292,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -5327,7 +5327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -5362,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -5397,7 +5397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -5432,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -5467,7 +5467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -5502,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -5602,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -5637,7 +5637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -5672,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -5707,7 +5707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -5742,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -5777,7 +5777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -5812,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -5847,7 +5847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -5882,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -5917,7 +5917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6017,7 +6017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6052,7 +6052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -6087,7 +6087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -6122,7 +6122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -6157,7 +6157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -6192,7 +6192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -6292,7 +6292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -6327,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -6362,7 +6362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -6397,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -6432,7 +6432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -6467,7 +6467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -6567,7 +6567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -6602,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6637,7 +6637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6672,7 +6672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -6707,7 +6707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -6807,7 +6807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -6842,7 +6842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -6877,7 +6877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -6912,7 +6912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7012,7 +7012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -7047,7 +7047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -7082,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -7117,7 +7117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -7152,7 +7152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -7187,7 +7187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -7222,7 +7222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -7257,7 +7257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -7292,7 +7292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -7327,7 +7327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -7427,7 +7427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -7462,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -7497,7 +7497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -7532,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -7567,7 +7567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -7602,7 +7602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -7637,7 +7637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -7737,7 +7737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -7765,7 +7765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -7800,7 +7800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -7835,7 +7835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -7870,7 +7870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -7905,7 +7905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -7940,7 +7940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -7975,7 +7975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8015,6 +8015,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8032,11 +8034,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -8057,7 +8059,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8075,7 +8077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -8130,7 +8132,7 @@
   
   
   
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
+    <a href="../../behavioral/" class="md-nav__link">
       
   
   
@@ -8184,7 +8186,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -8215,6 +8217,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8228,18 +8232,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/question-bank/02-java-collections/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_4" id="__nav_2_21_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -8253,12 +8255,737 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Question bank
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/collections
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/concurrency
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-jvm-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/jvm-internals
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-language-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/language-core
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 03-data-structures-algorithms
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-software-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 04-software-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 05-spring
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 06-databases
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 08-testing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-messaging-event-driven/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 09-messaging-event-driven
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-distributed-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 10-distributed-systems
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 11-system-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 12-security
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 13-observability
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-devops-containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 14-devops-containers
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 15-cloud
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 15-cloud
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-core-services-for-backend-engineers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Core Services for Backend Engineers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-and-gcp-for-backend-engineers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure and GCP for Backend Engineers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-cost-and-scaling-economics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cloud Cost and Scaling Economics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-twelve-factor-app-config-precedence-and-fail-fast-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-fire questions (from this domain's Flashcards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -8292,7 +9019,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -8346,7 +9073,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -8385,8 +9112,6 @@
                 
   
   
-    
-  
   
   
     
@@ -8404,11 +9129,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" >
         
           
           <label class="md-nav__link" for="__nav_2_22" id="__nav_2_22_label" tabindex="">
@@ -8429,7 +9154,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_22">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8447,7 +9172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -8482,7 +9207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -8517,7 +9242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -8552,7 +9277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -8587,7 +9312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -8622,7 +9347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -8657,7 +9382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-app-router-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -8692,7 +9417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -8727,7 +9452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -8762,7 +9487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -8797,7 +9522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -8832,7 +9557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -8867,7 +9592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -8902,7 +9627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -8937,7 +9662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -8972,7 +9697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -9007,7 +9732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -9042,7 +9767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -9077,7 +9802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -9112,7 +9837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -9147,7 +9872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -9182,7 +9907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -9217,7 +9942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -9252,7 +9977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9287,7 +10012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9322,7 +10047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9357,7 +10082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9392,7 +10117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9427,7 +10152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9462,7 +10187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9494,44 +10219,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    React Performance: Profiling, Memoization Strategy, Virtualization, and Code-Splitting
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -9554,301 +10245,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -9861,7 +10257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9896,7 +10292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -9931,7 +10327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-testing/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -9966,7 +10362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10001,7 +10397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -10036,7 +10432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -10071,7 +10467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -10106,7 +10502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10206,7 +10602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10241,7 +10637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -10276,7 +10672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -10311,7 +10707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10346,7 +10742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -10381,7 +10777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -10416,7 +10812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -10486,7 +10882,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -10539,7 +10935,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -10592,7 +10988,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -10645,7 +11041,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -10698,7 +11094,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -10751,7 +11147,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -10804,10 +11200,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#aws-core-services-for-backend-engineers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        AWS Core Services for Backend Engineers
       
     </span>
   </a>
@@ -10815,10 +11211,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#azure-and-gcp-for-backend-engineers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning Objectives
+        Azure and GCP for Backend Engineers
       
     </span>
   </a>
@@ -10826,10 +11222,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+  <a href="#cloud-cost-and-scaling-economics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters in Interviews
+        Cloud Cost and Scaling Economics
       
     </span>
   </a>
@@ -10837,10 +11233,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
+  <a href="#the-twelve-factor-app-config-precedence-and-fail-fast-validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mental Model
+        The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
       
     </span>
   </a>
@@ -10848,10 +11244,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Definition and Purpose
+        Quick-fire questions (from this domain's Flashcards)
       
     </span>
   </a>
@@ -10859,219 +11255,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11103,7 +11290,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11126,7 +11313,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11147,10 +11334,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Frontend (React/Next.js)
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../02-java-collections/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Question bank
   </span>
 
         </a>
@@ -11169,7 +11374,7 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/21-frontend-web/react-performance.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/20-interview-preparation/question-bank/15-cloud.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -11178,244 +11383,171 @@
     
       
     
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/21-frontend-web/react-performance.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/20-interview-preparation/question-bank/15-cloud.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="react-performance-profiling-memoization-strategy-virtualization-and-code-splitting">React Performance: Profiling, Memoization Strategy, Virtualization, and Code-Splitting<a class="headerlink" href="#react-performance-profiling-memoization-strategy-virtualization-and-code-splitting" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> F-117 (Performance — profiling with React DevTools, memoization strategy, virtualization for large lists, code-splitting with <code>React.lazy</code>) · Advanced tier · <code>00-project/frontend-topic-register.md</code>
-<strong>Scope note:</strong> per <code>CLAUDE.md</code>'s Scope Addendum, this is the eleventh frontend chapter, continuing the register in sequence after Accessibility (F-116) and returning to Advanced tier.
-<strong>Provenance:</strong> every claim is verified against a real, running React 19.2.8 + Vite 8.2.1 app at <a href="../../practice/frontend/react-performance/"><code>practice/frontend/react-performance/</code></a>, including a real DOM-node-count contrast (5,000 vs. 15 nodes for the same logical list), a real reproduced case of <code>React.memo</code> silently failing, and a real network trace proving a lazy-loaded chunk is fetched on demand.</p>
-</blockquote>
-<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#real-verified-demos">Real Verified Demos</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
+<h1 id="interview-question-bank-cloud">Interview Question Bank — Cloud<a class="headerlink" href="#interview-question-bank-cloud" title="Permanent link">&para;</a></h1>
+<p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
+tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
+22-domain plan and sourcing discipline.</p>
+<p><strong>Honest count for this domain:</strong> 4 chapters yielded 8 deep questions + 13 quick-fire
+questions = <strong>21 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain — this is a genuinely small domain (only 4 chapters).</p>
 <hr />
-<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>By the end of this chapter you can:</p>
-<ul>
-<li>Explain why <code>React.memo</code> can silently fail to prevent re-renders, and prove it with a real, reproducible case rather than a theoretical warning.</li>
-<li>Implement basic list virtualization from scratch, and prove — with a real DOM node count — the dramatic difference between rendering all items vs. only the visible window.</li>
-<li>Use <code>React.lazy</code> and <code>Suspense</code> for real code-splitting, and verify the resulting chunk both in build output and in a live network trace.</li>
-<li>Approach performance work as a measure-first discipline (profiling, DOM counts, network traces, bundle output), not as applying optimizations reflexively.</li>
-</ul>
-<h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>Performance questions reward candidates who can back a claim with a number — "I'd add <code>React.memo</code>" is a common, shallow answer; "I'd add <code>React.memo</code>, verify the prop references are actually stable, and confirm with a render counter that the re-render count actually dropped" is the kind of answer this chapter is built to produce, directly mirroring the measure-first discipline this repository applies to every performance claim on the backend side too (<code>performance-and-load-testing-methodology.md</code>).</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p><strong>Every technique in this chapter attacks a different cost: memoization reduces WORK PER RENDER by skipping unnecessary re-computation or re-rendering; virtualization reduces the NUMBER OF DOM NODES that exist at all for a large list; code-splitting reduces the amount of JAVASCRIPT DOWNLOADED AND PARSED before the user can interact with a given part of the page.</strong> They are not interchangeable and not a checklist to apply everywhere — each is a response to a SPECIFIC, MEASURED cost, and applying one where a different cost is the actual bottleneck (or applying any of them without ever measuring) is itself a common, real mistake this chapter's demos are built to make visible.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>Memoization</strong> in React (<code>React.memo</code>, <code>useMemo</code>, <code>useCallback</code>) is the practice of reusing a previous render's output/value/function reference rather than recomputing it, when the inputs haven't meaningfully changed — it exists to skip genuinely unnecessary work, but ONLY works correctly when the comparison it relies on (a shallow prop/dependency comparison) actually reflects "did anything relevant change," which requires stable references, not just semantically-equal values. <strong>Virtualization</strong> (a.k.a. "windowing") is rendering only the subset of a large list that's actually visible (plus a small overscan buffer), tracking scroll position to swap which subset is rendered — it exists because DOM nodes are expensive (memory, layout, paint cost) regardless of whether React itself re-renders them, so a 5,000-item always-fully-rendered list pays that cost permanently even when 4,980 of those items are scrolled out of view. <strong>Code-splitting</strong> via <code>React.lazy</code> + dynamic <code>import()</code> breaks a single JavaScript bundle into multiple chunks loaded on demand — it exists because shipping every route/feature's code up front, even the parts a given user session never visits, delays the time until the page's INITIAL, actually-needed code is downloaded, parsed, and interactive.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="memoization-strategy-reactmemo-can-silently-fail-proven-with-a-real-reproduction">Memoization strategy: <code>React.memo</code> can silently fail, proven with a real reproduction<a class="headerlink" href="#memoization-strategy-reactmemo-can-silently-fail-proven-with-a-real-reproduction" title="Permanent link">&para;</a></h3>
-<p><code>MemoizationStrategyDemo.jsx</code> wraps a child component in <code>React.memo</code> and passes it a <code>config</code> prop two ways: as an inline object literal (<code>{ label: 'static' }</code>, recreated fresh every parent render) and as a <code>useMemo</code>-stabilized reference. Real captured result across several clicks of an unrelated parent state update: the unstable-object version's child render count kept CLIMBING (2 → 4 → ... → 10, one increment per unrelated parent re-render); the stabilized version's child render count stayed FROZEN at 2 for the entire sequence. <code>React.memo</code> performs a SHALLOW comparison of props — a new object literal is a new reference every render regardless of its contents being identical, so the comparison always reports "props changed," and <code>memo</code> provides zero benefit despite being present in the code. This is not a rare edge case; it's the single most common way <code>React.memo</code> fails silently in real codebases.</p>
-<h3 id="virtualization-a-real-measured-dom-node-count-contrast">Virtualization: a real, measured DOM-node-count contrast<a class="headerlink" href="#virtualization-a-real-measured-dom-node-count-contrast" title="Permanent link">&para;</a></h3>
-<p><code>VirtualizedListDemo.jsx</code> renders the same 5,000-item array two ways: naively (every item as a real DOM node) and through a small, from-scratch windowed implementation (tracking <code>scrollTop</code>, computing a visible index range, rendering only that range plus a small overscan). Real captured result via direct DOM querying: the naive list mounted exactly <code>5000</code> row nodes; the virtualized list mounted exactly <code>15</code>. Scrolling the virtualized list (<code>scrollTop = 2000</code>) and re-querying confirmed the count STAYED at <code>15</code> but the actual rendered rows shifted to <code>Row 68</code> through <code>Row 82</code> — direct proof the window tracks scroll position rather than being a fixed first-N cap that would break as soon as the user scrolled.</p>
-<h3 id="code-splitting-a-real-chunk-verified-in-build-output-and-a-live-network-trace">Code-splitting: a real chunk, verified in build output AND a live network trace<a class="headerlink" href="#code-splitting-a-real-chunk-verified-in-build-output-and-a-live-network-trace" title="Permanent link">&para;</a></h3>
-<p><code>CodeSplittingDemo.jsx</code> lazy-loads <code>HeavyPanel.jsx</code> via <code>React.lazy(() =&gt; import('./HeavyPanel'))</code>, wrapped in <code>Suspense</code>, rendered only after a button click. Real evidence, gathered two independent ways: (1) <code>npm run build</code> output shows <code>HeavyPanel-6npn3ADo.js</code> as its own, separate chunk file, distinct from the main bundle; (2) a live network trace confirmed ZERO request for <code>HeavyPanel.jsx</code> before the button was clicked, and a real <code>GET .../HeavyPanel.jsx → 200 OK</code> request appearing only immediately after the click. Both the production bundling behavior and the runtime on-demand-fetch behavior were independently confirmed, not assumed from <code>React.lazy</code>'s documented behavior alone.</p>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p><code>React.memo</code> wraps a component and, on each render attempt, shallow-compares the new props object's OWN enumerable properties against the previous render's props, key by key, using <code>Object.is</code> (the same comparison <code>useMemo</code>/<code>useCallback</code> dependency arrays use) — critically, this comparison happens PER PROPERTY, not on the props object as a whole, but each individual property comparison is still reference-based for objects/arrays/functions, which is exactly why a fresh object literal per render defeats it even though its CONTENTS are identical. <code>useMemo(fn, deps)</code> caches <code>fn</code>'s return value across renders, only recomputing when a value in <code>deps</code> changes by <code>Object.is</code> — passing its output as a prop gives that specific value (not just its content) a stable identity <code>React.memo</code> can actually detect as unchanged. Virtualization has no special React API — it's a direct application of conditional rendering: computing <code>startIndex</code>/<code>endIndex</code> from <code>scrollTop</code>, slicing the source array to just that range, and rendering ONLY those elements, with a full-height spacer (<code>height: itemCount * rowHeight</code>) so the scrollbar behaves as if all items existed, and an absolutely-positioned inner wrapper offset by <code>startIndex * rowHeight</code> so the rendered subset appears at the correct scroll position. <code>React.lazy(() =&gt; import(path))</code> wraps a dynamic <code>import()</code> call, which bundlers (Vite/Rollup, webpack) recognize as a code-splitting boundary at BUILD time, emitting the imported module and its exclusive dependencies as a separate chunk file; at RUNTIME, <code>React.lazy</code>'s returned component throws the still-pending import promise on first render (the same <code>use()</code>-adjacent mechanism from <code>react-concurrent-rendering.md</code>'s Suspense material), which the nearest <code>Suspense</code> boundary catches, rendering its <code>fallback</code> until the dynamic <code>import()</code> actually resolves — at which point the browser issues the real network request for that chunk, exactly the moment this chapter's network trace captured.</p>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
-    A["Parent re-renders"] --&gt; B{"Child wrapped in\nReact.memo?"}
-    B -- no --&gt; C["Child always re-renders"]
-    B -- yes --&gt; D["Shallow-compare each prop\n(Object.is per property)"]
-    D --&gt; E{"Prop is an object/array/function\ncreated fresh each render?"}
-    E -- yes --&gt; F["Reference always different\n-&gt; memo reports 'changed'\n-&gt; child re-renders anyway"]
-    E -- no, stabilized via useMemo/useCallback --&gt; G["Reference same when\ndependencies unchanged\n-&gt; memo skips re-render"]</code></pre>
-<h2 id="real-verified-demos">Real Verified Demos<a class="headerlink" href="#real-verified-demos" title="Permanent link">&para;</a></h2>
-<p>All three demos are real, running React 19/Vite code — <a href="../../practice/frontend/react-performance/"><code>practice/frontend/react-performance/</code></a>, verified live via real DOM node counts, real repeated clicks, and a real network request trace. Full captured sequences in the app's own <a href="../../practice/frontend/react-performance/">README.md</a>:</p>
-<ul>
-<li><a href="../../../practice/frontend/react-performance/src/demos/VirtualizedListDemo.jsx"><code>VirtualizedListDemo.jsx</code></a> — real 5000-vs-15 DOM node count, real scroll-driven window shift.</li>
-<li><a href="../../../practice/frontend/react-performance/src/demos/MemoizationStrategyDemo.jsx"><code>MemoizationStrategyDemo.jsx</code></a> — real reproduction of <code>React.memo</code> silently failing, and the real <code>useMemo</code> fix.</li>
-<li><a href="../../../practice/frontend/react-performance/src/demos/CodeSplittingDemo.jsx"><code>CodeSplittingDemo.jsx</code></a> + <a href="../../../practice/frontend/react-performance/src/demos/HeavyPanel.jsx"><code>HeavyPanel.jsx</code></a> — real separate build chunk, real on-demand network request.</li>
-</ul>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<p><strong>Scenario: a "quick win" memoization pass measurably changes nothing, and nobody notices for months.</strong> A team, in response to a vague "the app feels slow" complaint, adds <code>React.memo</code> to a dozen list-item components without profiling first. The complaint persists. Initial hypothesis: memoization isn't enough, something else is slow (partially right, but for a hidden reason). Evidence, gathered using exactly this chapter's method: a render counter (or React DevTools Profiler) on one of the "fixed" components shows it STILL re-renders on every parent update — the parent passes each item an inline <code>onClick={() =&gt; handleClick(item.id)}</code> handler, a fresh function reference every render, defeating <code>memo</code> exactly like this chapter's <code>config</code> object does. Diagnosis: the <code>memo()</code> calls were never actually doing anything; the team's mental model was "I added memo, so it's memoized," without verifying the comparison was actually succeeding. Fix: wrap the handler-creation in <code>useCallback</code> (or restructure to pass <code>item.id</code> and a stable top-level handler instead of a per-item closure), then RE-VERIFY with the same render-counter method that the re-render count actually dropped — not just assume the fix worked because it looks correct.</p>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
+<h2 id="aws-core-services-for-backend-engineers">AWS Core Services for Backend Engineers<a class="headerlink" href="#aws-core-services-for-backend-engineers" title="Permanent link">&para;</a></h2>
+<h3 id="q1-you-migrated-to-dynamodb-for-scale-and-a-new-reporting-feature-cant-be-built-against-it-what-happened-and-how-do-you-fix-it">Q1 — You migrated to DynamoDB for scale, and a new reporting feature can't be built against it. What happened, and how do you fix it?<a class="headerlink" href="#q1-you-migrated-to-dynamodb-for-scale-and-a-new-reporting-feature-cant-be-built-against-it-what-happened-and-how-do-you-fix-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/aws-core-services-for-backend-engineers/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Recognizes DynamoDB's access-pattern rigidity as the cause, even without a specific fix proposal.
+- <strong>Senior:</strong> Correctly diagnoses the access-pattern mismatch and proposes a separate, CDC-fed store for the new need, rather than forcing the ad-hoc pattern onto the primary table.
+- <strong>Staff:</strong> Connects this explicitly to the general access-pattern method applied to <em>future</em>, not just current, needs, proposing it as a standing practice for future storage-technology decisions.</p>
+<h3 id="q2-when-would-you-choose-eks-over-ecs-given-both-are-managed-containers">Q2 — When would you choose EKS over ECS, given both are "managed containers"?<a class="headerlink" href="#q2-when-would-you-choose-eks-over-ecs-given-both-are-managed-containers" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/aws-core-services-for-backend-engineers/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that EKS is Kubernetes-based and ECS is AWS-proprietary, even without the portability/tooling reasoning.
+- <strong>Senior:</strong> Correctly names the portability/ecosystem trade-off as the deciding factor — EKS gives the real Kubernetes API and ecosystem at the cost of a steeper operational learning curve.
+- <strong>Staff:</strong> Connects this to an organizational factor — a team already operating Kubernetes elsewhere gets real value from EKS's consistency with existing operational knowledge, while a team with no prior exposure may find ECS's simpler model a better fit.</p>
+<hr />
+<h2 id="azure-and-gcp-for-backend-engineers">Azure and GCP for Backend Engineers<a class="headerlink" href="#azure-and-gcp-for-backend-engineers" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-team-is-being-acquired-by-an-org-running-entirely-on-gcp-walk-me-through-what-changes-about-your-services-architecture">Q1 — Your team is being acquired by an org running entirely on GCP. Walk me through what changes about your service's architecture.<a class="headerlink" href="#q1-your-team-is-being-acquired-by-an-org-running-entirely-on-gcp-walk-me-through-what-changes-about-your-services-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names at least the storage and database GCP equivalents correctly, even without deep migration-risk discussion.
+- <strong>Senior:</strong> Correctly maps every category and explicitly flags the DynamoDB-to-Firestore-or-Bigtable decision as requiring real access-pattern analysis, not a blind swap.
+- <strong>Staff:</strong> Frames the whole migration as an organizational risk/cost decision — which categories are genuinely low-risk (Kubernetes-based compute) versus which carry real re-architecture risk — before committing to a timeline or cost estimate.</p>
+<h3 id="q2-why-might-cosmos-db-be-a-better-fit-than-a-straight-dynamodb-equivalent-read-in-some-cases">Q2 — Why might Cosmos DB be a better fit than a straight DynamoDB-equivalent read in some cases?<a class="headerlink" href="#q2-why-might-cosmos-db-be-a-better-fit-than-a-straight-dynamodb-equivalent-read-in-some-cases" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that Cosmos DB and DynamoDB are not feature-identical, even without naming the specific consistency-tuning difference.
+- <strong>Senior:</strong> Names the tunable-consistency-level difference specifically as the deciding factor — Cosmos DB supports multiple selectable consistency levels per request, a real point of difference from DynamoDB's more fixed model.
+- <strong>Staff:</strong> Generalizes this to the broader principle that "equivalent" services across providers are a starting point for research, not a guarantee of identical behavior.</p>
+<hr />
+<h2 id="cloud-cost-and-scaling-economics">Cloud Cost and Scaling Economics<a class="headerlink" href="#cloud-cost-and-scaling-economics" title="Permanent link">&para;</a></h2>
+<h3 id="q1-walk-me-through-the-actual-math-for-whether-we-should-reserve-or-stay-on-demand-for-this-workload">Q1 — Walk me through the actual math for whether we should reserve or stay on-demand for this workload.<a class="headerlink" href="#q1-walk-me-through-the-actual-math-for-whether-we-should-reserve-or-stay-on-demand-for-this-workload" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/cloud-cost-and-scaling-economics/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Attempts a real calculation, even if it conflates peak and baseline.
+- <strong>Senior:</strong> Produces a real, if simplified, cost comparison with actual arithmetic — on-demand cost versus reserved cost for the confirmed steady portion specifically.
+- <strong>Staff:</strong> Explicitly separates the steady baseline (correct reservation target) from peak (should scale on-demand/spot instead), and states the specific risk of reserving the wrong number.</p>
+<h3 id="q2-when-would-autoscaling-not-save-money">Q2 — When would autoscaling NOT save money?<a class="headerlink" href="#q2-when-would-autoscaling-not-save-money" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/cloud-cost-and-scaling-economics/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that autoscaling doesn't always help, even without the precise mechanism.
+- <strong>Senior:</strong> Correctly identifies flat/steady demand as the condition where autoscaling doesn't meaningfully save money — the savings come specifically from the peak/trough demand gap.
+- <strong>Staff:</strong> Connects this to the broader principle that autoscaling and reservation strategy are two sides of the same demand-shape question, and a genuinely flat workload should be reserved near its steady level rather than autoscaled at all.</p>
+<hr />
+<h2 id="the-twelve-factor-app-config-precedence-and-fail-fast-validation">The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation<a class="headerlink" href="#the-twelve-factor-app-config-precedence-and-fail-fast-validation" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-does-a-service-that-passed-its-health-check-sometimes-still-fail-immediately-on-real-traffic">Q1 — Why does a service that passed its health check sometimes still fail immediately on real traffic?<a class="headerlink" href="#q1-why-does-a-service-that-passed-its-health-check-sometimes-still-fail-immediately-on-real-traffic" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/twelve-factor-config/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that "something's misconfigured" without explaining why the health check didn't catch it — the common mistake this question targets.
+- <strong>Senior:</strong> Explains the health-check/config-completeness gap precisely and names startup validation as the fix — a health check verifies the process is running, not that every piece of configuration is present and correct.
+- <strong>Staff:</strong> Proposes a deployment-pipeline-level prevention (diffing required config across environments) in addition to runtime validation.</p>
+<h3 id="q2-whats-the-real-precedence-order-when-the-same-config-key-is-set-in-a-file-an-environment-variable-and-a-command-line-argument">Q2 — What's the real precedence order when the same config key is set in a file, an environment variable, and a command-line argument?<a class="headerlink" href="#q2-whats-the-real-precedence-order-when-the-same-config-key-is-set-in-a-file-an-environment-variable-and-a-command-line-argument" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/twelve-factor-config/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names roughly the right order without stating that only the overridden keys change.
+- <strong>Senior:</strong> States the full order precisely — command-line arguments, then environment variables, then the config file, then hardcoded defaults — and notes it matches the order most frameworks (e.g., Spring Boot) use.
+- <strong>Staff:</strong> Discusses why this specific order makes operational sense — defaults are safest, file is per-environment, env vars are orchestrator-injected, CLI args are per-invocation debugging overrides.</p>
+<hr />
+<h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Concern</th>
-<th>Memoization</th>
-<th>Virtualization</th>
-<th>Code-splitting</th>
+<th>#</th>
+<th>Question</th>
+<th>Canonical chapter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>What it reduces</td>
-<td>Work per render (skipped re-computation/re-render)</td>
-<td>DOM node count for large lists</td>
-<td>JS downloaded/parsed before a feature is needed</td>
+<td>1</td>
+<td>What does the EC2 → ECS/EKS → Lambda spectrum trade off?</td>
+<td><a href="../../../15-cloud/aws-core-services-for-backend-engineers/#flashcards">AWS Core Services for Backend Engineers</a></td>
 </tr>
 <tr>
-<td>Silent-failure risk</td>
-<td>High — depends entirely on stable references, easy to defeat accidentally</td>
-<td>Low — either it's implemented correctly or the list is visibly broken</td>
-<td>Low — either the chunk loads or it visibly doesn't</td>
+<td>2</td>
+<td>What's the actual access-model difference between S3, EBS, and EFS?</td>
+<td><a href="../../../15-cloud/aws-core-services-for-backend-engineers/#flashcards">AWS Core Services for Backend Engineers</a></td>
 </tr>
 <tr>
-<td>Implementation cost</td>
-<td>Low (a wrapper + a hook) but requires ongoing discipline about reference stability</td>
-<td>Moderate (scroll math, spacer sizing) — or use a library once the pattern is understood</td>
-<td>Low (one <code>lazy()</code> call + a <code>Suspense</code> boundary)</td>
+<td>3</td>
+<td>What's the difference between SQS and SNS, and why are they often combined?</td>
+<td><a href="../../../15-cloud/aws-core-services-for-backend-engineers/#flashcards">AWS Core Services for Backend Engineers</a></td>
 </tr>
 <tr>
-<td>Best fit</td>
-<td>Expensive child renders/computations with genuinely stable, meaningful inputs</td>
-<td>Lists large enough that DOM node count itself is the bottleneck (typically hundreds+)</td>
-<td>Routes/features not needed on initial load</td>
+<td>4</td>
+<td>What's the actual difference between a Security Group and a Network ACL?</td>
+<td><a href="../../../15-cloud/aws-core-services-for-backend-engineers/#flashcards">AWS Core Services for Backend Engineers</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>What was Azure Active Directory (Azure AD) renamed to, and when?</td>
+<td><a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/#flashcards">Azure and GCP for Backend Engineers</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>DynamoDB is one AWS service. What are its two GCP counterparts, and how do they differ?</td>
+<td><a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/#flashcards">Azure and GCP for Backend Engineers</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Which category is genuinely, not just conceptually, the same across all three cloud providers?</td>
+<td><a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/#flashcards">Azure and GCP for Backend Engineers</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>What does the on-demand → reserved → spot spectrum trade for a lower price?</td>
+<td><a href="../../../15-cloud/cloud-cost-and-scaling-economics/#flashcards">Cloud Cost and Scaling Economics</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>What should a capacity reservation be sized to — peak or steady baseline?</td>
+<td><a href="../../../15-cloud/cloud-cost-and-scaling-economics/#flashcards">Cloud Cost and Scaling Economics</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>When does autoscaling NOT save meaningful money?</td>
+<td><a href="../../../15-cloud/cloud-cost-and-scaling-economics/#flashcards">Cloud Cost and Scaling Economics</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>What does the twelve-factor app's Factor III (config) require, precisely?</td>
+<td><a href="../../../15-cloud/twelve-factor-config/#flashcards">The Twelve-Factor App</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>What's the real config precedence order between a file, an environment variable, and a CLI argument?</td>
+<td><a href="../../../15-cloud/twelve-factor-config/#flashcards">The Twelve-Factor App</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Why does fail-fast startup validation matter for a missing required config value?</td>
+<td><a href="../../../15-cloud/twelve-factor-config/#flashcards">The Twelve-Factor App</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Have you actually measured a performance problem (profiler, render counts, DOM counts, bundle size), or are you applying a technique speculatively?</strong> → Measure first; none of these techniques are free, and applying them without a measured problem adds complexity for an unproven benefit.</li>
-<li><strong>Is the cost specifically "this component re-renders/recomputes more than necessary"?</strong> → Memoization — but explicitly verify prop/dependency reference stability, don't assume <code>memo()</code> alone is sufficient.</li>
-<li><strong>Is the cost specifically "this list has so many DOM nodes that scrolling/layout/memory is the bottleneck"?</strong> → Virtualization — and confirm with an actual DOM node count, not just "it feels smoother."</li>
-<li><strong>Is the cost specifically "the user waits too long for JS to download/parse before a feature they may not even use is ready"?</strong> → Code-splitting that specific feature/route — and confirm with build output AND a network trace that the chunk is genuinely separate and genuinely deferred.</li>
-</ol>
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Adding <code>React.memo</code> without verifying the props being passed actually have stable references — the single most common way memoization silently does nothing, demonstrated directly in this chapter.</li>
-<li>Applying performance techniques reflexively/preemptively without ever measuring whether the targeted cost is real or significant in the specific case.</li>
-<li>Assuming a <code>React.lazy</code> component is "code-split" without confirming, in real build output, that it actually produced a separate chunk (a shared/small dependency graph can sometimes end up merged back into the main bundle depending on bundler configuration).</li>
-</ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Wrapping every component in <code>React.memo</code> "just in case,"</strong> adding a real (if usually small) comparison cost to every render, for components whose props were never going to be a source of expensive unnecessary re-renders in the first place.</li>
-<li><strong>Building a custom virtualization implementation for a list that's realistically only ever tens of items long</strong> — the DOM-node-count cost this technique addresses is real only past a meaningful threshold; below that, the added complexity (scroll math, spacer sizing, overscan tuning) isn't paying for itself.</li>
-</ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Treat every performance claim the way this chapter's demos do: back it with a specific, reproducible measurement (a render counter, a DOM node count, a network trace, a build-output line) rather than an assumption.</li>
-<li>When adding <code>React.memo</code>, explicitly check (and if needed, stabilize with <code>useMemo</code>/<code>useCallback</code>) every object/array/function prop the memoized component receives — this is the deciding factor for whether <code>memo</code> does anything at all.</li>
-<li>Apply code-splitting at genuinely deferred boundaries (routes, rarely-used features, heavy third-party widgets) rather than arbitrarily — and verify the resulting chunk both in build output and in a live network trace, as this chapter does.</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>Memoization skips unnecessary work but only works with stable references — an inline object/array/function prop defeats <code>React.memo</code>'s shallow comparison every time, a common silent failure. Virtualization renders only the visible window of a large list, reducing DOM node count directly. Code-splitting via <code>React.lazy</code> defers loading a feature's JS until it's actually needed, verifiable in both build output and network requests. All three should be applied in response to a measured cost, not speculatively.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Start from the mental model: three different costs (per-render work, DOM node count, JS download/parse time), three different tools. Cite the real memoization evidence: a <code>React.memo</code>-wrapped child with an inline object prop kept re-rendering across repeated parent updates (render count climbing 2→10), while the <code>useMemo</code>-stabilized version stayed frozen at 2 — proof that <code>memo</code> alone is not sufficient without reference stability. Cover virtualization's real DOM-node-count proof: 5,000 nodes naive vs. 15 windowed, with the window confirmed to genuinely track scroll position via a direct scroll-and-recount test. Close with code-splitting: a real separate build chunk (<code>HeavyPanel-....js</code>) confirmed both in <code>npm run build</code> output and in a live network trace showing zero request before, one real request immediately after, a button click.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover: the exact mechanism of <code>React.memo</code>'s shallow, per-property <code>Object.is</code> comparison and why object/array/function props specifically are the common failure mode; the from-scratch virtualization implementation (scrollTop-driven index range, spacer sizing for correct scrollbar behavior, overscan for smoother fast-scrolling); the build-time vs. runtime split of <code>React.lazy</code> (bundler-recognized <code>import()</code> boundary at build time, Suspense-based on-demand fetch at runtime, connecting directly to the <code>use()</code>/Suspense mechanism from <code>react-concurrent-rendering.md</code>); and the overarching measure-first discipline, with a concrete example of how a "quick win" memoization pass can measurably change nothing if reference stability was never verified.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw three separate boxes labeled "Memoization," "Virtualization," "Code-splitting," each with an arrow to a DIFFERENT cost: "re-render work," "DOM node count," "JS download/parse time." Under "Memoization," draw a small sub-diagram: an object literal <code>{ }</code> with an arrow labeled "new reference every render" pointing at a memo comparison that always says "changed" — then a second version with <code>useMemo</code> producing a stable arrow labeled "same reference" pointing at a comparison that says "unchanged."</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>A team added <code>React.memo</code> to a dozen list-item components in response to a vague slowness complaint, but the complaint persisted because each item received a fresh inline <code>onClick</code> closure every render, defeating <code>memo</code> exactly like this chapter's object-prop demo — diagnosed with a render counter, fixed with <code>useCallback</code>, and re-verified with the same counter rather than assuming the fix worked.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>Memoization's failure mode is silent (the code looks correct but does nothing) unless actively verified; virtualization and code-splitting's failure modes are more visible (a broken scroll window, a chunk that never separates) but still require deliberate confirmation, not assumption, that they're working as intended.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Describing <code>React.memo</code> as "prevents re-renders" without the crucial caveat that it depends entirely on prop reference stability — a candidate who can't explain WHY an inline object prop defeats it hasn't fully internalized the mechanism. Treating virtualization and code-splitting as always-beneficial rather than techniques with real implementation costs that should be applied to a measured, specific problem. Claiming a component "is code-split" without having verified it in actual build output.</p>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>Explains precisely why <code>React.memo</code> can fail (reference instability) and proposes a concrete verification method (a render counter) rather than trusting the presence of <code>memo()</code> in the code.</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Not the primary focus of this chapter's demos, but briefly: establishing a team-wide measure-first performance culture (profiling before optimizing, verifying after) prevents the exact "quick win that measurably changed nothing" scenario in this chapter's Production Scenario from recurring across a codebase — a Staff-level engineer is often the one introducing lightweight, repeatable verification habits (render counters in dev builds, bundle-size CI checks, before/after profiler comparisons in PR descriptions) rather than treating performance work as a one-off, un-followed-up effort.</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1">Question 1<a class="headerlink" href="#question-1" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "A teammate wrapped a component in <code>React.memo</code>, but it still re-renders every time its parent does. What's the most likely cause, and how would you confirm it?"</p>
-<p><strong>Expected answer:</strong> Most likely cause: one or more of the props being passed is a new reference every render — an inline object literal, array literal, or arrow function — which defeats <code>React.memo</code>'s shallow, reference-based comparison even if the CONTENT is identical every time. Confirm by inspecting each prop's creation site for the parent, and/or adding a render counter (or using React DevTools Profiler's "why did this render" feature) to verify the comparison is failing and on which specific prop.</p>
-<p><strong>Common mistakes:</strong> Assuming <code>React.memo</code> is "broken" or that memoization "doesn't really work," rather than checking prop reference stability specifically.</p>
-<p><strong>Follow-up questions:</strong> "How would you fix an inline object prop causing this?" (wrap its creation in <code>useMemo</code> with the correct dependency array, giving it a stable reference across renders when its actual inputs haven't changed). "Does this same issue apply to <code>useEffect</code> dependency arrays?" (yes — an object/array/function in a dependency array with an unstable reference causes the effect to re-run every render too, the same underlying reference-comparison mechanism from a different hook).</p>
-<p><strong>Senior-level expectations:</strong> Identifies reference instability as the specific cause unprompted and proposes a concrete verification method.</p>
-<p><strong>Staff-level expectations:</strong> Frames this as a class of bug worth a team-wide lint rule or convention (e.g., exhaustive-deps-style tooling) rather than a one-off fix.</p>
-<h3 id="question-2">Question 2<a class="headerlink" href="#question-2" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "You need to render a list of 10,000 items. Would you reach for virtualization? Walk through your actual decision process."</p>
-<p><strong>Expected answer:</strong> Not automatically — first consider whether 10,000 items are genuinely all meant to be scrollable/visible-eventually (virtualization helps) versus whether pagination, search/filtering, or server-side limiting would be the better UX AND performance fix (avoiding rendering 10,000 items' worth of DATA at all, not just DOM nodes). If virtualization is the right call, implement or adopt it, then VERIFY with a direct DOM node count (as in this chapter's demo) that it's actually only rendering the visible window — not just assume a library or implementation is working correctly.</p>
-<p><strong>Common mistakes:</strong> Reaching for virtualization immediately without considering whether reducing the actual DATA SET (pagination, filtering) might be the better fix, or eliminate the need for either list size to ever reach a problematic threshold.</p>
-<p><strong>Follow-up questions:</strong> "How would you verify your virtualization implementation is actually windowing correctly, not just capping the first N items?" (scroll to a non-zero position and re-check both the count AND the actual item identities/content — exactly this chapter's scrollTop=2000 verification, confirming the window moves, not just that the count is small). "What's the UX trade-off of virtualization vs. pagination?" (virtualization preserves a continuous-scroll feel but adds real implementation complexity; pagination is simpler to implement and reason about but changes the interaction pattern, which may or may not fit the product).</p>
-<p><strong>Senior-level expectations:</strong> Considers data-set-reduction alternatives before jumping to virtualization, and proposes a real verification method for the implementation.</p>
-<p><strong>Staff-level expectations:</strong> Frames the choice as a product/UX decision as much as a technical one, not purely an engineering optimization.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>Memoization, virtualization, and code-splitting each address a distinct performance cost — per-render work, DOM node count, and JS download/parse time, respectively — and none should be applied without measurement. This chapter proved <code>React.memo</code>'s most common silent-failure mode directly (an unstable object prop defeating it across repeated renders, versus a <code>useMemo</code>-stabilized version staying frozen), proved virtualization's real DOM-node-count benefit (5,000 vs. 15 nodes, with the window confirmed to genuinely track scroll position), and proved code-splitting's real, on-demand-loading behavior (a genuinely separate build chunk, fetched only after a real user action, confirmed via a live network trace).</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>React.memo</code> performs a shallow, reference-based comparison — an inline object/array/function prop is a new reference every render and silently defeats it, proven here with a render count that kept climbing despite <code>memo()</code> being present.</li>
-<li><code>useMemo</code>/<code>useCallback</code> fix this by giving the value a stable reference across renders — proven here with an identical setup whose child render count stayed frozen.</li>
-<li>Virtualization reduces DOM node count directly (5,000 → 15, measured), and a correct implementation's visible window genuinely tracks scroll position rather than being a fixed cap (proven by scrolling and re-checking both count and content).</li>
-<li><code>React.lazy</code> + <code>Suspense</code> produces a real, separate build chunk, fetched only on demand — proven both in build output and in a live network trace, not assumed from documentation.</li>
-<li>Every technique here should be applied in response to a measured, specific cost — not reflexively, and not without verifying afterward that it actually worked.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong><code>React.memo</code></strong> → shallow prop comparison; fails silently on unstable object/array/function props; fix with <code>useMemo</code>/<code>useCallback</code>.</li>
-<li><strong>Virtualization</strong> → render only the visible window (+ overscan); verify with a real DOM node count, and confirm the window moves on scroll.</li>
-<li><strong><code>React.lazy</code> + <code>Suspense</code></strong> → real separate chunk; verify in build output AND a live network trace (request only after the feature is actually needed).</li>
-<li><strong>Measure first</strong> → profiler, render counters, DOM counts, bundle output — every claim in this chapter is backed by one of these, not assumed.</li>
-</ul>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h3 id="card-why-reactmemo-can-silently-do-nothing">Card: Why <code>React.memo</code> can silently do nothing<a class="headerlink" href="#card-why-reactmemo-can-silently-do-nothing" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-<code>React.memo</code> is applied to a component, but it still re-renders every time its parent does. What's the most likely cause?</p>
-<p><strong>Answer:</strong>
-One of its props (an object, array, or function) is being created fresh — a new reference — on every parent render. <code>React.memo</code>'s comparison is reference-based, so even identical CONTENT still reads as "changed" if the reference differs.</p>
-<p><strong>Why it matters:</strong>
-Verified directly: an inline <code>{ label: 'static' }</code> prop caused the child's render count to climb every unrelated parent update (2 -&gt; 4 -&gt; ... -&gt; 10), while a <code>useMemo</code>-stabilized version of the exact same prop stayed frozen at 2.</p>
-<p><strong>Common trap:</strong>
-Assuming <code>React.memo</code>'s mere presence in the code means memoization is actually happening — it requires stable references to work at all.</p>
-<p><strong>Related:</strong>
-[[react-performance]]</p>
-<h3 id="card-what-virtualization-actually-reduces-and-how-to-verify-it">Card: What virtualization actually reduces, and how to verify it<a class="headerlink" href="#card-what-virtualization-actually-reduces-and-how-to-verify-it" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-What specific cost does list virtualization reduce, and how would you verify an implementation is actually working (not just capping the list)?</p>
-<p><strong>Answer:</strong>
-It reduces the number of real DOM nodes mounted for a large list, regardless of React's own re-render behavior. Verify by counting DOM nodes directly (not visually), AND by scrolling to a non-zero position and re-checking that both the count stays low AND the rendered content/identities actually shifted — proving it's a genuine moving window, not a fixed first-N cap.</p>
-<p><strong>Why it matters:</strong>
-Verified directly: 5,000 naive DOM nodes vs. 15 virtualized; after scrolling to <code>scrollTop=2000</code>, still 15 nodes, but now showing rows 68-82 instead of 0-14.</p>
-<p><strong>Common trap:</strong>
-Confirming only that the initial render has fewer nodes, without checking that scrolling actually updates which items are rendered.</p>
-<p><strong>Related:</strong>
-[[react-performance]]</p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>In <code>MemoizationStrategyDemo.jsx</code>, change <code>ExpensiveChild</code>'s prop from an object (<code>config={{ label: 'static' }}</code>) to a plain string (<code>label="static"</code>) in the <code>UnstablePropParent</code> version, removing the object wrapper entirely. Predict whether the child's render count would still climb on unrelated parent updates, and explain why or why not, given <code>React.memo</code>'s comparison mechanism.</li>
-<li>In <code>VirtualizedListDemo.jsx</code>, change <code>OVERSCAN</code> from <code>3</code> to <code>0</code>. Predict what visual artifact would become more noticeable during fast scrolling, and explain the purpose overscan actually serves.</li>
-<li>In <code>CodeSplittingDemo.jsx</code>, change <code>showHeavy</code> to be <code>true</code> by default (so <code>HeavyPanel</code> renders immediately on page load instead of after a click). Predict what the network trace would show differently, and explain what this reveals about when <code>React.lazy</code> chunks are actually requested.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p>Exercise 1: with a plain string prop instead of an object, the child's render count would STOP climbing on unrelated parent updates — strings are primitive values compared by VALUE (not reference) under <code>Object.is</code>, so <code>"static" === "static"</code> is true regardless of which render created the string literal, and <code>React.memo</code>'s comparison would correctly see "unchanged" every time. This directly demonstrates that the failure mode is specific to reference types (objects, arrays, functions), not primitives.</p>
-<p>Exercise 2: with <code>OVERSCAN = 0</code>, fast scrolling would more often show a brief blank/empty edge at the top or bottom of the visible viewport right as new rows are still being rendered — overscan renders a few extra rows just outside the currently-visible area specifically to have them ALREADY MOUNTED before they scroll into view, smoothing over the render latency that would otherwise show as a flash of empty space during rapid scrolling.</p>
-<p>Exercise 3: with <code>showHeavy</code> true by default, the network trace would show the <code>GET .../HeavyPanel.jsx</code> request happening IMMEDIATELY on initial page load, indistinguishable in timing from the rest of the app's initial resources — demonstrating that <code>React.lazy</code>'s deferred-loading benefit comes specifically from the chunk being requested only when the LAZY COMPONENT ACTUALLY RENDERS for the first time, not from any special property of <code>React.lazy</code> itself; if it's rendered unconditionally on mount, it provides no loading-deferral benefit at all, even though the code is still technically split into a separate chunk at build time.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../react-accessibility/">React Accessibility: Semantic HTML, ARIA, Keyboard Navigation, and Focus Management</a> — this chapter's prerequisite.</li>
-<li><a href="../react-concurrent-rendering/">Concurrent React: Transitions, Deferred Values, and Suspense for Data</a> — the <code>use()</code>/Suspense mechanism this chapter's <code>React.lazy</code> Internal Implementation section builds on directly.</li>
-<li><a href="../../00-project/frontend-topic-register.md">00-project/frontend-topic-register.md</a> — the full register this chapter is F-117 of.</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://react.dev/reference/react/memo">react.dev: <code>memo</code></a></li>
-<li><a href="https://react.dev/reference/react/lazy">react.dev: <code>lazy</code></a></li>
-<li><a href="https://react.dev/learn/render-and-commit">react.dev: Render and Commit</a></li>
-<li><a href="https://legacy.reactjs.org/docs/react-api.html#reactmemo">Legacy React docs: <code>React.memo</code></a></li>
+<li><a href="../14-devops-containers/"><code>14-devops-containers.md</code></a></li>
+<li><a href="../13-observability/"><code>13-observability.md</code></a></li>
+<li><a href="../12-security/"><code>12-security.md</code></a></li>
+<li><a href="../11-system-design/"><code>11-system-design.md</code></a></li>
+<li><a href="../10-distributed-systems/"><code>10-distributed-systems.md</code></a></li>
+<li><a href="../09-messaging-event-driven/"><code>09-messaging-event-driven.md</code></a></li>
+<li><a href="../08-testing/"><code>08-testing.md</code></a></li>
+<li><a href="../07-api-design/"><code>07-api-design.md</code></a></li>
+<li><a href="../05-spring/"><code>05-spring.md</code></a></li>
+<li><a href="../04-software-design/"><code>04-software-design.md</code></a></li>
+<li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
+<li><a href="../06-databases/"><code>06-databases.md</code></a></li>
+<li><a href="../02-java-collections/"><code>02-java-collections.md</code></a>, <a href="../02-java-concurrency/"><code>02-java-concurrency.md</code></a>, <a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a>, <a href="../02-java-language-core/"><code>02-java-language-core.md</code></a></li>
+<li><a href="../../../00-project/interview-question-bank-plan.md"><code>00-project/interview-question-bank-plan.md</code></a></li>
 </ul>
 
 
@@ -11437,7 +11569,7 @@ Confirming only that the initial render has fewer nodes, without checking that s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:27:22 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:23:53 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11473,7 +11605,7 @@ Confirming only that the initial render has fewer nodes, without checking that s
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../react-hooks-useeffect-and-useref/" class="md-footer__link md-footer__link--prev" aria-label="Previous: React Hooks: useEffect and useRef">
+          <a href="../14-devops-containers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interview Question Bank — 14-devops-containers">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11483,20 +11615,20 @@ Confirming only that the initial render has fewer nodes, without checking that s
                 Previous
               </span>
               <div class="md-ellipsis">
-                React Hooks: useEffect and useRef
+                Interview Question Bank — 14-devops-containers
               </div>
             </div>
           </a>
         
         
           
-          <a href="../react-reconciliation-and-fiber/" class="md-footer__link md-footer__link--next" aria-label="Next: React Reconciliation and the Fiber Architecture">
+          <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Narration and Whiteboard Discipline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                React Reconciliation and the Fiber Architecture
+                System Design Narration and Whiteboard Discipline
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -11539,16 +11671,16 @@ Confirming only that the initial render has fewer nodes, without checking that s
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
     
   </body>
