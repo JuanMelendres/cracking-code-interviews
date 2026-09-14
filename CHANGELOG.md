@@ -3235,3 +3235,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **482 real questions across 4 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.
+
+### Added (Interview Question Bank — `05-spring`, 61 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/05-spring.md`. 12 chapters yielded 24 deep questions (`transactional-proxy-mechanics-and-propagation.md` alone contributes 4, the rest 2 each) + 5 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals chapter, `spring-mvc-fundamentals.md`) + 32 quick-fire questions = **61 real questions**.
+- **543 real questions across 5 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.

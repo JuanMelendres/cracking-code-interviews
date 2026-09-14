@@ -1153,6 +1153,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
 
+## [2026-09-13] — Interview Question Bank: `05-spring`, 61 real questions
+
+### Added
+
+- New `question-bank/05-spring.md`. 12 chapters yielded 24 deep questions + 5 already-leveled Junior/Mid questions (from the domain's Junior Fundamentals chapter, `spring-mvc-fundamentals.md`) + 32 quick-fire questions = **61 real questions**.
+- **543 real questions across 5 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
