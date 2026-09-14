@@ -1397,6 +1397,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New Core Concepts subsection with a comparison table (composition, how `@ExceptionHandler` return values resolve, scoping via `basePackages`/`assignableTypes`), cross-linked to `spring-mvc-fundamentals.md`'s parallel `@Controller`/`@RestController` pattern. 1 new Flashcard, Cheat Sheet row, synced to the standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Content-quality audit: `01-computer-science-foundations` (6th domain), one citation fixed
+
+### Fixed
+
+- User-requested content-quality deep-dive of the 6th domain, same method as the prior 5. Read all 5 chapters in full. Found one real, minor citation error: `how-a-computer-executes-a-program.md` labeled JVMS SE 21 Chapter 6 as "The `javac` Compiler" — its real title, verified live against `docs.oracle.com`, is "The Java Virtual Machine Instruction Set." The URL and the choice to cite that chapter were both correct; only the label was wrong. Fixed.
+- Every other claim across all 5 chapters checked out: Big-O tables, merge-sort recurrence, fetch-decode-execute cycle, two's complement/IEEE 754 mechanics, the Ariane 5 and Patriot-missile historical incidents, the OS process/thread model and virtual-thread M:N mechanics — no fabrication, every "real, measured" table's internal arithmetic verified consistent.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

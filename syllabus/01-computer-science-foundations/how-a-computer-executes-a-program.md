@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 01-computer-science-foundations
 topic_id: T-2002
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -208,7 +208,7 @@ Design the parsing/traversal approach so its stack usage does **not** grow with 
 
 ## 19. Further Reading
 
-- *The Java Virtual Machine Specification, SE 21*, [Chapter 6 — The `javac` Compiler](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-6.html) and [§2.5.2 — Java Virtual Machine Stacks](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html#jvms-2.5.2) — the official, authoritative definitions of bytecode and the per-thread stack this chapter builds on.
+- *The Java Virtual Machine Specification, SE 21*, [Chapter 6 — The Java Virtual Machine Instruction Set](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-6.html) (verified live 2026-09-14 — the actual chapter title, correcting an earlier mislabel as "The `javac` Compiler") and [§2.5.2 — Java Virtual Machine Stacks](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html#jvms-2.5.2) — the official, authoritative definitions of bytecode (including the `iload`/`iadd`/`ireturn` instructions this chapter's own demo disassembles) and the per-thread stack this chapter builds on.
 - Patterson and Hennessy, *Computer Organization and Design* — the standard, comprehensive reference for the fetch-decode-execute cycle, registers, and instruction set architecture at a depth well beyond what any single interview needs, for anyone who wants the full picture below this topic's foundation.
 - [JIT Tiered Compilation and Deoptimization](../02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md) — the canonical, in-depth treatment of exactly how and when bytecode becomes real machine code, referenced throughout Sections 4–5 above.
 

@@ -3368,6 +3368,13 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Fixed (Content-quality audit — `01-computer-science-foundations`, 2026-09-14)
+
+- User-requested content-quality deep-dive of the 6th domain (following the same method as `02-java`/`05-spring`/`06-databases`/`12-security`/`10-distributed-systems`). Read all 5 chapters in full against the Handbook Writing Standard.
+- Found one real, minor citation error: `how-a-computer-executes-a-program.md`'s Additional Reading cited JVMS SE 21 Chapter 6 as "The `javac` Compiler" — verified live against `docs.oracle.com` that its actual title is "The Java Virtual Machine Instruction Set" (the URL and the choice to cite it were both correct; only the label was wrong). Fixed.
+- Every other technical claim across all 5 chapters verified accurate: Big-O growth tables, merge-sort recurrence, fetch-decode-execute cycle, two's complement/IEEE 754 mechanics, the Ariane 5 and Patriot-missile historical incidents (cross-checked against known public facts), the OS process/thread model and virtual-thread M:N mechanics. No fabrication found; all "real, measured" evidence claims are internally consistent (e.g., every ratio/percentage in every table checks out arithmetically).
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Added (`bean-validation-and-global-exception-handling.md` — `@ControllerAdvice` vs. `@RestControllerAdvice`, 2026-09-14)
 
 - User request: real gap found. The chapter uses `@RestControllerAdvice` throughout but never once names or explains plain `@ControllerAdvice`, nor states the relationship between the two (the same composition as `@Controller`/`@RestController`, already covered in `spring-mvc-fundamentals.md`).
