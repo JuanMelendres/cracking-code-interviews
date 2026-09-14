@@ -1414,6 +1414,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `spring-mvc-fundamentals.md`: new subsection at the start of Foundation (L1) — a real, minimal `pom.xml` and `application.yml`, each element explained (starters, dependency scopes, `spring-boot-maven-plugin`, `${VAR:default}` placeholders, `ddl-auto: validate`, Actuator endpoint exposure). New Interview Question Q6, 2 new Flashcards, 2 new Cheat Sheet tables — synced to the standalone `cheat-sheets/`/`flashcards/` files for both chapters.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `spring-framework-vs-spring-boot.md`: `@SpringBootApplication` unpacked
+
+### Added
+
+- User request: `@SpringBootApplication` only ever appeared as a one-line code comment, never actually explained. New Core Concepts subsection breaking down all three composed annotations: `@SpringBootConfiguration`, `@EnableAutoConfiguration`, `@ComponentScan` — what each does, and what breaks without it — correcting an imprecise prior comment that said `@Configuration` instead of `@SpringBootConfiguration`.
+- New Interview Question 3, 2 new Flashcards, Cheat Sheet table and rows, synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

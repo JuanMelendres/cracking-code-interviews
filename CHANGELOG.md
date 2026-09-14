@@ -3375,6 +3375,12 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - `spring-mvc-fundamentals.md`: new subsection at the start of Foundation (L1) — a real, minimal `pom.xml` (parent BOM, starters, scopes, `spring-boot-maven-plugin`) and a real `application.yml` (`server.port`, `spring.application.name`, `spring.datasource.*` with `${VAR:default}` placeholder syntax, `ddl-auto: validate` as the only production-safe value, logging levels, Actuator endpoint exposure), each element explained. New Interview Question Q6, 2 new Flashcards, 2 new Cheat Sheet tables — synced to the standalone `cheat-sheets/`/`flashcards/` files for both chapters.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Added (`spring-framework-vs-spring-boot.md` — `@SpringBootApplication` unpacked, 2026-09-14)
+
+- User request: `@SpringBootApplication` only ever appeared as a one-line code comment (`// = @Configuration + @EnableAutoConfiguration + @ComponentScan`), never actually explained — what each composed annotation does, why composed that way, what breaks without each one.
+- New Core Concepts subsection with a table breaking down all three real components: `@SpringBootConfiguration` (bean-definition source, and the specific class `@SpringBootTest`-style tooling searches for — corrected from the prior comment's imprecise `@Configuration`), `@EnableAutoConfiguration` (the real trigger for this chapter's own measured 77-positive/168-negative-match auto-configuration report), `@ComponentScan` (scans the annotated class's own package and below — the exact mechanism behind this chapter's existing default-package `NoClassDefFoundError` incident). New Interview Question 3, 2 new Flashcards, Cheat Sheet table and 2 new rows — synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `01-computer-science-foundations`, 2026-09-14)
 
 - User-requested content-quality deep-dive of the 6th domain (following the same method as `02-java`/`05-spring`/`06-databases`/`12-security`/`10-distributed-systems`). Read all 5 chapters in full against the Handbook Writing Standard.

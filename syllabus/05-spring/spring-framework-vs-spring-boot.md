@@ -4,8 +4,8 @@ slug: spring-framework-vs-spring-boot
 document_type: handbook-chapter
 domain: 05-spring
 status: canonical
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/spring/spring-framework-vs-spring-boot.md
 difficulty:
@@ -23,6 +23,8 @@ related:
   - auto-configuration-and-bean-lifecycle.md
   - transactional-proxy-mechanics-and-propagation.md
   - security-filter-chain.md
+  - spring-mvc-fundamentals.md
+  - spring-testing-slices-and-context-caching.md
   - ../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
 official_references:
   - https://docs.spring.io/spring-boot/reference/using/auto-configuration.html
@@ -118,6 +120,18 @@ Every auto-configuration class asks specific, real conditions before contributin
 
 Classic Java web deployment: build a WAR, install it into an externally-managed Tomcat/JBoss/WebLogic instance, which owns the server process. Spring Boot's default model: the servlet container (Tomcat, by default) is just another library dependency, started *by the application's own `main()` method*, inside the application's own JVM process — the application owns the server, not the other way around. This is what makes `java -jar app.jar` (or, as measured in this chapter, plain `java -cp`) a complete, self-contained way to run a Spring web application with no separate server installation.
 
+### `@SpringBootApplication` is three real annotations composed into one — what each one actually contributes
+
+Every Spring Boot application's entry-point class carries exactly one annotation, but it's a **meta-annotation**: shorthand for three separate, independently meaningful annotations, each responsible for one distinct part of startup. Understanding "what does `@SpringBootApplication` do" means naming what each of the three actually does on its own, not treating the whole thing as one indivisible unit of magic:
+
+| Composed annotation | What it actually does | Real consequence if it were missing |
+|---|---|---|
+| `@SpringBootConfiguration` | Marks this class as a source of bean definitions — it can have its own `@Bean` methods, exactly like plain `@Configuration` (which it is itself meta-annotated with). It exists as its own, distinct annotation specifically so tooling can search for *this one class* unambiguously — `@SpringBootTest` locates the application's root configuration by searching upward for a `@SpringBootConfiguration`-annotated class, not just any `@Configuration` class, since a real application typically has many of those. | No bean definitions on the entry-point class itself would be picked up, and `@SpringBootTest` would fail at test-context startup with `IllegalStateException: Unable to find a @SpringBootConfiguration` — a real, documented failure mode covered in [Spring Testing Slices and Context Caching](spring-testing-slices-and-context-caching.md). |
+| `@EnableAutoConfiguration` | The actual trigger for auto-configuration (Core Concepts, above): it tells Spring Boot to read the candidate auto-configuration class list (`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`) and evaluate every one of them — this chapter's own real, measured 77-positive/168-negative-match report (Internal Implementation) is this annotation's direct output. | No starters would auto-configure anything — every `DataSource`, every `DispatcherServlet`, every embedded Tomcat instance would need to be defined by hand, exactly the boilerplate this chapter's Definition and Purpose describes Spring Boot as existing to eliminate. |
+| `@ComponentScan` | Tells Spring to scan the annotated class's own package, and every sub-package beneath it, for `@Component`-annotated classes (and its stereotype specializations — `@Service`, `@Repository`, `@Controller`/`@RestController`, `@Configuration`) and register each one as a bean — the exact mechanism [Spring MVC Fundamentals](spring-mvc-fundamentals.md)'s own "component scanning" description refers to, and the direct cause of this chapter's own default-package `NoClassDefFoundError` gotcha (Internal Implementation, below). | No `@Component`/`@Service`/`@Repository`/`@RestController` classes anywhere in the application would ever be discovered or registered — every bean would need an explicit `@Bean` method, since nothing would be scanned at all. |
+
+The scoping consequence worth internalizing precisely: `@ComponentScan`'s starting point is *the package of the class carrying `@SpringBootApplication`*, not the project root — which is exactly why this chapter's own default-package incident happened, and exactly why every Spring Boot generator (start.spring.io included) places the application class at the top of a real, project-specific package rather than leaving it unpackaged.
+
 ## Internal Implementation
 
 **A complete embedded Spring Boot application, measured — no external server, started by `java -cp`:**
@@ -205,7 +219,7 @@ package demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication // = @Configuration + @EnableAutoConfiguration + @ComponentScan
+@SpringBootApplication // = @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan (Core Concepts, above)
 public class EmbeddedServerDemo {
     public static void main(String[] args) {
         SpringApplication.run(EmbeddedServerDemo.class, args);
@@ -391,6 +405,26 @@ The auto-configuration mechanism is a specific instance of a general Staff-level
 
 **Related references.** [§ Internal Implementation](#internal-implementation); [§ Core Concepts](#core-concepts).
 
+### Question 3 — `@SpringBootApplication` is a meta-annotation for three other annotations. What are they, and what does each one actually do?
+
+**Why interviewers ask it.** Almost every Java backend candidate has typed `@SpringBootApplication` hundreds of times without ever being asked to unpack it — a fast, discriminating check for whether "I know it bootstraps the app" is the ceiling of a candidate's understanding, or whether they can name the three independent mechanisms actually doing the work.
+
+**Expected answer.** `@SpringBootConfiguration` (itself meta-annotated `@Configuration`) marks the class as a bean-definition source, and specifically as *the* class Spring Boot tooling (like `@SpringBootTest`) searches for. `@EnableAutoConfiguration` triggers auto-configuration — reading the candidate auto-configuration class list and evaluating each one's conditions against the classpath and already-defined beans. `@ComponentScan` scans the annotated class's own package (and sub-packages) for `@Component`-and-stereotype-annotated classes and registers them as beans.
+
+**Minimum acceptable answer.** Names at least two of the three correctly, even without precise detail on what each does mechanically.
+
+**Strong Senior answer.** Names all three correctly and states specifically that `@ComponentScan`'s starting point is the annotated class's *own package* — not the project root.
+
+**Staff-level extension.** Connects the component-scan starting-point detail to this chapter's own real, documented default-package incident (`NoClassDefFoundError` from scanning the entire classpath), and explains why `@SpringBootConfiguration` exists as its own distinct annotation rather than just reusing plain `@Configuration` — so tooling has one unambiguous class to search for in an application that may define many `@Configuration` classes.
+
+**Common mistakes.** Treating `@SpringBootApplication` as one indivisible, unanalyzable unit of "Spring magic" rather than three separable, individually well-defined annotations; confusing `@SpringBootConfiguration` with plain `@Configuration` as if they were unrelated.
+
+**Likely follow-ups.** "What would break if you replaced `@SpringBootApplication` with plain `@Configuration` on your entry-point class?" (Auto-configuration and component scanning would both stop happening — no starters would activate anything, and no `@Component`/`@Service`/`@RestController` classes would ever be discovered.)
+
+**Evaluation criteria (1–5).** 1: doesn't know it's a composed annotation at all. 3: correctly names all three components. 5: correct components plus the component-scan scoping detail and its real-incident connection.
+
+**Related references.** [§ Core Concepts](#core-concepts) — "`@SpringBootApplication` is three real annotations composed into one."
+
 ## Summary
 
 Spring Boot is not a separate framework — it's an opinionated assembler built on Spring Framework's own ordinary mechanisms (`@Configuration`, `@Bean`, `@Conditional`), adding starters (classpath-changing dependency bundles), auto-configuration (conditional beans reacting to that classpath and to what the application has already defined), and an embedded, application-owned server. This chapter measured both central mechanisms directly: a complete web application, embedded server included, served a real HTTP request from a single `java -cp` command with no external deployment step, and Spring Boot's own real conditions-evaluation report showed exactly which of 245 evaluated auto-configuration classes matched (77) and which didn't (168), each for a specific, logged, classpath-driven reason.
@@ -402,6 +436,7 @@ Spring Boot is not a separate framework — it's an opinionated assembler built 
 - `@ConditionalOnMissingBean` means defining your own bean silently and correctly suppresses the matching auto-configured default — no explicit exclusion needed.
 - The embedded server model means the application starts and owns its own server process — `java -jar`/`java -cp` is the complete deployment story.
 - `--debug` shows Spring Boot's real, specific reasoning for every auto-configuration decision — use it instead of guessing.
+- `@SpringBootApplication` = `@SpringBootConfiguration` (bean-definition source, findable by tooling) + `@EnableAutoConfiguration` (triggers auto-configuration) + `@ComponentScan` (scans this class's own package and below) — three separable mechanisms, not one indivisible unit.
 
 ## Cheat Sheet
 
@@ -412,6 +447,8 @@ Spring Boot is not a separate framework — it's an opinionated assembler built 
 | How do you override an auto-configured bean? | Define your own bean of the matching type — `@ConditionalOnMissingBean` yields to it |
 | How do you debug why an auto-configuration did/didn't apply? | Run with `--debug` and read the real conditions-evaluation report |
 | How is a Spring Boot app deployed by default? | `java -jar`/`java -cp` — an embedded server, no external app-server installation |
+| What are the 3 annotations composing `@SpringBootApplication`? | `@SpringBootConfiguration` + `@EnableAutoConfiguration` + `@ComponentScan` |
+| Where does `@ComponentScan` start scanning from? | The annotated class's own package — never the default (unpackaged) package |
 
 ## Flashcards
 
@@ -465,6 +502,40 @@ Reaching for `@SpringBootApplication(exclude = ...)` reflexively when defining a
 
 **Related:**
 [Core Concepts](#core-concepts)
+
+### Card: The three annotations inside @SpringBootApplication
+
+**Prompt:**
+`@SpringBootApplication` is a meta-annotation for which three annotations, and what does each one do?
+
+**Answer:**
+`@SpringBootConfiguration` (bean-definition source, and the specific class tooling like `@SpringBootTest` searches for), `@EnableAutoConfiguration` (triggers auto-configuration's conditional evaluation of every candidate class), and `@ComponentScan` (scans the annotated class's own package and sub-packages for `@Component`-and-stereotype classes).
+
+**Why it matters:**
+A near-universal warm-up question with an actual, learnable answer most candidates never bother learning, despite typing the annotation constantly.
+
+**Common trap:**
+Treating `@SpringBootApplication` as one indivisible unit of "magic" instead of three separable, individually well-defined mechanisms.
+
+**Related:**
+[Core Concepts](#core-concepts) — "`@SpringBootApplication` is three real annotations composed into one."
+
+### Card: Where @ComponentScan actually starts scanning
+
+**Prompt:**
+When `@SpringBootApplication` triggers component scanning, where does it start scanning from?
+
+**Answer:**
+The annotated class's own package, and every sub-package beneath it — not the project root, and not the whole classpath (unless the class has no package at all, the default-package case).
+
+**Why it matters:**
+Directly explains this chapter's own real, documented `NoClassDefFoundError` incident — placing the application class in the default package makes component scanning cover the entire classpath, including internal auto-configuration classes never meant to be scanned.
+
+**Common trap:**
+Assuming component scanning always covers the whole project regardless of where the application class lives.
+
+**Related:**
+[Internal Implementation](#internal-implementation)
 
 ## Practice Exercises
 

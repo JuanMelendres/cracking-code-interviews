@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: spring
 topic_id: T-506 / T-501
 canonical: ../syllabus/05-spring/spring-framework-vs-spring-boot.md
-last_updated: 2026-09-02
+last_updated: 2026-09-14
 ---
 
 # Spring Framework vs. Spring Boot: Auto-Configuration and the Embedded Server
@@ -21,6 +21,15 @@ Spring Framework is the programming model; Spring Boot is an opinionated assembl
 - **Starter** — a curated, version-aligned dependency bundle (e.g., `spring-boot-starter-web`); contains almost no code, just changes the classpath.
 - **Auto-configuration** — ordinary conditional `@Configuration` classes shipped in `spring-boot-autoconfigure`, activating based on the classpath (`@ConditionalOnClass`) and what the application hasn't already defined (`@ConditionalOnMissingBean`).
 - **Embedded server** — Tomcat (default) is a library dependency started by the application's own `main()`, inside the application's own JVM process — the application owns the server, not vice versa.
+- **`@SpringBootApplication`** — a meta-annotation for `@SpringBootConfiguration` + `@EnableAutoConfiguration` + `@ComponentScan`, three separable mechanisms.
+
+## @SpringBootApplication, Unpacked
+
+| Component | What it does |
+|---|---|
+| `@SpringBootConfiguration` | Bean-definition source (= `@Configuration`); the specific class `@SpringBootTest` and similar tooling search for |
+| `@EnableAutoConfiguration` | Triggers auto-configuration's classpath/condition evaluation |
+| `@ComponentScan` | Scans the annotated class's own package + sub-packages for `@Component`/stereotypes |
 
 ## Decision Table
 

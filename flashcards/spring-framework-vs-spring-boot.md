@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: spring
 topic_id: T-506 / T-501
 canonical: ../syllabus/05-spring/spring-framework-vs-spring-boot.md
-last_updated: 2026-09-02
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Spring Framework vs. Spring Boot
@@ -62,3 +62,37 @@ Reaching for `@SpringBootApplication(exclude = ...)` reflexively when defining a
 
 **Related:**
 [Core Concepts](../syllabus/05-spring/spring-framework-vs-spring-boot.md#core-concepts)
+
+## Card: The three annotations inside @SpringBootApplication
+
+**Prompt:**
+`@SpringBootApplication` is a meta-annotation for which three annotations, and what does each one do?
+
+**Answer:**
+`@SpringBootConfiguration` (bean-definition source, and the specific class tooling like `@SpringBootTest` searches for), `@EnableAutoConfiguration` (triggers auto-configuration's conditional evaluation), and `@ComponentScan` (scans the annotated class's own package and sub-packages for `@Component`/stereotype classes).
+
+**Why it matters:**
+A near-universal warm-up question with an actual, learnable answer most candidates never bother learning despite typing the annotation constantly.
+
+**Common trap:**
+Treating `@SpringBootApplication` as one indivisible unit of "magic" instead of three separable mechanisms.
+
+**Related:**
+[Core Concepts](../syllabus/05-spring/spring-framework-vs-spring-boot.md#core-concepts)
+
+## Card: Where @ComponentScan actually starts scanning
+
+**Prompt:**
+When `@SpringBootApplication` triggers component scanning, where does it start scanning from?
+
+**Answer:**
+The annotated class's own package, and every sub-package beneath it — never the project root, and never the whole classpath unless the class has no package at all.
+
+**Why it matters:**
+Directly explains this chapter's own real, documented `NoClassDefFoundError` incident from placing the application class in the default package.
+
+**Common trap:**
+Assuming component scanning always covers the whole project regardless of where the application class lives.
+
+**Related:**
+[Internal Implementation](../syllabus/05-spring/spring-framework-vs-spring-boot.md#internal-implementation)
