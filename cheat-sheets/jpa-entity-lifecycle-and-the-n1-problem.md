@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: databases
 topic_id: T-601 / T-602
 canonical: ../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md
-last_updated: 2026-09-02
+last_updated: 2026-09-14
 ---
 
 # JPA Entity Lifecycle and the N+1 Problem
@@ -23,6 +23,28 @@ The persistence context is a per-transaction identity map: within one session th
 - **Detached entity** — an entity whose session has closed; already-loaded fields remain readable, but an uninitialized lazy proxy has no session left to fetch through.
 - **N+1 problem** — 1 query for a list plus 1 additional query per row's lazily-touched association, instead of the 1–2 queries the data actually requires.
 - **EAGER vs LAZY** — EAGER loads unconditionally as part of every query for the owning entity; LAZY loads only on first access via a proxy/collection wrapper.
+- **The four lifecycle states** — Transient (never persisted) → Persistent/Managed (tracked) → Detached (session closed) or Removed (`remove()` called, deleted at flush).
+
+## The Entity Lifecycle
+
+`Transient --persist()--> Persistent --session closes--> Detached --merge()--> Persistent (NEW copy)`. `Persistent --remove()--> Removed --flush--> gone`.
+
+- **`merge()` does not mutate its argument** — it returns a *different*, managed instance; the object you passed in stays detached.
+- **`persist()` on an entity that already has an id** throws `PersistentObjectException` in Hibernate — use `merge()` instead.
+- **`orphanRemoval = true`** deletes a child the instant it leaves the parent's collection, even if the parent survives — `CascadeType.REMOVE` alone only fires when the parent itself is removed.
+- **`GenerationType.IDENTITY` blocks JDBC batch inserts** structurally (Hibernate needs the id immediately for the identity map); `SEQUENCE` (with `allocationSize`) doesn't.
+- **Don't derive `equals()`/`hashCode()` from the generated `@Id`** — it's `null` before persist and changes hashCode after; use a real business key, or don't override at all.
+
+## JPA vs. Hibernate-Specific Annotations
+
+| JPA (`jakarta.persistence`, portable) | Hibernate-only (`org.hibernate.annotations`) |
+|---|---|
+| `@Entity`, `@Table`, `@Id`, `@GeneratedValue` | `@BatchSize`, `@Cache` |
+| `@Column`, `@OneToMany`/`@ManyToOne`/`@ManyToMany`/`@OneToOne` | `@DynamicUpdate`, `@DynamicInsert` |
+| `@JoinColumn`, `@JoinTable`, `@Embeddable`/`@Embedded` | `@Fetch(FetchMode...)`, `@NaturalId` |
+| `@MappedSuperclass`, `@Transient`, `@Version` | `@CreationTimestamp`, `@UpdateTimestamp` |
+| `@Enumerated`, `@Lob` | `@SQLDelete`, `@Immutable` |
+| `@PrePersist`/`@PostPersist`/`@PreUpdate`/`@PostUpdate`/`@PreRemove`/`@PostRemove`/`@PostLoad` (lifecycle callbacks) | — |
 
 ## Decision Table
 

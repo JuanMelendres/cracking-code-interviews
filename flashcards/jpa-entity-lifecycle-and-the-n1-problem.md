@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: databases
 topic_id: T-601 / T-602
 canonical: ../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md
-last_updated: 2026-09-02
+last_updated: 2026-09-14
 ---
 
 # Flashcards: JPA Entity Lifecycle and the N+1 Problem
@@ -45,6 +45,57 @@ The single most common real Hibernate production bug — measured directly in th
 
 **Related:**
 [Internal Implementation](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md#internal-implementation)
+
+## Card: What merge() actually returns
+
+**Prompt:**
+After `Author managed = entityManager.merge(detachedAuthor);`, is `detachedAuthor` now managed?
+
+**Answer:**
+No — `merge()` copies the detached entity's state onto a different, managed instance and returns that. `detachedAuthor` itself remains detached forever; only the returned `managed` reference is tracked.
+
+**Why it matters:**
+A real, recurring bug: code that calls `merge()` and keeps using the original object as if it were now managed.
+
+**Common trap:**
+Ignoring `merge()`'s return value, assuming the method mutates its argument in place.
+
+**Related:**
+[Core Concepts](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md#core-concepts)
+
+## Card: orphanRemoval vs. CascadeType.REMOVE
+
+**Prompt:**
+What's the difference between `orphanRemoval = true` and `CascadeType.REMOVE`?
+
+**Answer:**
+`CascadeType.REMOVE` only deletes children when the parent itself is removed. `orphanRemoval = true` additionally deletes a child the instant it's taken out of the parent's collection, even while the parent stays alive.
+
+**Why it matters:**
+A frequently-tested distinction whose confusion leads to orphaned rows expected to be cleaned up automatically.
+
+**Common trap:**
+Using only `CascadeType.REMOVE` and expecting a child removed from the collection to also be deleted from the database.
+
+**Related:**
+[Core Concepts](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md#core-concepts)
+
+## Card: Why IDENTITY blocks batch inserts
+
+**Prompt:**
+Why does `GenerationType.IDENTITY` prevent Hibernate from batching `INSERT` statements, while `SEQUENCE` doesn't?
+
+**Answer:**
+`IDENTITY` requires the database to assign the id on `INSERT` and Hibernate to read it back immediately for identity-map placement, forcing one `INSERT` per entity. `SEQUENCE` pre-fetches a block of ids before any real inserts happen, so multiple inserts can be batched.
+
+**Why it matters:**
+A real, common surprise: enabling `hibernate.jdbc.batch_size` does nothing if the entity uses `IDENTITY`.
+
+**Common trap:**
+Assuming a larger batch-size setting alone fixes slow bulk inserts, regardless of id-generation strategy.
+
+**Related:**
+[Core Concepts](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md#core-concepts)
 
 ## Card: Why EAGER doesn't fix N+1
 

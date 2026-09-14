@@ -1379,6 +1379,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New hierarchy section in Level 1 — Foundation (mermaid diagram: `Throwable` → `Error`/`Exception` → `RuntimeException`, plus the exact structural rule for checked vs. unchecked) and a new Core Concepts table of common derived exceptions by category. New Interview Question 0 (the hierarchy itself) placed before the existing cause-chaining/try-with-resources questions. 2 new Flashcards, Cheat Sheet updates, synced to the standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `jpa-entity-lifecycle-and-the-n1-problem.md` gains the full lifecycle state machine + a JPA/Hibernate annotations reference
+
+### Added
+
+- User request: the chapter's own title promised "Entity Lifecycle" but never actually enumerated the state machine; also asked for JPA/Hibernate annotation coverage.
+- New Core Concepts subsections: the four-state lifecycle (Transient/Persistent/Detached/Removed) with a mermaid state diagram and the `merge()`-returns-a-new-copy gotcha; cascade types (`orphanRemoval` vs. `CascadeType.REMOVE`); ID generation strategy (`IDENTITY` structurally blocks JDBC batch inserts, `SEQUENCE` doesn't); `equals()`/`hashCode()` on entities.
+- New "JPA and Hibernate Annotations Reference" section: core JPA (`jakarta.persistence`, portable) vs. Hibernate-specific (`org.hibernate.annotations`) tables, including lifecycle-callback annotations.
+- 2 new Interview Questions, 4 new Flashcards, Cheat Sheet updates, synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

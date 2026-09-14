@@ -3368,6 +3368,14 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Added (`jpa-entity-lifecycle-and-the-n1-problem.md` — full state machine + annotations reference, 2026-09-14)
+
+- User request: chapter titled "Entity Lifecycle" never actually enumerated the state machine. Also asked for JPA/Hibernate annotations coverage.
+- New Core Concepts subsections: the four-state lifecycle (Transient/Persistent/Detached/Removed) with a mermaid `stateDiagram-v2` and the `merge()`-returns-a-new-copy gotcha; cascade types (`orphanRemoval` vs. `CascadeType.REMOVE`); ID generation strategy (`IDENTITY` structurally blocks JDBC batch inserts, `SEQUENCE` doesn't) with a comparison table; `equals()`/`hashCode()` on entities (why the generated `@Id` is the wrong basis).
+- New top-level "JPA and Hibernate Annotations Reference" section: two tables — core JPA (`jakarta.persistence`, portable) vs. Hibernate-specific (`org.hibernate.annotations`, not portable), including the lifecycle-callback annotations (`@PrePersist`/`@PostLoad`/etc.).
+- 2 new Interview Questions (persist vs. merge; IDENTITY-blocks-batching), 4 new Flashcards, Cheat Sheet updates — synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Added (`exception-design-and-hierarchy-strategy.md` — full checked/unchecked hierarchy, 2026-09-14)
 
 - User request: real coverage gap found. The chapter's title promises "hierarchy strategy" but only had one paragraph on checked vs. unchecked, with no mention of `Throwable` as the actual root, no mention of `Error` at all, and no list of common derived exception classes.
