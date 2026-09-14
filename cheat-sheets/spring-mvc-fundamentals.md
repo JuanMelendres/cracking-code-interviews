@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 05-spring
 topic_id: T-2203
 canonical: ../syllabus/05-spring/spring-mvc-fundamentals.md
-last_updated: 2026-09-07
+last_updated: 2026-09-14
 ---
 
 # Spring MVC Fundamentals
@@ -30,6 +30,25 @@ A class declares what it needs (usually as a constructor parameter); Spring buil
 | Controller | Reads the request, calls the service, returns a value — no business logic | `@RestController` |
 | Service | Business logic — never mentions HTTP | `@Service` |
 | Repository | Data access | `@Repository` |
+
+## Dependency Injection Types
+
+| Type | `@Autowired` needed? | `final` fields? | Plain `new` in a test? |
+|---|---|---|---|
+| Constructor (default) | No, if it's the only constructor | Yes | Yes |
+| Setter | Yes, on the setter | No | Needs setter called manually |
+| Field | Yes, on the field | No | Needs reflection/Spring context |
+
+## Design Patterns Spring Uses
+
+| Pattern | Where |
+|---|---|
+| Singleton | Default bean scope |
+| Factory | `BeanFactory`/`ApplicationContext`, `@Bean` methods |
+| Proxy | AOP — `@Transactional`, `@Async`, `@Cacheable` |
+| Template Method | `JdbcTemplate`, `RestTemplate` |
+| Observer | `ApplicationEvent` + `@EventListener` |
+| Strategy | Interface + multiple `@Component` impls + `@Qualifier` |
 
 ## Common Pitfalls
 

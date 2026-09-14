@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 02-java
 topic_id: T-2211
 canonical: ../syllabus/02-java/language-core/java-version-features-timeline.md
-last_updated: 2026-09-08
+last_updated: 2026-09-14
 ---
 
 # Java Version Features Timeline
@@ -33,6 +33,8 @@ Java ships a new release every 6 months since Java 10; LTS releases (8, 11, 17, 
 | Java 17 (2021) | Sealed classes/interfaces finalized |
 | Java 21 (2023) | Virtual threads, pattern matching for `switch`, record patterns — all finalized |
 | Java 25 (2025) | Scoped values, flexible constructor bodies, module import declarations — finalized (verify exact status against the current JEP index) |
+
+**Non-LTS releases worth naming specifically** (full 9–25 table in the canonical chapter): Java 9 — JPMS module system; Java 14 — switch expressions finalized; Java 16 — records finalized; Java 22 — Foreign Function & Memory API finalized; Java 24 — stream gatherers finalized.
 
 ## Common Pitfalls
 

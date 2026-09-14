@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 02-java
 topic_id: T-2210
 canonical: ../syllabus/02-java/language-core/java-modifiers-and-method-signatures.md
-last_updated: 2026-09-08
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Java Modifiers and Method Signatures
@@ -79,6 +79,23 @@ Believing an abstract class can never have a constructor — it can, called via 
 
 **Related:**
 [Java Modifiers and Method Signatures](../syllabus/02-java/language-core/java-modifiers-and-method-signatures.md)
+
+## Card: Overloading vs. overriding — who resolves it, and when
+
+**Prompt:**
+Is overload resolution decided at compile time or runtime? What about override resolution?
+
+**Answer:**
+Overload resolution is decided by the compiler at compile time, from the declared types of the arguments at the call site. Override resolution is decided by the JVM at runtime, from the actual class of the object the call is made on.
+
+**Why it matters:**
+This is the exact distinction that makes polymorphism work for overriding but not for overloading — a call to an overloaded method never "looks at" the runtime type the way an overridden one does.
+
+**Common trap:**
+Assuming an overload is chosen based on the runtime type of an argument, the same way an override is chosen based on the runtime type of the receiver — it isn't; the declared (compile-time) type picks the overload.
+
+**Related:**
+[Java Modifiers and Method Signatures](../syllabus/02-java/language-core/java-modifiers-and-method-signatures.md), [Polymorphism and Dynamic Dispatch](../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md)
 
 ## Card: static vs. instance state
 

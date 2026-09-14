@@ -1346,6 +1346,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New "Design patterns Spring resolves for you" subsection — Singleton, Factory, Proxy, Template Method, Observer, Strategy, and Decorator, each row linking onward to this domain's existing deep-dive chapters (`spring-bean-scopes-and-proxy-modes.md`, `transactional-proxy-mechanics-and-propagation.md`) rather than re-explaining the mechanism.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `cheat-sheets/`/`flashcards/` synced for the 3 chapters edited earlier today
+
+### Fixed
+
+- `java-modifiers-and-method-signatures.md`, `java-version-features-timeline.md`, `spring-mvc-fundamentals.md` gained new canonical content earlier today (overload/override table, full Java 9-25 version table, Spring DI-types and design-patterns tables) that their own standalone `cheat-sheets/*.md`/`flashcards/*.md` files never picked up — a known recurring gap (see this project's own complementary-deliverable-lag pattern). Synced all six files: new "Overloading vs. Overriding" table + pitfall + 1 flashcard on java-modifiers; a non-LTS-highlights line + 1 flashcard (JPMS) on java-version-features-timeline; new DI-types and design-patterns tables + 2 flashcards (setter injection's real use case, `@Transactional` as Proxy) on spring-mvc-fundamentals.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 02-java
 topic_id: T-2210
 canonical: ../syllabus/02-java/language-core/java-modifiers-and-method-signatures.md
-last_updated: 2026-09-08
+last_updated: 2026-09-14
 ---
 
 # Java Modifiers and Method Signatures
@@ -24,6 +24,17 @@ Four access levels, most to least restrictive: `private`, package-private (no mo
 - **`static`** — shared across all instances; callable without an object.
 - **`final`** — variable: assign once; method: cannot override; class: cannot extend.
 - **Abstract method** — signature only (`abstract double area();`), no body, no braces.
+- **Overloading** — same name, different parameter list, same class; resolved by the compiler from declared argument types.
+- **Overriding** — subclass redefines an inherited method with the identical signature; resolved by the JVM from the object's runtime class.
+
+## Overloading vs. Overriding
+
+| Aspect | Overloading | Overriding |
+|---|---|---|
+| Signature | Must differ | Must match exactly |
+| Resolved by | Compiler (static) | JVM (dynamic) |
+| `private`/`static`/`final` | Overloadable | Not overridable at all |
+| Annotation | None | `@Override` — always use it |
 
 ## Decision Table
 
@@ -41,6 +52,7 @@ Four access levels, most to least restrictive: `private`, package-private (no mo
 - Assuming `private` means "only this exact class" — it's scoped to the top-level enclosing class; sibling nested classes CAN access each other's private members.
 - Confusing `final` class (forbids all subclassing) with `abstract` class (requires it).
 - Forgetting a `static` method has no implicit `this` and cannot call instance methods directly.
+- Confusing overloading (compile-time, by declared argument types) with overriding (runtime, by the object's actual class) — the single most common source of "which version runs" mistakes.
 
 ## Interview Answer Skeleton
 

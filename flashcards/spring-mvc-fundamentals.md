@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 05-spring
 topic_id: T-2203
 canonical: ../syllabus/05-spring/spring-mvc-fundamentals.md
-last_updated: 2026-09-07
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Spring MVC Fundamentals
@@ -79,6 +79,40 @@ Putting business logic directly in the controller because it's faster to write, 
 
 **Related:**
 [Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md)
+
+## Card: Setter injection's one real use case
+
+**Prompt:**
+When is setter injection actually the right choice over constructor injection?
+
+**Answer:**
+When the dependency is genuinely optional — the bean must be fully constructable without it. Constructor injection forces every listed dependency to be provided; setter injection lets the bean exist first and be wired later, or not at all.
+
+**Why it matters:**
+"Always use constructor injection" is the right default, but a good answer names the one real exception rather than treating it as an absolute rule.
+
+**Common trap:**
+Reaching for setter injection out of habit or an old tutorial, for a dependency that's actually required — this hides the missing dependency until something calls a method that needs it, instead of failing fast at construction.
+
+**Related:**
+[Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md)
+
+## Card: Which design pattern is @Transactional actually using?
+
+**Prompt:**
+Mechanically, how does `@Transactional` add transaction-management behavior to a method without that method's own code doing anything transaction-related?
+
+**Answer:**
+The Proxy pattern. Spring wraps the bean in a dynamically-generated proxy; a call to the annotated method actually hits the proxy first, which starts the transaction, invokes the real method, then commits or rolls back — the real class never contains any of that logic itself.
+
+**Why it matters:**
+"Name a design pattern Spring uses and where" is a real, recurring interview question, and `@Transactional` is the single most concrete example to reach for.
+
+**Common trap:**
+Describing `@Transactional` as if the annotation itself executes logic at runtime — the annotation is just metadata; the proxy is what actually does the work, which is also why calling an `@Transactional` method from another method in the *same* class (self-invocation) bypasses the proxy entirely.
+
+**Related:**
+[Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md), [Transactional Proxy Mechanics and Propagation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
 
 ## Card: "No qualifying bean" startup failure
 

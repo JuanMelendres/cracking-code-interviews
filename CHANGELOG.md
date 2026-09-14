@@ -3368,6 +3368,11 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Fixed (Complementary-deliverable sync — `cheat-sheets/`, `flashcards/`, 2026-09-14)
+
+- Today's earlier canonical-chapter edits (overload/override table, full Java 9-25 version table, Spring DI-types/design-patterns tables) left the three chapters' own standalone `cheat-sheets/*.md` and `flashcards/*.md` files stale — a known recurring gap (new/changed canonical content doesn't auto-propagate). Synced all six: `cheat-sheets/java-modifiers-and-method-signatures.md` (overload-vs-override table), `cheat-sheets/java-version-features-timeline.md` (non-LTS highlights line), `cheat-sheets/spring-mvc-fundamentals.md` (DI-types and design-patterns tables), and the matching `flashcards/*.md` for each (1 new card on java-modifiers, 1 on java-version-features-timeline, 2 on spring-mvc-fundamentals).
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Site UI — reader-reported bugs, 2026-09-14)
 
 - Removed `navigation.instant`/`navigation.instant.progress` from `mkdocs.yml`: the reported "footer stuck overlapping the next page" bug was Material's SPA-style content swap getting caught mid-transition (worse combined with `header.autohide`'s own scroll-position transform). Trades a few hundred ms of instant-swap speed per click for eliminating this whole class of stuck-transition bug; full page loads can't get stuck this way.

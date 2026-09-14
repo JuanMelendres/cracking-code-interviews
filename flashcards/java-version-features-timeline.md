@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 02-java
 topic_id: T-2211
 canonical: ../syllabus/02-java/language-core/java-version-features-timeline.md
-last_updated: 2026-09-08
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Java Version Features Timeline
@@ -79,6 +79,23 @@ Claiming virtual threads speed up CPU-bound computation.
 
 **Related:**
 [Java Version Features Timeline](../syllabus/02-java/language-core/java-version-features-timeline.md)
+
+## Card: JPMS isn't a Java 8 feature either
+
+**Prompt:**
+Which Java version introduced the Java Platform Module System (`module-info.java`, JPMS), and what problem does it solve?
+
+**Answer:**
+Java 9 (2017). It lets a codebase declare explicit module boundaries (`exports`, `requires`, `opens`) instead of every public class on the classpath being accessible to everything else — real encapsulation at the JAR/module level, not just the class level.
+
+**Why it matters:**
+A frequently-skipped release in casual version recall (attention usually goes straight to 8 → 11 → 17 → 21), but JPMS is the reason strong encapsulation of internal JDK APIs (finalized as a default in Java 17) was possible at all.
+
+**Common trap:**
+Confusing JPMS module boundaries with plain Java packages — a package has no enforced encapsulation on its own; a module does.
+
+**Related:**
+[Java Version Features Timeline](../syllabus/02-java/language-core/java-version-features-timeline.md), [Java Platform Module System](../syllabus/02-java/language-core/java-platform-module-system.md)
 
 ## Card: Exhaustive switch over a sealed type
 
