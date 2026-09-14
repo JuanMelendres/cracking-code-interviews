@@ -4,8 +4,8 @@ slug: event-driven-architecture-integration-styles
 document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/architecture/event-driven-architecture-integration-styles.md
 topic_id: T-906
@@ -347,7 +347,7 @@ to a shared executor) means multiple events for the same business entity can be
 processed concurrently by different handlers with no inherent ordering guarantee
 beyond whatever the underlying broker provides — the same partition-key-ordering
 concern covered in
-[Kafka: Producer Semantics and Partition Keys](schema-registry-and-compatibility-evolution.md)
+[Kafka: Producer Semantics and Partition Keys](producer-semantics-and-partition-keys.md)
 applies directly here. Orchestration's sequential, single-threaded step execution has
 no such concern by construction — each step genuinely completes before the next
 begins, in the same thread, unless the orchestrator itself is explicitly built to
@@ -595,7 +595,7 @@ asserting it.
 - **Event-carried state transfer**: fat event, consumer self-sufficient. Coupling →
   schema.
 - **Event sourcing**: the event stream is the system of record. Coupling → schema +
-  storage/replay cost. (Deep dive: separate, planned topic.)
+  storage/replay cost. (Deep dive: [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md).)
 - **Choreography**: no central coordinator, hard to trace without deliberate tooling.
 - **Orchestration**: central coordinator, native debuggability, coordinator is a
   structural dependency.
@@ -696,10 +696,11 @@ Exercise 1 is a direct, self-contained extension of this chapter's existing
 left as self-directed practice since the existing files provide every piece needed.
 Exercise 2 requires the Docker-based Kafka infrastructure already set up in the
 Schema Registry chapter's practice directory and is intentionally left unimplemented
-here to avoid duplicating that setup — reuse it directly. Exercise 3 is a preview of
-the still-open Event Sourcing topic (T-905) and is deliberately left unimplemented in
-this chapter, since a full treatment of snapshotting and replay cost belongs in that
-topic's own deep dive, not as a side exercise here.
+here to avoid duplicating that setup — reuse it directly. Exercise 3 previews the
+territory [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md)
+(T-905) covers in full and is deliberately left unimplemented in this chapter, since a
+full treatment of snapshotting and replay cost belongs in that chapter's own deep dive,
+not as a side exercise here.
 
 ## Additional Reading
 
@@ -710,9 +711,9 @@ topic's own deep dive, not as a side exercise here.
   covers choreography vs. orchestration specifically for compensating transactions —
   read it for the transaction-recovery mechanics this chapter deliberately does not
   repeat.
-- Event Sourcing (T-905) is a distinct, lower-frequency topic covering the third
-  integration style in depth, including replay cost and snapshotting, and remains a
-  planned deep dive rather than covered here.
+- [Event Sourcing and Its Real Costs](event-sourcing-and-its-real-costs.md) (T-905) is
+  a distinct, lower-frequency topic covering the third integration style in depth,
+  including replay cost and snapshotting, rather than repeated here.
 
 ## Official References
 

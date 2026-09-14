@@ -1440,6 +1440,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `09-messaging-event-driven` (12th domain), two real issues fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (12th domain, 12 chapters, via two parallel background agents covering 6 each). 11 chapters verified fully clean — every measured number (word counts, replay-time/file-size tables, 20x snapshot speedup, WAL growth, delivery counts, lag/DLQ arithmetic) checked against real `practice/java/` source, no non-compiling Java snippets, no fabrication.
+- `event-driven-architecture-integration-styles.md`: fixed a broken cross-reference (link text named `producer-semantics-and-partition-keys.md` but pointed at `schema-registry-and-compatibility-evolution.md`) and a stale claim in three places calling Event Sourcing (T-905) a "planned"/"still-open" topic — `event-sourcing-and-its-real-costs.md` already exists as a canonical chapter, a genuine leftover from before that companion chapter was written.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `07-api-design` (11th domain), one orphaned-text artifact fixed
 
 ### Fixed
