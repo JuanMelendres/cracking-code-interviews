@@ -1440,6 +1440,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `16-performance-jvm` (10th domain), one self-contradictory solution fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (10th domain, 3 chapters, read directly). `benchmarking-and-jmh-pitfalls.md` and `profiling-jfr-and-flame-graphs.md` verified fully clean — real measured numbers (the 2.748ns/3.541ns dead-code-elimination gap, the 719/88/153 JFR sample counts) internally consistent, JMH/`Blackhole` and JFR/async-profiler sampling mechanics correct.
+- `capacity-planning-and-headroom.md`: found one real self-contradiction in Practice Exercise 3's Solution — described a 2-of-3-instance-fleet survivor scenario, then computed capacity as if a single lone instance absorbed the full 130 req/s load. Reframed as a 2-instance fleet where either instance alone must absorb the full peak, so each is sized to `130 / 0.65 ≈ 200` req/s. Little's Law cross-check (3.264 vs. 3.290, within 0.80%) and saturation-point math (160 req/s theoretical ceiling, 148 measured, p99 25× increase) verified correct elsewhere in the same chapter.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

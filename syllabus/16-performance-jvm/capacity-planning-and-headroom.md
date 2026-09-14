@@ -4,8 +4,8 @@ slug: capacity-planning-and-headroom
 document_type: handbook-chapter
 domain: 16-performance-jvm
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/performance/capacity-planning-and-headroom.md
 topic_id: T-1208
@@ -322,7 +322,7 @@ Capacity planning provisions ahead of load by finding a system's real saturation
 
 1. The theoretical ceiling is `POOL_SIZE / (SERVICE_TIME_MILLIS / 1000)`; the measured plateau in this chapter's data (148 req/s against a 160 req/s theoretical ceiling) ran about 8% below theoretical due to real scheduling and measurement overhead — expect a similar small gap, not an exact match.
 2. As offered rate approaches the pool's ~200 req/s capacity (6 workers × 30ms), both `L` and `W` grow together — visible directly as rising sampled `L` and rising measured `W` — while the system is still technically stable (arrivals not exceeding capacity), which is the early warning this chapter's Little's Law tool provides before an actual saturation incident occurs.
-3. With 2 instances needing to individually absorb full load if the third fails (N-1 redundancy across what's actually a 3-instance fleet), each surviving instance must handle the full 130 req/s alone within its own headroom target — e.g., at a 65% target utilization, each instance's provisioned capacity should be `130 / 0.65 ≈ 200` req/s, sized and load-tested per instance, not assumed from a spec sheet.
+3. "N-1 redundancy across 2 instances" means a 2-instance fleet sized to survive losing one of them — so the surviving instance must be able to handle the full 130 req/s peak alone, not split with a third instance that doesn't exist in this fleet. At a 65% target utilization, that surviving instance's provisioned capacity should be `130 / 0.65 ≈ 200` req/s — and since both instances must be provisioned identically (either one could be the one that fails), each of the 2 instances is sized to 200 req/s, not 65 req/s each as a naive 130/2 split would suggest; the redundancy requirement, not the steady-state 2-way split, is what actually sizes each instance.
 
 ## Additional Reading
 

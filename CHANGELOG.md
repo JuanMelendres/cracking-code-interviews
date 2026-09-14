@@ -6,6 +6,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Content-quality audit — `16-performance-jvm`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (10th domain, 3 chapters, read directly). `benchmarking-and-jmh-pitfalls.md` and `profiling-jfr-and-flame-graphs.md` verified fully clean — every measured number (2.748ns/3.541ns dead-code-elimination gap, the 719/88/153 real JFR sample counts) internally consistent, JMH/`Blackhole` mechanics and JFR/async-profiler sampling mechanics correct, no fabrication.
+- `capacity-planning-and-headroom.md`: found one real self-contradiction in Practice Exercise 3's Solution — it described a 3-instance fleet losing one instance down to 2 survivors, then computed the surviving capacity as if a single lone instance absorbed the full 130 req/s load, silently dropping the second survivor from the math. Reframed as what the exercise actually describes: a 2-instance fleet sized so either instance alone can absorb the full 130 req/s peak if the other fails, so each of the 2 instances (not a phantom 3rd) is sized to `130 / 0.65 ≈ 200` req/s. Verified Little's Law cross-check (3.264 vs. 3.290 req/s, agreeing within 0.80%) and the saturation-point math (8 workers × 50ms = 160 req/s ceiling, 148 req/s measured, p99 25× increase) as correct elsewhere in the same chapter.
+- No standalone `cheat-sheets/`/`flashcards/` sync needed — the fixed text lives only in the canonical chapter's Solutions section, not mirrored in either standalone file.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Added
 - `handbook/databases/` — the "Database Triad" canonical chapter group complete (T-609/T-610/T-611), the first Phase 5 deliverable under `CLAUDE.md`'s canonical-handbook-chapter template:
   - `index-structures-btree-composite-covering.md` (T-609, IWI 8.30) — elevates the verified `EXPLAIN ANALYZE` evidence from `study-packs/week-01/02-database-index-fundamentals.md`
