@@ -1,0 +1,18 @@
+{
+  "name": "microfrontends-module-federation-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:remote": "webpack --config remote/webpack.config.js",
+    "build:host": "webpack --config host/webpack.config.js",
+    "build": "npm run build:remote && npm run build:host",
+    "start": "npm run build && node run.js"
+  },
+  "devDependencies": {
+    "webpack": "^5.110.3",
+    "webpack-cli": "^7.2.3"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

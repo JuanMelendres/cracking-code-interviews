@@ -1,0 +1,29 @@
+=== 1. Exact-match brittleness: two CORRECT answers, real string comparison ===
+reference:  "Paris is the capital of France."
+candidate:  "The capital of France is Paris."  (also correct, different wording)
+real reference.equals(candidate): false
+>>> a real, correct answer fails a real exact-match check purely from wording.
+
+=== 2. Rule-based / structured checks: real, deterministic, 100% reliable ===
+  "{"answer": "Paris"}"                         validJson=true  hasAnswerField=true 
+  "{"answer": "Paris", "confidence": 0.95}"     validJson=true  hasAnswerField=true 
+  "Sure, the answer is Paris."                  validJson=false hasAnswerField=false
+  "{"result": "Paris"}"                         validJson=true  hasAnswerField=false
+>>> real, deterministic checks -- no ambiguity, no threshold to tune.
+
+=== 3. Semantic-similarity scoring: catches one real gap, creates another ===
+  [correct, literal overlap] similarity=0.9091 threshold=0.30 -> PASS
+  [correct, real paraphrase] similarity=0.2860 threshold=0.30 -> FAIL
+  [wrong, unrelated] similarity=0.0909 threshold=0.30 -> FAIL
+>>> the real paraphrase is a CORRECT answer that this scheme's similarity score wrongly fails --
+>>> the same real limitation T-2302 (Embeddings) measured, now showing up as a false negative in evaluation.
+
+=== 4. Golden-dataset regression matrix: two simulated model versions ===
+test case                 v1         v2         result
+capital of France         true       true       still pass
+capital of Japan          true       false      REGRESSION
+2+2                       true       true       still pass
+largest planet            false      true       IMPROVEMENT
+boiling point of water    true       true       still pass
+>>> real counts: 1 regression(s), 1 improvement(s) from v1 to v2.
+>>> a human eyeballing 1-2 examples would very likely have missed the regression.

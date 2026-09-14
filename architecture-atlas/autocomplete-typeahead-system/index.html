@@ -1,0 +1,2501 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+      
+      
+        <meta name="author" content="Juan Melendres">
+      
+      
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/architecture-atlas/autocomplete-typeahead-system/">
+      
+      
+        <link rel="prev" href="../authentication-service/">
+      
+      
+        <link rel="next" href="../deployment-infrastructure-for-a-payments-notification-service/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Architecture Atlas: Autocomplete/Typeahead System - Cracking Code Interviews</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cracking Code Interviews">
+  <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+  <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/architecture-atlas/autocomplete-typeahead-system/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cracking Code Interviews">
+  <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+  <meta name="twitter:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-atlas-autocompletetypeahead-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cracking Code Interviews
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture Atlas: Autocomplete/Typeahead System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/JuanMelendres/cracking-code-interviews" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JuanMelendres/cracking-code-interviews
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/00-overview/INDEX/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../study-packs/" class="md-tabs__link">
+          
+  
+  
+  Study Packs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cheat-sheets/" class="md-tabs__link">
+          
+  
+  
+  Cheat Sheets
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../flashcards/" class="md-tabs__link">
+          
+  
+  
+  Flashcards
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Architecture Atlas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../production-cookbook/" class="md-tabs__link">
+          
+  
+  
+  Production Cookbook
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../practice/" class="md-tabs__link">
+          
+  
+  
+  Practice (real code)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    Cracking Code Interviews
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/JuanMelendres/cracking-code-interviews" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JuanMelendres/cracking-code-interviews
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../syllabus/00-overview/INDEX/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../study-packs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Study Packs
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../cheat-sheets/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flashcards/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Atlas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas — Index
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Authentication Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Autocomplete/Typeahead System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Autocomplete/Typeahead System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-observability-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, Observability, and Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staff-level-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staff-Level Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-presentation-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Presentation Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-infrastructure-for-a-payments-notification-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Deployment Infrastructure for a Payments Notification Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-file-storage-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed File Storage System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-job-scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Job Scheduler
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-key-value-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Key-Value Store
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: JVM Sizing and Diagnostics Playbook for a Real-Time Pricing Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jvm-tuning-playbook-for-a-market-data-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: JVM Tuning Playbook for a Market-Data Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics-monitoring-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Metrics/Monitoring System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../news-feed-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: News Feed System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Notification System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payment-processing-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Payment Processing System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-time-chat-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Real-Time Chat System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ride-hailing-dispatch-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Ride-Hailing Dispatch System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-review-of-a-multi-tenant-expense-approval-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Security Review of a Multi-Tenant Expense-Approval Platform
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test-strategy-for-a-checkout-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Test Strategy for a Checkout Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ticket-and-event-booking-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Ticket and Event Booking System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../url-shortener-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: URL Shortener System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video-streaming-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Video Streaming Platform
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-crawler-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Web Crawler System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../production-cookbook/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../practice/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practice (real code)
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-observability-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, Observability, and Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staff-level-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staff-Level Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-presentation-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Presentation Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Architecture Atlas
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/architecture-atlas/autocomplete-typeahead-system.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/architecture-atlas/autocomplete-typeahead-system.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="architecture-atlas-autocompletetypeahead-system">Architecture Atlas: Autocomplete/Typeahead System<a class="headerlink" href="#architecture-atlas-autocompletetypeahead-system" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Sourcing note:</strong> new, original content, added 2026-09-11 as the fourth and last entry in the Architecture Atlas follow-up set alongside <a href="../video-streaming-platform/">Video Streaming Platform</a>, <a href="../distributed-file-storage-system/">Distributed File Storage System</a>, and <a href="../web-crawler-system/">Web Crawler System</a> — this closes the audit's own "web crawler/autocomplete" gap item in full, having deliberately split it into two genuinely different problems rather than force-fitting them into one entry (see <a href="../web-crawler-system/">Web Crawler System</a>'s own sourcing note). Like the three entries before it, this is additive beyond the Atlas's own closed T-813 target, not a reopening of it.</p>
+</blockquote>
+<p><strong>Delivered as a timed, 45-minute exercise using <a href="../../syllabus/11-system-design/system-design-method-and-estimation/">System Design Method and Estimation</a>'s six-phase method.</strong></p>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#problem-statement">Problem Statement</a></li>
+<li><a href="#constraints">Constraints</a></li>
+<li><a href="#functional-requirements">Functional Requirements</a></li>
+<li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
+<li><a href="#capacity-assumptions">Capacity Assumptions</a></li>
+<li><a href="#architecture-diagram">Architecture Diagram</a></li>
+<li><a href="#data-model">Data Model</a></li>
+<li><a href="#apis">APIs</a></li>
+<li><a href="#request-flow">Request Flow</a></li>
+<li><a href="#consistency-model">Consistency Model</a></li>
+<li><a href="#scaling-strategy">Scaling Strategy</a></li>
+<li><a href="#reliability-strategy">Reliability Strategy</a></li>
+<li><a href="#security-observability-and-cost">Security, Observability, and Cost</a></li>
+<li><a href="#trade-offs">Trade-offs</a></li>
+<li><a href="#alternatives-considered">Alternatives Considered</a></li>
+<li><a href="#staff-level-discussion">Staff-Level Discussion</a></li>
+<li><a href="#interview-presentation-sequence">Interview Presentation Sequence</a></li>
+</ol>
+<hr />
+<h2 id="problem-statement">Problem Statement<a class="headerlink" href="#problem-statement" title="Permanent link">&para;</a></h2>
+<p>Design an autocomplete/typeahead system: given a partial query string typed so far, return the top-K most likely completions, ranked by popularity, within tens of milliseconds — fast enough to update on every keystroke without visibly lagging the user. The central tension is that fast <em>prefix matching</em> (finding every completion starting with a given prefix) and fast <em>ranked</em> retrieval (returning only the top-K by popularity, not all of them) are two different problems, and a design that solves only the first — a plain trie walk followed by a sort — is too slow for the read path at the latency this problem actually demands; the real design work is precomputing rank so the read path never has to compute it live.</p>
+<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
+<p><strong>In scope:</strong> returning the top-K completions for a given prefix, ranked by historical query popularity, updated periodically as popularity shifts over time. <strong>Explicitly out of scope:</strong> per-user personalization (ranking completions differently per user based on their own history) and locale/language-specific ranking variants — both real, valuable extensions, but each a genuinely separate ranking-model problem layered on top of this design's core prefix-and-popularity mechanism, not a core requirement of it. Naming these exclusions explicitly is itself part of a strong Phase 1 answer, since a design that silently assumes uniform, global ranking is answering a simpler, different question than one that promises personalization without saying so.</p>
+<h2 id="functional-requirements">Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Given a prefix string, return the top-K (typically 5-10) most popular completions starting with that prefix.</li>
+<li>Results must reflect real query popularity, not just alphabetical or insertion order.</li>
+<li>Popularity rankings must update over time as query patterns shift (a newly trending term should eventually surface; a fading one should eventually drop).</li>
+<li>The system must handle a prefix with zero, few, or millions of possible completions equally gracefully.</li>
+</ul>
+<h2 id="non-functional-requirements">Non-Functional Requirements<a class="headerlink" href="#non-functional-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>End-to-end latency per keystroke must stay in the tens-of-milliseconds range — this is the single most binding constraint on this design, since a perceptibly laggy typeahead is worse than no typeahead at all.</li>
+<li>The system must handle load proportional to <em>every keystroke</em> of every active search session, not just completed searches — a materially higher request volume than the search system it feeds into.</li>
+<li>Ranking data can be minutes-to-hours stale without being a real problem; the read path's latency cannot be compromised in exchange for fresher rankings.</li>
+<li>Memory footprint must stay bounded and predictable even as the historical query corpus grows into the hundreds of millions of distinct strings.</li>
+</ul>
+<h2 id="capacity-assumptions">Capacity Assumptions<a class="headerlink" href="#capacity-assumptions" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Assumption: 500 million distinct historical query strings, average
+            length 20 characters
+Assumption: 50,000 completed searches/second at peak, each search
+            averaging ~15 keystrokes before the user either selects
+            a suggestion or finishes typing -&gt; ~750,000 typeahead
+            requests/second at peak -- roughly 15x the completed-
+            search rate, the real, quantified reason this system's
+            read-path load is dominated by keystrokes, not searches
+Assumption: storing the precomputed top-5 completions at every trie
+            node (string + score, ~30 bytes each) adds ~150 bytes
+            of cached ranking data per node on top of the node's own
+            structure -- for a trie with ~50 million internal nodes
+            (a real, common order of magnitude for a corpus this
+            size, since shared prefixes collapse many strings into
+            far fewer nodes), that is ~7.5GB of cached top-K data,
+            comfortably fittable in memory on a modest number of
+            machines
+Assumption: popularity-ranking updates computed from search logs
+            in a batch/streaming pipeline every few minutes, not
+            per-query -- decoupling the ranking-computation cost
+            entirely from the read path's own latency budget
+
+The ~15x multiplier between completed searches and actual typeahead
+requests is the single number that reframes this problem: this is a
+much higher-QPS, much-more-latency-sensitive system than the search
+system it feeds into, even though it serves a strictly smaller,
+simpler query (a prefix, not a full-text query).
+</code></pre></div>
+<h2 id="architecture-diagram">Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TD
+    Client[Client, fires on every keystroke] --&gt;|GET prefix| API[Typeahead API]
+    API --&gt;|prefix lookup| TrieShard1[Trie shard: prefixes a-h]
+    API --&gt;|prefix lookup| TrieShard2[Trie shard: prefixes i-p]
+    API --&gt;|prefix lookup| TrieShard3[Trie shard: prefixes q-z]
+    TrieShard1 --&gt;|top-K cached per node| API
+    SearchLogs[(Search query logs)] --&gt;|batch/streaming aggregation| RankingPipeline[Ranking pipeline:&lt;br/&gt;recompute popularity]
+    RankingPipeline --&gt;|periodic rebuild/patch| TrieShard1
+    RankingPipeline --&gt;|periodic rebuild/patch| TrieShard2
+    RankingPipeline --&gt;|periodic rebuild/patch| TrieShard3</code></pre>
+<p><strong>Justified against this design's own topics:</strong></p>
+<ul>
+<li><strong>Each trie node caches its own precomputed top-K completions</strong> (per <a href="../../syllabus/03-data-structures-algorithms/tries-and-prefix-structures/">Tries and Prefix Structures</a>'s own prefix-matching mechanics, combined with the "keep only the top-K, not everything" bounded-heap technique <a href="../../syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge/">Heaps, Top-K, and K-Way Merge</a> covers generally) — this is the direct, load-bearing answer to the latency requirement: a lookup for any prefix is a single trie descent followed by reading an already-computed list, never a live scan-and-rank of every completion under that prefix.</li>
+<li><strong>The trie is sharded by prefix</strong> (consistent hashing over the first character or first few characters, per <a href="../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing/">Data Partitioning and Consistent Hashing</a>) — necessary once the full trie's memory footprint (per the Capacity Assumptions) exceeds what a single machine can hold, or once read QPS exceeds what a single machine can serve.</li>
+<li><strong>Ranking is computed by a separate, periodic offline pipeline, not synchronously per query</strong> — the same asynchronous-ingest-pipeline pattern this Atlas's <a href="../web-crawler-system/">Web Crawler System</a> and <a href="../video-streaming-platform/">Video Streaming Platform</a> entries both establish: whatever is slow and can tolerate staleness (here, popularity ranking) is decoupled from whatever must stay fast (here, the actual prefix lookup).</li>
+</ul>
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<p><strong>Trie node:</strong> children (keyed by next character), a flag marking whether this node terminates a complete query string, and a cached, precomputed list of the top-K completions reachable from this node (each entry: the completion string and its popularity score). <strong>Query log entry (write-side, feeding the ranking pipeline):</strong> the searched string, a timestamp, and enough context (user or session ID, if personalization is layered on later) to compute aggregate popularity over a rolling time window.</p>
+<h2 id="apis">APIs<a class="headerlink" href="#apis" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>GET /typeahead?prefix={p}&amp;k=5
+  -&gt; 200 {completions: [{text, score}, ...]}   (already-ranked, top-K,
+                                                 read directly from the
+                                                 matched trie node's
+                                                 cached list)
+
+POST /search-logged   (internal, fire-and-forget from the search
+                       system itself once a query completes)
+  {query, timestamp, ...}
+  -&gt; 202 Accepted
+</code></pre></div>
+<h2 id="request-flow">Request Flow<a class="headerlink" href="#request-flow" title="Permanent link">&para;</a></h2>
+<p><strong>Read (the hot path, fired on every keystroke):</strong> (1) the client sends the current prefix; (2) the API routes to the trie shard owning that prefix; (3) the shard descends the trie character-by-character to the node matching the full prefix; (4) that node's already-cached top-K list is returned directly — no scanning, no live ranking computation. <strong>Write (the cold path, fully decoupled):</strong> (1) completed searches are logged asynchronously; (2) a periodic (e.g., every few minutes) batch or streaming job aggregates recent query logs into updated popularity scores; (3) the ranking pipeline recomputes (or incrementally patches) each affected trie node's cached top-K list; (4) updated tries (or updated nodes) are rolled out to the serving shards, replacing the previous ranking data.</p>
+<h2 id="consistency-model">Consistency Model<a class="headerlink" href="#consistency-model" title="Permanent link">&para;</a></h2>
+<p>This design is deliberately, explicitly stale-tolerant on the ranking side and irrelevant-to-consistency on the prefix-matching side: prefix matching itself has no consistency question at all (a given trie structure either contains a string or it doesn't, with no concurrent-write ambiguity on the read path, since writes happen only via the separate, periodic rebuild pipeline); <strong>popularity ranking is eventually consistent</strong>, on the order of the ranking pipeline's own refresh interval (minutes, per the Capacity Assumptions) — a genuinely trending-right-now term may take that long to visibly rise in rankings, a real, explicitly accepted trade for keeping the read path's own latency completely unaffected by ranking freshness.</p>
+<h2 id="scaling-strategy">Scaling Strategy<a class="headerlink" href="#scaling-strategy" title="Permanent link">&para;</a></h2>
+<p>The read path scales by adding more trie shards (per prefix-range sharding) and more replicas of each shard, since a read is a fast, local, in-memory trie descent with no cross-shard coordination needed for a single prefix. The ranking pipeline scales independently, as a batch/streaming aggregation job over search logs — its own throughput requirement (processing completed searches, not raw keystrokes) is, per the Capacity Assumptions' own ~15x figure, an order of magnitude smaller than the read path's, and it can be scaled and tuned entirely separately.</p>
+<h2 id="reliability-strategy">Reliability Strategy<a class="headerlink" href="#reliability-strategy" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>A single trie shard's failure must not take down prefix lookups for other shards</strong> — per-shard replication (multiple read replicas per prefix range) means a shard failure degrades only that specific prefix range's availability, not the whole system's, and only briefly until a replica takes over.</li>
+<li><strong>A stale or failed ranking pipeline run must not break the read path</strong> — since the read path only ever reads whatever ranking data is currently loaded, a delayed or failed pipeline run simply means rankings stay at their last-known-good state longer than intended; it never causes a read-path outage or error, only staler-than-usual results.</li>
+<li><strong>A newly trending term with almost no query history yet</strong> is a real, named edge case — this design's top-K caching, by construction, only surfaces terms popular enough to make a node's cached list, so a genuinely brand-new term won't appear until the next ranking pipeline run has enough signal to rank it; this is a real, accepted limitation of a popularity-driven design, not a bug.</li>
+</ol>
+<h2 id="security-observability-and-cost">Security, Observability, and Cost<a class="headerlink" href="#security-observability-and-cost" title="Permanent link">&para;</a></h2>
+<p><strong>Security:</strong> query logs feeding the ranking pipeline are a real, potential source of sensitive data leakage (a search prefix can itself be sensitive) — the ranking pipeline's aggregation step should operate on aggregate counts, never expose raw per-user query strings back through the typeahead API itself. <strong>Observability:</strong> p99 read latency (the single most important metric given this design's own binding non-functional requirement) and ranking-pipeline freshness (time since last successful rebuild) are the two most operationally load-bearing signals — a growing gap in either indicates a real, developing problem before users perceive lag or stale suggestions. <strong>Cost:</strong> the read path's memory footprint (per the Capacity Assumptions, ~7.5GB of cached ranking data alone, before the trie structure itself) is the dominant real cost driver, directly proportional to corpus size and top-K breadth — a real, quantified reason K is chosen deliberately (5-10, not 100) rather than maximized.</p>
+<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Benefit</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precomputed top-K cached per trie node</td>
+<td>Read latency is a single trie descent, independent of how many completions exist under a prefix</td>
+<td>Real memory cost proportional to corpus size x K; ranking updates require recomputing cached lists</td>
+</tr>
+<tr>
+<td>Prefix-sharded trie</td>
+<td>Read throughput and memory both scale by adding shards</td>
+<td>Cross-shard prefix boundaries need careful, consistent-hash-based routing</td>
+</tr>
+<tr>
+<td>Asynchronous, periodic ranking pipeline</td>
+<td>Read-path latency is completely decoupled from ranking-computation cost</td>
+<td>Real, bounded staleness — a newly trending term takes real time to surface</td>
+</tr>
+<tr>
+<td>Global, non-personalized ranking (per Constraints)</td>
+<td>A much simpler design and data model</td>
+<td>No per-user relevance — every user with the same prefix sees identical suggestions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="alternatives-considered">Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A live, on-demand trie scan and sort for every prefix query, with no precomputed top-K.</strong> Rejected: directly violates the latency non-functional requirement — a popular prefix with millions of completions would require scanning and ranking all of them on every single keystroke, an unbounded, unacceptable cost at this design's real QPS.</li>
+<li><strong>Updating trie ranking synchronously, on every completed search.</strong> Rejected: couples the read path's performance to the write path's load, and at the real ~15x keystroke-to-search multiplier from the Capacity Assumptions, a synchronous update model would need to keep up with a write rate the design has no actual latency requirement demanding — periodic batch/streaming decoupling is strictly better here.</li>
+<li><strong>A single, unsharded trie held entirely in one machine's memory.</strong> Rejected at this design's real target scale (hundreds of millions of distinct query strings): the Capacity Assumptions' own memory math shows a real, practical ceiling a single machine would hit well before this corpus size, forcing sharding regardless.</li>
+</ul>
+<h2 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h2>
+<p>The single most instructive decision in this design is recognizing that "fast prefix matching" and "fast ranked retrieval" are two genuinely different problems that a naive design conflates — and that the fix isn't a cleverer live-ranking algorithm, it's moving the ranking computation entirely out of the read path via precomputation, accepting real, bounded staleness as the necessary cost. A Staff engineer's value here is recognizing this general pattern (precompute and cache whatever's expensive to rank, refresh it asynchronously, and let the read path only ever do cheap lookups) as broadly reusable across many "fast ranked retrieval at scale" problems, not something specific to autocomplete — and correctly identifying, for any specific system, exactly which computation is safe to move off the hot path and how stale its result can tolerably be.</p>
+<h2 id="interview-presentation-sequence">Interview Presentation Sequence<a class="headerlink" href="#interview-presentation-sequence" title="Permanent link">&para;</a></h2>
+<p>Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see <a href="../../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/">System Design Narration and Whiteboard Discipline</a> for sequencing the diagram (the precomputed-top-K-per-node idea first, since it's this design's own central answer to the latency requirement; prefix sharding next, as the direct scaling consequence; the asynchronous ranking pipeline last, as the explicitly decoupled write path). A self-verification exit check for this specific problem: the prefix-matching-versus-ranked-retrieval distinction named explicitly as the design's actual central tension, not glossed over as "just use a trie"; the real ~15x keystroke-to-search multiplier stated with numbers, not asserted as "typeahead gets a lot of traffic"; ranking staleness stated as a deliberate, bounded, accepted trade, not hidden; and personalization's exclusion stated up front as a scoping decision, not discovered mid-design.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 00:14:11 UTC">September 14, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../authentication-service/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Architecture Atlas: Authentication Service">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Architecture Atlas: Authentication Service
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../deployment-infrastructure-for-a-payments-notification-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Architecture Atlas: Deployment Infrastructure for a Payments Notification Service">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Architecture Atlas: Deployment Infrastructure for a Payments Notification Service
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/checklist-progress.js"></script>
+      
+    
+  </body>
+</html>

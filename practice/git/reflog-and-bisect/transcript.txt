@@ -1,0 +1,67 @@
+Real output from running setup.sh (git 2.55.0). Commit hashes differ run-to-
+run; the recovery outcome and the bisect result (always converges on the
+commit literally named "BUG" in this synthetic history, in exactly 2 steps
+over 5 commits, log2(5) rounded up) are identical on every run.
+
+########## PART A: reflog recovery from a hard reset ##########
+=== before disaster: 3 commits ===
+c9f2dde important work: v3
+2ec0e98 important work: v2
+1cc2658 important work: v1
+
+=== disaster: git reset --hard to the FIRST commit, discarding v2 and v3 from the branch tip ===
+HEAD is now at 1cc2658 important work: v1
+branch now shows only:
+1cc2658 important work: v1
+
+=== v2 and v3 are NOT gone -- reflog still has every ref update, including the reset itself ===
+1cc2658 HEAD@{0}: reset: moving to 1cc2658
+c9f2dde HEAD@{1}: commit: important work: v3
+2ec0e98 HEAD@{2}: commit: important work: v2
+1cc2658 HEAD@{3}: commit (initial): important work: v1
+
+=== recover: reset --hard to the reflog entry BEFORE the disaster ===
+HEAD is now at c9f2dde important work: v3
+=== v3 is back, same commit hash as before the disaster ===
+c9f2dde important work: v3
+2ec0e98 important work: v2
+1cc2658 important work: v1
+
+=== the object was never deleted -- git reset only moves refs; the commit/tree/
+    blob objects stay in .git/objects until git gc actually runs ===
+$ git cat-file -t c9f2dde
+commit
+
+########## PART B: bisect finds the exact commit that introduced a bug ##########
+=== 5 commits, bug introduced somewhere in the middle, unknown to bisect ===
+d094d34 C5: unrelated formatting, bug still present
+16ca4e2 C4: unrelated docs change, bug still present
+1cd6536 C3: BUG -- off-by-one introduced, add(2,3) now returns 6
+7993dce C2: refactor, still correct
+3d73eab C1: add(2,3) returns 5, correct
+
+=== git bisect run: automated binary search using check.sh as the pass/fail oracle ===
+Bisecting: 1 revision left to test after this (roughly 1 step)
+[1cd65362fcb7b7aaf0e5d49dcff1e16c275af4cb] C3: BUG -- off-by-one introduced, add(2,3) now returns 6
+running './check.sh'
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[7993dce9fe539d095913058899ff0c942355a44d] C2: refactor, still correct
+running './check.sh'
+1cd65362fcb7b7aaf0e5d49dcff1e16c275af4cb is the first 'bad' commit
+commit 1cd65362fcb7b7aaf0e5d49dcff1e16c275af4cb
+
+    C3: BUG -- off-by-one introduced, add(2,3) now returns 6
+
+bisect found first 'bad' commit
+
+Key facts:
+- `git reset --hard`, `git rebase`, and `git commit --amend` never delete an
+  object outright -- they move refs (branch pointers) and leave the old
+  objects reachable only via the reflog (a local, per-repo, time-limited log
+  of where HEAD/branches pointed, default 90 days for reachable and 30 for
+  unreachable entries) until `git gc` eventually prunes genuinely unreferenced
+  objects.
+- `git bisect run` needed exactly 2 test executions to find the single bad
+  commit out of 5 -- ceil(log2(5)) = 3 in the worst case, 2 here because the
+  first probe landed on the exact culprit; the win over linear search grows
+  with history size (a 1,000-commit range needs ~10 tests, not 1,000).

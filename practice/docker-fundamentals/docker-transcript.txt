@@ -1,0 +1,26 @@
+=== Build ===
+$ docker build -t docker-fundamentals-demo:1.0 .
+... (build output, image layers created) ...
+naming to docker.io/library/docker-fundamentals-demo:1.0 done
+
+=== Run WITH port mapping ===
+$ docker run -d --name docker-fundamentals-demo -p 8080:8080 docker-fundamentals-demo:1.0
+$ docker ps
+CONTAINER ID   IMAGE                          PORTS                    NAMES
+fa0f3a3d8fe8   docker-fundamentals-demo:1.0   0.0.0.0:8080->8080/tcp   docker-fundamentals-demo
+$ curl -s http://localhost:8080/
+Hello from inside a container
+$ docker logs docker-fundamentals-demo
+Server started on port 8080
+
+=== Run WITHOUT port mapping -- real isolation proof ===
+$ docker run -d --name docker-fundamentals-demo-noport docker-fundamentals-demo:1.0
+$ docker ps
+CONTAINER ID   IMAGE                          PORTS      NAMES
+efa471c21f33   docker-fundamentals-demo:1.0   8080/tcp   docker-fundamentals-demo-noport
+$ curl -s --max-time 2 http://localhost:8080/
+(connection refused -- curl exit code 7, no route from host to the container's port)
+$ docker exec docker-fundamentals-demo-noport curl -s http://localhost:8080/
+Hello from inside a container
+(the server IS running and reachable FROM INSIDE the container's own network namespace --
+ the host simply has no route to it without an explicit -p mapping)

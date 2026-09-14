@@ -1,0 +1,6 @@
+MathOps.square(5) = 25
+PASS: interface static method is called through the interface name directly
+new Calculator().cube(3) = 27 (inherited from MathOps's default body, unmodified)
+PASS: a concrete class inherits an interface's default method body without overriding it
+
+2 / 2 assertions passed

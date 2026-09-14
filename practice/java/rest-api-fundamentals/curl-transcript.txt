@@ -1,0 +1,35 @@
+=== GET /books (empty) ===
+[]
+HTTP status: 200
+
+=== POST /books (create #1) -- expect 201 + Location header ===
+HTTP/1.1 201 
+Location: /books/1
+{"id":1,"title":"Design Patterns","available":true}
+
+=== POST /books (create #2, same body) -- proves POST is NOT idempotent, a second resource is created ===
+HTTP/1.1 201 
+Location: /books/2
+{"id":2,"title":"Design Patterns","available":true}
+
+=== GET /books (now has 2 distinct resources from identical POST bodies) ===
+[{"id":1,"title":"Design Patterns","available":true},{"id":2,"title":"Design Patterns","available":true}]
+=== PUT /books/1 (update) -- call #1 ===
+{"id":1,"title":"Design Patterns (2nd ed.)","available":false}
+HTTP status: 200
+=== PUT /books/1 (identical body) -- call #2, proves PUT IS idempotent: same end state, same status ===
+{"id":1,"title":"Design Patterns (2nd ed.)","available":false}
+HTTP status: 200
+
+=== PUT /books/999 (missing id) -- expect 404 ===
+
+HTTP status: 404
+
+=== DELETE /books/2 -- expect 204, no body ===
+HTTP status: 204
+=== DELETE /books/2 again -- expect 404, already gone ===
+HTTP status: 404
+
+=== GET /books/2 -- confirm it's really gone ===
+
+HTTP status: 404

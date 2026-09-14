@@ -1,0 +1,2500 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+      
+      
+        <meta name="author" content="Juan Melendres">
+      
+      
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/architecture-atlas/distributed-key-value-store/">
+      
+      
+        <link rel="prev" href="../distributed-job-scheduler/">
+      
+      
+        <link rel="next" href="../jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Architecture Atlas: Distributed Key-Value Store - Cracking Code Interviews</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cracking Code Interviews">
+  <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+  <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/architecture-atlas/distributed-key-value-store/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cracking Code Interviews">
+  <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+  <meta name="twitter:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-atlas-distributed-key-value-store" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cracking Code Interviews
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture Atlas: Distributed Key-Value Store
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/JuanMelendres/cracking-code-interviews" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JuanMelendres/cracking-code-interviews
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/00-overview/INDEX/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../study-packs/" class="md-tabs__link">
+          
+  
+  
+  Study Packs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cheat-sheets/" class="md-tabs__link">
+          
+  
+  
+  Cheat Sheets
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../flashcards/" class="md-tabs__link">
+          
+  
+  
+  Flashcards
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Architecture Atlas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../production-cookbook/" class="md-tabs__link">
+          
+  
+  
+  Production Cookbook
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../practice/" class="md-tabs__link">
+          
+  
+  
+  Practice (real code)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    Cracking Code Interviews
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/JuanMelendres/cracking-code-interviews" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JuanMelendres/cracking-code-interviews
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../syllabus/00-overview/INDEX/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../study-packs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Study Packs
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../cheat-sheets/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flashcards/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Atlas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas — Index
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Authentication Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autocomplete-typeahead-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Autocomplete/Typeahead System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-infrastructure-for-a-payments-notification-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Deployment Infrastructure for a Payments Notification Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-file-storage-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed File Storage System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-job-scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Job Scheduler
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Key-Value Store
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Key-Value Store
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-observability-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, Observability, and Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staff-level-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staff-Level Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-presentation-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Presentation Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: JVM Sizing and Diagnostics Playbook for a Real-Time Pricing Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jvm-tuning-playbook-for-a-market-data-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: JVM Tuning Playbook for a Market-Data Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics-monitoring-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Metrics/Monitoring System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../news-feed-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: News Feed System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Notification System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payment-processing-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Payment Processing System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-time-chat-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Real-Time Chat System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ride-hailing-dispatch-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Ride-Hailing Dispatch System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-review-of-a-multi-tenant-expense-approval-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Security Review of a Multi-Tenant Expense-Approval Platform
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test-strategy-for-a-checkout-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Test Strategy for a Checkout Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ticket-and-event-booking-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Ticket and Event Booking System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../url-shortener-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: URL Shortener System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video-streaming-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Video Streaming Platform
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-crawler-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Web Crawler System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../production-cookbook/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../practice/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practice (real code)
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Functional Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consistency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-observability-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, Observability, and Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staff-level-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staff-Level Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-presentation-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Presentation Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Architecture Atlas
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/architecture-atlas/distributed-key-value-store.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/architecture-atlas/distributed-key-value-store.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="architecture-atlas-distributed-key-value-store">Architecture Atlas: Distributed Key-Value Store<a class="headerlink" href="#architecture-atlas-distributed-key-value-store" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Sourcing note:</strong> like the three entries before it, this is new, original content, not elevated from an existing study-pack exercise — none exists for this problem. It is a fourth additional canonical design problem toward the Master Topic Register's T-813 (Canonical design problems (12-problem set)) line. Counting it, the Atlas now holds exactly 12 classic full-system-design entries built to the Architecture Atlas Standard's six-phase method: the 8 elevated from study-pack exercises (ride-hailing, news feed, payment processing, authentication, notification, job scheduler, distributed cache, metrics/monitoring) plus these 4 new ones (chat, ticket booking, URL shortener, this entry). That matches T-813's stated count exactly. The register never names <em>which</em> twelve problems it means, so this is closure by count against the stated target, not a guarantee that these are the specific twelve any given interviewer would ask for — see the Architecture Atlas README for the full accounting.</p>
+</blockquote>
+<p><strong>Delivered as a timed, 45-minute exercise using <a href="../../syllabus/11-system-design/system-design-method-and-estimation/">System Design Method and Estimation</a>'s six-phase method.</strong></p>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#problem-statement">Problem Statement</a></li>
+<li><a href="#constraints">Constraints</a></li>
+<li><a href="#functional-requirements">Functional Requirements</a></li>
+<li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
+<li><a href="#capacity-assumptions">Capacity Assumptions</a></li>
+<li><a href="#architecture-diagram">Architecture Diagram</a></li>
+<li><a href="#data-model">Data Model</a></li>
+<li><a href="#apis">APIs</a></li>
+<li><a href="#request-flow">Request Flow</a></li>
+<li><a href="#consistency-model">Consistency Model</a></li>
+<li><a href="#scaling-strategy">Scaling Strategy</a></li>
+<li><a href="#reliability-strategy">Reliability Strategy</a></li>
+<li><a href="#security-observability-and-cost">Security, Observability, and Cost</a></li>
+<li><a href="#trade-offs">Trade-offs</a></li>
+<li><a href="#alternatives-considered">Alternatives Considered</a></li>
+<li><a href="#staff-level-discussion">Staff-Level Discussion</a></li>
+<li><a href="#interview-presentation-sequence">Interview Presentation Sequence</a></li>
+</ol>
+<hr />
+<h2 id="problem-statement">Problem Statement<a class="headerlink" href="#problem-statement" title="Permanent link">&para;</a></h2>
+<p>Design a general-purpose, horizontally scalable key-value store (a Dynamo/Cassandra-style system) offering tunable consistency, no single point of failure, and continued write availability even during a network partition or node failure. Unlike every other entry in this Atlas, which designs one specific application on top of existing storage primitives, this problem <em>is</em> the storage primitive — the central tension is choosing, explicitly and with a stated reason, where this system sits on the availability-versus-consistency spectrum for both reads and writes, and making that choice tunable per-request rather than fixed once for the whole system.</p>
+<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
+<p><strong>In scope:</strong> <code>PUT</code>/<code>GET</code>/<code>DELETE</code> on an opaque value by key, configurable per-request consistency (how many replicas must acknowledge), replica placement and failure handling, and conflict detection when concurrent writes to the same key diverge. <strong>Explicitly out of scope for this exercise:</strong> range queries, secondary indexes, and transactions spanning multiple keys — naming them as deliberately excluded is itself part of a strong Phase 1 answer, since a pure key-value store's whole value proposition is <em>not</em> trying to be a general relational or document database.</p>
+<h2 id="functional-requirements">Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>PUT(key, value)</code> and <code>GET(key)</code> with single-digit-millisecond latency at the median.</li>
+<li>Each key's value is replicated across N nodes; the caller can specify how many replicas must acknowledge a write (<code>W</code>) and how many must respond to a read (<code>R</code>).</li>
+<li>The system continues accepting writes for a key even if some of that key's replica nodes are unreachable.</li>
+<li>Concurrent writes to the same key that create conflicting values must be detected, not silently resolved by "last write wins" alone.</li>
+</ul>
+<h2 id="non-functional-requirements">Non-Functional Requirements<a class="headerlink" href="#non-functional-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>No single point of failure — every node is a peer; there is no distinguished "primary" node whose failure blocks the whole system.</li>
+<li>The system must remain available for both reads and writes during a network partition, accepting that some reads may return stale or conflicting data as the cost of that availability (a stated, deliberate AP choice per <a href="../../syllabus/10-distributed-systems/cap-theorem-and-consistency-models/">CAP Theorem and Consistency Models</a>, not an accidental one).</li>
+<li>Adding or removing a node must redistribute only a small, bounded fraction of keys, not require a full data reshuffle.</li>
+<li>A temporarily unreachable replica must not permanently lose writes directed at it once it rejoins.</li>
+</ul>
+<h2 id="capacity-assumptions">Capacity Assumptions<a class="headerlink" href="#capacity-assumptions" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Assumption: 500M keys, average value size 1KB -&gt; ~500GB of raw data
+            before replication
+Assumption: replication factor N=3 -&gt; ~1.5TB total stored data
+Assumption: 50,000 reads/s and 10,000 writes/s sustained, each fanned
+            out to N=3 replicas per the chosen R/W consistency setting
+Assumption: individual node capacity ~500GB usable storage and
+            ~5,000 ops/s -&gt; roughly a few dozen nodes needed at this
+            scale, well within what consistent hashing with virtual
+            nodes handles gracefully
+
+The replication factor (N) and the per-request R/W consistency settings
+are the two numbers that turn this from a generic "shard some data"
+problem into the actual system-design question being asked: what
+combination of R, W, and N gives the stated availability and consistency
+guarantees, and what does violating R+W&gt;N specifically cost.
+</code></pre></div>
+<h2 id="architecture-diagram">Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TD
+    Client[Client] --&gt;|PUT/GET key, W/R params| Coord[Coordinator node&lt;br/&gt;any node can coordinate]
+    Coord --&gt;|consistent hash key| Ring[(Hash ring: N successor&lt;br/&gt;nodes own this key)]
+    Coord --&gt;|write/read to N replicas| N1[Replica node 1]
+    Coord --&gt;|write/read to N replicas| N2[Replica node 2]
+    Coord --&gt;|write/read to N replicas| N3[Replica node 3]
+    N1 -.-&gt;|node unreachable: hint stored elsewhere| Hint[(Hinted handoff store)]
+    Hint -.-&gt;|node rejoins: replay hint| N1
+    N1 --&gt;|background, low priority| AntiEntropy[Anti-entropy / read-repair]
+    N2 --&gt; AntiEntropy
+    N3 --&gt; AntiEntropy</code></pre>
+<p><strong>Justified against this design's own topics:</strong></p>
+<ul>
+<li><strong>Consistent hashing with virtual nodes</strong> determines both which N nodes own a given key and how much data moves on membership change — per <a href="../../syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing/">Data Partitioning and Consistent Hashing</a>, this is exactly what bounds a node join/leave to a small, predictable fraction of keys rather than a full reshuffle, directly satisfying the stated non-functional requirement.</li>
+<li><strong>Any node can coordinate any request</strong> (no distinguished primary), consulting the hash ring to find the current key's replica set and fanning the request out to them — this is the specific mechanism behind "no single point of failure": losing any one node, including whichever one happened to coordinate a given request, doesn't block the system.</li>
+<li><strong>Hinted handoff</strong> is what makes "keep accepting writes during a node failure" safe rather than lossy: if a replica is unreachable at write time, another node stores the write as a "hint" addressed to the down replica and replays it once that node rejoins — the write still succeeds toward the caller's <code>W</code> count via the remaining reachable replicas, and the temporarily-missed replica catches up later rather than staying permanently behind.</li>
+<li><strong>Background anti-entropy / read-repair</strong> reconciles replicas that have drifted (from a hinted-handoff replay lag, or a replica that missed writes during a partition) without requiring every read to pay a full quorum-comparison cost — most reads are served from whatever <code>R</code> replicas respond fastest, with inconsistency detection and repair happening opportunistically.</li>
+</ul>
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<p><strong>Per key:</strong> the value itself, plus a version marker used for conflict detection — either a simple <code>(value, timestamp)</code> pair for a "last write wins" policy, or a vector clock (one logical counter per node that has written this key) when the design needs to <em>detect</em> concurrent, conflicting writes rather than silently picking one and discarding the other. <strong>Hint store:</strong> ephemeral, per-down-node, holding writes addressed to a currently-unreachable replica until it rejoins.</p>
+<h2 id="apis">APIs<a class="headerlink" href="#apis" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>PUT /kv/{key}?W=2
+  {value}
+  -&gt; 200 OK   (acknowledged once W replicas have durably written it)
+  -&gt; 503      (fewer than W reachable replicas -- write is rejected,
+               not silently downgraded to a lower W than the caller asked for)
+
+GET /kv/{key}?R=2
+  -&gt; 200 {value}                       (R replicas agreed)
+  -&gt; 200 {values: [...], conflict: true} (R replicas returned divergent
+                                          versions -- surfaced to the
+                                          caller to resolve, not hidden)
+
+DELETE /kv/{key}
+</code></pre></div>
+<h2 id="request-flow">Request Flow<a class="headerlink" href="#request-flow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>A client sends <code>PUT</code>/<code>GET</code> to any node, which acts as coordinator for this request regardless of whether it's one of the key's actual replica-owning nodes.</li>
+<li>The coordinator consults the consistent-hash ring to find the N nodes currently responsible for this key.</li>
+<li>For a write, the coordinator sends the value to all N (or as many as reachable), and returns success to the client once <code>W</code> of them acknowledge; any unreachable replica gets a hint stored elsewhere instead of blocking the write.</li>
+<li>For a read, the coordinator queries <code>R</code> replicas and compares their responses; if they agree, that value is returned; if they disagree, the divergent versions (and their vector clocks) are returned to the caller, or reconciled by a stated policy (e.g., last-write-wins by timestamp) depending on the design's chosen conflict-resolution strategy.</li>
+<li>Independently of client-triggered requests, a background anti-entropy process periodically compares replica sets for the same key range and repairs any detected drift.</li>
+</ol>
+<h2 id="consistency-model">Consistency Model<a class="headerlink" href="#consistency-model" title="Permanent link">&para;</a></h2>
+<p>Consistency here is explicitly tunable per request, not a single system-wide property: choosing <code>W=N</code> and <code>R=1</code> favors read latency and read availability at the cost of write availability (a write needs every replica); choosing <code>W=1</code> and <code>R=N</code> favors write availability at the cost of read latency; the common middle ground <code>R+W&gt;N</code> (e.g., <code>N=3, W=2, R=2</code>) guarantees any successful read overlaps with the most recent successful write on at least one replica, giving strong-enough consistency for most use cases while tolerating one node's unavailability on either the read or write path. Choosing <code>R+W&lt;=N</code> is a valid, sometimes-deliberate choice too — it trades away that overlap guarantee for lower latency and higher availability on both paths, accepting that a read may miss the most recent write entirely, and that trade-off must be stated explicitly, not left as an accidental default.</p>
+<h2 id="scaling-strategy">Scaling Strategy<a class="headerlink" href="#scaling-strategy" title="Permanent link">&para;</a></h2>
+<p>Adding capacity means adding nodes to the consistent-hash ring; each new node takes ownership of a small, bounded slice of the key space from its immediate neighbors on the ring (using virtual nodes to keep that redistribution evenly spread across many existing nodes rather than concentrated on one), directly satisfying the "bounded redistribution" non-functional requirement. Read and write throughput both scale roughly linearly with node count, since any given key's load is bounded to its N replica-owning nodes regardless of total cluster size — a hot key remains a real, unavoidable limit on that specific key's throughput (see Reliability Strategy), but the cluster as a whole scales by adding nodes for the aggregate workload.</p>
+<h2 id="reliability-strategy">Reliability Strategy<a class="headerlink" href="#reliability-strategy" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>A hot key is a fundamentally different problem from a hot node</strong>, and this design cannot fix a hot key by adding more nodes — a single key's reads and writes are always served by exactly its N replica-owning nodes, however large the cluster grows; a hot key needs application-level mitigation (client-side caching, key splitting) rather than a cluster-scaling response.</li>
+<li><strong><code>W &lt; N</code> and <code>R &lt; N</code> are what keep the system available during a partition</strong>, at the direct, stated cost of a temporary consistency window between the moment a write with <code>W&lt;N</code> succeeds and the moment anti-entropy has propagated it to every replica — this is the concrete, mechanical version of the AP choice this design's own Non-Functional Requirements commit to.</li>
+<li><strong>Hinted handoff has a real limit</strong>: if a node stays down long enough, the hints addressed to it can themselves need to be discarded (to bound the hint store's own growth), at which point that replica has to catch up via full anti-entropy repair instead of hint replay on rejoin — a longer outage costs more recovery work, not just more downtime.</li>
+</ol>
+<h2 id="security-observability-and-cost">Security, Observability, and Cost<a class="headerlink" href="#security-observability-and-cost" title="Permanent link">&para;</a></h2>
+<p>Not addressed in this 45-minute exercise, which was deliberately scoped to the replication/consistency-tuning problem (see Constraints). A full treatment would need, at minimum: authentication/authorization on the client-facing API (a bare key-value store has no inherent access-control concept), metrics on per-node replica-set health and anti-entropy repair lag as the leading indicators of a developing consistency problem before it surfaces as visible read conflicts, and a cost model dominated by the replication factor's direct storage multiplier (N=3 means 3x raw storage, a real, explicit cost of the availability guarantee it buys). These are flagged here as explicit gaps rather than invented to fill out the template.</p>
+<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Benefit</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consistent hashing with virtual nodes</td>
+<td>Node join/leave redistributes only a small, bounded key fraction</td>
+<td>More operational complexity than static, modulo-based sharding</td>
+</tr>
+<tr>
+<td>No distinguished primary; any node coordinates</td>
+<td>No single point of failure</td>
+<td>Every node needs full ring-topology awareness and coordination logic</td>
+</tr>
+<tr>
+<td>Hinted handoff</td>
+<td>Writes keep succeeding during a brief replica outage, with no data loss on rejoin</td>
+<td>An unbounded hint store during a long outage; hints must eventually be dropped</td>
+</tr>
+<tr>
+<td>Tunable per-request R/W</td>
+<td>One system serves both latency-sensitive and consistency-sensitive callers</td>
+<td>Callers must understand the R+W-vs-N trade-off to choose correctly; a wrong choice is a silent correctness risk, not an error</td>
+</tr>
+</tbody>
+</table>
+<h2 id="alternatives-considered">Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A single, distinguished primary per key (like a traditional master-replica database), instead of a leaderless, any-node-coordinates design.</strong> Rejected: directly conflicts with the stated "no single point of failure" requirement — a primary's failure would either block writes to its keys entirely or require an explicit failover process, exactly the kind of coordinated recovery this design's leaderless approach avoids needing at all.</li>
+<li><strong>Fixed, system-wide consistency (e.g., always requiring <code>W=N</code>).</strong> Rejected: forces every caller to pay the strongest, most expensive consistency level even when a specific use case would happily trade it for lower latency or higher availability — the whole point of exposing <code>R</code>/<code>W</code> as per-request parameters is letting each caller make that trade-off explicitly for their own workload.</li>
+<li><strong>Last-write-wins by wall-clock timestamp as the only conflict-resolution strategy, with no vector-clock option.</strong> Rejected as the <em>only</em> strategy, though named as a legitimate simpler default for callers who don't need it: pure timestamp-based resolution can silently and permanently discard a legitimate concurrent write whose clock happened to read slightly earlier, which the Functional Requirements explicitly call out as unacceptable ("must be detected, not silently resolved").</li>
+</ul>
+<h2 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h2>
+<p>The single most instructive decision in this design is making the consistency/availability trade-off an explicit, per-request <em>parameter</em> rather than a single architectural decision baked in once for the whole system — many candidates' first-pass designs pick one point on the CAP spectrum and defend it as "the" answer, when the actual insight a Dynamo-style system demonstrates is that different callers of the identical storage system can legitimately want different points on that spectrum for different keys or different operations, and a well-designed system exposes that choice rather than making it once on every caller's behalf. A Staff engineer's value here is recognizing that "what's our consistency model" is sometimes the wrong question — the right question is "what consistency model does this specific caller need for this specific key," and building the system to answer that per-request rather than globally.</p>
+<h2 id="interview-presentation-sequence">Interview Presentation Sequence<a class="headerlink" href="#interview-presentation-sequence" title="Permanent link">&para;</a></h2>
+<p>Delivered as a timed, 45-minute exercise using the six-phase method's own stated budget — see <a href="../../syllabus/20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/">System Design Narration and Whiteboard Discipline</a> for sequencing the diagram (the hash ring and replica-set concept first, since every other mechanism in this design depends on it; the core <code>PUT</code>/<code>GET</code> fan-out path next; hinted handoff and anti-entropy introduced afterward as the explicit failure-mode annotations). A self-verification exit check for this specific problem: the <code>R+W</code> vs. <code>N</code> relationship stated explicitly with a concrete example, not left as an abstract formula; hinted handoff explained as a mechanism for <em>availability</em> (writes keep succeeding) distinct from anti-entropy's role in <em>convergence</em> (replicas eventually agree); the hot-key-vs-hot-node distinction named explicitly; and the tunable-per-request consistency model presented as the design's actual central idea, not a minor configuration detail mentioned in passing.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 00:14:11 UTC">September 14, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../distributed-job-scheduler/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Architecture Atlas: Distributed Job Scheduler">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Architecture Atlas: Distributed Job Scheduler
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Architecture Atlas: JVM Sizing and Diagnostics Playbook for a Real-Time Pricing Service">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Architecture Atlas: JVM Sizing and Diagnostics Playbook for a Real-Time Pricing Service
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/checklist-progress.js"></script>
+      
+    
+  </body>
+</html>

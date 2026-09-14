@@ -1,0 +1,50 @@
+name: Build, Test, and Deploy (Canary)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Run unit and integration tests
+        run: ./mvnw verify
+      - name: Build container image
+        run: docker build -t registry.example.com/order-service:${{ github.sha }} .
+      - name: Push image
+        run: docker push registry.example.com/order-service:${{ github.sha }}
+
+  deploy-canary:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy canary (10% of traffic)
+        run: |
+          kubectl set image deployment/order-service-canary \
+            order-service=registry.example.com/order-service:${{ github.sha }}
+          kubectl rollout status deployment/order-service-canary --timeout=120s
+      - name: Watch canary error rate for 10 minutes
+        run: ./scripts/watch-canary-metrics.sh --duration=10m --max-error-rate=0.01
+
+  promote-to-stable:
+    needs: deploy-canary
+    runs-on: ubuntu-latest
+    # Manual gate: promotion to 100% requires an explicit approval, not an
+    # automatic follow-on from a canary that merely didn't alert -- absence
+    # of an alert is not the same as a human confirming the canary looked healthy.
+    environment:
+      name: production
+    steps:
+      - name: Promote canary to stable (100% traffic)
+        run: |
+          kubectl set image deployment/order-service-stable \
+            order-service=registry.example.com/order-service:${{ github.sha }}
+          kubectl rollout status deployment/order-service-stable --timeout=300s
+      - name: Scale canary back to zero
+        run: kubectl scale deployment/order-service-canary --replicas=0

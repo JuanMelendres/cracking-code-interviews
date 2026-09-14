@@ -1,0 +1,103 @@
+=== SECTION A: CREATE TABLE with PRIMARY KEY and FOREIGN KEY ===
+CREATE TABLE
+CREATE TABLE
+                                 Table "public.authors"
+  Column   |  Type   | Collation | Nullable |                  Default                   
+-----------+---------+-----------+----------+--------------------------------------------
+ author_id | integer |           | not null | nextval('authors_author_id_seq'::regclass)
+ name      | text    |           | not null | 
+Indexes:
+    "authors_pkey" PRIMARY KEY, btree (author_id)
+Referenced by:
+    TABLE "books" CONSTRAINT "books_author_id_fkey" FOREIGN KEY (author_id) REFERENCES authors(author_id)
+
+                                   Table "public.books"
+     Column     |  Type   | Collation | Nullable |                Default                 
+----------------+---------+-----------+----------+----------------------------------------
+ book_id        | integer |           | not null | nextval('books_book_id_seq'::regclass)
+ title          | text    |           | not null | 
+ author_id      | integer |           | not null | 
+ published_year | integer |           |          | 
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (book_id)
+Foreign-key constraints:
+    "books_author_id_fkey" FOREIGN KEY (author_id) REFERENCES authors(author_id)
+
+=== SECTION B: INSERT rows ===
+INSERT 0 3
+INSERT 0 1
+INSERT 0 5
+ author_id |       name        
+-----------+-------------------
+         1 | Ursula K. Le Guin
+         2 | Ted Chiang
+         3 | Octavia E. Butler
+         4 | N. K. Jemisin
+(4 rows)
+
+ book_id |              title              | author_id | published_year 
+---------+---------------------------------+-----------+----------------
+       1 | The Left Hand of Darkness       |         1 |           1969
+       2 | The Dispossessed                |         1 |           1974
+       3 | Stories of Your Life and Others |         2 |           2002
+       4 | Kindred                         |         3 |           1979
+       5 | Parable of the Sower            |         3 |           1993
+(5 rows)
+
+=== SECTION C: SELECT with WHERE (filtering) ===
+           title           | published_year 
+---------------------------+----------------
+ The Left Hand of Darkness |           1969
+ The Dispossessed          |           1974
+ Kindred                   |           1979
+(3 rows)
+
+=== SECTION D: UPDATE ===
+UPDATE 1
+      title       | published_year 
+------------------+----------------
+ The Dispossessed |           1975
+(1 row)
+
+=== SECTION E: DELETE ===
+DELETE 1
+              title              
+---------------------------------
+ The Left Hand of Darkness
+ The Dispossessed
+ Stories of Your Life and Others
+ Kindred
+(4 rows)
+
+=== SECTION F: the foreign key constraint actually rejecting an orphan row ===
+psql:/tmp/lab.sql:60: ERROR:  insert or update on table "books" violates foreign key constraint "books_author_id_fkey"
+DETAIL:  Key (author_id)=(999) is not present in table "authors".
+=== SECTION G: INNER JOIN vs LEFT JOIN — the actual difference, shown not asserted ===
+--- INNER JOIN: only authors that have at least one matching book row ---
+       name        |              title              
+-------------------+---------------------------------
+ Octavia E. Butler | Kindred
+ Ted Chiang        | Stories of Your Life and Others
+ Ursula K. Le Guin | The Left Hand of Darkness
+ Ursula K. Le Guin | The Dispossessed
+(4 rows)
+
+--- LEFT JOIN: every author row is kept, unmatched columns come back NULL ---
+       name        |              title              
+-------------------+---------------------------------
+ N. K. Jemisin     | 
+ Octavia E. Butler | Kindred
+ Ted Chiang        | Stories of Your Life and Others
+ Ursula K. Le Guin | The Left Hand of Darkness
+ Ursula K. Le Guin | The Dispossessed
+(5 rows)
+
+=== SECTION H: GROUP BY and COUNT — books per author, including zero ===
+       name        | book_count 
+-------------------+------------
+ Ursula K. Le Guin |          2
+ Octavia E. Butler |          1
+ Ted Chiang        |          1
+ N. K. Jemisin     |          0
+(4 rows)
+

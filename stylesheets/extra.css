@@ -1,0 +1,45 @@
+/* Tighter, more comfortable reading measure than Material's default. */
+.md-grid {
+  max-width: 1440px;
+}
+
+.md-content {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.md-content__inner {
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+.md-content__inner h1 {
+  font-size: 1.9rem;
+}
+
+.md-content__inner h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+}
+
+.md-content__inner h3 {
+  font-size: 1.1rem;
+}
+
+.md-content__inner table {
+  font-size: 0.68rem;
+}
+
+.md-content__inner pre,
+.md-content__inner code {
+  font-size: 0.68rem;
+}
+
+/* Center block-level images/diagrams and cap their width so they never
+   force horizontal scroll on narrower screens. */
+.md-content__inner img,
+.md-content__inner .mermaid {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 100%;
+}

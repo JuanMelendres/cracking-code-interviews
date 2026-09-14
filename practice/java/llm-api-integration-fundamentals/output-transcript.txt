@@ -1,0 +1,34 @@
+=== 1. Non-streaming request + real token/cost accounting ===
+reply: You said: "What's the capital of France?". This is a real, locally-served response.
+usage: input_tokens=7 output_tokens=20
+>>> real computed cost for this call: $0.000321
+
+=== 2. Streaming request: real incremental SSE chunks ===
+  [+0ms] chunk 1: "Streaming"
+  [+30ms] chunk 2: "a"
+  [+65ms] chunk 3: "real"
+  [+100ms] chunk 4: "reply,"
+  [+135ms] chunk 5: "one"
+  [+168ms] chunk 6: "chunk"
+  [+203ms] chunk 7: "at"
+  [+238ms] chunk 8: "a"
+  [+274ms] chunk 9: "time,"
+  [+305ms] chunk 10: "for:"
+  [+341ms] chunk 11: "Tell"
+  [+377ms] chunk 12: "me"
+  [+409ms] chunk 13: "something"
+  [+444ms] chunk 14: "about"
+  [+476ms] chunk 15: "Java."
+  final usage: {"input_tokens":7,"output_tokens":19}
+>>> assembled full text from 15 real, separately-received chunks:
+    "Streaming a real reply, one chunk at a time, for: Tell me something about Java."
+
+=== 3. Function calling: tool_use round-trip ===
+round 1 stop_reason: tool_use
+model requested tool: get_weather with input {"location":"Mexico City"}
+round 2 final reply: Based on the tool result: it's 22C and sunny in Mexico City right now.
+
+=== 4. Rate limiting: real 429 + exponential backoff retry ===
+attempt 1: HTTP 429 rate_limit_error, retry-after=1s -> backing off
+attempt 2: HTTP 429 rate_limit_error, retry-after=1s -> backing off
+attempt 3: HTTP 200 -- succeeded after backoff

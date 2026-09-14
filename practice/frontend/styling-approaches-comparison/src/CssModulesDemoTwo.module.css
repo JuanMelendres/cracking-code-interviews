@@ -1,0 +1,7 @@
+/* F-302: deliberately reuses the class name `.title` from
+   CssModulesDemo.module.css, with DIFFERENT real styles, to prove real
+   scoping -- both should compile to different, non-colliding class names. */
+.title {
+  color: darkorange;
+  font-style: italic;
+}

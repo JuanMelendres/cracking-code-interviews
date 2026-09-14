@@ -1,0 +1,14 @@
+# Distroless final stage: no shell, no package manager, no coreutils —
+# only the JRE and the application. Demonstrates the security trade-off:
+# smaller attack surface, but `docker exec ... sh` genuinely does not work.
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY app/pom.xml .
+RUN mvn -q -B dependency:go-offline
+COPY app/src ./src
+RUN mvn -q -B -o -DskipTests package
+
+FROM gcr.io/distroless/java21-debian12
+WORKDIR /app
+COPY --from=build /build/target/container-image-internals-jar-with-dependencies.jar app.jar
+CMD ["app.jar"]

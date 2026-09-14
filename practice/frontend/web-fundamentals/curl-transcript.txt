@@ -1,0 +1,127 @@
+CAPTURE NOTE (read this first)
+==========================================================================
+This is real, captured `curl -v` output against a real running Python
+http.server process serving this directory's index.html/styles.css/app.js.
+
+The one deviation from the plain "python3 -m http.server 8000" + "curl -v
+http://127.0.0.1:8000/" recipe: the sandbox this was captured in blocks TCP
+connections to 127.0.0.1/localhost outright (confirmed by direct socket
+tests — the listening process is alive and visible in `ps`, but no TCP
+client, including a plain Python socket.connect(), can reach it). Unix
+domain sockets are NOT blocked, so the server below is a two-line subclass
+of http.server.HTTPServer with address_family = socket.AF_UNIX, and curl
+talks HTTP to it over that socket via `--unix-socket`. The request line,
+headers, status codes, and bodies below are exactly what a real HTTP/1.0
+exchange with Python's http.server produces — nothing here is invented.
+On a normal machine (a laptop, a CI runner without this restriction), the
+identical server code, run as plain `python3 -m http.server 8000` and
+queried with `curl -v http://127.0.0.1:8000/`, produces the same headers
+over an ordinary TCP socket. See README.md for both the exact commands
+used here and the standard TCP-based reproduction steps.
+==========================================================================
+
+==========================================================================
+REQUEST 1: GET / (index.html)
+==========================================================================
+*   Trying /tmp/web-fundamentals.sock:0...
+* Connected to localhost (/tmp/web-fundamentals.sock) port 0
+> GET / HTTP/1.1
+> Host: localhost
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+* HTTP 1.0, assume close after body
+< HTTP/1.0 200 OK
+< Server: SimpleHTTP/0.6 Python/3.14.6
+< Date: Tue, 08 Sep 2026 16:07:32 GMT
+< Content-type: text/html
+< Content-Length: 2164
+< Last-Modified: Tue, 08 Sep 2026 16:04:00 GMT
+< 
+{ [2164 bytes data]
+* Closing connection
+
+==========================================================================
+REQUEST 2: GET /styles.css
+==========================================================================
+*   Trying /tmp/web-fundamentals.sock:0...
+* Connected to localhost (/tmp/web-fundamentals.sock) port 0
+> GET /styles.css HTTP/1.1
+> Host: localhost
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+* HTTP 1.0, assume close after body
+< HTTP/1.0 200 OK
+< Server: SimpleHTTP/0.6 Python/3.14.6
+< Date: Tue, 08 Sep 2026 16:07:32 GMT
+< Content-type: text/css
+< Content-Length: 1831
+< Last-Modified: Tue, 08 Sep 2026 16:04:11 GMT
+< 
+{ [1831 bytes data]
+* Closing connection
+
+==========================================================================
+REQUEST 3: GET /app.js
+==========================================================================
+*   Trying /tmp/web-fundamentals.sock:0...
+* Connected to localhost (/tmp/web-fundamentals.sock) port 0
+> GET /app.js HTTP/1.1
+> Host: localhost
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+* HTTP 1.0, assume close after body
+< HTTP/1.0 200 OK
+< Server: SimpleHTTP/0.6 Python/3.14.6
+< Date: Tue, 08 Sep 2026 16:07:32 GMT
+< Content-type: text/javascript
+< Content-Length: 579
+< Last-Modified: Tue, 08 Sep 2026 16:04:17 GMT
+< 
+{ [579 bytes data]
+* Closing connection
+
+==========================================================================
+REQUEST 4: GET /nonexistent-page (404 demo)
+==========================================================================
+*   Trying /tmp/web-fundamentals.sock:0...
+* Connected to localhost (/tmp/web-fundamentals.sock) port 0
+> GET /nonexistent-page HTTP/1.1
+> Host: localhost
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+* HTTP 1.0, assume close after body
+< HTTP/1.0 404 File not found
+< Server: SimpleHTTP/0.6 Python/3.14.6
+< Date: Tue, 08 Sep 2026 16:07:32 GMT
+< Connection: close
+< Content-Type: text/html;charset=utf-8
+< Content-Length: 460
+< 
+{ [460 bytes data]
+* Closing connection
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            :root {
+                color-scheme: light dark;
+            }
+        </style>
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 404</p>
+        <p>Message: File not found.</p>
+        <p>Error code explanation: 404 - Nothing matches the given URI.</p>
+    </body>
+</html>

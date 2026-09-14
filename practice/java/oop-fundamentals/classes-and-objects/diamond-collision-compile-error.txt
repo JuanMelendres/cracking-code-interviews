@@ -1,0 +1,5 @@
+src/BrokenDefaultMethodDiamondCollision.java:17: error: types Flyer and Swimmer are incompatible;
+    static class Duck implements Flyer, Swimmer {
+           ^
+  class Duck inherits unrelated defaults for move() from types Flyer and Swimmer
+1 error

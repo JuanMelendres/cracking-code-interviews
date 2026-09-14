@@ -1,0 +1,7 @@
+{
+  "name": "javascript-fundamentals-demos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Real, executed Node.js demos backing syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md"
+}

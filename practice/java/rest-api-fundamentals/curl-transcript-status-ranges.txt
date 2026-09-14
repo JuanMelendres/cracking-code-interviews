@@ -1,0 +1,32 @@
+=== A. GET /books/latest with NO books yet -- expect 404 ===
+HTTP/1.1 404
+Content-Length: 0
+
+=== B. Create two books ===
+HTTP/1.1 201
+Location: /books/1
+{"id":1,"title":"First","available":true}
+
+HTTP/1.1 201
+Location: /books/2
+{"id":2,"title":"Second","available":true}
+
+=== C. GET /books/latest -- expect 302 Found, Location: /books/2 (the highest real id) ===
+HTTP/1.1 302
+Location: /books/2
+Content-Length: 0
+
+=== D. Create a third book, GET /books/latest again -- Location now points at the NEW highest id ===
+HTTP/1.1 201
+Location: /books/3
+{"id":3,"title":"Third","available":true}
+
+HTTP/1.1 302
+Location: /books/3
+Content-Length: 0
+
+=== E. POST with wrong Content-Type -- expect 415 Unsupported Media Type ===
+HTTP/1.1 415
+Accept: application/json, application/*+json
+Content-Type: application/json
+{"timestamp":"2026-09-11T22:16:13.258+00:00","status":415,"error":"Unsupported Media Type","path":"/books"}

@@ -1,0 +1,117 @@
+CREATE TABLE
+CREATE TABLE
+INSERT 0 5000
+INSERT 0 300000
+ANALYZE
+ANALYZE
+=== [A] Before any index: point lookup by customer_id ===
+                                                     QUERY PLAN                                                      
+---------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..5913.88 rows=60 width=35) (actual time=0.105..5.517 rows=60 loops=1)
+   Workers Planned: 1
+   Workers Launched: 1
+   Buffers: shared hit=2702
+   ->  Parallel Seq Scan on orders  (cost=0.00..4907.88 rows=35 width=35) (actual time=0.030..3.990 rows=30 loops=2)
+         Filter: (customer_id = 42)
+         Rows Removed by Filter: 149970
+         Buffers: shared hit=2702
+ Planning:
+   Buffers: shared hit=31
+ Planning Time: 0.063 ms
+ Execution Time: 5.528 ms
+(12 rows)
+
+=== [B] Create single-column index, re-run same query ===
+CREATE INDEX
+                                                          QUERY PLAN                                                          
+------------------------------------------------------------------------------------------------------------------------------
+ Bitmap Heap Scan on orders  (cost=4.76..218.69 rows=60 width=35) (actual time=0.023..0.077 rows=60 loops=1)
+   Recheck Cond: (customer_id = 42)
+   Heap Blocks: exact=60
+   Buffers: shared hit=60 read=2
+   ->  Bitmap Index Scan on idx_orders_customer  (cost=0.00..4.75 rows=60 width=0) (actual time=0.017..0.017 rows=60 loops=1)
+         Index Cond: (customer_id = 42)
+         Buffers: shared read=2
+ Planning:
+   Buffers: shared hit=16 read=1
+ Planning Time: 0.063 ms
+ Execution Time: 0.093 ms
+(11 rows)
+
+=== [C] Composite index (customer_id, created_at) — leftmost prefix works ===
+CREATE INDEX
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Bitmap Heap Scan on orders  (cost=4.73..115.70 rows=30 width=35) (actual time=0.021..0.068 rows=28 loops=1)
+   Recheck Cond: ((customer_id = 42) AND (created_at > '2025-01-01 00:00:00'::timestamp without time zone))
+   Heap Blocks: exact=28
+   Buffers: shared hit=28 read=3
+   ->  Bitmap Index Scan on idx_orders_customer_created  (cost=0.00..4.72 rows=30 width=0) (actual time=0.017..0.017 rows=28 loops=1)
+         Index Cond: ((customer_id = 42) AND (created_at > '2025-01-01 00:00:00'::timestamp without time zone))
+         Buffers: shared read=3
+ Planning:
+   Buffers: shared hit=22 read=1
+ Planning Time: 0.111 ms
+ Execution Time: 0.078 ms
+(11 rows)
+
+=== [D] Same composite index, filtering only the SECOND column — leftmost prefix rule violated ===
+                                                                        QUERY PLAN                                                                         
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..6388.46 rows=394 width=35) (actual time=0.265..18.421 rows=403 loops=1)
+   Workers Planned: 1
+   Workers Launched: 1
+   Buffers: shared hit=2702
+   ->  Parallel Seq Scan on orders  (cost=0.00..5349.06 rows=232 width=35) (actual time=0.047..13.790 rows=202 loops=2)
+         Filter: ((created_at > '2025-06-01 00:00:00'::timestamp without time zone) AND (created_at < '2025-06-02 00:00:00'::timestamp without time zone))
+         Rows Removed by Filter: 149798
+         Buffers: shared hit=2702
+ Planning Time: 0.026 ms
+ Execution Time: 18.479 ms
+(10 rows)
+
+=== [E] Covering index — index-only scan by including amount ===
+CREATE INDEX
+VACUUM
+SET
+                                                             QUERY PLAN                                                             
+------------------------------------------------------------------------------------------------------------------------------------
+ Index Only Scan using idx_orders_covering on orders  (cost=0.42..5.02 rows=30 width=18) (actual time=0.015..0.016 rows=28 loops=1)
+   Index Cond: ((customer_id = 42) AND (created_at > '2025-01-01 00:00:00'::timestamp without time zone))
+   Heap Fetches: 0
+   Buffers: shared hit=1 read=3
+ Planning:
+   Buffers: shared hit=7
+ Planning Time: 0.053 ms
+ Execution Time: 0.023 ms
+(8 rows)
+
+SET
+=== [F] Low selectivity — planner ignores the index even though one exists ===
+CREATE INDEX
+                                                  QUERY PLAN                                                   
+---------------------------------------------------------------------------------------------------------------
+ Seq Scan on orders  (cost=0.00..6452.00 rows=200980 width=35) (actual time=0.004..12.820 rows=199952 loops=1)
+   Filter: (status = 'completed'::text)
+   Rows Removed by Filter: 100048
+   Buffers: shared hit=2702
+ Planning:
+   Buffers: shared hit=24 read=2
+ Planning Time: 0.072 ms
+ Execution Time: 16.410 ms
+(8 rows)
+
+=== [G] High selectivity on the same column — planner uses it ===
+                                                             QUERY PLAN                                                             
+------------------------------------------------------------------------------------------------------------------------------------
+ Bitmap Heap Scan on orders  (cost=555.27..3874.77 rows=49400 width=35) (actual time=0.712..4.481 rows=50264 loops=1)
+   Recheck Cond: (status = 'refunded'::text)
+   Heap Blocks: exact=2702
+   Buffers: shared hit=2702 read=45
+   ->  Bitmap Index Scan on idx_orders_status  (cost=0.00..542.92 rows=49400 width=0) (actual time=0.533..0.534 rows=50264 loops=1)
+         Index Cond: (status = 'refunded'::text)
+         Buffers: shared read=45
+ Planning Time: 0.023 ms
+ Execution Time: 5.333 ms
+(9 rows)
+

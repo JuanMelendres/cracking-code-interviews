@@ -1,0 +1,2126 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+      
+      
+        <meta name="author" content="Juan Melendres">
+      
+      
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/architecture-atlas/">
+      
+      
+        <link rel="prev" href="../flashcards/zgc-and-shenandoah-concurrent-collection/">
+      
+      
+        <link rel="next" href="authentication-service/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Architecture Atlas — Index - Cracking Code Interviews</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cracking Code Interviews">
+  <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+  <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/architecture-atlas/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cracking Code Interviews">
+  <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
+  <meta name="twitter:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-atlas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cracking Code Interviews
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture Atlas — Index
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/JuanMelendres/cracking-code-interviews" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JuanMelendres/cracking-code-interviews
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../syllabus/00-overview/INDEX/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../study-packs/" class="md-tabs__link">
+          
+  
+  
+  Study Packs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../cheat-sheets/" class="md-tabs__link">
+          
+  
+  
+  Cheat Sheets
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../flashcards/" class="md-tabs__link">
+          
+  
+  
+  Flashcards
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Architecture Atlas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../production-cookbook/" class="md-tabs__link">
+          
+  
+  
+  Production Cookbook
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../practice/" class="md-tabs__link">
+          
+  
+  
+  Practice (real code)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
+
+    </a>
+    Cracking Code Interviews
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/JuanMelendres/cracking-code-interviews" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JuanMelendres/cracking-code-interviews
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../syllabus/00-overview/INDEX/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../study-packs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Study Packs
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../cheat-sheets/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../flashcards/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Atlas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas — Index
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas — Index
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A note on scope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-relates-to-other-deliverables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this relates to other deliverables
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Authentication Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="autocomplete-typeahead-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Autocomplete/Typeahead System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment-infrastructure-for-a-payments-notification-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Deployment Infrastructure for a Payments Notification Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distributed-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distributed-file-storage-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed File Storage System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distributed-job-scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Job Scheduler
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distributed-key-value-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Distributed Key-Value Store
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: JVM Sizing and Diagnostics Playbook for a Real-Time Pricing Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jvm-tuning-playbook-for-a-market-data-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: JVM Tuning Playbook for a Market-Data Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="metrics-monitoring-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Metrics/Monitoring System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="news-feed-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: News Feed System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Notification System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="payment-processing-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Payment Processing System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="real-time-chat-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Real-Time Chat System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ride-hailing-dispatch-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Ride-Hailing Dispatch System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="security-review-of-a-multi-tenant-expense-approval-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Security Review of a Multi-Tenant Expense-Approval Platform
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="test-strategy-for-a-checkout-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Test Strategy for a Checkout Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ticket-and-event-booking-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Ticket and Event Booking System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="url-shortener-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: URL Shortener System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="video-streaming-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Video Streaming Platform
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-crawler-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Atlas: Web Crawler System
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../production-cookbook/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../practice/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practice (real code)
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A note on scope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-relates-to-other-deliverables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this relates to other deliverables
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Architecture Atlas
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/architecture-atlas/README.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/architecture-atlas/README.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="architecture-atlas">Architecture Atlas<a class="headerlink" href="#architecture-atlas" title="Permanent link">&para;</a></h1>
+<p>The Architecture Atlas owns full system-design reference entries per <code>CLAUDE.md</code>'s Architecture Atlas Standard: problem statement, constraints, functional/non-functional requirements, capacity assumptions, architecture diagram, data model, APIs, request flow, consistency model, scaling strategy, reliability strategy, security/observability/cost, trade-offs, alternatives, migration path, Staff-level discussion, and interview presentation sequence — each entry referencing detailed canonical <code>handbook/</code> chapters rather than restating their explanations.</p>
+<h2 id="a-note-on-scope">A note on scope<a class="headerlink" href="#a-note-on-scope" title="Permanent link">&para;</a></h2>
+<p>This programme's study packs contain 13 real, worked "design exercise" files across Weeks 3–19, each a timed application of <a href="../syllabus/11-system-design/system-design-method-and-estimation/">System Design Method and Estimation</a>'s six-phase method (or a domain-specific variant of it) to a concrete problem. All 8 classic system-design-style exercises — full request/response systems with an architecture diagram, data model, and scaling story — are <strong>fully elevated</strong>: <code>ride-hailing dispatch</code> (Week 3), <code>news feed</code> (Week 4), <code>payment processing</code> (Week 5), <code>authentication service</code> (Week 7), <code>notification system</code> (Week 8), <code>distributed job scheduler</code> (Week 9), <code>distributed cache</code> (Week 10), <code>metrics/monitoring system</code> (Week 11).</p>
+<p>The remaining 5 weeks' exercises (Weeks 15–19) are differently shaped — domain-specific design/review exercises (a deployment-infrastructure strategy, two JVM operational playbooks, a security review, a test-strategy design) rather than classic full-system designs — and use an adapted entry template accordingly: no data model, API surface, or consistency-model sections, since none apply to an infrastructure decision, a diagnostics runbook, or a review. <strong>All 5 are now elevated.</strong> This closed the Atlas against its own original scope: all 13 real, worked design exercises across the programme (Weeks 3–19) are represented, 8 under the classic template and 5 under the adapted one.</p>
+<p><strong>A 14th through 17th entry — <a href="real-time-chat-system/">Real-Time Chat System</a>, <a href="ticket-and-event-booking-system/">Ticket and Event Booking System</a>, <a href="url-shortener-system/">URL Shortener System</a>, and <a href="distributed-key-value-store/">Distributed Key-Value Store</a> — were added 2026-09-01.</strong> Unlike every entry above, none is elevated from an existing study-pack exercise — none exists for any of these four problems. All four were added as new, original content toward the Master Topic Register's T-813 (Canonical design problems (12-problem set)), built to the identical Architecture Atlas Standard and six-phase method every other classic entry follows.</p>
+<p><strong>T-813 closure accounting.</strong> The register states a 12-problem target but never enumerates which twelve. Counting only the classic full-system-design entries (the 8 elevated ones plus these 4 new ones — excluding the 5 adapted-template infrastructure/review entries below, which are a structurally different exercise) gives exactly 12: Ride-Hailing Dispatch, News Feed, Payment Processing, Authentication Service, Notification System, Distributed Job Scheduler, Real-Time Chat, Ticket and Event Booking, URL Shortener, Distributed Key-Value Store, Distributed Cache, Metrics/Monitoring. That matches T-813's stated count exactly, so this repository treats <strong>T-813 as closed by count</strong> as of the Distributed Key-Value Store entry (2026-09-01). This is closure against the stated target, not a guarantee that these particular twelve are the exact twelve a given interviewer would pick — no enumerated reference list exists to check that against.</p>
+<p><strong>A 13th through 16th classic entry beyond T-813's own closed target — <a href="video-streaming-platform/">Video Streaming Platform</a> (2026-09-10), <a href="distributed-file-storage-system/">Distributed File Storage System</a>, <a href="web-crawler-system/">Web Crawler System</a>, and <a href="autocomplete-typeahead-system/">Autocomplete/Typeahead System</a> (all 2026-09-11) — were added as a follow-up set.</strong> A full repository-wide gap audit found this Atlas, despite closing T-813 by count, was still missing three specific, commonly-asked case studies the audit named explicitly: video streaming, distributed file storage, and web crawler/autocomplete. These four entries close the set in full — new, original content, not elevated from a study-pack exercise, and deliberately not folded into T-813's own closed accounting above (that target is treated as closed, not reopened; this is additive beyond it, the same way new gap-audit content has been added to several already-"complete" domains elsewhere in this repository). The audit's third item was itself two genuinely different problems bundled as one line item — web crawler (URL discovery, fetch scheduling, politeness) and autocomplete/typeahead (prefix search and ranking) share no real design surface — closed as two separate entries rather than force-fit into one.</p>
+<h2 id="entries">Entries<a class="headerlink" href="#entries" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>Companion topic</th>
+<th>What it's about</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="ride-hailing-dispatch-system/">Ride-Hailing Dispatch System</a></td>
+<td>T-801/T-802 (System Design Method and Estimation)</td>
+<td>A location-driven matching system: the central design tension is that driver location (high write volume, staleness-tolerant) and ride state (low volume, correctness-critical) need different storage and consistency treatment, split along that line rather than as an afterthought. Elevated from <code>study-packs/week-03/08-design-exercise-ride-hailing.md</code>.</td>
+</tr>
+<tr>
+<td><a href="news-feed-system/">News Feed System</a></td>
+<td>Caching Strategies and Invalidation</td>
+<td>A read-heavy fan-out system: the 200:1 read:write ratio justifies precomputing feeds at write time for most users, but a per-author split (fan-out-on-write vs. fan-out-on-read for the celebrity case) is needed to avoid a catastrophic write spike from a power-law-distributed follower count. Elevated from <code>study-packs/week-04/08-design-exercise-news-feed.md</code>.</td>
+</tr>
+<tr>
+<td><a href="payment-processing-system/">Payment Processing System</a></td>
+<td>Idempotency at System Edges / CAP Theorem</td>
+<td>A deliberately low-QPS, high-consequence system where correctness — not throughput — is the binding constraint: idempotency is designed into the API contract from the start, and the honest limits of end-to-end "exactly-once" (dependent on the external provider) are stated explicitly rather than claimed as an unqualified guarantee. Elevated from <code>study-packs/week-05/09-design-exercise-payment-processing.md</code>.</td>
+</tr>
+<tr>
+<td><a href="authentication-service/">Authentication Service</a></td>
+<td>OAuth2, OIDC, and JWT</td>
+<td>A ~700x asymmetry between token issuance and token validation drives the whole design: validation happens via local JWT signature verification with no call back to the Auth Service, trading instant revocation for elimination of a synchronous, availability-critical dependency at the platform's highest-traffic path. Elevated from <code>study-packs/week-07/08-design-exercise-authentication-service.md</code>.</td>
+</tr>
+<tr>
+<td><a href="notification-system/">Notification System</a></td>
+<td>Kafka Delivery Semantics and Exactly-Once</td>
+<td>A fan-out and delivery-guarantee problem, not a storage problem: <code>userId</code> partitioning preserves per-user ordering, per-channel topics isolate a degraded provider from the others, and at-least-once delivery plus a delivery-log idempotency check trades an occasional duplicate for never silently dropping a notification. A "hot event type" is explicitly distinguished from a "hot partition" as a different failure mode. Elevated from <code>study-packs/week-08/09-design-exercise-notification-system.md</code>.</td>
+</tr>
+<tr>
+<td><a href="distributed-job-scheduler/">Distributed Job Scheduler</a></td>
+<td>Executors and Thread Pool Sizing</td>
+<td>A p50-vs-p99 job-duration spread (200ms vs. 30s) drives a two-pool worker architecture; lease-based claiming (not a distributed lock) self-heals on crash without a failure-detection mechanism. Elevated from <code>study-packs/week-09/09-design-exercise-distributed-job-scheduler.md</code>.</td>
+</tr>
+<tr>
+<td><a href="real-time-chat-system/">Real-Time Chat System</a></td>
+<td>Real-Time Delivery: WebSocket, SSE, and Long-Polling</td>
+<td>A connection-routing problem, not a storage problem: a stateful WebSocket connection is pinned to one gateway node, so fan-out requires a separate, deliberately lossy connection registry (<code>userId -&gt; gateway node</code>) kept structurally independent of the durable, persist-before-publish message store — a stale registry entry causes a routing delay, never message loss. New entry, not elevated from a study-pack exercise; see the file's own sourcing note.</td>
+</tr>
+<tr>
+<td><a href="ticket-and-event-booking-system/">Ticket and Event Booking System</a></td>
+<td>Optimistic vs. Pessimistic Locking</td>
+<td>An inventory-contention problem under a thundering-herd flash-sale spike: a virtual waiting room sheds load before it reaches the seat-inventory system, and seat holds use optimistic compare-and-swap rather than a pessimistic lock held across a human-paced checkout flow. The waiting room fails closed (correct under overload); the inventory system never oversells (correct under any load) — two deliberately different failure-mode priorities in the same design. New entry, not elevated from a study-pack exercise; see the file's own sourcing note.</td>
+</tr>
+<tr>
+<td><a href="url-shortener-system/">URL Shortener System</a></td>
+<td>Caching Strategies and Invalidation</td>
+<td>A caching problem, not a scaling-the-writes problem: an extreme (100:1+) read:write ratio on a critical-latency redirect path, made simple by a mapping that's immutable once created — there is no cache-invalidation problem to solve at all, since nothing an existing short link maps to ever legitimately changes. A pre-allocated key-block generator avoids write-path contention; click counting is deliberately asynchronous and off the redirect's own critical path. New entry, not elevated from a study-pack exercise; see the file's own sourcing note.</td>
+</tr>
+<tr>
+<td><a href="distributed-key-value-store/">Distributed Key-Value Store</a></td>
+<td>Data Partitioning and Consistent Hashing / CAP Theorem</td>
+<td>Unlike every other entry, this problem <em>is</em> the storage primitive, not an application on top of one: consistency and availability are made explicit, tunable per-request parameters (<code>R</code>/<code>W</code> against replication factor <code>N</code>) rather than one system-wide default, with hinted handoff keeping writes available during a replica outage and background anti-entropy converging replicas afterward. A hot key is named explicitly as a different, unfixable-by-scaling problem from a hot node. New entry, not elevated from a study-pack exercise; see the file's own sourcing note.</td>
+</tr>
+<tr>
+<td><a href="distributed-cache/">Distributed Cache</a></td>
+<td>Data Partitioning and Consistent Hashing / Resilience Patterns</td>
+<td>A sharded key-value cache where consistent hashing's measured ~9.2% (vs. ~92.5% naive) remap cost is what makes node scaling routine, and three distinct failure shapes (node failure, hot keys, stampede) each need their own specific mitigation rather than one generic fix. Elevated from <code>study-packs/week-10/10-design-exercise-distributed-cache.md</code>.</td>
+</tr>
+<tr>
+<td><a href="metrics-monitoring-system/">Metrics/Monitoring System</a></td>
+<td>Percentiles, Tail Latency, and Coordinated Omission</td>
+<td>A monitoring system whose own write path (1M points/s) forces histogram sketches instead of raw samples, and whose alert-evaluation path must be architecturally isolated from dashboard queries — plus a cardinality explosion, distinguished explicitly as a different failure mode from raw volume with a different fix. Elevated from <code>study-packs/week-11/09-design-exercise-metrics-monitoring-system.md</code>.</td>
+</tr>
+<tr>
+<td><a href="deployment-infrastructure-for-a-payments-notification-service/">Deployment Infrastructure for a Payments Notification Service</a></td>
+<td>CI/CD Pipeline Design and Deployment Strategies / Cloud Cost and Scaling Economics</td>
+<td>Not a system design — a deployment-strategy review: compute placement, resource/probe sizing, durable no-silent-drop messaging, autoscaling a 10x daily peak/trough shape, and canary-with-human-gate deployment, each traced back to one of the scenario's two explicit constraints (never silently drop, deployment risk-aversion) rather than a generic checklist. Elevated from <code>study-packs/week-15/09-design-exercise-deployment-infrastructure.md</code>.</td>
+</tr>
+<tr>
+<td><a href="jvm-sizing-and-diagnostics-playbook-for-a-real-time-pricing-service/">JVM Sizing and Diagnostics Playbook for a Real-Time Pricing Service</a></td>
+<td>JVM Flags and Container Ergonomics / G1 Remembered Sets and Write Barriers</td>
+<td>A documented operational runbook, not an architecture: region sizing, container-CPU-aware GC expectations, a hot cache's G1 remembered-set cost and its partitioning fix, a concrete leak-diagnosis command sequence, and pre-warming both branches of a flag rollout to absorb deoptimization cost during controlled warmup. Elevated from <code>study-packs/week-16/09-design-exercise-jvm-sizing-and-diagnostics-playbook.md</code>.</td>
+</tr>
+<tr>
+<td><a href="jvm-tuning-playbook-for-a-market-data-service/">JVM Tuning Playbook for a Market-Data Service</a></td>
+<td>ZGC and Shenandoah / Native Memory, Direct Buffers, and Off-Heap</td>
+<td>A sub-millisecond-p99 tuning playbook built entirely on measurement-before-fix: a <code>WeakHashMap</code> misused as a bounded cache, <code>-Xmx</code> not accounting for NIO direct-buffer memory, G1-vs-ZGC as a measured (not assumed) decision, escape analysis likely already eliminating a suspected allocation cost, and <code>-Xlog:safepoint</code> for a latency blip invisible to GC-log-only monitoring. Elevated from <code>study-packs/week-19/10-design-exercise-jvm-tuning-for-a-market-data-service.md</code>.</td>
+</tr>
+<tr>
+<td><a href="security-review-of-a-multi-tenant-expense-approval-platform/">Security Review of a Multi-Tenant Expense-Approval Platform</a></td>
+<td>OWASP Top 10 for Backend Services / Multi-Tenancy Isolation Models</td>
+<td>A shared-schema (pool) multi-tenant platform reviewed across seven security dimensions: an IDOR-shaped access-control gap on fetch-by-ID, correct password hashing and enforced TLS, an approval rule RBAC structurally cannot express, parameterized search plus output encoding as separate required defenses, Row-Level Security with an explicit <code>BYPASSRLS</code>/superuser audit as tenant isolation's real backstop, proactive payments-key versioning and rotation, and SBOM scanning on a shared base image. Elevated from <code>study-packs/week-17/11-design-exercise-multi-tenant-expense-platform-security-review.md</code>.</td>
+</tr>
+<tr>
+<td><a href="test-strategy-for-a-checkout-service/">Test Strategy for a Checkout Service</a></td>
+<td>Mutation and Property-Based Testing / Contract Testing for Services</td>
+<td>An 88%-coverage suite that missed a real boundary bug, used to reframe coverage as necessary-not-sufficient: mutation testing scoped to boundary-heavy modules plus a property-based sweep for the boundary class, consumer-driven contract testing (checkout as the contract owner) for an independently-evolving inventory service, percentile-threshold load testing and a failure-mode stress test for a new payment provider, and a narratable test-first live-coding round designed around specific, observable candidate signals. Elevated from <code>study-packs/week-18/09-design-exercise-test-strategy-for-a-checkout-service.md</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>| <a href="video-streaming-platform/">Video Streaming Platform</a> | Caching Strategies and Invalidation | An upload/transcoding pipeline and a CDN-fronted playback system that share almost no infrastructure, deliberately: per-rendition (not per-video) status lets playback begin before all renditions finish processing, and immutable, chunked segments mean no cache-invalidation problem exists once a rendition is published — the same pattern this Atlas's URL Shortener entry established. Capacity math shows egress bandwidth outweighing storage by roughly four orders of magnitude, reframing this as a delivery problem, not a storage problem. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
+| <a href="distributed-file-storage-system/">Distributed File Storage System</a> | CAP Theorem and Consistency Models / Consensus Algorithms | A GFS/HDFS-shaped system whose central idea is separating a tiny, in-memory metadata path (which chunkservers hold a file's chunks) from a huge, throughput-bound data path (the actual bytes, which never route through the master) — chunk size is the one number controlling whether metadata fits in one machine's memory at scale. Master failover via an operation log and standby, not a distributed metadata layer, is the deliberately simpler fix for the master's real single-point-of-failure risk. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
+| <a href="web-crawler-system/">Web Crawler System</a> | Search and Indexing Systems / Data Partitioning and Consistent Hashing | A domain-sharded URL frontier with per-domain politeness queues resolves the real tension between "crawl fast" and "never overwhelm one site" — aggregate throughput is a function of concurrent distinct-domain count, not per-domain speed, quantified directly in the capacity math. A Bloom filter (not an exact set) backs seen-URL dedup, sized with the real, worked formula for a stated false-positive trade at billions of URLs. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
+| <a href="autocomplete-typeahead-system/">Autocomplete/Typeahead System</a> | Tries and Prefix Structures / Heaps, Top-K, and K-Way Merge | Fast prefix matching and fast ranked retrieval are two different problems a naive design conflates — precomputing and caching each trie node's own top-K completions is what keeps read latency a single trie descent, independent of how many completions exist under a prefix, with ranking recomputed by a fully decoupled, periodic offline pipeline. Real capacity math shows typeahead's per-keystroke request volume at roughly 15x the completed-search rate it's commonly compared against. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |</p>
+<h2 id="how-this-relates-to-other-deliverables">How this relates to other deliverables<a class="headerlink" href="#how-this-relates-to-other-deliverables" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>syllabus/</code> — canonical explanations of individual concepts (storage selection, partitioning, isolation levels) that a full system design draws on; this Atlas references them rather than re-teaching them.</li>
+<li><code>syllabus/20-interview-preparation/system-design/</code> — the live-delivery discipline (time-boxing, handling mid-round changes) for running a design exercise like these under interview conditions.</li>
+<li><code>cheat-sheets/</code> — one-page rapid review of a single canonical chapter's content, not a full worked system.</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 00:14:11 UTC">September 14, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../flashcards/zgc-and-shenandoah-concurrent-collection/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Flashcards: ZGC and Shenandoah: Concurrent Collection">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Flashcards: ZGC and Shenandoah: Concurrent Collection
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="authentication-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Architecture Atlas: Authentication Service">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Architecture Atlas: Authentication Service
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/checklist-progress.js"></script>
+      
+    
+  </body>
+</html>

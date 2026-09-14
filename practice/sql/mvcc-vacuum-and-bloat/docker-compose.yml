@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: mvcc-pg
+    environment:
+      POSTGRES_PASSWORD: mvcctest
+      POSTGRES_USER: postgres
+      POSTGRES_DB: appdb
+    command: >
+      postgres
+      -c autovacuum=off
+    ports:
+      - "55633:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d

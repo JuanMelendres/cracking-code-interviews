@@ -1,0 +1,27 @@
+############ CountDownLatch: blocks until ALL signal, one-shot ############
+  main thread calling latch.await() -- should block until the SLOWEST worker (400ms) finishes...
+  worker 0 finished after 100ms, counting down
+  worker 1 finished after 250ms, counting down
+  worker 2 finished after 400ms, counting down
+  main thread unblocked after 407ms  <-- real evidence it waited for all 3, not just the first
+
+  latch already at zero; await() returned in 0ms (immediately)
+  a SECOND await() on the SAME latch also returns immediately -- there is no way to
+  reset a CountDownLatch; a new one must be constructed for a second round.
+
+############ CyclicBarrier: reusable rendezvous, runs its action every round ############
+  --- round 1 ---
+  round 1: thread 0 arrived at the barrier
+  round 1: thread 1 arrived at the barrier
+  round 1: thread 2 arrived at the barrier
+  *** barrier action fired -- all 3 parties arrived (run #1) ***
+  --- round 2 ---
+  round 2: thread 0 arrived at the barrier
+  round 2: thread 1 arrived at the barrier
+  round 2: thread 2 arrived at the barrier
+  *** barrier action fired -- all 3 parties arrived (run #2) ***
+  barrier action ran 2 times total -- the SAME CyclicBarrier instance was reused across both rounds automatically.
+
+############ Semaphore: real, measured bounded concurrency ############
+  10 tasks competing for 3 permits.
+  Real, measured maximum concurrent holders observed at any instant: 3  <-- never exceeded the permit count

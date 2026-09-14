@@ -1,0 +1,41 @@
+=== java -version ===
+openjdk version "21.0.12" 2026-07-21
+OpenJDK Runtime Environment Homebrew (build 21.0.12)
+OpenJDK 64-Bit Server VM Homebrew (build 21.0.12, mixed mode, sharing)
+
+=== javac -version ===
+javac 21.0.12
+
+=== Real JDK bin/ directory contents (confirms this is a JDK, not a JRE-only bundle) ===
+jar
+jarsigner
+java
+javac
+javadoc
+javap
+jcmd
+jconsole
+jdb
+jdeprscan
+jdeps
+jfr
+jhsdb
+jimage
+jinfo
+jlink
+jmap
+jmod
+jpackage
+jps
+jrunscript
+jshell
+jstack
+jstat
+jstatd
+jwebserver
+keytool
+rmiregistry
+serialver
+
+=== jmods/ count (used by jlink to build a custom minimal runtime) ===
+69 real .jmod files present

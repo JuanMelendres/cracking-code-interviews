@@ -1,0 +1,42 @@
+############ CSRF: synchronizer token pattern ############
+=== Victim logs in for real (GET /login) ===
+sessionId=17e7e6a4046ae626a904b58b0d3c1475 csrfToken=b1b5f298f35a711657e26df87682da74
+
+=== Legitimate request: victim's own page submits the real form,
+    Cookie AND matching csrfToken both present (VULNERABLE endpoint) ===
+status=200 body=TRANSFERRED $500. balance now 500
+
+=== Forged cross-site request (VULNERABLE endpoint): attacker's page
+    can't read the victim's csrfToken, but the browser still auto-attaches
+    the victim's session cookie to any request to this domain ===
+status=200 body=TRANSFERRED $500. balance now 500  <-- forged transfer SUCCEEDED, endpoint never checked for a token
+
+=== Identical forged request against the FIXED endpoint ===
+status=403 body=Blocked: missing or invalid csrfToken
+
+############ CORS: origin-allowlist header logic ############
+=== Request with Origin: https://app.example.com (allowlisted) ===
+Access-Control-Allow-Origin: https://app.example.com
+
+=== Identical request with Origin: https://evil.example (NOT allowlisted) ===
+Access-Control-Allow-Origin: <absent>
+HTTP body was still returned to this Java client either way (body={"balanceUsd":1000})
+-- CORS is enforced by the BROWSER reading the missing header, not by the server
+   refusing to answer; a non-browser client like this one always sees the body.
+
+############ Session fixation and cookie flags ############
+=== Session fixation: attacker pre-set SESSIONID=attacker-pre-set-session-id-0001 ===
+
+--- Victim's browser then logs in against the VULNERABLE endpoint,
+    already carrying the attacker's pre-set cookie ---
+authenticated as session attacker-pre-set-session-id-0001
+Set-Cookie: SESSIONID=attacker-pre-set-session-id-0001
+attacker's pre-chosen ID is now a REAL authenticated session: true
+
+--- Same attack, DIFFERENT attacker-chosen ID, against the FIXED endpoint ---
+authenticated as session a11a8faeb4a7dca301ed6f2721fdd818
+Set-Cookie: SESSIONID=a11a8faeb4a7dca301ed6f2721fdd818; HttpOnly; Secure; SameSite=Strict
+attacker's pre-chosen ID (attacker-pre-set-session-id-0002) is now a REAL authenticated session: false  (server issued a brand-new ID instead, ignoring the presented one)
+
+Note the fixed endpoint's own Set-Cookie also carries HttpOnly; Secure; SameSite=Strict --
+real response-header evidence of the cookie-flag hygiene this section also covers.

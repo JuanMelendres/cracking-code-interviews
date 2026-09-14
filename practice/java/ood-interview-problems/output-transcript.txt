@@ -1,0 +1,35 @@
+=== ParkingLotDemo ===
+=== Park a motorcycle, a car, and a bus ===
+  Motorcycle parked at spot S1 (a SMALL spot -- motorcycles fit anywhere)
+  Car parked at spot M1 (a MEDIUM spot -- cars can't use SMALL)
+  Bus parked at spot L1 (a LARGE spot -- only LARGE fits a bus)
+
+=== Try to park a second car -- only M2 is left, and it fits ===
+  Car #2 parked at spot M2
+
+=== Try to park a THIRD car -- lot has no MEDIUM or LARGE spots left ===
+  Result: REJECTED -- lot full for this vehicle size
+  Available MEDIUM spots right now: 0
+
+=== Car #1 leaves after 2h15m -- real fee calculated from real elapsed time ===
+  Fee for CAR-1 (2h15m, rounds up to 3h @ $2.50/h) = $7.50
+
+=== Now that Car #1's spot is free, the previously-rejected Car #3 can park ===
+  Result: parked at spot M1
+
+=== VendingMachineDemo ===
+=== Try to select BEFORE inserting any money -- illegal transition ===
+  Rejected: Insert money before selecting an item (state=IDLE)
+
+=== Insert 150c, then select Soda (125c) -- real change calculated ===
+  Inserted 100c. Balance now 100c. State=HAS_MONEY
+  Inserted 50c. Balance now 150c. State=HAS_MONEY
+  Dispensing Soda. Change returned: 25c. State=DISPENSING
+  Caller received 25c change
+
+=== Try to buy the now-sold-out Soda again ===
+  Inserted 125c. Balance now 125c. State=HAS_MONEY
+  Rejected: Soda is sold out or does not exist
+
+=== Try to select an item that was already sold out from the start (Chips) ===
+  Rejected: Chips is sold out or does not exist

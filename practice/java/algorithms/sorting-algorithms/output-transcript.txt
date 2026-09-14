@@ -1,0 +1,18 @@
+### 1. QuickSort: first-element pivot vs. random pivot, three input shapes
+already-sorted input   n=2000   (first-element pivot)    comparisons=1999000
+already-sorted input   n=2000   (random pivot)           comparisons=23331
+reverse-sorted input   n=2000   (first-element pivot)    comparisons=1999000
+reverse-sorted input   n=2000   (random pivot)           comparisons=24467
+random input           n=2000   (first-element pivot)    comparisons=25315
+random input           n=2000   (random pivot)           comparisons=24990
+
+### 2. Stability: TimSort (Arrays.sort) vs. a naive in-place quicksort
+original: [2@0, 2@1, 0@2, 3@3, 0@4, 2@5, 3@6, 2@7, 0@8, 3@9, 2@10, 1@11]
+Arrays.sort (TimSort, stable): [0@2, 0@4, 0@8, 1@11, 2@0, 2@1, 2@5, 2@7, 2@10, 3@3, 3@6, 3@9]
+naive in-place quicksort (unstable): [0@2, 0@8, 0@4, 1@11, 2@7, 2@10, 2@1, 2@5, 2@0, 3@9, 3@6, 3@3]
+TimSort preserved original tie order? true
+naive quicksort preserved original tie order? false
+
+### 3. InsertionSort vs. MergeSort: small/nearly-sorted vs. large/random
+small, nearly-sorted (n=12)      insertionSort comparisons=14       mergeSort comparisons=21
+large, random (n=5000)           insertionSort comparisons=6237056  mergeSort comparisons=55277

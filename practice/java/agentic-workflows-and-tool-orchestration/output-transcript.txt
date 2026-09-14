@@ -1,0 +1,24 @@
+=== 1. Multi-step tool chain: each step's input depends on the previous step's real output ===
+task: What's the weather in the capital of France?
+iteration 1: agent decides -> call getCapital("France")
+  real tool result: "Paris"
+iteration 2: agent decides -> call getWeather("Paris")  [input depends on the PREVIOUS step's real output]
+  real tool result: "18C, cloudy"
+iteration 3: agent decides -> enough info, produce final answer
+final answer: The weather in Paris (the capital of France) is 18C, cloudy.
+>>> real total iterations: 3
+
+=== 2. Runaway-loop safety: a real max-iteration cap stops a task that never resolves ===
+task: Give me a definitive status update.  (deliberately built so the tool never returns a final, usable answer)
+iteration 1: agent calls getAmbiguousStatus -> "need more detail to answer: Give me a definitive status update." (still not resolved)
+iteration 2: agent calls getAmbiguousStatus -> "need more detail to answer: Give me a definitive status update." (still not resolved)
+iteration 3: agent calls getAmbiguousStatus -> "need more detail to answer: Give me a definitive status update." (still not resolved)
+iteration 4: agent calls getAmbiguousStatus -> "need more detail to answer: Give me a definitive status update." (still not resolved)
+iteration 5: agent calls getAmbiguousStatus -> "need more detail to answer: Give me a definitive status update." (still not resolved)
+>>> real max-iteration cap (5) reached without resolution -- aborting instead of looping forever.
+>>> real iterations actually run: 5
+
+=== 3. Sequential vs. parallel tool execution: real, measured wall-clock difference ===
+sequential: Paris=18C, cloudy, Tokyo=24C, clear -- real elapsed: 408ms
+parallel:   Paris=18C, cloudy, Tokyo=24C, clear -- real elapsed: 207ms
+>>> real, measured speedup: 2.0x (two independent tool calls, no data dependency between them)

@@ -1,0 +1,25 @@
+var infers String here, at compile time — this is NOT dynamic typing
+PASS: var-declared 'message' is a real, statically-typed String
+
+{
+  "name": "text blocks",
+  "since": "Java 15"
+}
+PASS: text block correctly preserves real multi-line JSON-shaped content
+
+p1 = Point[x=3, y=4], p1.equals(p2) = true
+PASS: records get real, correct, compiler-generated equals() based on components
+PASS: records get real, compiler-generated accessors (x(), y()) automatically
+PASS: a record's compact constructor can still enforce real validation
+
+Pattern-matched instanceof: p.x() = 3, p.y() = 4
+PASS: pattern matching for instanceof binds 'p' directly, no separate cast statement needed
+
+Circle area: 12.566370614359172, Square area: 9.0
+PASS: exhaustive switch over a sealed type correctly computes Circle's area
+PASS: exhaustive switch over a sealed type correctly computes Square's area, with NO default branch
+
+Completed 1000 / 1000 tasks, each on its own real virtual thread
+PASS: 1000 real virtual threads all completed — this would be a heavy real OS-thread cost pre-Java 21
+
+9 / 9 assertions passed

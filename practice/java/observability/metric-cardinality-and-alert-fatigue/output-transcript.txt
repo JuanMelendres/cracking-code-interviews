@@ -1,0 +1,24 @@
+### 1. Metric cardinality: identical request volume, wildly different time-series counts
+Requests processed (each registry): 20000
+
+LOW-cardinality  (route + status code):  distinct time series (Meters) = 3, heap delta = 166432 bytes
+HIGH-cardinality (route + raw request_id): distinct time series (Meters) = 20000, heap delta = 7196864 bytes
+
+High-cardinality registry created 6667x more distinct time series and used ~43x more heap for the identical request volume.
+
+### 2. Alert fatigue: naive static threshold vs. multi-window burn-rate alerting
+Synthetic 7-day error-rate series generated (1-minute resolution, 10080 points).
+Contains 2 real, sustained incidents plus realistic single-minute noise spikes.
+
+Naive static-threshold rule (fires any single minute > 1% error rate):
+  distinct alert-firing events (rising edges) = 28
+
+Multi-window burn-rate rule (page severity, per Google's SRE Workbook: burn rate >= 14.4
+sustained across BOTH a 5-minute AND a 1-hour window simultaneously):
+  distinct alert-firing events (rising edges) = 2
+
+Noise reduction: naive rule fired 14.0x more often than the burn-rate rule,
+while both rules detected both real injected incidents (verified below).
+
+Incident A (minutes 3000-3020, ~5% sustained) caught by naive rule: true, caught by burn-rate rule: true
+Incident B (minutes 7000-7045, ~3% sustained) caught by naive rule: true, caught by burn-rate rule: true

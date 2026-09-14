@@ -1,0 +1,65 @@
+############ Normal election, no partition ############
+  0 starts election for term 1 (reachable peers: [4, 3, 2, 1, 0])
+    RequestVote(term=1) -> node 1 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 2 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 3 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 4 : granted=true (peer now at term 1)
+  Result: 5/5 votes (majority needs 3) -> ELECTED LEADER
+  Final states: [Node0[term=1, state=LEADER, votedFor=0], Node1[term=1, state=FOLLOWER, votedFor=0], Node2[term=1, state=FOLLOWER, votedFor=0], Node3[term=1, state=FOLLOWER, votedFor=0], Node4[term=1, state=FOLLOWER, votedFor=0]]
+
+############ Network partition: only the majority side can elect a leader ############
+  --- Majority-side partition {0,1,2} attempts an election ---
+  0 starts election for term 1 (reachable peers: [2, 1, 0])
+    RequestVote(term=1) -> node 1 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 2 : granted=true (peer now at term 1)
+  Result: 3/5 votes (majority needs 3) -> ELECTED LEADER
+
+  --- Minority-side partition {3,4} attempts an election, same real rules ---
+  3 starts election for term 1 (reachable peers: [3, 4])
+    RequestVote(term=1) -> node 4 : granted=true (peer now at term 1)
+  Result: 2/5 votes (majority needs 3) -> no majority, election fails this term
+
+  Majority side elected a leader: true  |  Minority side elected a leader: false
+  The minority side literally cannot reach quorum (2 votes max out of 5, needs 3) --
+  no amount of retrying changes this while the partition persists.
+
+############ Real split vote (no winner), then a successful retry next term ############
+  --- Term 1: two candidates (0 and 1) campaign in the SAME term ---
+  Node 4's RequestVote messages from BOTH candidates are lost/delayed this round --
+  a real, plausible cause of a split vote: not every node hears from every candidate in time.
+  Candidate 0 got 2/5 votes; Candidate 1 got 2/5 votes (node 4 never responded to either candidate this round).
+  Neither reaches the cluster-wide majority of 3 -- term 1 ends with NO elected leader.
+
+  --- Term 2: nodes 0 and 1 step back to FOLLOWER; node 2 alone campaigns next ---
+  2 starts election for term 2 (reachable peers: [4, 3, 2, 1, 0])
+    RequestVote(term=2) -> node 0 : granted=true (peer now at term 2)
+    RequestVote(term=2) -> node 1 : granted=true (peer now at term 2)
+    RequestVote(term=2) -> node 3 : granted=true (peer now at term 2)
+    RequestVote(term=2) -> node 4 : granted=true (peer now at term 2)
+  Result: 5/5 votes (majority needs 3) -> ELECTED LEADER
+  Real Raft avoids repeated splits like term 1's via RANDOMIZED election timeouts --
+  this demo forces the split deterministically to prove the mechanic, then shows a
+  real, successful single-candidate election resolving it the very next term.
+
+############ A stale leader steps down the instant it sees a higher term ############
+  --- Node 0 wins a real election and becomes leader for term 1 ---
+  0 starts election for term 1 (reachable peers: [4, 3, 2, 1, 0])
+    RequestVote(term=1) -> node 1 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 2 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 3 : granted=true (peer now at term 1)
+    RequestVote(term=1) -> node 4 : granted=true (peer now at term 1)
+  Result: 5/5 votes (majority needs 3) -> ELECTED LEADER
+  Node 0 state: Node0[term=1, state=LEADER, votedFor=0]
+
+  --- Node 1 times out (e.g. missed heartbeats) and starts an election for term 2 ---
+  1 starts election for term 2 (reachable peers: [4, 3, 2, 1])
+    RequestVote(term=2) -> node 2 : granted=true (peer now at term 2)
+    RequestVote(term=2) -> node 3 : granted=true (peer now at term 2)
+    RequestVote(term=2) -> node 4 : granted=true (peer now at term 2)
+  Result: 4/5 votes (majority needs 3) -> ELECTED LEADER
+  Node 1 state: Node1[term=2, state=LEADER, votedFor=1]
+
+  --- Node 0 (the old term-1 leader) now receives a RequestVote carrying term 2 ---
+  Node 0 state AFTER seeing the higher term: Node0[term=2, state=FOLLOWER, votedFor=1]
+  Node 0 was LEADER, is now FOLLOWER -- a real, direct demonstration of Raft's core safety rule:
+  any node that observes a higher term immediately steps down, guaranteeing at most one leader per term.

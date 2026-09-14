@@ -1,0 +1,42 @@
+############ S -- Single Responsibility Principle ############
+--- VIOLATION: UserManagerViolation's own declared methods (one class) ---
+  [saveToDatabase, sendWelcomeEmail, validate]  <-- validation + persistence + notification, ALL in one class
+--- FIXED: three separate classes, each with exactly one declared method ---
+  UserValidator:    [validate]
+  UserRepository:   [save]
+  WelcomeNotifier:  [notifyUser]
+A change to HOW emails are validated only touches UserValidator now --
+it cannot accidentally break persistence or notification code in the same class.
+
+############ O -- Open/Closed Principle ############
+--- VIOLATION: works for existing shapes ---
+  circle area=12.57, square area=9.00
+  (adding Triangle support here requires EDITING AreaCalculatorViolation.area())
+--- FIXED: same shapes, via AreaCalculatorFixed (never touched since first written) ---
+  total area (circle+square) = 21.57
+--- FIXED: added Triangle -- a NEW class -- zero changes to AreaCalculatorFixed's source ---
+  total area (circle+square+triangle) = 31.57
+
+############ L -- Liskov Substitution Principle ############
+--- Any code written against Rectangle should hold for ANY Rectangle, per LSP ---
+  Rectangle : setWidth(5); setHeight(4); expected area=20, actual area=20  OK
+  SquareLsp : setWidth(5); setHeight(4); expected area=20, actual area=16  VIOLATION -- setHeight silently changed width too
+SquareLsp IS-A Rectangle per the type system, but breaks code written against Rectangle's own contract.
+--- FIXED: no inheritance relationship at all -- Square and Rectangle both just implement Shape ---
+  Square(5).area() = 25.0  (no shared mutable base type to violate)
+
+############ I -- Interface Segregation Principle ############
+  Robot working.
+--- VIOLATION: RobotWorkerViolation.eat() must exist to satisfy WorkerViolation, and throws ---
+  Caught: UnsupportedOperationException: Robots don't eat
+--- FIXED: RobotWorkerFixed implements only Workable -- no eat() method exists to call at all ---
+  RobotWorkerFixed's declared methods: [work]
+  Robot working.
+
+############ D -- Dependency Inversion Principle ############
+--- VIOLATION: OrderServiceViolation can ONLY ever use MySQL -- it constructs it itself ---
+  [MySQL] INSERT order: order-1
+--- FIXED: identical OrderServiceFixed class, swapped repository via constructor injection ---
+  [MySQL] INSERT order: order-2
+  [InMemory] stored order: order-3 (list size=1)
+  Same OrderServiceFixed.java, zero changes -- only the injected implementation differs.

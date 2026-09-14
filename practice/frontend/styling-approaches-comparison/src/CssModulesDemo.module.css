@@ -1,0 +1,13 @@
+/* F-302: this same class name (.title) is ALSO used, independently, in
+   CssModulesDemoTwo.module.css -- CSS Modules scopes each file's classes
+   separately, so the two real, compiled output class names should NOT
+   collide, even though the source-level name is identical. */
+.title {
+  color: rebeccapurple;
+  font-weight: 700;
+}
+
+.box {
+  border: 2px solid rebeccapurple;
+  padding: 8px;
+}

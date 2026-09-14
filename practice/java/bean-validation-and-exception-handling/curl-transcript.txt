@@ -1,0 +1,28 @@
+=== 1. Valid CREDIT_CARD order -- should succeed (201) ===
+{"orderId":1,"customerEmail":"alice@example.com"}
+HTTP 201
+
+=== 2. Valid PAYPAL order (no cardNumber needed) -- should succeed (201) ===
+{"orderId":2,"customerEmail":"bob@example.com"}
+HTTP 201
+
+=== 3. Multiple simple field violations at once -- 400 with structured field errors ===
+{"error":"VALIDATION_FAILED","fieldErrors":{"customerEmail":"customerEmail must be a valid email address","paymentMethod":"paymentMethod is required","quantity":"quantity must be positive"}}
+HTTP 400
+
+=== 4. CREDIT_CARD but missing cardNumber -- the custom class-level @ValidPayment constraint fires ===
+{"error":"VALIDATION_FAILED","fieldErrors":{"_object":"cardNumber is required and must be 16 digits when paymentMethod is CREDIT_CARD"}}
+HTTP 400
+
+=== 5. GET a real, existing order ===
+{"customerEmail":"alice@example.com","quantity":2,"paymentMethod":"CREDIT_CARD","cardNumber":"4111111111111111"}
+HTTP 200
+
+=== 6. GET a non-existent order -- specific 404 handler ===
+{"message":"Order 42 not found","error":"ORDER_NOT_FOUND"}
+HTTP 404
+
+=== 7. GET id=999 -- simulates an unexpected internal exception; the catch-all handler must NOT leak the real message ===
+{"message":"An unexpected error occurred","error":"INTERNAL_ERROR"}
+HTTP 500
+

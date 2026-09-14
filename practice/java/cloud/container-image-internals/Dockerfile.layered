@@ -1,0 +1,22 @@
+# Same multi-stage shape as Dockerfile.multistage, but the build stage
+# is deliberately split into two COPY steps so Docker's layer cache can
+# do its job: the dependency-resolution layer only invalidates when
+# pom.xml changes, not on every source edit.
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /build
+
+# Layer 1: dependency resolution. Cached as long as pom.xml is unchanged,
+# regardless of how many times application source changes afterward.
+COPY app/pom.xml .
+RUN mvn -q -B dependency:go-offline
+
+# Layer 2: application source and the actual build. This layer's cache
+# busts on every source change, but the (usually much slower) dependency
+# download in Layer 1 is untouched.
+COPY app/src ./src
+RUN mvn -q -B -o -DskipTests package
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /build/target/container-image-internals-jar-with-dependencies.jar app.jar
+CMD ["java", "-jar", "/app/app.jar"]

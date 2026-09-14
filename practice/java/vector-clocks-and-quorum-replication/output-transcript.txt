@@ -1,0 +1,21 @@
+### 1. Vector clocks: detecting a real concurrent write conflict vs. a real causal update
+=== Scenario A: two replicas write independently, neither has seen the other's update ===
+Initial write on replica A: {A=1} (value="milk")
+Replica A writes again, unaware of B: {A=2} (value="milk,eggs")
+Replica B writes independently, unaware of A's second write: {A=1, B=1} (value="milk,bread")
+Comparing {A=2} vs {A=1, B=1} -> CONCURRENT
+Real conflict detected? true (neither write's clock dominates the other -> both versions must be kept and merged/resolved, e.g. union to "milk,eggs,bread")
+
+=== Scenario B: replica B first READS replica A's update, then writes (a real causal relationship) ===
+Replica B reads A's state {A=2}, then writes: {A=2, B=1} (value="milk,eggs,bread")
+Comparing {A=2, B=1} vs {A=2} -> DOMINATES
+Real conflict detected? false (B's clock dominates A's -> B's write causally supersedes A's, no merge needed, A's version can simply be discarded)
+
+### 2. Quorum replication: exhaustive proof of the W+R > N overlap rule
+N=5 W=3 R=3 (W+R=6, > N): 10 write-quorums x 10 read-quorums = 100 pairs checked -> EVERY pair overlaps (read always sees latest write)
+N=5 W=3 R=2 (W+R=5, = N): 10 write-quorums x 10 read-quorums = 100 pairs checked -> COUNTEREXAMPLE FOUND (stale read possible)
+    e.g. write quorum [3, 4, 5] and read quorum [1, 2] share NO common replica
+N=5 W=2 R=2 (W+R=4, < N): 10 write-quorums x 10 read-quorums = 100 pairs checked -> COUNTEREXAMPLE FOUND (stale read possible)
+    e.g. write quorum [4, 5] and read quorum [2, 3] share NO common replica
+N=5 W=1 R=1 (W+R=2, < N): 5 write-quorums x 5 read-quorums = 25 pairs checked -> COUNTEREXAMPLE FOUND (stale read possible)
+    e.g. write quorum [5] and read quorum [4] share NO common replica

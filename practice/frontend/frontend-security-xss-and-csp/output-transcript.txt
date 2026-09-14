@@ -1,0 +1,20 @@
+npm notice run frontend-security-xss-and-csp@0.0.0 start
+npm notice run node run.js
+listening on 8917
+
+=== 1. Reflected XSS: server concatenates user input into HTML with no escaping ===
+window.xssFired === true ? true
+rendered #greeting innerHTML: Hello, <img src="x" onerror="window.xssFired=true">
+
+=== 2. Identical payload, but HTML-escaped by the server before insertion ===
+window.xssFired === true ? false
+rendered #greeting text (payload shown literally, not executed): Hello, <img src=x onerror="window.xssFired=true">
+
+=== 3. Inline <script> with NO Content-Security-Policy header ===
+#marker text: inline script ran
+
+=== 4. Identical inline <script>, but WITH a real CSP header (script-src 'self') ===
+Response CSP header: default-src 'self'; script-src 'self'
+#marker text (expect: NOT set, script blocked): not set
+Real CSP violation reported in browser console:
+  Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-ygNolbtTAjV6nm91uVlWC+DkdU+8dqv4uokP+ex5VCc='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.

@@ -1,0 +1,24 @@
+############ Ordering guarantee: poll() only ############
+  Inserted in this order: [50, 10, 40, 20, 30, 5, 45]
+  poll() repeatedly: [5, 10, 20, 30, 40, 45, 50]  <-- always ascending, regardless of insert order
+
+############ Max-heap via a Comparator -- same class ############
+  Comparator.reverseOrder() -> poll() order: [50, 40, 30, 20, 10]  <-- descending, same class, one constructor arg
+
+############ The classic trap: iteration order != sorted order ############
+  for-each iteration order:  5 20 10 50 30 40 45  <-- this is the internal array's storage order, NOT sorted
+  repeated poll() order:     [5, 10, 20, 30, 40, 45, 50]  <-- THIS is the sorted order
+  The ordering guarantee applies ONLY to poll()/peek() -- never to iterator()/toString()/stream().
+
+############ Real, measured O(log n): comparisons per poll() ############
+  size N -> comparisons made by exactly ONE poll() call (sift-down), and log2(N) for reference:
+  N=      100  poll() comparisons= 10   log2(N)=6.6
+  N=    1,000  poll() comparisons= 18   log2(N)=10.0
+  N=   10,000  poll() comparisons= 24   log2(N)=13.3
+  N=  100,000  poll() comparisons= 32   log2(N)=16.6
+  N=1,000,000  poll() comparisons= 38   log2(N)=19.9
+  Comparisons per poll() track log2(N), not N -- real, measured O(log n), not asserted.
+
+############ Not thread-safe, and fail-fast like the rest of this domain ############
+  Iterating and structurally modifying the SAME PriorityQueue mid-iteration...
+  Threw ConcurrentModificationException -- PriorityQueue's iterator is fail-fast, exactly like ArrayList's and HashMap's.

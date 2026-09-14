@@ -1,0 +1,124 @@
+=== src/variablesAndScope.js ===
+--- DEMO: var is function-scoped, let/const are block-scoped ---
+inside block: functionScoped = visible outside the if-block | blockScoped = visible only inside the if-block
+outside block: functionScoped = visible outside the if-block
+outside block: accessing blockScoped threw ReferenceError - blockScoped is not defined
+
+--- DEMO: temporal dead zone ---
+reading a `let` before its declaration threw ReferenceError - Cannot access 'beforeDeclaration' before initialization
+after declaration: now initialized
+
+--- DEMO: const prevents reassignment, not mutation ---
+mutating a const object is allowed -> { count: 1 }
+reassigning a const binding threw TypeError - Assignment to constant variable.
+
+--- DEMO: typeof and truthy/falsy ---
+typeof examples: number string boolean undefined object object function
+falsy values are falsy: [ false, false, false, false, false, false ]
+these look "empty" but are truthy: [ true, true, true, true, true ]
+
+=== src/thisBinding.js ===
+--- DEMO: this-in-arrow-vs-regular-function ---
+incrementRegular: this.label = regularMethod | this.count = 1
+incrementRegular: this.label = regularMethod | this.count = 2
+incrementArrow: this.label = undefined | this.count = undefined
+
+--- DEMO: the setTimeout callback footgun ---
+
+--- DEMO: extracting a method loses `this` ---
+handleClickRegular: this.label = undefined
+handleClickArrow: this.label = Submit
+regular callback: this.name is undefined (this is a Node Timeout object, not timerObject)
+arrow callback: this.name is timerObject
+
+=== src/closures.js ===
+--- DEMO: closure-based counter factory ---
+counterA.increment() -> 1
+counterA.increment() -> 2
+counterA.increment() -> 3
+counterB.increment() -> 101
+counterA.getValue()  -> 3
+counterB.getValue()  -> 101
+counterA and counterB are independent closures over separate `count` variables.
+
+--- DEMO: the classic var-in-a-loop closure bug, and the let fix ---
+with var: [ 3, 3, 3 ]
+with let: [ 0, 1, 2 ]
+
+--- WHY THIS MATTERS FOR REACT: useState relies on the same closure mechanism ---
+initial fake state -> 0
+fake component re-rendered with state = 1
+fake component re-rendered with state = 2
+
+=== src/eventLoop.js ===
+--- DEMO: sync vs microtask vs macrotask ordering ---
+1: sync - start
+2: sync - end
+
+--- WHY setTimeout(fn, 0) DOES NOT RUN IMMEDIATELY ---
+The call stack must fully empty, THEN the microtask queue must fully
+drain, and only THEN does the event loop pull the next macrotask off
+the timer queue. Expected order printed above: 1, 2, 3, 4, 5.
+
+--- DEMO: async/await is sugar over the same microtask queue ---
+start of async/await demo
+A: inside asyncDemo, before await
+B: synchronous code right after calling asyncDemo() (runs before C)
+3: microtask - first .then()
+4: microtask - second .then()
+C: inside asyncDemo, after await (queued as a microtask)
+5: macrotask - setTimeout(fn, 0) callback
+
+=== src/equality.js ===
+--- DEMO: == vs === surprises ---
+[] == false          -> true
+[] === false         -> false
+'0' == false         -> true
+'0' === false        -> false
+null == undefined    -> true
+null === undefined   -> false
+'' == 0              -> true
+'' === 0             -> false
+[] == ''             -> true
+[1] == 1             -> true
+'1' == 1             -> true
+'1' === 1            -> false
+
+--- WHY: == coerces types before comparing, === never does ---
+[] == false  coerces both sides toward numbers: [] -> "" -> 0, false -> 0, so 0 == 0 is true.
+'0' == false coerces false -> 0 and '0' -> 0, so 0 == 0 is true, even though '0' is a truthy string.
+=== skips coercion entirely and compares type + value directly, which is why this repository
+always recommends === (and !==): it removes an entire class of "why is this true?!" bugs.
+
+=== src/arraysObjectsDestructuring.js ===
+--- DEMO: array methods ---
+scores        -> [ 72, 95, 58, 81, 40, 99 ]
+passing       -> [ 72, 95, 81, 99 ]
+letterGrades  -> [ 'C', 'A', 'B', 'A' ]
+total (reduce)-> 445
+forEach side effect -> [
+  'logged:72',
+  'logged:95',
+  'logged:58',
+  'logged:81',
+  'logged:40',
+  'logged:99'
+]
+
+--- DEMO: destructuring ---
+destructured name, age, city -> Ana 29 Bogota
+firstScore, secondScore, restScores -> 72 95 [ 58, 81, 40, 99 ]
+destructured parameter with default -> Bilal is 0
+
+--- DEMO: spread and rest ---
+spread to copy+extend array -> [ 1, 2, 3, 4, 5 ] | original unchanged -> [ 1, 2, 3 ]
+spread to merge objects (later key wins) -> { a: 1, b: 99, c: 3 }
+rest parameters, sumAll(1,2,3,4) -> 10
+
+=== src/moduleDemo.js ===
+--- DEMO: ESM import/export ---
+named import square(5)         -> 25
+named import circleArea(2)     -> 12.56636
+named import PI_APPROX         -> 3.14159
+default import describeNumber(6) -> 6 squared is 36
+

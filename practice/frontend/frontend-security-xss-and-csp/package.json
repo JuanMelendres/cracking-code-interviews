@@ -1,0 +1,11 @@
+{
+  "name": "frontend-security-xss-and-csp",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node run.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

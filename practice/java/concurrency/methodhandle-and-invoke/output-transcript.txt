@@ -1,0 +1,35 @@
+### 1. findStatic / findConstructor / findVirtual / bindTo, invoke() vs invokeExact()
+findStatic + invokeExact: square(7) = 49
+invokeExact with mismatched type threw WrongMethodTypeException: handle's method type (int)int but found (int)Object
+invoke() with mismatched-but-compatible type adapted successfully: 49
+findConstructor: new Counter(10) -> get() = 10
+findVirtual invoke(receiver, arg): increment(5) -> 15
+bindTo(c) then invoke(3), receiver pre-bound -> 18
+bound handle type (receiver removed): (int)int
+unbound handle type (receiver still a parameter): (Counter,int)int
+
+### 2. Combinators — filterReturnValue and dropArguments
+filterReturnValue(add, describe).invoke(3,4) = sum=7
+combined handle type: (int,int)String
+dropArguments(add, 0, String.class).invoke("ignored-context", 10, 20) = 30
+adapted handle type: (String,int,int)int
+
+### 3. A lambda compiles to invokedynamic + LambdaMetafactory, not a synthetic class
+doubler.applyAsInt(21) = 42
+--- javap -v disassembly: the invokedynamic instruction and its bootstrap method ---
+         0: invokedynamic #7,  0              // InvokeDynamic #0:applyAsInt:()Ljava/util/function/IntUnaryOperator;
+         5: astore_1
+         6: getstatic     #11                 // Field java/lang/System.out:Ljava/io/PrintStream;
+...
+BootstrapMethods:
+  0: #48 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #42 (I)I
+--- class files produced for the lambda version (expect: no synthetic $1 class) ---
+LambdaBytecode.class
+
+### 4. Contrast — the equivalent anonymous inner class DOES produce a synthetic class file
+doubler.applyAsInt(21) = 42
+--- class files produced for the anonymous-inner-class version ---
+AnonClassBytecode$1.class
+AnonClassBytecode.class

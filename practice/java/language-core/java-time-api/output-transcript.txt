@@ -1,0 +1,36 @@
+############ Real immutability, vs. legacy Calendar's in-place mutation ############
+  original:      2026-01-15
+  original.plusMonths(1) returns a NEW object: 2026-02-15
+  original unchanged after the call: 2026-01-15  (real immutability -- no setter exists at all)
+
+  --- Legacy contrast: java.util.Calendar mutates in place ---
+  Calendar set to: Thu Jan 15 08:13:29 CST 2026
+  same Calendar object, after cal.add(MONTH, 1): Sun Feb 15 08:13:29 CST 2026
+  beforeMutation reference now reads: Thu Jan 15 08:13:29 CST 2026  <-- if any other code held a reference to this SAME Calendar, it would see the mutation too
+
+############ Four types, one real moment ############
+  Same real moment, four different real types:
+  LocalDate      (date only, no time, no zone):       2026-06-15
+  LocalDateTime  (date+time, no zone -- ambiguous):   2026-06-15T14:30
+  ZonedDateTime  (date+time+zone -- unambiguous):     2026-06-15T14:30-04:00[America/New_York]
+  Instant        (machine timestamp, UTC, no zone):   2026-06-15T18:30:00Z
+
+############ Period (calendar-based) vs Duration (time-based) ############
+  Period.between(2026-01-31, 2026-03-01) = P1M1D  (1 month, 1 day -- calendar-aware, handles Jan's varying length)
+  Duration.between two Instants 29*24h apart = PT696H  (exact elapsed time, no calendar awareness at all)
+
+############ Real DST transition: Period and Duration genuinely diverge ############
+  Starting point: 2026-03-07T12:00-05:00[America/New_York] (the day BEFORE a real US DST spring-forward)
+  plus(Period.ofDays(1))   -> 2026-03-08T12:00-04:00[America/New_York]  (calendar day -- lands on the SAME wall-clock hour, 12:00)
+  plus(Duration.ofDays(1)) -> 2026-03-08T13:00-04:00[America/New_York]  (exactly 24 real hours later)
+  Results equal? false  <-- real, different results from the SAME starting point and the SAME nominal '1 day',
+  because Period is calendar-based and Duration is a fixed number of real seconds --
+  this specific day only had 23 real hours due to the DST spring-forward.
+
+############ Real thread-safety bug: shared SimpleDateFormat ############
+  Shared SimpleDateFormat, 20 threads x 500 concurrent parse() calls each:
+  Corrupted/failed results: 7291 / 10000  <-- REAL corruption, not hypothetical
+
+############ Real thread-safety: shared DateTimeFormatter ############
+  Shared DateTimeFormatter (immutable), identical concurrent workload:
+  Corrupted/failed results: 0 / 10000  <-- immutability structurally prevents this entire bug class

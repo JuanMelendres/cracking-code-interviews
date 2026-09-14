@@ -1,0 +1,37 @@
+byte:    127  (range -128 to 127, 1 byte)
+short:   32000  (range -32768 to 32767, 2 bytes)
+int:     2000000000  (range -2147483648 to 2147483647, 4 bytes)
+long:    9000000000000000000  (range -9223372036854775808 to 9223372036854775807, 8 bytes)
+float:   3.14  (~7 decimal digits precision, 4 bytes)
+double:  3.14159265358979  (~15 decimal digits precision, 8 bytes)
+char:    A  (code point 65, range 0 to 65535, 2 bytes, UTF-16 code unit)
+boolean: true  (JVM-dependent size, not specified by the JLS)
+
+Byte.MAX_VALUE + 1, cast back to byte = -128
+PASS: byte overflow wraps 127 + 1 to -128, silently, no exception
+
+Integer.MAX_VALUE + 1 = -2147483648
+PASS: int overflow wraps MAX_VALUE + 1 to MIN_VALUE, silently
+
+0.1 + 0.2 = 0.30000000000000004
+PASS: 0.1 + 0.2 does NOT exactly equal 0.3 due to binary floating-point representation
+PASS: but it IS extremely close to 0.3 — the error is in the last few bits
+
+primitive int 42 autoboxed to Integer 42, then unboxed back to int 42
+PASS: round-trip autoboxing/unboxing preserves the value
+
+Integer 127 == Integer 127 (both from cache): true
+Integer 128 == Integer 128 (both NEW objects): false
+PASS: Integer.valueOf caches -128..127, so two 127s are the SAME object (== is true)
+PASS: 128 is outside the cache range, so two 128s are DIFFERENT objects (== is false)
+PASS: but .equals() correctly reports them as equal in VALUE
+
+Integer.parseInt("123") = 123, Integer.toString(123) = "123"
+PASS: Integer.parseInt correctly parses a numeric string
+PASS: Integer.toString correctly formats back to a string
+
+Unboxed successfully: 5
+Caught real NullPointerException while auto-unboxing a null Integer
+PASS: auto-unboxing a null wrapper throws a real NullPointerException, not a silent 0
+
+11 / 11 assertions passed
