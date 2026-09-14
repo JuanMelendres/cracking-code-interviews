@@ -11246,6 +11246,36 @@ proving a sensitive internal detail is logged server-side but never reaches the 
 <p>When <code>@Valid</code> is present on a <code>@RequestBody</code> parameter, Spring performs validation as part of <em>argument resolution</em> — before invoking the controller method at all. A validation failure never reaches the method body; it becomes a <code>MethodArgumentNotValidException</code> thrown directly from Spring's argument-resolution machinery, which is precisely why a <code>@ExceptionHandler(MethodArgumentNotValidException.class)</code> method is the only way to customize the failure response — there is no code path inside the controller method itself to intercept it.</p>
 <h3 id="a-generic-catch-all-handler-is-a-security-control-not-just-tidiness">A generic catch-all handler is a security control, not just tidiness<a class="headerlink" href="#a-generic-catch-all-handler-is-a-security-control-not-just-tidiness" title="Permanent link">&para;</a></h3>
 <p>An <code>@ExceptionHandler(Exception.class)</code> method isn't merely about returning consistent JSON shape — <a href="#internal-implementation">Internal Implementation</a> demonstrates directly that, without one, an unexpected exception's raw <code>getMessage()</code> (which can contain genuinely sensitive detail — a connection string, an internal file path, a third-party API error body) risks reaching the client as-is via Spring's own default error-handling fallback. A deliberate catch-all, logging the real exception server-side and returning a fixed, generic message to the client, is what closes that gap in exactly one place rather than requiring every individual exception type to be anticipated and specifically handled.</p>
+<h3 id="controlleradvice-vs-restcontrolleradvice-the-same-relationship-as-controller-vs-restcontroller"><code>@ControllerAdvice</code> vs. <code>@RestControllerAdvice</code> — the same relationship as <code>@Controller</code> vs. <code>@RestController</code><a class="headerlink" href="#controlleradvice-vs-restcontrolleradvice-the-same-relationship-as-controller-vs-restcontroller" title="Permanent link">&para;</a></h3>
+<p>Every example in this chapter uses <code>@RestControllerAdvice</code>, but it's worth naming explicitly what it actually is: shorthand for <code>@ControllerAdvice</code> + <code>@ResponseBody</code>, the exact same composition <a href="../spring-mvc-fundamentals/">Spring MVC Fundamentals</a>'s own stereotype-annotation table describes for <code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code>. <code>@ControllerAdvice</code>'s <code>@ExceptionHandler</code> methods resolve their return values as <em>view names</em> (for a server-rendered app using Thymeleaf or JSPs); <code>@RestControllerAdvice</code>'s resolve them as the HTTP response body directly (JSON, by default) — which is why a JSON-API backend, like this chapter's own demo, reaches for <code>@RestControllerAdvice</code> specifically, not the plain form.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>@ControllerAdvice</code></th>
+<th><code>@RestControllerAdvice</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composition</td>
+<td>Base annotation</td>
+<td><code>@ControllerAdvice</code> + <code>@ResponseBody</code></td>
+</tr>
+<tr>
+<td><code>@ExceptionHandler</code> return value resolved as</td>
+<td>A view name (server-rendered HTML)</td>
+<td>The HTTP response body itself (JSON, by default)</td>
+</tr>
+<tr>
+<td>Correct for</td>
+<td>A traditional MVC app returning rendered pages</td>
+<td>A REST/JSON API — this chapter's own case</td>
+</tr>
+</tbody>
+</table>
+<p>Both also support <code>@ControllerAdvice(basePackages = ...)</code>/<code>assignableTypes(...)</code> to narrow which controllers a given advice applies to, instead of applying globally to every controller in the application.</p>
+<p>Beyond exception handling, <code>@ControllerAdvice</code>/<code>@RestControllerAdvice</code> classes can also hold <code>@ModelAttribute</code> methods (data added to every controller's model automatically) and <code>@InitBinder</code> methods (customizing how request parameters bind to command objects) — this chapter focuses on the <code>@ExceptionHandler</code> use, by far the most common of the three in a typical backend service, but the class isn't exclusively an exception-handling mechanism.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>Real, valid requests succeed (201):</strong></p>
 <div class="highlight"><pre><span></span><code>=== 1. Valid CREDIT_CARD order -- should succeed (201) ===
@@ -11463,9 +11493,25 @@ java.lang.RuntimeException: unexpected DB failure: connection string postgres://
 <td>Catch-all <code>@ExceptionHandler(Exception.class)</code></td>
 <td>Real sensitive detail logged server-side, never reaching the client</td>
 </tr>
+<tr>
+<td>JSON/REST API's global exception handler</td>
+<td><code>@RestControllerAdvice</code> (<code>@ControllerAdvice</code> + <code>@ResponseBody</code>)</td>
+<td>Same composition pattern as <code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
+<h3 id="card-controlleradvice-vs-restcontrolleradvice">Card: @ControllerAdvice vs. @RestControllerAdvice<a class="headerlink" href="#card-controlleradvice-vs-restcontrolleradvice" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+What's the actual difference between <code>@ControllerAdvice</code> and <code>@RestControllerAdvice</code>?</p>
+<p><strong>Answer:</strong>
+<code>@RestControllerAdvice</code> is <code>@ControllerAdvice</code> + <code>@ResponseBody</code> — the exact same composition as <code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code>. <code>@ControllerAdvice</code>'s <code>@ExceptionHandler</code> methods resolve return values as view names (server-rendered pages); <code>@RestControllerAdvice</code>'s resolve them as the HTTP response body directly (JSON, by default).</p>
+<p><strong>Why it matters:</strong>
+A REST/JSON API needs <code>@RestControllerAdvice</code> specifically — using plain <code>@ControllerAdvice</code> on a JSON API would try to resolve the handler's return value as a view name instead of serializing it to the response body.</p>
+<p><strong>Common trap:</strong>
+Assuming the two are interchangeable, or not knowing the relationship mirrors <code>@Controller</code>/<code>@RestController</code> exactly.</p>
+<p><strong>Related:</strong>
+<a href="../spring-mvc-fundamentals/">Spring MVC Fundamentals</a></p>
 <h3 id="card-field-level-vs-class-level-validation">Card: Field-level vs. class-level validation<a class="headerlink" href="#card-field-level-vs-class-level-validation" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 Can a field-level annotation like <code>@NotBlank</code> express the rule "cardNumber is required only when paymentMethod is CREDIT_CARD"?</p>
@@ -11523,7 +11569,7 @@ Believing "I've handled every exception type I can think of" is equivalent to "I
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:23:14 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:46:11 UTC">September 14, 2026</span>
   </span>
 
     
