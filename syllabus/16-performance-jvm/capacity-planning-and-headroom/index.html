@@ -11465,7 +11465,7 @@
 <ol>
 <li>The theoretical ceiling is <code>POOL_SIZE / (SERVICE_TIME_MILLIS / 1000)</code>; the measured plateau in this chapter's data (148 req/s against a 160 req/s theoretical ceiling) ran about 8% below theoretical due to real scheduling and measurement overhead — expect a similar small gap, not an exact match.</li>
 <li>As offered rate approaches the pool's ~200 req/s capacity (6 workers × 30ms), both <code>L</code> and <code>W</code> grow together — visible directly as rising sampled <code>L</code> and rising measured <code>W</code> — while the system is still technically stable (arrivals not exceeding capacity), which is the early warning this chapter's Little's Law tool provides before an actual saturation incident occurs.</li>
-<li>With 2 instances needing to individually absorb full load if the third fails (N-1 redundancy across what's actually a 3-instance fleet), each surviving instance must handle the full 130 req/s alone within its own headroom target — e.g., at a 65% target utilization, each instance's provisioned capacity should be <code>130 / 0.65 ≈ 200</code> req/s, sized and load-tested per instance, not assumed from a spec sheet.</li>
+<li>"N-1 redundancy across 2 instances" means a 2-instance fleet sized to survive losing one of them — so the surviving instance must be able to handle the full 130 req/s peak alone, not split with a third instance that doesn't exist in this fleet. At a 65% target utilization, that surviving instance's provisioned capacity should be <code>130 / 0.65 ≈ 200</code> req/s — and since both instances must be provisioned identically (either one could be the one that fails), each of the 2 instances is sized to 200 req/s, not 65 req/s each as a naive 130/2 split would suggest; the redundancy requirement, not the steady-state 2-way split, is what actually sizes each instance.</li>
 </ol>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11500,7 +11500,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 20:22:46 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 21:06:24 UTC">September 14, 2026</span>
   </span>
 
     
