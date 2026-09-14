@@ -1315,6 +1315,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Interview Question Bank: `22-ai-llm-engineering`, 30 real questions — initiative complete, all 22 domains done
+
+### Added
+
+- New `question-bank/22-ai-llm-engineering.md`, the final domain in the 22-domain plan. All 6 chapters use the older numbered `## 15. Interview Questions` template with a Junior→Staff leveled Q&A set (5 questions per chapter) and no Flashcards section — a genuinely new domain built with the leveled format from the start.
+- **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout to a completion summary with the full per-domain breakdown.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

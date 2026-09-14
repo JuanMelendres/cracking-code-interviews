@@ -3361,3 +3361,9 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **162 real questions for this domain alone. 1151 real questions across 21 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `22-ai-llm-engineering`, 30 real questions — initiative complete, all 22 domains done)
+
+- New `syllabus/20-interview-preparation/question-bank/22-ai-llm-engineering.md`, the final domain in the 22-domain plan. All 6 chapters use the older numbered `## 15. Interview Questions` template with a Junior→Staff leveled Q&A set (5 questions per chapter, one per tier) and no Flashcards section at all — a genuinely new domain (added 2026-09-09) built with the leveled format from the start, so presented as one leveled set per chapter rather than forced into the usual 4-tier breakdown. 6 chapters × 5 leveled questions = **30 real questions**.
+- **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
