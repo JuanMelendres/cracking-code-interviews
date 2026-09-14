@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/nextjs-app-router-fundamentals/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/07-api-design/">
       
       
-        <link rel="prev" href="../micro-frontends-and-module-federation/">
+        <link rel="prev" href="../06-databases/">
       
       
-        <link rel="next" href="../nextjs-authentication-patterns/">
+        <link rel="next" href="../../system-design/system-design-narration-and-whiteboard-discipline/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Next.js App Router Fundamentals: Nested Layouts and Route Groups - Cracking Code Interviews</title>
+        <title>Interview Question Bank — 07-api-design - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/nextjs-app-router-fundamentals/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/07-api-design/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nextjs-app-router-fundamentals-nested-layouts-and-route-groups" class="md-skip">
+        <a href="#interview-question-bank-api-design" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -131,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Next.js App Router Fundamentals: Nested Layouts and Route Groups
+              Interview Question Bank — 07-api-design
             
           </span>
         </div>
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -384,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -404,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1215,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
   
-    <a href="../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
+    <a href="../../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
       
   
   
@@ -1324,7 +1324,7 @@
   
   
   
-    <a href="../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
       
   
   
@@ -1378,7 +1378,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1432,7 +1432,7 @@
   
   
   
-    <a href="../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
+    <a href="../../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
       
   
   
@@ -1531,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -1601,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1706,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -1741,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -1776,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -1811,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1846,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1881,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -1916,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1951,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1986,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2021,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -2056,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -2091,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -2126,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -2161,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2261,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2296,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2466,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2501,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2536,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2606,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -2641,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2676,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2711,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2746,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2781,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2816,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -2851,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2886,7 +2886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2986,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3021,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3056,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3091,7 +3091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3126,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3161,7 +3161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3196,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3231,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3266,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -3301,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3336,7 +3336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3371,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3406,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3441,7 +3441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -3476,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3511,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -3546,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -3581,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -3681,7 +3681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -3716,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -3751,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -3786,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -3821,7 +3821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -3856,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -3956,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -3991,7 +3991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4026,7 +4026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4061,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4096,7 +4096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -4131,7 +4131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -4166,7 +4166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4201,7 +4201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4236,7 +4236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -4336,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -4371,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -4406,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -4441,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -4476,7 +4476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -4511,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -4546,7 +4546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -4581,7 +4581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -4616,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -4651,7 +4651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -4686,7 +4686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -4721,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -4756,7 +4756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -4856,7 +4856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -4884,7 +4884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -4919,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -4947,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -4982,7 +4982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5017,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5052,7 +5052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5087,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -5187,7 +5187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -5222,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -5257,7 +5257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -5292,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -5327,7 +5327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -5362,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -5397,7 +5397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -5432,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -5467,7 +5467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -5502,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -5602,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -5637,7 +5637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -5672,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -5707,7 +5707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -5742,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -5777,7 +5777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -5812,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -5847,7 +5847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -5882,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -5917,7 +5917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6017,7 +6017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6052,7 +6052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -6087,7 +6087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -6122,7 +6122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -6157,7 +6157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -6192,7 +6192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -6292,7 +6292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -6327,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -6362,7 +6362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -6397,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -6432,7 +6432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -6467,7 +6467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -6567,7 +6567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -6602,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6637,7 +6637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6672,7 +6672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -6707,7 +6707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -6807,7 +6807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -6842,7 +6842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -6877,7 +6877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -6912,7 +6912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7012,7 +7012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -7047,7 +7047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -7082,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -7117,7 +7117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -7152,7 +7152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -7187,7 +7187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -7222,7 +7222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -7257,7 +7257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -7292,7 +7292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -7327,7 +7327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -7427,7 +7427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -7462,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -7497,7 +7497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -7532,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -7567,7 +7567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -7602,7 +7602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -7637,7 +7637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -7737,7 +7737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -7765,7 +7765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -7800,7 +7800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -7835,7 +7835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -7870,7 +7870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -7905,7 +7905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -7940,7 +7940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -7975,7 +7975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8015,6 +8015,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8032,11 +8034,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -8057,7 +8059,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8075,7 +8077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -8130,7 +8132,7 @@
   
   
   
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
+    <a href="../../behavioral/" class="md-nav__link">
       
   
   
@@ -8184,7 +8186,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -8215,6 +8217,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8228,18 +8232,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/question-bank/02-java-collections/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_4" id="__nav_2_21_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -8253,12 +8255,468 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Question bank
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/collections
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/concurrency
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-jvm-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/jvm-internals
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-language-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/language-core
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 03-data-structures-algorithms
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-software-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 04-software-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 05-spring
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 06-databases
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-advanced-pagination-idempotency-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Design (Advanced — Pagination, Idempotency, Versioning)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-gateway-bff-and-edge-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Gateway, BFF, and Edge Concerns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphql-api-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraphQL API Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grpc-api-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gRPC API Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-fire questions (from this domain's Flashcards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -8292,7 +8750,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -8346,7 +8804,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -8385,8 +8843,6 @@
                 
   
   
-    
-  
   
   
     
@@ -8404,11 +8860,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" >
         
           
           <label class="md-nav__link" for="__nav_2_22" id="__nav_2_22_label" tabindex="">
@@ -8429,7 +8885,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_22">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8447,7 +8903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -8482,7 +8938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -8517,7 +8973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -8552,7 +9008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -8587,7 +9043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -8622,7 +9078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -8654,44 +9110,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Next.js App Router Fundamentals: Nested Layouts and Route Groups
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -8714,323 +9136,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-when-a-nested-layout-unmounts-vs-persists" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: When a nested layout unmounts vs. persists
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-what-a-route-group-actually-does" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: What a route group actually does
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -9043,7 +9148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -9078,7 +9183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -9113,7 +9218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -9148,7 +9253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -9183,7 +9288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -9218,7 +9323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -9253,7 +9358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -9288,7 +9393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -9323,7 +9428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -9358,7 +9463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -9393,7 +9498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -9428,7 +9533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -9463,7 +9568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -9498,7 +9603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -9533,7 +9638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -9568,7 +9673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -9603,7 +9708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9638,7 +9743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9673,7 +9778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9708,7 +9813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9743,7 +9848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9778,7 +9883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9813,7 +9918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9848,7 +9953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-performance/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -9883,7 +9988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9918,7 +10023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -9953,7 +10058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-testing/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -9988,7 +10093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10023,7 +10128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -10058,7 +10163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -10093,7 +10198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -10128,7 +10233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10228,7 +10333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10263,7 +10368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -10298,7 +10403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -10333,7 +10438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10368,7 +10473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -10403,7 +10508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -10438,7 +10543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -10508,7 +10613,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -10561,7 +10666,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -10614,7 +10719,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -10667,7 +10772,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -10720,7 +10825,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -10773,7 +10878,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -10826,10 +10931,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#rest-api-fundamentals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        REST API Fundamentals
       
     </span>
   </a>
@@ -10837,10 +10942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#api-design-advanced-pagination-idempotency-versioning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning Objectives
+        API Design (Advanced — Pagination, Idempotency, Versioning)
       
     </span>
   </a>
@@ -10848,10 +10953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+  <a href="#api-gateway-bff-and-edge-concerns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters in Interviews
+        API Gateway, BFF, and Edge Concerns
       
     </span>
   </a>
@@ -10859,10 +10964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
+  <a href="#graphql-api-design" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mental Model
+        GraphQL API Design
       
     </span>
   </a>
@@ -10870,10 +10975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
+  <a href="#grpc-api-design" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Definition and Purpose
+        gRPC API Design
       
     </span>
   </a>
@@ -10881,10 +10986,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Quick-fire questions (from this domain's Flashcards)
       
     </span>
   </a>
@@ -10892,230 +10997,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-when-a-nested-layout-unmounts-vs-persists" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: When a nested layout unmounts vs. persists
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-what-a-route-group-actually-does" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: What a route group actually does
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11147,7 +11032,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11170,7 +11055,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11191,10 +11076,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Frontend (React/Next.js)
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../02-java-collections/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Question bank
   </span>
 
         </a>
@@ -11213,7 +11116,7 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/21-frontend-web/nextjs-app-router-fundamentals.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/20-interview-preparation/question-bank/07-api-design.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -11222,245 +11125,209 @@
     
       
     
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/21-frontend-web/nextjs-app-router-fundamentals.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/20-interview-preparation/question-bank/07-api-design.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="nextjs-app-router-fundamentals-nested-layouts-and-route-groups">Next.js App Router Fundamentals: Nested Layouts and Route Groups<a class="headerlink" href="#nextjs-app-router-fundamentals-nested-layouts-and-route-groups" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> F-202 (App Router fundamentals — layouts, pages, nested routing, route groups) · Beginner tier · <code>00-project/frontend-topic-register.md</code>
-<strong>Scope note:</strong> per <code>CLAUDE.md</code>'s Scope Addendum, this is the sixteenth frontend chapter, continuing D-F2 (Next.js) after F-201 established file-based routing, a single root layout, and dynamic segments. This chapter deliberately does NOT re-prove those — it covers what's new: layouts NESTED more than one level deep, layout SCOPING (a layout only persists within the subtree that actually uses it), and route groups (<code>(name)</code> folders that organize/scope without affecting the URL).
-<strong>Provenance:</strong> every claim is verified against the SAME real, running Next.js 16.3.1 App Router app as F-201 — <a href="../../practice/frontend/react-nextjs-fundamentals/"><code>practice/frontend/react-nextjs-fundamentals/</code></a>, extended in place rather than re-scaffolded — including a real captured route manifest, a real measured two-level-layout persistence proof, a real DOM-node-presence proof of layout unmounting once its ancestry no longer applies, and a real <code>window.location.pathname</code> + build-manifest confirmation that a route group's folder name never reaches the URL.</p>
-</blockquote>
-<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#real-verified-demos">Real Verified Demos</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
+<h1 id="interview-question-bank-api-design">Interview Question Bank — API Design<a class="headerlink" href="#interview-question-bank-api-design" title="Permanent link">&para;</a></h1>
+<p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
+tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
+22-domain plan and sourcing discipline.</p>
+<p><strong>Honest count for this domain:</strong> 5 chapters yielded 8 deep questions + 9
+already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
+chapter, <code>rest-api-fundamentals.md</code>) + 12 quick-fire questions = <strong>29 real
+questions</strong>.</p>
 <hr />
-<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>By the end of this chapter you can:</p>
-<ul>
-<li>Explain nested layouts precisely: how many levels can nest, and what actually happens (measurably) at each level on navigation.</li>
-<li>State exactly WHEN a nested layout persists versus unmounts, backed by a real, direct DOM-presence check rather than an assumption.</li>
-<li>Explain what a route group is, why its folder name never reaches the URL, and when you'd reach for one.</li>
-<li>Distinguish "nested routing" (folders creating deeper URL paths) from "route groups" (folders that organize without adding a URL segment) — a common source of confusion this chapter resolves with a real, side-by-side demo of both.</li>
-</ul>
-<h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>This is a Beginner-tier topic, but it's the one where candidates who've only skimmed Next.js docs most often blur two genuinely different mechanisms together: nested folders that DO add URL segments (nested routing) versus parenthesized folders that DON'T (route groups). "Route groups organize files without affecting the URL" is a fact anyone can recite; "I verified it — <code>app/(marketing)/pricing/page.js</code> resolves to <code>window.location.pathname === '/pricing'</code>, confirmed in both a live session and the real build manifest, with no <code>/marketing</code> segment anywhere" is the depth this chapter is built to produce.</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p><strong>A layout's persistence is scoped to exactly the part of the route tree that actually renders through it — not global, and not just "whichever layout happens to be nearest."</strong> F-201 proved the ROOT layout persists across every route, because every route renders through it. This chapter proves the SAME mechanism applies at any nesting depth: a layout declared at <code>app/dashboard/layout.js</code> persists across navigation WITHIN <code>/dashboard/*</code> (because every one of those routes shares it as an ancestor) but genuinely unmounts the moment you navigate to a route that doesn't share that ancestor. Route groups are a separate, unrelated mechanism solving a different problem: letting you apply a shared layout (or just organize files) to a SET of routes without those routes' URLs reflecting that grouping at all.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>Nested layouts</strong> are <code>layout.js</code> files declared at any folder depth within <code>app/</code>, not just the root — by default, layouts nest according to the folder hierarchy, so a layout at <code>app/dashboard/layout.js</code> wraps every route under <code>app/dashboard/</code> (and is itself wrapped by the root layout). They exist to let different SECTIONS of an app share section-specific UI (a dashboard's sidebar nav, a docs section's table of contents) without that UI leaking into unrelated routes, while still getting the same navigation-persistence guarantee the root layout gets — proven in this chapter to hold at the nested level too, not just the root. <strong>Route groups</strong> are folders wrapped in parentheses (<code>(groupName)</code>) that participate in the file tree for ORGANIZATIONAL and layout-SCOPING purposes only — the App Router explicitly excludes a route group's folder name from the resulting URL. They exist to solve a problem nested layouts alone can't: applying a distinct layout to a set of routes (e.g., a "marketing" section vs. an "app" section) WITHOUT forcing every route in that set to live under a shared URL prefix like <code>/marketing/*</code> — the routes can each have whatever URL makes sense (<code>/pricing</code>, <code>/about</code>, <code>/</code>) while still sharing that group's layout.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="nested-layouts-get-the-identical-persistence-guarantee-as-the-root-layout-at-any-depth">Nested layouts get the identical persistence guarantee as the root layout, at any depth<a class="headerlink" href="#nested-layouts-get-the-identical-persistence-guarantee-as-the-root-layout-at-any-depth" title="Permanent link">&para;</a></h3>
-<p>This chapter's demo nests three levels: root layout → <code>app/dashboard/layout.js</code> (<code>DashboardLayout</code>) → <code>app/dashboard/settings/page.js</code>. Real captured evidence: navigating <code>/dashboard</code> → <code>/dashboard/settings</code> left BOTH the root layout's mount counter AND <code>DashboardLayout</code>'s own mount counter unchanged, while the page content changed. This is the same mechanism F-201 proved for the root layout, now confirmed to apply identically to a layout nested two levels deep.</p>
-<h3 id="a-nested-layout-genuinely-unmounts-once-you-leave-its-subtree">A nested layout genuinely unmounts once you leave its subtree<a class="headerlink" href="#a-nested-layout-genuinely-unmounts-once-you-leave-its-subtree" title="Permanent link">&para;</a></h3>
-<p>Real captured evidence, navigating <code>/dashboard/settings</code> → <code>/about</code>: <code>document.querySelector('[data-testid="dashboard-layout"]')</code> went from returning a real DOM element to returning <code>null</code> — the <code>DashboardLayout</code> component didn't just "stop updating," it was genuinely removed from the tree, because <code>/about</code> shares no layout ancestry with anything under <code>/dashboard/</code>. Navigating back to <code>/dashboard</code> afterward showed the layout mounted again — a real, observable mount/unmount/remount cycle, not a hidden cache.</p>
-<h3 id="route-groups-the-folder-name-never-reaches-the-url-proven-live-and-in-the-build-manifest">Route groups: the folder name never reaches the URL — proven live and in the build manifest<a class="headerlink" href="#route-groups-the-folder-name-never-reaches-the-url-proven-live-and-in-the-build-manifest" title="Permanent link">&para;</a></h3>
-<p><code>app/(marketing)/pricing/page.js</code> — the <code>(marketing)</code> folder is a route group. Real captured evidence: <code>window.location.pathname === "/pricing"</code> after navigating there, confirmed independently by a real <code>next build</code> route manifest listing <code>/pricing</code> with no <code>/marketing</code> segment anywhere. <code>MarketingLayout</code>, declared at <code>app/(marketing)/layout.js</code>, applies to every route inside that group — this chapter's demo has only one (<code>/pricing</code>), but the mechanism scales to any number of routes sharing that group's layout while keeping their own independent, unprefixed URLs.</p>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p>The App Router's file-tree walk (established in F-201) composes layouts by nesting: for a given route's leaf <code>page.js</code>, the framework walks UP the folder tree collecting every <code>layout.js</code> it encounters, then renders them nested from the ROOT down to the leaf, each passing its own <code>children</code> prop to the next layout in (or the page itself, at the innermost level) — this is why <code>DashboardLayout</code>'s <code>{children}</code> prop, in this chapter's demo, receives either <code>DashboardPage</code> or <code>DashboardSettingsPage</code> depending on the current route, exactly mirroring how the root layout's <code>{children}</code> receives whichever top-level route is active. React's reconciliation is what makes the persistence (and the unmounting) observable: as long as a given layout component occupies the SAME position in the rendered tree across a navigation (i.e., the new route still shares that layout as an ancestor), React reuses the existing component instance; the moment a navigation target's ancestor-layout chain no longer includes that layout at all, React's diffing has no matching position to reuse, and the component instance is genuinely unmounted — which is exactly the DOM-node-disappearance this chapter measured directly, not a documentation claim taken on faith. Route groups are resolved at the SAME build-time file-tree walk from F-201, with one explicit rule: a folder segment wrapped in parentheses is recognized by the router as a grouping construct and is excluded from the URL PATH construction step, while still fully participating in layout composition — the framework builds the URL from the non-parenthesized segments only, but still walks through the parenthesized folder's <code>layout.js</code> when composing that route's rendered layout chain, which is exactly why <code>MarketingLayout</code> applies to <code>/pricing</code> even though <code>/pricing</code>'s literal URL contains no trace of <code>(marketing)</code> at all.</p>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
-    A["app/dashboard/settings/page.js"] --&gt; B["Rendered inside\nDashboardLayout's children"]
-    B --&gt; C["DashboardLayout rendered inside\nRoot layout's children"]
-
-    D["Navigate /dashboard/settings -&gt; /dashboard"] --&gt; E{"Still shares\nDashboardLayout\nas ancestor?"}
-    E -- yes --&gt; F["DashboardLayout instance REUSED\n(measured: mount count unchanged)"]
-
-    G["Navigate /dashboard/settings -&gt; /about"] --&gt; H{"Still shares\nDashboardLayout\nas ancestor?"}
-    H -- no --&gt; I["DashboardLayout instance UNMOUNTED\n(measured: DOM node -&gt; null)"]
-
-    J["app/(marketing)/pricing/page.js"] --&gt; K["URL built from non-parenthesized\nsegments only -&gt; /pricing"]
-    J --&gt; L["Layout chain still includes\n(marketing)/layout.js -&gt; MarketingLayout renders"]</code></pre>
-<h2 id="real-verified-demos">Real Verified Demos<a class="headerlink" href="#real-verified-demos" title="Permanent link">&para;</a></h2>
-<p>All demos extend the SAME real Next.js app used for F-201 — <a href="../../practice/frontend/react-nextjs-fundamentals/"><code>practice/frontend/react-nextjs-fundamentals/</code></a>, not a separate project. Full captured evidence in the app's own <a href="../../practice/frontend/react-nextjs-fundamentals/">README.md</a>:</p>
-<ul>
-<li><a href="../../../practice/frontend/react-nextjs-fundamentals/app/dashboard/layout.js"><code>app/dashboard/layout.js</code></a>, <a href="../../../practice/frontend/react-nextjs-fundamentals/app/dashboard/page.js"><code>app/dashboard/page.js</code></a>, <a href="../../../practice/frontend/react-nextjs-fundamentals/app/dashboard/settings/page.js"><code>app/dashboard/settings/page.js</code></a> — real, measured nested-layout persistence AND unmounting.</li>
-<li><a href="../../../practice/frontend/react-nextjs-fundamentals/app/%28marketing%29/layout.js"><code>app/(marketing)/layout.js</code></a>, <a href="../../../practice/frontend/react-nextjs-fundamentals/app/%28marketing%29/pricing/page.js"><code>app/(marketing)/pricing/page.js</code></a> — real, measured route-group URL-stripping.</li>
-<li><a href="../../../practice/frontend/react-nextjs-fundamentals/app/components/MountCounter.js"><code>app/components/MountCounter.js</code></a> — the reusable measurement tool applied at every layout level in this chapter.</li>
-</ul>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<p><strong>Scenario: a team wants a distinct "logged-out marketing" look and a distinct "logged-in app" look, without prefixing every marketing URL with <code>/marketing</code>.</strong> A product has public marketing pages (<code>/</code>, <code>/pricing</code>, <code>/about</code>) that need a marketing-site header/footer, and authenticated app pages (<code>/dashboard</code>, <code>/settings</code>) that need an entirely different app-shell layout (sidebar nav, user menu). A naive approach nests everything under literal URL prefixes — <code>/marketing/pricing</code>, <code>/app/dashboard</code> — accepting worse, less natural URLs purely to get layout-scoping via ordinary nested folders. Using route groups instead — <code>app/(marketing)/pricing/page.js</code> and <code>app/(app)/dashboard/page.js</code> — achieves the identical layout-scoping (each group gets its own <code>layout.js</code>) while every route keeps its natural, unprefixed URL (<code>/pricing</code>, <code>/dashboard</code>), exactly as this chapter's <code>(marketing)</code> demo proves directly. This is the concrete, common reason route groups exist: layout organization and URL structure are frequently two SEPARATE concerns, and forcing them to align (as plain nested folders would) produces objectively worse URLs for no real benefit.</p>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
+<h2 id="rest-api-fundamentals">REST API Fundamentals<a class="headerlink" href="#rest-api-fundamentals" title="Permanent link">&para;</a></h2>
+<p>Junior Fundamentals chapter — its Interview Questions already tag each by seniority.</p>
+<h3 id="q1-whats-the-difference-between-put-and-post">Q1 — What's the difference between PUT and POST?<a class="headerlink" href="#q1-whats-the-difference-between-put-and-post" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> <code>POST</code> creates a new resource (not idempotent); <code>PUT</code> replaces an existing resource's state at a known location (idempotent). Target tier.
+- <strong>Mid/Senior/Staff:</strong> Not typically asked in this exact form; a weak Junior answer says "PUT updates, POST creates" without the idempotency distinction interviewers actually probe.</p>
+<h3 id="q2-what-status-code-should-a-successful-delete-return-and-why-no-body">Q2 — What status code should a successful DELETE return, and why no body?<a class="headerlink" href="#q2-what-status-code-should-a-successful-delete-return-and-why-no-body" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> <code>204 No Content</code> — the operation succeeded, and there's deliberately nothing left to describe since the resource no longer exists. Target tier.
+- <strong>Senior/Staff:</strong> Not typically asked in this exact form.</p>
+<h3 id="q3-why-does-a-well-designed-api-return-201-instead-of-200-from-a-creation-endpoint-and-what-should-come-with-it">Q3 — Why does a well-designed API return 201 instead of 200 from a creation endpoint, and what should come with it?<a class="headerlink" href="#q3-why-does-a-well-designed-api-return-201-instead-of-200-from-a-creation-endpoint-and-what-should-come-with-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Mid:</strong> <code>201</code> communicates "a new resource now exists" specifically; convention includes a <code>Location</code> header pointing at the new resource's real URL. Target tier.
+- <strong>Junior/Senior/Staff:</strong> Not typically asked in this exact form.</p>
+<h3 id="q4-is-delete-idempotent-what-happens-if-you-call-it-twice-on-the-same-resource">Q4 — Is DELETE idempotent? What happens if you call it twice on the same resource?<a class="headerlink" href="#q4-is-delete-idempotent-what-happens-if-you-call-it-twice-on-the-same-resource" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Mid/Senior:</strong> Conventionally idempotent in end-state terms, but the response to a second call is a genuinely debatable design choice (<code>404</code> vs. <code>204</code>) — the strongest answers name both and state a reasoned preference. Target tier.
+- <strong>Junior/Staff:</strong> Not typically asked in this exact form.</p>
+<h3 id="q5-an-api-returns-404-from-some-endpoints-and-204-from-others-for-repeated-deletes-with-no-stated-reason-what-do-you-do">Q5 — An API returns 404 from some endpoints and 204 from others for repeated deletes, with no stated reason. What do you do?<a class="headerlink" href="#q5-an-api-returns-404-from-some-endpoints-and-204-from-others-for-repeated-deletes-with-no-stated-reason-what-do-you-do" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Senior/Staff:</strong> Flag it as an unstated-inconsistency issue, not a bug in either endpoint; push for a documented, organization-wide convention. Target tier.
+- <strong>Junior/Mid:</strong> Not typically asked in this exact form.</p>
+<h3 id="q6-whats-the-real-difference-between-400-and-422-and-why-does-it-matter">Q6 — What's the real difference between 400 and 422, and why does it matter?<a class="headerlink" href="#q6-whats-the-real-difference-between-400-and-422-and-why-does-it-matter" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Mid:</strong> <code>400</code> means the body itself couldn't be parsed, before any application code runs; <code>422</code> means it parsed but violates a semantic/business rule — a client reacts differently to each. Target tier.
+- <strong>Junior/Senior/Staff:</strong> Not typically asked in this exact form.</p>
+<h3 id="q7-whats-the-difference-between-401-and-403">Q7 — What's the difference between 401 and 403?<a class="headerlink" href="#q7-whats-the-difference-between-401-and-403" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Mid:</strong> <code>401</code> means identity isn't established at all (authentication failure); <code>403</code> means identity is established but not permitted for this action (authorization failure). Target tier.
+- <strong>Junior/Senior/Staff:</strong> Not typically asked in this exact form.</p>
+<h3 id="q8-how-would-you-implement-a-cache-friendly-get-endpoint-that-avoids-re-sending-an-unchanged-resources-full-body-every-time">Q8 — How would you implement a cache-friendly GET endpoint that avoids re-sending an unchanged resource's full body every time?<a class="headerlink" href="#q8-how-would-you-implement-a-cache-friendly-get-endpoint-that-avoids-re-sending-an-unchanged-resources-full-body-every-time" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Mid/Senior:</strong> Conditional GET via <code>ETag</code>/<code>If-None-Match</code> — a resent matching <code>ETag</code> gets an empty-bodied <code>304 Not Modified</code>; Spring provides this via <code>ShallowEtagHeaderFilter</code>. Target tier.
+- <strong>Junior/Staff:</strong> Not typically asked in this exact form.</p>
+<h3 id="q9-you-need-an-endpoint-that-always-points-at-whichever-resource-is-currently-newest-what-status-code-should-the-redirect-use-and-why">Q9 — You need an endpoint that always points at "whichever resource is currently newest." What status code should the redirect use, and why?<a class="headerlink" href="#q9-you-need-an-endpoint-that-always-points-at-whichever-resource-is-currently-newest-what-status-code-should-the-redirect-use-and-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/rest-api-fundamentals/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Mid:</strong> <code>302 Found</code>, not <code>301 Moved Permanently</code> — the target genuinely changes over time, and <code>301</code>/<code>308</code> tell clients to cache the redirect permanently. Target tier.
+- <strong>Junior/Senior/Staff:</strong> Not typically asked in this exact form.</p>
+<hr />
+<h2 id="api-design-advanced-pagination-idempotency-versioning">API Design (Advanced — Pagination, Idempotency, Versioning)<a class="headerlink" href="#api-design-advanced-pagination-idempotency-versioning" title="Permanent link">&para;</a></h2>
+<h3 id="q1-design-pagination-for-a-500m-row-endpoint-why-not-offset">Q1 — Design pagination for a 500M-row endpoint. Why not <code>OFFSET</code>?<a class="headerlink" href="#q1-design-pagination-for-a-500m-row-endpoint-why-not-offset" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/api-design/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that <code>OFFSET</code> gets slower at depth, without the precise mechanism.
+- <strong>Senior:</strong> Correctly explains why <code>OFFSET</code> degrades (the database walks and discards every skipped row) and proposes keyset pagination (seeking directly via an index condition).
+- <strong>Staff:</strong> Names the honest trade-off (no arbitrary page-jump) and proposes a hybrid approach for UIs that need it.</p>
+<h3 id="q2-what-makes-an-api-idempotent-and-why-does-it-matter-for-retries">Q2 — What makes an API idempotent, and why does it matter for retries?<a class="headerlink" href="#q2-what-makes-an-api-idempotent-and-why-does-it-matter-for-retries" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/api-design/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Conflates "idempotent" with "read-only" — the common mistake this question targets; a <code>PUT</code> is idempotent and can still be a write.
+- <strong>Senior:</strong> States the definition correctly and connects it to safe retries — a client unsure whether a request succeeded can safely retry an idempotent operation.
+- <strong>Staff:</strong> Explicitly ties this to the idempotency-key mechanism for making <code>POST</code> safe under retry.</p>
+<hr />
+<h2 id="api-gateway-bff-and-edge-concerns">API Gateway, BFF, and Edge Concerns<a class="headerlink" href="#api-gateway-bff-and-edge-concerns" title="Permanent link">&para;</a></h2>
+<h3 id="q1-how-is-an-api-gateway-different-from-a-load-balancer">Q1 — How is an API gateway different from a load balancer?<a class="headerlink" href="#q1-how-is-an-api-gateway-different-from-a-load-balancer" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats "gateway" and "load balancer" as interchangeable terms — the common mistake this question targets.
+- <strong>Senior:</strong> Names both the routing-target distinction (identical instances of one service vs. routing to different services) and at least one concrete centralized concern (auth, rate limiting, logging).
+- <strong>Staff:</strong> Discusses the shared-gateway-as-platform-dependency governance question — who owns it, what's the blast radius of an incident there.</p>
+<h3 id="q2-when-would-you-introduce-a-bff-instead-of-just-adding-more-endpoints-to-a-shared-gateway">Q2 — When would you introduce a BFF instead of just adding more endpoints to a shared gateway?<a class="headerlink" href="#q2-when-would-you-introduce-a-bff-instead-of-just-adding-more-endpoints-to-a-shared-gateway" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Introduces a BFF preemptively for every client type without a real divergence in needs — the common mistake this question targets.
+- <strong>Senior:</strong> Explains the concurrent-fan-out mechanism and its real round-trip reduction — a BFF aggregates and reshapes calls to multiple backends into exactly what one client type needs.
+- <strong>Staff:</strong> Discusses the trade-off of introducing a BFF too early (unnecessary maintenance burden) versus too late (a real, measured production latency problem).</p>
+<hr />
+<h2 id="graphql-api-design">GraphQL API Design<a class="headerlink" href="#graphql-api-design" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-graphql-apis-response-times-degrade-badly-on-a-specific-nested-query-diagnose-it">Q1 — A GraphQL API's response times degrade badly on a specific nested query. Diagnose it.<a class="headerlink" href="#q1-a-graphql-apis-response-times-degrade-badly-on-a-specific-nested-query-diagnose-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/graphql-api-design/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes caching as the primary fix, or blames the database/network without checking the resolver's call pattern — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly names the N+1 mechanism (one backend call per list item) and proposes <code>DataLoader</code> batching with the right explanation (deferred, batched dispatch within one execution tick).
+- <strong>Staff:</strong> Frames this as a recurring, structural risk for every new nested field, and proposes making batched resolvers the enforced default.</p>
+<h3 id="q2-a-resolver-throws-partway-through-a-query-what-comes-back-to-the-client">Q2 — A resolver throws partway through a query. What comes back to the client?<a class="headerlink" href="#q2-a-resolver-throws-partway-through-a-query-what-comes-back-to-the-client" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/graphql-api-design/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes GraphQL always returns partial data regardless of schema, or that an error changes the HTTP status code — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states the nullability-dependent bubbling behavior — a nullable field goes null alone; a non-null field's failure bubbles to the nearest nullable ancestor.
+- <strong>Staff:</strong> Connects this to deliberate schema design — nullability should be a considered decision about failure blast radius, not an implementation detail.</p>
+<hr />
+<h2 id="grpc-api-design">gRPC API Design<a class="headerlink" href="#grpc-api-design" title="Permanent link">&para;</a></h2>
+<h3 id="q1-design-the-proto-contract-for-a-service-streaming-live-order-updates-to-a-client-which-call-shape-and-why">Q1 — Design the <code>.proto</code> contract for a service streaming live order updates to a client. Which call shape, and why?<a class="headerlink" href="#q1-design-the-proto-contract-for-a-service-streaming-live-order-updates-to-a-client-which-call-shape-and-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/grpc-api-design/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes unary calls with client-side polling, missing the point of native streaming — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies server streaming (<code>rpc StreamOrderUpdates (OrderId) returns (stream OrderUpdate)</code>) and explains why client streaming or bidirectional would be wrong here.
+- <strong>Staff:</strong> Discusses what happens if the client disconnects mid-stream, and how the server should detect and clean up that half-open call.</p>
+<h3 id="q2-an-internal-grpc-call-has-no-deadline-set-whats-the-risk-concretely">Q2 — An internal gRPC call has no deadline set. What's the risk, concretely?<a class="headerlink" href="#q2-an-internal-grpc-call-has-no-deadline-set-whats-the-risk-concretely" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/grpc-api-design/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats a missing deadline as a minor inefficiency — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly explains the thread-exhaustion cascade mechanism — a slow downstream call holds the caller's thread indefinitely, and enough concurrent slow calls exhaust the caller's own pool.
+- <strong>Staff:</strong> Proposes enforcing deadline propagation as a platform-level convention (shared client library or lint rule) rather than a per-call judgment call.</p>
+<hr />
+<h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
+<p><code>rest-api-fundamentals.md</code> has no Flashcards section (it uses the leveled Q1-Q9
+format above instead).</p>
 <table>
 <thead>
 <tr>
-<th>Concern</th>
-<th>Plain nested folder (no parentheses)</th>
-<th>Route group <code>(name)</code></th>
+<th>#</th>
+<th>Question</th>
+<th>Canonical chapter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Adds a URL segment</td>
-<td>Yes — <code>app/dashboard/settings/page.js</code> → <code>/dashboard/settings</code></td>
-<td>No — <code>app/(marketing)/pricing/page.js</code> → <code>/pricing</code>, proven directly in this chapter</td>
+<td>1</td>
+<td>Why does <code>OFFSET</code> pagination get slower with depth?</td>
+<td><a href="../../../07-api-design/api-design/#flashcards">API Design</a></td>
 </tr>
 <tr>
-<td>Scopes a layout to a subset of routes</td>
-<td>Yes</td>
-<td>Yes — identical layout-scoping capability</td>
+<td>2</td>
+<td>What does keyset pagination give up in exchange for flat cost at any depth?</td>
+<td><a href="../../../07-api-design/api-design/#flashcards">API Design</a></td>
 </tr>
 <tr>
-<td>Best fit</td>
-<td>When the nesting genuinely reflects the intended URL structure (a real sub-resource, like <code>/dashboard/settings</code>)</td>
-<td>When you want to share a layout or organize files WITHOUT that grouping showing up in the URL (this chapter's marketing-vs-app-shell scenario)</td>
+<td>3</td>
+<td>Is <code>PUT</code> idempotent? Is <code>POST</code>?</td>
+<td><a href="../../../07-api-design/api-design/#flashcards">API Design</a></td>
 </tr>
 <tr>
-<td>Common confusion</td>
-<td>Conflating this with route groups — this chapter treats them as two separate, real, side-by-side demos specifically to avoid that</td>
-<td>Assuming route groups affect routing/matching behavior beyond layout scoping and URL exclusion — they don't add any other special behavior</td>
+<td>4</td>
+<td>What's the real, structural difference between an API gateway and a load balancer?</td>
+<td><a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/#flashcards">API Gateway, BFF, Edge Concerns</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>If a gateway rejects a request for a missing API key, does the backend ever see it?</td>
+<td><a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/#flashcards">API Gateway, BFF, Edge Concerns</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Why is calling a BFF endpoint once faster than a client calling the same two backends itself?</td>
+<td><a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/#flashcards">API Gateway, BFF, Edge Concerns</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Why does a naive GraphQL resolver cause an N+1 problem?</td>
+<td><a href="../../../07-api-design/graphql-api-design/#flashcards">GraphQL API Design</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>What determines whether a resolver failure nulls one field or the entire response?</td>
+<td><a href="../../../07-api-design/graphql-api-design/#flashcards">GraphQL API Design</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>What HTTP status code does a GraphQL API return when a resolver throws?</td>
+<td><a href="../../../07-api-design/graphql-api-design/#flashcards">GraphQL API Design</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Why does gRPC avoid the "client and server interpret the contract independently" risk REST + JSON has?</td>
+<td><a href="../../../07-api-design/grpc-api-design/#flashcards">gRPC API Design</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>How do you tell gRPC's four call shapes apart from a <code>.proto</code> file?</td>
+<td><a href="../../../07-api-design/grpc-api-design/#flashcards">gRPC API Design</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>What concretely goes wrong if an internal gRPC call has no deadline?</td>
+<td><a href="../../../07-api-design/grpc-api-design/#flashcards">gRPC API Design</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Does the nesting you're adding represent a genuine sub-resource relationship the URL should reflect</strong> (e.g., <code>/dashboard/settings</code> really is "settings, within dashboard")? → A plain nested folder — no parentheses needed.</li>
-<li><strong>Do you want several routes to share a layout (or just be organized together) WITHOUT that grouping appearing in any of their URLs</strong> (this chapter's marketing-vs-app-shell Production Scenario)? → A route group (<code>(name)</code>).</li>
-<li><strong>Are you unsure whether a shared layout should persist across a set of routes' internal navigation?</strong> → It will, automatically, as long as those routes share that layout as an ancestor in the file tree — verify directly with a mount counter (as this chapter does) rather than assuming, especially before building a feature (e.g., a persistent form draft, a persistent audio player) that depends on that guarantee.</li>
-<li><strong>Are you trying to decide whether a shared layout should apply to routes with otherwise very different URL shapes</strong> (e.g., <code>/</code>, <code>/pricing</code>, <code>/about</code> — no common URL prefix at all)? → This is precisely the case a route group is built for; ordinary nested folders can't achieve shared layout scoping WITHOUT also forcing a shared URL prefix.</li>
-</ol>
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Conflating route groups with ordinary nested routing — assuming a <code>(name)</code> folder behaves like any other folder except "invisible," rather than understanding it as a DIFFERENT mechanism (URL-exclusion + layout-scoping only, no other special routing behavior).</li>
-<li>Assuming a nested layout's persistence is unconditional/global, rather than scoped specifically to the subtree that shares it as an ancestor — this chapter's real DOM-node-disappearance evidence (navigating <code>/dashboard/settings</code> → <code>/about</code>) is the concrete counter-example.</li>
-<li>Forcing a shared layout's routes under a common URL prefix (plain nested folders) when a route group would achieve the identical layout-scoping with better, unprefixed URLs — exactly the unnecessary trade-off this chapter's Production Scenario avoids.</li>
-</ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Using a plain (non-grouped) nested folder purely to scope a layout, accepting a worse URL structure as a side effect</strong> — when a route group would provide the identical layout-scoping without that URL cost.</li>
-<li><strong>Assuming a nested layout persists across ANY navigation, without checking whether the destination route actually shares that layout as an ancestor</strong> — leads to surprised bug reports about state loss when it turns out the layout genuinely unmounted, exactly as this chapter's <code>/dashboard/settings</code> → <code>/about</code> demo shows happens.</li>
-</ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Reach for a route group specifically when you need shared layout/organization WITHOUT a shared URL prefix — and use plain nested folders when the nesting genuinely reflects real URL structure, keeping the two mechanisms deliberately distinct rather than blurred.</li>
-<li>Before relying on a nested layout's persistence for a feature (state that must survive intra-section navigation), verify — with a real mount counter, as this chapter does — which routes actually share that layout as an ancestor, rather than assuming from the folder structure alone.</li>
-<li>Keep route-group names descriptive of their PURPOSE (<code>(marketing)</code>, <code>(authenticated)</code>) even though they never appear in a URL — they're pure organizational/scoping signal for the codebase, and unclear names lose that value entirely.</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>Layouts nest according to folder structure — a layout at any depth (not just the root) gets the identical navigation-persistence guarantee, proven here with a real mount counter that stayed unchanged across nested navigation, and genuinely unmounted (a real DOM node disappearing) once the destination route no longer shared that layout as an ancestor. Route groups (<code>(name)</code> folders) are a separate mechanism: they scope a layout to a set of routes WITHOUT adding a URL segment, verified here with <code>window.location.pathname</code> and a real build manifest both confirming a <code>(marketing)</code>-grouped route resolved to a clean, unprefixed URL.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Start from the mental model: layout persistence is scoped to whatever subtree actually shares that layout, at any depth, not just the root. Cite the real nested evidence: a <code>DashboardLayout</code> at <code>app/dashboard/layout.js</code>, three levels deep, kept its mount counter unchanged navigating <code>/dashboard</code> → <code>/dashboard/settings</code>, exactly like the root layout does — then genuinely unmounted (confirmed by a DOM node going from present to <code>null</code>, not just a counter reading) navigating to <code>/about</code>, which shares no ancestry with <code>/dashboard/*</code>. Then cover route groups as a distinct, unrelated mechanism: <code>app/(marketing)/pricing/page.js</code> resolved to <code>/pricing</code>, not <code>/marketing/pricing</code>, confirmed both live (<code>window.location.pathname</code>) and in a real <code>next build</code> manifest — proving route groups scope layouts without touching the URL at all, solving the specific problem of wanting a shared layout across routes with otherwise unrelated URL shapes.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover: the build-time layout-composition mechanism (walking up from a leaf <code>page.js</code>, collecting every ancestor <code>layout.js</code>, nesting them root-down via <code>children</code>); the React-reconciliation-level reason a layout persists or unmounts (same tree position across navigation → instance reused; no matching position → instance unmounted), directly connecting this chapter's DOM-presence proof to the underlying mechanism rather than treating it as framework magic; the specific build-time rule that excludes a parenthesized route-group segment from URL construction while still including its <code>layout.js</code> in the layout-composition walk; and the Production Scenario's concrete marketing-vs-app-shell example as the canonical real-world reason to reach for a route group over plain nested folders.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw a three-level tree: Root layout → DashboardLayout → two leaf pages (<code>/dashboard</code>, <code>/dashboard/settings</code>). Show an arrow between the two leaves labeled "navigate," with BOTH ancestor layout boxes staying solid/unchanged. Then draw a SEPARATE arrow from <code>/dashboard/settings</code> to a box labeled <code>/about</code>, OUTSIDE the DashboardLayout subtree entirely — show the DashboardLayout box visibly disappearing (dashed/crossed out) on this transition, while the Root layout box stays solid. Beside it, draw the route-group case: a <code>(marketing)</code> folder box with a dashed outline (signaling "organizational only, not a URL segment") wrapping a <code>pricing</code> folder — with an arrow showing the resulting URL as <code>/pricing</code>, explicitly skipping the <code>(marketing)</code> label.</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>A product wanted a distinct marketing-site layout and a distinct authenticated-app-shell layout without forcing marketing URLs under a <code>/marketing</code> prefix — solved with two route groups (<code>(marketing)</code>, <code>(app)</code>), each with its own <code>layout.js</code>, giving every route its own natural URL while still sharing the right layout per section, exactly as this chapter's <code>(marketing)</code> demo proves works.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>Plain nested folders are the right choice when the nesting genuinely reflects real URL structure; route groups are the right choice specifically when layout/organization needs to be shared across routes whose URLs shouldn't reflect that grouping — conflating the two either produces unnecessarily prefixed URLs or a misunderstanding of when a shared layout will and won't persist.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Describing route groups as "just a way to organize files" without mentioning the URL-exclusion behavior specifically, or without being able to say precisely which build-time step excludes them. Assuming any shared ancestor layout persists across ALL navigation everywhere in the app, rather than understanding the persistence is scoped to routes that actually share that specific layout — this chapter's real DOM-node-disappearance evidence is the concrete counter-example a strong answer would cite.</p>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>Distinguishes nested routing from route groups precisely (URL segment vs. no URL segment) and can state the concrete condition under which a nested layout persists versus unmounts, not just "layouts persist."</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Not the primary focus of this chapter's demos, but briefly: as an app's route tree grows, the choice of where to place layout boundaries (how many nested layouts, which routes get grouped together via route groups) becomes a real architectural decision affecting how independently different parts of a large app can evolve their own section-specific UI without cross-contaminating unrelated routes — the same "narrow, well-scoped boundary" principle this repository's architecture chapters apply to service/module boundaries applies here to layout/route-tree structure, and a Staff-level engineer is typically the one setting the convention for when a new section gets its own nested layout vs. its own route group vs. neither.</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1">Question 1<a class="headerlink" href="#question-1" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "Your app has a <code>DashboardLayout</code> at <code>app/dashboard/layout.js</code>. A user navigates from <code>/dashboard/settings</code> to <code>/dashboard/billing</code> — does <code>DashboardLayout</code> remount? What about navigating from <code>/dashboard/settings</code> to <code>/profile</code> (a route NOT under <code>/dashboard</code>)?"</p>
-<p><strong>Expected answer:</strong> For <code>/dashboard/settings</code> → <code>/dashboard/billing</code>: NO, <code>DashboardLayout</code> does not remount — both routes share it as an ancestor in the file tree, so React reuses the existing component instance, exactly as this chapter measured directly with a mount counter that stayed unchanged across an equivalent navigation. For <code>/dashboard/settings</code> → <code>/profile</code>: YES, it unmounts — <code>/profile</code> doesn't live under <code>app/dashboard/</code>, so it doesn't share <code>DashboardLayout</code> as an ancestor at all; React has no matching tree position to reuse, so the component instance is genuinely removed, confirmed in this chapter with a direct DOM-node-presence check going from a real element to <code>null</code>.</p>
-<p><strong>Common mistakes:</strong> Assuming layout persistence is a global, unconditional guarantee ("layouts never remount") rather than scoped specifically to shared ancestry between the source and destination routes.</p>
-<p><strong>Follow-up questions:</strong> "How would you verify this without trusting documentation?" (a mount counter using <code>useRef</code> + an empty-dependency-array <code>useEffect</code>, or a direct DOM-presence check via <code>querySelector</code>, checked before and after — exactly this chapter's two verification methods). "What's a real consequence of assuming persistence incorrectly?" (state living in a layout that's actually going to unmount — e.g., an in-progress form draft, a scroll position — would be silently lost on that specific navigation, a genuine bug if the assumption was wrong).</p>
-<p><strong>Senior-level expectations:</strong> Answers both parts correctly with the correct reasoning (shared ancestry, not just "it's a layout so it persists"), and can describe a concrete verification method.</p>
-<p><strong>Staff-level expectations:</strong> Connects this to a broader architectural point about where layout boundaries should be placed in a growing app, and what real state-loss risk an incorrect assumption here would create for a specific feature.</p>
-<h3 id="question-2">Question 2<a class="headerlink" href="#question-2" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "Why would a team use <code>app/(marketing)/pricing/page.js</code> instead of just <code>app/marketing/pricing/page.js</code>?"</p>
-<p><strong>Expected answer:</strong> The parenthesized version is a ROUTE GROUP — its folder name is explicitly excluded from the resulting URL, so the route resolves to <code>/pricing</code>. The non-parenthesized version is an ORDINARY nested folder, which DOES add a URL segment, resolving to <code>/marketing/pricing</code> instead. Teams reach for the route group specifically when they want to share a layout (or just organize related routes together in the file tree) across routes whose URLs shouldn't reflect that internal organization — e.g., wanting <code>/</code>, <code>/pricing</code>, and <code>/about</code> to all share a "marketing" layout while keeping clean, unprefixed URLs, exactly this chapter's Production Scenario.</p>
-<p><strong>Common mistakes:</strong> Describing the two as functionally equivalent, or as differing only cosmetically, without being able to state the precise, verifiable difference (URL segment presence) — and without having verified it directly, the way this chapter did with both <code>window.location.pathname</code> and the real build manifest.</p>
-<p><strong>Follow-up questions:</strong> "Does a route group have any effect on routing/matching behavior besides the URL and layout-scoping?" (no — it's explicitly limited to organization and layout scoping; it doesn't change route matching priority, dynamic segment behavior, or anything else covered in this chapter or F-201). "Could you achieve the SAME layout-sharing without a route group, some other way?" (technically, by manually importing/composing the shared layout content inside each individual page rather than relying on the App Router's automatic layout nesting — but this discards the automatic persistence-across-navigation guarantee this chapter proved layouts provide, reintroducing manual work the framework's convention exists specifically to avoid).</p>
-<p><strong>Senior-level expectations:</strong> States the precise URL-inclusion-vs-exclusion difference unprompted, with the correct concrete example of when each is the right choice.</p>
-<p><strong>Staff-level expectations:</strong> Recognizes route groups as one of several tools for managing layout-boundary architecture as an app scales, not just a syntax trick for hiding a folder name.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>Layouts nest according to the file tree, and this chapter proved the SAME persistence guarantee F-201 established for the root layout applies identically at any nesting depth — a <code>DashboardLayout</code> two levels deep kept its mount counter unchanged across navigation within its own subtree, then genuinely unmounted (a real DOM node going from present to <code>null</code>) the moment the destination route no longer shared it as an ancestor. Route groups are a separate, distinct mechanism: <code>(name)</code> folders scope a layout (or just organize files) to a set of routes WITHOUT adding a URL segment, proven here with both a live <code>window.location.pathname</code> check and a real <code>next build</code> route manifest confirming a grouped route's URL contained no trace of its group name. The two mechanisms are commonly confused; this chapter deliberately demonstrated them side by side, in the same real app, to make the distinction concrete rather than definitional.</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Nested layouts get the identical persistence guarantee as the root layout, at any depth — proven with a real mount counter unchanged across a two-level-deep navigation.</li>
-<li>Layout persistence is scoped to shared ancestry, not global — proven with a real DOM-node-presence check showing genuine unmounting once a destination route no longer shares that layout.</li>
-<li>Route groups (<code>(name)</code> folders) exclude their name from the URL while still applying their layout — proven with both a live <code>window.location.pathname</code> check and a real build manifest.</li>
-<li>Plain nested folders and route groups solve different problems (real URL structure vs. layout-scoping without URL impact) — conflating them either produces unwanted URL prefixes or an incorrect mental model of layout behavior.</li>
-<li>Every claim in this chapter was verified directly (mount counters, DOM presence checks, a real build manifest), not assumed from documentation.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Nested layout</strong> → <code>layout.js</code> at any folder depth; wraps every route beneath it; persists across navigation within its own subtree (measured), unmounts once ancestry no longer applies (measured via DOM presence).</li>
-<li><strong>Route group</strong> → <code>(name)</code> folder; excluded from the URL (measured via <code>window.location.pathname</code> and a real build manifest); still fully participates in layout composition.</li>
-<li><strong>When to nest plainly</strong> → the folder structure genuinely reflects real URL structure.</li>
-<li><strong>When to use a route group</strong> → you want shared layout/organization WITHOUT a shared URL prefix.</li>
-<li><strong>Verification method for both</strong> → a mount counter (<code>useRef</code> + empty-dep <code>useEffect</code>) and/or a direct DOM-presence check, not assumption from documentation.</li>
-</ul>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h2 id="card-when-a-nested-layout-unmounts-vs-persists">Card: When a nested layout unmounts vs. persists<a class="headerlink" href="#card-when-a-nested-layout-unmounts-vs-persists" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-A layout is declared at <code>app/dashboard/layout.js</code>. Under what specific condition does it unmount on navigation, versus persist?</p>
-<p><strong>Answer:</strong>
-It persists when the destination route still shares it as an ancestor in the file tree (any route under <code>app/dashboard/</code>). It unmounts when the destination route does NOT share it as an ancestor (any route outside <code>app/dashboard/</code>) — React has no matching tree position to reuse, so the component instance is genuinely removed.</p>
-<p><strong>Why it matters:</strong>
-Verified directly: navigating within <code>/dashboard/*</code> left the layout's mount counter unchanged; navigating to <code>/about</code> made <code>document.querySelector('[data-testid="dashboard-layout"]')</code> return <code>null</code> — a real, observed unmount, not an assumption.</p>
-<p><strong>Common trap:</strong>
-Assuming layout persistence is a global, unconditional guarantee rather than scoped to shared ancestry.</p>
-<p><strong>Related:</strong>
-[[nextjs-app-router-fundamentals]]</p>
-<h2 id="card-what-a-route-group-actually-does">Card: What a route group actually does<a class="headerlink" href="#card-what-a-route-group-actually-does" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-What specifically does wrapping a folder name in parentheses (e.g. <code>(marketing)</code>) do in the Next.js App Router?</p>
-<p><strong>Answer:</strong>
-It excludes that folder segment from the resulting URL, while still fully including its <code>layout.js</code> in that route's layout composition. <code>app/(marketing)/pricing/page.js</code> resolves to <code>/pricing</code>, not <code>/marketing/pricing</code>, but still renders through <code>app/(marketing)/layout.js</code>.</p>
-<p><strong>Why it matters:</strong>
-Verified directly two independent ways: <code>window.location.pathname === "/pricing"</code> in a live session, and a real <code>next build</code> route manifest listing <code>/pricing</code> with no <code>/marketing</code> segment anywhere.</p>
-<p><strong>Common trap:</strong>
-Assuming a route group changes routing/matching behavior beyond URL-exclusion and layout-scoping — it doesn't.</p>
-<p><strong>Related:</strong>
-[[nextjs-app-router-fundamentals]]</p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Add a THIRD level of nesting: a new <code>app/dashboard/settings/billing/page.js</code> (no new layout file — it should inherit <code>DashboardLayout</code> automatically). Navigate there and confirm, via the mount counters, that both the root layout's AND <code>DashboardLayout</code>'s counts stay unchanged compared to being at <code>/dashboard/settings</code> — predict this before checking, and explain why no new layout file was needed for this to work.</li>
-<li>Move <code>app/about/page.js</code> into a NEW route group, <code>app/(marketing)/about/page.js</code>, alongside the existing <code>(marketing)/pricing</code>. Run <code>next build</code> and confirm <code>/about</code>'s URL is unaffected by the move, while <code>MarketingLayout</code> now also applies to it — explain, in one sentence, why moving a page INTO a route group never changes its own URL even though it changes which layout(s) wrap it.</li>
-<li>Temporarily rename <code>app/dashboard/layout.js</code> to <code>app/dashboard/_layout.js</code> (an invalid name — layouts must be named exactly <code>layout.js</code>). Run <code>next dev</code> or <code>next build</code> and observe what actually happens to <code>/dashboard</code> and <code>/dashboard/settings</code> — do they still work, and if so, which layout(s) do they render through now? Explain what this reveals about <code>layout.js</code> being convention-based rather than mandatory for a route to exist.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p>Exercise 1: navigating to the new <code>/dashboard/settings/billing</code> would show BOTH the root layout's AND <code>DashboardLayout</code>'s mount counters unchanged — no new layout file was needed because layout composition is based on WHICH ancestor <code>layout.js</code> files exist along the path from root to the leaf <code>page.js</code>, not on requiring one at every folder level; <code>/dashboard/settings/billing</code> simply has no <code>layout.js</code> of its own, so it renders directly as <code>DashboardLayout</code>'s <code>children</code>, the same as <code>/dashboard/settings</code> does, one level "closer" in the file tree but with an identical effective layout chain.</p>
-<p>Exercise 2: <code>/about</code>'s URL remains exactly <code>/about</code> after the move — confirmed in the real build manifest — because a route group's name is ALWAYS excluded from URL construction regardless of which specific page is placed inside it; only the LAYOUT COMPOSITION changes (now including <code>app/(marketing)/layout.js</code> in <code>/about</code>'s ancestor chain), because moving a file's location in the tree changes which ancestor <code>layout.js</code> files it passes through, but the URL-construction step independently strips any parenthesized segment before that answer is finalized — the two concerns (URL, layout composition) are computed by related but distinct steps of the same build-time walk.</p>
-<p>Exercise 3: with an invalid <code>_layout.js</code> filename, the framework doesn't recognize it as a layout file at all — it's just an unused, ordinary file as far as the router is concerned. <code>/dashboard</code> and <code>/dashboard/settings</code> STILL WORK (their <code>page.js</code> files still create valid routes, exactly per F-201's file-based routing rules), but they now render through the ROOT layout ONLY, with no <code>DashboardLayout</code> wrapping them at all — this reveals that <code>layout.js</code> is a NAMING CONVENTION the router specifically looks for, not a requirement for the underlying routes to exist; a route's existence (F-201) and a route's layout composition (this chapter) are governed by the same file-tree walk but are otherwise independent outcomes of it.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../nextjs-fundamentals/">Next.js's Role: File-Based Routing and Why a Meta-Framework Over Plain React/Vite</a> — this chapter's prerequisite; establishes file-based routing, the root layout's persistence guarantee, and dynamic segments, all extended here rather than re-derived.</li>
-<li><a href="../nextjs-server-vs-client-components/">Server Components vs. Client Components: The Actual Boundary</a> — the next chapter in sequence (F-203), explaining precisely what runs where for the <code>page.js</code>/<code>layout.js</code> files this chapter wrote (all Server Components by default).</li>
-<li><a href="../../00-project/frontend-topic-register.md">00-project/frontend-topic-register.md</a> — the full register this chapter is F-202 of.</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://nextjs.org/docs/app/getting-started/layouts-and-pages">nextjs.org: Layouts and Pages</a></li>
-<li><a href="https://nextjs.org/docs/app/api-reference/file-conventions/route-groups">nextjs.org: Route Groups</a></li>
-<li><a href="https://nextjs.org/docs/app/api-reference/file-conventions/layout">nextjs.org: <code>layout.js</code></a></li>
-<li><a href="https://nextjs.org/docs/app">nextjs.org: App Router documentation home</a></li>
+<li><a href="../05-spring/"><code>05-spring.md</code></a></li>
+<li><a href="../04-software-design/"><code>04-software-design.md</code></a></li>
+<li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
+<li><a href="../06-databases/"><code>06-databases.md</code></a></li>
+<li><a href="../02-java-collections/"><code>02-java-collections.md</code></a>, <a href="../02-java-concurrency/"><code>02-java-concurrency.md</code></a>, <a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a>, <a href="../02-java-language-core/"><code>02-java-language-core.md</code></a></li>
+<li><a href="../../../00-project/interview-question-bank-plan.md"><code>00-project/interview-question-bank-plan.md</code></a></li>
 </ul>
 
 
@@ -11482,7 +11349,7 @@ Assuming a route group changes routing/matching behavior beyond URL-exclusion an
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:20:08 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:19:25 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11518,7 +11385,7 @@ Assuming a route group changes routing/matching behavior beyond URL-exclusion an
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../micro-frontends-and-module-federation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Micro-Frontends and Module Federation">
+          <a href="../06-databases/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interview Question Bank — 06-databases">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11528,20 +11395,20 @@ Assuming a route group changes routing/matching behavior beyond URL-exclusion an
                 Previous
               </span>
               <div class="md-ellipsis">
-                Micro-Frontends and Module Federation
+                Interview Question Bank — 06-databases
               </div>
             </div>
           </a>
         
         
           
-          <a href="../nextjs-authentication-patterns/" class="md-footer__link md-footer__link--next" aria-label="Next: Authentication Patterns in Next.js: DAL, JWT Sessions, and unauthorized()">
+          <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Narration and Whiteboard Discipline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Authentication Patterns in Next.js: DAL, JWT Sessions, and unauthorized()
+                System Design Narration and Whiteboard Discipline
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -11584,16 +11451,16 @@ Assuming a route group changes routing/matching behavior beyond URL-exclusion an
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
     
   </body>
