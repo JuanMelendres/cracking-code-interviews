@@ -6,6 +6,11 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Verified (Content-quality audit — `13-observability`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (14th domain, 5 chapters, read directly). `logging-metrics-tracing-and-opentelemetry.md`, `percentiles-tail-latency-and-coordinated-omission.md`, `performance-methodology-and-slo-error-budgets.md`, `metric-cardinality-and-alert-fatigue.md`, `incident-response-and-blameless-postmortems.md` all verified fully clean — every measured number (traceId/spanId consistency, 19.8ms/83.5ms average-latency math, error-budget percentages against 60,000,000-request simulation, 6,667x cardinality explosion, 14x alert-volume reduction) checked and internally consistent; every referenced practice file (`TracingDemo.java`, `CoordinatedOmissionDemo.java`, `ErrorBudgetDemo.java`, `check_postmortem_blameless.py`, and postmortem example docs) confirmed to exist. No fixes needed — first fully clean domain since `08-testing`/`04-software-design`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `11-system-design`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (13th domain, 9 chapters, via two parallel background agents). `system-design-method-and-estimation.md`, `caching-strategies-and-invalidation.md`, `rate-limiting-and-throttling-algorithms.md`, `resilience-patterns.md`, `realtime-delivery-websocket-sse-and-long-polling.md`, `search-and-indexing-systems.md`, `storage-selection-tradeoffs.md`, `idempotency.md` all verified fully clean — every measured number confirmed by actually compiling and running the referenced Java demos (`CacheStampedeDemo`, `CircuitBreakerDemo`, `RetryBackoffJitterDemo`, `BoundaryBurstDemo`, `ConcurrencyRaceDemo`, `AlgorithmComparisonDemo`, `HealthCheckFailoverDemo`, `InvertedIndexDemo`, `ScoringComparisonDemo`) and confirming live output matched the chapters' claimed numbers within normal JVM timing variance.
