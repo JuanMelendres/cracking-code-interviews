@@ -2632,6 +2632,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#card-the-exception-hierarchy-top-to-bottom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The exception hierarchy, top to bottom
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-common-derived-exceptions-by-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Common derived exceptions by category
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-what-chaining-the-cause-preserves" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7990,6 +8012,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#card-the-exception-hierarchy-top-to-bottom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The exception hierarchy, top to bottom
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-common-derived-exceptions-by-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Common derived exceptions by category
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-what-chaining-the-cause-preserves" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8104,6 +8148,28 @@
 
 <h1 id="flashcards-exception-design-and-hierarchy-strategy">Flashcards: Exception Design and Hierarchy Strategy<a class="headerlink" href="#flashcards-exception-design-and-hierarchy-strategy" title="Permanent link">&para;</a></h1>
 <p><strong>Canonical chapter:</strong> <a href="../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy/"><code>syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md</code></a></p>
+<h2 id="card-the-exception-hierarchy-top-to-bottom">Card: The exception hierarchy, top to bottom<a class="headerlink" href="#card-the-exception-hierarchy-top-to-bottom" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What's the actual root of Java's exception hierarchy, and what's the structural rule for checked vs. unchecked?</p>
+<p><strong>Answer:</strong>
+<code>Throwable</code> is the root — not <code>Exception</code>. It splits into <code>Error</code> and <code>Exception</code>; <code>Exception</code> splits into <code>RuntimeException</code> and everything else. A class is unchecked if and only if it extends <code>RuntimeException</code> or <code>Error</code>; every other <code>Throwable</code> subclass is checked.</p>
+<p><strong>Why it matters:</strong>
+"What's the root of the exception hierarchy" is a near-universal opener, and answering "<code>Exception</code>" instead of "<code>Throwable</code>" is a common, checkable miss.</p>
+<p><strong>Common trap:</strong>
+Forgetting <code>Error</code> exists, or thinking checked/unchecked is marked by an annotation rather than being purely which class is extended.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy/#level-1--foundation">Level 1 — Foundation</a></p>
+<h2 id="card-common-derived-exceptions-by-category">Card: Common derived exceptions by category<a class="headerlink" href="#card-common-derived-exceptions-by-category" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Name at least three real Java exception classes in each of: <code>Error</code>, unchecked <code>Exception</code>, checked <code>Exception</code>.</p>
+<p><strong>Answer:</strong>
+<code>Error</code>: <code>OutOfMemoryError</code>, <code>StackOverflowError</code>, <code>NoClassDefFoundError</code>. Unchecked (<code>RuntimeException</code>): <code>NullPointerException</code>, <code>IllegalArgumentException</code>, <code>IllegalStateException</code>, <code>ClassCastException</code>, <code>ArrayIndexOutOfBoundsException</code>. Checked: <code>IOException</code>, <code>SQLException</code>, <code>InterruptedException</code>, <code>TimeoutException</code>.</p>
+<p><strong>Why it matters:</strong>
+Interviewers frequently follow up "what's checked vs. unchecked" with "give me real examples" — a candidate who can only recite the rule without naming real classes reads as having memorized, not understood, the distinction.</p>
+<p><strong>Common trap:</strong>
+Misclassifying <code>ClassCastException</code> or <code>ArrayIndexOutOfBoundsException</code> as checked — both are unchecked <code>RuntimeException</code> subclasses despite sounding like they should require handling.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy/#core-concepts">Core Concepts</a></p>
 <h2 id="card-what-chaining-the-cause-preserves">Card: What chaining the cause preserves<a class="headerlink" href="#card-what-chaining-the-cause-preserves" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 What does chaining the cause when wrapping an exception actually preserve?</p>
@@ -8157,7 +8223,7 @@ Assuming both approaches are equivalent as long as <code>close()</code> is calle
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:45:39 UTC">September 14, 2026</span>
   </span>
 
     

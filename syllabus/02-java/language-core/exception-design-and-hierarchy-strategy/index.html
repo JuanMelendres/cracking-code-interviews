@@ -12064,6 +12064,7 @@
 <h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
 <p>By the end of this chapter you can:</p>
 <ul>
+<li>Draw and explain Java's full exception hierarchy (<code>Throwable</code> → <code>Error</code>/<code>Exception</code> → <code>RuntimeException</code>), name at least three real examples in each category, and state the exact structural rule that determines checked vs. unchecked.</li>
 <li>Explain, with a measured example, why wrapping an exception without chaining its cause destroys real debugging information.</li>
 <li>Explain exactly what try-with-resources does when both the body and <code>close()</code> throw, and how suppressed exceptions preserve the second failure.</li>
 <li>Explain why a manual <code>finally</code>-block <code>close()</code> that also throws is strictly worse, and reproduce the exact failure with real output.</li>
@@ -12073,7 +12074,21 @@
 <p>Exception design questions test whether a candidate treats exception handling as a deliberate design decision or as boilerplate to get past the compiler. The cause-chaining and try-with-resources behaviors specifically are near-universal real-world traps: most Java codebases have at least one exception wrapper that silently drops the original cause, and most engineers have never actually traced through what happens when both a resource's body and its <code>close()</code> throw.</p>
 <h2 id="level-1-foundation">Level 1 — Foundation<a class="headerlink" href="#level-1-foundation" title="Permanent link">&para;</a></h2>
 <p><strong>An exception is Java's way of saying "something went wrong, and I'm handing control to whoever knows how to deal with it"</strong> — instead of returning a special error value that a caller might forget to check, <code>throw</code>ing an exception forces the surrounding code to either handle it (<code>catch</code>) or explicitly pass the problem further up (letting it propagate). The everyday analogy: raising your hand and pausing the meeting to flag a problem, versus quietly scribbling "something's wrong" in a margin no one is guaranteed to read.</p>
-<p><strong>Checked exceptions</strong> (subclasses of <code>Exception</code> but not <code>RuntimeException</code>, like <code>IOException</code>) are ones the compiler forces a caller to acknowledge — either catch them or declare that the calling method also throws them. <strong>Unchecked exceptions</strong> (<code>RuntimeException</code> and its subclasses, like <code>NullPointerException</code> or <code>IllegalArgumentException</code>) carry no such compiler-enforced requirement. A working rule of thumb: use unchecked exceptions for programming errors (a bug that shouldn't happen if the code is correct) and reserve checked exceptions for conditions a well-written caller might genuinely need to recover from (a file that doesn't exist, a network call that failed).</p>
+<p><strong>The full hierarchy, top to bottom, is four classes deep before it branches into everything else:</strong></p>
+<pre class="mermaid"><code>graph TD
+    T["Throwable"] --&gt; E["Error"]
+    T --&gt; X["Exception"]
+    X --&gt; R["RuntimeException"]
+    E --&gt; E1["OutOfMemoryError, StackOverflowError,&lt;br/&gt;NoClassDefFoundError, AssertionError"]
+    X --&gt; X1["IOException, SQLException,&lt;br/&gt;InterruptedException, TimeoutException,&lt;br/&gt;ParseException"]
+    R --&gt; R1["NullPointerException, IllegalArgumentException,&lt;br/&gt;IllegalStateException, ClassCastException,&lt;br/&gt;ArrayIndexOutOfBoundsException, NumberFormatException,&lt;br/&gt;ConcurrentModificationException,&lt;br/&gt;UnsupportedOperationException"]
+
+    style E1 fill:#3a2020
+    style R1 fill:#3a2020
+    style X1 fill:#203a2e</code></pre>
+<p><code>Throwable</code> is the actual root of everything <code>catch</code>able — not <code>Exception</code>, a common imprecision. It splits into two direct subclasses, <strong><code>Error</code></strong> and <strong><code>Exception</code></strong>, and the checked/unchecked distinction is a purely structural rule, not a separate marker or annotation: <strong><code>Error</code> and every subclass of <code>RuntimeException</code> are unchecked; every other <code>Throwable</code> — meaning every <code>Exception</code> subclass that does <em>not</em> extend <code>RuntimeException</code> — is checked.</strong> The compiler literally implements "is this checked" as "is this NOT an <code>Error</code> and NOT a <code>RuntimeException</code>."</p>
+<p><strong><code>Error</code> represents a failure the application generally isn't expected to catch or recover from</strong> — <code>OutOfMemoryError</code> (the JVM ran out of heap), <code>StackOverflowError</code> (a call stack recursed too deep), <code>NoClassDefFoundError</code> (a class that compiled successfully is missing at runtime). These signal that the JVM itself, or the application's basic assumptions, are in a broken state; catching one rarely leads to a meaningful recovery, which is why <code>Error</code> is unchecked — forcing every caller in the codebase to declare or catch it would add boilerplate for a category almost no code can usefully act on.</p>
+<p><strong>Checked exceptions</strong> (subclasses of <code>Exception</code> but not <code>RuntimeException</code>, like <code>IOException</code>, <code>SQLException</code>, or <code>InterruptedException</code>) are ones the compiler forces a caller to acknowledge — either catch them or declare that the calling method also throws them. <strong>Unchecked exceptions</strong> (<code>RuntimeException</code> and its subclasses, like <code>NullPointerException</code>, <code>IllegalArgumentException</code>, <code>IllegalStateException</code>, <code>ClassCastException</code>, <code>ArrayIndexOutOfBoundsException</code>, <code>NumberFormatException</code>, <code>ConcurrentModificationException</code>, or <code>UnsupportedOperationException</code>) carry no such compiler-enforced requirement. A working rule of thumb: use unchecked exceptions for programming errors (a bug that shouldn't happen if the code is correct — an illegal argument, a null that should never be null) and reserve checked exceptions for conditions a well-written caller might genuinely need to recover from (a file that doesn't exist, a network call that failed, a timeout).</p>
 <h2 id="level-2-working-knowledge">Level 2 — Working Knowledge<a class="headerlink" href="#level-2-working-knowledge" title="Permanent link">&para;</a></h2>
 <p><strong>Always catch the most specific exception type that's actually relevant</strong> (<code>catch (NumberFormatException e)</code>), not a broad <code>catch (Exception e)</code> or, worse, <code>catch (Throwable t)</code> — a broad catch silently swallows problems it was never meant to handle, masking real bugs.</p>
 <p><strong>Whenever you catch an exception and throw a different one in its place, always pass the original as the cause</strong> (<code>throw new ServiceException("failed to process order", e);</code>, not <code>throw new ServiceException("failed to process order");</code>) — Section 5 explains exactly what real debugging information is destroyed by skipping this.</p>
@@ -12089,6 +12104,35 @@
 <p>Exception design is the discipline of choosing an exception hierarchy (checked vs. unchecked, custom exception types vs. generic ones) and a wrapping discipline (always chaining the cause) that preserves enough information for whoever eventually handles the failure to actually understand what happened. Java's checked-exception mechanism forces callers to acknowledge certain failure categories at compile time; unchecked exceptions (<code>RuntimeException</code> and its subtypes) do not, trading compile-time enforcement for less boilerplate at every call site.</p>
 <p>Exception wrapping exists because a low-level failure (a <code>SQLException</code>, an <code>IOException</code>) is often not meaningful to a caller several layers up — but wrapping it in a higher-level, more meaningful exception must preserve the original as the <strong>cause</strong>, or the information needed to actually debug the failure is gone the moment it's wrapped.</p>
 <h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="the-checkedunchecked-rule-is-structural-not-a-design-choice-per-class">The checked/unchecked rule is structural, not a design choice per class<a class="headerlink" href="#the-checkedunchecked-rule-is-structural-not-a-design-choice-per-class" title="Permanent link">&para;</a></h3>
+<p>Whether a given exception class is checked or unchecked is entirely determined by where it sits in the hierarchy — a class is unchecked if and only if it extends <code>RuntimeException</code> (or <code>Error</code>); every other <code>Throwable</code> subclass is checked, with no other rule involved. A custom exception's checked-vs-unchecked status is therefore decided the moment its author picks which class to <code>extends</code>, not by any later annotation or keyword.</p>
+<h3 id="common-derived-exceptions-by-category">Common derived exceptions, by category<a class="headerlink" href="#common-derived-exceptions-by-category" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Extends</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error (unchecked)</td>
+<td><code>Error</code></td>
+<td><code>OutOfMemoryError</code>, <code>StackOverflowError</code>, <code>NoClassDefFoundError</code>, <code>AssertionError</code></td>
+</tr>
+<tr>
+<td>Unchecked exception</td>
+<td><code>RuntimeException</code></td>
+<td><code>NullPointerException</code>, <code>IllegalArgumentException</code>, <code>IllegalStateException</code>, <code>ClassCastException</code>, <code>ArrayIndexOutOfBoundsException</code>, <code>NumberFormatException</code>, <code>ConcurrentModificationException</code>, <code>UnsupportedOperationException</code></td>
+</tr>
+<tr>
+<td>Checked exception</td>
+<td><code>Exception</code> (not <code>RuntimeException</code>)</td>
+<td><code>IOException</code> (and <code>FileNotFoundException</code>), <code>SQLException</code>, <code>InterruptedException</code>, <code>TimeoutException</code>, <code>ParseException</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="wrapping-without-chaining-the-cause-destroys-the-original-failure">Wrapping without chaining the cause destroys the original failure<a class="headerlink" href="#wrapping-without-chaining-the-cause-destroys-the-original-failure" title="Permanent link">&para;</a></h3>
 <p>Throwing a new exception with only a message (<code>new MyException("failed")</code>) inside a <code>catch</code> block, without passing the caught exception as the cause, discards the original exception and its entire stack trace — permanently, the moment the new exception is constructed.</p>
 <h3 id="getcause-and-the-chained-stack-trace-are-how-real-debugging-information-survives-a-wrap"><code>getCause()</code> and the chained stack trace are how real debugging information survives a wrap<a class="headerlink" href="#getcause-and-the-chained-stack-trace-are-how-real-debugging-information-survives-a-wrap" title="Permanent link">&para;</a></h3>
@@ -12260,6 +12304,17 @@ Exception that actually propagated: resource-B: failure during close()
 <h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
 <p>Cause-chaining and suppressed exceptions are both instances of a broader principle: a good exception design never has to choose between two pieces of information — it should always be possible to know both what ultimately propagated and what else happened along the way. A Staff engineer treats "does this custom exception type support chaining" as a mandatory review item for any new exception class, not a nice-to-have, because the cost of adding it is zero and the cost of omitting it is measured directly in this chapter: real production debugging time lost to information that was available and then deliberately discarded.</p>
 <h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="question-0-explain-javas-exception-hierarchy-and-what-distinguishes-a-checked-exception-from-an-unchecked-one">Question 0 — Explain Java's exception hierarchy, and what distinguishes a checked exception from an unchecked one<a class="headerlink" href="#question-0-explain-javas-exception-hierarchy-and-what-distinguishes-a-checked-exception-from-an-unchecked-one" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> A near-universal opener for any exception-handling discussion, testing whether a candidate knows the actual class structure or just the vague "checked = must catch it" folk definition.</p>
+<p><strong>Expected answer.</strong> <code>Throwable</code> is the root of everything catchable, splitting into <code>Error</code> and <code>Exception</code>. <code>Exception</code> further splits into <code>RuntimeException</code> and everything else. The checked/unchecked rule is structural: <code>Error</code> and any <code>RuntimeException</code> subclass are unchecked; every other <code>Throwable</code> is checked. Common unchecked examples: <code>NullPointerException</code>, <code>IllegalArgumentException</code>, <code>IllegalStateException</code>, <code>ClassCastException</code>, <code>ArrayIndexOutOfBoundsException</code>. Common checked examples: <code>IOException</code>, <code>SQLException</code>, <code>InterruptedException</code>. <code>Error</code> (<code>OutOfMemoryError</code>, <code>StackOverflowError</code>) represents a JVM/environment-level failure not generally meant to be caught.</p>
+<p><strong>Minimum acceptable answer.</strong> Correctly states that <code>RuntimeException</code> subclasses are unchecked and other <code>Exception</code> subclasses are checked, even without naming <code>Throwable</code> or <code>Error</code> explicitly.</p>
+<p><strong>Strong Senior answer.</strong> Names <code>Throwable</code> as the true root (not <code>Exception</code>), correctly places <code>Error</code> in the hierarchy, and gives at least two real examples in each category without hesitating.</p>
+<p><strong>Staff-level extension.</strong> Explains <em>why</em> the JDK's own checked exceptions skew toward genuinely recoverable I/O-and-external-system failures, and connects the checked/unchecked choice for a <em>custom</em> exception class to this chapter's own Decision Framework (should callers be compiler-forced to handle this, or does it behave more like a programming error) rather than reciting the rule as pure trivia.</p>
+<p><strong>Common mistakes.</strong> Saying <code>Exception</code> is the root of the hierarchy (it's <code>Throwable</code>); forgetting <code>Error</code> exists at all; claiming checked-vs-unchecked is marked by an annotation or keyword rather than being purely which class is extended.</p>
+<p><strong>Likely follow-ups.</strong> "Is <code>Error</code> checked or unchecked, and why does that make sense?" (Unchecked — forcing every caller to declare or catch <code>OutOfMemoryError</code> would add boilerplate for a category almost no code can meaningfully recover from.) "If I write <code>class MyException extends Exception</code>, is it checked?" (Yes — anything extending <code>Exception</code> directly, without going through <code>RuntimeException</code>, is checked.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know <code>RuntimeException</code> is the unchecked/checked dividing line. 3: correctly states the <code>RuntimeException</code> rule with a couple of real examples. 5: full <code>Throwable</code>/<code>Error</code>/<code>Exception</code>/<code>RuntimeException</code> hierarchy stated correctly, unprompted, with real examples in every category.</p>
+<p><strong>Related references.</strong> <a href="#level-1--foundation">§ Level 1 — Foundation</a>; <a href="#core-concepts">§ Core Concepts</a>.</p>
+<hr />
 <h3 id="question-1-your-on-call-alert-shows-a-generic-exception-with-no-detail-whats-the-first-thing-you-check-in-the-code">Question 1 — Your on-call alert shows a generic exception with no detail. What's the first thing you check in the code?<a class="headerlink" href="#question-1-your-on-call-alert-shows-a-generic-exception-with-no-detail-whats-the-first-thing-you-check-in-the-code" title="Permanent link">&para;</a></h3>
 <p><strong>Why interviewers ask it.</strong> Tests debugging instinct grounded in a specific, common real-world failure mode.</p>
 <p><strong>Expected answer.</strong> Check whether the exception's construction site (typically inside a <code>catch</code> block) passed the caught exception as the cause — a missing or <code>null</code> cause, with no chained stack trace, is the classic signature of this bug.</p>
@@ -12317,7 +12372,19 @@ Exception that actually propagated: resource-B: failure during close()
 </tr>
 </tbody>
 </table>
+<p><strong>The hierarchy, compressed:</strong> <code>Throwable</code> → <code>Error</code> (unchecked; <code>OutOfMemoryError</code>, <code>StackOverflowError</code>) and <code>Exception</code> → <code>RuntimeException</code> (unchecked; <code>NullPointerException</code>, <code>IllegalArgumentException</code>, <code>IllegalStateException</code>, <code>ClassCastException</code>, <code>ArrayIndexOutOfBoundsException</code>) and everything else in <code>Exception</code> (checked; <code>IOException</code>, <code>SQLException</code>, <code>InterruptedException</code>).</p>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
+<h3 id="card-the-exception-hierarchy-top-to-bottom">Card: The exception hierarchy, top to bottom<a class="headerlink" href="#card-the-exception-hierarchy-top-to-bottom" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+What's the actual root of Java's exception hierarchy, and what's the structural rule for checked vs. unchecked?</p>
+<p><strong>Answer:</strong>
+<code>Throwable</code> is the root — not <code>Exception</code>. It splits into <code>Error</code> and <code>Exception</code>; <code>Exception</code> splits into <code>RuntimeException</code> and everything else. A class is unchecked if and only if it extends <code>RuntimeException</code> or <code>Error</code>; every other <code>Throwable</code> subclass is checked.</p>
+<p><strong>Why it matters:</strong>
+"What's the root of the exception hierarchy" is a near-universal opener, and answering "<code>Exception</code>" instead of "<code>Throwable</code>" is a common, checkable miss.</p>
+<p><strong>Common trap:</strong>
+Forgetting <code>Error</code> exists, or thinking checked/unchecked is marked by an annotation rather than being purely which class is extended.</p>
+<p><strong>Related:</strong>
+<a href="#level-1--foundation">Level 1 — Foundation</a>, <a href="#core-concepts">Core Concepts</a></p>
 <h3 id="card-what-chaining-the-cause-preserves">Card: What chaining the cause preserves<a class="headerlink" href="#card-what-chaining-the-cause-preserves" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 What does chaining the cause when wrapping an exception actually preserve?</p>
@@ -12390,7 +12457,7 @@ Assuming both approaches are equivalent as long as <code>close()</code> is calle
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 7, 2026 21:19:15 UTC">September 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:45:39 UTC">September 14, 2026</span>
   </span>
 
     
