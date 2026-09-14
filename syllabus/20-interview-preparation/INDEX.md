@@ -3,10 +3,12 @@ title: "Interview Preparation — Domain Index"
 document_type: syllabus-domain-index
 domain: 20-interview-preparation
 status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated; L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4
-last_updated: 2026-09-04
+last_updated: 2026-09-13
 ---
 
 # Interview Preparation
+
+> **Question Bank pilot added (2026-09-13).** [`question-bank/06-databases.md`](question-bank/06-databases.md) is the pilot for a planned per-domain interview question compendium (93 real questions mined from `06-databases`'s own canonical chapters, organized by seniority tier — see `00-project/interview-question-bank-plan.md` for the full 22-domain plan and sourcing discipline). The remaining 21 domains are not started; do not scale further without reviewing this pilot's format first.
 
 The interview-application layer: behavioral (from `behavioral-handbook/`, relocated as-is), coding/system-design/technical-answers craft (from `interview-playbook/`), mock interviews (referenced from `practice/mock-interviews/`, not relocated), and one private company-specific prep guide (`company-prep/`, permanently excluded from any public/commercial build, per the Section 2.8 decision approved 2026-09-03).
 

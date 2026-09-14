@@ -1115,6 +1115,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated the chapter's front matter, Learning Objectives, Cheat Sheet, and 2 new Flashcards (mirrored into `cheat-sheets/` and `flashcards/`). Updated `syllabus/06-databases/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new.
 
+## [2026-09-13] — Interview Question Bank: new deliverable, `06-databases` pilot
+
+### Added
+
+- User request: each `syllabus/` domain needs a ~150-question compendium organized by seniority tier (Junior/Mid/Senior/Staff), related questions consolidated across domains rather than duplicated. Scoped given the scale (22 × ~150): a project-level plan plus one pilot domain first.
+- New `00-project/interview-question-bank-plan.md` — the compendium is a rapid-review layer distinct from (and linking to, not duplicating) each chapter's own deep `## Interview Questions` section; mandates mining real chapter content before writing anything new; requires reporting the real achieved count rather than padding to quota.
+- New `syllabus/20-interview-preparation/question-bank/06-databases.md` (pilot): 40 deep questions (mined from all 16 chapters' `## Interview Questions`, re-organized into a 4-tier "what's expected" view, honestly marking tiers that genuinely don't apply) + 5 already-leveled Junior/Mid questions from the domain's Junior Fundamentals chapter + 48 quick-fire questions (from Flashcards) = **93 real questions**, short of ~150 by design (documented why).
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
