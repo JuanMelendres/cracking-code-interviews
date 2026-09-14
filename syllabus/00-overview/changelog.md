@@ -1371,6 +1371,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New "The Diagnosis Process, Step by Step" section — an 8-step methodology (scope, evidence, hypothesis, isolate, confirm, fix, verify, close the loop) with a mermaid diagram and an explicit legacy-code branch (a characterization test before the fix step, cross-linked to `working-with-legacy-code.md`), a new Interview Question 3, 2 new Flashcards, and matching Cheat Sheet updates — synced to the standalone `cheat-sheets/`/`flashcards/` files and cross-linked bidirectionally with `working-with-legacy-code.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `exception-design-and-hierarchy-strategy.md` gains the full checked/unchecked hierarchy
+
+### Added
+
+- User request: this chapter's title promised "hierarchy strategy" but only had one paragraph on checked vs. unchecked — no mention of `Throwable` as the actual root, no mention of `Error` at all, no list of common derived exception classes.
+- New hierarchy section in Level 1 — Foundation (mermaid diagram: `Throwable` → `Error`/`Exception` → `RuntimeException`, plus the exact structural rule for checked vs. unchecked) and a new Core Concepts table of common derived exceptions by category. New Interview Question 0 (the hierarchy itself) placed before the existing cause-chaining/try-with-resources questions. 2 new Flashcards, Cheat Sheet updates, synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

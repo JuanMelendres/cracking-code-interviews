@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: java-core
 topic_id: T-105
 canonical: ../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
-last_updated: 2026-08-05
+last_updated: 2026-09-14
 ---
 
 # Exception Design and Hierarchy Strategy
@@ -21,6 +21,15 @@ An exception's job is to carry information to whoever eventually catches it — 
 - **Cause chaining** — using `Throwable(String, Throwable)` (or `initCause()`) to preserve the original exception, retrievable via `getCause()`.
 - **Suppressed exceptions** — when both a try-with-resources body and `close()` throw, the body's exception propagates as primary and `close()`'s is attached via `addSuppressed()`, retrievable via `getSuppressed()`.
 - **Checked vs. unchecked** — checked forces callers to acknowledge a failure category at compile time (boilerplate, can encourage catch-and-ignore); unchecked propagates naturally (nothing forces awareness).
+- **The hierarchy** — `Throwable` (the real root, not `Exception`) → `Error` / `Exception` → `RuntimeException`. Structural rule: unchecked = extends `RuntimeException` or `Error`; everything else is checked.
+
+## The Hierarchy, With Real Examples
+
+| Category | Extends | Examples |
+|---|---|---|
+| Error (unchecked) | `Error` | `OutOfMemoryError`, `StackOverflowError`, `NoClassDefFoundError` |
+| Unchecked exception | `RuntimeException` | `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException` |
+| Checked exception | `Exception` (not `RuntimeException`) | `IOException`, `SQLException`, `InterruptedException`, `TimeoutException` |
 
 ## Decision Table
 

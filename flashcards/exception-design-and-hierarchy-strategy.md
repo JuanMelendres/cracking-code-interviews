@@ -5,12 +5,46 @@ document_type: flashcard-deck
 domain: java-core
 topic_id: T-105
 canonical: ../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md
-last_updated: 2026-08-06
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Exception Design and Hierarchy Strategy
 
 **Canonical chapter:** [`syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md`](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md)
+
+## Card: The exception hierarchy, top to bottom
+
+**Prompt:**
+What's the actual root of Java's exception hierarchy, and what's the structural rule for checked vs. unchecked?
+
+**Answer:**
+`Throwable` is the root — not `Exception`. It splits into `Error` and `Exception`; `Exception` splits into `RuntimeException` and everything else. A class is unchecked if and only if it extends `RuntimeException` or `Error`; every other `Throwable` subclass is checked.
+
+**Why it matters:**
+"What's the root of the exception hierarchy" is a near-universal opener, and answering "`Exception`" instead of "`Throwable`" is a common, checkable miss.
+
+**Common trap:**
+Forgetting `Error` exists, or thinking checked/unchecked is marked by an annotation rather than being purely which class is extended.
+
+**Related:**
+[Level 1 — Foundation](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md#level-1--foundation)
+
+## Card: Common derived exceptions by category
+
+**Prompt:**
+Name at least three real Java exception classes in each of: `Error`, unchecked `Exception`, checked `Exception`.
+
+**Answer:**
+`Error`: `OutOfMemoryError`, `StackOverflowError`, `NoClassDefFoundError`. Unchecked (`RuntimeException`): `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException`. Checked: `IOException`, `SQLException`, `InterruptedException`, `TimeoutException`.
+
+**Why it matters:**
+Interviewers frequently follow up "what's checked vs. unchecked" with "give me real examples" — a candidate who can only recite the rule without naming real classes reads as having memorized, not understood, the distinction.
+
+**Common trap:**
+Misclassifying `ClassCastException` or `ArrayIndexOutOfBoundsException` as checked — both are unchecked `RuntimeException` subclasses despite sounding like they should require handling.
+
+**Related:**
+[Core Concepts](../syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md#core-concepts)
 
 ## Card: What chaining the cause preserves
 

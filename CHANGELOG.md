@@ -3368,6 +3368,13 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Added (`exception-design-and-hierarchy-strategy.md` — full checked/unchecked hierarchy, 2026-09-14)
+
+- User request: real coverage gap found. The chapter's title promises "hierarchy strategy" but only had one paragraph on checked vs. unchecked, with no mention of `Throwable` as the actual root, no mention of `Error` at all, and no list of common derived exception classes.
+- New hierarchy explanation in Level 1 — Foundation with a mermaid diagram (`Throwable` → `Error`/`Exception` → `RuntimeException`) and the exact structural rule (unchecked iff it extends `RuntimeException` or `Error`; everything else checked), plus a new Core Concepts table of common derived exceptions by category (`Error`: `OutOfMemoryError`, `StackOverflowError`, `NoClassDefFoundError`; unchecked: `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException`; checked: `IOException`, `SQLException`, `InterruptedException`, `TimeoutException`).
+- New Interview Question 0 (the hierarchy itself, matching the chapter's existing Q&A format) placed before the existing cause-chaining/try-with-resources questions, since it's the more fundamental, more commonly-asked question. 2 new Flashcards, Cheat Sheet updates — synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Added (`incident-response-and-blameless-postmortems.md` — production-debugging process, 2026-09-14)
 
 - User request, from two real interview questions they'd been asked: (1) "what's your process for solving a production error, new app or legacy" and (2) "what happens on any HTTP request/response." (2) was already fully covered as Interview Question 1 in `syllabus/01-computer-science-foundations/networking-basics.md` — no change needed there. (1) had no canonical home: `incident-response-and-blameless-postmortems.md` covered the mitigate-vs-diagnose *decision* and postmortem culture, but never the concrete technical steps "diagnosis" actually consists of.

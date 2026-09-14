@@ -4,8 +4,8 @@ slug: exception-design-and-hierarchy-strategy
 document_type: handbook-chapter
 domain: 02-java/language-core
 status: draft
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/java-core/exception-design-and-hierarchy-strategy.md
 difficulty:
@@ -65,6 +65,7 @@ official_references:
 
 By the end of this chapter you can:
 
+- Draw and explain Java's full exception hierarchy (`Throwable` → `Error`/`Exception` → `RuntimeException`), name at least three real examples in each category, and state the exact structural rule that determines checked vs. unchecked.
 - Explain, with a measured example, why wrapping an exception without chaining its cause destroys real debugging information.
 - Explain exactly what try-with-resources does when both the body and `close()` throw, and how suppressed exceptions preserve the second failure.
 - Explain why a manual `finally`-block `close()` that also throws is strictly worse, and reproduce the exact failure with real output.
@@ -78,7 +79,27 @@ Exception design questions test whether a candidate treats exception handling as
 
 **An exception is Java's way of saying "something went wrong, and I'm handing control to whoever knows how to deal with it"** — instead of returning a special error value that a caller might forget to check, `throw`ing an exception forces the surrounding code to either handle it (`catch`) or explicitly pass the problem further up (letting it propagate). The everyday analogy: raising your hand and pausing the meeting to flag a problem, versus quietly scribbling "something's wrong" in a margin no one is guaranteed to read.
 
-**Checked exceptions** (subclasses of `Exception` but not `RuntimeException`, like `IOException`) are ones the compiler forces a caller to acknowledge — either catch them or declare that the calling method also throws them. **Unchecked exceptions** (`RuntimeException` and its subclasses, like `NullPointerException` or `IllegalArgumentException`) carry no such compiler-enforced requirement. A working rule of thumb: use unchecked exceptions for programming errors (a bug that shouldn't happen if the code is correct) and reserve checked exceptions for conditions a well-written caller might genuinely need to recover from (a file that doesn't exist, a network call that failed).
+**The full hierarchy, top to bottom, is four classes deep before it branches into everything else:**
+
+```mermaid
+graph TD
+    T["Throwable"] --> E["Error"]
+    T --> X["Exception"]
+    X --> R["RuntimeException"]
+    E --> E1["OutOfMemoryError, StackOverflowError,<br/>NoClassDefFoundError, AssertionError"]
+    X --> X1["IOException, SQLException,<br/>InterruptedException, TimeoutException,<br/>ParseException"]
+    R --> R1["NullPointerException, IllegalArgumentException,<br/>IllegalStateException, ClassCastException,<br/>ArrayIndexOutOfBoundsException, NumberFormatException,<br/>ConcurrentModificationException,<br/>UnsupportedOperationException"]
+
+    style E1 fill:#3a2020
+    style R1 fill:#3a2020
+    style X1 fill:#203a2e
+```
+
+`Throwable` is the actual root of everything `catch`able — not `Exception`, a common imprecision. It splits into two direct subclasses, **`Error`** and **`Exception`**, and the checked/unchecked distinction is a purely structural rule, not a separate marker or annotation: **`Error` and every subclass of `RuntimeException` are unchecked; every other `Throwable` — meaning every `Exception` subclass that does *not* extend `RuntimeException` — is checked.** The compiler literally implements "is this checked" as "is this NOT an `Error` and NOT a `RuntimeException`."
+
+**`Error` represents a failure the application generally isn't expected to catch or recover from** — `OutOfMemoryError` (the JVM ran out of heap), `StackOverflowError` (a call stack recursed too deep), `NoClassDefFoundError` (a class that compiled successfully is missing at runtime). These signal that the JVM itself, or the application's basic assumptions, are in a broken state; catching one rarely leads to a meaningful recovery, which is why `Error` is unchecked — forcing every caller in the codebase to declare or catch it would add boilerplate for a category almost no code can usefully act on.
+
+**Checked exceptions** (subclasses of `Exception` but not `RuntimeException`, like `IOException`, `SQLException`, or `InterruptedException`) are ones the compiler forces a caller to acknowledge — either catch them or declare that the calling method also throws them. **Unchecked exceptions** (`RuntimeException` and its subclasses, like `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`, `ConcurrentModificationException`, or `UnsupportedOperationException`) carry no such compiler-enforced requirement. A working rule of thumb: use unchecked exceptions for programming errors (a bug that shouldn't happen if the code is correct — an illegal argument, a null that should never be null) and reserve checked exceptions for conditions a well-written caller might genuinely need to recover from (a file that doesn't exist, a network call that failed, a timeout).
 
 ## Level 2 — Working Knowledge
 
@@ -107,6 +128,18 @@ Exception design is the discipline of choosing an exception hierarchy (checked v
 Exception wrapping exists because a low-level failure (a `SQLException`, an `IOException`) is often not meaningful to a caller several layers up — but wrapping it in a higher-level, more meaningful exception must preserve the original as the **cause**, or the information needed to actually debug the failure is gone the moment it's wrapped.
 
 ## Core Concepts
+
+### The checked/unchecked rule is structural, not a design choice per class
+
+Whether a given exception class is checked or unchecked is entirely determined by where it sits in the hierarchy — a class is unchecked if and only if it extends `RuntimeException` (or `Error`); every other `Throwable` subclass is checked, with no other rule involved. A custom exception's checked-vs-unchecked status is therefore decided the moment its author picks which class to `extends`, not by any later annotation or keyword.
+
+### Common derived exceptions, by category
+
+| Category | Extends | Examples |
+|---|---|---|
+| Error (unchecked) | `Error` | `OutOfMemoryError`, `StackOverflowError`, `NoClassDefFoundError`, `AssertionError` |
+| Unchecked exception | `RuntimeException` | `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`, `ConcurrentModificationException`, `UnsupportedOperationException` |
+| Checked exception | `Exception` (not `RuntimeException`) | `IOException` (and `FileNotFoundException`), `SQLException`, `InterruptedException`, `TimeoutException`, `ParseException` |
 
 ### Wrapping without chaining the cause destroys the original failure
 
@@ -320,6 +353,28 @@ Cause-chaining and suppressed exceptions are both instances of a broader princip
 
 ## Interview Questions
 
+### Question 0 — Explain Java's exception hierarchy, and what distinguishes a checked exception from an unchecked one
+
+**Why interviewers ask it.** A near-universal opener for any exception-handling discussion, testing whether a candidate knows the actual class structure or just the vague "checked = must catch it" folk definition.
+
+**Expected answer.** `Throwable` is the root of everything catchable, splitting into `Error` and `Exception`. `Exception` further splits into `RuntimeException` and everything else. The checked/unchecked rule is structural: `Error` and any `RuntimeException` subclass are unchecked; every other `Throwable` is checked. Common unchecked examples: `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException`. Common checked examples: `IOException`, `SQLException`, `InterruptedException`. `Error` (`OutOfMemoryError`, `StackOverflowError`) represents a JVM/environment-level failure not generally meant to be caught.
+
+**Minimum acceptable answer.** Correctly states that `RuntimeException` subclasses are unchecked and other `Exception` subclasses are checked, even without naming `Throwable` or `Error` explicitly.
+
+**Strong Senior answer.** Names `Throwable` as the true root (not `Exception`), correctly places `Error` in the hierarchy, and gives at least two real examples in each category without hesitating.
+
+**Staff-level extension.** Explains *why* the JDK's own checked exceptions skew toward genuinely recoverable I/O-and-external-system failures, and connects the checked/unchecked choice for a *custom* exception class to this chapter's own Decision Framework (should callers be compiler-forced to handle this, or does it behave more like a programming error) rather than reciting the rule as pure trivia.
+
+**Common mistakes.** Saying `Exception` is the root of the hierarchy (it's `Throwable`); forgetting `Error` exists at all; claiming checked-vs-unchecked is marked by an annotation or keyword rather than being purely which class is extended.
+
+**Likely follow-ups.** "Is `Error` checked or unchecked, and why does that make sense?" (Unchecked — forcing every caller to declare or catch `OutOfMemoryError` would add boilerplate for a category almost no code can meaningfully recover from.) "If I write `class MyException extends Exception`, is it checked?" (Yes — anything extending `Exception` directly, without going through `RuntimeException`, is checked.)
+
+**Evaluation criteria (1–5).** 1: doesn't know `RuntimeException` is the unchecked/checked dividing line. 3: correctly states the `RuntimeException` rule with a couple of real examples. 5: full `Throwable`/`Error`/`Exception`/`RuntimeException` hierarchy stated correctly, unprompted, with real examples in every category.
+
+**Related references.** [§ Level 1 — Foundation](#level-1--foundation); [§ Core Concepts](#core-concepts).
+
+---
+
 ### Question 1 — Your on-call alert shows a generic exception with no detail. What's the first thing you check in the code?
 
 **Why interviewers ask it.** Tests debugging instinct grounded in a specific, common real-world failure mode.
@@ -382,7 +437,26 @@ Wrapping an exception without chaining its cause destroys the original failure's
 | Designing a custom exception class | Always include a `Throwable`-accepting constructor |
 | Deciding checked vs. unchecked | Checked if callers must be compiler-forced to acknowledge; unchecked otherwise |
 
+**The hierarchy, compressed:** `Throwable` → `Error` (unchecked; `OutOfMemoryError`, `StackOverflowError`) and `Exception` → `RuntimeException` (unchecked; `NullPointerException`, `IllegalArgumentException`, `IllegalStateException`, `ClassCastException`, `ArrayIndexOutOfBoundsException`) and everything else in `Exception` (checked; `IOException`, `SQLException`, `InterruptedException`).
+
 ## Flashcards
+
+### Card: The exception hierarchy, top to bottom
+
+**Prompt:**
+What's the actual root of Java's exception hierarchy, and what's the structural rule for checked vs. unchecked?
+
+**Answer:**
+`Throwable` is the root — not `Exception`. It splits into `Error` and `Exception`; `Exception` splits into `RuntimeException` and everything else. A class is unchecked if and only if it extends `RuntimeException` or `Error`; every other `Throwable` subclass is checked.
+
+**Why it matters:**
+"What's the root of the exception hierarchy" is a near-universal opener, and answering "`Exception`" instead of "`Throwable`" is a common, checkable miss.
+
+**Common trap:**
+Forgetting `Error` exists, or thinking checked/unchecked is marked by an annotation rather than being purely which class is extended.
+
+**Related:**
+[Level 1 — Foundation](#level-1--foundation), [Core Concepts](#core-concepts)
 
 ### Card: What chaining the cause preserves
 
