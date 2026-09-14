@@ -1440,6 +1440,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `11-system-design` (13th domain), one broken link fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (13th domain, 9 chapters, via two parallel background agents). All 8 other chapters verified fully clean — every measured number confirmed by actually compiling and running the referenced Java demos, live output matching claimed numbers.
+- `load-balancing-service-discovery-and-health-checking.md`: fixed a broken cross-reference — link text "Kubernetes Objects, Scheduling, and Networking" pointed at `kubernetes-resource-limits-probes-and-jvm-sizing.md`, a real but differently-titled chapter. Fixed link text to match the real target's title.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `09-messaging-event-driven` (12th domain), two real issues fixed
 
 ### Fixed

@@ -4,8 +4,8 @@ slug: load-balancing-service-discovery-and-health-checking
 document_type: handbook-chapter
 domain: 11-system-design
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/system-design/load-balancing-service-discovery-and-health-checking.md
 topic_id: T-805
@@ -472,7 +472,7 @@ Treating them as interchangeable rather than complementary.
 
 - [Data Partitioning and Consistent Hashing](../10-distributed-systems/data-partitioning-and-consistent-hashing.md) — the real, measured rebalancing-cost trade-off behind consistent-hashing-based load balancing.
 - [Multi-Region, Failover, and Disaster Recovery](../10-distributed-systems/multi-region-failover-and-disaster-recovery.md) — the region-scale version of the same detection-and-failover mechanics this chapter covers at the single-backend scale, including the real DNS-propagation cost layered on top.
-- [Kubernetes Objects, Scheduling, and Networking](../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md) — the concrete, real `livenessProbe`/`readinessProbe` implementation of this chapter's active-health-checking mechanism in a specific, widely-used platform.
+- [Kubernetes Resource Limits, Probes, and JVM Sizing](../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md) — the concrete, real `livenessProbe`/`readinessProbe` implementation of this chapter's active-health-checking mechanism in a specific, widely-used platform.
 
 ## Official References
 
