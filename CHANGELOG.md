@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Content-quality audit — `18-engineering-practices`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (18th domain, 6 chapters, read directly). `architecture-decision-records-and-technical-writing.md`, `code-review-standards-and-practice.md`, `git-internals-and-collaboration-workflows.md`, `refactoring-discipline.md`, `working-with-legacy-code.md` all verified fully clean — every real command transcript and executed output (git blob hashes, bisect complexity math, characterization-test discount-cliff arithmetic, refactoring parity-test results) checked and consistent.
+- `sdlc-and-agile-methodology-fundamentals.md`: fixed a minor typo, a duplicated word ("4 weeks in in instead of 6" → "4 weeks in instead of 6").
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `17-architecture`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (17th domain, 9 chapters, via two parallel background agents). `clean-hexagonal-architecture.md`, `ddd-tactical-design-aggregates.md`, `microservice-decomposition-and-monolith-tradeoff.md`, `modular-monolith-as-a-deliberate-choice.md`, `strangler-fig-and-migration-patterns.md`, `technical-debt-and-evolutionary-architecture.md` all verified fully clean — every measured number (CQRS's p50/p99 latencies, 4.6x/5.4x speedups, coupling counts, incremental-cutover percentages) cross-checked against real practice code and matched exactly.

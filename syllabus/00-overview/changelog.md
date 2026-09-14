@@ -1440,6 +1440,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `18-engineering-practices` (18th domain), one typo fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (18th domain, 6 chapters, read directly). 5 of 6 chapters verified fully clean, all executed-output claims checked (git blob hashes, bisect complexity, characterization-test arithmetic, refactoring parity tests).
+- `sdlc-and-agile-methodology-fundamentals.md`: fixed a duplicated-word typo.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `17-architecture` (17th domain), three real fixes
 
 ### Fixed

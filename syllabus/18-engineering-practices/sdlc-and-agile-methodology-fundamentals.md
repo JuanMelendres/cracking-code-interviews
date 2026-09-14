@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-2212
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
@@ -76,7 +76,7 @@ Use the SDLC's six phases as a shared vocabulary regardless of which process mod
 
 This chapter is intentionally conceptual — there is no Java demo to compile, since SDLC/Agile is a process model, not executable code. The representative scenario below illustrates the same feature request handled two ways, to make the risk difference concrete rather than abstract:
 
-**Representative scenario, not a real incident:** a team is asked to build a "recommend related products" feature. Under a strict Waterfall approach, Requirements are fully specified (exact recommendation algorithm, exact UI placement, exact data sources) before any code is written; six weeks later, at Deployment, stakeholders see it for the first time and realize the recommendations need to reflect real-time inventory, not the daily batch feed the Requirements phase assumed — forcing a return to Requirements and Design after most of the implementation budget is already spent. Under an Agile approach, the first sprint ships a minimal version using the daily batch feed, stakeholders see it working in week 2, immediately flag the real-time inventory need, and the very next sprint addresses it — the same discovery happens, but 4 weeks in in instead of 6, with far less implementation work to rework.
+**Representative scenario, not a real incident:** a team is asked to build a "recommend related products" feature. Under a strict Waterfall approach, Requirements are fully specified (exact recommendation algorithm, exact UI placement, exact data sources) before any code is written; six weeks later, at Deployment, stakeholders see it for the first time and realize the recommendations need to reflect real-time inventory, not the daily batch feed the Requirements phase assumed — forcing a return to Requirements and Design after most of the implementation budget is already spent. Under an Agile approach, the first sprint ships a minimal version using the daily batch feed, stakeholders see it working in week 2, immediately flag the real-time inventory need, and the very next sprint addresses it — the same discovery happens, but 4 weeks in instead of 6, with far less implementation work to rework.
 
 ## 8. Common Mistakes
 
