@@ -250,7 +250,7 @@ Typed props/state/hooks, generic components, and discriminated unions each move 
 
 ## Flashcards
 
-## Card: Why a discriminated union beats optional fields for variant props
+### Card: Why a discriminated union beats optional fields for variant props
 
 **Prompt:**
 A component's `onRetry` prop should be required only when `variant === 'error'`. Why is `onRetry?: () => void` on a single shared interface weaker than a discriminated union?
@@ -267,7 +267,7 @@ Treating "optional plus a runtime warning" as an acceptable substitute for a rea
 **Related:**
 [[react-typescript]]
 
-## Card: What exhaustiveness checking actually catches
+### Card: What exhaustiveness checking actually catches
 
 **Prompt:**
 A `useReducer`'s action type union gains a new member, but the reducer's `switch` isn't updated. What real compiler mechanism catches this, and why?

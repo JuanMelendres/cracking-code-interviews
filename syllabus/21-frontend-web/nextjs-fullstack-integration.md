@@ -299,7 +299,7 @@ A real, separate Spring Boot backend was stood up specifically to test this chap
 
 ## Flashcards
 
-## Card: Does CORS block a `curl` request the way it blocks a browser's `fetch()`?
+### Card: Does CORS block a `curl` request the way it blocks a browser's `fetch()`?
 
 **Prompt:**
 If a server has no CORS configuration, does a `curl` request to it fail the same way a browser's `fetch()` call does?
@@ -316,7 +316,7 @@ Debugging the server when the actual failure is a browser-side enforcement decis
 **Related:**
 [[nextjs-fullstack-integration]] [[nextjs-route-handlers]]
 
-## Card: Can JavaScript read the `Access-Control-Allow-Origin` header from a successful cross-origin `fetch()`?
+### Card: Can JavaScript read the `Access-Control-Allow-Origin` header from a successful cross-origin `fetch()`?
 
 **Prompt:**
 After a cross-origin `fetch()` succeeds (CORS allowed it through), can the calling JavaScript read the response's own `Access-Control-Allow-Origin` header value?

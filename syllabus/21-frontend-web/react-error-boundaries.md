@@ -251,7 +251,7 @@ Error boundaries are class components (no hook equivalent) that catch render-pha
 
 ## Flashcards
 
-## Card: What error boundaries catch vs. don't
+### Card: What error boundaries catch vs. don't
 
 **Prompt:**
 Precisely, what do React error boundaries catch, and what do they NOT catch?
@@ -268,7 +268,7 @@ Assuming any error anywhere inside a wrapped subtree will be caught, regardless 
 **Related:**
 [[react-error-boundaries]]
 
-## Card: Boundary granularity's real cost
+### Card: Boundary granularity's real cost
 
 **Prompt:**
 What's the actual, measured difference between a shared boundary and per-section granular boundaries when one section crashes?

@@ -340,7 +340,7 @@ Records, sealed types, and pattern matching form one coherent feature set spanni
 
 ## Flashcards
 
-## Card: Record hashCode formula
+### Card: Record hashCode formula
 
 **Prompt:**
 Does a record's generated `hashCode()` equal `Objects.hash()` of its components?
@@ -357,7 +357,7 @@ Assuming record internals mirror IDE-generated `equals`/`hashCode`.
 **Related:**
 [[records-sealed-types-and-pattern-matching]]
 
-## Card: Sealed exhaustiveness
+### Card: Sealed exhaustiveness
 
 **Prompt:**
 Why doesn't a switch over a sealed interface need a `default` branch?

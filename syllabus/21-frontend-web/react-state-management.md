@@ -252,7 +252,7 @@ Client state (Context, Redux Toolkit, Zustand) and server state (TanStack Query)
 
 ## Flashcards
 
-## Card: Why Context re-renders an unrelated consumer
+### Card: Why Context re-renders an unrelated consumer
 
 **Prompt:**
 Two components both call `useContext` on the same provider — one reads `count`, the other reads `name`. Why does updating ONLY `count` re-render both?
@@ -269,7 +269,7 @@ Assuming Context is simply "less efficient" without being able to name the actua
 **Related:**
 [[react-state-management]]
 
-## Card: What TanStack Query's cache deduplication actually proves
+### Card: What TanStack Query's cache deduplication actually proves
 
 **Prompt:**
 Two independent components both call `useQuery` with the exact same `queryKey`. How many real network requests fire, and why does that matter compared to hand-rolled `useEffect` fetching?

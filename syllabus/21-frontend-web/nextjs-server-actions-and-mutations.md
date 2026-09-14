@@ -280,7 +280,7 @@ A real CRUD surface (`app/notes/`) was built with a Server Component reading dat
 
 ## Flashcards
 
-## Card: Does a page-level auth redirect protect the Server Action behind it?
+### Card: Does a page-level auth redirect protect the Server Action behind it?
 
 **Prompt:**
 If a page redirects unauthenticated visitors before they see a form, is the Server Action that form submits to also protected?
@@ -297,7 +297,7 @@ Treating "the UI only shows this when authenticated" as equivalent to "only auth
 **Related:**
 [[nextjs-server-actions-and-mutations]] [[nextjs-authentication-patterns]]
 
-## Card: Does wrapping a Server Action in a closure for `useOptimistic` change its no-JS behavior?
+### Card: Does wrapping a Server Action in a closure for `useOptimistic` change its no-JS behavior?
 
 **Prompt:**
 Does wrapping a Server Action reference in a local client function (to call `useOptimistic`'s update function first) change how the form behaves without JavaScript?

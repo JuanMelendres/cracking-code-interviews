@@ -284,7 +284,7 @@ Not the primary target of this chapter, but briefly: at scale, the missing-clean
 
 ## Flashcards
 
-## Card: Effect cleanup and leaks
+### Card: Effect cleanup and leaks
 
 **Prompt:**
 What happens if an effect that starts a `setInterval` returns no cleanup function?
@@ -301,7 +301,7 @@ Assuming a missing cleanup is "just a lint warning" rather than a real, accumula
 **Related:**
 [[react-hooks-useeffect-and-useref]]
 
-## Card: Stale closures in effects
+### Card: Stale closures in effects
 
 **Prompt:**
 Why does a value read inside a `setInterval` callback created in a `useEffect([])` never update?

@@ -260,7 +260,7 @@ Four patterns, two real problems: composition replaces inheritance for specializ
 
 ## Flashcards
 
-## Card: HOC hidden indirection
+### Card: HOC hidden indirection
 
 **Prompt:**
 What's structurally different about a HOC-wrapped component versus a custom-hook version of the same behavior?
@@ -277,7 +277,7 @@ Dismissing HOCs as simply "bad" instead of naming the specific structural cost.
 **Related:**
 [[react-component-patterns]]
 
-## Card: What compound components solve
+### Card: What compound components solve
 
 **Prompt:**
 What problem do compound components solve that's different from what HOCs/render props/hooks solve?

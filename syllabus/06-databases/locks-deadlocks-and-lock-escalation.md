@@ -378,7 +378,7 @@ A deadlock is a real, detectable circular wait between transactions, resolved by
 
 ## Flashcards
 
-## Card: Does PostgreSQL escalate row locks?
+### Card: Does PostgreSQL escalate row locks?
 
 **Prompt:**
 Does PostgreSQL escalate row locks to table locks under high contention, like MySQL/InnoDB or SQL Server can?
@@ -395,7 +395,7 @@ Carrying MySQL/SQL Server intuition into a PostgreSQL answer.
 **Related:**
 [§ Core Concepts](#core-concepts)
 
-## Card: How PostgreSQL detects a deadlock
+### Card: How PostgreSQL detects a deadlock
 
 **Prompt:**
 What's the actual mechanism PostgreSQL uses to detect a deadlock?
@@ -412,7 +412,7 @@ Describing deadlock detection vaguely, or confusing ordinary blocking (no cycle)
 **Related:**
 [§ Internal Implementation](#internal-implementation)
 
-## Card: What actually limits PostgreSQL instead of escalation
+### Card: What actually limits PostgreSQL instead of escalation
 
 **Prompt:**
 If not row-lock escalation, what real PostgreSQL failure mode limits a lock-heavy transaction?

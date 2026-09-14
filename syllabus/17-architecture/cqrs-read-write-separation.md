@@ -400,7 +400,7 @@ CQRS separates the write model from the read model and connects them with a real
 
 ## Flashcards
 
-## Card: CQS vs. CQRS
+### Card: CQS vs. CQRS
 
 **Prompt:**
 What's the difference between Command-Query Separation and CQRS?
@@ -417,7 +417,7 @@ Calling "different read/write DTOs" CQRS — that's CQS at the interface level, 
 **Related:**
 [§ Comparisons](#comparisons)
 
-## Card: The real cost of CQRS
+### Card: The real cost of CQRS
 
 **Prompt:**
 What is the one thing every CQRS explanation must name as a real cost, not a footnote?
@@ -434,7 +434,7 @@ Presenting CQRS as a strict upgrade with no downside.
 **Related:**
 [§ Core Concepts](#core-concepts)
 
-## Card: CQRS vs. Event Sourcing
+### Card: CQRS vs. Event Sourcing
 
 **Prompt:**
 Does CQRS require Event Sourcing?

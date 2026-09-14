@@ -252,7 +252,7 @@ Reconciliation's entire behavior reduces to one heuristic — same type at the s
 
 ## Flashcards
 
-## Card: Type change vs. prop change
+### Card: Type change vs. prop change
 
 **Prompt:**
 What's the difference in outcome between changing an element's TYPE vs. changing a PROP on the same type, at the same JSX position?
@@ -269,7 +269,7 @@ Conditionally rendering different component types for what should be "the same t
 **Related:**
 [[react-reconciliation-and-fiber]]
 
-## Card: Batching guarantee, precisely
+### Card: Batching guarantee, precisely
 
 **Prompt:**
 What does React's batching guarantee actually promise?

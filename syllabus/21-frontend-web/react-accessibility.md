@@ -250,7 +250,7 @@ Accessibility is a set of independently verifiable technical facts, not a vague 
 
 ## Flashcards
 
-## Card: Why div-based buttons fail keyboard users
+### Card: Why div-based buttons fail keyboard users
 
 **Prompt:**
 A `<div onClick>` styled to look exactly like a button works fine with a mouse. What's actually broken, and why does it matter?
@@ -267,7 +267,7 @@ Assuming "it works when I click it" is sufficient evidence the widget is general
 **Related:**
 [[react-accessibility]]
 
-## Card: The three separate parts of modal focus management
+### Card: The three separate parts of modal focus management
 
 **Prompt:**
 What are the three separate, independently-verifiable behaviors that make up "good focus management" for a modal?

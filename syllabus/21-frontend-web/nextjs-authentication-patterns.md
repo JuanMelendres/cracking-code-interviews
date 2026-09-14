@@ -269,7 +269,7 @@ A real, working authentication system was built directly on top of this app's ex
 
 ## Flashcards
 
-## Card: Does Proxy's cookie-presence check alone stop a tampered session?
+### Card: Does Proxy's cookie-presence check alone stop a tampered session?
 
 **Prompt:**
 Does a Proxy check like `!request.cookies.has('session')` alone stop a genuinely tampered/forged session cookie?
@@ -286,7 +286,7 @@ Assuming a cookie's existence implies its contents are trustworthy.
 **Related:**
 [[nextjs-authentication-patterns]] [[nextjs-proxy-and-edge-runtime]]
 
-## Card: Does `unauthorized()` always return a real 401 status?
+### Card: Does `unauthorized()` always return a real 401 status?
 
 **Prompt:**
 With `authInterrupts` enabled, does calling `unauthorized()` always produce a real HTTP 401 status?

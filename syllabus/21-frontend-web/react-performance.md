@@ -249,7 +249,7 @@ Memoization, virtualization, and code-splitting each address a distinct performa
 
 ## Flashcards
 
-## Card: Why `React.memo` can silently do nothing
+### Card: Why `React.memo` can silently do nothing
 
 **Prompt:**
 `React.memo` is applied to a component, but it still re-renders every time its parent does. What's the most likely cause?
@@ -266,7 +266,7 @@ Assuming `React.memo`'s mere presence in the code means memoization is actually 
 **Related:**
 [[react-performance]]
 
-## Card: What virtualization actually reduces, and how to verify it
+### Card: What virtualization actually reduces, and how to verify it
 
 **Prompt:**
 What specific cost does list virtualization reduce, and how would you verify an implementation is actually working (not just capping the list)?

@@ -280,7 +280,7 @@ Self-hosting Next.js was verified directly, not assumed: a real `output: "standa
 
 ## Flashcards
 
-## Card: Does `output: "standalone"` produce a complete, ready-to-run deployment?
+### Card: Does `output: "standalone"` produce a complete, ready-to-run deployment?
 
 **Prompt:**
 Does Next.js's `output: "standalone"` build produce a complete deployment artifact on its own?
@@ -297,7 +297,7 @@ Testing only the HTML response, not the static assets, when validating a standal
 **Related:**
 [[nextjs-deployment-models]] [[nextjs-server-actions-and-mutations]]
 
-## Card: Does every Server Action need a shared encryption key across self-hosted instances?
+### Card: Does every Server Action need a shared encryption key across self-hosted instances?
 
 **Prompt:**
 When self-hosting Next.js across multiple instances, does every Server Action require `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` to be set identically?

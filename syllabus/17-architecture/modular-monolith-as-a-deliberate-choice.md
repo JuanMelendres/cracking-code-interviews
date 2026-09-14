@@ -371,7 +371,7 @@ A modular monolith deliberately claims the team-autonomy and ownership-clarity b
 
 ## Flashcards
 
-## Card: Does a package name enforce a boundary?
+### Card: Does a package name enforce a boundary?
 
 **Prompt:**
 Does naming a package `internal` actually stop another module from depending on it in Java?
@@ -388,7 +388,7 @@ Assuming a naming convention alone provides real protection.
 **Related:**
 [§ Core Concepts](#core-concepts)
 
-## Card: Boundary violations vs. cycles
+### Card: Boundary violations vs. cycles
 
 **Prompt:**
 Why do module-level cycles need a separate check from single-direction boundary violations?
@@ -405,7 +405,7 @@ Assuming a boundary-violation rule alone also catches cycles.
 **Related:**
 [§ Production Scenarios](#production-scenarios)
 
-## Card: When to extract a module into a service
+### Card: When to extract a module into a service
 
 **Prompt:**
 When is a module in a modular monolith actually ready to become its own service?

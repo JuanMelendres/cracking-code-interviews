@@ -258,7 +258,7 @@ Not the primary focus of this chapter's demos, but briefly: choosing between tim
 
 ## Flashcards
 
-## Card: Why "uncached by default" doesn't guarantee a fresh page
+### Card: Why "uncached by default" doesn't guarantee a fresh page
 
 **Prompt:**
 `fetch()` with no `cache` option is documented as "not cached by default." Does that mean the page will always serve fresh data?
@@ -275,7 +275,7 @@ Treating "fetch is uncached by default" as settling whether the whole page is fr
 **Related:**
 [[nextjs-data-fetching-and-caching]]
 
-## Card: Why a same-deployment `force-cache` fetch can fail the build
+### Card: Why a same-deployment `force-cache` fetch can fail the build
 
 **Prompt:**
 A `force-cache`-eligible page fetches from an API route in the SAME Next.js deployment. What real failure can this cause, and why?

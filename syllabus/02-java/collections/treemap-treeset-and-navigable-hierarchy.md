@@ -309,7 +309,7 @@ Choosing `TreeMap`/`TreeSet` over `HashMap`/`HashSet` is a real, structural trad
 
 ## Flashcards
 
-## Card: Is `NavigableSet` a class or an interface, and what's its relationship to `TreeSet`?
+### Card: Is `NavigableSet` a class or an interface, and what's its relationship to `TreeSet`?
 
 **Prompt:**
 Is `NavigableSet` a concrete class alongside `TreeSet`, or something else?
@@ -326,7 +326,7 @@ Drawing `NavigableSet` as a peer implementation rather than the interface `TreeS
 **Related:**
 [[treemap-treeset-and-navigable-hierarchy]] [[hashmap-internals]]
 
-## Card: Does `TreeMap` guarantee O(log n) even under the worst possible insertion order?
+### Card: Does `TreeMap` guarantee O(log n) even under the worst possible insertion order?
 
 **Prompt:**
 If you insert keys into a `TreeMap` in already-sorted (ascending) order — the input that would break a naive BST — does `TreeMap` still guarantee O(log n) operations?

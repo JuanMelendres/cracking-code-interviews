@@ -310,7 +310,7 @@ Git's entire behavior — what's fast, what's safe, what's recoverable — follo
 
 ## Flashcards
 
-## Card: Merge vs. rebase commit identity
+### Card: Merge vs. rebase commit identity
 
 **Prompt:**
 Does `git rebase` change the hash of the commits it replays?
@@ -327,7 +327,7 @@ Assuming rebase just "reorders" the same commits in place.
 **Related:**
 [[git-internals-and-collaboration-workflows]]
 
-## Card: Reflog recovery window
+### Card: Reflog recovery window
 
 **Prompt:**
 Why does `git reflog` recover work after a `git reset --hard`?

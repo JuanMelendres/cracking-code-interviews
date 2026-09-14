@@ -261,7 +261,7 @@ The Middleware-to-Proxy rename and the Edge Runtime's deprecation are, together,
 
 ## Flashcards
 
-## Card: Is "Middleware" still the correct term in Next.js 16?
+### Card: Is "Middleware" still the correct term in Next.js 16?
 
 **Prompt:**
 Is "Middleware" still the current file convention/terminology in Next.js 16?
@@ -278,7 +278,7 @@ Assuming a rename this significant would be purely cosmetic, missing that a left
 **Related:**
 [[nextjs-proxy-and-edge-runtime]] [[nextjs-route-handlers]]
 
-## Card: Can Proxy use the Edge Runtime in Next.js 16?
+### Card: Can Proxy use the Edge Runtime in Next.js 16?
 
 **Prompt:**
 Can a `proxy.js` file in Next.js 16 opt into the Edge Runtime?

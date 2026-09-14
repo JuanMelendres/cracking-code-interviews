@@ -263,7 +263,7 @@ Concurrent rendering makes React's render phase interruptible rather than always
 
 ## Flashcards
 
-## Card: `useTransition` vs. `useDeferredValue`
+### Card: `useTransition` vs. `useDeferredValue`
 
 **Prompt:**
 When would you reach for `useTransition` over `useDeferredValue`, and vice versa?
@@ -280,7 +280,7 @@ Assuming they're interchangeable regardless of whether you control the setter â€
 **Related:**
 [[react-concurrent-rendering]]
 
-## Card: What Suspense actually waits for
+### Card: What Suspense actually waits for
 
 **Prompt:**
 What kind of "not ready yet" does Suspense handle, and how is that different from what `useTransition` handles?

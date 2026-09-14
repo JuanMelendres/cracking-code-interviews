@@ -346,7 +346,7 @@ JavaScript's behavior around timing, `this`, and equality all follow from a smal
 
 ## Flashcards
 
-## Card: this in arrow vs. regular functions
+### Card: this in arrow vs. regular functions
 
 **Prompt:**
 Why does a regular function passed as a `setTimeout` callback inside an object method lose access to the object as `this`, while an arrow function doesn't?
@@ -363,7 +363,7 @@ Believing `this` "belongs to" the object a method is defined on, rather than bei
 **Related:**
 [[javascript-fundamentals-variables-functions-and-asynchrony]]
 
-## Card: Event loop ordering
+### Card: Event loop ordering
 
 **Prompt:**
 Given synchronous code, a `.then()` callback, and a `setTimeout(fn, 0)`, all written in that source order interleaved, what actually prints first?
@@ -380,7 +380,7 @@ Assuming source order determines execution order for anything asynchronous.
 **Related:**
 [[javascript-fundamentals-variables-functions-and-asynchrony]]
 
-## Card: What a closure actually is
+### Card: What a closure actually is
 
 **Prompt:**
 What is a closure, precisely — not just "a function inside a function"?
@@ -397,7 +397,7 @@ Defining a closure only by its shape ("a nested function") without the actual be
 **Related:**
 [[javascript-fundamentals-variables-functions-and-asynchrony]]
 
-## Card: == vs === and [] == false
+### Card: == vs === and [] == false
 
 **Prompt:**
 Why does `[] == false` evaluate to `true` in JavaScript?
@@ -414,7 +414,7 @@ Treating `==` and `===` as stylistically interchangeable.
 **Related:**
 [[javascript-fundamentals-variables-functions-and-asynchrony]]
 
-## Card: const does not mean immutable
+### Card: const does not mean immutable
 
 **Prompt:**
 Does `const` prevent an object's properties from being changed?

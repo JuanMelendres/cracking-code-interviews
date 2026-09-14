@@ -268,7 +268,7 @@ File-based routing derives an app's entire URL structure from the `app/` directo
 
 ## Flashcards
 
-## Card: What actually creates a Next.js App Router route
+### Card: What actually creates a Next.js App Router route
 
 **Prompt:**
 What specifically creates the `/about` route in a Next.js App Router project — what's the minimum required?
@@ -285,7 +285,7 @@ Describing file-based routing as a vague convenience rather than being able to s
 **Related:**
 [[nextjs-fundamentals]]
 
-## Card: How to prove a layout doesn't remount on navigation
+### Card: How to prove a layout doesn't remount on navigation
 
 **Prompt:**
 A teammate claims Next.js layouts "don't remount" when navigating between sibling pages. How would you actually verify this, rather than trusting the documentation?

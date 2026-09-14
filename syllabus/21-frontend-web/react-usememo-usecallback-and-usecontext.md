@@ -272,7 +272,7 @@ Not the primary target of this chapter, but briefly: at organizational scale, th
 
 ## Flashcards
 
-## Card: Two causes of Context re-renders
+### Card: Two causes of Context re-renders
 
 **Prompt:**
 A memo()'d Context consumer still re-renders when an unrelated field changes. What's the likely context-related cause?
@@ -289,7 +289,7 @@ Assuming `memo()` alone should have prevented this.
 **Related:**
 [[react-usememo-usecallback-and-usecontext]]
 
-## Card: useCallback without memo
+### Card: useCallback without memo
 
 **Prompt:**
 Does wrapping a function in useCallback help if the component receiving it as a prop isn't wrapped in React.memo?

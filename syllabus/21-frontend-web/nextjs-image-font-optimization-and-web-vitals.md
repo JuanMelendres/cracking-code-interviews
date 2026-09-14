@@ -265,7 +265,7 @@ The `priority`→`preload` rename's SILENT deprecation (no warning anywhere, con
 
 ## Flashcards
 
-## Card: Component vs. endpoint behavior for a disallowed image quality
+### Card: Component vs. endpoint behavior for a disallowed image quality
 
 **Prompt:**
 If a `quality` prop value isn't in `next.config.js`'s `images.qualities` allowlist, does the `<Image>` component error?
@@ -282,7 +282,7 @@ Assuming a disallowed value produces a visible error, missing the component's re
 **Related:**
 [[nextjs-image-font-optimization-and-web-vitals]]
 
-## Card: Is `priority`'s deprecation loud or silent?
+### Card: Is `priority`'s deprecation loud or silent?
 
 **Prompt:**
 Next.js 16 deprecated the `priority` prop in favor of `preload`. Does using the old prop produce a warning?

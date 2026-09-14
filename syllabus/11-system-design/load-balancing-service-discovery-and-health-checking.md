@@ -405,7 +405,7 @@ Load balancing, service discovery, and health checking work together to route re
 
 ## Flashcards
 
-## Card: Round-robin vs. least-connections
+### Card: Round-robin vs. least-connections
 
 **Prompt:**
 What real, structural difference separates round-robin from least-connections?
@@ -422,7 +422,7 @@ Assuming round-robin distributes load evenly just because it distributes request
 **Related:**
 [§ Core Concepts](#core-concepts)
 
-## Card: Health-check detection latency is real and bounded
+### Card: Health-check detection latency is real and bounded
 
 **Prompt:**
 How quickly does an active health checker detect a dead backend?
@@ -439,7 +439,7 @@ Saying "the load balancer handles it" without naming the actual bound.
 **Related:**
 [§ Production Scenarios](#production-scenarios)
 
-## Card: Active vs. passive health checking
+### Card: Active vs. passive health checking
 
 **Prompt:**
 What's the real difference between active and passive health checking, and why use both?

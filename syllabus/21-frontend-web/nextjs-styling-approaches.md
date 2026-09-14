@@ -253,7 +253,7 @@ Three real styling approaches were built side by side and tested for their actua
 
 ## Flashcards
 
-## Card: Does Tailwind's JIT engine understand whether a class name is actually applied to an element?
+### Card: Does Tailwind's JIT engine understand whether a class name is actually applied to an element?
 
 **Prompt:**
 Does Tailwind's real class-generation mechanism know the difference between a utility class actually used in a `className` and the same string appearing elsewhere in a file (a comment, a string)?
@@ -270,7 +270,7 @@ Assuming Tailwind's purge mechanism works like JavaScript dead-code elimination.
 **Related:**
 [[nextjs-styling-approaches]]
 
-## Card: Can you inspect styled-components' generated CSS via `<style>.textContent`?
+### Card: Can you inspect styled-components' generated CSS via `<style>.textContent`?
 
 **Prompt:**
 For styled-components (v6), does reading a `<style>` element's `.textContent` reveal the CSS rules it has generated?

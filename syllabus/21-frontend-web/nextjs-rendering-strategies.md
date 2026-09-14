@@ -258,7 +258,7 @@ SSR, SSG, and ISR each answer "when is this page's HTML generated" differently, 
 
 ## Flashcards
 
-## Card: What happens for a dynamic route param not in `generateStaticParams`
+### Card: What happens for a dynamic route param not in `generateStaticParams`
 
 **Prompt:**
 A dynamic route uses `generateStaticParams` returning `["1", "2"]`. A user requests `/product/999`. What happens?
@@ -275,7 +275,7 @@ Assuming every possible dynamic param value must be explicitly enumerated in `ge
 **Related:**
 [[nextjs-rendering-strategies]]
 
-## Card: The real, distinct SSG build-manifest marker
+### Card: The real, distinct SSG build-manifest marker
 
 **Prompt:**
 Does a real `next build` distinguish routes generated via `generateStaticParams` from routes that are simply static because they have no dynamic dependency at all?

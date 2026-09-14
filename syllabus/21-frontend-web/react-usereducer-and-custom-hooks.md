@@ -261,7 +261,7 @@ Not the primary target of this chapter, but briefly: at organizational scale, a 
 
 ## Flashcards
 
-## Card: useReducer vs. useState for related fields
+### Card: useReducer vs. useState for related fields
 
 **Prompt:**
 Why can useReducer correctly derive one field from another during the same update, when two separate useState setters can't?
@@ -278,7 +278,7 @@ Assuming a functional setState updater (`setX(x => ...)`) fixes cross-field stal
 **Related:**
 [[react-usereducer-and-custom-hooks]]
 
-## Card: Custom hook naming convention
+### Card: Custom hook naming convention
 
 **Prompt:**
 What actually makes a function behave as a React hook — is the `use` prefix itself the mechanism?

@@ -259,7 +259,7 @@ The `"use client"` directive marks a module boundary, not a single component: ev
 
 ## Flashcards
 
-## Card: The precise Server Component safety claim
+### Card: The precise Server Component safety claim
 
 **Prompt:**
 "Server Components are safe for secrets because the data never reaches the browser" — is this exactly correct? What's the precise claim?
@@ -276,7 +276,7 @@ Treating "Server Component" as an unconditional secrecy guarantee rather than a 
 **Related:**
 [[nextjs-server-vs-client-components]]
 
-## Card: Why an async Client Component's error timing is a real, checked finding, not an assumption
+### Card: Why an async Client Component's error timing is a real, checked finding, not an assumption
 
 **Prompt:**
 Is a Client Component being `async function` always caught as a `next build` error?

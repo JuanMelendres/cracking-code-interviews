@@ -255,7 +255,7 @@ Layouts nest according to the file tree, and this chapter proved the SAME persis
 
 ## Flashcards
 
-## Card: When a nested layout unmounts vs. persists
+### Card: When a nested layout unmounts vs. persists
 
 **Prompt:**
 A layout is declared at `app/dashboard/layout.js`. Under what specific condition does it unmount on navigation, versus persist?
@@ -272,7 +272,7 @@ Assuming layout persistence is a global, unconditional guarantee rather than sco
 **Related:**
 [[nextjs-app-router-fundamentals]]
 
-## Card: What a route group actually does
+### Card: What a route group actually does
 
 **Prompt:**
 What specifically does wrapping a folder name in parentheses (e.g. `(marketing)`) do in the Next.js App Router?

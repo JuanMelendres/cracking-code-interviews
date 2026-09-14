@@ -338,7 +338,7 @@ An Architecture Decision Record captures the reasoning behind one significant ar
 
 ## Flashcards
 
-## Card: The four required ADR sections
+### Card: The four required ADR sections
 
 **Prompt:**
 What are the four sections Michael Nygard's original ADR pattern requires?
@@ -355,7 +355,7 @@ Assuming a longer template (MADR-style, with Decision Drivers and Considered Opt
 **Related:**
 [§ Core Concepts](#core-concepts)
 
-## Card: Editing vs. superseding
+### Card: Editing vs. superseding
 
 **Prompt:**
 When a past ADR's decision no longer holds, do you edit it or write a new one?
@@ -372,7 +372,7 @@ Treating ADRs as living documents to keep current, like a wiki page.
 **Related:**
 [§ Interview Questions, Question 2](#interview-questions)
 
-## Card: The real Consequences test
+### Card: The real Consequences test
 
 **Prompt:**
 What's the real test for whether an ADR's Consequences section is any good?

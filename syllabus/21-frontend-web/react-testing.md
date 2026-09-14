@@ -253,7 +253,7 @@ RTL's "test behavior, not implementation" philosophy was proven directly in this
 
 ## Flashcards
 
-## Card: Why class-name/DOM-position queries are risky
+### Card: Why class-name/DOM-position queries are risky
 
 **Prompt:**
 A test queries an element with `container.querySelector('.field-wrap input')`. What's the concrete risk, and what happened when this chapter tested it directly?
@@ -270,7 +270,7 @@ Treating query style as a stylistic preference rather than a real, demonstrated 
 **Related:**
 [[react-testing]]
 
-## Card: What a mock proves beyond a stub, on the frontend
+### Card: What a mock proves beyond a stub, on the frontend
 
 **Prompt:**
 `fetchUser` is mocked and a component test asserts the final rendered output. What additional assertion makes this a genuine interaction check, not just a return-value check?

@@ -350,7 +350,7 @@ Every layer of the frontend domain — React's component model, Next.js's render
 
 ## Flashcards
 
-## Card: DOM vs. HTML source
+### Card: DOM vs. HTML source
 
 **Prompt:**
 What's the difference between the HTML a server sends and the DOM?
@@ -367,7 +367,7 @@ Using "HTML" and "the DOM" interchangeably.
 **Related:**
 [[how-the-web-works-html-css-dom-and-http]]
 
-## Card: box-sizing: border-box
+### Card: box-sizing: border-box
 
 **Prompt:**
 What does `box-sizing: border-box` change about how `width` is interpreted?
@@ -384,7 +384,7 @@ Not knowing this is even a setting — assuming `width` always means total footp
 **Related:**
 [[how-the-web-works-html-css-dom-and-http]]
 
-## Card: Flexbox vs. Grid
+### Card: Flexbox vs. Grid
 
 **Prompt:**
 When do you reach for Flexbox vs. Grid?
@@ -401,7 +401,7 @@ Treating them as interchangeable or "which one is newer/better."
 **Related:**
 [[how-the-web-works-html-css-dom-and-http]]
 
-## Card: Semantic HTML's real value
+### Card: Semantic HTML's real value
 
 **Prompt:**
 Beyond style, what does using `<nav>`/`<main>`/`<article>` instead of `<div>` actually buy you?
@@ -418,7 +418,7 @@ Assuming "it looks right" means "it's structured right."
 **Related:**
 [[how-the-web-works-html-css-dom-and-http]]
 
-## Card: Why Content-Length exists
+### Card: Why Content-Length exists
 
 **Prompt:**
 Why does an HTTP response need a `Content-Length` header at all?

@@ -265,7 +265,7 @@ A real, minimal npm workspaces monorepo was built and tested directly: `npm inst
 
 ## Flashcards
 
-## Card: Does a workspace monorepo copy a shared package's files into each consumer, or link to them?
+### Card: Does a workspace monorepo copy a shared package's files into each consumer, or link to them?
 
 **Prompt:**
 When a workspace monorepo installs a local package as another package's dependency, does it copy the files or link to them?
@@ -282,7 +282,7 @@ Assuming workspace packages are copied like a normal npm install from the regist
 **Related:**
 [[nextjs-monorepo-layout]]
 
-## Card: Is skipping workspace tooling in a multi-app repo automatically a mistake?
+### Card: Is skipping workspace tooling in a multi-app repo automatically a mistake?
 
 **Prompt:**
 If a repo has several independent apps and doesn't use any workspace/monorepo tooling, is that automatically under-engineered?

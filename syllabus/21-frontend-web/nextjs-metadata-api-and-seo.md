@@ -274,7 +274,7 @@ Next.js's Metadata API resolves `<head>` content from a static `metadata` object
 
 ## Flashcards
 
-## Card: What really happens when `metadataBase` is missing?
+### Card: What really happens when `metadataBase` is missing?
 
 **Prompt:**
 Documentation prose says a relative URL-based metadata field without `metadataBase` "will cause a build error." Is that what actually happens?
@@ -291,7 +291,7 @@ Trusting a documentation claim ("will cause a build error") as proof something i
 **Related:**
 [[nextjs-metadata-api-and-seo]] [[nextjs-route-handlers]]
 
-## Card: Do bots and browsers experience streaming metadata the same way?
+### Card: Do bots and browsers experience streaming metadata the same way?
 
 **Prompt:**
 For a dynamic page with a slow `generateMetadata`, does a bot's request behave the same as a normal browser's request?

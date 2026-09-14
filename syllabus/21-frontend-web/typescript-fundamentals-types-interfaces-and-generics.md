@@ -282,7 +282,7 @@ TypeScript's entire value follows from one idea: check the shapes of values agai
 
 ## Flashcards
 
-## Card: Why TypeScript catches the same bug JavaScript misses
+### Card: Why TypeScript catches the same bug JavaScript misses
 
 **Prompt:**
 `formatPrice(amount)` calls `amount.toFixed(2)`. In plain JavaScript, calling `formatPrice("19.99")` crashes at runtime. What happens in TypeScript, and why?
@@ -299,7 +299,7 @@ Describing TypeScript as "safer" without being able to point to a specific bug c
 **Related:**
 [[typescript-fundamentals-types-interfaces-and-generics]]
 
-## Card: Structural typing in one example
+### Card: Structural typing in one example
 
 **Prompt:**
 `Point { x: number; y: number }` and `Coordinate { x: number; y: number }` are declared with no relationship to each other. Is a `Coordinate` value assignable to a `Point`-typed variable?
@@ -316,7 +316,7 @@ Assuming two types need a declared relationship (inheritance, a shared interface
 **Related:**
 [[typescript-fundamentals-types-interfaces-and-generics]]
 
-## Card: `any` vs `unknown`
+### Card: `any` vs `unknown`
 
 **Prompt:**
 Both `any` and `unknown` accept any value. What's the practical difference?
@@ -333,7 +333,7 @@ Treating `any` and `unknown` as interchangeable "flexible" types.
 **Related:**
 [[typescript-fundamentals-types-interfaces-and-generics]]
 
-## Card: What a discriminated union enforces that an optional field doesn't
+### Card: What a discriminated union enforces that an optional field doesn't
 
 **Prompt:**
 Why is `{ variant: 'error'; onRetry: () => void } | { variant: 'info' }` (a discriminated union) stronger than `{ variant: 'error' | 'info'; onRetry?: () => void }` (one interface with an optional field)?
@@ -350,7 +350,7 @@ Reaching for a pile of optional fields with runtime `if`-checks instead of model
 **Related:**
 [[typescript-fundamentals-types-interfaces-and-generics]]
 
-## Card: What generics buy you over `any`
+### Card: What generics buy you over `any`
 
 **Prompt:**
 `function identity<T>(value: T): T` vs. `function identity(value: any): any` — both accept any argument. What's the real difference?

@@ -258,7 +258,7 @@ Controlled inputs make React state the source of truth, costing one re-render pe
 
 ## Flashcards
 
-## Card: Controlled vs. uncontrolled re-render cost
+### Card: Controlled vs. uncontrolled re-render cost
 
 **Prompt:**
 What's the actual, measurable re-render difference between a controlled and an uncontrolled input while typing?
@@ -275,7 +275,7 @@ Defaulting every field to controlled regardless of whether the live value is act
 **Related:**
 [[react-forms]]
 
-## Card: Why react-hook-form has fewer re-renders
+### Card: Why react-hook-form has fewer re-renders
 
 **Prompt:**
 Why does `react-hook-form` produce fewer re-renders than a hand-rolled, fully controlled form?

@@ -266,7 +266,7 @@ Route Handlers are real, public HTTP endpoints, defined by `route.js` files expo
 
 ## Flashcards
 
-## Card: Are Route Handlers cached by default?
+### Card: Are Route Handlers cached by default?
 
 **Prompt:**
 Is a Route Handler's `GET` response cached by default in the App Router?
@@ -283,7 +283,7 @@ Assuming Route Handler caching works the same way as page-level `fetch()` cachin
 **Related:**
 [[nextjs-route-handlers]] [[nextjs-data-fetching-and-caching]]
 
-## Card: Why fetching your own app's Route Handler from a Server Component is risky
+### Card: Why fetching your own app's Route Handler from a Server Component is risky
 
 **Prompt:**
 Why is it a real problem for a Server Component to fetch data by calling that SAME app's own Route Handler, instead of calling the underlying data source directly?

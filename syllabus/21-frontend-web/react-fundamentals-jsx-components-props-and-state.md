@@ -300,7 +300,7 @@ React's entire model follows from one idea: describe the UI declaratively as a t
 
 ## Flashcards
 
-## Card: Why index keys break on list changes
+### Card: Why index keys break on list changes
 
 **Prompt:**
 Why does using the array index as a React list `key` cause bugs when items are removed or reordered?
@@ -317,7 +317,7 @@ Reciting "it's bad practice" without explaining the mechanism.
 **Related:**
 [[react-fundamentals-jsx-components-props-and-state]]
 
-## Card: useState and component instances
+### Card: useState and component instances
 
 **Prompt:**
 If three components render the same function definition and each calls `useState(0)`, do they share state?

@@ -266,7 +266,7 @@ Two real apps — a minimal, purpose-built Vite app and this repository's own, m
 
 ## Flashcards
 
-## Card: Does Vite bundle application code in development?
+### Card: Does Vite bundle application code in development?
 
 **Prompt:**
 Does Vite's dev server bundle your own application's source files together during development?
@@ -283,7 +283,7 @@ Treating "no dev-mode app-code bundling" as "no bundling at all, ever."
 **Related:**
 [[nextjs-build-tooling-vite-vs-turbopack]]
 
-## Card: Is a raw "ready in Xms" number a fair way to compare Vite and Turbopack's speed?
+### Card: Is a raw "ready in Xms" number a fair way to compare Vite and Turbopack's speed?
 
 **Prompt:**
 If Vite reports "ready in 400ms" for one app and Turbopack reports "Ready in 271ms" for a different app, is that a fair speed comparison?

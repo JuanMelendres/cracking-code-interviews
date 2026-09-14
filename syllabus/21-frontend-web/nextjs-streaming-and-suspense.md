@@ -257,7 +257,7 @@ Streaming sends a page's HTML in chunks aligned exactly with `<Suspense>` bounda
 
 ## Flashcards
 
-## Card: Why sibling Suspense boundaries stream in parallel, not sequentially
+### Card: Why sibling Suspense boundaries stream in parallel, not sequentially
 
 **Prompt:**
 Three sibling `<Suspense>` boundaries wrap components with 300ms, 1200ms, and 2500ms delays. Roughly how long does the total response take, and why?
@@ -274,7 +274,7 @@ Assuming multiple Suspense boundaries resolve in sequence (like a queue) rather 
 **Related:**
 [[nextjs-streaming-and-suspense]]
 
-## Card: The real, corrected scope of bot-request streaming behavior
+### Card: The real, corrected scope of bot-request streaming behavior
 
 **Prompt:**
 Does Next.js block streaming entirely for bot/crawler requests, or something narrower?
