@@ -3219,3 +3219,12 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - Caught and fixed one real bug during verification: two chapters (`java-modifiers-and-method-signatures.md`, `java-version-features-timeline.md`) use the older numbered-section template (`## 15. Interview Questions`), so their anchor is `#15-interview-questions`, not `#interview-questions` like the rest of the domain — a real local `mkdocs build` surfaced both as broken-anchor warnings, fixed before commit.
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.
+
+### Added (Interview Question Bank — `03-data-structures-algorithms`, 36 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/03-data-structures-algorithms.md`. This domain's 18 chapters have **no Flashcards sections at all** — they follow the Coding Interview Standard template (recognition signals, brute force, optimized approach) rather than the canonical Handbook Chapter template — so there's no quick-fire layer to mine here, unlike every domain covered so far. There is also no Junior Fundamentals chapter, so Junior/Mid tiers are honestly derived from each chapter's own "Minimum acceptable answer" bar (a correct-but-suboptimal solution) rather than invented as separate, simpler questions.
+- 18 chapters × 2 deep questions = 36 real questions, all sourced from each chapter's own `## 15. Interview Questions` section.
+- Same anchor pattern found in the `02-java` pass applies domain-wide here too: all 18 chapters use `## 15. Interview Questions`, so every link uses `#15-interview-questions` — checked before writing, not discovered after.
+- **472 real questions across 3 of 22 domains so far** (`06-databases` 93, `02-java` 249, `03-data-structures-algorithms` 36).
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.

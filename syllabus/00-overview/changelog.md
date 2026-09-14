@@ -1134,6 +1134,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
 
+## [2026-09-13] — Interview Question Bank: `03-data-structures-algorithms`, 36 real questions
+
+### Added
+
+- New `question-bank/03-data-structures-algorithms.md`. This domain's 18 chapters have no Flashcards sections at all (they follow the Coding Interview Standard template, not the canonical Handbook Chapter template), so there's no quick-fire layer here, and no Junior Fundamentals chapter — Junior/Mid tiers are honestly derived from each chapter's own "Minimum acceptable answer" bar rather than invented as separate questions.
+- 18 chapters × 2 deep questions = 36 real questions, all from each chapter's `## 15. Interview Questions` section (the same numbered-heading anchor pattern found in `02-java` applies domain-wide here — checked before writing).
+- **472 real questions across 3 of 22 domains so far** (`06-databases` 93, `02-java` 249, `03-data-structures-algorithms` 36).
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
