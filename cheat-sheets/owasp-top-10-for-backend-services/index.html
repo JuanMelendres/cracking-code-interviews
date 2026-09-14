@@ -5401,10 +5401,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision-table" class="md-nav__link">
+  <a href="#decision-table-2025-numbering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Table
+        Decision Table (2025 numbering)
       
     </span>
   </a>
@@ -8067,10 +8067,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision-table" class="md-nav__link">
+  <a href="#decision-table-2025-numbering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Table
+        Decision Table (2025 numbering)
       
     </span>
   </a>
@@ -8218,12 +8218,13 @@
 <p>Treat the OWASP Top 10 not as ten independent bugs to memorize but as three recurring failure shapes: <strong>(1)</strong> a trust boundary was crossed without a check (broken access control, SSRF, insecure design), <strong>(2)</strong> untrusted data was treated as code or as an unconditionally trusted target (injection, deserialization, some SSRF), and <strong>(3)</strong> a security control existed but was misconfigured, outdated, or silently absent (misconfiguration, vulnerable components, cryptographic failures, auth failures, logging failures). Most real incidents are combinations — an SSRF (shape 2) that succeeds <em>because</em> an internal service assumed any request reaching it was already authorized (shape 1).</p>
 <h2 id="essential-definitions">Essential Definitions<a class="headerlink" href="#essential-definitions" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>OWASP Top 10</strong> — a periodically updated (~every 3–4 years; 2021 is current) ranked list of the most critical web-application security risk <em>categories</em>, from vulnerability data and practitioner survey. A prioritization tool, not an exhaustive checklist.</li>
+<li><strong>OWASP Top 10</strong> — a periodically updated (~every 3–4 years) ranked list of the most critical web-application security risk <em>categories</em>, from vulnerability data and practitioner survey. A prioritization tool, not an exhaustive checklist. <strong>The 2025 edition is current</strong>, superseding 2021 — most category numbers changed.</li>
 <li><strong>IDOR (A01)</strong> — Insecure Direct Object Reference: fetching an object by ID with no ownership check. An <em>absence</em>, not a visibly wrong line.</li>
-<li><strong>A04, Insecure Design</strong> — a category about a <em>missing</em> control, not a broken one; a design-review finding, not a code-review finding.</li>
-<li><strong>SSRF (A10)</strong> — server-side request forgery: the server fetches a URL an attacker influenced, potentially reaching internal/cloud-metadata targets. Newest addition (2021), tied to cloud metadata endpoints turning "fetched a URL" into credential theft.</li>
+<li><strong>A06:2025 (was A04:2021), Insecure Design</strong> — a category about a <em>missing</em> control, not a broken one; a design-review finding, not a code-review finding.</li>
+<li><strong>SSRF — no longer its own category as of 2025.</strong> Folded into Broken Access Control (A01); was standalone A10 in 2021. The server fetches a URL an attacker influenced, potentially reaching internal/cloud-metadata targets.</li>
+<li><strong>A10:2025, Mishandling of Exceptional Conditions</strong> — new in 2025, no 2021 equivalent. Covers error paths that fail open instead of closed (e.g., a fraud check defaulting to "approved" on an uncaught exception).</li>
 </ul>
-<h2 id="decision-table">Decision Table<a class="headerlink" href="#decision-table" title="Permanent link">&para;</a></h2>
+<h2 id="decision-table-2025-numbering">Decision Table (2025 numbering)<a class="headerlink" href="#decision-table-2025-numbering" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -8235,43 +8236,43 @@
 </thead>
 <tbody>
 <tr>
-<td>A01 Broken Access Control</td>
-<td>Object-level authorization check missing</td>
-<td>Explicit ownership/permission check on every fetch</td>
+<td>A01 Broken Access Control (incl. SSRF)</td>
+<td>Object-level authorization check missing, or server-side fetch reaches unintended target</td>
+<td>Explicit ownership check; allowlist on <strong>resolved</strong> destination</td>
 <td>This chapter + <code>authn-authz-rbac-vs-abac.md</code></td>
 </tr>
 <tr>
-<td>A02 Cryptographic Failures</td>
-<td>Weak/absent crypto for data at rest or in transit</td>
-<td>Modern algorithms, correct key handling</td>
-<td><code>applied-cryptography-hashing-signing-tls.md</code></td>
-</tr>
-<tr>
-<td>A03 Injection</td>
-<td>Untrusted data parsed as code/syntax</td>
-<td>Parameterized queries, output encoding</td>
-<td><code>injection-input-validation-output-encoding.md</code></td>
-</tr>
-<tr>
-<td>A04 Insecure Design</td>
-<td>Control never designed in</td>
-<td>Threat modeling before implementation</td>
-<td>This chapter</td>
-</tr>
-<tr>
-<td>A05 Security Misconfiguration</td>
+<td>A02 Security Misconfiguration</td>
 <td>Insecure default left enabled</td>
 <td>Explicit prod-vs-dev config review</td>
 <td>This chapter</td>
 </tr>
 <tr>
-<td>A06 Vulnerable/Outdated Components</td>
-<td>Known-vulnerable dependency in use</td>
-<td>SBOM + dependency scanning</td>
+<td>A03 Software Supply Chain Failures</td>
+<td>Vulnerable dependency, or compromised build/distribution step</td>
+<td>SBOM + dependency scanning + verified pipelines</td>
 <td><code>supply-chain-security-sbom-and-dependency-risk.md</code></td>
 </tr>
 <tr>
-<td>A07 Identification/Auth Failures</td>
+<td>A04 Cryptographic Failures</td>
+<td>Weak/absent crypto for data at rest or in transit</td>
+<td>Modern algorithms, correct key handling</td>
+<td><code>applied-cryptography-hashing-signing-tls.md</code></td>
+</tr>
+<tr>
+<td>A05 Injection</td>
+<td>Untrusted data parsed as code/syntax</td>
+<td>Parameterized queries, output encoding</td>
+<td><code>injection-input-validation-output-encoding.md</code></td>
+</tr>
+<tr>
+<td>A06 Insecure Design</td>
+<td>Control never designed in</td>
+<td>Threat modeling before implementation</td>
+<td>This chapter</td>
+</tr>
+<tr>
+<td>A07 Authentication Failures</td>
 <td>Weak auth flow or session handling</td>
 <td>Standard OAuth2/OIDC/JWT patterns</td>
 <td><code>oauth2-oidc-and-jwt.md</code></td>
@@ -8283,15 +8284,15 @@
 <td><code>applied-cryptography-hashing-signing-tls.md</code></td>
 </tr>
 <tr>
-<td>A09 Logging/Monitoring Failures</td>
-<td>Attack undetected due to insufficient logging</td>
+<td>A09 Logging &amp; Alerting Failures</td>
+<td>Attack undetected due to insufficient logging/alerting</td>
 <td>Security-event logging as first-class category</td>
 <td>This chapter</td>
 </tr>
 <tr>
-<td>A10 SSRF</td>
-<td>Server-side fetch reaches unintended target</td>
-<td>Allowlist on <strong>resolved</strong> destination</td>
+<td>A10 Mishandling of Exceptional Conditions</td>
+<td>Error path fails open instead of closed</td>
+<td>Explicit fail-closed default on security-relevant exceptions</td>
 <td>This chapter</td>
 </tr>
 </tbody>
@@ -8310,20 +8311,22 @@ FIXED preview, same internal URL -&gt; Blocked: target host:port not in allowlis
 <h2 id="common-pitfalls">Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Reciting the ten category names without a concrete code-level example for the top few.</li>
-<li>Treating "we have a WAF" as covering A03 — a valuable additional layer, not a substitute for parameterized queries and output encoding at the source.</li>
-<li>Missing that A10 (SSRF) applies to <em>any</em> server-side URL fetch — webhooks, PDF generators, image proxies are all SSRF-shaped, not just an obvious "URL parameter" feature.</li>
+<li>Treating "we have a WAF" as covering Injection (A05:2025) — a valuable additional layer, not a substitute for parameterized queries and output encoding at the source.</li>
+<li>Missing that SSRF applies to <em>any</em> server-side URL fetch — webhooks, PDF generators, image proxies are all SSRF-shaped, not just an obvious "URL parameter" feature; as of 2025 it's filed under A01, not its own category.</li>
 <li>Assuming IDOR requires a scanner to find — routinely found by manually changing an ID in a request and observing whether authorization is enforced.</li>
+<li>Citing 2021 category numbers (A02 Crypto, A03 Injection, A06 Vulnerable Components, A10 SSRF) as current — most of the list was renumbered in 2025.</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> The Top 10 is a prioritization/scoping tool for security review, not an exhaustive checklist — real risk includes business-logic flaws the list doesn't name. It's used as a routing question: name a category, then produce a concrete code-level example and the layer the fix belongs to (input boundary, authz layer, output boundary, dependency pipeline).</p>
 <p><strong>2-min:</strong> Add why it exists (focus limited review time on highest-prevalence/impact categories) + how it works (each category is a <em>shape</em>, not a specific bug) + the IDOR example (works perfectly on the happy-path test, only fails when a different user's ID is substituted — invisible to functional testing that only tests correct credentials).</p>
-<p><strong>Whiteboard:</strong> Three columns — "Trust boundary crossed" (A01/A10), "Data treated as code/target" (A03/A08), "Control missing or broken" (A02/A05/A06/A07/A09). Circle A04 outside all three, labeled "design-level absence, not implementation defect."</p>
-<p><strong>Staff-level framing:</strong> treat the Top 10 as scope, not completion criteria. A04 and A09 findings typically indicate a process gap (no threat modeling; no security-event logging standard), not a single fixable bug — propose the process change alongside the immediate fix.</p>
+<p><strong>Whiteboard:</strong> Three columns — "Trust boundary crossed" (A01, incl. SSRF), "Data treated as code/target" (A05/A08), "Control missing, broken, or fails open" (A02/A03/A04/A07/A09/A10). Circle A06 outside all three, labeled "design-level absence, not implementation defect."</p>
+<p><strong>Staff-level framing:</strong> treat the Top 10 as scope, not completion criteria. A06 and A09 findings typically indicate a process gap (no threat modeling; no security-event logging standard), not a single fixable bug — propose the process change alongside the immediate fix.</p>
 <h2 id="production-warning-signs">Production Warning Signs<a class="headerlink" href="#production-warning-signs" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Verbose stack traces (internal class names, file paths, SQL fragments) in production error responses — A05, a framework's dev error page left enabled; fix is configuration, requiring someone to have explicitly verified prod config differs from dev defaults.</li>
+<li>Verbose stack traces (internal class names, file paths, SQL fragments) in production error responses — A02, a framework's dev error page left enabled; fix is configuration, requiring someone to have explicitly verified prod config differs from dev defaults.</li>
 <li>A credential-stuffing attack against login runs undetected for weeks — A09; failed-auth attempts weren't logged with enough context (source IP, username, timestamp) to distinguish a mistyped password from an automated attack — a missing decision, not a missing feature.</li>
-<li><strong>Prevention:</strong> default every object-fetching endpoint to requiring an explicit authorization check as part of its implementation template, and every server-side URL-fetch feature to allowlist validation as shared middleware — structural requirements, not add-ons to remember.</li>
+<li>A fraud/authorization check silently defaults to "approved" when an upstream dependency times out — A10 (new in 2025), failing open instead of closed on an exceptional condition.</li>
+<li><strong>Prevention:</strong> default every object-fetching endpoint to requiring an explicit authorization check as part of its implementation template, every server-side URL-fetch feature to allowlist validation as shared middleware, and every security-relevant exception path to fail closed — structural requirements, not add-ons to remember.</li>
 </ul>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
@@ -8351,7 +8354,7 @@ FIXED preview, same internal URL -&gt; Blocked: target host:port not in allowlis
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:23:43 UTC">September 14, 2026</span>
   </span>
 
     
