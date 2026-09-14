@@ -1252,6 +1252,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-13] — Interview Question Bank: `16-performance-jvm`, 15 real questions
+
+### Added
+
+- New `question-bank/16-performance-jvm.md`. 3 chapters yielded 6 deep questions + 9 quick-fire questions = **15 real questions**. No Junior Fundamentals chapter in this domain; genuinely small (only 3 chapters), a companion to `02-java-jvm-internals.md`. 2 of 3 chapters use a plain `**Q:** ... **A:** ...` Flashcards format instead of the `### Card:` template.
+- **869 real questions across 15 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

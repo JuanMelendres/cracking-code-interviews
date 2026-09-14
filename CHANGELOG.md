@@ -3312,3 +3312,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **854 real questions across 14 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `16-performance-jvm`, 15 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/16-performance-jvm.md`. 3 chapters yielded 6 deep questions + 9 quick-fire questions = **15 real questions**. No Junior Fundamentals chapter in this domain; genuinely small (only 3 chapters), a companion to `02-java-jvm-internals.md`. 2 of 3 chapters use a plain `**Q:** ... **A:** ...` Flashcards format instead of the `### Card:` template.
+- **869 real questions across 15 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
