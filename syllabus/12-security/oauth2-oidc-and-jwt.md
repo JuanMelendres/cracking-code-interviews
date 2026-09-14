@@ -4,8 +4,8 @@ slug: oauth2-oidc-and-jwt
 document_type: handbook-chapter
 domain: 12-security
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/security/oauth2-oidc-and-jwt.md
 topic_id: T-512/T-513
@@ -29,6 +29,7 @@ related:
   - owasp-top-10-for-backend-services.md
   - authn-authz-rbac-vs-abac.md
   - csrf-cors-and-session-security.md
+  - enterprise-sso-saml-and-federated-identity.md
   - ../07-api-design/rest-api-fundamentals.md
   - ../../study-packs/week-07/03-oauth2-oidc-and-jwt.md
 official_references:

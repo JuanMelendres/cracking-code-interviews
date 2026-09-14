@@ -1431,6 +1431,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Minor terminology fix in `hashing-patterns-and-frequency-maps.md` (Happy Number's complexity misused "amortized").
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `12-security` gains a 10th chapter: Enterprise SSO, SAML, and Federated Identity
+
+### Added
+
+- User request, from a real job-posting requirement naming SSO/Federated SSO/SAML/OAuth2/OIDC and commercial IAM solutions (PingFederate). OAuth2/OIDC were already covered; SSO, Federated SSO, SAML, and the commercial IAM vendor landscape had zero coverage anywhere in the repository.
+- New chapter `enterprise-sso-saml-and-federated-identity.md` (T-1309): SSO vs. Federated SSO, SAML 2.0 core artifacts, a SAML/OAuth2/OIDC comparison table, the commercial IAM landscape (PingFederate/Okta/Azure AD/Keycloak/ADFS), and real Spring Security SAML2 integration (dependency, `application.yml` structure verified live against Spring Security's current docs, `SecurityConfig` wiring) continuing directly from `spring-mvc-fundamentals.md`'s own `pom.xml`/`application.yml` anatomy. Explicitly labeled as real, accurate configuration — not a locally executed multi-party demo — matching `oauth2-oidc-and-jwt.md`'s own established honesty pattern.
+- Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
