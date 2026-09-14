@@ -383,7 +383,7 @@ Schema Registry enforces a compatibility promise on every schema change before i
 
 ## Flashcards
 
-## Card: The BACKWARD add-vs-remove asymmetry
+### Card: The BACKWARD add-vs-remove asymmetry
 
 **Prompt:**
 Under BACKWARD compatibility, which is safe: removing a field, or adding one without a default?
@@ -400,7 +400,7 @@ Assuming removal is the riskier change — it's the opposite under BACKWARD.
 **Related:**
 [§ Core Concepts](#core-concepts)
 
-## Card: Compatibility mode = deploy-order promise
+### Card: Compatibility mode = deploy-order promise
 
 **Prompt:**
 What question should decide BACKWARD vs. FORWARD for a topic?
@@ -417,7 +417,7 @@ Picking a mode by habit rather than by the actual deploy-order constraint.
 **Related:**
 [§ Mental Model](#mental-model)
 
-## Card: What the registry actually prevents
+### Card: What the registry actually prevents
 
 **Prompt:**
 What real failure does a Schema Registry's compatibility check prevent, mechanically?

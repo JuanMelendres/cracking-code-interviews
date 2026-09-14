@@ -1180,6 +1180,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
 
+## [2026-09-13] — Interview Question Bank: `09-messaging-event-driven`, 57 real questions
+
+### Added
+
+- New `question-bank/09-messaging-event-driven.md`. 12 chapters yielded 24 deep questions + 33 quick-fire questions = **57 real questions**. No Junior Fundamentals chapter in this domain.
+- Incidental fix while mining: `schema-registry-and-compatibility-evolution.md`'s Flashcards used `## Card:` (heading level 2) for all three cards instead of the file's own `### Card:` convention — corrected.
+- **654 real questions across 8 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

@@ -3256,3 +3256,11 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **597 real questions across 7 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.
+
+### Added (Interview Question Bank — `09-messaging-event-driven`, 57 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/09-messaging-event-driven.md`. 12 chapters yielded 24 deep questions + 33 quick-fire questions = **57 real questions**. No Junior Fundamentals chapter in this domain.
+- Incidental fix while mining: `schema-registry-and-compatibility-evolution.md`'s Flashcards section used `## Card:` (heading level 2) for all three of its cards instead of the file's own `### Card:` convention — a real, verified markdown-hierarchy inconsistency, corrected in the same commit.
+- **654 real questions across 8 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
