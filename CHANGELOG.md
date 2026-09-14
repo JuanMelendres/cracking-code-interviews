@@ -6,6 +6,11 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Verified (Content-quality audit — `15-cloud`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (16th domain, 4 chapters, read directly). `aws-core-services-for-backend-engineers.md`, `azure-and-gcp-for-backend-engineers.md`, `cloud-cost-and-scaling-economics.md`, `twelve-factor-config.md` all verified fully clean — all worked cost calculations re-derived by hand ($17,520/$10,512/$7,300/$3,212 across three scenarios, and the $35,040/$16,644/$18,396 practice-exercise solution), all provider-service cross-references checked, and the Azure AD → Microsoft Entra ID / GCP Deployment Manager → Infrastructure Manager rename claims previously verified live still hold. No fixes needed.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `14-devops-containers`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (15th domain, 5 chapters, read directly). `docker-and-containers-fundamentals.md`, `kubernetes-objects-scheduling-and-networking.md`, `kubernetes-resource-limits-probes-and-jvm-sizing.md` verified fully clean — every measured number (24%/24%/47% heap ratios at three container sizes, the 256MiB cgroup confirmation) checked and consistent.

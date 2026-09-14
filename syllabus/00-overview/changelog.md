@@ -1440,6 +1440,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `15-cloud` (16th domain), fully clean
+
+### Verified
+
+- Continued the domain-by-domain content-quality audit (16th domain, 4 chapters, read directly). All 4 chapters verified fully clean — all worked cost calculations re-derived by hand and confirmed correct, provider-service cross-references checked, previously-verified rename claims (Azure AD → Microsoft Entra ID, GCP Deployment Manager → Infrastructure Manager) still hold. No fixes needed.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `14-devops-containers` (15th domain), two real fixes
 
 ### Fixed
