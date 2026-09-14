@@ -3272,3 +3272,8 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **693 real questions across 9 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Fixed (repo-wide Flashcards heading-level bug)
+
+- Finding the same `## Card:`-instead-of-`### Card:` bug twice while mining two different domains prompted a repo-wide check: `grep -rln "^## Card:" syllabus/` found **42 files** with the bug (98 individual headings), including **all 37 files in `syllabus/21-frontend-web/`** (the entire frontend domain), plus `17-architecture/modular-monolith-as-a-deliberate-choice.md`, `cqrs-read-write-separation.md`, `architecture-decision-records.md`, `11-system-design/load-balancing-service-discovery-and-health-checking.md`, `18-engineering-practices/git-internals-and-collaboration-workflows.md`, and 2 more in `02-java`.
+- User approved fixing all of them now rather than deferring. Mechanical, single-character-per-heading fix (`sed 's/^## Card:/### Card:/'` per file); verified `validate.py` still shows the same pre-existing 3 errors/0 new, and a real local `mkdocs build` still exits 0 with only the same two pre-existing warning categories (no new one introduced).
