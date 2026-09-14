@@ -3340,3 +3340,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **951 real questions across 18 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `01-computer-science-foundations`, 10 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/01-computer-science-foundations.md`. 5 chapters yielded 10 deep questions = **10 real questions**. All 5 chapters use the older numbered `## 15. Interview Questions` template with no Flashcards section at all. Despite being the domain's own "true fundamentals" starting point, Junior/Mid tiers are derived from each question's own "Minimum acceptable answer" and "Common mistakes" fields rather than a separate leveled format.
+- **961 real questions across 19 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.

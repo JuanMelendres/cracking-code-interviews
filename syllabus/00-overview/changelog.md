@@ -1288,6 +1288,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-13] — Interview Question Bank: `01-computer-science-foundations`, 10 real questions
+
+### Added
+
+- New `question-bank/01-computer-science-foundations.md`. 5 chapters yielded 10 deep questions = **10 real questions**. All 5 chapters use the older numbered `## 15. Interview Questions` template with no Flashcards section at all. Junior/Mid tiers derived from each question's own "Minimum acceptable answer" and "Common mistakes" fields, no separate leveled format present.
+- **961 real questions across 19 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
