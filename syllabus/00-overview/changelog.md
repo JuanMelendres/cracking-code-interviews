@@ -1207,6 +1207,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Finding the `## Card:`-instead-of-`### Card:` bug twice while mining two different question-bank domains prompted a repo-wide check: `grep -rln "^## Card:" syllabus/` found 42 files (98 headings), including all 37 files in `syllabus/21-frontend-web/` (the entire frontend domain), plus 3 in `17-architecture/`, 1 in `11-system-design/`, 1 in `18-engineering-practices/`, and 2 in `02-java/`.
 - Mechanical single-character-per-heading fix (`sed 's/^## Card:/### Card:/'`), 98 headings total. Verified: `validate.py` same pre-existing 3 errors/0 new; real local `mkdocs build` exit 0, same two pre-existing warning categories only.
 
+## [2026-09-13] — Interview Question Bank: `11-system-design`, 48 real questions
+
+### Added
+
+- New `question-bank/11-system-design.md`. 9 chapters yielded 18 deep questions + 30 quick-fire questions = **48 real questions**. No Junior Fundamentals chapter in this domain.
+- **741 real questions across 10 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
