@@ -6238,6 +6238,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-diagnosis-process-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Diagnosis Process, Step by Step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#java-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10969,6 +10980,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-diagnosis-process-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Diagnosis Process, Step by Step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#java-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11321,6 +11343,7 @@ the operational substance.</p>
 <li><a href="#core-concepts">Core Concepts</a></li>
 <li><a href="#internal-implementation">Internal Implementation</a></li>
 <li><a href="#diagrams">Diagrams</a></li>
+<li><a href="#the-diagnosis-process-step-by-step">The Diagnosis Process, Step by Step</a></li>
 <li><a href="#java-examples">Java Examples</a></li>
 <li><a href="#production-scenarios">Production Scenarios</a></li>
 <li><a href="#failure-modes-and-debugging">Failure Modes and Debugging</a></li>
@@ -11440,6 +11463,31 @@ exact offending sentence when it does, rather than a bare pass/fail.</p>
     C --&gt; D["Diagnose in parallel or after"]
     D --&gt; E["Write postmortem:&lt;br/&gt;Contributing Factors, not Root Cause"]
     E --&gt; F["Action items:&lt;br/&gt;Owner + Due Date, each"]</code></pre>
+<h2 id="the-diagnosis-process-step-by-step">The Diagnosis Process, Step by Step<a class="headerlink" href="#the-diagnosis-process-step-by-step" title="Permanent link">&para;</a></h2>
+<p>The Mental Model above treats "diagnosis" as one of two jobs happening during an incident, without saying what diagnosis itself actually consists of. That's worth naming explicitly: the same sequence applies to nearly every production bug, incident-scale or not, and "walk me through your process for debugging a production issue" is a standard interview question in its own right, distinct from — but connected to — the mitigate-or-diagnose framing above.</p>
+<ol>
+<li><strong>Confirm and scope the impact.</strong> Before investigating anything, confirm the symptom is real (not a flaky monitor's false alarm) and establish its blast radius — which users, which endpoints, how much traffic, since when. This scoping feeds directly into the mitigate-vs-diagnose call above: a symptom hitting 100% of write traffic demands mitigation now; one hitting 0.1% of a rarely-used endpoint may tolerate diagnosing first.</li>
+<li><strong>Gather evidence before forming a theory.</strong> Pull logs, metrics, and traces for the affected window (see <a href="../logging-metrics-tracing-and-opentelemetry/">Logging, Metrics, Tracing, and OpenTelemetry</a>), and correlate the symptom's onset against anything that changed around the same time — a deployment, a config change, a feature-flag flip, a traffic shift, a dependency's own status page. Skipping straight to a guess before checking what actually changed is the single most common time sink at this step.</li>
+<li><strong>Form a hypothesis the evidence actually supports, then test it.</strong> A hypothesis earns the right to be acted on by explaining every piece of evidence gathered so far, not just the most convenient one — a theory that explains an error-rate spike but not why it started at the exact minute a deploy shipped is incomplete. Test it with the smallest safe probe available: a targeted log query, one request reproduced outside production, a metric that should move if the theory holds.</li>
+<li><strong>Isolate by bisecting the system, not by guessing at random.</strong> Narrow by layer (network, application, database — see <a href="../../01-computer-science-foundations/networking-basics/">Networking Basics</a>'s own layer-naming approach to this exact skill), by deploy (binary search the timeline if several shipped close together), or by code path (roll back or flag off one change at a time, not several at once, which leaves the actual cause ambiguous even after the symptom disappears).</li>
+<li><strong>Confirm root cause with reproducible evidence, not just a plausible story.</strong> Reproduce the failure on demand wherever possible — locally, in staging, or with a targeted, safe probe against production — before writing the fix. A cause that "just correlates" is still a hypothesis; shipping a fix for an unconfirmed cause risks solving the wrong problem while the real one keeps running underneath it.</li>
+<li><strong>Implement the smallest fix that addresses the confirmed cause</strong>, reviewed like any other change, resisting the urge to also refactor unrelated code in the same diff — a production fix under time pressure is exactly the wrong moment to widen its blast radius.</li>
+<li><strong>Deploy the fix gradually and verify recovery from the same evidence that first showed the symptom.</strong> The metric, log pattern, or trace that flagged the problem in step 1 is also the fastest confirmation the fix actually worked — "the deploy succeeded" is not the same claim as "the symptom is gone."</li>
+<li><strong>Close the loop: add a regression test, and — where evidence-gathering took longer than it should have — the monitoring or alert that would have caught this sooner.</strong> The goal is that the same failure shape gets caught before a user notices next time, not re-diagnosed from scratch.</li>
+</ol>
+<pre class="mermaid"><code>flowchart TB
+    A["Symptom reported"] --&gt; B["1. Confirm + scope impact"]
+    B --&gt; C["2. Gather evidence&lt;br/&gt;logs / metrics / traces"]
+    C --&gt; D["3. Form + test a hypothesis"]
+    D --&gt; E["4. Isolate: bisect layer,&lt;br/&gt;deploy, or code path"]
+    E --&gt; F["5. Confirm root cause,&lt;br/&gt;reproduced"]
+    F --&gt; G{"Codebase has a real&lt;br/&gt;test safety net?"}
+    G --&gt;|"Yes -- new/well-tested app"| H["6. Implement smallest fix"]
+    G --&gt;|"No -- legacy/unfamiliar code"| G2["6a. Write a characterization&lt;br/&gt;test first (pins current behavior)"]
+    G2 --&gt; H
+    H --&gt; I["7. Deploy gradually,&lt;br/&gt;verify via same evidence as step 1"]
+    I --&gt; J["8. Add regression test&lt;br/&gt;+ monitoring/alerting"]</code></pre>
+<p><strong>Legacy code changes step 6, not the whole process.</strong> In a well-tested, well-understood codebase, step 6's fix is usually a direct, confident change. In legacy code — undocumented, sparsely tested, or simply unfamiliar — making a confident change without a safety net risks introducing a second bug while fixing the first, since there's no test suite to catch an unintended side effect. <a href="../../18-engineering-practices/working-with-legacy-code/">Working with Legacy Code</a>'s own answer to "you need to change a method with no tests, in code you don't fully understand" is the direct continuation of this process for exactly that case: write a <strong>characterization test</strong> first (one that pins the code's actual current behavior, bugs included, as a safety net), <em>then</em> make the minimal change, confirm the characterization test plus a new test for the fix both pass, and only then proceed to step 7. The rest of the process — scope, evidence, hypothesis, isolate, confirm — doesn't change whether the codebase is a week old or ten years old; only step 6 gains a mandatory pre-step when a safety net doesn't already exist.</p>
 <h2 id="java-examples">Java Examples<a class="headerlink" href="#java-examples" title="Permanent link">&para;</a></h2>
 <p>This chapter's evidence is process/documentation-based rather than Java code — see
 <a href="../../../practice/production/postmortem-examples/postmortem-001-checkout-latency-regression/"><code>postmortem-001-checkout-latency-regression.md</code></a>
@@ -11753,6 +11801,46 @@ multiple contributing factors, not just relabeling one cause under a plural
 heading?"</p>
 <p><strong>Evaluation criteria.</strong> Correct critique of single-root-cause framing (2), concrete
 example (2), connects to blameless culture at Staff level (1).</p>
+<h3 id="question-3-walk-me-through-your-process-for-solving-a-production-bug-step-by-step-and-how-does-that-change-in-a-legacy-codebase">Question 3: Walk me through your process for solving a production bug, step by step — and how does that change in a legacy codebase?<a class="headerlink" href="#question-3-walk-me-through-your-process-for-solving-a-production-bug-step-by-step-and-how-does-that-change-in-a-legacy-codebase" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> It's a broad, practical check for whether a candidate
+has a real, repeatable method (scope, evidence, hypothesis, isolate, confirm, fix,
+verify, close the loop) versus jumping straight to guessing at a fix — and the
+legacy follow-up specifically tests whether they know <em>why</em> an unfamiliar,
+undertested codebase demands an extra safety-net step before changing anything.</p>
+<p><strong>Expected answer.</strong> Confirm and scope the impact; gather evidence (logs, metrics,
+traces) and correlate the symptom's onset against anything that recently changed;
+form a hypothesis the evidence actually supports and test it with the smallest safe
+probe; isolate further by bisecting layer, deploy, or code path; confirm the root
+cause with reproducible evidence, not just a correlation; implement the smallest fix
+that addresses it; deploy gradually and verify recovery using the same evidence that
+first showed the symptom; add a regression test and any monitoring that would have
+caught it sooner. In legacy code specifically, insert a characterization test before
+the fix step — it pins the code's actual current behavior as a safety net, since
+there's no existing test suite to catch an unintended side effect of the change.</p>
+<p><strong>Minimum acceptable answer.</strong> Names at least gather-evidence, form-a-hypothesis, and
+verify-the-fix as distinct steps, even without the full eight-step sequence.</p>
+<p><strong>Strong Senior answer.</strong> Explicitly separates "confirm root cause" from "have a
+plausible theory," and names bisection (by layer, deploy, or code path) as the
+concrete isolation technique rather than describing isolation vaguely.</p>
+<p><strong>Staff-level extension.</strong> Names the legacy-code branch unprompted — that changing
+unfamiliar, undertested code without a characterization test risks introducing a
+second bug while fixing the first — and connects "add monitoring that would have
+caught this sooner" back to this chapter's own detection-latency metric (Core
+Concepts) as a concrete, measurable output of the process, not just a good habit.</p>
+<p><strong>Common mistakes.</strong> Describing the process as "look at the logs and fix it," with no
+explicit hypothesis-testing or isolation step; treating legacy code as requiring a
+completely different process rather than the same process with one extra
+safety-net step before the fix.</p>
+<p><strong>Follow-up questions.</strong> "What's the actual difference between a hypothesis and a
+confirmed root cause?" (Reproducibility — a hypothesis explains the evidence but
+hasn't been reproduced on demand; a confirmed cause has.) "Why write a
+characterization test instead of just being extra careful?" ("Being careful" isn't
+checkable or repeatable; a characterization test is a concrete, automatable
+safety net that catches an unintended side effect even when the engineer making
+the change didn't personally anticipate it.)</p>
+<p><strong>Evaluation criteria.</strong> Correct, ordered sequence covering evidence-before-hypothesis
+and confirm-before-fix (2), correct isolation technique named (1), correct legacy-code
+branch named unprompted or with one prompt (2).</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Incident response has two distinct jobs — stop the impact (mitigation) and
 understand what happened (diagnosis) — and the default ordering, defended by the
@@ -11773,6 +11861,10 @@ investigations that stop early once a person can be identified.</p>
   example document, quoting the exact offending sentence.</li>
 <li>An action item without an owner and a due date is a wish — checked and flagged
   directly in this chapter's real example output.</li>
+<li>Diagnosis itself is a repeatable eight-step process — scope, evidence, hypothesis,
+  isolate, confirm, fix, verify, close the loop — not an unstructured search; legacy
+  code adds exactly one mandatory pre-step (a characterization test) before the fix,
+  nothing more.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11783,6 +11875,12 @@ investigations that stop early once a person can be identified.</p>
   individuals — check mechanically.</li>
 <li><strong>Action items</strong> need an explicit owner and due date, always.</li>
 <li><strong>Detection latency</strong> is its own metric, separate from mitigation time.</li>
+<li><strong>The diagnosis process, in order:</strong> scope impact → gather evidence → form +
+  test a hypothesis → isolate (bisect layer/deploy/code path) → confirm root cause
+  (reproduced, not just correlated) → implement smallest fix → deploy gradually +
+  verify via the same evidence that showed the symptom → regression test + monitoring.</li>
+<li><strong>Legacy code:</strong> insert a characterization test before the fix step — the same
+  process otherwise, just with a safety net added where none already exists.</li>
 <li><strong>This chapter's scope</strong> is the methodology; see
   <a href="../../20-interview-preparation/behavioral/04-production-incident-narratives/">Production Incident Narratives</a>
   for how to tell the story in an interview.</li>
@@ -11835,6 +11933,42 @@ Treating "we didn't say whose fault it was" as sufficient without checking the
 document's actual language.</p>
 <p><strong>Related:</strong>
 [[incident-response-and-blameless-postmortems]]</p>
+<h3 id="card-the-eight-step-diagnosis-process">Card: The eight-step diagnosis process<a class="headerlink" href="#card-the-eight-step-diagnosis-process" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Name the general, repeatable process for diagnosing a production bug, in order.</p>
+<p><strong>Answer:</strong>
+Confirm and scope the impact → gather evidence (logs/metrics/traces) → form a
+hypothesis the evidence actually supports and test it → isolate by bisecting layer,
+deploy, or code path → confirm root cause with reproducible evidence, not just
+correlation → implement the smallest fix → deploy gradually and verify via the same
+evidence that showed the symptom → add a regression test and any monitoring that
+would have caught it sooner.</p>
+<p><strong>Why it matters:</strong>
+"Walk me through your debugging process" is a standard interview question testing
+for a real, repeatable method versus jumping straight to guessing at a fix.</p>
+<p><strong>Common trap:</strong>
+Skipping straight from symptom to a guessed fix, without gathering evidence first or
+confirming the root cause is actually reproducible rather than merely plausible.</p>
+<p><strong>Related:</strong>
+[[incident-response-and-blameless-postmortems]], [[working-with-legacy-code]]</p>
+<h3 id="card-what-changes-in-legacy-code">Card: What changes in legacy code<a class="headerlink" href="#card-what-changes-in-legacy-code" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Does the production-debugging process change in a legacy, undertested codebase?</p>
+<p><strong>Answer:</strong>
+Only one step changes: before implementing the fix, write a characterization test
+that pins the code's actual current behavior as a safety net — since there's no
+existing test suite to catch an unintended side effect of the change. Every other
+step (scope, evidence, hypothesis, isolate, confirm, verify, close the loop) is
+identical regardless of the codebase's age.</p>
+<p><strong>Why it matters:</strong>
+A candidate who claims legacy code needs a "completely different" process usually
+hasn't actually reasoned about <em>why</em> it's harder — the real answer is one precise,
+mandatory pre-step, not a different philosophy.</p>
+<p><strong>Common trap:</strong>
+Treating "be extra careful" as a substitute for a characterization test — care isn't
+checkable or repeatable; a test is.</p>
+<p><strong>Related:</strong>
+[[incident-response-and-blameless-postmortems]], [[working-with-legacy-code]]</p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Extend <code>check_postmortem_blameless.py</code>'s <code>BLAME_PATTERNS</code> list with at least three
@@ -11902,7 +12036,7 @@ generalizes directly to it.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:26:21 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:42:39 UTC">September 14, 2026</span>
   </span>
 
     

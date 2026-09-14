@@ -3410,6 +3410,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-the-eight-step-diagnosis-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The eight-step diagnosis process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-what-changes-in-legacy-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: What changes in legacy code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-blameless-is-checkable-not-just-name-free" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8012,6 +8034,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-the-eight-step-diagnosis-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The eight-step diagnosis process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-what-changes-in-legacy-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: What changes in legacy code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-blameless-is-checkable-not-just-name-free" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8126,6 +8170,28 @@ It's the register's own named misconception, and this chapter's real linter enfo
 Using "5 Whys" until reaching one satisfying-sounding cause, without asking whether other, independent causal chains also contributed.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/13-observability/incident-response-and-blameless-postmortems/">syllabus/13-observability/incident-response-and-blameless-postmortems.md</a></p>
+<h2 id="card-the-eight-step-diagnosis-process">Card: The eight-step diagnosis process<a class="headerlink" href="#card-the-eight-step-diagnosis-process" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Name the general, repeatable process for diagnosing a production bug, in order.</p>
+<p><strong>Answer:</strong>
+Confirm and scope the impact → gather evidence (logs/metrics/traces) → form a hypothesis the evidence actually supports and test it → isolate by bisecting layer, deploy, or code path → confirm root cause with reproducible evidence, not just correlation → implement the smallest fix → deploy gradually and verify via the same evidence that showed the symptom → add a regression test and any monitoring that would have caught it sooner.</p>
+<p><strong>Why it matters:</strong>
+"Walk me through your debugging process" is a standard interview question testing for a real, repeatable method versus jumping straight to guessing at a fix.</p>
+<p><strong>Common trap:</strong>
+Skipping straight from symptom to a guessed fix, without gathering evidence first or confirming the root cause is actually reproducible rather than merely plausible.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/13-observability/incident-response-and-blameless-postmortems/">syllabus/13-observability/incident-response-and-blameless-postmortems.md</a>, <a href="../../syllabus/18-engineering-practices/working-with-legacy-code/">syllabus/18-engineering-practices/working-with-legacy-code.md</a></p>
+<h2 id="card-what-changes-in-legacy-code">Card: What changes in legacy code<a class="headerlink" href="#card-what-changes-in-legacy-code" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Does the production-debugging process change in a legacy, undertested codebase?</p>
+<p><strong>Answer:</strong>
+Only one step changes: before implementing the fix, write a characterization test that pins the code's actual current behavior as a safety net — since there's no existing test suite to catch an unintended side effect of the change. Every other step is identical regardless of the codebase's age.</p>
+<p><strong>Why it matters:</strong>
+A candidate who claims legacy code needs a "completely different" process usually hasn't actually reasoned about <em>why</em> it's harder — the real answer is one precise, mandatory pre-step, not a different philosophy.</p>
+<p><strong>Common trap:</strong>
+Treating "be extra careful" as a substitute for a characterization test — care isn't checkable or repeatable; a test is.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/13-observability/incident-response-and-blameless-postmortems/">syllabus/13-observability/incident-response-and-blameless-postmortems.md</a>, <a href="../../syllabus/18-engineering-practices/working-with-legacy-code/">syllabus/18-engineering-practices/working-with-legacy-code.md</a></p>
 <h2 id="card-blameless-is-checkable-not-just-name-free">Card: Blameless is checkable, not just name-free<a class="headerlink" href="#card-blameless-is-checkable-not-just-name-free" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Is a postmortem blameless simply because it doesn't name an individual?</p>
@@ -8157,7 +8223,7 @@ Treating "we didn't say whose fault it was" as sufficient without checking the d
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:41:14 UTC">September 14, 2026</span>
   </span>
 
     
