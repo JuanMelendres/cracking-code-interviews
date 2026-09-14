@@ -3833,6 +3833,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-entity-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Entity Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jpa-vs-hibernate-specific-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JPA vs. Hibernate-Specific Annotations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision-table" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8067,6 +8089,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-entity-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Entity Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jpa-vs-hibernate-specific-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JPA vs. Hibernate-Specific Annotations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision-table" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8223,7 +8267,52 @@
 <li><strong>Detached entity</strong> — an entity whose session has closed; already-loaded fields remain readable, but an uninitialized lazy proxy has no session left to fetch through.</li>
 <li><strong>N+1 problem</strong> — 1 query for a list plus 1 additional query per row's lazily-touched association, instead of the 1–2 queries the data actually requires.</li>
 <li><strong>EAGER vs LAZY</strong> — EAGER loads unconditionally as part of every query for the owning entity; LAZY loads only on first access via a proxy/collection wrapper.</li>
+<li><strong>The four lifecycle states</strong> — Transient (never persisted) → Persistent/Managed (tracked) → Detached (session closed) or Removed (<code>remove()</code> called, deleted at flush).</li>
 </ul>
+<h2 id="the-entity-lifecycle">The Entity Lifecycle<a class="headerlink" href="#the-entity-lifecycle" title="Permanent link">&para;</a></h2>
+<p><code>Transient --persist()--&gt; Persistent --session closes--&gt; Detached --merge()--&gt; Persistent (NEW copy)</code>. <code>Persistent --remove()--&gt; Removed --flush--&gt; gone</code>.</p>
+<ul>
+<li><strong><code>merge()</code> does not mutate its argument</strong> — it returns a <em>different</em>, managed instance; the object you passed in stays detached.</li>
+<li><strong><code>persist()</code> on an entity that already has an id</strong> throws <code>PersistentObjectException</code> in Hibernate — use <code>merge()</code> instead.</li>
+<li><strong><code>orphanRemoval = true</code></strong> deletes a child the instant it leaves the parent's collection, even if the parent survives — <code>CascadeType.REMOVE</code> alone only fires when the parent itself is removed.</li>
+<li><strong><code>GenerationType.IDENTITY</code> blocks JDBC batch inserts</strong> structurally (Hibernate needs the id immediately for the identity map); <code>SEQUENCE</code> (with <code>allocationSize</code>) doesn't.</li>
+<li><strong>Don't derive <code>equals()</code>/<code>hashCode()</code> from the generated <code>@Id</code></strong> — it's <code>null</code> before persist and changes hashCode after; use a real business key, or don't override at all.</li>
+</ul>
+<h2 id="jpa-vs-hibernate-specific-annotations">JPA vs. Hibernate-Specific Annotations<a class="headerlink" href="#jpa-vs-hibernate-specific-annotations" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>JPA (<code>jakarta.persistence</code>, portable)</th>
+<th>Hibernate-only (<code>org.hibernate.annotations</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Entity</code>, <code>@Table</code>, <code>@Id</code>, <code>@GeneratedValue</code></td>
+<td><code>@BatchSize</code>, <code>@Cache</code></td>
+</tr>
+<tr>
+<td><code>@Column</code>, <code>@OneToMany</code>/<code>@ManyToOne</code>/<code>@ManyToMany</code>/<code>@OneToOne</code></td>
+<td><code>@DynamicUpdate</code>, <code>@DynamicInsert</code></td>
+</tr>
+<tr>
+<td><code>@JoinColumn</code>, <code>@JoinTable</code>, <code>@Embeddable</code>/<code>@Embedded</code></td>
+<td><code>@Fetch(FetchMode...)</code>, <code>@NaturalId</code></td>
+</tr>
+<tr>
+<td><code>@MappedSuperclass</code>, <code>@Transient</code>, <code>@Version</code></td>
+<td><code>@CreationTimestamp</code>, <code>@UpdateTimestamp</code></td>
+</tr>
+<tr>
+<td><code>@Enumerated</code>, <code>@Lob</code></td>
+<td><code>@SQLDelete</code>, <code>@Immutable</code></td>
+</tr>
+<tr>
+<td><code>@PrePersist</code>/<code>@PostPersist</code>/<code>@PreUpdate</code>/<code>@PostUpdate</code>/<code>@PreRemove</code>/<code>@PostRemove</code>/<code>@PostLoad</code> (lifecycle callbacks)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <h2 id="decision-table">Decision Table<a class="headerlink" href="#decision-table" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -8336,7 +8425,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:19:34 UTC">September 14, 2026</span>
   </span>
 
     

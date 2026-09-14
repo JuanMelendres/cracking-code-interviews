@@ -3395,6 +3395,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#jpa-and-hibernate-annotations-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JPA and Hibernate Annotations Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#internal-implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10936,6 +10947,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#jpa-and-hibernate-annotations-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JPA and Hibernate Annotations Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#internal-implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11287,6 +11309,7 @@
 <li><a href="#mental-model">Mental Model</a></li>
 <li><a href="#definition-and-purpose">Definition and Purpose</a></li>
 <li><a href="#core-concepts">Core Concepts</a></li>
+<li><a href="#jpa-and-hibernate-annotations-reference">JPA and Hibernate Annotations Reference</a></li>
 <li><a href="#internal-implementation">Internal Implementation</a></li>
 <li><a href="#diagrams">Diagrams</a></li>
 <li><a href="#java-examples">Java Examples</a></li>
@@ -11313,6 +11336,7 @@
 <h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
 <p>By the end of this chapter you can:</p>
 <ul>
+<li>Draw the full four-state entity lifecycle (Transient/Persistent/Detached/Removed) and state precisely why <code>merge()</code> does not make the object passed into it managed.</li>
 <li>Explain the persistence context (the "first-level cache") precisely enough to predict, without running the code, whether a given <code>find()</code> call issues a new query.</li>
 <li>Reproduce, with real measured output, dirty checking (an <code>UPDATE</code> fired with no explicit save call) and a <code>LazyInitializationException</code> on a detached entity.</li>
 <li>Diagnose an N+1 query pattern from its symptom (query count scaling linearly with result-set size) and fix it with the correct tool for the specific access pattern, not a reflexive "just make it EAGER."</li>
@@ -11341,6 +11365,164 @@
 <p>The extra queries in N+1 aren't wasted in the sense of fetching unneeded data — the application genuinely needs each author's books. The waste is entirely in fetching them one round-trip at a time instead of one round-trip total; the fix is changing the <em>shape</em> of the fetch for this specific access pattern, not whether the data is fetched.</p>
 <h3 id="eager-doesnt-fix-n1-it-relocates-and-usually-worsens-it">EAGER doesn't fix N+1 — it relocates and usually worsens it<a class="headerlink" href="#eager-doesnt-fix-n1-it-relocates-and-usually-worsens-it" title="Permanent link">&para;</a></h3>
 <p>Marking an association <code>EAGER</code> makes it load as part of every query for the owning entity, unconditionally — including in code paths that never touch that association at all, and including nested associations that can each trigger their own N+1 at load time. It converts a per-access-pattern problem (fixable per query) into a blanket, always-on cost with no way to opt out for the access patterns that don't need it.</p>
+<h3 id="the-four-state-entity-lifecycle-and-the-methods-that-transition-between-them">The four-state entity lifecycle, and the methods that transition between them<a class="headerlink" href="#the-four-state-entity-lifecycle-and-the-methods-that-transition-between-them" title="Permanent link">&para;</a></h3>
+<p>This chapter's title promises "entity lifecycle," and everything above has been building toward it implicitly — this is the explicit state machine. Every JPA entity is, at any moment, in exactly one of four states:</p>
+<ul>
+<li><strong>Transient</strong> — a plain <code>new Author()</code>, never associated with any persistence context. No row exists for it, and Hibernate isn't tracking it at all.</li>
+<li><strong>Persistent (Managed)</strong> — tracked by a persistence context; the identity map, dirty checking, and lazy loading all apply. Reached via <code>persist()</code> (a transient entity becomes managed, a row is scheduled for <code>INSERT</code> at flush) or via <code>find()</code>/a query (the entity comes back already managed).</li>
+<li><strong>Detached</strong> — was managed, but its persistence context is gone (the session closed, or <code>detach()</code>/<code>clear()</code> was called explicitly). Already-loaded fields remain readable; any untouched lazy proxy throws <code>LazyInitializationException</code> on access (Internal Implementation, Demo 3).</li>
+<li><strong>Removed</strong> — <code>remove()</code> was called on a managed entity; it's still in the persistence context (still tracked, still dirty-checked) until flush, at which point the actual <code>DELETE</code> fires and the row is gone.</li>
+</ul>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Transient: new Author()
+    Transient --&gt; Persistent: persist()
+    Persistent --&gt; Detached: session closes / detach() / clear()
+    Detached --&gt; Persistent: merge() -- returns a NEW managed copy
+    Persistent --&gt; Removed: remove()
+    Removed --&gt; [*]: flush -- DELETE fires
+    Detached --&gt; [*]: garbage collected, no DB effect</code></pre>
+<p><strong>The single most common mistake in this state machine: <code>merge()</code> does not make the object you passed in managed.</strong> <code>Author managed = entityManager.merge(detachedAuthor);</code> copies the detached entity's state onto a <em>different</em>, newly-loaded (or newly-created) managed instance and returns <em>that</em> — <code>detachedAuthor</code> itself remains detached, forever. Code that calls <code>merge()</code> and then keeps using the original reference as if it were now managed is a real, recurring bug, precisely because <code>merge()</code>'s return value is easy to ignore when the method "looks like" it should mutate in place.</p>
+<p>Two more transition details worth knowing precisely: calling <code>persist()</code> on an already-managed entity is a harmless no-op (it's already going to be inserted or is already persisted); calling <code>persist()</code> on a <em>detached</em> entity (one that already has a database-assigned id) is undefined behavior per the JPA spec, and Hibernate specifically throws <code>PersistentObjectException</code> rather than silently doing something reasonable — <code>merge()</code>, not <code>persist()</code>, is the correct operation for "make this detached entity's state persistent again."</p>
+<h3 id="cascade-types-control-which-operations-propagate-from-a-parent-entity-to-its-associations">Cascade types control which operations propagate from a parent entity to its associations<a class="headerlink" href="#cascade-types-control-which-operations-propagate-from-a-parent-entity-to-its-associations" title="Permanent link">&para;</a></h3>
+<p>By default, calling <code>persist()</code>, <code>merge()</code>, or <code>remove()</code> on an entity affects only that entity — a <code>@OneToMany</code> child collection is entirely unaffected unless a <strong>cascade type</strong> says otherwise. <code>cascade = CascadeType.ALL</code> (used in this chapter's own <code>Author.books</code> mapping) means every one of <code>PERSIST</code>, <code>MERGE</code>, <code>REMOVE</code>, <code>REFRESH</code>, and <code>DETACH</code> propagates from the parent to every child in the collection — save the author, and every book in its <code>books</code> list gets saved too, with no separate call needed per book.</p>
+<p><strong><code>orphanRemoval = true</code> is a distinct, separate setting from <code>CascadeType.REMOVE</code></strong>, and the difference is a real, frequently-tested gotcha: <code>CascadeType.REMOVE</code> only deletes children when the <em>parent itself</em> is removed. <code>orphanRemoval = true</code> additionally deletes a child the moment it's removed from the parent's collection (<code>author.getBooks().remove(someBook)</code>) even while the parent itself stays alive — the child becomes an "orphan" (no parent references it anymore) and Hibernate deletes it at the next flush, without <code>remove()</code> ever being called on it directly.</p>
+<h3 id="id-generation-strategy-determines-whether-hibernate-can-batch-inserts-at-all">ID generation strategy determines whether Hibernate can batch inserts at all<a class="headerlink" href="#id-generation-strategy-determines-whether-hibernate-can-batch-inserts-at-all" title="Permanent link">&para;</a></h3>
+<p><code>@GeneratedValue(strategy = ...)</code> has four real options, and the choice has a direct, measurable consequence for insert performance, not just a stylistic one:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How the id is assigned</th>
+<th>Batch-insert-friendly?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IDENTITY</code></td>
+<td>The database assigns it on <code>INSERT</code> (an auto-increment column)</td>
+<td><strong>No</strong> — Hibernate needs the real id immediately to place the entity in the identity map, so it must execute each <code>INSERT</code> individually and read back the generated key; JDBC batching is structurally defeated</td>
+</tr>
+<tr>
+<td><code>SEQUENCE</code></td>
+<td>A database sequence, which Hibernate can pre-fetch a block of (<code>allocationSize</code>) before ever hitting the database for real inserts</td>
+<td><strong>Yes</strong> — ids are known up front, so multiple <code>INSERT</code>s can be batched into one round-trip</td>
+</tr>
+<tr>
+<td><code>TABLE</code></td>
+<td>A dedicated table simulates a sequence via row locking</td>
+<td>Portable across databases lacking real sequences, but adds its own locking overhead — rarely the right default when <code>SEQUENCE</code> is available</td>
+</tr>
+<tr>
+<td><code>AUTO</code></td>
+<td>The persistence provider picks a strategy based on the database dialect</td>
+<td>Whatever the provider defaults to for that dialect — worth confirming explicitly rather than assuming, since it silently determines the <code>IDENTITY</code>-vs-<code>SEQUENCE</code> batching trade-off above</td>
+</tr>
+</tbody>
+</table>
+<p>This is a real, common Staff-level surprise: a team enables <code>hibernate.jdbc.batch_size</code> expecting faster bulk inserts, sees no improvement, and the cause is <code>GenerationType.IDENTITY</code> structurally preventing batching regardless of that setting — <code>SEQUENCE</code> is the fix, not a larger batch size.</p>
+<h3 id="equalshashcode-on-jpa-entities-is-a-classic-easy-to-get-wrong-gotcha"><code>equals()</code>/<code>hashCode()</code> on JPA entities is a classic, easy-to-get-wrong gotcha<a class="headerlink" href="#equalshashcode-on-jpa-entities-is-a-classic-easy-to-get-wrong-gotcha" title="Permanent link">&para;</a></h3>
+<p>The obvious approach — generate <code>equals()</code>/<code>hashCode()</code> from the entity's <code>@Id</code> field — breaks in a specific, common way: a transient entity's id is <code>null</code> until <code>persist()</code> actually assigns one, so two different transient entities are indistinguishable (<code>equals()</code> returns <code>true</code> for two different not-yet-saved objects if the comparison falls back to "both ids null"), and worse, an entity's <code>hashCode()</code> <em>changes</em> the moment it transitions from transient to persistent — a real problem for any entity already placed in a <code>HashSet</code> or used as a <code>HashMap</code> key before being saved, since its bucket position becomes wrong the instant its hash changes.</p>
+<p>Using <strong>all fields</strong> for <code>equals()</code>/<code>hashCode()</code> has a different problem: a lazy Hibernate proxy may not have every field loaded, so comparing a proxy against a fully-loaded instance can produce <code>LazyInitializationException</code> or a spuriously <code>false</code> result depending on which fields are involved. The two real, defensible approaches: (1) don't override <code>equals()</code>/<code>hashCode()</code> at all, and rely on Java's default reference equality — correct as long as the application never needs to compare a database-loaded entity against a freshly-constructed one representing "the same" row; or (2) use a genuine, immutable <strong>business key</strong> (a natural unique identifier that exists and never changes, independent of whether the row has been saved yet — an email address, an order number) rather than the surrogate <code>@Id</code>, since a business key doesn't have the null-before-persist problem the generated id does.</p>
+<h2 id="jpa-and-hibernate-annotations-reference">JPA and Hibernate Annotations Reference<a class="headerlink" href="#jpa-and-hibernate-annotations-reference" title="Permanent link">&para;</a></h2>
+<p>This chapter's own demo uses only <code>@Entity</code>, <code>@Id</code>, <code>@GeneratedValue</code>, <code>@OneToMany</code>, and <code>cascade</code>/<code>fetch</code> — the rest of a real codebase's mapping annotations, grouped by where they come from, since JPA (the <code>jakarta.persistence</code> package, portable across providers) and Hibernate-specific extensions (<code>org.hibernate.annotations</code>, provider-specific, not portable to EclipseLink or OpenJPA) are frequently confused for being the same thing:</p>
+<p><strong>Core JPA (<code>jakarta.persistence</code>) — portable across any JPA provider:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Entity</code>, <code>@Table</code></td>
+<td>Marks a class as a persistent entity; <code>@Table</code> names the backing table (defaults to the class name)</td>
+</tr>
+<tr>
+<td><code>@Id</code>, <code>@GeneratedValue</code></td>
+<td>Marks the primary-key field; <code>@GeneratedValue</code> selects the id-generation strategy (table above)</td>
+</tr>
+<tr>
+<td><code>@Column</code></td>
+<td>Customizes a field's column mapping (name, nullability, length, uniqueness)</td>
+</tr>
+<tr>
+<td><code>@OneToMany</code>, <code>@ManyToOne</code>, <code>@ManyToMany</code>, <code>@OneToOne</code></td>
+<td>Association mappings; <code>mappedBy</code> marks the non-owning side of a bidirectional relationship</td>
+</tr>
+<tr>
+<td><code>@JoinColumn</code>, <code>@JoinTable</code></td>
+<td>Specifies the foreign-key column (<code>@JoinColumn</code>) or the join table (<code>@JoinTable</code>, for <code>@ManyToMany</code>) an association uses</td>
+</tr>
+<tr>
+<td><code>@Embeddable</code>, <code>@Embedded</code></td>
+<td><code>@Embeddable</code> marks a class with no identity of its own (e.g., <code>Address</code>); <code>@Embedded</code> includes one inline as part of an owning entity's own table row</td>
+</tr>
+<tr>
+<td><code>@MappedSuperclass</code></td>
+<td>A base class contributing mapped fields to subclasses, without being an entity or having its own table</td>
+</tr>
+<tr>
+<td><code>@Transient</code></td>
+<td>Excludes a field from persistence entirely — not saved, not loaded, purely in-memory (unrelated to the "transient" lifecycle state despite the shared name)</td>
+</tr>
+<tr>
+<td><code>@Version</code></td>
+<td>Marks a field used for optimistic locking (see <a href="../optimistic-vs-pessimistic-locking/">Optimistic vs. Pessimistic Locking</a>)</td>
+</tr>
+<tr>
+<td><code>@Enumerated</code>, <code>@Lob</code></td>
+<td><code>@Enumerated</code> controls how a Java <code>enum</code> is stored (ordinal vs. <code>STRING</code>); <code>@Lob</code> marks a large object field (a <code>CLOB</code>/<code>BLOB</code>-backed <code>String</code>/<code>byte[]</code>)</td>
+</tr>
+<tr>
+<td><code>@PrePersist</code>, <code>@PostPersist</code>, <code>@PreUpdate</code>, <code>@PostUpdate</code>, <code>@PreRemove</code>, <code>@PostRemove</code>, <code>@PostLoad</code></td>
+<td>Lifecycle callbacks — a method annotated with one of these runs automatically at the matching point in the state machine above (e.g., <code>@PrePersist</code> runs immediately before the transient→persistent <code>INSERT</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hibernate-specific (<code>org.hibernate.annotations</code>) — real, commonly used, but not portable to another JPA provider:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@BatchSize</code></td>
+<td>Batches lazy-collection or lazy-entity loads into groups instead of one query each (this chapter's Trade-offs table)</td>
+</tr>
+<tr>
+<td><code>@Cache</code></td>
+<td>Enables second-level caching for an entity/collection (see <a href="../hibernate-second-level-and-query-cache/">Hibernate Second-Level and Query Cache</a>)</td>
+</tr>
+<tr>
+<td><code>@DynamicUpdate</code>, <code>@DynamicInsert</code></td>
+<td>Generates <code>UPDATE</code>/<code>INSERT</code> statements that include only changed/non-null columns, instead of every mapped column every time</td>
+</tr>
+<tr>
+<td><code>@Fetch(FetchMode...)</code></td>
+<td>Chooses the SQL-level fetch mechanism (<code>JOIN</code>, <code>SELECT</code>, <code>SUBSELECT</code>) for an association, a finer-grained control than the JPA <code>fetch = LAZY/EAGER</code> alone</td>
+</tr>
+<tr>
+<td><code>@NaturalId</code></td>
+<td>Marks a field as a stable, natural business key, enabling Hibernate's own natural-id lookup cache — directly relevant to the equals/hashCode discussion above</td>
+</tr>
+<tr>
+<td><code>@CreationTimestamp</code>, <code>@UpdateTimestamp</code></td>
+<td>Automatically populates a field with the row's creation/last-update time, without an explicit <code>@PrePersist</code>/<code>@PreUpdate</code> method</td>
+</tr>
+<tr>
+<td><code>@SQLDelete</code></td>
+<td>Replaces the actual <code>DELETE</code> Hibernate would issue with a custom SQL statement — the standard mechanism for implementing soft deletes</td>
+</tr>
+<tr>
+<td><code>@Immutable</code></td>
+<td>Marks an entity as never updated after creation — Hibernate skips dirty-checking it entirely, a real performance optimization for genuinely read-only data</td>
+</tr>
+</tbody>
+</table>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>The identity map, measured — the same id, <code>find()</code>'d twice, returns the same object:</strong></p>
 <div class="highlight"><pre><span></span><code>== 1. The identity map: the SAME managed entity, fetched twice in one session, is the SAME Java object ==
@@ -11607,6 +11789,28 @@ RESULT: 1 query total -- N+1 eliminated by fetching the association eagerly, for
 <p><strong>Likely follow-ups.</strong> "What's the downside of just making the transaction span the whole request?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know why it happens. 3: correctly explains the mechanism and proposes a fix. 5: correct explanation plus explicitly rejecting the wide-transaction anti-pattern.</p>
 <p><strong>Related references.</strong> <a href="#internal-implementation">§ Internal Implementation</a>, Demo 3; <a href="#anti-patterns">§ Anti-Patterns</a>.</p>
+<hr />
+<h3 id="question-3-whats-the-difference-between-persist-and-merge-and-what-happens-to-the-object-you-pass-into-merge">Question 3 — What's the difference between <code>persist()</code> and <code>merge()</code>, and what happens to the object you pass into <code>merge()</code>?<a class="headerlink" href="#question-3-whats-the-difference-between-persist-and-merge-and-what-happens-to-the-object-you-pass-into-merge" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> A near-universal source of a real, silent bug: candidates who've used <code>merge()</code> correctly by accident (always using its return value) versus candidates who've never noticed it returns something different from what was passed in.</p>
+<p><strong>Expected answer.</strong> <code>persist()</code> makes a <em>transient</em> entity managed — it must not already have a database-assigned identity, and it schedules an <code>INSERT</code>. <code>merge()</code> takes a <em>detached</em> entity (one with an id, previously saved) and copies its state onto a different, managed instance — either an already-loaded one from the persistence context or a freshly-queried one — and returns that managed copy. The object originally passed into <code>merge()</code> remains detached; only the returned reference is managed.</p>
+<p><strong>Minimum acceptable answer.</strong> Knows <code>persist()</code> is for new entities and <code>merge()</code> is for reattaching detached ones, even without the return-value detail.</p>
+<p><strong>Strong Senior answer.</strong> States explicitly that <code>merge()</code>'s argument stays detached and only its return value is managed — and names the real bug this causes when code assumes otherwise.</p>
+<p><strong>Staff-level extension.</strong> Connects this to calling <code>persist()</code> on an already-detached entity (one with an existing id) — Hibernate throws <code>PersistentObjectException</code> rather than silently doing something reasonable, which is exactly why <code>merge()</code>, not <code>persist()</code>, is the correct operation for that case.</p>
+<p><strong>Common mistakes.</strong> Assuming <code>merge()</code> mutates its argument into a managed entity in place.</p>
+<p><strong>Likely follow-ups.</strong> "What happens if you call <code>persist()</code> on an entity that already has an id from a previous save?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know the difference. 3: correctly distinguishes the two operations. 5: correctly states <code>merge()</code>'s return-value behavior and the <code>persist()</code>-on-detached failure mode.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a> — "The four-state entity lifecycle."</p>
+<hr />
+<h3 id="question-4-you-enable-jdbc-batch-inserts-for-a-bulk-import-feature-and-see-no-performance-improvement-at-all-whats-the-first-thing-you-check">Question 4 — You enable JDBC batch inserts for a bulk-import feature and see no performance improvement at all. What's the first thing you check?<a class="headerlink" href="#question-4-you-enable-jdbc-batch-inserts-for-a-bulk-import-feature-and-see-no-performance-improvement-at-all-whats-the-first-thing-you-check" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether a candidate understands that <code>@GeneratedValue</code> strategy choice isn't cosmetic — it structurally determines whether batching is even possible, a real, common surprise for teams that enable <code>hibernate.jdbc.batch_size</code> and see nothing change.</p>
+<p><strong>Expected answer.</strong> Check the entity's id-generation strategy. <code>GenerationType.IDENTITY</code> requires the database to assign the id on <code>INSERT</code> and Hibernate to read it back immediately (to place the entity correctly in the identity map), which structurally forces one <code>INSERT</code> per entity — no batch-size setting can override this. <code>SEQUENCE</code> (with a pre-fetched <code>allocationSize</code>) is the fix, since ids are known before the inserts happen, letting Hibernate actually batch them.</p>
+<p><strong>Minimum acceptable answer.</strong> Suspects the id-generation strategy as a possible cause, even without naming which strategies batch and which don't.</p>
+<p><strong>Strong Senior answer.</strong> Correctly names <code>IDENTITY</code> as batch-incompatible and <code>SEQUENCE</code> as the fix.</p>
+<p><strong>Staff-level extension.</strong> Explains <em>why</em> <code>IDENTITY</code> is structurally incompatible (the persistence context needs the real id immediately for identity-map placement, not just eventually) rather than treating it as an arbitrary provider limitation.</p>
+<p><strong>Common mistakes.</strong> Assuming a larger <code>batch_size</code> value alone will eventually produce batching regardless of id-generation strategy.</p>
+<p><strong>Likely follow-ups.</strong> "Why doesn't <code>TABLE</code> have the same batching problem as <code>IDENTITY</code>, even though it's also provider-managed?" (A <code>TABLE</code> generator can still pre-allocate a block of ids before the real inserts happen, the same way <code>SEQUENCE</code> does — the batching-incompatibility is specific to <code>IDENTITY</code>'s requirement that the database itself assign the id at insert time.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: doesn't suspect id-generation strategy at all. 3: correctly identifies <code>IDENTITY</code> as the likely cause. 5: correct diagnosis plus the structural "why," unprompted.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a> — "ID generation strategy."</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The persistence context is one mechanism — a per-session identity map — behind three behaviors that look unrelated until you see the connection: repeated <code>find()</code> calls return the same object, mutations flush automatically via dirty checking, and lazy associations throw once their session closes. N+1 is that same lazy-loading mechanism's most consequential real-world failure mode: a loop touching a lazy association turns 1 necessary query into <code>1 + N</code>, measured directly in this chapter (5 authors, 6 total queries) and fixed to exactly 1 via a targeted <code>JOIN FETCH</code> — not by making the association <code>EAGER</code> everywhere, which relocates the cost rather than removing it.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -11616,6 +11820,9 @@ RESULT: 1 query total -- N+1 eliminated by fetching the association eagerly, for
 <li>A detached entity's lazy state throws <code>LazyInitializationException</code> when accessed, because there's no session left to fetch through.</li>
 <li>N+1 comes from touching a lazy association inside a loop; the fix is a targeted <code>JOIN FETCH</code> (or DTO projection) for the specific access pattern, not a blanket <code>EAGER</code>.</li>
 <li><code>EAGER</code> doesn't solve N+1 — it applies the cost unconditionally to every access path, whether that path needs the association or not.</li>
+<li>The lifecycle is Transient → Persistent → Detached/Removed; <code>merge()</code> returns a <em>new</em> managed copy, it does not mutate its argument in place.</li>
+<li><code>orphanRemoval = true</code> deletes a child the moment it leaves the parent's collection, even while the parent is still alive — a distinct behavior from <code>CascadeType.REMOVE</code>, which only fires when the parent itself is removed.</li>
+<li><code>GenerationType.IDENTITY</code> structurally prevents JDBC batch inserts; <code>SEQUENCE</code> (with <code>allocationSize</code>) doesn't.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -11645,6 +11852,26 @@ RESULT: 1 query total -- N+1 eliminated by fetching the association eagerly, for
 <tr>
 <td>Considering <code>EAGER</code> to fix N+1</td>
 <td>Don't — it applies everywhere, unconditionally; use <code>JOIN FETCH</code> for the specific query instead</td>
+</tr>
+<tr>
+<td>Reattaching a detached entity</td>
+<td><code>merge()</code> — and use its <em>return value</em>, not the object you passed in</td>
+</tr>
+<tr>
+<td>Calling <code>persist()</code> on an entity with an existing id</td>
+<td>Wrong operation — throws <code>PersistentObjectException</code> in Hibernate; use <code>merge()</code> instead</td>
+</tr>
+<tr>
+<td>Child should be deleted only when removed from the collection, parent unaffected</td>
+<td><code>orphanRemoval = true</code>, not <code>CascadeType.REMOVE</code> alone</td>
+</tr>
+<tr>
+<td>Bulk inserts not getting faster after enabling batching</td>
+<td>Check <code>@GeneratedValue</code> strategy — <code>IDENTITY</code> blocks batching structurally; switch to <code>SEQUENCE</code></td>
+</tr>
+<tr>
+<td>Writing <code>equals()</code>/<code>hashCode()</code> on an entity</td>
+<td>Avoid the generated <code>@Id</code> (null before persist, changes hashCode after) — use a real business key, or don't override at all</td>
 </tr>
 </tbody>
 </table>
@@ -11682,6 +11909,50 @@ The most common wrong answer to this domain's single most-asked interview questi
 Proposing <code>EAGER</code> as a complete fix with no acknowledgment of its blanket cost.</p>
 <p><strong>Related:</strong>
 <a href="#internal-implementation">Internal Implementation</a></p>
+<h3 id="card-what-merge-actually-returns">Card: What merge() actually returns<a class="headerlink" href="#card-what-merge-actually-returns" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+After <code>Author managed = entityManager.merge(detachedAuthor);</code>, is <code>detachedAuthor</code> now managed?</p>
+<p><strong>Answer:</strong>
+No — <code>merge()</code> copies the detached entity's state onto a <em>different</em>, managed instance and returns that. <code>detachedAuthor</code> itself remains detached forever; only the returned <code>managed</code> reference is actually tracked by the persistence context.</p>
+<p><strong>Why it matters:</strong>
+A real, recurring bug: code that calls <code>merge()</code> and then keeps using the original object as if it were now managed.</p>
+<p><strong>Common trap:</strong>
+Ignoring <code>merge()</code>'s return value, assuming the method mutates its argument in place.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-orphanremoval-vs-cascadetyperemove">Card: orphanRemoval vs. CascadeType.REMOVE<a class="headerlink" href="#card-orphanremoval-vs-cascadetyperemove" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+What's the difference between <code>orphanRemoval = true</code> and <code>CascadeType.REMOVE</code>?</p>
+<p><strong>Answer:</strong>
+<code>CascadeType.REMOVE</code> only deletes children when the parent itself is removed. <code>orphanRemoval = true</code> additionally deletes a child the instant it's taken out of the parent's collection, even while the parent stays alive.</p>
+<p><strong>Why it matters:</strong>
+A frequently-tested distinction — assuming they're the same thing leads to orphaned rows that were expected to be cleaned up automatically.</p>
+<p><strong>Common trap:</strong>
+Using only <code>CascadeType.REMOVE</code> and expecting a child removed from the collection (but not via deleting the parent) to also be deleted from the database.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-why-identity-blocks-batch-inserts">Card: Why IDENTITY blocks batch inserts<a class="headerlink" href="#card-why-identity-blocks-batch-inserts" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Why does <code>GenerationType.IDENTITY</code> prevent Hibernate from batching <code>INSERT</code> statements, while <code>SEQUENCE</code> doesn't?</p>
+<p><strong>Answer:</strong>
+<code>IDENTITY</code> requires the database to assign the id on <code>INSERT</code> and Hibernate to read it back immediately, to place the entity correctly in the identity map — forcing one <code>INSERT</code> per entity. <code>SEQUENCE</code> pre-fetches a block of ids (<code>allocationSize</code>) before any real inserts happen, so the ids are already known and multiple inserts can be batched into one round-trip.</p>
+<p><strong>Why it matters:</strong>
+A real, common Staff-level surprise: enabling <code>hibernate.jdbc.batch_size</code> does nothing if the entity uses <code>IDENTITY</code>.</p>
+<p><strong>Common trap:</strong>
+Assuming a larger batch-size setting alone fixes slow bulk inserts, regardless of id-generation strategy.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-why-the-generated-id-breaks-equalshashcode">Card: Why the generated @Id breaks equals()/hashCode()<a class="headerlink" href="#card-why-the-generated-id-breaks-equalshashcode" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Why is generating <code>equals()</code>/<code>hashCode()</code> from an entity's <code>@Id</code> field a common mistake?</p>
+<p><strong>Answer:</strong>
+The id is <code>null</code> until <code>persist()</code> assigns one, so two different transient entities can compare equal; worse, an entity's <code>hashCode()</code> changes the moment it transitions from transient to persistent, breaking any <code>HashSet</code>/<code>HashMap</code> it was already placed in before being saved.</p>
+<p><strong>Why it matters:</strong>
+A classic, easy-to-hit JPA gotcha — the "obvious" implementation is the wrong one.</p>
+<p><strong>Common trap:</strong>
+Using all fields instead, which has its own problem: a lazy proxy may not have every field loaded, producing wrong or exception-throwing comparisons.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reproduce all measured traces: <a href="../../../practice/java/hibernate-jpa/entity-lifecycle-and-n1/src/EntityLifecycleDemo.java"><code>EntityLifecycleDemo.java</code></a> and <a href="../../../practice/java/hibernate-jpa/entity-lifecycle-and-n1/src/N1ProblemDemo.java"><code>N1ProblemDemo.java</code></a> (run <code>fetch-deps.sh</code> first to download the real Hibernate/H2 jars).</li>
@@ -11721,7 +11992,7 @@ Proposing <code>EAGER</code> as a complete fix with no acknowledgment of its bla
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 21:37:53 UTC">September 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:19:34 UTC">September 14, 2026</span>
   </span>
 
     

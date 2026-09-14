@@ -3886,6 +3886,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-what-merge-actually-returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: What merge() actually returns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-orphanremoval-vs-cascadetyperemove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: orphanRemoval vs. CascadeType.REMOVE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-why-identity-blocks-batch-inserts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why IDENTITY blocks batch inserts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-why-eager-doesnt-fix-n1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8012,6 +8045,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-what-merge-actually-returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: What merge() actually returns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-orphanremoval-vs-cascadetyperemove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: orphanRemoval vs. CascadeType.REMOVE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-why-identity-blocks-batch-inserts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why IDENTITY blocks batch inserts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-why-eager-doesnt-fix-n1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8126,6 +8192,39 @@ The single most common real Hibernate production bug — measured directly in th
 "Fixing" it by widening the transaction to cover the whole request, rather than aligning the boundary with where lazy access actually happens.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem/#internal-implementation">Internal Implementation</a></p>
+<h2 id="card-what-merge-actually-returns">Card: What merge() actually returns<a class="headerlink" href="#card-what-merge-actually-returns" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+After <code>Author managed = entityManager.merge(detachedAuthor);</code>, is <code>detachedAuthor</code> now managed?</p>
+<p><strong>Answer:</strong>
+No — <code>merge()</code> copies the detached entity's state onto a different, managed instance and returns that. <code>detachedAuthor</code> itself remains detached forever; only the returned <code>managed</code> reference is tracked.</p>
+<p><strong>Why it matters:</strong>
+A real, recurring bug: code that calls <code>merge()</code> and keeps using the original object as if it were now managed.</p>
+<p><strong>Common trap:</strong>
+Ignoring <code>merge()</code>'s return value, assuming the method mutates its argument in place.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem/#core-concepts">Core Concepts</a></p>
+<h2 id="card-orphanremoval-vs-cascadetyperemove">Card: orphanRemoval vs. CascadeType.REMOVE<a class="headerlink" href="#card-orphanremoval-vs-cascadetyperemove" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What's the difference between <code>orphanRemoval = true</code> and <code>CascadeType.REMOVE</code>?</p>
+<p><strong>Answer:</strong>
+<code>CascadeType.REMOVE</code> only deletes children when the parent itself is removed. <code>orphanRemoval = true</code> additionally deletes a child the instant it's taken out of the parent's collection, even while the parent stays alive.</p>
+<p><strong>Why it matters:</strong>
+A frequently-tested distinction whose confusion leads to orphaned rows expected to be cleaned up automatically.</p>
+<p><strong>Common trap:</strong>
+Using only <code>CascadeType.REMOVE</code> and expecting a child removed from the collection to also be deleted from the database.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem/#core-concepts">Core Concepts</a></p>
+<h2 id="card-why-identity-blocks-batch-inserts">Card: Why IDENTITY blocks batch inserts<a class="headerlink" href="#card-why-identity-blocks-batch-inserts" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Why does <code>GenerationType.IDENTITY</code> prevent Hibernate from batching <code>INSERT</code> statements, while <code>SEQUENCE</code> doesn't?</p>
+<p><strong>Answer:</strong>
+<code>IDENTITY</code> requires the database to assign the id on <code>INSERT</code> and Hibernate to read it back immediately for identity-map placement, forcing one <code>INSERT</code> per entity. <code>SEQUENCE</code> pre-fetches a block of ids before any real inserts happen, so multiple inserts can be batched.</p>
+<p><strong>Why it matters:</strong>
+A real, common surprise: enabling <code>hibernate.jdbc.batch_size</code> does nothing if the entity uses <code>IDENTITY</code>.</p>
+<p><strong>Common trap:</strong>
+Assuming a larger batch-size setting alone fixes slow bulk inserts, regardless of id-generation strategy.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem/#core-concepts">Core Concepts</a></p>
 <h2 id="card-why-eager-doesnt-fix-n1">Card: Why EAGER doesn't fix N+1<a class="headerlink" href="#card-why-eager-doesnt-fix-n1" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Why is switching a lazy association to <code>EAGER</code> usually the wrong fix for N+1?</p>
@@ -8157,7 +8256,7 @@ Proposing <code>EAGER</code> as a complete fix with no acknowledgment of its bla
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:19:34 UTC">September 14, 2026</span>
   </span>
 
     
