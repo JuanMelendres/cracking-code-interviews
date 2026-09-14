@@ -1162,6 +1162,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
 
+## [2026-09-13] — Interview Question Bank: `07-api-design`, 29 real questions
+
+### Added
+
+- New `question-bank/07-api-design.md`. 5 chapters yielded 8 deep questions + 9 already-leveled Junior/Mid questions (from the domain's Junior Fundamentals chapter, `rest-api-fundamentals.md`) + 12 quick-fire questions = **29 real questions**.
+- **572 real questions across 6 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, same pre-existing warning categories only.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

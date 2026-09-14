@@ -3242,3 +3242,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **543 real questions across 5 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.
+
+### Added (Interview Question Bank — `07-api-design`, 29 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/07-api-design.md`. 5 chapters yielded 8 deep questions + 9 already-leveled Junior/Mid questions (from the domain's Junior Fundamentals chapter, `rest-api-fundamentals.md`) + 12 quick-fire questions = **29 real questions**.
+- **572 real questions across 6 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only the pre-existing `00-project/`-link warning pattern.
