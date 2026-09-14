@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Content-quality audit — `17-architecture`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (17th domain, 9 chapters, via two parallel background agents). `clean-hexagonal-architecture.md`, `ddd-tactical-design-aggregates.md`, `microservice-decomposition-and-monolith-tradeoff.md`, `modular-monolith-as-a-deliberate-choice.md`, `strangler-fig-and-migration-patterns.md`, `technical-debt-and-evolutionary-architecture.md` all verified fully clean — every measured number (CQRS's p50/p99 latencies, 4.6x/5.4x speedups, coupling counts, incremental-cutover percentages) cross-checked against real practice code and matched exactly.
+- `ddd-strategic-bounded-contexts-and-context-mapping.md`: fixed 3 occurrences of a link-text/href mismatch — text read "Microservice Decomposition and Boundary Design" but the target chapter's real title is "Microservice Decomposition and the Monolith Trade-off."
+- `cqrs-read-write-separation.md`: fixed a wrong link target (a "T-906's misconception" link pointed at the microservice-decomposition chapter, but T-906 is actually `09-messaging-event-driven/event-driven-architecture-integration-styles.md`) and two stale "planned"/T-905-not-yet-written references to Event Sourcing — `event-sourcing-and-its-real-costs.md` already exists as a canonical chapter, whose own intro explicitly says it was written to close this exact stale reference (never actually updated back in this file until now).
+- `architecture-decision-records.md`: fixed 2 of 3 occurrences of a link-text/href mismatch — text named `scripts/check_adr_completeness.py` but the href pointed at `practice/architecture/adr-examples/README.md` instead of the real script path.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Verified (Content-quality audit — `15-cloud`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (16th domain, 4 chapters, read directly). `aws-core-services-for-backend-engineers.md`, `azure-and-gcp-for-backend-engineers.md`, `cloud-cost-and-scaling-economics.md`, `twelve-factor-config.md` all verified fully clean — all worked cost calculations re-derived by hand ($17,520/$10,512/$7,300/$3,212 across three scenarios, and the $35,040/$16,644/$18,396 practice-exercise solution), all provider-service cross-references checked, and the Azure AD → Microsoft Entra ID / GCP Deployment Manager → Infrastructure Manager rename claims previously verified live still hold. No fixes needed.

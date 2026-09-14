@@ -4,8 +4,8 @@ slug: ddd-strategic-bounded-contexts-and-context-mapping
 document_type: handbook-chapter
 domain: 17-architecture
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
 topic_id: T-902
@@ -110,7 +110,7 @@ where one service's responsibility ends and another's begins?" or the sharper fo
 tactical DDD reaches for a technical answer (add a field, add a flag) or a
 process answer (schedule a meeting) — neither addresses the actual structural
 question, which is whether these two things should even be forced to be the same
-concept at all. The strategic half of DDD is also the half [Microservice Decomposition and Boundary Design](microservice-decomposition-and-monolith-tradeoff.md)
+concept at all. The strategic half of DDD is also the half [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md)
 depends on directly: a bounded context is the correct unit for a service boundary,
 which is precisely why this chapter is a prerequisite concept for that one, not an
 optional extra.
@@ -435,7 +435,7 @@ proposals, Conway's Law applied deliberately); the "two teams disagree on Order"
 resolution as a modelling answer, not a negotiation-tactics answer; when Shared Kernel
 or Customer/Supplier are the right call instead of an ACL (when close collaboration is
 actually wanted, not just tolerated); and the connection to
-[Microservice Decomposition and Boundary Design](microservice-decomposition-and-monolith-tradeoff.md) —
+[Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md) —
 bounded contexts as the correct decomposition unit.
 
 ### Whiteboard Explanation
@@ -694,7 +694,7 @@ evolving register rather than a fixed-answer exercise.
   both terms.
 - [DDD Tactical Design — Aggregates](ddd-tactical-design-aggregates.md) covers the
   tactical patterns used *inside* a bounded context, deliberately not repeated here.
-- [Microservice Decomposition and Boundary Design](microservice-decomposition-and-monolith-tradeoff.md)
+- [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md)
   depends directly on this chapter's bounded-context concept as its decomposition unit.
 
 ## Official References

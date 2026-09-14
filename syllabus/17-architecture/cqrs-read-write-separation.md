@@ -4,8 +4,8 @@ slug: cqrs-read-write-separation
 document_type: handbook-chapter
 domain: 17-architecture
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/architecture/cqrs-read-write-separation.md
 topic_id: T-904
@@ -125,7 +125,7 @@ The purpose is narrow and specific: unblock a read pattern (or a write pattern) 
 
 CQRS descends directly from **Command-Query Separation (CQS)**, a much older and narrower principle from Bertrand Meyer's *Object-Oriented Software Construction* (1988): a method should either be a *command* that changes state and returns nothing, or a *query* that returns data and changes nothing, never both. CQS is a method-level style rule with no architectural weight of its own.
 
-**Greg Young** generalized CQS into CQRS around 2010, in a set of widely circulated documents (linked in [Official References](#official-references)), by asking what happens if the separation is applied not at the method level inside one object, but at the level of an entire model — a whole command-side model and a whole, separately-designed query-side model, each free to evolve on its own axis. Young's own framing was explicit that this is a targeted tool for specific bounded contexts under specific pressure, not a system-wide default — a nuance that gets lost in a large fraction of both blog posts and interview answers about it. CQRS is frequently bundled with **Event Sourcing** (storing state as an append-only log of events rather than current-state rows) because the two compose naturally — an event log is a convenient source for a projector to build a read model from — but the two are independent decisions: this chapter's practice code proves CQRS with an ordinary in-memory write model and no event store at all, and Event Sourcing is covered separately as its own, lower-frequency topic (T-905, planned).
+**Greg Young** generalized CQS into CQRS around 2010, in a set of widely circulated documents (linked in [Official References](#official-references)), by asking what happens if the separation is applied not at the method level inside one object, but at the level of an entire model — a whole command-side model and a whole, separately-designed query-side model, each free to evolve on its own axis. Young's own framing was explicit that this is a targeted tool for specific bounded contexts under specific pressure, not a system-wide default — a nuance that gets lost in a large fraction of both blog posts and interview answers about it. CQRS is frequently bundled with **Event Sourcing** (storing state as an append-only log of events rather than current-state rows) because the two compose naturally — an event log is a convenient source for a projector to build a read model from — but the two are independent decisions: this chapter's practice code proves CQRS with an ordinary in-memory write model and no event store at all, and Event Sourcing is covered separately as its own, lower-frequency topic — see [Event Sourcing and Its Real Costs](../09-messaging-event-driven/event-sourcing-and-its-real-costs.md) (T-905).
 
 ## Core Concepts
 
@@ -224,7 +224,7 @@ The dotted arrow matters as much as the solid ones: the read model holds no trut
 
 - **Projector falls behind under load.** If write throughput outpaces projector throughput, the event queue backs up and the observed lag grows without bound — this is a real queueing-theory consequence (see [Resilience Patterns](../11-system-design/resilience-patterns.md) on backpressure), not a bug, and needs a real answer: scale the projector, partition the event stream, or apply backpressure to writes.
 - **Projector crashes mid-stream.** A crashed, unrecovered projector leaves the read model frozen at its last-applied event while the write model keeps moving — the read model doesn't corrupt, it just stops advancing. Recovery requires the projector to resume from a durable offset (a Kafka consumer offset, a checkpoint) rather than restarting from empty, or a full rebuild from the event log becomes the only recovery path.
-- **Read/write schema drift silently breaks a query.** Because the read model's shape is deliberately decoupled from the write model's schema, a write-side schema change (a renamed field, a changed invariant) has no compiler-enforced link to the projector that's supposed to react to it — this is the same coupling-relocation risk called out in [T-906's misconception](microservice-decomposition-and-monolith-tradeoff.md) about event-driven architectures: the events *are* the contract, and evolving them without care breaks a consumer with no compile-time signal.
+- **Read/write schema drift silently breaks a query.** Because the read model's shape is deliberately decoupled from the write model's schema, a write-side schema change (a renamed field, a changed invariant) has no compiler-enforced link to the projector that's supposed to react to it — this is the same coupling-relocation risk called out in [T-906's misconception](../09-messaging-event-driven/event-driven-architecture-integration-styles.md) about event-driven architectures: the events *are* the contract, and evolving them without care breaks a consumer with no compile-time signal.
 - **Debugging a "wrong" read-model value.** Because the read model is derived, never trust it as a source of truth when debugging a discrepancy — replay the event log against the write model (or a rebuilt read model) to establish ground truth first, then compare.
 
 ## Trade-offs
@@ -468,7 +468,7 @@ Assuming "domain events" in a CQRS pipeline means the system is event-sourced.
 - [Microservice Decomposition and the Monolith Trade-off](microservice-decomposition-and-monolith-tradeoff.md) — the same "don't reach for the powerful pattern by default" judgment trap, applied to service boundaries instead of models.
 - [Distributed Transactions: Saga, Outbox, and 2PC](../10-distributed-systems/distributed-transactions-saga-and-outbox.md) — the outbox pattern this chapter's event-publishing step would need in a real, transactionally-safe production implementation (publishing an event and committing a write must be atomic, or the same dual-write hazard covered there applies here too).
 - [Replication, Read Replicas, and Replica Lag](../06-databases/replication-read-replicas-and-replica-lag.md) — the much cheaper, narrower alternative worth ruling out first, and the direct analogue for monitoring an async boundary's lag operationally.
-- Planned reference: `syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md` (T-905) — the frequently-paired but independent decision to make an event log, rather than current-state rows, the write side's own system of record.
+- [Event Sourcing and Its Real Costs](../09-messaging-event-driven/event-sourcing-and-its-real-costs.md) (T-905) — the frequently-paired but independent decision to make an event log, rather than current-state rows, the write side's own system of record.
 
 ## Official References
 

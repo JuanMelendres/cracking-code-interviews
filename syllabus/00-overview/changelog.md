@@ -1440,6 +1440,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `17-architecture` (17th domain), three real fixes
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (17th domain, 9 chapters, via two parallel background agents). 6 of 9 chapters verified fully clean, every measured number cross-checked against real practice code.
+- `ddd-strategic-bounded-contexts-and-context-mapping.md`: fixed 3 occurrences of a link-text/href mismatch (stale chapter title in the display text).
+- `cqrs-read-write-separation.md`: fixed a wrong link target (pointed at the wrong T-906 chapter) and two stale "planned"/T-905-not-yet-written references to Event Sourcing, which already exists as a canonical chapter.
+- `architecture-decision-records.md`: fixed 2 occurrences of a link-text/href mismatch (text named the real script path, href pointed at a README instead).
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `15-cloud` (16th domain), fully clean
 
 ### Verified

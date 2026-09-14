@@ -4,8 +4,8 @@ slug: architecture-decision-records
 document_type: handbook-chapter
 domain: 17-architecture
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/architecture/architecture-decision-records.md
 topic_id: T-916
@@ -137,7 +137,7 @@ An accepted ADR is not edited to reflect a later reversal — a new ADR is writt
 
 ## Internal Implementation
 
-In practice, ADRs live as version-controlled files (typically Markdown, one file per decision, sequentially numbered) alongside the code they concern — not in a wiki or a separate documentation tool disconnected from the commit history that implements the decision. This repository's own [ADR template](../../templates/adr-template.md) and [worked examples](../../practice/architecture/adr-examples/README.md) follow this convention directly. The mechanical "is this ADR structurally complete" check can be automated cheaply — this chapter's own [`scripts/check_adr_completeness.py`](../../practice/architecture/adr-examples/README.md) parses an ADR's Markdown headings and fails, by name, on any of Nygard's four required sections that's missing, real and demonstrated against both a passing and a deliberately incomplete real file.
+In practice, ADRs live as version-controlled files (typically Markdown, one file per decision, sequentially numbered) alongside the code they concern — not in a wiki or a separate documentation tool disconnected from the commit history that implements the decision. This repository's own [ADR template](../../templates/adr-template.md) and [worked examples](../../practice/architecture/adr-examples/README.md) follow this convention directly. The mechanical "is this ADR structurally complete" check can be automated cheaply — this chapter's own [`scripts/check_adr_completeness.py`](../../scripts/check_adr_completeness.py) parses an ADR's Markdown headings and fails, by name, on any of Nygard's four required sections that's missing, real and demonstrated against both a passing and a deliberately incomplete real file.
 
 ## Execution Flow
 
@@ -391,7 +391,7 @@ Writing Consequences as a justification restatement of the chosen option's pros,
 
 ## Practice Exercises
 
-1. Using [`templates/adr-template.md`](../../templates/adr-template.md), write a real ADR for a genuine architectural decision from your own current or past work — not a hypothetical. Run it through [`scripts/check_adr_completeness.py`](../../practice/architecture/adr-examples/README.md) and confirm it passes structurally, then have a colleague apply the [Mental Model](#mental-model)'s real test: could they, disagreeing with the outcome, still tell from your Context section that the problem was real?
+1. Using [`templates/adr-template.md`](../../templates/adr-template.md), write a real ADR for a genuine architectural decision from your own current or past work — not a hypothetical. Run it through [`scripts/check_adr_completeness.py`](../../scripts/check_adr_completeness.py) and confirm it passes structurally, then have a colleague apply the [Mental Model](#mental-model)'s real test: could they, disagreeing with the outcome, still tell from your Context section that the problem was real?
 2. Take one of [this chapter's three worked examples](../../practice/architecture/adr-examples/README.md) and write the ADR that would supersede it, given a stated, invented-but-plausible change in circumstances (e.g., a new external consumer being onboarded to the `orders` topic, changing ADR-003's Option A/B trade-off). Link both ADRs to each other correctly.
 3. Modify `bad-example-missing-consequences.md` to add a Consequences section that lists only positive outcomes. Run the completeness checker against it and explain, in your own words, why it now passes structurally despite still being a poor ADR by the [Mental Model](#mental-model)'s real test — and propose one concrete, non-automatable review step that would catch this.
 
