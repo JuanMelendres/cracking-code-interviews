@@ -6812,6 +6812,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dependency-injection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Injection Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-patterns-spring-uses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Patterns Spring Uses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8056,6 +8078,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dependency-injection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Injection Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-patterns-spring-uses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Patterns Spring Uses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8206,6 +8250,72 @@
 </tr>
 </tbody>
 </table>
+<h2 id="dependency-injection-types">Dependency Injection Types<a class="headerlink" href="#dependency-injection-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th><code>@Autowired</code> needed?</th>
+<th><code>final</code> fields?</th>
+<th>Plain <code>new</code> in a test?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constructor (default)</td>
+<td>No, if it's the only constructor</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Setter</td>
+<td>Yes, on the setter</td>
+<td>No</td>
+<td>Needs setter called manually</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>Yes, on the field</td>
+<td>No</td>
+<td>Needs reflection/Spring context</td>
+</tr>
+</tbody>
+</table>
+<h2 id="design-patterns-spring-uses">Design Patterns Spring Uses<a class="headerlink" href="#design-patterns-spring-uses" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Singleton</td>
+<td>Default bean scope</td>
+</tr>
+<tr>
+<td>Factory</td>
+<td><code>BeanFactory</code>/<code>ApplicationContext</code>, <code>@Bean</code> methods</td>
+</tr>
+<tr>
+<td>Proxy</td>
+<td>AOP — <code>@Transactional</code>, <code>@Async</code>, <code>@Cacheable</code></td>
+</tr>
+<tr>
+<td>Template Method</td>
+<td><code>JdbcTemplate</code>, <code>RestTemplate</code></td>
+</tr>
+<tr>
+<td>Observer</td>
+<td><code>ApplicationEvent</code> + <code>@EventListener</code></td>
+</tr>
+<tr>
+<td>Strategy</td>
+<td>Interface + multiple <code>@Component</code> impls + <code>@Qualifier</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="common-pitfalls">Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>@PathVariable Long id</code> with no explicit name, compiled without <code>-parameters</code></strong> — a real, genuine <code>500</code> (<code>IllegalArgumentException: Name for argument of type [java.lang.Long] not specified...</code>). Fix: <code>@PathVariable("id") Long id</code>, always.</li>
@@ -8244,7 +8354,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 04:37:17 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:10:37 UTC">September 14, 2026</span>
   </span>
 
     

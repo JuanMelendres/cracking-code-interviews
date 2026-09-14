@@ -3824,6 +3824,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-jpms-isnt-a-java-8-feature-either" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: JPMS isn't a Java 8 feature either
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-exhaustive-switch-over-a-sealed-type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8056,6 +8067,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-jpms-isnt-a-java-8-feature-either" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: JPMS isn't a Java 8 feature either
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-exhaustive-switch-over-a-sealed-type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8192,6 +8214,17 @@ A common overclaim is treating virtual threads as a general performance feature 
 Claiming virtual threads speed up CPU-bound computation.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/02-java/language-core/java-version-features-timeline/">Java Version Features Timeline</a></p>
+<h2 id="card-jpms-isnt-a-java-8-feature-either">Card: JPMS isn't a Java 8 feature either<a class="headerlink" href="#card-jpms-isnt-a-java-8-feature-either" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Which Java version introduced the Java Platform Module System (<code>module-info.java</code>, JPMS), and what problem does it solve?</p>
+<p><strong>Answer:</strong>
+Java 9 (2017). It lets a codebase declare explicit module boundaries (<code>exports</code>, <code>requires</code>, <code>opens</code>) instead of every public class on the classpath being accessible to everything else — real encapsulation at the JAR/module level, not just the class level.</p>
+<p><strong>Why it matters:</strong>
+A frequently-skipped release in casual version recall (attention usually goes straight to 8 → 11 → 17 → 21), but JPMS is the reason strong encapsulation of internal JDK APIs (finalized as a default in Java 17) was possible at all.</p>
+<p><strong>Common trap:</strong>
+Confusing JPMS module boundaries with plain Java packages — a package has no enforced encapsulation on its own; a module does.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/02-java/language-core/java-version-features-timeline/">Java Version Features Timeline</a>, <a href="../../syllabus/02-java/language-core/java-platform-module-system/">Java Platform Module System</a></p>
 <h2 id="card-exhaustive-switch-over-a-sealed-type">Card: Exhaustive switch over a sealed type<a class="headerlink" href="#card-exhaustive-switch-over-a-sealed-type" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Why can a <code>switch</code> expression over a <code>sealed</code> interface's permitted types skip the <code>default</code> branch?</p>
@@ -8223,7 +8256,7 @@ Adding a <code>default</code> branch out of habit, which silently defeats the ex
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 20:29:54 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:10:37 UTC">September 14, 2026</span>
   </span>
 
     

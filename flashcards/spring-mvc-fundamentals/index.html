@@ -6876,6 +6876,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-setter-injections-one-real-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Setter injection's one real use case
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-which-design-pattern-is-transactional-actually-using" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Which design pattern is @Transactional actually using?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-no-qualifying-bean-startup-failure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8056,6 +8078,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-setter-injections-one-real-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Setter injection's one real use case
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-which-design-pattern-is-transactional-actually-using" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Which design pattern is @Transactional actually using?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-no-qualifying-bean-startup-failure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8192,6 +8236,28 @@ The controller is the only layer that knows HTTP exists — it reads the request
 Putting business logic directly in the controller because it's faster to write, making it untestable without a full HTTP stack.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/05-spring/spring-mvc-fundamentals/">Spring MVC Fundamentals</a></p>
+<h2 id="card-setter-injections-one-real-use-case">Card: Setter injection's one real use case<a class="headerlink" href="#card-setter-injections-one-real-use-case" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+When is setter injection actually the right choice over constructor injection?</p>
+<p><strong>Answer:</strong>
+When the dependency is genuinely optional — the bean must be fully constructable without it. Constructor injection forces every listed dependency to be provided; setter injection lets the bean exist first and be wired later, or not at all.</p>
+<p><strong>Why it matters:</strong>
+"Always use constructor injection" is the right default, but a good answer names the one real exception rather than treating it as an absolute rule.</p>
+<p><strong>Common trap:</strong>
+Reaching for setter injection out of habit or an old tutorial, for a dependency that's actually required — this hides the missing dependency until something calls a method that needs it, instead of failing fast at construction.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/spring-mvc-fundamentals/">Spring MVC Fundamentals</a></p>
+<h2 id="card-which-design-pattern-is-transactional-actually-using">Card: Which design pattern is @Transactional actually using?<a class="headerlink" href="#card-which-design-pattern-is-transactional-actually-using" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Mechanically, how does <code>@Transactional</code> add transaction-management behavior to a method without that method's own code doing anything transaction-related?</p>
+<p><strong>Answer:</strong>
+The Proxy pattern. Spring wraps the bean in a dynamically-generated proxy; a call to the annotated method actually hits the proxy first, which starts the transaction, invokes the real method, then commits or rolls back — the real class never contains any of that logic itself.</p>
+<p><strong>Why it matters:</strong>
+"Name a design pattern Spring uses and where" is a real, recurring interview question, and <code>@Transactional</code> is the single most concrete example to reach for.</p>
+<p><strong>Common trap:</strong>
+Describing <code>@Transactional</code> as if the annotation itself executes logic at runtime — the annotation is just metadata; the proxy is what actually does the work, which is also why calling an <code>@Transactional</code> method from another method in the <em>same</em> class (self-invocation) bypasses the proxy entirely.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/spring-mvc-fundamentals/">Spring MVC Fundamentals</a>, <a href="../../syllabus/05-spring/transactional-proxy-mechanics-and-propagation/">Transactional Proxy Mechanics and Propagation</a></p>
 <h2 id="card-no-qualifying-bean-startup-failure">Card: "No qualifying bean" startup failure<a class="headerlink" href="#card-no-qualifying-bean-startup-failure" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Your app fails to start after adding a second implementation of an interface your controller depends on. Why?</p>
@@ -8223,7 +8289,7 @@ Assuming Spring picks the "first" or "most recent" bean rather than failing outr
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 04:37:17 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:10:37 UTC">September 14, 2026</span>
   </span>
 
     

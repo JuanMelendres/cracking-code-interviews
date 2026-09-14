@@ -3656,6 +3656,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-overloading-vs-overriding-who-resolves-it-and-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Overloading vs. overriding — who resolves it, and when
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-static-vs-instance-state" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8056,6 +8067,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-overloading-vs-overriding-who-resolves-it-and-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Overloading vs. overriding — who resolves it, and when
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-static-vs-instance-state" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8192,6 +8214,17 @@ Basic but precise vocabulary every OOP design question assumes.</p>
 Believing an abstract class can never have a constructor — it can, called via <code>super()</code> from a subclass.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/02-java/language-core/java-modifiers-and-method-signatures/">Java Modifiers and Method Signatures</a></p>
+<h2 id="card-overloading-vs-overriding-who-resolves-it-and-when">Card: Overloading vs. overriding — who resolves it, and when<a class="headerlink" href="#card-overloading-vs-overriding-who-resolves-it-and-when" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Is overload resolution decided at compile time or runtime? What about override resolution?</p>
+<p><strong>Answer:</strong>
+Overload resolution is decided by the compiler at compile time, from the declared types of the arguments at the call site. Override resolution is decided by the JVM at runtime, from the actual class of the object the call is made on.</p>
+<p><strong>Why it matters:</strong>
+This is the exact distinction that makes polymorphism work for overriding but not for overloading — a call to an overloaded method never "looks at" the runtime type the way an overridden one does.</p>
+<p><strong>Common trap:</strong>
+Assuming an overload is chosen based on the runtime type of an argument, the same way an override is chosen based on the runtime type of the receiver — it isn't; the declared (compile-time) type picks the overload.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/02-java/language-core/java-modifiers-and-method-signatures/">Java Modifiers and Method Signatures</a>, <a href="../../syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch</a></p>
 <h2 id="card-static-vs-instance-state">Card: static vs. instance state<a class="headerlink" href="#card-static-vs-instance-state" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 If a class has a <code>static int totalCreated</code> field incremented in every constructor call, and 3 instances are created, what does <code>totalCreated</code> equal for each instance?</p>
@@ -8223,7 +8256,7 @@ Declaring a field <code>static</code> by accident and being surprised it's share
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 20:29:54 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:10:37 UTC">September 14, 2026</span>
   </span>
 
     
