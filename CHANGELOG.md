@@ -3354,3 +3354,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **989 real questions across 20 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `21-frontend-web`, 162 real questions, 3-file split)
+
+- `21-frontend-web` (38 chapters) is the largest remaining domain — split into 3 files matching its own natural topic groups, following the same precedent as `02-java`'s 4-file split: `syllabus/20-interview-preparation/question-bank/21-frontend-web-foundations.md` (7 chapters — JavaScript/TypeScript/browser fundamentals, security, micro-frontends, WebSocket/SSE, live-coding protocol — 15 deep + 23 quick-fire = 38), `21-frontend-web-react.md` (14 React chapters — 28 deep + 28 quick-fire = 56), `21-frontend-web-nextjs.md` (17 Next.js chapters — 34 deep + 34 quick-fire = 68). All 38 chapters use the plain `## Interview Questions`/`## Flashcards` template with no structural variance; the Next.js chapters are unusually evidence-heavy, most questions grounded in a real captured test (a `next build` output, a network trace) rather than a documentation claim alone.
+- **162 real questions for this domain alone. 1151 real questions across 21 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.

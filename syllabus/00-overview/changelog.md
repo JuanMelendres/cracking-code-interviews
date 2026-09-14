@@ -1306,6 +1306,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Interview Question Bank: `21-frontend-web`, 162 real questions, 3-file split
+
+### Added
+
+- `21-frontend-web` (38 chapters, the largest remaining domain) split into 3 files matching its own natural topic groups, same precedent as `02-java`'s 4-file split: `question-bank/21-frontend-web-foundations.md` (7 chapters — JS/TS/browser fundamentals, security, micro-frontends, WebSocket/SSE, live-coding protocol — 38 real questions), `21-frontend-web-react.md` (14 React chapters — 56 real questions), `21-frontend-web-nextjs.md` (17 Next.js chapters — 68 real questions). All 38 chapters use the plain template with no structural variance; the Next.js chapters are unusually evidence-heavy, grounded in real captured tests rather than documentation claims.
+- **162 real questions for this domain alone. 1151 real questions across 21 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
