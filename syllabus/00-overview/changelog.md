@@ -1190,6 +1190,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-13] — Interview Question Bank: `10-distributed-systems`, 39 real questions
+
+### Added
+
+- New `question-bank/10-distributed-systems.md`. 7 chapters yielded 15 deep questions + 24 quick-fire questions = **39 real questions**. No Junior Fundamentals chapter in this domain.
+- Same class of incidental fix found again: `multi-region-failover-and-disaster-recovery.md`'s Flashcards used `## Card:` instead of `### Card:` for all three cards — corrected.
+- **693 real questions across 9 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

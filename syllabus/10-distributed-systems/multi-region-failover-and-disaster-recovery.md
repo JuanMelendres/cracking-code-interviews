@@ -392,7 +392,7 @@ Disaster recovery is the discipline of surviving a full region outage within an 
 
 ## Flashcards
 
-## Card: RPO vs. RTO
+### Card: RPO vs. RTO
 
 **Prompt:**
 What's the difference between RPO and RTO?
@@ -409,7 +409,7 @@ Confusing the two, or answering "as fast/safe as possible" instead of a real num
 **Related:**
 [§ Definition and Purpose](#definition-and-purpose)
 
-## Card: Split-brain's real cause
+### Card: Split-brain's real cause
 
 **Prompt:**
 What actually causes split-brain?
@@ -426,7 +426,7 @@ Assuming "unreachable" means "dead" — a network partition proves neither.
 **Related:**
 [§ Failure Modes and Debugging](#failure-modes-and-debugging)
 
-## Card: Fencing / STONITH
+### Card: Fencing / STONITH
 
 **Prompt:**
 What does fencing actually guarantee, and why is it non-optional?

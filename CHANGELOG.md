@@ -3264,3 +3264,11 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **654 real questions across 8 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `10-distributed-systems`, 39 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/10-distributed-systems.md`. 7 chapters yielded 15 deep questions + 24 quick-fire questions = **39 real questions**. No Junior Fundamentals chapter in this domain.
+- Same class of incidental fix found again: `multi-region-failover-and-disaster-recovery.md`'s Flashcards used `## Card:` instead of `### Card:` for all three of its cards — corrected.
+- **693 real questions across 9 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
