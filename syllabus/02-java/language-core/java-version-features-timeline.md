@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2211
 status: draft
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3]
 prerequisites:
   - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
@@ -16,6 +16,7 @@ related:
   - streams-and-collectors.md
   - optional-and-null-strategy.md
   - records-sealed-types-and-pattern-matching.md
+  - ../concurrency/foreign-function-and-memory-api.md
   - ../concurrency/virtual-threads.md
   - ../concurrency/structured-concurrency.md
   - ../concurrency/scoped-values-and-threadlocal-migration.md
@@ -78,6 +79,28 @@ A feature's status matters as much as its existence: **preview** features (marke
 | **Java 17** | 2021 | Sealed classes/interfaces finalized (a closed, exhaustively-known set of permitted subtypes), strong encapsulation of internal JDK APIs by default — see [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md) |
 | **Java 21** | 2023 | Virtual threads finalized, pattern matching for `switch` finalized (including exhaustive matching over sealed types with no `default` needed), record patterns finalized, sequenced collections — see [Virtual Threads](../concurrency/virtual-threads.md) |
 | **Java 25** | 2025 | Scoped values finalized, flexible constructor bodies finalized, module import declarations finalized, compact object headers — see Section 9 for an explicit accuracy caveat on this row |
+
+**The full release-by-release picture, including non-LTS releases** (each one's headline *final* feature — a non-LTS release's own preview-only features are covered by the LTS row where they finalize, not repeated here):
+
+| Version | Released | Headline final features |
+|---|---|---|
+| 9 | 2017 | The Java Platform Module System (`module-info.java`, JPMS), `jshell` (the REPL), private interface methods |
+| 10 | 2018 | Local-variable type inference (`var`) |
+| 11 | 2018 | *(LTS — see table above)* |
+| 12 | 2019 | Small `String` methods (`indent`, `transform`); switch expressions still preview |
+| 13 | 2019 | Text blocks (`"""`) as preview; switch expressions preview continues |
+| 14 | 2020 | Switch expressions finalized (JEP 361); records and pattern matching for `instanceof` both preview for the first time; helpful `NullPointerException` messages finalized |
+| 15 | 2020 | Text blocks finalized (JEP 378); sealed classes preview begins |
+| 16 | 2021 | Records finalized (JEP 395); pattern matching for `instanceof` finalized (JEP 394) |
+| 17 | 2021 | *(LTS — see table above)* |
+| 18 | 2022 | UTF-8 as the default `Charset` (JEP 400) — a real, silent-failure-avoiding portability fix; simple web server (`jwebserver`) |
+| 19 | 2022 | Virtual threads preview begins (JEP 425); structured concurrency preview begins (JEP 428); record patterns preview begins |
+| 20 | 2023 | Scoped values preview begins; virtual threads/structured concurrency second preview round |
+| 21 | 2023 | *(LTS — see table above)* |
+| 22 | 2024 | Unnamed variables and patterns (`_`) finalized; the Foreign Function & Memory API finalized (JEP 454) — see [Foreign Function and Memory API](../concurrency/foreign-function-and-memory-api.md) |
+| 23 | 2024 | Primitive types in patterns/`instanceof`/`switch` preview; markdown documentation comments (JEP 467) |
+| 24 | 2024 | Stream gatherers finalized (JEP 485); quantum-resistant cryptography algorithms (ML-KEM, ML-DSA) |
+| 25 | 2025 | *(LTS — see table above; Section 9 accuracy caveat applies most strongly to this and the 22–24 rows above)* |
 
 **Records** (finalized Java 16, JEP 395) and **pattern matching** (rolled out across several releases — `instanceof` in Java 16, `switch` in Java 21) are, together, Java's most significant syntax evolution since lambdas — they let code express "what shape is this data, and what do I do with each shape" directly, instead of manually writing constructors/`equals`/`hashCode`/`toString` and a chain of `instanceof`-and-cast checks.
 

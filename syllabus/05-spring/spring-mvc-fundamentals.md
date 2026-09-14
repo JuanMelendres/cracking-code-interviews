@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 05-spring
 topic_id: T-2203
 status: canonical
-version: 1.0
-last_updated: 2026-09-07
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md
@@ -72,6 +72,27 @@ The conventional three-layer shape this chapter's demo uses, and the reason it e
 - **Controller** (`@RestController`) — the only layer that knows HTTP exists. It reads the request (path variables, query parameters, the request body) and returns a value; it should contain no real business logic.
 - **Service** (`@Service`) — the business logic. [`TaskService`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java) never mentions HTTP at all — it is just as usable from a test, a CLI tool, or a background job as from a web request, which is the actual point of keeping it separate from the controller.
 - **Repository** (`@Repository`) — data access. This chapter's demo uses a plain in-memory list on purpose, so the pattern (controller depends on service depends on repository) stays visible without a real database's own concerns mixed in.
+
+**Stereotype annotations, side by side** — all four are the same underlying mechanism (`@Component` scanning); the specific names exist purely to self-document a class's layer, and two of them add real behavior on top:
+
+| Annotation | Layer / meaning | What it adds beyond `@Component` |
+|---|---|---|
+| `@Component` | Generic — any Spring-managed bean that doesn't fit a more specific stereotype | Nothing; the plain base case |
+| `@Service` | Business logic | Nothing functionally over `@Component` — purely a self-documenting label for "this is a business/domain-logic class" |
+| `@Repository` | Data access | Enables Spring's **persistence exception translation** — a data-access-technology-specific exception (e.g. a JDBC `SQLException`) is caught and rethrown as one of Spring's own unchecked `DataAccessException` subtypes, so calling code doesn't need to know which persistence technology is underneath |
+| `@Controller` | Web layer, classic MVC | Return values are resolved as *view names* (e.g. a Thymeleaf template) unless a method is also annotated `@ResponseBody` |
+| `@RestController` | Web layer, REST APIs | Shorthand for `@Controller` + `@ResponseBody` on every method — every return value is serialized straight into the HTTP response body (JSON, by default), which is why this chapter's [`TaskController`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java) uses it and not plain `@Controller` |
+
+**Other annotations this chapter's demo doesn't use but every Spring codebase has**, since "what stereotype annotations exist and what do they do" is rarely asked in isolation from these:
+
+| Annotation | Where it goes | What it's for |
+|---|---|---|
+| `@Configuration` | A class | Marks a class as a source of bean definitions — its `@Bean`-annotated methods are called once and their return values registered as beans, an alternative to component-scanning for beans you don't control the source of (a third-party class, for instance) |
+| `@Bean` | A method inside an `@Configuration` class | Registers that method's return value as a bean — the go-to for beans of types you can't add `@Component` to directly |
+| `@Autowired` | A constructor, field, or setter | Tells Spring to inject a matching bean there. Unnecessary on a class's *only* constructor since Spring Framework 4.3 (Section 4 above), still required for field/setter injection or when a class has multiple constructors |
+| `@Qualifier("beanName")` | Alongside `@Autowired`, on a parameter | Disambiguates which specific bean to inject when more than one bean of the same type exists (e.g. two different `PaymentGateway` implementations) |
+| `@Primary` | On a bean's class or `@Bean` method | Marks that bean as the default choice when multiple candidates of the same type exist and no `@Qualifier` narrows it — the "pick this one unless told otherwise" annotation |
+| `@Value("${property.name}")` | A field or constructor parameter | Injects a single configuration property value (from `application.properties`/`application.yml` or an environment variable), rather than a whole bean |
 
 **Constructor-based dependency injection**, the only kind this chapter uses, works like this: a class declares one constructor listing what it needs as parameters, and — since Spring Framework 4.3 — a class with exactly one constructor does not even need an `@Autowired` annotation; Spring uses that single constructor automatically. [`TaskController`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java)'s constructor asks for a `TaskService`; [`TaskService`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java)'s constructor asks for a `TaskRepository`. Spring builds the `TaskRepository` first, then the `TaskService` (handing in the repository), then the `TaskController` (handing in the service) — resolving the whole chain without any class in it ever writing `new` for another bean.
 

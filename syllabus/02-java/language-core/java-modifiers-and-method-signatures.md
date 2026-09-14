@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2210
 status: draft
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2]
 prerequisites:
   - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
@@ -81,6 +81,23 @@ There is no keyword for "package-private" — it is simply what you get by writi
 **A class can only be `abstract` if it has at least one unimplemented method, OR if it is deliberately declared abstract to prevent direct instantiation even though every method has a body** — both are valid; the first is by far the more common shape. An abstract class can still have real fields, real constructors (called only via `super()` from a subclass, since it can never be instantiated directly), and real concrete methods alongside its abstract ones.
 
 **`static` and `final` combine to make a true constant**: `static final int MAX_RETRIES = 3;` is shared across every instance (static) and can never change after class initialization (final) — this is Java's actual mechanism for what other languages might call a named constant, and it is why interface fields (which are implicitly `public static final`, per [Java OOP Fundamentals](java-oop-fundamentals-classes-objects-and-interfaces.md)'s own Section 8) behave the way they do.
+
+**Overloading vs. overriding**, since both terms describe a subclass or class having "another version" of a method with the same name, and the two are routinely confused:
+
+- **Overloading** is having *multiple methods with the same name but different parameter lists* in the *same class* (or a subclass adding a new signature). Which overload runs is decided by the compiler, once, from the argument types written at the call site.
+- **Overriding** is a *subclass redefining an inherited instance method with the identical signature* (same name, same parameter types). Which override runs is decided by the JVM, at runtime, from the actual object's class — this is what makes polymorphism work.
+
+| Aspect | Overloading | Overriding |
+|---|---|---|
+| Method signature | Must differ (parameter types/count/order) | Must be identical to the parent's |
+| Where it happens | Same class, or a subclass adding a new variant | A subclass redefining an inherited method |
+| Resolved by | Compiler, from the declared argument types (static/compile-time binding) | JVM, from the object's actual runtime class (dynamic/virtual dispatch) |
+| Return type | Can differ freely | Must be the same, or a covariant subtype |
+| Access modifier | No constraint relative to other overloads | Cannot be more restrictive than the overridden method |
+| `private`/`static`/`final` methods | Can be overloaded normally | Cannot be overridden at all — see Section 9 (a subclass "redefining" one hides it instead) |
+| Annotation | None (there's no `@Overload`) | `@Override` — always use it; it makes `javac` verify a real match exists |
+
+This chapter stops at the signature-and-modifier rules above; the actual dispatch mechanism — *why* overload resolution is a compile-time decision and override resolution is a runtime one, down to the `invokestatic` vs. `invokevirtual` bytecode difference — is [Polymorphism and Dynamic Dispatch](polymorphism-and-dynamic-dispatch.md)'s own job, including the field-hiding and static-hiding gotchas that follow directly from this same static-vs-dynamic distinction.
 
 ## 5. How It Works Internally (L3)
 

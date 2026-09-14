@@ -1,0 +1,33 @@
+{#-
+  Overrides Material's default content actions (partials/actions.html).
+
+  The stock "edit" action links straight to GitHub's edit-in-browser page
+  for the source file. Real request (2026-09-14): that read as "anyone can
+  modify our content" even though it only opens a GitHub fork+PR flow (no
+  direct write to main without review) -- and the reader wanted that icon
+  slot to instead offer a PDF download of the current chapter. There's no
+  built-in "export this one page to PDF" action, but @media print CSS is
+  already wired up site-wide (see mkdocs.yml's print-site plugin comment),
+  so File > Print / Save as PDF on any single chapter already produces a
+  clean, chrome-free PDF. This swaps the edit-pencil icon for a printer
+  icon that triggers exactly that, and keeps the "view raw source" icon
+  as-is (read-only, no concern there).
+-#}
+{% if page.edit_url %}
+  {% if "content.action.edit" in features %}
+    <a href="javascript:void(0)" onclick="window.print()" title="Print / Save as PDF" class="md-content__button md-icon">
+      {% include ".icons/material/printer.svg" %}
+    </a>
+  {% endif %}
+  {% if "content.action.view" in features %}
+    {% if "/blob/" in page.edit_url %}
+      {% set part = "blob" %}
+    {% else %}
+      {% set part = "edit" %}
+    {% endif %}
+    <a href="{{ page.edit_url | replace(part, 'raw') }}" title="{{ lang.t('action.view') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.view or "material/file-eye-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+{% endif %}

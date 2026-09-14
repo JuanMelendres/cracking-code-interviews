@@ -37,8 +37,14 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.instant
-    - navigation.instant.progress
+    # navigation.instant (SPA-style page swaps without a full reload) was
+    # removed 2026-09-14: reported bug was the footer/prev-next nav and
+    # header visually "stuck" overlapping the next page's content after
+    # clicking through a chapter -- a known interaction where an instant
+    # swap gets caught mid-transition (worse on longer pages, and combined
+    # with header.autohide's own scroll-position transform). A full page
+    # load is a few hundred ms slower per click but cannot get stuck this
+    # way. Revisit only if pinned to a Material version with this fixed.
     - navigation.tabs
     - navigation.sections
     - navigation.top
@@ -110,6 +116,8 @@ extra_javascript:
   # on the next page load or instant-nav swap without this) and remembers
   # each reader's own checked state in their browser's localStorage.
   - javascripts/checklist-progress.js
+  # Click-to-enlarge overlay for Mermaid diagrams -- see diagram-zoom.js.
+  - javascripts/diagram-zoom.js
 
 extra_css:
   - stylesheets/extra.css

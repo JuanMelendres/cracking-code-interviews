@@ -1323,6 +1323,21 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Site UI bug fixes and three content gaps, from reader feedback on the live docs site
+
+### Fixed (`mkdocs.yml`, `overrides/`, `docs/javascripts/`, `docs/stylesheets/`)
+
+- Reader-reported: footer/prev-next nav visually stuck overlapping the next page's content after clicking through a chapter. Root cause: `navigation.instant`'s SPA-style content swap getting caught mid-transition (worse combined with `header.autohide`'s scroll-position transform). Removed `navigation.instant`/`navigation.instant.progress` from `mkdocs.yml` — trades instant-swap speed for eliminating this class of bug; a full page load cannot get stuck this way.
+- Reader-reported: the "edit this page" pencil icon linking straight to GitHub's edit-in-browser flow read as "anyone can modify our content," though it only opens a fork+PR (no direct write to `main`). New `overrides/partials/actions.html` repurposes that icon into a printer icon calling `window.print()` — a visible way to reach the per-chapter PDF export that was already working silently via the `print-site` plugin's site-wide `@media print` CSS. The "view raw source" icon is unchanged.
+- New `docs/javascripts/diagram-zoom.js` + CSS in `docs/stylesheets/extra.css`: click-to-enlarge overlay for Mermaid diagrams, closed by clicking again, the backdrop, or Escape — dense diagrams were unreadable at the article's fixed content width.
+
+### Added (`syllabus/02-java/language-core/`, `syllabus/05-spring/`)
+
+- `java-modifiers-and-method-signatures.md` — new "Overloading vs. overriding" definitions-plus-comparison-table subsection, linking onward to `polymorphism-and-dynamic-dispatch.md` for the dispatch-mechanism depth rather than duplicating it.
+- `java-version-features-timeline.md` — added a full release-by-release table (Java 9 through 25, every non-LTS release included) beneath the existing LTS-only table; cross-linked to `../concurrency/foreign-function-and-memory-api.md` (Java 22's FFM API), previously unreferenced from this chapter.
+- `05-spring/spring-mvc-fundamentals.md` — two new comparison tables: stereotype annotations side by side (`@Component`/`@Service`/`@Repository`/`@Controller`/`@RestController`) and the common companion annotations (`@Configuration`/`@Bean`/`@Autowired`/`@Qualifier`/`@Primary`/`@Value`) this chapter's own demo doesn't use.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns; print-button override confirmed rendering.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
