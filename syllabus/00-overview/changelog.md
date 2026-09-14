@@ -1234,6 +1234,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-13] — Interview Question Bank: `14-devops-containers`, 22 real questions
+
+### Added
+
+- New `question-bank/14-devops-containers.md`. 5 chapters yielded 8 deep questions + 5 leveled Junior/Mid questions + 9 quick-fire questions = **22 real questions**. `docker-and-containers-fundamentals.md` is this domain's Junior Fundamentals chapter (older numbered `## 15. Interview Questions` template).
+- **833 real questions across 13 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

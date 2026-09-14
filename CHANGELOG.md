@@ -3298,3 +3298,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **811 real questions across 12 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `14-devops-containers`, 22 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/14-devops-containers.md`. 5 chapters yielded 8 deep questions + 5 leveled Junior/Mid questions + 9 quick-fire questions = **22 real questions**. `docker-and-containers-fundamentals.md` is this domain's Junior Fundamentals chapter (older numbered `## 15. Interview Questions` template).
+- **833 real questions across 13 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
