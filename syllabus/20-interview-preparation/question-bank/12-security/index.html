@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/06-databases/mvcc-vacuum-and-bloat/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/12-security/">
       
       
-        <link rel="prev" href="../locks-deadlocks-and-lock-escalation/">
+        <link rel="prev" href="../11-system-design/">
       
       
-        <link rel="next" href="../optimistic-vs-pessimistic-locking/">
+        <link rel="next" href="../../system-design/system-design-narration-and-whiteboard-discipline/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>MVCC in PostgreSQL, Vacuum, and Bloat - Cracking Code Interviews</title>
+        <title>Interview Question Bank — 12-security - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/06-databases/mvcc-vacuum-and-bloat/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/12-security/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mvcc-in-postgresql-vacuum-and-bloat" class="md-skip">
+        <a href="#interview-question-bank-security" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -131,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MVCC in PostgreSQL, Vacuum, and Bloat
+              Interview Question Bank — 12-security
             
           </span>
         </div>
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -384,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -404,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1215,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
   
-    <a href="../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
+    <a href="../../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
       
   
   
@@ -1324,7 +1324,7 @@
   
   
   
-    <a href="../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
       
   
   
@@ -1378,7 +1378,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1432,7 +1432,7 @@
   
   
   
-    <a href="../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
+    <a href="../../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
       
   
   
@@ -1531,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -1601,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1706,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -1741,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -1776,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -1811,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1846,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1881,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -1916,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1951,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1986,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2021,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -2056,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -2091,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -2126,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -2161,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2261,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2296,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2466,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2501,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2536,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2606,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -2641,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2676,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2711,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2746,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2781,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2816,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -2851,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2886,7 +2886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2926,8 +2926,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2945,11 +2943,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
@@ -2970,7 +2968,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2988,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3023,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3058,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3093,7 +3091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3128,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3163,7 +3161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3198,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3233,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3268,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -3303,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3335,44 +3333,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    MVCC in PostgreSQL, Vacuum, and Bloat
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3395,367 +3359,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-1-foundation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 1 — Foundation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-2-working-knowledge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 2 — Working Knowledge
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Java Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-modes-and-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Modes and Debugging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3768,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../optimistic-vs-pessimistic-locking/" class="md-nav__link">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3803,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3838,7 +3441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -3873,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3908,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -3943,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -3978,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -4078,7 +3681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -4113,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -4148,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -4183,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -4218,7 +3821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -4253,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -4353,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -4388,7 +3991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4423,7 +4026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4458,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4493,7 +4096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -4528,7 +4131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -4563,7 +4166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4598,7 +4201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4633,7 +4236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -4733,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -4768,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -4803,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -4838,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -4873,7 +4476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -4908,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -4943,7 +4546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -4978,7 +4581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -5013,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -5048,7 +4651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -5083,7 +4686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -5118,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -5153,7 +4756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -5253,7 +4856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -5281,7 +4884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -5316,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -5344,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -5379,7 +4982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5414,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5449,7 +5052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5484,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -5584,7 +5187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -5619,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -5654,7 +5257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -5689,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -5724,7 +5327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -5759,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -5794,7 +5397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -5829,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -5864,7 +5467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -5899,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -5999,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -6034,7 +5637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -6069,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -6104,7 +5707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -6139,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -6174,7 +5777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -6209,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -6244,7 +5847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -6279,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -6314,7 +5917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6414,7 +6017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6449,7 +6052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -6484,7 +6087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -6519,7 +6122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -6554,7 +6157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -6589,7 +6192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -6689,7 +6292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -6724,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -6759,7 +6362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -6794,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -6829,7 +6432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -6864,7 +6467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -6964,7 +6567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -6999,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -7034,7 +6637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -7069,7 +6672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -7104,7 +6707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -7204,7 +6807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -7239,7 +6842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -7274,7 +6877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -7309,7 +6912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7409,7 +7012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -7444,7 +7047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -7479,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -7514,7 +7117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -7549,7 +7152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -7584,7 +7187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -7619,7 +7222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -7654,7 +7257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -7689,7 +7292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -7724,7 +7327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -7824,7 +7427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -7859,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -7894,7 +7497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -7929,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -7964,7 +7567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -7999,7 +7602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -8034,7 +7637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -8134,7 +7737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -8162,7 +7765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -8197,7 +7800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -8232,7 +7835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -8267,7 +7870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -8302,7 +7905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -8337,7 +7940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -8372,7 +7975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8412,6 +8015,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8429,11 +8034,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -8454,7 +8059,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8472,7 +8077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -8527,7 +8132,7 @@
   
   
   
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
+    <a href="../../behavioral/" class="md-nav__link">
       
   
   
@@ -8581,7 +8186,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -8612,6 +8217,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8625,18 +8232,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/question-bank/02-java-collections/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_4" id="__nav_2_21_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -8650,12 +8255,687 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Question bank
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/collections
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/concurrency
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-jvm-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/jvm-internals
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-language-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/language-core
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 03-data-structures-algorithms
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-software-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 04-software-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 05-spring
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 06-databases
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 08-testing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-messaging-event-driven/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 09-messaging-event-driven
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-distributed-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 10-distributed-systems
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 11-system-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 12-security
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 12-security
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#applied-cryptography-hashing-signing-and-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applied Cryptography: Hashing, Signing, and TLS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authn-vs-authz-rbac-vs-abac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthN vs AuthZ, RBAC vs ABAC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csrf-cors-and-session-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSRF, CORS, and Session Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injection-input-validation-and-output-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Injection, Input Validation, and Output Encoding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-tenancy-isolation-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Tenancy Isolation Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oauth2-oidc-and-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OAuth2, OIDC, and JWT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#owasp-top-10-for-backend-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OWASP Top 10 for Backend Services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-management-and-key-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Management and Key Rotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supply-chain-security-sbom-and-dependency-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supply Chain Security, SBOM, and Dependency Risk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-fire questions (from this domain's Flashcards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -8689,7 +8969,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -8743,7 +9023,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -8842,7 +9122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -8877,7 +9157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -8912,7 +9192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -8947,7 +9227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -8982,7 +9262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -9017,7 +9297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -9052,7 +9332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -9087,7 +9367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -9122,7 +9402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -9157,7 +9437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -9192,7 +9472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -9227,7 +9507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -9262,7 +9542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -9297,7 +9577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -9332,7 +9612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -9367,7 +9647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -9402,7 +9682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -9437,7 +9717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -9472,7 +9752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -9507,7 +9787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -9542,7 +9822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -9577,7 +9857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -9612,7 +9892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -9647,7 +9927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9682,7 +9962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9717,7 +9997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9752,7 +10032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9787,7 +10067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9822,7 +10102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9857,7 +10137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9892,7 +10172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-performance/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -9927,7 +10207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9962,7 +10242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -9997,7 +10277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-testing/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -10032,7 +10312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10067,7 +10347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -10102,7 +10382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -10137,7 +10417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -10172,7 +10452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10272,7 +10552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10307,7 +10587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -10342,7 +10622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -10377,7 +10657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10412,7 +10692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -10447,7 +10727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -10482,7 +10762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -10552,7 +10832,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -10605,7 +10885,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -10658,7 +10938,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -10711,7 +10991,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -10764,7 +11044,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -10817,7 +11097,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -10870,10 +11150,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#applied-cryptography-hashing-signing-and-tls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        Applied Cryptography: Hashing, Signing, and TLS
       
     </span>
   </a>
@@ -10881,10 +11161,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#authn-vs-authz-rbac-vs-abac" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning Objectives
+        AuthN vs AuthZ, RBAC vs ABAC
       
     </span>
   </a>
@@ -10892,10 +11172,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+  <a href="#csrf-cors-and-session-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters in Interviews
+        CSRF, CORS, and Session Security
       
     </span>
   </a>
@@ -10903,10 +11183,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-1-foundation" class="md-nav__link">
+  <a href="#injection-input-validation-and-output-encoding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 1 — Foundation
+        Injection, Input Validation, and Output Encoding
       
     </span>
   </a>
@@ -10914,10 +11194,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-2-working-knowledge" class="md-nav__link">
+  <a href="#multi-tenancy-isolation-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 2 — Working Knowledge
+        Multi-Tenancy Isolation Models
       
     </span>
   </a>
@@ -10925,10 +11205,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
+  <a href="#oauth2-oidc-and-jwt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mental Model
+        OAuth2, OIDC, and JWT
       
     </span>
   </a>
@@ -10936,10 +11216,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
+  <a href="#owasp-top-10-for-backend-services" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Definition and Purpose
+        OWASP Top 10 for Backend Services
       
     </span>
   </a>
@@ -10947,10 +11227,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#secrets-management-and-key-rotation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Secrets Management and Key Rotation
       
     </span>
   </a>
@@ -10958,10 +11238,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
+  <a href="#supply-chain-security-sbom-and-dependency-risk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Internal Implementation
+        Supply Chain Security, SBOM, and Dependency Risk
       
     </span>
   </a>
@@ -10969,10 +11249,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution Flow
+        Quick-fire questions (from this domain's Flashcards)
       
     </span>
   </a>
@@ -10980,230 +11260,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Java Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-modes-and-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Modes and Debugging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11235,7 +11295,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11258,7 +11318,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11279,10 +11339,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Databases
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../02-java-collections/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Question bank
   </span>
 
         </a>
@@ -11301,7 +11379,7 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/06-databases/mvcc-vacuum-and-bloat.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/20-interview-preparation/question-bank/12-security.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -11310,589 +11388,319 @@
     
       
     
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/06-databases/mvcc-vacuum-and-bloat.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/20-interview-preparation/question-bank/12-security.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="mvcc-in-postgresql-vacuum-and-bloat">MVCC in PostgreSQL, Vacuum, and Bloat<a class="headerlink" href="#mvcc-in-postgresql-vacuum-and-bloat" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> T-612 · IWI 6.9 · Advanced tier · Moderate interview frequency.
-<strong>Provenance:</strong> every tuple version, table-size number, and dead-tuple count in
-this chapter is real, executed PostgreSQL 16 output — real <code>ctid</code>/<code>xmin</code>/<code>xmax</code>
-system columns inspected via the real <code>pageinspect</code> extension, real measured file
-sizes, and a real, concurrent, persistent long-running transaction that really
-blocks VACUUM. Reproducible source:
-<a href="../../practice/sql/mvcc-vacuum-and-bloat/"><code>practice/sql/mvcc-vacuum-and-bloat/</code></a>.</p>
-<p><strong>Where this chapter closes an open reference.</strong> <a href="../isolation-levels-and-concurrency-anomalies/">Isolation Levels and Concurrency Anomalies</a>
-already states the connective claim this chapter proves directly: "a long-held
-transaction can... cause table and index bloat far beyond what its own workload
-would suggest — the connective link to MVCC and vacuum (T-612)." This chapter is
-that link, made real and measured.</p>
-</blockquote>
-<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#level-1--foundation">Level 1 — Foundation</a></li>
-<li><a href="#level-2--working-knowledge">Level 2 — Working Knowledge</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#execution-flow">Execution Flow</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#java-examples">Java Examples</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#failure-modes-and-debugging">Failure Modes and Debugging</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#performance-implications">Performance Implications</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#comparisons">Comparisons</a></li>
-<li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
-<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>After this chapter you should be able to:</p>
-<ul>
-<li>Explain PostgreSQL's MVCC model precisely: that UPDATE and DELETE never modify a
-  tuple in place, and reproduce that fact directly via real system columns.</li>
-<li>Explain what VACUUM actually does, and why plain VACUUM does not shrink a table's
-  file size while VACUUM FULL does.</li>
-<li>Reproduce table bloat concretely, with real measured before/after sizes.</li>
-<li>Defend, with a real reproduction, why a long-running transaction can block VACUUM
-  from reclaiming dead tuples in a completely unrelated table.</li>
-<li>Choose an appropriate vacuum and monitoring strategy based on a table's write
-  pattern.</li>
-</ul>
-<h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>MVCC, vacuum, and bloat sit at exactly the intersection of "database internals" and
-"real production pain" that Staff interviews favor: it's a mechanism every
-PostgreSQL-backed system relies on continuously, it has genuinely surprising
-behavior (an UPDATE that touches no rows in another table can still be blocked from
-being cleaned up by a transaction that never touches the table at all), and it
-produces real, recurring production incidents (bloat, transaction ID wraparound risk,
-autovacuum falling behind) that separate candidates who've operated PostgreSQL under
-real load from those who've only used it. This chapter's connective link to
-<a href="../isolation-levels-and-concurrency-anomalies/">Isolation Levels and Concurrency Anomalies</a>
-is itself a strong interview signal — being able to explain <em>why</em> a long transaction's
-isolation-level choice has a resource-retention consequence, not just a correctness
-one, is exactly the kind of cross-topic reasoning Staff interviewers listen for.</p>
-<h2 id="level-1-foundation">Level 1 — Foundation<a class="headerlink" href="#level-1-foundation" title="Permanent link">&para;</a></h2>
-<p><strong>When you <code>UPDATE</code> or <code>DELETE</code> a row in PostgreSQL, it doesn't actually erase the old version right away</strong> — it marks the old version as no-longer-current and keeps it around briefly, so other transactions that started earlier can still see a consistent snapshot of the data as it looked when they began. <strong><code>VACUUM</code></strong> is PostgreSQL's background housekeeping process that comes back afterward and actually reclaims the space those old, no-longer-needed row versions were using.</p>
-<p>This is invisible day-to-day machinery for most application code — you don't call <code>VACUUM</code> yourself in normal operation (PostgreSQL runs it automatically) — but understanding it exists explains a specific, real class of otherwise-confusing symptoms (Section 12 below).</p>
-<h2 id="level-2-working-knowledge">Level 2 — Working Knowledge<a class="headerlink" href="#level-2-working-knowledge" title="Permanent link">&para;</a></h2>
-<p><strong>A practical, everyday warning sign worth recognizing</strong>: if a table's disk usage keeps growing even though the actual amount of live data in it isn't growing, that's "bloat" — old, dead row versions piling up faster than <code>VACUUM</code> can clean them.</p>
-<p><strong>A real, common, non-obvious cause worth checking for</strong>: a long-running transaction <em>elsewhere in the system</em> — even one that never touches the bloating table at all — can block <code>VACUUM</code> from reclaiming dead tuples anywhere in the database, because PostgreSQL must keep old row versions around as long as any transaction might still need to see them. If you notice unexpected bloat, checking for a forgotten long-running or idle-in-transaction session is a practical, concrete first step.</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p>PostgreSQL never overwrites a row in place. Every UPDATE (and every DELETE) creates a
-new physical tuple version and marks the old one dead — "dead" meaning invisible to
-any transaction whose snapshot started after the change, but still physically present
-on disk until something removes it. That "something" is VACUUM. This single fact
-explains everything else in this chapter: bloat is what happens when tuples die
-faster than VACUUM removes them; VACUUM's job is reclaiming dead tuples for <em>reuse</em>
-within the existing file, not shrinking the file (that's VACUUM FULL's job, and it's
-expensive); and a long-running transaction blocks reclamation because VACUUM can
-never remove a tuple version that some still-open transaction's snapshot might still
-need to see.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>MVCC (Multi-Version Concurrency Control)</strong> is PostgreSQL's mechanism for letting
-readers and writers proceed without blocking each other: instead of locking a row for
-reads, PostgreSQL gives every transaction a consistent snapshot of the data as it
-existed at a specific point, implemented by keeping multiple physical versions of
-each row and having each transaction see only the version(s) valid for its own
-snapshot. <strong>VACUUM</strong> is the process that reclaims dead tuple versions — ones no
-longer visible to any current or future transaction — marking their space reusable by
-future INSERTs and UPDATEs. <strong>Bloat</strong> is the accumulation of dead tuples (and the
-disk space they occupy) faster than VACUUM reclaims them, causing tables and indexes
-to grow larger than the live data alone would require. These mechanisms exist because
-the alternative to MVCC — locking rows for reads — would make read-heavy and
-write-heavy workloads block each other constantly; MVCC's cost for that benefit is
-exactly the cleanup problem VACUUM and bloat are about.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Every UPDATE/DELETE creates or marks a tuple, never erases it immediately.</strong> See
-  <a href="#java-examples">Java Examples</a> for the real, executed proof via <code>ctid</code>/<code>xmin</code>/<code>xmax</code>.</li>
-<li><strong>VACUUM reclaims space for reuse; it does not shrink the file.</strong> A table that
-  accumulates and then sheds dead tuples via VACUUM keeps its on-disk size — the
-  freed space is available for future writes within that same file, not returned to
-  the operating system.</li>
-<li><strong>VACUUM FULL rewrites the table into a new, compact file.</strong> It does shrink the
-  file — at the real cost of an <code>ACCESS EXCLUSIVE</code> lock for its entire duration,
-  blocking all reads and writes against the table.</li>
-<li><strong>A transaction's open snapshot is a real constraint on VACUUM, independent of
-  which tables it touches.</strong> As long as any transaction's snapshot might still need
-  to see a dead tuple version, VACUUM cannot remove it — this chapter's own
-  practice code proves this with a transaction that never touches the vacuumed table
-  at all.</li>
-</ul>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p>This chapter's practice code demonstrates MVCC's physical mechanics directly using
-PostgreSQL's real <code>pageinspect</code> extension.
-<a href="../../../practice/sql/mvcc-vacuum-and-bloat/mvcc-tuple-versioning-demo.sh"><code>mvcc-tuple-versioning-demo.sh</code></a>
-runs <code>heap_page_items(get_raw_page(...))</code> against the real heap page holding a row,
-showing each physical tuple slot's <code>t_xmin</code> (creating transaction) and <code>t_xmax</code>
-(the transaction that superseded it, <code>0</code> meaning still live) before and after a real
-<code>VACUUM</code> call.
-<a href="../../../practice/sql/mvcc-vacuum-and-bloat/bloat-and-vacuum-full-demo.sh"><code>bloat-and-vacuum-full-demo.sh</code></a>
-measures <code>pg_relation_size()</code> directly before and after 250,000 real UPDATEs and both
-vacuum variants.
-<a href="../../../practice/sql/mvcc-vacuum-and-bloat/long-transaction-blocks-vacuum-demo.sh"><code>long-transaction-blocks-vacuum-demo.sh</code></a>
-uses two real, concurrent, persistent <code>psql</code> sessions (via named pipes) to hold a
-<code>REPEATABLE READ</code> transaction open in one session while a second session performs
-100,000 real UPDATEs, then runs <code>VACUUM VERBOSE</code> while the first session is still
-open and again after it commits.</p>
-<h2 id="execution-flow">Execution Flow<a class="headerlink" href="#execution-flow" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant Client
-    participant Heap as Table Heap
-    participant Vacuum as VACUUM
-
-    Client-&gt;&gt;Heap: UPDATE row (xmin=735)
-    Note over Heap: Old tuple marked dead (xmax=735 set on it)&lt;br/&gt;New tuple inserted (xmin=735)
-    Client-&gt;&gt;Heap: UPDATE row again (xmin=736)
-    Note over Heap: Now TWO dead tuple versions exist
-    Vacuum-&gt;&gt;Heap: VACUUM
-    Note over Heap: Dead tuple slots marked reusable&lt;br/&gt;(file size unchanged)</code></pre>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    subgraph "Long transaction blocks VACUUM"
-        A["Session L: BEGIN REPEATABLE READ&lt;br/&gt;(snapshot taken, holds it open)"] --&gt; B["Session W: 100,000 UPDATEs&lt;br/&gt;on an UNRELATED table"]
-        B --&gt; C["VACUUM that table while L is open:&lt;br/&gt;'100000 are dead but not yet removable'"]
-        A --&gt;|"COMMIT"| D["Same VACUUM again:&lt;br/&gt;'100000 removed'"]
-    end</code></pre>
-<h2 id="java-examples">Java Examples<a class="headerlink" href="#java-examples" title="Permanent link">&para;</a></h2>
-<p>This chapter's evidence is SQL/shell-based rather than Java, since MVCC and vacuum
-are PostgreSQL server-internal mechanisms, not something a JDBC client observes
-directly. The real, measured proof of tuple versioning:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Before VACUUM: both the dead and live versions of the row physically exist</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">lp</span><span class="p">,</span><span class="w"> </span><span class="n">t_xmin</span><span class="p">,</span><span class="w"> </span><span class="n">t_xmax</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">heap_page_items</span><span class="p">(</span><span class="n">get_raw_page</span><span class="p">(</span><span class="s1">'accounts'</span><span class="p">,</span><span class="w"> </span><span class="mi">221</span><span class="p">));</span>
-<span class="c1">--  55 | 735 | 736   &lt;- DEAD, superseded by transaction 736</span>
-<span class="c1">--  56 | 736 | 0     &lt;- LIVE, current version</span>
-
-<span class="c1">-- After VACUUM: the dead slot is empty</span>
-<span class="c1">--  55 | (unused, reclaimed)</span>
-<span class="c1">--  56 | 736 | 0     &lt;- still LIVE, unaffected</span>
-</code></pre></div>
-<p>The real, measured bloat and shrink numbers:</p>
-<div class="highlight"><pre><span></span><code>Real table size before any updates:        1776 kB
-After 250,000 real UPDATEs:                10 MB   (5.6x growth)
-After plain VACUUM:                        10 MB   (unchanged -- reused, not shrunk)
-After VACUUM FULL:                         1776 kB (back to original size)
-</code></pre></div>
-<p>The real, measured proof that an open snapshot blocks reclamation regardless of which
-table the open transaction touches:</p>
-<div class="highlight"><pre><span></span><code>While the long transaction is open:
-  tuples: 0 removed, 150000 remain, 100000 are dead but not yet removable
-
-After the long transaction commits, identical VACUUM:
-  tuples: 100000 removed, 50000 remain, 0 are dead but not yet removable
-</code></pre></div>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<p><strong>Scenario: an analytics dashboard's long-running query silently doubled a hot
-table's size over a week.</strong> Symptoms: the <code>orders</code> table's on-disk size grew from
-2GB to 4.3GB over seven days despite no meaningful change in row count, and query
-latency on that table degraded proportionally as more of each query's I/O went to
-scanning dead tuples. Initial hypothesis: an index had become inefficient, or
-statistics were stale. Evidence: <code>pg_stat_user_tables</code> showed <code>n_dead_tup</code> at over
-40% of <code>n_live_tup</code> and climbing continuously despite autovacuum being enabled and
-apparently running (its last-run timestamp was recent). Cross-referencing
-<code>pg_stat_activity</code> for long-running transactions found a business-intelligence
-dashboard tool holding a single <code>REPEATABLE READ</code> transaction open for the entire
-duration each analyst's dashboard session was active — sometimes six or more
-hours — to guarantee a consistent view across multiple queries within one session.
-Diagnosis: exactly the mechanism this chapter's <code>long-transaction-blocks-vacuum-demo.sh</code>
-reproduces directly — the dashboard's long-held snapshot prevented autovacuum from
-reclaiming any dead tuple created by the <code>orders</code> table's normal write traffic for
-the entire session duration, even though the dashboard tool never touched <code>orders</code>
-directly. Immediate mitigation: identified and terminated the longest-idle dashboard
-sessions, allowing a backlog of accumulated dead tuples to finally be reclaimed by the
-next autovacuum run. Permanent remediation: configured the BI tool to use a
-short-lived transaction per query instead of one long transaction per session,
-eliminating the open-snapshot problem entirely, and added a monitoring alert on
-transaction age (<code>now() - xact_start</code>) exceeding a threshold. Trade-off accepted: the
-BI tool's cross-query consistency guarantee was weakened slightly (queries within one
-dashboard session could now, in principle, see different snapshots), judged
-acceptable for analytics use cases where perfect point-in-time consistency across
-dashboard widgets was not actually a hard requirement. Prevention: transaction-age
-monitoring is now a standing alert, not something discovered reactively during a
-capacity investigation. Interview lesson: this is the concrete, production form of
-the isolation-levels chapter's own connective claim — a tool that never writes to the
-bloating table at all was still the actual cause, purely through holding a long
-snapshot open.</p>
-<h2 id="failure-modes-and-debugging">Failure Modes and Debugging<a class="headerlink" href="#failure-modes-and-debugging" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>A long-held transaction silently blocking reclamation across the whole
-  database</strong> (the scenario above) — debug signal: <code>pg_stat_activity</code>'s <code>xact_start</code>
-  shows a transaction open far longer than any single query should take, combined
-  with rising <code>n_dead_tup</code> on tables that transaction never queries.</li>
-<li><strong>Mistaking plain VACUUM for a fix to an already-bloated table</strong> — plain VACUUM
-  only prevents <em>further</em> bloat by making dead space reusable; it does not shrink a
-  table that's already bloated, which this chapter measures directly (size unchanged
-  after VACUUM, shrunk only after VACUUM FULL).</li>
-<li><strong>Running VACUUM FULL on a live, high-traffic table without planning for its real
-  lock cost</strong> — its <code>ACCESS EXCLUSIVE</code> lock blocks all reads and writes for the
-  entire rewrite duration, which can be a real, multi-minute outage on a large table.</li>
-<li><strong>Transaction ID wraparound risk from vacuum falling permanently behind</strong> — an
-  advanced failure mode beyond this chapter's scope, but worth naming: if autovacuum
-  cannot keep up indefinitely (often due to exactly this chapter's long-transaction
-  mechanism, sustained), PostgreSQL can eventually refuse writes entirely to protect
-  against transaction ID wraparound corruption.</li>
-</ul>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
-<p>MVCC without any locking cost for readers: real, valuable concurrency (readers never
-block writers, writers never block readers) — at the real, ongoing cost of needing
-vacuum to clean up after it, which is not free and can fall behind. Plain VACUUM:
-cheap, non-blocking, keeps a table's growth in check under steady-state load — but
-does nothing to shrink a table that's already bloated. VACUUM FULL: the only way to
-actually reclaim disk space from an already-bloated table — at the real cost of a
-full-table exclusive lock for the entire operation.</p>
-<h2 id="performance-implications">Performance Implications<a class="headerlink" href="#performance-implications" title="Permanent link">&para;</a></h2>
-<p>Bloat directly increases I/O cost for every query against an affected table, because
-more of each sequential or index scan touches disk pages that are mostly dead tuples
-— this chapter measured a table growing 5.6x in size from an entirely avoidable
-UPDATE pattern, and that extra size is extra I/O on every subsequent scan until
-VACUUM FULL (or a table rewrite via a tool like <code>pg_repack</code>) reclaims it. A long-held
-transaction's effect on vacuum is a real, compounding performance risk specifically
-because it's invisible in the query that's actually slow — the fix lives in a
-completely different session, which this chapter's production scenario demonstrates
-directly.</p>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
+<h1 id="interview-question-bank-security">Interview Question Bank — Security<a class="headerlink" href="#interview-question-bank-security" title="Permanent link">&para;</a></h1>
+<p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
+tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
+22-domain plan and sourcing discipline.</p>
+<p><strong>Honest count for this domain:</strong> 9 chapters yielded 18 deep questions + 28 quick-fire
+questions = <strong>46 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain. Eight of nine chapters use a plain-bold-question Flashcards format
+(<code>**Q: ...** / A: ...</code>) rather than the <code>### Card:</code> template; only
+<code>oauth2-oidc-and-jwt.md</code> uses the standard template. Eight of nine deep-question
+chapters also lack an explicit "Minimum acceptable answer" tier — Junior/Mid below is
+honestly derived from each question's own "Common mistakes" field (the mistake a
+Junior/Mid candidate actually makes), matching the same derivation method used for
+<a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a>.</p>
+<hr />
+<h2 id="applied-cryptography-hashing-signing-and-tls">Applied Cryptography: Hashing, Signing, and TLS<a class="headerlink" href="#applied-cryptography-hashing-signing-and-tls" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-teammate-proposes-hashing-passwords-with-sha-256-plus-a-random-salt-per-user-whats-wrong-with-this-and-what-would-you-recommend-instead">Q1 — A teammate proposes hashing passwords with SHA-256 plus a random salt per user. What's wrong with this, and what would you recommend instead?<a class="headerlink" href="#q1-a-teammate-proposes-hashing-passwords-with-sha-256-plus-a-random-salt-per-user-whats-wrong-with-this-and-what-would-you-recommend-instead" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/applied-cryptography-hashing-signing-tls/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Believes the salt alone is sufficient, since it does correctly solve the (different) rainbow-table problem — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies the speed problem as distinct from the salt's actual purpose — SHA-256 remains fast, so a stolen hash database can still be brute-forced at high speed per password on GPU hardware.
+- <strong>Staff:</strong> Proposes a concrete migration path for existing SHA-256-hashed passwords (opportunistic re-hash at next successful login) and a cost-parameter-tuning methodology for the replacement (Argon2id or PBKDF2).</p>
+<h3 id="q2-a-security-review-asks-how-do-you-know-the-signature-is-actually-being-verified-not-just-present-how-would-you-answer-that-concretely">Q2 — A security review asks: "how do you know the signature is actually being verified, not just present?" How would you answer that, concretely?<a class="headerlink" href="#q2-a-security-review-asks-how-do-you-know-the-signature-is-actually-being-verified-not-just-present-how-would-you-answer-that-concretely" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/applied-cryptography-hashing-signing-tls/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats "we sign our requests" as itself sufficient evidence of security, without describing how enforcement is verified — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly separates "signature exists in the protocol" from "verification is enforced in code" on every code path that processes the request.
+- <strong>Staff:</strong> Proposes a concrete test or monitoring mechanism to continuously verify enforcement, not just a one-time code review.</p>
+<hr />
+<h2 id="authn-vs-authz-rbac-vs-abac">AuthN vs AuthZ, RBAC vs ABAC<a class="headerlink" href="#authn-vs-authz-rbac-vs-abac" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-system-currently-uses-rbac-a-new-requirement-states-a-manager-may-approve-a-purchase-request-only-if-the-requester-reports-to-them-how-would-you-implement-this">Q1 — A system currently uses RBAC. A new requirement states: "a manager may approve a purchase request only if the requester reports to them." How would you implement this?<a class="headerlink" href="#q1-a-system-currently-uses-rbac-a-new-requirement-states-a-manager-may-approve-a-purchase-request-only-if-the-requester-reports-to-them-how-would-you-implement-this" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/authn-authz-rbac-vs-abac/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes new, narrower roles as the fix — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies this as an attribute/relationship-based rule RBAC cannot express, since no role can encode a per-instance relationship.
+- <strong>Staff:</strong> Proposes where in the request lifecycle the check should run (service layer, not gateway) and what attributes/data it needs, including how the manager-report relationship should be sourced reliably.</p>
+<h3 id="q2-whats-the-practical-difference-between-a-401-and-a-403-http-response-and-why-does-the-distinction-matter-beyond-picking-the-correct-status-code">Q2 — What's the practical difference between a 401 and a 403 HTTP response, and why does the distinction matter beyond picking the "correct" status code?<a class="headerlink" href="#q2-whats-the-practical-difference-between-a-401-and-a-403-http-response-and-why-does-the-distinction-matter-beyond-picking-the-correct-status-code" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/authn-authz-rbac-vs-abac/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats the two as interchangeable "access denied" responses — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly distinguishes the two codes and their client-facing implications — 401 means re-authenticate, 403 means a different identity or permission is needed.
+- <strong>Staff:</strong> Raises the 403-vs-404 information-disclosure consideration unprompted, for resources whose mere existence is itself sensitive.</p>
+<hr />
+<h2 id="csrf-cors-and-session-security">CSRF, CORS, and Session Security<a class="headerlink" href="#csrf-cors-and-session-security" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-teammate-says-our-api-has-a-strict-cors-policy-so-were-protected-against-csrf-evaluate-this-claim">Q1 — A teammate says: "Our API has a strict CORS policy... so we're protected against CSRF." Evaluate this claim.<a class="headerlink" href="#q1-a-teammate-says-our-api-has-a-strict-cors-policy-so-were-protected-against-csrf-evaluate-this-claim" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/csrf-cors-and-session-security/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Accepts the CORS-as-CSRF-protection claim without probing whether the attack actually requires reading a response — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies that CORS and CSRF govern different parts of the request lifecycle — CORS governs whether a response can be <em>read</em>, not whether a cookie-authenticated request gets <em>sent</em> at all.
+- <strong>Staff:</strong> Proposes the concrete, correct defense (a synchronizer token, applied consistently across every state-changing endpoint) rather than just identifying the misconception.</p>
+<h3 id="q2-walk-through-what-specifically-goes-wrong-in-a-session-fixation-attack-and-what-one-server-side-rule-closes-it-completely">Q2 — Walk through what specifically goes wrong in a session-fixation attack, and what one server-side rule closes it completely.<a class="headerlink" href="#q2-walk-through-what-specifically-goes-wrong-in-a-session-fixation-attack-and-what-one-server-side-rule-closes-it-completely" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/csrf-cors-and-session-security/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes a stronger or longer session identifier as the fix — the common mistake this question targets, irrelevant since the attacker supplies the identifier themselves.
+- <strong>Senior:</strong> Correctly identifies session-ID regeneration at authentication as the fix, and explains why identifier strength is irrelevant to this specific attack.
+- <strong>Staff:</strong> Generalizes the fix to every authentication-reaching code path in a real system (password reset, SSO callbacks, "remember me" exchanges), not just the obvious primary login form.</p>
+<hr />
+<h2 id="injection-input-validation-and-output-encoding">Injection, Input Validation, and Output Encoding<a class="headerlink" href="#injection-input-validation-and-output-encoding" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-junior-engineer-says-were-safe-from-sql-injection-because-we-validate-that-the-username-field-only-contains-alphanumeric-characters-evaluate-this-claim">Q1 — A junior engineer says: "We're safe from SQL injection because we validate that the username field only contains alphanumeric characters." Evaluate this claim.<a class="headerlink" href="#q1-a-junior-engineer-says-were-safe-from-sql-injection-because-we-validate-that-the-username-field-only-contains-alphanumeric-characters-evaluate-this-claim" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/injection-input-validation-output-encoding/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Accepts the validation-only claim as sufficient without probing whether every other field and query is equally protected — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies that field-level validation is necessary-adjacent but not sufficient, since it depends on every field in every query being equally strict.
+- <strong>Staff:</strong> Proposes parameterization as the actual guarantee and explains why it doesn't depend on the specific character content of the input at all, unlike validation.</p>
+<h3 id="q2-explain-mechanically-why-select-from-users-where-username-admin-and-password_hash-anything-grants-access-without-a-valid-password">Q2 — Explain, mechanically, why <code>SELECT * FROM users WHERE username = 'admin' --' AND password_hash = 'anything'</code> grants access without a valid password.<a class="headerlink" href="#q2-explain-mechanically-why-select-from-users-where-username-admin-and-password_hash-anything-grants-access-without-a-valid-password" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/injection-input-validation-output-encoding/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes the attack vaguely ("it breaks out of the string") without identifying the specific comment-syntax mechanism — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly explains the comment-syntax mechanism precisely — <code>--</code> is PostgreSQL's line-comment syntax, so the password-check clause is discarded before evaluation.
+- <strong>Staff:</strong> Generalizes the underlying principle (string-literal closure plus syntax truncation) beyond the specific <code>--</code> sequence shown, to other databases' comment syntaxes.</p>
+<hr />
+<h2 id="multi-tenancy-isolation-models">Multi-Tenancy Isolation Models<a class="headerlink" href="#multi-tenancy-isolation-models" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-team-says-weve-enabled-row-level-security-on-our-multi-tenant-tables-so-were-protected-against-cross-tenant-data-leaks-what-follow-up-question-would-you-ask-and-why">Q1 — A team says: "We've enabled Row-Level Security on our multi-tenant tables, so we're protected against cross-tenant data leaks." What follow-up question would you ask, and why?<a class="headerlink" href="#q1-a-team-says-weve-enabled-row-level-security-on-our-multi-tenant-tables-so-were-protected-against-cross-tenant-data-leaks-what-follow-up-question-would-you-ask-and-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/multi-tenancy-isolation-models/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Accepts "RLS is enabled" as sufficient without probing which roles are exempt from it — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies the superuser/<code>BYPASSRLS</code> exemption as the specific gap to probe — RLS provides zero protection for any exempt connection, regardless of how correctly the policy is defined.
+- <strong>Staff:</strong> Proposes a structural, ongoing audit process (provisioning policy requiring justification for any <code>BYPASSRLS</code> grant) rather than a one-time check.</p>
+<h3 id="q2-why-might-a-company-migrate-its-largest-enterprise-customers-from-a-shared-pool-model-to-dedicated-silo-infrastructure-even-though-the-pool-model-with-rls-provides-real-measured-isolation">Q2 — Why might a company migrate its largest enterprise customers from a shared pool model to dedicated silo infrastructure, even though the pool model with RLS provides real, measured isolation?<a class="headerlink" href="#q2-why-might-a-company-migrate-its-largest-enterprise-customers-from-a-shared-pool-model-to-dedicated-silo-infrastructure-even-though-the-pool-model-with-rls-provides-real-measured-isolation" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/multi-tenancy-isolation-models/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats strong logical isolation (RLS) as equivalent to the physical isolation some compliance requirements specifically demand — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly distinguishes logical isolation from physical/infrastructural isolation — a shared database's outage or engine vulnerability still affects every tenant sharing it.
+- <strong>Staff:</strong> Proposes the bridge/hybrid model (silo isolation only for the specific tenants that require it) as the pragmatic middle ground rather than an all-or-nothing platform-wide choice.</p>
+<hr />
+<h2 id="oauth2-oidc-and-jwt">OAuth2, OIDC, and JWT<a class="headerlink" href="#oauth2-oidc-and-jwt" title="Permanent link">&para;</a></h2>
+<h3 id="q1-explain-jwt-revocation-honestly">Q1 — Explain JWT revocation honestly.<a class="headerlink" href="#q1-explain-jwt-revocation-honestly" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/oauth2-oidc-and-jwt/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Claims JWTs "can just be revoked," implying revocation is free — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states JWTs can't be revoked without extra machinery — a valid, non-expired JWT requires a stateful deny-list check, which undermines the statelessness that motivated using a JWT.
+- <strong>Staff:</strong> Names both mitigations (short expiry + refresh tokens, or accepting the deny-list cost) and is explicit that a deny-list reintroduces the exact stateful-lookup cost the token format was chosen to avoid.</p>
+<h3 id="q2-why-pkce-if-you-already-have-a-client-secret">Q2 — Why PKCE if you already have a client secret?<a class="headerlink" href="#q2-why-pkce-if-you-already-have-a-client-secret" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/oauth2-oidc-and-jwt/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats PKCE and a client secret as redundant mechanisms — the common mistake this question targets.
+- <strong>Senior:</strong> States that PKCE protects the authorization code from interception specifically, a different attack surface than the client secret's token-exchange impersonation protection.
+- <strong>Staff:</strong> Notes that public clients (mobile, SPA) generally can't hold a secret securely at all, making PKCE not just complementary but often the <em>only</em> real protection available.</p>
+<hr />
+<h2 id="owasp-top-10-for-backend-services">OWASP Top 10 for Backend Services<a class="headerlink" href="#owasp-top-10-for-backend-services" title="Permanent link">&para;</a></h2>
+<h3 id="q1-walk-me-through-how-youd-find-an-idor-vulnerability-in-a-code-review-given-that-the-vulnerable-and-fixed-code-differ-by-only-one-check">Q1 — Walk me through how you'd find an IDOR vulnerability in a code review, given that the vulnerable and fixed code differ by only one check.<a class="headerlink" href="#q1-walk-me-through-how-youd-find-an-idor-vulnerability-in-a-code-review-given-that-the-vulnerable-and-fixed-code-differ-by-only-one-check" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/owasp-top-10-for-backend-services/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes IDOR only in terms of automated scanning rather than the manual review question that actually catches it — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies the review question to ask ("what stops a different authenticated user from supplying a different object ID here") and why standard functional testing misses it.
+- <strong>Staff:</strong> Proposes a structural fix (a shared authorization-check utility or framework-level enforcement) rather than relying on every reviewer remembering to ask the question every time.</p>
+<h3 id="q2-a-teammate-proposes-defending-against-ssrf-by-blocking-any-url-containing-169254-or-localhost-is-this-sufficient">Q2 — A teammate proposes defending against SSRF by blocking any URL containing "169.254" or "localhost." Is this sufficient?<a class="headerlink" href="#q2-a-teammate-proposes-defending-against-ssrf-by-blocking-any-url-containing-169254-or-localhost-is-this-sufficient" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/owasp-top-10-for-backend-services/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats denylist string-matching as "good enough" without considering resolution-time bypasses — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies the denylist as insufficient and names at least one bypass category (alternate IP representations, DNS rebinding, redirects).
+- <strong>Staff:</strong> Proposes the full allowlist-plus-resolved-address-plus-redirect-handling defense and can explain why each individual piece is necessary.</p>
+<hr />
+<h2 id="secrets-management-and-key-rotation">Secrets Management and Key Rotation<a class="headerlink" href="#secrets-management-and-key-rotation" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-team-wants-to-rotate-their-encryption-key-today-walk-through-what-needs-to-happen-for-this-to-be-safe-given-millions-of-records-already-encrypted-under-the-current-key">Q1 — A team wants to rotate their encryption key today. Walk through what needs to happen for this to be safe, given millions of records already encrypted under the current key.<a class="headerlink" href="#q1-a-team-wants-to-rotate-their-encryption-key-today-walk-through-what-needs-to-happen-for-this-to-be-safe-given-millions-of-records-already-encrypted-under-the-current-key" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/secrets-management-and-key-rotation/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes rotation as "generate a new key and start using it" without addressing existing data or a verification-before-retirement step — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly describes the envelope-encryption pattern and the re-encrypt-then-retire sequence — new writes switch immediately, a background sweep re-encrypts existing records, and only then is the old key retired.
+- <strong>Staff:</strong> Proactively raises the backfill/migration cost for a system not originally designed with key-version tagging, and describes the sweep as a rate-limited, resumable background job.</p>
+<h3 id="q2-why-should-keys-be-rotated-periodically-even-if-theres-no-evidence-of-any-compromise">Q2 — Why should keys be rotated periodically even if there's no evidence of any compromise?<a class="headerlink" href="#q2-why-should-keys-be-rotated-periodically-even-if-theres-no-evidence-of-any-compromise" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/secrets-management-and-key-rotation/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats rotation as purely a reactive response to a known or suspected compromise — the common mistake this question targets.
+- <strong>Senior:</strong> Names at least two proactive reasons — bounding blast radius, satisfying compliance schedules, reducing the exposure window of a slow, undetected leak.
+- <strong>Staff:</strong> Proposes a concrete cadence-selection methodology (the more conservative of compliance requirements and an internally-assessed exposure window) rather than an arbitrary fixed interval.</p>
+<hr />
+<h2 id="supply-chain-security-sbom-and-dependency-risk">Supply Chain Security, SBOM, and Dependency Risk<a class="headerlink" href="#supply-chain-security-sbom-and-dependency-risk" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-scanner-reports-a-critical-cve-in-a-package-no-one-on-the-team-has-ever-written-or-knowingly-imported-how-is-this-possible-and-what-would-you-do">Q1 — A scanner reports a critical CVE in a package no one on the team has ever written or knowingly imported. How is this possible, and what would you do?<a class="headerlink" href="#q1-a-scanner-reports-a-critical-cve-in-a-package-no-one-on-the-team-has-ever-written-or-knowingly-imported-how-is-this-possible-and-what-would-you-do" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes the scanner made an error, or searches application code for a dependency that doesn't exist there — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies the base-image origin of the finding rather than assuming application-code fault — an SBOM surfaces exactly this kind of transitive, bundled dependency.
+- <strong>Staff:</strong> Proposes the centralized base-image-ownership remediation model for a shared image across the organization's services.</p>
+<h3 id="q2-your-team-generates-an-sbom-once-a-quarter-as-part-of-a-compliance-audit-is-this-sufficient">Q2 — Your team generates an SBOM once a quarter as part of a compliance audit. Is this sufficient?<a class="headerlink" href="#q2-your-team-generates-an-sbom-once-a-quarter-as-part-of-a-compliance-audit-is-this-sufficient" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats quarterly generation as adequate because it satisfies the audit requirement that originally motivated it — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies quarterly generation as insufficient for continuous risk visibility, since new CVEs are disclosed continuously against already-deployed software.
+- <strong>Staff:</strong> Distinguishes build-time scanning from continuous scanning of already-deployed software and explains why both are needed.</p>
+<hr />
+<h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
+<th>#</th>
 <th>Question</th>
-<th>If yes, lean toward</th>
+<th>Canonical chapter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Is the table's write pattern steady, with autovacuum keeping up?</td>
-<td>Plain (auto)VACUUM is sufficient</td>
+<td>1</td>
+<td>Why is a fast hash like SHA-256 the wrong tool for password storage, even with a per-user salt?</td>
+<td><a href="../../../12-security/applied-cryptography-hashing-signing-tls/#flashcards">Applied Cryptography</a></td>
 </tr>
 <tr>
-<td>Has the table already bloated significantly before the write pattern was fixed?</td>
-<td>VACUUM FULL (or <code>pg_repack</code> for a non-locking alternative), planned during low-traffic hours</td>
+<td>2</td>
+<td>Does a digital signature provide confidentiality?</td>
+<td><a href="../../../12-security/applied-cryptography-hashing-signing-tls/#flashcards">Applied Cryptography</a></td>
 </tr>
 <tr>
-<td>Are long-running transactions (BI tools, batch jobs, ORM sessions) held open for extended periods?</td>
-<td>Audit and bound their duration — they block vacuum database-wide, not just on tables they touch</td>
+<td>3</td>
+<td>Why did TLS 1.3 remove support for many legacy cipher suites and key-exchange modes?</td>
+<td><a href="../../../12-security/applied-cryptography-hashing-signing-tls/#flashcards">Applied Cryptography</a></td>
 </tr>
 <tr>
-<td>Is <code>n_dead_tup</code> climbing despite autovacuum appearing to run?</td>
-<td>Check <code>pg_stat_activity</code> for a long-held transaction first, before tuning autovacuum settings</td>
+<td>4</td>
+<td>What does a 401 response mean versus a 403?</td>
+<td><a href="../../../12-security/authn-authz-rbac-vs-abac/#flashcards">AuthN vs AuthZ, RBAC vs ABAC</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Why can't RBAC express "a manager may approve only their own direct report's request"?</td>
+<td><a href="../../../12-security/authn-authz-rbac-vs-abac/#flashcards">AuthN vs AuthZ, RBAC vs ABAC</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>What's the practical signal that a system has outgrown RBAC for a specific rule?</td>
+<td><a href="../../../12-security/authn-authz-rbac-vs-abac/#flashcards">AuthN vs AuthZ, RBAC vs ABAC</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Does a strict CORS policy protect against CSRF?</td>
+<td><a href="../../../12-security/csrf-cors-and-session-security/#flashcards">CSRF, CORS, and Session Security</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>What's the one rule that completely closes session fixation?</td>
+<td><a href="../../../12-security/csrf-cors-and-session-security/#flashcards">CSRF, CORS, and Session Security</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Why doesn't a stronger, more random session identifier help against fixation?</td>
+<td><a href="../../../12-security/csrf-cors-and-session-security/#flashcards">CSRF, CORS, and Session Security</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Why do prepared statements prevent SQL injection?</td>
+<td><a href="../../../12-security/injection-input-validation-output-encoding/#flashcards">Injection, Input Validation, Output Encoding</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Is input validation alone sufficient to prevent injection?</td>
+<td><a href="../../../12-security/injection-input-validation-output-encoding/#flashcards">Injection, Input Validation, Output Encoding</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Why is a generic "sanitize this string" function a weaker model than context-specific output encoding?</td>
+<td><a href="../../../12-security/injection-input-validation-output-encoding/#flashcards">Injection, Input Validation, Output Encoding</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>What's the key weakness of application-level <code>tenant_id</code> filtering as the sole isolation mechanism?</td>
+<td><a href="../../../12-security/multi-tenancy-isolation-models/#flashcards">Multi-Tenancy Isolation Models</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Does enabling Row-Level Security guarantee isolation unconditionally?</td>
+<td><a href="../../../12-security/multi-tenancy-isolation-models/#flashcards">Multi-Tenancy Isolation Models</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>What does an RLS-protected query return when the tenant-context session variable is unset?</td>
+<td><a href="../../../12-security/multi-tenancy-isolation-models/#flashcards">Multi-Tenancy Isolation Models</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>OAuth2 vs. OIDC, in one line each?</td>
+<td><a href="../../../12-security/oauth2-oidc-and-jwt/#flashcards">OAuth2, OIDC, and JWT</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>Why PKCE if you already have a client secret?</td>
+<td><a href="../../../12-security/oauth2-oidc-and-jwt/#flashcards">OAuth2, OIDC, and JWT</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Can a valid, non-expired JWT be revoked?</td>
+<td><a href="../../../12-security/oauth2-oidc-and-jwt/#flashcards">OAuth2, OIDC, and JWT</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Two honest JWT-revocation mitigations?</td>
+<td><a href="../../../12-security/oauth2-oidc-and-jwt/#flashcards">OAuth2, OIDC, and JWT</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Is the OWASP Top 10 an exhaustive vulnerability checklist?</td>
+<td><a href="../../../12-security/owasp-top-10-for-backend-services/#flashcards">OWASP Top 10 for Backend Services</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Why does IDOR routinely pass functional testing?</td>
+<td><a href="../../../12-security/owasp-top-10-for-backend-services/#flashcards">OWASP Top 10 for Backend Services</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>Why is a denylist insufficient as an SSRF defense?</td>
+<td><a href="../../../12-security/owasp-top-10-for-backend-services/#flashcards">OWASP Top 10 for Backend Services</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>Why does naive key rotation (just replace the key) break existing encrypted data?</td>
+<td><a href="../../../12-security/secrets-management-and-key-rotation/#flashcards">Secrets Management and Key Rotation</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>What must happen before an old key can be safely deleted after rotation?</td>
+<td><a href="../../../12-security/secrets-management-and-key-rotation/#flashcards">Secrets Management and Key Rotation</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>Name two reasons to rotate keys proactively, absent any known compromise.</td>
+<td><a href="../../../12-security/secrets-management-and-key-rotation/#flashcards">Secrets Management and Key Rotation</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>Why is reviewing only a project's directly-declared dependencies insufficient for supply-chain risk assessment?</td>
+<td><a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/#flashcards">Supply Chain Security, SBOM, Dependency Risk</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td>What did the real docker scout scan against <code>eclipse-temurin:21-jre</code> find?</td>
+<td><a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/#flashcards">Supply Chain Security, SBOM, Dependency Risk</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td>Why should base-image vulnerability remediation typically be owned centrally rather than per-service?</td>
+<td><a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/#flashcards">Supply Chain Security, SBOM, Dependency Risk</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="comparisons">Comparisons<a class="headerlink" href="#comparisons" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Reclaims dead tuples?</th>
-<th>Shrinks file size?</th>
-<th>Locking cost</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Plain <code>VACUUM</code></td>
-<td>Yes</td>
-<td>No</td>
-<td>Minimal — doesn't block reads/writes</td>
-</tr>
-<tr>
-<td><code>VACUUM FULL</code></td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Full <code>ACCESS EXCLUSIVE</code> lock for the duration</td>
-</tr>
-<tr>
-<td><code>pg_repack</code> (external tool)</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Much lower — rewrites online with brief final lock</td>
-</tr>
-<tr>
-<td>Doing nothing</td>
-<td>No</td>
-<td>No</td>
-<td>None, but bloat compounds indefinitely</td>
-</tr>
-</tbody>
-</table>
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Believing UPDATE modifies a row in place — this chapter's real <code>ctid</code>/<code>xmin</code>/<code>xmax</code>
-  evidence disproves this directly.</li>
-<li>Running plain VACUUM and expecting a bloated table's file size to shrink — it
-  won't; only VACUUM FULL (or an equivalent rewrite) does.</li>
-<li>Not connecting a long-running transaction to a completely unrelated table's bloat,
-  because the transaction never appears in that table's own query logs.</li>
-<li>Reaching for VACUUM FULL as a routine maintenance operation rather than a rare,
-  planned, exclusive-lock-accepting remediation.</li>
-</ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>A BI tool or reporting job holding one long transaction open per session</strong> (this
-  chapter's production scenario) — silently blocks vacuum database-wide for the
-  transaction's entire duration, regardless of what it queries.</li>
-<li><strong>Scheduling VACUUM FULL on a live high-traffic table during business hours</strong> —
-  turns routine maintenance into a real, avoidable outage via the exclusive lock.</li>
-<li><strong>Disabling autovacuum entirely "for performance" without a replacement vacuum
-  strategy</strong> — trades a small, continuous cost for an unbounded, compounding one.</li>
-</ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Monitor transaction age (<code>now() - xact_start</code> in <code>pg_stat_activity</code>) as a standing
-  alert, not a reactive investigation tool — this chapter's production scenario was
-  found only after bloat was already severe.</li>
-<li>Keep application and BI-tool transactions as short as possible; avoid holding a
-  single transaction open across multiple, unrelated user interactions.</li>
-<li>Schedule VACUUM FULL (or <code>pg_repack</code>) only during planned low-traffic windows,
-  accounting explicitly for its exclusive-lock cost.</li>
-<li>Monitor <code>n_dead_tup</code>/<code>n_live_tup</code> ratio per table as a leading indicator of bloat,
-  not just table size alone.</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>PostgreSQL's MVCC never updates a row in place — every UPDATE creates a new tuple
-version and marks the old one dead. VACUUM reclaims dead tuples for reuse but doesn't
-shrink the file; VACUUM FULL does, at the cost of an exclusive lock. A long-running
-transaction can block vacuum from reclaiming dead tuples anywhere in the database,
-even on tables it never touches, because its open snapshot might still need them.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Under MVCC, an UPDATE or DELETE never modifies a tuple in place — it creates a new
-physical version and marks the old one dead, which is directly observable via
-PostgreSQL's real <code>xmin</code>/<code>xmax</code> system columns. Dead tuples accumulate as bloat until
-VACUUM reclaims them, but "reclaim" means marking that space reusable within the
-existing file, not shrinking it — a table that grows 5x from heavy UPDATE traffic
-stays that size after a plain VACUUM; only VACUUM FULL actually rewrites and shrinks
-the file, at the real cost of an exclusive lock blocking all access for its duration.
-The most commonly missed production mechanism is that a long-running transaction
-anywhere in the database — even one that never touches the bloating table — can
-prevent VACUUM from reclaiming dead tuples, because VACUUM can never remove a version
-some still-open snapshot might still need to see. A BI dashboard holding a long
-analytical transaction open is a completely realistic way to silently bloat an
-unrelated, heavily-written table.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover: the real tuple-versioning proof via <code>pageinspect</code>; the real bloat measurement
-and the plain-VACUUM-vs-VACUUM-FULL distinction with real before/after sizes; the
-real long-transaction-blocks-vacuum reproduction and its connection to
-<a href="../isolation-levels-and-concurrency-anomalies/">Isolation Levels and Concurrency Anomalies</a>'s
-own forward reference; the production scenario tracing an unrelated tool's long
-transaction to a hot table's bloat; and the decision framework for choosing plain
-vacuum vs. VACUUM FULL vs. an online rewrite tool.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw a single database row as a small box, then draw a second, identical box next to
-it labeled "v2" after an UPDATE arrow, with the first box shaded gray and labeled
-"dead (xmax=736)." Draw a third box for a second UPDATE, shading the second gray too.
-Then draw a large "VACUUM" eraser wiping the two gray boxes away, leaving only the
-current live one — and separately, draw the same three-box sequence with a dashed
-line labeled "Transaction L's open snapshot" spanning underneath all three boxes,
-explicitly blocking the eraser from touching any of them until the dashed line ends.</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>Use the BI-dashboard scenario from <a href="#production-scenarios">Production Scenarios</a>: a
-tool that never wrote to the bloating table at all was the actual cause, purely
-through holding a long read snapshot open.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>MVCC's lock-free concurrency benefit vs. its real vacuum-cleanup cost; plain VACUUM's
-cheap non-blocking reclaim vs. VACUUM FULL's expensive but complete shrink.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Believing VACUUM shrinks a table's file size; not connecting a long-running
-transaction to bloat on tables it never queries; treating VACUUM FULL as routine
-maintenance without acknowledging its lock cost.</p>
-<h3 id="typical-follow-up-questions">Typical Follow-Up Questions<a class="headerlink" href="#typical-follow-up-questions" title="Permanent link">&para;</a></h3>
-<p>"Why doesn't VACUUM shrink the table?" "How can a transaction that never touches
-table X cause table X to bloat?" "How would you shrink an already-bloated table with
-minimal downtime?" "What would you monitor to catch this before it becomes a
-production incident?"</p>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>Correctly explain MVCC's tuple-versioning behavior and the plain-VACUUM-vs-VACUUM-FULL
-distinction without prompting.</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Connect this mechanism explicitly to isolation-level choice as a resource-retention
-decision, not just a correctness one; discuss transaction-age monitoring as a
-standing operational practice rather than a reactive tool; and reason about the
-organizational discipline required to keep long-running tools (BI dashboards, batch
-jobs, ORM session patterns) from silently becoming a database-wide vacuum blocker.</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1-why-doesnt-a-plain-vacuum-shrink-a-bloated-table">Question 1: Why doesn't a plain VACUUM shrink a bloated table?<a class="headerlink" href="#question-1-why-doesnt-a-plain-vacuum-shrink-a-bloated-table" title="Permanent link">&para;</a></h3>
-<p><strong>Why interviewers ask it.</strong> It's the single most common point of confusion on this
-topic, and a fast way to check whether a candidate has actually operated PostgreSQL
-under real bloat, not just read about vacuum in the abstract.</p>
-<p><strong>Expected answer.</strong> VACUUM marks dead tuple space reusable within the existing file
-for future writes; it doesn't return that space to the operating system or
-compact the file. Only VACUUM FULL (a full rewrite into a new, compact file) actually
-shrinks the on-disk size.</p>
-<p><strong>Minimum acceptable answer.</strong> States that VACUUM and VACUUM FULL behave differently,
-even without precisely naming the mechanism.</p>
-<p><strong>Strong Senior answer.</strong> Explains the mechanism precisely and names VACUUM FULL's
-real cost (an exclusive lock for the duration).</p>
-<p><strong>Staff-level extension.</strong> Names an online alternative (<code>pg_repack</code>) for shrinking a
-bloated table without VACUUM FULL's full outage-risk lock.</p>
-<p><strong>Common mistakes.</strong> Assuming VACUUM and VACUUM FULL are interchangeable, or that
-plain VACUUM run repeatedly will eventually shrink the file.</p>
-<p><strong>Likely follow-ups.</strong> "When would you actually run VACUUM FULL in production?"</p>
-<p><strong>Evaluation criteria.</strong> Correct mechanism (2), names the real lock cost (2), names
-an online alternative at Staff level (1).</p>
-<h3 id="question-2-how-can-a-transaction-that-never-touches-table-x-cause-table-x-to-bloat">Question 2: How can a transaction that never touches table X cause table X to bloat?<a class="headerlink" href="#question-2-how-can-a-transaction-that-never-touches-table-x-cause-table-x-to-bloat" title="Permanent link">&para;</a></h3>
-<p><strong>Why interviewers ask it.</strong> It's a genuinely surprising, real production mechanism
-that separates candidates who've operated PostgreSQL from those who haven't.</p>
-<p><strong>Expected answer.</strong> A long-running transaction's open snapshot might still need to
-see a dead tuple version in <em>any</em> table, not just ones it queries — VACUUM can't
-distinguish "will this specific open transaction ever query this specific table" from
-"this transaction's snapshot is old enough that it theoretically could," so it
-conservatively can't remove any dead tuple older than the oldest open snapshot,
-database-wide.</p>
-<p><strong>Minimum acceptable answer.</strong> States that long transactions "affect vacuum somehow"
-without the precise mechanism.</p>
-<p><strong>Strong Senior answer.</strong> States the snapshot-based mechanism precisely.</p>
-<p><strong>Staff-level extension.</strong> Proposes a concrete monitoring and prevention strategy
-(transaction-age alerting, bounding BI-tool transaction duration).</p>
-<p><strong>Common mistakes.</strong> Assuming vacuum blocking only applies to tables a transaction
-directly locks or queries.</p>
-<p><strong>Likely follow-ups.</strong> "What would you monitor to catch this before it's a
-production incident?"</p>
-<p><strong>Evaluation criteria.</strong> Correct snapshot-based mechanism (3), proposes real
-monitoring/prevention at Staff level (2).</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>PostgreSQL's MVCC never modifies a row in place — every UPDATE or DELETE creates a
-new tuple version and marks the old one dead, proven here directly via real
-<code>ctid</code>/<code>xmin</code>/<code>xmax</code> inspection. VACUUM reclaims dead tuples for reuse but does not
-shrink a table's file; only VACUUM FULL does, at the real cost of an exclusive lock,
-measured here at a clean 10 MB → 1776 kB reversion. A long-running transaction's open
-snapshot can block VACUUM from reclaiming dead tuples anywhere in the database, even
-in tables it never touches — proven directly with a transaction that never queries
-the vacuumed table at all, and directly connected to a real production incident
-pattern (a BI dashboard holding one long transaction per session).</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<ul>
-<li>UPDATE never modifies a tuple in place — real, measured <code>ctid</code>/<code>xmin</code>/<code>xmax</code>
-  evidence proves a new physical version is created every time.</li>
-<li>Plain VACUUM reclaims space for reuse but does not shrink the file — measured
-  directly (10 MB stays 10 MB after VACUUM, drops to 1776 kB only after VACUUM FULL).</li>
-<li>A transaction that never touches a table can still block that table's vacuum,
-  purely through holding an open snapshot — measured directly (100,000 dead tuples
-  "not yet removable" while open, all removed the instant it commits).</li>
-<li>This mechanism is a real, recurring production incident pattern, not just a
-  theoretical concern — this chapter's own production scenario traces it to a BI
-  tool's session-scoped transaction.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>MVCC</strong>: UPDATE/DELETE creates a new tuple version, marks the old one dead. Never
-  modifies in place.</li>
-<li><strong>VACUUM</strong>: reclaims dead tuples for reuse. Does NOT shrink the file.</li>
-<li><strong>VACUUM FULL</strong>: rewrites the table, DOES shrink the file. Real cost: full exclusive
-  lock for the duration.</li>
-<li><strong>Bloat</strong>: dead tuples accumulating faster than vacuum reclaims them.</li>
-<li><strong>A long-open transaction blocks vacuum database-wide</strong> for tables it never
-  touches — monitor transaction age as a standing alert.</li>
-<li><strong><code>pg_repack</code></strong>: an online alternative to VACUUM FULL for shrinking a bloated table
-  with much lower lock cost.</li>
-</ul>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h3 id="card-does-update-modify-a-row-in-place">Card: Does UPDATE modify a row in place?<a class="headerlink" href="#card-does-update-modify-a-row-in-place" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-Does a PostgreSQL UPDATE modify a row's existing tuple in place?</p>
-<p><strong>Answer:</strong>
-No — it creates a brand new physical tuple version and marks the old one dead. Real,
-measured proof: the row's <code>ctid</code> (physical location) and <code>xmin</code> (creating
-transaction) both change on every UPDATE, and the old tuple remains physically
-present, with a real non-zero <code>xmax</code>, until VACUUM reclaims it.</p>
-<p><strong>Why it matters:</strong>
-This is the foundational MVCC fact everything else in this topic follows from.</p>
-<p><strong>Common trap:</strong>
-Assuming UPDATE works like an in-place mutation, the way it might in a
-non-MVCC system.</p>
-<p><strong>Related:</strong>
-[[mvcc-vacuum-and-bloat]]</p>
-<h3 id="card-why-doesnt-vacuum-shrink-the-table">Card: Why doesn't VACUUM shrink the table?<a class="headerlink" href="#card-why-doesnt-vacuum-shrink-the-table" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-A table has bloated significantly. You run VACUUM. Why doesn't its file size
-shrink?</p>
-<p><strong>Answer:</strong>
-Plain VACUUM only marks dead tuple space reusable within the existing file for
-future writes — it does not compact or return space to the OS. Only VACUUM FULL
-(a full table rewrite) actually shrinks the file, at the cost of a full exclusive
-lock for the duration.</p>
-<p><strong>Why it matters:</strong>
-Measured directly: a table stayed at 10 MB after plain VACUUM despite its dead-tuple
-count dropping to zero, and only shrank to its original 1776 kB after VACUUM FULL.</p>
-<p><strong>Common trap:</strong>
-Expecting repeated plain VACUUM runs to eventually shrink an already-bloated table.</p>
-<p><strong>Related:</strong>
-[[mvcc-vacuum-and-bloat]]</p>
-<h3 id="card-the-unrelated-transaction-bloat-mechanism">Card: The unrelated-transaction bloat mechanism<a class="headerlink" href="#card-the-unrelated-transaction-bloat-mechanism" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-How can a transaction that never queries table X still cause table X to bloat?</p>
-<p><strong>Answer:</strong>
-Its open snapshot might still need to see a dead tuple version in ANY table — VACUUM
-conservatively can't remove a dead tuple older than the oldest currently-open
-snapshot in the entire database, regardless of which tables that snapshot's
-transaction actually queries.</p>
-<p><strong>Why it matters:</strong>
-This is a genuinely surprising, real production mechanism (see this chapter's BI-tool
-production scenario) that separates real operational experience from textbook
-knowledge.</p>
-<p><strong>Common trap:</strong>
-Assuming vacuum-blocking only applies to tables a long transaction directly locks or
-reads.</p>
-<p><strong>Related:</strong>
-[[mvcc-vacuum-and-bloat]], [[isolation-levels-and-concurrency-anomalies]]</p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Extend <code>bloat-and-vacuum-full-demo.sh</code> to also measure and print index size
-   (<code>pg_indexes_size</code>) before and after each vacuum variant — does the primary key
-   index bloat and shrink the same way the table's heap does?</li>
-<li>Modify <code>long-transaction-blocks-vacuum-demo.sh</code> to measure the real, precise
-   moment reclamation becomes possible — poll <code>n_dead_tup</code> in a loop immediately
-   after the long transaction's COMMIT and report the real elapsed time until it
-   drops to zero.</li>
-<li>Reproduce this chapter's central finding using <code>pg_stat_activity</code>'s real
-   <code>xact_start</code> column instead of application-level knowledge of when the long
-   transaction began — write a query that would flag the long-held transaction as
-   the actual cause of <code>accounts</code>' rising <code>n_dead_tup</code>, the way a real on-call
-   engineer would have to.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p>Exercise 1 is a direct addition to <code>bloat-and-vacuum-full-demo.sh</code>'s existing <code>size()</code>
-function pattern, adding a second helper for index size; left as self-directed
-practice. Exercise 2 requires a polling loop around the existing <code>n_dead_tup</code> query
-already used in <code>long-transaction-blocks-vacuum-demo.sh</code>; left as self-directed
-practice since the existing script provides every piece needed. Exercise 3 is
-intentionally open-ended — the real diagnostic query joins <code>pg_stat_activity</code> on
-<code>xact_start</code> age against the affected table's <code>n_dead_tup</code> trend, and constructing it
-from scratch is the actual skill this chapter's production scenario is testing.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li>The PostgreSQL documentation's chapters on Concurrency Control and Routine
-  Vacuuming (see <a href="#official-references">Official References</a>) are the authoritative
-  sources for MVCC and vacuum mechanics beyond this chapter's scope, including
-  transaction ID wraparound and autovacuum tuning parameters.</li>
-<li><a href="../isolation-levels-and-concurrency-anomalies/">Isolation Levels and Concurrency Anomalies</a>
-  is this chapter's own prerequisite and the source of the connective claim this
-  chapter proves directly.</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li>PostgreSQL Documentation, <a href="https://www.postgresql.org/docs/current/mvcc.html">Chapter 13, "Concurrency Control"</a></li>
-<li>PostgreSQL Documentation, <a href="https://www.postgresql.org/docs/current/routine-vacuuming.html">Routine Vacuuming</a></li>
-<li>PostgreSQL Documentation, <a href="https://www.postgresql.org/docs/current/sql-vacuum.html">VACUUM</a></li>
+<li><a href="../11-system-design/"><code>11-system-design.md</code></a></li>
+<li><a href="../10-distributed-systems/"><code>10-distributed-systems.md</code></a></li>
+<li><a href="../09-messaging-event-driven/"><code>09-messaging-event-driven.md</code></a></li>
+<li><a href="../08-testing/"><code>08-testing.md</code></a></li>
+<li><a href="../07-api-design/"><code>07-api-design.md</code></a></li>
+<li><a href="../05-spring/"><code>05-spring.md</code></a></li>
+<li><a href="../04-software-design/"><code>04-software-design.md</code></a></li>
+<li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
+<li><a href="../06-databases/"><code>06-databases.md</code></a></li>
+<li><a href="../02-java-collections/"><code>02-java-collections.md</code></a>, <a href="../02-java-concurrency/"><code>02-java-concurrency.md</code></a>, <a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a>, <a href="../02-java-language-core/"><code>02-java-language-core.md</code></a></li>
+<li><a href="../../../00-project/interview-question-bank-plan.md"><code>00-project/interview-question-bank-plan.md</code></a></li>
 </ul>
 
 
@@ -11914,7 +11722,7 @@ from scratch is the actual skill this chapter's production scenario is testing.<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:12:29 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:08:40 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11950,7 +11758,7 @@ from scratch is the actual skill this chapter's production scenario is testing.<
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../locks-deadlocks-and-lock-escalation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Locks, Deadlocks, and Lock Escalation in RDBMS">
+          <a href="../11-system-design/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interview Question Bank — 11-system-design">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11960,20 +11768,20 @@ from scratch is the actual skill this chapter's production scenario is testing.<
                 Previous
               </span>
               <div class="md-ellipsis">
-                Locks, Deadlocks, and Lock Escalation in RDBMS
+                Interview Question Bank — 11-system-design
               </div>
             </div>
           </a>
         
         
           
-          <a href="../optimistic-vs-pessimistic-locking/" class="md-footer__link md-footer__link--next" aria-label="Next: Optimistic vs. Pessimistic Locking">
+          <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Narration and Whiteboard Discipline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Optimistic vs. Pessimistic Locking
+                System Design Narration and Whiteboard Discipline
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -12016,16 +11824,16 @@ from scratch is the actual skill this chapter's production scenario is testing.<
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
     
   </body>
