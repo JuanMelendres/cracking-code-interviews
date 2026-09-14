@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/10-distributed-systems/">
       
       
-        <link rel="prev" href="../frontend-security-xss-csrf-and-csp/">
+        <link rel="prev" href="../09-messaging-event-driven/">
       
       
-        <link rel="next" href="../javascript-fundamentals-variables-functions-and-asynchrony/">
+        <link rel="next" href="../../system-design/system-design-narration-and-whiteboard-discipline/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>How the Web Works: HTML, CSS, the DOM, and HTTP - Cracking Code Interviews</title>
+        <title>Interview Question Bank — 10-distributed-systems - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/10-distributed-systems/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-the-web-works-html-css-the-dom-and-http" class="md-skip">
+        <a href="#interview-question-bank-distributed-systems" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -131,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How the Web Works: HTML, CSS, the DOM, and HTTP
+              Interview Question Bank — 10-distributed-systems
             
           </span>
         </div>
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -384,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -404,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1215,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
   
-    <a href="../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
+    <a href="../../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
       
   
   
@@ -1324,7 +1324,7 @@
   
   
   
-    <a href="../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
       
   
   
@@ -1378,7 +1378,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1432,7 +1432,7 @@
   
   
   
-    <a href="../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
+    <a href="../../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
       
   
   
@@ -1531,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -1601,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1706,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -1741,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -1776,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -1811,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1846,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1881,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -1916,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1951,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1986,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2021,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -2056,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -2091,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -2126,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -2161,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2261,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2296,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2466,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2501,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2536,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2606,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -2641,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2676,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2711,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2746,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2781,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2816,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -2851,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2886,7 +2886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2986,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3021,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3056,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3091,7 +3091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3126,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3161,7 +3161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3196,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3231,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3266,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -3301,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3336,7 +3336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3371,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3406,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3441,7 +3441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -3476,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3511,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -3546,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -3581,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -3681,7 +3681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -3716,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -3751,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -3786,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -3821,7 +3821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -3856,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -3956,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -3991,7 +3991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4026,7 +4026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4061,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4096,7 +4096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -4131,7 +4131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -4166,7 +4166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4201,7 +4201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4236,7 +4236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -4336,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -4371,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -4406,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -4441,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -4476,7 +4476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -4511,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -4546,7 +4546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -4581,7 +4581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -4616,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -4651,7 +4651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -4686,7 +4686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -4721,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -4756,7 +4756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -4856,7 +4856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -4884,7 +4884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -4919,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -4947,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -4982,7 +4982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5017,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5052,7 +5052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5087,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -5187,7 +5187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -5222,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -5257,7 +5257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -5292,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -5327,7 +5327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -5362,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -5397,7 +5397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -5432,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -5467,7 +5467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -5502,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -5602,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -5637,7 +5637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -5672,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -5707,7 +5707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -5742,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -5777,7 +5777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -5812,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -5847,7 +5847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -5882,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -5917,7 +5917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6017,7 +6017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6052,7 +6052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -6087,7 +6087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -6122,7 +6122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -6157,7 +6157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -6192,7 +6192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -6292,7 +6292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -6327,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -6362,7 +6362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -6397,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -6432,7 +6432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -6467,7 +6467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -6567,7 +6567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -6602,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6637,7 +6637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -6672,7 +6672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -6707,7 +6707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -6807,7 +6807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -6842,7 +6842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -6877,7 +6877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -6912,7 +6912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7012,7 +7012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -7047,7 +7047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -7082,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -7117,7 +7117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -7152,7 +7152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -7187,7 +7187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -7222,7 +7222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -7257,7 +7257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -7292,7 +7292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -7327,7 +7327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -7427,7 +7427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -7462,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -7497,7 +7497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -7532,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -7567,7 +7567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -7602,7 +7602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -7637,7 +7637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -7737,7 +7737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -7765,7 +7765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -7800,7 +7800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -7835,7 +7835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -7870,7 +7870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -7905,7 +7905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -7940,7 +7940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -7975,7 +7975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8015,6 +8015,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8032,11 +8034,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -8057,7 +8059,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8075,7 +8077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -8130,7 +8132,7 @@
   
   
   
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
+    <a href="../../behavioral/" class="md-nav__link">
       
   
   
@@ -8184,7 +8186,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -8215,6 +8217,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8228,18 +8232,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/question-bank/02-java-collections/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_4" id="__nav_2_21_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -8253,12 +8255,595 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Question bank
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/collections
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/concurrency
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-jvm-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/jvm-internals
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-language-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/language-core
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 03-data-structures-algorithms
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-software-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 04-software-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 05-spring
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 06-databases
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 08-testing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-messaging-event-driven/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 09-messaging-event-driven
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 10-distributed-systems
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 10-distributed-systems
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cap-theorem-and-consistency-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAP Theorem and Consistency Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consensus-algorithms-raft-and-paxos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consensus Algorithms — Raft and Paxos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-partitioning-and-consistent-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Partitioning and Consistent Hashing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-systems-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Systems Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-transactions-saga-and-outbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Transactions — Saga and Outbox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-region-failover-and-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Region Failover and Disaster Recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-clocks-and-quorum-based-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Clocks and Quorum-Based Replication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-fire questions (from this domain's Flashcards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -8292,7 +8877,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -8346,7 +8931,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -8385,8 +8970,6 @@
                 
   
   
-    
-  
   
   
     
@@ -8404,11 +8987,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" >
         
           
           <label class="md-nav__link" for="__nav_2_22" id="__nav_2_22_label" tabindex="">
@@ -8429,7 +9012,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_22">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8447,7 +9030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -8482,7 +9065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -8517,7 +9100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -8549,44 +9132,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    How the Web Works: HTML, CSS, the DOM, and HTTP
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -8609,356 +9158,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-dom-vs-html-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: DOM vs. HTML source
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-box-sizing-border-box" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: box-sizing: border-box
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-flexbox-vs-grid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Flexbox vs. Grid
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-semantic-htmls-real-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Semantic HTML's real value
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-why-content-length-exists" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Why Content-Length exists
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -8971,7 +9170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -9006,7 +9205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -9041,7 +9240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-app-router-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -9076,7 +9275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -9111,7 +9310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -9146,7 +9345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -9181,7 +9380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -9216,7 +9415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -9251,7 +9450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -9286,7 +9485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -9321,7 +9520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -9356,7 +9555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -9391,7 +9590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -9426,7 +9625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -9461,7 +9660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -9496,7 +9695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -9531,7 +9730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -9566,7 +9765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -9601,7 +9800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -9636,7 +9835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9671,7 +9870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9706,7 +9905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9741,7 +9940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9776,7 +9975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9811,7 +10010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9846,7 +10045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9881,7 +10080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-performance/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -9916,7 +10115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9951,7 +10150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -9986,7 +10185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-testing/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -10021,7 +10220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10056,7 +10255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -10091,7 +10290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -10126,7 +10325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -10161,7 +10360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10261,7 +10460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10296,7 +10495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -10331,7 +10530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -10366,7 +10565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10401,7 +10600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -10436,7 +10635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -10471,7 +10670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -10541,7 +10740,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -10594,7 +10793,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -10647,7 +10846,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -10700,7 +10899,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -10753,7 +10952,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -10806,7 +11005,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -10859,10 +11058,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#cap-theorem-and-consistency-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        CAP Theorem and Consistency Models
       
     </span>
   </a>
@@ -10870,10 +11069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#consensus-algorithms-raft-and-paxos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning Objectives
+        Consensus Algorithms — Raft and Paxos
       
     </span>
   </a>
@@ -10881,10 +11080,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+  <a href="#data-partitioning-and-consistent-hashing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters in Interviews
+        Data Partitioning and Consistent Hashing
       
     </span>
   </a>
@@ -10892,10 +11091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
+  <a href="#distributed-systems-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mental Model
+        Distributed Systems Failure Modes
       
     </span>
   </a>
@@ -10903,10 +11102,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
+  <a href="#distributed-transactions-saga-and-outbox" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Definition and Purpose
+        Distributed Transactions — Saga and Outbox
       
     </span>
   </a>
@@ -10914,10 +11113,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#multi-region-failover-and-disaster-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Multi-Region Failover and Disaster Recovery
       
     </span>
   </a>
@@ -10925,10 +11124,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
+  <a href="#vector-clocks-and-quorum-based-replication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Internal Implementation
+        Vector Clocks and Quorum-Based Replication
       
     </span>
   </a>
@@ -10936,10 +11135,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagrams
+        Quick-fire questions (from this domain's Flashcards)
       
     </span>
   </a>
@@ -10947,241 +11146,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#real-verified-demos" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Real Verified Demos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-dom-vs-html-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: DOM vs. HTML source
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-box-sizing-border-box" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: box-sizing: border-box
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-flexbox-vs-grid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Flexbox vs. Grid
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-semantic-htmls-real-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Semantic HTML's real value
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-why-content-length-exists" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Why Content-Length exists
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11213,7 +11181,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11236,7 +11204,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11257,10 +11225,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Frontend (React/Next.js)
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../02-java-collections/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Question bank
   </span>
 
         </a>
@@ -11279,7 +11265,7 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/20-interview-preparation/question-bank/10-distributed-systems.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -11288,374 +11274,275 @@
     
       
     
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/20-interview-preparation/question-bank/10-distributed-systems.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="how-the-web-works-html-css-the-dom-and-http">How the Web Works: HTML, CSS, the DOM, and HTTP<a class="headerlink" href="#how-the-web-works-html-css-the-dom-and-http" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> F-001, the first entry of a new "D-F0 · Web &amp; Language Fundamentals" register section, BEG tier — <code>00-project/frontend-topic-register.md</code> (register text pending a centralized update by another workstream; this chapter is written to be F-001 in that section regardless of exact wording). This is the true starting point of the entire frontend domain: every other chapter, from <a href="../react-fundamentals-jsx-components-props-and-state/">React Fundamentals</a> onward, assumes everything in this one.
-<strong>Scope note:</strong> an audit of <code>syllabus/21-frontend-web/</code> (32 chapters, spanning Beginner through Expert React/Next.js) found zero chapters explaining HTML semantics, the CSS box model, the DOM, or HTTP — every one of them assumes this literacy already exists. This mirrors a gap already found and fixed on the Java backend side (<code>syllabus/06-databases/sql-and-relational-database-fundamentals.md</code>, written because the databases domain assumed relational-modeling literacy). This chapter is that missing floor for the frontend domain: it exists so a reader who has never built a web page can start here and read forward through the entire domain without a silent assumption gap.
-<strong>Provenance:</strong> every HTML/CSS/DOM claim in this chapter is backed by a real, served static site at <a href="../../practice/frontend/web-fundamentals/"><code>practice/frontend/web-fundamentals/</code></a> (<code>index.html</code>, <code>styles.css</code>, <code>app.js</code>). Every HTTP claim is backed by a real, captured <code>curl -v</code> transcript against that page — <a href="../../../practice/frontend/web-fundamentals/curl-transcript.txt"><code>curl-transcript.txt</code></a> — with one disclosed limitation: this environment blocks TCP connections to <code>127.0.0.1</code>, so the transcript was captured over a Unix domain socket instead of TCP (see that file's capture note and the demo's <code>README.md</code> for the standard TCP-based reproduction and why the HTTP semantics are identical either way). There is no GUI browser in this environment; DOM/box-model claims are honest, precise instructional narration about what a reader would see in real DevTools, not a claimed screenshot.</p>
-</blockquote>
-<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#real-verified-demos">Real Verified Demos</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
+<h1 id="interview-question-bank-distributed-systems">Interview Question Bank — Distributed Systems<a class="headerlink" href="#interview-question-bank-distributed-systems" title="Permanent link">&para;</a></h1>
+<p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
+tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
+22-domain plan and sourcing discipline.</p>
+<p><strong>Honest count for this domain:</strong> 7 chapters yielded 15 deep questions + 24 quick-fire
+questions = <strong>39 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain — distributed systems presupposes backend fundamentals already covered
+elsewhere.</p>
+<p><strong>Incidental fix while mining this domain:</strong> <code>multi-region-failover-and-disaster-recovery.md</code>'s
+Flashcards section used <code>## Card:</code> (heading level 2) instead of the file's own
+<code>### Card:</code> convention (heading level 3) for all three of its cards — the same class
+of markdown-hierarchy inconsistency found and fixed in <code>09-messaging-event-driven</code>'s
+<code>schema-registry-and-compatibility-evolution.md</code>, corrected in the same pass.</p>
 <hr />
-<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>By the end of this chapter you can:</p>
-<ul>
-<li>Explain what an HTML element, tag, and attribute actually are, and why semantic elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>) are preferable to generic <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code> for structure that has real meaning.</li>
-<li>Explain the CSS box model (content, padding, border, margin) and enough of the cascade/specificity to debug "why isn't my style applying."</li>
-<li>Explain what the DOM actually is — a live, in-memory tree the browser builds from HTML, not the HTML text itself — and why that distinction is the exact thing React exists to manage for you.</li>
-<li>Trace, at a conceptual level, everything that happens between typing a URL and seeing a rendered page: DNS lookup, TCP/TLS handshake, HTTP request/response, render.</li>
-<li>Read a real HTTP request/response transcript and identify what each header and status code communicates.</li>
-</ul>
-<h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>A frontend interview loop — even one focused entirely on React — routinely opens with "what happens when you type a URL into the address bar and press Enter," precisely because it's the fastest way to check whether a candidate's React fluency sits on top of real understanding or on top of memorized component patterns. A candidate who can explain <code>useEffect</code> fluently but cannot say what a DOM node is, why a <code>&lt;div&gt;</code> soup fails an accessibility audit, or what a <code>Content-Length</code> header is for will visibly stall the moment an interviewer asks one layer below the framework. This chapter is that layer, and it is assumed, not taught, by every other chapter in this domain — including <a href="../react-fundamentals-jsx-components-props-and-state/">React Fundamentals</a>, which opens by explaining what React does <em>to</em> the DOM without ever explaining what the DOM <em>is</em>.</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p><strong>A web page is the result of a browser doing four genuinely separate jobs, in sequence, each producing the input to the next: fetch some bytes over the network (HTTP), parse those bytes into two trees (HTML → DOM, CSS → a style structure applied to that tree), combine the trees into a picture of boxes with computed styles, and paint that picture to the screen.</strong> Almost every confusing beginner question ("why isn't my CSS applying," "why does <code>document.getElementById</code> return <code>null</code>," "why is my page blank until this script runs") is really a confusion about which of these four stages the reader is currently reasoning about. HTML is not the page; it is the <em>input</em> to building the DOM, which <em>is</em> the page, in memory, as the browser currently understands it — and CSS is not decoration bolted onto HTML, it is a second input, cascaded and resolved against that same DOM tree to decide how each node's box is drawn.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>HTML (HyperText Markup Language)</strong> is a markup language: plain text with a small, fixed vocabulary of <strong>tags</strong> (<code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;img&gt;</code>, ...) that mark up spans of that text with structural or semantic meaning. <strong>CSS (Cascading Style Sheets)</strong> is a separate language whose sole job is to describe how HTML's structure should be <em>presented</em> — color, spacing, layout — deliberately kept out of HTML itself so the same structural document can be restyled without touching its content. <strong>The DOM (Document Object Model)</strong> is the browser's live, in-memory, object-oriented representation of a page — a tree of node objects, each with properties and methods, that JavaScript can read and mutate directly; it exists because a static block of HTML text is not something a running program can efficiently query or change, but a tree of real objects is. <strong>HTTP (HyperText Transfer Protocol)</strong> is the application-layer protocol that defines the plain-text request/response exchange a browser and a server use to move HTML, CSS, JavaScript, images, and API data between them — it exists so any client and any server, regardless of implementation language or platform, can exchange this content by agreeing to one shared, simple text format. <a href="../../01-computer-science-foundations/networking-basics/">Networking Basics</a> covers what sits underneath HTTP (TCP's byte-stream and connection-handshake guarantees) in full; this chapter treats HTTP mechanically, from the browser's side, and defers to <a href="../../07-api-design/rest-api-fundamentals/">REST API Fundamentals</a> for the deeper semantics of individual methods and status codes.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="html-elements-tags-attributes-and-document-structure">HTML: elements, tags, attributes, and document structure<a class="headerlink" href="#html-elements-tags-attributes-and-document-structure" title="Permanent link">&para;</a></h3>
-<p>An <strong>element</strong> is a structural unit of a page — a paragraph, a heading, an image. A <strong>tag</strong> is the markup notation that delimits an element in the source text: <code>&lt;p&gt;</code> (opening tag) and <code>&lt;/p&gt;</code> (closing tag) together mark up everything between them as one paragraph element; some elements (<code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>) are "void" elements with no closing tag and no content between tags. An <strong>attribute</strong> is a named piece of extra information attached to an opening tag — <code>&lt;a href="https://example.com"&gt;</code> attaches an <code>href</code> attribute to an anchor element, telling the browser where that link actually goes; <code>&lt;img src="photo.jpg" alt="A red bicycle"&gt;</code> attaches both a source and an accessible text description.</p>
-<p>Every HTML document has one required top-level structure: a <code>&lt;html&gt;</code> root element containing exactly one <code>&lt;head&gt;</code> (metadata the page doesn't display directly — the <code>&lt;title&gt;</code>, linked stylesheets, character encoding) and one <code>&lt;body&gt;</code> (everything the page actually renders). <a href="../../../practice/frontend/web-fundamentals/"><code>practice/frontend/web-fundamentals/index.html</code></a> follows this shape exactly: a <code>&lt;head&gt;</code> with <code>&lt;meta charset&gt;</code>, a <code>&lt;title&gt;</code>, and a <code>&lt;link rel="stylesheet"&gt;</code>, and a <code>&lt;body&gt;</code> containing everything visible.</p>
-<h3 id="semantic-html-vs-generic-containers">Semantic HTML vs. generic containers<a class="headerlink" href="#semantic-html-vs-generic-containers" title="Permanent link">&para;</a></h3>
-<p><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> are <strong>generic containers</strong> — they carry no meaning beyond "a block-level box" or "an inline box" respectively. <strong>Semantic elements</strong> — <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, among others — communicate what a region of the page <em>is</em>, not just that it exists. This distinction is not stylistic preference; it has two concrete, measurable consequences this domain's later chapters build directly on:</p>
-<ul>
-<li><strong>Accessibility</strong>: a screen reader exposes semantic landmarks (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>) as a navigable outline a visually-impaired user can jump between directly ("skip to main content"); a page built entirely of <code>&lt;div&gt;</code>s has no such outline, regardless of how it looks visually. <a href="../react-accessibility/"><code>react-accessibility.md</code></a> assumes this floor and builds ARIA roles on top of it.</li>
-<li><strong>SEO</strong>: search engine crawlers use semantic structure (an <code>&lt;article&gt;</code>, a <code>&lt;h1&gt;</code>) as a strong signal of what content actually matters on a page, distinct from navigation chrome or decoration. <a href="../nextjs-metadata-api-and-seo/"><code>nextjs-metadata-api-and-seo.md</code></a> assumes this same floor.</li>
-</ul>
-<p><a href="../../../practice/frontend/web-fundamentals/"><code>practice/frontend/web-fundamentals/index.html</code></a> uses <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;footer&gt;</code> throughout, specifically so this claim is demonstrated in a real file rather than only asserted.</p>
-<h3 id="the-css-box-model">The CSS box model<a class="headerlink" href="#the-css-box-model" title="Permanent link">&para;</a></h3>
-<p><strong>Every element the browser renders is a rectangular box, and every box has exactly four layers, from the inside out: content, padding, border, margin.</strong> Content is the actual text or replaced content (an image); padding is transparent space <em>inside</em> the border, between the content and the border line; border is a visible (or invisible) line around the padding; margin is transparent space <em>outside</em> the border, separating this box from its neighbors. <a href="../../../practice/frontend/web-fundamentals/styles.css"><code>practice/frontend/web-fundamentals/styles.css</code></a>'s <code>.card</code> rule sets all four explicitly (<code>padding: 20px</code>, <code>border: 2px solid #2a2a4a</code>, <code>margin-bottom: 8px</code>) specifically so a reader can map each declaration to one named layer.</p>
-<p>One practical wrinkle every beginner hits: by default, an element's declared <code>width</code>/<code>height</code> applies to the <em>content</em> box only — padding and border are added <em>on top of</em> that width, so a <code>width: 200px</code> element with <code>padding: 20px</code> and a <code>2px</code> border actually occupies <code>244px</code>. <code>box-sizing: border-box</code> (set globally via <code>* { box-sizing: border-box; }</code> in the demo's stylesheet) changes this so the declared width includes padding and border, which is why nearly every modern CSS reset sets it globally — without it, adding padding to an element silently changes its total footprint in a way that surprises most people the first time they hit it.</p>
-<h3 id="the-cascade-and-specificity-practically">The cascade and specificity, practically<a class="headerlink" href="#the-cascade-and-specificity-practically" title="Permanent link">&para;</a></h3>
-<p>CSS is "cascading" because more than one rule can match the same element, and the browser needs a deterministic way to decide which declaration wins when they conflict. Practically, for debugging "why isn't my style applying," three factors matter, roughly in this order of power: <strong><code>!important</code></strong> (overrides normal specificity entirely — a last resort, not a first tool), <strong>specificity</strong> (an ID selector like <code>#nav</code> beats a class selector like <code>.nav</code>, which beats a plain element selector like <code>nav</code>; a selector combining more of these, like <code>.nav .active</code>, beats a single class alone), and <strong>source order</strong> (when two rules have identical specificity, whichever rule appears later in the stylesheet — or in a later <code>&lt;link&gt;</code> — wins). The single most common beginner debugging path — "I set a style and nothing changed" — is almost always one of: a more specific selector elsewhere overriding it, a typo in the property or selector name (which fails silently, with no error), or the element the reader thinks they're targeting not actually matching that selector at all.</p>
-<h3 id="flexbox-and-grid-conceptually">Flexbox and Grid, conceptually<a class="headerlink" href="#flexbox-and-grid-conceptually" title="Permanent link">&para;</a></h3>
-<p><strong>Flexbox is a one-dimensional layout model</strong>: it lays child elements out along a single axis (a row or a column) and is the right tool whenever a layout problem is fundamentally "arrange these items in a line, and handle what happens when they don't all fit." <a href="../../../practice/frontend/web-fundamentals/styles.css"><code>practice/frontend/web-fundamentals/styles.css</code></a>'s <code>.card-grid</code> uses <code>display: flex; flex-wrap: wrap</code> to lay three cards out in a row that wraps onto new lines as the viewport narrows — a one-dimensional "arrange in a line, wrap when needed" problem.</p>
-<p><strong>Grid is a two-dimensional layout model</strong>: it lays elements out along <em>both</em> a row axis and a column axis simultaneously, and is the right tool whenever rows and columns both matter — a photo gallery, a dashboard, a calendar. <code>.grid-demo</code> in the same stylesheet declares an explicit <code>grid-template-columns: repeat(2, 1fr)</code> and <code>grid-template-rows: repeat(2, 100px)</code>, producing a genuine 2×2 arrangement where each item's row <em>and</em> column position are both meaningful — something Flexbox alone cannot express directly, since Flexbox has no concept of an item belonging to "row 2, column 1" simultaneously.</p>
-<p>The practical decision rule this chapter's Decision Framework expands on: if the layout question is "how do these items flow along one line," reach for Flexbox; if the question is "how do these items align across both rows and columns," reach for Grid. Most real layouts use both — Grid for the page's overall regions, Flexbox for arranging items within one of those regions.</p>
-<h3 id="the-dom-a-live-tree-not-the-html-text">The DOM: a live tree, not the HTML text<a class="headerlink" href="#the-dom-a-live-tree-not-the-html-text" title="Permanent link">&para;</a></h3>
-<p><strong>The DOM is not the HTML source — it is a tree of live JavaScript objects the browser constructs by parsing that HTML</strong>, and once built, it can diverge from the original HTML text arbitrarily: JavaScript can add, remove, or modify nodes, and none of those changes are reflected back into the original HTML file or its text at all. "View Page Source" in a browser shows the original HTML text the server sent; the DevTools "Elements" panel shows the <em>live DOM</em>, which is why the two can show different content for a page that ran any JavaScript after loading — a distinction that has no real analogue until a reader has seen both side by side.</p>
-<p><code>document.querySelector(selector)</code> returns the first live DOM element matching a CSS selector, or <code>null</code> if none matches; <code>document.getElementById(id)</code> is the older, narrower equivalent for ID lookups specifically; <code>document.querySelectorAll(selector)</code> returns all matches as a static <code>NodeList</code>. <a href="../../../practice/frontend/web-fundamentals/app.js"><code>practice/frontend/web-fundamentals/app.js</code></a> uses both patterns directly: <code>document.querySelector(".site-header h1")</code> finds one element, <code>document.querySelectorAll(".card")</code> finds all three cards, and the script then mutates each one directly (<code>setAttribute</code>, <code>.dataset</code>) — genuine, imperative DOM manipulation, the exact class of code <a href="../react-fundamentals-jsx-components-props-and-state/">React Fundamentals'</a> entire mental model (describe the tree declaratively, let React patch the DOM) exists to replace for anything beyond a handful of one-off mutations.</p>
-<h3 id="http-the-requestresponse-cycle">HTTP: the request/response cycle<a class="headerlink" href="#http-the-requestresponse-cycle" title="Permanent link">&para;</a></h3>
-<p>An HTTP exchange is always exactly one <strong>request</strong> followed by exactly one <strong>response</strong>, both plain text (over HTTP/1.x — later versions like HTTP/2 and HTTP/3 use binary framing for the same logical exchange, transparently to a browser-based reader at this level). A request has a <strong>request line</strong> (<code>GET /styles.css HTTP/1.1</code>), a set of <strong>headers</strong> (<code>Host:</code>, <code>User-Agent:</code>, <code>Accept:</code>), and an optional <strong>body</strong>. A response mirrors this shape: a <strong>status line</strong> (<code>HTTP/1.0 200 OK</code>), <strong>headers</strong>, and an optional <strong>body</strong>. This chapter deliberately does not re-explain what each HTTP method (<code>GET</code>/<code>POST</code>/<code>PUT</code>/<code>DELETE</code>) means or the full status code taxonomy — <a href="../../07-api-design/rest-api-fundamentals/">REST API Fundamentals</a> (<code>T-2205</code>) already covers that depth well; this chapter's job is only to make sure the reader has actually <em>seen</em> a real request and response before that chapter's verb semantics are layered on top.</p>
-<p><a href="../../../practice/frontend/web-fundamentals/curl-transcript.txt"><code>practice/frontend/web-fundamentals/curl-transcript.txt</code></a> is a real, captured transcript of four such exchanges. Two headers worth naming explicitly because they answer a genuinely common confusion: <strong><code>Content-Type</code></strong> tells the client how to interpret the body's bytes (<code>text/html</code>, <code>text/css</code>, <code>text/javascript</code>) — a browser uses this, not the URL's file extension, to decide how to parse a response; <strong><code>Content-Length</code></strong> tells the client exactly how many bytes of body to expect, which matters because HTTP is layered over TCP's raw byte stream (see <a href="../../01-computer-science-foundations/networking-basics/">Networking Basics</a> §4), which has no concept of "message boundaries" on its own — without a declared length (or <code>Transfer-Encoding: chunked</code>), a client reading the stream has no way to know where the response body actually ends.</p>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p><strong>What actually happens between typing a URL and seeing a rendered page, at a conceptual level (not deep networking internals — see <a href="../../01-computer-science-foundations/networking-basics/">Networking Basics</a> for the TCP-handshake mechanics this section only summarizes):</strong></p>
-<ol>
-<li><strong>DNS lookup.</strong> The browser resolves the URL's hostname (<code>example.com</code>) to an IP address — a separate lookup, typically cached, that has to complete before any connection to the actual server can be attempted.</li>
-<li><strong>TCP handshake.</strong> The browser opens a TCP connection to that IP address on the target port (<code>443</code> for HTTPS, <code>80</code> for plain HTTP) — a three-way <code>SYN</code>/<code>SYN-ACK</code>/<code>ACK</code> exchange that must complete before any HTTP bytes can be sent, as <a href="../../01-computer-science-foundations/networking-basics/">Networking Basics §4</a> covers in full.</li>
-<li><strong>TLS handshake</strong> (HTTPS only). A further negotiation establishes an encrypted channel over that TCP connection before any HTTP request is sent in the clear — this chapter does not cover TLS's cryptographic mechanics, only that this step exists and adds its own round trip(s) before step 4.</li>
-<li><strong>HTTP request/response.</strong> The browser sends a text request (as in Core Concepts above); the server sends back a text response with a status line, headers, and a body.</li>
-<li><strong>Parse.</strong> The browser parses the response body as HTML, building the DOM tree incrementally as it reads; whenever it encounters a <code>&lt;link rel="stylesheet"&gt;</code> or a <code>&lt;script&gt;</code>, it may issue <em>additional</em> HTTP requests (repeating steps 1–4, though DNS and TCP connection reuse can skip steps 1–2 for the same host) to fetch those resources.</li>
-<li><strong>Style and layout.</strong> The browser parses fetched CSS, matches its selectors against the DOM tree, and computes a box (Core Concepts' box model) for every visible node, resolving the cascade wherever multiple rules match the same element.</li>
-<li><strong>Render (paint).</strong> The browser paints the computed boxes to the screen as actual pixels.</li>
-</ol>
-<p>This sequence is exactly why a page can appear to "hang" waiting on a slow stylesheet or a <code>&lt;script&gt;</code> placed in <code>&lt;head&gt;</code> without <code>defer</code>/<code>async</code> — the browser's parser can block on step 5's additional requests before it ever reaches step 7 for content further down the page.</p>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant Browser
-    participant DNS
-    participant Server
-
-    Browser-&gt;&gt;DNS: Resolve hostname to IP
-    DNS--&gt;&gt;Browser: IP address
-    Browser-&gt;&gt;Server: TCP handshake (SYN, SYN-ACK, ACK)
-    Server--&gt;&gt;Browser: Connection established
-    Browser-&gt;&gt;Server: HTTP GET / (request line + headers)
-    Server--&gt;&gt;Browser: HTTP 200 OK (status line + headers + HTML body)
-    Browser-&gt;&gt;Browser: Parse HTML → build DOM tree
-    Browser-&gt;&gt;Server: HTTP GET /styles.css
-    Server--&gt;&gt;Browser: HTTP 200 OK (CSS body)
-    Browser-&gt;&gt;Browser: Parse CSS, match against DOM, compute boxes
-    Browser-&gt;&gt;Browser: Paint pixels to screen</code></pre>
-<pre class="mermaid"><code>flowchart TD
-    A["HTML text (source)"] --&gt; B["Parsed into the DOM tree\n(live JS objects)"]
-    C["CSS text (source)"] --&gt; D["Parsed, cascade resolved\nper DOM node"]
-    B --&gt; E["Render tree:\nDOM node + computed style\n= one box"]
-    D --&gt; E
-    E --&gt; F["Layout: box positions/sizes computed"]
-    F --&gt; G["Paint: pixels on screen"]
-    H["JavaScript: querySelector,\nsetAttribute, etc."] -.mutates.-&gt; B</code></pre>
-<h2 id="real-verified-demos">Real Verified Demos<a class="headerlink" href="#real-verified-demos" title="Permanent link">&para;</a></h2>
-<p>All claims above are backed by real files and a real captured transcript at <a href="../../practice/frontend/web-fundamentals/"><code>practice/frontend/web-fundamentals/</code></a>:</p>
-<ul>
-<li><a href="../../../practice/frontend/web-fundamentals/"><code>index.html</code></a> — semantic structure (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>), served as-is.</li>
-<li><a href="../../../practice/frontend/web-fundamentals/styles.css"><code>styles.css</code></a> — a real box-model demonstration on <code>.card</code> (explicit padding/border/margin), a real <code>display: flex</code> layout (<code>.card-grid</code>, wrapping), and a real <code>display: grid</code> layout (<code>.grid-demo</code>, an explicit 2×2 track arrangement).</li>
-<li><a href="../../../practice/frontend/web-fundamentals/app.js"><code>app.js</code></a> — real <code>querySelector</code>/<code>querySelectorAll</code> usage that mutates the live DOM (<code>setAttribute</code>, <code>.dataset</code>) after the page loads, independent of the original HTML text.</li>
-<li><a href="../../../practice/frontend/web-fundamentals/curl-transcript.txt"><code>curl-transcript.txt</code></a> — a real, captured <code>curl -v</code> transcript against this page, served locally: four requests (<code>GET /</code>, <code>GET /styles.css</code>, <code>GET /app.js</code>, <code>GET /nonexistent-page</code>), with real captured status lines, headers (<code>Content-Type</code>, <code>Content-Length</code>, <code>Server</code>, <code>Date</code>, <code>Last-Modified</code>), and bodies (including a real 404 error page). <strong>Disclosed limitation, stated in the transcript's own capture note:</strong> this environment blocks TCP connections to <code>127.0.0.1</code>, so the transcript was captured over a Unix domain socket instead of plain TCP — the HTTP request/response semantics captured are identical to a normal TCP-based exchange; only the underlying transport differs. See <a href="../../practice/frontend/web-fundamentals/"><code>README.md</code></a> for the exact commands, both as captured here and as they'd run on an unrestricted machine.</li>
-<li><strong>DOM/box-model inspection</strong>: this environment has no GUI browser, so the box-model and DOM-divergence claims above are precise, honest instructional narration (see <code>README.md</code>'s "Reproducing this" section for exact DevTools steps) rather than a captured screenshot — stated explicitly rather than implied, per this repository's standard for what "verified" means.</li>
-</ul>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<p><strong>Scenario: a marketing page passes every visual QA check and still fails an accessibility audit before a compliance deadline.</strong> A team builds a landing page entirely out of <code>&lt;div&gt;</code>s with CSS classes doing all visual differentiation — a <code>&lt;div class="page-title"&gt;</code> instead of <code>&lt;h1&gt;</code>, a <code>&lt;div class="nav-links"&gt;</code> instead of <code>&lt;nav&gt;</code>. Visually, sighted QA testers see no problem: fonts, colors, and spacing all look correct. When a scheduled accessibility audit (required ahead of a public-sector contract) runs a screen reader against the page, the audit fails outright — there is no navigable landmark structure at all, so a screen-reader user has no way to jump to the main content or skip repeated navigation, and heading-based screen-reader navigation returns nothing, since no real <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code> elements exist anywhere on the page. The fix (swapping generic containers for the semantically correct elements they were already visually styled to look like) touches no CSS and takes an afternoon; the actual cost is that the gap was invisible to every visual review that ran before the audit, because "looks right" and "is semantically correct" are different, unrelated properties of the same markup.</p>
-<p><strong>Scenario: an API integration silently truncates responses under load.</strong> A frontend team's <code>fetch</code> calls to a backend service start intermittently returning incomplete JSON under high server load, causing <code>JSON.parse</code> to throw. Initial hypotheses focus on the frontend's parsing code. The actual cause, found by capturing the same kind of <code>curl -v</code> transcript this chapter builds (a real header inspection, not a guess): the backend, under load, was occasionally emitting a <code>Content-Length</code> header that didn't match the body it actually sent — a body-generation race under concurrent load — causing the client to read exactly <code>Content-Length</code> bytes and stop mid-JSON-object. Understanding what <code>Content-Length</code> is actually <em>for</em> (telling a byte-stream-based client exactly where the message ends) was the difference between debugging the real cause and debugging the wrong layer entirely.</p>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
+<h2 id="cap-theorem-and-consistency-models">CAP Theorem and Consistency Models<a class="headerlink" href="#cap-theorem-and-consistency-models" title="Permanent link">&para;</a></h2>
+<h3 id="q1-cap-what-does-a-system-actually-give-up-during-a-partition-be-specific-about-your-own-system">Q1 — CAP: what does a system actually give up during a partition? Be specific about your own system.<a class="headerlink" href="#q1-cap-what-does-a-system-actually-give-up-during-a-partition-be-specific-about-your-own-system" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Recites "consistency, availability, partition tolerance, pick two" without naming what a real system actually does — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly classifies a real or hypothetical system as CP or AP.
+- <strong>Staff:</strong> Ties the classification to a specific, user-visible consequence (e.g., "a session update on one side isn't visible on the other until reconciliation").</p>
+<h3 id="q2-what-is-the-difference-between-eventual-and-strong-consistency-for-the-user">Q2 — What is the difference between eventual and strong consistency for the user?<a class="headerlink" href="#q2-what-is-the-difference-between-eventual-and-strong-consistency-for-the-user" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Gives the formal definition without connecting it to what the user actually experiences — the common mistake this question targets.
+- <strong>Senior:</strong> Gives the correct formal distinction — strong consistency means no stale reads at a latency/availability cost; eventual consistency means a possible temporary staleness window.
+- <strong>Staff:</strong> Produces both example types unprompted (clearly fine vs. clearly not) and connects the "payment didn't appear to go through" case to the idempotency mechanism.</p>
+<hr />
+<h2 id="consensus-algorithms-raft-and-paxos">Consensus Algorithms — Raft and Paxos<a class="headerlink" href="#consensus-algorithms-raft-and-paxos" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-does-requiring-a-strict-majority-of-votes-prevent-two-different-nodes-from-both-becoming-leader-in-the-same-term">Q1 — Why does requiring a strict majority of votes prevent two different nodes from both becoming leader in the same term?<a class="headerlink" href="#q1-why-does-requiring-a-strict-majority-of-votes-prevent-two-different-nodes-from-both-becoming-leader-in-the-same-term" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes majority-vote as simply "the way Raft happens to work" — the common mistake this question targets.
+- <strong>Senior:</strong> Gives the overlap argument correctly — any two subsets each strictly more than half the group must overlap by at least one member.
+- <strong>Staff:</strong> Connects this directly to CAP's CP classification — the minority side's inability to reach a majority during a partition <em>is</em> the mechanism behind choosing consistency over availability.</p>
+<h3 id="q2-a-node-believes-its-the-leader-but-has-been-disconnected-and-a-new-leader-has-since-been-elected-what-happens-when-connectivity-is-restored">Q2 — A node believes it's the leader, but has been disconnected and a new leader has since been elected. What happens when connectivity is restored?<a class="headerlink" href="#q2-a-node-believes-its-the-leader-but-has-been-disconnected-and-a-new-leader-has-since-been-elected-what-happens-when-connectivity-is-restored" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes the resolution vaguely ("eventually it figures out it's not the leader anymore") — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly names the term-comparison, immediate-step-down mechanism — the stale leader adopts the higher term and transitions to <code>FOLLOWER</code> the moment it observes it.
+- <strong>Staff:</strong> Proactively raises the log-replication/commit-acknowledgment implication for a disconnected leader that may have accepted writes it couldn't safely commit.</p>
+<hr />
+<h2 id="data-partitioning-and-consistent-hashing">Data Partitioning and Consistent Hashing<a class="headerlink" href="#data-partitioning-and-consistent-hashing" title="Permanent link">&para;</a></h2>
+<h3 id="q1-add-a-node-how-much-data-moves">Q1 — Add a node — how much data moves?<a class="headerlink" href="#q1-add-a-node-how-much-data-moves" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that consistent hashing moves less data than naive hashing, without precise figures.
+- <strong>Senior:</strong> Correctly names consistent hashing and states the approximate <code>1/N</code> cost (vs. ~92.5% for naive <code>hash % N</code>).
+- <strong>Staff:</strong> Explains the virtual-node mechanism as the reason the measured number approaches the ideal, and reasons about the load-distribution-vs-memory trade-off.</p>
+<h3 id="q2-your-shard-key-is-the-timestamp-what-breaks">Q2 — Your shard key is the timestamp. What breaks?<a class="headerlink" href="#q2-your-shard-key-is-the-timestamp-what-breaks" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Conflates "consistent hashing solves rebalancing cost" with "consistent hashing solves hot keys" — the common mistake this question targets.
+- <strong>Senior:</strong> Identifies the hot-node risk — all recent writes hash to nearby points, creating a hot node/partition regardless of an otherwise well-distributed hash.
+- <strong>Staff:</strong> Proposes a compound key (timestamp + a distributing prefix) as the fix, and names the trade-off it reintroduces (range queries now fan out across the prefix's full space).</p>
+<hr />
+<h2 id="distributed-systems-failure-modes">Distributed Systems Failure Modes<a class="headerlink" href="#distributed-systems-failure-modes" title="Permanent link">&para;</a></h2>
+<h3 id="q1-you-added-retries-and-made-the-outage-worse-explain-the-mechanism-precisely">Q1 — You added retries and made the outage worse. Explain the mechanism precisely.<a class="headerlink" href="#q1-you-added-retries-and-made-the-outage-worse-explain-the-mechanism-precisely" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/distributed-systems-failure-modes/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Gives a vague "retries added more load" without the specific additive claim — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies that retries add to the queue rather than replace still-running original attempts, amplifying load with no offsetting success-rate benefit.
+- <strong>Staff:</strong> Cites the specific measured numbers (4/12 succeeded either way, but no-backoff cost 2.3× the load) and explains why backoff reduces total amplification, not just latency.</p>
+<h3 id="q2-how-do-you-distinguish-the-request-failed-from-the-request-succeeded-slowly-and-why-does-it-matter">Q2 — How do you distinguish "the request failed" from "the request succeeded slowly," and why does it matter?<a class="headerlink" href="#q2-how-do-you-distinguish-the-request-failed-from-the-request-succeeded-slowly-and-why-does-it-matter" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/distributed-systems-failure-modes/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats all timeouts as equivalent to failures — the common mistake this question targets.
+- <strong>Senior:</strong> States the distinction (lost response vs. genuine failure) and its consequence — retrying without idempotency protection can duplicate the effect.
+- <strong>Staff:</strong> Names idempotency keys as the structural fix, explaining how they shift the burden of resolving the ambiguity from the client to the server.</p>
+<h3 id="q3-two-nodes-both-believe-they-are-leader-how-and-what-breaks">Q3 — Two nodes both believe they are leader. How, and what breaks?<a class="headerlink" href="#q3-two-nodes-both-believe-they-are-leader-how-and-what-breaks" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/distributed-systems-failure-modes/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes the scenario but doesn't name the fix (fencing tokens) when asked — the common mistake this question targets.
+- <strong>Senior:</strong> Describes the split-brain scenario correctly — a paused node's lease expires without it knowing, a new leader is elected, and the stale node's eventual write corrupts shared state.
+- <strong>Staff:</strong> Names fencing tokens, states precisely where the check must live (the storage/resource layer, not the nodes themselves), and can point to the real reject condition (<code>token &lt; highestTokenSeen</code>).</p>
+<hr />
+<h2 id="distributed-transactions-saga-and-outbox">Distributed Transactions — Saga and Outbox<a class="headerlink" href="#distributed-transactions-saga-and-outbox" title="Permanent link">&para;</a></h2>
+<h3 id="q1-you-wrote-to-the-db-and-published-to-kafka-prove-no-message-is-lost">Q1 — You wrote to the DB and published to Kafka. Prove no message is lost.<a class="headerlink" href="#q1-you-wrote-to-the-db-and-published-to-kafka-prove-no-message-is-lost" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes "just retry the Kafka call" without addressing that a crash before the call means there's nothing to retry — the common mistake this question targets.
+- <strong>Senior:</strong> Names the outbox pattern and the poller mechanism — cannot be proven for a plain dual write, the outbox makes the claim provable by writing the event atomically with the business row.
+- <strong>Staff:</strong> States the at-least-once guarantee precisely (not exactly-once) and names the idempotent-consumer requirement this creates downstream, unprompted.</p>
+<h3 id="q2-compensate-a-charged-payment">Q2 — Compensate a charged payment.<a class="headerlink" href="#q2-compensate-a-charged-payment" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes compensation as "undoing" the original operation as if it were a database rollback — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly frames compensation as a new, forward-moving business operation (issue a refund), not a rollback.
+- <strong>Staff:</strong> Discusses compensations needing their own retry/idempotency treatment — a failed refund is itself a dual-write-shaped problem.</p>
+<hr />
+<h2 id="multi-region-failover-and-disaster-recovery">Multi-Region Failover and Disaster Recovery<a class="headerlink" href="#multi-region-failover-and-disaster-recovery" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-team-wants-to-add-a-dr-region-whats-the-first-question-you-ask">Q1 — Your team wants to add a DR region. What's the first question you ask?<a class="headerlink" href="#q1-your-team-wants-to-add-a-dr-region-whats-the-first-question-you-ask" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Jumps straight to "we'll use active-active" or a specific cloud service — the common mistake this question targets.
+- <strong>Senior:</strong> Names RPO and RTO explicitly and explains why each drives a different part of the design.
+- <strong>Staff:</strong> Notes that "as fast/safe as possible" is not an answer, pushes back on it, and connects the eventual tier choice back to the real cost implications for whichever numbers come back.</p>
+<h3 id="q2-walk-me-through-exactly-what-happens-if-you-promote-a-standby-without-fencing-the-old-primary-during-a-network-partition">Q2 — Walk me through exactly what happens if you promote a standby without fencing the old primary during a network partition.<a class="headerlink" href="#q2-walk-me-through-exactly-what-happens-if-you-promote-a-standby-without-fencing-the-old-primary-during-a-network-partition" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes split-brain vaguely ("it gets confused") without naming the divergent-writes mechanism — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly describes the divergent-writes mechanism — the old primary isn't actually dead, just unreachable, and both nodes independently accept writes once the standby is promoted.
+- <strong>Staff:</strong> Names fencing/STONITH unconditionally, describes a concrete mechanism for it, and states that fencing must be automated, not a manual judgment call under incident pressure.</p>
+<hr />
+<h2 id="vector-clocks-and-quorum-based-replication">Vector Clocks and Quorum-Based Replication<a class="headerlink" href="#vector-clocks-and-quorum-based-replication" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-team-lowered-a-read-quorum-for-latency-and-users-started-seeing-their-own-writes-disappear-on-refresh-what-happened-and-how-do-you-fix-it">Q1 — Your team lowered a read quorum for latency, and users started seeing their own writes disappear on refresh. What happened, and how do you fix it?<a class="headerlink" href="#q1-your-team-lowered-a-read-quorum-for-latency-and-users-started-seeing-their-own-writes-disappear-on-refresh-what-happened-and-how-do-you-fix-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes the fix is unrelated to quorum math (e.g., blaming a cache) — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states <code>W + R &gt; N</code> as the guarantee and diagnoses its violation as the root cause.
+- <strong>Staff:</strong> Proposes treating <code>N</code>/<code>W</code>/<code>R</code> as one jointly-reviewed configuration with an automated check, and discusses the real latency-versus-freshness trade being made either way.</p>
+<h3 id="q2-two-replicas-both-accepted-a-write-for-the-same-key-while-partitioned-how-does-the-system-know-whether-to-merge-them-or-just-pick-one">Q2 — Two replicas both accepted a write for the same key while partitioned. How does the system know whether to merge them or just pick one?<a class="headerlink" href="#q2-two-replicas-both-accepted-a-write-for-the-same-key-while-partitioned-how-does-the-system-know-whether-to-merge-them-or-just-pick-one" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes a timestamp alone can reliably distinguish concurrent from causally-ordered writes — the common mistake this question targets, unreliable due to clock skew and network delay.
+- <strong>Senior:</strong> Correctly names vector clocks and the dominates/concurrent distinction — a <code>CONCURRENT</code> comparison means neither can be safely discarded.
+- <strong>Staff:</strong> Names a concrete real merge strategy (Dynamo's shopping-cart union) and states plainly that vector clocks detect but never resolve the conflict.</p>
+<hr />
+<h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Concern</th>
-<th>Semantic HTML (<code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, ...)</th>
-<th>Generic containers (<code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>)</th>
+<th>#</th>
+<th>Question</th>
+<th>Canonical chapter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Accessibility (screen readers, landmark navigation)</td>
-<td>Built-in, free</td>
-<td>None — requires manual ARIA roles to recover any of it</td>
+<td>1</td>
+<td>Does CAP apply outside of an actual network partition?</td>
+<td><a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#flashcards">CAP Theorem and Consistency Models</a></td>
 </tr>
 <tr>
-<td>SEO signal</td>
-<td>Strong, built-in</td>
-<td>Weak — crawlers infer structure from content alone</td>
+<td>2</td>
+<td>What does a CP system do during a partition?</td>
+<td><a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#flashcards">CAP Theorem and Consistency Models</a></td>
 </tr>
 <tr>
-<td>Default visual styling</td>
-<td>None (both are unstyled by default in most cases)</td>
-<td>None</td>
+<td>3</td>
+<td>What does an AP system do during a partition?</td>
+<td><a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#flashcards">CAP Theorem and Consistency Models</a></td>
 </tr>
 <tr>
-<td>When it's actually fine to use a <code>&lt;div&gt;</code></td>
-<td>Purely presentational wrapper with no semantic meaning (a styling hook)</td>
-<td>Same — this is exactly the correct, intended use case for <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code></td>
+<td>4</td>
+<td>CAP only describes partition trade-offs. What does PACELC add?</td>
+<td><a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#flashcards">CAP Theorem and Consistency Models</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Should one consistency model apply uniformly across a whole system?</td>
+<td><a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/#flashcards">CAP Theorem and Consistency Models</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Why does requiring a strict majority make two simultaneous leaders mathematically impossible?</td>
+<td><a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/#flashcards">Consensus — Raft and Paxos</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Can the minority side of a partition ever elect a leader, no matter how many times it retries?</td>
+<td><a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/#flashcards">Consensus — Raft and Paxos</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Does Raft provide a stronger correctness guarantee than a correctly implemented Paxos?</td>
+<td><a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/#flashcards">Consensus — Raft and Paxos</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Why does naive <code>hash(key) % N</code> remap nearly all keys when N changes?</td>
+<td><a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/#flashcards">Data Partitioning and Consistent Hashing</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>What fraction of keys should move when removing 1 of N nodes under consistent hashing?</td>
+<td><a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/#flashcards">Data Partitioning and Consistent Hashing</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Why use many virtual nodes per physical node instead of one?</td>
+<td><a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/#flashcards">Data Partitioning and Consistent Hashing</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Why is a network timeout ambiguous?</td>
+<td><a href="../../../10-distributed-systems/distributed-systems-failure-modes/#flashcards">Distributed Systems Failure Modes</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Precisely how do retries amplify an outage?</td>
+<td><a href="../../../10-distributed-systems/distributed-systems-failure-modes/#flashcards">Distributed Systems Failure Modes</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>What structurally fixes the retry-safety problem?</td>
+<td><a href="../../../10-distributed-systems/distributed-systems-failure-modes/#flashcards">Distributed Systems Failure Modes</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>What structurally prevents split-brain corruption?</td>
+<td><a href="../../../10-distributed-systems/distributed-systems-failure-modes/#flashcards">Distributed Systems Failure Modes</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>What specifically does a dual write fail to guarantee?</td>
+<td><a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/#flashcards">Distributed Transactions — Saga and Outbox</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>What makes the transactional outbox's atomicity possible?</td>
+<td><a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/#flashcards">Distributed Transactions — Saga and Outbox</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Is the transactional outbox exactly-once or at-least-once?</td>
+<td><a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/#flashcards">Distributed Transactions — Saga and Outbox</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Why is 2PC avoided in practice despite offering true atomicity?</td>
+<td><a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/#flashcards">Distributed Transactions — Saga and Outbox</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>What's the difference between RPO and RTO?</td>
+<td><a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/#flashcards">Multi-Region Failover and DR</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>What actually causes split-brain?</td>
+<td><a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/#flashcards">Multi-Region Failover and DR</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>What does fencing actually guarantee, and why is it non-optional?</td>
+<td><a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/#flashcards">Multi-Region Failover and DR</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>What are the three possible outcomes of comparing two vector clocks?</td>
+<td><a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/#flashcards">Vector Clocks and Quorum-Based Replication</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>What's the exact condition guaranteeing a read quorum overlaps a write quorum, and is <code>W + R = N</code> sufficient?</td>
+<td><a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/#flashcards">Vector Clocks and Quorum-Based Replication</a></td>
 </tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Concern</th>
-<th>Flexbox</th>
-<th>Grid</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Dimensionality</td>
-<td>One axis (row or column)</td>
-<td>Two axes (rows and columns) simultaneously</td>
-</tr>
-<tr>
-<td>Best for</td>
-<td>Arranging items in a line, wrapping, distributing space along one axis</td>
-<td>Aligning content across both rows and columns (page regions, galleries, dashboards)</td>
-</tr>
-<tr>
-<td>Item sizing model</td>
-<td>Items can grow/shrink to fill the line (<code>flex-grow</code>/<code>flex-shrink</code>)</td>
-<td>Items are placed into explicit or implicit tracks</td>
-</tr>
-<tr>
-<td>Common mistake</td>
-<td>Reaching for Grid when the layout is genuinely one-dimensional (unnecessary complexity)</td>
-<td>Reaching for Flexbox when both rows and columns need to align (fights the model)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Does this piece of markup carry real structural or navigational meaning (a page's main navigation, its primary content region, an article)?</strong> → use the matching semantic element (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>), never a generic <code>&lt;div&gt;</code> standing in for it.</li>
-<li><strong>Is this element purely a styling hook with no semantic meaning of its own (a wrapper added only to apply a background color or flex layout)?</strong> → a <code>&lt;div&gt;</code> (block-level) or <code>&lt;span&gt;</code> (inline) is the <em>correct</em> choice here, not a shortcut.</li>
-<li><strong>Is the layout problem "arrange these items along one line, and handle overflow/wrapping"?</strong> → Flexbox.</li>
-<li><strong>Does the layout problem require both rows and columns to align simultaneously?</strong> → Grid.</li>
-<li><strong>A style isn't applying — where do I look first?</strong> → check specificity (is a more specific selector overriding it elsewhere), check for typos in the selector/property name (fails silently), then confirm the element actually matches the selector you think it does (inspect it live in DevTools rather than re-reading the source).</li>
-<li><strong>Debugging an HTTP response that behaves unexpectedly?</strong> → capture the actual transcript (<code>curl -v</code>) before guessing — this chapter's second production scenario was solved by looking at real headers, not by reasoning about the frontend code in isolation.</li>
-</ol>
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Treating <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> as the default choice for everything, rather than reaching for the semantically correct element first and falling back to a generic container only when no semantic meaning actually exists.</li>
-<li>Believing "View Page Source" shows the current state of the page — it shows the original HTML <em>text</em>, not the live DOM, which can have been mutated arbitrarily by JavaScript since load.</li>
-<li>Not knowing that padding and border are added <em>outside</em> a declared <code>width</code> by default (<code>box-sizing: content-box</code>), leading to layouts that are mysteriously wider than expected until <code>box-sizing: border-box</code> is set.</li>
-<li>Reaching for <code>!important</code> as a first fix for "my style isn't applying" instead of understanding <em>why</em> a more specific rule is winning.</li>
-<li>Assuming a <code>Content-Type</code> header is just metadata rather than the actual mechanism a browser uses to decide how to parse a response body.</li>
-</ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>"Div soup"</strong> — a page built entirely from nested <code>&lt;div&gt;</code>s with no semantic elements anywhere, discovered only when an accessibility audit or SEO review fails, as in this chapter's first production scenario.</li>
-<li><strong>Fighting the cascade with <code>!important</code> chains</strong> — each <code>!important</code> added to win against a previous one requires the next override to also use <code>!important</code>, escalating indefinitely rather than fixing the actual specificity conflict once, at its source.</li>
-<li><strong>Reaching for JavaScript-driven layout (manually computing pixel positions) before reaching for Flexbox or Grid</strong> — a holdover from an era before either existed; almost every layout problem that looks like it needs manual positioning is a one-dimensional or two-dimensional layout problem CSS already solves declaratively.</li>
-</ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Choose the most specific semantically-correct element available before falling back to <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code>.</li>
-<li>Set <code>box-sizing: border-box</code> globally (as this chapter's demo does) so declared widths behave predictably once padding and border are involved.</li>
-<li>Default to Flexbox for one-dimensional arrangement problems and Grid for two-dimensional ones — using both together for different parts of the same page is normal, not a sign of indecision.</li>
-<li>When debugging why a style isn't applying, inspect the <em>live</em> DOM and computed styles in DevTools rather than re-reading the source HTML/CSS — the two can disagree the moment any JavaScript has run.</li>
-<li>When debugging an HTTP-shaped bug, capture a real request/response transcript before forming a hypothesis about which layer is at fault.</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>HTML provides structure (parsed into the DOM, a live tree of objects — not the HTML text itself); CSS provides presentation, resolved via the cascade and applied to that same tree as a box model of content/padding/border/margin; JavaScript can read and mutate the DOM directly. HTTP is the plain-text request/response protocol that moves all of this (and API data) between a browser and a server, itself running over a TCP connection that has to be established first.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Walk through the mental model: fetch bytes (HTTP, over a TCP connection with its own handshake cost) → parse into two trees (HTML → DOM, CSS → cascade-resolved styles) → combine into boxes with computed layout → paint pixels. Then note the DOM's key property — it's a live, mutable tree distinct from the original HTML text, which is precisely what a framework like React exists to manage on your behalf instead of hand-writing <code>querySelector</code>/<code>setAttribute</code> calls. Close with why semantic HTML matters concretely (accessibility landmarks, SEO signal), not just as a style preference.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover: the full page-load sequence (DNS → TCP handshake → optional TLS → HTTP request/response → parse → style/layout → paint) and where each subsequent resource request (a stylesheet, a script) re-enters that sequence; the box model and the <code>box-sizing</code> gotcha; the cascade/specificity resolution order for "why isn't my style applying"; Flexbox's one-dimensional vs. Grid's two-dimensional model with a concrete example of each; the DOM's independence from the HTML source text, demonstrated by <code>app.js</code>'s runtime mutations; and a real HTTP transcript, naming what <code>Content-Type</code> and <code>Content-Length</code> are actually for and why TCP's lack of built-in message boundaries makes the latter necessary.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw four boxes left to right labeled "HTTP (fetch bytes)," "Parse (HTML→DOM, CSS→styles)," "Layout (compute boxes)," "Paint (pixels)." Above the first box, draw a small inset diagram of the DNS → TCP handshake → HTTP sequence, and note that any <code>&lt;link&gt;</code>/<code>&lt;script&gt;</code> discovered during Parse sends the diagram's arrow back to the first box for that resource. Below the second box, draw one small box-model diagram (four nested rectangles: content, padding, border, margin) to anchor what "compute boxes" concretely means.</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>A landing page built entirely from <code>&lt;div&gt;</code>s passes visual QA but fails a pre-launch accessibility audit outright — no navigable landmarks, no real heading elements — because "looks correct" and "is semantically correct" are unrelated properties of the same markup, and only one of them was checked before shipping.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>Semantic HTML costs nothing over generic containers in styling flexibility (a <code>&lt;nav&gt;</code> can be styled identically to a <code>&lt;div&gt;</code>) but earns real accessibility and SEO value for free; the only "cost" is knowing which element actually applies. Flexbox is simpler for one-dimensional problems but cannot cleanly express row-and-column alignment simultaneously; Grid can express that but is unnecessary complexity for a simple one-axis arrangement.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Describing HTML as "the web page" rather than as the <em>input</em> to the DOM; being unable to name what <code>Content-Length</code> or <code>Content-Type</code> actually do beyond "it's a header"; recommending <code>!important</code> as a fix without being able to explain the specificity conflict it's papering over; treating Flexbox and Grid as interchangeable rather than as solving genuinely different-dimensional problems.</p>
-<h3 id="typical-follow-ups">Typical Follow-Ups<a class="headerlink" href="#typical-follow-ups" title="Permanent link">&para;</a></h3>
-<p>"What's the difference between the HTML source and the DOM?" (the DOM is a live tree the browser builds from HTML and can freely diverge from as JavaScript runs — View Source shows the former, DevTools' Elements panel shows the latter). "Why does a browser need to know a response's <code>Content-Length</code>?" (HTTP is layered over TCP's raw byte stream, which has no built-in message boundaries — without a declared length or chunked encoding, the client has no way to know where a response ends). "When would you use Grid instead of Flexbox?" (whenever both rows and columns need to align simultaneously, not just items along one line).</p>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>For this chapter's beginner scope: can explain the DOM/HTML-text distinction unprompted, can name the box model's four layers and the <code>box-sizing</code> gotcha, and can trace the page-load sequence (DNS → TCP → HTTP → parse → render) without prompting.</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Not the primary target of this true-beginner chapter, but briefly: at organizational scale, "semantic HTML and accessibility" is the kind of requirement that should be enforced by CI-integrated automated audits (e.g., axe-core in a test pipeline) rather than relying on manual review to catch it before a compliance deadline, the same principle <a href="../../18-engineering-practices/code-review-standards-and-practice/">Code Review Standards and Practice</a> applies to any correctness property that's cheap to check mechanically and expensive to catch by inspection alone.</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1">Question 1<a class="headerlink" href="#question-1" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "What's the difference between the HTML you write and the DOM?"</p>
-<p><strong>Expected answer:</strong> HTML is the original text the server sent — a static document. The DOM is a live, in-memory tree of objects the browser builds by parsing that HTML; JavaScript can read and mutate the DOM directly, and those mutations are not reflected back into the original HTML text at all. "View Page Source" shows the HTML; DevTools' Elements panel shows the live DOM, and the two can disagree after any JavaScript runs.</p>
-<p><strong>Common mistakes:</strong> Treating "HTML" and "the DOM" as interchangeable terms for the same thing; being unable to say what would make the two diverge (any DOM mutation via JavaScript after page load).</p>
-<p><strong>Follow-up questions:</strong> "If I click 'View Page Source' after some JavaScript has already modified the page, what will I see?" (the original, unmodified HTML text — View Source never reflects DOM mutations). "What is React's relationship to the DOM?" (React builds and diffs its own in-memory description of the desired tree, then patches the real DOM to match — see <a href="../react-fundamentals-jsx-components-props-and-state/">React Fundamentals</a>).</p>
-<p><strong>Senior-level expectations:</strong> Can state precisely why the distinction matters practically (debugging with DevTools vs. View Source), not just recite the definition.</p>
-<p><strong>Staff-level expectations:</strong> Not the focus of this chapter's scope.</p>
-<h3 id="question-2">Question 2<a class="headerlink" href="#question-2" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "Why does <code>box-sizing: border-box</code> matter, and what's the default behavior without it?"</p>
-<p><strong>Expected answer:</strong> By default (<code>box-sizing: content-box</code>), a declared <code>width</code>/<code>height</code> applies only to the content box — padding and border are added on top, so the element's actual rendered footprint is larger than the declared width. <code>border-box</code> changes this so the declared width includes padding and border, keeping the total footprint equal to the declared size regardless of how much padding/border is added.</p>
-<p><strong>Common mistakes:</strong> Not knowing this is even a distinction — assuming <code>width: 200px</code> always means the element is exactly 200px wide regardless of padding/border.</p>
-<p><strong>Follow-up questions:</strong> "Why do most modern CSS resets set <code>box-sizing: border-box</code> globally?" (so adding padding/border to any element never silently changes its layout footprint, which is the more predictable default for nearly every real layout).</p>
-<p><strong>Senior-level expectations:</strong> Can state the exact math (declared width + padding + border, under the default) that produces the "wider than expected" surprise.</p>
-<p><strong>Staff-level expectations:</strong> Not the focus of this chapter's scope.</p>
-<h3 id="question-3">Question 3<a class="headerlink" href="#question-3" title="Permanent link">&para;</a></h3>
-<p><strong>Question:</strong> "Walk me through what happens, at a high level, between typing a URL and seeing a rendered page."</p>
-<p><strong>Expected answer:</strong> DNS resolves the hostname to an IP address; the browser opens a TCP connection (and a TLS handshake, for HTTPS) to that IP; the browser sends an HTTP request and receives a response; the browser parses the HTML response into the DOM, fetching any linked CSS/JS along the way (each triggering its own request/response cycle); CSS is parsed and cascaded against the DOM to compute a box for every visible node; the browser paints those boxes as pixels.</p>
-<p><strong>Common mistakes:</strong> Skipping DNS or the TCP handshake entirely and starting the explanation at "the browser sends an HTTP request," missing that a real network connection has to exist first, at a real, measurable time cost.</p>
-<p><strong>Follow-up questions:</strong> "Why might a page appear to hang while loading?" (a blocking resource — a <code>&lt;script&gt;</code> in <code>&lt;head&gt;</code> without <code>defer</code>/<code>async</code>, or a slow stylesheet — can block the parser from continuing past it before painting anything further down the page).</p>
-<p><strong>Senior-level expectations:</strong> Names all the major stages unprompted, in the correct order, and can explain the render-blocking follow-up.</p>
-<p><strong>Staff-level expectations:</strong> Not the focus of this chapter's scope.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>Every layer of the frontend domain — React's component model, Next.js's rendering strategies, accessibility, SEO — sits on top of four things this chapter makes explicit: HTML gives a page structure, parsed into the DOM (a live tree, never the HTML text itself); CSS presents that structure, resolved via the cascade into a box model of content/padding/border/margin, using Flexbox for one-dimensional and Grid for two-dimensional layout problems; the DOM is what JavaScript actually reads and mutates, and what frameworks like React exist to manage on a developer's behalf; and HTTP is the plain-text protocol, running over an already-established TCP connection, that moves all of the above (plus API data) between a browser and a server. Every claim here was demonstrated in a real served page and a real captured HTTP transcript, not merely asserted.</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<ul>
-<li>HTML structures content and is parsed into the DOM; the DOM is a live tree, never the HTML source text itself, and the two can diverge the moment JavaScript runs.</li>
-<li>Semantic elements (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>) carry real accessibility and SEO value that generic <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code> containers do not — demonstrated by real production-failure scenarios, not just style preference.</li>
-<li>The CSS box model has four layers (content, padding, border, margin); <code>box-sizing: border-box</code> changes whether padding/border are included in a declared width.</li>
-<li>Flexbox solves one-dimensional layout problems; Grid solves two-dimensional ones — most real pages use both, for different regions.</li>
-<li>HTTP is a plain-text request/response exchange riding on top of an already-established TCP connection; <code>Content-Length</code> exists because TCP itself has no concept of message boundaries.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Element/tag/attribute</strong>: <code>&lt;a href="..."&gt;</code> — <code>a</code> is the element, <code>&lt;a&gt;</code>/<code>&lt;/a&gt;</code> are tags, <code>href</code> is an attribute.</li>
-<li><strong>Document structure</strong>: <code>&lt;html&gt;</code> → one <code>&lt;head&gt;</code> (metadata) + one <code>&lt;body&gt;</code> (visible content).</li>
-<li><strong>Semantic &gt; generic</strong>: use <code>&lt;header&gt;</code>/<code>&lt;nav&gt;</code>/<code>&lt;main&gt;</code>/<code>&lt;article&gt;</code>/<code>&lt;section&gt;</code>/<code>&lt;footer&gt;</code> when meaning exists; <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code> only as styling hooks with no semantic meaning.</li>
-<li><strong>Box model</strong>: content → padding → border → margin, innermost to outermost. <code>box-sizing: border-box</code> includes padding+border in declared width.</li>
-<li><strong>Cascade debugging order</strong>: <code>!important</code> &gt; specificity (ID &gt; class &gt; element) &gt; source order (later wins on a tie).</li>
-<li><strong>Flexbox</strong>: one axis, wraps and distributes along a line. <strong>Grid</strong>: two axes, rows and columns simultaneously.</li>
-<li><strong>DOM ≠ HTML text</strong>: the DOM is live and mutable; View Source shows the original text only.</li>
-<li><strong>HTTP exchange</strong>: request line + headers + optional body → status line + headers + optional body. <code>Content-Type</code> says how to parse the body; <code>Content-Length</code> says how many bytes it is.</li>
-</ul>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h2 id="card-dom-vs-html-source">Card: DOM vs. HTML source<a class="headerlink" href="#card-dom-vs-html-source" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-What's the difference between the HTML a server sends and the DOM?</p>
-<p><strong>Answer:</strong>
-HTML is static text. The DOM is a live, in-memory tree of objects the browser builds by parsing that text — JavaScript can mutate the DOM directly, and those changes are never reflected back into the original HTML text. View Source shows the HTML; DevTools' Elements panel shows the live DOM.</p>
-<p><strong>Why it matters:</strong>
-It's the exact distinction React's whole model (describe a tree, patch the real DOM) is built on top of.</p>
-<p><strong>Common trap:</strong>
-Using "HTML" and "the DOM" interchangeably.</p>
-<p><strong>Related:</strong>
-[[how-the-web-works-html-css-dom-and-http]]</p>
-<h2 id="card-box-sizing-border-box">Card: box-sizing: border-box<a class="headerlink" href="#card-box-sizing-border-box" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-What does <code>box-sizing: border-box</code> change about how <code>width</code> is interpreted?</p>
-<p><strong>Answer:</strong>
-By default, a declared <code>width</code> applies only to the content box — padding and border add on top, making the real footprint larger. <code>border-box</code> makes the declared width include padding and border, so adding either doesn't change the total size.</p>
-<p><strong>Why it matters:</strong>
-The single most common "my layout is wider than I set it" bug for beginners.</p>
-<p><strong>Common trap:</strong>
-Not knowing this is even a setting — assuming <code>width</code> always means total footprint.</p>
-<p><strong>Related:</strong>
-[[how-the-web-works-html-css-dom-and-http]]</p>
-<h2 id="card-flexbox-vs-grid">Card: Flexbox vs. Grid<a class="headerlink" href="#card-flexbox-vs-grid" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-When do you reach for Flexbox vs. Grid?</p>
-<p><strong>Answer:</strong>
-Flexbox for one-dimensional problems (arranging items along a single row or column). Grid for two-dimensional problems (aligning content across rows AND columns simultaneously).</p>
-<p><strong>Why it matters:</strong>
-Reaching for the wrong one either fights the model (Flexbox for a true grid) or adds unnecessary complexity (Grid for a simple line of items).</p>
-<p><strong>Common trap:</strong>
-Treating them as interchangeable or "which one is newer/better."</p>
-<p><strong>Related:</strong>
-[[how-the-web-works-html-css-dom-and-http]]</p>
-<h2 id="card-semantic-htmls-real-value">Card: Semantic HTML's real value<a class="headerlink" href="#card-semantic-htmls-real-value" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-Beyond style, what does using <code>&lt;nav&gt;</code>/<code>&lt;main&gt;</code>/<code>&lt;article&gt;</code> instead of <code>&lt;div&gt;</code> actually buy you?</p>
-<p><strong>Answer:</strong>
-Screen readers expose semantic elements as navigable landmarks (accessibility); search crawlers use them as a strong content-structure signal (SEO). A visually identical page built entirely from <code>&lt;div&gt;</code>s gets neither, for free or otherwise.</p>
-<p><strong>Why it matters:</strong>
-A page can pass every visual QA check and still fail an accessibility audit outright — demonstrated in this chapter's first production scenario.</p>
-<p><strong>Common trap:</strong>
-Assuming "it looks right" means "it's structured right."</p>
-<p><strong>Related:</strong>
-[[how-the-web-works-html-css-dom-and-http]]</p>
-<h2 id="card-why-content-length-exists">Card: Why Content-Length exists<a class="headerlink" href="#card-why-content-length-exists" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong>
-Why does an HTTP response need a <code>Content-Length</code> header at all?</p>
-<p><strong>Answer:</strong>
-HTTP rides on top of TCP, which delivers a raw byte stream with no built-in concept of "where one message ends." <code>Content-Length</code> (or <code>Transfer-Encoding: chunked</code>) is how the response tells the client exactly how many body bytes to read before the message is complete.</p>
-<p><strong>Why it matters:</strong>
-Without it, a client reading a reused TCP connection has no way to know where a response ends and the next one (if any) begins.</p>
-<p><strong>Common trap:</strong>
-Treating <code>Content-Length</code> as decorative metadata rather than a required framing mechanism.</p>
-<p><strong>Related:</strong>
-[[how-the-web-works-html-css-dom-and-http]]</p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Open <a href="../../../practice/frontend/web-fundamentals/"><code>practice/frontend/web-fundamentals/index.html</code></a> and rewrite it so every semantic element (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>) is replaced with a plain <code>&lt;div&gt;</code>. Keep all CSS classes identical. Explain, without changing anything visual, what a screen reader user and a search crawler each lose as a result.</li>
-<li>In <a href="../../../practice/frontend/web-fundamentals/styles.css"><code>styles.css</code></a>, change <code>.card</code>'s <code>box-sizing</code> behavior by removing the global <code>* { box-sizing: border-box; }</code> rule, keep <code>.card</code>'s explicit <code>padding: 20px</code> and <code>border: 2px solid</code>, and calculate by hand how much wider each card's actual rendered footprint becomes compared to its <code>flex-basis: 240px</code>.</li>
-<li>Serve the demo directory (<code>python3 -m http.server 8000</code> from within <code>practice/frontend/web-fundamentals/</code>) and run <code>curl -v http://127.0.0.1:8000/styles.css</code>. Identify the <code>Content-Type</code> header in the real response and explain why a browser needs it to know this file is CSS rather than plain text, given that <code>.css</code> is only a filename convention, not something the HTTP protocol itself inspects.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p>Exercise 1: replacing every semantic element with <code>&lt;div&gt;</code> changes nothing visually (identical classes, identical CSS). A screen reader loses the entire landmark outline — no "skip to main content," no way to jump directly to navigation or the main content region by role; a user must instead navigate linearly through the whole page. A search crawler loses its strongest structural signal for what content on the page is primary (previously <code>&lt;article&gt;</code>/<code>&lt;main&gt;</code>) versus supporting chrome (previously <code>&lt;nav&gt;</code>/<code>&lt;footer&gt;</code>) — everything now looks like an undifferentiated block of <code>&lt;div&gt;</code>s to both.</p>
-<p>Exercise 2: without <code>box-sizing: border-box</code>, <code>.card</code>'s <code>padding: 20px</code> (on all four sides) adds <code>40px</code> total to both width and height, and <code>border: 2px solid</code> adds a further <code>4px</code> total (2px per side) — so a card with a <code>flex-basis: 240px</code> content width actually occupies <code>240 + 40 + 4 = 284px</code>, <code>44px</code> wider than the declared basis, entirely from padding and border added outside it.</p>
-<p>Exercise 3: the real response includes <code>Content-Type: text/css</code>. A browser needs this because HTTP transmits raw bytes with no inherent type information — the <code>.css</code> extension is a human/tooling convention the server <em>chooses</em> to honor when setting this header (Python's <code>http.server</code> infers it via <code>mimetypes</code>), but nothing in HTTP itself inspects file extensions; a misconfigured server could serve a <code>.css</code> file with <code>Content-Type: text/plain</code> and the browser would refuse to apply it as a stylesheet at all, since it trusts the header, not the URL.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../../00-project/frontend-topic-register.md">00-project/frontend-topic-register.md</a> — the full frontend topic register this chapter is F-001 of.</li>
-<li><a href="../react-fundamentals-jsx-components-props-and-state/">React Fundamentals: JSX, Components, Props, and State</a> — the next chapter in the domain; assumes everything in this one.</li>
-<li><a href="../../01-computer-science-foundations/networking-basics/">Networking Basics</a> — the TCP/IP mechanics underneath the HTTP layer this chapter treats mechanically.</li>
-<li><a href="../../07-api-design/rest-api-fundamentals/">REST API Fundamentals</a> — full depth on HTTP methods, status codes, and API design conventions this chapter deliberately doesn't re-explain.</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN: HTML</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">MDN: CSS</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">MDN: Document Object Model (DOM)</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">MDN: HTTP</a></li>
+<li><a href="../09-messaging-event-driven/"><code>09-messaging-event-driven.md</code></a></li>
+<li><a href="../08-testing/"><code>08-testing.md</code></a></li>
+<li><a href="../07-api-design/"><code>07-api-design.md</code></a></li>
+<li><a href="../05-spring/"><code>05-spring.md</code></a></li>
+<li><a href="../04-software-design/"><code>04-software-design.md</code></a></li>
+<li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
+<li><a href="../06-databases/"><code>06-databases.md</code></a></li>
+<li><a href="../02-java-collections/"><code>02-java-collections.md</code></a>, <a href="../02-java-concurrency/"><code>02-java-concurrency.md</code></a>, <a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a>, <a href="../02-java-language-core/"><code>02-java-language-core.md</code></a></li>
+<li><a href="../../../00-project/interview-question-bank-plan.md"><code>00-project/interview-question-bank-plan.md</code></a></li>
 </ul>
 
 
@@ -11677,7 +11564,7 @@ Treating <code>Content-Length</code> as decorative metadata rather than a requir
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:48:49 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:48:06 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11713,7 +11600,7 @@ Treating <code>Content-Length</code> as decorative metadata rather than a requir
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../frontend-security-xss-csrf-and-csp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Frontend Security: XSS, CSRF, and Content Security Policy">
+          <a href="../09-messaging-event-driven/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interview Question Bank — 09-messaging-event-driven">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11723,20 +11610,20 @@ Treating <code>Content-Length</code> as decorative metadata rather than a requir
                 Previous
               </span>
               <div class="md-ellipsis">
-                Frontend Security: XSS, CSRF, and Content Security Policy
+                Interview Question Bank — 09-messaging-event-driven
               </div>
             </div>
           </a>
         
         
           
-          <a href="../javascript-fundamentals-variables-functions-and-asynchrony/" class="md-footer__link md-footer__link--next" aria-label="Next: JavaScript Fundamentals: Variables, Functions, Objects, Closures, and Asynchrony">
+          <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Narration and Whiteboard Discipline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                JavaScript Fundamentals: Variables, Functions, Objects, Closures, and Asynchrony
+                System Design Narration and Whiteboard Discipline
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -11779,16 +11666,16 @@ Treating <code>Content-Length</code> as decorative metadata rather than a requir
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
     
   </body>
