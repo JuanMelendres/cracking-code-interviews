@@ -1098,6 +1098,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Verified end-to-end with a real headless-browser test (Playwright/chromium, already available under `practice/frontend/react-testing/`) against a real local build: clicked a checkbox, confirmed it toggled and survived a reload, and confirmed a second checkbox on the same page stayed independently unchecked. Along the way confirmed Material's `custom_checkbox` CSS (real `<input>` at `opacity:0`, visible checkmark drawn by a sibling `::before`) still responds correctly to a real, unforced mouse click at its own on-screen coordinates.
 - `validate.py`: same pre-existing 3 errors, 0 new.
 
+## [2026-09-13] — Real per-page dates were silently going to break in CI (`deploy-docs.yml`)
+
+### Fixed
+
+- Re-examined `git-revision-date-localized`'s actual CI conditions rather than trusting the earlier local verification. `actions/checkout@v4` defaults to a shallow (`depth: 1`) clone — confirmed by simulating one locally: `git log` on a known file returned today's date, not its real 2026-09-08 commit. All 1,431 "real-dated" pages would have silently shown the same wrong (latest-push) date instead of the documented, honest build-date fallback for the other 195.
+- Added `fetch-depth: 0` to the checkout step. Verified directly: a full local clone shows the correct real date for the same file.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

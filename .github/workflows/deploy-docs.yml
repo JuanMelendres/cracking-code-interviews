@@ -17,6 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # actions/checkout defaults to a shallow (depth-1) clone, which
+          # only has the latest commit -- git-revision-date-localized then
+          # sees the same single commit for every file, so every page would
+          # show the last push's date instead of its own real last-modified
+          # date. Confirmed by simulating a depth-1 clone locally before
+          # this fix: `git log` on a known file returned today's date
+          # instead of its real 2026-09-08 commit. Full history needed.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
