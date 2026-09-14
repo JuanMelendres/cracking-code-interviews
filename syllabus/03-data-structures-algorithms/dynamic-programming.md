@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2110
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -281,7 +281,16 @@ private static int[] robHelper(TreeNode node) {
 ```java
 static int maxProfitK(int k, int[] prices) {
     int n = prices.length;
-    if (k >= n / 2) { /* unlimited transactions is equivalent once k is this large */ }
+    if (n == 0) return 0;
+    if (k >= n / 2) {
+        // unlimited transactions is equivalent once k is this large --
+        // collapses to LC 122's greedy sum of every positive day-to-day gain
+        int profit = 0;
+        for (int i = 1; i < n; i++) {
+            if (prices[i] > prices[i - 1]) profit += prices[i] - prices[i - 1];
+        }
+        return profit;
+    }
     int[] hold = new int[k + 1], cash = new int[k + 1];
     Arrays.fill(hold, Integer.MIN_VALUE / 2);
     for (int price : prices) {

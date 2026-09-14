@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2114
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - backtracking-and-pruning.md
@@ -186,7 +186,22 @@ static String replaceWords(List<String> dictionary, String sentence) {
         }
         cur.end = true;
     }
-    // ... walk each sentence word, stopping at the first end node
+    StringBuilder result = new StringBuilder();
+    for (String word : sentence.split(" ")) {
+        if (result.length() > 0) result.append(' ');
+        TrieNode648 cur = root;
+        StringBuilder prefix = new StringBuilder();
+        boolean replaced = false;
+        for (char c : word.toCharArray()) {
+            int i = c - 'a';
+            if (cur.children[i] == null) break;      // no root matches this far -- keep the whole word
+            cur = cur.children[i];
+            prefix.append(c);
+            if (cur.end) { replaced = true; break; }  // first end node = shortest root
+        }
+        result.append(replaced ? prefix : word);
+    }
+    return result.toString();
 }
 ```
 

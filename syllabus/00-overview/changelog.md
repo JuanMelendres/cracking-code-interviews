@@ -1422,6 +1422,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New Interview Question 3, 2 new Flashcards, Cheat Sheet table and rows, synced to the standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Content-quality audit: `03-data-structures-algorithms` (7th domain), 5 non-compiling snippets fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit via two parallel background agents (9 chapters each, 18 total). All complexity claims, algorithm mechanics, and edge-case handling verified correct across every chapter — no fabrication, no broken links.
+- Found and fixed one recurring bug class: 5 Java snippets across 5 chapters were fully-signed, non-void methods with bodies elided by a comment instead of a real `return` — none would compile as written. Fixed: `hashing-patterns-and-frequency-maps.md` (Intersection of Two Arrays), `tries-and-prefix-structures.md` (Replace Words), `heaps-top-k-and-k-way-merge.md` (Furthest Building, also invalid enhanced-for syntax), `design-style-coding-problems.md` (Design Twitter), `dynamic-programming.md` (Stock IV's `k >= n/2` early-exit — also made the chapter's own stated complexity claim false until implemented).
+- Minor terminology fix in `hashing-patterns-and-frequency-maps.md` (Happy Number's complexity misused "amortized").
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

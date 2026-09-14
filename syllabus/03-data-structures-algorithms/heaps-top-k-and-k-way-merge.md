@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2106
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -142,13 +142,18 @@ while (!maxHeap.isEmpty()) {
 **Problem 5 — LC 1642, Furthest Building You Can Reach.**
 
 ```java
-PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-for (climb : climbs_needing_a_gain) {
-    minHeap.offer(climb);
-    if (minHeap.size() > ladders) {
-        bricks -= minHeap.poll(); // evict (and pay bricks for) the SMALLEST climb currently using a ladder
-        if (bricks < 0) return i;
+static int furthestBuilding(int[] heights, int bricks, int ladders) {
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    for (int i = 0; i < heights.length - 1; i++) {
+        int climb = heights[i + 1] - heights[i];
+        if (climb <= 0) continue; // no gain needed, always free to pass
+        minHeap.offer(climb);
+        if (minHeap.size() > ladders) {
+            bricks -= minHeap.poll(); // evict (and pay bricks for) the SMALLEST climb currently using a ladder
+            if (bricks < 0) return i;
+        }
     }
+    return heights.length - 1;
 }
 ```
 

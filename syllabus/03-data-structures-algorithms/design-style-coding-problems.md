@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2115
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - linked-lists-and-in-place-manipulation.md
@@ -135,7 +135,11 @@ List<Integer> getNewsFeed(int userId) {
             maxHeap.offer(tweets.get(i));
         }
     }
-    // pop top 10...
+    List<Integer> result = new ArrayList<>();
+    while (!maxHeap.isEmpty() && result.size() < 10) {
+        result.add(maxHeap.poll()[1]); // [1] = tweetId, [0] was timestamp
+    }
+    return result;
 }
 ```
 

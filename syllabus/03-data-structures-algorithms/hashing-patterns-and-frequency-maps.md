@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2102
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -118,7 +118,7 @@ static int[] intersection(int[] nums1, int[] nums2) {
     for (int n : nums2) {
         if (set1.contains(n)) result.add(n);
     }
-    // convert to array...
+    return result.stream().mapToInt(Integer::intValue).toArray();
 }
 ```
 
@@ -136,7 +136,7 @@ static boolean isHappy(int n) {
 }
 ```
 
-**Retrospective:** see Section 5's pigeonhole-principle derivation. **Complexity:** effectively O(1) amortized per call in practice — the cycle length is bounded by a small constant.
+**Retrospective:** see Section 5's pigeonhole-principle derivation. **Complexity:** effectively O(1) per call in practice — not formally amortized (there's no shared state across separate calls the way amortized analysis requires), just a cycle length bounded by a small constant regardless of `n`'s starting magnitude.
 
 **Problem 5 — LC 454, 4Sum II.**
 
