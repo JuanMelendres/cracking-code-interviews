@@ -4,8 +4,8 @@ slug: container-image-internals
 document_type: handbook-chapter
 domain: 14-devops-containers
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/cloud/container-image-internals.md
 topic_id: T-1001
@@ -366,7 +366,7 @@ A container image is a stack of immutable, content-addressed layers plus run met
 - [`practice/java/cloud/container-image-internals/README.md`](../../practice/java/cloud/container-image-internals/README.md) — full real output this chapter draws from.
 - [`kubernetes-resource-limits-probes-and-jvm-sizing.md`](kubernetes-resource-limits-probes-and-jvm-sizing.md) — the JVM-specific consequence of the same cgroup mechanism.
 - [`kubernetes-objects-scheduling-and-networking.md`](kubernetes-objects-scheduling-and-networking.md) — how these images are actually scheduled and run at scale.
-- [`../security/supply-chain-security-sbom-and-dependency-risk.md`](../12-security/supply-chain-security-sbom-and-dependency-risk.md) — the security-scanning angle for image dependencies this chapter doesn't cover.
+- [`../12-security/supply-chain-security-sbom-and-dependency-risk.md`](../12-security/supply-chain-security-sbom-and-dependency-risk.md) — the security-scanning angle for image dependencies this chapter doesn't cover.
 
 ## Official References
 

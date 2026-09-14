@@ -1440,6 +1440,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `14-devops-containers` (15th domain), two real fixes
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (15th domain, 5 chapters, read directly). 3 of 5 chapters verified fully clean.
+- `container-image-internals.md`: fixed a link-text/href mismatch in Additional Reading (display text missing the `12-` domain prefix).
+- `cicd-pipeline-design-and-deployment-strategies.md`: fixed a garbled-text artifact ("sufaverage-quality evidence" → "sufficient evidence") in a Production Scenario sentence.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `13-observability` (14th domain), fully clean
 
 ### Verified

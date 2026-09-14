@@ -4,8 +4,8 @@ slug: cicd-pipeline-design-and-deployment-strategies
 document_type: handbook-chapter
 domain: 14-devops-containers
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/cloud/cicd-pipeline-design-and-deployment-strategies.md
 topic_id: T-1009
@@ -185,7 +185,7 @@ sequenceDiagram
 
 **Impact.** A regression that a human glancing at the canary's actual metrics (not just "did an alert fire") would likely have caught immediately instead reaches full production exposure and persists for hours.
 
-**Initial hypotheses.** The canary window was too short to catch the regression (checked — even a longer window wouldn't have crossed the alert threshold, since the regression was within it by design of this specific incident); the alerting threshold itself needs tightening (a reasonable but separate finding); the promotion gate had no human review step at all, relying purely on "no alert fired" as sufaverage-quality evidence of health (correct, and the more fundamental gap).
+**Initial hypotheses.** The canary window was too short to catch the regression (checked — even a longer window wouldn't have crossed the alert threshold, since the regression was within it by design of this specific incident); the alerting threshold itself needs tightening (a reasonable but separate finding); the promotion gate had no human review step at all, relying purely on "no alert fired" as sufficient evidence of health (correct, and the more fundamental gap).
 
 **Evidence.** The canary's actual latency metrics, visible on a dashboard the whole time, showed a real, visually obvious upward shift versus the stable baseline — clearly within the numeric alert threshold, but the kind of shift an engineer glancing at the dashboard for 30 seconds would very likely have flagged as worth investigating before promoting further.
 
