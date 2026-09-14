@@ -5,7 +5,7 @@ document_type: syllabus-topic
 domain: 05-spring
 topic_id: T-2203
 status: canonical
-version: 1.1
+version: 1.2
 last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
@@ -94,7 +94,23 @@ The conventional three-layer shape this chapter's demo uses, and the reason it e
 | `@Primary` | On a bean's class or `@Bean` method | Marks that bean as the default choice when multiple candidates of the same type exist and no `@Qualifier` narrows it — the "pick this one unless told otherwise" annotation |
 | `@Value("${property.name}")` | A field or constructor parameter | Injects a single configuration property value (from `application.properties`/`application.yml` or an environment variable), rather than a whole bean |
 
-**Constructor-based dependency injection**, the only kind this chapter uses, works like this: a class declares one constructor listing what it needs as parameters, and — since Spring Framework 4.3 — a class with exactly one constructor does not even need an `@Autowired` annotation; Spring uses that single constructor automatically. [`TaskController`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java)'s constructor asks for a `TaskService`; [`TaskService`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java)'s constructor asks for a `TaskRepository`. Spring builds the `TaskRepository` first, then the `TaskService` (handing in the repository), then the `TaskController` (handing in the service) — resolving the whole chain without any class in it ever writing `new` for another bean.
+**The three ways to get a dependency injected**, since Spring supports all three and only one of them is actually recommended by default:
+
+- **Constructor injection** — dependencies are declared as constructor parameters; Spring calls the constructor with the resolved beans. The recommended default (Section 6 explains why).
+- **Setter injection** — dependencies are declared as parameters to a `public` setter method annotated `@Autowired`; Spring calls the setter after constructing the bean. Mainly useful for a genuinely *optional* dependency, since the bean is fully constructable without it.
+- **Field injection** — `@Autowired` directly on a field, with no constructor or setter involved; Spring assigns the field via reflection after construction. The shortest to write, and the one this chapter recommends against by default.
+
+| Aspect | Constructor injection | Setter injection | Field injection |
+|---|---|---|---|
+| Where `@Autowired` goes | Not needed (single constructor) or on the constructor | On the setter method | Directly on the field |
+| Dependency visibility | All required dependencies visible in one signature | Spread across setter methods | Invisible from outside the class — only reflection sees it |
+| Can use `final` fields | Yes | No | No |
+| Immutability | Fully immutable once constructed | Mutable after construction | Mutable after construction |
+| Plain `new` in a unit test | Works directly, no Spring needed | Needs the setter called manually | Needs reflection or a Spring test context — can't set a `private` field with plain `new` |
+| Makes "too many dependencies" visible | Yes — a 10-parameter constructor is an obvious smell | Not really | No — fields can silently accumulate indefinitely |
+| Best for | The default — required dependencies | A genuinely optional dependency | Generally avoided; occasionally seen in legacy code or `@Configuration` classes |
+
+**Constructor-based dependency injection**, the one this chapter's own demo uses, works like this: a class declares one constructor listing what it needs as parameters, and — since Spring Framework 4.3 — a class with exactly one constructor does not even need an `@Autowired` annotation; Spring uses that single constructor automatically. [`TaskController`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskController.java)'s constructor asks for a `TaskService`; [`TaskService`](../../practice/java/spring-mvc-fundamentals/src/demo/TaskService.java)'s constructor asks for a `TaskRepository`. Spring builds the `TaskRepository` first, then the `TaskService` (handing in the repository), then the `TaskController` (handing in the service) — resolving the whole chain without any class in it ever writing `new` for another bean.
 
 ```mermaid
 sequenceDiagram
@@ -114,6 +130,20 @@ sequenceDiagram
 Startup wiring runs in the opposite, dependency-first order: Spring builds `TaskRepository` first (it needs nothing), then `TaskService` (handing in the repository), then `TaskController` (handing in the service) — no class in the chain ever writes `new` for another bean.
 
 Three annotations bind pieces of the incoming HTTP request directly to method parameters: `@PathVariable` binds a segment of the URL path (`/tasks/{id}` → the method parameter matching `id`), `@RequestParam` binds a query-string parameter (`?status=done`), and `@RequestBody` binds the entire request body, deserialized from JSON into a Java object by Jackson (already on the classpath).
+
+**Design patterns Spring resolves for you**, since "which design patterns does Spring use internally" is a recurring interview question in its own right — Spring is, in large part, a set of classic Gang-of-Four patterns applied consistently so application code doesn't have to hand-roll them:
+
+| Pattern | Where Spring uses it | What it buys you |
+|---|---|---|
+| **Singleton** | Every bean's default scope (`@Scope` unset) | One shared instance per application context, handed to every injection point — see [Spring Bean Scopes and Proxy Modes](spring-bean-scopes-and-proxy-modes.md) for the real mechanics and its gotchas |
+| **Factory** | `BeanFactory`/`ApplicationContext` (Spring's container itself); `@Bean` methods in an `@Configuration` class | Object creation is centralized in the container instead of scattered `new` calls across the codebase — this chapter's own dependency-injection model (Section 4) *is* the Factory pattern in practice |
+| **Proxy** | AOP in general; `@Transactional`, `@Async`, `@Cacheable` specifically | Spring wraps a bean in a dynamically-generated proxy that adds behavior (starting a transaction, running async, checking a cache) around the real method call, without the real class containing any of that cross-cutting code itself — see [Transactional Proxy Mechanics and Propagation](transactional-proxy-mechanics-and-propagation.md) for exactly how, including the self-invocation pitfall it causes |
+| **Template Method** | `JdbcTemplate`, `RestTemplate`, `TransactionTemplate` | Each `*Template` class fixes the invariant steps of an operation (open a connection, handle exceptions, clean up) and leaves only the actually-variable part (your SQL, your request) to the caller — you provide a callback, the template handles everything around it |
+| **Observer** | `ApplicationEvent` + `@EventListener`/`ApplicationListener` | A bean publishes an event (`applicationEventPublisher.publishEvent(...)`) without knowing or caring who's listening; any number of other beans react to it independently — decouples the publisher from every subscriber |
+| **Strategy** | Any interface with multiple `@Component` implementations, selected via `@Qualifier`/`@Primary` (Section 4's stereotype-annotation table above) | The calling code depends only on the interface; which concrete algorithm/implementation runs is a wiring decision, not a code change |
+| **Decorator** | `HttpServletRequestWrapper`/`HttpServletResponseWrapper` and Spring Security's filter chain | Each filter/wrapper adds behavior around the request/response while still exposing the same interface, so wrapping is transparent to whatever runs next in the chain |
+
+Most of these are worth recognizing by name rather than reimplementing — the Proxy and Singleton rows in particular explain real, observable behavior (why a `@Transactional` self-invocation silently does nothing; why a mutable field on a default-scoped bean is a concurrency bug) that this domain's other chapters cover in depth.
 
 ## 5. How It Works Internally (L3)
 

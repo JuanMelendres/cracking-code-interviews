@@ -1338,6 +1338,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `05-spring/spring-mvc-fundamentals.md` — two new comparison tables: stereotype annotations side by side (`@Component`/`@Service`/`@Repository`/`@Controller`/`@RestController`) and the common companion annotations (`@Configuration`/`@Bean`/`@Autowired`/`@Qualifier`/`@Primary`/`@Value`) this chapter's own demo doesn't use.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns; print-button override confirmed rendering.
 
+## [2026-09-14] — `spring-mvc-fundamentals.md`: dependency injection types and design patterns
+
+### Added
+
+- New "The three ways to get a dependency injected" subsection — definitions plus a constructor/setter/field injection comparison table (`@Autowired` placement, `final`-field support, immutability, unit-testability with plain `new`, whether it visibly exposes "too many dependencies").
+- New "Design patterns Spring resolves for you" subsection — Singleton, Factory, Proxy, Template Method, Observer, Strategy, and Decorator, each row linking onward to this domain's existing deep-dive chapters (`spring-bean-scopes-and-proxy-modes.md`, `transactional-proxy-mechanics-and-propagation.md`) rather than re-explaining the mechanism.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
