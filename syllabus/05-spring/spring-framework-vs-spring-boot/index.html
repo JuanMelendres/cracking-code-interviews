@@ -11316,6 +11316,35 @@
 <p>Every auto-configuration class asks specific, real conditions before contributing any bean — most commonly, "is a specific class present on the classpath" (<code>@ConditionalOnClass</code>) and "has the application not already defined its own bean of this type" (<code>@ConditionalOnMissingBean</code>). This is why adding a <code>DataSource</code> bean by hand silently suppresses Spring Boot's own would-be default <code>DataSource</code> auto-configuration, without any explicit "disable auto-configuration" step — the <em>condition itself</em> is no longer true.</p>
 <h3 id="the-embedded-server-model-inverts-the-traditional-deployment-relationship">The embedded server model inverts the traditional deployment relationship<a class="headerlink" href="#the-embedded-server-model-inverts-the-traditional-deployment-relationship" title="Permanent link">&para;</a></h3>
 <p>Classic Java web deployment: build a WAR, install it into an externally-managed Tomcat/JBoss/WebLogic instance, which owns the server process. Spring Boot's default model: the servlet container (Tomcat, by default) is just another library dependency, started <em>by the application's own <code>main()</code> method</em>, inside the application's own JVM process — the application owns the server, not the other way around. This is what makes <code>java -jar app.jar</code> (or, as measured in this chapter, plain <code>java -cp</code>) a complete, self-contained way to run a Spring web application with no separate server installation.</p>
+<h3 id="springbootapplication-is-three-real-annotations-composed-into-one-what-each-one-actually-contributes"><code>@SpringBootApplication</code> is three real annotations composed into one — what each one actually contributes<a class="headerlink" href="#springbootapplication-is-three-real-annotations-composed-into-one-what-each-one-actually-contributes" title="Permanent link">&para;</a></h3>
+<p>Every Spring Boot application's entry-point class carries exactly one annotation, but it's a <strong>meta-annotation</strong>: shorthand for three separate, independently meaningful annotations, each responsible for one distinct part of startup. Understanding "what does <code>@SpringBootApplication</code> do" means naming what each of the three actually does on its own, not treating the whole thing as one indivisible unit of magic:</p>
+<table>
+<thead>
+<tr>
+<th>Composed annotation</th>
+<th>What it actually does</th>
+<th>Real consequence if it were missing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@SpringBootConfiguration</code></td>
+<td>Marks this class as a source of bean definitions — it can have its own <code>@Bean</code> methods, exactly like plain <code>@Configuration</code> (which it is itself meta-annotated with). It exists as its own, distinct annotation specifically so tooling can search for <em>this one class</em> unambiguously — <code>@SpringBootTest</code> locates the application's root configuration by searching upward for a <code>@SpringBootConfiguration</code>-annotated class, not just any <code>@Configuration</code> class, since a real application typically has many of those.</td>
+<td>No bean definitions on the entry-point class itself would be picked up, and <code>@SpringBootTest</code> would fail at test-context startup with <code>IllegalStateException: Unable to find a @SpringBootConfiguration</code> — a real, documented failure mode covered in <a href="../spring-testing-slices-and-context-caching/">Spring Testing Slices and Context Caching</a>.</td>
+</tr>
+<tr>
+<td><code>@EnableAutoConfiguration</code></td>
+<td>The actual trigger for auto-configuration (Core Concepts, above): it tells Spring Boot to read the candidate auto-configuration class list (<code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code>) and evaluate every one of them — this chapter's own real, measured 77-positive/168-negative-match report (Internal Implementation) is this annotation's direct output.</td>
+<td>No starters would auto-configure anything — every <code>DataSource</code>, every <code>DispatcherServlet</code>, every embedded Tomcat instance would need to be defined by hand, exactly the boilerplate this chapter's Definition and Purpose describes Spring Boot as existing to eliminate.</td>
+</tr>
+<tr>
+<td><code>@ComponentScan</code></td>
+<td>Tells Spring to scan the annotated class's own package, and every sub-package beneath it, for <code>@Component</code>-annotated classes (and its stereotype specializations — <code>@Service</code>, <code>@Repository</code>, <code>@Controller</code>/<code>@RestController</code>, <code>@Configuration</code>) and register each one as a bean — the exact mechanism <a href="../spring-mvc-fundamentals/">Spring MVC Fundamentals</a>'s own "component scanning" description refers to, and the direct cause of this chapter's own default-package <code>NoClassDefFoundError</code> gotcha (Internal Implementation, below).</td>
+<td>No <code>@Component</code>/<code>@Service</code>/<code>@Repository</code>/<code>@RestController</code> classes anywhere in the application would ever be discovered or registered — every bean would need an explicit <code>@Bean</code> method, since nothing would be scanned at all.</td>
+</tr>
+</tbody>
+</table>
+<p>The scoping consequence worth internalizing precisely: <code>@ComponentScan</code>'s starting point is <em>the package of the class carrying <code>@SpringBootApplication</code></em>, not the project root — which is exactly why this chapter's own default-package incident happened, and exactly why every Spring Boot generator (start.spring.io included) places the application class at the top of a real, project-specific package rather than leaving it unpackaged.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>A complete embedded Spring Boot application, measured — no external server, started by <code>java -cp</code>:</strong></p>
 <div class="highlight"><pre><span></span><code>== Starting a Spring Boot application -- no external Tomcat, no WAR, no app-server deployment ==
@@ -11382,7 +11411,7 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.SpringApplication</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="p">;</span>
 
-<span class="nd">@SpringBootApplication</span><span class="w"> </span><span class="c1">// = @Configuration + @EnableAutoConfiguration + @ComponentScan</span>
+<span class="nd">@SpringBootApplication</span><span class="w"> </span><span class="c1">// = @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan (Core Concepts, above)</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmbeddedServerDemo</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">EmbeddedServerDemo</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
@@ -11556,6 +11585,16 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <p><strong>Likely follow-ups.</strong> "What's a real operational consequence of the application and the server sharing one process?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: no real mechanism named. 3: correctly explains the embedded, application-owned server model. 5: correct explanation plus a real operational consequence of the shared-process model.</p>
 <p><strong>Related references.</strong> <a href="#internal-implementation">§ Internal Implementation</a>; <a href="#core-concepts">§ Core Concepts</a>.</p>
+<h3 id="question-3-springbootapplication-is-a-meta-annotation-for-three-other-annotations-what-are-they-and-what-does-each-one-actually-do">Question 3 — <code>@SpringBootApplication</code> is a meta-annotation for three other annotations. What are they, and what does each one actually do?<a class="headerlink" href="#question-3-springbootapplication-is-a-meta-annotation-for-three-other-annotations-what-are-they-and-what-does-each-one-actually-do" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Almost every Java backend candidate has typed <code>@SpringBootApplication</code> hundreds of times without ever being asked to unpack it — a fast, discriminating check for whether "I know it bootstraps the app" is the ceiling of a candidate's understanding, or whether they can name the three independent mechanisms actually doing the work.</p>
+<p><strong>Expected answer.</strong> <code>@SpringBootConfiguration</code> (itself meta-annotated <code>@Configuration</code>) marks the class as a bean-definition source, and specifically as <em>the</em> class Spring Boot tooling (like <code>@SpringBootTest</code>) searches for. <code>@EnableAutoConfiguration</code> triggers auto-configuration — reading the candidate auto-configuration class list and evaluating each one's conditions against the classpath and already-defined beans. <code>@ComponentScan</code> scans the annotated class's own package (and sub-packages) for <code>@Component</code>-and-stereotype-annotated classes and registers them as beans.</p>
+<p><strong>Minimum acceptable answer.</strong> Names at least two of the three correctly, even without precise detail on what each does mechanically.</p>
+<p><strong>Strong Senior answer.</strong> Names all three correctly and states specifically that <code>@ComponentScan</code>'s starting point is the annotated class's <em>own package</em> — not the project root.</p>
+<p><strong>Staff-level extension.</strong> Connects the component-scan starting-point detail to this chapter's own real, documented default-package incident (<code>NoClassDefFoundError</code> from scanning the entire classpath), and explains why <code>@SpringBootConfiguration</code> exists as its own distinct annotation rather than just reusing plain <code>@Configuration</code> — so tooling has one unambiguous class to search for in an application that may define many <code>@Configuration</code> classes.</p>
+<p><strong>Common mistakes.</strong> Treating <code>@SpringBootApplication</code> as one indivisible, unanalyzable unit of "Spring magic" rather than three separable, individually well-defined annotations; confusing <code>@SpringBootConfiguration</code> with plain <code>@Configuration</code> as if they were unrelated.</p>
+<p><strong>Likely follow-ups.</strong> "What would break if you replaced <code>@SpringBootApplication</code> with plain <code>@Configuration</code> on your entry-point class?" (Auto-configuration and component scanning would both stop happening — no starters would activate anything, and no <code>@Component</code>/<code>@Service</code>/<code>@RestController</code> classes would ever be discovered.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know it's a composed annotation at all. 3: correctly names all three components. 5: correct components plus the component-scan scoping detail and its real-incident connection.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a> — "<code>@SpringBootApplication</code> is three real annotations composed into one."</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Spring Boot is not a separate framework — it's an opinionated assembler built on Spring Framework's own ordinary mechanisms (<code>@Configuration</code>, <code>@Bean</code>, <code>@Conditional</code>), adding starters (classpath-changing dependency bundles), auto-configuration (conditional beans reacting to that classpath and to what the application has already defined), and an embedded, application-owned server. This chapter measured both central mechanisms directly: a complete web application, embedded server included, served a real HTTP request from a single <code>java -cp</code> command with no external deployment step, and Spring Boot's own real conditions-evaluation report showed exactly which of 245 evaluated auto-configuration classes matched (77) and which didn't (168), each for a specific, logged, classpath-driven reason.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -11565,6 +11604,7 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <li><code>@ConditionalOnMissingBean</code> means defining your own bean silently and correctly suppresses the matching auto-configured default — no explicit exclusion needed.</li>
 <li>The embedded server model means the application starts and owns its own server process — <code>java -jar</code>/<code>java -cp</code> is the complete deployment story.</li>
 <li><code>--debug</code> shows Spring Boot's real, specific reasoning for every auto-configuration decision — use it instead of guessing.</li>
+<li><code>@SpringBootApplication</code> = <code>@SpringBootConfiguration</code> (bean-definition source, findable by tooling) + <code>@EnableAutoConfiguration</code> (triggers auto-configuration) + <code>@ComponentScan</code> (scans this class's own package and below) — three separable mechanisms, not one indivisible unit.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -11594,6 +11634,14 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <tr>
 <td>How is a Spring Boot app deployed by default?</td>
 <td><code>java -jar</code>/<code>java -cp</code> — an embedded server, no external app-server installation</td>
+</tr>
+<tr>
+<td>What are the 3 annotations composing <code>@SpringBootApplication</code>?</td>
+<td><code>@SpringBootConfiguration</code> + <code>@EnableAutoConfiguration</code> + <code>@ComponentScan</code></td>
+</tr>
+<tr>
+<td>Where does <code>@ComponentScan</code> start scanning from?</td>
+<td>The annotated class's own package — never the default (unpackaged) package</td>
 </tr>
 </tbody>
 </table>
@@ -11631,6 +11679,28 @@ The mechanism behind "Boot doesn't need to be disabled, just told what you want 
 Reaching for <code>@SpringBootApplication(exclude = ...)</code> reflexively when defining a competing bean is usually simpler.</p>
 <p><strong>Related:</strong>
 <a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-the-three-annotations-inside-springbootapplication">Card: The three annotations inside @SpringBootApplication<a class="headerlink" href="#card-the-three-annotations-inside-springbootapplication" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+<code>@SpringBootApplication</code> is a meta-annotation for which three annotations, and what does each one do?</p>
+<p><strong>Answer:</strong>
+<code>@SpringBootConfiguration</code> (bean-definition source, and the specific class tooling like <code>@SpringBootTest</code> searches for), <code>@EnableAutoConfiguration</code> (triggers auto-configuration's conditional evaluation of every candidate class), and <code>@ComponentScan</code> (scans the annotated class's own package and sub-packages for <code>@Component</code>-and-stereotype classes).</p>
+<p><strong>Why it matters:</strong>
+A near-universal warm-up question with an actual, learnable answer most candidates never bother learning, despite typing the annotation constantly.</p>
+<p><strong>Common trap:</strong>
+Treating <code>@SpringBootApplication</code> as one indivisible unit of "magic" instead of three separable, individually well-defined mechanisms.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a> — "<code>@SpringBootApplication</code> is three real annotations composed into one."</p>
+<h3 id="card-where-componentscan-actually-starts-scanning">Card: Where @ComponentScan actually starts scanning<a class="headerlink" href="#card-where-componentscan-actually-starts-scanning" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+When <code>@SpringBootApplication</code> triggers component scanning, where does it start scanning from?</p>
+<p><strong>Answer:</strong>
+The annotated class's own package, and every sub-package beneath it — not the project root, and not the whole classpath (unless the class has no package at all, the default-package case).</p>
+<p><strong>Why it matters:</strong>
+Directly explains this chapter's own real, documented <code>NoClassDefFoundError</code> incident — placing the application class in the default package makes component scanning cover the entire classpath, including internal auto-configuration classes never meant to be scanned.</p>
+<p><strong>Common trap:</strong>
+Assuming component scanning always covers the whole project regardless of where the application class lives.</p>
+<p><strong>Related:</strong>
+<a href="#internal-implementation">Internal Implementation</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reproduce both measured traces: <a href="../../../practice/java/spring-vs-spring-boot/embedded-server-and-autoconfig/src/demo/EmbeddedServerDemo.java"><code>EmbeddedServerDemo.java</code></a> and <a href="../../../practice/java/spring-vs-spring-boot/embedded-server-and-autoconfig/src/demo/AutoConfigReportDemo.java"><code>AutoConfigReportDemo.java</code></a> (run <code>fetch-deps.sh</code> first).</li>
@@ -11670,7 +11740,7 @@ Reaching for <code>@SpringBootApplication(exclude = ...)</code> reflexively when
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 9, 2026 04:25:15 UTC">September 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 18:13:34 UTC">September 14, 2026</span>
   </span>
 
     

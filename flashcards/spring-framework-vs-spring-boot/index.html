@@ -6836,6 +6836,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#card-the-three-annotations-inside-springbootapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The three annotations inside @SpringBootApplication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-where-componentscan-actually-starts-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Where @ComponentScan actually starts scanning
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8022,6 +8044,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#card-the-three-annotations-inside-springbootapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The three annotations inside @SpringBootApplication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-where-componentscan-actually-starts-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Where @ComponentScan actually starts scanning
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8137,6 +8181,28 @@ The mechanism behind "Boot doesn't need to be disabled, just told what you want 
 Reaching for <code>@SpringBootApplication(exclude = ...)</code> reflexively when defining a competing bean is usually simpler.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/05-spring/spring-framework-vs-spring-boot/#core-concepts">Core Concepts</a></p>
+<h2 id="card-the-three-annotations-inside-springbootapplication">Card: The three annotations inside @SpringBootApplication<a class="headerlink" href="#card-the-three-annotations-inside-springbootapplication" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+<code>@SpringBootApplication</code> is a meta-annotation for which three annotations, and what does each one do?</p>
+<p><strong>Answer:</strong>
+<code>@SpringBootConfiguration</code> (bean-definition source, and the specific class tooling like <code>@SpringBootTest</code> searches for), <code>@EnableAutoConfiguration</code> (triggers auto-configuration's conditional evaluation), and <code>@ComponentScan</code> (scans the annotated class's own package and sub-packages for <code>@Component</code>/stereotype classes).</p>
+<p><strong>Why it matters:</strong>
+A near-universal warm-up question with an actual, learnable answer most candidates never bother learning despite typing the annotation constantly.</p>
+<p><strong>Common trap:</strong>
+Treating <code>@SpringBootApplication</code> as one indivisible unit of "magic" instead of three separable mechanisms.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/spring-framework-vs-spring-boot/#core-concepts">Core Concepts</a></p>
+<h2 id="card-where-componentscan-actually-starts-scanning">Card: Where @ComponentScan actually starts scanning<a class="headerlink" href="#card-where-componentscan-actually-starts-scanning" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+When <code>@SpringBootApplication</code> triggers component scanning, where does it start scanning from?</p>
+<p><strong>Answer:</strong>
+The annotated class's own package, and every sub-package beneath it — never the project root, and never the whole classpath unless the class has no package at all.</p>
+<p><strong>Why it matters:</strong>
+Directly explains this chapter's own real, documented <code>NoClassDefFoundError</code> incident from placing the application class in the default package.</p>
+<p><strong>Common trap:</strong>
+Assuming component scanning always covers the whole project regardless of where the application class lives.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/spring-framework-vs-spring-boot/#internal-implementation">Internal Implementation</a></p>
 
 
 
@@ -8157,7 +8223,7 @@ Reaching for <code>@SpringBootApplication(exclude = ...)</code> reflexively when
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 18:13:34 UTC">September 14, 2026</span>
   </span>
 
     
