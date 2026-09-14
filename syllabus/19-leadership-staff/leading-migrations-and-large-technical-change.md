@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 19-leadership-staff
 topic_id: T-1903
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - cross-team-influence-without-authority.md
@@ -24,7 +24,7 @@ source_history: []
 
 # Leading Migrations and Large-Scale Technical Change
 
-Assigned **T-1903** in this domain's reserved `T-1900`–`T-1999` range. This chapter deliberately does **not** duplicate [Strangler Fig and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md), which owns the *technical* mechanics of a migration — the strangler-fig pattern, dual-write and dark-launch techniques, cutover strategies. This chapter assumes that technical skill and covers the layer above it: the organizational and communication work of actually driving a multi-team, multi-quarter migration to completion — sequencing, stakeholder alignment, status communication, and the specific failure mode of a migration that stalls at 90% complete. It is also the engineering-practice counterpart to [Migrations and Large Technical Change](../20-interview-preparation/behavioral/10-migrations-and-large-technical-change.md), which teaches how to narrate a migration story in an interview.
+Assigned **T-1903** in this domain's reserved `T-1900`–`T-1999` range. This chapter deliberately does **not** duplicate [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md), which owns the *technical* mechanics of a migration — the strangler-fig pattern, dual-write and dark-launch techniques, cutover strategies. This chapter assumes that technical skill and covers the layer above it: the organizational and communication work of actually driving a multi-team, multi-quarter migration to completion — sequencing, stakeholder alignment, status communication, and the specific failure mode of a migration that stalls at 90% complete. It is also the engineering-practice counterpart to [Migrations and Large Technical Change](../20-interview-preparation/behavioral/10-migrations-and-large-technical-change.md), which teaches how to narrate a migration story in an interview.
 
 ## 1. Why This Matters
 
@@ -59,7 +59,7 @@ The shape, not just the existence, of this curve is the planning insight: the st
 
 ## 4. Core Concepts (L2)
 
-**Expand-contract (also called parallel change)** is the standard pattern for making a breaking change safely across many callers without a single flag-day cutover: first *expand* the system to support both the old and new interface simultaneously, migrate callers one at a time onto the new interface while the old one still works, then *contract* by removing the old interface only once every caller has moved. The technical mechanics of this belong to [Strangler Fig and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md); the leadership concept that matters here is that the *contract* phase is where migrations actually die — once the expand phase has made the new path available and most callers have moved, there is no more forcing function compelling the last stragglers to move, and removing the old path (the only step that actually finishes the migration and captures its promised benefit, such as deleting the old code path or decommissioning old infrastructure) requires deliberate, continued push.
+**Expand-contract (also called parallel change)** is the standard pattern for making a breaking change safely across many callers without a single flag-day cutover: first *expand* the system to support both the old and new interface simultaneously, migrate callers one at a time onto the new interface while the old one still works, then *contract* by removing the old interface only once every caller has moved. The technical mechanics of this belong to [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md); the leadership concept that matters here is that the *contract* phase is where migrations actually die — once the expand phase has made the new path available and most callers have moved, there is no more forcing function compelling the last stragglers to move, and removing the old path (the only step that actually finishes the migration and captures its promised benefit, such as deleting the old code path or decommissioning old infrastructure) requires deliberate, continued push.
 
 **A visible, shared tracking artifact is a leadership tool, not just a status report.** A dashboard or tracked list showing exactly which callers have migrated and which haven't converts an invisible, easy-to-deprioritize background task into a concrete, comparably-visible piece of work — teams that can see they are the last remaining unmigrated caller on a shared list behave differently than teams who have no visibility into how their inaction compares to everyone else's progress.
 
@@ -191,7 +191,7 @@ Design the leadership plan around this chapter's two core levers explicitly: bef
 ## 19. Further Reading
 
 - *The Mythical Man-Month*, Fred Brooks — the coordination-overhead argument referenced in Section 5.
-- Expand-contract / parallel change — a widely documented pattern (see also [Strangler Fig and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) for its technical mechanics) referenced in Section 4.
+- Expand-contract / parallel change — a widely documented pattern (see also [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) for its technical mechanics) referenced in Section 4.
 - [Migrations and Large Technical Change](../20-interview-preparation/behavioral/10-migrations-and-large-technical-change.md) — the interview-application sibling to this chapter.
 
 ## 20. Mastery Checklist

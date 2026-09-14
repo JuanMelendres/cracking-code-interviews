@@ -1440,6 +1440,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `19-leadership-staff` (19th domain), one recurring link fix
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (19th domain, 7 chapters, via two parallel background agents). 6 of 7 chapters verified fully clean — external citations (Google SRE book, Google re:Work) verified live, every scenario correctly labeled representative/illustrative per the Behavioral Handbook Standard.
+- `leading-migrations-and-large-technical-change.md`: fixed 3 occurrences of a link-text/href mismatch (stale chapter title, missing "Anti-Corruption Layer" from the real title).
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `18-engineering-practices` (18th domain), one typo fixed
 
 ### Fixed
