@@ -3291,3 +3291,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **787 real questions across 11 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `13-observability`, 24 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/13-observability.md`. 5 chapters yielded 10 deep questions + 14 quick-fire questions = **24 real questions**. No Junior Fundamentals chapter in this domain; genuinely the smallest domain covered so far after `04-software-design` (only 5 canonical chapters).
+- **811 real questions across 12 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
