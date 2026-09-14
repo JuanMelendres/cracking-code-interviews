@@ -3284,3 +3284,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **741 real questions across 10 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `12-security`, 46 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/12-security.md`. 9 chapters yielded 18 deep questions + 28 quick-fire questions = **46 real questions**. No Junior Fundamentals chapter in this domain. 8 of 9 chapters use a plain-bold-question Flashcards format (`**Q: ...** / A: ...`) instead of the `### Card:` template; 8 of 9 deep-question chapters lack an explicit "Minimum acceptable answer" tier, so Junior/Mid was honestly derived from each question's own "Common mistakes" field, same derivation method as `03-data-structures-algorithms`.
+- **787 real questions across 11 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
