@@ -1297,6 +1297,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Interview Question Bank: `20-interview-preparation`, 28 real questions
+
+### Added
+
+- New `question-bank/20-interview-preparation.md`, the self-referential domain where the compendium itself lives. Scope decision: the 15 numbered `behavioral/` chapters plus README use the Behavioral Handbook template with no `## Interview Questions` section, so nothing to mine; the 6 "interview craft" chapters (loop structures, coding communication protocol, both system-design delivery chapters, both technical-answers chapters) use the standard template and were mined normally. `mock-interviews/` and `company-prep/` stayed unmined (reference-only/private). 6 chapters yielded 12 deep questions + 16 quick-fire questions = **28 real questions**. No Junior Fundamentals chapter.
+- **989 real questions across 20 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

@@ -3347,3 +3347,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **961 real questions across 19 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `20-interview-preparation`, 28 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/20-interview-preparation.md`, the self-referential domain (where the compendium itself lives). Deliberate scope decision: the 15 numbered `behavioral/` chapters plus README use the Behavioral Handbook template with no `## Interview Questions` section at all, so nothing to mine there; the 6 "interview craft" chapters (`behavioral/company-loop-structures-and-question-pattern-recognition.md`, `coding/coding-interview-communication-protocol.md`, both `system-design/` chapters, both `technical-answers/` chapters) use the standard template and were mined normally. `mock-interviews/` and `company-prep/` stayed unmined (reference-only/private, per this domain's own `INDEX.md`). 6 chapters yielded 12 deep questions + 16 quick-fire questions = **28 real questions**. No Junior Fundamentals chapter — this material targets Senior/Staff interview delivery specifically.
+- **989 real questions across 20 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
