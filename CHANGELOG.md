@@ -3333,3 +3333,10 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **939 real questions across 17 of 22 domains so far.**
 - Updated `syllabus/20-interview-preparation/INDEX.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
+### Added (Interview Question Bank — `19-leadership-staff`, 12 real questions)
+
+- New `syllabus/20-interview-preparation/question-bank/19-leadership-staff.md`. 7 chapters yielded 12 deep questions = **12 real questions**. No Junior Fundamentals chapter (inherently Senior/Staff-scoped material). All 7 chapters use the older numbered `## 15. Interview Questions` template with **no Flashcards section at all** — no quick-fire layer exists to mine in this domain.
+- **951 real questions across 18 of 22 domains so far.**
+- Updated `syllabus/20-interview-preparation/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
