@@ -10047,61 +10047,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#card-why-typescript-catches-the-same-bug-javascript-misses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Why TypeScript catches the same bug JavaScript misses
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-structural-typing-in-one-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Structural typing in one example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-any-vs-unknown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: any vs unknown
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-what-a-discriminated-union-enforces-that-an-optional-field-doesnt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: What a discriminated union enforces that an optional field doesn't
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-what-generics-buy-you-over-any" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: What generics buy you over any
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#practice-exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11090,61 +11035,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#card-why-typescript-catches-the-same-bug-javascript-misses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Why TypeScript catches the same bug JavaScript misses
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-structural-typing-in-one-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Structural typing in one example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-any-vs-unknown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: any vs unknown
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-what-a-discriminated-union-enforces-that-an-optional-field-doesnt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: What a discriminated union enforces that an optional field doesn't
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-what-generics-buy-you-over-any" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: What generics buy you over any
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#practice-exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11504,7 +11394,7 @@
 <li><strong><code>readonly</code></strong> → compile-time only; not equivalent to <code>Object.freeze()</code>.</li>
 </ul>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h2 id="card-why-typescript-catches-the-same-bug-javascript-misses">Card: Why TypeScript catches the same bug JavaScript misses<a class="headerlink" href="#card-why-typescript-catches-the-same-bug-javascript-misses" title="Permanent link">&para;</a></h2>
+<h3 id="card-why-typescript-catches-the-same-bug-javascript-misses">Card: Why TypeScript catches the same bug JavaScript misses<a class="headerlink" href="#card-why-typescript-catches-the-same-bug-javascript-misses" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 <code>formatPrice(amount)</code> calls <code>amount.toFixed(2)</code>. In plain JavaScript, calling <code>formatPrice("19.99")</code> crashes at runtime. What happens in TypeScript, and why?</p>
 <p><strong>Answer:</strong>
@@ -11515,7 +11405,7 @@ Verified directly: the identical mistake produces a real captured runtime <code>
 Describing TypeScript as "safer" without being able to point to a specific bug class and a specific mechanism.</p>
 <p><strong>Related:</strong>
 [[typescript-fundamentals-types-interfaces-and-generics]]</p>
-<h2 id="card-structural-typing-in-one-example">Card: Structural typing in one example<a class="headerlink" href="#card-structural-typing-in-one-example" title="Permanent link">&para;</a></h2>
+<h3 id="card-structural-typing-in-one-example">Card: Structural typing in one example<a class="headerlink" href="#card-structural-typing-in-one-example" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 <code>Point { x: number; y: number }</code> and <code>Coordinate { x: number; y: number }</code> are declared with no relationship to each other. Is a <code>Coordinate</code> value assignable to a <code>Point</code>-typed variable?</p>
 <p><strong>Answer:</strong>
@@ -11526,7 +11416,7 @@ This is the single biggest mental-model difference from nominally-typed language
 Assuming two types need a declared relationship (inheritance, a shared interface) to be assignable to each other.</p>
 <p><strong>Related:</strong>
 [[typescript-fundamentals-types-interfaces-and-generics]]</p>
-<h2 id="card-any-vs-unknown">Card: <code>any</code> vs <code>unknown</code><a class="headerlink" href="#card-any-vs-unknown" title="Permanent link">&para;</a></h2>
+<h3 id="card-any-vs-unknown">Card: <code>any</code> vs <code>unknown</code><a class="headerlink" href="#card-any-vs-unknown" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 Both <code>any</code> and <code>unknown</code> accept any value. What's the practical difference?</p>
 <p><strong>Answer:</strong>
@@ -11537,7 +11427,7 @@ Both <code>any</code> and <code>unknown</code> accept any value. What's the prac
 Treating <code>any</code> and <code>unknown</code> as interchangeable "flexible" types.</p>
 <p><strong>Related:</strong>
 [[typescript-fundamentals-types-interfaces-and-generics]]</p>
-<h2 id="card-what-a-discriminated-union-enforces-that-an-optional-field-doesnt">Card: What a discriminated union enforces that an optional field doesn't<a class="headerlink" href="#card-what-a-discriminated-union-enforces-that-an-optional-field-doesnt" title="Permanent link">&para;</a></h2>
+<h3 id="card-what-a-discriminated-union-enforces-that-an-optional-field-doesnt">Card: What a discriminated union enforces that an optional field doesn't<a class="headerlink" href="#card-what-a-discriminated-union-enforces-that-an-optional-field-doesnt" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 Why is <code>{ variant: 'error'; onRetry: () =&gt; void } | { variant: 'info' }</code> (a discriminated union) stronger than <code>{ variant: 'error' | 'info'; onRetry?: () =&gt; void }</code> (one interface with an optional field)?</p>
 <p><strong>Answer:</strong>
@@ -11548,7 +11438,7 @@ This exact pattern is the mechanism <a href="../react-typescript/">TypeScript wi
 Reaching for a pile of optional fields with runtime <code>if</code>-checks instead of modeling the real constraint at the type level.</p>
 <p><strong>Related:</strong>
 [[typescript-fundamentals-types-interfaces-and-generics]]</p>
-<h2 id="card-what-generics-buy-you-over-any">Card: What generics buy you over <code>any</code><a class="headerlink" href="#card-what-generics-buy-you-over-any" title="Permanent link">&para;</a></h2>
+<h3 id="card-what-generics-buy-you-over-any">Card: What generics buy you over <code>any</code><a class="headerlink" href="#card-what-generics-buy-you-over-any" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 <code>function identity&lt;T&gt;(value: T): T</code> vs. <code>function identity(value: any): any</code> — both accept any argument. What's the real difference?</p>
 <p><strong>Answer:</strong>
@@ -11601,7 +11491,7 @@ Treating <code>&lt;T&gt;</code> and <code>any</code> as interchangeable ways to 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:48:50 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:58:38 UTC">September 14, 2026</span>
   </span>
 
     

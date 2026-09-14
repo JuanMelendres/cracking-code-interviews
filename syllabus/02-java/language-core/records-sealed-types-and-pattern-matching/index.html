@@ -2403,28 +2403,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#card-record-hashcode-formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Record hashCode formula
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-sealed-exhaustiveness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Sealed exhaustiveness
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#practice-exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11903,28 +11881,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#card-record-hashcode-formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Record hashCode formula
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#card-sealed-exhaustiveness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Card: Sealed exhaustiveness
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#practice-exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12362,7 +12318,7 @@ Independently derived hash matches: false      // p1.hashCode() != Objects.hash(
 <li><strong>Exhaustiveness</strong> requires the switch selector's type to be sealed (or an enum) and every permitted subtype/enum constant to have a case, or a <code>default</code>.</li>
 </ul>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h2 id="card-record-hashcode-formula">Card: Record hashCode formula<a class="headerlink" href="#card-record-hashcode-formula" title="Permanent link">&para;</a></h2>
+<h3 id="card-record-hashcode-formula">Card: Record hashCode formula<a class="headerlink" href="#card-record-hashcode-formula" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 Does a record's generated <code>hashCode()</code> equal <code>Objects.hash()</code> of its components?</p>
 <p><strong>Answer:</strong>
@@ -12373,7 +12329,7 @@ A common but incorrect interview claim; testable via a two-line demo.</p>
 Assuming record internals mirror IDE-generated <code>equals</code>/<code>hashCode</code>.</p>
 <p><strong>Related:</strong>
 [[records-sealed-types-and-pattern-matching]]</p>
-<h2 id="card-sealed-exhaustiveness">Card: Sealed exhaustiveness<a class="headerlink" href="#card-sealed-exhaustiveness" title="Permanent link">&para;</a></h2>
+<h3 id="card-sealed-exhaustiveness">Card: Sealed exhaustiveness<a class="headerlink" href="#card-sealed-exhaustiveness" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 Why doesn't a switch over a sealed interface need a <code>default</code> branch?</p>
 <p><strong>Answer:</strong>
@@ -12427,7 +12383,7 @@ Adding <code>default</code> "just in case," which silently defeats the exhaustiv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 7, 2026 21:19:15 UTC">September 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:56:53 UTC">September 14, 2026</span>
   </span>
 
     
