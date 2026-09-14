@@ -6904,6 +6904,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Profiles: the Concrete Spring Boot Implementation of This Precedence Story
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#production-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10969,6 +10980,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Profiles: the Concrete Spring Boot Implementation of This Precedence Story
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#production-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11299,6 +11321,7 @@ clear startup failure for the identical missing config value.</p>
 <li><a href="#internal-implementation">Internal Implementation</a></li>
 <li><a href="#diagrams">Diagrams</a></li>
 <li><a href="#java-examples">Java Examples</a></li>
+<li><a href="#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story">Spring Profiles</a></li>
 <li><a href="#production-scenarios">Production Scenarios</a></li>
 <li><a href="#failure-modes-and-debugging">Failure Modes and Debugging</a></li>
 <li><a href="#trade-offs">Trade-offs</a></li>
@@ -11446,6 +11469,95 @@ Real failure, deep in business logic, minutes/hours after startup:
 Real startup failure -- BEFORE the app ever accepts a single request:
   Missing required config key 'database.url' -- refusing to start. Set it via config file, an APP_DATABASE_URL environment variable, or --database.url=... on the command line.
 </code></pre></div>
+<h2 id="spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story">Spring Profiles: the Concrete Spring Boot Implementation of This Precedence Story<a class="headerlink" href="#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story" title="Permanent link">&para;</a></h2>
+<p>Everything above describes the general precedence mechanism from first principles; <strong>Spring Profiles are Spring Boot's own, concrete implementation of "different config per environment" using exactly this layering.</strong> A <strong>profile</strong> is a named label (<code>dev</code>, <code>staging</code>, <code>prod</code>, or any string a team chooses) that controls two things at once: which beans get created, and which config values get loaded.</p>
+<p><strong><code>@Profile</code> on a bean restricts it to specific profiles.</strong> A <code>@Configuration</code> or <code>@Component</code> class (or an individual <code>@Bean</code> method) annotated <code>@Profile("dev")</code> is only registered in the application context when the <code>dev</code> profile is active; it's simply skipped otherwise. This is the standard mechanism for swapping an implementation per environment — a real payment gateway client active under <code>@Profile("prod")</code>, a mock/sandbox one active under <code>@Profile("dev")</code>, both implementing the same interface, with the application code that depends on that interface never needing to know which one is actually wired in.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"dev"</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">DevMailConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="n">JavaMailSender</span><span class="w"> </span><span class="nf">mailSender</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MockMailSender</span><span class="p">();</span><span class="w"> </span><span class="c1">// logs instead of actually sending</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"prod"</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">ProdMailConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="n">JavaMailSender</span><span class="w"> </span><span class="nf">mailSender</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SmtpMailSender</span><span class="p">(</span><span class="n">realSmtpHost</span><span class="p">);</span><span class="w"> </span><span class="c1">// actually sends</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Which profile is active is set exactly through this chapter's own precedence layers</strong> — a real, direct instance of the mechanism already measured above, not a separate, unrelated system:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Example</th>
+<th>Precedence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>application.yml</code> default</td>
+<td><code>spring.profiles.active: dev</code></td>
+<td>Lowest — a fallback for local development</td>
+</tr>
+<tr>
+<td>Environment variable</td>
+<td><code>SPRING_PROFILES_ACTIVE=prod</code></td>
+<td>Overrides the file — the standard way a container/orchestrator sets it</td>
+</tr>
+<tr>
+<td>JVM system property</td>
+<td><code>-Dspring.profiles.active=prod</code></td>
+<td>Overrides the environment variable</td>
+</tr>
+<tr>
+<td>Command-line argument</td>
+<td><code>--spring.profiles.active=prod</code></td>
+<td>Highest — overrides everything else</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Profile-specific YAML files layer on top of the base <code>application.yml</code>, not replace it.</strong> <code>application-prod.yml</code> (or <code>application-prod.properties</code>) is loaded <em>in addition to</em> <code>application.yml</code> whenever the <code>prod</code> profile is active, and any key it defines overrides the same key from the base file — keys the profile-specific file doesn't mention still come from the base file. Spring Boot 2.4+ also supports the same thing inside one file, using <code>---</code> document separators and <code>spring.config.activate.on-profile</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml — base config, always loaded</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">application</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="nt">logging</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+
+<span class="nn">---</span>
+<span class="c1"># This document only activates when "dev" is the active profile</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="w">  </span><span class="nt">datasource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:h2:mem:devdb</span>
+<span class="nt">logging</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+
+<span class="nn">---</span>
+<span class="c1"># This document only activates when "prod" is active</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+<span class="w">  </span><span class="nt">datasource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DATABASE_URL}</span><span class="w">    </span><span class="c1"># injected via environment variable, never hardcoded</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DATABASE_USER}</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DATABASE_PASSWORD}</span>
+</code></pre></div>
+<p><strong>More than one profile can be active simultaneously</strong> — <code>spring.profiles.active: dev,debug-logging</code> activates both; when two active profiles define the same key differently, the one listed later wins. <strong>Profile groups</strong> (<code>spring.profiles.group.production: db-prod, cache-prod, security-prod</code>, Spring Boot 2.4+) let one umbrella profile name activate several underlying profiles together, avoiding a growing, error-prone <code>--spring.profiles.active=a,b,c,d</code> list at every deployment. For tests specifically, <code>@ActiveProfiles("test")</code> on a test class activates a profile the same way a runtime flag would, commonly paired with an <code>application-test.yml</code> pointing at an in-memory database.</p>
+<p><strong>A real, common mistake this precedence layering explains directly</strong>: a value "not taking effect" in <code>application-prod.yml</code> after a change is deployed is almost always this chapter's own Level 2 diagnostic — check whether an environment variable or command-line argument at a higher-precedence layer is silently overriding it, before assuming the YAML edit itself is wrong.</p>
 <h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
 <p><strong>Scenario: a service deployed successfully to production, passed its
 health check, and then failed on its very first real request because a
@@ -11720,6 +11832,15 @@ more official."</p>
 override an environment variable at all?"</p>
 <p><strong>Evaluation criteria.</strong> Correct precedence order (3), operational
 reasoning at Staff level (2).</p>
+<h3 id="question-3-how-would-you-make-one-bean-implementation-active-in-production-and-a-different-one-in-local-development">Question 3: How would you make one bean implementation active in production and a different one in local development?<a class="headerlink" href="#question-3-how-would-you-make-one-bean-implementation-active-in-production-and-a-different-one-in-local-development" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> A direct, practical check for whether a candidate can actually use Spring Profiles, not just define the term — a near-daily real need (a mock vs. real external integration, a different datasource per environment).</p>
+<p><strong>Expected answer.</strong> Annotate each implementation's <code>@Configuration</code>/<code>@Component</code> (or its <code>@Bean</code> method) with <code>@Profile("dev")</code> and <code>@Profile("prod")</code> respectively; only the one matching the currently active profile gets registered in the application context. Set the active profile via <code>spring.profiles.active</code> — in <code>application.yml</code> for a safe local default, overridden by a <code>SPRING_PROFILES_ACTIVE</code> environment variable in a real deployment, following this chapter's own precedence order.</p>
+<p><strong>Minimum acceptable answer.</strong> Knows <code>@Profile</code> exists and roughly what it does, even without precise precedence-order detail for how the active profile gets set.</p>
+<p><strong>Strong Senior answer.</strong> Correctly states that <code>application-{profile}.yml</code> layers on top of (not replaces) the base <code>application.yml</code>, overriding only the keys it defines.</p>
+<p><strong>Staff-level extension.</strong> Names profile groups (<code>spring.profiles.group</code>) as the fix for a growing, error-prone multi-profile activation list at scale, and connects the whole mechanism explicitly back to this chapter's generic precedence story — profiles aren't a separate system, they're Spring Boot's own concrete implementation of it.</p>
+<p><strong>Common mistakes.</strong> Assuming a profile-specific YAML file is a complete, standalone config rather than an override layer on top of the base file.</p>
+<p><strong>Likely follow-ups.</strong> "What happens if two active profiles define the same config key differently?" (The one listed later in <code>spring.profiles.active</code> wins.)</p>
+<p><strong>Evaluation criteria.</strong> Correct <code>@Profile</code> mechanism (2), correct <code>spring.profiles.active</code> precedence (2), correct file-layering behavior at Senior level (1).</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The twelve-factor app methodology's config guidance (Factor III) demands
 strict separation between code and anything that varies between
@@ -11748,6 +11869,7 @@ this register topic.</p>
 <li>A passing health check proves a process is running, not that its
   configuration is complete — the concrete mechanism behind this chapter's
   own production scenario.</li>
+<li>Spring Profiles (<code>@Profile</code>, <code>spring.profiles.active</code>, <code>application-{profile}.yml</code>) are Spring Boot's own concrete implementation of this precedence story, not a separate mechanism.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11761,6 +11883,7 @@ this register topic.</p>
   the process runs.</li>
 <li><strong>Secrets are not plain config</strong> — see the dedicated secrets-management
   chapter.</li>
+<li><strong>Spring Profiles</strong>: <code>@Profile("name")</code> on a bean restricts it to that profile; <code>spring.profiles.active</code> (file &lt; env var &lt; JVM property &lt; CLI arg — this chapter's own precedence order) picks which profile(s) are active; <code>application-{profile}.yml</code> layers on top of the base <code>application.yml</code>, overriding only the keys it defines.</li>
 </ul>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
 <h3 id="card-what-does-factor-iii-actually-require">Card: What does Factor III actually require?<a class="headerlink" href="#card-what-does-factor-iii-actually-require" title="Permanent link">&para;</a></h3>
@@ -11812,6 +11935,17 @@ complete.</p>
 <p><strong>Common trap:</strong>
 Assuming a passing health check is sufficient proof of correct
 configuration.</p>
+<p><strong>Related:</strong>
+[[twelve-factor-config]]</p>
+<h3 id="card-how-do-profile-specific-yaml-files-combine-with-the-base-file">Card: How do profile-specific YAML files combine with the base file?<a class="headerlink" href="#card-how-do-profile-specific-yaml-files-combine-with-the-base-file" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+When the <code>prod</code> profile is active, does <code>application-prod.yml</code> replace <code>application.yml</code>, or combine with it?</p>
+<p><strong>Answer:</strong>
+It combines with it. <code>application.yml</code> always loads; <code>application-prod.yml</code> loads in addition and overrides only the specific keys it defines — any key the profile-specific file doesn't mention still comes from the base file.</p>
+<p><strong>Why it matters:</strong>
+A common, real confusion — assuming the profile file is a complete, standalone config and forgetting a key that's only ever set in the base file.</p>
+<p><strong>Common trap:</strong>
+Duplicating every key into every profile-specific file "to be safe," instead of relying on the override-only-what-differs layering.</p>
 <p><strong>Related:</strong>
 [[twelve-factor-config]]</p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
@@ -11879,7 +12013,7 @@ different packs.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 18:02:43 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 18:10:27 UTC">September 14, 2026</span>
   </span>
 
     

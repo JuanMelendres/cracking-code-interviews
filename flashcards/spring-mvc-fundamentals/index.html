@@ -6898,6 +6898,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-why-spring-boot-maven-plugin-is-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why spring-boot-maven-plugin is required
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-ddl-auto-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: ddl-auto in production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-no-qualifying-bean-startup-failure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8100,6 +8122,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-why-spring-boot-maven-plugin-is-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why spring-boot-maven-plugin is required
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-ddl-auto-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: ddl-auto in production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-no-qualifying-bean-startup-failure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8258,6 +8302,28 @@ The Proxy pattern. Spring wraps the bean in a dynamically-generated proxy; a cal
 Describing <code>@Transactional</code> as if the annotation itself executes logic at runtime — the annotation is just metadata; the proxy is what actually does the work, which is also why calling an <code>@Transactional</code> method from another method in the <em>same</em> class (self-invocation) bypasses the proxy entirely.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/05-spring/spring-mvc-fundamentals/">Spring MVC Fundamentals</a>, <a href="../../syllabus/05-spring/transactional-proxy-mechanics-and-propagation/">Transactional Proxy Mechanics and Propagation</a></p>
+<h2 id="card-why-spring-boot-maven-plugin-is-required">Card: Why spring-boot-maven-plugin is required<a class="headerlink" href="#card-why-spring-boot-maven-plugin-is-required" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What actually breaks if <code>spring-boot-maven-plugin</code> is missing from a Spring Boot project's <code>pom.xml</code>?</p>
+<p><strong>Answer:</strong>
+<code>mvn package</code> still produces a <code>.jar</code>, but a plain, non-runnable one missing every dependency — the plugin's <code>repackage</code> goal is what bundles every dependency inside it, turning it into a real executable "fat jar" <code>java -jar</code> can actually run.</p>
+<p><strong>Why it matters:</strong>
+A real, concrete "why is this file here" question that separates understanding a Spring Boot project's structure from having only ever clicked "generate" on start.spring.io.</p>
+<p><strong>Common trap:</strong>
+Assuming any Maven <code>&lt;plugin&gt;</code> entry is boilerplate that can be safely deleted if the build "still works" locally in an IDE.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/spring-mvc-fundamentals/">Spring MVC Fundamentals</a></p>
+<h2 id="card-ddl-auto-in-production">Card: ddl-auto in production<a class="headerlink" href="#card-ddl-auto-in-production" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What's the only safe value for <code>spring.jpa.hibernate.ddl-auto</code> in a real production deployment, and why?</p>
+<p><strong>Answer:</strong>
+<code>validate</code> — it compares entities against the existing schema and fails startup if they disagree, but never modifies the database itself. <code>update</code> and <code>create-drop</code> can silently alter or destroy real data and are for local development only.</p>
+<p><strong>Why it matters:</strong>
+A real, common production-safety question — using <code>update</code> in production is a genuine, documented cause of real data loss incidents.</p>
+<p><strong>Common trap:</strong>
+Leaving a dev-convenient <code>ddl-auto: update</code> unchanged when promoting config toward production.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/spring-mvc-fundamentals/">Spring MVC Fundamentals</a>, <a href="../../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem/">JPA Entity Lifecycle and the N+1 Problem</a></p>
 <h2 id="card-no-qualifying-bean-startup-failure">Card: "No qualifying bean" startup failure<a class="headerlink" href="#card-no-qualifying-bean-startup-failure" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Your app fails to start after adding a second implementation of an interface your controller depends on. Why?</p>
@@ -8289,7 +8355,7 @@ Assuming Spring picks the "first" or "most recent" bean rather than failing outr
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:10:37 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 18:08:27 UTC">September 14, 2026</span>
   </span>
 
     

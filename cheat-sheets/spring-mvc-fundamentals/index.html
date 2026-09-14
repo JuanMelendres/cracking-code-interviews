@@ -6834,6 +6834,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pomxml-essentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pom.xml Essentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applicationyml-essentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        application.yml Essentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8100,6 +8122,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pomxml-essentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pom.xml Essentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applicationyml-essentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        application.yml Essentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8316,6 +8360,68 @@
 </tr>
 </tbody>
 </table>
+<h2 id="pomxml-essentials">pom.xml Essentials<a class="headerlink" href="#pomxml-essentials" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;parent&gt;spring-boot-starter-parent&lt;/parent&gt;</code></td>
+<td>Curated dependency versions (no <code>&lt;version&gt;</code> needed per starter) + default plugin config</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-*</code></td>
+<td>One dependency pulls a coherent, tested bundle (web = Tomcat + MVC + Jackson)</td>
+</tr>
+<tr>
+<td><code>&lt;scope&gt;runtime&lt;/scope&gt;</code></td>
+<td>For the DB driver — needed only when running, not compiling</td>
+</tr>
+<tr>
+<td><code>&lt;scope&gt;test&lt;/scope&gt;</code></td>
+<td>For <code>spring-boot-starter-test</code> — never packaged into the deployed app</td>
+</tr>
+<tr>
+<td><code>spring-boot-maven-plugin</code></td>
+<td>Required for <code>mvn package</code> to produce a real, executable "fat jar"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="applicationyml-essentials">application.yml Essentials<a class="headerlink" href="#applicationyml-essentials" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server.port</code></td>
+<td>Embedded container's listening port (default <code>8080</code>)</td>
+</tr>
+<tr>
+<td><code>spring.application.name</code></td>
+<td>Logical service name — logs, Actuator <code>/info</code>, service discovery</td>
+</tr>
+<tr>
+<td><code>spring.datasource.*</code> + <code>${VAR:default}</code></td>
+<td>JDBC connection, with env-var override and fail-fast on a missing required value (no default)</td>
+</tr>
+<tr>
+<td><code>spring.jpa.hibernate.ddl-auto: validate</code></td>
+<td>The only production-safe value — <code>update</code>/<code>create-drop</code> are dev-only</td>
+</tr>
+<tr>
+<td><code>management.endpoints.web.exposure.include</code></td>
+<td>Explicit allowlist of reachable Actuator endpoints — nothing exposed by default</td>
+</tr>
+</tbody>
+</table>
 <h2 id="common-pitfalls">Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>@PathVariable Long id</code> with no explicit name, compiled without <code>-parameters</code></strong> — a real, genuine <code>500</code> (<code>IllegalArgumentException: Name for argument of type [java.lang.Long] not specified...</code>). Fix: <code>@PathVariable("id") Long id</code>, always.</li>
@@ -8332,6 +8438,8 @@
 <ul>
 <li>syllabus/05-spring/auto-configuration-and-bean-lifecycle.md</li>
 <li>syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md</li>
+<li>syllabus/05-spring/spring-actuator-health-and-observability-hooks.md</li>
+<li>syllabus/15-cloud/twelve-factor-config.md</li>
 <li>syllabus/07-api-design/rest-api-fundamentals.md</li>
 </ul>
 
@@ -8354,7 +8462,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:10:37 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 18:08:27 UTC">September 14, 2026</span>
   </span>
 
     
