@@ -1105,6 +1105,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Re-examined `git-revision-date-localized`'s actual CI conditions rather than trusting the earlier local verification. `actions/checkout@v4` defaults to a shallow (`depth: 1`) clone — confirmed by simulating one locally: `git log` on a known file returned today's date, not its real 2026-09-08 commit. All 1,431 "real-dated" pages would have silently shown the same wrong (latest-push) date instead of the documented, honest build-date fallback for the other 195.
 - Added `fetch-depth: 0` to the checkout step. Verified directly: a full local clone shows the correct real date for the same file.
 
+## [2026-09-13] — `06-databases` content-depth audit: PgBouncer gap found and closed
+
+### Added
+
+- Deep-dive of all 16 `06-databases` chapters against `CLAUDE.md`'s Handbook Writing Standard (the domain picked from the pending content-depth-audit offer). Fully read 7 chapters end to end, verified Definition/Core Concepts/Historical Context on the other 9, confirmed every referenced practice-evidence directory exists. Zero factual errors found — every checked version claim (SSI in PG 9.1, `INCLUDE`/index-only scans in PG 11, JSONB in 9.4, BRIN in 9.5, window functions/recursive CTEs in PG 8.4, no PostgreSQL lock escalation) matched real behavior.
+- One real gap: PgBouncer (database-tier pooling) was absent domain-wide despite [`connection-pooling-and-sizing.md`](../06-databases/connection-pooling-and-sizing.md) (T-607) covering HikariCP (app-tier pooling) in full.
+- Closed by extending T-607: a new PgBouncer subsection (`session`/`transaction`/`statement` pool-mode distinction), backed by a real new lab — [`practice/sql/pgbouncer-transaction-pooling/`](../../practice/sql/pgbouncer-transaction-pooling/README.md), real PgBouncer 1.25.2 + PostgreSQL 16. Proved `pool_mode = transaction`'s real session-state-leak risk directly (two sequential, unrelated clients landed on the identical real backend, PID 79 both times; an unreleased advisory lock silently carried over) and that it still works correctly under genuine concurrency (two clients got two distinct backends, 79 vs. 98; a lock request correctly blocked for a real, measured ~2.96 seconds).
+- Updated the chapter's front matter, Learning Objectives, Cheat Sheet, and 2 new Flashcards (mirrored into `cheat-sheets/` and `flashcards/`). Updated `syllabus/06-databases/INDEX.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

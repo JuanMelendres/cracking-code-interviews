@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: databases
 topic_id: T-607
 canonical: ../syllabus/06-databases/connection-pooling-and-sizing.md
-last_updated: 2026-09-02
+last_updated: 2026-09-13
 ---
 
 # Connection Pooling and Sizing (HikariCP)
@@ -21,6 +21,7 @@ A connection pool amortizes the real cost of opening a database connection (TCP 
 - **Pool exhaustion** — every connection is in use; a new request waits up to `connectionTimeout`, then throws a real, typed `SQLTransientConnectionException` with the pool's exact state embedded.
 - **Leak detection** (`leakDetectionThreshold`) — catches a connection borrowed and never returned, with a real stack trace at the acquisition site; HikariCP enforces a real minimum of 2000ms — anything lower silently disables it.
 - **Bigger-is-not-faster** — sizing beyond the database's real concurrent execution capacity creates contention for finite backend resources, measurably degrading throughput, not just plateauing.
+- **PgBouncer** — a database-tier proxy, complementary to HikariCP (not a substitute): multiplexes many app-instance connections onto few real PostgreSQL backends. `pool_mode = transaction` gives the real multiplexing win but can silently leak session-scoped state (advisory locks, `SET`) across logically unrelated requests reusing the same backend — measured directly.
 
 ## Decision Table
 

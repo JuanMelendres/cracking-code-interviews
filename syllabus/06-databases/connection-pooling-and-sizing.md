@@ -4,8 +4,8 @@ slug: connection-pooling-and-sizing
 document_type: handbook-chapter
 domain: 06-databases
 status: canonical
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-13
 source_history:
   - handbook/databases/connection-pooling-and-sizing.md
 difficulty:
@@ -24,9 +24,12 @@ related:
   - ../05-spring/transactional-proxy-mechanics-and-propagation.md
   - jpa-entity-lifecycle-and-the-n1-problem.md
   - ../../practice/java/databases/connection-pooling-and-sizing/README.md
+  - ../../practice/sql/pgbouncer-transaction-pooling/README.md
 official_references:
   - https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
   - https://github.com/brettwooldridge/HikariCP
+  - https://www.pgbouncer.org/config.html
+  - https://www.pgbouncer.org/features.html
 ---
 
 # Connection Pooling and Sizing (HikariCP)
@@ -39,6 +42,13 @@ official_references:
 > leak-detection stack trace, and real measured throughput across four real pool
 > sizes. Reproducible source:
 > [`practice/java/databases/connection-pooling-and-sizing/`](../../practice/java/databases/connection-pooling-and-sizing/README.md).
+> The PgBouncer section's evidence is likewise real: a real PgBouncer 1.25.2 in
+> `pool_mode = transaction` against the same real PostgreSQL 16, reproducible at
+> [`practice/sql/pgbouncer-transaction-pooling/`](../../practice/sql/pgbouncer-transaction-pooling/README.md).
+> Added 2026-09-13 after a content-depth audit found application-side pooling
+> (HikariCP) covered in full but PgBouncer — the standard database-tier
+> complement, and a common interview follow-up to "how do you pool
+> connections" — absent from the entire syllabus.
 
 > **Closes another open forward reference.** [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
 > and [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](../05-spring/transactional-proxy-mechanics-and-propagation.md)
@@ -90,6 +100,9 @@ After this chapter you should be able to:
   and can measurably be slower.
 - Size a connection pool from the database's actual concurrent execution capacity,
   not from client-side thread count.
+- Explain why PgBouncer solves a different scaling problem than HikariCP, and name
+  the real, reproducible session-state-leak risk PgBouncer's `transaction` pooling
+  mode carries.
 
 ## Why This Matters in Interviews
 
@@ -161,6 +174,59 @@ resources efficiently, and sizing exists because "efficiently" has a real ceilin
   measurement is the concrete evidence: once pool size exceeds the database's real
   concurrent execution capacity, throughput measurably *degrades*, not just
   plateaus.
+
+### PgBouncer: pooling at the database tier, not just the JVM
+
+Everything above is **application-side** pooling — HikariCP pools connections
+*within one JVM process*. The moment a system runs more than one instance of that
+process (the normal case for any horizontally scaled backend), each instance's
+HikariCP pool is independent, and PostgreSQL sees the *sum* of every instance's
+pool size as real, concurrent backend connections — each of which costs PostgreSQL
+real memory (PostgreSQL's per-connection process model means every connection is a
+full OS process, not a lightweight thread), whether or not that connection is
+actively doing work at any given moment.
+
+**PgBouncer** solves a different problem than HikariCP: it sits *between* every
+application instance and PostgreSQL as a lightweight proxy, multiplexing many
+client connections (from many app instances, potentially thousands) onto a much
+smaller, fixed pool of real PostgreSQL backend connections. The two are
+complementary, not competing — a typical production topology runs HikariCP inside
+each JVM instance *and* PgBouncer in front of the database, because they solve
+different scaling problems at different layers.
+
+PgBouncer's `pool_mode` setting controls exactly *when* a client's real backend
+connection is returned to the shared pool:
+
+| Mode | Backend connection returned to pool | Session-scoped state (advisory locks, `SET`, temp tables, prepared statements) |
+|---|---|---|
+| `session` | When the client disconnects | Safe — behaves like a direct connection |
+| `transaction` | After every `COMMIT`/`ROLLBACK` | **Not safe by default** — see below, real evidence |
+| `statement` | After every statement (no multi-statement transactions) | Not safe; rarely used outside pure read-only workloads |
+
+`transaction` mode is the one that actually delivers PgBouncer's real value
+(far higher connection multiplexing than `session` mode, since a connection is
+freed the instant a transaction ends rather than held for a client's entire
+lifetime) — and it is also the one with a genuinely surprising, easy-to-miss
+correctness trap: **a real, reproducible session-state leak.**
+
+**Real, measured proof.** Two sequential `psql` clients, connecting through a real
+PgBouncer 1.25.2 in `pool_mode = transaction` with no concurrent demand on the pool,
+land on the *exact same* real PostgreSQL backend connection (`pg_backend_pid()`
+returned `79` for both). The first "session" takes `pg_advisory_lock(42)` and never
+explicitly releases it before "ending its session." The second, logically unrelated
+client's `pg_try_advisory_lock(42)` succeeds instantly — not because the lock was
+released, but because it is, in reality, the *same* PostgreSQL session silently
+re-acquiring a lock it already holds. Reproducible source and full output:
+[`practice/sql/pgbouncer-transaction-pooling/`](../../practice/sql/pgbouncer-transaction-pooling/README.md).
+
+The same evidence also confirms what still works correctly: under **genuine**
+concurrency (two clients connected at the same real moment), PgBouncer opens a
+*second*, genuinely distinct backend connection (PID `98`, different from the
+first client's `79`), and a lock request from the second client correctly blocked
+for a real, measured ~2.96 seconds until the first client's transaction released
+it. The risk is specifically about session-scoped state silently surviving across
+what the *application* believes are two unrelated sessions — not about transaction
+pooling breaking correctness under real concurrent load.
 
 ## Internal Implementation
 
@@ -516,8 +582,61 @@ rather than adding real, usable concurrency.
   correctly-sized pool beat an 8x-larger one by more than 2x.
 - **Size the pool to database capacity**, not application thread count.
 - **Never** hold a connection/transaction across a slow external call.
+- **PgBouncer** pools at the database tier (many app instances → few real
+  backends); HikariCP pools per-JVM — use both together, not as alternatives.
+- **`pool_mode = transaction`**: real multiplexing win, but session-scoped state
+  (advisory locks, `SET`, temp tables) can silently leak across logically
+  unrelated requests that land on the same reused backend — measured directly.
 
 ## Flashcards
+
+### Card: HikariCP vs. PgBouncer — same problem or different?
+
+**Prompt:**
+Does PgBouncer replace the need for HikariCP, or the other way around?
+
+**Answer:**
+Neither — they solve different problems at different layers. HikariCP pools
+connections within one JVM process; PgBouncer pools at the database tier, letting
+many app instances (each with their own HikariCP pool) share a much smaller set of
+real PostgreSQL backend connections. A typical production topology runs both.
+
+**Why it matters:**
+Confusing the two as competing solutions to the same problem is a common
+misconception this chapter's own measured evidence directly disproves.
+
+**Common trap:**
+Assuming "we already pool connections in the app" means a database-tier pooler is
+redundant.
+
+**Related:**
+[[connection-pooling-and-sizing]]
+
+### Card: PgBouncer's transaction-pooling session leak
+
+**Prompt:**
+Under PgBouncer's `pool_mode = transaction`, if a session takes an advisory lock
+and never explicitly releases it, what happens?
+
+**Answer:**
+The lock can silently remain held on the real backend connection after that
+"session" ends from the app's point of view — measured directly: two sequential,
+unrelated `psql` clients landed on the identical real backend PID with no
+concurrent demand forcing a different one, and the second client's
+`pg_try_advisory_lock` on the same lock ID succeeded instantly because it was, in
+reality, the same PostgreSQL session re-acquiring its own already-held lock.
+
+**Why it matters:**
+Session-scoped resources (advisory locks, `SET` variables, temp tables, prepared
+statements) are not safe to assume "gone" just because a transaction committed
+under transaction pooling.
+
+**Common trap:**
+Assuming `pool_mode = transaction` behaves identically to a direct connection for
+anything beyond the transaction itself.
+
+**Related:**
+[[connection-pooling-and-sizing]]
 
 ### Card: Does a bigger pool always help?
 
@@ -625,3 +744,5 @@ self-directed practice.
 
 - HikariCP Wiki, [About Pool Sizing](https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing)
 - HikariCP, [GitHub repository](https://github.com/brettwooldridge/HikariCP)
+- PgBouncer, [Configuration reference](https://www.pgbouncer.org/config.html) — `pool_mode` and its documented per-mode limitations
+- PgBouncer, [Features](https://www.pgbouncer.org/features.html)

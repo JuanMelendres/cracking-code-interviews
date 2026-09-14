@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: databases
 topic_id: T-607
 canonical: ../syllabus/06-databases/connection-pooling-and-sizing.md
-last_updated: 2026-09-02
+last_updated: 2026-09-13
 ---
 
 # Flashcards: Connection Pooling and Sizing (HikariCP)
@@ -51,6 +51,32 @@ disabled the feature entirely without realizing it.
 
 **Common trap:**
 Assuming any positive value for `leakDetectionThreshold` takes effect as configured.
+
+**Related:**
+[syllabus/06-databases/connection-pooling-and-sizing.md](../syllabus/06-databases/connection-pooling-and-sizing.md)
+
+## Card: PgBouncer's transaction-pooling session leak
+
+**Prompt:**
+Under PgBouncer's `pool_mode = transaction`, if a session takes an advisory lock
+and never explicitly releases it, what happens?
+
+**Answer:**
+The lock can silently remain held on the real backend connection after that
+"session" ends from the app's point of view — measured directly: two sequential,
+unrelated `psql` clients landed on the identical real backend PID with no
+concurrent demand forcing a different one, and the second client's
+`pg_try_advisory_lock` on the same lock ID succeeded instantly because it was, in
+reality, the same PostgreSQL session re-acquiring its own already-held lock.
+
+**Why it matters:**
+Session-scoped resources (advisory locks, `SET` variables, temp tables, prepared
+statements) are not safe to assume "gone" just because a transaction committed
+under transaction pooling.
+
+**Common trap:**
+Assuming `pool_mode = transaction` behaves identically to a direct connection for
+anything beyond the transaction itself.
 
 **Related:**
 [syllabus/06-databases/connection-pooling-and-sizing.md](../syllabus/06-databases/connection-pooling-and-sizing.md)
