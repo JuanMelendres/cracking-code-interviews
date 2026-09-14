@@ -11139,7 +11139,7 @@ i=1, val=7:  need 9-7=2.  map={2:0} -&gt; FOUND (index 0)!  answer = [0, 1]
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nums2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// convert to array...</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">mapToInt</span><span class="p">(</span><span class="n">Integer</span><span class="p">::</span><span class="n">intValue</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Retrospective:</strong> the problem's own constraint — each result element must be unique — is exactly why the result also needs to be a <code>Set</code>, not a <code>List</code>; a naive scan-and-append would duplicate entries whenever a value repeats in <code>nums2</code>. <strong>Complexity:</strong> O(n + m) time, O(n) space.</p>
@@ -11152,7 +11152,7 @@ i=1, val=7:  need 9-7=2.  map={2:0} -&gt; FOUND (index 0)!  answer = [0, 1]
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><strong>Retrospective:</strong> see Section 5's pigeonhole-principle derivation. <strong>Complexity:</strong> effectively O(1) amortized per call in practice — the cycle length is bounded by a small constant.</p>
+<p><strong>Retrospective:</strong> see Section 5's pigeonhole-principle derivation. <strong>Complexity:</strong> effectively O(1) per call in practice — not formally amortized (there's no shared state across separate calls the way amortized analysis requires), just a cycle length bounded by a small constant regardless of <code>n</code>'s starting magnitude.</p>
 <p><strong>Problem 5 — LC 454, 4Sum II.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">fourSumCount</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums2</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums3</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sumCounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
@@ -11318,7 +11318,7 @@ Week 22 — Hashing (LC 217, 560, 349, 202, 454): 11/11 assertions passed
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 9, 2026 19:07:36 UTC">September 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 19:52:05 UTC">September 14, 2026</span>
   </span>
 
     
