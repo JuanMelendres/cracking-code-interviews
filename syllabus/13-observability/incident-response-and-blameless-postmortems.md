@@ -4,8 +4,8 @@ slug: incident-response-and-blameless-postmortems
 document_type: handbook-chapter
 domain: 13-observability
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/performance/incident-response-and-blameless-postmortems.md
 topic_id: T-1207
@@ -29,6 +29,8 @@ related:
   - ../11-system-design/resilience-patterns.md
   - ../20-interview-preparation/behavioral/04-production-incident-narratives.md
   - ../19-leadership-staff/incident-command-roles-and-real-time-coordination.md
+  - ../18-engineering-practices/working-with-legacy-code.md
+  - ../01-computer-science-foundations/networking-basics.md
   - ../../practice/production/postmortem-examples/README.md
 official_references:
   - https://sre.google/sre-book/postmortem-culture/
@@ -63,26 +65,27 @@ official_references:
 7. [Core Concepts](#core-concepts)
 8. [Internal Implementation](#internal-implementation)
 9. [Diagrams](#diagrams)
-10. [Java Examples](#java-examples)
-11. [Production Scenarios](#production-scenarios)
-12. [Failure Modes and Debugging](#failure-modes-and-debugging)
-13. [Trade-offs](#trade-offs)
-14. [Organizational Implications](#organizational-implications)
-15. [Decision Framework](#decision-framework)
-16. [Comparisons](#comparisons)
-17. [Common Mistakes](#common-mistakes)
-18. [Anti-Patterns](#anti-patterns)
-19. [Best Practices](#best-practices)
-20. [Interview Answer Framework](#interview-answer-framework)
-21. [Interview Questions](#interview-questions)
-22. [Summary](#summary)
-23. [Key Takeaways](#key-takeaways)
-24. [Cheat Sheet](#cheat-sheet)
-25. [Flashcards](#flashcards)
-26. [Practice Exercises](#practice-exercises)
-27. [Solutions](#solutions)
-28. [Additional Reading](#additional-reading)
-29. [Official References](#official-references)
+10. [The Diagnosis Process, Step by Step](#the-diagnosis-process-step-by-step)
+11. [Java Examples](#java-examples)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Organizational Implications](#organizational-implications)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -201,6 +204,36 @@ flowchart TB
     D --> E["Write postmortem:<br/>Contributing Factors, not Root Cause"]
     E --> F["Action items:<br/>Owner + Due Date, each"]
 ```
+
+## The Diagnosis Process, Step by Step
+
+The Mental Model above treats "diagnosis" as one of two jobs happening during an incident, without saying what diagnosis itself actually consists of. That's worth naming explicitly: the same sequence applies to nearly every production bug, incident-scale or not, and "walk me through your process for debugging a production issue" is a standard interview question in its own right, distinct from — but connected to — the mitigate-or-diagnose framing above.
+
+1. **Confirm and scope the impact.** Before investigating anything, confirm the symptom is real (not a flaky monitor's false alarm) and establish its blast radius — which users, which endpoints, how much traffic, since when. This scoping feeds directly into the mitigate-vs-diagnose call above: a symptom hitting 100% of write traffic demands mitigation now; one hitting 0.1% of a rarely-used endpoint may tolerate diagnosing first.
+2. **Gather evidence before forming a theory.** Pull logs, metrics, and traces for the affected window (see [Logging, Metrics, Tracing, and OpenTelemetry](logging-metrics-tracing-and-opentelemetry.md)), and correlate the symptom's onset against anything that changed around the same time — a deployment, a config change, a feature-flag flip, a traffic shift, a dependency's own status page. Skipping straight to a guess before checking what actually changed is the single most common time sink at this step.
+3. **Form a hypothesis the evidence actually supports, then test it.** A hypothesis earns the right to be acted on by explaining every piece of evidence gathered so far, not just the most convenient one — a theory that explains an error-rate spike but not why it started at the exact minute a deploy shipped is incomplete. Test it with the smallest safe probe available: a targeted log query, one request reproduced outside production, a metric that should move if the theory holds.
+4. **Isolate by bisecting the system, not by guessing at random.** Narrow by layer (network, application, database — see [Networking Basics](../01-computer-science-foundations/networking-basics.md)'s own layer-naming approach to this exact skill), by deploy (binary search the timeline if several shipped close together), or by code path (roll back or flag off one change at a time, not several at once, which leaves the actual cause ambiguous even after the symptom disappears).
+5. **Confirm root cause with reproducible evidence, not just a plausible story.** Reproduce the failure on demand wherever possible — locally, in staging, or with a targeted, safe probe against production — before writing the fix. A cause that "just correlates" is still a hypothesis; shipping a fix for an unconfirmed cause risks solving the wrong problem while the real one keeps running underneath it.
+6. **Implement the smallest fix that addresses the confirmed cause**, reviewed like any other change, resisting the urge to also refactor unrelated code in the same diff — a production fix under time pressure is exactly the wrong moment to widen its blast radius.
+7. **Deploy the fix gradually and verify recovery from the same evidence that first showed the symptom.** The metric, log pattern, or trace that flagged the problem in step 1 is also the fastest confirmation the fix actually worked — "the deploy succeeded" is not the same claim as "the symptom is gone."
+8. **Close the loop: add a regression test, and — where evidence-gathering took longer than it should have — the monitoring or alert that would have caught this sooner.** The goal is that the same failure shape gets caught before a user notices next time, not re-diagnosed from scratch.
+
+```mermaid
+flowchart TB
+    A["Symptom reported"] --> B["1. Confirm + scope impact"]
+    B --> C["2. Gather evidence<br/>logs / metrics / traces"]
+    C --> D["3. Form + test a hypothesis"]
+    D --> E["4. Isolate: bisect layer,<br/>deploy, or code path"]
+    E --> F["5. Confirm root cause,<br/>reproduced"]
+    F --> G{"Codebase has a real<br/>test safety net?"}
+    G -->|"Yes -- new/well-tested app"| H["6. Implement smallest fix"]
+    G -->|"No -- legacy/unfamiliar code"| G2["6a. Write a characterization<br/>test first (pins current behavior)"]
+    G2 --> H
+    H --> I["7. Deploy gradually,<br/>verify via same evidence as step 1"]
+    I --> J["8. Add regression test<br/>+ monitoring/alerting"]
+```
+
+**Legacy code changes step 6, not the whole process.** In a well-tested, well-understood codebase, step 6's fix is usually a direct, confident change. In legacy code — undocumented, sparsely tested, or simply unfamiliar — making a confident change without a safety net risks introducing a second bug while fixing the first, since there's no test suite to catch an unintended side effect. [Working with Legacy Code](../18-engineering-practices/working-with-legacy-code.md)'s own answer to "you need to change a method with no tests, in code you don't fully understand" is the direct continuation of this process for exactly that case: write a **characterization test** first (one that pins the code's actual current behavior, bugs included, as a safety net), *then* make the minimal change, confirm the characterization test plus a new test for the fix both pass, and only then proceed to step 7. The rest of the process — scope, evidence, hypothesis, isolate, confirm — doesn't change whether the codebase is a week old or ten years old; only step 6 gains a mandatory pre-step when a safety net doesn't already exist.
 
 ## Java Examples
 
@@ -520,6 +553,55 @@ heading?"
 **Evaluation criteria.** Correct critique of single-root-cause framing (2), concrete
 example (2), connects to blameless culture at Staff level (1).
 
+### Question 3: Walk me through your process for solving a production bug, step by step — and how does that change in a legacy codebase?
+
+**Why interviewers ask it.** It's a broad, practical check for whether a candidate
+has a real, repeatable method (scope, evidence, hypothesis, isolate, confirm, fix,
+verify, close the loop) versus jumping straight to guessing at a fix — and the
+legacy follow-up specifically tests whether they know *why* an unfamiliar,
+undertested codebase demands an extra safety-net step before changing anything.
+
+**Expected answer.** Confirm and scope the impact; gather evidence (logs, metrics,
+traces) and correlate the symptom's onset against anything that recently changed;
+form a hypothesis the evidence actually supports and test it with the smallest safe
+probe; isolate further by bisecting layer, deploy, or code path; confirm the root
+cause with reproducible evidence, not just a correlation; implement the smallest fix
+that addresses it; deploy gradually and verify recovery using the same evidence that
+first showed the symptom; add a regression test and any monitoring that would have
+caught it sooner. In legacy code specifically, insert a characterization test before
+the fix step — it pins the code's actual current behavior as a safety net, since
+there's no existing test suite to catch an unintended side effect of the change.
+
+**Minimum acceptable answer.** Names at least gather-evidence, form-a-hypothesis, and
+verify-the-fix as distinct steps, even without the full eight-step sequence.
+
+**Strong Senior answer.** Explicitly separates "confirm root cause" from "have a
+plausible theory," and names bisection (by layer, deploy, or code path) as the
+concrete isolation technique rather than describing isolation vaguely.
+
+**Staff-level extension.** Names the legacy-code branch unprompted — that changing
+unfamiliar, undertested code without a characterization test risks introducing a
+second bug while fixing the first — and connects "add monitoring that would have
+caught this sooner" back to this chapter's own detection-latency metric (Core
+Concepts) as a concrete, measurable output of the process, not just a good habit.
+
+**Common mistakes.** Describing the process as "look at the logs and fix it," with no
+explicit hypothesis-testing or isolation step; treating legacy code as requiring a
+completely different process rather than the same process with one extra
+safety-net step before the fix.
+
+**Follow-up questions.** "What's the actual difference between a hypothesis and a
+confirmed root cause?" (Reproducibility — a hypothesis explains the evidence but
+hasn't been reproduced on demand; a confirmed cause has.) "Why write a
+characterization test instead of just being extra careful?" ("Being careful" isn't
+checkable or repeatable; a characterization test is a concrete, automatable
+safety net that catches an unintended side effect even when the engineer making
+the change didn't personally anticipate it.)
+
+**Evaluation criteria.** Correct, ordered sequence covering evidence-before-hypothesis
+and confirm-before-fix (2), correct isolation technique named (1), correct legacy-code
+branch named unprompted or with one prompt (2).
+
 ## Summary
 
 Incident response has two distinct jobs — stop the impact (mitigation) and
@@ -542,6 +624,10 @@ investigations that stop early once a person can be identified.
   example document, quoting the exact offending sentence.
 - An action item without an owner and a due date is a wish — checked and flagged
   directly in this chapter's real example output.
+- Diagnosis itself is a repeatable eight-step process — scope, evidence, hypothesis,
+  isolate, confirm, fix, verify, close the loop — not an unstructured search; legacy
+  code adds exactly one mandatory pre-step (a characterization test) before the fix,
+  nothing more.
 
 ## Cheat Sheet
 
@@ -552,6 +638,12 @@ investigations that stop early once a person can be identified.
   individuals — check mechanically.
 - **Action items** need an explicit owner and due date, always.
 - **Detection latency** is its own metric, separate from mitigation time.
+- **The diagnosis process, in order:** scope impact → gather evidence → form +
+  test a hypothesis → isolate (bisect layer/deploy/code path) → confirm root cause
+  (reproduced, not just correlated) → implement smallest fix → deploy gradually +
+  verify via the same evidence that showed the symptom → regression test + monitoring.
+- **Legacy code:** insert a characterization test before the fix step — the same
+  process otherwise, just with a safety net added where none already exists.
 - **This chapter's scope** is the methodology; see
   [Production Incident Narratives](../20-interview-preparation/behavioral/04-production-incident-narratives.md)
   for how to tell the story in an interview.
@@ -622,6 +714,54 @@ document's actual language.
 
 **Related:**
 [[incident-response-and-blameless-postmortems]]
+
+### Card: The eight-step diagnosis process
+
+**Prompt:**
+Name the general, repeatable process for diagnosing a production bug, in order.
+
+**Answer:**
+Confirm and scope the impact → gather evidence (logs/metrics/traces) → form a
+hypothesis the evidence actually supports and test it → isolate by bisecting layer,
+deploy, or code path → confirm root cause with reproducible evidence, not just
+correlation → implement the smallest fix → deploy gradually and verify via the same
+evidence that showed the symptom → add a regression test and any monitoring that
+would have caught it sooner.
+
+**Why it matters:**
+"Walk me through your debugging process" is a standard interview question testing
+for a real, repeatable method versus jumping straight to guessing at a fix.
+
+**Common trap:**
+Skipping straight from symptom to a guessed fix, without gathering evidence first or
+confirming the root cause is actually reproducible rather than merely plausible.
+
+**Related:**
+[[incident-response-and-blameless-postmortems]], [[working-with-legacy-code]]
+
+### Card: What changes in legacy code
+
+**Prompt:**
+Does the production-debugging process change in a legacy, undertested codebase?
+
+**Answer:**
+Only one step changes: before implementing the fix, write a characterization test
+that pins the code's actual current behavior as a safety net — since there's no
+existing test suite to catch an unintended side effect of the change. Every other
+step (scope, evidence, hypothesis, isolate, confirm, verify, close the loop) is
+identical regardless of the codebase's age.
+
+**Why it matters:**
+A candidate who claims legacy code needs a "completely different" process usually
+hasn't actually reasoned about *why* it's harder — the real answer is one precise,
+mandatory pre-step, not a different philosophy.
+
+**Common trap:**
+Treating "be extra careful" as a substitute for a characterization test — care isn't
+checkable or repeatable; a test is.
+
+**Related:**
+[[incident-response-and-blameless-postmortems]], [[working-with-legacy-code]]
 
 ## Practice Exercises
 

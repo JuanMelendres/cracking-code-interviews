@@ -1363,6 +1363,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Fixed three stale 2021-era A-number citations found elsewhere: `study-packs/week-17/01-owasp-top-10-for-backend-services.md`, `production-cookbook/credential-stuffing-undetected-from-missing-security-event-logging.md`, `production-cookbook/like-clause-sql-injection-surviving-an-automated-scan.md`.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `incident-response-and-blameless-postmortems.md` gains a general production-debugging process
+
+### Added
+
+- User request, from two real interview questions they'd been asked: a production-error debugging process (new vs. legacy app) and the full HTTP request/response lifecycle. The second was already fully answered as Interview Question 1 in `syllabus/01-computer-science-foundations/networking-basics.md` — confirmed, no change needed. The first had no canonical home: this chapter covered the mitigate-vs-diagnose decision and postmortem culture, but never the concrete steps "diagnosis" itself consists of.
+- New "The Diagnosis Process, Step by Step" section — an 8-step methodology (scope, evidence, hypothesis, isolate, confirm, fix, verify, close the loop) with a mermaid diagram and an explicit legacy-code branch (a characterization test before the fix step, cross-linked to `working-with-legacy-code.md`), a new Interview Question 3, 2 new Flashcards, and matching Cheat Sheet updates — synced to the standalone `cheat-sheets/`/`flashcards/` files and cross-linked bidirectionally with `working-with-legacy-code.md`.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

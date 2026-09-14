@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-1803
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - code-review-standards-and-practice.md
@@ -14,6 +14,7 @@ related:
   - refactoring-discipline.md
   - ../17-architecture/strangler-fig-and-migration-patterns.md
   - ../17-architecture/technical-debt-and-evolutionary-architecture.md
+  - ../13-observability/incident-response-and-blameless-postmortems.md
 practice: ../../practice/java/engineering-practices/legacy-code/
 production_scenarios: []
 interview_paths: [senior-to-staff]

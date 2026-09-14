@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: performance
 topic_id: T-1207
 canonical: ../syllabus/13-observability/incident-response-and-blameless-postmortems.md
-last_updated: 2026-09-02
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Incident Response and Blameless Postmortems
@@ -45,6 +45,40 @@ Using "5 Whys" until reaching one satisfying-sounding cause, without asking whet
 
 **Related:**
 [syllabus/13-observability/incident-response-and-blameless-postmortems.md](../syllabus/13-observability/incident-response-and-blameless-postmortems.md)
+
+## Card: The eight-step diagnosis process
+
+**Prompt:**
+Name the general, repeatable process for diagnosing a production bug, in order.
+
+**Answer:**
+Confirm and scope the impact → gather evidence (logs/metrics/traces) → form a hypothesis the evidence actually supports and test it → isolate by bisecting layer, deploy, or code path → confirm root cause with reproducible evidence, not just correlation → implement the smallest fix → deploy gradually and verify via the same evidence that showed the symptom → add a regression test and any monitoring that would have caught it sooner.
+
+**Why it matters:**
+"Walk me through your debugging process" is a standard interview question testing for a real, repeatable method versus jumping straight to guessing at a fix.
+
+**Common trap:**
+Skipping straight from symptom to a guessed fix, without gathering evidence first or confirming the root cause is actually reproducible rather than merely plausible.
+
+**Related:**
+[syllabus/13-observability/incident-response-and-blameless-postmortems.md](../syllabus/13-observability/incident-response-and-blameless-postmortems.md), [syllabus/18-engineering-practices/working-with-legacy-code.md](../syllabus/18-engineering-practices/working-with-legacy-code.md)
+
+## Card: What changes in legacy code
+
+**Prompt:**
+Does the production-debugging process change in a legacy, undertested codebase?
+
+**Answer:**
+Only one step changes: before implementing the fix, write a characterization test that pins the code's actual current behavior as a safety net — since there's no existing test suite to catch an unintended side effect of the change. Every other step is identical regardless of the codebase's age.
+
+**Why it matters:**
+A candidate who claims legacy code needs a "completely different" process usually hasn't actually reasoned about *why* it's harder — the real answer is one precise, mandatory pre-step, not a different philosophy.
+
+**Common trap:**
+Treating "be extra careful" as a substitute for a characterization test — care isn't checkable or repeatable; a test is.
+
+**Related:**
+[syllabus/13-observability/incident-response-and-blameless-postmortems.md](../syllabus/13-observability/incident-response-and-blameless-postmortems.md), [syllabus/18-engineering-practices/working-with-legacy-code.md](../syllabus/18-engineering-practices/working-with-legacy-code.md)
 
 ## Card: Blameless is checkable, not just name-free
 

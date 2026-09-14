@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: performance
 topic_id: T-1207
 canonical: ../syllabus/13-observability/incident-response-and-blameless-postmortems.md
-last_updated: 2026-09-02
+last_updated: 2026-09-14
 ---
 
 # Incident Response and Blameless Postmortems
@@ -44,6 +44,17 @@ An incident has two, genuinely different jobs happening at once, and conflating 
 | Single "Root Cause" postmortem | N/A | Shallow — stops at first identified cause |
 | "Contributing Factors" postmortem | N/A | Deeper by construction |
 
+## The Diagnosis Process, Step by Step
+
+1. Confirm and scope the impact.
+2. Gather evidence (logs/metrics/traces) — correlate onset against what recently changed.
+3. Form a hypothesis the evidence actually supports, then test it.
+4. Isolate by bisecting layer, deploy, or code path — one variable at a time.
+5. Confirm root cause with reproducible evidence, not just correlation.
+6. Implement the smallest fix that addresses the confirmed cause. **Legacy code:** write a characterization test first (pins current behavior as a safety net) before this step.
+7. Deploy gradually; verify recovery via the same evidence that showed the symptom.
+8. Add a regression test + any monitoring that would have caught it sooner.
+
 ## Key Numbers (real, executed Python linter output against real checked-in documents)
 
 - `PASS templates/postmortem-template.md`; `PASS ...postmortem-001-checkout-latency-regression.md` (four genuinely independent contributing factors: a sizing-formula assumption, a missing load test, a slow alert threshold, a communication gap).
@@ -80,3 +91,5 @@ An incident has two, genuinely different jobs happening at once, and conflating 
 - `syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md`
 - `syllabus/17-architecture/architecture-decision-records.md`
 - `syllabus/11-system-design/resilience-patterns.md`
+- `syllabus/18-engineering-practices/working-with-legacy-code.md`
+- `syllabus/01-computer-science-foundations/networking-basics.md`
