@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/16-performance-jvm/">
       
       
-        <link rel="prev" href="../kafka-architecture-fundamentals/">
+        <link rel="prev" href="../15-cloud/">
       
       
-        <link rel="next" href="../kafka-streams-and-stateful-processing/">
+        <link rel="next" href="../../system-design/system-design-narration-and-whiteboard-discipline/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Kafka Connect: Source and Sink Connectors - Cracking Code Interviews</title>
+        <title>Interview Question Bank — 16-performance-jvm - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/question-bank/16-performance-jvm/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kafka-connect-source-and-sink-connectors" class="md-skip">
+        <a href="#interview-question-bank-performance-and-jvm" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -131,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kafka Connect: Source and Sink Connectors
+              Interview Question Bank — 16-performance-jvm
             
           </span>
         </div>
@@ -249,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -384,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -404,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg>
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1215,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
   
-    <a href="../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
+    <a href="../../../02-java/collections/arraydeque-internals-and-the-legacy-stack-problem/" class="md-nav__link">
       
   
   
@@ -1324,7 +1324,7 @@
   
   
   
-    <a href="../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/" class="md-nav__link">
       
   
   
@@ -1378,7 +1378,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1432,7 +1432,7 @@
   
   
   
-    <a href="../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
+    <a href="../../../02-java/language-core/annotations-and-annotation-processing/" class="md-nav__link">
       
   
   
@@ -1531,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1566,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -1601,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1636,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1706,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -1741,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -1776,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -1811,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1846,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1881,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -1916,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1951,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1986,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2021,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -2056,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -2091,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -2126,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -2161,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2261,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2296,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2466,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2501,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2536,7 +2536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2606,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -2641,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2676,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2711,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2746,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2781,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2816,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -2851,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2886,7 +2886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2986,7 +2986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3021,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3056,7 +3056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3091,7 +3091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3126,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3161,7 +3161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3196,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3231,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3266,7 +3266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -3301,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3336,7 +3336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3371,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3406,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3441,7 +3441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -3476,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3511,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -3546,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -3581,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -3681,7 +3681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -3716,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -3751,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -3786,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -3821,7 +3821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -3856,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -3956,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -3991,7 +3991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4026,7 +4026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4061,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4096,7 +4096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -4131,7 +4131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -4166,7 +4166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4201,7 +4201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4236,7 +4236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -4276,8 +4276,6 @@
                 
   
   
-    
-  
   
   
     
@@ -4295,11 +4293,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
         
           
           <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="">
@@ -4320,7 +4318,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4338,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -4373,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -4408,7 +4406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -4443,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -4478,7 +4476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -4513,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -4548,7 +4546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -4580,44 +4578,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kafka Connect: Source and Sink Connectors
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -4640,367 +4604,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-1-foundation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 1 — Foundation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-2-working-knowledge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 2 — Working Knowledge
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Java Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-modes-and-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Modes and Debugging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5013,7 +4616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -5048,7 +4651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -5083,7 +4686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -5118,7 +4721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -5153,7 +4756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -5253,7 +4856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -5281,7 +4884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -5316,7 +4919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -5344,7 +4947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -5379,7 +4982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5414,7 +5017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5449,7 +5052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5484,7 +5087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -5584,7 +5187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -5619,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -5654,7 +5257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -5689,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -5724,7 +5327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -5759,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -5794,7 +5397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -5829,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -5864,7 +5467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -5899,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -5999,7 +5602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -6034,7 +5637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -6069,7 +5672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -6104,7 +5707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -6139,7 +5742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -6174,7 +5777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -6209,7 +5812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -6244,7 +5847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -6279,7 +5882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -6314,7 +5917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6414,7 +6017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6449,7 +6052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -6484,7 +6087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -6519,7 +6122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -6554,7 +6157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -6589,7 +6192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -6689,7 +6292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -6724,7 +6327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -6759,7 +6362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -6794,7 +6397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -6829,7 +6432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -6864,7 +6467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -6964,7 +6567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -6999,7 +6602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -7034,7 +6637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -7069,7 +6672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -7104,7 +6707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -7204,7 +6807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -7239,7 +6842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -7274,7 +6877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -7309,7 +6912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7409,7 +7012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -7444,7 +7047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -7479,7 +7082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -7514,7 +7117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -7549,7 +7152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -7584,7 +7187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -7619,7 +7222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -7654,7 +7257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -7689,7 +7292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -7724,7 +7327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -7824,7 +7427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -7859,7 +7462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -7894,7 +7497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -7929,7 +7532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -7964,7 +7567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -7999,7 +7602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -8034,7 +7637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -8134,7 +7737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -8162,7 +7765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -8197,7 +7800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -8232,7 +7835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -8267,7 +7870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -8302,7 +7905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -8337,7 +7940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -8372,7 +7975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8412,6 +8015,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8429,11 +8034,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -8454,7 +8059,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -8472,7 +8077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -8527,7 +8132,7 @@
   
   
   
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
+    <a href="../../behavioral/" class="md-nav__link">
       
   
   
@@ -8581,7 +8186,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -8612,6 +8217,8 @@
                 
   
   
+    
+  
   
   
     
@@ -8625,18 +8232,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/question-bank/02-java-collections/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_4" id="__nav_2_21_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -8650,12 +8255,761 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Question bank
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-collections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/collections
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/concurrency
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-jvm-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/jvm-internals
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-java-language-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 02-java/language-core
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 03-data-structures-algorithms
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-software-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 04-software-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 05-spring
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 06-databases
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 07-api-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 08-testing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-messaging-event-driven/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 09-messaging-event-driven
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-distributed-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 10-distributed-systems
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 11-system-design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 12-security
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 13-observability
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-devops-containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 14-devops-containers
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 15-cloud
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 16-performance-jvm
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Question Bank — 16-performance-jvm
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--in progress"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#benchmarking-jmh-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benchmarking &amp; JMH Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-planning-headroom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Planning &amp; Headroom
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-async-profiler-jfr-and-flame-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiling: async-profiler, JFR, and Flame Graphs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-fire questions (from this domain's Flashcards)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -8689,7 +9043,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -8743,7 +9097,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -8842,7 +9196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -8877,7 +9231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -8912,7 +9266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -8947,7 +9301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -8982,7 +9336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -9017,7 +9371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -9052,7 +9406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -9087,7 +9441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -9122,7 +9476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -9157,7 +9511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -9192,7 +9546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -9227,7 +9581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -9262,7 +9616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -9297,7 +9651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -9332,7 +9686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -9367,7 +9721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -9402,7 +9756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -9437,7 +9791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -9472,7 +9826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -9507,7 +9861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -9542,7 +9896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -9577,7 +9931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -9612,7 +9966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -9647,7 +10001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9682,7 +10036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9717,7 +10071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9752,7 +10106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9787,7 +10141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9822,7 +10176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9857,7 +10211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9892,7 +10246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-performance/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -9927,7 +10281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9962,7 +10316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -9997,7 +10351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-testing/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -10032,7 +10386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10067,7 +10421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -10102,7 +10456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -10137,7 +10491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -10172,7 +10526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10272,7 +10626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10307,7 +10661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -10342,7 +10696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -10377,7 +10731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10412,7 +10766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -10447,7 +10801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -10482,7 +10836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -10552,7 +10906,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -10605,7 +10959,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -10658,7 +11012,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -10711,7 +11065,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -10764,7 +11118,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -10817,7 +11171,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -10870,10 +11224,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#benchmarking-jmh-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        Benchmarking &amp; JMH Pitfalls
       
     </span>
   </a>
@@ -10881,10 +11235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#capacity-planning-headroom" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning Objectives
+        Capacity Planning &amp; Headroom
       
     </span>
   </a>
@@ -10892,10 +11246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+  <a href="#profiling-async-profiler-jfr-and-flame-graphs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters in Interviews
+        Profiling: async-profiler, JFR, and Flame Graphs
       
     </span>
   </a>
@@ -10903,10 +11257,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-1-foundation" class="md-nav__link">
+  <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 1 — Foundation
+        Quick-fire questions (from this domain's Flashcards)
       
     </span>
   </a>
@@ -10914,296 +11268,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-2-working-knowledge" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 2 — Working Knowledge
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Java Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-modes-and-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Modes and Debugging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11235,7 +11303,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11258,7 +11326,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11279,10 +11347,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Messaging & Event-Driven
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../02-java-collections/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Question bank
   </span>
 
         </a>
@@ -11301,7 +11387,7 @@
 
 
   
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/edit/main/syllabus/20-interview-preparation/question-bank/16-performance-jvm.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -11310,392 +11396,142 @@
     
       
     
-    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/JuanMelendres/cracking-code-interviews/raw/main/syllabus/20-interview-preparation/question-bank/16-performance-jvm.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="kafka-connect-source-and-sink-connectors">Kafka Connect: Source and Sink Connectors<a class="headerlink" href="#kafka-connect-source-and-sink-connectors" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> T-2408 · Advanced tier, Moderate interview frequency (new gap-audit topic — no entry in the original Master Topic Register; the third and last item this session's "Kafka Streams, log compaction, Kafka Connect" gap-audit finding named, closing the domain's remaining audit gaps)
-<strong>Provenance:</strong> all evidence in this chapter is real, executed output from
-<a href="../../practice/java/kafka/kafka-connect-source-and-sink/"><code>practice/java/kafka/kafka-connect-source-and-sink/</code></a>
-— a real, disposable Kafka 3.8.0 broker (Docker, KRaft mode) plus a real Kafka
-Connect standalone worker running the built-in <code>FileStreamSource</code>/<code>FileStreamSink</code>
-connectors, including a real kill-and-restart proving offset-based resume with
-zero reprocessing.</p>
-</blockquote>
-<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#level-1--foundation">Level 1 — Foundation</a></li>
-<li><a href="#level-2--working-knowledge">Level 2 — Working Knowledge</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#execution-flow">Execution Flow</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#java-examples">Java Examples</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#failure-modes-and-debugging">Failure Modes and Debugging</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#performance-implications">Performance Implications</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#comparisons">Comparisons</a></li>
-<li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
-<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>By the end of this chapter you can:</p>
-<ul>
-<li>Explain what Kafka Connect actually is — a config-driven integration framework, not a client library — and when reaching for it beats hand-writing a producer or consumer.</li>
-<li>Distinguish a source connector (external system → Kafka) from a sink connector (Kafka → external system), and explain what a <code>Converter</code> controls versus what a connector controls.</li>
-<li>Explain, with real evidence, how Kafka Connect achieves fault tolerance across a worker restart, and prove it doesn't reprocess or duplicate already-delivered records.</li>
-<li>Explain distributed mode's real value over standalone mode: work distribution and fault tolerance across a worker cluster, not just running more connectors.</li>
-</ul>
-<h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>Kafka Connect is the real, if under-discussed, answer to "how do you get data into or out of Kafka without writing a custom producer/consumer for every single integration" — and this program's own topic register marks the frequency "Moderate," not top-tier, precisely because many engineers who use Kafka daily have never operated Connect directly, even though it's the standard, real-world tool for exactly this problem (CDC ingestion, data-warehouse export, legacy-system integration). This chapter closes the third and last gap a full repository-wide audit found in this domain (after <a href="../retention-log-compaction-and-tiered-storage/">Retention, Log Compaction, and Tiered Storage</a> and <a href="../kafka-streams-and-stateful-processing/">Kafka Streams and Stateful Stream Processing</a>) — with real, executed evidence of Connect's actual fault-tolerance mechanism, not a description copied from documentation.</p>
-<h2 id="level-1-foundation">Level 1 — Foundation<a class="headerlink" href="#level-1-foundation" title="Permanent link">&para;</a></h2>
-<p>Imagine needing to copy data continuously from a legacy database into Kafka, and separately from Kafka into a search index — without Kafka Connect, each of those is a real application you'd write, deploy, and operate: a producer polling the database, a consumer writing to the search index, each with its own retry logic, offset tracking, and failure handling. <strong>Kafka Connect replaces "write an application" with "write a configuration file"</strong> for this entire class of problem: a <strong>source connector</strong> reads from an external system and produces to Kafka; a <strong>sink connector</strong> consumes from Kafka and writes to an external system — both run inside a shared, reusable <strong>worker</strong> process that Connect itself provides, handling the offset-tracking, retry, and scaling machinery generically, so the same worker infrastructure serves any connector, database-to-Kafka or Kafka-to-search-index alike.</p>
-<h2 id="level-2-working-knowledge">Level 2 — Working Knowledge<a class="headerlink" href="#level-2-working-knowledge" title="Permanent link">&para;</a></h2>
-<p>The working distinction: <strong>a connector's job is to know how to talk to one specific external system; a <code>Converter</code>'s job is to control the on-the-wire format of the data moving through Kafka, independent of the connector.</strong> This chapter's own real demo proves the converter's role directly — configuring <code>JsonConverter</code> with schemas enabled produces real topic records shaped like <code>{"schema": {...}, "payload": "line-1"}</code>, not a bare string; swapping to a different converter would change that wire format without touching the connector's own logic (reading lines from a file) at all. Confusing "the connector" with "the format" is a real, common source of misconfiguration.</p>
-<p>The second working idea, and this chapter's own central, evidence-backed claim: <strong>Connect's fault tolerance comes from persisting source-connector offsets (and sink-connector consumer-group offsets) durably, independent of the worker process's own lifetime.</strong> This chapter's own real demo proves it precisely: after the worker has processed several lines from an input file, killing the worker process entirely and restarting it — from the same offset store — resumes exactly where it left off. Appending one new line after the restart produces exactly one new output line, with zero duplication of the lines already delivered before the kill. This is not an assumed property; it's directly, repeatedly observable.</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p><strong>Kafka Connect turns "build an integration between Kafka and an external system" into "configure an existing, reusable worker with a connector-specific config file," moving the hard, generic parts (offset tracking, retries, scaling, fault tolerance) out of application code and into the framework itself — permanently, for every connector, not re-implemented per integration.</strong> Every other mechanic in this chapter — the source/sink split, converters, standalone versus distributed mode — exists to make that one idea practical across arbitrarily many different external systems without each one needing its own hand-rolled offset-management and fault-tolerance code.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p>Kafka Connect is a framework, shipped as part of Apache Kafka itself, for streaming data between Kafka topics and external systems using pluggable <strong>connectors</strong> — a <strong>source connector</strong> reads from an external system (a database, a filesystem, a message queue) and produces records to Kafka; a <strong>sink connector</strong> consumes records from Kafka and writes them to an external system. It exists to eliminate the need to hand-write a bespoke producer or consumer application for every external-system integration, by providing a shared <strong>worker</strong> runtime that handles offset persistence, task parallelism, and failure recovery generically, so a connector's own code only needs to implement the specific logic of reading from or writing to its target system — the rest of the fault-tolerance and scaling machinery is Connect's, reused across every connector.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="source-connectors-and-sink-connectors-move-data-in-opposite-directions-both-without-custom-code">Source connectors and sink connectors move data in opposite directions, both without custom code<a class="headerlink" href="#source-connectors-and-sink-connectors-move-data-in-opposite-directions-both-without-custom-code" title="Permanent link">&para;</a></h3>
-<p>A <strong>source connector</strong> (this chapter's own demo uses the built-in <code>FileStreamSource</code>) reads from an external system and produces Kafka records; a <strong>sink connector</strong> (<code>FileStreamSink</code>) consumes Kafka records and writes to an external system. Both run as <strong>tasks</strong> within a worker, and both persist their progress so a restart can resume correctly — a source connector via Connect's own offset storage, a sink connector via ordinary Kafka consumer-group offsets, per <a href="../kafka-architecture-fundamentals/">Kafka Architecture Fundamentals</a>'s own consumer-group mechanics.</p>
-<h3 id="converters-control-wire-format-connectors-control-which-system-to-talk-to">Converters control wire format; connectors control which system to talk to<a class="headerlink" href="#converters-control-wire-format-connectors-control-which-system-to-talk-to" title="Permanent link">&para;</a></h3>
-<p>A <code>Converter</code> (e.g., <code>JsonConverter</code>, or, in a production deployment, Avro/Protobuf via <a href="../schema-registry-and-compatibility-evolution/">Schema Registry and Compatibility Evolution</a>) serializes/deserializes the data moving between a connector's internal representation and the bytes actually stored in Kafka — configured independently of which connector is running, and reusable across every connector on a given worker.</p>
-<h3 id="standalone-mode-is-for-simple-single-worker-use-distributed-mode-is-for-real-production-scale-and-fault-tolerance">Standalone mode is for simple, single-worker use; distributed mode is for real production scale and fault tolerance<a class="headerlink" href="#standalone-mode-is-for-simple-single-worker-use-distributed-mode-is-for-real-production-scale-and-fault-tolerance" title="Permanent link">&para;</a></h3>
-<p><strong>Standalone mode</strong> (this chapter's own demo) runs one worker process with its connector configs passed as local files and offsets stored to a local file — simple, but a single point of failure with no work redistribution if that process dies. <strong>Distributed mode</strong> runs a cluster of worker processes that coordinate via Kafka itself (connector configs, offsets, and task status are all stored in internal Kafka topics, not local files), so a worker's failure causes its tasks to be automatically reassigned to surviving workers — the real, production-appropriate mode for anything beyond local development or a single-node deployment.</p>
-<h3 id="kafka-connects-fault-tolerance-is-a-durable-offset-guarantee-not-a-magic-property">Kafka Connect's fault tolerance is a durable-offset guarantee, not a magic property<a class="headerlink" href="#kafka-connects-fault-tolerance-is-a-durable-offset-guarantee-not-a-magic-property" title="Permanent link">&para;</a></h3>
-<p>This chapter's own real demo makes the mechanism concrete: a source connector's offsets are committed to a durable store (a local file in standalone mode; an internal, replicated, <code>cleanup.policy=compact</code> Kafka topic in distributed mode — the same real compaction mechanism <a href="../retention-log-compaction-and-tiered-storage/">Retention, Log Compaction, and Tiered Storage</a> demonstrates directly) independent of the worker process itself. A worker restart reads that durable offset and resumes from exactly there — proven directly, not assumed, by this chapter's own kill-and-restart transcript.</p>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p>Four real, captured pieces of evidence from <code>practice/java/kafka/kafka-connect-source-and-sink/output-transcript.txt</code>, run against a real Kafka 3.8.0 broker (Docker, KRaft mode) and a real Kafka Connect standalone worker:</p>
-<p><strong>Real topic content, showing the configured converter's wire format:</strong></p>
-<div class="highlight"><pre><span></span><code>{"schema":{"type":"string","optional":false},"payload":"line-1"}
-{"schema":{"type":"string","optional":false},"payload":"line-2"}
-</code></pre></div>
-<p><strong>Real end-to-end round trip</strong>, from <code>input.txt</code> through Kafka to <code>output.txt</code>, with zero custom producer/consumer code:</p>
-<div class="highlight"><pre><span></span><code>output.txt after the initial round trip (input file -&gt; Kafka -&gt; output file):
-line-1
-line-2
-</code></pre></div>
-<p><strong>Real incremental streaming</strong>, appending to the input file while the worker is already running:</p>
-<div class="highlight"><pre><span></span><code>Appending 2 more lines to the input file WHILE the worker is running:
-output.txt now:
-line-1
-line-2
-line-3
-line-4
-</code></pre></div>
-<p><strong>Real offset-based resume after a kill and restart</strong>, with exactly one new line appended after the restart producing exactly one new output line — no duplicates, no reprocessing of <code>line-1</code> through <code>line-4</code>:</p>
-<div class="highlight"><pre><span></span><code>Killing the worker (simulating a crash), then restarting it from the SAME offset file:
-Appending exactly ONE new line after the restart:
-Final output.txt (expect line-1..line-5, no duplicates, no reprocessing):
-line-1
-line-2
-line-3
-line-4
-line-5
-</code></pre></div>
-<p>The real, raw offset file (Java's serialized <code>HashMap</code> format, in standalone mode) stores exactly the byte position in <code>input.txt</code> the source connector had already read up to — the concrete, inspectable mechanism behind every one of these results.</p>
-<h2 id="execution-flow">Execution Flow<a class="headerlink" href="#execution-flow" title="Permanent link">&para;</a></h2>
-<ol>
-<li>The worker process starts, reading its own configuration (bootstrap servers, converters, offset storage location) and each connector's configuration.</li>
-<li>For a source connector, the worker instantiates the connector's task(s), which begin reading from the external system (here, tailing a local file) and producing records to the configured Kafka topic, periodically committing their read progress to the offset store.</li>
-<li>For a sink connector, the worker instantiates its task(s) as a real Kafka consumer (subscribed to the configured topic under a consumer group), writing each consumed record to the external system (here, appending to a local file) and committing consumer offsets normally.</li>
-<li>On a worker restart, each source connector's task reads its last-committed offset from the offset store and resumes reading the external system from exactly that point; each sink connector's task resumes from its last-committed consumer-group offset — neither re-delivers already-processed data.</li>
-</ol>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    Ext1["External system&lt;br/&gt;(e.g. a file, a database)"] --&gt;|Source connector reads| Worker["Connect Worker"]
-    Worker --&gt;|produces, offset committed to durable store| Topic[(Kafka topic)]
-    Topic --&gt;|Sink connector consumes, consumer-group offset committed| Worker2["Connect Worker"]
-    Worker2 --&gt;|writes| Ext2["External system&lt;br/&gt;(e.g. a file, a search index)"]
-    Worker -.-&gt;|"restart: read last committed offset, resume exactly there"| OffsetStore[(Durable offset store)]</code></pre>
-<p>The dotted line into the offset store is this chapter's own real, proven mechanism — not a diagram simplification, but exactly what the kill-and-restart transcript demonstrates.</p>
-<h2 id="java-examples">Java Examples<a class="headerlink" href="#java-examples" title="Permanent link">&para;</a></h2>
-<p>Kafka Connect connectors are configured, not hand-coded, for this chapter's own demo — the "code" here is the connector configuration itself:</p>
-<div class="highlight"><pre><span></span><code><span class="na">name</span><span class="o">=</span><span class="s">local-file-source</span>
-<span class="na">connector.class</span><span class="o">=</span><span class="s">FileStreamSource</span>
-<span class="na">tasks.max</span><span class="o">=</span><span class="s">1</span>
-<span class="na">file</span><span class="o">=</span><span class="s">/tmp/connect-demo/input.txt</span>
-<span class="na">topic</span><span class="o">=</span><span class="s">connect-demo-topic</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="na">name</span><span class="o">=</span><span class="s">local-file-sink</span>
-<span class="na">connector.class</span><span class="o">=</span><span class="s">FileStreamSink</span>
-<span class="na">tasks.max</span><span class="o">=</span><span class="s">1</span>
-<span class="na">file</span><span class="o">=</span><span class="s">/tmp/connect-demo/output.txt</span>
-<span class="na">topics</span><span class="o">=</span><span class="s">connect-demo-topic</span>
-</code></pre></div>
-<p>A production connector (a real JDBC source, a real Elasticsearch sink) follows the identical shape — a <code>connector.class</code>, task count, and connector-specific settings — with the worker providing the identical offset-tracking and fault-tolerance behavior this chapter's own demo proves for the built-in file connectors.</p>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<h3 id="scenario-a-source-connector-appears-to-skip-records-after-an-unplanned-worker-restart">Scenario: a source connector appears to skip records after an unplanned worker restart<a class="headerlink" href="#scenario-a-source-connector-appears-to-skip-records-after-an-unplanned-worker-restart" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms.</strong> After a Kafka Connect worker crashes and is automatically restarted (e.g., by an orchestrator), a downstream consumer of the connector's output topic reports missing records that were known to exist in the source system before the crash.</p>
-<p><strong>Impact.</strong> Data that should have been captured from the external system never arrives in Kafka.</p>
-<p><strong>Initial hypotheses.</strong> A bug in the source system itself (checked — the records genuinely existed and were readable before the crash); a Kafka Connect fault-tolerance failure (checked against this chapter's own demonstrated behavior — offset-based resume, correctly implemented, does not skip data); the real cause: <code>offset.flush.interval.ms</code> was configured unusually high, and the worker crashed between successfully reading records and its next scheduled offset commit, so on restart it resumed from an <em>older</em>, previously-committed offset than where it had actually already produced to (correct — and notably the safe direction of failure: this causes at-least-once re-delivery of already-produced records, not data loss, so "missing records" downstream usually indicates a different, real cause, such as the source connector's own read logic not actually having reached those records before the crash at all).</p>
-<p><strong>Diagnosis.</strong> Check the source connector's actual <code>offset.flush.interval.ms</code> and the worker's logs around the crash timestamp to determine exactly which offset was last durably committed versus what had actually been read from the source.</p>
-<p><strong>Immediate mitigation.</strong> Verify against the source system directly which records were genuinely never read (a true gap) versus already read-but-not-yet-flushed at crash time (which Connect's own at-least-once semantics would have redelivered, not lost) — these are different problems with different fixes.</p>
-<p><strong>Permanent remediation.</strong> Tune <code>offset.flush.interval.ms</code> to a value appropriate for the acceptable redundant-read window, and, for connectors where source-side data could be evicted or rotated out before Connect reads it (e.g., a log file with retention shorter than the connector's read lag), address that retention mismatch directly rather than assuming Connect itself is the fault.</p>
-<p><strong>Alternatives considered.</strong> Blaming Kafka Connect's fault-tolerance model as unreliable — rejected once this chapter's own real, repeatable evidence (a genuine kill-and-restart producing correct, non-duplicated, non-skipped results) is checked against the specific configuration and timeline of the actual incident.</p>
-<p><strong>Trade-offs.</strong> A more frequent offset flush reduces the redundant-read window after a crash but adds real, if usually small, overhead per flush — a real, tunable trade rather than a free improvement.</p>
-<p><strong>Prevention.</strong> Understand and explicitly tune <code>offset.flush.interval.ms</code> for each source connector's actual redundancy tolerance, rather than leaving it at a default that may not match the specific source system's own retention characteristics.</p>
-<p><strong>Interview lesson.</strong> Kafka Connect's offset-based recovery is a real, provable mechanism (as this chapter's own demo shows directly) — an apparent "skipped record" symptom usually traces to a specific, diagnosable configuration or source-system interaction, not a fundamental flaw in the recovery model itself.</p>
-<h2 id="failure-modes-and-debugging">Failure Modes and Debugging<a class="headerlink" href="#failure-modes-and-debugging" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>A connector fails to start with "no class found" for its <code>connector.class</code>.</strong> In standalone mode, this chapter's own real experience is instructive: the connector's jar must actually be discoverable via the worker's <code>plugin.path</code> — a jar present elsewhere on the general classpath is not automatically treated as an available plugin, and setting <code>plugin.path</code> explicitly (as this chapter's own demo config does) is a real, necessary step, not an optional one.</li>
-<li><strong>A sink connector's consumer group shows growing lag.</strong> Diagnose exactly like any other consumer group, per <a href="../consumer-lag-backpressure-and-dlq-strategy/">Consumer Lag, Backpressure, and DLQ Strategy</a> — a sink connector's task is a real Kafka consumer underneath, subject to the identical lag-diagnosis method.</li>
-<li><strong>Records arrive in an unexpected format downstream.</strong> Check the configured <code>Converter</code> first, independent of the connector itself — this chapter's own Core Concepts section names this exact confusion (blaming the connector for what the converter actually controls) as a common, real mistake.</li>
-</ul>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Choice</th>
-<th>Benefit</th>
-<th>Cost</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kafka Connect (a connector + worker) over a hand-written producer/consumer application</td>
-<td>No custom offset-tracking, retry, or scaling code to write and maintain</td>
-<td>Less flexibility than fully custom code for a genuinely unusual integration need</td>
-</tr>
-<tr>
-<td>Standalone mode</td>
-<td>Simple, no additional coordination infrastructure</td>
-<td>A single point of failure; no automatic task redistribution on worker failure</td>
-</tr>
-<tr>
-<td>Distributed mode</td>
-<td>Real fault tolerance and work redistribution across a worker cluster</td>
-<td>More operational complexity (a real worker cluster to run and monitor) than standalone</td>
-</tr>
-<tr>
-<td>A more frequent <code>offset.flush.interval.ms</code></td>
-<td>Smaller redundant-read window after a crash</td>
-<td>Real, if usually small, added overhead per flush</td>
-</tr>
-</tbody>
-</table>
-<h2 id="performance-implications">Performance Implications<a class="headerlink" href="#performance-implications" title="Permanent link">&para;</a></h2>
-<p>A source connector's real throughput is bounded by how fast its specific external-system read path can produce records (a file tail is fast; a poorly-indexed database query is not) — Connect's own framework overhead is typically small relative to that external-system-specific cost. <code>offset.flush.interval.ms</code> is a real, direct trade between crash-recovery redundancy and flush overhead, exactly as this chapter's own production scenario demonstrates.</p>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Is this a standard integration pattern</strong> (database CDC, file ingestion, a well-known target system) <strong>with an existing connector, or a genuinely bespoke need?</strong> An existing connector (open-source or vendor-provided) almost always beats hand-writing a producer/consumer for a standard pattern; a truly bespoke need may still justify custom code.</li>
-<li><strong>Is this a one-off, local, or development-only integration, or a real production deployment?</strong> Standalone mode is appropriate for the former; distributed mode is the real answer for the latter, specifically for its fault-tolerance and scaling properties.</li>
-<li><strong>What wire format does the downstream (for a source) or upstream (for a sink) system actually need?</strong> Choose the <code>Converter</code> for that need explicitly — independent of, and not confused with, the connector's own external-system-specific logic.</li>
-<li><strong>What crash-recovery redundancy window is actually acceptable for this specific integration?</strong> Tune <code>offset.flush.interval.ms</code> deliberately against that answer, not left at a default that may not fit.</li>
-</ol>
-<h2 id="comparisons">Comparisons<a class="headerlink" href="#comparisons" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Approach</th>
-<th>Custom code required</th>
-<th>Fault tolerance</th>
-<th>Best fit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kafka Connect (existing connector)</td>
-<td>None (configuration only)</td>
-<td>Built into the framework, proven in this chapter's own demo</td>
-<td>A standard, already-supported integration pattern</td>
-</tr>
-<tr>
-<td>Kafka Connect (custom connector)</td>
-<td>A connector implementation, not a full application</td>
-<td>Same framework-level fault tolerance as any connector</td>
-<td>A non-standard system with no existing connector, still wanting the framework's offset/scaling machinery</td>
-</tr>
-<tr>
-<td>Hand-written producer/consumer application</td>
-<td>A full application, including offset tracking and retries</td>
-<td>Whatever the application itself implements</td>
-<td>A genuinely bespoke need Connect's connector model doesn't fit at all</td>
-</tr>
-<tr>
-<td>Kafka Streams (per <a href="../kafka-streams-and-stateful-processing/">Kafka Streams and Stateful Stream Processing</a>)</td>
-<td>A stream-processing topology</td>
-<td>Framework-level, via compacted changelog topics</td>
-<td>In-Kafka transformation/aggregation, not external-system integration</td>
-</tr>
-</tbody>
-</table>
-<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Hand-writing a producer/consumer application for a standard integration pattern (a well-known database, file system, or message queue) that an existing, battle-tested connector already covers.</li>
-<li>Blaming the connector for a wire-format issue that's actually the configured <code>Converter</code>'s responsibility.</li>
-<li>Running standalone mode in production, discovering only after a worker crash that there was no automatic task redistribution.</li>
-</ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Writing a full custom application to move data between Kafka and a well-supported external system</strong>, reimplementing offset tracking and retry logic Connect already provides for free.</li>
-<li><strong>Leaving <code>offset.flush.interval.ms</code> at a default without considering the specific source system's own redundant-read tolerance</strong> — this chapter's own production scenario's real root cause.</li>
-<li><strong>Running a production integration in standalone mode</strong>, accepting an unnecessary single point of failure that distributed mode would remove.</li>
-</ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Reach for an existing, well-supported connector before writing custom integration code — Connect's whole value proposition is not re-implementing offset tracking and fault tolerance per integration.</li>
-<li>Run distributed mode for any real production deployment, reserving standalone mode for local development and this kind of hands-on demonstration.</li>
-<li>Tune <code>offset.flush.interval.ms</code> deliberately, based on this chapter's own demonstrated understanding of what it actually trades (redundant-read window versus flush overhead).</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>Kafka Connect is a framework (shipped with Kafka) for streaming data between Kafka and external systems via configured connectors — source connectors read from an external system into Kafka, sink connectors write from Kafka to an external system — without hand-writing a custom producer or consumer application. A <code>Converter</code> controls wire format independently of the connector. Fault tolerance comes from durably persisted offsets, proven directly by a real kill-and-restart that resumes with zero data loss or duplication.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Definition: Kafka Connect is a config-driven integration framework with source and sink connectors, running inside a shared worker runtime. Why it exists: to eliminate hand-written, per-integration offset-tracking and fault-tolerance code for the common case of moving data between Kafka and an external system. How it works: a connector implements system-specific read/write logic; the worker handles task management, offset persistence, and (in distributed mode) fault tolerance across a cluster. One important trade-off: standalone mode is simple but has no automatic failover; distributed mode adds real coordination complexity for real production fault tolerance. Production example: an apparent "skipped record" after a crash traced to <code>offset.flush.interval.ms</code> timing, not a fundamental flaw in Connect's offset-based recovery, which this chapter's own real demo proves works correctly.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover, in order: the mental model — moving generic, hard integration problems (offset tracking, fault tolerance) out of application code into a reusable framework (mental model); source/sink connectors, converters, and standalone-versus-distributed mode (core concepts); this chapter's own real evidence — a real converter-wrapped topic payload, a real incremental round trip, and a real kill-and-restart proving zero duplication (internal implementation); and close with the production scenario — a real, diagnosable "skipped record" symptom traced to offset-flush timing rather than a framework flaw.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw the <a href="#diagrams">§ Diagrams</a> flowchart, emphasizing the dotted line into the durable offset store — the direct visual tie to this chapter's own kill-and-restart transcript, where that store, not the worker process's own memory, is what makes correct resume possible.</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>The offset-flush-timing scenario in <a href="#production-scenarios">§ Production Scenarios</a>: an apparent post-crash "skipped record" traced to <code>offset.flush.interval.ms</code> configuration and the specific timing of the crash relative to the last commit, not a fundamental flaw in Connect's real, demonstrated offset-based recovery.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>State unprompted: Connect trades some flexibility for eliminating custom offset/retry code on standard integrations; standalone mode's simplicity costs real fault tolerance that distributed mode restores at real operational cost; a more frequent offset flush reduces crash-recovery redundancy at real, if usually small, overhead cost.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Describing Kafka Connect as "just another producer/consumer wrapper" without naming its real offset-persistence fault-tolerance mechanism; confusing a converter's role with a connector's; not knowing the real difference between standalone and distributed mode.</p>
-<h3 id="typical-follow-up-questions">Typical Follow-Up Questions<a class="headerlink" href="#typical-follow-up-questions" title="Permanent link">&para;</a></h3>
-<ol>
-<li>"A Kafka Connect source connector's worker crashed and restarted. How do you know whether any data was lost or duplicated?"</li>
-<li>"What's the actual difference between a <code>Converter</code> and a connector, and why does that distinction matter operationally?"</li>
-</ol>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>Correctly distinguishes source from sink connectors, and can explain that offset persistence (not the worker process's own state) is what makes crash recovery work.</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>The Staff-level move is recognizing Kafka Connect's real organizational value: it converts what would otherwise be N bespoke, independently-maintained integration applications (one per external system, each with its own offset-tracking and fault-tolerance bugs to find and fix) into N connector configurations running on shared, centrally-operated worker infrastructure — a real, compounding maintenance-cost reduction that grows with the number of integrations a platform actually needs, not a one-time convenience. A Staff engineer evaluating whether to standardize on Kafka Connect for a platform's integration needs weighs this compounding organizational cost reduction against the real cases (a genuinely bespoke integration no connector model fits) where it doesn't apply — not adopting it uniformly without checking, and not avoiding it reflexively either.</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1-a-kafka-connect-source-connectors-worker-crashed-and-restarted-how-do-you-know-whether-any-data-was-lost-or-duplicated">Question 1 — A Kafka Connect source connector's worker crashed and restarted. How do you know whether any data was lost or duplicated?<a class="headerlink" href="#question-1-a-kafka-connect-source-connectors-worker-crashed-and-restarted-how-do-you-know-whether-any-data-was-lost-or-duplicated" title="Permanent link">&para;</a></h3>
-<p><strong>Why interviewers ask it.</strong> Tests whether the candidate understands Connect's real offset-persistence mechanism well enough to reason about a specific failure scenario, rather than reciting "it's fault tolerant" without mechanism.</p>
-<p><strong>Expected answer.</strong> Check the connector's committed offset (in the offset store — a local file in standalone mode, an internal Kafka topic in distributed mode) against what the external source system shows was available at crash time. Because commits happen on a real interval (<code>offset.flush.interval.ms</code>), data read but not yet flushed at crash time will be re-read on restart (a real, expected at-least-once duplication, not data loss) — genuine data loss would require the source system itself to have discarded data before Connect ever read it, a different, source-side problem.</p>
-<p><strong>Minimum acceptable answer.</strong> States that Connect persists offsets and can resume correctly, even without the flush-interval nuance.</p>
-<p><strong>Strong Senior answer.</strong> Correctly explains the at-least-once redundant-read behavior around the flush interval, and how to check the source system for genuine data loss versus expected re-delivery.</p>
-<p><strong>Staff-level extension.</strong> Connects <code>offset.flush.interval.ms</code> tuning to a deliberate, workload-specific trade between redundant-read window and flush overhead, per this chapter's own Performance Implications.</p>
-<p><strong>Common mistakes.</strong> Assuming a crash always means data loss, without checking the actual offset-persistence and flush-timing mechanics.</p>
-<p><strong>Likely follow-ups.</strong> "How would you reduce the redundant-read window after a crash, and what does that cost?"</p>
-<p><strong>Evaluation criteria (1–5).</strong> 1: no real mechanism understanding. 3: correctly explains offset persistence and at-least-once redundancy. 5: correct explanation plus the flush-interval trade-off and source-side-loss distinction.</p>
-<p><strong>Related references.</strong> <a href="#production-scenarios">§ Production Scenarios</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
+<h1 id="interview-question-bank-performance-and-jvm">Interview Question Bank — Performance and JVM<a class="headerlink" href="#interview-question-bank-performance-and-jvm" title="Permanent link">&para;</a></h1>
+<p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
+tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
+22-domain plan and sourcing discipline.</p>
+<p><strong>Honest count for this domain:</strong> 3 chapters yielded 6 deep questions + 9 quick-fire
+questions = <strong>15 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain — this is a genuinely small domain (only 3 chapters), a companion to
+<a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a> targeting Senior/Staff
+production-performance work specifically. Two of three chapters use a plain
+<code>**Q:** ... **A:** ...</code> Flashcards format instead of the <code>### Card:</code> template.</p>
 <hr />
-<h3 id="question-2-whats-the-actual-difference-between-a-converter-and-a-connector-and-why-does-that-distinction-matter-operationally">Question 2 — What's the actual difference between a <code>Converter</code> and a connector, and why does that distinction matter operationally?<a class="headerlink" href="#question-2-whats-the-actual-difference-between-a-converter-and-a-connector-and-why-does-that-distinction-matter-operationally" title="Permanent link">&para;</a></h3>
-<p><strong>Why interviewers ask it.</strong> Tests whether the candidate has used Connect enough to have hit this specific, common point of confusion, or is only repeating a definition.</p>
-<p><strong>Expected answer.</strong> A connector implements the logic specific to one external system (how to read from a file, a database, a queue); a <code>Converter</code> controls the on-the-wire serialization format of data moving through Kafka, configured independently and reused across every connector on a worker. Operationally, this matters because a wire-format problem (unexpected JSON structure, a schema mismatch) is a converter configuration issue, not a connector bug — misdiagnosing which one is at fault wastes real debugging time.</p>
-<p><strong>Minimum acceptable answer.</strong> States that converters and connectors are different things, even without a precise definition of each.</p>
-<p><strong>Strong Senior answer.</strong> Correctly defines both and gives a concrete example of the confusion (blaming a connector for a format issue that's actually the converter's).</p>
-<p><strong>Staff-level extension.</strong> Names the reusability implication explicitly: one converter choice applies uniformly across every connector on a worker, a real design decision with platform-wide consequences, not a per-integration detail.</p>
-<p><strong>Common mistakes.</strong> Conflating "the connector" and "the format" as one concept.</p>
-<p><strong>Likely follow-ups.</strong> "If you needed Avro instead of JSON, what would you actually change?"</p>
-<p><strong>Evaluation criteria (1–5).</strong> 1: no real distinction. 3: correctly distinguishes connector from converter. 5: correct distinction plus the reusability/platform-wide-consequence insight.</p>
-<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="../schema-registry-and-compatibility-evolution/">Schema Registry and Compatibility Evolution</a>.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>Kafka Connect is a config-driven integration framework — source connectors read external systems into Kafka, sink connectors write Kafka into external systems — that eliminates hand-written, per-integration offset-tracking and fault-tolerance code by providing a shared worker runtime. This chapter's own real, executed evidence proves its central fault-tolerance claim directly: a real kill-and-restart of a standalone worker resumes from exactly its last durably-committed offset, with zero data loss and zero duplication of already-delivered records. Converters control wire format independently of connector logic; distributed mode, unlike the standalone mode this chapter demonstrates, adds real fault tolerance and work redistribution across a worker cluster for genuine production use.</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Source connectors move data into Kafka; sink connectors move data out — both eliminate the need for hand-written offset-tracking and retry code.</li>
-<li>A <code>Converter</code> controls wire format independently of a connector's own external-system-specific logic — a common, real source of misdiagnosis when confused.</li>
-<li>Connect's fault tolerance is a durable-offset guarantee, proven directly in this chapter by a real kill-and-restart producing zero data loss and zero duplication.</li>
-<li>Standalone mode is for simple/local use; distributed mode is the real production answer for fault tolerance and work redistribution across a worker cluster.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<h2 id="benchmarking-jmh-pitfalls">Benchmarking &amp; JMH Pitfalls<a class="headerlink" href="#benchmarking-jmh-pitfalls" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-teammate-shows-you-a-benchmark-claiming-optimization-a-is-40-faster-than-the-current-code-what-do-you-check-before-believing-it">Q1 — A teammate shows you a benchmark claiming Optimization A is 40% faster than the current code. What do you check before believing it?<a class="headerlink" href="#q1-a-teammate-shows-you-a-benchmark-claiming-optimization-a-is-40-faster-than-the-current-code-what-do-you-check-before-believing-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Says "I'd run it again to see if I get the same number" without naming any specific methodological check — the common mistake this question targets.
+- <strong>Senior:</strong> Names dead-code elimination and constant folding specifically, and explains how each could produce a fictitious 40% number.
+- <strong>Staff:</strong> Proposes a standing team practice (linking performance claims to real, reviewable benchmark code) rather than re-litigating this one benchmark in isolation.</p>
+<h3 id="q2-why-does-jmh-require-forking-a-new-jvm-process-for-each-benchmark-by-default-and-when-would-you-turn-that-off">Q2 — Why does JMH require forking a new JVM process for each benchmark by default, and when would you turn that off?<a class="headerlink" href="#q2-why-does-jmh-require-forking-a-new-jvm-process-for-each-benchmark-by-default-and-when-would-you-turn-that-off" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States "it's just JMH's default setting" with no explanation of why — the common mistake this question targets.
+- <strong>Senior:</strong> Explains the specific contamination risk (shared JIT profile/compilation state across benchmarks in one process) and names the real trade-off of disabling it.
+- <strong>Staff:</strong> Connects this to the general principle that benchmark isolation and production-representativeness are in tension with iteration speed, and that the right trade-off differs between exploratory development and a number cited in a decision document.</p>
+<hr />
+<h2 id="capacity-planning-headroom">Capacity Planning &amp; Headroom<a class="headerlink" href="#capacity-planning-headroom" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-services-throughput-dashboard-looks-healthy-but-users-are-reporting-slow-page-loads-how-do-you-investigate">Q1 — A service's throughput dashboard looks healthy, but users are reporting slow page loads. How do you investigate?<a class="headerlink" href="#q1-a-services-throughput-dashboard-looks-healthy-but-users-are-reporting-slow-page-loads-how-do-you-investigate" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/capacity-planning-and-headroom/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Jumps straight to "scale up" without first confirming the diagnosis via latency percentiles and utilization — the common mistake this question targets.
+- <strong>Senior:</strong> Explicitly names the throughput/latency divergence and checks utilization on the specific bottleneck resource before recommending a fix.
+- <strong>Staff:</strong> Proposes a standing load-testing practice and a specific headroom target going forward, not just a one-time fix for this incident.</p>
+<h3 id="q2-how-would-you-decide-how-much-headroom-to-provision-for-a-new-service-before-it-launches">Q2 — How would you decide how much headroom to provision for a new service before it launches?<a class="headerlink" href="#q2-how-would-you-decide-how-much-headroom-to-provision-for-a-new-service-before-it-launches" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/capacity-planning-and-headroom/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Gives a guessed instance count with no stated ceiling or utilization target behind it — the common mistake this question targets.
+- <strong>Senior:</strong> Explicitly separates "finding the ceiling" from "choosing the safety margin," and gives a concrete utilization number with a stated reason for it.
+- <strong>Staff:</strong> Discusses re-evaluation cadence and the organizational cost of getting the target wrong in either direction — over-provisioning as invisible waste, under-provisioning as a launch-day incident risk.</p>
+<hr />
+<h2 id="profiling-async-profiler-jfr-and-flame-graphs">Profiling: async-profiler, JFR, and Flame Graphs<a class="headerlink" href="#profiling-async-profiler-jfr-and-flame-graphs" title="Permanent link">&para;</a></h2>
+<h3 id="q1-walk-me-through-how-youd-find-a-cpu-hotspot-in-a-production-service">Q1 — Walk me through how you'd find a CPU hotspot in a production service.<a class="headerlink" href="#q1-walk-me-through-how-youd-find-a-cpu-hotspot-in-a-production-service" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names a profiling tool without describing the sampling mechanism or how to interpret results.
+- <strong>Senior:</strong> Correctly names JFR (or async-profiler) and explains reading a flame graph by frame width, rather than starting from a code-inspection-based assumption.
+- <strong>Staff:</strong> Connects this to a real or realistic story where the profile contradicted the initial code-review-based hypothesis.</p>
+<h3 id="q2-whats-the-difference-between-jfr-and-async-profiler">Q2 — What's the difference between JFR and async-profiler?<a class="headerlink" href="#q2-whats-the-difference-between-jfr-and-async-profiler" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names both tools without a clear differentiator — the common mistake this question targets.
+- <strong>Senior:</strong> States the built-in-vs-agent distinction and the native-frame visibility difference — JFR ships with the JDK at low overhead; async-profiler is a separate native agent with typically lower overhead and better native-frame visibility.
+- <strong>Staff:</strong> Gives a concrete scenario where each tool's specific strength would be the deciding factor.</p>
+<hr />
+<h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Need</th>
-<th>Concept/Config</th>
+<th>#</th>
+<th>Question</th>
+<th>Canonical chapter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Read an external system into Kafka</td>
-<td>A source connector</td>
+<td>1</td>
+<td>Why does discarding a computed value in a JMH benchmark produce a fictitiously fast result?</td>
+<td><a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/#flashcards">Benchmarking &amp; JMH Pitfalls</a></td>
 </tr>
 <tr>
-<td>Write Kafka into an external system</td>
-<td>A sink connector</td>
+<td>2</td>
+<td>What is the actual mechanism that prevents dead-code elimination in a correctly written JMH benchmark?</td>
+<td><a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/#flashcards">Benchmarking &amp; JMH Pitfalls</a></td>
 </tr>
 <tr>
-<td>Control on-the-wire data format</td>
-<td><code>key.converter</code>/<code>value.converter</code></td>
+<td>3</td>
+<td>Why might a documented benchmarking pitfall (like constant folding) fail to reproduce on your JVM even though it's real?</td>
+<td><a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/#flashcards">Benchmarking &amp; JMH Pitfalls</a></td>
 </tr>
 <tr>
-<td>Simple, single-process, local/dev use</td>
-<td>Standalone mode</td>
+<td>4</td>
+<td>What does Little's Law state, and what makes it broadly useful for capacity planning?</td>
+<td><a href="../../../16-performance-jvm/capacity-planning-and-headroom/#flashcards">Capacity Planning &amp; Headroom</a></td>
 </tr>
 <tr>
-<td>Real production fault tolerance and scaling</td>
-<td>Distributed mode</td>
+<td>5</td>
+<td>Why can a throughput dashboard look "healthy" during a real capacity incident?</td>
+<td><a href="../../../16-performance-jvm/capacity-planning-and-headroom/#flashcards">Capacity Planning &amp; Headroom</a></td>
 </tr>
 <tr>
-<td>Control crash-recovery redundancy window</td>
-<td><code>offset.flush.interval.ms</code></td>
+<td>6</td>
+<td>Why is utilization-to-latency non-linear near saturation?</td>
+<td><a href="../../../16-performance-jvm/capacity-planning-and-headroom/#flashcards">Capacity Planning &amp; Headroom</a></td>
 </tr>
 <tr>
-<td>Make a connector jar discoverable (standalone)</td>
-<td><code>plugin.path</code></td>
+<td>7</td>
+<td>In a flame graph, does a taller stack or a wider frame indicate a hotspot?</td>
+<td><a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/#flashcards">Profiling: async-profiler, JFR, Flame Graphs</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>What did this chapter's own real profiling run find, and why does it matter?</td>
+<td><a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/#flashcards">Profiling: async-profiler, JFR, Flame Graphs</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>When would you reach for async-profiler instead of JFR?</td>
+<td><a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/#flashcards">Profiling: async-profiler, JFR, Flame Graphs</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h3 id="card-what-actually-makes-kafka-connect-fault-tolerant">Card: What actually makes Kafka Connect fault-tolerant<a class="headerlink" href="#card-what-actually-makes-kafka-connect-fault-tolerant" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-What's the real mechanism behind Kafka Connect surviving a worker crash without losing or duplicating data?</p>
-<p><strong>Answer:</strong>
-Durably persisted offsets (a local file in standalone mode; an internal, compacted Kafka topic in distributed mode), independent of the worker process's own lifetime. This chapter's own real demo proves it: a kill-and-restart resumes from exactly the last committed offset, with zero data loss and zero duplication of already-delivered records.</p>
-<p><strong>Why it matters:</strong>
-The concrete mechanism behind "Connect is fault-tolerant," not just the claim.</p>
-<p><strong>Common trap:</strong>
-Assuming a worker crash always causes data loss or duplication, without checking the actual offset-commit timing.</p>
-<p><strong>Related:</strong>
-<a href="#internal-implementation">Internal Implementation</a></p>
-<h3 id="card-converter-vs-connector">Card: Converter vs. connector<a class="headerlink" href="#card-converter-vs-connector" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-What's the real difference between a <code>Converter</code> and a connector in Kafka Connect?</p>
-<p><strong>Answer:</strong>
-A connector implements logic specific to one external system (how to read/write it); a <code>Converter</code> controls the on-the-wire serialization format, configured independently and reused across every connector on a worker.</p>
-<p><strong>Why it matters:</strong>
-A wire-format problem is a converter issue, not a connector bug — confusing them wastes real debugging time.</p>
-<p><strong>Common trap:</strong>
-Blaming the connector for unexpected data format, when the actual fix is a converter configuration change.</p>
-<p><strong>Related:</strong>
-<a href="#core-concepts">Core Concepts</a></p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Run the <a href="../../practice/java/kafka/kafka-connect-source-and-sink/">existing practice demo</a> yourself and confirm the same incremental-streaming and kill-and-restart results reproduce.</li>
-<li>Modify the demo to use a plain <code>StringConverter</code> instead of <code>JsonConverter</code>, and predict (then verify) how the real topic content changes.</li>
-<li>Explain why a sink connector's fault tolerance relies on ordinary Kafka consumer-group offsets, while a source connector needs its own, separate offset-storage mechanism.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p><strong>Exercise 1.</strong> Reproducing the demo should show the identical converter-wrapped topic payloads, the identical incremental round trip, and the identical kill-and-restart result (exactly one new line after restart, no duplicates).</p>
-<p><strong>Exercise 2.</strong> With <code>StringConverter</code>, the real topic content would be the bare string <code>line-1</code> rather than the JSON-schema-wrapped payload — proving directly that the wire format is the converter's responsibility, not the <code>FileStreamSource</code> connector's, which is unchanged either way.</p>
-<p><strong>Exercise 3.</strong> A sink connector's task is a real Kafka consumer under the hood, so it can reuse Kafka's own, already-existing consumer-group offset-commit mechanism directly. A source connector has no analogous built-in mechanism, since it's reading from an arbitrary external system with no native Kafka concept of "offset" — Connect must provide its own separate, generic offset-storage abstraction specifically to give source connectors the same durable-progress guarantee sink connectors get for free from the consumer API.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Apache Kafka's own Kafka Connect documentation, for the complete configuration reference (distributed-mode setup, the REST API, transformation chains) this chapter covers a working subset of</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://kafka.apache.org/38/documentation/#connect">Apache Kafka Documentation — Kafka Connect (3.8)</a></li>
+<li><a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a></li>
+<li><a href="../15-cloud/"><code>15-cloud.md</code></a></li>
+<li><a href="../14-devops-containers/"><code>14-devops-containers.md</code></a></li>
+<li><a href="../13-observability/"><code>13-observability.md</code></a></li>
+<li><a href="../12-security/"><code>12-security.md</code></a></li>
+<li><a href="../11-system-design/"><code>11-system-design.md</code></a></li>
+<li><a href="../10-distributed-systems/"><code>10-distributed-systems.md</code></a></li>
+<li><a href="../09-messaging-event-driven/"><code>09-messaging-event-driven.md</code></a></li>
+<li><a href="../08-testing/"><code>08-testing.md</code></a></li>
+<li><a href="../07-api-design/"><code>07-api-design.md</code></a></li>
+<li><a href="../05-spring/"><code>05-spring.md</code></a></li>
+<li><a href="../04-software-design/"><code>04-software-design.md</code></a></li>
+<li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
+<li><a href="../06-databases/"><code>06-databases.md</code></a></li>
+<li><a href="../02-java-collections/"><code>02-java-collections.md</code></a>, <a href="../02-java-concurrency/"><code>02-java-concurrency.md</code></a>, <a href="../02-java-language-core/"><code>02-java-language-core.md</code></a></li>
+<li><a href="../../../00-project/interview-question-bank-plan.md"><code>00-project/interview-question-bank-plan.md</code></a></li>
 </ul>
 
 
@@ -11717,7 +11553,7 @@ Blaming the connector for unexpected data format, when the actual fix is a conve
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:31:14 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:29:20 UTC">September 14, 2026</span>
   </span>
 
     
@@ -11753,7 +11589,7 @@ Blaming the connector for unexpected data format, when the actual fix is a conve
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../kafka-architecture-fundamentals/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kafka Architecture Fundamentals — Topics, Partitions, Replication">
+          <a href="../15-cloud/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interview Question Bank — 15-cloud">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11763,20 +11599,20 @@ Blaming the connector for unexpected data format, when the actual fix is a conve
                 Previous
               </span>
               <div class="md-ellipsis">
-                Kafka Architecture Fundamentals — Topics, Partitions, Replication
+                Interview Question Bank — 15-cloud
               </div>
             </div>
           </a>
         
         
           
-          <a href="../kafka-streams-and-stateful-processing/" class="md-footer__link md-footer__link--next" aria-label="Next: Kafka Streams and Stateful Stream Processing">
+          <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Narration and Whiteboard Discipline">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Kafka Streams and Stateful Stream Processing
+                System Design Narration and Whiteboard Discipline
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -11819,16 +11655,16 @@ Blaming the connector for unexpected data format, when the actual fix is a conve
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
     
   </body>
