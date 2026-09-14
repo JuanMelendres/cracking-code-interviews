@@ -4,8 +4,8 @@ slug: twelve-factor-config
 document_type: handbook-chapter
 domain: 15-cloud
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/system-design/twelve-factor-config.md
 topic_id: T-1008
@@ -27,6 +27,7 @@ related:
   - ../12-security/secrets-management-and-key-rotation.md
   - ../05-spring/spring-actuator-health-and-observability-hooks.md
   - ../07-api-design/api-gateway-bff-and-edge-concerns.md
+  - ../05-spring/spring-mvc-fundamentals.md
   - ../../practice/java/system-design/twelve-factor-config/README.md
 official_references:
   - https://12factor.net/config
@@ -61,24 +62,25 @@ official_references:
 8. [Internal Implementation](#internal-implementation)
 9. [Diagrams](#diagrams)
 10. [Java Examples](#java-examples)
-11. [Production Scenarios](#production-scenarios)
-12. [Failure Modes and Debugging](#failure-modes-and-debugging)
-13. [Trade-offs](#trade-offs)
-14. [Decision Framework](#decision-framework)
-15. [Comparisons](#comparisons)
-16. [Common Mistakes](#common-mistakes)
-17. [Anti-Patterns](#anti-patterns)
-18. [Best Practices](#best-practices)
-19. [Interview Answer Framework](#interview-answer-framework)
-20. [Interview Questions](#interview-questions)
-21. [Summary](#summary)
-22. [Key Takeaways](#key-takeaways)
-23. [Cheat Sheet](#cheat-sheet)
-24. [Flashcards](#flashcards)
-25. [Practice Exercises](#practice-exercises)
-26. [Solutions](#solutions)
-27. [Additional Reading](#additional-reading)
-28. [Official References](#official-references)
+11. [Spring Profiles](#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story)
+12. [Production Scenarios](#production-scenarios)
+13. [Failure Modes and Debugging](#failure-modes-and-debugging)
+14. [Trade-offs](#trade-offs)
+15. [Decision Framework](#decision-framework)
+16. [Comparisons](#comparisons)
+17. [Common Mistakes](#common-mistakes)
+18. [Anti-Patterns](#anti-patterns)
+19. [Best Practices](#best-practices)
+20. [Interview Answer Framework](#interview-answer-framework)
+21. [Interview Questions](#interview-questions)
+22. [Summary](#summary)
+23. [Key Takeaways](#key-takeaways)
+24. [Cheat Sheet](#cheat-sheet)
+25. [Flashcards](#flashcards)
+26. [Practice Exercises](#practice-exercises)
+27. [Solutions](#solutions)
+28. [Additional Reading](#additional-reading)
+29. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -234,6 +236,82 @@ Real failure, deep in business logic, minutes/hours after startup:
 Real startup failure -- BEFORE the app ever accepts a single request:
   Missing required config key 'database.url' -- refusing to start. Set it via config file, an APP_DATABASE_URL environment variable, or --database.url=... on the command line.
 ```
+
+## Spring Profiles: the Concrete Spring Boot Implementation of This Precedence Story
+
+Everything above describes the general precedence mechanism from first principles; **Spring Profiles are Spring Boot's own, concrete implementation of "different config per environment" using exactly this layering.** A **profile** is a named label (`dev`, `staging`, `prod`, or any string a team chooses) that controls two things at once: which beans get created, and which config values get loaded.
+
+**`@Profile` on a bean restricts it to specific profiles.** A `@Configuration` or `@Component` class (or an individual `@Bean` method) annotated `@Profile("dev")` is only registered in the application context when the `dev` profile is active; it's simply skipped otherwise. This is the standard mechanism for swapping an implementation per environment — a real payment gateway client active under `@Profile("prod")`, a mock/sandbox one active under `@Profile("dev")`, both implementing the same interface, with the application code that depends on that interface never needing to know which one is actually wired in.
+
+```java
+@Configuration
+@Profile("dev")
+class DevMailConfig {
+    @Bean
+    JavaMailSender mailSender() {
+        return new MockMailSender(); // logs instead of actually sending
+    }
+}
+
+@Configuration
+@Profile("prod")
+class ProdMailConfig {
+    @Bean
+    JavaMailSender mailSender() {
+        return new SmtpMailSender(realSmtpHost); // actually sends
+    }
+}
+```
+
+**Which profile is active is set exactly through this chapter's own precedence layers** — a real, direct instance of the mechanism already measured above, not a separate, unrelated system:
+
+| Source | Example | Precedence |
+|---|---|---|
+| `application.yml` default | `spring.profiles.active: dev` | Lowest — a fallback for local development |
+| Environment variable | `SPRING_PROFILES_ACTIVE=prod` | Overrides the file — the standard way a container/orchestrator sets it |
+| JVM system property | `-Dspring.profiles.active=prod` | Overrides the environment variable |
+| Command-line argument | `--spring.profiles.active=prod` | Highest — overrides everything else |
+
+**Profile-specific YAML files layer on top of the base `application.yml`, not replace it.** `application-prod.yml` (or `application-prod.properties`) is loaded *in addition to* `application.yml` whenever the `prod` profile is active, and any key it defines overrides the same key from the base file — keys the profile-specific file doesn't mention still come from the base file. Spring Boot 2.4+ also supports the same thing inside one file, using `---` document separators and `spring.config.activate.on-profile`:
+
+```yaml
+# application.yml — base config, always loaded
+spring:
+  application:
+    name: order-service
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+
+---
+# This document only activates when "dev" is the active profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:mem:devdb
+logging:
+  level:
+    root: DEBUG
+
+---
+# This document only activates when "prod" is active
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATABASE_URL}    # injected via environment variable, never hardcoded
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+```
+
+**More than one profile can be active simultaneously** — `spring.profiles.active: dev,debug-logging` activates both; when two active profiles define the same key differently, the one listed later wins. **Profile groups** (`spring.profiles.group.production: db-prod, cache-prod, security-prod`, Spring Boot 2.4+) let one umbrella profile name activate several underlying profiles together, avoiding a growing, error-prone `--spring.profiles.active=a,b,c,d` list at every deployment. For tests specifically, `@ActiveProfiles("test")` on a test class activates a profile the same way a runtime flag would, commonly paired with an `application-test.yml` pointing at an in-memory database.
+
+**A real, common mistake this precedence layering explains directly**: a value "not taking effect" in `application-prod.yml` after a change is deployed is almost always this chapter's own Level 2 diagnostic — check whether an environment variable or command-line argument at a higher-precedence layer is silently overriding it, before assuming the YAML edit itself is wrong.
 
 ## Production Scenarios
 
@@ -512,6 +590,24 @@ override an environment variable at all?"
 **Evaluation criteria.** Correct precedence order (3), operational
 reasoning at Staff level (2).
 
+### Question 3: How would you make one bean implementation active in production and a different one in local development?
+
+**Why interviewers ask it.** A direct, practical check for whether a candidate can actually use Spring Profiles, not just define the term — a near-daily real need (a mock vs. real external integration, a different datasource per environment).
+
+**Expected answer.** Annotate each implementation's `@Configuration`/`@Component` (or its `@Bean` method) with `@Profile("dev")` and `@Profile("prod")` respectively; only the one matching the currently active profile gets registered in the application context. Set the active profile via `spring.profiles.active` — in `application.yml` for a safe local default, overridden by a `SPRING_PROFILES_ACTIVE` environment variable in a real deployment, following this chapter's own precedence order.
+
+**Minimum acceptable answer.** Knows `@Profile` exists and roughly what it does, even without precise precedence-order detail for how the active profile gets set.
+
+**Strong Senior answer.** Correctly states that `application-{profile}.yml` layers on top of (not replaces) the base `application.yml`, overriding only the keys it defines.
+
+**Staff-level extension.** Names profile groups (`spring.profiles.group`) as the fix for a growing, error-prone multi-profile activation list at scale, and connects the whole mechanism explicitly back to this chapter's generic precedence story — profiles aren't a separate system, they're Spring Boot's own concrete implementation of it.
+
+**Common mistakes.** Assuming a profile-specific YAML file is a complete, standalone config rather than an override layer on top of the base file.
+
+**Likely follow-ups.** "What happens if two active profiles define the same config key differently?" (The one listed later in `spring.profiles.active` wins.)
+
+**Evaluation criteria.** Correct `@Profile` mechanism (2), correct `spring.profiles.active` precedence (2), correct file-layering behavior at Senior level (1).
+
 ## Summary
 
 The twelve-factor app methodology's config guidance (Factor III) demands
@@ -542,6 +638,7 @@ this register topic.
 - A passing health check proves a process is running, not that its
   configuration is complete — the concrete mechanism behind this chapter's
   own production scenario.
+- Spring Profiles (`@Profile`, `spring.profiles.active`, `application-{profile}.yml`) are Spring Boot's own concrete implementation of this precedence story, not a separate mechanism.
 
 ## Cheat Sheet
 
@@ -555,6 +652,7 @@ this register topic.
   the process runs.
 - **Secrets are not plain config** — see the dedicated secrets-management
   chapter.
+- **Spring Profiles**: `@Profile("name")` on a bean restricts it to that profile; `spring.profiles.active` (file < env var < JVM property < CLI arg — this chapter's own precedence order) picks which profile(s) are active; `application-{profile}.yml` layers on top of the base `application.yml`, overriding only the keys it defines.
 
 ## Flashcards
 
@@ -623,6 +721,23 @@ complete.
 **Common trap:**
 Assuming a passing health check is sufficient proof of correct
 configuration.
+
+**Related:**
+[[twelve-factor-config]]
+
+### Card: How do profile-specific YAML files combine with the base file?
+
+**Prompt:**
+When the `prod` profile is active, does `application-prod.yml` replace `application.yml`, or combine with it?
+
+**Answer:**
+It combines with it. `application.yml` always loads; `application-prod.yml` loads in addition and overrides only the specific keys it defines — any key the profile-specific file doesn't mention still comes from the base file.
+
+**Why it matters:**
+A common, real confusion — assuming the profile file is a complete, standalone config and forgetting a key that's only ever set in the base file.
+
+**Common trap:**
+Duplicating every key into every profile-specific file "to be safe," instead of relying on the override-only-what-differs layering.
 
 **Related:**
 [[twelve-factor-config]]

@@ -3368,6 +3368,13 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Added (`twelve-factor-config.md`, `spring-mvc-fundamentals.md` — Spring Profiles, pom.xml, application.yml, 2026-09-14)
+
+- User request: real gap found. No chapter covered Spring's own `@Profile`/`spring.profiles.active`/`application-{profile}.yml` mechanism, and no chapter covered a real `pom.xml` or `application.yml`'s full structure.
+- `twelve-factor-config.md`: new "Spring Profiles" section connecting this chapter's generic config-precedence story to Spring Boot's concrete implementation — `@Profile` on beans, `spring.profiles.active` precedence (file < env var < JVM property < CLI arg), how `application-{profile}.yml` layers on top of (not replaces) the base file, multi-profile activation, profile groups (Spring Boot 2.4+), `@ActiveProfiles` for tests. New Interview Question 3, 1 new Flashcard, Cheat Sheet line.
+- `spring-mvc-fundamentals.md`: new subsection at the start of Foundation (L1) — a real, minimal `pom.xml` (parent BOM, starters, scopes, `spring-boot-maven-plugin`) and a real `application.yml` (`server.port`, `spring.application.name`, `spring.datasource.*` with `${VAR:default}` placeholder syntax, `ddl-auto: validate` as the only production-safe value, logging levels, Actuator endpoint exposure), each element explained. New Interview Question Q6, 2 new Flashcards, 2 new Cheat Sheet tables — synced to the standalone `cheat-sheets/`/`flashcards/` files for both chapters.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `01-computer-science-foundations`, 2026-09-14)
 
 - User-requested content-quality deep-dive of the 6th domain (following the same method as `02-java`/`05-spring`/`06-databases`/`12-security`/`10-distributed-systems`). Read all 5 chapters in full against the Handbook Writing Standard.

@@ -50,6 +50,26 @@ A class declares what it needs (usually as a constructor parameter); Spring buil
 | Observer | `ApplicationEvent` + `@EventListener` |
 | Strategy | Interface + multiple `@Component` impls + `@Qualifier` |
 
+## pom.xml Essentials
+
+| Element | Purpose |
+|---|---|
+| `<parent>spring-boot-starter-parent</parent>` | Curated dependency versions (no `<version>` needed per starter) + default plugin config |
+| `spring-boot-starter-*` | One dependency pulls a coherent, tested bundle (web = Tomcat + MVC + Jackson) |
+| `<scope>runtime</scope>` | For the DB driver — needed only when running, not compiling |
+| `<scope>test</scope>` | For `spring-boot-starter-test` — never packaged into the deployed app |
+| `spring-boot-maven-plugin` | Required for `mvn package` to produce a real, executable "fat jar" |
+
+## application.yml Essentials
+
+| Key | Purpose |
+|---|---|
+| `server.port` | Embedded container's listening port (default `8080`) |
+| `spring.application.name` | Logical service name — logs, Actuator `/info`, service discovery |
+| `spring.datasource.*` + `${VAR:default}` | JDBC connection, with env-var override and fail-fast on a missing required value (no default) |
+| `spring.jpa.hibernate.ddl-auto: validate` | The only production-safe value — `update`/`create-drop` are dev-only |
+| `management.endpoints.web.exposure.include` | Explicit allowlist of reachable Actuator endpoints — nothing exposed by default |
+
 ## Common Pitfalls
 
 - **`@PathVariable Long id` with no explicit name, compiled without `-parameters`** — a real, genuine `500` (`IllegalArgumentException: Name for argument of type [java.lang.Long] not specified...`). Fix: `@PathVariable("id") Long id`, always.
@@ -71,4 +91,6 @@ A class declares what it needs (usually as a constructor parameter); Spring buil
 
 - syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
 - syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md
+- syllabus/05-spring/spring-actuator-health-and-observability-hooks.md
+- syllabus/15-cloud/twelve-factor-config.md
 - syllabus/07-api-design/rest-api-fundamentals.md

@@ -5,7 +5,7 @@ document_type: syllabus-topic
 domain: 05-spring
 topic_id: T-2203
 status: canonical
-version: 1.2
+version: 1.3
 last_updated: 2026-09-14
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
@@ -15,6 +15,8 @@ related:
   - spring-bean-scopes-and-proxy-modes.md
   - spring-framework-vs-spring-boot.md
   - bean-validation-and-global-exception-handling.md
+  - spring-actuator-health-and-observability-hooks.md
+  - ../15-cloud/twelve-factor-config.md
   - ../07-api-design/api-design.md
 practice: ../../practice/java/spring-mvc-fundamentals/
 production_scenarios: []
@@ -58,6 +60,109 @@ Every other chapter in `05-spring` assumes you already know what `@Autowired` do
 [Java OOP Fundamentals: Classes, Objects, and Interfaces](../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md) — specifically the constructor and interface material; Spring's own dependency injection (Section 4) is built directly on ordinary Java constructors, not a special language feature.
 
 ## 3. Foundation (L1)
+
+**Before any Spring concept makes sense, two files on disk define what a Spring Boot project actually is: `pom.xml` (or `build.gradle`) declares what the project depends on and how it's built, and `application.yml` (or `application.properties`) holds the project's own runtime configuration.** Neither is Spring-specific machinery — `pom.xml` is plain Maven, `application.yml` is a plain YAML file Spring Boot happens to read at startup — but a real project is unreadable without knowing what belongs in each.
+
+**A real, minimal `pom.xml` for a Spring Boot web service:**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.4</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>task-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+Each part earns its place:
+
+- **`<parent>spring-boot-starter-parent</parent>`** — inherits a curated, tested set of dependency *versions* (Spring Boot's own "Bill of Materials"), so none of the dependencies below need their own `<version>` tag — the parent picks one consistent, compatible version for all of them. It also configures sensible default plugin behavior (UTF-8 source encoding, resource filtering) that would otherwise need to be set up by hand.
+- **`<groupId>`/`<artifactId>`/`<version>`** — this project's own Maven coordinates, identifying it uniquely (to itself, and to anything that might depend on it).
+- **`<properties><java.version>`** — tells `spring-boot-starter-parent` which Java version to compile and target; changing this one line changes the compiler's `--release` flag project-wide.
+- **`spring-boot-starter-web`, `spring-boot-starter-data-jpa`** — **starters**: each one is a single dependency that pulls in a coherent, tested bundle of transitive dependencies for one concern — `-web` brings an embedded Tomcat, Spring MVC, and Jackson (JSON) together; `-data-jpa` brings Hibernate and Spring Data JPA together — so a project states *what it needs* (web, JPA) rather than hand-assembling every individual library and hoping the versions are compatible.
+- **`<scope>runtime</scope>` on the database driver** — the driver is needed only when the application actually runs (to open a real connection), never at compile time, since application code depends on JPA/Hibernate's own abstractions, not the driver class directly.
+- **`<scope>test</scope>` on `spring-boot-starter-test`** — this dependency (JUnit 5, Mockito, AssertJ, Spring's own test utilities, all bundled) is only ever on the test classpath, never packaged into the deployed application.
+- **`spring-boot-maven-plugin`** — without this, `mvn package` produces a plain, non-runnable `.jar` missing every dependency; this plugin's `repackage` goal is what turns that into a real, executable "fat jar" (`java -jar task-service.jar` actually works) with every dependency bundled inside it.
+
+**A real `application.yml` for the same service:**
+
+```yaml
+server:
+  port: 8080
+
+spring:
+  application:
+    name: task-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tasks
+    username: ${DB_USER:tasks_app}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    com.example.taskservice: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+```
+
+- **`server.port`** — the embedded servlet container's listening port; omit it entirely and Spring Boot defaults to `8080`.
+- **`spring.application.name`** — this service's own logical name, surfaced in logs, Actuator's `/info` endpoint, and (in a real microservice deployment) service-discovery registration.
+- **`spring.datasource.*`** — the JDBC connection details; `${DB_USER:tasks_app}` is placeholder syntax meaning "read the `DB_USER` environment variable, or fall back to `tasks_app` if it's unset" — `${DB_PASSWORD}` (no default) means a missing environment variable fails fast at startup rather than silently connecting with an empty password. This is the exact environment-variable-override mechanism [The Twelve-Factor App: Config](../15-cloud/twelve-factor-config.md) covers in depth, including Spring's own `spring.profiles.active` precedence for swapping this entire block per environment.
+- **`spring.jpa.hibernate.ddl-auto`** — controls whether Hibernate touches the database schema at startup; `validate` (compares entities against the existing schema and fails if they disagree, but never modifies it) is the only safe choice in a real deployment — `update` and `create-drop` are for local development only, never production, since either can silently alter or destroy real data.
+- **`logging.level.*`** — per-logger minimum severity; setting the application's own package to `DEBUG` while leaving `root` at `INFO` is the standard way to get verbose logging from your own code without being flooded by framework-internal noise.
+- **`management.endpoints.web.exposure.include`** — explicitly allowlists which Actuator endpoints are reachable over HTTP; Spring Boot exposes almost none by default specifically so a team must opt in deliberately, covered in full in [Spring Boot Actuator, Health, and Observability Hooks](spring-actuator-health-and-observability-hooks.md).
 
 **Dependency injection** is Spring's central idea, and it is simpler than it sounds: instead of a class creating the objects it depends on (`new TaskRepository()`), it declares what it needs — usually as a constructor parameter — and a container builds the object graph and hands the dependencies in. The class stops being responsible for knowing how to construct its own dependencies; it only states what it needs.
 
@@ -251,6 +356,9 @@ Expected answer: Section 9's "no qualifying bean" ambiguity — Spring can no lo
 
 **Q5 (Senior/Staff): "Your team's controllers have started accumulating direct database calls instead of going through the service layer. How do you address it?"**
 Expected answer: Section 13's framing — this is a convention-erosion problem, not a one-off bug; the fix is process/tooling (code review discipline, or an automated architecture test enforcing the layering) rather than a single code change, because the same shortcut will keep recurring under time pressure otherwise.
+
+**Q6 (Junior/Mid): "What's the actual difference between `spring-boot-starter-parent` and a regular Maven dependency, and why does `spring-boot-maven-plugin` need to be there too?"**
+Expected answer: Section 3's `pom.xml` breakdown — the parent supplies a tested, consistent set of dependency *versions* (so individual starters don't need their own `<version>` tag) plus default plugin configuration; the `spring-boot-maven-plugin`'s `repackage` goal is what turns a plain, non-runnable `.jar` into a real executable one with every dependency bundled inside — without it, `mvn package` produces something `java -jar` can't actually run.
 
 ## 16. Coding/Practice Exercises
 

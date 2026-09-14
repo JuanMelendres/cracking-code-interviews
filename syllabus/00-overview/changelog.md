@@ -1405,6 +1405,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Every other claim across all 5 chapters checked out: Big-O tables, merge-sort recurrence, fetch-decode-execute cycle, two's complement/IEEE 754 mechanics, the Ariane 5 and Patriot-missile historical incidents, the OS process/thread model and virtual-thread M:N mechanics — no fabrication, every "real, measured" table's internal arithmetic verified consistent.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — Spring Profiles, `pom.xml`, and `application.yml` structure added
+
+### Added
+
+- User request: real gap found. No chapter covered `@Profile`/`spring.profiles.active`/`application-{profile}.yml`, and no chapter covered a real `pom.xml`/`application.yml`'s structure.
+- `twelve-factor-config.md`: new "Spring Profiles" section connecting this chapter's generic config-precedence story to Spring Boot's concrete implementation. New Interview Question 3, 1 new Flashcard, Cheat Sheet line.
+- `spring-mvc-fundamentals.md`: new subsection at the start of Foundation (L1) — a real, minimal `pom.xml` and `application.yml`, each element explained (starters, dependency scopes, `spring-boot-maven-plugin`, `${VAR:default}` placeholders, `ddl-auto: validate`, Actuator endpoint exposure). New Interview Question Q6, 2 new Flashcards, 2 new Cheat Sheet tables — synced to the standalone `cheat-sheets/`/`flashcards/` files for both chapters.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)

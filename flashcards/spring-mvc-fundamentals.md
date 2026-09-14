@@ -114,6 +114,40 @@ Describing `@Transactional` as if the annotation itself executes logic at runtim
 **Related:**
 [Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md), [Transactional Proxy Mechanics and Propagation](../syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md)
 
+## Card: Why spring-boot-maven-plugin is required
+
+**Prompt:**
+What actually breaks if `spring-boot-maven-plugin` is missing from a Spring Boot project's `pom.xml`?
+
+**Answer:**
+`mvn package` still produces a `.jar`, but a plain, non-runnable one missing every dependency — the plugin's `repackage` goal is what bundles every dependency inside it, turning it into a real executable "fat jar" `java -jar` can actually run.
+
+**Why it matters:**
+A real, concrete "why is this file here" question that separates understanding a Spring Boot project's structure from having only ever clicked "generate" on start.spring.io.
+
+**Common trap:**
+Assuming any Maven `<plugin>` entry is boilerplate that can be safely deleted if the build "still works" locally in an IDE.
+
+**Related:**
+[Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md)
+
+## Card: ddl-auto in production
+
+**Prompt:**
+What's the only safe value for `spring.jpa.hibernate.ddl-auto` in a real production deployment, and why?
+
+**Answer:**
+`validate` — it compares entities against the existing schema and fails startup if they disagree, but never modifies the database itself. `update` and `create-drop` can silently alter or destroy real data and are for local development only.
+
+**Why it matters:**
+A real, common production-safety question — using `update` in production is a genuine, documented cause of real data loss incidents.
+
+**Common trap:**
+Leaving a dev-convenient `ddl-auto: update` unchanged when promoting config toward production.
+
+**Related:**
+[Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md), [JPA Entity Lifecycle and the N+1 Problem](../syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md)
+
 ## Card: "No qualifying bean" startup failure
 
 **Prompt:**
