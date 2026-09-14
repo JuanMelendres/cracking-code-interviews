@@ -4,8 +4,8 @@ slug: api-gateway-bff-and-edge-concerns
 document_type: handbook-chapter
 domain: 07-api-design
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - handbook/system-design/api-gateway-bff-and-edge-concerns.md
 topic_id: T-911
@@ -315,7 +315,6 @@ inter-service latency is far cheaper than client-to-service WAN latency.
   auditing review finds some services enforce a policy correctly and others
   don't, despite the policy supposedly being "standard" — a strong signal the
   concern should have lived in the gateway.
-  discovered instead of relied upon.
 - **A single gateway becoming a single point of failure or a shared
   bottleneck** — debug signal: an incident in one backend service's routing
   path takes down traffic to unrelated services sharing the same gateway

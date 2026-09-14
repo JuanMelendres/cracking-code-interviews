@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Content-quality audit — `07-api-design`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (11th domain, 5 chapters, read directly). `api-design.md` (OFFSET-vs-keyset pagination, real ~3,000x measured PostgreSQL difference verified arithmetically consistent), `rest-api-fundamentals.md` (full status-code vocabulary, all real curl transcripts against a live Spring Boot app, honest conceptual-vs-real labeling), `graphql-api-design.md` (real N+1/DataLoader call counts, nullability-dependent null propagation), and `grpc-api-design.md` (all four call shapes with real executed output, real caught `StatusRuntimeException`) all verified fully clean — every measured number internally consistent, no fabrication.
+- `api-gateway-bff-and-edge-concerns.md`: found and fixed one real editing artifact — an orphaned sentence fragment ("discovered instead of relied upon.") left dangling on its own line after a completed bullet in Failure Modes and Debugging, with no antecedent it grammatically connected to. Removed. Verified the chapter's measured BFF speedup (357ms sequential vs. 159ms concurrent, ~2.2x) consistent with its own stated "~300ms"/"~150ms" expectations.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `16-performance-jvm`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (10th domain, 3 chapters, read directly). `benchmarking-and-jmh-pitfalls.md` and `profiling-jfr-and-flame-graphs.md` verified fully clean — every measured number (2.748ns/3.541ns dead-code-elimination gap, the 719/88/153 real JFR sample counts) internally consistent, JMH/`Blackhole` mechanics and JFR/async-profiler sampling mechanics correct, no fabrication.

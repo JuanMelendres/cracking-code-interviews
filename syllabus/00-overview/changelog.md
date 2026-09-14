@@ -1440,6 +1440,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `07-api-design` (11th domain), one orphaned-text artifact fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (11th domain, 5 chapters, read directly). `api-design.md`, `rest-api-fundamentals.md`, `graphql-api-design.md`, `grpc-api-design.md` all verified fully clean — real measured numbers (OFFSET vs. keyset ~3,000x, N+1/DataLoader call counts, all four gRPC call shapes) internally consistent, no fabrication.
+- `api-gateway-bff-and-edge-concerns.md`: found and fixed a real editing artifact — an orphaned sentence fragment ("discovered instead of relied upon.") dangling on its own line in Failure Modes and Debugging with no grammatical antecedent. Removed. Verified the chapter's measured BFF speedup (357ms sequential vs. 159ms concurrent) consistent with its own stated expectations.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `16-performance-jvm` (10th domain), one self-contradictory solution fixed
 
 ### Fixed
