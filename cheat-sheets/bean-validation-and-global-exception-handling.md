@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 05-spring
 topic_id: T-518
 canonical: ../syllabus/05-spring/bean-validation-and-global-exception-handling.md
-last_updated: 2026-09-11
+last_updated: 2026-09-14
 ---
 
 # Bean Validation and Global Exception Handling
@@ -20,7 +20,7 @@ Bean Validation is a checkpoint *before* business logic runs, not a check busine
 
 - **Field-level constraint** (`@NotBlank`, `@Email`, `@Positive`) — checks one field's value in isolation.
 - **Class-level constraint** (custom `@Constraint` + `ConstraintValidator<Annotation, WholeType>`) — the only way to express a rule depending on more than one field at once.
-- **`@RestControllerAdvice`** — centralizes exception-to-HTTP-response mapping across every controller.
+- **`@RestControllerAdvice`** — centralizes exception-to-HTTP-response mapping across every controller. `@ControllerAdvice` + `@ResponseBody` — same composition as `@RestController` = `@Controller` + `@ResponseBody`.
 - **Catch-all `@ExceptionHandler(Exception.class)`** — the last line of defense for exception types nobody anticipated.
 
 ## Decision Table
@@ -31,6 +31,7 @@ Bean Validation is a checkpoint *before* business logic runs, not a check busine
 | Cross-field rule ("X required only if Y") | Custom class-level `@Constraint` | Real `@ValidPayment` constraint firing as an `ObjectError` |
 | Known, specific failure | Dedicated `@ExceptionHandler` | Real, specific `404` |
 | Unanticipated exception | Catch-all `@ExceptionHandler(Exception.class)` | Real sensitive detail logged server-side, never reaching the client |
+| JSON/REST API global handler | `@RestControllerAdvice`, not plain `@ControllerAdvice` | `@ControllerAdvice` resolves return values as view names; `@RestControllerAdvice` as the response body |
 
 ## Common Pitfalls
 

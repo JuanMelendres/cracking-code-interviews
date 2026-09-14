@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 05-spring
 topic_id: T-518
 canonical: ../syllabus/05-spring/bean-validation-and-global-exception-handling.md
-last_updated: 2026-09-11
+last_updated: 2026-09-14
 ---
 
 # Flashcards: Bean Validation and Global Exception Handling
@@ -45,6 +45,23 @@ Believing "I've handled every exception type I can think of" is equivalent to "I
 
 **Related:**
 [Bean Validation and Global Exception Handling](../syllabus/05-spring/bean-validation-and-global-exception-handling.md)
+
+## Card: @ControllerAdvice vs. @RestControllerAdvice
+
+**Prompt:**
+What's the actual difference between `@ControllerAdvice` and `@RestControllerAdvice`?
+
+**Answer:**
+`@RestControllerAdvice` is `@ControllerAdvice` + `@ResponseBody` — the same composition as `@RestController` = `@Controller` + `@ResponseBody`. `@ControllerAdvice`'s `@ExceptionHandler` methods resolve return values as view names (server-rendered pages); `@RestControllerAdvice`'s resolve them as the HTTP response body directly.
+
+**Why it matters:**
+A JSON/REST API needs `@RestControllerAdvice` specifically, not the plain form — using `@ControllerAdvice` there would try to resolve the return value as a view name instead of serializing it.
+
+**Common trap:**
+Assuming the two are interchangeable, or not recognizing the relationship mirrors `@Controller`/`@RestController` exactly.
+
+**Related:**
+[Spring MVC Fundamentals](../syllabus/05-spring/spring-mvc-fundamentals.md)
 
 ## Card: Where a class-level violation is filed
 

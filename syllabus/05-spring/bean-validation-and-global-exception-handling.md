@@ -4,8 +4,8 @@ slug: bean-validation-and-global-exception-handling
 document_type: handbook-chapter
 domain: 05-spring
 status: canonical
-version: 1.0
-last_updated: 2026-09-10
+version: 1.1
+last_updated: 2026-09-14
 difficulty:
   - intermediate
 target_levels:
@@ -113,6 +113,20 @@ When `@Valid` is present on a `@RequestBody` parameter, Spring performs validati
 ### A generic catch-all handler is a security control, not just tidiness
 
 An `@ExceptionHandler(Exception.class)` method isn't merely about returning consistent JSON shape — [Internal Implementation](#internal-implementation) demonstrates directly that, without one, an unexpected exception's raw `getMessage()` (which can contain genuinely sensitive detail — a connection string, an internal file path, a third-party API error body) risks reaching the client as-is via Spring's own default error-handling fallback. A deliberate catch-all, logging the real exception server-side and returning a fixed, generic message to the client, is what closes that gap in exactly one place rather than requiring every individual exception type to be anticipated and specifically handled.
+
+### `@ControllerAdvice` vs. `@RestControllerAdvice` — the same relationship as `@Controller` vs. `@RestController`
+
+Every example in this chapter uses `@RestControllerAdvice`, but it's worth naming explicitly what it actually is: shorthand for `@ControllerAdvice` + `@ResponseBody`, the exact same composition [Spring MVC Fundamentals](spring-mvc-fundamentals.md)'s own stereotype-annotation table describes for `@RestController` = `@Controller` + `@ResponseBody`. `@ControllerAdvice`'s `@ExceptionHandler` methods resolve their return values as *view names* (for a server-rendered app using Thymeleaf or JSPs); `@RestControllerAdvice`'s resolve them as the HTTP response body directly (JSON, by default) — which is why a JSON-API backend, like this chapter's own demo, reaches for `@RestControllerAdvice` specifically, not the plain form.
+
+| | `@ControllerAdvice` | `@RestControllerAdvice` |
+|---|---|---|
+| Composition | Base annotation | `@ControllerAdvice` + `@ResponseBody` |
+| `@ExceptionHandler` return value resolved as | A view name (server-rendered HTML) | The HTTP response body itself (JSON, by default) |
+| Correct for | A traditional MVC app returning rendered pages | A REST/JSON API — this chapter's own case |
+
+Both also support `@ControllerAdvice(basePackages = ...)`/`assignableTypes(...)` to narrow which controllers a given advice applies to, instead of applying globally to every controller in the application.
+
+Beyond exception handling, `@ControllerAdvice`/`@RestControllerAdvice` classes can also hold `@ModelAttribute` methods (data added to every controller's model automatically) and `@InitBinder` methods (customizing how request parameters bind to command objects) — this chapter focuses on the `@ExceptionHandler` use, by far the most common of the three in a typical backend service, but the class isn't exclusively an exception-handling mechanism.
 
 ## Internal Implementation
 
@@ -366,8 +380,26 @@ Bean Validation (`@Valid` plus Jakarta annotations) checks a request DTO before 
 | Cross-field rule ("X required only if Y") | Custom class-level `@Constraint` + `ConstraintValidator` | Real `@ValidPayment` constraint correctly firing as an `ObjectError` |
 | Known, specific failure (a domain "not found") | Dedicated `@ExceptionHandler` | Real, specific `404` with a precise message |
 | Unanticipated exception | Catch-all `@ExceptionHandler(Exception.class)` | Real sensitive detail logged server-side, never reaching the client |
+| JSON/REST API's global exception handler | `@RestControllerAdvice` (`@ControllerAdvice` + `@ResponseBody`) | Same composition pattern as `@RestController` = `@Controller` + `@ResponseBody` |
 
 ## Flashcards
+
+### Card: @ControllerAdvice vs. @RestControllerAdvice
+
+**Prompt:**
+What's the actual difference between `@ControllerAdvice` and `@RestControllerAdvice`?
+
+**Answer:**
+`@RestControllerAdvice` is `@ControllerAdvice` + `@ResponseBody` — the exact same composition as `@RestController` = `@Controller` + `@ResponseBody`. `@ControllerAdvice`'s `@ExceptionHandler` methods resolve return values as view names (server-rendered pages); `@RestControllerAdvice`'s resolve them as the HTTP response body directly (JSON, by default).
+
+**Why it matters:**
+A REST/JSON API needs `@RestControllerAdvice` specifically — using plain `@ControllerAdvice` on a JSON API would try to resolve the handler's return value as a view name instead of serializing it to the response body.
+
+**Common trap:**
+Assuming the two are interchangeable, or not knowing the relationship mirrors `@Controller`/`@RestController` exactly.
+
+**Related:**
+[Spring MVC Fundamentals](spring-mvc-fundamentals.md)
 
 ### Card: Field-level vs. class-level validation
 

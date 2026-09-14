@@ -3368,6 +3368,13 @@ Note: the `interview-playbook/company-prep/` / `*.private.md` privacy-boundary f
 - **1181 real questions across all 22 of 22 domains — the Interview Question Bank initiative is complete.** Rewrote `syllabus/20-interview-preparation/INDEX.md`'s question-bank callout from "in progress" to a completion summary with the full per-domain breakdown.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+### Added (`bean-validation-and-global-exception-handling.md` — `@ControllerAdvice` vs. `@RestControllerAdvice`, 2026-09-14)
+
+- User request: real gap found. The chapter uses `@RestControllerAdvice` throughout but never once names or explains plain `@ControllerAdvice`, nor states the relationship between the two (the same composition as `@Controller`/`@RestController`, already covered in `spring-mvc-fundamentals.md`).
+- New Core Concepts subsection with a comparison table (composition, how `@ExceptionHandler` return values resolve — view name vs. response body, when each is correct, scoping via `basePackages`/`assignableTypes`), plus a note that `@ModelAttribute`/`@InitBinder` are also valid uses of the class beyond exception handling. Cross-linked to `spring-mvc-fundamentals.md`'s stereotype-annotation table for the parallel pattern.
+- 1 new Flashcard, Cheat Sheet row — synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Added (`jpa-entity-lifecycle-and-the-n1-problem.md` — full state machine + annotations reference, 2026-09-14)
 
 - User request: chapter titled "Entity Lifecycle" never actually enumerated the state machine. Also asked for JPA/Hibernate annotations coverage.

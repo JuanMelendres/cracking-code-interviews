@@ -1389,6 +1389,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - 2 new Interview Questions, 4 new Flashcards, Cheat Sheet updates, synced to the standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
 
+## [2026-09-14] — `bean-validation-and-global-exception-handling.md` gains `@ControllerAdvice` vs. `@RestControllerAdvice`
+
+### Added
+
+- User request: real gap found. The chapter uses `@RestControllerAdvice` throughout but never named or explained plain `@ControllerAdvice`, nor stated the relationship between the two.
+- New Core Concepts subsection with a comparison table (composition, how `@ExceptionHandler` return values resolve, scoping via `basePackages`/`assignableTypes`), cross-linked to `spring-mvc-fundamentals.md`'s parallel `@Controller`/`@RestController` pattern. 1 new Flashcard, Cheat Sheet row, synced to the standalone `cheat-sheets/`/`flashcards/` files.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-13] — Planning/tooling docs audit: repository-tree regeneration bug fixed, stale `handbook/` references closed
 
 ### Fixed (`00-project/`, `CONTRIBUTING.md`, `templates/`, `resources/`)
