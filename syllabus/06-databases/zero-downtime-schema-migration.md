@@ -108,7 +108,7 @@ A plain `CREATE INDEX` holds a `SHARE` lock on the table for its entire build �
 Column renames and type changes need a different technique than index creation, because the hazard isn't lock duration — it's that old application code (mid-deploy, or simply not yet redeployed) and new application code must both work correctly against the schema simultaneously, since a rolling deploy means both versions run concurrently for some period. Expand-contract solves this in three phases:
 
 1. **Expand**: add the new column/structure alongside the old one — nothing is removed yet, so both old and new code work unmodified.
-2. **Migrate**: backfill the new column from the old one for existing rows, and have the application dual-write to both during the transition. This is exactly the dual-write pattern from [Distributed Transactions, Saga, and the Outbox Pattern](../10-distributed-systems/distributed-transactions-saga-and-outbox.md), applied to a single database instead of two systems, and it inherits the same hazard: a crash between the two writes needs the same at-least-once-plus-idempotency treatment, or the backfill has to reconcile the two later.
+2. **Migrate**: backfill the new column from the old one for existing rows, and have the application dual-write to both during the transition. This is exactly the dual-write pattern from [Distributed Transactions: Saga, Outbox, and 2PC](../10-distributed-systems/distributed-transactions-saga-and-outbox.md), applied to a single database instead of two systems, and it inherits the same hazard: a crash between the two writes needs the same at-least-once-plus-idempotency treatment, or the backfill has to reconcile the two later.
 3. **Contract**: once all application instances are confirmed running the new code and both columns are verified in sync, drop the old column.
 
 ### A fast catalog operation can still be unsafe
@@ -287,7 +287,7 @@ The 23x measured gap between blocking and `CONCURRENTLY` index creation is a sma
 
 **Evaluation criteria (1–5).** 1: proposes a direct rename. 3: correctly proposes expand-contract. 5: correct proposal plus names the dual-write atomicity hazard explicitly.
 
-**Related references.** [§ Core Concepts](#core-concepts); [Distributed Transactions, Saga, and the Outbox Pattern](../10-distributed-systems/distributed-transactions-saga-and-outbox.md).
+**Related references.** [§ Core Concepts](#core-concepts); [Distributed Transactions: Saga, Outbox, and 2PC](../10-distributed-systems/distributed-transactions-saga-and-outbox.md).
 
 ---
 

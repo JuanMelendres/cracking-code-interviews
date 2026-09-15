@@ -564,9 +564,9 @@ its canonical chapter for the complete context.
 
 | # | Question | Canonical chapter |
 |---|---|---|
-| 1 | Does UPDATE modify a row in place? | [MVCC, Vacuum, and Bloat](../../06-databases/mvcc-vacuum-and-bloat.md#flashcards) |
-| 2 | Why doesn't VACUUM shrink the table? | [MVCC, Vacuum, and Bloat](../../06-databases/mvcc-vacuum-and-bloat.md#flashcards) |
-| 3 | How can a transaction that never queries table X still cause table X to bloat? | [MVCC, Vacuum, and Bloat](../../06-databases/mvcc-vacuum-and-bloat.md#flashcards) |
+| 1 | Does UPDATE modify a row in place? | [MVCC in PostgreSQL, Vacuum, and Bloat](../../06-databases/mvcc-vacuum-and-bloat.md#flashcards) |
+| 2 | Why doesn't VACUUM shrink the table? | [MVCC in PostgreSQL, Vacuum, and Bloat](../../06-databases/mvcc-vacuum-and-bloat.md#flashcards) |
+| 3 | How can a transaction that never queries table X still cause table X to bloat? | [MVCC in PostgreSQL, Vacuum, and Bloat](../../06-databases/mvcc-vacuum-and-bloat.md#flashcards) |
 | 4 | What's the difference between a lost update and write skew? | [Isolation Levels](../../06-databases/isolation-levels-and-concurrency-anomalies.md#flashcards) |
 | 5 | Does REPEATABLE READ prevent write skew? | [Isolation Levels](../../06-databases/isolation-levels-and-concurrency-anomalies.md#flashcards) |
 | 6 | What must application code do to safely use SERIALIZABLE? | [Isolation Levels](../../06-databases/isolation-levels-and-concurrency-anomalies.md#flashcards) |
@@ -583,15 +583,15 @@ its canonical chapter for the complete context.
 | 17 | Async replication's real risk — name it precisely. | [Replication](../../06-databases/replication-read-replicas-and-replica-lag.md#flashcards) |
 | 18 | Why are there "two different lag numbers" in this chapter, and which one usually matters? | [Replication](../../06-databases/replication-read-replicas-and-replica-lag.md#flashcards) |
 | 19 | What's the real gotcha with sequence-backed IDs after a promotion? | [Replication](../../06-databases/replication-read-replicas-and-replica-lag.md#flashcards) |
-| 20 | What does partition pruning actually require to work? | [Table Partitioning and Sharding](../../06-databases/table-partitioning-and-sharding-strategies.md#flashcards) |
-| 21 | Why is shard-key selection called "a one-way door"? | [Table Partitioning and Sharding](../../06-databases/table-partitioning-and-sharding-strategies.md#flashcards) |
-| 22 | What's the hidden cost of PostgreSQL's native HASH partitioning? | [Table Partitioning and Sharding](../../06-databases/table-partitioning-and-sharding-strategies.md#flashcards) |
+| 20 | What does partition pruning actually require to work? | [Table Partitioning and Sharding Strategies](../../06-databases/table-partitioning-and-sharding-strategies.md#flashcards) |
+| 21 | Why is shard-key selection called "a one-way door"? | [Table Partitioning and Sharding Strategies](../../06-databases/table-partitioning-and-sharding-strategies.md#flashcards) |
+| 22 | What's the hidden cost of PostgreSQL's native HASH partitioning? | [Table Partitioning and Sharding Strategies](../../06-databases/table-partitioning-and-sharding-strategies.md#flashcards) |
 | 23 | What does a plain `CREATE INDEX` actually block, and for how long? | [Zero-Downtime Schema Migration](../../06-databases/zero-downtime-schema-migration.md#flashcards) |
 | 24 | What does `CONCURRENTLY` trade away to avoid blocking writes? | [Zero-Downtime Schema Migration](../../06-databases/zero-downtime-schema-migration.md#flashcards) |
 | 25 | Why is a direct column rename unsafe during a rolling deploy? | [Zero-Downtime Schema Migration](../../06-databases/zero-downtime-schema-migration.md#flashcards) |
-| 26 | GIN's benefit is conditional on what, specifically? | [JSONB and Advanced Index Types](../../06-databases/jsonb-and-advanced-index-types.md#flashcards) |
-| 27 | What does a GiST `EXCLUDE` constraint actually guarantee? | [JSONB and Advanced Index Types](../../06-databases/jsonb-and-advanced-index-types.md#flashcards) |
-| 28 | Why might the planner decline to use a BRIN index even when it's the table's only index? | [JSONB and Advanced Index Types](../../06-databases/jsonb-and-advanced-index-types.md#flashcards) |
+| 26 | GIN's benefit is conditional on what, specifically? | [JSONB and Advanced PostgreSQL Index Types](../../06-databases/jsonb-and-advanced-index-types.md#flashcards) |
+| 27 | What does a GiST `EXCLUDE` constraint actually guarantee? | [JSONB and Advanced PostgreSQL Index Types](../../06-databases/jsonb-and-advanced-index-types.md#flashcards) |
+| 28 | Why might the planner decline to use a BRIN index even when it's the table's only index? | [JSONB and Advanced PostgreSQL Index Types](../../06-databases/jsonb-and-advanced-index-types.md#flashcards) |
 | 29 | `ROW_NUMBER()` vs `RANK()` on ties — what actually changes in the result set? | [Window Functions and CTEs](../../06-databases/window-functions-and-ctes.md#flashcards) |
 | 30 | How much faster is a window function than a logically equivalent correlated subquery, roughly? | [Window Functions and CTEs](../../06-databases/window-functions-and-ctes.md#flashcards) |
 | 31 | What's the actual recursion mechanism behind `WITH RECURSIVE`? | [Window Functions and CTEs](../../06-databases/window-functions-and-ctes.md#flashcards) |
@@ -599,9 +599,9 @@ its canonical chapter for the complete context.
 | 33 | What's HikariCP's real, enforced minimum for `leakDetectionThreshold`? | [Connection Pooling](../../06-databases/connection-pooling-and-sizing.md#flashcards) |
 | 34 | What real exception does pool exhaustion throw, and what does it embed? | [Connection Pooling](../../06-databases/connection-pooling-and-sizing.md#flashcards) |
 | 35 | Under PgBouncer `pool_mode = transaction`, what happens to an advisory lock a session never released? | [Connection Pooling](../../06-databases/connection-pooling-and-sizing.md#flashcards) |
-| 36 | What can't a plain join table store, structurally? | [Data Modelling and Join Tables](../../06-databases/data-modelling-and-explicit-join-tables.md#flashcards) |
-| 37 | What's the real trigger for needing an explicit join entity? | [Data Modelling and Join Tables](../../06-databases/data-modelling-and-explicit-join-tables.md#flashcards) |
-| 38 | What's the canonical example of a silent bug from skipping an explicit join entity? | [Data Modelling and Join Tables](../../06-databases/data-modelling-and-explicit-join-tables.md#flashcards) |
+| 36 | What can't a plain join table store, structurally? | [Data Modelling and Explicit Join Tables](../../06-databases/data-modelling-and-explicit-join-tables.md#flashcards) |
+| 37 | What's the real trigger for needing an explicit join entity? | [Data Modelling and Explicit Join Tables](../../06-databases/data-modelling-and-explicit-join-tables.md#flashcards) |
+| 38 | What's the canonical example of a silent bug from skipping an explicit join entity? | [Data Modelling and Explicit Join Tables](../../06-databases/data-modelling-and-explicit-join-tables.md#flashcards) |
 | 39 | Does Hibernate protect its own second-level cache from its own native SQL updates? | [Hibernate Second-Level and Query Cache](../../06-databases/hibernate-second-level-and-query-cache.md#flashcards) |
 | 40 | What kind of write actually produces a stale second-level-cache read? | [Hibernate Second-Level and Query Cache](../../06-databases/hibernate-second-level-and-query-cache.md#flashcards) |
 | 41 | Why doesn't the query cache alone eliminate database hits? | [Hibernate Second-Level and Query Cache](../../06-databases/hibernate-second-level-and-query-cache.md#flashcards) |

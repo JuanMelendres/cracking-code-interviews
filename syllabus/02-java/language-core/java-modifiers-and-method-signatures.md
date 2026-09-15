@@ -49,7 +49,7 @@ official_references:
 
 ## 1. Why This Matters
 
-Access modifiers, `static`, `final`, and the abstract-vs-concrete method distinction are used in nearly every class this repository has ever shown — and, per a 2026-09-08 audit, never actually explained from zero anywhere in `02-java`. `private`/`protected`/`public` appears incidentally inside [reflection-and-dynamic-proxies.md](reflection-and-dynamic-proxies.md) (a Senior/Staff-depth chapter that assumes you already know the four-level access table), and `final` appears incidentally inside [immutability-and-defensive-copying.md](immutability-and-defensive-copying.md) and [equals-hashcode-and-comparable-contracts.md](equals-hashcode-and-comparable-contracts.md) — always as a tool already assumed known, never as its own floor topic. These are also among the most commonly asked Junior-level Java interview questions, precisely because they are easy to use correctly by imitation and hard to explain precisely without having studied them directly.
+Access modifiers, `static`, `final`, and the abstract-vs-concrete method distinction are used in nearly every class this repository has ever shown — and, per a 2026-09-08 audit, never actually explained from zero anywhere in `02-java`. `private`/`protected`/`public` appears incidentally inside [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) (a Senior/Staff-depth chapter that assumes you already know the four-level access table), and `final` appears incidentally inside [Immutability and Defensive Copying](immutability-and-defensive-copying.md) and [equals(), hashCode(), and Comparable Contracts](equals-hashcode-and-comparable-contracts.md) — always as a tool already assumed known, never as its own floor topic. These are also among the most commonly asked Junior-level Java interview questions, precisely because they are easy to use correctly by imitation and hard to explain precisely without having studied them directly.
 
 ## 2. Prerequisites
 
@@ -97,11 +97,11 @@ There is no keyword for "package-private" — it is simply what you get by writi
 | `private`/`static`/`final` methods | Can be overloaded normally | Cannot be overridden at all — see Section 9 (a subclass "redefining" one hides it instead) |
 | Annotation | None (there's no `@Overload`) | `@Override` — always use it; it makes `javac` verify a real match exists |
 
-This chapter stops at the signature-and-modifier rules above; the actual dispatch mechanism — *why* overload resolution is a compile-time decision and override resolution is a runtime one, down to the `invokestatic` vs. `invokevirtual` bytecode difference — is [Polymorphism and Dynamic Dispatch](polymorphism-and-dynamic-dispatch.md)'s own job, including the field-hiding and static-hiding gotchas that follow directly from this same static-vs-dynamic distinction.
+This chapter stops at the signature-and-modifier rules above; the actual dispatch mechanism — *why* overload resolution is a compile-time decision and override resolution is a runtime one, down to the `invokestatic` vs. `invokevirtual` bytecode difference — is [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md)'s own job, including the field-hiding and static-hiding gotchas that follow directly from this same static-vs-dynamic distinction.
 
 ## 5. How It Works Internally (L3)
 
-Access control is enforced entirely at **compile time** by `javac` — there is no runtime access check for a normal field/method access (reflection can bypass it deliberately via `setAccessible(true)`, which is exactly why [reflection-and-dynamic-proxies.md](reflection-and-dynamic-proxies.md) treats that call as a real security-relevant decision, not a routine one). A `private` field access from outside its permitted scope is a real compilation failure, not a runtime exception — demonstrated concretely in Section 7.
+Access control is enforced entirely at **compile time** by `javac` — there is no runtime access check for a normal field/method access (reflection can bypass it deliberately via `setAccessible(true)`, which is exactly why [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) treats that call as a real security-relevant decision, not a routine one). A `private` field access from outside its permitted scope is a real compilation failure, not a runtime exception — demonstrated concretely in Section 7.
 
 `static` fields live in the class's own storage, allocated once when the class is loaded by the JVM's classloader, before any instance of that class is ever created — this is why `Counter.totalCreated` in Section 7's demo already has a defined value (`0`) even before the first `new Counter()` call. `final` local variables and fields are enforced by the compiler's definite-assignment analysis: it tracks, at compile time, every possible code path to guarantee a `final` variable is assigned exactly once before any read, which is also what makes a `final` local variable safely capturable by a lambda or anonymous inner class (the compiler can prove it will never change).
 
@@ -227,8 +227,8 @@ Design a small class hierarchy for a company's employee types (e.g., `Employee` 
 ## 19. Further Reading
 
 - [Java OOP Fundamentals](java-oop-fundamentals-classes-objects-and-interfaces.md) — classes, interfaces, and the diamond problem this chapter's abstract-class material builds toward.
-- [reflection-and-dynamic-proxies.md](reflection-and-dynamic-proxies.md) — how `setAccessible(true)` deliberately bypasses the compile-time access checks this chapter describes.
-- [immutability-and-defensive-copying.md](immutability-and-defensive-copying.md) — `final` fields as one ingredient of real immutability, at Senior depth.
+- [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) — how `setAccessible(true)` deliberately bypasses the compile-time access checks this chapter describes.
+- [Immutability and Defensive Copying](immutability-and-defensive-copying.md) — `final` fields as one ingredient of real immutability, at Senior depth.
 
 ## 20. Mastery Checklist
 

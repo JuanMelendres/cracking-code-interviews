@@ -50,7 +50,7 @@ official_references:
 > complement, and a common interview follow-up to "how do you pool
 > connections" — absent from the entire syllabus.
 
-> **Closes another open forward reference.** [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
+> **Closes another open forward reference.** [JPA Entity Lifecycle, the Persistence Context, and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
 > and [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](../05-spring/transactional-proxy-mechanics-and-propagation.md)
 > both describe connection-pool exhaustion as a *symptom* in their own production
 > scenarios without ever explaining the mechanism itself. This chapter is that
@@ -107,7 +107,7 @@ After this chapter you should be able to:
 ## Why This Matters in Interviews
 
 Connection pooling sits exactly where two other chapters in this handbook already
-left an open thread: both [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
+left an open thread: both [JPA Entity Lifecycle, the Persistence Context, and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
 and [Spring @Transactional](../05-spring/transactional-proxy-mechanics-and-propagation.md)
 describe real production incidents *caused by* connection-pool exhaustion without
 ever explaining the pool mechanism itself — a gap this chapter closes directly. The
@@ -735,7 +735,7 @@ self-directed practice.
 - HikariCP's own "About Pool Sizing" wiki page (see [Official References](#official-references))
   is the primary source for the sizing formula and reasoning this chapter's practice
   code verifies empirically.
-- [JPA Entity Lifecycle and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
+- [JPA Entity Lifecycle, the Persistence Context, and the N+1 Problem](jpa-entity-lifecycle-and-the-n1-problem.md)
   and [Spring @Transactional](../05-spring/transactional-proxy-mechanics-and-propagation.md)
   both describe connection-pool exhaustion as a production symptom in their own
   scenarios — this chapter is the mechanism both left unexplained.

@@ -23,7 +23,7 @@ official_references:
 
 # Embeddings
 
-> **Topic register.** T-2302, third assignment in the reserved `T-2300`–`T-2399` range for `syllabus/22-ai-llm-engineering/`. [RAG and Vector Databases](rag-and-vector-databases.md) (T-2301) used embeddings already, with an explicit note that its own toy scheme's limitations deserved deeper treatment — this chapter is that treatment: what an embedding actually is, what makes one good or bad, and why dimension count is not a free knob.
+> **Topic register.** T-2302, third assignment in the reserved `T-2300`–`T-2399` range for `syllabus/22-ai-llm-engineering/`. [RAG and Vector Databases (pgvector)](rag-and-vector-databases.md) (T-2301) used embeddings already, with an explicit note that its own toy scheme's limitations deserved deeper treatment — this chapter is that treatment: what an embedding actually is, what makes one good or bad, and why dimension count is not a free knob.
 > **Provenance.** Every similarity score in this chapter is real, computed output from a real hashed bag-of-words embedder — no live embedding-API call. The point of this chapter is the real, verifiable mechanics (dimensionality, cosine similarity, hash-collision behavior), not a claim of semantic quality this scheme cannot have; where a real trained model behaves differently, that's stated as a documented, cited fact, not simulated. Reproducible source: [`practice/java/embeddings-fundamentals/`](../../practice/java/embeddings-fundamentals/).
 
 ## Table of Contents
@@ -59,7 +59,7 @@ Every RAG pipeline, semantic search feature, and "find similar items" recommenda
 
 ## 3. Foundation (L1)
 
-**An embedding is a fixed-length list of numbers (a vector) that represents a piece of text, such that texts with similar meaning produce vectors that are numerically close together.** "Close together" is measured by a **similarity metric** — this chapter, like [RAG and Vector Databases](rag-and-vector-databases.md), uses **cosine similarity**: 1.0 means identical direction (as similar as this scheme can express), 0 means unrelated, and it's computed as a real dot product once both vectors are length-normalized.
+**An embedding is a fixed-length list of numbers (a vector) that represents a piece of text, such that texts with similar meaning produce vectors that are numerically close together.** "Close together" is measured by a **similarity metric** — this chapter, like [RAG and Vector Databases (pgvector)](rag-and-vector-databases.md), uses **cosine similarity**: 1.0 means identical direction (as similar as this scheme can express), 0 means unrelated, and it's computed as a real dot product once both vectors are length-normalized.
 
 The **dimension count** (how many numbers are in the vector) is a real, consequential choice, not an arbitrary setting. This chapter's demo makes the consequence directly measurable: the identical four sentence pairs, embedded at 32 dimensions versus 512, produce genuinely different — and, at 32 dimensions, genuinely *misleading* — similarity scores:
 
@@ -142,7 +142,7 @@ Notice the 32-dimension paraphrase score (0.5164) is actually *higher* than the 
 
 ## 10. Performance Implications
 
-Storage cost scales linearly with dimension count — a 1,536-dimension vector takes twice the storage of a 768-dimension one for the identical corpus, a real, direct cost multiplied across every stored document in a RAG corpus ([RAG and Vector Databases](rag-and-vector-databases.md)'s own storage concern). Similarity-computation cost (a dot product) also scales with dimension count, though this is typically the smaller cost relative to the ANN index traversal itself at real corpus scale. Batching multiple texts into a single embedding API call (most providers support this directly) reduces per-call overhead significantly compared to one call per text — the same latency-amortization principle as any batched API call.
+Storage cost scales linearly with dimension count — a 1,536-dimension vector takes twice the storage of a 768-dimension one for the identical corpus, a real, direct cost multiplied across every stored document in a RAG corpus ([RAG and Vector Databases (pgvector)](rag-and-vector-databases.md)'s own storage concern). Similarity-computation cost (a dot product) also scales with dimension count, though this is typically the smaller cost relative to the ANN index traversal itself at real corpus scale. Batching multiple texts into a single embedding API call (most providers support this directly) reduces per-call overhead significantly compared to one call per text — the same latency-amortization principle as any batched API call.
 
 ## 11. Trade-offs
 

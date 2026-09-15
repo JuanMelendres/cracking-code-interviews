@@ -36,7 +36,7 @@ official_references:
 
 # Spring Auto-Configuration and Bean Lifecycle
 
-> **Topic register:** T-506/T-501 · IWI 7.30 · Advanced tier · Prerequisite: [Transactional Proxy Mechanics and Propagation](transactional-proxy-mechanics-and-propagation.md) — auto-configuration and proxying are two different mechanisms that interact
+> **Topic register:** T-506/T-501 · IWI 7.30 · Advanced tier · Prerequisite: [Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation](transactional-proxy-mechanics-and-propagation.md) — auto-configuration and proxying are two different mechanisms that interact
 > **Provenance:** the lifecycle order and the `@Async`+`@Transactional` behavior in this chapter are real, executed Spring Framework 6.1.14 output. Reproducible source: [`practice/java/week-07/spring-internals/`](../../practice/java/week-07/spring-internals/).
 
 ## Table of Contents

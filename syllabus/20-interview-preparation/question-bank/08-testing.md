@@ -233,9 +233,9 @@ Only 2 of the 8 chapters in this domain have Flashcards sections.
 | 1 | What does an integration test against a real database catch that a mocked-database test cannot? | [Integration Testing Against Real Dependencies](../../08-testing/integration-testing-against-real-dependencies.md#flashcards) |
 | 2 | Is "mock vs. real dependency" an all-or-nothing choice across a codebase? | [Integration Testing Against Real Dependencies](../../08-testing/integration-testing-against-real-dependencies.md#flashcards) |
 | 3 | What does Testcontainers automate that a manual Docker orchestration doesn't? | [Integration Testing Against Real Dependencies](../../08-testing/integration-testing-against-real-dependencies.md#flashcards) |
-| 4 | What does `verify(gateway, times(3))` prove that `assertTrue(result)` alone cannot? | [Test Strategy and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
-| 5 | What's wrong with mocking the database in a repository test? | [Test Strategy and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
-| 6 | What does coverage percentage actually measure? | [Test Strategy and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
+| 4 | What does `verify(gateway, times(3))` prove that `assertTrue(result)` alone cannot? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
+| 5 | What's wrong with mocking the database in a repository test? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
+| 6 | What does coverage percentage actually measure? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
 
 ---
 

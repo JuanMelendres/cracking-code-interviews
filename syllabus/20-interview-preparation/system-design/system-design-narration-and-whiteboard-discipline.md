@@ -32,7 +32,7 @@ official_references: []
 
 # System Design Narration and Whiteboard Discipline
 
-> **Topic register:** T-1602 · IWI 7.60 · Staff tier · Near-Certain interview frequency — this entry is not the design method itself (that lives in the canonical [System Design Method and Estimation](../../11-system-design/system-design-method-and-estimation.md) chapter, whose own whiteboard section covers drawing that six-phase *method* as a meta-diagram) and not clock management (that's [Time-Boxing and Mid-Round Changes](time-boxing-and-mid-round-changes.md)'s job). This is the third, distinct live-delivery skill a system design round scores: how to actually draw and narrate the *architecture itself* — the specific services, data stores, and request flows for whatever system is being designed — and how to keep talking while an interviewer redirects you mid-diagram.
+> **Topic register:** T-1602 · IWI 7.60 · Staff tier · Near-Certain interview frequency — this entry is not the design method itself (that lives in the canonical [System Design Method and Estimation](../../11-system-design/system-design-method-and-estimation.md) chapter, whose own whiteboard section covers drawing that six-phase *method* as a meta-diagram) and not clock management (that's [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](time-boxing-and-mid-round-changes.md)'s job). This is the third, distinct live-delivery skill a system design round scores: how to actually draw and narrate the *architecture itself* — the specific services, data stores, and request flows for whatever system is being designed — and how to keep talking while an interviewer redirects you mid-diagram.
 
 ## Table of Contents
 

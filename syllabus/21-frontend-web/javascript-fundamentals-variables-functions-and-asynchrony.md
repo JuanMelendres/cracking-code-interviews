@@ -463,7 +463,7 @@ Exercise 4: `NaN == NaN` is `false` — this is the one case `==` does not coerc
 ## Additional Reading
 
 - [00-project/frontend-topic-register.md](../../00-project/frontend-topic-register.md) — the frontend topic register this chapter is F-002 of, under the new D-F0 "Web & Language Fundamentals" section.
-- [react-fundamentals-jsx-components-props-and-state.md](react-fundamentals-jsx-components-props-and-state.md) — this chapter's direct successor; every JavaScript construct used there without explanation (destructuring, `&&`, `.map()`, closures via `useState`) is taught here first.
+- [React Fundamentals: JSX, Components, Props, and State](react-fundamentals-jsx-components-props-and-state.md) — this chapter's direct successor; every JavaScript construct used there without explanation (destructuring, `&&`, `.map()`, closures via `useState`) is taught here first.
 
 ## Official References
 

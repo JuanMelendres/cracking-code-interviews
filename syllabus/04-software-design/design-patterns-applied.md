@@ -166,7 +166,7 @@ No `EmailSlackNotifier`, `EmailSmsNotifier`, or `EmailSlackSmsNotifier` class ex
 
 ### Singleton's thread-safety pitfall, measured directly
 
-A naive, unsynchronized lazy Singleton, raced by 30 threads all calling `getInstance()` for the first time simultaneously (via a `CountDownLatch` releasing every thread at once, with a small artificial delay inside the constructor to widen the race window enough to reproduce reliably in one run — the same widening technique this handbook's [Java Memory Model](../02-java/concurrency/java-memory-model-and-volatile.md) chapter uses for its own visibility demos):
+A naive, unsynchronized lazy Singleton, raced by 30 threads all calling `getInstance()` for the first time simultaneously (via a `CountDownLatch` releasing every thread at once, with a small artificial delay inside the constructor to widen the race window enough to reproduce reliably in one run — the same widening technique this handbook's [Java Memory Model and volatile](../02-java/concurrency/java-memory-model-and-volatile.md) chapter uses for its own visibility demos):
 
 ```
 == Naive lazy singleton, 30 threads racing on the FIRST call to getInstance() ==
@@ -327,7 +327,7 @@ enum ConfigRegistry {
 - Reaching for a pattern because it sounds sophisticated, on a problem with no real variation to isolate — the most common Staff-level critique of pattern overuse.
 - Implementing a lazy Singleton with a plain `if (instance == null)` check and no synchronization, assuming single-threaded intuition applies to concurrent first access.
 - Using inheritance (subclassing) to combine optional behaviors, discovering the subclass count grows combinatorially as more optional behaviors are added.
-- Treating a `final` field initialized once in a constructor as automatically thread-safe for *publication* of the object itself — construction and safe publication are related but distinct concerns (see [Java Memory Model](../02-java/concurrency/java-memory-model-and-volatile.md)).
+- Treating a `final` field initialized once in a constructor as automatically thread-safe for *publication* of the object itself — construction and safe publication are related but distinct concerns (see [Java Memory Model and volatile](../02-java/concurrency/java-memory-model-and-volatile.md)).
 
 ## Anti-Patterns
 

@@ -374,7 +374,7 @@ A GIN index for JSONB or full-text search can itself be sizable — proportional
 
 ## Concurrency Implications
 
-GIN index updates can be a real write-amplification concern under high concurrent insert/update load, specifically why `gin_pending_list_limit` and periodic `VACUUM`-triggered merges exist — a burst of concurrent writes to a GIN-indexed JSONB column pays real, deferred merge cost. GiST `EXCLUDE` constraints enforce their invariant using real, standard MVCC and locking semantics at insert/update time (see [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md)) — two concurrent transactions both attempting to insert overlapping ranges will have one succeed and one see a real constraint violation, not a silent race.
+GIN index updates can be a real write-amplification concern under high concurrent insert/update load, specifically why `gin_pending_list_limit` and periodic `VACUUM`-triggered merges exist — a burst of concurrent writes to a GIN-indexed JSONB column pays real, deferred merge cost. GiST `EXCLUDE` constraints enforce their invariant using real, standard MVCC and locking semantics at insert/update time (see [Locks, Deadlocks, and Lock Escalation in RDBMS](locks-deadlocks-and-lock-escalation.md)) — two concurrent transactions both attempting to insert overlapping ranges will have one succeed and one see a real constraint violation, not a silent race.
 
 ## Security Implications
 

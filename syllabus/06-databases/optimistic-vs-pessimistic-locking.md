@@ -410,7 +410,7 @@ them — a failure mode optimistic locking structurally cannot produce.
 | When conflict is caught | At commit/flush time | Never occurs — prevented at read time | At the single `UPDATE` statement itself |
 | Cost under low contention | Near zero | Real lock-acquisition overhead | Near zero — one round trip |
 | Cost under high contention | Real, bounded retries | Real, potentially unbounded wait time | Near zero — losing requests just affect 0 rows, no wait and no retry needed |
-| Deadlock risk | None | Real, same as any row lock (see [Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md)) | None |
+| Deadlock risk | None | Real, same as any row lock (see [Locks, Deadlocks, and Lock Escalation in RDBMS](locks-deadlocks-and-lock-escalation.md)) | None |
 | Caller obligation | Must implement retry logic | None — but must not hold the lock across slow work | Must check `rowsAffected`/`executeUpdate()`'s return value |
 | Scope of what it can express | Any field, any business invariant | Any field, any business invariant | Single-row, single-statement conditional arithmetic only |
 
@@ -527,7 +527,7 @@ distinction without prompting.
 
 Reason about contention profile as the deciding factor, not habit or "safety" framing;
 connect pessimistic locking's real cost to the deadlock risk covered in
-[Locks, Deadlocks, and Lock Escalation](locks-deadlocks-and-lock-escalation.md); and
+[Locks, Deadlocks, and Lock Escalation in RDBMS](locks-deadlocks-and-lock-escalation.md); and
 discuss the organizational discipline required to keep locking strategy decisions
 explicit and reviewed, rather than defaulted per-developer per-entity.
 

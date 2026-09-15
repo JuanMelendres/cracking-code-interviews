@@ -41,7 +41,7 @@ official_references:
 > [`practice/java/spring/spring-bean-scopes-and-proxy-modes/`](../../practice/java/spring/spring-bean-scopes-and-proxy-modes/README.md).
 
 > **A third proxy-based mechanism, same family.** [Spring @Transactional](transactional-proxy-mechanics-and-propagation.md)
-> and [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md) both proved
+> and [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) both proved
 > that declarative Spring behavior is proxy-mediated. Scoped proxies are the same
 > underlying CGLIB/JDK-proxy mechanism, aimed at a different problem: making a
 > narrower-scoped bean safely injectable into a wider-scoped one.
@@ -675,7 +675,7 @@ to reason about correctly.
    directly: add a public field to `Greeter`, inject the scoped-proxy version into
    a holder, and show that reading the field directly on the proxy reference
    behaves differently from calling a method on it (see the identical caveat
-   already documented in [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md)).
+   already documented in [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md)).
 3. Register a second custom scope (e.g., `"tenant"`, backed by a
    `ThreadLocal`-keyed map you implement yourself as a real `Scope`) and prove it
    behaves correctly with a real multi-tenant-style demo.
@@ -688,7 +688,7 @@ and verify via `instanceof` that the injected reference is a JDK dynamic proxy
 rather than a CGLIB subclass; left as self-directed practice since the existing
 demo already isolates the exact configuration to change. Exercise 2 is a direct
 extension of this chapter's `ScopedProxyHolder`, reusing the exact CGLIB/Objenesis
-mechanism already proven in [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md);
+mechanism already proven in [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md);
 left as self-directed practice. Exercise 3 is a genuinely open-ended
 `Scope`-interface implementation exercise; left as self-directed practice since it
 requires original design rather than a variant of existing demo code.
@@ -700,7 +700,7 @@ requires original design rather than a variant of existing demo code.
   full scope list, including `application` scope and the web-specific scopes not
   covered by this chapter's non-web demos.
 - [Spring @Transactional](transactional-proxy-mechanics-and-propagation.md) and
-  [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md) prove the
+  [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) prove the
   identical proxy-based delegation mechanism this chapter's scoped proxies rely on,
   aimed at different advice.
 

@@ -216,7 +216,7 @@ Design a small class hierarchy (or composition-based alternative — decide whic
 
 - [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) — the JVM mechanism (`invokevirtual`) behind the polymorphism this chapter uses but does not re-derive.
 - [equals(), hashCode(), and Comparable Contracts](equals-hashcode-and-comparable-contracts.md) — the next chapter once class basics are solid; covers the contracts every well-designed class needs to honor.
-- [Design Patterns Applied](../../04-software-design/design-patterns-applied.md) — composition-over-inheritance, applied at the scale of named, reusable design patterns (Strategy, Decorator, and others build directly on this chapter's Section 4 rule).
+- [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md) — composition-over-inheritance, applied at the scale of named, reusable design patterns (Strategy, Decorator, and others build directly on this chapter's Section 4 rule).
 
 ## 20. Mastery Checklist
 

@@ -312,11 +312,11 @@ Partition count is one of the few genuinely irreversible decisions in a Kafka de
 
 **Evaluation criteria (1–5).** 1: "add more partitions." 3: identifies key skew as the cause. 5: proposes a compound-key remedy and names the ordering-granularity trade-off explicitly.
 
-**Related references.** [§ Core Concepts](#core-concepts); [Producer Semantics & Partition Key Design](producer-semantics-and-partition-keys.md).
+**Related references.** [§ Core Concepts](#core-concepts); [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](producer-semantics-and-partition-keys.md).
 
 ## Summary
 
-Kafka splits a topic into independently-ordered partitions to parallelize throughput; the price is that ordering is guaranteed only within a partition, never across the topic. Partition assignment is deterministic by key, making per-key ordering achievable but partition count effectively fixed. Replication with an ISR provides durability, but `acks=all` is only as strong as the current ISR — not the configured `replication.factor` — which is why `min.insync.replicas` matters (see [Producer Semantics & Partition Key Design](producer-semantics-and-partition-keys.md)).
+Kafka splits a topic into independently-ordered partitions to parallelize throughput; the price is that ordering is guaranteed only within a partition, never across the topic. Partition assignment is deterministic by key, making per-key ordering achievable but partition count effectively fixed. Replication with an ISR provides durability, but `acks=all` is only as strong as the current ISR — not the configured `replication.factor` — which is why `min.insync.replicas` matters (see [Kafka Producer Semantics: acks, Idempotence, and Partition Key Design](producer-semantics-and-partition-keys.md)).
 
 ## Key Takeaways
 

@@ -180,12 +180,12 @@ targets Senior/Staff interview delivery specifically.
 | 5 | A bug found during self-testing versus found by the interviewer after "I'm done" — is the code defect different? | [Coding Interview Communication Protocol](../coding/coding-interview-communication-protocol.md#flashcards) |
 | 6 | Why is a technically excellent diagram drawn in silence, then explained afterward, considered unscorable? | [System Design Narration and Whiteboard Discipline](../system-design/system-design-narration-and-whiteboard-discipline.md#flashcards) |
 | 7 | Name the two opposite failure modes when an interviewer's question reveals a design gap mid-round. | [System Design Narration and Whiteboard Discipline](../system-design/system-design-narration-and-whiteboard-discipline.md#flashcards) |
-| 8 | What are the two live-delivery failures distinct from knowing the six-phase method itself? | [Time-Boxing and Mid-Round Changes](../system-design/time-boxing-and-mid-round-changes.md#flashcards) |
-| 9 | What distinguishes a "bolted-on patch" response to a mid-round change from a "coherent revision"? | [Time-Boxing and Mid-Round Changes](../system-design/time-boxing-and-mid-round-changes.md#flashcards) |
-| 10 | Which two phases of the six-phase method should consume more than half the round's time, and why? | [Time-Boxing and Mid-Round Changes](../system-design/time-boxing-and-mid-round-changes.md#flashcards) |
-| 11 | Name the nine layers of the Technical Answer Framework, in order. | [Technical Answer Framework](../technical-answers/technical-answer-framework.md#flashcards) |
-| 12 | What did the audit's "mean answer length ~110 characters" finding actually indicate? | [Technical Answer Framework](../technical-answers/technical-answer-framework.md#flashcards) |
-| 13 | What is the single most common point-loss during the whiteboard layer (L4)? | [Technical Answer Framework](../technical-answers/technical-answer-framework.md#flashcards) |
+| 8 | What are the two live-delivery failures distinct from knowing the six-phase method itself? | [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](../system-design/time-boxing-and-mid-round-changes.md#flashcards) |
+| 9 | What distinguishes a "bolted-on patch" response to a mid-round change from a "coherent revision"? | [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](../system-design/time-boxing-and-mid-round-changes.md#flashcards) |
+| 10 | Which two phases of the six-phase method should consume more than half the round's time, and why? | [System Design Interview Delivery: Time-Boxing and Mid-Round Changes](../system-design/time-boxing-and-mid-round-changes.md#flashcards) |
+| 11 | Name the nine layers of the Technical Answer Framework, in order. | [The Technical Answer Framework — Nine Layers](../technical-answers/technical-answer-framework.md#flashcards) |
+| 12 | What did the audit's "mean answer length ~110 characters" finding actually indicate? | [The Technical Answer Framework — Nine Layers](../technical-answers/technical-answer-framework.md#flashcards) |
+| 13 | What is the single most common point-loss during the whiteboard layer (L4)? | [The Technical Answer Framework — Nine Layers](../technical-answers/technical-answer-framework.md#flashcards) |
 | 14 | Name the four beats of trade-off narration, in order. | [Trade-off Narration and ADRs](../technical-answers/trade-off-narration-and-adrs.md#flashcards) |
 | 15 | Which beat does the named interview feedback specifically target? | [Trade-off Narration and ADRs](../technical-answers/trade-off-narration-and-adrs.md#flashcards) |
 | 16 | What's an ADR? | [Trade-off Narration and ADRs](../technical-answers/trade-off-narration-and-adrs.md#flashcards) |

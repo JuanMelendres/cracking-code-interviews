@@ -413,7 +413,7 @@ Treating this as a minor stylistic preference rather than a real, dramatic perfo
 
 ## Additional Reading
 
-- [Polymorphism and Dynamic Dispatch](polymorphism-and-dynamic-dispatch.md) — that chapter's own construction deliberately used `StringBuilder` to avoid `javac`'s compile-time constant folding, a real, practical application of this chapter's pooling rules.
+- [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) — that chapter's own construction deliberately used `StringBuilder` to avoid `javac`'s compile-time constant folding, a real, practical application of this chapter's pooling rules.
 
 ## Official References
 

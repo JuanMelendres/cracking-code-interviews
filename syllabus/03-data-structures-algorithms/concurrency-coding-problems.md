@@ -37,7 +37,7 @@ Concurrency coding problems test something genuinely different from single-threa
 
 ## 2. Prerequisites
 
-[Design-Style Coding Problems](design-style-coding-problems.md) — several problems here (the bounded blocking queue, Section 7 Problem 4) are concurrency-safe versions of data-structure design problems covered there in their single-threaded form. [Deadlock, Race Conditions, and Thread Diagnostics](../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — this chapter applies that chapter's theory to small, from-scratch implementations rather than re-deriving the underlying concepts.
+[Design-Style Coding Problems (LRU, LFU, Iterators)](design-style-coding-problems.md) — several problems here (the bounded blocking queue, Section 7 Problem 4) are concurrency-safe versions of data-structure design problems covered there in their single-threaded form. [Deadlock, Race Conditions, and Thread Diagnostics](../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — this chapter applies that chapter's theory to small, from-scratch implementations rather than re-deriving the underlying concepts.
 
 ## 3. Foundation (L1)
 
@@ -276,7 +276,7 @@ Design this using the `wait()`/`notifyAll()` bounded-queue technique from Sectio
 ## 19. Further Reading
 
 - [Deadlock, Race Conditions, and Thread Diagnostics](../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md) — the canonical, in-depth theory this chapter's small implementations apply directly, including the full Coffman conditions this chapter's Section 5 references.
-- [Design-Style Coding Problems](design-style-coding-problems.md) — the single-threaded design-problem sibling pattern; Section 4/8 of this chapter directly addresses when a "design"-sounding problem does or doesn't actually require the concurrency techniques covered here.
+- [Design-Style Coding Problems (LRU, LFU, Iterators)](design-style-coding-problems.md) — the single-threaded design-problem sibling pattern; Section 4/8 of this chapter directly addresses when a "design"-sounding problem does or doesn't actually require the concurrency techniques covered here.
 - [The OS Process/Thread Model](../01-computer-science-foundations/os-process-thread-model.md) — the underlying OS-level thread and scheduling model these Java-level synchronization primitives are built on top of.
 
 ## 20. Mastery Checklist

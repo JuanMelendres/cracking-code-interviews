@@ -583,15 +583,15 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 7 | Can reflection create a second instance of an enum constant? | [Enums, EnumMap, EnumSet](../../02-java/language-core/enums-enummap-and-enumset.md#flashcards) |
 | 8 | What happens if you persist `Enum.ordinal()` and later insert a new constant mid-declaration? | [Enums, EnumMap, EnumSet](../../02-java/language-core/enums-enummap-and-enumset.md#flashcards) |
 | 9 | Is `EnumMap` dramatically faster than `HashMap` for enum keys? | [Enums, EnumMap, EnumSet](../../02-java/language-core/enums-enummap-and-enumset.md#flashcards) |
-| 10 | What is the equals/hashCode contract, precisely? | [equals/hashCode/Comparable](../../02-java/language-core/equals-hashcode-and-comparable-contracts.md#flashcards) |
-| 11 | What happens if you override `equals()` but not `hashCode()`? | [equals/hashCode/Comparable](../../02-java/language-core/equals-hashcode-and-comparable-contracts.md#flashcards) |
-| 12 | What does `TreeSet` use to decide two elements are "the same"? | [equals/hashCode/Comparable](../../02-java/language-core/equals-hashcode-and-comparable-contracts.md#flashcards) |
+| 10 | What is the equals/hashCode contract, precisely? | [equals(), hashCode(), and Comparable Contracts](../../02-java/language-core/equals-hashcode-and-comparable-contracts.md#flashcards) |
+| 11 | What happens if you override `equals()` but not `hashCode()`? | [equals(), hashCode(), and Comparable Contracts](../../02-java/language-core/equals-hashcode-and-comparable-contracts.md#flashcards) |
+| 12 | What does `TreeSet` use to decide two elements are "the same"? | [equals(), hashCode(), and Comparable Contracts](../../02-java/language-core/equals-hashcode-and-comparable-contracts.md#flashcards) |
 | 13 | What does chaining the cause when wrapping an exception actually preserve? | [Exception Design](../../02-java/language-core/exception-design-and-hierarchy-strategy.md#flashcards) |
 | 14 | What happens when both a try-with-resources body and `close()` throw? | [Exception Design](../../02-java/language-core/exception-design-and-hierarchy-strategy.md#flashcards) |
 | 15 | Why is a manual `finally`-block `close()` that also throws strictly worse than try-with-resources? | [Exception Design](../../02-java/language-core/exception-design-and-hierarchy-strategy.md#flashcards) |
-| 16 | What does type erasure actually remove, and when? | [Generics, Erasure, PECS](../../02-java/language-core/generics-erasure-and-pecs.md#flashcards) |
-| 17 | When does a defeated generic (via unchecked cast) actually fail? | [Generics, Erasure, PECS](../../02-java/language-core/generics-erasure-and-pecs.md#flashcards) |
-| 18 | State PECS. | [Generics, Erasure, PECS](../../02-java/language-core/generics-erasure-and-pecs.md#flashcards) |
+| 16 | What does type erasure actually remove, and when? | [Generics: Erasure, Variance, and PECS](../../02-java/language-core/generics-erasure-and-pecs.md#flashcards) |
+| 17 | When does a defeated generic (via unchecked cast) actually fail? | [Generics: Erasure, Variance, and PECS](../../02-java/language-core/generics-erasure-and-pecs.md#flashcards) |
+| 18 | State PECS. | [Generics: Erasure, Variance, and PECS](../../02-java/language-core/generics-erasure-and-pecs.md#flashcards) |
 | 19 | Do `final` fields alone make a class immutable? | [Immutability](../../02-java/language-core/immutability-and-defensive-copying.md#flashcards) |
 | 20 | What are the two places a supposedly-immutable class can leak mutability? | [Immutability](../../02-java/language-core/immutability-and-defensive-copying.md#flashcards) |
 | 21 | Why is `List.copyOf()` stronger than copying into a new `ArrayList`? | [Immutability](../../02-java/language-core/immutability-and-defensive-copying.md#flashcards) |
@@ -613,15 +613,15 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 37 | Roughly how much slower is classic `Method.invoke()` than a direct method call? | [Reflection and Dynamic Proxies](../../02-java/language-core/reflection-and-dynamic-proxies.md#flashcards) |
 | 38 | Can `java.lang.reflect.Proxy` create a proxy for a concrete class? | [Reflection and Dynamic Proxies](../../02-java/language-core/reflection-and-dynamic-proxies.md#flashcards) |
 | 39 | Why might a Spring `@Transactional` method silently not get its transaction applied? | [Reflection and Dynamic Proxies](../../02-java/language-core/reflection-and-dynamic-proxies.md#flashcards) |
-| 40 | Does `ObjectInputStream.readObject()` call the class's constructor? | [Serialization Hazards](../../02-java/language-core/serialization-hazards-and-alternatives.md#flashcards) |
-| 41 | How do you keep a Singleton's `==` identity intact across serialization? | [Serialization Hazards](../../02-java/language-core/serialization-hazards-and-alternatives.md#flashcards) |
-| 42 | What's the JDK's own current, standard mechanism for restricting what a deserialization stream can reconstruct? | [Serialization Hazards](../../02-java/language-core/serialization-hazards-and-alternatives.md#flashcards) |
+| 40 | Does `ObjectInputStream.readObject()` call the class's constructor? | [Serialization Hazards and Alternatives](../../02-java/language-core/serialization-hazards-and-alternatives.md#flashcards) |
+| 41 | How do you keep a Singleton's `==` identity intact across serialization? | [Serialization Hazards and Alternatives](../../02-java/language-core/serialization-hazards-and-alternatives.md#flashcards) |
+| 42 | What's the JDK's own current, standard mechanism for restricting what a deserialization stream can reconstruct? | [Serialization Hazards and Alternatives](../../02-java/language-core/serialization-hazards-and-alternatives.md#flashcards) |
 | 43 | When does a stream pipeline actually execute? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
 | 44 | Why does `Collectors.toMap()` throw on duplicate keys by default? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
 | 45 | Does `parallel()` make a stream's writes to shared state thread-safe? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
-| 46 | Does `new String("hello") == "hello"` evaluate to `true`? | [Strings, Interning, Compact Strings](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
-| 47 | If a mostly-English string has ONE non-Latin-1 character, does only that character cost extra memory? | [Strings, Interning, Compact Strings](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
-| 48 | How much slower is `String +=` in a loop than `StringBuilder.append()`, roughly? | [Strings, Interning, Compact Strings](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
+| 46 | Does `new String("hello") == "hello"` evaluate to `true`? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
+| 47 | If a mostly-English string has ONE non-Latin-1 character, does only that character cost extra memory? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
+| 48 | How much slower is `String +=` in a loop than `StringBuilder.append()`, roughly? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
 
 ---
 
