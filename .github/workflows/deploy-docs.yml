@@ -27,7 +27,7 @@ jobs:
           # instead of its real 2026-09-08 commit. Full history needed.
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.x"
 
