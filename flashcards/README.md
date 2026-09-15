@@ -303,6 +303,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 
 **2026-09-12 (same day, follow-up) — Frontend Live-Coding & Debugging Protocol gains a flashcard deck.** Same discovery pass, same chapter as `cheat-sheets/README.md`'s matching entry: this `21-frontend-web` document had zero flashcard deck despite already carrying real inline cards. 3 cards extracted (2 verbatim from the chapter's own existing deck, 1 new — why phase 3's stated render prediction matters — from its own Key Takeaways/Common Mistakes text); `topic_id` recorded as N/A, same convention as `git-internals-and-collaboration-workflows.md`. **New total: 249 decks (248 prior + 1), 838 cards (835 prior + 3).**
 
+**2026-09-15 — Views and Materialized Views (T-2410) gains a flashcard deck.** New `06-databases` chapter, added the same day to close a real, user-flagged gap (see the chapter's own changelog entry). 5 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 250 decks (249 prior + 1), 843 cards (838 prior + 5).**
+
 ## How this relates to other deliverables
 
 - `syllabus/` — the canonical chapters these cards are drawn from. For the 137 pre-existing decks, each source chapter's own `## Flashcards` section remains in place (unchanged) as the chapter's own embedded review aid; the 31 new-writing-domain decks above have no such embedded section to leave in place, since their source template doesn't carry one.

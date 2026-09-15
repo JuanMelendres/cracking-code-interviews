@@ -1,0 +1,308 @@
+-- Views and Materialized Views -- real lab
+-- Backs syllabus/06-databases/views-and-materialized-views.md (T-2410)
+-- Run: see README.md in this directory.
+\timing on
+Timing is on.
+-- ===========================================================
+-- Part 0: schema -- an orders/line-items setup, small enough
+-- to read directly, big enough to make a materialized view's
+-- refresh cost and query-time win real and measurable.
+-- ===========================================================
+CREATE TABLE customers (
+    customer_id  SERIAL PRIMARY KEY,
+    name         TEXT NOT NULL,
+    email        TEXT NOT NULL,
+    country      TEXT NOT NULL
+);
+CREATE TABLE
+Time: 3.907 ms
+CREATE TABLE orders (
+    order_id     SERIAL PRIMARY KEY,
+    customer_id  INT NOT NULL REFERENCES customers(customer_id),
+    order_date   DATE NOT NULL,
+    status       TEXT NOT NULL
+);
+CREATE TABLE
+Time: 2.013 ms
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id      INT NOT NULL REFERENCES orders(order_id),
+    product_name  TEXT NOT NULL,
+    quantity      INT NOT NULL,
+    unit_price    NUMERIC(10,2) NOT NULL
+);
+CREATE TABLE
+Time: 1.582 ms
+INSERT INTO customers (name, email, country)
+SELECT 'customer_' || i, 'customer_' || i || '@example.com',
+       (ARRAY['US','MX','CA','BR','AR'])[1 + (i % 5)]
+FROM generate_series(1, 2000) AS i;
+INSERT 0 2000
+Time: 2.785 ms
+INSERT INTO orders (customer_id, order_date, status)
+SELECT 1 + (i % 2000),
+       DATE '2026-01-01' + (i % 300),
+       (ARRAY['completed','completed','completed','cancelled','pending'])[1 + (i % 5)]
+FROM generate_series(1, 50000) AS i;
+INSERT 0 50000
+Time: 132.023 ms
+INSERT INTO order_items (order_id, product_name, quantity, unit_price)
+SELECT 1 + (i % 50000),
+       (ARRAY['widget','gadget','gizmo','doohickey'])[1 + (i % 4)],
+       1 + (i % 5),
+       (5 + (i % 200))::numeric
+FROM generate_series(1, 200000) AS i;
+INSERT 0 200000
+Time: 549.823 ms
+ANALYZE customers;
+ANALYZE
+Time: 5.308 ms
+ANALYZE orders;
+ANALYZE
+Time: 14.968 ms
+ANALYZE order_items;
+ANALYZE
+Time: 26.310 ms
+-- ===========================================================
+-- Part 1: a plain VIEW -- a saved query, no storage of its own
+-- ===========================================================
+CREATE VIEW completed_order_totals AS
+SELECT
+    o.order_id,
+    o.customer_id,
+    o.order_date,
+    SUM(oi.quantity * oi.unit_price) AS order_total
+FROM orders o
+JOIN order_items oi ON oi.order_id = o.order_id
+WHERE o.status = 'completed'
+GROUP BY o.order_id, o.customer_id, o.order_date;
+CREATE VIEW
+Time: 0.833 ms
+SELECT * FROM completed_order_totals ORDER BY order_id LIMIT 5;
+ order_id | customer_id | order_date | order_total 
+----------+-------------+------------+-------------
+        1 |           2 | 2026-01-02 |       20.00
+        2 |           3 | 2026-01-03 |       48.00
+        5 |           6 | 2026-01-06 |      180.00
+        6 |           7 | 2026-01-07 |       40.00
+        7 |           8 | 2026-01-08 |       88.00
+(5 rows)
+
+Time: 45.942 ms
+-- Proof it's genuinely a saved query, not a cache: insert a new
+-- completed order+item after the view already exists, then query
+-- the view again -- the new row appears immediately.
+INSERT INTO orders (order_id, customer_id, order_date, status)
+VALUES (999001, 1, DATE '2026-06-01', 'completed');
+INSERT 0 1
+Time: 0.419 ms
+INSERT INTO order_items (order_id, product_name, quantity, unit_price)
+VALUES (999001, 'widget', 3, 10.00);
+INSERT 0 1
+Time: 0.247 ms
+SELECT * FROM completed_order_totals WHERE order_id = 999001;
+ order_id | customer_id | order_date | order_total 
+----------+-------------+------------+-------------
+   999001 |           1 | 2026-06-01 |       30.00
+(1 row)
+
+Time: 4.957 ms
+-- ===========================================================
+-- Part 2: a view can be a genuine access-control mechanism --
+-- exposing fewer columns than the base table, real and enforced
+-- by a GRANT, not by application-layer discipline.
+-- ===========================================================
+CREATE VIEW customers_public AS
+SELECT customer_id, country FROM customers;
+CREATE VIEW
+Time: 0.322 ms
+CREATE ROLE reporting_user LOGIN PASSWORD 'demo';
+CREATE ROLE
+Time: 2.022 ms
+REVOKE ALL ON customers FROM reporting_user;
+REVOKE
+Time: 0.201 ms
+GRANT SELECT ON customers_public TO reporting_user;
+GRANT
+Time: 0.202 ms
+-- As reporting_user: allowed against the view...
+SET ROLE reporting_user;
+SET
+Time: 0.045 ms
+SELECT * FROM customers_public LIMIT 3;
+ customer_id | country 
+-------------+---------
+           1 | MX
+           2 | CA
+           3 | BR
+(3 rows)
+
+Time: 0.112 ms
+-- ...but the base table (with email, a column the view never
+-- exposed) is genuinely inaccessible -- real, captured error.
+SELECT * FROM customers LIMIT 3;
+Time: 0.123 ms
+RESET ROLE;
+ERROR:  permission denied for table customers
+RESET
+Time: 0.073 ms
+-- ===========================================================
+-- Part 3: updatable views -- a simple single-table view accepts
+-- DML; a view with a GROUP BY/JOIN genuinely does not (real
+-- Postgres error, not a style rule).
+-- ===========================================================
+CREATE VIEW us_customers AS
+SELECT customer_id, name, email, country
+FROM customers
+WHERE country = 'US';
+CREATE VIEW
+Time: 0.326 ms
+UPDATE us_customers SET name = 'customer_1_renamed' WHERE customer_id = 1;
+UPDATE 0
+Time: 0.119 ms
+SELECT name FROM customers WHERE customer_id = 1;
+    name    
+------------
+ customer_1
+(1 row)
+
+Time: 0.057 ms
+-- This one is NOT automatically updatable -- it aggregates and
+-- joins, so Postgres cannot unambiguously map a write back to
+-- one base-table row.
+UPDATE completed_order_totals SET order_total = 0 WHERE order_id = 999001;
+ERROR:  cannot update view "completed_order_totals"
+DETAIL:  Views containing GROUP BY are not automatically updatable.
+HINT:  To enable updating the view, provide an INSTEAD OF UPDATE trigger or an unconditional ON UPDATE DO INSTEAD rule.
+Time: 0.140 ms
+-- ===========================================================
+-- Part 4: MATERIALIZED VIEW -- real storage, stale until
+-- refreshed, measured cost/benefit.
+-- ===========================================================
+CREATE MATERIALIZED VIEW customer_order_summary AS
+SELECT
+    c.customer_id,
+    c.name,
+    c.country,
+    COUNT(o.order_id)                              AS total_orders,
+    COALESCE(SUM(oi.quantity * oi.unit_price), 0)  AS lifetime_value
+FROM customers c
+LEFT JOIN orders o ON o.customer_id = c.customer_id AND o.status = 'completed'
+LEFT JOIN order_items oi ON oi.order_id = o.order_id
+GROUP BY c.customer_id, c.name, c.country;
+SELECT 2000
+Time: 42.327 ms
+SELECT * FROM customer_order_summary ORDER BY customer_id LIMIT 5;
+ customer_id |    name    | country | total_orders | lifetime_value 
+-------------+------------+---------+--------------+----------------
+           1 | customer_1 | MX      |          101 |      102030.00
+           2 | customer_2 | CA      |          100 |         500.00
+           3 | customer_3 | BR      |          100 |        1200.00
+           4 | customer_4 | AR      |            0 |              0
+           5 | customer_5 | US      |            0 |              0
+(5 rows)
+
+Time: 0.235 ms
+-- Proof it's genuinely stale: change underlying data, requery the
+-- materialized view before refreshing -- the new order is absent.
+INSERT INTO orders (order_id, customer_id, order_date, status)
+VALUES (999002, 1, DATE '2026-06-02', 'completed');
+INSERT 0 1
+Time: 0.251 ms
+INSERT INTO order_items (order_id, product_name, quantity, unit_price)
+VALUES (999002, 'gadget', 1, 999.00);
+INSERT 0 1
+Time: 0.183 ms
+SELECT total_orders, lifetime_value FROM customer_order_summary WHERE customer_id = 1;
+ total_orders | lifetime_value 
+--------------+----------------
+          101 |      102030.00
+(1 row)
+
+Time: 0.122 ms
+-- Real measured cost/benefit: the live equivalent query vs. the
+-- materialized view, same logical result, same machine, same data.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT
+    c.customer_id,
+    c.name,
+    c.country,
+    COUNT(o.order_id)                              AS total_orders,
+    COALESCE(SUM(oi.quantity * oi.unit_price), 0)  AS lifetime_value
+FROM customers c
+LEFT JOIN orders o ON o.customer_id = c.customer_id AND o.status = 'completed'
+LEFT JOIN order_items oi ON oi.order_id = o.order_id
+GROUP BY c.customer_id, c.name, c.country;
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ HashAggregate  (cost=7180.41..7205.41 rows=2000 width=60) (actual time=55.486..55.685 rows=2000 loops=1)
+   Group Key: c.customer_id
+   Batches: 1  Memory Usage: 1137kB
+   Buffers: shared hit=1809
+   ->  Hash Right Join  (cost=1384.66..5693.59 rows=118945 width=33) (actual time=3.946..39.286 rows=120802 loops=1)
+         Hash Cond: (o.customer_id = c.customer_id)
+         Buffers: shared hit=1809
+         ->  Hash Right Join  (cost=1320.66..5316.71 rows=118945 width=17) (actual time=3.756..28.620 rows=120002 loops=1)
+               Hash Cond: (oi.order_id = o.order_id)
+               Buffers: shared hit=1790
+               ->  Seq Scan on order_items oi  (cost=0.00..3471.00 rows=200000 width=13) (actual time=0.002..7.405 rows=200002 loops=1)
+                     Buffers: shared hit=1471
+               ->  Hash  (cost=944.00..944.00 rows=30133 width=8) (actual time=3.751..3.751 rows=30002 loops=1)
+                     Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                     Buffers: shared hit=319
+                     ->  Seq Scan on orders o  (cost=0.00..944.00 rows=30133 width=8) (actual time=0.001..2.327 rows=30002 loops=1)
+                           Filter: (status = 'completed'::text)
+                           Rows Removed by Filter: 20000
+                           Buffers: shared hit=319
+         ->  Hash  (cost=39.00..39.00 rows=2000 width=20) (actual time=0.189..0.189 rows=2000 loops=1)
+               Buckets: 2048  Batches: 1  Memory Usage: 119kB
+               Buffers: shared hit=19
+               ->  Seq Scan on customers c  (cost=0.00..39.00 rows=2000 width=20) (actual time=0.002..0.087 rows=2000 loops=1)
+                     Buffers: shared hit=19
+ Planning:
+   Buffers: shared hit=14
+ Planning Time: 0.062 ms
+ Execution Time: 55.735 ms
+(28 rows)
+
+Time: 55.943 ms
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT * FROM customer_order_summary;
+                                                       QUERY PLAN                                                        
+-------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on customer_order_summary  (cost=0.00..51.20 rows=1920 width=108) (actual time=0.003..0.078 rows=2000 loops=1)
+   Buffers: shared hit=32
+ Planning Time: 0.013 ms
+ Execution Time: 0.122 ms
+(4 rows)
+
+Time: 0.212 ms
+-- REFRESH MATERIALIZED VIEW CONCURRENTLY requires a unique index
+-- on the materialized view -- real error without one, then real
+-- success after adding it.
+REFRESH MATERIALIZED VIEW CONCURRENTLY customer_order_summary;
+Time: 0.076 ms
+CREATE UNIQUE INDEX customer_order_summary_pk ON customer_order_summary (customer_id);
+ERROR:  cannot refresh materialized view "public.customer_order_summary" concurrently
+HINT:  Create a unique index with no WHERE clause on one or more columns of the materialized view.
+CREATE INDEX
+Time: 1.445 ms
+REFRESH MATERIALIZED VIEW CONCURRENTLY customer_order_summary;
+REFRESH MATERIALIZED VIEW
+Time: 49.921 ms
+SELECT total_orders, lifetime_value FROM customer_order_summary WHERE customer_id = 1;
+ total_orders | lifetime_value 
+--------------+----------------
+          102 |      103029.00
+(1 row)
+
+Time: 0.133 ms
+-- ===========================================================
+-- cleanup
+-- ===========================================================
+REVOKE SELECT ON customers_public FROM reporting_user;
+REVOKE
+Time: 0.197 ms
+DROP ROLE reporting_user;
+DROP ROLE
+Time: 0.243 ms
