@@ -78,6 +78,29 @@
   font-weight: 700;
 }
 
+/* "According to <path>, next: ..." box, injected by the same script from
+   docs/assets/learning-path-next-index.json -- only present when this
+   chapter is one of a learning path's explicitly named priority topics.
+   Sits directly below .cci-scheduled-in when both are present, so no
+   negative top margin here (that trick is .cci-scheduled-in's job, to
+   sit flush under the reading-time line). */
+.cci-next-in-path {
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color--light);
+  background: var(--md-code-bg-color);
+  border-radius: 0.2rem;
+  padding: 0.4rem 0.6rem;
+  margin: 0 0 1.5rem;
+}
+
+.cci-next-in-path__line + .cci-next-in-path__line {
+  margin-top: 0.2rem;
+}
+
+.cci-next-in-path__label {
+  font-weight: 700;
+}
+
 /* Estimated reading time, injected by overrides/partials/content.html from
    each chapter's own estimated_reading_minutes front matter. Muted and
    small so it reads as metadata, not a heading. */

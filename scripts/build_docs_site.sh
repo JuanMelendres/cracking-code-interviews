@@ -87,4 +87,9 @@ PYEOF
 # study-packs/**/README.md, consumed by javascripts/chapter-context.js.
 python3 scripts/generate_pack_schedule_index.py
 
+# Regenerates docs/assets/learning-path-next-index.json (also not
+# committed) from syllabus/00-overview/learning-paths/*.md's own
+# real, already-ordered topic lists -- consumed by the same script.
+python3 scripts/generate_learning_path_next_index.py
+
 echo "Mirrored ${#MIRROR_DIRS[@]} directories into docs/. Run: .venv-docs/bin/mkdocs serve"
