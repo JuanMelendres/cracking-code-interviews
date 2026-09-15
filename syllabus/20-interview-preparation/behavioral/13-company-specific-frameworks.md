@@ -4,8 +4,8 @@ slug: company-specific-frameworks
 document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-15
 source_history:
   - behavioral-handbook/13-company-specific-frameworks.md
 topic_id: T-1513
@@ -108,6 +108,15 @@ Amazon specifically (and some companies with similar processes) includes a "bar 
 ## Beyond Amazon: Recognizing the Pattern Elsewhere
 
 Many companies without a numbered, publicly-documented framework as explicit as Amazon's LPs still interview against an internal, less-publicized set of values or competencies. The signal that a company is using this pattern: job postings or careers pages that name specific values with capitalized titles, interviewers who ask questions with unusually specific, consistent phrasing across a loop, or explicit mention during a recruiter screen of "we evaluate against our core values." When this pattern is detected, the same reframing method applies — research the company's actual stated values (from their own published materials, not a third party's guess) and apply the same per-principle reframing exercise described above.
+
+| Company | How explicit the framework is | What this means for reframing |
+|---|---|---|
+| Amazon | Fully explicit — 16 named, published Leadership Principles, every interviewer trained against them | Map stories directly to principle names; expect pointed, principle-specific follow-ups (see Bar-Raiser Calibration above) |
+| Microsoft | Partially explicit — a publicly discussed "growth mindset" cultural value, less rigidly codified into a numbered interview rubric than Amazon's LPs | Reframe for learning-from-failure and continuous-improvement emphasis; less pressure to name-check a specific numbered principle |
+| Netflix | Partially explicit — a well-known public culture memo ("Freedom & Responsibility," high performance, candor) | Reframe for autonomy, high judgment under ambiguity, and direct/candid communication in the story |
+| A company with no public framework | Implicit — values exist internally but aren't published in named form | Watch for the detection signals above; when in doubt, ask the recruiter directly what the loop evaluates against rather than guessing |
+
+Treat every row except "fully explicit" as a starting hypothesis, not a memorized script — a company's actual current values, worded in the company's own language, always outrank a third party's paraphrase of them, the same caution this chapter already states for Amazon's own list.
 
 ## Common Mistakes
 
