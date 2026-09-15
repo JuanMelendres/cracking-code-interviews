@@ -11401,7 +11401,7 @@
 <li>Explain the difference between eager and cooperative-incremental rebalancing and what each actually costs.</li>
 </ul>
 <h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>Consumer-group rebalancing is where Kafka's abstraction meets real distributed-systems failure modes — "your consumer group rebalances every 30 seconds, diagnose it" is a standard High-frequency deep-dive because the answer requires separating three genuinely different causes (scaling, crashes, slow processing) that all produce the identical visible symptom. It also connects directly to offset-commit semantics, which is the substrate <a href="../delivery-semantics-and-exactly-once/">Delivery Semantics and Exactly-Once Processing</a> (T-704) builds on.</p>
+<p>Consumer-group rebalancing is where Kafka's abstraction meets real distributed-systems failure modes — "your consumer group rebalances every 30 seconds, diagnose it" is a standard High-frequency deep-dive because the answer requires separating three genuinely different causes (scaling, crashes, slow processing) that all produce the identical visible symptom. It also connects directly to offset-commit semantics, which is the substrate <a href="../delivery-semantics-and-exactly-once/">Kafka Delivery Semantics and Exactly-Once Processing</a> (T-704) builds on.</p>
 <h2 id="level-1-foundation">Level 1 — Foundation<a class="headerlink" href="#level-1-foundation" title="Permanent link">&para;</a></h2>
 <p>Think of a restaurant with four sections and a team of waiters sharing them. If there's only one waiter, they cover all four sections themselves. When a second waiter joins the shift, the manager reassigns sections so each waiter covers two — this reassignment is a <strong>rebalance</strong>, and it happens any time a waiter joins, clocks out, or stops responding. A <strong>consumer group</strong> is that team of waiters sharing the restaurant's sections (partitions) — each section is covered by exactly one waiter at a time, so no table gets served twice by two different waiters and no table gets forgotten because everyone assumed someone else had it.</p>
 <p>If a sixth waiter shows up but there are only four sections, that waiter simply has nothing to do — standing around idle. This is exactly why adding more consumers than a topic has partitions doesn't increase throughput: there's no more "sections" to hand out, no matter how many extra waiters clock in.</p>
@@ -11752,7 +11752,7 @@ Assuming adding consumers always increases throughput.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
   </span>
 
     

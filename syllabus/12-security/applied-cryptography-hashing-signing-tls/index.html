@@ -11415,7 +11415,7 @@ iterations=100000    time=   86ms hash=2a080fdedce213934a91e8142d2eb716...
 $ java PasswordHashingCostDemo 600000
 iterations=600000    time=  128ms hash=7c0123695eb46911838d4c16fa259d72...
 </code></pre></div>
-<p>The <code>iterations=1</code> run measures the fixed JVM-startup cost alone (~31ms). Subtracting that baseline: 100,000 iterations cost roughly 55ms marginal, 600,000 iterations cost roughly 97ms marginal — a real, non-fabricated measurement, but one whose ratio (6x more iterations for less than 2x more marginal time) is itself worth explaining rather than hiding: the smaller iteration count runs mostly interpreted, while the larger count gives the JIT more opportunity to compile the hot inner loop before the measurement window ends (see <a href="../../02-java/jvm-internals/jit-tiered-compilation-and-deoptimization/">JIT Tiered Compilation and Deoptimization</a>) — a direct, concrete illustration of why isolating a single cold measurement per process, as done here, matters for honest benchmarking. The practical takeaway for password-hashing configuration is unaffected: real deployments tune the iteration count against measured wall-clock time on production-representative hardware, not a fixed op-count assumed to scale linearly.</p>
+<p>The <code>iterations=1</code> run measures the fixed JVM-startup cost alone (~31ms). Subtracting that baseline: 100,000 iterations cost roughly 55ms marginal, 600,000 iterations cost roughly 97ms marginal — a real, non-fabricated measurement, but one whose ratio (6x more iterations for less than 2x more marginal time) is itself worth explaining rather than hiding: the smaller iteration count runs mostly interpreted, while the larger count gives the JIT more opportunity to compile the hot inner loop before the measurement window ends (see <a href="../../02-java/jvm-internals/jit-tiered-compilation-and-deoptimization/">JIT: Tiered Compilation, Inlining, and Deoptimization</a>) — a direct, concrete illustration of why isolating a single cold measurement per process, as done here, matters for honest benchmarking. The practical takeaway for password-hashing configuration is unaffected: real deployments tune the iteration count against measured wall-clock time on production-representative hardware, not a fixed op-count assumed to scale linearly.</p>
 <p><strong>Real proof that a single-character password difference changes the hash completely</strong>, same salt and iteration count:</p>
 <div class="highlight"><pre><span></span><code>$ java PasswordHashingCostDemo 600000
 same salt+iterations, one-char-different password -&gt; equal hash? false
@@ -11670,7 +11670,7 @@ A: Those legacy options enabled negotiation-based attacks (like downgrade attack
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
   </span>
 
     

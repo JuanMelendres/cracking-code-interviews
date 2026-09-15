@@ -11489,7 +11489,7 @@ point-in-time review cannot.</p>
   continuously-enforced, objective gate — see <a href="#java-examples">Java Examples</a> for a
   real, executed one.</li>
 <li><strong>Incremental modernization.</strong> Paying down debt in small, individually-shippable
-  steps (as demonstrated in <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>)
+  steps (as demonstrated in <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>)
   rather than a large, high-risk rewrite — the same underlying discipline applied to
   internal structure rather than external system boundaries.</li>
 <li><strong>Deliberate vs. accidental debt.</strong> Deliberate debt (shipping a known-simplified
@@ -11603,7 +11603,7 @@ actually persuades a skeptical PM.</p>
 <p>Paying down debt incrementally (this chapter's three-coordinator extraction): low
 risk per step, real progress measurable at each step — at the cost of taking longer
 in wall-clock time than a single large rewrite might, if that rewrite actually worked
-on the first attempt (which <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>
+on the first attempt (which <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>
 argues it usually doesn't). Adding a fitness function: real, ongoing protection
 against regression — at the real cost of occasionally blocking a legitimately
 justified change, requiring a deliberate, reviewed threshold decision rather than
@@ -11640,7 +11640,7 @@ threshold change is a visible, reviewed decision rather than a quiet workaround.
 </tr>
 <tr>
 <td>Is the remediation large enough to carry real rewrite risk?</td>
-<td>Break it into incremental steps (see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>)</td>
+<td>Break it into incremental steps (see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>)</td>
 </tr>
 <tr>
 <td>Was this debt taken on deliberately, with a documented plan to revisit?</td>
@@ -11698,7 +11698,7 @@ threshold change is a visible, reviewed decision rather than a quiet workaround.
   architectural characteristic, with no automated check keeping it true as the system
   continues to change.</li>
 <li>Proposing a full rewrite as the remediation by default, without considering
-  incremental extraction (see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>).</li>
+  incremental extraction (see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>).</li>
 <li>Adding a fitness function with a threshold that's never reviewed or revisited,
   turning it into either a permanent blocker or a target for silent bypass.</li>
 </ul>
@@ -11723,7 +11723,7 @@ threshold change is a visible, reviewed decision rather than a quiet workaround.
 <li>Add a fitness function for any architectural characteristic identified as
   important during a design review or ADR, at the time of that review, not after the
   first violation is discovered informally.</li>
-<li>Prefer incremental remediation (see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>)
+<li>Prefer incremental remediation (see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>)
   over a full rewrite whenever the component's behavior is not fully understood or
   documented.</li>
 <li>Give every fitness function's threshold an explicit owner and a documented process
@@ -11753,7 +11753,7 @@ after it's compounded again.</p>
 <p>Cover: the real fitness-function demonstration (10 vs. threshold 5, failing; 4 vs.
 threshold 5, passing, with identical preserved behavior); the economic-framing
 reframe as the core interview differentiator on this topic; incremental remediation
-connected explicitly to <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>;
+connected explicitly to <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>;
 the organizational requirement that a fitness function's threshold have real
 ownership, not just existence; and the deliberate-vs-accidental debt distinction as a
 framing tool for how a given piece of debt should even be tracked.</p>
@@ -11870,7 +11870,7 @@ that got it there.</p>
   debt (this chapter's <code>before.OrderProcessor</code>) accrues silently and is the more
   dangerous kind.</li>
 <li><strong>Incremental remediation</strong> over a rewrite whenever legacy behavior isn't fully
-  understood — see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a>.</li>
+  understood — see <a href="../strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a>.</li>
 </ul>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
 <h3 id="card-economic-framing-vs-code-quality-framing">Card: Economic framing vs. code-quality framing<a class="headerlink" href="#card-economic-framing-vs-code-quality-framing" title="Permanent link">&para;</a></h3>
@@ -11995,7 +11995,7 @@ hard-coded here where it could drift out of sync.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:31:01 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:40:56 UTC">September 15, 2026</span>
   </span>
 
     

@@ -11156,7 +11156,7 @@
 
 
 <h1 id="working-with-legacy-code">Working with Legacy Code<a class="headerlink" href="#working-with-legacy-code" title="Permanent link">&para;</a></h1>
-<p>This is <strong>T-1803</strong> in <code>18-engineering-practices</code>. <a href="../../17-architecture/strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a> and <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/">Technical Debt and Evolutionary Architecture</a> both cover <em>system-level</em> legacy migration strategy — replacing or evolving an entire legacy system over time. This chapter is one layer below that: the day-to-day technique for safely changing a single piece of legacy code — a class, a method, a module — that lacks tests and whose behavior isn't fully understood, without waiting for (or requiring) a larger system-level migration.</p>
+<p>This is <strong>T-1803</strong> in <code>18-engineering-practices</code>. <a href="../../17-architecture/strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a> and <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/">Technical Debt and Evolutionary Architecture</a> both cover <em>system-level</em> legacy migration strategy — replacing or evolving an entire legacy system over time. This chapter is one layer below that: the day-to-day technique for safely changing a single piece of legacy code — a class, a method, a module — that lacks tests and whose behavior isn't fully understood, without waiting for (or requiring) a larger system-level migration.</p>
 <h2 id="1-why-this-matters">1. Why This Matters<a class="headerlink" href="#1-why-this-matters" title="Permanent link">&para;</a></h2>
 <p>Most real engineering work happens inside existing, imperfect code, not on a greenfield project — and "legacy code," in the sense this chapter uses the term (following Michael Feathers' well-known definition), simply means code without tests, regardless of its age or how well-written it otherwise is. Changing such code safely is a genuinely different, learnable skill from writing new code: the central risk isn't writing a bug into new logic, it's inadvertently changing behavior in code you don't fully understand, with no test suite to catch the regression.</p>
 <h2 id="2-prerequisites">2. Prerequisites<a class="headerlink" href="#2-prerequisites" title="Permanent link">&para;</a></h2>
@@ -11286,7 +11286,7 @@ All characterization assertions passed -- current behavior is now pinned.
 <h2 id="19-further-reading">19. Further Reading<a class="headerlink" href="#19-further-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Michael Feathers, <em>Working Effectively with Legacy Code</em> — the foundational text this chapter's core techniques (the "legacy code" definition, characterization testing, seams, sprout method/class) are drawn from.</li>
-<li><a href="../../17-architecture/strangler-fig-and-migration-patterns/">Strangler Fig and Migration Patterns</a> — the system-level migration strategy this chapter's code-level technique complements, for when legacy risk has grown beyond what incremental characterization-and-change can reasonably address.</li>
+<li><a href="../../17-architecture/strangler-fig-and-migration-patterns/">Strangler Fig, Anti-Corruption Layer, and Migration Patterns</a> — the system-level migration strategy this chapter's code-level technique complements, for when legacy risk has grown beyond what incremental characterization-and-change can reasonably address.</li>
 <li><a href="../../17-architecture/technical-debt-and-evolutionary-architecture/">Technical Debt and Evolutionary Architecture</a> — the broader framing for deciding when and how much to invest in addressing legacy risk at a system level.</li>
 </ul>
 <h2 id="20-mastery-checklist">20. Mastery Checklist<a class="headerlink" href="#20-mastery-checklist" title="Permanent link">&para;</a></h2>
@@ -11341,7 +11341,7 @@ All characterization assertions passed -- current behavior is now pinned.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
   </span>
 
     

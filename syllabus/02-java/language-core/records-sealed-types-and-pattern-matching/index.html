@@ -12201,7 +12201,7 @@
 <li><strong>Pattern matching for <code>instanceof</code></strong> (JDK 16, JEP 394): <code>obj instanceof Type name</code> both tests the type and binds a narrowed local variable in one expression, eliminating the classic test-then-cast pair.</li>
 <li><strong>Pattern matching for <code>switch</code>, record patterns, and <code>case null</code></strong> (JDK 21, JEP 441 and JEP 440): <code>switch</code> can match on type patterns, record deconstruction patterns (with arbitrary nesting), guarded patterns (<code>when</code> clause), and an explicit <code>null</code> case — with the compiler checking exhaustiveness against sealed hierarchies.</li>
 </ul>
-<p>Together they exist to close a specific, long-standing gap: before JDK 14, expressing "this value is exactly one of these N shapes, and I want the compiler to make sure I've handled all of them" required either a <code>visitor</code> pattern (verbose, ceremony-heavy) or a <code>switch</code> on an <code>enum</code>/type tag plus manual casting (unchecked, silently incomplete). Records + sealed types + pattern matching is Java's answer to algebraic data types, arriving roughly 25 years after languages like ML and Haskell shipped the same idea, and it directly displaces one of the GoF patterns covered in <a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied</a>: a sealed hierarchy with an exhaustive switch is frequently a smaller, compiler-checked replacement for a Visitor.</p>
+<p>Together they exist to close a specific, long-standing gap: before JDK 14, expressing "this value is exactly one of these N shapes, and I want the compiler to make sure I've handled all of them" required either a <code>visitor</code> pattern (verbose, ceremony-heavy) or a <code>switch</code> on an <code>enum</code>/type tag plus manual casting (unchecked, silently incomplete). Records + sealed types + pattern matching is Java's answer to algebraic data types, arriving roughly 25 years after languages like ML and Haskell shipped the same idea, and it directly displaces one of the GoF patterns covered in <a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied (GoF in Production)</a>: a sealed hierarchy with an exhaustive switch is frequently a smaller, compiler-checked replacement for a Visitor.</p>
 <h2 id="java-version-timeline">Java Version Timeline<a class="headerlink" href="#java-version-timeline" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -12325,7 +12325,7 @@ Independently derived hash matches: false      // p1.hashCode() != Objects.hash(
 <li><strong>Is the type a pure data holder with value semantics (no identity beyond its fields)?</strong> → record.</li>
 <li><strong>Is the full set of "kinds" of this type fixed and owned by you, and do you want the compiler to catch missed cases?</strong> → sealed hierarchy (often sealed interface + record implementations together).</li>
 <li><strong>Are you about to write <code>instanceof X x</code> followed by a cast, or a chain of them?</strong> → pattern matching, either <code>instanceof</code> pattern or, if there are 3+ variants, a pattern-matching <code>switch</code>.</li>
-<li><strong>Would adding a new variant naturally require adding a new virtual method override instead of touching every switch?</strong> → this is a polymorphism problem, not a pattern-matching one; prefer an abstract method over a giant switch (see <a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch</a>).</li>
+<li><strong>Would adding a new variant naturally require adding a new virtual method override instead of touching every switch?</strong> → this is a polymorphism problem, not a pattern-matching one; prefer an abstract method over a giant switch (see <a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch Mechanics</a>).</li>
 </ol>
 <h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12367,7 +12367,7 @@ Independently derived hash matches: false      // p1.hashCode() != Objects.hash(
 <h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
 <p>Correctly explain compact-constructor semantics, the record accessor naming convention, and produce the sealed-exhaustiveness compile error from memory (not just recognize it when shown).</p>
 <h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Frame this as an organizational risk-management decision, not a syntax choice: choosing <code>sealed</code> for a domain-event hierarchy is a bet that the variant set is genuinely closed and owned by one team — the cost is that any future team wanting to extend it must modify the sealed declaration itself (a coordination point), which is precisely the point when the domain boundary is real, and a liability when it isn't. Tie this back to <a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied</a>'s Strategy/Visitor discussion: a sealed hierarchy + exhaustive switch is frequently a smaller, compiler-verified substitute for a hand-rolled Visitor, and recommending the migration in a legacy codebase is a concrete, defensible modernization argument in a design review — but only where the extension point is genuinely closed, not open to plugins or downstream consumers.</p>
+<p>Frame this as an organizational risk-management decision, not a syntax choice: choosing <code>sealed</code> for a domain-event hierarchy is a bet that the variant set is genuinely closed and owned by one team — the cost is that any future team wanting to extend it must modify the sealed declaration itself (a coordination point), which is precisely the point when the domain boundary is real, and a liability when it isn't. Tie this back to <a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied (GoF in Production)</a>'s Strategy/Visitor discussion: a sealed hierarchy + exhaustive switch is frequently a smaller, compiler-verified substitute for a hand-rolled Visitor, and recommending the migration in a legacy codebase is a concrete, defensible modernization argument in a design review — but only where the extension point is genuinely closed, not open to plugins or downstream consumers.</p>
 <h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
 <h3 id="question-1">Question 1<a class="headerlink" href="#question-1" title="Permanent link">&para;</a></h3>
 <p><strong>Question:</strong> "What's the actual difference between a record and a normal class with the same fields, a constructor, and generated <code>equals</code>/<code>hashCode</code>/<code>toString</code>?"</p>
@@ -12434,8 +12434,8 @@ Adding <code>default</code> "just in case," which silently defeats the exhaustiv
 <p>Exercise 3: <code>case Triangle(Point(var x1,var y1), Point(var x2,var y2), Point(var x3,var y3)) -&gt; ...</code> using the shoelace formula for area, mirroring the nesting depth already used for <code>Circle</code>/<code>Rectangle</code>.</p>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied</a> — sealed hierarchies as a Visitor-pattern substitute.</li>
-<li><a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch</a> — when a switch over types should be a virtual method call instead.</li>
+<li><a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied (GoF in Production)</a> — sealed hierarchies as a Visitor-pattern substitute.</li>
+<li><a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch Mechanics</a> — when a switch over types should be a virtual method call instead.</li>
 </ul>
 <h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12465,7 +12465,7 @@ Adding <code>default</code> "just in case," which silently defeats the exhaustiv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
   </span>
 
     

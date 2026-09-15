@@ -11351,7 +11351,7 @@
 <p>Column renames and type changes need a different technique than index creation, because the hazard isn't lock duration — it's that old application code (mid-deploy, or simply not yet redeployed) and new application code must both work correctly against the schema simultaneously, since a rolling deploy means both versions run concurrently for some period. Expand-contract solves this in three phases:</p>
 <ol>
 <li><strong>Expand</strong>: add the new column/structure alongside the old one — nothing is removed yet, so both old and new code work unmodified.</li>
-<li><strong>Migrate</strong>: backfill the new column from the old one for existing rows, and have the application dual-write to both during the transition. This is exactly the dual-write pattern from <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions, Saga, and the Outbox Pattern</a>, applied to a single database instead of two systems, and it inherits the same hazard: a crash between the two writes needs the same at-least-once-plus-idempotency treatment, or the backfill has to reconcile the two later.</li>
+<li><strong>Migrate</strong>: backfill the new column from the old one for existing rows, and have the application dual-write to both during the transition. This is exactly the dual-write pattern from <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions: Saga, Outbox, and 2PC</a>, applied to a single database instead of two systems, and it inherits the same hazard: a crash between the two writes needs the same at-least-once-plus-idempotency treatment, or the backfill has to reconcile the two later.</li>
 <li><strong>Contract</strong>: once all application instances are confirmed running the new code and both columns are verified in sync, drop the old column.</li>
 </ol>
 <h3 id="a-fast-catalog-operation-can-still-be-unsafe">A fast catalog operation can still be unsafe<a class="headerlink" href="#a-fast-catalog-operation-can-still-be-unsafe" title="Permanent link">&para;</a></h3>
@@ -11495,7 +11495,7 @@ RESULT: concurrent INSERT took 84ms while CREATE INDEX CONCURRENTLY was running
 <p><strong>Common mistakes.</strong> Proposing a direct <code>RENAME COLUMN</code> as if it were safe merely because it's fast at the catalog level, without addressing the mixed-version rolling-deploy hazard.</p>
 <p><strong>Likely follow-ups.</strong> "The backfill crashes halfway through. Now what?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: proposes a direct rename. 3: correctly proposes expand-contract. 5: correct proposal plus names the dual-write atomicity hazard explicitly.</p>
-<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions, Saga, and the Outbox Pattern</a>.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions: Saga, Outbox, and 2PC</a>.</p>
 <hr />
 <h3 id="question-2-how-do-you-add-an-index-to-a-500m-row-table-in-production-without-downtime">Question 2 — How do you add an index to a 500M-row table in production without downtime?<a class="headerlink" href="#question-2-how-do-you-add-an-index-to-a-500m-row-table-in-production-without-downtime" title="Permanent link">&para;</a></h3>
 <p><strong>Why interviewers ask it.</strong> Tests basic operational fluency with a mechanism every backend engineer eventually needs.</p>
@@ -11615,7 +11615,7 @@ Proposing a direct rename because it's fast and simple, ignoring the rolling-dep
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
   </span>
 
     

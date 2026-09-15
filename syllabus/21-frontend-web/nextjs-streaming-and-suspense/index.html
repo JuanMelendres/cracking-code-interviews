@@ -11493,7 +11493,7 @@ Assuming a documented framework behavior applies as broadly as its surface phras
 <p>Exercise 3: adding an inner <code>&lt;Suspense&gt;</code> boundary inside a page ALREADY wrapped by <code>loading.js</code>'s outer boundary would have NO observable effect on the chunk timing in this specific case — since there's only one async operation (the page's own <code>delay(1500)</code> call) and it happens before the inner boundary's content would even be reached, the inner boundary never actually gets a chance to independently suspend on anything separate from the outer one. A nested boundary only produces genuinely different streaming behavior when there's a REAL, separate async operation happening specifically within that inner boundary's own subtree — exactly the "nested boundaries for progressive detail" pattern from this Next.js version's own docs, which this exercise's setup doesn't actually create.</p>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../nextjs-rendering-strategies/">Rendering Strategies: SSR, SSG, and ISR</a> — this chapter's prerequisite; establishes WHEN a page's HTML is generated, which this chapter builds on to explain HOW different parts of that HTML can arrive at different times within a single response.</li>
+<li><a href="../nextjs-rendering-strategies/">Rendering Strategies: SSR, SSG, and ISR — Mechanics and When to Choose Each</a> — this chapter's prerequisite; establishes WHEN a page's HTML is generated, which this chapter builds on to explain HOW different parts of that HTML can arrive at different times within a single response.</li>
 <li><a href="../react-concurrent-rendering/">Concurrent React: Transitions, Deferred Values, and Suspense for Data</a> — the client-side <code>use()</code>/Suspense mechanics this chapter's server-side streaming builds on and connects to directly.</li>
 <li><a href="../nextjs-route-handlers/">Route Handlers: Building a Backend-for-Frontend Layer in Next.js</a> — the next chapter in sequence (F-207); opens a new thread within D-F2, moving from how a single page's response streams to how this same app can serve its own public HTTP API.</li>
 <li><a href="../nextjs-metadata-api-and-seo/">The Metadata API and SEO Fundamentals in Next.js</a> — F-209; completes this chapter's own bot-blocking finding, which this chapter's demos (static metadata only) could only partially exercise, with a genuinely slow, dynamic <code>generateMetadata</code> case.</li>
@@ -11526,7 +11526,7 @@ Assuming a documented framework behavior applies as broadly as its surface phras
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:31:02 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:40:57 UTC">September 15, 2026</span>
   </span>
 
     

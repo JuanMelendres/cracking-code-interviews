@@ -12313,17 +12313,17 @@ engineer would genuinely have.</p>
 <tr>
 <td>1</td>
 <td>Does a successful <code>compareAndSet</code> mean the value never changed?</td>
-<td><a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/#flashcards">Atomics, CAS, ABA</a></td>
+<td><a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/#flashcards">Atomics, CAS, and the ABA Problem</a></td>
 </tr>
 <tr>
 <td>2</td>
 <td>How does <code>AtomicStampedReference</code> fix the ABA problem?</td>
-<td><a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/#flashcards">Atomics, CAS, ABA</a></td>
+<td><a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/#flashcards">Atomics, CAS, and the ABA Problem</a></td>
 </tr>
 <tr>
 <td>3</td>
 <td>Is a CAS retry loop always faster than a <code>synchronized</code> block?</td>
-<td><a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/#flashcards">Atomics, CAS, ABA</a></td>
+<td><a href="../../../02-java/concurrency/atomics-cas-and-the-aba-problem/#flashcards">Atomics, CAS, and the ABA Problem</a></td>
 </tr>
 <tr>
 <td>4</td>
@@ -12343,32 +12343,32 @@ engineer would genuinely have.</p>
 <tr>
 <td>7</td>
 <td>What are the six real <code>Thread.State</code> values?</td>
-<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock and Thread Diagnostics</a></td>
+<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock, Race Conditions, and Thread Diagnostics</a></td>
 </tr>
 <tr>
 <td>8</td>
 <td>How do you detect a deadlock in a live JVM?</td>
-<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock and Thread Diagnostics</a></td>
+<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock, Race Conditions, and Thread Diagnostics</a></td>
 </tr>
 <tr>
 <td>9</td>
 <td>How much data can an unsynchronized <code>count++</code> lose under real concurrent load?</td>
-<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock and Thread Diagnostics</a></td>
+<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock, Race Conditions, and Thread Diagnostics</a></td>
 </tr>
 <tr>
 <td>10</td>
 <td>What queue does <code>Executors.newFixedThreadPool()</code> use by default, and what's the consequence?</td>
-<td><a href="../../../02-java/concurrency/executors-and-thread-pool-sizing/#flashcards">Executors and Pool Sizing</a></td>
+<td><a href="../../../02-java/concurrency/executors-and-thread-pool-sizing/#flashcards">Executors and Thread Pool Sizing</a></td>
 </tr>
 <tr>
 <td>11</td>
 <td>How do you get real backpressure from a thread pool?</td>
-<td><a href="../../../02-java/concurrency/executors-and-thread-pool-sizing/#flashcards">Executors and Pool Sizing</a></td>
+<td><a href="../../../02-java/concurrency/executors-and-thread-pool-sizing/#flashcards">Executors and Thread Pool Sizing</a></td>
 </tr>
 <tr>
 <td>12</td>
 <td>How should CPU-bound vs. IO-bound pool sizing differ?</td>
-<td><a href="../../../02-java/concurrency/executors-and-thread-pool-sizing/#flashcards">Executors and Pool Sizing</a></td>
+<td><a href="../../../02-java/concurrency/executors-and-thread-pool-sizing/#flashcards">Executors and Thread Pool Sizing</a></td>
 </tr>
 <tr>
 <td>13</td>
@@ -12393,17 +12393,17 @@ engineer would genuinely have.</p>
 <tr>
 <td>17</td>
 <td>What does <code>volatile</code> actually guarantee?</td>
-<td><a href="../../../02-java/concurrency/java-memory-model-and-volatile/#flashcards">Java Memory Model</a></td>
+<td><a href="../../../02-java/concurrency/java-memory-model-and-volatile/#flashcards">Java Memory Model and volatile</a></td>
 </tr>
 <tr>
 <td>18</td>
 <td>Does <code>volatile</code> make <code>count++</code> thread-safe?</td>
-<td><a href="../../../02-java/concurrency/java-memory-model-and-volatile/#flashcards">Java Memory Model</a></td>
+<td><a href="../../../02-java/concurrency/java-memory-model-and-volatile/#flashcards">Java Memory Model and volatile</a></td>
 </tr>
 <tr>
 <td>19</td>
 <td>Why does double-checked locking need <code>volatile</code> on the singleton field?</td>
-<td><a href="../../../02-java/concurrency/java-memory-model-and-volatile/#flashcards">Java Memory Model</a></td>
+<td><a href="../../../02-java/concurrency/java-memory-model-and-volatile/#flashcards">Java Memory Model and volatile</a></td>
 </tr>
 <tr>
 <td>20</td>
@@ -12544,7 +12544,7 @@ engineer would genuinely have.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 02:46:33 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
   </span>
 
     

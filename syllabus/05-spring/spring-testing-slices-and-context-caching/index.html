@@ -11365,7 +11365,7 @@ slice-test <code>NoSuchBeanDefinitionException</code>, and three real, honestly-
 discoveries hit while building the demos. Reproducible source:
 <a href="../../practice/java/spring/spring-testing-slices-and-context-caching/"><code>practice/java/spring/spring-testing-slices-and-context-caching/</code></a>.</p>
 <p><strong>A deliberate exception to this domain's plain-jar pattern.</strong> <a href="../transactional-proxy-mechanics-and-propagation/">Spring @Transactional</a>,
-<a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction</a>, and
+<a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction and Pitfalls</a>, and
 <a href="../spring-bean-scopes-and-proxy-modes/">Spring Bean Scopes and Proxy Modes</a> all
 deliberately avoid Spring Boot to observe pure Spring Framework mechanics.
 Slice testing (<code>@WebMvcTest</code>, <code>@DataJpaTest</code>) does not exist in plain Spring
@@ -11610,7 +11610,7 @@ local to the class it's declared on.</p>
   from the test's own package.</li>
 <li><strong><code>IllegalArgumentException: Name for argument ... not specified ... use the
   '-parameters' flag</code></strong> — the same root cause already documented in
-  <a href="../spring-cache-abstraction-and-pitfalls/#failure-modes-and-debugging">Spring Cache Abstraction</a>
+  <a href="../spring-cache-abstraction-and-pitfalls/#failure-modes-and-debugging">Spring Cache Abstraction and Pitfalls</a>
   for SpEL keys, recurring here for <code>@RequestParam</code>/<code>@PathVariable</code> argument-name
   resolution — one shared root cause (missing compiled parameter-name metadata),
   two different Spring subsystems that need it.</li>
@@ -11729,7 +11729,7 @@ degrade the whole suite's runtime, not just the class it's declared on.</p>
   test classes wherever possible, to maximize real cache hits.</li>
 <li>Compile with <code>-parameters</code> project-wide if using named <code>@RequestParam</code>/
   <code>@PathVariable</code>/SpEL references anywhere — this chapter and
-  <a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction</a> both hit
+  <a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction and Pitfalls</a> both hit
   the identical failure independently.</li>
 </ul>
 <h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
@@ -11764,7 +11764,7 @@ annotation actually loads versus excludes, and the real reproduced
 the production scenario connecting <code>@DirtiesContext</code> misuse directly to a
 measured CI runtime regression; and the recurring <code>-parameters</code> compiler-flag
 requirement as a shared root cause across this chapter and
-<a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction</a>.</p>
+<a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction and Pitfalls</a>.</p>
 <h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
 <p>Draw a "context cache" box keyed by configuration signature. Draw two test
 classes with identical signatures both pointing into the same cache entry —
@@ -11985,7 +11985,7 @@ the exact failure to reproduce and fix.</p>
   <a href="#official-references">Official References</a>) is the authoritative source for
   the exact cache-key computation and <code>DirtiesContext.ClassMode</code> options beyond
   this chapter's scope.</li>
-<li><a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction</a> and this
+<li><a href="../spring-cache-abstraction-and-pitfalls/">Spring Cache Abstraction and Pitfalls</a> and this
   chapter independently hit the identical <code>-parameters</code> compiler-flag
   requirement — read both to see the same root cause in two different Spring
   subsystems.</li>
@@ -12019,7 +12019,7 @@ the exact failure to reproduce and fix.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:31:01 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:40:56 UTC">September 15, 2026</span>
   </span>
 
     
