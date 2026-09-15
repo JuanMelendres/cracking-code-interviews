@@ -126,6 +126,9 @@ extra_javascript:
   - javascripts/checklist-progress.js
   # Click-to-enlarge overlay for Mermaid diagrams -- see diagram-zoom.js.
   - javascripts/diagram-zoom.js
+  # L1-L4 mastery-level badges next to headings that already state their
+  # own level -- see level-badges.js.
+  - javascripts/level-badges.js
 
 extra_css:
   - stylesheets/extra.css

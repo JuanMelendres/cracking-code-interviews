@@ -71,3 +71,60 @@
   margin-top: -0.5rem;
   margin-bottom: 1.5rem;
 }
+
+/* L1-L4 mastery-level badges, injected by javascripts/level-badges.js next
+   to a heading that already states its own level. One muted color per
+   level (cool -> warm as depth increases) rather than a loud, attention-
+   grabbing style, since this is orientation metadata, not content. */
+.cci-level-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-radius: 0.2rem;
+  padding: 0.1rem 0.4rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.cci-level-badge--1 {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.cci-level-badge--2 {
+  background: #e0f2f1;
+  color: #00695c;
+}
+
+.cci-level-badge--3 {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.cci-level-badge--4 {
+  background: #fce4ec;
+  color: #ad1457;
+}
+
+[data-md-color-scheme="slate"] .cci-level-badge--1 {
+  background: #0d2d4d;
+  color: #90caf9;
+}
+
+[data-md-color-scheme="slate"] .cci-level-badge--2 {
+  background: #0a332e;
+  color: #80cbc4;
+}
+
+[data-md-color-scheme="slate"] .cci-level-badge--3 {
+  background: #4d3200;
+  color: #ffcc80;
+}
+
+[data-md-color-scheme="slate"] .cci-level-badge--4 {
+  background: #4a1030;
+  color: #f48fb1;
+}
