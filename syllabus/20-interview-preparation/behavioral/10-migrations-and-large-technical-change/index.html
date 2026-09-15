@@ -11656,7 +11656,7 @@
 </tbody>
 </table>
 <h2 id="illustrative-example">Illustrative Example<a class="headerlink" href="#illustrative-example" title="Permanent link">&para;</a></h2>
-<p>This example is illustrative — a representative scenario, not a real candidate's actual experience — built around the dual-write and reconciliation pattern this program's <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions, Saga, and Outbox</a> chapter covers on its technical merits.</p>
+<p>This example is illustrative — a representative scenario, not a real candidate's actual experience — built around the dual-write and reconciliation pattern this program's <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions: Saga, Outbox, and 2PC</a> chapter covers on its technical merits.</p>
 <p><em>"We needed to migrate our primary orders table from a single Postgres instance to a sharded setup, because write throughput had grown past what vertical scaling could sustain, and the migration had to happen with zero downtime since it's a customer-facing, revenue-critical table. Rather than a big-bang cutover, I designed a three-phase plan: first, dual-write to both the old and new systems while reads still came exclusively from the old system, giving us weeks of production data flowing into the new sharded setup without it being load-bearing yet. Second, we ran a continuous reconciliation job comparing records between old and new, which caught a subtle bug in our sharding key derivation — about 0.3% of orders were landing on the wrong shard due to an edge case in how we handled a specific customer ID format — before any customer-facing traffic depended on it. Third, once reconciliation showed zero discrepancies for two consecutive weeks, we cut reads over to the new system behind a feature flag, rolled out to 1% of traffic, then 10%, then 100%, with automatic rollback configured if error rates exceeded a threshold at any stage. The full migration took about ten weeks, considerably longer than the two-week estimate I'd originally given — the reconciliation-driven bug discovery alone added three weeks — but we had zero customer-facing incidents during the entire migration, and the pattern of dual-write-plus-reconciliation-before-cutover became the standard approach our team used for every subsequent major data migration."</em></p>
 <h2 id="the-rollback-question-prepared-in-advance">The Rollback Question, Prepared in Advance<a class="headerlink" href="#the-rollback-question-prepared-in-advance" title="Permanent link">&para;</a></h2>
 <p>Almost every migration story gets a follow-up asking specifically about rollback — "what would you have done if it had gone wrong partway through?" This question deserves a genuinely prepared answer, not an improvised one, since a candidate who hasn't thought through their own rollback plan in advance is implicitly admitting the real migration may not have had one either. The strongest answers distinguish between <em>early-stage</em> rollback (before the new system carries any load-bearing traffic — usually trivial, just stop dual-writing) and <em>late-stage</em> rollback (after some traffic has cut over — usually much harder, and worth being honest about exactly how hard, rather than claiming a clean rollback was always possible at every stage).</p>
@@ -11690,7 +11690,7 @@
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../01-star-framework-and-delivery/">STAR Framework and Delivery Mechanics</a> — the base structure this chapter specializes for migration narratives.</li>
-<li><a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions, Saga, and Outbox</a> — the canonical technical chapter covering the dual-write and reconciliation pattern this chapter's illustrative example draws its shape from.</li>
+<li><a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/">Distributed Transactions: Saga, Outbox, and 2PC</a> — the canonical technical chapter covering the dual-write and reconciliation pattern this chapter's illustrative example draws its shape from.</li>
 </ul>
 
 
@@ -11712,7 +11712,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2026 04:49:43 UTC">September 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 04:02:36 UTC">September 15, 2026</span>
   </span>
 
     
