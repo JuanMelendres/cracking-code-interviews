@@ -1,0 +1,444 @@
+-- Database Normalization -- real lab
+-- Backs syllabus/06-databases/database-normalization-1nf-through-bcnf.md (T-2411)
+-- Run: see README.md in this directory.
+\timing on
+Timing is on.
+-- ===========================================================
+-- Part 1: 1NF -- a repeating group (comma-separated phone
+-- numbers) makes "find every customer with this phone number"
+-- genuinely hard, not just ugly.
+-- ===========================================================
+CREATE TABLE customers_unnormalized (
+    customer_id  SERIAL PRIMARY KEY,
+    name         TEXT NOT NULL,
+    phones       TEXT NOT NULL  -- "555-0100, 555-0199" -- violates 1NF
+);
+CREATE TABLE
+Time: 4.337 ms
+INSERT INTO customers_unnormalized (name, phones) VALUES
+    ('Alice',   '555-0100, 555-0199'),
+    ('Bob',     '555-0200'),
+    ('Charlie', '555-0100, 555-0300');  -- shares a phone with Alice -- a real fraud-detection signal, currently unqueryable directly
+INSERT 0 3
+Time: 0.367 ms
+-- Genuinely hard/fragile: find every customer sharing a phone number
+-- with Alice, using only the repeating-group column.
+SELECT name, phones FROM customers_unnormalized
+WHERE phones LIKE '%555-0100%';
+  name   |       phones       
+---------+--------------------
+ Alice   | 555-0100, 555-0199
+ Charlie | 555-0100, 555-0300
+(2 rows)
+
+Time: 0.338 ms
+-- The 1NF fix: one phone number per row.
+CREATE TABLE customers_1nf (
+    customer_id  SERIAL PRIMARY KEY,
+    name         TEXT NOT NULL
+);
+CREATE TABLE
+Time: 1.837 ms
+CREATE TABLE customer_phones_1nf (
+    customer_id  INT NOT NULL REFERENCES customers_1nf(customer_id),
+    phone        TEXT NOT NULL,
+    PRIMARY KEY (customer_id, phone)
+);
+CREATE TABLE
+Time: 2.125 ms
+INSERT INTO customers_1nf (customer_id, name) VALUES (1, 'Alice'), (2, 'Bob'), (3, 'Charlie');
+INSERT 0 3
+Time: 0.239 ms
+INSERT INTO customer_phones_1nf (customer_id, phone) VALUES
+    (1, '555-0100'), (1, '555-0199'), (2, '555-0200'), (3, '555-0100'), (3, '555-0300');
+INSERT 0 5
+Time: 0.382 ms
+-- Now a real, simple, indexable equality query finds every customer
+-- sharing a phone number with Alice -- including Alice herself, filtered out.
+SELECT c.name
+FROM customer_phones_1nf p
+JOIN customers_1nf c ON c.customer_id = p.customer_id
+WHERE p.phone IN (SELECT phone FROM customer_phones_1nf WHERE customer_id = 1)
+  AND c.customer_id <> 1;
+  name   
+---------
+ Charlie
+(1 row)
+
+Time: 0.350 ms
+-- ===========================================================
+-- Part 2: 2NF -- a partial dependency on a composite key. In
+-- order_items(order_id, product_id), product_name depends only
+-- on product_id, not on the whole (order_id, product_id) key.
+-- ===========================================================
+CREATE TABLE order_items_unnormalized (
+    order_id      INT NOT NULL,
+    product_id    INT NOT NULL,
+    product_name  TEXT NOT NULL,   -- depends only on product_id -- partial dependency
+    quantity      INT NOT NULL,
+    PRIMARY KEY (order_id, product_id)
+);
+CREATE TABLE
+Time: 1.521 ms
+INSERT INTO order_items_unnormalized (order_id, product_id, product_name, quantity) VALUES
+    (1001, 55, 'Widget', 3),
+    (1002, 55, 'Widget', 1),
+    (1003, 55, 'Widget', 7);
+INSERT 0 3
+Time: 0.282 ms
+-- A real update anomaly: renaming product 55 requires updating every
+-- order row that ever referenced it, or the data disagrees with itself.
+UPDATE order_items_unnormalized SET product_name = 'Widget Pro' WHERE order_id = 1001 AND product_id = 55;
+UPDATE 1
+Time: 0.238 ms
+-- Proof of the anomaly: the identical product now has two different
+-- names depending on which order row you look at.
+SELECT DISTINCT product_id, product_name FROM order_items_unnormalized WHERE product_id = 55;
+ product_id | product_name 
+------------+--------------
+         55 | Widget
+         55 | Widget Pro
+(2 rows)
+
+Time: 0.083 ms
+-- The 2NF fix: extract product_name into its own table, keyed only
+-- on product_id (the part of the composite key it actually depends on).
+CREATE TABLE products_2nf (
+    product_id    INT PRIMARY KEY,
+    product_name  TEXT NOT NULL
+);
+CREATE TABLE
+Time: 1.359 ms
+CREATE TABLE order_items_2nf (
+    order_id    INT NOT NULL,
+    product_id  INT NOT NULL REFERENCES products_2nf(product_id),
+    quantity    INT NOT NULL,
+    PRIMARY KEY (order_id, product_id)
+);
+CREATE TABLE
+Time: 0.941 ms
+INSERT INTO products_2nf (product_id, product_name) VALUES (55, 'Widget');
+INSERT 0 1
+Time: 0.220 ms
+INSERT INTO order_items_2nf (order_id, product_id, quantity) VALUES (1001, 55, 3), (1002, 55, 1), (1003, 55, 7);
+INSERT 0 3
+Time: 0.262 ms
+-- Renaming the product is now exactly one row, and every order
+-- referencing it agrees automatically -- the anomaly is now structurally
+-- impossible, not just avoided by discipline.
+UPDATE products_2nf SET product_name = 'Widget Pro' WHERE product_id = 55;
+UPDATE 1
+Time: 0.200 ms
+SELECT oi.order_id, p.product_name, oi.quantity FROM order_items_2nf oi JOIN products_2nf p ON p.product_id = oi.product_id;
+ order_id | product_name | quantity 
+----------+--------------+----------
+     1001 | Widget Pro   |        3
+     1002 | Widget Pro   |        1
+     1003 | Widget Pro   |        7
+(3 rows)
+
+Time: 0.091 ms
+-- ===========================================================
+-- Part 3: 3NF -- a transitive dependency. In
+-- employees(employee_id, department_id, department_name),
+-- department_name depends on department_id, which depends on
+-- employee_id -- a dependency THROUGH a non-key column.
+-- ===========================================================
+CREATE TABLE employees_unnormalized (
+    employee_id      SERIAL PRIMARY KEY,
+    name             TEXT NOT NULL,
+    department_id    INT NOT NULL,
+    department_name  TEXT NOT NULL  -- transitively dependent via department_id
+);
+CREATE TABLE
+Time: 1.503 ms
+INSERT INTO employees_unnormalized (name, department_id, department_name) VALUES
+    ('Dana',  10, 'Engineering'),
+    ('Eve',   10, 'Engineering'),
+    ('Frank', 20, 'Sales');
+INSERT 0 3
+Time: 0.253 ms
+-- A real update anomaly: renaming a department requires updating
+-- every employee row in it, or the data disagrees with itself.
+UPDATE employees_unnormalized SET department_name = 'Platform Engineering' WHERE employee_id = 1;
+UPDATE 1
+Time: 0.172 ms
+SELECT employee_id, name, department_id, department_name FROM employees_unnormalized WHERE department_id = 10;
+ employee_id | name | department_id |   department_name    
+-------------+------+---------------+----------------------
+           2 | Eve  |            10 | Engineering
+           1 | Dana |            10 | Platform Engineering
+(2 rows)
+
+Time: 0.098 ms
+-- The 3NF fix: extract department_name into its own table, removing
+-- the transitive dependency entirely.
+CREATE TABLE departments_3nf (
+    department_id    INT PRIMARY KEY,
+    department_name  TEXT NOT NULL
+);
+CREATE TABLE
+Time: 1.184 ms
+CREATE TABLE employees_3nf (
+    employee_id     SERIAL PRIMARY KEY,
+    name            TEXT NOT NULL,
+    department_id   INT NOT NULL REFERENCES departments_3nf(department_id)
+);
+CREATE TABLE
+Time: 1.573 ms
+INSERT INTO departments_3nf (department_id, department_name) VALUES (10, 'Engineering'), (20, 'Sales');
+INSERT 0 2
+Time: 0.183 ms
+INSERT INTO employees_3nf (name, department_id) VALUES ('Dana', 10), ('Eve', 10), ('Frank', 20);
+INSERT 0 3
+Time: 0.219 ms
+UPDATE departments_3nf SET department_name = 'Platform Engineering' WHERE department_id = 10;
+UPDATE 1
+Time: 0.151 ms
+SELECT e.name, d.department_name FROM employees_3nf e JOIN departments_3nf d ON d.department_id = e.department_id;
+ name  |   department_name    
+-------+----------------------
+ Dana  | Platform Engineering
+ Eve   | Platform Engineering
+ Frank | Sales
+(3 rows)
+
+Time: 0.099 ms
+-- ===========================================================
+-- Part 4: BCNF -- a table already in 3NF can still have an
+-- anomaly when a non-candidate-key column determines part of a
+-- candidate key. Classic case: (student_id, course_id) -> pk,
+-- but instructor determines course (each instructor teaches
+-- exactly one course), so instructor -> course_id is a real
+-- functional dependency from a NON-key column.
+-- ===========================================================
+CREATE TABLE enrollments_3nf_not_bcnf (
+    student_id    INT NOT NULL,
+    course_id     INT NOT NULL,
+    instructor    TEXT NOT NULL,  -- each instructor teaches exactly one course
+    PRIMARY KEY (student_id, course_id)
+);
+CREATE TABLE
+Time: 1.312 ms
+INSERT INTO enrollments_3nf_not_bcnf (student_id, course_id, instructor) VALUES
+    (1, 100, 'Prof. Kim'),
+    (2, 100, 'Prof. Kim'),
+    (3, 200, 'Prof. Lee');
+INSERT 0 3
+Time: 0.209 ms
+-- A real anomaly: nothing stops the SAME instructor from being
+-- recorded against two DIFFERENT courses -- inconsistent with the
+-- real-world rule (each instructor teaches exactly one course) that
+-- this schema was supposed to encode, because that rule lives in a
+-- non-candidate-key column's functional dependency, which a
+-- (student_id, course_id) primary key cannot enforce.
+INSERT INTO enrollments_3nf_not_bcnf (student_id, course_id, instructor) VALUES (4, 300, 'Prof. Kim');
+INSERT 0 1
+Time: 0.140 ms
+SELECT DISTINCT instructor, course_id FROM enrollments_3nf_not_bcnf WHERE instructor = 'Prof. Kim';
+ instructor | course_id 
+------------+-----------
+ Prof. Kim  |       100
+ Prof. Kim  |       300
+(2 rows)
+
+Time: 0.062 ms
+-- The BCNF fix: split out instructor -> course_id as its own table,
+-- so that real-world rule becomes a real, enforced constraint.
+CREATE TABLE course_instructors_bcnf (
+    instructor  TEXT PRIMARY KEY,
+    course_id   INT NOT NULL
+);
+CREATE TABLE
+Time: 1.246 ms
+CREATE TABLE enrollments_bcnf (
+    student_id  INT NOT NULL,
+    instructor  TEXT NOT NULL REFERENCES course_instructors_bcnf(instructor),
+    PRIMARY KEY (student_id, instructor)
+);
+CREATE TABLE
+Time: 1.567 ms
+INSERT INTO course_instructors_bcnf (instructor, course_id) VALUES ('Prof. Kim', 100), ('Prof. Lee', 200);
+INSERT 0 2
+Time: 0.175 ms
+INSERT INTO enrollments_bcnf (student_id, instructor) VALUES (1, 'Prof. Kim'), (2, 'Prof. Kim'), (3, 'Prof. Lee');
+INSERT 0 3
+Time: 0.210 ms
+-- Now the real-world rule IS enforced: Prof. Kim cannot be attached
+-- to a second course_id, because course_instructors_bcnf.instructor
+-- is a primary key -- a real, captured constraint violation.
+INSERT INTO course_instructors_bcnf (instructor, course_id) VALUES ('Prof. Kim', 300);
+ERROR:  duplicate key value violates unique constraint "course_instructors_bcnf_pkey"
+DETAIL:  Key (instructor)=(Prof. Kim) already exists.
+Time: 0.086 ms
+-- ===========================================================
+-- Part 5: the real, measured denormalization trade-off -- a
+-- fully normalized 3-table join vs. a deliberately denormalized
+-- flat table, same logical data, same machine.
+-- ===========================================================
+CREATE TABLE orders_norm (
+    order_id     SERIAL PRIMARY KEY,
+    customer_id  INT NOT NULL
+);
+CREATE TABLE
+Time: 0.825 ms
+CREATE TABLE customers_norm (
+    customer_id  SERIAL PRIMARY KEY,
+    name         TEXT NOT NULL,
+    country      TEXT NOT NULL
+);
+CREATE TABLE
+Time: 1.352 ms
+CREATE TABLE order_lines_norm (
+    order_line_id SERIAL PRIMARY KEY,
+    order_id      INT NOT NULL REFERENCES orders_norm(order_id),
+    product_id    INT NOT NULL,
+    quantity      INT NOT NULL,
+    unit_price    NUMERIC(10,2) NOT NULL
+);
+CREATE TABLE
+Time: 0.891 ms
+INSERT INTO customers_norm (name, country)
+SELECT 'customer_' || i, (ARRAY['US','MX','CA'])[1 + (i % 3)]
+FROM generate_series(1, 5000) AS i;
+INSERT 0 5000
+Time: 5.107 ms
+INSERT INTO orders_norm (customer_id)
+SELECT 1 + (i % 5000) FROM generate_series(1, 100000) AS i;
+INSERT 0 100000
+Time: 96.280 ms
+INSERT INTO order_lines_norm (order_id, product_id, quantity, unit_price)
+SELECT 1 + (i % 100000), 1 + (i % 200), 1 + (i % 5), (5 + (i % 100))::numeric
+FROM generate_series(1, 400000) AS i;
+INSERT 0 400000
+Time: 1086.665 ms (00:01.087)
+ANALYZE customers_norm; ANALYZE orders_norm; ANALYZE order_lines_norm;
+ANALYZE
+Time: 7.457 ms
+ANALYZE
+Time: 8.531 ms
+ANALYZE
+Time: 28.415 ms
+CREATE TABLE order_lines_denorm (
+    order_line_id   INT PRIMARY KEY,
+    order_id        INT NOT NULL,
+    customer_name   TEXT NOT NULL,
+    customer_country TEXT NOT NULL,
+    product_id      INT NOT NULL,
+    quantity        INT NOT NULL,
+    unit_price      NUMERIC(10,2) NOT NULL
+);
+CREATE TABLE
+Time: 1.868 ms
+INSERT INTO order_lines_denorm
+SELECT ol.order_line_id, ol.order_id, c.name, c.country, ol.product_id, ol.quantity, ol.unit_price
+FROM order_lines_norm ol
+JOIN orders_norm o ON o.order_id = ol.order_id
+JOIN customers_norm c ON c.customer_id = o.customer_id;
+INSERT 0 400000
+Time: 370.542 ms
+ANALYZE order_lines_denorm;
+ANALYZE
+Time: 77.903 ms
+-- Real cost: the normalized 3-table join, computing revenue by country.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT c.country, SUM(ol.quantity * ol.unit_price) AS revenue
+FROM order_lines_norm ol
+JOIN orders_norm o ON o.order_id = ol.order_id
+JOIN customers_norm c ON c.customer_id = o.customer_id
+GROUP BY c.country;
+                                                                               QUERY PLAN                                                                               
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize GroupAggregate  (cost=12327.29..12327.70 rows=3 width=35) (actual time=83.075..84.122 rows=3 loops=1)
+   Group Key: c.country
+   Buffers: shared hit=3520
+   ->  Gather Merge  (cost=12327.29..12327.64 rows=3 width=35) (actual time=83.068..84.115 rows=6 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=3520
+         ->  Sort  (cost=11327.28..11327.29 rows=3 width=35) (actual time=82.048..82.052 rows=3 loops=2)
+               Sort Key: c.country
+               Sort Method: quicksort  Memory: 25kB
+               Buffers: shared hit=3520
+               Worker 0:  Sort Method: quicksort  Memory: 25kB
+               ->  Partial HashAggregate  (cost=11327.22..11327.26 rows=3 width=35) (actual time=82.035..82.039 rows=3 loops=2)
+                     Group Key: c.country
+                     Batches: 1  Memory Usage: 24kB
+                     Buffers: shared hit=3512
+                     Worker 0:  Batches: 1  Memory Usage: 24kB
+                     ->  Hash Join  (cost=2837.50..8974.28 rows=235294 width=12) (actual time=8.702..55.087 rows=200000 loops=2)
+                           Hash Cond: (o.customer_id = c.customer_id)
+                           Buffers: shared hit=3512
+                           ->  Hash Join  (cost=2693.00..8211.61 rows=235294 width=13) (actual time=8.156..37.494 rows=200000 loops=2)
+                                 Hash Cond: (ol.order_id = o.order_id)
+                                 Buffers: shared hit=3434
+                                 ->  Parallel Seq Scan on order_lines_norm ol  (cost=0.00..4900.94 rows=235294 width=13) (actual time=0.005..7.586 rows=200000 loops=2)
+                                       Buffers: shared hit=2548
+                                 ->  Hash  (cost=1443.00..1443.00 rows=100000 width=8) (actual time=8.042..8.042 rows=100000 loops=2)
+                                       Buckets: 131072  Batches: 1  Memory Usage: 4931kB
+                                       Buffers: shared hit=886
+                                       ->  Seq Scan on orders_norm o  (cost=0.00..1443.00 rows=100000 width=8) (actual time=0.003..3.433 rows=100000 loops=2)
+                                             Buffers: shared hit=886
+                           ->  Hash  (cost=82.00..82.00 rows=5000 width=7) (actual time=0.534..0.534 rows=5000 loops=2)
+                                 Buckets: 8192  Batches: 1  Memory Usage: 260kB
+                                 Buffers: shared hit=64
+                                 ->  Seq Scan on customers_norm c  (cost=0.00..82.00 rows=5000 width=7) (actual time=0.004..0.266 rows=5000 loops=2)
+                                       Buffers: shared hit=64
+ Planning:
+   Buffers: shared hit=25 read=5
+ Planning Time: 0.127 ms
+ Execution Time: 84.152 ms
+(39 rows)
+
+Time: 84.658 ms
+-- Real cost: the identical logical query against the denormalized flat table.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT customer_country AS country, SUM(quantity * unit_price) AS revenue
+FROM order_lines_denorm
+GROUP BY customer_country;
+                                                                        QUERY PLAN                                                                         
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize GroupAggregate  (cost=7991.42..7992.20 rows=3 width=35) (actual time=25.025..25.750 rows=3 loops=1)
+   Group Key: customer_country
+   Buffers: shared hit=3674
+   ->  Gather Merge  (cost=7991.42..7992.12 rows=6 width=35) (actual time=25.021..25.745 rows=9 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=3674
+         ->  Sort  (cost=6991.40..6991.41 rows=3 width=35) (actual time=24.267..24.268 rows=3 loops=3)
+               Sort Key: customer_country
+               Sort Method: quicksort  Memory: 25kB
+               Buffers: shared hit=3674
+               Worker 0:  Sort Method: quicksort  Memory: 25kB
+               Worker 1:  Sort Method: quicksort  Memory: 25kB
+               ->  Partial HashAggregate  (cost=6991.34..6991.37 rows=3 width=35) (actual time=24.257..24.257 rows=3 loops=3)
+                     Group Key: customer_country
+                     Batches: 1  Memory Usage: 24kB
+                     Buffers: shared hit=3658
+                     Worker 0:  Batches: 1  Memory Usage: 24kB
+                     Worker 1:  Batches: 1  Memory Usage: 24kB
+                     ->  Parallel Seq Scan on order_lines_denorm  (cost=0.00..5324.67 rows=166667 width=12) (actual time=0.003..5.460 rows=133333 loops=3)
+                           Buffers: shared hit=3658
+ Planning:
+   Buffers: shared hit=20
+ Planning Time: 0.065 ms
+ Execution Time: 25.763 ms
+(25 rows)
+
+Time: 25.980 ms
+-- The real, honest cost of denormalization: updating one customer's
+-- name now means updating every one of their order lines, not one row.
+UPDATE customers_norm SET name = 'customer_1_renamed' WHERE customer_id = 1;  -- 1 row, normalized
+UPDATE 1
+Time: 0.347 ms
+UPDATE order_lines_denorm SET customer_name = 'customer_1_renamed'
+WHERE order_id IN (SELECT order_id FROM orders_norm WHERE customer_id = 1);   -- N rows, denormalized
+UPDATE 80
+Time: 19.532 ms
+SELECT count(*) AS denormalized_rows_touched FROM order_lines_denorm WHERE customer_name = 'customer_1_renamed';
+ denormalized_rows_touched 
+---------------------------
+                        80
+(1 row)
+
+Time: 6.103 ms
