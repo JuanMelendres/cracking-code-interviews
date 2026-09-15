@@ -10,24 +10,20 @@
   already wired up site-wide (see mkdocs.yml's print-site plugin comment),
   so File > Print / Save as PDF on any single chapter already produces a
   clean, chrome-free PDF. This swaps the edit-pencil icon for a printer
-  icon that triggers exactly that, and keeps the "view raw source" icon
-  as-is (read-only, no concern there).
+  icon that triggers exactly that.
+
+  Real request (2026-09-15): remove every link to the source repository
+  from the UI, not just the edit-in-GitHub action. mkdocs.yml no longer
+  sets repo_url/repo_name/edit_uri, so Jinja's `page.edit_url` is unset on
+  every page now -- the stock template (and this override's own prior
+  version) gated both actions behind `{% if page.edit_url %}`, which would
+  silently hide the print button along with the removed "view raw source"
+  GitHub link. The print button therefore no longer depends on
+  `page.edit_url` at all; the view/raw-source action is removed outright,
+  not just hidden.
 -#}
-{% if page.edit_url %}
-  {% if "content.action.edit" in features %}
-    <a href="javascript:void(0)" onclick="window.print()" title="Print / Save as PDF" class="md-content__button md-icon">
-      {% include ".icons/material/printer.svg" %}
-    </a>
-  {% endif %}
-  {% if "content.action.view" in features %}
-    {% if "/blob/" in page.edit_url %}
-      {% set part = "blob" %}
-    {% else %}
-      {% set part = "edit" %}
-    {% endif %}
-    <a href="{{ page.edit_url | replace(part, 'raw') }}" title="{{ lang.t('action.view') }}" class="md-content__button md-icon">
-      {% set icon = config.theme.icon.view or "material/file-eye-outline" %}
-      {% include ".icons/" ~ icon ~ ".svg" %}
-    </a>
-  {% endif %}
+{% if "content.action.edit" in features %}
+  <a href="javascript:void(0)" onclick="window.print()" title="Print / Save as PDF" class="md-content__button md-icon">
+    {% include ".icons/material/printer.svg" %}
+  </a>
 {% endif %}

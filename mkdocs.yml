@@ -2,17 +2,13 @@ site_name: Cracking Code Interviews
 site_description: Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.
 site_author: Juan Melendres
 site_url: https://juanmelendres.github.io/cracking-code-interviews/
-repo_url: https://github.com/JuanMelendres/cracking-code-interviews
-repo_name: JuanMelendres/cracking-code-interviews
-# Points at the repo root, not docs/: every mirrored directory (syllabus/,
-# cheat-sheets/, study-packs/, etc. -- see scripts/build_docs_site.sh) has
-# the identical relative path under docs/ and under the repo root, so an
-# edit link built from a mirrored page's docs_dir-relative path resolves
-# correctly against the real source file. The only exception is the small
-# set of hand-authored docs/ files (index.md, stylesheets/) themselves,
-# whose "edit" link will point one directory too shallow -- accepted,
-# since those are a handful of files versus hundreds of mirrored ones.
-edit_uri: edit/main/
+# repo_url/repo_name/edit_uri deliberately removed (2026-09-15, real
+# request): the reader wants no link to the source repository anywhere in
+# the UI -- removing repo_url also drops Material's header GitHub icon and
+# makes page.edit_url unset, which in turn hides the raw-source "view" icon
+# overrides/partials/actions.html used to derive from it. See that file's
+# own updated comment for how the print button (previously also gated on
+# page.edit_url) now renders independently of any repo link.
 copyright: Copyright &copy; 2026 Juan Melendres — free to read and share, not for resale
 docs_dir: docs
 site_dir: site
@@ -59,7 +55,6 @@ theme:
     - search.share
     - content.code.copy
     - content.action.edit
-    - content.action.view
 
 markdown_extensions:
   - tables
