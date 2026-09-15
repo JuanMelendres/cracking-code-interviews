@@ -19,19 +19,32 @@ theme:
   favicon: assets/images/favicon.png
   icon:
     logo: material/code-braces
+  # Three-entry palette (2026-09-15, real request: match the reader's OS
+  # theme on first visit instead of always defaulting to light). The first
+  # entry has no explicit scheme -- it's the "auto" state, resolved from
+  # prefers-color-scheme; its own toggle click advances to the next entry
+  # (light), whose toggle advances to dark, whose toggle cycles back to
+  # auto. This is Material's own documented pattern for automatic light/dark
+  # mode, not a custom implementation.
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: indigo
       accent: cyan
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: indigo
       accent: cyan
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: Switch to system preference
   features:
     # navigation.instant (SPA-style page swaps without a full reload) was
     # removed 2026-09-14: reported bug was the footer/prev-next nav and
