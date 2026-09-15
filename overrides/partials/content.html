@@ -1,0 +1,23 @@
+{#-
+  Overrides Material's default content partial (partials/content.html).
+
+  Real request (2026-09-15): every syllabus chapter already states its own
+  estimated_reading_minutes in front matter, but nothing in the UI ever
+  showed it -- a reader had no way to gauge a chapter's length before
+  opening it. page.meta exposes YAML front matter directly, so this adds
+  one small, muted line right under the title when that field is present.
+  Everything else here is copied verbatim from Material's own generated
+  content.html (see the vendored copy this overrides for the original).
+-#}
+{% include "partials/tags.html" %}
+{% include "partials/actions.html" %}
+{% if "<h1" not in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+{% if page.meta and page.meta.estimated_reading_minutes %}
+  <p class="cci-reading-time">~{{ page.meta.estimated_reading_minutes }} min read</p>
+{% endif %}
+{{ page.content }}
+{% include "partials/source-file.html" %}
+{% include "partials/feedback.html" %}
+{% include "partials/comments.html" %}

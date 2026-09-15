@@ -36,3 +36,10 @@ See [Study Packs](study-packs/) for the full picture of how these eight programs
 Every technical claim in this material is backed by real, executed code or a
 real, cited official source — never invented statistics or untested code
 presented as working.
+
+## Looking for something specific?
+
+The search bar (top of every page) indexes every chapter, cheat sheet, and
+flashcard by real technical terms — `@Transactional`, `CAP theorem`,
+`N+1`, `CSRF`, a class name — not just chapter titles. Faster than browsing
+if you already know what you're looking for.
