@@ -2309,7 +2309,7 @@ Use relative Markdown links.
 
 Examples:
 
-See [Java Memory Model](../../syllabus/02-java/concurrency/java-memory-model-and-volatile.md).
+See [Java Memory Model](syllabus/02-java/concurrency/java-memory-model-and-volatile.md) (path shown here is relative to this file at the repo root; from a nested file such as `syllabus/02-java/concurrency/some-other-topic.md`, the equivalent link would start with `../` per that file's own depth).
 
 Use descriptive link text.
 

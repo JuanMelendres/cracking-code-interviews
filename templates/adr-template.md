@@ -9,7 +9,7 @@ deciders: []
 
 ## Status
 
-Proposed | Accepted | Rejected | Deprecated | Superseded by [ADR-NNN](./adr-NNN-slug.md)
+Proposed | Accepted | Rejected | Deprecated | Superseded by `ADR-NNN` (replace with the actual superseding ADR's filename when applicable)
 
 ## Context
 
