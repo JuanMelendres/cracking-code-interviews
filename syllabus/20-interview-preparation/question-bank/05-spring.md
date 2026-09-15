@@ -334,23 +334,23 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 
 | # | Question | Canonical chapter |
 |---|---|---|
-| 1 | What's the correct bean lifecycle order? | [Auto-Configuration and Bean Lifecycle](../../05-spring/auto-configuration-and-bean-lifecycle.md#flashcards) |
-| 2 | What mechanism creates a `@Transactional` proxy? | [Auto-Configuration and Bean Lifecycle](../../05-spring/auto-configuration-and-bean-lifecycle.md#flashcards) |
-| 3 | Is `@Transactional` broken on an `@Async` method? | [Auto-Configuration and Bean Lifecycle](../../05-spring/auto-configuration-and-bean-lifecycle.md#flashcards) |
+| 1 | What's the correct bean lifecycle order? | [Spring Auto-Configuration and Bean Lifecycle](../../05-spring/auto-configuration-and-bean-lifecycle.md#flashcards) |
+| 2 | What mechanism creates a `@Transactional` proxy? | [Spring Auto-Configuration and Bean Lifecycle](../../05-spring/auto-configuration-and-bean-lifecycle.md#flashcards) |
+| 3 | Is `@Transactional` broken on an `@Async` method? | [Spring Auto-Configuration and Bean Lifecycle](../../05-spring/auto-configuration-and-bean-lifecycle.md#flashcards) |
 | 4 | Can a field-level annotation like `@NotBlank` express a rule spanning two fields? | [Bean Validation and Exception Handling](../../05-spring/bean-validation-and-global-exception-handling.md#flashcards) |
 | 5 | If every exception type you throw has its own `@ExceptionHandler`, do you still need a catch-all? | [Bean Validation and Exception Handling](../../05-spring/bean-validation-and-global-exception-handling.md#flashcards) |
-| 6 | What's the difference between a 401 and a 403? | [Security Filter Chain](../../05-spring/security-filter-chain.md#flashcards) |
-| 7 | Can a filter chain short-circuit before reaching the controller? | [Security Filter Chain](../../05-spring/security-filter-chain.md#flashcards) |
-| 8 | Why do CORS/CSRF checks typically run before authentication? | [Security Filter Chain](../../05-spring/security-filter-chain.md#flashcards) |
+| 6 | What's the difference between a 401 and a 403? | [Spring Security Filter Chain](../../05-spring/security-filter-chain.md#flashcards) |
+| 7 | Can a filter chain short-circuit before reaching the controller? | [Spring Security Filter Chain](../../05-spring/security-filter-chain.md#flashcards) |
+| 8 | Why do CORS/CSRF checks typically run before authentication? | [Spring Security Filter Chain](../../05-spring/security-filter-chain.md#flashcards) |
 | 9 | If one custom `HealthIndicator` reports `DOWN` while everything else is `UP`, what's the overall status? | [Spring Actuator](../../05-spring/spring-actuator-health-and-observability-hooks.md#flashcards) |
 | 10 | With zero Actuator configuration beyond the dependency, which endpoints are exposed over HTTP? | [Spring Actuator](../../05-spring/spring-actuator-health-and-observability-hooks.md#flashcards) |
 | 11 | How can application code make `/actuator/health/readiness` report a specific state? | [Spring Actuator](../../05-spring/spring-actuator-health-and-observability-hooks.md#flashcards) |
 | 12 | You inject a `prototype`-scoped bean by plain constructor reference into a singleton — what happens? | [Spring Bean Scopes and Proxy Modes](../../05-spring/spring-bean-scopes-and-proxy-modes.md#flashcards) |
 | 13 | What object does the injection site actually hold with `proxyMode = ScopedProxyMode.TARGET_CLASS`? | [Spring Bean Scopes and Proxy Modes](../../05-spring/spring-bean-scopes-and-proxy-modes.md#flashcards) |
 | 14 | Without a servlet container, how could you prove the mechanism behind request/session scope? | [Spring Bean Scopes and Proxy Modes](../../05-spring/spring-bean-scopes-and-proxy-modes.md#flashcards) |
-| 15 | Why doesn't `@Cacheable` take effect when a method calls another `@Cacheable` method on `this`? | [Spring Cache Abstraction](../../05-spring/spring-cache-abstraction-and-pitfalls.md#flashcards) |
-| 16 | If a `@Cacheable` method returns a mutable `List` and a caller mutates it, what happens? | [Spring Cache Abstraction](../../05-spring/spring-cache-abstraction-and-pitfalls.md#flashcards) |
-| 17 | Why does `@CacheEvict(key = "#id")` sometimes throw `IllegalArgumentException: Null key returned`? | [Spring Cache Abstraction](../../05-spring/spring-cache-abstraction-and-pitfalls.md#flashcards) |
+| 15 | Why doesn't `@Cacheable` take effect when a method calls another `@Cacheable` method on `this`? | [Spring Cache Abstraction and Pitfalls](../../05-spring/spring-cache-abstraction-and-pitfalls.md#flashcards) |
+| 16 | If a `@Cacheable` method returns a mutable `List` and a caller mutates it, what happens? | [Spring Cache Abstraction and Pitfalls](../../05-spring/spring-cache-abstraction-and-pitfalls.md#flashcards) |
+| 17 | Why does `@CacheEvict(key = "#id")` sometimes throw `IllegalArgumentException: Null key returned`? | [Spring Cache Abstraction and Pitfalls](../../05-spring/spring-cache-abstraction-and-pitfalls.md#flashcards) |
 | 18 | `findByTotlAmountGreaterThan` compiles without error. When does this actually break? | [Spring Data JPA Repositories](../../05-spring/spring-data-jpa-repository-abstraction.md#flashcards) |
 | 19 | Why can't a derived query method or a static `@Query` handle "any subset of five independent optional filters"? | [Spring Data JPA Repositories](../../05-spring/spring-data-jpa-repository-abstraction.md#flashcards) |
 | 20 | Is Spring Boot a separate framework from Spring? | [Spring Framework vs. Spring Boot](../../05-spring/spring-framework-vs-spring-boot.md#flashcards) |

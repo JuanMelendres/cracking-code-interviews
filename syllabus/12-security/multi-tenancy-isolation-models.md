@@ -122,7 +122,7 @@ Silo provides the strongest isolation (a bug or breach affecting one tenant's de
 
 ### Application-level tenant filtering is the weakest enforcement point, because it must be correct everywhere, every time
 
-In a pool model without database-level enforcement, tenant isolation depends entirely on every single query, in every code path, in every service that touches the shared tables, correctly including a `WHERE tenant_id = ?` clause — a single missed filter (a new report feature, an internal admin tool, a bulk-export script, a background job) is a direct cross-tenant data leak. This is structurally the same category of risk as the IDOR vulnerability in [OWASP Top 10](owasp-top-10-for-backend-services.md) — a missing check rather than a wrong one — but at the scale of an entire tenant's data rather than a single record.
+In a pool model without database-level enforcement, tenant isolation depends entirely on every single query, in every code path, in every service that touches the shared tables, correctly including a `WHERE tenant_id = ?` clause — a single missed filter (a new report feature, an internal admin tool, a bulk-export script, a background job) is a direct cross-tenant data leak. This is structurally the same category of risk as the IDOR vulnerability in [OWASP Top 10 for Backend Services](owasp-top-10-for-backend-services.md) — a missing check rather than a wrong one — but at the scale of an entire tenant's data rather than a single record.
 
 ### Database-enforced isolation (RLS) moves the guarantee from "every query must remember" to "the database refuses regardless"
 

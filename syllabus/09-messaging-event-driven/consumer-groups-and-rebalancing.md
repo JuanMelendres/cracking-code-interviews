@@ -82,7 +82,7 @@ By the end of this chapter you can:
 
 ## Why This Matters in Interviews
 
-Consumer-group rebalancing is where Kafka's abstraction meets real distributed-systems failure modes — "your consumer group rebalances every 30 seconds, diagnose it" is a standard High-frequency deep-dive because the answer requires separating three genuinely different causes (scaling, crashes, slow processing) that all produce the identical visible symptom. It also connects directly to offset-commit semantics, which is the substrate [Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md) (T-704) builds on.
+Consumer-group rebalancing is where Kafka's abstraction meets real distributed-systems failure modes — "your consumer group rebalances every 30 seconds, diagnose it" is a standard High-frequency deep-dive because the answer requires separating three genuinely different causes (scaling, crashes, slow processing) that all produce the identical visible symptom. It also connects directly to offset-commit semantics, which is the substrate [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md) (T-704) builds on.
 
 ## Level 1 — Foundation
 

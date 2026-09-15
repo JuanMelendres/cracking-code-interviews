@@ -115,7 +115,7 @@ String describe(Shape shape) {
 - **Pattern matching for `instanceof`** (JDK 16, JEP 394): `obj instanceof Type name` both tests the type and binds a narrowed local variable in one expression, eliminating the classic test-then-cast pair.
 - **Pattern matching for `switch`, record patterns, and `case null`** (JDK 21, JEP 441 and JEP 440): `switch` can match on type patterns, record deconstruction patterns (with arbitrary nesting), guarded patterns (`when` clause), and an explicit `null` case — with the compiler checking exhaustiveness against sealed hierarchies.
 
-Together they exist to close a specific, long-standing gap: before JDK 14, expressing "this value is exactly one of these N shapes, and I want the compiler to make sure I've handled all of them" required either a `visitor` pattern (verbose, ceremony-heavy) or a `switch` on an `enum`/type tag plus manual casting (unchecked, silently incomplete). Records + sealed types + pattern matching is Java's answer to algebraic data types, arriving roughly 25 years after languages like ML and Haskell shipped the same idea, and it directly displaces one of the GoF patterns covered in [Design Patterns Applied](../../04-software-design/design-patterns-applied.md): a sealed hierarchy with an exhaustive switch is frequently a smaller, compiler-checked replacement for a Visitor.
+Together they exist to close a specific, long-standing gap: before JDK 14, expressing "this value is exactly one of these N shapes, and I want the compiler to make sure I've handled all of them" required either a `visitor` pattern (verbose, ceremony-heavy) or a `switch` on an `enum`/type tag plus manual casting (unchecked, silently incomplete). Records + sealed types + pattern matching is Java's answer to algebraic data types, arriving roughly 25 years after languages like ML and Haskell shipped the same idea, and it directly displaces one of the GoF patterns covered in [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md): a sealed hierarchy with an exhaustive switch is frequently a smaller, compiler-checked replacement for a Visitor.
 
 ## Java Version Timeline
 
@@ -226,7 +226,7 @@ All three demos are real, compiled, and executed on OpenJDK 21.0.12 — see [`pr
 1. **Is the type a pure data holder with value semantics (no identity beyond its fields)?** → record.
 2. **Is the full set of "kinds" of this type fixed and owned by you, and do you want the compiler to catch missed cases?** → sealed hierarchy (often sealed interface + record implementations together).
 3. **Are you about to write `instanceof X x` followed by a cast, or a chain of them?** → pattern matching, either `instanceof` pattern or, if there are 3+ variants, a pattern-matching `switch`.
-4. **Would adding a new variant naturally require adding a new virtual method override instead of touching every switch?** → this is a polymorphism problem, not a pattern-matching one; prefer an abstract method over a giant switch (see [Polymorphism and Dynamic Dispatch](polymorphism-and-dynamic-dispatch.md)).
+4. **Would adding a new variant naturally require adding a new virtual method override instead of touching every switch?** → this is a polymorphism problem, not a pattern-matching one; prefer an abstract method over a giant switch (see [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md)).
 
 ## Common Mistakes
 
@@ -288,7 +288,7 @@ Correctly explain compact-constructor semantics, the record accessor naming conv
 
 ### Staff-Level Discussion
 
-Frame this as an organizational risk-management decision, not a syntax choice: choosing `sealed` for a domain-event hierarchy is a bet that the variant set is genuinely closed and owned by one team — the cost is that any future team wanting to extend it must modify the sealed declaration itself (a coordination point), which is precisely the point when the domain boundary is real, and a liability when it isn't. Tie this back to [Design Patterns Applied](../../04-software-design/design-patterns-applied.md)'s Strategy/Visitor discussion: a sealed hierarchy + exhaustive switch is frequently a smaller, compiler-verified substitute for a hand-rolled Visitor, and recommending the migration in a legacy codebase is a concrete, defensible modernization argument in a design review — but only where the extension point is genuinely closed, not open to plugins or downstream consumers.
+Frame this as an organizational risk-management decision, not a syntax choice: choosing `sealed` for a domain-event hierarchy is a bet that the variant set is genuinely closed and owned by one team — the cost is that any future team wanting to extend it must modify the sealed declaration itself (a coordination point), which is precisely the point when the domain boundary is real, and a liability when it isn't. Tie this back to [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md)'s Strategy/Visitor discussion: a sealed hierarchy + exhaustive switch is frequently a smaller, compiler-verified substitute for a hand-rolled Visitor, and recommending the migration in a legacy codebase is a concrete, defensible modernization argument in a design review — but only where the extension point is genuinely closed, not open to plugins or downstream consumers.
 
 ## Interview Questions
 
@@ -390,8 +390,8 @@ Exercise 3: `case Triangle(Point(var x1,var y1), Point(var x2,var y2), Point(var
 
 ## Additional Reading
 
-- [Design Patterns Applied](../../04-software-design/design-patterns-applied.md) — sealed hierarchies as a Visitor-pattern substitute.
-- [Polymorphism and Dynamic Dispatch](polymorphism-and-dynamic-dispatch.md) — when a switch over types should be a virtual method call instead.
+- [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md) — sealed hierarchies as a Visitor-pattern substitute.
+- [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) — when a switch over types should be a virtual method call instead.
 
 ## Official References
 

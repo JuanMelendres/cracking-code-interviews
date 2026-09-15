@@ -374,25 +374,25 @@ engineer would genuinely have.
 
 | # | Question | Canonical chapter |
 |---|---|---|
-| 1 | Does a successful `compareAndSet` mean the value never changed? | [Atomics, CAS, ABA](../../02-java/concurrency/atomics-cas-and-the-aba-problem.md#flashcards) |
-| 2 | How does `AtomicStampedReference` fix the ABA problem? | [Atomics, CAS, ABA](../../02-java/concurrency/atomics-cas-and-the-aba-problem.md#flashcards) |
-| 3 | Is a CAS retry loop always faster than a `synchronized` block? | [Atomics, CAS, ABA](../../02-java/concurrency/atomics-cas-and-the-aba-problem.md#flashcards) |
+| 1 | Does a successful `compareAndSet` mean the value never changed? | [Atomics, CAS, and the ABA Problem](../../02-java/concurrency/atomics-cas-and-the-aba-problem.md#flashcards) |
+| 2 | How does `AtomicStampedReference` fix the ABA problem? | [Atomics, CAS, and the ABA Problem](../../02-java/concurrency/atomics-cas-and-the-aba-problem.md#flashcards) |
+| 3 | Is a CAS retry loop always faster than a `synchronized` block? | [Atomics, CAS, and the ABA Problem](../../02-java/concurrency/atomics-cas-and-the-aba-problem.md#flashcards) |
 | 4 | If you attach `thenApply` to an already-complete `CompletableFuture`, what thread runs it? | [CompletableFuture](../../02-java/concurrency/completablefuture-and-async-composition.md#flashcards) |
 | 5 | What happens to an exception thrown inside a pipeline nothing ever calls `get()`/`join()` on? | [CompletableFuture](../../02-java/concurrency/completablefuture-and-async-composition.md#flashcards) |
 | 6 | How do you accidentally turn two independent async calls into a sequential pipeline? | [CompletableFuture](../../02-java/concurrency/completablefuture-and-async-composition.md#flashcards) |
-| 7 | What are the six real `Thread.State` values? | [Deadlock and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
-| 8 | How do you detect a deadlock in a live JVM? | [Deadlock and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
-| 9 | How much data can an unsynchronized `count++` lose under real concurrent load? | [Deadlock and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
-| 10 | What queue does `Executors.newFixedThreadPool()` use by default, and what's the consequence? | [Executors and Pool Sizing](../../02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards) |
-| 11 | How do you get real backpressure from a thread pool? | [Executors and Pool Sizing](../../02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards) |
-| 12 | How should CPU-bound vs. IO-bound pool sizing differ? | [Executors and Pool Sizing](../../02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards) |
+| 7 | What are the six real `Thread.State` values? | [Deadlock, Race Conditions, and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
+| 8 | How do you detect a deadlock in a live JVM? | [Deadlock, Race Conditions, and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
+| 9 | How much data can an unsynchronized `count++` lose under real concurrent load? | [Deadlock, Race Conditions, and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
+| 10 | What queue does `Executors.newFixedThreadPool()` use by default, and what's the consequence? | [Executors and Thread Pool Sizing](../../02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards) |
+| 11 | How do you get real backpressure from a thread pool? | [Executors and Thread Pool Sizing](../../02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards) |
+| 12 | How should CPU-bound vs. IO-bound pool sizing differ? | [Executors and Thread Pool Sizing](../../02-java/concurrency/executors-and-thread-pool-sizing.md#flashcards) |
 | 13 | What two older mechanisms does the Foreign Function & Memory API replace? | [Foreign Function & Memory API](../../02-java/concurrency/foreign-function-and-memory-api.md#flashcards) |
 | 14 | Why does an idle worker steal from the opposite end of a peer's deque? | [ForkJoinPool and Work-Stealing](../../02-java/concurrency/forkjoinpool-and-work-stealing.md#flashcards) |
 | 15 | Do parallel streams, `CompletableFuture`, and `StructuredTaskScope` all share the same pool? | [ForkJoinPool and Work-Stealing](../../02-java/concurrency/forkjoinpool-and-work-stealing.md#flashcards) |
 | 16 | How would you verify work-stealing is actually happening? | [ForkJoinPool and Work-Stealing](../../02-java/concurrency/forkjoinpool-and-work-stealing.md#flashcards) |
-| 17 | What does `volatile` actually guarantee? | [Java Memory Model](../../02-java/concurrency/java-memory-model-and-volatile.md#flashcards) |
-| 18 | Does `volatile` make `count++` thread-safe? | [Java Memory Model](../../02-java/concurrency/java-memory-model-and-volatile.md#flashcards) |
-| 19 | Why does double-checked locking need `volatile` on the singleton field? | [Java Memory Model](../../02-java/concurrency/java-memory-model-and-volatile.md#flashcards) |
+| 17 | What does `volatile` actually guarantee? | [Java Memory Model and volatile](../../02-java/concurrency/java-memory-model-and-volatile.md#flashcards) |
+| 18 | Does `volatile` make `count++` thread-safe? | [Java Memory Model and volatile](../../02-java/concurrency/java-memory-model-and-volatile.md#flashcards) |
+| 19 | Why does double-checked locking need `volatile` on the singleton field? | [Java Memory Model and volatile](../../02-java/concurrency/java-memory-model-and-volatile.md#flashcards) |
 | 20 | What's the real difference between `invoke()` and `invokeExact()`? | [MethodHandle and invokedynamic](../../02-java/concurrency/methodhandle-and-invoke.md#flashcards) |
 | 21 | Mechanically, why doesn't a lambda produce a separate `.class` file? | [MethodHandle and invokedynamic](../../02-java/concurrency/methodhandle-and-invoke.md#flashcards) |
 | 22 | Name three real capabilities `ReentrantLock` has that `synchronized` lacks. | [ReentrantLock, RWLock, StampedLock](../../02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md#flashcards) |

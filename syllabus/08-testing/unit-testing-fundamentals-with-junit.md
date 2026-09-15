@@ -204,7 +204,7 @@ Design the test methods (not the implementation) for a `PasswordValidator.isVali
 ## 19. Further Reading
 
 - [JUnit 5 Architecture and Advanced Features](junit5-architecture-and-advanced-features.md) — the Platform/Jupiter/Vintage architecture this chapter's Section 5 only summarizes, plus extension points and lifecycle callbacks beyond `@BeforeEach`.
-- [Test Strategy and Test Doubles](test-strategy-and-test-doubles.md) — what to do once a class under test has its own dependencies to isolate, which this chapter's dependency-free `Calculator` deliberately avoids.
+- [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md) — what to do once a class under test has its own dependencies to isolate, which this chapter's dependency-free `Calculator` deliberately avoids.
 - [Writing Tests Live in an Interview](writing-tests-live-in-an-interview.md) — applying this chapter's mechanics under real interview time pressure.
 
 ## 20. Mastery Checklist

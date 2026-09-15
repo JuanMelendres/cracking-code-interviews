@@ -161,7 +161,7 @@ point-in-time review cannot.
   continuously-enforced, objective gate — see [Java Examples](#java-examples) for a
   real, executed one.
 - **Incremental modernization.** Paying down debt in small, individually-shippable
-  steps (as demonstrated in [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md))
+  steps (as demonstrated in [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md))
   rather than a large, high-risk rewrite — the same underlying discipline applied to
   internal structure rather than external system boundaries.
 - **Deliberate vs. accidental debt.** Deliberate debt (shipping a known-simplified
@@ -295,7 +295,7 @@ actually persuades a skeptical PM.
 Paying down debt incrementally (this chapter's three-coordinator extraction): low
 risk per step, real progress measurable at each step — at the cost of taking longer
 in wall-clock time than a single large rewrite might, if that rewrite actually worked
-on the first attempt (which [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md)
+on the first attempt (which [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md)
 argues it usually doesn't). Adding a fitness function: real, ongoing protection
 against regression — at the real cost of occasionally blocking a legitimately
 justified change, requiring a deliberate, reviewed threshold decision rather than
@@ -322,7 +322,7 @@ threshold change is a visible, reviewed decision rather than a quiet workaround.
 |---|---|
 | Is the debt's cost currently invisible to non-engineering stakeholders? | Reframe it in measured delivery-time/risk terms before asking for remediation time |
 | Does a component have an architectural characteristic worth protecting long-term? | Add a fitness function for it now, not after the first regression |
-| Is the remediation large enough to carry real rewrite risk? | Break it into incremental steps (see [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md)) |
+| Is the remediation large enough to carry real rewrite risk? | Break it into incremental steps (see [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md)) |
 | Was this debt taken on deliberately, with a documented plan to revisit? | Track it explicitly (an ADR or ticket with a revisit trigger), don't let it become accidental debt by omission |
 | Is a fitness function's threshold currently unowned or unreviewed? | Assign explicit ownership before treating it as real governance |
 
@@ -344,7 +344,7 @@ threshold change is a visible, reviewed decision rather than a quiet workaround.
   architectural characteristic, with no automated check keeping it true as the system
   continues to change.
 - Proposing a full rewrite as the remediation by default, without considering
-  incremental extraction (see [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md)).
+  incremental extraction (see [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md)).
 - Adding a fitness function with a threshold that's never reviewed or revisited,
   turning it into either a permanent blocker or a target for silent bypass.
 
@@ -369,7 +369,7 @@ threshold change is a visible, reviewed decision rather than a quiet workaround.
 - Add a fitness function for any architectural characteristic identified as
   important during a design review or ADR, at the time of that review, not after the
   first violation is discovered informally.
-- Prefer incremental remediation (see [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md))
+- Prefer incremental remediation (see [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md))
   over a full rewrite whenever the component's behavior is not fully understood or
   documented.
 - Give every fitness function's threshold an explicit owner and a documented process
@@ -405,7 +405,7 @@ after it's compounded again.
 Cover: the real fitness-function demonstration (10 vs. threshold 5, failing; 4 vs.
 threshold 5, passing, with identical preserved behavior); the economic-framing
 reframe as the core interview differentiator on this topic; incremental remediation
-connected explicitly to [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md);
+connected explicitly to [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md);
 the organizational requirement that a fitness function's threshold have real
 ownership, not just existence; and the deliberate-vs-accidental debt distinction as a
 framing tool for how a given piece of debt should even be tracked.
@@ -558,7 +558,7 @@ that got it there.
   debt (this chapter's `before.OrderProcessor`) accrues silently and is the more
   dangerous kind.
 - **Incremental remediation** over a rewrite whenever legacy behavior isn't fully
-  understood — see [Strangler Fig and Migration Patterns](strangler-fig-and-migration-patterns.md).
+  understood — see [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](strangler-fig-and-migration-patterns.md).
 
 ## Flashcards
 

@@ -107,7 +107,7 @@ The **partitioner** decides which partition a record is routed to, driven by the
 
 ## Historical Context
 
-Prior to **KIP-480** (Kafka 2.4, 2019), the default partitioner for unkeyed records used strict round-robin — one record per partition, cycling through all of them. This produced small, inefficient batches, since every record's target partition changed before enough records could accumulate to fill a batch. The **sticky partitioner** introduced by KIP-480 changed this: it sticks to one partition for an entire in-flight batch, then switches, trading strict per-record round-robin distribution for materially larger batches and better throughput. Idempotent producers were introduced alongside transactional producers in **KIP-98** (Kafka 0.11, 2017) — the same release that made exactly-once semantics achievable for Kafka-to-Kafka pipelines (see [Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md)).
+Prior to **KIP-480** (Kafka 2.4, 2019), the default partitioner for unkeyed records used strict round-robin — one record per partition, cycling through all of them. This produced small, inefficient batches, since every record's target partition changed before enough records could accumulate to fill a batch. The **sticky partitioner** introduced by KIP-480 changed this: it sticks to one partition for an entire in-flight batch, then switches, trading strict per-record round-robin distribution for materially larger batches and better throughput. Idempotent producers were introduced alongside transactional producers in **KIP-98** (Kafka 0.11, 2017) — the same release that made exactly-once semantics achievable for Kafka-to-Kafka pipelines (see [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md)).
 
 ## Core Concepts
 
@@ -128,7 +128,7 @@ As established in [Kafka Architecture Fundamentals](kafka-architecture-fundament
 
 ### Idempotent producers solve a narrower problem than "exactly-once"
 
-`enable.idempotence=true` (the modern default) assigns each producer instance a `PID` (producer ID) and stamps each record with a monotonically increasing sequence number per partition; the broker deduplicates by `(PID, partition, sequence)`, so a retried send (e.g., after a timeout where the original actually succeeded) is dropped rather than double-appended. This covers **producer-side retries to Kafka only** — it says nothing about a consumer processing a successfully-written record more than once, which is [Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md)'s (T-704) domain entirely.
+`enable.idempotence=true` (the modern default) assigns each producer instance a `PID` (producer ID) and stamps each record with a monotonically increasing sequence number per partition; the broker deduplicates by `(PID, partition, sequence)`, so a retried send (e.g., after a timeout where the original actually succeeded) is dropped rather than double-appended. This covers **producer-side retries to Kafka only** — it says nothing about a consumer processing a successfully-written record more than once, which is [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md)'s (T-704) domain entirely.
 
 ## Internal Implementation
 
@@ -344,7 +344,7 @@ Names `min.insync.replicas` correctly as the fix for the `acks=all` gap; draws t
 
 **Evaluation criteria (1–5).** 1: "idempotence makes Kafka exactly-once." 3: correct scope, producer-retries only. 5: correct scope plus forward connection to T-704's transactional mechanism.
 
-**Related references.** [§ Core Concepts](#core-concepts); [Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md).
+**Related references.** [§ Core Concepts](#core-concepts); [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md).
 
 ## Summary
 

@@ -266,7 +266,7 @@ Configuring CORS to reflect whatever `Origin` header a request presents, uncondi
 
 ## Best Practices
 
-Default every cookie-authenticated, state-changing endpoint to requiring a verified per-session token as part of its implementation template — the same "make the safe thing the path of least resistance" principle this domain's other chapters apply to object-level authorization checks (see [OWASP Top 10](owasp-top-10-for-backend-services.md)'s A01 discussion). Set `SameSite=Lax` or `Strict` on session cookies as a complementary, defense-in-depth layer, never as a substitute for an explicit CSRF token. Mark every session cookie `HttpOnly` (unreadable by page JavaScript) and `Secure` (never sent over plain HTTP) unconditionally, and regenerate the session identifier at every point a request transitions from unauthenticated to authenticated, with no exceptions for alternate or legacy login paths.
+Default every cookie-authenticated, state-changing endpoint to requiring a verified per-session token as part of its implementation template — the same "make the safe thing the path of least resistance" principle this domain's other chapters apply to object-level authorization checks (see [OWASP Top 10 for Backend Services](owasp-top-10-for-backend-services.md)'s A01 discussion). Set `SameSite=Lax` or `Strict` on session cookies as a complementary, defense-in-depth layer, never as a substitute for an explicit CSRF token. Mark every session cookie `HttpOnly` (unreadable by page JavaScript) and `Secure` (never sent over plain HTTP) unconditionally, and regenerate the session identifier at every point a request transitions from unauthenticated to authenticated, with no exceptions for alternate or legacy login paths.
 
 ## Interview Answer Framework
 

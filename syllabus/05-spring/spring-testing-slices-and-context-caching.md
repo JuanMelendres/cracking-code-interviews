@@ -45,7 +45,7 @@ official_references:
 > [`practice/java/spring/spring-testing-slices-and-context-caching/`](../../practice/java/spring/spring-testing-slices-and-context-caching/README.md).
 
 > **A deliberate exception to this domain's plain-jar pattern.** [Spring @Transactional](transactional-proxy-mechanics-and-propagation.md),
-> [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md), and
+> [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md), and
 > [Spring Bean Scopes and Proxy Modes](spring-bean-scopes-and-proxy-modes.md) all
 > deliberately avoid Spring Boot to observe pure Spring Framework mechanics.
 > Slice testing (`@WebMvcTest`, `@DataJpaTest`) does not exist in plain Spring
@@ -324,7 +324,7 @@ local to the class it's declared on.
   from the test's own package.
 - **`IllegalArgumentException: Name for argument ... not specified ... use the
   '-parameters' flag`** — the same root cause already documented in
-  [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md#failure-modes-and-debugging)
+  [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md#failure-modes-and-debugging)
   for SpEL keys, recurring here for `@RequestParam`/`@PathVariable` argument-name
   resolution — one shared root cause (missing compiled parameter-name metadata),
   two different Spring subsystems that need it.
@@ -399,7 +399,7 @@ degrade the whole suite's runtime, not just the class it's declared on.
   test classes wherever possible, to maximize real cache hits.
 - Compile with `-parameters` project-wide if using named `@RequestParam`/
   `@PathVariable`/SpEL references anywhere — this chapter and
-  [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md) both hit
+  [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) both hit
   the identical failure independently.
 
 ## Interview Answer Framework
@@ -440,7 +440,7 @@ annotation actually loads versus excludes, and the real reproduced
 the production scenario connecting `@DirtiesContext` misuse directly to a
 measured CI runtime regression; and the recurring `-parameters` compiler-flag
 requirement as a shared root cause across this chapter and
-[Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md).
+[Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md).
 
 ### Whiteboard Explanation
 
@@ -718,7 +718,7 @@ the exact failure to reproduce and fix.
   [Official References](#official-references)) is the authoritative source for
   the exact cache-key computation and `DirtiesContext.ClassMode` options beyond
   this chapter's scope.
-- [Spring Cache Abstraction](spring-cache-abstraction-and-pitfalls.md) and this
+- [Spring Cache Abstraction and Pitfalls](spring-cache-abstraction-and-pitfalls.md) and this
   chapter independently hit the identical `-parameters` compiler-flag
   requirement — read both to see the same root cause in two different Spring
   subsystems.

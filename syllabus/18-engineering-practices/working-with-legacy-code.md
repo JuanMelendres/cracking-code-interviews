@@ -24,7 +24,7 @@ source_history: []
 
 # Working with Legacy Code
 
-This is **T-1803** in `18-engineering-practices`. [Strangler Fig and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) and [Technical Debt and Evolutionary Architecture](../17-architecture/technical-debt-and-evolutionary-architecture.md) both cover *system-level* legacy migration strategy — replacing or evolving an entire legacy system over time. This chapter is one layer below that: the day-to-day technique for safely changing a single piece of legacy code — a class, a method, a module — that lacks tests and whose behavior isn't fully understood, without waiting for (or requiring) a larger system-level migration.
+This is **T-1803** in `18-engineering-practices`. [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) and [Technical Debt and Evolutionary Architecture](../17-architecture/technical-debt-and-evolutionary-architecture.md) both cover *system-level* legacy migration strategy — replacing or evolving an entire legacy system over time. This chapter is one layer below that: the day-to-day technique for safely changing a single piece of legacy code — a class, a method, a module — that lacks tests and whose behavior isn't fully understood, without waiting for (or requiring) a larger system-level migration.
 
 ## 1. Why This Matters
 
@@ -186,7 +186,7 @@ Design an incremental de-risking strategy using this chapter's techniques direct
 ## 19. Further Reading
 
 - Michael Feathers, *Working Effectively with Legacy Code* — the foundational text this chapter's core techniques (the "legacy code" definition, characterization testing, seams, sprout method/class) are drawn from.
-- [Strangler Fig and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) — the system-level migration strategy this chapter's code-level technique complements, for when legacy risk has grown beyond what incremental characterization-and-change can reasonably address.
+- [Strangler Fig, Anti-Corruption Layer, and Migration Patterns](../17-architecture/strangler-fig-and-migration-patterns.md) — the system-level migration strategy this chapter's code-level technique complements, for when legacy risk has grown beyond what incremental characterization-and-change can reasonably address.
 - [Technical Debt and Evolutionary Architecture](../17-architecture/technical-debt-and-evolutionary-architecture.md) — the broader framing for deciding when and how much to invest in addressing legacy risk at a system level.
 
 ## 20. Mastery Checklist

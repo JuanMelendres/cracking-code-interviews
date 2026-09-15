@@ -91,7 +91,7 @@ A **safepoint** is a point during a thread's execution where its internal state 
 
 ### GC is the most common safepoint operation, not the only one
 
-Beyond GC, real safepoint operations include: thread dumps (`jstack`, `jcmd Thread.print`) — the JVM needs every thread stopped to walk its stack consistently; deoptimization (per [JIT Tiered Compilation and Deoptimization](jit-tiered-compilation-and-deoptimization.md)) — replacing a compiled method's execution with the interpreter requires a consistent point to make the switch; class redefinition (used by some profilers and instrumentation agents); and deadlock detection, among others. Conflating "safepoint" with "GC pause" specifically misses this entire category of non-GC stop-the-world operations, some of which (a thread dump requested by an operator, for instance) can be a genuine, surprising source of application pause time that has nothing to do with memory management at all.
+Beyond GC, real safepoint operations include: thread dumps (`jstack`, `jcmd Thread.print`) — the JVM needs every thread stopped to walk its stack consistently; deoptimization (per [JIT: Tiered Compilation, Inlining, and Deoptimization](jit-tiered-compilation-and-deoptimization.md)) — replacing a compiled method's execution with the interpreter requires a consistent point to make the switch; class redefinition (used by some profilers and instrumentation agents); and deadlock detection, among others. Conflating "safepoint" with "GC pause" specifically misses this entire category of non-GC stop-the-world operations, some of which (a thread dump requested by an operator, for instance) can be a genuine, surprising source of application pause time that has nothing to do with memory management at all.
 
 ### "Reaching safepoint" cost depends on what each thread is doing, not a fixed cost
 
@@ -205,7 +205,7 @@ Using "safepoint" and "GC pause" interchangeably; assuming any unexplained pause
 
 ### Typical Follow-Up Questions
 
-"Besides GC and thread dumps, what's another operation that requires a safepoint?" → deoptimization — switching a JIT-compiled method's execution back to the interpreter requires a consistent point to make the switch, covered in [JIT Tiered Compilation and Deoptimization](jit-tiered-compilation-and-deoptimization.md). "Why might 'reaching safepoint' time vary significantly between two otherwise-similar runs?" → it depends on what each application thread happens to be doing when the safepoint is requested — threads in the middle of a long-running operation without a nearby safepoint-check poll take longer to stop, independent of the requested operation's own cost.
+"Besides GC and thread dumps, what's another operation that requires a safepoint?" → deoptimization — switching a JIT-compiled method's execution back to the interpreter requires a consistent point to make the switch, covered in [JIT: Tiered Compilation, Inlining, and Deoptimization](jit-tiered-compilation-and-deoptimization.md). "Why might 'reaching safepoint' time vary significantly between two otherwise-similar runs?" → it depends on what each application thread happens to be doing when the safepoint is requested — threads in the middle of a long-running operation without a nearby safepoint-check poll take longer to stop, independent of the requested operation's own cost.
 
 ### Senior-Level Expectations
 

@@ -202,9 +202,9 @@ of markdown-hierarchy inconsistency found and fixed in `09-messaging-event-drive
 | 3 | What does an AP system do during a partition? | [CAP Theorem and Consistency Models](../../10-distributed-systems/cap-theorem-and-consistency-models.md#flashcards) |
 | 4 | CAP only describes partition trade-offs. What does PACELC add? | [CAP Theorem and Consistency Models](../../10-distributed-systems/cap-theorem-and-consistency-models.md#flashcards) |
 | 5 | Should one consistency model apply uniformly across a whole system? | [CAP Theorem and Consistency Models](../../10-distributed-systems/cap-theorem-and-consistency-models.md#flashcards) |
-| 6 | Why does requiring a strict majority make two simultaneous leaders mathematically impossible? | [Consensus — Raft and Paxos](../../10-distributed-systems/consensus-algorithms-raft-and-paxos.md#flashcards) |
-| 7 | Can the minority side of a partition ever elect a leader, no matter how many times it retries? | [Consensus — Raft and Paxos](../../10-distributed-systems/consensus-algorithms-raft-and-paxos.md#flashcards) |
-| 8 | Does Raft provide a stronger correctness guarantee than a correctly implemented Paxos? | [Consensus — Raft and Paxos](../../10-distributed-systems/consensus-algorithms-raft-and-paxos.md#flashcards) |
+| 6 | Why does requiring a strict majority make two simultaneous leaders mathematically impossible? | [Consensus Algorithms: Raft and Paxos](../../10-distributed-systems/consensus-algorithms-raft-and-paxos.md#flashcards) |
+| 7 | Can the minority side of a partition ever elect a leader, no matter how many times it retries? | [Consensus Algorithms: Raft and Paxos](../../10-distributed-systems/consensus-algorithms-raft-and-paxos.md#flashcards) |
+| 8 | Does Raft provide a stronger correctness guarantee than a correctly implemented Paxos? | [Consensus Algorithms: Raft and Paxos](../../10-distributed-systems/consensus-algorithms-raft-and-paxos.md#flashcards) |
 | 9 | Why does naive `hash(key) % N` remap nearly all keys when N changes? | [Data Partitioning and Consistent Hashing](../../10-distributed-systems/data-partitioning-and-consistent-hashing.md#flashcards) |
 | 10 | What fraction of keys should move when removing 1 of N nodes under consistent hashing? | [Data Partitioning and Consistent Hashing](../../10-distributed-systems/data-partitioning-and-consistent-hashing.md#flashcards) |
 | 11 | Why use many virtual nodes per physical node instead of one? | [Data Partitioning and Consistent Hashing](../../10-distributed-systems/data-partitioning-and-consistent-hashing.md#flashcards) |
@@ -212,10 +212,10 @@ of markdown-hierarchy inconsistency found and fixed in `09-messaging-event-drive
 | 13 | Precisely how do retries amplify an outage? | [Distributed Systems Failure Modes](../../10-distributed-systems/distributed-systems-failure-modes.md#flashcards) |
 | 14 | What structurally fixes the retry-safety problem? | [Distributed Systems Failure Modes](../../10-distributed-systems/distributed-systems-failure-modes.md#flashcards) |
 | 15 | What structurally prevents split-brain corruption? | [Distributed Systems Failure Modes](../../10-distributed-systems/distributed-systems-failure-modes.md#flashcards) |
-| 16 | What specifically does a dual write fail to guarantee? | [Distributed Transactions — Saga and Outbox](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
-| 17 | What makes the transactional outbox's atomicity possible? | [Distributed Transactions — Saga and Outbox](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
-| 18 | Is the transactional outbox exactly-once or at-least-once? | [Distributed Transactions — Saga and Outbox](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
-| 19 | Why is 2PC avoided in practice despite offering true atomicity? | [Distributed Transactions — Saga and Outbox](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
+| 16 | What specifically does a dual write fail to guarantee? | [Distributed Transactions: Saga, Outbox, and 2PC](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
+| 17 | What makes the transactional outbox's atomicity possible? | [Distributed Transactions: Saga, Outbox, and 2PC](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
+| 18 | Is the transactional outbox exactly-once or at-least-once? | [Distributed Transactions: Saga, Outbox, and 2PC](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
+| 19 | Why is 2PC avoided in practice despite offering true atomicity? | [Distributed Transactions: Saga, Outbox, and 2PC](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md#flashcards) |
 | 20 | What's the difference between RPO and RTO? | [Multi-Region Failover and DR](../../10-distributed-systems/multi-region-failover-and-disaster-recovery.md#flashcards) |
 | 21 | What actually causes split-brain? | [Multi-Region Failover and DR](../../10-distributed-systems/multi-region-failover-and-disaster-recovery.md#flashcards) |
 | 22 | What does fencing actually guarantee, and why is it non-optional? | [Multi-Region Failover and DR](../../10-distributed-systems/multi-region-failover-and-disaster-recovery.md#flashcards) |

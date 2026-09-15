@@ -439,7 +439,7 @@ Writing one overloaded derived method per observed filter combination instead of
 ## Additional Reading
 
 - [Bean Validation and Global Exception Handling](bean-validation-and-global-exception-handling.md) — the request-validation layer that typically sits in front of the repository calls this chapter covers.
-- [JPA Entity Lifecycle and the N+1 Problem](../06-databases/jpa-entity-lifecycle-and-the-n1-problem.md) — the entity/persistence-context mechanics this chapter's repository layer sits on top of.
+- [JPA Entity Lifecycle, the Persistence Context, and the N+1 Problem](../06-databases/jpa-entity-lifecycle-and-the-n1-problem.md) — the entity/persistence-context mechanics this chapter's repository layer sits on top of.
 
 ## Official References
 

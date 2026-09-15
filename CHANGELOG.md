@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Repo-wide link-text/title-drift, 2026-09-15)
+
+- Full repo-wide grep confirming/closing the recurring bug flagged piecemeal across 6+ domains during the 2026-09 content-quality audit: a Markdown link's visible text was written to match its target chapter's title at the time, but the target was later retitled and the link text never updated (e.g. text read "Distributed Transactions — Saga and Outbox" while the target's real, current title is "Distributed Transactions: Saga, Outbox, and 2PC").
+- New `scripts/audit_link_text_drift.py` (diagnostic only): indexes every `syllabus/` chapter's real title, then flags internal links whose text has high-but-not-exact word overlap with its resolved target's real title — the signature of "old title, never updated" as opposed to deliberately concise, unrelated link phrasing (which this repo's own Cross-Reference Standards explicitly permit). Found 94 unique link-text/title pairs (228 occurrences) across 3,240 internal links scanned.
+- Scoped the fix, per explicit user decision, to high-confidence cases only: 4 instances where the link text was literally a raw `.md` filename (a formatting bug), 4 sub-3×-occurrence cases where a domain name — Spring, Kafka — was entirely missing from the link text (real ambiguity risk), and 35 link-text/title pairs recurring 3+ times across independently-authored files (strong evidence the text was a real prior title). Explicitly left untouched: intentional navigational shorthand ("Learning Path: X" written as "X" in prose, "X" linking to "X — Domain Index"), section-reference suffixes (`§15`), and single-occurrence subtitle/parenthetical omissions that read as deliberate concise style rather than drift.
+- New `scripts/fix_link_text_drift.py`: exact-match replacement only on full Markdown link bracket content (`[old text](`), so it cannot touch prose text outside a link. Fixed 164 link instances across 52 files — a clean 1:1 replacement, verified via `git diff --stat` (162 insertions/162 deletions) and manual spot-checks confirming every replacement still reads grammatically correctly in its surrounding sentence.
+- `validate.py`: same pre-existing errors/warnings/notes counts, 0 new. Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings, same 87 pre-existing unrelated WARNING lines.
+
 ### Added (Database Normalization — 1NF Through BCNF, T-2411, 2026-09-15)
 
 - New chapter `syllabus/06-databases/database-normalization-1nf-through-bcnf.md` — user asked directly whether normalization was covered; it wasn't, beyond a one-paragraph definition in `sql-and-relational-database-fundamentals.md`. Written anomaly-first: every normal form (1NF/2NF/3NF/BCNF) is motivated by a real, captured data inconsistency the unnormalized version produces, not an abstract definition.

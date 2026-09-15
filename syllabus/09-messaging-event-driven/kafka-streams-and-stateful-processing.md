@@ -103,7 +103,7 @@ The second working idea: **`groupBy` triggers a real repartition**, visible dire
 
 ## Definition and Purpose
 
-Kafka Streams is a Java library (part of Apache Kafka itself, not a separate download or cluster) for building stream-processing applications that read from and write to Kafka topics. It provides two core abstractions — `KStream` (an unbounded stream of independent key-value records) and `KTable` (a continuously-updated table representing the latest value per key, conceptually the changelog of a table's updates) — plus a `Processor API` for lower-level custom logic when the higher-level DSL (`filter`, `map`, `groupBy`, `join`, `aggregate`) isn't expressive enough. It exists to let engineers build real-time, stateful aggregations and transformations without operating a separate stream-processing cluster (Flink, Spark Streaming) — an application using Kafka Streams is just a regular JVM application, scaled by running more instances of it, with Kafka's own consumer-group rebalancing (per [Consumer Groups, Rebalancing, and Offset Management](consumer-groups-and-rebalancing.md)) distributing work across them.
+Kafka Streams is a Java library (part of Apache Kafka itself, not a separate download or cluster) for building stream-processing applications that read from and write to Kafka topics. It provides two core abstractions — `KStream` (an unbounded stream of independent key-value records) and `KTable` (a continuously-updated table representing the latest value per key, conceptually the changelog of a table's updates) — plus a `Processor API` for lower-level custom logic when the higher-level DSL (`filter`, `map`, `groupBy`, `join`, `aggregate`) isn't expressive enough. It exists to let engineers build real-time, stateful aggregations and transformations without operating a separate stream-processing cluster (Flink, Spark Streaming) — an application using Kafka Streams is just a regular JVM application, scaled by running more instances of it, with Kafka's own consumer-group rebalancing (per [Kafka Consumer Groups, Rebalancing, and Offset Management](consumer-groups-and-rebalancing.md)) distributing work across them.
 
 ## Core Concepts
 
@@ -121,7 +121,7 @@ Materializing a `KTable` (explicitly, via `Materialized.as(...)`, or implicitly)
 
 ### Processing guarantees are a real, explicit configuration choice
 
-Kafka Streams supports `at_least_once` (the default — a failure can cause a record to be reprocessed, so downstream operations must tolerate duplicates) and `exactly_once_v2` (using Kafka transactions, per [Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md), to atomically commit consumed offsets and produced output together) — a real, application-level choice with a real performance cost for the stronger guarantee, not a fixed property of the library.
+Kafka Streams supports `at_least_once` (the default — a failure can cause a record to be reprocessed, so downstream operations must tolerate duplicates) and `exactly_once_v2` (using Kafka transactions, per [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md), to atomically commit consumed offsets and produced output together) — a real, application-level choice with a real performance cost for the stronger guarantee, not a fixed property of the library.
 
 ## Internal Implementation
 

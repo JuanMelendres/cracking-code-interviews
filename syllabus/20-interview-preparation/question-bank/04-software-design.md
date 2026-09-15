@@ -102,10 +102,10 @@ two chapters (`solid-principles.md`, `ood-interview-problems.md`) don't.
 
 | # | Question | Canonical chapter |
 |---|---|---|
-| 1 | What specific kind of variation does the Strategy pattern isolate? | [Design Patterns Applied](../../04-software-design/design-patterns-applied.md#flashcards) |
-| 2 | Why is `if (instance == null) instance = new X();` not thread-safe? | [Design Patterns Applied](../../04-software-design/design-patterns-applied.md#flashcards) |
-| 3 | For `N` independent optional behaviors, how many classes does Decorator need, versus subclassing? | [Design Patterns Applied](../../04-software-design/design-patterns-applied.md#flashcards) |
-| 4 | Which Singleton implementation is thread-safe with zero hand-written synchronization code? | [Design Patterns Applied](../../04-software-design/design-patterns-applied.md#flashcards) |
+| 1 | What specific kind of variation does the Strategy pattern isolate? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
+| 2 | Why is `if (instance == null) instance = new X();` not thread-safe? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
+| 3 | For `N` independent optional behaviors, how many classes does Decorator need, versus subclassing? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
+| 4 | Which Singleton implementation is thread-safe with zero hand-written synchronization code? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
 
 ---
 

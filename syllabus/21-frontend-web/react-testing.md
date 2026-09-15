@@ -76,7 +76,7 @@ By the end of this chapter you can:
 
 ## Why This Matters in Interviews
 
-Testing questions separate candidates who've internalized a philosophy from candidates who've memorized an API. "I use React Testing Library" is a tooling fact; "I query by role and label because that's what survives a refactor that doesn't change user-facing behavior, and I watched a class-name-based query break on exactly that kind of refactor" is the difference this chapter is built to produce — directly mirroring the backend's [test-strategy-and-test-doubles.md](../08-testing/test-strategy-and-test-doubles.md), which asks the same question about mocks and test doubles rather than DOM queries.
+Testing questions separate candidates who've internalized a philosophy from candidates who've memorized an API. "I use React Testing Library" is a tooling fact; "I query by role and label because that's what survives a refactor that doesn't change user-facing behavior, and I watched a class-name-based query break on exactly that kind of refactor" is the difference this chapter is built to produce — directly mirroring the backend's [Test Strategy, the Pyramid, and Test Doubles](../08-testing/test-strategy-and-test-doubles.md), which asks the same question about mocks and test doubles rather than DOM queries.
 
 ## Mental Model
 
