@@ -10,7 +10,7 @@ title = "cracking-code-interviews gitleaks config"
 useDefault = true
 
 [allowlist]
-description = "Generated build output and installed dependencies, never committed"
+description = "Generated build output, installed dependencies (never committed), and confirmed false positives from real executed demo output"
 paths = [
   '''node_modules''',
   '''\.next''',
@@ -20,4 +20,12 @@ paths = [
   '''graft''',
   '''^site/''',
   '''^docs/(syllabus|study-packs|cheat-sheets|flashcards|architecture-atlas|production-cookbook|practice)/''',
+]
+regexTarget = "match"
+regexes = [
+  # gitleaks' generic-api-key rule flags these on entropy alone -- they are
+  # synthetic CSRF token values printed by the real executed CSRF/CORS demo
+  # (practice/java/week-17/csrf-cors-session/), quoted verbatim in its
+  # matching chapter, not real secrets.
+  '''csrfToken=[0-9a-f]{32}''',
 ]
