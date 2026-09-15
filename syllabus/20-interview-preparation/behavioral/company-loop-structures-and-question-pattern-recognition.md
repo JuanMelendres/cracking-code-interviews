@@ -4,8 +4,8 @@ slug: company-loop-structures-and-question-pattern-recognition
 document_type: playbook-technical-answer
 domain: 20-interview-preparation/behavioral
 status: draft
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - interview-playbook/behavioral/company-loop-structures-and-question-pattern-recognition.md
 topic_id: T-1604
@@ -33,7 +33,7 @@ official_references: []
 
 # Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition
 
-**Canonical location:** `interview-playbook/behavioral/`
+**Canonical location:** `syllabus/20-interview-preparation/behavioral/`
 
 > **Topic register:** T-1604 (Company loop structures & calibration, IWI 6.50) · Staff tier — this entry is the *delivery-logistics* layer for behavioral interviewing: not the STAR structure itself (that's [STAR Framework and Delivery Mechanics](01-star-framework-and-delivery.md)), not the story portfolio (that's [Story Portfolio Design](02-story-portfolio-design.md)), and not the per-principle reframing lens (that's [Company-Specific Leadership Frameworks](13-company-specific-frameworks.md)). This entry covers two things those three don't: recognizing which of three distinct question *shapes* a prompt is asking, and the live, day-of mechanics of running a multi-round loop without repeating a story.
 

@@ -4,8 +4,8 @@ slug: time-boxing-and-mid-round-changes
 document_type: playbook-technical-answer
 domain: 20-interview-preparation/system-design
 status: draft
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - interview-playbook/system-design/time-boxing-and-mid-round-changes.md
 mastery_levels_covered:
@@ -33,7 +33,7 @@ official_references: []
 
 # System Design Interview Delivery: Time-Boxing and Mid-Round Changes
 
-> **Topic register:** companion to T-801/T-802 (System Design Method and Estimation, IWI 8.65) — this entry is not the design method itself (that lives in the canonical `handbook/` chapter) but the *live-delivery* discipline of running the method inside a fixed clock and surviving an interviewer-injected scope change mid-round, exactly as [The Technical Answer Framework](../technical-answers/technical-answer-framework.md) and the [Coding Interview Communication Protocol](../coding/coding-interview-communication-protocol.md) are the delivery layer for their respective domains.
+> **Topic register:** companion to T-801/T-802 (System Design Method and Estimation, IWI 8.65) — this entry is not the design method itself (that lives in the canonical [System Design Method and Estimation](../../11-system-design/system-design-method-and-estimation.md) chapter) but the *live-delivery* discipline of running the method inside a fixed clock and surviving an interviewer-injected scope change mid-round, exactly as [The Technical Answer Framework](../technical-answers/technical-answer-framework.md) and the [Coding Interview Communication Protocol](../coding/coding-interview-communication-protocol.md) are the delivery layer for their respective domains.
 
 ## Table of Contents
 

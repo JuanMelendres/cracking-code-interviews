@@ -4,8 +4,8 @@ slug: technical-answer-framework
 document_type: playbook-technical-answer
 domain: 20-interview-preparation/technical-answers
 status: draft
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - interview-playbook/technical-answers/technical-answer-framework.md
 topic_id: T-1601
@@ -58,7 +58,7 @@ official_references: []
 
 Named interview feedback in the audit that seeded this programme included "explain with greater depth" and "explain why you chose it." Read literally, that sounds like a knowledge gap. It almost never is. An interviewer who says this is usually reporting that the knowledge was present — the first sentence arrived correctly — and then stopped. The audit's own measured finding was a mean answer length of roughly 110 characters: a single sentence. That is not a knowledge problem, it is a structure problem — there was no next layer to go to.
 
-The fix is not "know more facts." It is "build the next layers before the interview, so they already exist when the follow-up comes," and separately, "narrate them out loud until delivering them is a skill, not a hope." This entry is the structural skill underneath every technical answer this programme's canonical chapters produce — it is why every `handbook/` chapter's own "Interview Answer Framework" section follows this exact nine-layer shape.
+The fix is not "know more facts." It is "build the next layers before the interview, so they already exist when the follow-up comes," and separately, "narrate them out loud until delivering them is a skill, not a hope." This entry is the structural skill underneath every technical answer this programme's canonical chapters produce — it is why every `syllabus/` chapter's own "Interview Answer Framework" section follows this exact nine-layer shape.
 
 ## Level 1 — Foundation
 

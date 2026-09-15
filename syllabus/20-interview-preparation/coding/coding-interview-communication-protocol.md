@@ -4,8 +4,8 @@ slug: coding-interview-communication-protocol
 document_type: playbook-technical-answer
 domain: 20-interview-preparation/coding
 status: draft
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - interview-playbook/coding/coding-interview-communication-protocol.md
 topic_id: T-1419
@@ -31,7 +31,7 @@ official_references: []
 
 # Coding Interview Communication Protocol
 
-**Canonical location:** `interview-playbook/coding/`
+**Canonical location:** `syllabus/20-interview-preparation/coding/`
 
 > **Topic register:** T-1419 · Core tier · Near-Certain interview frequency [H] — runs every coding session, every week of a study programme, and every live coding interview
 

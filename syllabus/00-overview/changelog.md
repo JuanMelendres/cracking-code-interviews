@@ -1440,6 +1440,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-14] — Content-quality audit: `20-interview-preparation` (20th domain), 5 files fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (20th domain, 21 chapters, via two parallel background agents — `question-bank/` excluded, already complete). 16 of 21 chapters verified fully clean — every behavioral scenario confirmed correctly labeled illustrative, no fabricated personal experience.
+- `behavioral/10-migrations-and-large-technical-change.md`: fixed 2 occurrences of the recurring link-text/href mismatch bug.
+- 4 files (`system-design/time-boxing-and-mid-round-changes.md`, `technical-answers/technical-answer-framework.md`, `coding/coding-interview-communication-protocol.md`, `behavioral/company-loop-structures-and-question-pattern-recognition.md`) had stale pre-migration `handbook/`/`interview-playbook/<domain>/` path references left over from the 2026-09-07 syllabus migration.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `19-leadership-staff` (19th domain), one recurring link fix
 
 ### Fixed

@@ -6,6 +6,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Content-quality audit — `20-interview-preparation`, 2026-09-14)
+
+- Continued the domain-by-domain content-quality audit (20th domain, 21 chapters, via two parallel background agents — `question-bank/`'s 27 files excluded as a separately-completed initiative). 16 of 21 chapters verified fully clean — every behavioral scenario confirmed correctly labeled illustrative/representative (no fabricated personal experience), no invented facts about the user.
+- `behavioral/10-migrations-and-large-technical-change.md`: fixed 2 occurrences of the recurring link-text/href mismatch bug — text read "Distributed Transactions, Saga, and Outbox" but the target's real title is "Distributed Transactions: Saga, Outbox, and 2PC" (6th domain in a row with this bug class).
+- `system-design/time-boxing-and-mid-round-changes.md`, `technical-answers/technical-answer-framework.md`, `coding/coding-interview-communication-protocol.md`, `behavioral/company-loop-structures-and-question-pattern-recognition.md`: fixed stale pre-migration path references (leftover `handbook/`/`interview-playbook/<domain>/` paths from before the 2026-09-07 syllabus migration) — a "Canonical location" callout and prose references pointing at directories that no longer exist on disk.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `19-leadership-staff`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (19th domain, 7 chapters, via two parallel background agents). `mentoring-and-developing-others.md`, `hiring-and-team-building.md`, `cross-team-influence-without-authority.md`, `incident-command-roles-and-real-time-coordination.md`, `technical-debt-prioritization-and-advocacy.md`, `design-reviews-and-rfcs-as-organizational-practice.md` all verified fully clean — every quoted external citation (Google SRE book, Google re:Work) verified live and accurate, every scenario/story correctly labeled as representative/illustrative rather than presented as real personal experience (per CLAUDE.md's Behavioral Handbook Standard), no unlabeled fabricated anecdotes found.

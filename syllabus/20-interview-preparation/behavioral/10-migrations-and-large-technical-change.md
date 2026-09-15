@@ -4,8 +4,8 @@ slug: migrations-and-large-technical-change
 document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-14
 source_history:
   - behavioral-handbook/10-migrations-and-large-technical-change.md
 topic_id: T-1510
@@ -77,7 +77,7 @@ A weak migration story describes the before-state and after-state technically ("
 
 ## Illustrative Example
 
-This example is illustrative — a representative scenario, not a real candidate's actual experience — built around the dual-write and reconciliation pattern this program's [Distributed Transactions, Saga, and Outbox](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md) chapter covers on its technical merits.
+This example is illustrative — a representative scenario, not a real candidate's actual experience — built around the dual-write and reconciliation pattern this program's [Distributed Transactions: Saga, Outbox, and 2PC](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md) chapter covers on its technical merits.
 
 *"We needed to migrate our primary orders table from a single Postgres instance to a sharded setup, because write throughput had grown past what vertical scaling could sustain, and the migration had to happen with zero downtime since it's a customer-facing, revenue-critical table. Rather than a big-bang cutover, I designed a three-phase plan: first, dual-write to both the old and new systems while reads still came exclusively from the old system, giving us weeks of production data flowing into the new sharded setup without it being load-bearing yet. Second, we ran a continuous reconciliation job comparing records between old and new, which caught a subtle bug in our sharding key derivation — about 0.3% of orders were landing on the wrong shard due to an edge case in how we handled a specific customer ID format — before any customer-facing traffic depended on it. Third, once reconciliation showed zero discrepancies for two consecutive weeks, we cut reads over to the new system behind a feature flag, rolled out to 1% of traffic, then 10%, then 100%, with automatic rollback configured if error rates exceeded a threshold at any stage. The full migration took about ten weeks, considerably longer than the two-week estimate I'd originally given — the reconciliation-driven bug discovery alone added three weeks — but we had zero customer-facing incidents during the entire migration, and the pattern of dual-write-plus-reconciliation-before-cutover became the standard approach our team used for every subsequent major data migration."*
 
@@ -124,4 +124,4 @@ A migration story is evaluated on sequencing and risk-management judgment — th
 ## Related
 
 - [STAR Framework and Delivery Mechanics](01-star-framework-and-delivery.md) — the base structure this chapter specializes for migration narratives.
-- [Distributed Transactions, Saga, and Outbox](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md) — the canonical technical chapter covering the dual-write and reconciliation pattern this chapter's illustrative example draws its shape from.
+- [Distributed Transactions: Saga, Outbox, and 2PC](../../10-distributed-systems/distributed-transactions-saga-and-outbox.md) — the canonical technical chapter covering the dual-write and reconciliation pattern this chapter's illustrative example draws its shape from.
