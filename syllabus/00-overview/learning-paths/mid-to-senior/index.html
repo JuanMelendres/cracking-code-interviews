@@ -11090,9 +11090,10 @@
 <h1 id="learning-path-mid-senior">Learning Path: Mid → Senior<a class="headerlink" href="#learning-path-mid-senior" title="Permanent link">&para;</a></h1>
 <p><strong>Audience:</strong> a working engineer (roughly 2–5 years) who can ship features correctly but hasn't yet built the internals depth, production-debugging instinct, and trade-off vocabulary a Senior loop actually tests.</p>
 <p><strong>Goal:</strong> reach L3 (Senior) — internals, performance reasoning, and production debugging — across the domains below.</p>
-<p><strong>Time budget:</strong> ~12 weeks, part-time (6–10 hours/week).</p>
+<p><strong>Time budget:</strong> ~13 weeks, part-time (6–10 hours/week).</p>
 <p><strong>Stops at:</strong> L3 for every domain listed. A handful of topics are called out explicitly per domain as the highest-priority starting point; each domain's own <code>INDEX.md</code> is the exhaustive topic list — this path sequences <em>domains</em>, in order, rather than re-listing every topic inside them (a learning path never repeats topic content, per this project's own duplication rule).</p>
 <p><strong>Updated 2026-09-12</strong> to add Domains 13–15 (Software Design, API Design — Advanced, and AI/LLM Engineering) — a direct audit of every <code>syllabus/00-overview/learning-paths/*.md</code> file against every canonical chapter's own front matter found <code>04-software-design</code>, <code>07-api-design</code>'s advanced topics (<code>api-design.md</code>, <code>api-gateway-bff-and-edge-concerns.md</code>, <code>graphql-api-design.md</code>, <code>grpc-api-design.md</code>), and the entire <code>22-ai-llm-engineering</code> domain absent from every backend path except a REST-fundamentals-only mention in <a href="../junior-to-mid/">Junior → Mid</a>. Every <code>22-ai-llm-engineering</code> chapter's own front matter explicitly states <code>interview_paths: [mid-to-senior, senior-to-staff, ...]</code> — a direct, authoritative signal this path had never acted on.</p>
+<p><strong>Updated 2026-09-15</strong> to extend Domain 9 (Security)'s priority topics with CSRF/CORS/session security and Enterprise SSO/SAML/Federated Identity — both real chapters added to <code>12-security</code> (2026-09-10 and 2026-09-14 respectively) that existed in the domain's own <code>INDEX.md</code> before this path's matching study pack scheduled them, found during a <code>syllabus/00-overview/</code> meta-documentation consistency pass. The study pack gained a 13th week to hold the added depth rather than compressing it into Week 9's existing schedule.</p>
 <h2 id="sequence">Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -11155,7 +11156,7 @@
 <tr>
 <td>9</td>
 <td><a href="../../../12-security/INDEX/">Security</a></td>
-<td>OWASP Top 10 for Backend Services; AuthN vs AuthZ, RBAC vs ABAC</td>
+<td>OWASP Top 10 for Backend Services; AuthN vs AuthZ, RBAC vs ABAC; CSRF/CORS and Session Security; Enterprise SSO, SAML, and Federated Identity</td>
 <td>L3</td>
 </tr>
 <tr>
@@ -11205,7 +11206,7 @@
 <li>Can compare named alternatives within each domain (e.g., ReentrantLock vs. synchronized, SSR vs. SSG-equivalent trade-offs, Kafka vs. a simpler queue) and defend the choice for a stated scenario.</li>
 </ul>
 <h2 id="weekly-study-pack">Weekly study pack<a class="headerlink" href="#weekly-study-pack" title="Permanent link">&para;</a></h2>
-<p><a href="../../../study-packs/mid-to-senior/"><code>study-packs/mid-to-senior/</code></a> turns this sequence into a scheduled, 12-week program — reading assignments, hands-on exercises, production-cookbook cross-references, and a lightweight mock-interview checkpoint per week — the same operational layer <a href="../../../study-packs/junior-to-mid/"><code>study-packs/junior-to-mid/</code></a> provides for the Junior → Mid path. This path's own 15 domains are the <em>content</em>; the study pack is the <em>schedule</em>.</p>
+<p><a href="../../../study-packs/mid-to-senior/"><code>study-packs/mid-to-senior/</code></a> turns this sequence into a scheduled, 13-week program — reading assignments, hands-on exercises, production-cookbook cross-references, and a lightweight mock-interview checkpoint per week — the same operational layer <a href="../../../study-packs/junior-to-mid/"><code>study-packs/junior-to-mid/</code></a> provides for the Junior → Mid path. This path's own 15 domains are the <em>content</em>; the study pack is the <em>schedule</em>.</p>
 <h2 id="next">Next<a class="headerlink" href="#next" title="Permanent link">&para;</a></h2>
 <p><a href="../senior-to-staff/">Senior → Staff</a> — the direct continuation into L4 systemic and organizational judgment.</p>
 
@@ -11228,7 +11229,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 14:49:11 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 15:16:46 UTC">September 15, 2026</span>
   </span>
 
     
