@@ -3,7 +3,7 @@ title: "Learning Path: Backend Java Specialization"
 document_type: learning-path
 status: draft
 version: 1.0
-last_updated: 2026-09-05
+last_updated: 2026-09-15
 source: 00-project/syllabus-transformation-plan.md §6
 ---
 
@@ -23,13 +23,13 @@ Each domain below is taken in full — every topic in the domain's own `INDEX.md
 
 | # | Domain | Subdomains, in order | Topic count |
 |---|---|---|---|
-| 1 | [Java](../../02-java/INDEX.md) | `language-core` (17) → `collections` (10) → `concurrency` (13) → `jvm-internals` (12) | 52 |
-| 2 | [Spring](../../05-spring/INDEX.md) | Framework/Boot fundamentals → transactions/security → reactive/caching/observability/testing | 10 |
-| 3 | [Databases](../../06-databases/INDEX.md) | JPA/Hibernate mechanics → indexing/query planning → concurrency/replication/migration | 15 |
-| 4 | [Messaging & Event-Driven Systems](../../09-messaging-event-driven/INDEX.md) | Kafka core mechanics → delivery/lag/schema → event sourcing/integration styles | 9 |
+| 1 | [Java](../../02-java/INDEX.md) | `language-core` (22) → `collections` (11) → `concurrency` (15) → `jvm-internals` (13) | 61 |
+| 2 | [Spring](../../05-spring/INDEX.md) | Framework/Boot fundamentals → transactions/security → reactive/caching/observability/testing | 12 |
+| 3 | [Databases](../../06-databases/INDEX.md) | JPA/Hibernate mechanics → indexing/query planning → concurrency/replication/migration | 17 |
+| 4 | [Messaging & Event-Driven Systems](../../09-messaging-event-driven/INDEX.md) | Kafka core mechanics → delivery/lag/schema → event sourcing/integration styles | 12 |
 | 5 | [Performance & JVM Tuning](../../16-performance-jvm/INDEX.md) | Profiling → benchmarking → capacity planning | 3 |
 
-*(Topic counts verified directly against each domain's file system on 2026-09-08, correcting stale counts — 30 Java, 13 Databases — carried since this path's original 2026-09-05 authoring, before the Junior Fundamentals and SQL Fundamentals additions grew both domains. See `syllabus/00-overview/changelog.md`'s matching 2026-09-08 entry.)*
+*(Topic counts verified directly against each domain's file system on 2026-09-08, correcting stale counts — 30 Java, 13 Databases — carried since this path's original 2026-09-05 authoring, before the Junior Fundamentals and SQL Fundamentals additions grew both domains. Re-verified 2026-09-15 during a `syllabus/00-overview/` meta-documentation audit: Java had grown from 52 to 61 chapters (gap-audit additions through 2026-09-10), Spring from 10 to 12 (2026-09-10/11 gap-audit additions), Databases from 15 to 17 (2026-09-10 gap-audit additions), and Messaging & Event-Driven Systems from 9 to 12 (2026-09-11 gap-audit additions) — none of which had been folded into this table since its 2026-09-08 correction. See `syllabus/00-overview/changelog.md`'s matching 2026-09-15 entry.)*
 
 **Why this order:** Java's own subdomain order (language fundamentals → collections → concurrency → JVM internals) is itself a dependency chain — collections depend on `equals`/`hashCode` from language-core, concurrency depends on the memory model concepts that also explain collection thread-safety, and JVM internals (GC, JIT) is the layer underneath everything above it. Spring follows Java directly since its transaction and bean-lifecycle mechanics assume the concurrency and reflection material just covered. Databases follows Spring because its ORM chapters (JPA entity lifecycle, N+1) directly build on Spring's own persistence-layer chapters. Messaging and Performance/JVM close the path — both are genuinely usable once the rest of the stack is solid, and Performance/JVM's profiling and capacity-planning material is easiest to internalize once there's a real, complete backend system's worth of prior material to apply it to.
 

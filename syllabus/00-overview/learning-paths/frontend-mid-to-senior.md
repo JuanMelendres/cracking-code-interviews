@@ -3,7 +3,7 @@ title: "Learning Path: Frontend Mid → Senior/Staff"
 document_type: learning-path
 status: draft
 version: 1.0
-last_updated: 2026-09-08
+last_updated: 2026-09-12
 source: 00-project/frontend-topic-register.md
 ---
 

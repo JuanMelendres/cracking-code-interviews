@@ -3,7 +3,7 @@ title: "Learning Path: Junior → Mid"
 document_type: learning-path
 status: draft
 version: 1.0
-last_updated: 2026-09-08
+last_updated: 2026-09-12
 source: 00-project/syllabus-transformation-plan.md §6
 ---
 

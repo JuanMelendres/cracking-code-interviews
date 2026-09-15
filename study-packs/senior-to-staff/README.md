@@ -7,7 +7,7 @@ last_updated: 2026-09-08
 
 # Senior → Staff Study Pack
 
-The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/senior-to-staff.md`](../../syllabus/00-overview/learning-paths/senior-to-staff.md) — that path is the *content* (16 named topics, in sequence, each with a stated reason for its place in the order); this is the *schedule* built on top of it, the same relationship [`study-packs/mid-to-senior/`](../mid-to-senior/README.md) has to its own learning path.
+The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/senior-to-staff.md`](../../syllabus/00-overview/learning-paths/senior-to-staff.md) — that path is the *content* (21 named topics, in sequence, each with a stated reason for its place in the order); this is the *schedule* built on top of it, the same relationship [`study-packs/mid-to-senior/`](../mid-to-senior/README.md) has to its own learning path.
 
 ## Audience and scope
 

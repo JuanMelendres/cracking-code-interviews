@@ -7,7 +7,7 @@ last_updated: 2026-09-08
 
 # Mid → Senior Study Pack
 
-The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/mid-to-senior.md`](../../syllabus/00-overview/learning-paths/mid-to-senior.md) — that path is the *content* (12 domains, in sequence, each with named priority topics and a stated L3 stop point); this is the *schedule* built on top of it, the same relationship [`study-packs/junior-to-mid/`](../junior-to-mid/README.md) has to its own learning path.
+The scheduled, week-by-week version of [`syllabus/00-overview/learning-paths/mid-to-senior.md`](../../syllabus/00-overview/learning-paths/mid-to-senior.md) — that path is the *content* (15 domains, in sequence, each with named priority topics and a stated L3 stop point); this is the *schedule* built on top of it, the same relationship [`study-packs/junior-to-mid/`](../junior-to-mid/README.md) has to its own learning path.
 
 ## Audience and scope
 

@@ -3,7 +3,7 @@ title: "Learning Path: Mid → Senior"
 document_type: learning-path
 status: draft
 version: 1.0
-last_updated: 2026-09-05
+last_updated: 2026-09-12
 source: 00-project/syllabus-transformation-plan.md §6
 ---
 

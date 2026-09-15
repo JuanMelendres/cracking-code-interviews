@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-06
+last_updated: 2026-09-15
 ---
 
 # Syllabus Changelog
@@ -1439,6 +1439,25 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New chapter `enterprise-sso-saml-and-federated-identity.md` (T-1309): SSO vs. Federated SSO, SAML 2.0 core artifacts, a SAML/OAuth2/OIDC comparison table, the commercial IAM landscape (PingFederate/Okta/Azure AD/Keycloak/ADFS), and real Spring Security SAML2 integration (dependency, `application.yml` structure verified live against Spring Security's current docs, `SecurityConfig` wiring) continuing directly from `spring-mvc-fundamentals.md`'s own `pom.xml`/`application.yml` anatomy. Explicitly labeled as real, accurate configuration — not a locally executed multi-party demo — matching `oauth2-oidc-and-jwt.md`'s own established honesty pattern.
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
+
+## [2026-09-15] — `syllabus/00-overview/` meta-documentation audit: top-level INDEX.md undercounted 5 domains, learning-path counts corrected
+
+### Fixed
+
+- Following the just-completed 22-domain content-quality audit, checked whether `syllabus/00-overview/INDEX.md`, `taxonomy.md`, `learning-paths.md`, and every file in `learning-paths/` still matched the real, current file counts on disk — they had drifted for several domains whose chapter count grew after this table was last touched.
+- Verified real chapter counts for all 22 domains directly (`find syllabus/<domain>/ -maxdepth 1 -name "*.md" ! -name INDEX.md`, subdomain-aware for `02-java` and `20-interview-preparation`, `question-bank/` excluded) against both `syllabus/00-overview/INDEX.md`'s domain table and each domain's own `INDEX.md`. Every one of the 22 per-domain `INDEX.md` files was already accurate — no fixes needed there.
+- `syllabus/00-overview/INDEX.md`'s domain table was stale for 5 domains, each undercounting a chapter added after the table's last edit: `07-api-design` (2/2 → real 5, missing REST API Fundamentals, GraphQL API Design, gRPC API Design), `08-testing` (7/7 → real 8, missing Writing Tests Live in an Interview), `12-security` (9/9 → real 10, missing Enterprise SSO/SAML/Federated Identity added 2026-09-14), `14-devops-containers` (4/4 → real 5, missing Docker and Containers Fundamentals), `18-engineering-practices` (5/5 → real 6, missing SDLC and Agile Methodology Fundamentals). Corrected all 5 rows with an honestly-dated note; bumped front matter `last_updated` to 2026-09-15.
+- `learning-paths/backend-java-specialization.md`'s per-domain topic-count table hadn't been re-verified since its own 2026-09-08 correction: Java (52 → real 61), Spring (10 → real 12), Databases (15 → real 17), and Messaging & Event-Driven Systems (9 → real 12) had all grown from later gap-audit chapters never folded in; Performance & JVM Tuning (3) was already correct. Fixed the table and its provenance note; bumped `last_updated`.
+- Fixed a front-matter/body inconsistency in 4 learning-path documents where the body's own dated "Updated" note was newer than the front-matter `last_updated` field: `junior-to-mid.md` (2026-09-08 → 2026-09-12), `mid-to-senior.md` and `senior-to-staff.md` (2026-09-05 → 2026-09-12), `frontend-mid-to-senior.md` (2026-09-08 → 2026-09-12).
+
+### Verified, left unchanged
+
+- `taxonomy.md` — explicitly a verbatim extraction from the approved transformation plan (its own provenance note), correctly describing the *original* plan's domain structure and topic counts (e.g., `handbook/testing/ (7 topics)`) as historical record, not the current state. Per `CLAUDE.md`'s Structural Update note, a file explicitly framed as historical record is not rewritten to match current counts. No changes.
+- `learning-paths.md` — the Phase 1 outline table and the Phase 6/2026-09-08 update sections carry no specific topic counts to go stale; only points at the six (plus two frontend) real path documents, which were checked individually. No changes.
+- `learning-paths/junior-to-mid.md` (26/26 topics), `senior-to-staff.md` (21/21), `mid-to-senior.md` (15/15 domains), `frontend-junior-to-mid.md` (14/14), `frontend-mid-to-senior.md` (23/23) — every path's own stated topic count matched its actual sequence table. Left alone.
+- `interview-emergency-sprint.md`, `senior-interview-refresh.md` — reference `study-packs/`, `cheat-sheets/`, and `flashcards/` wholesale rather than enumerating topics; nothing to drift. Left alone.
+- Deliberately did not add the new Enterprise SSO (`12-security`), CI/CD Pipeline Design (`14-devops-containers`), or Writing Tests Live in an Interview (`08-testing`) chapters to any learning path: none declare an `interview_paths` front-matter field naming a gap (unlike, e.g., `sdlc-and-agile-methodology-fundamentals.md`, which self-declared `[junior-to-mid, interview-emergency-sprint]` and was already correctly threaded into `junior-to-mid.md` as Topic 26), and the paths whose domains they'd belong to (`mid-to-senior.md`, `senior-to-staff.md`) are explicitly non-exhaustive by design, pointing at each domain's own `INDEX.md` rather than re-listing every topic.
+- `python3 scripts/validate.py`: same pre-existing 3 broken-link errors (unrelated to this pass), 0 new.
 
 ## [2026-09-15] — Content-quality audit: `22-ai-llm-engineering` (22nd and final domain), fully clean — audit initiative complete
 
