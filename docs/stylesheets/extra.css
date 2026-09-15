@@ -62,6 +62,22 @@
   padding: 1rem;
 }
 
+/* "Scheduled in" box, injected by javascripts/chapter-context.js from
+   docs/assets/pack-schedule-index.json when the current chapter is linked
+   from at least one study-pack week's real README. */
+.cci-scheduled-in {
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color--light);
+  background: var(--md-code-bg-color);
+  border-radius: 0.2rem;
+  padding: 0.4rem 0.6rem;
+  margin: -0.5rem 0 1.5rem;
+}
+
+.cci-scheduled-in__label {
+  font-weight: 700;
+}
+
 /* Estimated reading time, injected by overrides/partials/content.html from
    each chapter's own estimated_reading_minutes front matter. Muted and
    small so it reads as metadata, not a heading. */

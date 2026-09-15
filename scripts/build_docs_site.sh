@@ -82,4 +82,9 @@ for d in mirror_dirs:
 print(f"Symlinked {symlinked} unmodified mirrored files back to their real source (real git history for git-revision-date-localized)")
 PYEOF
 
+# Regenerates docs/assets/pack-schedule-index.json (a real link reverse-
+# index, not committed -- see that script's own docstring) from
+# study-packs/**/README.md, consumed by javascripts/chapter-context.js.
+python3 scripts/generate_pack_schedule_index.py
+
 echo "Mirrored ${#MIRROR_DIRS[@]} directories into docs/. Run: .venv-docs/bin/mkdocs serve"

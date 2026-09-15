@@ -129,6 +129,9 @@ extra_javascript:
   # L1-L4 mastery-level badges next to headings that already state their
   # own level -- see level-badges.js.
   - javascripts/level-badges.js
+  # "Scheduled in <pack> Week N" box, from a real link reverse-index built
+  # by scripts/generate_pack_schedule_index.py -- see chapter-context.js.
+  - javascripts/chapter-context.js
 
 extra_css:
   - stylesheets/extra.css
