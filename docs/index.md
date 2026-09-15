@@ -10,14 +10,14 @@ you already are and go deeper toward Senior or Staff.
 - **New to backend development?** Start with the [Junior → Mid study pack](study-packs/junior-to-mid/).
 - **Shipping features, want Senior depth?** Go to [Mid → Senior](study-packs/mid-to-senior/).
 - **Senior, aiming for Staff?** Go to [Senior → Staff](study-packs/senior-to-staff/).
-- **Just want to look something up?** Browse the [Syllabus](syllabus/00-overview/INDEX.md) — 21 domains, every topic taught from Foundation through Staff depth in one place.
+- **Just want to look something up?** Browse the [Syllabus](syllabus/00-overview/INDEX.md) — 22 domains, every topic taught from Foundation through Staff depth in one place.
 - **Cramming for an interview soon?** [Cheat sheets](cheat-sheets/) and [flashcards](flashcards/).
 
 ## What's here
 
 | Section | What it is |
 |---|---|
-| [Syllabus](syllabus/00-overview/INDEX.md) | The canonical technical reference — 21 domains, one chapter per topic, each teaching Foundation through Staff depth in a single place |
+| [Syllabus](syllabus/00-overview/INDEX.md) | The canonical technical reference — 22 domains, one chapter per topic, each teaching Foundation through Staff depth in a single place |
 | [Study Packs](study-packs/) | Week-by-week schedules across 8 programs (5 backend, 2 frontend, 1 emergency-timeline) |
 | [Cheat Sheets](cheat-sheets/) | One-page rapid review per topic |
 | [Flashcards](flashcards/) | Spaced-repetition decks per topic |
