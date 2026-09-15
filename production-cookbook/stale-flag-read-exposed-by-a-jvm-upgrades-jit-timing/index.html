@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="stale-flag-read-exposed-by-a-jvm-upgrades-jit-timing">Stale Flag Read Exposed by a JVM Upgrade's JIT Timing<a class="headerlink" href="#stale-flag-read-exposed-by-a-jvm-upgrades-jit-timing" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A background configuration-refresh thread updates a plain, non-<code>volatile</code> <code>boolean</code> feature-flag field every 30 seconds. A specific worker thread pool polls this field in a tight loop with no other synchronization.</p>

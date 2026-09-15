@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="validation-framework-silently-skips-rules-from-constructor-dispatch">Validation Framework Silently Skips Rules from Constructor Dispatch<a class="headerlink" href="#validation-framework-silently-skips-rules-from-constructor-dispatch" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A shared <code>AbstractValidator</code> base class's constructor calls a <code>getRules()</code> method that subclasses override to supply their specific validation rules. A refactor consolidates several subclasses to build their rule list via a field initializer (<code>private final List&lt;Rule&gt; rules = buildRules();</code>) instead of a constructor body.</p>

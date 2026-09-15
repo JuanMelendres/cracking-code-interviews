@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="cross-request-threadlocal-leak-from-pooled-thread-reuse">Cross-Request ThreadLocal Leak from Pooled Thread Reuse<a class="headerlink" href="#cross-request-threadlocal-leak-from-pooled-thread-reuse" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service uses a <code>ThreadLocal&lt;RequestContext&gt;</code> to carry per-request tracing metadata (user ID, trace ID) through deeply-nested call chains without threading it through every method signature.</p>

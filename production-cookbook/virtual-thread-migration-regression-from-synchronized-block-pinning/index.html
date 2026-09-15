@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="virtual-thread-migration-regression-from-synchronized-block-pinning">Virtual Thread Migration Regression From Synchronized-Block Pinning<a class="headerlink" href="#virtual-thread-migration-regression-from-synchronized-block-pinning" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service migrates its request-handling executor from a fixed platform-thread pool to <code>newVirtualThreadPerTaskExecutor()</code>, expecting a significant throughput improvement for its IO-heavy workload — mostly downstream HTTP calls. The legacy request-handling path wraps its downstream HTTP call inside a <code>synchronized</code> block guarding a shared, rarely updated configuration cache lookup.</p>

@@ -6561,6 +6561,7 @@
   </a>
 
 
+
 <h1 id="week-8-java-kafka-runnable-verification">Week 8 Java — Kafka — runnable verification<a class="headerlink" href="#week-8-java-kafka-runnable-verification" title="Permanent link">&para;</a></h1>
 <p>Three real demos against a live single-broker Kafka cluster (KRaft mode, no ZooKeeper), plain <code>kafka-clients</code> jar from Maven Central (no Spring/Maven build), same no-framework approach as Weeks 3 and 7's internals demos.</p>
 <p><strong>Run in order, same broker session: 1 -&gt; 2 -&gt; 3.</strong> Each demo ensures the <code>orders</code> topic exists with 4 partitions on its own, so none of them will fail if run standalone -- but demos 2 and 3 read whatever records are actually on the topic, and the "18 records" / specific offsets quoted in <code>study-packs/week-08/</code>'s chapters come from demo 1 having produced them first in the same session. Running 2 or 3 against a topic demo 1 hasn't touched yet still demonstrates the real rebalance/commit mechanics, just against an empty log.</p>

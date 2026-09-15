@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="in-memory-idempotency-map-breaking-under-horizontal-scaling">In-Memory Idempotency Map Breaking Under Horizontal Scaling<a class="headerlink" href="#in-memory-idempotency-map-breaking-under-horizontal-scaling" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A checkout service's idempotency check is implemented as an in-memory <code>ConcurrentHashMap</code> guarding against duplicate keys. The service is scaled from one instance to three behind a load balancer.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="broken-equalshashcode-contract-letting-duplicates-through">Broken equals/hashCode Contract Letting Duplicates Through<a class="headerlink" href="#broken-equalshashcode-contract-letting-duplicates-through" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A batch job deduplicates incoming customer records by inserting them into a <code>HashSet&lt;CustomerRecord&gt;</code> and checking size before and after. A refactor added a <code>lastModified</code> timestamp field and regenerated <code>equals()</code> — but not <code>hashCode()</code> — via an IDE action that only updated one method.</p>

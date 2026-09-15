@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="lambda-capture-compile-error-blocking-an-incident-hotfix">Lambda Capture Compile Error Blocking an Incident Hotfix<a class="headerlink" href="#lambda-capture-compile-error-blocking-an-incident-hotfix" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>During an active incident, an engineer adds a quick metrics-counting lambda inside a request handler: <code>int errorCount = 0; requests.forEach(r -&gt; { if (r.failed()) errorCount++; });</code>, intended as a five-minute hotfix.</p>

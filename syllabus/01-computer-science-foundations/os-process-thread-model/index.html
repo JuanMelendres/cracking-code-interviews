@@ -11084,6 +11084,7 @@
   </a>
 
 
+
 <h1 id="the-os-processthread-model-below-javas-abstraction-of-it">The OS Process/Thread Model, Below Java's Abstraction of It<a class="headerlink" href="#the-os-processthread-model-below-javas-abstraction-of-it" title="Permanent link">&para;</a></h1>
 <p><a href="../how-a-computer-executes-a-program/">How a Computer Executes a Program</a> establishes the fetch-decode-execute cycle for a single stream of instructions. Real systems run many such streams, apparently at once, on hardware with a finite number of physical cores — which is only possible because an operating system manages processes and threads, deciding which instruction stream actually runs on a core at any given instant. <a href="../../02-java/concurrency/virtual-threads/">Virtual Threads (Project Loom)</a> already covers the JVM-specific carrier-thread scheduling and pinning behavior in depth; this topic is the layer directly below it — what a process and a thread actually <em>are</em> at the operating-system level, before any JVM enters the picture at all.</p>
 <h2 id="1-why-this-matters">1. Why This Matters<a class="headerlink" href="#1-why-this-matters" title="Permanent link">&para;</a></h2>

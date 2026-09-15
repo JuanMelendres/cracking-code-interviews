@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="payment-processor-ocp-violation-breaking-a-neighboring-payment-method">Payment Processor OCP Violation Breaking a Neighboring Payment Method<a class="headerlink" href="#payment-processor-ocp-violation-breaking-a-neighboring-payment-method" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A payment-processing service's <code>PaymentProcessor</code> class grows a new <code>if (paymentMethod.equals("APPLE_PAY"))</code>-style branch every time a new payment method is added, with every method's logic living inside the same method.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="docker-build-time-regression-from-a-collapsed-copy-layer">Docker Build-Time Regression From a Collapsed COPY Layer<a class="headerlink" href="#docker-build-time-regression-from-a-collapsed-copy-layer" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A recent Dockerfile refactor had merged the previously separate "copy <code>pom.xml</code>, resolve dependencies" and "copy source, compile" steps into a single <code>COPY . .</code> followed by one <code>RUN mvn package</code>, in the name of simplifying the Dockerfile.</p>

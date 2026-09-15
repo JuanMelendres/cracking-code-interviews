@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="rolling-update-latency-spike-despite-maxunavailable-0">Rolling Update Latency Spike Despite maxUnavailable: 0<a class="headerlink" href="#rolling-update-latency-spike-despite-maxunavailable-0" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service is configured with <code>maxSurge: 1, maxUnavailable: 0</code>, expecting zero capacity loss during a rollout per the documented semantics. Its readiness probe checks only that the application's health endpoint responds <code>200 OK</code>.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="leaked-correlation-id-from-a-singleton-injected-request-scoped-bean">Leaked Correlation ID From a Singleton-Injected Request-Scoped Bean<a class="headerlink" href="#leaked-correlation-id-from-a-singleton-injected-request-scoped-bean" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A correlation-ID holder bean was declared <code>@RequestScope</code>, correctly, to hold one value per HTTP request. Months later, an unrelated singleton service was refactored to inject that holder as a plain constructor dependency and cache it as a field.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="retry-amplification-cascading-into-a-multi-service-outage">Retry Amplification Cascading Into a Multi-Service Outage<a class="headerlink" href="#retry-amplification-cascading-into-a-multi-service-outage" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>Several unrelated upstream services call a downstream payment-verification service. None of their retry configurations include backoff or jitter — all use immediate, fixed-count retries.</p>

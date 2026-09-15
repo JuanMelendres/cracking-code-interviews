@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="typed-api-contract-change-caught-at-compile-time-instead-of-in-production">Typed API Contract Change Caught at Compile Time Instead of in Production<a class="headerlink" href="#typed-api-contract-change-caught-at-compile-time-instead-of-in-production" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A backend team changes a <code>/products/:id</code> endpoint's <code>price</code> field from a JSON number to a formatted string (<code>"19.99"</code> instead of <code>19.99</code>) as part of an internationalization effort, without updating every consumer. A frontend component calling <code>formatPrice(product.price)</code> is one of dozens of call sites touching that field.</p>

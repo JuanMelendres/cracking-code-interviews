@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="double-refund-from-a-same-row-read-then-write-race">Double Refund From a Same-Row Read-Then-Write Race<a class="headerlink" href="#double-refund-from-a-same-row-read-then-write-race" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A refund-eligibility check — "has this order already been refunded?" — executes as a separate <code>SELECT</code> before the <code>UPDATE order SET refunded = true</code>, running at the connection pool's default READ COMMITTED isolation level, with no row lock held across the two statements.</p>

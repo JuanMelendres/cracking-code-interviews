@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="flash-sale-latency-collapse-from-pessimistic-locks-held-across-payment-authorization">Flash-Sale Latency Collapse from Pessimistic Locks Held Across Payment Authorization<a class="headerlink" href="#flash-sale-latency-collapse-from-pessimistic-locks-held-across-payment-authorization" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>An inventory-decrement endpoint uses <code>LockModeType.PESSIMISTIC_WRITE</code> on every read of a product's stock row, with the lock held across the full transaction — including an external payment authorization call.</p>

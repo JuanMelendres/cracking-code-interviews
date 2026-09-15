@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="linkedlist-refactor-regressing-a-hot-indexed-read-path">LinkedList Refactor Regressing a Hot Indexed-Read Path<a class="headerlink" href="#linkedlist-refactor-regressing-a-hot-indexed-read-path" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service refactors a frequently-read, rarely-written internal list from <code>ArrayList</code> to <code>LinkedList</code>, reasoning that "LinkedList is more flexible for a list that changes." A request-handling path repeatedly reads elements from this list by index.</p>

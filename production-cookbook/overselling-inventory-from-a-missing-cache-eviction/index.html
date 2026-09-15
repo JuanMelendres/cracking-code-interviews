@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="overselling-inventory-from-a-missing-cache-eviction">Overselling Inventory From a Missing Cache Eviction<a class="headerlink" href="#overselling-inventory-from-a-missing-cache-eviction" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>An inventory service exposed a <code>@Cacheable</code> stock-check endpoint (<code>findById</code>) over product data. Months later, a separate, newer restocking endpoint was added that wrote directly to the same product rows without going through the write path the original cache design assumed.</p>

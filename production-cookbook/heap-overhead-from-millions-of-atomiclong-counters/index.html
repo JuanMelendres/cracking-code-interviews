@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="heap-overhead-from-millions-of-atomiclong-counters">Heap Overhead From Millions of AtomicLong Counters<a class="headerlink" href="#heap-overhead-from-millions-of-atomiclong-counters" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A metrics library instantiated millions of small per-key counters, each backed by its own <code>AtomicLong</code> field, to track high-cardinality metric data.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="lock-ordering-deadlock-under-peak-load">Lock-Ordering Deadlock Under Peak Load<a class="headerlink" href="#lock-ordering-deadlock-under-peak-load" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A backend service exposes two code paths that touch the same two in-process locks: a normal request-handling flow, and a less-common admin/audit flow. Both acquire a user-record lock and an audit-log lock — but in opposite orders. Under low concurrency the two paths rarely interleave closely enough to race; under peak load, the odds of the exact interleaving needed to deadlock rise enough to matter.</p>

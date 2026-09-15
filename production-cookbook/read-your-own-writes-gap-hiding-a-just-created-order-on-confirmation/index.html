@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="read-your-own-writes-gap-hiding-a-just-created-order-on-the-confirmation-page">Read-Your-Own-Writes Gap Hiding a Just-Created Order on the Confirmation Page<a class="headerlink" href="#read-your-own-writes-gap-hiding-a-just-created-order-on-the-confirmation-page" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A checkout flow writes a new order to the primary database, then immediately redirects to a confirmation page that reads the order back — from a read replica, per the application's read/write split.</p>

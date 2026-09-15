@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="sealed-hierarchy-catching-a-missed-payment-event-case-at-build-time">Sealed Hierarchy Catching a Missed Payment-Event Case at Build Time<a class="headerlink" href="#sealed-hierarchy-catching-a-missed-payment-event-case-at-build-time" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A team models <code>PaymentEvent</code> as <code>sealed interface PaymentEvent permits Authorized, Captured, Refunded, Failed</code>, each a record. Every <code>switch</code> over <code>PaymentEvent</code> across the codebase — a reconciliation job, an audit log writer, a customer notification service — relies on this sealed hierarchy for exhaustiveness checking. An engineer unfamiliar with the original design later adds a new <code>PartiallyRefunded</code> event type to the <code>permits</code> clause.</p>

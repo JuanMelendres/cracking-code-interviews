@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="stale-closure-read-shipping-an-incorrect-checkout-total">Stale Closure Read Shipping an Incorrect Checkout Total<a class="headerlink" href="#stale-closure-read-shipping-an-incorrect-checkout-total" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A checkout form tracks <code>subtotal</code>, <code>discount</code>, and <code>total</code> as three separate <code>useState</code> values. When a promo code is applied, the handler calls <code>setDiscount(newDiscount)</code> and, on the next line, <code>setTotal(subtotal - discount)</code>.</p>

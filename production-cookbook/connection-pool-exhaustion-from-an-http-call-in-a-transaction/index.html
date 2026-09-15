@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="connection-pool-exhaustion-from-an-http-call-inside-a-transaction">Connection Pool Exhaustion From an HTTP Call Inside a Transaction<a class="headerlink" href="#connection-pool-exhaustion-from-an-http-call-inside-a-transaction" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A checkout endpoint's <code>@Transactional</code> method makes an HTTP call to an inventory-reservation service between two database operations. Every endpoint in the application shares one connection pool.</p>

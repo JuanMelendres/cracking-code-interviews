@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="unbounded-executor-queue-causing-an-oom-crash">Unbounded Executor Queue Causing an OOM Crash<a class="headerlink" href="#unbounded-executor-queue-causing-an-oom-crash" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service uses <code>Executors.newFixedThreadPool(10)</code> to call a downstream dependency. <code>newFixedThreadPool</code> backs its pool with an unbounded <code>LinkedBlockingQueue</code> by default.</p>

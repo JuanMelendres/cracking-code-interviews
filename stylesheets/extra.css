@@ -61,3 +61,13 @@
   border-radius: 0.2rem;
   padding: 1rem;
 }
+
+/* Estimated reading time, injected by overrides/partials/content.html from
+   each chapter's own estimated_reading_minutes front matter. Muted and
+   small so it reads as metadata, not a heading. */
+.cci-reading-time {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.68rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}

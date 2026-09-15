@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="raw-exception-message-leaking-a-database-connection-string">Raw Exception Message Leaking a Database Connection String<a class="headerlink" href="#raw-exception-message-leaking-a-database-connection-string" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service has specific <code>@ExceptionHandler</code> methods for its known, anticipated exception types, but no catch-all <code>@ExceptionHandler(Exception.class)</code>. A misconfigured database connection pool starts throwing a raw exception whose message includes the connection string used to build it.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="duplicate-payment-charge-from-kafka-redelivery">Duplicate Payment Charge From Kafka Redelivery<a class="headerlink" href="#duplicate-payment-charge-from-kafka-redelivery" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A Kafka consumer processes order events and charges the customer's payment method as part of handling each event. The consumer commits offsets after processing — at-least-once delivery, the correct default for avoiding silent loss.</p>

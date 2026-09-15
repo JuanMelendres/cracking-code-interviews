@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="h2-datasource-silently-activated-from-a-test-scope-classpath-leak">H2 DataSource Silently Activated from a Test-Scope Classpath Leak<a class="headerlink" href="#h2-datasource-silently-activated-from-a-test-scope-classpath-leak" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service that should always use its configured production PostgreSQL database is investigated during an incident. A build configuration change had accidentally widened a testing-support library's dependency scope from <code>test</code> to <code>compile</code>/<code>runtime</code>, and that library transitively pulls in the H2 in-memory database jar.</p>

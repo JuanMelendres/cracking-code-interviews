@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="unbounded-blockingqueue-losing-backpressure-into-an-oom">Unbounded BlockingQueue Losing Backpressure Into an OOM<a class="headerlink" href="#unbounded-blockingqueue-losing-backpressure-into-an-oom" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service ingests events from an upstream source and processes them via a background worker pool, buffering incoming events in a <code>LinkedBlockingQueue</code> constructed with no capacity argument — unbounded by default.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="hashmap-bucket-overload-from-a-poor-hashcode-distribution">HashMap Bucket Overload From a Poor hashCode Distribution<a class="headerlink" href="#hashmap-bucket-overload-from-a-poor-hashcode-distribution" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service uses a <code>HashMap&lt;CompositeKey, CachedResult&gt;</code> as an in-memory cache. <code>CompositeKey</code>'s <code>hashCode()</code> combines its fields with a hand-rolled XOR.</p>

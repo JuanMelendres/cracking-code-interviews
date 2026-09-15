@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="gin-index-addition-regressing-a-low-selectivity-jsonb-query">GIN Index Addition Regressing a Low-Selectivity JSONB Query<a class="headerlink" href="#gin-index-addition-regressing-a-low-selectivity-jsonb-query" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A product-catalog filter endpoint queries <code>attributes @&gt; '{"category": "..."}'</code> against a JSONB column on a 300,000-row table. A team, following standard advice, adds a GIN index after noticing the endpoint feels slow.</p>

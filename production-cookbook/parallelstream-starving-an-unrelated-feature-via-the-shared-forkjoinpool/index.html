@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="parallelstream-starving-an-unrelated-feature-via-the-shared-forkjoinpool">parallelStream Starving an Unrelated Feature via the Shared ForkJoinPool<a class="headerlink" href="#parallelstream-starving-an-unrelated-feature-via-the-shared-forkjoinpool" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A reporting endpoint uses <code>.parallelStream()</code> for a CPU-heavy aggregation. An entirely separate, unrelated feature uses <code>CompletableFuture.supplyAsync()</code> with no explicit executor.</p>

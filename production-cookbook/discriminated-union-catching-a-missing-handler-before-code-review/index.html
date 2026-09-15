@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="discriminated-union-catching-a-missing-handler-before-code-review">Discriminated Union Catching a Missing Handler Before Code Review<a class="headerlink" href="#discriminated-union-catching-a-missing-handler-before-code-review" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A team's <code>Notification</code> component uses a discriminated union (<code>'info' | 'success' | 'action-required'</code>), with <code>'action-required'</code> uniquely requiring an <code>onAction</code> handler. A developer, copy-pasting an existing <code>'info'</code> usage to add a new <code>'action-required'</code> notification, forgets to add the required handler.</p>

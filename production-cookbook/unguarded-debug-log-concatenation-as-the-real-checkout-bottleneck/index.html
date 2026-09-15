@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="unguarded-debug-log-string-concatenation-as-the-real-checkout-bottleneck">Unguarded Debug-Log String Concatenation as the Real Checkout Bottleneck<a class="headerlink" href="#unguarded-debug-log-string-concatenation-as-the-real-checkout-bottleneck" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A checkout service's discount-calculation logic includes a nested iteration over promotional rules — code that "looked" computationally heavy to a reviewer scanning it. A logging statement inside the same hot path built a debug message using string concatenation on every request, regardless of whether debug logging was even enabled, because the concatenation happened before the log level check.</p>

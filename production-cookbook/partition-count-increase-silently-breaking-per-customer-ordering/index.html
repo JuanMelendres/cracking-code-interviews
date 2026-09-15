@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="partition-count-increase-silently-breaking-per-customer-ordering">Partition Count Increase Silently Breaking Per-Customer Ordering<a class="headerlink" href="#partition-count-increase-silently-breaking-per-customer-ordering" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A downstream consumer reconstructs per-customer event sequences from a keyed topic, assuming that a given customer's records all land on one partition, in order. A routine capacity change doubles the topic's partition count to relieve a hot broker.</p>

@@ -6401,6 +6401,7 @@
   </a>
 
 
+
 <h1 id="rag-and-vector-databases-pgvector-real-executed-demo">RAG and Vector Databases (pgvector) — Real, Executed Demo<a class="headerlink" href="#rag-and-vector-databases-pgvector-real-executed-demo" title="Permanent link">&para;</a></h1>
 <p>Backs <a href="../../../syllabus/22-ai-llm-engineering/rag-and-vector-databases/">RAG and Vector Databases (pgvector)</a> (T-2301). A real PostgreSQL 16 + real <code>pgvector</code> extension in a real Docker container, a real JDBC connection, real vector storage, real distance-metric queries, a real HNSW index, and real <code>EXPLAIN ANALYZE</code> evidence of what it buys at scale.</p>
 <p><strong>Embeddings are computed by a real, deterministic hashing scheme</strong> (<code>HashedBagOfWordsEmbedder</code> — the real "hashing trick" / feature hashing, L2-normalized), not a live embedding-API call. This is stated explicitly because the point of this demo is the <strong>pgvector mechanics</strong> (storage, distance metrics, indexing, retrieval), not semantic embedding quality — and the demo's own Section 2b honestly demonstrates where that toy scheme's real limitation shows up, real output included, not glossed over.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="n1-query-regression-from-a-lazy-collection-read-inside-a-dto-mapping-loop">N+1 Query Regression from a Lazy Collection Read Inside a DTO Mapping Loop<a class="headerlink" href="#n1-query-regression-from-a-lazy-collection-read-inside-a-dto-mapping-loop" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>An <code>/orders</code> listing endpoint, previously fast with flat latency regardless of page size, is changed by a "harmless" feature addition: each order's line-item count is added to the response DTO by calling <code>order.getLineItems().size()</code> inside the DTO-mapping loop. <code>lineItems</code> is a <code>LAZY</code> <code>@OneToMany</code> association.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="synchronized-retry-storm-without-jitter">Synchronized Retry Storm Without Jitter<a class="headerlink" href="#synchronized-retry-storm-without-jitter" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A downstream payment-verification service is called by many upstream services. Every caller retries failed requests with exponential backoff — but without jitter, so every caller's backoff schedule is a deterministic function of the same triggering timeout.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="silently-swallowed-async-exception-hiding-weeks-of-failures">Silently Swallowed @Async Exception Hiding Weeks of Failures<a class="headerlink" href="#silently-swallowed-async-exception-hiding-weeks-of-failures" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A nightly reconciliation job invokes a service method annotated <code>@Async</code> and <code>@Transactional</code> that occasionally throws on a downstream validation failure. The calling code wraps the call in a try/catch expecting to log and alert on failure. The annotated method returns <code>void</code>.</p>

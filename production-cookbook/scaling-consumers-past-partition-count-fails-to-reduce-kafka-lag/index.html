@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="scaling-consumers-past-partition-count-did-nothing-to-reduce-lag">Scaling Consumers Past Partition Count Did Nothing to Reduce Lag<a class="headerlink" href="#scaling-consumers-past-partition-count-did-nothing-to-reduce-lag" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A paging alert fires for "consumer lag &gt; 10,000" on an order-events topic. The on-call engineer, under pressure, doubles the consumer deployment's replica count from 3 to 6, expecting lag to drop as messages are processed in parallel by more workers.</p>

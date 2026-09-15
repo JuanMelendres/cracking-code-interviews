@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="column-rename-outage-during-a-rolling-deploy">Column Rename Outage During a Rolling Deploy<a class="headerlink" href="#column-rename-outage-during-a-rolling-deploy" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A team renames <code>orders.status</code> to <code>orders.order_status</code> via a single <code>ALTER TABLE ... RENAME COLUMN</code> migration, deployed alongside application code that references the new name, as part of a standard rolling deploy.</p>

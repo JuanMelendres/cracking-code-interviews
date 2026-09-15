@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="per-tenant-rate-limit-effectively-tripled-by-unshared-per-instance-counter-state">Per-Tenant Rate Limit Effectively Tripled by Unshared Per-Instance Counter State<a class="headerlink" href="#per-tenant-rate-limit-effectively-tripled-by-unshared-per-instance-counter-state" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service enforces a documented "1000 requests/minute" per-tenant API limit, running three instances behind a load balancer. Each instance runs its own in-memory <code>FixedWindowCounter</code>, with no shared state between instances.</p>

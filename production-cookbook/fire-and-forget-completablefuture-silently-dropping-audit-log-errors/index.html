@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="fire-and-forget-completablefuture-silently-dropping-audit-log-errors">Fire-and-Forget CompletableFuture Silently Dropping Audit-Log Errors<a class="headerlink" href="#fire-and-forget-completablefuture-silently-dropping-audit-log-errors" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service asynchronously writes an audit-log entry after handling each request, using <code>CompletableFuture.supplyAsync(() -&gt; auditClient.write(entry))</code> with no further chaining.</p>

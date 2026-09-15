@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="shared-mutable-config-corrupted-by-a-live-reference-getter">Shared Mutable Config Corrupted by a Live-Reference Getter<a class="headerlink" href="#shared-mutable-config-corrupted-by-a-live-reference-getter" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service loads a <code>Config</code> object once at startup and passes it by reference to multiple independent subsystems. <code>Config</code> exposes its underlying <code>Map&lt;String, Boolean&gt;</code> of feature flags directly via a getter, with no defensive copy.</p>

@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="cache-layer-becomes-an-rce-vector-from-unrestricted-deserialization">Cache Layer Becomes an RCE Vector from Unrestricted Deserialization<a class="headerlink" href="#cache-layer-becomes-an-rce-vector-from-unrestricted-deserialization" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service caches objects using Java's built-in serialization, storing serialized bytes in a shared cache (Redis/Memcached) that's reachable, directly or indirectly, by a component accepting less-trusted input.</p>

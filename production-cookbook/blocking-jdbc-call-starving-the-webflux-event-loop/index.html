@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="blocking-jdbc-call-starving-the-webflux-event-loop">Blocking JDBC Call Starving the WebFlux Event Loop<a class="headerlink" href="#blocking-jdbc-call-starving-the-webflux-event-loop" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service was migrated from Spring MVC to WebFlux. One repository method had not yet been migrated to a reactive database driver and made a real, synchronous JDBC call wrapped in <code>Mono.fromCallable(...)</code>, without <code>.subscribeOn(Schedulers.boundedElastic())</code>.</p>

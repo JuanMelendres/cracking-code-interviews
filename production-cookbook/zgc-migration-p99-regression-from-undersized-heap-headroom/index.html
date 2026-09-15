@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="zgc-migration-p99-regression-from-undersized-heap-headroom">ZGC Migration p99 Regression From Undersized Heap Headroom<a class="headerlink" href="#zgc-migration-p99-regression-from-undersized-heap-headroom" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A latency-sensitive service migrates from G1 to ZGC, expecting uniformly better tail latency. Its heap was sized for G1's evacuation-pause model, with headroom calculated against G1's behavior.</p>

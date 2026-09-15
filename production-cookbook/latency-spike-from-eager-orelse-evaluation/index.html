@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="latency-spike-from-eager-orelse-evaluation">Latency Spike from Eager orElse() Evaluation<a class="headerlink" href="#latency-spike-from-eager-orelse-evaluation" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A request handler is refactored from a null-check to an <code>Optional</code>-based chain: <code>cache.get(key).orElse(expensiveDatabaseFallback(key))</code>.</p>

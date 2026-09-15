@@ -8433,6 +8433,7 @@
   </a>
 
 
+
 <h1 id="listener-registry-bottleneck-from-swapping-copyonwritearraylist-for-synchronizedlist">Listener Registry Bottleneck from Swapping CopyOnWriteArrayList for synchronizedList<a class="headerlink" href="#listener-registry-bottleneck-from-swapping-copyonwritearraylist-for-synchronizedlist" title="Permanent link">&para;</a></h1>
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>A service's event-listener registry, originally a <code>CopyOnWriteArrayList&lt;Listener&gt;</code> (registered rarely at startup, iterated on every event — thousands of times per second), is changed to <code>Collections.synchronizedList(new ArrayList&lt;&gt;())</code> during a refactor aimed at "more standard" synchronization.</p>
