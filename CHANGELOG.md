@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Repo-wide broken anchor links, 2026-09-15)
+
+- `mkdocs build` reports 565 same-page anchor links across 260 files (208 in `syllabus/`, 52 in `study-packs/`) resolving to no real heading — a real, systemic bug, not noise. Root cause confirmed against actually-built HTML: headings containing an em-dash (`## Level 1 — Foundation`, `### Question 1 — What's...`) get their em-dash stripped and the surrounding spaces collapsed to ONE hyphen by MkDocs' real slugifier, but every hand-typed Table-of-Contents/cross-reference anchor in this repo was written assuming a double hyphen — never matching the real id.
+- Added `scripts/fix_broken_anchor_links.py`: reads real heading ids from already-built `site/` HTML (no slugify reimplementation needed), then resolves each broken anchor by comparing it against every real id on that page with all hyphens stripped from both sides — fixes only when exactly one real id matches, otherwise leaves the link untouched. Fixed 561 of 563 detected instances this way; the remaining 2 (a different bug — a TOC entry missing a `(summary)` word) fixed by hand. `mkdocs build`'s "no such anchor" count: 565 → 0.
+- `validate.py`: same pre-existing 3 errors, 0 new.
+
 ### Fixed (Meta-documentation sync — `syllabus/00-overview/` and `study-packs/`, 2026-09-15)
 
 - Following the just-completed 22-domain content-quality audit, verified `syllabus/00-overview/INDEX.md`, `learning-paths/*.md`, and `study-packs/` against real, current chapter/week counts on disk. Found and fixed real drift: `syllabus/00-overview/INDEX.md`'s domain table had undercounted 5 domains whose chapter count grew from additions never folded back in (`07-api-design` 2→5, `08-testing` 7→8, `12-security` 9→10 — missing the Enterprise SSO/SAML chapter, `14-devops-containers` 4→5, `18-engineering-practices` 5→6); `learning-paths/backend-java-specialization.md`'s per-domain topic table was similarly stale (Java 52→61, Spring 10→12, Databases 15→17, Messaging 9→12); `study-packs/mid-to-senior/README.md` and `senior-to-staff/README.md` had stale domain/topic counts (12→15, 16→21) contradicting their own source learning paths; `study-packs/README.md`'s own week-count claims for 4 of 8 programs were stale.
