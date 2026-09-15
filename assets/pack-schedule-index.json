@@ -1,0 +1,1439 @@
+{
+"syllabus/00-overview/learning-paths/backend-java-specialization.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+},
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-09/",
+"week": 9
+}
+],
+"syllabus/00-overview/learning-paths/frontend-junior-to-mid.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-01/",
+"week": 1
+},
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-06/",
+"week": 6
+},
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-10/",
+"week": 10
+}
+],
+"syllabus/00-overview/learning-paths/frontend-mid-to-senior.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-06/",
+"week": 6
+},
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-01/",
+"week": 1
+}
+],
+"syllabus/00-overview/learning-paths/mid-to-senior.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-08/",
+"week": 8
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-09/",
+"week": 9
+},
+{
+"pack": "Mid \u2192 Senior",
+"url": "study-packs/mid-to-senior/week-01/",
+"week": 1
+}
+],
+"syllabus/00-overview/learning-paths/senior-to-staff.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-09/",
+"week": 9
+},
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-10/",
+"week": 10
+},
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-11/",
+"week": 11
+},
+{
+"pack": "Mid \u2192 Senior",
+"url": "study-packs/mid-to-senior/week-10/",
+"week": 10
+}
+],
+"syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-03/",
+"week": 3
+}
+],
+"syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-02/",
+"week": 2
+}
+],
+"syllabus/01-computer-science-foundations/number-representation.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/collections/arraydeque-internals-and-the-legacy-stack-problem.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/collections/arraylist-and-linkedlist-internals.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/collections/blockingqueue-family.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/collections/collection-selection-decision-matrix.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/collections/concurrenthashmap-internals.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/collections/copyonwritearraylist-and-copy-on-write-tradeoffs.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/collections/fail-fast-vs-weakly-consistent-iterators.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/collections/hashmap-internals.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/collections/treemap-treeset-and-navigable-hierarchy.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/concurrency/atomics-cas-and-the-aba-problem.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/completablefuture-and-async-composition.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/foreign-function-and-memory-api.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/forkjoinpool-and-work-stealing.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/java-memory-model-and-volatile.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/reentrantlock-readwritelock-and-stampedlock.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/scoped-values-and-threadlocal-migration.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/structured-concurrency.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/threadlocal-mediated-classloader-leaks.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/varhandles-and-unsafe.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/concurrency/virtual-threads.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-03/",
+"week": 3
+}
+],
+"syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/language-core/annotations-and-annotation-processing.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/classloaders-and-class-initialization.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/enums-enummap-and-enumset.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-04/",
+"week": 4
+}
+],
+"syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/generics-erasure-and-pecs.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/immutability-and-defensive-copying.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/java-modifiers-and-method-signatures.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/language-core/java-platform-basics-jvm-jdk-jre-and-primitive-types.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/java-version-features-timeline.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-02/",
+"week": 2
+}
+],
+"syllabus/02-java/language-core/lambdas-and-functional-interfaces.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/optional-and-null-strategy.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/polymorphism-and-dynamic-dispatch.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/records-sealed-types-and-pattern-matching.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/reflection-and-dynamic-proxies.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/serialization-hazards-and-alternatives.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/streams-and-collectors.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/02-java/language-core/strings-interning-compact-strings-and-builders.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-01/",
+"week": 1
+}
+],
+"syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-05/",
+"week": 5
+}
+],
+"syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-06/",
+"week": 6
+}
+],
+"syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-05/",
+"week": 5
+}
+],
+"syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-06/",
+"week": 6
+}
+],
+"syllabus/04-software-design/design-patterns-applied.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-09/",
+"week": 9
+}
+],
+"syllabus/05-spring/auto-configuration-and-bean-lifecycle.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/security-filter-chain.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/spring-actuator-health-and-observability-hooks.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/spring-bean-scopes-and-proxy-modes.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/spring-cache-abstraction-and-pitfalls.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/spring-framework-vs-spring-boot.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-08/",
+"week": 8
+}
+],
+"syllabus/05-spring/spring-mvc-fundamentals.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+},
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-10/",
+"week": 10
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-08/",
+"week": 8
+}
+],
+"syllabus/05-spring/spring-testing-slices-and-context-caching.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/spring-webflux-and-reactive-programming.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-05/",
+"week": 5
+}
+],
+"syllabus/06-databases/connection-pooling-and-sizing.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+}
+],
+"syllabus/06-databases/data-modelling-and-explicit-join-tables.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/hibernate-flush-modes-and-batch-writes.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+}
+],
+"syllabus/06-databases/hibernate-second-level-and-query-cache.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+}
+],
+"syllabus/06-databases/index-structures-btree-composite-covering.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+}
+],
+"syllabus/06-databases/locks-deadlocks-and-lock-escalation.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/mvcc-vacuum-and-bloat.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/optimistic-vs-pessimistic-locking.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+}
+],
+"syllabus/06-databases/query-planning-and-explain-analyze.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/replication-read-replicas-and-replica-lag.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/sql-and-relational-database-fundamentals.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-06/",
+"week": 6
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-06/",
+"week": 6
+}
+],
+"syllabus/06-databases/table-partitioning-and-sharding-strategies.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/06-databases/zero-downtime-schema-migration.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-07/",
+"week": 7
+}
+],
+"syllabus/07-api-design/rest-api-fundamentals.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-10/",
+"week": 10
+},
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-08/",
+"week": 8
+}
+],
+"syllabus/08-testing/test-strategy-and-test-doubles.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-07/",
+"week": 7
+}
+],
+"syllabus/08-testing/unit-testing-fundamentals-with-junit.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-07/",
+"week": 7
+}
+],
+"syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/messaging-patterns-and-change-data-capture.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/09-messaging-event-driven/schema-registry-and-compatibility-evolution.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-08/",
+"week": 8
+}
+],
+"syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-04/",
+"week": 4
+}
+],
+"syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-04/",
+"week": 4
+}
+],
+"syllabus/11-system-design/storage-selection-tradeoffs.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-05/",
+"week": 5
+}
+],
+"syllabus/12-security/authn-authz-rbac-vs-abac.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-08/",
+"week": 8
+}
+],
+"syllabus/12-security/csrf-cors-and-session-security.md": [
+{
+"pack": "Mid \u2192 Senior",
+"url": "study-packs/mid-to-senior/week-13/",
+"week": 13
+}
+],
+"syllabus/12-security/enterprise-sso-saml-and-federated-identity.md": [
+{
+"pack": "Mid \u2192 Senior",
+"url": "study-packs/mid-to-senior/week-13/",
+"week": 13
+}
+],
+"syllabus/14-devops-containers/docker-and-containers-fundamentals.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-08/",
+"week": 8
+}
+],
+"syllabus/15-cloud/cloud-cost-and-scaling-economics.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-05/",
+"week": 5
+}
+],
+"syllabus/16-performance-jvm/benchmarking-and-jmh-pitfalls.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-09/",
+"week": 9
+}
+],
+"syllabus/16-performance-jvm/capacity-planning-and-headroom.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-09/",
+"week": 9
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-06/",
+"week": 6
+}
+],
+"syllabus/16-performance-jvm/profiling-jfr-and-flame-graphs.md": [
+{
+"pack": "Backend Java Specialization",
+"url": "study-packs/backend-java-specialization/week-09/",
+"week": 9
+}
+],
+"syllabus/17-architecture/architecture-decision-records.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-03/",
+"week": 3
+}
+],
+"syllabus/17-architecture/cqrs-read-write-separation.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-02/",
+"week": 2
+}
+],
+"syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-01/",
+"week": 1
+}
+],
+"syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-01/",
+"week": 1
+}
+],
+"syllabus/17-architecture/strangler-fig-and-migration-patterns.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-02/",
+"week": 2
+}
+],
+"syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-03/",
+"week": 3
+}
+],
+"syllabus/18-engineering-practices/code-review-standards-and-practice.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-09/",
+"week": 9
+}
+],
+"syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-11/",
+"week": 11
+}
+],
+"syllabus/18-engineering-practices/refactoring-discipline.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-10/",
+"week": 10
+}
+],
+"syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md": [
+{
+"pack": "Junior \u2192 Mid",
+"url": "study-packs/junior-to-mid/week-09/",
+"week": 9
+}
+],
+"syllabus/18-engineering-practices/working-with-legacy-code.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-10/",
+"week": 10
+}
+],
+"syllabus/19-leadership-staff/cross-team-influence-without-authority.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-07/",
+"week": 7
+}
+],
+"syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-08/",
+"week": 8
+}
+],
+"syllabus/19-leadership-staff/leading-migrations-and-large-technical-change.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-07/",
+"week": 7
+}
+],
+"syllabus/19-leadership-staff/mentoring-and-developing-others.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-06/",
+"week": 6
+}
+],
+"syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-08/",
+"week": 8
+}
+],
+"syllabus/20-interview-preparation/behavioral/01-star-framework-and-delivery.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-06/",
+"week": 6
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-07/",
+"week": 7
+}
+],
+"syllabus/20-interview-preparation/behavioral/02-story-portfolio-design.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-01/",
+"week": 1
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-02/",
+"week": 2
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-03/",
+"week": 3
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-04/",
+"week": 4
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-05/",
+"week": 5
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-06/",
+"week": 6
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-07/",
+"week": 7
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-08/",
+"week": 8
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-09/",
+"week": 9
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-10/",
+"week": 10
+},
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-11/",
+"week": 11
+}
+],
+"syllabus/20-interview-preparation/behavioral/07-mentoring-and-developing-others.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-06/",
+"week": 6
+}
+],
+"syllabus/20-interview-preparation/behavioral/09-cross-team-influence-without-authority.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-07/",
+"week": 7
+}
+],
+"syllabus/20-interview-preparation/behavioral/10-migrations-and-large-technical-change.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-07/",
+"week": 7
+}
+],
+"syllabus/20-interview-preparation/behavioral/11-technical-debt-advocacy.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-08/",
+"week": 8
+}
+],
+"syllabus/20-interview-preparation/behavioral/12-design-reviews-and-rfcs.md": [
+{
+"pack": "Senior \u2192 Staff",
+"url": "study-packs/senior-to-staff/week-08/",
+"week": 8
+}
+],
+"syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-11/",
+"week": 11
+}
+],
+"syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-01/",
+"week": 1
+}
+],
+"syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-01/",
+"week": 1
+}
+],
+"syllabus/21-frontend-web/micro-frontends-and-module-federation.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-11/",
+"week": 11
+}
+],
+"syllabus/21-frontend-web/nextjs-app-router-fundamentals.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-04/",
+"week": 4
+}
+],
+"syllabus/21-frontend-web/nextjs-authentication-patterns.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-08/",
+"week": 8
+}
+],
+"syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-05/",
+"week": 5
+}
+],
+"syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-01/",
+"week": 1
+}
+],
+"syllabus/21-frontend-web/nextjs-deployment-models.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-09/",
+"week": 9
+}
+],
+"syllabus/21-frontend-web/nextjs-fullstack-integration.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-10/",
+"week": 10
+}
+],
+"syllabus/21-frontend-web/nextjs-fundamentals.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-04/",
+"week": 4
+}
+],
+"syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-03/",
+"week": 3
+}
+],
+"syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-03/",
+"week": 3
+}
+],
+"syllabus/21-frontend-web/nextjs-monorepo-layout.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-10/",
+"week": 10
+}
+],
+"syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-08/",
+"week": 8
+}
+],
+"syllabus/21-frontend-web/nextjs-rendering-strategies.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-02/",
+"week": 2
+}
+],
+"syllabus/21-frontend-web/nextjs-route-handlers.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-02/",
+"week": 2
+}
+],
+"syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-09/",
+"week": 9
+}
+],
+"syllabus/21-frontend-web/nextjs-server-vs-client-components.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-01/",
+"week": 1
+}
+],
+"syllabus/21-frontend-web/nextjs-streaming-and-suspense.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-07/",
+"week": 7
+}
+],
+"syllabus/21-frontend-web/nextjs-styling-approaches.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-05/",
+"week": 5
+}
+],
+"syllabus/21-frontend-web/react-accessibility.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-06/",
+"week": 6
+}
+],
+"syllabus/21-frontend-web/react-component-patterns.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-04/",
+"week": 4
+}
+],
+"syllabus/21-frontend-web/react-concurrent-rendering.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-05/",
+"week": 5
+}
+],
+"syllabus/21-frontend-web/react-error-boundaries.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-06/",
+"week": 6
+}
+],
+"syllabus/21-frontend-web/react-forms.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-06/",
+"week": 6
+}
+],
+"syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-02/",
+"week": 2
+}
+],
+"syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-03/",
+"week": 3
+}
+],
+"syllabus/21-frontend-web/react-performance.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-05/",
+"week": 5
+}
+],
+"syllabus/21-frontend-web/react-reconciliation-and-fiber.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-04/",
+"week": 4
+}
+],
+"syllabus/21-frontend-web/react-state-management.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-07/",
+"week": 7
+}
+],
+"syllabus/21-frontend-web/react-testing.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-06/",
+"week": 6
+}
+],
+"syllabus/21-frontend-web/react-typescript.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-06/",
+"week": 6
+}
+],
+"syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-03/",
+"week": 3
+}
+],
+"syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-03/",
+"week": 3
+}
+],
+"syllabus/21-frontend-web/typescript-fundamentals-types-interfaces-and-generics.md": [
+{
+"pack": "Frontend Junior \u2192 Mid",
+"url": "study-packs/frontend-junior-to-mid/week-01/",
+"week": 1
+}
+],
+"syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md": [
+{
+"pack": "Frontend Mid \u2192 Senior",
+"url": "study-packs/frontend-mid-to-senior/week-11/",
+"week": 11
+}
+]
+}
