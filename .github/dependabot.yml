@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # Docs site build tooling (mkdocs, mkdocs-material, plugins)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # GitHub Actions used by .github/workflows/*.yml
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # Real, executed frontend demo apps under practice/frontend/*
+  - package-ecosystem: "npm"
+    directories:
+      - "/practice/frontend/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
