@@ -1440,6 +1440,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-15] — Content-quality audit: `21-frontend-web` (21st domain), two files fixed
+
+### Fixed
+
+- Continued the domain-by-domain content-quality audit (21st domain, 38 chapters, via four parallel background agents). 36 of 38 chapters verified fully clean — all "real, measured" claims cross-checked against actual captured output in `practice/frontend/*/README.md`.
+- `react-testing.md`: fixed a stale `prerequisites` field (pointed at the wrong sibling chapter in the numbered register sequence).
+- `frontend-live-coding-and-debugging-protocol.md`: fixed a stale pre-migration "Canonical location" reference and a real typo.
+- Verified live via WebSearch: the Next.js 16 Middleware→Proxy rename claimed in several chapters is real and accurate.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ## [2026-09-14] — Content-quality audit: `20-interview-preparation` (20th domain), 5 files fixed
 
 ### Fixed

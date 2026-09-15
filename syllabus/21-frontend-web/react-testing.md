@@ -4,8 +4,8 @@ slug: react-testing
 document_type: handbook-chapter
 domain: 21-frontend-web
 status: canonical
-version: 1.0
-last_updated: 2026-09-05
+version: 1.1
+last_updated: 2026-09-15
 source_history:
   - handbook/frontend/react-testing.md
 topic_id: F-118
@@ -19,7 +19,7 @@ target_levels:
   - senior
   - staff
 prerequisites:
-  - react-forms.md
+  - react-performance.md
 related:
   - ../../00-project/frontend-topic-register.md
   - ../08-testing/test-strategy-and-test-doubles.md

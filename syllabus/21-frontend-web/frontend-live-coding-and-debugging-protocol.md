@@ -4,8 +4,8 @@ slug: frontend-live-coding-and-debugging-protocol
 document_type: playbook-technical-answer
 domain: 21-frontend-web
 status: canonical
-version: 1.0
-last_updated: 2026-09-05
+version: 1.1
+last_updated: 2026-09-15
 source_history:
   - interview-playbook/frontend/frontend-live-coding-and-debugging-protocol.md
 mastery_levels_covered:
@@ -33,9 +33,9 @@ official_references: []
 
 # Frontend Live-Coding & Debugging Protocol
 
-**Canonical location:** `interview-playbook/frontend/`
+**Canonical location:** `syllabus/21-frontend-web/` (originally opened at `interview-playbook/frontend/`; physically relocated here via `git mv` in the 2026-09-03 syllabus migration — see `syllabus/21-frontend-web/INDEX.md`'s Phase 3 update note).
 
-> **Scope note:** this is the first entry in `interview-playbook/frontend/`, opened per the Scope Addendum in `CLAUDE.md` (2026-08-12). It is not a numbered row in either the Java backend Master Topic Register or the Frontend Topic Register (`00-project/frontend-topic-register.md`) — those registers track canonical `handbook/` chapters, all 37 of which already exist and are fully covered. This document instead fills a real, separate gap the addendum itself calls for: frontend-specific interview-*craft* content, mirroring the backend's own `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md` rather than duplicating it.
+> **Scope note:** this was the first entry opened in the pre-migration `interview-playbook/frontend/` per the Scope Addendum in `CLAUDE.md` (2026-08-12), and now lives here in `syllabus/21-frontend-web/` following the repo-wide `syllabus/` migration. It is not a numbered row in either the Java backend Master Topic Register or the Frontend Topic Register (`00-project/frontend-topic-register.md`) — those registers track canonical chapters, all 37 of which already exist and are fully covered. This document instead fills a real, separate gap the addendum itself calls for: frontend-specific interview-*craft* content, mirroring the backend's own `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md` rather than duplicating it.
 > **Why this document, not a duplicate framework:** the generic [nine-layer technical answer framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) and the [six-phase coding communication protocol](../20-interview-preparation/coding/coding-interview-communication-protocol.md) both already apply to frontend topics as-is — this document does not re-derive either. What neither one covers is the two round *formats* unique to frontend interviews: building a small UI feature live, and debugging a live rendering bug in someone else's component — both of which have failure modes a backend-shaped coding or system-design protocol doesn't anticipate.
 
 ## Table of Contents
@@ -88,7 +88,7 @@ Phase 5 is the single highest-leverage phase in a frontend round specifically be
 
 **Phase 1 — Clarify:** "Can I open this in the browser and reproduce the extra re-render first, rather than guessing from the code?" Confirm which prop is suspected of changing.
 
-**Phase 2 — State the hypothesis:** "My leading hypothis is one of the props passed down is a new reference every render — a new object literal, array literal, or inline arrow function — which `React.memo`'s shallow comparison would treat as changed even though its contents are the same."
+**Phase 2 — State the hypothesis:** "My leading hypothesis is one of the props passed down is a new reference every render — a new object literal, array literal, or inline arrow function — which `React.memo`'s shallow comparison would treat as changed even though its contents are the same."
 
 **Phase 3 — State expected behavior:** "If that's right, DevTools' render highlighting should show this component lighting up on every parent render, not just when its actual data changes."
 

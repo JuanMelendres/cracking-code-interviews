@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Content-quality audit — `21-frontend-web`, 2026-09-15)
+
+- Continued the domain-by-domain content-quality audit (21st domain, 38 chapters, via four parallel background agents). 36 of 38 chapters verified fully clean — every "real, measured" claim (React re-render counts, chunk timings, CSRF rejection logs, metadataBase warnings, `priority`→`preload` deprecation) cross-checked against actual captured output in `practice/frontend/*/README.md` files and confirmed not fabricated; all `handbook/`/`interview-playbook/` mentions confirmed to be legitimate `source_history` provenance fields, not stale live references.
+- `react-testing.md`: fixed a stale `prerequisites` front-matter field — listed `react-forms.md` but every sibling chapter in the same numbered register sequence (F-112 through F-119) points to its immediately-preceding entry, and this chapter's own scope note and Additional Reading both state its real prerequisite is `react-performance.md` (F-117).
+- `frontend-live-coding-and-debugging-protocol.md`: fixed a stale pre-migration "Canonical location" reference (`interview-playbook/frontend/`, which no longer exists on disk post-2026-09-03 migration) and a real typo ("hypothis" → "hypothesis").
+- Verified live via WebSearch: the Next.js 16 Middleware→Proxy rename claimed in several chapters is real and accurate (confirmed against `nextjs.org/docs/messages/middleware-to-proxy`), not a fabricated or stale version claim.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, only pre-existing warning patterns.
+
 ### Fixed (Content-quality audit — `20-interview-preparation`, 2026-09-14)
 
 - Continued the domain-by-domain content-quality audit (20th domain, 21 chapters, via two parallel background agents — `question-bank/`'s 27 files excluded as a separately-completed initiative). 16 of 21 chapters verified fully clean — every behavioral scenario confirmed correctly labeled illustrative/representative (no fabricated personal experience), no invented facts about the user.
