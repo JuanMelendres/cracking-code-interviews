@@ -11085,26 +11085,26 @@
 <tr>
 <td>1</td>
 <td><a href="../../../02-java/INDEX/">Java</a></td>
-<td><code>language-core</code> (17) → <code>collections</code> (10) → <code>concurrency</code> (13) → <code>jvm-internals</code> (12)</td>
-<td>52</td>
+<td><code>language-core</code> (22) → <code>collections</code> (11) → <code>concurrency</code> (15) → <code>jvm-internals</code> (13)</td>
+<td>61</td>
 </tr>
 <tr>
 <td>2</td>
 <td><a href="../../../05-spring/INDEX/">Spring</a></td>
 <td>Framework/Boot fundamentals → transactions/security → reactive/caching/observability/testing</td>
-<td>10</td>
+<td>12</td>
 </tr>
 <tr>
 <td>3</td>
 <td><a href="../../../06-databases/INDEX/">Databases</a></td>
 <td>JPA/Hibernate mechanics → indexing/query planning → concurrency/replication/migration</td>
-<td>15</td>
+<td>17</td>
 </tr>
 <tr>
 <td>4</td>
 <td><a href="../../../09-messaging-event-driven/INDEX/">Messaging &amp; Event-Driven Systems</a></td>
 <td>Kafka core mechanics → delivery/lag/schema → event sourcing/integration styles</td>
-<td>9</td>
+<td>12</td>
 </tr>
 <tr>
 <td>5</td>
@@ -11114,7 +11114,7 @@
 </tr>
 </tbody>
 </table>
-<p><em>(Topic counts verified directly against each domain's file system on 2026-09-08, correcting stale counts — 30 Java, 13 Databases — carried since this path's original 2026-09-05 authoring, before the Junior Fundamentals and SQL Fundamentals additions grew both domains. See <code>syllabus/00-overview/changelog.md</code>'s matching 2026-09-08 entry.)</em></p>
+<p><em>(Topic counts verified directly against each domain's file system on 2026-09-08, correcting stale counts — 30 Java, 13 Databases — carried since this path's original 2026-09-05 authoring, before the Junior Fundamentals and SQL Fundamentals additions grew both domains. Re-verified 2026-09-15 during a <code>syllabus/00-overview/</code> meta-documentation audit: Java had grown from 52 to 61 chapters (gap-audit additions through 2026-09-10), Spring from 10 to 12 (2026-09-10/11 gap-audit additions), Databases from 15 to 17 (2026-09-10 gap-audit additions), and Messaging &amp; Event-Driven Systems from 9 to 12 (2026-09-11 gap-audit additions) — none of which had been folded into this table since its 2026-09-08 correction. See <code>syllabus/00-overview/changelog.md</code>'s matching 2026-09-15 entry.)</em></p>
 <p><strong>Why this order:</strong> Java's own subdomain order (language fundamentals → collections → concurrency → JVM internals) is itself a dependency chain — collections depend on <code>equals</code>/<code>hashCode</code> from language-core, concurrency depends on the memory model concepts that also explain collection thread-safety, and JVM internals (GC, JIT) is the layer underneath everything above it. Spring follows Java directly since its transaction and bean-lifecycle mechanics assume the concurrency and reflection material just covered. Databases follows Spring because its ORM chapters (JPA entity lifecycle, N+1) directly build on Spring's own persistence-layer chapters. Messaging and Performance/JVM close the path — both are genuinely usable once the rest of the stack is solid, and Performance/JVM's profiling and capacity-planning material is easiest to internalize once there's a real, complete backend system's worth of prior material to apply it to.</p>
 <h2 id="completion-criteria">Completion criteria<a class="headerlink" href="#completion-criteria" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11149,7 +11149,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 15:14:56 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 14:45:42 UTC">September 15, 2026</span>
   </span>
 
     
