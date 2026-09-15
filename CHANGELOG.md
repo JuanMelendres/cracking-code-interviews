@@ -6,6 +6,11 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Verified (Content-quality audit — `22-ai-llm-engineering`, 2026-09-15)
+
+- Completed the domain-by-domain content-quality audit initiative — all 22 syllabus domains now audited. Read `llm-api-integration-fundamentals.md`, `rag-and-vector-databases.md`, `embeddings.md`, `prompt-engineering-patterns.md`, `agentic-workflows-and-tool-orchestration.md`, `llm-evaluation-and-testing.md` directly (6 chapters). All fully clean — every "real, measured" claim (token counts, streaming chunk timings, temperature-sampling variance, dimension-count similarity scores, HNSW index speedup ~7x, sequential-vs-parallel tool-call speedup 2.0x, embedding false-negative rates) hand-recomputed and confirmed arithmetically correct; every referenced `practice/java/` demo directory confirmed to exist. No fixes needed.
+- `validate.py`: same pre-existing 3 errors, 0 new.
+
 ### Fixed (Content-quality audit — `21-frontend-web`, 2026-09-15)
 
 - Continued the domain-by-domain content-quality audit (21st domain, 38 chapters, via four parallel background agents). 36 of 38 chapters verified fully clean — every "real, measured" claim (React re-render counts, chunk timings, CSRF rejection logs, metadataBase warnings, `priority`→`preload` deprecation) cross-checked against actual captured output in `practice/frontend/*/README.md` files and confirmed not fabricated; all `handbook/`/`interview-playbook/` mentions confirmed to be legitimate `source_history` provenance fields, not stale live references.
