@@ -12048,8 +12048,8 @@
 <ol>
 <li><a href="#learning-objectives">Learning Objectives</a></li>
 <li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
-<li><a href="#level-1--foundation">Level 1 — Foundation</a></li>
-<li><a href="#level-2--working-knowledge">Level 2 — Working Knowledge</a></li>
+<li><a href="#level-1-foundation">Level 1 — Foundation</a></li>
+<li><a href="#level-2-working-knowledge">Level 2 — Working Knowledge</a></li>
 <li><a href="#mental-model">Mental Model</a></li>
 <li><a href="#definition-and-purpose">Definition and Purpose</a></li>
 <li><a href="#core-concepts">Core Concepts</a></li>
@@ -12326,7 +12326,7 @@ Exception that actually propagated: resource-B: failure during close()
 <p><strong>Common mistakes.</strong> Saying <code>Exception</code> is the root of the hierarchy (it's <code>Throwable</code>); forgetting <code>Error</code> exists at all; claiming checked-vs-unchecked is marked by an annotation or keyword rather than being purely which class is extended.</p>
 <p><strong>Likely follow-ups.</strong> "Is <code>Error</code> checked or unchecked, and why does that make sense?" (Unchecked — forcing every caller to declare or catch <code>OutOfMemoryError</code> would add boilerplate for a category almost no code can meaningfully recover from.) "If I write <code>class MyException extends Exception</code>, is it checked?" (Yes — anything extending <code>Exception</code> directly, without going through <code>RuntimeException</code>, is checked.)</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know <code>RuntimeException</code> is the unchecked/checked dividing line. 3: correctly states the <code>RuntimeException</code> rule with a couple of real examples. 5: full <code>Throwable</code>/<code>Error</code>/<code>Exception</code>/<code>RuntimeException</code> hierarchy stated correctly, unprompted, with real examples in every category.</p>
-<p><strong>Related references.</strong> <a href="#level-1--foundation">§ Level 1 — Foundation</a>; <a href="#core-concepts">§ Core Concepts</a>.</p>
+<p><strong>Related references.</strong> <a href="#level-1-foundation">§ Level 1 — Foundation</a>; <a href="#core-concepts">§ Core Concepts</a>.</p>
 <hr />
 <h3 id="question-1-your-on-call-alert-shows-a-generic-exception-with-no-detail-whats-the-first-thing-you-check-in-the-code">Question 1 — Your on-call alert shows a generic exception with no detail. What's the first thing you check in the code?<a class="headerlink" href="#question-1-your-on-call-alert-shows-a-generic-exception-with-no-detail-whats-the-first-thing-you-check-in-the-code" title="Permanent link">&para;</a></h3>
 <p><strong>Why interviewers ask it.</strong> Tests debugging instinct grounded in a specific, common real-world failure mode.</p>
@@ -12397,7 +12397,7 @@ What's the actual root of Java's exception hierarchy, and what's the structural 
 <p><strong>Common trap:</strong>
 Forgetting <code>Error</code> exists, or thinking checked/unchecked is marked by an annotation rather than being purely which class is extended.</p>
 <p><strong>Related:</strong>
-<a href="#level-1--foundation">Level 1 — Foundation</a>, <a href="#core-concepts">Core Concepts</a></p>
+<a href="#level-1-foundation">Level 1 — Foundation</a>, <a href="#core-concepts">Core Concepts</a></p>
 <h3 id="card-what-chaining-the-cause-preserves">Card: What chaining the cause preserves<a class="headerlink" href="#card-what-chaining-the-cause-preserves" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 What does chaining the cause when wrapping an exception actually preserve?</p>
@@ -12470,7 +12470,7 @@ Assuming both approaches are equivalent as long as <code>close()</code> is calle
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 16:45:39 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
   </span>
 
     
