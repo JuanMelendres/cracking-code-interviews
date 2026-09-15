@@ -2,7 +2,7 @@
 title: "Databases — Domain Index"
 document_type: syllabus-domain-index
 domain: 06-databases
-status: 14 of 14 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 15th chapter added 2026-09-07 (SQL and Relational Database Fundamentals, T-2202), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 16th chapter added 2026-09-10 (Window Functions and Common Table Expressions, T-2401 — gap found in a full 22-domain audit, real lab including a ~4,957x measured speedup over a correlated-subquery equivalent); 17th chapter added 2026-09-10, same day (JSONB and Advanced PostgreSQL Index Types, T-2402 — real lab covering GIN/GiST/BRIN, including an honestly-reported case where a GIN index made a query slower); 18th chapter added 2026-09-15 (Views and Materialized Views, T-2410 — real lab measuring a ~457x read speedup from materializing an aggregation, plus the explicit primary key/foreign key/index/view comparison flagged as a content gap by the user)
+status: 14 of 14 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 15th chapter added 2026-09-07 (SQL and Relational Database Fundamentals, T-2202), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 16th chapter added 2026-09-10 (Window Functions and Common Table Expressions, T-2401 — gap found in a full 22-domain audit, real lab including a ~4,957x measured speedup over a correlated-subquery equivalent); 17th chapter added 2026-09-10, same day (JSONB and Advanced PostgreSQL Index Types, T-2402 — real lab covering GIN/GiST/BRIN, including an honestly-reported case where a GIN index made a query slower); 18th chapter added 2026-09-15 (Views and Materialized Views, T-2410 — real lab measuring a ~457x read speedup from materializing an aggregation, plus the explicit primary key/foreign key/index/view comparison flagged as a content gap by the user); 19th chapter added 2026-09-15, same day (Database Normalization — 1NF Through BCNF, T-2411 — real lab with a captured update anomaly at each normal form and a real ~3.27x read speedup vs. ~80x write-amplification denormalization trade-off, user-requested gap-fill)
 last_updated: 2026-09-15
 ---
 
@@ -44,6 +44,7 @@ Relational modeling, indexing, query planning, isolation levels, MVCC, replicati
 | T-2401 | Window Functions and Common Table Expressions | L1, L2, L3, L4 — fully written, real lab (2026-09-10) | `syllabus/06-databases/window-functions-and-ctes.md` |
 | T-2402 | JSONB and Advanced PostgreSQL Index Types | L1, L2, L3, L4 — fully written, real lab (2026-09-10) | `syllabus/06-databases/jsonb-and-advanced-index-types.md` |
 | T-2410 | Views and Materialized Views | L1, L2, L3, L4 — fully written, real lab (2026-09-15) | `syllabus/06-databases/views-and-materialized-views.md` |
+| T-2411 | Database Normalization — 1NF Through BCNF | L1, L2, L3, L4 — fully written, real lab (2026-09-15) | `syllabus/06-databases/database-normalization-1nf-through-bcnf.md` |
 
 ## Where this domain's boundary comes from
 
