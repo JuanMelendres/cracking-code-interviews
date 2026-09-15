@@ -14,10 +14,10 @@ rounds: 4
 
 ## Table of Contents
 
-1. [Round 1 — Technical depth + Java fluency (25 min)](#round-1--technical-depth--java-fluency-25-min)
-2. [Round 2 — Coding (20 min)](#round-2--coding-20-min)
-3. [Round 3 — System design + production judgment: hotel booking system (30 min)](#round-3--system-design--production-judgment-hotel-booking-system-30-min)
-4. [Round 4 — Behavioral (15 min)](#round-4--behavioral-15-min)
+1. [Round 1 — Technical depth + Java fluency (25 min)](#round-1-technical-depth-java-fluency-25-min)
+2. [Round 2 — Coding (20 min)](#round-2-coding-20-min)
+3. [Round 3 — System design + production judgment: hotel booking system (30 min)](#round-3-system-design-production-judgment-hotel-booking-system-30-min)
+4. [Round 4 — Behavioral (15 min)](#round-4-behavioral-15-min)
 5. [§8.7 Final scorecard](#87-final-scorecard)
 
 ---

@@ -19,7 +19,7 @@ last_reviewed: 2026-07-31
 2. [Why this week, in this order](#why-this-week-in-this-order)
 3. [Dependency graph](#dependency-graph)
 4. [Files in this pack](#files-in-this-pack)
-5. [Daily schedule](#daily-schedule-10hweek-study--10h-practice)
+5. [Daily schedule](#daily-schedule-10hweek-study-10h-practice)
 6. [Exit criteria](#exit-criteria)
 
 ---

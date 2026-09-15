@@ -286,6 +286,6 @@ Design the serialization format using this chapter's null-marker technique (Sect
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a BST invariant guarantees and why in-order traversal visits nodes in sorted order | [Section 3](#3-foundation-l1) |
-| L2 | Decide whether a tree problem needs a return-value flow, a side-channel accumulator, or a downward-passed state, before writing code | [Interview Question 1](#question-1--how-would-you-find-the-diameter-of-a-binary-tree--the-longest-path-between-any-two-nodes) |
+| L2 | Decide whether a tree problem needs a return-value flow, a side-channel accumulator, or a downward-passed state, before writing code | [Interview Question 1](#question-1-how-would-you-find-the-diameter-of-a-binary-tree-the-longest-path-between-any-two-nodes) |
 | L3 | Derive the single-pass diameter argument and the hash-map-assisted tree-reconstruction argument precisely | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real O(n) vs. O(n²) tree-reconstruction regression (Section 17), and design a real hierarchical serialization format that avoids a genuine data-integrity ambiguity (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

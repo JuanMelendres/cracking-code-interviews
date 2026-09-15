@@ -305,6 +305,6 @@ Design this using a doubly-linked list plus a hash map, and connect it directly 
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, why a linked list can't be indexed directly the way an array can, and what a dummy head is for | [Section 3](#3-foundation-l1) |
-| L2 | Name and apply the slow/fast pointer, fixed-gap, and in-place reversal techniques to a new, unfamiliar problem | [Interview Question 1](#question-1--how-would-you-detect-whether-a-linked-list-contains-a-cycle-using-o1-extra-space) |
+| L2 | Name and apply the slow/fast pointer, fixed-gap, and in-place reversal techniques to a new, unfamiliar problem | [Interview Question 1](#question-1-how-would-you-detect-whether-a-linked-list-contains-a-cycle-using-o1-extra-space) |
 | L3 | Derive the correctness argument for Floyd's cycle detection and the fixed-gap technique, and decompose a combination problem into its constituent sub-techniques | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real reversal/pointer-loss bug (Section 17) from its symptom alone, and design a real system component (an LRU cache, Section 18) using this chapter's pointer-discipline techniques deliberately | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

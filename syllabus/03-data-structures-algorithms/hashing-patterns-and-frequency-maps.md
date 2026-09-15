@@ -269,6 +269,6 @@ Design the core data structure directly from this chapter's Section 3 principle:
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, why a `HashSet`/`HashMap` answers "have I seen this" in roughly constant time | [Section 3](#3-foundation-l1) |
-| L2 | Recognize a hashing-shaped problem (frequency counting, membership checks, grouping by a computed key) and choose between `HashSet` and `HashMap` correctly | [Interview Question 1](#question-1--how-would-you-check-if-a-string-has-all-unique-characters) |
+| L2 | Recognize a hashing-shaped problem (frequency counting, membership checks, grouping by a computed key) and choose between `HashSet` and `HashMap` correctly | [Interview Question 1](#question-1-how-would-you-check-if-a-string-has-all-unique-characters) |
 | L3 | Derive the prefix-sum-plus-hash-map algebraic identity, and explain the pigeonhole-principle argument behind hash-set cycle detection | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real production idempotency/rate-limiting failure (Section 17) by correctly distinguishing a concurrency bug from a hash-distribution degradation, and design a system component that accounts for the latter risk up front (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

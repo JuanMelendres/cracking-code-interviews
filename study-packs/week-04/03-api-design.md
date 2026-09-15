@@ -23,7 +23,7 @@ canonical: ../../syllabus/07-api-design/api-design.md
 
 1. [The concept](#1-the-concept)
 2. [Why it exists](#2-why-it-exists)
-3. [Pagination, measured — why not OFFSET](#3-pagination-measured--why-not-offset)
+3. [Pagination, measured — why not OFFSET](#3-pagination-measured-why-not-offset)
 4. [Resource naming and standard methods](#4-resource-naming-and-standard-methods)
 5. [Error design](#5-error-design)
 6. [Trade-offs](#6-trade-offs)

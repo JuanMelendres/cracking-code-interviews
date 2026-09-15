@@ -34,8 +34,8 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Level 1 — Foundation](#level-1--foundation)
-4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+3. [Level 1 — Foundation](#level-1-foundation)
+4. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 5. [Mental Model](#mental-model)
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)
@@ -371,7 +371,7 @@ Cause-chaining and suppressed exceptions are both instances of a broader princip
 
 **Evaluation criteria (1–5).** 1: doesn't know `RuntimeException` is the unchecked/checked dividing line. 3: correctly states the `RuntimeException` rule with a couple of real examples. 5: full `Throwable`/`Error`/`Exception`/`RuntimeException` hierarchy stated correctly, unprompted, with real examples in every category.
 
-**Related references.** [§ Level 1 — Foundation](#level-1--foundation); [§ Core Concepts](#core-concepts).
+**Related references.** [§ Level 1 — Foundation](#level-1-foundation); [§ Core Concepts](#core-concepts).
 
 ---
 
@@ -456,7 +456,7 @@ What's the actual root of Java's exception hierarchy, and what's the structural 
 Forgetting `Error` exists, or thinking checked/unchecked is marked by an annotation rather than being purely which class is extended.
 
 **Related:**
-[Level 1 — Foundation](#level-1--foundation), [Core Concepts](#core-concepts)
+[Level 1 — Foundation](#level-1-foundation), [Core Concepts](#core-concepts)
 
 ### Card: What chaining the cause preserves
 

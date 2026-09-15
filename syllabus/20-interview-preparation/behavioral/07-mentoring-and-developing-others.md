@@ -32,8 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: The Story Is About the Other Person's Growth, Not Your Patience](#mental-model-the-story-is-about-the-other-persons-growth-not-your-patience)
 - [The Mentoring Story Structure](#the-mentoring-story-structure)
 - [Illustrative Example](#illustrative-example)

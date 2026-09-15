@@ -194,6 +194,6 @@ Design an incremental de-risking strategy using this chapter's techniques direct
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what "legacy code" means in this specific sense, and what a characterization test captures | [Section 3](#3-foundation-l1) |
-| L2 | Apply the two-step probe-then-assert characterization workflow to a new, unfamiliar piece of untested code | [Interview Question 2](#question-2--whats-the-difference-between-a-characterization-test-and-a-normal-unit-test-that-verifies-correct-behavior) |
+| L2 | Apply the two-step probe-then-assert characterization workflow to a new, unfamiliar piece of untested code | [Interview Question 2](#question-2-whats-the-difference-between-a-characterization-test-and-a-normal-unit-test-that-verifies-correct-behavior) |
 | L3 | Explain why probing before asserting matters, and the distinction between characterization tests and specification tests | [Section 7's real evidence](#7-examples), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real production regression as a missing-characterization-test failure (Section 17), and design a targeted, incremental de-risking strategy for a large legacy module (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

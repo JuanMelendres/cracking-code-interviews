@@ -39,11 +39,11 @@ official_references:
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [Level 1 — Foundation](#level-1--foundation)
-3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+2. [Level 1 — Foundation](#level-1-foundation)
+3. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 4. [The Four-Beat Structure](#the-four-beat-structure)
 5. [Worked Example](#worked-example)
-6. [ADRs — the Written Form of the Same Skill](#adrs--the-written-form-of-the-same-skill)
+6. [ADRs — the Written Form of the Same Skill](#adrs-the-written-form-of-the-same-skill)
 7. [Common Mistakes](#common-mistakes)
 8. [Staff-Level Discussion](#staff-level-discussion)
 9. [Interview Questions](#interview-questions)
@@ -232,7 +232,7 @@ Lets a real decision and its reasoning survive past the meeting where it was mad
 Writing an ADR as a post-hoc justification rather than a record of reasoning at the time.
 
 **Related:**
-[ADRs — the Written Form of the Same Skill](#adrs--the-written-form-of-the-same-skill)
+[ADRs — the Written Form of the Same Skill](#adrs-the-written-form-of-the-same-skill)
 
 ## Practice Exercises
 

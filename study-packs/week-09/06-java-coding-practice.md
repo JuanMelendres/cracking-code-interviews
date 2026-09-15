@@ -10,14 +10,14 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [LC 1114 — Print in Order](#lc-1114--print-in-order)
-2. [LC 1115 — Print FooBar Alternately](#lc-1115--print-foobar-alternately)
-3. [LC 1116 — Print Zero Even Odd](#lc-1116--print-zero-even-odd)
-4. [LC 62 — Unique Paths](#lc-62--unique-paths)
-5. [LC 1143 — Longest Common Subsequence](#lc-1143--longest-common-subsequence)
-6. [LC 416 — Partition Equal Subset Sum](#lc-416--partition-equal-subset-sum)
-7. [LC 5 — Longest Palindromic Substring](#lc-5--longest-palindromic-substring)
-8. [Verification](#verification--real-not-asserted)
+1. [LC 1114 — Print in Order](#lc-1114-print-in-order)
+2. [LC 1115 — Print FooBar Alternately](#lc-1115-print-foobar-alternately)
+3. [LC 1116 — Print Zero Even Odd](#lc-1116-print-zero-even-odd)
+4. [LC 62 — Unique Paths](#lc-62-unique-paths)
+5. [LC 1143 — Longest Common Subsequence](#lc-1143-longest-common-subsequence)
+6. [LC 416 — Partition Equal Subset Sum](#lc-416-partition-equal-subset-sum)
+7. [LC 5 — Longest Palindromic Substring](#lc-5-longest-palindromic-substring)
+8. [Verification](#verification-real-not-asserted)
 
 ---
 

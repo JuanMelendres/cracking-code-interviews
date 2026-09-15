@@ -23,7 +23,7 @@ canonical: ../../syllabus/10-distributed-systems/data-partitioning-and-consisten
 
 1. [The concept](#1-the-concept)
 2. [Why it exists](#2-why-it-exists)
-3. [Naive hash % N vs consistent hashing, measured](#3-naive-hash--n-vs-consistent-hashing-measured)
+3. [Naive hash % N vs consistent hashing, measured](#3-naive-hash-n-vs-consistent-hashing-measured)
 4. [Virtual nodes: why 150, not 1](#4-virtual-nodes-why-150-not-1)
 5. [Trade-offs](#5-trade-offs)
 6. [Interview questions](#6-interview-questions)

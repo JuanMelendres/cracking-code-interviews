@@ -10,15 +10,15 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [LC 3 — Longest Substring Without Repeating Characters](#lc-3--longest-substring-without-repeating-characters)
-2. [LC 207 — Course Schedule](#lc-207--course-schedule)
-3. [LC 56 — Merge Intervals](#lc-56--merge-intervals)
-4. [LC 139 — Word Break](#lc-139--word-break)
-5. [LC 128 — Longest Consecutive Sequence](#lc-128--longest-consecutive-sequence)
-6. [LC 973 — K Closest Points to Origin](#lc-973--k-closest-points-to-origin)
-7. [LC 55 — Jump Game](#lc-55--jump-game)
-8. [LC 127 — Word Ladder](#lc-127--word-ladder)
-9. [Verification](#verification--real-not-asserted)
+1. [LC 3 — Longest Substring Without Repeating Characters](#lc-3-longest-substring-without-repeating-characters)
+2. [LC 207 — Course Schedule](#lc-207-course-schedule)
+3. [LC 56 — Merge Intervals](#lc-56-merge-intervals)
+4. [LC 139 — Word Break](#lc-139-word-break)
+5. [LC 128 — Longest Consecutive Sequence](#lc-128-longest-consecutive-sequence)
+6. [LC 973 — K Closest Points to Origin](#lc-973-k-closest-points-to-origin)
+7. [LC 55 — Jump Game](#lc-55-jump-game)
+8. [LC 127 — Word Ladder](#lc-127-word-ladder)
+9. [Verification](#verification-real-not-asserted)
 
 ---
 

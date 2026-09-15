@@ -32,8 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: The Same Facts, a Different Telling](#mental-model-the-same-facts-a-different-telling)
 - [The Reframing Lens](#the-reframing-lens)
 - [Worked Example](#worked-example)

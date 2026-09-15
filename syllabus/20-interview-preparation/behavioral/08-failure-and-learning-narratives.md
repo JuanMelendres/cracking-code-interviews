@@ -33,8 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: A Real Failure, Owned Without Excessive Self-Blame](#mental-model-a-real-failure-owned-without-excessive-self-blame)
 - [The Failure Story Structure (STAR-L)](#the-failure-story-structure-star-l)
 - [Choosing the Right Failure](#choosing-the-right-failure)

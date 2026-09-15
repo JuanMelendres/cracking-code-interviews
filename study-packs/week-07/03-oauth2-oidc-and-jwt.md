@@ -21,8 +21,8 @@ canonical: ../../syllabus/12-security/oauth2-oidc-and-jwt.md
 
 ## Table of Contents
 
-1. [OAuth2 and OIDC — the concept](#1-oauth2-and-oidc--the-concept)
-2. [Authorization Code + PKCE, walked through](#2-authorization-code--pkce-walked-through)
+1. [OAuth2 and OIDC — the concept](#1-oauth2-and-oidc-the-concept)
+2. [Authorization Code + PKCE, walked through](#2-authorization-code-pkce-walked-through)
 3. [JWT mechanics, reproduced](#3-jwt-mechanics-reproduced)
 4. [Why you cannot revoke a JWT](#4-why-you-cannot-revoke-a-jwt)
 5. [Trade-offs](#5-trade-offs)

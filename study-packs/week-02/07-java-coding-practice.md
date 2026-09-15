@@ -12,13 +12,13 @@ Narrate all six phases from `study-packs/week-01/04-coding-interview-communicati
 
 ## Table of Contents
 
-1. [Day 1 — LC 704, LC 35](#day-1--lc-704-binary-search-lc-35-search-insert-position)
-2. [Day 2 — LC 33](#day-2--lc-33-search-in-rotated-sorted-array)
-3. [Day 3 — LC 875](#day-3--lc-875-koko-eating-bananas)
-4. [Day 4 — LC 20, LC 155](#day-4--lc-20-valid-parentheses-lc-155-min-stack)
-5. [Day 5 — LC 739 + the errata](#day-5--lc-739-daily-temperatures--the-errata-drill)
-6. [Day 6 — LC 208](#day-6--lc-208-implement-trie)
-7. [Verification](#verification--real-not-asserted)
+1. [Day 1 — LC 704, LC 35](#day-1-lc-704-binary-search-lc-35-search-insert-position)
+2. [Day 2 — LC 33](#day-2-lc-33-search-in-rotated-sorted-array)
+3. [Day 3 — LC 875](#day-3-lc-875-koko-eating-bananas)
+4. [Day 4 — LC 20, LC 155](#day-4-lc-20-valid-parentheses-lc-155-min-stack)
+5. [Day 5 — LC 739 + the errata](#day-5-lc-739-daily-temperatures-the-errata-drill)
+6. [Day 6 — LC 208](#day-6-lc-208-implement-trie)
+7. [Verification](#verification-real-not-asserted)
 
 ---
 

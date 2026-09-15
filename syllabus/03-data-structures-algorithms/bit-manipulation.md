@@ -270,6 +270,6 @@ Design this using a single packed `long` per user (one bit per permission flag) 
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what AND/OR/XOR do bit-by-bit, and why `x ^ x = 0` | [Section 3](#3-foundation-l1) |
-| L2 | Recognize when a problem's phrasing ("appears twice except one," "O(1) space") signals a specific bit-manipulation technique | [Interview Question 1](#question-1--given-an-array-where-every-element-appears-twice-except-for-one-find-that-single-element-using-o1-extra-space) |
+| L2 | Recognize when a problem's phrasing ("appears twice except one," "O(1) space") signals a specific bit-manipulation technique | [Interview Question 1](#question-1-given-an-array-where-every-element-appears-twice-except-for-one-find-that-single-element-using-o1-extra-space) |
 | L3 | Derive Kernighan's bit trick's borrow-propagation mechanism, and explain why Sum of Two Integers works correctly for negative operands | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real integer-overflow bug in a sum-based algorithm as a case for a bit-manipulation alternative (Section 17), and design a real memory-efficient bitmask representation deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

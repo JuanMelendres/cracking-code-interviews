@@ -10,11 +10,11 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [LC 215 — Kth Largest Element in an Array](#lc-215--kth-largest-element-in-an-array)
-2. [LC 347 — Top K Frequent Elements](#lc-347--top-k-frequent-elements)
-3. [LC 23 — Merge K Sorted Lists](#lc-23--merge-k-sorted-lists)
-4. [LC 295 — Find Median from Data Stream](#lc-295--find-median-from-data-stream)
-5. [Verification](#verification--real-not-asserted)
+1. [LC 215 — Kth Largest Element in an Array](#lc-215-kth-largest-element-in-an-array)
+2. [LC 347 — Top K Frequent Elements](#lc-347-top-k-frequent-elements)
+3. [LC 23 — Merge K Sorted Lists](#lc-23-merge-k-sorted-lists)
+4. [LC 295 — Find Median from Data Stream](#lc-295-find-median-from-data-stream)
+5. [Verification](#verification-real-not-asserted)
 
 ---
 

@@ -238,6 +238,6 @@ Design the representation choice for monetary amounts end to end: what type stor
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, why `0.1 + 0.2 != 0.3` in Java, and state that fixed-width integers have a hard maximum value | [Section 3](#3-foundation-l1) |
-| L2 | Name Java's integer encoding (two's complement) and floating-point encoding (IEEE 754), and explain why a narrowing cast truncates rather than rounds or clamps | [Interview Question 2](#question-2--what-happens-when-you-add-1-to-integermax_value-in-java) |
+| L2 | Name Java's integer encoding (two's complement) and floating-point encoding (IEEE 754), and explain why a narrowing cast truncates rather than rounds or clamps | [Interview Question 2](#question-2-what-happens-when-you-add-1-to-integermax_value-in-java) |
 | L3 | Derive a two's-complement negation by hand (invert and add 1) and explain, mechanistically, why IEEE 754 addition requires exponent alignment and re-rounding on every operation | [Section 10's real measurements](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Connect a numeric-representation choice to a real, historical, high-stakes failure (Section 13), and design a monetary data model that avoids the entire failure class rather than patching individual symptoms (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

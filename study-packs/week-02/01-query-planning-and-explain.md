@@ -24,7 +24,7 @@ canonical: ../../syllabus/06-databases/query-planning-and-explain-analyze.md
 1. [The concept](#1-the-concept)
 2. [Why it exists](#2-why-it-exists)
 3. [Three real diagnosed scenarios](#3-three-real-diagnosed-scenarios)
-4. [Join algorithms — when the planner picks each](#4-join-algorithms--when-the-planner-picks-each)
+4. [Join algorithms — when the planner picks each](#4-join-algorithms-when-the-planner-picks-each)
 5. [Trade-offs](#5-trade-offs)
 6. [Interview questions](#6-interview-questions)
 7. [Common mistakes](#7-common-mistakes)

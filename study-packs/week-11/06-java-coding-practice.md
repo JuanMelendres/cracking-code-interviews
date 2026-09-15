@@ -12,7 +12,7 @@ last_reviewed: 2026-07-31
 
 1. [The 15 problems](#the-15-problems)
 2. [Pattern map](#pattern-map)
-3. [Verification](#verification--real-not-asserted)
+3. [Verification](#verification-real-not-asserted)
 
 ---
 

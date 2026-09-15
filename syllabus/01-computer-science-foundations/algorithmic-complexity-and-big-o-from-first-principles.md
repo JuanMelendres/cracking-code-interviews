@@ -267,6 +267,6 @@ Design the core data structure and access pattern for this check so that it is `
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | State, in plain language, what "doubling the input" does to the runtime of an `O(1)`, `O(log n)`, `O(n)`, and `O(n²)` operation, using an everyday analogy for each | [Section 3](#3-foundation-l1) |
-| L2 | Read a piece of code and derive its Big-O by counting loop/recursion depth against `n`, correctly distinguishing average-case from worst-case for a `HashMap`-based example | [Interview Question 1](#question-1--whats-the-big-o-of-this-code-and-why) |
+| L2 | Read a piece of code and derive its Big-O by counting loop/recursion depth against `n`, correctly distinguishing average-case from worst-case for a `HashMap`-based example | [Interview Question 1](#question-1-whats-the-big-o-of-this-code-and-why) |
 | L3 | Explain why an `O(n)` and an `O(n²)` algorithm at the same input size can have wildly different wall-clock times despite one asymptotic class being "better," and derive `O(n log n)` for a divide-and-conquer algorithm from its recurrence relation | [Section 10's real measurements](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real production symptom (Section 17) as a complexity-class regression rather than a constant-factor slowdown, and articulate why a team-wide review discipline for hidden quadratic patterns is worth its cost at organizational scale | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

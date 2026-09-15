@@ -286,6 +286,6 @@ Design this as a binary-search-on-answer problem directly: define the candidate 
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, how binary search eliminates half the remaining candidates each step | [Section 3](#3-foundation-l1) |
-| L2 | Distinguish boundary-finding, rotated-array, and answer-space binary search variants, and choose the right comparison logic for each | [Interview Question 2](#question-2--why-does-finding-the-minimum-in-a-rotated-sorted-array-need-a-different-comparison-than-finding-a-specific-target-value-in-the-same-rotated-array) |
+| L2 | Distinguish boundary-finding, rotated-array, and answer-space binary search variants, and choose the right comparison logic for each | [Interview Question 2](#question-2-why-does-finding-the-minimum-in-a-rotated-sorted-array-need-a-different-comparison-than-finding-a-specific-target-value-in-the-same-rotated-array) |
 | L3 | State and verify the monotonicity argument required for binary-search-on-answer to apply, and explain the sentinel-value technique for partition-based binary search | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real large-scale binary-search bug (Section 17) as an integer-overflow midpoint calculation, and design a real capacity-sizing system using binary-search-on-answer methodology (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

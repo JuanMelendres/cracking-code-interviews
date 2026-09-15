@@ -10,9 +10,9 @@ Applying the nine-layer stack from [`syllabus/20-interview-preparation/technical
 
 ## Table of Contents
 
-1. [T-610 — Query Planning](#1-t-610--query-planning)
-2. [T-605 — Data Modelling](#2-t-605--data-modelling)
-3. [T-1505 — Trade-off Narration](#3-t-1505--trade-off-narration)
+1. [T-610 — Query Planning](#1-t-610-query-planning)
+2. [T-605 — Data Modelling](#2-t-605-data-modelling)
+3. [T-1505 — Trade-off Narration](#3-t-1505-trade-off-narration)
 4. [Practice Exercises](#4-practice-exercises)
 
 ---

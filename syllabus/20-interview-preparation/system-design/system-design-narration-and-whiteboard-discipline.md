@@ -37,8 +37,8 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [Level 1 — Foundation](#level-1--foundation)
-3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+2. [Level 1 — Foundation](#level-1-foundation)
+3. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 4. [The Four-Part Discipline](#the-four-part-discipline)
 5. [Diagram Sequencing](#diagram-sequencing)
 6. [Worked Example](#worked-example)

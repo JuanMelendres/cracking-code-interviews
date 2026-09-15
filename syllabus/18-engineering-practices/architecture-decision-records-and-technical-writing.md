@@ -202,6 +202,6 @@ Design the process around this chapter's own real, cheap enforcement mechanism (
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Name an ADR's four required sections and explain what each captures | [Section 3](#3-foundation-l1) |
-| L2 | Write an ADR for a real decision that honestly states genuine alternatives and real negative consequences | [Interview Question 1](#question-1--what-are-the-required-sections-of-an-adr-and-why-does-consequences-need-to-include-negative-consequences-specifically) |
+| L2 | Write an ADR for a real decision that honestly states genuine alternatives and real negative consequences | [Interview Question 1](#question-1-what-are-the-required-sections-of-an-adr-and-why-does-consequences-need-to-include-negative-consequences-specifically) |
 | L3 | Explain the asymmetry argument for writing ADRs at decision time, and the gap between mechanical structural completeness and genuine honesty | [Section 7's real evidence](#7-examples), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real ADR-corpus discoverability failure (Section 17), and design a lightweight, mechanically-enforced ADR adoption process for a skeptical team (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

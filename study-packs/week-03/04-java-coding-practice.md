@@ -12,13 +12,13 @@ Narrate the recursion invariant *before* writing code on every problem this week
 
 ## Table of Contents
 
-1. [LC 104 — Maximum Depth of Binary Tree](#lc-104--maximum-depth-of-binary-tree)
-2. [LC 226 — Invert Binary Tree](#lc-226--invert-binary-tree)
-3. [LC 98 — Validate Binary Search Tree](#lc-98--validate-binary-search-tree)
-4. [LC 235 — Lowest Common Ancestor of a BST](#lc-235--lowest-common-ancestor-of-a-bst)
-5. [LC 102 — Binary Tree Level Order Traversal](#lc-102--binary-tree-level-order-traversal)
-6. [LC 199 — Binary Tree Right Side View](#lc-199--binary-tree-right-side-view)
-7. [Verification](#verification--real-not-asserted)
+1. [LC 104 — Maximum Depth of Binary Tree](#lc-104-maximum-depth-of-binary-tree)
+2. [LC 226 — Invert Binary Tree](#lc-226-invert-binary-tree)
+3. [LC 98 — Validate Binary Search Tree](#lc-98-validate-binary-search-tree)
+4. [LC 235 — Lowest Common Ancestor of a BST](#lc-235-lowest-common-ancestor-of-a-bst)
+5. [LC 102 — Binary Tree Level Order Traversal](#lc-102-binary-tree-level-order-traversal)
+6. [LC 199 — Binary Tree Right Side View](#lc-199-binary-tree-right-side-view)
+7. [Verification](#verification-real-not-asserted)
 
 ---
 

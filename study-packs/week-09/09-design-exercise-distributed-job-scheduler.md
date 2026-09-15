@@ -12,12 +12,12 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [Phase 1 — Clarify](#phase-1--clarify)
-2. [Phase 2 — Estimate](#phase-2--estimate)
-3. [Phase 3 — API](#phase-3--api)
-4. [Phase 4 — Data](#phase-4--data)
-5. [Phase 5 — Architecture](#phase-5--architecture)
-6. [Phase 6 — Bottlenecks](#phase-6--bottlenecks)
+1. [Phase 1 — Clarify](#phase-1-clarify)
+2. [Phase 2 — Estimate](#phase-2-estimate)
+3. [Phase 3 — API](#phase-3-api)
+4. [Phase 4 — Data](#phase-4-data)
+5. [Phase 5 — Architecture](#phase-5-architecture)
+6. [Phase 6 — Bottlenecks](#phase-6-bottlenecks)
 7. [Exit check](#exit-check)
 
 ---

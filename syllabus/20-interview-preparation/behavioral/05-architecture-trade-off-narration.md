@@ -34,8 +34,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: The Story Is About the Decision Process, Not the Diagram](#mental-model-the-story-is-about-the-decision-process-not-the-diagram)
 - [The Architecture Decision Story Structure](#the-architecture-decision-story-structure)
 - [Illustrative Example](#illustrative-example)

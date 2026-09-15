@@ -194,6 +194,6 @@ Design the structure around this chapter's two core levers explicitly: a standin
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain what mentoring is, how it differs from sponsorship, and why both matter for advancement | [Section 3](#3-foundation-l1) |
-| L2 | Apply the GROW conversation structure and the SBI feedback model, and state a delegation rung explicitly when handing off work | [Section 7's worked example](#7-examples), [Interview Question 2](#question-2--how-do-you-give-feedback-thats-actually-actionable-not-just-true) |
+| L2 | Apply the GROW conversation structure and the SBI feedback model, and state a delegation rung explicitly when handing off work | [Section 7's worked example](#7-examples), [Interview Question 2](#question-2-how-do-you-give-feedback-thats-actually-actionable-not-just-true) |
 | L3 | Distinguish productive struggle from a stall, and explain why immediate feedback beats saved-for-review feedback | [Section 5](#5-how-it-works-internally-l3), [Debugging Exercise](#17-debugging-exercises) |
 | L4 | Reason about mentoring as an organizational multiplier decision, and design a mentoring structure calibrated to real time constraints | [Section 13](#13-staffsystem-level-considerations-l4), [Design Exercise](#18-design-exercises) |

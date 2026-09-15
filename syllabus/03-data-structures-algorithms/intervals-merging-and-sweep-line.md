@@ -271,6 +271,6 @@ Design the two operations using this chapter's two core techniques directly: min
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, when two intervals overlap, and why sort order matters for interval problems | [Section 3](#3-foundation-l1) |
-| L2 | Choose the correct sort key (start or end) for a new interval problem based on the specific question being asked | [Interview Question 2](#question-2--why-does-minimum-number-of-arrows-to-burst-balloons-sort-by-end-coordinate-rather-than-start-coordinate) |
+| L2 | Choose the correct sort key (start or end) for a new interval problem based on the specific question being asked | [Interview Question 2](#question-2-why-does-minimum-number-of-arrows-to-burst-balloons-sort-by-end-coordinate-rather-than-start-coordinate) |
 | L3 | Derive the heap-reuse correctness argument for Meeting Rooms II, and explain precisely why an interval comparator using raw subtraction can silently produce a wrong sort order | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real production sort-ordering bug as a comparator-overflow issue (Section 17), and design a real resource-booking system using both this chapter's core techniques deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

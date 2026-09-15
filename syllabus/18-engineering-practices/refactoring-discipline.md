@@ -192,6 +192,6 @@ Design the checklist item around this chapter's own mechanical proof (Section 5)
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | State the precise definition of refactoring, and explain why a refactor requires an existing test suite | [Section 3](#3-foundation-l1) |
-| L2 | Perform an Extract Method refactor in small, individually-verified steps, keeping it separate from any behavior change | [Interview Question 1](#question-1--whats-the-precise-definition-of-refactoring-and-why-does-that-precision-matter-in-practice) |
+| L2 | Perform an Extract Method refactor in small, individually-verified steps, keeping it separate from any behavior change | [Interview Question 1](#question-1-whats-the-precise-definition-of-refactoring-and-why-does-that-precision-matter-in-practice) |
 | L3 | Explain why an unmodified, still-passing test suite is mechanical proof of behavior preservation, not just a convention | [Section 7's real evidence](#7-examples), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real mislabeled-refactor PR from a test-modification signal (Section 17), and design a team review checklist item that catches this pattern mechanically (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

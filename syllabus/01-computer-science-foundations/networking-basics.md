@@ -208,6 +208,6 @@ Design the outbound HTTP client configuration: state explicitly why each downstr
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, that HTTP is text sent over a TCP connection, and that a TCP handshake happens before any data can flow | [Section 3](#3-foundation-l1) |
-| L2 | Name the three-way handshake's steps, explain what an IP address and a port each identify, and explain why HTTP needs `Content-Length` or chunked encoding at all | [Interview Question 2](#question-2--why-does-tcp-need-a-three-way-handshake-instead-of-just-sending-data-immediately) |
+| L2 | Name the three-way handshake's steps, explain what an IP address and a port each identify, and explain why HTTP needs `Content-Length` or chunked encoding at all | [Interview Question 2](#question-2-why-does-tcp-need-a-three-way-handshake-instead-of-just-sending-data-immediately) |
 | L3 | Explain the 4-tuple that uniquely identifies a TCP connection, and why connection pooling and keep-alive exist as a direct consequence of handshake cost and finite OS socket resources | [Section 10's real measurements](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real production symptom (Section 17) by correctly locating which network layer it belongs to, and design a system that isolates independent connection pools to prevent one dependency's failure from starving the others (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

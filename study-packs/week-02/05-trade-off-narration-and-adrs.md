@@ -22,7 +22,7 @@ canonical: ../../syllabus/20-interview-preparation/technical-answers/trade-off-n
 1. [Why this exists](#1-why-this-exists)
 2. [The four-beat structure](#2-the-four-beat-structure)
 3. [Worked example](#3-worked-example)
-4. [ADRs — the written form of the same skill](#4-adrs--the-written-form-of-the-same-skill)
+4. [ADRs — the written form of the same skill](#4-adrs-the-written-form-of-the-same-skill)
 5. [Interview questions](#5-interview-questions)
 6. [Common mistakes](#6-common-mistakes)
 7. [Staff-level discussion](#7-staff-level-discussion)

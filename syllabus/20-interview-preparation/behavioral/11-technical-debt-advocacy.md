@@ -34,8 +34,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: The Business Case, Not the Technical Case](#mental-model-the-business-case-not-the-technical-case)
 - [The Technical Debt Advocacy Story Structure](#the-technical-debt-advocacy-story-structure)
 - [Illustrative Example](#illustrative-example)

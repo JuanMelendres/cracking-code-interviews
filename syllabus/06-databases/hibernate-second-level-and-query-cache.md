@@ -49,8 +49,8 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Level 1 — Foundation](#level-1--foundation)
-4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+3. [Level 1 — Foundation](#level-1-foundation)
+4. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 5. [Mental Model](#mental-model)
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Core Concepts](#core-concepts)

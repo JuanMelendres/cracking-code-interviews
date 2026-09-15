@@ -10,12 +10,12 @@ last_reviewed: 2026-07-29
 
 ## Table of Contents
 
-1. [LC 200 — Number of Islands](#lc-200--number-of-islands)
-2. [LC 133 — Clone Graph](#lc-133--clone-graph)
-3. [LC 207 — Course Schedule](#lc-207--course-schedule)
-4. [LC 210 — Course Schedule II](#lc-210--course-schedule-ii)
-5. [LC 547 — Number of Provinces](#lc-547--number-of-provinces)
-6. [Verification](#verification--real-not-asserted)
+1. [LC 200 — Number of Islands](#lc-200-number-of-islands)
+2. [LC 133 — Clone Graph](#lc-133-clone-graph)
+3. [LC 207 — Course Schedule](#lc-207-course-schedule)
+4. [LC 210 — Course Schedule II](#lc-210-course-schedule-ii)
+5. [LC 547 — Number of Provinces](#lc-547-number-of-provinces)
+6. [Verification](#verification-real-not-asserted)
 
 ---
 

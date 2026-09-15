@@ -14,9 +14,9 @@ rounds: 3
 
 ## Table of Contents
 
-1. [Round 1 — Technical deep-dive (20 min)](#round-1--technical-deep-dive-20-min)
-2. [Round 2 — Coding (20 min)](#round-2--coding-20-min)
-3. [Round 3 — System design: rate limiter (20 min)](#round-3--system-design-rate-limiter-20-min)
+1. [Round 1 — Technical deep-dive (20 min)](#round-1-technical-deep-dive-20-min)
+2. [Round 2 — Coding (20 min)](#round-2-coding-20-min)
+3. [Round 3 — System design: rate limiter (20 min)](#round-3-system-design-rate-limiter-20-min)
 4. [Debrief](#debrief)
 
 ---

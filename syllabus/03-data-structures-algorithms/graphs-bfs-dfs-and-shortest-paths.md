@@ -334,6 +334,6 @@ Design this using topological sort (referenced in Section 16 as this repository'
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, the difference between BFS and DFS, and why a graph can have cycles a tree cannot | [Section 3](#3-foundation-l1) |
-| L2 | Choose the correct algorithm family (BFS, Dijkstra, Union-Find, MST, bounded relaxation) for a new, unfamiliar graph problem based on its specific properties | [Interview Question 1](#question-1--given-a-weighted-graph-and-a-source-node-find-the-shortest-path-to-every-other-node-what-algorithm-would-you-use-and-what-assumption-does-it-rely-on) |
+| L2 | Choose the correct algorithm family (BFS, Dijkstra, Union-Find, MST, bounded relaxation) for a new, unfamiliar graph problem based on its specific properties | [Interview Question 1](#question-1-given-a-weighted-graph-and-a-source-node-find-the-shortest-path-to-every-other-node-what-algorithm-would-you-use-and-what-assumption-does-it-rely-on) |
 | L3 | Derive why plain Dijkstra fails under an extra path constraint, and explain Union-Find's amortized near-constant complexity precisely | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real routing/shortest-path bug as a Dijkstra-vs-constrained-relaxation mismatch (Section 17), and design a real dependency-ordering system using topological sort deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

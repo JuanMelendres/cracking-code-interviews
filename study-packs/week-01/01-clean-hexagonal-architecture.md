@@ -24,7 +24,7 @@ canonical: ../../syllabus/17-architecture/clean-hexagonal-architecture.md
 3. [How it works internally](#3-how-it-works-internally)
 4. [Trade-offs](#4-trade-offs)
 5. [Performance, memory, and concurrency implications](#5-performance-memory-and-concurrency-implications)
-6. [Production example](#6-production-example-template--fill-from-your-own-system)
+6. [Production example](#6-production-example-template-fill-from-your-own-system)
 7. [Interview questions](#7-interview-questions)
 8. [Common mistakes and anti-patterns](#8-common-mistakes-and-anti-patterns)
 9. [Staff-level discussion](#9-staff-level-discussion)

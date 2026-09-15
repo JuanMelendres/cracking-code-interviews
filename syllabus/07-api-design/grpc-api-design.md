@@ -42,8 +42,8 @@ official_references:
 
 1. [Learning Objectives](#learning-objectives)
 2. [Why This Matters in Interviews](#why-this-matters-in-interviews)
-3. [Level 1 — Foundation](#level-1--foundation)
-4. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+3. [Level 1 — Foundation](#level-1-foundation)
+4. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 5. [Mental Model](#mental-model)
 6. [Definition and Purpose](#definition-and-purpose)
 7. [Historical Context](#historical-context)
@@ -142,7 +142,7 @@ service BookService {
 }
 ```
 
-The real `protoc` compiler (paired with the grpc-java plugin in this chapter's demo) generates both the message classes (`Book`, `BookRequest`, ...) and the service scaffolding (`BookServiceGrpc`, with a blocking stub, an async stub, and a base class for the server implementation to extend) directly from this file — the client and server are compiled from the *same* source of truth, which is what eliminates the independent-interpretation risk described in [Level 1](#level-1--foundation).
+The real `protoc` compiler (paired with the grpc-java plugin in this chapter's demo) generates both the message classes (`Book`, `BookRequest`, ...) and the service scaffolding (`BookServiceGrpc`, with a blocking stub, an async stub, and a base class for the server implementation to extend) directly from this file — the client and server are compiled from the *same* source of truth, which is what eliminates the independent-interpretation risk described in [Level 1](#level-1-foundation).
 
 ### The four call shapes
 

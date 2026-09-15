@@ -21,7 +21,7 @@ last_reviewed: 2026-07-29
 4. [Files in this pack](#files-in-this-pack)
 5. [Daily schedule](#daily-schedule-20hweek-baseline)
 6. [Workload variants](#workload-variants)
-7. [Exit criteria](#exit-criteria--all-must-pass-before-starting-week-3)
+7. [Exit criteria](#exit-criteria-all-must-pass-before-starting-week-3)
 
 ---
 

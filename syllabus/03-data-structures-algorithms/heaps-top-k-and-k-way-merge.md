@@ -275,6 +275,6 @@ Design this using the bounded min-heap technique from Section 5/15 directly: a m
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a heap is for and why it beats re-sorting for repeated extreme-value queries | [Section 3](#3-foundation-l1) |
-| L2 | Choose correctly between a max-heap, a min-heap, and a size-bounded heap for a new problem | [Interview Question 2](#question-2--why-does-keeping-the-top-k-largest-elements-use-a-min-heap-rather-than-a-max-heap) |
+| L2 | Choose correctly between a max-heap, a min-heap, and a size-bounded heap for a new problem | [Interview Question 2](#question-2-why-does-keeping-the-top-k-largest-elements-use-a-min-heap-rather-than-a-max-heap) |
 | L3 | Derive the comparator-flipping argument for a bounded top-k heap, and explain the k-way-merge-over-an-implicit-grid technique | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real tie-break bug in a bounded-heap comparator (Section 17), and design a real streaming top-N system using this chapter's bounded-heap technique (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

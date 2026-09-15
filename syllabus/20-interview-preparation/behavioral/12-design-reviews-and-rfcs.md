@@ -33,8 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: The Story Is About Shaping the Room, Not Writing the Document](#mental-model-the-story-is-about-shaping-the-room-not-writing-the-document)
 - [The Design Review Story Structure](#the-design-review-story-structure)
 - [Illustrative Example](#illustrative-example)

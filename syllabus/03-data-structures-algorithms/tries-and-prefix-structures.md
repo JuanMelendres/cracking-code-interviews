@@ -352,6 +352,6 @@ Design this using a trie augmented with a cached top-k list at each node (a dire
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a trie is and why it answers prefix queries faster than scanning a set of strings | [Section 3](#3-foundation-l1) |
-| L2 | Recognize when a problem's prefix, wildcard, or shared-search-across-many-strings shape signals a trie is the right structure | [Interview Question 1](#question-1--why-would-you-use-a-trie-instead-of-a-hash-set-to-store-a-dictionary-of-words-if-you-need-to-support-does-any-word-start-with-this-prefix-queries) |
+| L2 | Recognize when a problem's prefix, wildcard, or shared-search-across-many-strings shape signals a trie is the right structure | [Interview Question 1](#question-1-why-would-you-use-a-trie-instead-of-a-hash-set-to-store-a-dictionary-of-words-if-you-need-to-support-does-any-word-start-with-this-prefix-queries) |
 | L3 | Derive the shared-pruning efficiency argument for multi-word grid search, and the greedy-bit-walk correctness argument for a binary trie | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real duplicate-result bug in a trie-based multi-word search (Section 17), and design a real autocomplete system using a cached-aggregate trie deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

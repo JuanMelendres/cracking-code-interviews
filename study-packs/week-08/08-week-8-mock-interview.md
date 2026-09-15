@@ -10,8 +10,8 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [Part A — Candidate script](#part-a--candidate-script)
-2. [Part B — Interviewer script](#part-b--interviewer-script)
+1. [Part A — Candidate script](#part-a-candidate-script)
+2. [Part B — Interviewer script](#part-b-interviewer-script)
 
 ---
 

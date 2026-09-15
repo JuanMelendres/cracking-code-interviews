@@ -38,8 +38,8 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [Level 1 — Foundation](#level-1--foundation)
-3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+2. [Level 1 — Foundation](#level-1-foundation)
+3. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 4. [Time-Boxing the Six Phases](#time-boxing-the-six-phases)
 5. [Handling a Mid-Round Change](#handling-a-mid-round-change)
 6. [The Exit-Check Habit](#the-exit-check-habit)

@@ -306,6 +306,6 @@ Design this by composing techniques from across this chapter and its prerequisit
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a "design" problem asks for and why it's about composing structures, not one novel algorithm | [Section 3](#3-foundation-l1) |
-| L2 | Choose the right composition of hash map, linked structure, heap, or sorted structure for a new cache/history/store design problem | [Interview Question 1](#question-1--design-a-data-structure-that-supports-get-and-put-in-o1-evicting-the-least-recently-used-entry-when-a-capacity-limit-is-reached) |
+| L2 | Choose the right composition of hash map, linked structure, heap, or sorted structure for a new cache/history/store design problem | [Interview Question 1](#question-1-design-a-data-structure-that-supports-get-and-put-in-o1-evicting-the-least-recently-used-entry-when-a-capacity-limit-is-reached) |
 | L3 | Derive the `minFreq`-invariant argument for LFU Cache and the bounded-heap-input argument for Design Twitter | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real LFU tie-break eviction bug (Section 17), and design a real rate-limiting system while correctly judging whether it requires thread-safety (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

@@ -32,8 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: A Lens, Not a New Set of Stories](#mental-model-a-lens-not-a-new-set-of-stories)
 - [The Amazon Leadership Principles as the Canonical Example](#the-amazon-leadership-principles-as-the-canonical-example)
 - [The Reframing Method](#the-reframing-method)

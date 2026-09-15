@@ -21,13 +21,13 @@ canonical: ../../syllabus/05-spring/transactional-proxy-mechanics-and-propagatio
 
 ## Table of Contents
 
-1. [The concept — AOP proxies](#1-the-concept--aop-proxies)
+1. [The concept — AOP proxies](#1-the-concept-aop-proxies)
 2. [Why it exists](#2-why-it-exists)
-3. [Demo 1 — self-invocation bypasses the proxy](#3-demo-1--self-invocation-bypasses-the-proxy)
-4. [Demo 2 — checked exceptions do not roll back by default](#4-demo-2--checked-exceptions-do-not-roll-back-by-default)
-5. [Demo 3 — REQUIRES_NEW commits independently](#5-demo-3--requires_new-commits-independently)
-6. [Demo 4 & 5 — readOnly is a hint, enforcement is driver-dependent](#6-demo-4--5--readonly-is-a-hint-enforcement-is-driver-dependent)
-7. [Demo 6 — connection-pool exhaustion from a long transaction](#7-demo-6--connection-pool-exhaustion-from-a-long-transaction)
+3. [Demo 1 — self-invocation bypasses the proxy](#3-demo-1-self-invocation-bypasses-the-proxy)
+4. [Demo 2 — checked exceptions do not roll back by default](#4-demo-2-checked-exceptions-do-not-roll-back-by-default)
+5. [Demo 3 — REQUIRES_NEW commits independently](#5-demo-3-requires_new-commits-independently)
+6. [Demo 4 & 5 — readOnly is a hint, enforcement is driver-dependent](#6-demo-4-5-readonly-is-a-hint-enforcement-is-driver-dependent)
+7. [Demo 6 — connection-pool exhaustion from a long transaction](#7-demo-6-connection-pool-exhaustion-from-a-long-transaction)
 8. [Propagation reference](#8-propagation-reference)
 9. [Trade-offs](#9-trade-offs)
 10. [Interview questions](#10-interview-questions)

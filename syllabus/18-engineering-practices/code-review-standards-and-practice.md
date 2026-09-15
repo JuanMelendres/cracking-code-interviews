@@ -188,6 +188,6 @@ Design the policy around this chapter's two core levers (Section 5/13) explicitl
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what code review is for and why feedback should be prioritized by impact | [Section 3](#3-foundation-l1) |
-| L2 | Distinguish blocking from optional feedback explicitly, and write a review comment that explains why, not just what | [Interview Question 1](#question-1--how-do-you-decide-what-feedback-in-a-code-review-is-blocking-versus-optional) |
+| L2 | Distinguish blocking from optional feedback explicitly, and write a review comment that explains why, not just what | [Interview Question 1](#question-1-how-do-you-decide-what-feedback-in-a-code-review-is-blocking-versus-optional) |
 | L3 | Explain the non-linear relationship between change size and review quality, and the compounding effect of review latency on team throughput | [Section 7's real evidence](#7-examples), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real team-level review-turnaround regression to its underlying cause (Section 17), and design a scalable code-review policy calibrated by change risk (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

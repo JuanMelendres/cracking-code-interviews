@@ -284,6 +284,6 @@ Design this using the backtracking-with-precomputed-conflict-state technique fro
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, the choose/recurse/undo shape of backtracking and why the "undo" step is essential | [Section 3](#3-foundation-l1) |
-| L2 | Apply duplicate-input pruning correctly to a new permutation or combination problem, choosing the right skip condition | [Interview Question 1](#question-1--generate-all-permutations-of-an-array-that-may-contain-duplicate-values-without-producing-duplicate-permutations-in-the-output) |
+| L2 | Apply duplicate-input pruning correctly to a new permutation or combination problem, choosing the right skip condition | [Interview Question 1](#question-1-generate-all-permutations-of-an-array-that-may-contain-duplicate-values-without-producing-duplicate-permutations-in-the-output) |
 | L3 | Derive the precise duplicate-skip conditions for both permutations and combinations, and the O(1)-conflict-check derivation for constraint-satisfaction backtracking | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real duplicate-combination bug from its exact skip-condition error (Section 17), and design a real constraint-satisfaction system using precomputed conflict state deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

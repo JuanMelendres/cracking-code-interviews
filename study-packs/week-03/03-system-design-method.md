@@ -19,10 +19,10 @@ canonical: ../../syllabus/11-system-design/system-design-method-and-estimation.m
 
 ## Table of Contents
 
-1. [The concept — a repeatable procedure, not inspiration](#1-the-concept--a-repeatable-procedure-not-inspiration)
+1. [The concept — a repeatable procedure, not inspiration](#1-the-concept-a-repeatable-procedure-not-inspiration)
 2. [Why it exists](#2-why-it-exists)
 3. [The six phases](#3-the-six-phases)
-4. [Estimation — the math, worked](#4-estimation--the-math-worked)
+4. [Estimation — the math, worked](#4-estimation-the-math-worked)
 5. [Trade-offs](#5-trade-offs)
 6. [Interview questions](#6-interview-questions)
 7. [Common mistakes](#7-common-mistakes)

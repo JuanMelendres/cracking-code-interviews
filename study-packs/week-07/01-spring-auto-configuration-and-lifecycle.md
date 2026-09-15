@@ -25,7 +25,7 @@ canonical: ../../syllabus/05-spring/auto-configuration-and-bean-lifecycle.md
 2. [Why it exists](#2-why-it-exists)
 3. [Bean lifecycle order, observed](#3-bean-lifecycle-order-observed)
 4. [Auto-configuration internals](#4-auto-configuration-internals)
-5. [The `@Async` + `@Transactional` gotcha, reproduced](#5-the-async--transactional-gotcha-reproduced)
+5. [The `@Async` + `@Transactional` gotcha, reproduced](#5-the-async-transactional-gotcha-reproduced)
 6. [Trade-offs](#6-trade-offs)
 7. [Interview questions](#7-interview-questions)
 8. [Common mistakes](#8-common-mistakes)

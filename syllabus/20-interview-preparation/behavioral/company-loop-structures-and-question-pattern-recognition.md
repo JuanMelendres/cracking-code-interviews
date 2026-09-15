@@ -40,8 +40,8 @@ official_references: []
 ## Table of Contents
 
 1. [Why This Exists](#why-this-exists)
-2. [Level 1 — Foundation](#level-1--foundation)
-3. [Level 2 — Working Knowledge](#level-2--working-knowledge)
+2. [Level 1 — Foundation](#level-1-foundation)
+3. [Level 2 — Working Knowledge](#level-2-working-knowledge)
 4. [Three Question Shapes, Three Different Answers](#three-question-shapes-three-different-answers)
 5. [Loop Structures and What They Imply for Prep](#loop-structures-and-what-they-imply-for-prep)
 6. [The Story-Usage Tracking Grid](#the-story-usage-tracking-grid)

@@ -11,7 +11,7 @@ status: draft
 
 ## Table of Contents
 
-1. [§8.7 bar — the actual pass/fail line](#87-bar--the-actual-passfail-line)
+1. [§8.7 bar — the actual pass/fail line](#87-bar-the-actual-passfail-line)
 2. [Four-loop score trend](#four-loop-score-trend)
 3. [Cumulative evidence ledger](#cumulative-evidence-ledger)
 4. [Diagnostic delta summary](#diagnostic-delta-summary)

@@ -340,6 +340,6 @@ Design this using a Fenwick tree (or segment tree, if range-max or another non-s
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a Fenwick tree, a segment tree, and a rolling hash each let you do faster than a naive approach | [Section 3](#3-foundation-l1) |
-| L2 | Choose the right structure (Fenwick vs. segment tree, static vs. dynamic, exact bit-packing vs. polynomial hash) for a new problem's specific requirements | [Interview Question 1](#question-1--when-would-you-choose-a-fenwick-tree-over-a-full-segment-tree-given-a-segment-tree-can-do-everything-a-fenwick-tree-can) |
+| L2 | Choose the right structure (Fenwick vs. segment tree, static vs. dynamic, exact bit-packing vs. polynomial hash) for a new problem's specific requirements | [Interview Question 1](#question-1-when-would-you-choose-a-fenwick-tree-over-a-full-segment-tree-given-a-segment-tree-can-do-everything-a-fenwick-tree-can) |
 | L3 | Derive the coordinate-compression technique, the dynamic segment tree's lazy-node-creation mechanism, and the exact-vs-lossy hashing distinction | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real hash-collision-caused data-integrity bug (Section 17), and design a real-time analytics system using these structures deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

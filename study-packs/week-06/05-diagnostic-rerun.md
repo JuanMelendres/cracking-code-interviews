@@ -10,10 +10,10 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [D1 — Six questions cold](#d1--six-questions-cold)
-2. [D2 — LC 146, narrated](#d2--lc-146-narrated)
-3. [D3 — URL shortener design](#d3--url-shortener-design)
-4. [D4 — STAR story cold](#d4--star-story-cold)
+1. [D1 — Six questions cold](#d1-six-questions-cold)
+2. [D2 — LC 146, narrated](#d2-lc-146-narrated)
+3. [D3 — URL shortener design](#d3-url-shortener-design)
+4. [D4 — STAR story cold](#d4-star-story-cold)
 5. [Comparison table](#comparison-table)
 
 ---

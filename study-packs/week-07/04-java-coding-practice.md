@@ -10,11 +10,11 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [LC 46 — Permutations (errata #3 drill)](#lc-46--permutations-errata-3-drill)
-2. [LC 78 — Subsets](#lc-78--subsets)
-3. [LC 39 — Combination Sum](#lc-39--combination-sum)
-4. [LC 22 — Generate Parentheses](#lc-22--generate-parentheses)
-5. [Verification](#verification--real-not-asserted)
+1. [LC 46 — Permutations (errata #3 drill)](#lc-46-permutations-errata-3-drill)
+2. [LC 78 — Subsets](#lc-78-subsets)
+3. [LC 39 — Combination Sum](#lc-39-combination-sum)
+4. [LC 22 — Generate Parentheses](#lc-22-generate-parentheses)
+5. [Verification](#verification-real-not-asserted)
 
 ---
 

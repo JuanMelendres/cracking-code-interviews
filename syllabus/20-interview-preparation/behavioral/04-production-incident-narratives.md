@@ -35,8 +35,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: STAR Mapped Onto an Incident Timeline](#mental-model-star-mapped-onto-an-incident-timeline)
 - [The Incident Story Structure](#the-incident-story-structure)
 - [Illustrative Example](#illustrative-example)

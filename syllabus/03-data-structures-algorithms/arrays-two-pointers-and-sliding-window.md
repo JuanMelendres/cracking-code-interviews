@@ -278,6 +278,6 @@ Design this using the monotonic-deque technique from Section 4/5 directly: state
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a two-pointer technique and a sliding window are, and why both avoid a nested-loop rescan | [Section 3](#3-foundation-l1) |
-| L2 | Distinguish opposite-direction from same-direction two pointers, and fixed-size from variable-size sliding windows, and match a new problem to the right one | [Interview Question 1](#question-1--given-a-sorted-array-find-two-numbers-that-sum-to-a-target-whats-the-most-efficient-approach) |
+| L2 | Distinguish opposite-direction from same-direction two pointers, and fixed-size from variable-size sliding windows, and match a new problem to the right one | [Interview Question 1](#question-1-given-a-sorted-array-find-two-numbers-that-sum-to-a-target-whats-the-most-efficient-approach) |
 | L3 | Produce a proof-by-contradiction-style correctness argument for a two-pointer solution, and give the amortized-cost accounting for why a monotonic-deque sliding window is O(n), not O(n·k) | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Recognize the same "eliminate provably-dominated candidates" pattern inside real production code outside of an interview context, and design a system component (Section 18) using it deliberately | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

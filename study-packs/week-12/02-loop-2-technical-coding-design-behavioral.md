@@ -14,10 +14,10 @@ rounds: 4
 
 ## Table of Contents
 
-1. [Round 1 — Technical deep-dive (18 min)](#round-1--technical-deep-dive-18-min)
-2. [Round 2 — Coding (20 min)](#round-2--coding-20-min)
-3. [Round 3 — System design: web crawler (22 min)](#round-3--system-design-web-crawler-22-min)
-4. [Round 4 — Behavioral (15 min)](#round-4--behavioral-15-min)
+1. [Round 1 — Technical deep-dive (18 min)](#round-1-technical-deep-dive-18-min)
+2. [Round 2 — Coding (20 min)](#round-2-coding-20-min)
+3. [Round 3 — System design: web crawler (22 min)](#round-3-system-design-web-crawler-22-min)
+4. [Round 4 — Behavioral (15 min)](#round-4-behavioral-15-min)
 5. [Debrief](#debrief)
 
 ---

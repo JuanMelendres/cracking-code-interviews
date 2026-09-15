@@ -303,6 +303,6 @@ Design this using the monotonic-stack template from Section 4/7 directly (this i
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what a stack's LIFO property means and what "monotonic" means for a stack | [Section 3](#3-foundation-l1) |
-| L2 | Apply the "next greater element" monotonic-stack template to a new, unfamiliar array problem, choosing values or indices correctly | [Interview Question 1](#question-1--given-an-array-find-the-next-greater-element-for-every-position-in-on-time) |
+| L2 | Apply the "next greater element" monotonic-stack template to a new, unfamiliar array problem, choosing values or indices correctly | [Interview Question 1](#question-1-given-an-array-find-the-next-greater-element-for-every-position-in-on-time) |
 | L3 | Derive the amortized-O(n) argument for a monotonic-stack pass, and the boundary-determination argument for Largest Rectangle in Histogram specifically | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Distinguish amortized-cost guarantees from worst-case-per-operation guarantees in a real system-design context, and design a real incremental, O(1)-amortized-per-event system using this chapter's monotonic-stack technique (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

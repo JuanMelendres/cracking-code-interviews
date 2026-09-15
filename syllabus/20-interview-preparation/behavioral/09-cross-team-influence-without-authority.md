@@ -32,8 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: Influence Is Earned Through Trust, Not Position](#mental-model-influence-is-earned-through-trust-not-position)
 - [The Cross-Team Influence Story Structure](#the-cross-team-influence-story-structure)
 - [Illustrative Example](#illustrative-example)

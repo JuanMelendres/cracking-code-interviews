@@ -32,8 +32,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: The Story Is About Sequencing and Risk Management, Not the Destination](#mental-model-the-story-is-about-sequencing-and-risk-management-not-the-destination)
 - [The Migration Story Structure](#the-migration-story-structure)
 - [Illustrative Example](#illustrative-example)

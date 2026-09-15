@@ -30,8 +30,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model: This Is Real Diligence, Not a Ritual](#mental-model-this-is-real-diligence-not-a-ritual)
 - [Tailoring Questions to Who's Asking](#tailoring-questions-to-whos-asking)
 - [A Working Question Bank by Interviewer Type](#a-working-question-bank-by-interviewer-type)

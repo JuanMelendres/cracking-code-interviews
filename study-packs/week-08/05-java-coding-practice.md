@@ -10,11 +10,11 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [LC 70 — Climbing Stairs](#lc-70--climbing-stairs)
-2. [LC 198 — House Robber](#lc-198--house-robber)
-3. [LC 322 — Coin Change](#lc-322--coin-change)
-4. [LC 300 — Longest Increasing Subsequence](#lc-300--longest-increasing-subsequence)
-5. [Verification](#verification--real-not-asserted)
+1. [LC 70 — Climbing Stairs](#lc-70-climbing-stairs)
+2. [LC 198 — House Robber](#lc-198-house-robber)
+3. [LC 322 — Coin Change](#lc-322-coin-change)
+4. [LC 300 — Longest Increasing Subsequence](#lc-300-longest-increasing-subsequence)
+5. [Verification](#verification-real-not-asserted)
 
 ---
 

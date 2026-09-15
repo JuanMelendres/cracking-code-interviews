@@ -14,9 +14,9 @@ rounds: 3
 
 ## Table of Contents
 
-1. [Round 1 — Java fluency (18 min)](#round-1--java-fluency-18-min)
-2. [Round 2 — Coding (20 min)](#round-2--coding-20-min)
-3. [Round 3 — System design with production-judgment emphasis: real-time chat (22 min)](#round-3--system-design-with-production-judgment-emphasis-real-time-chat-22-min)
+1. [Round 1 — Java fluency (18 min)](#round-1-java-fluency-18-min)
+2. [Round 2 — Coding (20 min)](#round-2-coding-20-min)
+3. [Round 3 — System design with production-judgment emphasis: real-time chat (22 min)](#round-3-system-design-with-production-judgment-emphasis-real-time-chat-22-min)
 4. [Debrief](#debrief)
 
 ---

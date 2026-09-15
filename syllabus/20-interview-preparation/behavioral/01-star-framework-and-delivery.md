@@ -33,8 +33,8 @@ official_references: []
 
 - [Learning Objectives](#learning-objectives)
 - [Why This Matters in Interviews](#why-this-matters-in-interviews)
-- [Level 1 — Foundation](#level-1--foundation)
-- [Level 2 — Working Knowledge](#level-2--working-knowledge)
+- [Level 1 — Foundation](#level-1-foundation)
+- [Level 2 — Working Knowledge](#level-2-working-knowledge)
 - [Mental Model](#mental-model)
 - [The Structure](#the-structure)
 - [STAR-L and STAR-R: When Lessons and Results Both Matter](#star-l-and-star-r-when-lessons-and-results-both-matter)

@@ -10,9 +10,9 @@ last_reviewed: 2026-07-31
 
 ## Table of Contents
 
-1. [Round 1 — Technical deep-dive (45 min)](#round-1--technical-deep-dive-45-min)
-2. [Round 2 — Coding (45 min)](#round-2--coding-45-min)
-3. [Round 3 — System design (45 min)](#round-3--system-design-45-min)
+1. [Round 1 — Technical deep-dive (45 min)](#round-1-technical-deep-dive-45-min)
+2. [Round 2 — Coding (45 min)](#round-2-coding-45-min)
+3. [Round 3 — System design (45 min)](#round-3-system-design-45-min)
 4. [Checkpoint scorecard](#checkpoint-scorecard)
 5. [If you don't pass a dimension](#if-you-dont-pass-a-dimension)
 

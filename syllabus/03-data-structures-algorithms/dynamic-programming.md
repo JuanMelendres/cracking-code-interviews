@@ -438,6 +438,6 @@ Design this using this chapter's precomputed-helper-table principle (Section 4/1
 | Level | You can... | Verify with |
 |---|---|---|
 | L1 | Explain, in plain language, what overlapping subproblems and optimal substructure mean, and why they license memoization | [Section 3](#3-foundation-l1) |
-| L2 | Follow the state-definition-then-recurrence-then-base-cases process on a new, unfamiliar 1D or 2D DP problem | [Interview Question 1](#question-1--walk-me-through-your-process-for-solving-a-dynamic-programming-problem-you-havent-seen-before) |
+| L2 | Follow the state-definition-then-recurrence-then-base-cases process on a new, unfamiliar 1D or 2D DP problem | [Interview Question 1](#question-1-walk-me-through-your-process-for-solving-a-dynamic-programming-problem-you-havent-seen-before) |
 | L3 | Derive the precise loop-direction mechanism distinguishing 0/1 from unbounded knapsack, and the fill-order requirement for interval DP | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
 | L4 | Diagnose a real 0/1-vs-unbounded knapsack bug from its exact loop-direction error (Section 17), and design a real shared-caching system using the precomputed-helper-table principle deliberately (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |

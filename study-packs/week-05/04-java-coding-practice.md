@@ -10,10 +10,10 @@ last_reviewed: 2026-07-29
 
 ## Table of Contents
 
-1. [LC 380 — Insert Delete GetRandom O(1)](#lc-380--insert-delete-getrandom-o1)
-2. [LC 706 — Design HashMap](#lc-706--design-hashmap)
-3. [LC 622 — Design Circular Queue (errata fix)](#lc-622--design-circular-queue-errata-fix)
-4. [Verification](#verification--real-not-asserted)
+1. [LC 380 — Insert Delete GetRandom O(1)](#lc-380-insert-delete-getrandom-o1)
+2. [LC 706 — Design HashMap](#lc-706-design-hashmap)
+3. [LC 622 — Design Circular Queue (errata fix)](#lc-622-design-circular-queue-errata-fix)
+4. [Verification](#verification-real-not-asserted)
 
 ---
 

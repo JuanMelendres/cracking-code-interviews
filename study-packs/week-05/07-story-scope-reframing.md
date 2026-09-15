@@ -11,8 +11,8 @@ last_reviewed: 2026-07-29
 ## Table of Contents
 
 1. [Why scope reframing, and why now](#1-why-scope-reframing-and-why-now)
-2. [The reframing lens](#2-the-reframing-lens)
-3. [Worked example](#3-worked-example)
+2. [The reframing lens](#2-the-reframing-lens-summary)
+3. [Worked example](#3-worked-example-summary)
 4. [Your four reframes](#4-your-four-reframes)
 5. [Exit check](#5-exit-check)
 
