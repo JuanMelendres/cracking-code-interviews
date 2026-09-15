@@ -1953,3 +1953,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Includes an explicit primary-key-vs-foreign-key-vs-index-vs-view comparison table (the exact four-way distinction the user asked for), and full canonical-template coverage (L1–L4, Decision Framework, Interview Answer Framework, 4 Interview Questions, Cheat Sheet, 5 Flashcards, 5 Practice Exercises).
 - Updated `syllabus/06-databases/INDEX.md` (17 → 18 chapters, T-2410 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged), notes 266 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings for the new pages.
+
+## [2026-09-15] — `06-databases` gains a 19th chapter, same day: Database Normalization — 1NF Through BCNF
+
+### Added (`syllabus/06-databases/database-normalization-1nf-through-bcnf.md` — T-2411)
+
+- User asked directly whether database normalization was covered. It wasn't, beyond a one-paragraph definition inside `sql-and-relational-database-fundamentals.md` — no chapter taught the actual normal forms or the anomalies each one prevents.
+- New chapter written anomaly-first: every normal form is motivated by a real, captured data inconsistency, not an abstract definition. Real PostgreSQL 16 lab (`practice/sql/database-normalization/`) proves: a 1NF repeating-group query only answerable via a fragile `LIKE` scan, fixed into a plain equality join; a real 2NF update anomaly (`product_id` 55 showing two different names simultaneously after a partial update); the identical anomaly one level removed for 3NF (`department_id` 10 showing two different department names simultaneously); a real BCNF anomaly (`enrollments(student_id, course_id, instructor)` genuinely satisfies 3NF yet permits the same instructor attached to two different courses), closed with a real, captured `duplicate key value violates unique constraint` error after the fix; and the real, measured denormalization trade-off — a ~3.27× read speedup (84.152ms normalized 3-table join vs. 25.763ms denormalized) against a real ~80×-write-amplification cost (one customer rename: 1 row normalized, 80 rows denormalized).
+- Cross-links to `views-and-materialized-views.md` (T-2410, added earlier the same day) as the lower-risk alternative to denormalizing source tables for a slow read path.
+- Updated `syllabus/06-databases/INDEX.md` (18 → 19 chapters, T-2411 row added).
+- `validate.py`: errors 0, warnings 13 (unchanged), notes 267 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings for the new pages.

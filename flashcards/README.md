@@ -305,6 +305,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 
 **2026-09-15 — Views and Materialized Views (T-2410) gains a flashcard deck.** New `06-databases` chapter, added the same day to close a real, user-flagged gap (see the chapter's own changelog entry). 5 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 250 decks (249 prior + 1), 843 cards (838 prior + 5).**
 
+**2026-09-15 (same day) — Database Normalization — 1NF Through BCNF (T-2411) gains a flashcard deck.** Second new `06-databases` chapter added the same day, closing a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 251 decks (250 prior + 1), 847 cards (843 prior + 4).**
+
 ## How this relates to other deliverables
 
 - `syllabus/` — the canonical chapters these cards are drawn from. For the 137 pre-existing decks, each source chapter's own `## Flashcards` section remains in place (unchanged) as the chapter's own embedded review aid; the 31 new-writing-domain decks above have no such embedded section to leave in place, since their source template doesn't carry one.
