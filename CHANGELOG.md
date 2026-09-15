@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Meta-documentation sync — `syllabus/00-overview/` and `study-packs/`, 2026-09-15)
+
+- Following the just-completed 22-domain content-quality audit, verified `syllabus/00-overview/INDEX.md`, `learning-paths/*.md`, and `study-packs/` against real, current chapter/week counts on disk. Found and fixed real drift: `syllabus/00-overview/INDEX.md`'s domain table had undercounted 5 domains whose chapter count grew from additions never folded back in (`07-api-design` 2→5, `08-testing` 7→8, `12-security` 9→10 — missing the Enterprise SSO/SAML chapter, `14-devops-containers` 4→5, `18-engineering-practices` 5→6); `learning-paths/backend-java-specialization.md`'s per-domain topic table was similarly stale (Java 52→61, Spring 10→12, Databases 15→17, Messaging 9→12); `study-packs/mid-to-senior/README.md` and `senior-to-staff/README.md` had stale domain/topic counts (12→15, 16→21) contradicting their own source learning paths; `study-packs/README.md`'s own week-count claims for 4 of 8 programs were stale.
+- Added `study-packs/mid-to-senior/week-13/` (new, at the user's request): a dedicated week for `csrf-cors-and-session-security.md` and `enterprise-sso-saml-and-federated-identity.md`, two real `12-security` chapters that existed on disk but were never scheduled in any study pack. Updated the pack's own README, Week 12's "Next Week" link, and the source learning path's Security row and time budget to match.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0.
+
 ### Verified (Content-quality audit — `22-ai-llm-engineering`, 2026-09-15)
 
 - Completed the domain-by-domain content-quality audit initiative — all 22 syllabus domains now audited. Read `llm-api-integration-fundamentals.md`, `rag-and-vector-databases.md`, `embeddings.md`, `prompt-engineering-patterns.md`, `agentic-workflows-and-tool-orchestration.md`, `llm-evaluation-and-testing.md` directly (6 chapters). All fully clean — every "real, measured" claim (token counts, streaming chunk timings, temperature-sampling variance, dimension-count similarity scores, HNSW index speedup ~7x, sequential-vs-parallel tool-call speedup 2.0x, embedding false-negative rates) hand-recomputed and confirmed arithmetically correct; every referenced `practice/java/` demo directory confirmed to exist. No fixes needed.

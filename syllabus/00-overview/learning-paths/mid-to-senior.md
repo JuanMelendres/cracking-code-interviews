@@ -3,7 +3,7 @@ title: "Learning Path: Mid → Senior"
 document_type: learning-path
 status: draft
 version: 1.0
-last_updated: 2026-09-12
+last_updated: 2026-09-15
 source: 00-project/syllabus-transformation-plan.md §6
 ---
 
@@ -13,11 +13,13 @@ source: 00-project/syllabus-transformation-plan.md §6
 
 **Goal:** reach L3 (Senior) — internals, performance reasoning, and production debugging — across the domains below.
 
-**Time budget:** ~12 weeks, part-time (6–10 hours/week).
+**Time budget:** ~13 weeks, part-time (6–10 hours/week).
 
 **Stops at:** L3 for every domain listed. A handful of topics are called out explicitly per domain as the highest-priority starting point; each domain's own `INDEX.md` is the exhaustive topic list — this path sequences *domains*, in order, rather than re-listing every topic inside them (a learning path never repeats topic content, per this project's own duplication rule).
 
 **Updated 2026-09-12** to add Domains 13–15 (Software Design, API Design — Advanced, and AI/LLM Engineering) — a direct audit of every `syllabus/00-overview/learning-paths/*.md` file against every canonical chapter's own front matter found `04-software-design`, `07-api-design`'s advanced topics (`api-design.md`, `api-gateway-bff-and-edge-concerns.md`, `graphql-api-design.md`, `grpc-api-design.md`), and the entire `22-ai-llm-engineering` domain absent from every backend path except a REST-fundamentals-only mention in [Junior → Mid](junior-to-mid.md). Every `22-ai-llm-engineering` chapter's own front matter explicitly states `interview_paths: [mid-to-senior, senior-to-staff, ...]` — a direct, authoritative signal this path had never acted on.
+
+**Updated 2026-09-15** to extend Domain 9 (Security)'s priority topics with CSRF/CORS/session security and Enterprise SSO/SAML/Federated Identity — both real chapters added to `12-security` (2026-09-10 and 2026-09-14 respectively) that existed in the domain's own `INDEX.md` before this path's matching study pack scheduled them, found during a `syllabus/00-overview/` meta-documentation consistency pass. The study pack gained a 13th week to hold the added depth rather than compressing it into Week 9's existing schedule.
 
 ## Sequence
 
@@ -31,7 +33,7 @@ source: 00-project/syllabus-transformation-plan.md §6
 | 6 | [Messaging & Event-Driven Systems](../../09-messaging-event-driven/INDEX.md) | Kafka Architecture Fundamentals; Kafka Delivery Semantics and Exactly-Once Processing | L3 |
 | 7 | [Distributed Systems](../../10-distributed-systems/INDEX.md) | CAP Theorem and Consistency Models; Distributed Systems Failure Modes | L3 |
 | 8 | [System Design](../../11-system-design/INDEX.md) | System Design Method and Estimation; Caching Strategies and Invalidation; Resilience Patterns | L3 |
-| 9 | [Security](../../12-security/INDEX.md) | OWASP Top 10 for Backend Services; AuthN vs AuthZ, RBAC vs ABAC | L3 |
+| 9 | [Security](../../12-security/INDEX.md) | OWASP Top 10 for Backend Services; AuthN vs AuthZ, RBAC vs ABAC; CSRF/CORS and Session Security; Enterprise SSO, SAML, and Federated Identity | L3 |
 | 10 | [Observability](../../13-observability/INDEX.md) | Performance Methodology (USE/RED) and SLI/SLO/Error Budgets; Logging, Metrics, Tracing, and OpenTelemetry | L3 |
 | 11 | [DevOps & Containers](../../14-devops-containers/INDEX.md) | Kubernetes Objects, Scheduling, and Networking; Kubernetes Resource Limits, Probes, and JVM Sizing | L3 |
 | 12 | [Architecture](../../17-architecture/INDEX.md) | Clean and Hexagonal Architecture; DDD Tactical Design — Aggregates | L3 |
@@ -51,7 +53,7 @@ This path's own differentiator over reading alone: for each domain above, cross-
 
 ## Weekly study pack
 
-[`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) turns this sequence into a scheduled, 12-week program — reading assignments, hands-on exercises, production-cookbook cross-references, and a lightweight mock-interview checkpoint per week — the same operational layer [`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) provides for the Junior → Mid path. This path's own 15 domains are the *content*; the study pack is the *schedule*.
+[`study-packs/mid-to-senior/`](../../../study-packs/mid-to-senior/) turns this sequence into a scheduled, 13-week program — reading assignments, hands-on exercises, production-cookbook cross-references, and a lightweight mock-interview checkpoint per week — the same operational layer [`study-packs/junior-to-mid/`](../../../study-packs/junior-to-mid/) provides for the Junior → Mid path. This path's own 15 domains are the *content*; the study pack is the *schedule*.
 
 ## Next
 

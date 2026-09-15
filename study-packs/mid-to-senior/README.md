@@ -2,7 +2,7 @@
 title: "Mid → Senior Study Pack — Index"
 document_type: study-pack-index
 status: draft
-last_updated: 2026-09-08
+last_updated: 2026-09-15
 ---
 
 # Mid → Senior Study Pack
@@ -35,8 +35,9 @@ A working engineer (roughly 2–5 years) who can ship features correctly but has
 | [10](week-10/README.md) | Delivery and architecture | DevOps & Containers + Architecture | 8–10h |
 | [11](week-11/README.md) | Software design and API design (advanced) | Software Design + API Design (Advanced) | 8–10h |
 | [12](week-12/README.md) | AI/LLM engineering | AI/LLM Engineering | 9–10h |
+| [13](week-13/README.md) | Security deep dive: CSRF/CORS and Enterprise SSO | Security (continued) | 8–9h |
 
-**Total: ~93–116 hours across 12 weeks**, matching the learning path's own ~12-week, 6–10h/week estimate. Weeks 11 and 12 added 2026-09-12 — see the learning path's own updated note for the audit that found the gap.
+**Total: ~101–125 hours across 13 weeks**, matching the learning path's own ~12–13-week, 6–10h/week estimate. Weeks 11 and 12 added 2026-09-12; Week 13 added 2026-09-15 (CSRF/CORS/session security and Enterprise SSO/SAML — both real `12-security` chapters that existed before this pack was ever built, but were never scheduled) — see the learning path's own updated note and `syllabus/00-overview/changelog.md`'s matching 2026-09-15 entry.
 
 ## After this pack
 

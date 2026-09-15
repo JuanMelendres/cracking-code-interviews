@@ -7,7 +7,7 @@ last_reviewed: 2026-09-12
 
 # Week 12 — Manifest
 
-**Domain:** AI/LLM Engineering. **Priority topics:** LLM API Integration Fundamentals; RAG and Vector Databases; Embeddings; Prompt Engineering Patterns; Agentic Workflows and Tool Orchestration; LLM Evaluation and Testing. **Track:** Mid → Senior, Week 12 of 12 (final week).
+**Domain:** AI/LLM Engineering. **Priority topics:** LLM API Integration Fundamentals; RAG and Vector Databases; Embeddings; Prompt Engineering Patterns; Agentic Workflows and Tool Orchestration; LLM Evaluation and Testing. **Track:** Mid → Senior, Week 12 of 13.
 **Files:** 1 (+ this manifest) — no chapter content duplicated.
 
 ## Files

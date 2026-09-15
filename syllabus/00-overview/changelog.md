@@ -1440,6 +1440,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-linked with `oauth2-oidc-and-jwt.md`; updated `syllabus/12-security/INDEX.md` (9 → 10). New standalone `cheat-sheets/`/`flashcards/` files.
 - `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0, new page confirmed rendered.
 
+## [2026-09-15] — `study-packs/mid-to-senior/` gains Week 13: CSRF/CORS and Enterprise SSO, closing a real scheduling gap
+
+### Added
+
+- The prior meta-documentation audit (below) flagged that `12-security`'s two newest chapters — `csrf-cors-and-session-security.md` (added 2026-09-10) and `enterprise-sso-saml-and-federated-identity.md` (added 2026-09-14, from a real named job-posting requirement) — were never scheduled in any `study-packs/` program, despite both existing in the domain's own `INDEX.md`. The user asked for this closed specifically in `study-packs/mid-to-senior/`.
+- Added `study-packs/mid-to-senior/week-13/` (`README.md` + `MANIFEST.md`): a new, final week covering both chapters — the real CSRF/CORS forged-request-vs-synchronizer-token demo (`practice/java/week-17/csrf-cors-session/`), the SAML assertion's four-check validation discipline, and the commercial IAM landscape. Appended at the end (not inserted mid-sequence) to avoid renumbering Weeks 1–12, the same pattern this pack already used when Weeks 11–12 were added 2026-09-12.
+- Updated `study-packs/mid-to-senior/week-12/README.md`'s "Next Week" link and `week-12/MANIFEST.md`'s "final week" label to point at the new Week 13; updated `study-packs/mid-to-senior/README.md`'s week table, hour total (93–116h → 101–125h), and week count (12 → 13); updated `study-packs/README.md`'s program summary and its own stale `mid-to-senior/week-01 through week-10` numbering claim (was already wrong before this change — corrected to `week-13`, and while there, corrected three other programs' own stale week-count claims in the same sentence: `junior-to-mid` week-08→week-09, `senior-to-staff` week-08→week-11, `frontend-mid-to-senior` week-10→week-11).
+- Updated the source `syllabus/00-overview/learning-paths/mid-to-senior.md`: Domain 9 (Security)'s priority-topics list now names all 4 scheduled chapters; time budget ~12 weeks → ~13 weeks; added a dated 2026-09-15 update note.
+- `validate.py`: same pre-existing 3 errors, 0 new. Real local `mkdocs build`: exit 0.
+
 ## [2026-09-15] — `syllabus/00-overview/` meta-documentation audit: top-level INDEX.md undercounted 5 domains, learning-path counts corrected
 
 ### Fixed

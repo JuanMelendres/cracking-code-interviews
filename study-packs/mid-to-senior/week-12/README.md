@@ -86,4 +86,4 @@ Note that this is a genuinely new-writing domain (added 2026-09-09/10) with no p
 
 ## Next Week
 
-This is the final week of the Mid → Senior program. Continue to [Senior → Staff](../../senior-to-staff/README.md).
+[Week 13 — Security Deep Dive: CSRF/CORS and Enterprise SSO](../week-13/README.md).
