@@ -16,7 +16,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # actions/checkout defaults to a shallow (depth-1) clone, which
           # only has the latest commit -- git-revision-date-localized then
