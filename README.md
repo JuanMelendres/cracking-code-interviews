@@ -18,7 +18,7 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 
 **Target roles** — the full ladder, served in one place rather than as separate books:
 - Junior/Mid Backend Engineer — true fundamentals: `syllabus/01-computer-science-foundations/`, `syllabus/03-data-structures-algorithms/`, and the Junior Fundamentals chapters across `02-java`, `05-spring`, `06-databases`, `07-api-design`, `08-testing`
-- Senior Java Backend Engineer — internals, trade-offs, production troubleshooting across all 21 domains
+- Senior Java Backend Engineer — internals, trade-offs, production troubleshooting across all 22 domains
 - Staff Engineer — cross-system judgment, migration strategy, and organizational trade-offs (`syllabus/19-leadership-staff/`, the Senior → Staff and Backend Java Specialization programs)
 
 ---
@@ -30,10 +30,10 @@ Every chapter pairs technical depth with a spoken-answer instrument: layered ans
 | | |
 |---|---|
 | **Phase** | Original 7-phase bootstrap complete. Canonical content fully migrated to and organized under `syllabus/`, per `00-project/syllabus-transformation-plan.md` (all phases complete 2026-09-07). |
-| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-25`** (Interview Emergency Sprint) · **`study-packs/junior-to-mid/`** (8 weeks) and **`study-packs/mid-to-senior/`** (10 weeks) — see [`study-packs/README.md`](study-packs/README.md) for which one to use · `syllabus/` — 21 domains, 222 canonical topic files, each L1 (Foundation) through L4 (Staff) · Interview Playbook, Architecture Atlas, Production Cookbook, and Behavioral content (now under `syllabus/20-interview-preparation/behavioral/`) all built out — see the counts below |
-| **Complementary deliverables** | 209 cheat sheets · 214 flashcard decks (730 cards) · 136 production-cookbook entries · 17 Architecture Atlas system-design write-ups (counts verified against the file system 2026-09-08) |
-| **Topic register** | 198 original backend topics (16 domains) plus 4 new-writing domains (Computer Science Foundations, Data Structures & Algorithms, Engineering Practices, Leadership & Staff) and a separate React/Next.js register (`00-project/frontend-topic-register.md`) — 222 topic files total across all 21 `syllabus/` domains |
-| **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the original 198-topic backend register; does not include the four domains added after that estimate was made |
+| **Completed** | Phase 1 Audit · Phase 2 Blueprint · Phase 3 Corrections · Phase 3 Roadmap (`00-project/`) · **`study-packs/week-01` through `week-25`** (Interview Emergency Sprint) · **`study-packs/junior-to-mid/`** (8 weeks) and **`study-packs/mid-to-senior/`** (10 weeks) — see [`study-packs/README.md`](study-packs/README.md) for which one to use · `syllabus/` — 22 domains, 302 canonical topic files, each L1 (Foundation) through L4 (Staff) · Interview Playbook, Architecture Atlas, Production Cookbook, and Behavioral content (now under `syllabus/20-interview-preparation/behavioral/`) all built out — see the counts below |
+| **Complementary deliverables** | 253 cheat sheets · 253 flashcard decks (875 cards) · 201 production-cookbook entries · 21 Architecture Atlas system-design write-ups (counts verified against the file system 2026-09-16) |
+| **Topic register** | 198 original backend topics (16 domains) plus 5 new-writing domains (Computer Science Foundations, Data Structures & Algorithms, Engineering Practices, Leadership & Staff, AI/LLM Engineering) and a separate React/Next.js register (`00-project/frontend-topic-register.md`) — 302 topic files total across all 22 `syllabus/` domains |
+| **Estimated total effort** | 1,371 hours (663 study + 708 practice) for the original 198-topic backend register; does not include the five domains added after that estimate was made |
 
 Weeks 1–6 total **~60,400 words** across 74 chapter files, with every technical claim backed by real, executed code rather than description alone:
 
@@ -57,9 +57,9 @@ cracking-code-interviews/
 ├── 00-project/             Audit, blueprint, corrections, roadmap, transformation plan  (the "why")
 ├── study-packs/            Week-by-week execution material                (the "do this week")
 │   └── week-01..25/        Plan A/B/C study weeks — see Current status above
-├── syllabus/               Canonical technical reference, 21 domains     (the "look it up")
+├── syllabus/               Canonical technical reference, 22 domains     (the "look it up")
 │   ├── 00-overview/        Vision, taxonomy, topic spec, mastery model, learning-paths/
-│   └── 01-*/ .. 21-*/      One directory per domain (Java, DBs, Kafka, System Design,
+│   └── 01-*/ .. 22-*/      One directory per domain (Java, DBs, Kafka, System Design,
 │                           Frontend/Next.js, Interview Prep, Leadership, etc.)
 ├── interview-playbook/     README + private, real interview-loop notes (`company-prep/`)
 ├── practice/               Runnable Java, SQL, design exercises          (the "do it")
