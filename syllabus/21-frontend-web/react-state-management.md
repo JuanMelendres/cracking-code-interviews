@@ -25,7 +25,7 @@ related:
   - ../../00-project/frontend-topic-register.md
 official_references:
   - https://redux-toolkit.js.org/introduction/getting-started
-  - https://zustand.docs.pmnd.rs/getting-started/introduction
+  - https://zustand.docs.pmnd.rs/learn/getting-started/introduction
   - https://tanstack.com/query/latest/docs/framework/react/overview
   - https://react.dev/learn/scaling-up-with-reducer-and-context
 ---
@@ -309,6 +309,6 @@ Exercise 3: with a genuinely different `queryKey` (`['todo', 2]` vs. `['todo', 1
 ## Official References
 
 - [Redux Toolkit: Getting Started](https://redux-toolkit.js.org/introduction/getting-started)
-- [Zustand: Introduction](https://zustand.docs.pmnd.rs/getting-started/introduction)
+- [Zustand: Introduction](https://zustand.docs.pmnd.rs/learn/getting-started/introduction)
 - [TanStack Query: Overview](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [react.dev: Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)

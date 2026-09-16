@@ -31,7 +31,7 @@ related:
   - ../../practice/java/architecture/ddd-bounded-contexts-and-context-mapping/README.md
 official_references:
   - https://martinfowler.com/bliki/BoundedContext.html
-  - https://martinfowler.com/bliki/AntiCorruptionLayer.html
+  - https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
   - https://www.domainlanguage.com/ddd/
 ---
 
@@ -700,5 +700,5 @@ evolving register rather than a fixed-answer exercise.
 ## Official References
 
 - Martin Fowler, [Bounded Context](https://martinfowler.com/bliki/BoundedContext.html)
-- Martin Fowler, [Anti-Corruption Layer](https://martinfowler.com/bliki/AntiCorruptionLayer.html)
+- Microsoft, [Anti-Corruption Layer Pattern — Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer) (the term originates with Eric Evans's *Domain-Driven Design*; Martin Fowler's own bliki entry for it no longer resolves, replaced here with this still-live reference, 2026-09-16)
 - Domain Language, [Eric Evans and Domain-Driven Design](https://www.domainlanguage.com/ddd/)

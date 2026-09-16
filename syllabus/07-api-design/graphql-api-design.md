@@ -30,7 +30,7 @@ related:
 official_references:
   - https://spec.graphql.org/
   - https://graphql.org/learn/
-  - https://www.graphql-java.com/documentation/
+  - https://www.graphql-java.com/documentation/getting-started/
 ---
 
 # GraphQL API Design
@@ -484,4 +484,4 @@ Expecting a `4xx`/`5xx` status the way a REST API would return one.
 ## Official References
 
 - [GraphQL Specification](https://spec.graphql.org/) — the language and execution specification
-- [graphql-java Documentation](https://www.graphql-java.com/documentation/) — the library used in this chapter's demo
+- [graphql-java Documentation](https://www.graphql-java.com/documentation/getting-started/) — the library used in this chapter's demo

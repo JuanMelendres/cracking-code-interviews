@@ -16,8 +16,7 @@ practice: ../../practice/java/week-23/arrays-two-pointers/
 production_scenarios:
   - ../../production-cookbook/boundary-condition-bug-behind-a-95-percent-coverage-figure.md
 interview_paths: [interview-emergency-sprint, senior-to-staff]
-official_references:
-  - https://en.wikipedia.org/wiki/Two-pointer_technique
+official_references: []
 source_history:
   - study-packs/week-23/02-arrays-two-pointers-coding-practice.md
 ---
@@ -269,7 +268,6 @@ Design this using the monotonic-deque technique from Section 4/5 directly: state
 
 ## 19. Further Reading
 
-- [Two-pointer technique — Wikipedia](https://en.wikipedia.org/wiki/Two-pointer_technique) — a general overview of the pattern family this chapter's opposite-direction and same-direction variants both belong to.
 - [Linked Lists and In-Place Manipulation](linked-lists-and-in-place-manipulation.md) — the same-direction two-pointer variant (fast/slow pointers), applied to linked structures rather than arrays.
 - [Stacks and the Monotonic Stack](stacks-and-monotonic-stack.md) — the full-array version of the "evict dominated candidates" idea this chapter's monotonic deque restricts to a sliding window.
 
