@@ -1,0 +1,37 @@
+{#-
+  Overrides Material's default social.html (see the real template at
+  material/templates/partials/social.html for the unmodified version this
+  is based on -- only the leading avatar link was added).
+
+  Real request (2026-09-16): the reader wanted his own avatar next to the
+  footer's social icons, so the site visibly reads as "made by a real
+  person" rather than an anonymous project -- links to LinkedIn since
+  that's his primary professional profile among the four.
+-#}
+{% macro split_and_get(value, sep, index) %}
+  {%- if value.split is defined -%}
+    {%- set parts = value.split(sep) -%}
+  {%- else -%}
+    {%- set parts = value | split(sep) -%}
+  {%- endif -%}
+  {{- parts[index] -}}
+{% endmacro %}
+<div class="md-social">
+  <a href="https://www.linkedin.com/in/juan-melendres/" target="_blank" rel="noopener" title="Juan Melendres" class="md-social__link cci-footer-avatar">
+    <img src="{{ 'assets/images/author-avatar.png' | url }}" alt="Juan Melendres">
+  </a>
+  {% for social in config.extra.social %}
+    {% set rel = "noopener" %}
+    {% if "mastodon" in social.icon %}
+      {% set rel = rel ~ " me" %}
+    {% endif %}
+    {% set title = social.name %}
+    {% if not title and "//" in social.link %}
+      {% set url = split_and_get(social.link, "//", 1) %}
+      {% set title = split_and_get(url, "/", 0) %}
+    {% endif %}
+    <a href="{{ social.link }}" target="_blank" rel="{{ rel }}" title="{{ title | e }}" class="md-social__link">
+      {% include ".icons/" ~ social.icon ~ ".svg" %}
+    </a>
+  {% endfor %}
+</div>

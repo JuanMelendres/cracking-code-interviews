@@ -212,3 +212,16 @@
   background: #4a1030;
   color: #f48fb1;
 }
+
+/* Author avatar link, prepended to the footer's social row by
+   overrides/partials/social.html -- circular crop + sized to sit
+   comfortably next to the social SVG icons, which render at a fixed
+   height via Material's own .md-social__link rules. */
+.cci-footer-avatar img {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--md-accent-fg-color);
+}
