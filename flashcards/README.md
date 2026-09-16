@@ -2,7 +2,7 @@
 title: "Flashcards — Index"
 document_type: flashcard-index
 status: draft
-last_updated: 2026-09-08
+last_updated: 2026-09-16
 ---
 
 # Flashcards
@@ -168,6 +168,32 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 135 | [Enums, EnumMap, and EnumSet](enums-enummap-and-enumset.md) | T-111 | 3 | `syllabus/02-java/language-core/enums-enummap-and-enumset.md` |
 | 136 | [Serialization Hazards and Alternatives](serialization-hazards-and-alternatives.md) | T-115 | 3 | `syllabus/02-java/language-core/serialization-hazards-and-alternatives.md` |
 | 137 | [Git Internals and Collaboration Workflows](git-internals-and-collaboration-workflows.md) | — (no blueprint T-code) | 2 | `syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md` |
+| 138 | [Consensus Algorithms: Raft and Paxos](consensus-algorithms-raft-and-paxos.md) | T-2403 | 3 | `syllabus/10-distributed-systems/consensus-algorithms-raft-and-paxos.md` |
+| 139 | [PriorityQueue Internals](priorityqueue-internals.md) | T-210 | 3 | `syllabus/02-java/collections/priorityqueue-internals.md` |
+| 140 | [Window Functions and Common Table Expressions](window-functions-and-ctes.md) | T-2401 | 3 | `syllabus/06-databases/window-functions-and-ctes.md` |
+| 141 | [Bean Validation and Global Exception Handling](bean-validation-and-global-exception-handling.md) | T-518 | 4 | `syllabus/05-spring/bean-validation-and-global-exception-handling.md` |
+| 142 | [JSONB and Advanced PostgreSQL Index Types](jsonb-and-advanced-index-types.md) | T-2402 | 3 | `syllabus/06-databases/jsonb-and-advanced-index-types.md` |
+| 143 | [java.time API: Dates, Times, and Durations](java-time-api.md) | T-2400 | 3 | `syllabus/02-java/language-core/java-time-api.md` |
+| 144 | [java.util.concurrent Synchronizers: CountDownLatch, CyclicBarrier, and Semaphore](synchronizers-countdownlatch-cyclicbarrier-semaphore.md) | T-417 | 3 | `syllabus/02-java/concurrency/synchronizers-countdownlatch-cyclicbarrier-semaphore.md` |
+| 145 | [Retention, Log Compaction, and Tiered Storage](retention-log-compaction-and-tiered-storage.md) | T-706 | 3 | `syllabus/09-messaging-event-driven/retention-log-compaction-and-tiered-storage.md` |
+| 146 | [Kafka Streams and Stateful Stream Processing](kafka-streams-and-stateful-processing.md) | T-709 | 3 | `syllabus/09-messaging-event-driven/kafka-streams-and-stateful-processing.md` |
+| 147 | [Spring Data JPA Repository Abstraction](spring-data-jpa-repository-abstraction.md) | T-510 | 3 | `syllabus/05-spring/spring-data-jpa-repository-abstraction.md` |
+| 148 | [Java Platform Module System (JPMS)](java-platform-module-system.md) | T-116 | 3 | `syllabus/02-java/language-core/java-platform-module-system.md` |
+| 149 | [Enterprise SSO: SAML, Federated Identity, and Commercial IAM Integration](enterprise-sso-saml-and-federated-identity.md) | T-1309 | 5 | `syllabus/12-security/enterprise-sso-saml-and-federated-identity.md` |
+| 150 | [CSRF, CORS, and Session Security](csrf-cors-and-session-security.md) | T-1308 | 3 | `syllabus/12-security/csrf-cors-and-session-security.md` |
+| 151 | [GraphQL API Design](graphql-api-design.md) | T-917 | 3 | `syllabus/07-api-design/graphql-api-design.md` |
+| 152 | [gRPC API Design](grpc-api-design.md) | T-918 | 3 | `syllabus/07-api-design/grpc-api-design.md` |
+| 153 | [Database Normalization — 1NF Through BCNF](database-normalization-1nf-through-bcnf.md) | T-2411 | 4 | `syllabus/06-databases/database-normalization-1nf-through-bcnf.md` |
+| 154 | [Views and Materialized Views](views-and-materialized-views.md) | T-2410 | 5 | `syllabus/06-databases/views-and-materialized-views.md` |
+| 155 | [Kafka Connect: Source and Sink Connectors](kafka-connect-source-and-sink-connectors.md) | T-2408 | 3 | `syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` |
+| 156 | [Object-Oriented Design Interview Problems](ood-interview-problems.md) | T-1702 | 3 | `syllabus/04-software-design/ood-interview-problems.md` |
+| 157 | [SOLID Principles](solid-principles.md) | T-1701 | 3 | `syllabus/04-software-design/solid-principles.md` |
+| 158 | [Bytecode and Class File Fundamentals](bytecode-and-class-file-fundamentals.md) | T-2406 | 3 | `syllabus/02-java/jvm-internals/bytecode-and-class-file-fundamentals.md` |
+| 159 | [MethodHandle and java.lang.invoke](methodhandle-and-invoke.md) | T-2405 | 3 | `syllabus/02-java/concurrency/methodhandle-and-invoke.md` |
+| 160 | [Metric Cardinality and Alert Fatigue](metric-cardinality-and-alert-fatigue.md) | T-2409 | 3 | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |
+| 161 | [Vector Clocks and Quorum-Based Replication](vector-clocks-and-quorum-based-replication.md) | T-2407 | 3 | `syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` |
+| 162 | [Azure and GCP for Backend Engineers](azure-and-gcp-for-backend-engineers.md) | T-2404 | 3 | `syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md` |
+| 163 | [Behavior-Driven Development with Cucumber](behavior-driven-development-with-cucumber.md) | T-2412 | 4 | `syllabus/08-testing/behavior-driven-development-with-cucumber.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -237,6 +263,9 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 **Added 2026-09-08 (batch 6): SDLC and Agile Methodology Fundamentals**, found via a review of 6 additional Notion databases/views — see `cheat-sheets/README.md`'s own sixth batch.
 
 | N43 | [SDLC and Agile Methodology Fundamentals](sdlc-and-agile-methodology-fundamentals.md) | T-2212 | 5 | `syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md` |
+| N44 | [Incident Command: Roles and Real-Time Coordination](incident-command-roles-and-real-time-coordination.md) | T-1906 | 3 | `syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` |
+| N45 | [Hiring and Team Building](hiring-and-team-building.md) | T-1907 | 3 | `syllabus/19-leadership-staff/hiring-and-team-building.md` |
+| N46 | [Sorting Algorithms](sorting-algorithms.md) | T-2119 | 3 | `syllabus/03-data-structures-algorithms/sorting-algorithms.md` |
 
 ## Frontend Decks (F-codes, no IWI)
 
@@ -308,6 +337,24 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-15 (same day) — Database Normalization — 1NF Through BCNF (T-2411) gains a flashcard deck.** Second new `06-databases` chapter added the same day, closing a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 251 decks (250 prior + 1), 847 cards (843 prior + 4).**
 
 **2026-09-16 — Behavior-Driven Development with Cucumber (T-2412) gains a flashcard deck.** New `08-testing` chapter, added the same day to close a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 252 decks (251 prior + 1), 851 cards (847 prior + 4).**
+
+**2026-09-16 — index-completeness audit.** Diffing every file in `flashcards/` against this README's own tables (rather than trusting the count above) found 38 existing decks across 11 domains never listed anywhere in this index — some dating back to the original 22-domain gap audit (T-2400s/T-1300s/T-1700s chapters), never added to this file when their decks were written. Closed in four groups: 26 backend decks appended to the main table above, 3 to the New-Writing Domain table (`19-leadership-staff`, `03-data-structures-algorithms`), 3 to the Frontend table (the D-F4 batch), and 6 new `22-ai-llm-engineering` decks in their own new section below (that domain didn't exist when this file's other batches ran). `frontend-live-coding-and-debugging-protocol.md` is confirmed intentionally excluded, matching its Frontend-table precedent. **New total: 253 decks, 875 cards** (verified as the real file/card count in `flashcards/`, 2026-09-16) — every deck now listed in exactly one table.
+| F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
+| F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
+| F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
+
+## AI/LLM Engineering Decks (T-2300s, no IWI)
+
+**Added 2026-09-16** (index-completeness audit -- see the closing note above). `22-ai-llm-engineering` is a backend domain added 2026-09-09, after this deliverable's other batches closed; its 6 chapters (T-2300-T-2305) each already carried an embedded `## Flashcards` section, extracted here for the first time -- 18 cards, zero broken links (checked the same way as every other batch in this file).
+
+| # | Deck | Topic ID | Cards | Canonical Chapter |
+|---|---|---|---|---|
+| A1 | [LLM API Integration Fundamentals](llm-api-integration-fundamentals.md) | T-2300 | 3 | `syllabus/22-ai-llm-engineering/llm-api-integration-fundamentals.md` |
+| A2 | [RAG and Vector Databases (pgvector)](rag-and-vector-databases.md) | T-2301 | 3 | `syllabus/22-ai-llm-engineering/rag-and-vector-databases.md` |
+| A3 | [Embeddings](embeddings.md) | T-2302 | 3 | `syllabus/22-ai-llm-engineering/embeddings.md` |
+| A4 | [Prompt Engineering Patterns](prompt-engineering-patterns.md) | T-2303 | 3 | `syllabus/22-ai-llm-engineering/prompt-engineering-patterns.md` |
+| A5 | [Agentic Workflows and Tool Orchestration](agentic-workflows-and-tool-orchestration.md) | T-2304 | 3 | `syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` |
+| A6 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | T-2305 | 3 | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
 
 ## How this relates to other deliverables
 
