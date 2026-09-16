@@ -138,6 +138,11 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
+extra:
+  analytics:
+    provider: google
+    property: G-0LL1C3LLHB
+
 # Nav ordering/titles are curated per-directory via .pages files (the
 # mkdocs-awesome-pages-plugin convention) rather than one giant explicit
 # list here -- see study-packs/.pages, syllabus/*/.pages, and the many
