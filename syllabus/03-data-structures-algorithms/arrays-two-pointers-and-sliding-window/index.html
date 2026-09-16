@@ -11386,7 +11386,6 @@ Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31): 11/11 assertions pas
 <p>Design this using the monotonic-deque technique from Section 4/5 directly: state why a naive "keep the last <code>k</code> measurements and scan for the max each time" approach is O(k) per measurement — a real, production-relevant cost for a metric with sub-second arrival and a <code>k</code> large enough to represent a meaningful time window — and how the monotonic-deque approach reduces this to amortized O(1) per measurement, using the exact eviction argument from Section 7's Sliding Window Maximum. Name the memory trade-off: the deque holds at most <code>k</code> indices, so this isn't free — it trades a bounded amount of extra memory for the amortized time improvement.</p>
 <h2 id="19-further-reading">19. Further Reading<a class="headerlink" href="#19-further-reading" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Two-pointer_technique">Two-pointer technique — Wikipedia</a> — a general overview of the pattern family this chapter's opposite-direction and same-direction variants both belong to.</li>
 <li><a href="../linked-lists-and-in-place-manipulation/">Linked Lists and In-Place Manipulation</a> — the same-direction two-pointer variant (fast/slow pointers), applied to linked structures rather than arrays.</li>
 <li><a href="../stacks-and-monotonic-stack/">Stacks and the Monotonic Stack</a> — the full-array version of the "evict dominated candidates" idea this chapter's monotonic deque restricts to a sliding window.</li>
 </ul>
@@ -11442,7 +11441,7 @@ Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31): 11/11 assertions pas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 16, 2026 21:12:38 UTC">September 16, 2026</span>
   </span>
 
     
