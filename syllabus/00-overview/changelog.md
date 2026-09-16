@@ -1963,3 +1963,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Cross-links to `views-and-materialized-views.md` (T-2410, added earlier the same day) as the lower-risk alternative to denormalizing source tables for a slow read path.
 - Updated `syllabus/06-databases/INDEX.md` (18 → 19 chapters, T-2411 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged), notes 267 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings for the new pages.
+
+## [2026-09-16] — `08-testing` gains a 9th chapter: Behavior-Driven Development with Cucumber
+
+### Added (`syllabus/08-testing/behavior-driven-development-with-cucumber.md` — T-2412)
+
+- User asked whether TDD and other development styles were covered. TDD was, in real depth (`writing-tests-live-in-an-interview.md`); BDD was not, anywhere. New chapter written to answer the real TDD-vs-BDD confusion directly — a shared-vocabulary/audience layer on top of the same red-green mechanics, not a different testing technique — rather than treating the two as loose synonyms.
+- Real, executed Cucumber-JVM 7.18.0 lab (`practice/java/testing-fundamentals/bdd-cucumber-basics/`), no Maven/Gradle: all 18 runtime jars hand-resolved from `cucumber-core`'s own published POM and fetched directly from Maven Central. Proves a real `Scenario Outline`/`Examples` table producing 3 genuinely separate, independently-reported test instances; a real captured assertion failure from a deliberately broken discount calculation; a genuinely unplanned finding surfaced by that same failure run — a 0%-discount `Examples` row still passed with the bug present, since a broken percentage multiplied by zero can't expose itself, a concrete lesson in deliberate test-data selection; and Cucumber's own real, generated Java step-definition snippet for an undefined step.
+- Includes a TDD vs. BDD vs. process-model (Agile/Scrum/Waterfall) comparison table, closing a second real confusion this domain hadn't addressed — testing/specification techniques and project-phase process models are different questions entirely, not alternatives to each other.
+- Updated `syllabus/08-testing/INDEX.md` (8 → 9 chapters, T-2412 row added).
+- `validate.py`: errors 0, warnings 13 (unchanged), notes 268 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings for the new pages.
