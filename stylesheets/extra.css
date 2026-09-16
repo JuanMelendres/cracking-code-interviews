@@ -30,6 +30,15 @@
   font-size: 0.68rem;
 }
 
+/* Caption injected by wide-table-scroll-hint.js above any table whose
+   .md-typeset__scrollwrap is genuinely overflowing horizontally. */
+.cci-scroll-hint {
+  font-size: 0.6rem;
+  color: var(--md-default-fg-color--light);
+  margin: 0.25rem 0 0;
+  text-align: right;
+}
+
 .md-content__inner pre,
 .md-content__inner code {
   font-size: 0.68rem;
