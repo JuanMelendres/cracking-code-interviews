@@ -19,6 +19,16 @@ theme:
   favicon: assets/images/favicon.png
   icon:
     logo: material/code-braces
+  # Inter (body/UI text) + JetBrains Mono (code): both are purpose-built
+  # for long, low-fatigue reading rather than display use -- Inter has a
+  # tall x-height and disambiguated characters (1/l/I) tuned for on-screen
+  # paragraphs at small sizes, and JetBrains Mono was designed specifically
+  # to reduce eye strain reading dense code (increased letter spacing,
+  # distinct 0/O and 1/l/I). Both load free from Google Fonts automatically
+  # -- Material's own font-loading mechanism, no new dependency.
+  font:
+    text: Inter
+    code: JetBrains Mono
   # Three-entry palette (2026-09-15, real request: match the reader's OS
   # theme on first visit instead of always defaulting to light). The first
   # entry has no explicit scheme -- it's the "auto" state, resolved from
@@ -145,6 +155,19 @@ extra:
   analytics:
     provider: google
     property: G-0LL1C3LLHB
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/juan-melendres/
+      name: LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/JuanMelendres
+      name: GitHub
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/codetalks.juan/
+      name: Instagram
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/profile.php?id=61594181854240
+      name: Facebook
 
 # Nav ordering/titles are curated per-directory via .pages files (the
 # mkdocs-awesome-pages-plugin convention) rather than one giant explicit
