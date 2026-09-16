@@ -17,8 +17,17 @@ theme:
   name: material
   custom_dir: overrides
   favicon: assets/images/favicon.png
-  icon:
-    logo: material/code-braces
+  logo: assets/images/logo.png
+  # Inter (body/UI text) + JetBrains Mono (code): both are purpose-built
+  # for long, low-fatigue reading rather than display use -- Inter has a
+  # tall x-height and disambiguated characters (1/l/I) tuned for on-screen
+  # paragraphs at small sizes, and JetBrains Mono was designed specifically
+  # to reduce eye strain reading dense code (increased letter spacing,
+  # distinct 0/O and 1/l/I). Both load free from Google Fonts automatically
+  # -- Material's own font-loading mechanism, no new dependency.
+  font:
+    text: Inter
+    code: JetBrains Mono
   # Three-entry palette (2026-09-15, real request: match the reader's OS
   # theme on first visit instead of always defaulting to light). The first
   # entry has no explicit scheme -- it's the "auto" state, resolved from
@@ -33,15 +42,15 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: cyan
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: cyan
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
@@ -71,6 +80,18 @@ theme:
 
 markdown_extensions:
   - tables
+  # attr_list + md_in_html: required by Material's "grid cards" pattern
+  # (a <div class="grid cards" markdown> block), used on the homepage's
+  # "Where to start" / "What's here" sections in place of a 9-row table --
+  # a real UX request (2026-09-16): a wall of table rows is much harder to
+  # scan than icon-led cards. pymdownx.emoji (Twemoji index/SVG generator)
+  # is what lets `:material-xxx:` shortcodes resolve to actual icons
+  # inside those cards.
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: true
       # Some chapters (e.g. transactional-proxy-mechanics-and-propagation.md)
@@ -145,6 +166,19 @@ extra:
   analytics:
     provider: google
     property: G-0LL1C3LLHB
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/juan-melendres/
+      name: LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/JuanMelendres
+      name: GitHub
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/codetalks.juan/
+      name: Instagram
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/profile.php?id=61594181854240
+      name: Facebook
 
 # Nav ordering/titles are curated per-directory via .pages files (the
 # mkdocs-awesome-pages-plugin convention) rather than one giant explicit

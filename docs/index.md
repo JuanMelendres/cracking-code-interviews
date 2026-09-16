@@ -7,31 +7,133 @@ you already are and go deeper toward Senior or Staff.
 
 ## Where to start
 
-| If you are... | Use... |
-|---|---|
-| New to backend development entirely (0–2 years, no prior Java/SQL/Spring) | [Junior → Mid](study-packs/junior-to-mid/) |
-| A working engineer (2–5 years) who ships features but needs Senior-level internals depth | [Mid → Senior](study-packs/mid-to-senior/) |
-| A Senior engineer building the systemic/organizational judgment a Staff loop tests | [Senior → Staff](study-packs/senior-to-staff/) |
-| Focused specifically on deep Java-stack mastery (Java, Spring, DB, messaging, JVM) rather than broader breadth | [Backend Java Specialization](study-packs/backend-java-specialization/) |
-| Already Senior/Staff-level with depth in place, interview coming up soon — recall, not new learning | [Senior Interview Refresh](study-packs/senior-interview-refresh/) |
-| New to frontend/web development entirely (0–2 years, no prior JS/TS/React) | [Frontend Junior → Mid](study-packs/frontend-junior-to-mid/) |
-| A working frontend/full-stack engineer who needs Senior-level React/Next.js internals depth | [Frontend Mid → Senior](study-packs/frontend-mid-to-senior/) |
-| On an urgent timeline, need the highest-impact material fast regardless of level | [Interview Emergency Sprint](study-packs/week-01/) |
-| Just want to look something up | [Syllabus](syllabus/00-overview/INDEX.md) — 22 domains, every topic taught from Foundation through Staff depth in one place |
-| Cramming right before an interview | [Cheat sheets](cheat-sheets/) and [flashcards](flashcards/) |
+<div class="grid cards" markdown>
+
+-   :material-sprout:{ .lg .middle } __New to backend, 0–2 years__
+
+    ---
+
+    No prior Java/SQL/Spring assumed.
+
+    [:octicons-arrow-right-24: Junior → Mid](study-packs/junior-to-mid/)
+
+-   :material-trending-up:{ .lg .middle } __Working engineer, 2–5 years__
+
+    ---
+
+    Ships features, needs Senior-level internals depth.
+
+    [:octicons-arrow-right-24: Mid → Senior](study-packs/mid-to-senior/)
+
+-   :material-chess-king:{ .lg .middle } __Senior, aiming at Staff__
+
+    ---
+
+    Systemic/organizational judgment a Staff loop tests.
+
+    [:octicons-arrow-right-24: Senior → Staff](study-packs/senior-to-staff/)
+
+-   :material-coffee:{ .lg .middle } __Deep Java-stack focus__
+
+    ---
+
+    Java, Spring, DB, messaging, JVM — depth over breadth.
+
+    [:octicons-arrow-right-24: Backend Java Specialization](study-packs/backend-java-specialization/)
+
+-   :material-history:{ .lg .middle } __Senior/Staff, refreshing__
+
+    ---
+
+    Depth already in place, interview coming up — recall, not new learning.
+
+    [:octicons-arrow-right-24: Senior Interview Refresh](study-packs/senior-interview-refresh/)
+
+-   :material-web:{ .lg .middle } __New to frontend, 0–2 years__
+
+    ---
+
+    No prior JS/TS/React assumed.
+
+    [:octicons-arrow-right-24: Frontend Junior → Mid](study-packs/frontend-junior-to-mid/)
+
+-   :material-application-brackets:{ .lg .middle } __Frontend/full-stack, working__
+
+    ---
+
+    Needs Senior-level React/Next.js internals depth.
+
+    [:octicons-arrow-right-24: Frontend Mid → Senior](study-packs/frontend-mid-to-senior/)
+
+-   :material-run-fast:{ .lg .middle } __Urgent timeline__
+
+    ---
+
+    Highest-impact material fast, regardless of level.
+
+    [:octicons-arrow-right-24: Interview Emergency Sprint](study-packs/week-01/)
+
+-   :material-book-open-variant:{ .lg .middle } __Looking something up__
+
+    ---
+
+    22 domains, every topic Foundation through Staff depth.
+
+    [:octicons-arrow-right-24: Syllabus](syllabus/00-overview/INDEX.md)
+
+-   :material-clock-fast:{ .lg .middle } __Cramming, interview soon__
+
+    ---
+
+    Rapid review, no full chapters.
+
+    [:octicons-arrow-right-24: Cheat sheets](cheat-sheets/) · [:octicons-arrow-right-24: Flashcards](flashcards/)
+
+</div>
 
 See [Study Packs](study-packs/) for the full picture of how these eight programs relate.
 
 ## What's here
 
-| Section | What it is |
-|---|---|
-| [Syllabus](syllabus/00-overview/INDEX.md) | The canonical technical reference — 22 domains, one chapter per topic, each teaching Foundation through Staff depth in a single place |
-| [Study Packs](study-packs/) | Week-by-week schedules across 8 programs (5 backend, 2 frontend, 1 emergency-timeline) |
-| [Cheat Sheets](cheat-sheets/) | One-page rapid review per topic |
-| [Flashcards](flashcards/) | Spaced-repetition decks per topic |
-| [Architecture Atlas](architecture-atlas/) | Full system-design write-ups with diagrams and trade-offs |
-| [Production Cookbook](production-cookbook/) | Real, diagnosed incident write-ups in postmortem format |
+<div class="grid cards" markdown>
+
+-   :material-library:{ .lg .middle } __[Syllabus](syllabus/00-overview/INDEX.md)__
+
+    ---
+
+    The canonical technical reference — 22 domains, one chapter per topic, each teaching Foundation through Staff depth in a single place.
+
+-   :material-calendar-check:{ .lg .middle } __[Study Packs](study-packs/)__
+
+    ---
+
+    Week-by-week schedules across 8 programs (5 backend, 2 frontend, 1 emergency-timeline).
+
+-   :material-lightning-bolt:{ .lg .middle } __[Cheat Sheets](cheat-sheets/)__
+
+    ---
+
+    One-page rapid review per topic.
+
+-   :material-cards-outline:{ .lg .middle } __[Flashcards](flashcards/)__
+
+    ---
+
+    Spaced-repetition decks per topic.
+
+-   :material-sitemap:{ .lg .middle } __[Architecture Atlas](architecture-atlas/)__
+
+    ---
+
+    Full system-design write-ups with diagrams and trade-offs.
+
+-   :material-fire-alert:{ .lg .middle } __[Production Cookbook](production-cookbook/)__
+
+    ---
+
+    Real, diagnosed incident write-ups in postmortem format.
+
+</div>
 
 Every technical claim in this material is backed by real, executed code or a
 real, cited official source — never invented statistics or untested code
