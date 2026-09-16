@@ -1,3 +1,36 @@
+/* Custom brand palette (2026-09-16, real request: match the navy/orange
+   used on the user's own LinkedIn/social presence) -- Material has no
+   named "navy" palette entry, so mkdocs.yml sets primary/accent: custom
+   and these variables supply the actual colors for both light and dark
+   scheme. Starting hex values given directly by the user as a first pass;
+   swap in exact values sampled from the real LinkedIn banner if these
+   don't match closely enough once compared side by side. */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: #0a2540;
+  --md-primary-fg-color--light: #3d5a80;
+  --md-primary-fg-color--dark: #061a2e;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+[data-md-color-accent="custom"] {
+  --md-accent-fg-color: #ff6b35;
+  --md-accent-fg-color--transparent: #ff6b351a;
+  --md-accent-bg-color: #ffffff;
+  --md-accent-bg-color--light: #ffffffb3;
+}
+
+/* Body link color defaults to --md-primary-fg-color (Material's own
+   convention), which is fine on the light scheme's white background but
+   nearly invisible in dark mode -- the navy #0a2540 link text sits at
+   ~1.1:1 contrast against slate's dark body background (measured via a
+   real render, 2026-09-16). Dark mode only: switch body links to the
+   accent orange instead, which measures ~5.7:1 against slate -- passes
+   WCAG AA for normal text. */
+[data-md-color-scheme="slate"][data-md-color-primary="custom"] {
+  --md-typeset-a-color: var(--md-accent-fg-color);
+}
+
 /* Tighter, more comfortable reading measure than Material's default. */
 .md-grid {
   max-width: 1440px;

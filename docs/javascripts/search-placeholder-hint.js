@@ -6,7 +6,7 @@
 // file, so this sets the DOM attribute directly -- same pattern as this
 // repo's other javascripts/*.js, re-run on every instant-navigation swap.
 (function () {
-  var HINT = 'intenta "CAP theorem" o "CSRF"';
+  var HINT = 'try "CAP theorem" or "CSRF"';
 
   function attach() {
     var inputs = document.querySelectorAll('[data-md-component="search-query"]');
