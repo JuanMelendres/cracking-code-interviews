@@ -134,6 +134,9 @@ extra_javascript:
   - javascripts/chapter-context.js
   # Search placeholder with a real example query, see the script for why.
   - javascripts/search-placeholder-hint.js
+  # "swipe to see more" caption above wide tables that actually overflow
+  # on narrow viewports -- see the script for the real mobile check behind it.
+  - javascripts/wide-table-scroll-hint.js
 
 extra_css:
   - stylesheets/extra.css
