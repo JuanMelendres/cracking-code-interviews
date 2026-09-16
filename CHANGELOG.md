@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added ("According to your path, next" chapter suggestion, 2026-09-15)
+
+- Revisits a feature explicitly declined earlier this session over a fabrication concern: most learning paths only name 2-4 "priority topics" per domain, not an exhaustive per-chapter sequence, so computing "next" from a domain's full topic list would assert an ordering the source material never defines. This time, scoped to only the two learning-path structures that already contain real, author-written order: a flat numbered table (one row per topic, `junior-to-mid.md`, `senior-to-staff.md`, `frontend-junior-to-mid.md`, `frontend-mid-to-senior.md`) and a per-domain row's semicolon-separated ordered topic list (`mid-to-senior.md`). Never infers order from a domain's `INDEX.md`.
+- New `scripts/generate_learning_path_next_index.py`: parses both structures, resolves plain-text topic names against real chapter titles, and emits `docs/assets/learning-path-next-index.json` (gitignored, regenerated on every build like the existing pack-schedule index) — 119 chapters get a real "next" entry (the small subset of chapters a path actually calls out by name); every other chapter correctly shows nothing.
+- Found and fixed a real instance of the link-text/title-drift bug class while resolving topic names: `mid-to-senior.md`'s own priority-topics cells named 5 chapters using their OLD titles in plain text (not inside a Markdown link, so the earlier repo-wide drift grep never caught it) — e.g. "Resilience Patterns" for a chapter whose real title is "Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads". Fixed all 5 directly in the source.
+- Extended `docs/javascripts/chapter-context.js` (previously only the "Scheduled in" box) to also fetch the new index and render an "According to \<path\>, next: \<chapter\>" line beneath it when applicable — including an honest "you've completed this path's named sequence" state at the end of a path, linking to the next path's own real "## Next" section when one exists.
+- `validate.py`: errors 0, warnings 13 (unchanged), notes 268 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings, the new JSON asset confirmed published.
+
 ### Fixed (Repo-wide link-text/title-drift, 2026-09-15)
 
 - Full repo-wide grep confirming/closing the recurring bug flagged piecemeal across 6+ domains during the 2026-09 content-quality audit: a Markdown link's visible text was written to match its target chapter's title at the time, but the target was later retitled and the link text never updated (e.g. text read "Distributed Transactions — Saga and Outbox" while the target's real, current title is "Distributed Transactions: Saga, Outbox, and 2PC").

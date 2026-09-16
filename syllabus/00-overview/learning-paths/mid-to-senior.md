@@ -30,16 +30,16 @@ source: 00-project/syllabus-transformation-plan.md §6
 | 3 | [Spring](../../05-spring/INDEX.md) | Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation; Spring Security Filter Chain | L3 |
 | 4 | [Databases](../../06-databases/INDEX.md) | Query Planning and EXPLAIN ANALYZE; Isolation Levels and Concurrency Anomalies; MVCC in PostgreSQL, Vacuum, and Bloat | L3 |
 | 5 | [Testing](../../08-testing/INDEX.md) | Integration Testing Against Real Dependencies; Contract Testing for Services | L3 |
-| 6 | [Messaging & Event-Driven Systems](../../09-messaging-event-driven/INDEX.md) | Kafka Architecture Fundamentals; Kafka Delivery Semantics and Exactly-Once Processing | L3 |
+| 6 | [Messaging & Event-Driven Systems](../../09-messaging-event-driven/INDEX.md) | Kafka Architecture Fundamentals — Topics, Partitions, Replication; Kafka Delivery Semantics and Exactly-Once Processing | L3 |
 | 7 | [Distributed Systems](../../10-distributed-systems/INDEX.md) | CAP Theorem and Consistency Models; Distributed Systems Failure Modes | L3 |
-| 8 | [System Design](../../11-system-design/INDEX.md) | System Design Method and Estimation; Caching Strategies and Invalidation; Resilience Patterns | L3 |
-| 9 | [Security](../../12-security/INDEX.md) | OWASP Top 10 for Backend Services; AuthN vs AuthZ, RBAC vs ABAC; CSRF/CORS and Session Security; Enterprise SSO, SAML, and Federated Identity | L3 |
+| 8 | [System Design](../../11-system-design/INDEX.md) | System Design Method and Estimation; Caching Strategies and Invalidation; Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads | L3 |
+| 9 | [Security](../../12-security/INDEX.md) | OWASP Top 10 for Backend Services; AuthN vs AuthZ, RBAC vs ABAC; CSRF, CORS, and Session Security; Enterprise SSO: SAML, Federated Identity, and Commercial IAM Integration | L3 |
 | 10 | [Observability](../../13-observability/INDEX.md) | Performance Methodology (USE/RED) and SLI/SLO/Error Budgets; Logging, Metrics, Tracing, and OpenTelemetry | L3 |
 | 11 | [DevOps & Containers](../../14-devops-containers/INDEX.md) | Kubernetes Objects, Scheduling, and Networking; Kubernetes Resource Limits, Probes, and JVM Sizing | L3 |
 | 12 | [Architecture](../../17-architecture/INDEX.md) | Clean and Hexagonal Architecture; DDD Tactical Design — Aggregates | L3 |
 | 13 | [Software Design](../../04-software-design/INDEX.md) | SOLID Principles; Object-Oriented Design Interview Problems | L3 |
 | 14 | [API Design — Advanced](../../07-api-design/INDEX.md) | GraphQL API Design; gRPC API Design | L3 |
-| 15 | [AI/LLM Engineering](../../22-ai-llm-engineering/INDEX.md) | LLM API Integration Fundamentals; RAG and Vector Databases | L3 |
+| 15 | [AI/LLM Engineering](../../22-ai-llm-engineering/INDEX.md) | LLM API Integration Fundamentals; RAG and Vector Databases (pgvector) | L3 |
 
 ## Pair every domain with real production debugging
 
