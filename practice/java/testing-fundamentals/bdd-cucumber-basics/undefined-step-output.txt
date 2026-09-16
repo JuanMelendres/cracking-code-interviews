@@ -1,0 +1,101 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+[36m│  └─[0m [36mRunCucumberTest[0m [32m✔[0m
+[36m│     └─[0m [36mCucumber[0m [32m✔[0m
+[36m│        └─[0m [36mShopping cart discount[0m [32m✔[0m
+[36m│           ├─[0m [34mApplying a percentage discount to a cart[0m [32m✔[0m
+[36m│           ├─[0m [36mApplying various discount percentages[0m [32m✔[0m
+[36m│           │  └─[0m [36mExamples[0m [32m✔[0m
+[36m│           │     ├─[0m [34mExample #1.1[0m [32m✔[0m
+[36m│           │     ├─[0m [34mExample #1.2[0m [32m✔[0m
+[36m│           │     └─[0m [34mExample #1.3[0m [32m✔[0m
+[36m│           └─[0m [31mAn undefined step, to capture Cucumber's real snippet suggestion[0m [31m✘[0m [31mThe step 'a gift card with a balance of 25.00 is applied to the cart' is undefined.[0m
+[36m│                 [0m[31m   You can implement this step using the snippet(s) below:[0m
+[36m│                 [0m
+[36m│                 [0m[31m   @Given("a gift card with a balance of {double} is applied to the cart")[0m
+[36m│                 [0m[31m   public void a_gift_card_with_a_balance_of_is_applied_to_the_cart(Double double1) {[0m
+[36m│                 [0m[31m       // Write code here that turns the phrase above into concrete actions[0m
+[36m│                 [0m[31m       throw new io.cucumber.java.PendingException();[0m
+[36m│                 [0m[31m   }[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mCucumber[0m [32m✔[0m
+[36m   └─[0m [36mShopping cart discount[0m [32m✔[0m
+[36m      ├─[0m [34mApplying a percentage discount to a cart[0m [32m✔[0m
+[36m      ├─[0m [36mApplying various discount percentages[0m [32m✔[0m
+[36m      │  └─[0m [36mExamples[0m [32m✔[0m
+[36m      │     ├─[0m [34mExample #1.1[0m [32m✔[0m
+[36m      │     ├─[0m [34mExample #1.2[0m [32m✔[0m
+[36m      │     └─[0m [34mExample #1.3[0m [32m✔[0m
+[36m      └─[0m [31mAn undefined step, to capture Cucumber's real snippet suggestion[0m [31m✘[0m [31mThe step 'a gift card with a balance of 25.00 is applied to the cart' is undefined.[0m
+[36m            [0m[31m   You can implement this step using the snippet(s) below:[0m
+[36m            [0m
+[36m            [0m[31m   @Given("a gift card with a balance of {double} is applied to the cart")[0m
+[36m            [0m[31m   public void a_gift_card_with_a_balance_of_is_applied_to_the_cart(Double double1) {[0m
+[36m            [0m[31m       // Write code here that turns the phrase above into concrete actions[0m
+[36m            [0m[31m       throw new io.cucumber.java.PendingException();[0m
+[36m            [0m[31m   }[0m
+
+Failures (2):
+  JUnit Platform Suite:RunCucumberTest:Cucumber:Shopping cart discount:An undefined step, to capture Cucumber's real snippet suggestion
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 21, column = 3]]
+    => io.cucumber.junit.platform.engine.UndefinedStepException: The step 'a gift card with a balance of 25.00 is applied to the cart' is undefined.
+You can implement this step using the snippet(s) below:
+
+@Given("a gift card with a balance of {double} is applied to the cart")
+public void a_gift_card_with_a_balance_of_is_applied_to_the_cart(Double double1) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+       io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
+       io.cucumber.junit.platform.engine.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:22)
+       io.cucumber.junit.platform.engine.CucumberEngineExecutionContext.lambda$runTestCase$4(CucumberEngineExecutionContext.java:114)
+       io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+       io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+       io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+       io.cucumber.junit.platform.engine.CucumberEngineExecutionContext.runTestCase(CucumberEngineExecutionContext.java:109)
+       io.cucumber.junit.platform.engine.NodeDescriptor$PickleDescriptor.execute(NodeDescriptor.java:168)
+       io.cucumber.junit.platform.engine.NodeDescriptor$PickleDescriptor.execute(NodeDescriptor.java:90)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       [...]
+  Cucumber:Shopping cart discount:An undefined step, to capture Cucumber's real snippet suggestion
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 21, column = 3]]
+    => io.cucumber.junit.platform.engine.UndefinedStepException: The step 'a gift card with a balance of 25.00 is applied to the cart' is undefined.
+You can implement this step using the snippet(s) below:
+
+@Given("a gift card with a balance of {double} is applied to the cart")
+public void a_gift_card_with_a_balance_of_is_applied_to_the_cart(Double double1) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+       io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
+       io.cucumber.junit.platform.engine.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:22)
+       io.cucumber.junit.platform.engine.CucumberEngineExecutionContext.lambda$runTestCase$4(CucumberEngineExecutionContext.java:114)
+       io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+       io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+       io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+       io.cucumber.junit.platform.engine.CucumberEngineExecutionContext.runTestCase(CucumberEngineExecutionContext.java:109)
+       io.cucumber.junit.platform.engine.NodeDescriptor$PickleDescriptor.execute(NodeDescriptor.java:168)
+       io.cucumber.junit.platform.engine.NodeDescriptor$PickleDescriptor.execute(NodeDescriptor.java:90)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       [...]
+
+Test run finished after 80 ms
+[        12 containers found      ]
+[         0 containers skipped    ]
+[        12 containers started    ]
+[         0 containers aborted    ]
+[        12 containers successful ]
+[         0 containers failed     ]
+[        10 tests found           ]
+[         0 tests skipped         ]
+[        10 tests started         ]
+[         0 tests aborted         ]
+[         8 tests successful      ]
+[         2 tests failed          ]
+

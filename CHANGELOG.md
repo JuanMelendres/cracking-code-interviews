@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Behavior-Driven Development with Cucumber, T-2412, 2026-09-16)
+
+- User asked whether TDD and other development styles were covered. TDD was (see `writing-tests-live-in-an-interview.md`); BDD was not, anywhere. New chapter `syllabus/08-testing/behavior-driven-development-with-cucumber.md` closes the gap, written to answer the real TDD-vs-BDD confusion directly (audience/vocabulary layer, not a different testing mechanism) rather than treating the two as synonyms.
+- Real, executed Cucumber-JVM 7.18.0 lab (`practice/java/testing-fundamentals/bdd-cucumber-basics/`) — no Maven/Gradle, all 18 runtime jars hand-resolved from `cucumber-core`'s own published POM and fetched directly from Maven Central via `curl`. Proves: a real `Scenario Outline` with an `Examples` table producing 3 genuinely separate, independently-reported test instances; a real captured assertion failure (deliberately broken discount math); a genuinely unplanned finding from that same failure run — a 0%-discount `Examples` row still passed with the bug present, since multiplying a broken percentage by zero can't expose the bug, a concrete lesson in choosing test data deliberately; and Cucumber's own real, generated Java step-definition snippet for an undefined step.
+- Includes a TDD vs. BDD vs. process-model (Agile/Scrum/Waterfall) comparison table, closing a second real confusion (testing techniques vs. project-phase models are different questions entirely).
+- Updated `syllabus/08-testing/INDEX.md` (8 → 9 chapters, T-2412 row added).
+- `validate.py`: errors 0, warnings 13 (unchanged), notes 268 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings for the new pages.
+
 ### Added ("According to your path, next" chapter suggestion, 2026-09-15)
 
 - Revisits a feature explicitly declined earlier this session over a fabrication concern: most learning paths only name 2-4 "priority topics" per domain, not an exhaustive per-chapter sequence, so computing "next" from a domain's full topic list would assert an ordering the source material never defines. This time, scoped to only the two learning-path structures that already contain real, author-written order: a flat numbered table (one row per topic, `junior-to-mid.md`, `senior-to-staff.md`, `frontend-junior-to-mid.md`, `frontend-mid-to-senior.md`) and a per-domain row's semicolon-separated ordered topic list (`mid-to-senior.md`). Never infers order from a domain's `INDEX.md`.

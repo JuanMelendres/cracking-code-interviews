@@ -1,0 +1,71 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+[36m│  └─[0m [36mRunCucumberTest[0m [32m✔[0m
+[36m│     └─[0m [36mCucumber[0m [32m✔[0m
+[36m│        └─[0m [36mShopping cart discount[0m [32m✔[0m
+[36m│           ├─[0m [31mApplying a percentage discount to a cart[0m [31m✘[0m [31mexpected: <80.0> but was: <98.0>[0m
+[36m│           └─[0m [36mApplying various discount percentages[0m [32m✔[0m
+[36m│              └─[0m [36mExamples[0m [32m✔[0m
+[36m│                 ├─[0m [31mExample #1.1[0m [31m✘[0m [31mexpected: <90.0> but was: <99.0>[0m
+[36m│                 ├─[0m [31mExample #1.2[0m [31m✘[0m [31mexpected: <150.0> but was: <195.0>[0m
+[36m│                 └─[0m [34mExample #1.3[0m [32m✔[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mCucumber[0m [32m✔[0m
+[36m   └─[0m [36mShopping cart discount[0m [32m✔[0m
+[36m      ├─[0m [31mApplying a percentage discount to a cart[0m [31m✘[0m [31mexpected: <80.0> but was: <98.0>[0m
+[36m      └─[0m [36mApplying various discount percentages[0m [32m✔[0m
+[36m         └─[0m [36mExamples[0m [32m✔[0m
+[36m            ├─[0m [31mExample #1.1[0m [31m✘[0m [31mexpected: <90.0> but was: <99.0>[0m
+[36m            ├─[0m [31mExample #1.2[0m [31m✘[0m [31mexpected: <150.0> but was: <195.0>[0m
+[36m            └─[0m [34mExample #1.3[0m [32m✔[0m
+
+Failures (6):
+  JUnit Platform Suite:RunCucumberTest:Cucumber:Shopping cart discount:Applying a percentage discount to a cart
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 5, column = 3]]
+    => org.opentest4j.AssertionFailedError: expected: <80.0> but was: <98.0>
+       steps.ShoppingCartSteps.theCartTotalShouldBe(ShoppingCartSteps.java:27)
+       ✽.the cart total should be 80.00(classpath:features/shopping_cart.feature:8)
+  JUnit Platform Suite:RunCucumberTest:Cucumber:Shopping cart discount:Applying various discount percentages:Examples:Example #1.1
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 17, column = 7]]
+    => org.opentest4j.AssertionFailedError: expected: <90.0> but was: <99.0>
+       steps.ShoppingCartSteps.theCartTotalShouldBe(ShoppingCartSteps.java:27)
+       ✽.the cart total should be 90.00(classpath:features/shopping_cart.feature:13)
+  JUnit Platform Suite:RunCucumberTest:Cucumber:Shopping cart discount:Applying various discount percentages:Examples:Example #1.2
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 18, column = 7]]
+    => org.opentest4j.AssertionFailedError: expected: <150.0> but was: <195.0>
+       steps.ShoppingCartSteps.theCartTotalShouldBe(ShoppingCartSteps.java:27)
+       ✽.the cart total should be 150.00(classpath:features/shopping_cart.feature:13)
+  Cucumber:Shopping cart discount:Applying a percentage discount to a cart
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 5, column = 3]]
+    => org.opentest4j.AssertionFailedError: expected: <80.0> but was: <98.0>
+       steps.ShoppingCartSteps.theCartTotalShouldBe(ShoppingCartSteps.java:27)
+       ✽.the cart total should be 80.00(classpath:features/shopping_cart.feature:8)
+  Cucumber:Shopping cart discount:Applying various discount percentages:Examples:Example #1.1
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 17, column = 7]]
+    => org.opentest4j.AssertionFailedError: expected: <90.0> but was: <99.0>
+       steps.ShoppingCartSteps.theCartTotalShouldBe(ShoppingCartSteps.java:27)
+       ✽.the cart total should be 90.00(classpath:features/shopping_cart.feature:13)
+  Cucumber:Shopping cart discount:Applying various discount percentages:Examples:Example #1.2
+    ClasspathResourceSource [classpathResourceName = 'features/shopping_cart.feature', filePosition = FilePosition [line = 18, column = 7]]
+    => org.opentest4j.AssertionFailedError: expected: <150.0> but was: <195.0>
+       steps.ShoppingCartSteps.theCartTotalShouldBe(ShoppingCartSteps.java:27)
+       ✽.the cart total should be 150.00(classpath:features/shopping_cart.feature:13)
+
+Test run finished after 71 ms
+[        12 containers found      ]
+[         0 containers skipped    ]
+[        12 containers started    ]
+[         0 containers aborted    ]
+[        12 containers successful ]
+[         0 containers failed     ]
+[         8 tests found           ]
+[         0 tests skipped         ]
+[         8 tests started         ]
+[         0 tests aborted         ]
+[         2 tests successful      ]
+[         6 tests failed          ]
+
