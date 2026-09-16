@@ -6,6 +6,16 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Microservices Patterns with Spring Boot, T-519, 2026-09-16)
+
+- User asked directly whether this repository covered microservices patterns in Spring Boot. Audit found architecture-level patterns already existed (`syllabus/11-system-design/resilience-patterns.md`, `load-balancing-service-discovery-and-health-checking.md`, `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`) and Spring Boot fundamentals already existed (`05-spring`, 12 chapters) — but nothing connected the two with real code. New chapter `syllabus/05-spring/microservices-patterns-with-spring-boot.md` closes that specific gap.
+- Real, executed Spring Framework 6.1.14 + Spring Boot 3.3.5 + Resilience4j 2.2.0 lab (`practice/java/spring/microservices-patterns-with-spring-boot/`) — no Maven/Gradle, jars fetched directly from Maven Central. A real `@Service` (`OrderService`) calls a real local HTTP server (`FlakyPaymentServer`, stand-in for a payment microservice) through Spring's own declarative `@HttpExchange` client (no Spring Cloud OpenFeign dependency), wrapped in a real Resilience4j `CircuitBreaker`.
+- Demo 1: real, captured CLOSED → OPEN → HALF_OPEN → CLOSED state sequence driven by real failing calls, plus proof a call made while `OPEN` never reaches the network (`server.requestCount()` verified flat).
+- Demo 2, the chapter's central genuinely unplanned finding: two circuit breakers driven against the identical real slow (300ms) downstream — a default-configured one (`failureRateThreshold` only) stays `CLOSED` through all 5 calls since they technically succeed; a second one with `slowCallDurationThreshold`/`slowCallRateThreshold` added opens on the 5th call. Verifies directly that a circuit breaker's default configuration does not protect against a downstream that hangs rather than errors.
+- Service discovery, Spring Cloud Gateway, and Spring Cloud Config are covered as real, correct reference configuration, explicitly labeled as not executed in this chapter's own lab (a 3-additional-running-process scope beyond this repository's single-process demo convention) rather than presented as tested.
+- New cheat sheet and flashcard deck; updated `syllabus/05-spring/INDEX.md` (12 → 13 chapters), `syllabus/00-overview/INDEX.md`, `cheat-sheets/README.md`, `flashcards/README.md`, and `README.md`'s stats table.
+- `validate.py`: errors 0, warnings 13 (unchanged).
+
 ### Added (Behavior-Driven Development with Cucumber, T-2412, 2026-09-16)
 
 - User asked whether TDD and other development styles were covered. TDD was (see `writing-tests-live-in-an-interview.md`); BDD was not, anywhere. New chapter `syllabus/08-testing/behavior-driven-development-with-cucumber.md` closes the gap, written to answer the real TDD-vs-BDD confusion directly (audience/vocabulary layer, not a different testing mechanism) rather than treating the two as synonyms.

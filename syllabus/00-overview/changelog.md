@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-15
+last_updated: 2026-09-16
 ---
 
 # Syllabus Changelog
@@ -1973,3 +1973,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Includes a TDD vs. BDD vs. process-model (Agile/Scrum/Waterfall) comparison table, closing a second real confusion this domain hadn't addressed — testing/specification techniques and project-phase process models are different questions entirely, not alternatives to each other.
 - Updated `syllabus/08-testing/INDEX.md` (8 → 9 chapters, T-2412 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged), notes 268 (unchanged). Real local `mkdocs build`: exit 0, 0 "no such anchor" warnings for the new pages.
+
+## [2026-09-16] — `05-spring` gains a 13th chapter, same day: Microservices Patterns with Spring Boot
+
+### Added (`syllabus/05-spring/microservices-patterns-with-spring-boot.md` — T-519)
+
+- User asked directly whether this repository covered microservices patterns in Spring Boot. Audit found the architecture-level patterns already taught as language-agnostic system design (`../11-system-design/resilience-patterns.md`, `load-balancing-service-discovery-and-health-checking.md`, `../07-api-design/api-gateway-bff-and-edge-concerns.md`) and Spring Boot already taught as a framework (this domain's other 12 chapters), but nothing connecting the two with real Spring Boot code.
+- Real, executed Spring Framework 6.1.14 + Spring Boot 3.3.5 + Resilience4j 2.2.0 lab (`practice/java/spring/microservices-patterns-with-spring-boot/`), no Maven/Gradle. A real `@Service` calls a real local HTTP server standing in for a payment microservice through Spring's own declarative `@HttpExchange` client (no Spring Cloud OpenFeign dependency needed), wrapped in a real Resilience4j `CircuitBreaker` wired through a real `GenericApplicationContext`.
+- Demo 1: real, captured `CLOSED → OPEN → HALF_OPEN → CLOSED` state sequence, driven by real failing calls against the real server, plus proof a call made while `OPEN` never reaches the network.
+- Demo 2, the chapter's genuinely unplanned central finding: two circuit breakers driven against the identical real, artificially slow (300ms) downstream — a default-configured one (`failureRateThreshold` only) stays `CLOSED` through all 5 calls since they technically succeed; a second one with `slowCallDurationThreshold`/`slowCallRateThreshold` added opens on the 5th call. Directly verifies that a circuit breaker's default configuration does not protect against a downstream that hangs rather than errors — a real, common production gap.
+- Service discovery, Spring Cloud Gateway, and Spring Cloud Config are covered as real, correct reference configuration, explicitly labeled as not executed in this chapter's own lab, rather than presented as tested.
+- Updated `syllabus/05-spring/INDEX.md` (12 → 13 chapters, T-519 row added).
+- `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.

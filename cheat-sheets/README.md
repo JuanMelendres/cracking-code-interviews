@@ -29,6 +29,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-16 -- index-completeness audit.** Diffing every file in `cheat-sheets/` against this README's own tables (rather than trusting the last "complete" claim above) found 10 existing cheat-sheet files never listed anywhere in this index: 3 backend chapters with no stated IWI (`enterprise-sso-saml-and-federated-identity.md`, `graphql-api-design.md`, `grpc-api-design.md` -- added to the main table above with `—`) and 6 `22-ai-llm-engineering` chapters (added as their own new section below). The 10th, `frontend-live-coding-and-debugging-protocol.md`, is confirmed intentionally excluded (matches the Frontend Cheat Sheets section's own stated exclusion). **New total: 253 cheat sheets** (verified as the real file count in `cheat-sheets/`, 2026-09-16) -- every one now listed in exactly one of the tables above.
 
+**2026-09-16 — Microservices Patterns with Spring Boot (T-519) gains a cheat sheet.** New `05-spring` chapter, added the same day to close a real, user-flagged gap (the domain taught microservices patterns as architecture and Spring Boot as a framework, but never connected the two with real code). **New total: 254 cheat sheets.**
+
 ## Cheat Sheets
 
 | # | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
@@ -168,6 +170,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 133 | [Enterprise SSO: SAML, Federated Identity, and Commercial IAM Integration](enterprise-sso-saml-and-federated-identity.md) | T-1309 | — | security | `syllabus/12-security/enterprise-sso-saml-and-federated-identity.md` |
 | 134 | [GraphQL API Design](graphql-api-design.md) | T-917 | — | api-design | `syllabus/07-api-design/graphql-api-design.md` |
 | 135 | [gRPC API Design](grpc-api-design.md) | T-918 | — | api-design | `syllabus/07-api-design/grpc-api-design.md` |
+| 136 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | — | spring | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 
