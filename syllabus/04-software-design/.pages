@@ -1,1 +1,6 @@
 title: Software Design
+nav:
+  - INDEX.md
+  - design-patterns-applied.md
+  - solid-principles.md
+  - ood-interview-problems.md

@@ -1,0 +1,9 @@
+title: AI/LLM Engineering
+nav:
+  - INDEX.md
+  - llm-api-integration-fundamentals.md
+  - rag-and-vector-databases.md
+  - embeddings.md
+  - prompt-engineering-patterns.md
+  - agentic-workflows-and-tool-orchestration.md
+  - llm-evaluation-and-testing.md

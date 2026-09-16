@@ -1,1 +1,21 @@
 title: Data Structures & Algorithms
+nav:
+  - INDEX.md
+  - arrays-two-pointers-and-sliding-window.md
+  - hashing-patterns-and-frequency-maps.md
+  - binary-search-and-search-on-answer.md
+  - linked-lists-and-in-place-manipulation.md
+  - stacks-and-monotonic-stack.md
+  - heaps-top-k-and-k-way-merge.md
+  - trees-bst-and-traversal-patterns.md
+  - graphs-bfs-dfs-and-shortest-paths.md
+  - backtracking-and-pruning.md
+  - dynamic-programming.md
+  - intervals-merging-and-sweep-line.md
+  - greedy-and-the-exchange-argument.md
+  - bit-manipulation.md
+  - tries-and-prefix-structures.md
+  - design-style-coding-problems.md
+  - concurrency-coding-problems.md
+  - advanced-structures-segment-tree-fenwick-rolling-hash.md
+  - sorting-algorithms.md

@@ -1,1 +1,10 @@
 title: Distributed Systems
+nav:
+  - INDEX.md
+  - distributed-transactions-saga-and-outbox.md
+  - data-partitioning-and-consistent-hashing.md
+  - cap-theorem-and-consistency-models.md
+  - multi-region-failover-and-disaster-recovery.md
+  - distributed-systems-failure-modes.md
+  - consensus-algorithms-raft-and-paxos.md
+  - vector-clocks-and-quorum-based-replication.md

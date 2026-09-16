@@ -1,1 +1,10 @@
 title: Leadership & Staff
+nav:
+  - INDEX.md
+  - mentoring-and-developing-others.md
+  - cross-team-influence-without-authority.md
+  - leading-migrations-and-large-technical-change.md
+  - technical-debt-prioritization-and-advocacy.md
+  - design-reviews-and-rfcs-as-organizational-practice.md
+  - incident-command-roles-and-real-time-coordination.md
+  - hiring-and-team-building.md

@@ -1,1 +1,9 @@
 title: Engineering Practices
+nav:
+  - INDEX.md
+  - sdlc-and-agile-methodology-fundamentals.md
+  - code-review-standards-and-practice.md
+  - architecture-decision-records-and-technical-writing.md
+  - working-with-legacy-code.md
+  - refactoring-discipline.md
+  - git-internals-and-collaboration-workflows.md

@@ -1,1 +1,12 @@
 title: Architecture
+nav:
+  - INDEX.md
+  - clean-hexagonal-architecture.md
+  - ddd-tactical-design-aggregates.md
+  - ddd-strategic-bounded-contexts-and-context-mapping.md
+  - cqrs-read-write-separation.md
+  - microservice-decomposition-and-monolith-tradeoff.md
+  - modular-monolith-as-a-deliberate-choice.md
+  - strangler-fig-and-migration-patterns.md
+  - technical-debt-and-evolutionary-architecture.md
+  - architecture-decision-records.md

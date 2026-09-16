@@ -1,1 +1,7 @@
 title: Cloud
+nav:
+  - INDEX.md
+  - aws-core-services-for-backend-engineers.md
+  - cloud-cost-and-scaling-economics.md
+  - twelve-factor-config.md
+  - azure-and-gcp-for-backend-engineers.md

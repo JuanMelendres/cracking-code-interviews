@@ -1,1 +1,8 @@
 title: Computer Science Foundations
+nav:
+  - INDEX.md
+  - algorithmic-complexity-and-big-o-from-first-principles.md
+  - how-a-computer-executes-a-program.md
+  - number-representation.md
+  - os-process-thread-model.md
+  - networking-basics.md

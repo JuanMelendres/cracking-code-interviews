@@ -1,1 +1,8 @@
 title: Observability
+nav:
+  - INDEX.md
+  - percentiles-tail-latency-and-coordinated-omission.md
+  - performance-methodology-and-slo-error-budgets.md
+  - logging-metrics-tracing-and-opentelemetry.md
+  - incident-response-and-blameless-postmortems.md
+  - metric-cardinality-and-alert-fatigue.md
