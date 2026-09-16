@@ -32,7 +32,7 @@ related:
   - ../../practice/java/architecture/strangler-fig-and-migration-patterns/README.md
 official_references:
   - https://martinfowler.com/bliki/StranglerFigApplication.html
-  - https://martinfowler.com/bliki/AntiCorruptionLayer.html
+  - https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
   - https://martinfowler.com/bliki/BranchByAbstraction.html
 ---
 
@@ -673,5 +673,5 @@ left for the reader to explore with their own realistic numbers.
 ## Official References
 
 - Martin Fowler, [StranglerFigApplication](https://martinfowler.com/bliki/StranglerFigApplication.html)
-- Martin Fowler, [Anti-Corruption Layer](https://martinfowler.com/bliki/AntiCorruptionLayer.html)
+- Microsoft, [Anti-Corruption Layer Pattern — Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer) (the term originates with Eric Evans's *Domain-Driven Design*; Martin Fowler's own bliki entry for it no longer resolves, replaced here with this still-live reference, 2026-09-16)
 - Martin Fowler, [Branch By Abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html)
