@@ -14,7 +14,7 @@ source: 00-project/syllabus-transformation-plan.md
 
 ### 4.1 Relationship to the existing Canonical Chapter Template
 
-`CLAUDE.md` already defines a Canonical Chapter Template (44 sections, reproduced in full at `CLAUDE.md:1299`). The Topic Specification below is **that template, restructured around explicit mastery levels** rather than an implicit "assume Senior/Staff" depth, plus a small number of additions the audit showed were missing (explicit Prerequisites as their own section rather than only front matter; an explicit Mastery Checklist; explicit Debugging and Design exercise categories rather than one undifferentiated "Practice Exercises"). Every existing chapter section maps onto exactly one part of this spec — nothing is orphaned.
+`CLAUDE.md` already defines a Canonical Chapter Template (44 sections, now `templates/canonical-chapter-template-legacy.md`, superseded by this spec). The Topic Specification below is **that template, restructured around explicit mastery levels** rather than an implicit "assume Senior/Staff" depth, plus a small number of additions the audit showed were missing (explicit Prerequisites as their own section rather than only front matter; an explicit Mastery Checklist; explicit Debugging and Design exercise categories rather than one undifferentiated "Practice Exercises"). Every existing chapter section maps onto exactly one part of this spec — nothing is orphaned.
 
 ### 4.2 The standard sections (in order)
 

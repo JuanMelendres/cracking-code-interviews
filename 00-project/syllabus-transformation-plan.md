@@ -211,7 +211,7 @@ A few boundaries are non-obvious and are justified explicitly so they can be cha
 
 ### 4.1 Relationship to the existing Canonical Chapter Template
 
-`CLAUDE.md` already defines a Canonical Chapter Template (44 sections, reproduced in full at `CLAUDE.md:1299`). The Topic Specification below is **that template, restructured around explicit mastery levels** rather than an implicit "assume Senior/Staff" depth, plus a small number of additions the audit showed were missing (explicit Prerequisites as their own section rather than only front matter; an explicit Mastery Checklist; explicit Debugging and Design exercise categories rather than one undifferentiated "Practice Exercises"). Every existing chapter section maps onto exactly one part of this spec — nothing is orphaned.
+`CLAUDE.md` already defines a Canonical Chapter Template (44 sections, now `templates/canonical-chapter-template-legacy.md`, superseded by this spec). The Topic Specification below is **that template, restructured around explicit mastery levels** rather than an implicit "assume Senior/Staff" depth, plus a small number of additions the audit showed were missing (explicit Prerequisites as their own section rather than only front matter; an explicit Mastery Checklist; explicit Debugging and Design exercise categories rather than one undifferentiated "Practice Exercises"). Every existing chapter section maps onto exactly one part of this spec — nothing is orphaned.
 
 ### 4.2 The standard sections (in order)
 
@@ -505,7 +505,7 @@ No phase below is authorized by this document. It defines what execution would l
 Extends the existing `scripts/validate.py` and the Quality Gates already defined in `CLAUDE.md` (line 2397), rather than replacing them.
 
 1. **Every `syllabus/` topic file has complete, schema-valid front matter** per §4.3, including a non-empty `topic_id`.
-2. **Every relative link resolves** to an existing file or an explicitly marked `> Planned reference:` placeholder (existing rule, `CLAUDE.md:2249`, extended to cover the new domain paths).
+2. **Every relative link resolves** to an existing file or an explicitly marked `> Planned reference:` placeholder (existing rule, CLAUDE.md Cross-Reference Standards, extended to cover the new domain paths).
 3. **No topic file duplicates a definition, code example, trade-off table, or interview-question set** that already exists at another `topic_id`'s canonical location, unless justified inline (existing rule, extended).
 4. **Every topic file has a non-empty Mastery Checklist** (§5.2) using at least one of the five verification forms — "read this chapter" as a stated criterion is a hard validation failure.
 5. **`mastery_levels_covered` in front matter is accurate** — a topic claiming `[L1, L2, L3, L4]` must have all four level headings present with non-placeholder content; this is checkable by a simple heading-presence script, not just human review.
