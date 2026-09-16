@@ -17,8 +17,7 @@ theme:
   name: material
   custom_dir: overrides
   favicon: assets/images/favicon.png
-  icon:
-    logo: material/code-braces
+  logo: assets/images/logo.png
   # Inter (body/UI text) + JetBrains Mono (code): both are purpose-built
   # for long, low-fatigue reading rather than display use -- Inter has a
   # tall x-height and disambiguated characters (1/l/I) tuned for on-screen
