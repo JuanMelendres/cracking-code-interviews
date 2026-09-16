@@ -1,12 +1,25 @@
-// Shows a small "Scheduled in" box on a syllabus chapter page naming every
-// study-pack week that actually links to it. Deliberately NOT a computed
-// "next chapter in your path" suggestion -- see
-// scripts/generate_pack_schedule_index.py's own module docstring for why
-// that would risk inventing a sequence this repository's source material
-// doesn't define. This only ever states a real, already-authored link.
+// Shows two small boxes on a syllabus chapter page, both built ONLY from
+// real, already-authored source data -- never a computed/inferred
+// sequence:
+//
+// 1. "Scheduled in" -- every study-pack week that actually links to this
+//    chapter (scripts/generate_pack_schedule_index.py).
+// 2. "According to <path>, next" -- ONLY shown when this chapter is one
+//    of a learning path's explicitly named, ordered priority topics, and
+//    only ever states the next topic that SAME path names next --
+//    real author-written order (a numbered table row, or a
+//    semicolon-separated ordered list), never a guessed sequence from a
+//    domain's full topic list. See
+//    scripts/generate_learning_path_next_index.py's own module
+//    docstring for exactly which source structures this reads and why
+//    that reading is safe. Most chapters aren't named in any path's
+//    priority-topic list, so most pages show nothing here -- that's
+//    correct, not a bug.
 (function () {
-  var DATA_CACHE = null;
-  var DATA_PROMISE = null;
+  var SCHEDULE_CACHE = null;
+  var SCHEDULE_PROMISE = null;
+  var NEXT_CACHE = null;
+  var NEXT_PROMISE = null;
 
   function baseUrl() {
     var script = document.currentScript;
@@ -25,23 +38,41 @@
     return script.src.replace(/javascripts\/chapter-context\.js.*$/, "");
   }
 
-  function loadData() {
-    if (DATA_PROMISE) {
-      return DATA_PROMISE;
-    }
-    DATA_PROMISE = fetch(baseUrl() + "assets/pack-schedule-index.json")
-      .then(function (res) {
-        return res.ok ? res.json() : {};
-      })
-      .catch(function () {
-        return {};
-      })
-      .then(function (data) {
-        DATA_CACHE = data;
-        return data;
-      });
-    return DATA_PROMISE;
+  function loadJson(cacheKey, path) {
+    return function () {
+      var promiseVar = cacheKey + "_PROMISE";
+      if (cacheKey === "schedule" && SCHEDULE_PROMISE) {
+        return SCHEDULE_PROMISE;
+      }
+      if (cacheKey === "next" && NEXT_PROMISE) {
+        return NEXT_PROMISE;
+      }
+      var promise = fetch(baseUrl() + path)
+        .then(function (res) {
+          return res.ok ? res.json() : {};
+        })
+        .catch(function () {
+          return {};
+        })
+        .then(function (data) {
+          if (cacheKey === "schedule") {
+            SCHEDULE_CACHE = data;
+          } else {
+            NEXT_CACHE = data;
+          }
+          return data;
+        });
+      if (cacheKey === "schedule") {
+        SCHEDULE_PROMISE = promise;
+      } else {
+        NEXT_PROMISE = promise;
+      }
+      return promise;
+    };
   }
+
+  var loadSchedule = loadJson("schedule", "assets/pack-schedule-index.json");
+  var loadNextIndex = loadJson("next", "assets/learning-path-next-index.json");
 
   function chapterKeyFromPath() {
     var path = window.location.pathname;
@@ -57,7 +88,7 @@
     return rest + ".md";
   }
 
-  function renderBox(entries) {
+  function renderScheduledBox(entries) {
     var box = document.createElement("div");
     box.className = "cci-scheduled-in";
 
@@ -83,39 +114,107 @@
     return box;
   }
 
+  function keyToUrl(key) {
+    // "syllabus/06-databases/views-and-materialized-views.md" ->
+    // "syllabus/06-databases/views-and-materialized-views/"
+    return key.replace(/\.md$/, "") + "/";
+  }
+
+  function renderNextBox(entries) {
+    var box = document.createElement("div");
+    box.className = "cci-next-in-path";
+    var base = baseUrl();
+
+    entries.forEach(function (entry) {
+      var line = document.createElement("div");
+      line.className = "cci-next-in-path__line";
+
+      var label = document.createElement("span");
+      label.className = "cci-next-in-path__label";
+      label.textContent = "According to " + entry.path + ", next: ";
+      line.appendChild(label);
+
+      if (entry.path_complete) {
+        if (entry.next_key === null && entry.next_title) {
+          // next_title here is the display text of the path's own
+          // "## Next" link -- a real link to the NEXT PATH, not a chapter.
+          line.appendChild(
+            document.createTextNode(
+              "you've completed this path's named sequence — continue with " +
+                entry.next_title
+            )
+          );
+        } else {
+          line.appendChild(
+            document.createTextNode("you've completed this path's named sequence")
+          );
+        }
+      } else {
+        var link = document.createElement("a");
+        link.href = base + keyToUrl(entry.next_key);
+        link.textContent = entry.next_title;
+        line.appendChild(link);
+      }
+
+      box.appendChild(line);
+    });
+
+    return box;
+  }
+
   function attach() {
     var key = chapterKeyFromPath();
     if (!key) {
       return;
     }
     var content = document.querySelector(".md-content__inner");
-    if (!content || content.dataset.scheduledInChecked === key) {
+    if (!content || content.dataset.chapterContextChecked === key) {
       return;
     }
-    content.dataset.scheduledInChecked = key;
+    content.dataset.chapterContextChecked = key;
 
-    loadData().then(function (data) {
-      var entries = data[key];
-      if (!entries || !entries.length) {
-        return;
+    Promise.all([loadSchedule(), loadNextIndex()]).then(function (results) {
+      var scheduleData = results[0];
+      var nextData = results[1];
+
+      var existingScheduled = content.querySelector(".cci-scheduled-in");
+      if (existingScheduled) {
+        existingScheduled.remove();
       }
-      var existing = content.querySelector(".cci-scheduled-in");
-      if (existing) {
-        existing.remove();
+      var existingNext = content.querySelector(".cci-next-in-path");
+      if (existingNext) {
+        existingNext.remove();
       }
-      var box = renderBox(entries);
-      // Sits below the reading-time line when one is present (server-
-      // rendered by overrides/partials/content.html, so already in the DOM
-      // by the time this runs), otherwise directly under the title.
+
       var readingTime = content.querySelector(".cci-reading-time");
       var h1 = content.querySelector("h1");
       var anchor = readingTime || h1;
-      if (anchor && anchor.nextSibling) {
-        anchor.parentNode.insertBefore(box, anchor.nextSibling);
-      } else if (anchor) {
-        anchor.parentNode.appendChild(box);
-      } else {
-        content.insertBefore(box, content.firstChild);
+      if (!anchor) {
+        return;
+      }
+
+      // Both boxes insert right after `anchor`, in order: Scheduled in
+      // first, then Next-in-path -- inserting each one moves `anchor`
+      // forward so the second insert lands after the first box.
+      var scheduleEntries = scheduleData[key];
+      if (scheduleEntries && scheduleEntries.length) {
+        var scheduledBox = renderScheduledBox(scheduleEntries);
+        if (anchor.nextSibling) {
+          anchor.parentNode.insertBefore(scheduledBox, anchor.nextSibling);
+        } else {
+          anchor.parentNode.appendChild(scheduledBox);
+        }
+        anchor = scheduledBox;
+      }
+
+      var nextEntries = nextData[key];
+      if (nextEntries && nextEntries.length) {
+        var nextBox = renderNextBox(nextEntries);
+        if (anchor.nextSibling) {
+          anchor.parentNode.insertBefore(nextBox, anchor.nextSibling);
+        } else {
+          anchor.parentNode.appendChild(nextBox);
+        }
       }
     });
   }

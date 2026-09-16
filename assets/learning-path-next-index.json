@@ -1,0 +1,954 @@
+{
+"syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md": [
+{
+"next_key": "syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md",
+"next_title": "Collections Usage Fundamentals: List, Map, and Set",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md": [
+{
+"next_key": "syllabus/01-computer-science-foundations/number-representation.md",
+"next_title": "Number Representation",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/01-computer-science-foundations/number-representation.md": [
+{
+"next_key": "syllabus/01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md",
+"next_title": "Algorithmic Complexity and Big-O, From First Principles",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/collections/arraylist-and-linkedlist-internals.md": [
+{
+"next_key": "syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md",
+"next_title": "Arrays, Two Pointers, and Sliding Window",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/collections/hashmap-internals.md": [
+{
+"next_key": "syllabus/02-java/collections/arraylist-and-linkedlist-internals.md",
+"next_title": "ArrayList and LinkedList Internals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md": [
+{
+"next_key": "syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md",
+"next_title": "equals(), hashCode(), and Comparable Contracts",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md": [
+{
+"next_key": "syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md",
+"next_title": "GC Fundamentals and Log Analysis",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md": [
+{
+"next_key": "syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md",
+"next_title": "Deadlock, Race Conditions, and Thread Diagnostics",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/02-java/concurrency/java-memory-model-and-volatile.md": [
+{
+"next_key": "syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md",
+"next_title": "Executors and Thread Pool Sizing",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md": [
+{
+"next_key": "syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md",
+"next_title": "Spring @Transactional: Proxy Mechanics, Rollback Rules, and Propagation",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md": [
+{
+"next_key": "syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md",
+"next_title": "Escape Analysis and Scalar Replacement",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md": [
+{
+"next_key": "syllabus/02-java/collections/hashmap-internals.md",
+"next_title": "HashMap Internals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/language-core/java-modifiers-and-method-signatures.md": [
+{
+"next_key": "syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md",
+"next_title": "Java OOP Fundamentals: Classes, Objects, and Interfaces",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md": [
+{
+"next_key": "syllabus/02-java/language-core/java-version-features-timeline.md",
+"next_title": "Java Version Features Timeline: Java 8 Through 25",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/language-core/java-platform-basics-jvm-jdk-jre-and-primitive-types.md": [
+{
+"next_key": "syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md",
+"next_title": "Java Syntax Fundamentals: Variables, Control Flow, and Methods",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods.md": [
+{
+"next_key": "syllabus/02-java/language-core/java-modifiers-and-method-signatures.md",
+"next_title": "Java Modifiers and Method Signatures: Access Control, static, final, and Abstract vs. Concrete Methods",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/02-java/language-core/java-version-features-timeline.md": [
+{
+"next_key": "syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md",
+"next_title": "How a Computer Executes a Program",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/03-data-structures-algorithms/arrays-two-pointers-and-sliding-window.md": [
+{
+"next_key": "syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md",
+"next_title": "Hashing Patterns and Frequency Maps",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md": [
+{
+"next_key": "syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md",
+"next_title": "Linked Lists and In-Place Manipulation",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/03-data-structures-algorithms/hashing-patterns-and-frequency-maps.md": [
+{
+"next_key": "syllabus/03-data-structures-algorithms/binary-search-and-search-on-answer.md",
+"next_title": "Binary Search, Including Search-on-Answer",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/03-data-structures-algorithms/linked-lists-and-in-place-manipulation.md": [
+{
+"next_key": "syllabus/06-databases/sql-and-relational-database-fundamentals.md",
+"next_title": "SQL and Relational Database Fundamentals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/04-software-design/design-patterns-applied.md": [
+{
+"next_key": "syllabus/18-engineering-practices/code-review-standards-and-practice.md",
+"next_title": "Code Review Standards and Practice",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/04-software-design/ood-interview-problems.md": [
+{
+"next_key": "syllabus/07-api-design/graphql-api-design.md",
+"next_title": "GraphQL API Design",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/04-software-design/solid-principles.md": [
+{
+"next_key": "syllabus/04-software-design/ood-interview-problems.md",
+"next_title": "Object-Oriented Design Interview Problems",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/05-spring/security-filter-chain.md": [
+{
+"next_key": "syllabus/06-databases/query-planning-and-explain-analyze.md",
+"next_title": "Query Planning and EXPLAIN ANALYZE",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/05-spring/spring-framework-vs-spring-boot.md": [
+{
+"next_key": "syllabus/07-api-design/rest-api-fundamentals.md",
+"next_title": "REST API Fundamentals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/05-spring/spring-mvc-fundamentals.md": [
+{
+"next_key": "syllabus/05-spring/spring-framework-vs-spring-boot.md",
+"next_title": "Spring Framework vs. Spring Boot: Auto-Configuration and the Embedded Server",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/05-spring/transactional-proxy-mechanics-and-propagation.md": [
+{
+"next_key": "syllabus/05-spring/security-filter-chain.md",
+"next_title": "Spring Security Filter Chain",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/06-databases/data-modelling-and-explicit-join-tables.md": [
+{
+"next_key": "syllabus/08-testing/unit-testing-fundamentals-with-junit.md",
+"next_title": "Unit Testing Fundamentals with JUnit",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/06-databases/index-structures-btree-composite-covering.md": [
+{
+"next_key": "syllabus/06-databases/data-modelling-and-explicit-join-tables.md",
+"next_title": "Data Modelling and Explicit Join Tables",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md": [
+{
+"next_key": "syllabus/06-databases/mvcc-vacuum-and-bloat.md",
+"next_title": "MVCC in PostgreSQL, Vacuum, and Bloat",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/06-databases/mvcc-vacuum-and-bloat.md": [
+{
+"next_key": "syllabus/08-testing/integration-testing-against-real-dependencies.md",
+"next_title": "Integration Testing Against Real Dependencies",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/06-databases/query-planning-and-explain-analyze.md": [
+{
+"next_key": "syllabus/06-databases/isolation-levels-and-concurrency-anomalies.md",
+"next_title": "Isolation Levels and Concurrency Anomalies",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/06-databases/sql-and-relational-database-fundamentals.md": [
+{
+"next_key": "syllabus/06-databases/index-structures-btree-composite-covering.md",
+"next_title": "Database Index Structures \u2014 B+Tree, Composite, Covering",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/07-api-design/graphql-api-design.md": [
+{
+"next_key": "syllabus/07-api-design/grpc-api-design.md",
+"next_title": "gRPC API Design",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/07-api-design/grpc-api-design.md": [
+{
+"next_key": "syllabus/22-ai-llm-engineering/llm-api-integration-fundamentals.md",
+"next_title": "LLM API Integration Fundamentals",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/07-api-design/rest-api-fundamentals.md": [
+{
+"next_key": "syllabus/14-devops-containers/docker-and-containers-fundamentals.md",
+"next_title": "Docker and Containers Fundamentals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/08-testing/contract-testing-for-services.md": [
+{
+"next_key": "syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md",
+"next_title": "Kafka Architecture Fundamentals \u2014 Topics, Partitions, Replication",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/08-testing/integration-testing-against-real-dependencies.md": [
+{
+"next_key": "syllabus/08-testing/contract-testing-for-services.md",
+"next_title": "Contract Testing for Services",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/08-testing/test-strategy-and-test-doubles.md": [
+{
+"next_key": "syllabus/05-spring/spring-mvc-fundamentals.md",
+"next_title": "Spring MVC Fundamentals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/08-testing/unit-testing-fundamentals-with-junit.md": [
+{
+"next_key": "syllabus/08-testing/test-strategy-and-test-doubles.md",
+"next_title": "Test Strategy, the Pyramid, and Test Doubles",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md": [
+{
+"next_key": "syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md",
+"next_title": "CAP Theorem and Consistency Models",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md": [
+{
+"next_key": "syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md",
+"next_title": "Kafka Delivery Semantics and Exactly-Once Processing",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md": [
+{
+"next_key": "syllabus/10-distributed-systems/distributed-systems-failure-modes.md",
+"next_title": "Distributed Systems Failure Modes",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md": [
+{
+"next_key": "syllabus/11-system-design/storage-selection-tradeoffs.md",
+"next_title": "Storage Selection Trade-offs",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/10-distributed-systems/distributed-systems-failure-modes.md": [
+{
+"next_key": "syllabus/11-system-design/system-design-method-and-estimation.md",
+"next_title": "System Design Method and Estimation",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md": [
+{
+"next_key": "syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md",
+"next_title": "Data Partitioning and Consistent Hashing",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/11-system-design/caching-strategies-and-invalidation.md": [
+{
+"next_key": "syllabus/11-system-design/resilience-patterns.md",
+"next_title": "Resilience Patterns: Circuit Breaker, Retry Jitter, Timeouts, and Bulkheads",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/11-system-design/resilience-patterns.md": [
+{
+"next_key": "syllabus/12-security/owasp-top-10-for-backend-services.md",
+"next_title": "OWASP Top 10 for Backend Services",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/11-system-design/storage-selection-tradeoffs.md": [
+{
+"next_key": "syllabus/15-cloud/cloud-cost-and-scaling-economics.md",
+"next_title": "Cloud Cost and Scaling Economics",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/11-system-design/system-design-method-and-estimation.md": [
+{
+"next_key": "syllabus/11-system-design/caching-strategies-and-invalidation.md",
+"next_title": "Caching Strategies and Invalidation",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/12-security/authn-authz-rbac-vs-abac.md": [
+{
+"next_key": "syllabus/12-security/csrf-cors-and-session-security.md",
+"next_title": "CSRF, CORS, and Session Security",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/12-security/csrf-cors-and-session-security.md": [
+{
+"next_key": "syllabus/12-security/enterprise-sso-saml-and-federated-identity.md",
+"next_title": "Enterprise SSO: SAML, Federated Identity, and Commercial IAM Integration",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/12-security/enterprise-sso-saml-and-federated-identity.md": [
+{
+"next_key": "syllabus/13-observability/performance-methodology-and-slo-error-budgets.md",
+"next_title": "Performance Methodology (USE/RED) and SLI/SLO/Error Budgets",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/12-security/owasp-top-10-for-backend-services.md": [
+{
+"next_key": "syllabus/12-security/authn-authz-rbac-vs-abac.md",
+"next_title": "AuthN vs AuthZ, RBAC vs ABAC",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md": [
+{
+"next_key": "syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md",
+"next_title": "Kubernetes Objects, Scheduling, and Networking",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/13-observability/performance-methodology-and-slo-error-budgets.md": [
+{
+"next_key": "syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md",
+"next_title": "Logging, Metrics, Tracing, and OpenTelemetry",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/14-devops-containers/docker-and-containers-fundamentals.md": [
+{
+"next_key": "syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md",
+"next_title": "SDLC and Agile Methodology Fundamentals",
+"path": "Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md": [
+{
+"next_key": "syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md",
+"next_title": "Kubernetes Resource Limits, Probes, and JVM Sizing",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md": [
+{
+"next_key": "syllabus/17-architecture/clean-hexagonal-architecture.md",
+"next_title": "Clean and Hexagonal Architecture",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/15-cloud/cloud-cost-and-scaling-economics.md": [
+{
+"next_key": "syllabus/16-performance-jvm/capacity-planning-and-headroom.md",
+"next_title": "Capacity Planning & Headroom",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/16-performance-jvm/capacity-planning-and-headroom.md": [
+{
+"next_key": "syllabus/19-leadership-staff/mentoring-and-developing-others.md",
+"next_title": "Mentoring and Developing Others",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/architecture-decision-records.md": [
+{
+"next_key": "syllabus/10-distributed-systems/multi-region-failover-and-disaster-recovery.md",
+"next_title": "Multi-Region, Failover, and Disaster Recovery",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/clean-hexagonal-architecture.md": [
+{
+"next_key": "syllabus/17-architecture/ddd-tactical-design-aggregates.md",
+"next_title": "DDD Tactical Design \u2014 Aggregates",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/cqrs-read-write-separation.md": [
+{
+"next_key": "syllabus/17-architecture/strangler-fig-and-migration-patterns.md",
+"next_title": "Strangler Fig, Anti-Corruption Layer, and Migration Patterns",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/ddd-tactical-design-aggregates.md": [
+{
+"next_key": "syllabus/04-software-design/solid-principles.md",
+"next_title": "SOLID Principles",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md": [
+{
+"next_key": "syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md",
+"next_title": "The Modular Monolith as a Deliberate Choice",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/modular-monolith-as-a-deliberate-choice.md": [
+{
+"next_key": "syllabus/17-architecture/cqrs-read-write-separation.md",
+"next_title": "CQRS: Read/Write Separation",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/strangler-fig-and-migration-patterns.md": [
+{
+"next_key": "syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md",
+"next_title": "Technical Debt and Evolutionary Architecture",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/17-architecture/technical-debt-and-evolutionary-architecture.md": [
+{
+"next_key": "syllabus/17-architecture/architecture-decision-records.md",
+"next_title": "Architecture Decision Records",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/18-engineering-practices/code-review-standards-and-practice.md": [
+{
+"next_key": "syllabus/18-engineering-practices/refactoring-discipline.md",
+"next_title": "Refactoring Discipline",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md": [
+{
+"next_key": null,
+"next_title": null,
+"path": "Senior \u2192 Staff",
+"path_complete": true
+}
+],
+"syllabus/18-engineering-practices/refactoring-discipline.md": [
+{
+"next_key": "syllabus/18-engineering-practices/working-with-legacy-code.md",
+"next_title": "Working with Legacy Code",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md": [
+{
+"next_key": null,
+"next_title": "Mid \u2192 Senior",
+"path": "Junior \u2192 Mid",
+"path_complete": true
+}
+],
+"syllabus/18-engineering-practices/working-with-legacy-code.md": [
+{
+"next_key": "syllabus/18-engineering-practices/git-internals-and-collaboration-workflows.md",
+"next_title": "Git Internals and Collaboration Workflows",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/19-leadership-staff/cross-team-influence-without-authority.md": [
+{
+"next_key": "syllabus/19-leadership-staff/leading-migrations-and-large-technical-change.md",
+"next_title": "Leading Migrations and Large-Scale Technical Change",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md": [
+{
+"next_key": "syllabus/04-software-design/design-patterns-applied.md",
+"next_title": "Design Patterns, Applied: When a Pattern Earns Its Complexity",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/19-leadership-staff/leading-migrations-and-large-technical-change.md": [
+{
+"next_key": "syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md",
+"next_title": "Technical Debt: Prioritization and Advocacy",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/19-leadership-staff/mentoring-and-developing-others.md": [
+{
+"next_key": "syllabus/19-leadership-staff/cross-team-influence-without-authority.md",
+"next_title": "Cross-Team Influence Without Authority",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/19-leadership-staff/technical-debt-prioritization-and-advocacy.md": [
+{
+"next_key": "syllabus/19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice.md",
+"next_title": "Design Reviews and RFCs as an Organizational Practice",
+"path": "Senior \u2192 Staff",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md": [
+{
+"next_key": "syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md",
+"next_title": "WebSocket and Server-Sent Events for Real-Time UI",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/how-the-web-works-html-css-dom-and-http.md": [
+{
+"next_key": "syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md",
+"next_title": "JavaScript Fundamentals: Variables, Functions, Objects, Closures, and Asynchrony",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony.md": [
+{
+"next_key": "syllabus/21-frontend-web/typescript-fundamentals-types-interfaces-and-generics.md",
+"next_title": "TypeScript Fundamentals: Types, Interfaces, and Generics",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/micro-frontends-and-module-federation.md": [
+{
+"next_key": null,
+"next_title": null,
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": true
+}
+],
+"syllabus/21-frontend-web/nextjs-app-router-fundamentals.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md",
+"next_title": "Build Tooling: Vite vs. Next.js's Turbopack",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-authentication-patterns.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md",
+"next_title": "Server Actions and Mutations: No API Layer, Real Progressive Enhancement",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-build-tooling-vite-vs-turbopack.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-styling-approaches.md",
+"next_title": "Styling Approaches: CSS Modules, Tailwind, and CSS-in-JS",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-rendering-strategies.md",
+"next_title": "Rendering Strategies: SSR, SSG, and ISR \u2014 Mechanics and When to Choose Each",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-deployment-models.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-monorepo-layout.md",
+"next_title": "Monorepo and Full-Stack Repo Layout",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-fullstack-integration.md": [
+{
+"next_key": "syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md",
+"next_title": "Frontend Security: XSS, CSRF, and CSP",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-fundamentals.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-app-router-fundamentals.md",
+"next_title": "Next.js App Router Fundamentals: Nested Layouts and Route Groups",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-component-patterns.md",
+"next_title": "React Component Patterns",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-image-font-optimization-and-web-vitals.md",
+"next_title": "Image and Font Optimization, and Core Web Vitals",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-monorepo-layout.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-fullstack-integration.md",
+"next_title": "Full-Stack Integration: Next.js with a Separate Java/Spring Backend",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-authentication-patterns.md",
+"next_title": "Authentication Patterns: DAL, JWT Sessions, and unauthorized()",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-rendering-strategies.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-route-handlers.md",
+"next_title": "Route Handlers: Building a Backend-for-Frontend Layer",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-route-handlers.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-metadata-api-and-seo.md",
+"next_title": "The Metadata API and SEO Fundamentals",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-server-actions-and-mutations.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-deployment-models.md",
+"next_title": "Deployment Models: Vercel-Native vs. Self-Hosting",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-server-vs-client-components.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-data-fetching-and-caching.md",
+"next_title": "Data Fetching in the App Router: Caching Semantics",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-streaming-and-suspense.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-proxy-and-edge-runtime.md",
+"next_title": "Proxy (formerly Middleware) and the Edge Runtime",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/nextjs-styling-approaches.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-forms.md",
+"next_title": "React Forms: Controlled vs. Uncontrolled, Validation Strategy",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-accessibility.md": [
+{
+"next_key": null,
+"next_title": "Frontend Mid \u2192 Senior",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": true
+}
+],
+"syllabus/21-frontend-web/react-component-patterns.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-reconciliation-and-fiber.md",
+"next_title": "React Reconciliation and the Fiber Architecture",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-concurrent-rendering.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-performance.md",
+"next_title": "React Performance: Profiling, Memoization Strategy, Virtualization, and Code-Splitting",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-error-boundaries.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-accessibility.md",
+"next_title": "React Accessibility: Semantic HTML, ARIA, Keyboard Navigation, and Focus Management",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-forms.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-error-boundaries.md",
+"next_title": "React Error Boundaries and Error Handling Strategy",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md",
+"next_title": "React Hooks: useEffect and useRef",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-hooks-useeffect-and-useref.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md",
+"next_title": "React Memoization and Context: useMemo, useCallback, useContext",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-performance.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-testing.md",
+"next_title": "React Testing: RTL Philosophy, Mocking, and E2E with Playwright",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-reconciliation-and-fiber.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-concurrent-rendering.md",
+"next_title": "Concurrent React: Transitions, Deferred Values, and Suspense for Data",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-state-management.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-streaming-and-suspense.md",
+"next_title": "Streaming and Suspense Boundaries in the App Router",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-testing.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-typescript.md",
+"next_title": "TypeScript with React: Generic Components and Discriminated Unions",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-typescript.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-state-management.md",
+"next_title": "React State Management Landscape",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-usememo-usecallback-and-usecontext.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md",
+"next_title": "React useReducer and Custom Hooks",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/react-usereducer-and-custom-hooks.md": [
+{
+"next_key": "syllabus/21-frontend-web/nextjs-fundamentals.md",
+"next_title": "Next.js's Role: File-Based Routing and Why a Meta-Framework",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/typescript-fundamentals-types-interfaces-and-generics.md": [
+{
+"next_key": "syllabus/21-frontend-web/react-fundamentals-jsx-components-props-and-state.md",
+"next_title": "React Fundamentals: JSX, Components, Props, and State",
+"path": "Frontend Junior \u2192 Mid",
+"path_complete": false
+}
+],
+"syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md": [
+{
+"next_key": "syllabus/21-frontend-web/micro-frontends-and-module-federation.md",
+"next_title": "Micro-Frontends and Module Federation",
+"path": "Frontend Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/22-ai-llm-engineering/llm-api-integration-fundamentals.md": [
+{
+"next_key": "syllabus/22-ai-llm-engineering/rag-and-vector-databases.md",
+"next_title": "RAG and Vector Databases (pgvector)",
+"path": "Mid \u2192 Senior",
+"path_complete": false
+}
+],
+"syllabus/22-ai-llm-engineering/rag-and-vector-databases.md": [
+{
+"next_key": null,
+"next_title": "Senior \u2192 Staff",
+"path": "Mid \u2192 Senior",
+"path_complete": true
+}
+]
+}
