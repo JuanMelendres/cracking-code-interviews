@@ -132,6 +132,8 @@ extra_javascript:
   # "Scheduled in <pack> Week N" box, from a real link reverse-index built
   # by scripts/generate_pack_schedule_index.py -- see chapter-context.js.
   - javascripts/chapter-context.js
+  # Search placeholder with a real example query, see the script for why.
+  - javascripts/search-placeholder-hint.js
 
 extra_css:
   - stylesheets/extra.css
