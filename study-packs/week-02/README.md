@@ -50,20 +50,20 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-query-planning-and-explain.md` | T-610 — full chapter, 3 real diagnosed query plans |
-| 3 | `02-data-modelling-join-tables.md` | T-605/T-608 — summary + link; full chapter now canonical at `syllabus/06-databases/data-modelling-and-explicit-join-tables.md` |
-| 4 | `03-ddd-tactical-aggregates.md` | T-903 — summary + link; full chapter now canonical at `syllabus/17-architecture/ddd-tactical-design-aggregates.md` |
-| 5 | `04-storage-selection-tradeoffs.md` | T-617/T-811 — summary + link; full chapter now canonical at `syllabus/11-system-design/storage-selection-tradeoffs.md` |
-| 6 | `05-trade-off-narration-and-adrs.md` | T-1505/T-916 — summary + link; full chapter now canonical at `syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md` |
-| 7 | `06-answer-frameworks.md` | Nine-layer treatment for this week's Deep topics |
-| 8 | `07-java-coding-practice.md` | 8 problems, all compiled and run, plus the monotonic-stack errata |
-| 9 | `08-flashcards.md` | 14 cards for this week's Deep topics |
-| 10 | `09-week-2-mock-interview.md` | 30-min mock; candidate/interviewer sections hard-separated |
-| 11 | `10-adr-exercise.md` | ADR-001 template + one fully worked example |
-| 12 | `11-week-2-checklist.md` | Day-by-day checklist with a fall-behind priority order |
-| 13 | `resources.md` | Primary sources, classified by authority |
-| — | `MANIFEST.md` | Every file, verification status, real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-query-planning-and-explain.md`](01-query-planning-and-explain.md) | T-610 — full chapter, 3 real diagnosed query plans |
+| 3 | [`02-data-modelling-join-tables.md`](02-data-modelling-join-tables.md) | T-605/T-608 — summary + link; full chapter now canonical at `syllabus/06-databases/data-modelling-and-explicit-join-tables.md` |
+| 4 | [`03-ddd-tactical-aggregates.md`](03-ddd-tactical-aggregates.md) | T-903 — summary + link; full chapter now canonical at `syllabus/17-architecture/ddd-tactical-design-aggregates.md` |
+| 5 | [`04-storage-selection-tradeoffs.md`](04-storage-selection-tradeoffs.md) | T-617/T-811 — summary + link; full chapter now canonical at `syllabus/11-system-design/storage-selection-tradeoffs.md` |
+| 6 | [`05-trade-off-narration-and-adrs.md`](05-trade-off-narration-and-adrs.md) | T-1505/T-916 — summary + link; full chapter now canonical at `syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md` |
+| 7 | [`06-answer-frameworks.md`](06-answer-frameworks.md) | Nine-layer treatment for this week's Deep topics |
+| 8 | [`07-java-coding-practice.md`](07-java-coding-practice.md) | 8 problems, all compiled and run, plus the monotonic-stack errata |
+| 9 | [`08-flashcards.md`](08-flashcards.md) | 14 cards for this week's Deep topics |
+| 10 | [`09-week-2-mock-interview.md`](09-week-2-mock-interview.md) | 30-min mock; candidate/interviewer sections hard-separated |
+| 11 | [`10-adr-exercise.md`](10-adr-exercise.md) | ADR-001 template + one fully worked example |
+| 12 | [`11-week-2-checklist.md`](11-week-2-checklist.md) | Day-by-day checklist with a fall-behind priority order |
+| 13 | [`resources.md`](resources.md) | Primary sources, classified by authority |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, verification status, real checksums |
 
 ## Daily schedule (20h/week baseline)
 

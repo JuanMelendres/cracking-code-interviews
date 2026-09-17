@@ -28,19 +28,19 @@ See `11-week-19-checklist.md` for the day-by-day breakdown.
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-gc-roots-reachability-and-reference-strength.md` | T-303 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md` |
-| 3 | `02-zgc-and-shenandoah-concurrent-collection.md` | T-305 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md` |
-| 4 | `03-safepoints-and-stop-the-world-mechanics.md` | T-310 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md` |
-| 5 | `04-object-layout-headers-and-compressed-oops.md` | T-302 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md` |
-| 6 | `05-native-memory-direct-buffers-and-off-heap.md` | T-311 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md` |
-| 7 | `06-escape-analysis-and-scalar-replacement.md` | T-309 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md` |
-| 8 | `07-hands-on-lab.md` | 6 labs reproducing this week's real demonstrations |
-| 9 | `08-flashcards.md` | 18 cards |
-| 10 | `09-week-19-mock-interview.md` | 45-min JVM internals technical round |
-| 11 | `10-design-exercise-jvm-tuning-for-a-market-data-service.md` | Full JVM tuning playbook for a market-data service |
-| 12 | `11-week-19-checklist.md` | Day-by-day checklist |
-| 13 | `resources.md` | Sources classified PRIMARY/INTERNAL/TOOL |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-gc-roots-reachability-and-reference-strength.md`](01-gc-roots-reachability-and-reference-strength.md) | T-303 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/gc-roots-reachability-and-reference-strength.md` |
+| 3 | [`02-zgc-and-shenandoah-concurrent-collection.md`](02-zgc-and-shenandoah-concurrent-collection.md) | T-305 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/zgc-and-shenandoah-concurrent-collection.md` |
+| 4 | [`03-safepoints-and-stop-the-world-mechanics.md`](03-safepoints-and-stop-the-world-mechanics.md) | T-310 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/safepoints-and-stop-the-world-mechanics.md` |
+| 5 | [`04-object-layout-headers-and-compressed-oops.md`](04-object-layout-headers-and-compressed-oops.md) | T-302 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/object-layout-headers-and-compressed-oops.md` |
+| 6 | [`05-native-memory-direct-buffers-and-off-heap.md`](05-native-memory-direct-buffers-and-off-heap.md) | T-311 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md` |
+| 7 | [`06-escape-analysis-and-scalar-replacement.md`](06-escape-analysis-and-scalar-replacement.md) | T-309 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/escape-analysis-and-scalar-replacement.md` |
+| 8 | [`07-hands-on-lab.md`](07-hands-on-lab.md) | 6 labs reproducing this week's real demonstrations |
+| 9 | [`08-flashcards.md`](08-flashcards.md) | 18 cards |
+| 10 | [`09-week-19-mock-interview.md`](09-week-19-mock-interview.md) | 45-min JVM internals technical round |
+| 11 | [`10-design-exercise-jvm-tuning-for-a-market-data-service.md`](10-design-exercise-jvm-tuning-for-a-market-data-service.md) | Full JVM tuning playbook for a market-data service |
+| 12 | [`11-week-19-checklist.md`](11-week-19-checklist.md) | Day-by-day checklist |
+| 13 | [`resources.md`](resources.md) | Sources classified PRIMARY/INTERNAL/TOOL |
 
 ## Hands-On Exercises
 

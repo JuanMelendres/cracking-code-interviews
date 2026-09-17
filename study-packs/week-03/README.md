@@ -53,18 +53,18 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-transactions-and-propagation.md` | T-503/504/505 — full chapter, 5 real executed Spring demos |
-| 3 | `02-isolation-levels-and-write-skew.md` | T-611 — full chapter, real write-skew reproduction and prevention |
-| 4 | `03-system-design-method.md` | T-801/802 — summary + link; full chapter now canonical at `syllabus/11-system-design/system-design-method-and-estimation.md` |
-| 5 | `04-java-coding-practice.md` | 6 tree problems, all compiled and run |
-| 6 | `05-flashcards.md` | 16 cards |
-| 7 | `06-week-3-checkpoint-mock.md` | The 60-minute combined technical/design checkpoint round |
-| 8 | `07-week-3-checkpoint-rubric.md` | Six-dimension pass/fail rubric for the checkpoint |
-| 9 | `08-design-exercise-ride-hailing.md` | Summary + link; full six-phase exercise now canonical at `architecture-atlas/ride-hailing-dispatch-system.md` |
-| 10 | `09-week-3-checklist.md` | Day-by-day checklist |
-| 11 | `resources.md` | Sources classified by authority |
-| — | `MANIFEST.md` | Every file, verification status, real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-transactions-and-propagation.md`](01-transactions-and-propagation.md) | T-503/504/505 — full chapter, 5 real executed Spring demos |
+| 3 | [`02-isolation-levels-and-write-skew.md`](02-isolation-levels-and-write-skew.md) | T-611 — full chapter, real write-skew reproduction and prevention |
+| 4 | [`03-system-design-method.md`](03-system-design-method.md) | T-801/802 — summary + link; full chapter now canonical at `syllabus/11-system-design/system-design-method-and-estimation.md` |
+| 5 | [`04-java-coding-practice.md`](04-java-coding-practice.md) | 6 tree problems, all compiled and run |
+| 6 | [`05-flashcards.md`](05-flashcards.md) | 16 cards |
+| 7 | [`06-week-3-checkpoint-mock.md`](06-week-3-checkpoint-mock.md) | The 60-minute combined technical/design checkpoint round |
+| 8 | [`07-week-3-checkpoint-rubric.md`](07-week-3-checkpoint-rubric.md) | Six-dimension pass/fail rubric for the checkpoint |
+| 9 | [`08-design-exercise-ride-hailing.md`](08-design-exercise-ride-hailing.md) | Summary + link; full six-phase exercise now canonical at `architecture-atlas/ride-hailing-dispatch-system.md` |
+| 10 | [`09-week-3-checklist.md`](09-week-3-checklist.md) | Day-by-day checklist |
+| 11 | [`resources.md`](resources.md) | Sources classified by authority |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, verification status, real checksums |
 
 ## Daily schedule (20h/week baseline)
 

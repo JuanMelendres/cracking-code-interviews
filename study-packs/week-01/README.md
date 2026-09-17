@@ -30,20 +30,20 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-clean-hexagonal-architecture.md` | T-901 — summary + link; full chapter now canonical at `syllabus/17-architecture/clean-hexagonal-architecture.md` |
-| 3 | `02-database-index-fundamentals.md` | T-609 — full chapter, with a real, executed PostgreSQL `EXPLAIN` lab |
-| 4 | `03-technical-answer-framework.md` | T-1601 — summary + link; full nine-layer stack now canonical at `syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md` |
-| 5 | `04-coding-interview-communication.md` | T-1419 — summary + link; full six-phase protocol now canonical at `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md` |
-| 6 | `05-star-story-workbook.md` | T-1501 — STAR structure and blank extraction worksheets (no invented stories) |
-| 7 | `06-domain-purity-exercise.md` | Deliverable template + one fully worked example + a documented counter-case |
-| 8 | `07-java-coding-practice.md` | 7 problems, all compiled and run on OpenJDK 21, plus the LRU errata drill |
-| 9 | `08-flashcards.md` | 12 spaced-repetition cards for this week's Deep topics |
-| 10 | `09-week-1-mock-interview.md` | Candidate script and interviewer script, hard-separated |
-| 11 | `10-week-1-evaluation-rubric.md` | Six-dimension scoring rubric with Week 1 evidence anchors |
-| 12 | `11-week-1-checklist.md` | Day-by-day operational checklist |
-| 13 | `resources.md` | Primary sources, classified by authority |
-| — | `MANIFEST.md` | Every file, its verification status, and real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-clean-hexagonal-architecture.md`](01-clean-hexagonal-architecture.md) | T-901 — summary + link; full chapter now canonical at `syllabus/17-architecture/clean-hexagonal-architecture.md` |
+| 3 | [`02-database-index-fundamentals.md`](02-database-index-fundamentals.md) | T-609 — full chapter, with a real, executed PostgreSQL `EXPLAIN` lab |
+| 4 | [`03-technical-answer-framework.md`](03-technical-answer-framework.md) | T-1601 — summary + link; full nine-layer stack now canonical at `syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md` |
+| 5 | [`04-coding-interview-communication.md`](04-coding-interview-communication.md) | T-1419 — summary + link; full six-phase protocol now canonical at `syllabus/20-interview-preparation/coding/coding-interview-communication-protocol.md` |
+| 6 | [`05-star-story-workbook.md`](05-star-story-workbook.md) | T-1501 — STAR structure and blank extraction worksheets (no invented stories) |
+| 7 | [`06-domain-purity-exercise.md`](06-domain-purity-exercise.md) | Deliverable template + one fully worked example + a documented counter-case |
+| 8 | [`07-java-coding-practice.md`](07-java-coding-practice.md) | 7 problems, all compiled and run on OpenJDK 21, plus the LRU errata drill |
+| 9 | [`08-flashcards.md`](08-flashcards.md) | 12 spaced-repetition cards for this week's Deep topics |
+| 10 | [`09-week-1-mock-interview.md`](09-week-1-mock-interview.md) | Candidate script and interviewer script, hard-separated |
+| 11 | [`10-week-1-evaluation-rubric.md`](10-week-1-evaluation-rubric.md) | Six-dimension scoring rubric with Week 1 evidence anchors |
+| 12 | [`11-week-1-checklist.md`](11-week-1-checklist.md) | Day-by-day operational checklist |
+| 13 | [`resources.md`](resources.md) | Primary sources, classified by authority |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, its verification status, and real checksums |
 
 ## Daily schedule (20h/week baseline)
 

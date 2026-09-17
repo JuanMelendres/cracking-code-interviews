@@ -51,19 +51,19 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-saga-outbox-and-distributed-transactions.md` | T-618 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md` |
-| 3 | `02-sharding-and-partitioning-strategies.md` | T-614 — summary + link; full chapter now canonical at `syllabus/06-databases/table-partitioning-and-sharding-strategies.md` |
-| 4 | `03-consistent-hashing.md` | T-806 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md` |
-| 5 | `04-resilience-patterns.md` | T-515 — summary + link; full chapter now canonical at `syllabus/11-system-design/resilience-patterns.md` |
-| 6 | `05-zero-downtime-migration.md` | T-616 — summary + link; full chapter now canonical at `syllabus/06-databases/zero-downtime-schema-migration.md` |
-| 7 | `06-java-coding-practice.md` | LC 215/347/23/295 (heaps), all compiled and run |
-| 8 | `07-flashcards.md` | 16 cards |
-| 9 | `08-outbox-implementation-deliverable.md` | The week's named deliverable — full working outbox walkthrough |
-| 10 | `09-week-10-mock-architecture-round.md` | 60-min architecture round |
-| 11 | `10-design-exercise-distributed-cache.md` | Summary + link; full design now canonical at `architecture-atlas/distributed-cache.md` |
-| 12 | `11-week-10-checklist.md` | Day-by-day checklist |
-| 13 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-saga-outbox-and-distributed-transactions.md`](01-saga-outbox-and-distributed-transactions.md) | T-618 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/distributed-transactions-saga-and-outbox.md` |
+| 3 | [`02-sharding-and-partitioning-strategies.md`](02-sharding-and-partitioning-strategies.md) | T-614 — summary + link; full chapter now canonical at `syllabus/06-databases/table-partitioning-and-sharding-strategies.md` |
+| 4 | [`03-consistent-hashing.md`](03-consistent-hashing.md) | T-806 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md` |
+| 5 | [`04-resilience-patterns.md`](04-resilience-patterns.md) | T-515 — summary + link; full chapter now canonical at `syllabus/11-system-design/resilience-patterns.md` |
+| 6 | [`05-zero-downtime-migration.md`](05-zero-downtime-migration.md) | T-616 — summary + link; full chapter now canonical at `syllabus/06-databases/zero-downtime-schema-migration.md` |
+| 7 | [`06-java-coding-practice.md`](06-java-coding-practice.md) | LC 215/347/23/295 (heaps), all compiled and run |
+| 8 | [`07-flashcards.md`](07-flashcards.md) | 16 cards |
+| 9 | [`08-outbox-implementation-deliverable.md`](08-outbox-implementation-deliverable.md) | The week's named deliverable — full working outbox walkthrough |
+| 10 | [`09-week-10-mock-architecture-round.md`](09-week-10-mock-architecture-round.md) | 60-min architecture round |
+| 11 | [`10-design-exercise-distributed-cache.md`](10-design-exercise-distributed-cache.md) | Summary + link; full design now canonical at `architecture-atlas/distributed-cache.md` |
+| 12 | [`11-week-10-checklist.md`](11-week-10-checklist.md) | Day-by-day checklist |
+| 13 | [`resources.md`](resources.md) | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 
 ## Daily schedule (10h/week study + 10h practice)
 

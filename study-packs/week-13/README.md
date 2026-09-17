@@ -28,18 +28,18 @@ See `10-week-13-checklist.md` for the day-by-day breakdown.
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-streams-and-collectors.md` | T-107 — summary + link; full chapter canonical at `syllabus/02-java/language-core/streams-and-collectors.md` |
-| 3 | `02-equals-hashcode-and-comparable-contracts.md` | T-101 — summary + link; full chapter canonical at `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
-| 4 | `03-generics-erasure-and-pecs.md` | T-104 — summary + link; full chapter canonical at `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
-| 5 | `04-exception-design-and-hierarchy-strategy.md` | T-105 — summary + link; full chapter canonical at `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
-| 6 | `05-immutability-and-defensive-copying.md` | T-103 — summary + link; full chapter canonical at `syllabus/02-java/language-core/immutability-and-defensive-copying.md` |
-| 7 | `06-java-coding-practice.md` | 4 problems exercising this week's topics together, all compiled and run |
-| 8 | `07-flashcards.md` | 15 cards |
-| 9 | `08-week-13-mock-interview.md` | 45-min Java Core technical round |
-| 10 | `09-code-review-exercise.md` | Spot 7 defects across this week's 5 topics in one class |
-| 11 | `10-week-13-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified PRIMARY/BOOK |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-streams-and-collectors.md`](01-streams-and-collectors.md) | T-107 — summary + link; full chapter canonical at `syllabus/02-java/language-core/streams-and-collectors.md` |
+| 3 | [`02-equals-hashcode-and-comparable-contracts.md`](02-equals-hashcode-and-comparable-contracts.md) | T-101 — summary + link; full chapter canonical at `syllabus/02-java/language-core/equals-hashcode-and-comparable-contracts.md` |
+| 4 | [`03-generics-erasure-and-pecs.md`](03-generics-erasure-and-pecs.md) | T-104 — summary + link; full chapter canonical at `syllabus/02-java/language-core/generics-erasure-and-pecs.md` |
+| 5 | [`04-exception-design-and-hierarchy-strategy.md`](04-exception-design-and-hierarchy-strategy.md) | T-105 — summary + link; full chapter canonical at `syllabus/02-java/language-core/exception-design-and-hierarchy-strategy.md` |
+| 6 | [`05-immutability-and-defensive-copying.md`](05-immutability-and-defensive-copying.md) | T-103 — summary + link; full chapter canonical at `syllabus/02-java/language-core/immutability-and-defensive-copying.md` |
+| 7 | [`06-java-coding-practice.md`](06-java-coding-practice.md) | 4 problems exercising this week's topics together, all compiled and run |
+| 8 | [`07-flashcards.md`](07-flashcards.md) | 15 cards |
+| 9 | [`08-week-13-mock-interview.md`](08-week-13-mock-interview.md) | 45-min Java Core technical round |
+| 10 | [`09-code-review-exercise.md`](09-code-review-exercise.md) | Spot 7 defects across this week's 5 topics in one class |
+| 11 | [`10-week-13-checklist.md`](10-week-13-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified PRIMARY/BOOK |
 
 ## Hands-On Exercises
 

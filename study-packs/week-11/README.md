@@ -49,18 +49,18 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-test-strategy-and-test-doubles.md` | T-1101/1103 — summary + link; full chapter now canonical at `syllabus/08-testing/test-strategy-and-test-doubles.md` |
-| 3 | `02-integration-testing-against-real-dependencies.md` | T-1104 — summary + link; full chapter now canonical at `syllabus/08-testing/integration-testing-against-real-dependencies.md` |
-| 4 | `03-percentiles-tail-latency-and-coordinated-omission.md` | T-1204 — summary + link; full chapter now canonical at `syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md` |
-| 5 | `04-logging-metrics-tracing-and-opentelemetry.md` | T-1205 — summary + link; full chapter now canonical at `syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md` |
-| 6 | `05-performance-methodology-and-slo-error-budgets.md` | T-1201/1206 — summary + link; full chapter now canonical at `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md` |
-| 7 | `06-java-coding-practice.md` | 15-problem mixed review, all compiled and run |
-| 8 | `07-flashcards.md` | 16 cards |
-| 9 | `08-week-11-mock-behavioral.md` | 45-min behavioral mock, full 6-question set + retrofit checklist |
-| 10 | `09-design-exercise-metrics-monitoring-system.md` | Summary + link; full design now canonical at `architecture-atlas/metrics-monitoring-system.md` |
-| 11 | `10-week-11-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-test-strategy-and-test-doubles.md`](01-test-strategy-and-test-doubles.md) | T-1101/1103 — summary + link; full chapter now canonical at `syllabus/08-testing/test-strategy-and-test-doubles.md` |
+| 3 | [`02-integration-testing-against-real-dependencies.md`](02-integration-testing-against-real-dependencies.md) | T-1104 — summary + link; full chapter now canonical at `syllabus/08-testing/integration-testing-against-real-dependencies.md` |
+| 4 | [`03-percentiles-tail-latency-and-coordinated-omission.md`](03-percentiles-tail-latency-and-coordinated-omission.md) | T-1204 — summary + link; full chapter now canonical at `syllabus/13-observability/percentiles-tail-latency-and-coordinated-omission.md` |
+| 5 | [`04-logging-metrics-tracing-and-opentelemetry.md`](04-logging-metrics-tracing-and-opentelemetry.md) | T-1205 — summary + link; full chapter now canonical at `syllabus/13-observability/logging-metrics-tracing-and-opentelemetry.md` |
+| 6 | [`05-performance-methodology-and-slo-error-budgets.md`](05-performance-methodology-and-slo-error-budgets.md) | T-1201/1206 — summary + link; full chapter now canonical at `syllabus/13-observability/performance-methodology-and-slo-error-budgets.md` |
+| 7 | [`06-java-coding-practice.md`](06-java-coding-practice.md) | 15-problem mixed review, all compiled and run |
+| 8 | [`07-flashcards.md`](07-flashcards.md) | 16 cards |
+| 9 | [`08-week-11-mock-behavioral.md`](08-week-11-mock-behavioral.md) | 45-min behavioral mock, full 6-question set + retrofit checklist |
+| 10 | [`09-design-exercise-metrics-monitoring-system.md`](09-design-exercise-metrics-monitoring-system.md) | Summary + link; full design now canonical at `architecture-atlas/metrics-monitoring-system.md` |
+| 11 | [`10-week-11-checklist.md`](10-week-11-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 
 ## Daily schedule (8h/week study + 12h practice)
 

@@ -28,11 +28,11 @@ No day-by-day checklist — a single bounded sprint, same format as Week 20. Wor
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-tries-coding-practice.md` | 5 problems (LC 211, 212, 421, 648, 677) — pattern coverage 1/6 → 6/6, full closure |
-| 3 | `02-backtracking-coding-practice.md` | 5 problems (LC 17, 79, 47, 40, 51) — pattern coverage 4/14 → 9/14 |
-| 4 | `03-stacks-coding-practice.md` | 5 problems (LC 496, 84, 150, 232, 503) — pattern coverage 3/10 → 8/10 |
-| 5 | `04-dynamic-programming-coding-practice.md` | 7 problems (LC 72, 213, 518, 494, 64, 516, 309) — pattern coverage 9/32 → 16/32 |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-tries-coding-practice.md`](01-tries-coding-practice.md) | 5 problems (LC 211, 212, 421, 648, 677) — pattern coverage 1/6 → 6/6, full closure |
+| 3 | [`02-backtracking-coding-practice.md`](02-backtracking-coding-practice.md) | 5 problems (LC 17, 79, 47, 40, 51) — pattern coverage 4/14 → 9/14 |
+| 4 | [`03-stacks-coding-practice.md`](03-stacks-coding-practice.md) | 5 problems (LC 496, 84, 150, 232, 503) — pattern coverage 3/10 → 8/10 |
+| 5 | [`04-dynamic-programming-coding-practice.md`](04-dynamic-programming-coding-practice.md) | 7 problems (LC 72, 213, 518, 494, 64, 516, 309) — pattern coverage 9/32 → 16/32 |
 
 ## Hands-On Exercises
 
