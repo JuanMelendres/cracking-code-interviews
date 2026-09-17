@@ -6,6 +6,15 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (SQL and Relational Database Fundamentals substantially deepened, T-2202, 2026-09-17)
+
+- User flagged this chapter as too shallow, twice: only `INNER`/`LEFT JOIN` were covered (no `RIGHT`/`FULL`/`CROSS`/`SELF`), `HAVING` was never explained at all, `GROUP BY`/aggregate functions were used but not taught, key types stopped at primary/foreign (no candidate/alternate/natural/surrogate), and there was no real SQL data-type catalog.
+- Extended the real lab (`practice/sql/sql-fundamentals/`) with a second, deliberately-nullable-foreign-key schema (`departments`/`employees`) -- needed because the original `authors`/`books` schema's *required* foreign key structurally cannot produce a row unmatched on the right side, making `RIGHT JOIN`/`FULL OUTER JOIN` impossible to demonstrate honestly with it alone.
+- Real, executed PostgreSQL 16 proof (Docker) for: all six JOIN types (`INNER`/`LEFT`/`RIGHT`/`FULL OUTER`/`CROSS`/`SELF`); `WHERE` vs. `HAVING` on the identical `GROUP BY`/`AVG` query; `UNIQUE`/`CHECK`/`NOT NULL` constraints actually rejecting bad inserts with real Postgres error text; `DEFAULT` actually applying on an omitted column; `JSONB`/`TEXT[]` operators (`->>`, `= ANY(...)`); and one report query built up six times, one clause at a time.
+- New content, not new files: a full key-types taxonomy (super/candidate/primary/alternate-secondary/natural/surrogate/composite key), a constraint-types table, a real PostgreSQL data-type catalog (integer/numeric/text/boolean/date-time/UUID/JSONB/array categories, each with a real example column), and the `SELECT`/`FROM`/`WHERE` logical-processing-order explanation (`FROM` -> `WHERE` -> `GROUP BY` -> `HAVING` -> `SELECT` -> `ORDER BY`) that explains *why* `WHERE` can't reference an aggregate, rather than stating it as an arbitrary rule.
+- Updated cheat sheet and flashcard deck (+6 new cards); updated `syllabus/06-databases/INDEX.md`, both changelogs, `cheat-sheets/README.md`, `flashcards/README.md`, `README.md` stats (897 cards, up from 891).
+- `validate.py`: errors 0, warnings 13 (unchanged).
+
 ### Fixed (Mermaid diagrams unreadable in dark mode, 2026-09-17)
 
 - `mkdocs.yml` loads `mermaid@10` via `extra_javascript` with no theme config, so it always auto-renders its hardcoded default light theme regardless of the site's own light/dark palette -- unreadable against the dark "slate" background (user screenshot, 2026-09-16).
