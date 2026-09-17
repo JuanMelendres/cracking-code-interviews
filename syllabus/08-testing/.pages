@@ -1,1 +1,12 @@
 title: Testing
+nav:
+  - INDEX.md
+  - unit-testing-fundamentals-with-junit.md
+  - test-strategy-and-test-doubles.md
+  - junit5-architecture-and-advanced-features.md
+  - integration-testing-against-real-dependencies.md
+  - contract-testing-for-services.md
+  - performance-and-load-testing-methodology.md
+  - mutation-and-property-based-testing.md
+  - writing-tests-live-in-an-interview.md
+  - behavior-driven-development-with-cucumber.md

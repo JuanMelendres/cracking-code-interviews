@@ -1,1 +1,15 @@
 title: Messaging & Event-Driven
+nav:
+  - INDEX.md
+  - kafka-architecture-fundamentals.md
+  - producer-semantics-and-partition-keys.md
+  - consumer-groups-and-rebalancing.md
+  - delivery-semantics-and-exactly-once.md
+  - retention-log-compaction-and-tiered-storage.md
+  - consumer-lag-backpressure-and-dlq-strategy.md
+  - schema-registry-and-compatibility-evolution.md
+  - kafka-streams-and-stateful-processing.md
+  - messaging-patterns-and-change-data-capture.md
+  - event-sourcing-and-its-real-costs.md
+  - event-driven-architecture-integration-styles.md
+  - kafka-connect-source-and-sink-connectors.md

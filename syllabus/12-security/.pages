@@ -1,1 +1,13 @@
 title: Security
+nav:
+  - INDEX.md
+  - owasp-top-10-for-backend-services.md
+  - applied-cryptography-hashing-signing-tls.md
+  - authn-authz-rbac-vs-abac.md
+  - oauth2-oidc-and-jwt.md
+  - enterprise-sso-saml-and-federated-identity.md
+  - secrets-management-and-key-rotation.md
+  - csrf-cors-and-session-security.md
+  - multi-tenancy-isolation-models.md
+  - injection-input-validation-output-encoding.md
+  - supply-chain-security-sbom-and-dependency-risk.md

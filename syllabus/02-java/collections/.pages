@@ -1,0 +1,12 @@
+nav:
+  - java-collections-usage-fundamentals-list-map-and-set.md
+  - hashmap-internals.md
+  - arraylist-and-linkedlist-internals.md
+  - treemap-treeset-and-navigable-hierarchy.md
+  - arraydeque-internals-and-the-legacy-stack-problem.md
+  - concurrenthashmap-internals.md
+  - blockingqueue-family.md
+  - fail-fast-vs-weakly-consistent-iterators.md
+  - copyonwritearraylist-and-copy-on-write-tradeoffs.md
+  - collection-selection-decision-matrix.md
+  - priorityqueue-internals.md

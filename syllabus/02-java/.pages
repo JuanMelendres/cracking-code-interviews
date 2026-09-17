@@ -1,1 +1,7 @@
 title: Java
+nav:
+  - INDEX.md
+  - language-core
+  - collections
+  - concurrency
+  - jvm-internals

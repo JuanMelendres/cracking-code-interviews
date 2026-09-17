@@ -1,1 +1,16 @@
 title: Spring
+nav:
+  - INDEX.md
+  - spring-mvc-fundamentals.md
+  - transactional-proxy-mechanics-and-propagation.md
+  - auto-configuration-and-bean-lifecycle.md
+  - spring-framework-vs-spring-boot.md
+  - spring-bean-scopes-and-proxy-modes.md
+  - spring-webflux-and-reactive-programming.md
+  - spring-data-jpa-repository-abstraction.md
+  - security-filter-chain.md
+  - spring-cache-abstraction-and-pitfalls.md
+  - spring-testing-slices-and-context-caching.md
+  - spring-actuator-health-and-observability-hooks.md
+  - bean-validation-and-global-exception-handling.md
+  - microservices-patterns-with-spring-boot.md

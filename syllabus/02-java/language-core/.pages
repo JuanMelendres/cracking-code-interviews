@@ -1,0 +1,23 @@
+nav:
+  - java-syntax-fundamentals-variables-control-flow-and-methods.md
+  - java-oop-fundamentals-classes-objects-and-interfaces.md
+  - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
+  - java-modifiers-and-method-signatures.md
+  - java-version-features-timeline.md
+  - equals-hashcode-and-comparable-contracts.md
+  - polymorphism-and-dynamic-dispatch.md
+  - immutability-and-defensive-copying.md
+  - generics-erasure-and-pecs.md
+  - exception-design-and-hierarchy-strategy.md
+  - strings-interning-compact-strings-and-builders.md
+  - streams-and-collectors.md
+  - lambdas-and-functional-interfaces.md
+  - optional-and-null-strategy.md
+  - records-sealed-types-and-pattern-matching.md
+  - enums-enummap-and-enumset.md
+  - reflection-and-dynamic-proxies.md
+  - annotations-and-annotation-processing.md
+  - classloaders-and-class-initialization.md
+  - serialization-hazards-and-alternatives.md
+  - java-platform-module-system.md
+  - java-time-api.md

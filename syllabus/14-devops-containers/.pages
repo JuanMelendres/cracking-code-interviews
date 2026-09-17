@@ -1,1 +1,8 @@
 title: DevOps & Containers
+nav:
+  - INDEX.md
+  - docker-and-containers-fundamentals.md
+  - container-image-internals.md
+  - kubernetes-resource-limits-probes-and-jvm-sizing.md
+  - kubernetes-objects-scheduling-and-networking.md
+  - cicd-pipeline-design-and-deployment-strategies.md

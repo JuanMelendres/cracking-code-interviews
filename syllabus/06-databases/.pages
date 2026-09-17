@@ -1,1 +1,22 @@
 title: Databases
+nav:
+  - INDEX.md
+  - sql-and-relational-database-fundamentals.md
+  - database-normalization-1nf-through-bcnf.md
+  - jpa-entity-lifecycle-and-the-n1-problem.md
+  - hibernate-second-level-and-query-cache.md
+  - data-modelling-and-explicit-join-tables.md
+  - hibernate-flush-modes-and-batch-writes.md
+  - index-structures-btree-composite-covering.md
+  - query-planning-and-explain-analyze.md
+  - isolation-levels-and-concurrency-anomalies.md
+  - mvcc-vacuum-and-bloat.md
+  - connection-pooling-and-sizing.md
+  - locks-deadlocks-and-lock-escalation.md
+  - optimistic-vs-pessimistic-locking.md
+  - table-partitioning-and-sharding-strategies.md
+  - replication-read-replicas-and-replica-lag.md
+  - zero-downtime-schema-migration.md
+  - window-functions-and-ctes.md
+  - jsonb-and-advanced-index-types.md
+  - views-and-materialized-views.md
