@@ -2014,6 +2014,7 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New subsection in "Definition and Purpose": JPA (Jakarta Persistence API) is a specification; Hibernate is its most widely used implementation (EclipseLink is the JPA reference implementation; OpenJPA and DataNucleus are others) — same shape as JDBC/a JDBC driver, or SLF4J/Logback. States the real practical consequence: `jakarta.persistence.*`-only code is implementation-portable in principle, Hibernate-specific extensions (`org.hibernate.annotations.*`, `hibernate.*` properties, the `Session` API) are not.
 - No new file created — extends the existing canonical chapter, per this domain's own content-ownership rule, rather than duplicating JPA/Hibernate mechanics in a second place.
 - Bumped chapter `version: 1.1 → 1.2`, `last_updated: 2026-09-17`.
+
 ## [2026-09-17] — `03-data-structures-algorithms` gains a 19th chapter: Coding Interview Pattern-Recognition Methodology
 
 ### Added (`syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` — T-2120)
@@ -2023,3 +2024,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real deliverable: a signal-to-pattern lookup table (18 rows) ranked by this project's own real Master Topic Register IWI data (`00-project/knowledge-architecture-blueprint.md`), not invented popularity — correcting, for this new table only, an internal inconsistency already present in the domain's own prior text (`arrays-two-pointers-and-sliding-window.md` and `INDEX.md` disagree on which pattern is "highest-weighted": IWI 6.3 for T-1402 vs. 6.25 for T-1409 — the raw blueprint numbers make T-1402 actually higher, used here directly rather than repeating either prior claim).
 - A constraint-to-complexity heuristic table (what `n`'s stated bound implies about required Big-O) and three worked signal-spotting walkthroughs (Two Sum, Number of Islands, Coin Change) that deliberately stop at "which pattern, and why" rather than re-deriving the full solution — each links to its canonical chapter instead, avoiding duplication per this domain's own content-ownership rule.
 - New cheat sheet and flashcard deck; updated `syllabus/03-data-structures-algorithms/INDEX.md` (18 → 19 chapters) and `.pages`.
+
+## [2026-09-17] — `06-databases`'s SQL Fundamentals chapter substantially deepened, same day
+
+### Added (`syllabus/06-databases/sql-and-relational-database-fundamentals.md` — T-2202, no chapter-count change)
+
+- User flagged this chapter as too shallow, twice: only `INNER`/`LEFT JOIN` were covered, `HAVING` was never explained, `GROUP BY`/aggregates were used but not taught, key types stopped at primary/foreign, and there was no real SQL data-type catalog.
+- Extended the real lab (`practice/sql/sql-fundamentals/`) with a second, deliberately-nullable-foreign-key schema (`departments`/`employees`) — the original `authors`/`books` schema's *required* foreign key structurally cannot produce a row unmatched on the right side, so it alone cannot honestly demonstrate `RIGHT JOIN`/`FULL OUTER JOIN`.
+- Real, executed PostgreSQL 16 (Docker) proof added for: all six JOIN types; `WHERE` vs. `HAVING` on the identical `GROUP BY`/`AVG` query; `UNIQUE`/`CHECK`/`NOT NULL` constraints actually rejecting bad inserts with real Postgres error text; `DEFAULT` actually applying on an omitted column; `JSONB`/`TEXT[]` operators; and one report query built up six times, one clause at a time.
+- New content: a full key-types taxonomy (super/candidate/primary/alternate-secondary/natural/surrogate/composite), a constraint-types table, a real PostgreSQL data-type catalog with a real example column per category, and the `SELECT`/`FROM`/`WHERE` logical-processing-order explanation that explains *why* `WHERE` can't reference an aggregate.
+- Bumped chapter `version: 1.0 → 2.0`, `last_updated: 2026-09-17`. Updated cheat sheet and flashcard deck (+6 cards).

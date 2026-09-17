@@ -242,7 +242,7 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 **Added 2026-09-07 (batch 2): the 5 Junior Fundamentals chapters (T-2200s reserved range).** These postdate the batch above — they didn't exist when it closed — and were found and closed the same day they were discovered missing, matching `cheat-sheets/README.md`'s own second batch for the same 5 chapters.
 
 | N32 | [Java OOP Fundamentals: Classes, Objects, and Interfaces](java-oop-fundamentals-classes-objects-and-interfaces.md) | T-2201 | 5 | `syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md` |
-| N33 | [SQL and Relational Database Fundamentals](sql-and-relational-database-fundamentals.md) | T-2202 | 5 | `syllabus/06-databases/sql-and-relational-database-fundamentals.md` |
+| N33 | [SQL and Relational Database Fundamentals](sql-and-relational-database-fundamentals.md) | T-2202 | 11 | `syllabus/06-databases/sql-and-relational-database-fundamentals.md` |
 | N34 | [Spring MVC Fundamentals](spring-mvc-fundamentals.md) | T-2203 | 5 | `syllabus/05-spring/spring-mvc-fundamentals.md` |
 | N35 | [Unit Testing Fundamentals with JUnit](unit-testing-fundamentals-with-junit.md) | T-2204 | 5 | `syllabus/08-testing/unit-testing-fundamentals-with-junit.md` |
 | N36 | [REST API Fundamentals](rest-api-fundamentals.md) | T-2205 | 11 (5 + 6 added 2026-09-11, closing a real status-code-range gap — see notes below) | `syllabus/07-api-design/rest-api-fundamentals.md` |

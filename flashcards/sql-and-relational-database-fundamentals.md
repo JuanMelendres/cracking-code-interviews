@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 06-databases
 topic_id: T-2202
 canonical: ../syllabus/06-databases/sql-and-relational-database-fundamentals.md
-last_updated: 2026-09-07
+last_updated: 2026-09-17
 ---
 
 # Flashcards: SQL and Relational Database Fundamentals
@@ -93,6 +93,108 @@ A real, common bug source, especially after a `LEFT JOIN` produces `NULL` column
 
 **Common trap:**
 Writing `= NULL` and expecting standard equality semantics.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: FULL OUTER JOIN as a real union
+
+**Prompt:**
+What does a `FULL OUTER JOIN` return that neither `LEFT JOIN` nor `RIGHT JOIN` alone would?
+
+**Answer:**
+Both sides' unmatched rows at once — a row from the left table with no match on the right (which only `LEFT`/`FULL` keep), AND a row from the right table with no match on the left (which only `RIGHT`/`FULL` keep), in the same single result set. `FULL OUTER JOIN` is genuinely the union of what `LEFT` and `RIGHT` would each produce separately.
+
+**Why it matters:**
+A real data-reconciliation report ("which departments have no employees, AND which employees have no department") needs exactly this — either `LEFT` or `RIGHT` alone only answers half the question.
+
+**Common trap:**
+Assuming `LEFT JOIN` already covers "everything," when it only covers unmatched rows from one specific side.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: CROSS JOIN by accident
+
+**Prompt:**
+You write a `JOIN` between two tables but forget the `ON` condition. What actually happens in PostgreSQL?
+
+**Answer:**
+It silently executes as a `CROSS JOIN` — a Cartesian product, one row per (left row × right row) combination — not a rejected query. If the left table has 100 rows and the right has 50, the result has 5,000 rows, not an error.
+
+**Why it matters:**
+One of the most common real query-writing mistakes: a query that "runs fine" but returns a wildly, silently wrong, much larger result set than intended.
+
+**Common trap:**
+Assuming Postgres would reject a `JOIN` with no matching condition, rather than silently treating it as a Cartesian product.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: WHERE vs. HAVING — why you can't just use WHERE for both
+
+**Prompt:**
+Why does `WHERE COUNT(*) > 5` fail with a real error, while `HAVING COUNT(*) > 5` works fine?
+
+**Answer:**
+SQL's logical processing order runs `FROM` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT`. `WHERE` executes *before* grouping/aggregation happens, so `COUNT(*)` doesn't exist yet at the point `WHERE` evaluates — it's a real syntax error, not a wrong-but-valid query. `HAVING` runs *after* aggregation specifically so it can filter on the aggregate's computed value.
+
+**Why it matters:**
+Understanding the logical order explains *why* the rule exists, rather than memorizing "WHERE can't use aggregates" as an arbitrary fact.
+
+**Common trap:**
+Treating `WHERE` and `HAVING` as interchangeable synonyms that happen to have different names.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: Candidate key vs. primary key vs. alternate key
+
+**Prompt:**
+A table has both `emp_id` (auto-incrementing integer) and `email` (declared `UNIQUE`), either of which could uniquely identify a row. What's the correct terminology for each?
+
+**Answer:**
+Both are **candidate keys** (minimal column sets that could uniquely identify a row). Whichever one is actually declared `PRIMARY KEY` (typically `emp_id`) is the **primary key**. The other candidate key that exists but wasn't chosen (`email`) is an **alternate key**, sometimes called a **secondary key** — still real and enforced (via `UNIQUE`), just not the table's official row identifier.
+
+**Why it matters:**
+A real, common interview gap: most candidates can define "primary key" but not "candidate key" or "alternate key," even though a real schema almost always has more than one candidate key.
+
+**Common trap:**
+Treating "primary key" and "candidate key" as synonyms.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: Natural key vs. surrogate key
+
+**Prompt:**
+Why default to an auto-generated `SERIAL` or `UUID` as a primary key instead of a real-world unique value like an email address?
+
+**Answer:**
+A natural key (email, ISBN, national ID) can turn out to be not-actually-unique later, or need to change — and a primary key referenced by foreign keys elsewhere is expensive to change once other tables depend on it. A surrogate key (a `SERIAL` integer or a `UUID`) has no real-world meaning, so it never needs to change for a real-world reason.
+
+**Why it matters:**
+A real, practical schema-design default, not just terminology — explains *why* most production schemas use generated IDs rather than "obviously unique" business data.
+
+**Common trap:**
+Assuming a value that looks permanently unique today (like an email) is safe to use as an unchangeable primary key.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: NUMERIC vs. REAL/DOUBLE PRECISION for money
+
+**Prompt:**
+Why should a `salary` or `price` column use `NUMERIC(10,2)` instead of `REAL` or `DOUBLE PRECISION`?
+
+**Answer:**
+`NUMERIC`/`DECIMAL` is exact — no floating-point rounding error on repeated arithmetic. `REAL`/`DOUBLE PRECISION` are approximate binary floating-point types that can genuinely lose precision, which is unacceptable for money or any value where exact arithmetic matters.
+
+**Why it matters:**
+A real, common data-type choice mistake — floating-point types look interchangeable with exact-decimal types until repeated arithmetic reveals real rounding drift.
+
+**Common trap:**
+Picking `REAL`/`DOUBLE PRECISION` for money because it "looks like a decimal number type too."
 
 **Related:**
 [SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
