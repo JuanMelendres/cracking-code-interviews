@@ -2141,6 +2141,10 @@
          <lastmod>2026-09-17</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/architecture/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/architecture/adr-examples/</loc>
          <lastmod>2026-09-17</lastmod>
     </url>
@@ -2162,6 +2166,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/docker-fundamentals/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/frontend/</loc>
          <lastmod>2026-09-17</lastmod>
     </url>
     <url>
@@ -2198,6 +2206,14 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/frontend/websocket-and-sse-realtime/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/git/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/</loc>
          <lastmod>2026-09-17</lastmod>
     </url>
     <url>
@@ -2697,6 +2713,10 @@
          <lastmod>2026-09-17</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/k8s/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/mock-interviews/</loc>
          <lastmod>2026-09-17</lastmod>
     </url>
@@ -2761,6 +2781,10 @@
          <lastmod>2026-09-17</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/production/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/production/postmortem-examples/</loc>
          <lastmod>2026-09-17</lastmod>
     </url>
@@ -2774,6 +2798,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/production/postmortem-examples/postmortem-001-checkout-latency-regression/</loc>
+         <lastmod>2026-09-17</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/sql/</loc>
          <lastmod>2026-09-17</lastmod>
     </url>
     <url>
