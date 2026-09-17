@@ -2005,3 +2005,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real, reflective proof (not assumed) that a DTO's missing field for sensitive entity data cannot leak through the mapper: `OrderResponse.class.getRecordComponents()` confirms the DTO record structurally has no component for the entity's internal-only field.
 - Updated `syllabus/05-spring/INDEX.md` (13 → 14 chapters, T-520 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.
+
+## [2026-09-17] — `03-data-structures-algorithms` gains a 19th chapter: Coding Interview Pattern-Recognition Methodology
+
+### Added (`syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` — T-2120)
+
+- Part of the user's TODO list: a methodology for LeetCode/HackerRank-style problems — patterns, data structures, worked examples of the most commonly asked problems, to understand which methodology to apply. This domain already had 18 real, deep, pattern-specific chapters, but none of them answered the earlier question of which pattern to even reach for on an unfamiliar problem.
+- Placed first in the domain's `.pages` reading order, ahead of the 18 pattern chapters, since its role is to be read before them.
+- Real deliverable: a signal-to-pattern lookup table (18 rows) ranked by this project's own real Master Topic Register IWI data (`00-project/knowledge-architecture-blueprint.md`), not invented popularity — correcting, for this new table only, an internal inconsistency already present in the domain's own prior text (`arrays-two-pointers-and-sliding-window.md` and `INDEX.md` disagree on which pattern is "highest-weighted": IWI 6.3 for T-1402 vs. 6.25 for T-1409 — the raw blueprint numbers make T-1402 actually higher, used here directly rather than repeating either prior claim).
+- A constraint-to-complexity heuristic table (what `n`'s stated bound implies about required Big-O) and three worked signal-spotting walkthroughs (Two Sum, Number of Islands, Coin Change) that deliberately stop at "which pattern, and why" rather than re-deriving the full solution — each links to its canonical chapter instead, avoiding duplication per this domain's own content-ownership rule.
+- New cheat sheet and flashcard deck; updated `syllabus/03-data-structures-algorithms/INDEX.md` (18 → 19 chapters) and `.pages`.
