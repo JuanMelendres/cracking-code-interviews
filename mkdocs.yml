@@ -163,6 +163,9 @@ extra_javascript:
   # "swipe to see more" caption above wide tables that actually overflow
   # on narrow viewports -- see the script for the real mobile check behind it.
   - javascripts/wide-table-scroll-hint.js
+  # Fixed top-of-viewport bar showing scroll progress through the current
+  # page -- see the script for why it's hidden on non-scrollable pages.
+  - javascripts/reading-progress.js
 
 extra_css:
   - stylesheets/extra.css
