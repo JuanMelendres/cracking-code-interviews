@@ -6336,6 +6336,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#addendum-2026-09-17-two-topics-added-after-this-week-originally-closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Addendum (2026-09-17): two topics added after this week originally closed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-week" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7616,6 +7627,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#addendum-2026-09-17-two-topics-added-after-this-week-originally-closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Addendum (2026-09-17): two topics added after this week originally closed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-week" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7803,6 +7825,16 @@
 <td><a href="resources/"><code>resources.md</code></a></td>
 <td>Sources classified PRIMARY/TOOL</td>
 </tr>
+<tr>
+<td>15</td>
+<td><a href="13-csrf-cors-and-session-security/"><code>13-csrf-cors-and-session-security.md</code></a></td>
+<td>T-1308, added 2026-09-17 — see Addendum below</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="14-enterprise-sso-saml-and-federated-identity/"><code>14-enterprise-sso-saml-and-federated-identity.md</code></a></td>
+<td>T-1309, added 2026-09-17 — see Addendum below</td>
+</tr>
 </tbody>
 </table>
 <h2 id="hands-on-exercises">Hands-On Exercises<a class="headerlink" href="#hands-on-exercises" title="Permanent link">&para;</a></h2>
@@ -7825,9 +7857,17 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> All seven labs in <code>08-hands-on-lab.md</code> reproduced with matching results</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Design exercise completed independently before checking the reference solution</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Mock interview average score ≥ 3.5</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Addendum: both <code>13-csrf-cors-and-session-security.md</code> and <code>14-enterprise-sso-saml-and-federated-identity.md</code> read, and the CSRF/session-fixation lab in <code>13-csrf-cors-and-session-security.md</code> reproduced (added 2026-09-17)</li>
 </ul>
 <h2 id="retrospective">Retrospective<a class="headerlink" href="#retrospective" title="Permanent link">&para;</a></h2>
 <p>Note which of the seven topics needs a second pass, and whether the design exercise revealed a gap not caught by the individual chapter labs.</p>
+<h2 id="addendum-2026-09-17-two-topics-added-after-this-week-originally-closed">Addendum (2026-09-17): two topics added after this week originally closed<a class="headerlink" href="#addendum-2026-09-17-two-topics-added-after-this-week-originally-closed" title="Permanent link">&para;</a></h2>
+<p><code>12-security</code> grew from 7 to 10 canonical chapters after this week's original sprint shipped (2026-08-02) — two later, separate gap-fill sessions added CSRF/CORS/Session Security (2026-09-10) and Enterprise SSO/SAML/Federated Identity (2026-09-14). Neither was folded back into this week's required reading at the time, a real scheduling gap flagged and now closed:</p>
+<ul>
+<li><a href="13-csrf-cors-and-session-security/"><code>13-csrf-cors-and-session-security.md</code></a> — T-1308, includes a real, reproducible hands-on lab (<code>practice/java/week-17/csrf-cors-session/</code>, which already existed, unwired, since 2026-09-10).</li>
+<li><a href="14-enterprise-sso-saml-and-federated-identity/"><code>14-enterprise-sso-saml-and-federated-identity.md</code></a> — T-1309, reading-only this week; its own canonical chapter is explicit that a faithful end-to-end demo would require standing up a real SAML Identity Provider, out of scope for this project's practice budget.</li>
+</ul>
+<p>Everything above this section (Weekly Outcome, Why This Week Matters, the numbered <code>01</code>–<code>12</code> reading list, hands-on labs 1–7, the flashcard deck, mock interview, and design exercise) is left exactly as originally written — an accurate record of the 2026-08-02 "Security Domain Closure" sprint when the domain had exactly 7 topics, not retroactively rewritten to claim it always covered 9. A learner working through this week today should read all 9 topics; the completion criteria below now include the two added ones.</p>
 <h2 id="next-week">Next Week<a class="headerlink" href="#next-week" title="Permanent link">&para;</a></h2>
 <p>Security coverage is now at 7/7 register topics (was 0/7 before this week), per <code>00-project/coverage-audit-2026-07-31.md</code> — the first domain in the entire register closed to 100%. JVM remains at 6/12 (6 topics deferred: T-302, T-305, T-309, T-310, T-311, T-303's classic-generational framing). Next steps per the audit: continue JVM depth, start Testing depth (2/8), or move to Phase 6 complementary deliverables (interview-playbook, cheat-sheets, architecture atlas, production cookbook, behavioral handbook — none of which have started yet).</p>
 
@@ -7850,7 +7890,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 00:18:34 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 15:44:35 UTC">September 17, 2026</span>
   </span>
 
     
