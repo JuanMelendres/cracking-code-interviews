@@ -197,6 +197,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 164 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | 4 | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
 | 165 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | 3 | `syllabus/07-api-design/api-versioning-strategies.md` |
 | 166 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | 3 | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
+| 167 | [Coding Interview Pattern-Recognition Methodology](coding-interview-pattern-recognition-methodology.md) | T-2120 | 4 | `syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 

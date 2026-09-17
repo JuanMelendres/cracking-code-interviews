@@ -1,6 +1,7 @@
 title: Data Structures & Algorithms
 nav:
   - INDEX.md
+  - coding-interview-pattern-recognition-methodology.md
   - arrays-two-pointers-and-sliding-window.md
   - sorting-algorithms.md
   - hashing-patterns-and-frequency-maps.md
