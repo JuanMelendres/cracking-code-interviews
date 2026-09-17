@@ -6,6 +6,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Week 17 study pack: closed the CSRF/SSO scheduling gap, 2026-09-17)
+
+- A prior sync-check session (2026-09-15) flagged that `syllabus/12-security/csrf-cors-and-session-security.md` (T-1308, added 2026-09-10) and `enterprise-sso-saml-and-federated-identity.md` (T-1309, added 2026-09-14) were never scheduled into any study pack, since both were written after `study-packs/week-17` (the security-domain closure sprint) had already shipped on 2026-08-02 -- flagged, not fixed, since closing it meant deciding which week absorbs them.
+- New `study-packs/week-17/13-csrf-cors-and-session-security.md` and `14-enterprise-sso-saml-and-federated-identity.md`, appended as a clearly-dated Addendum rather than renumbering or rewriting the original seven-topic sprint's files (`01`-`12`, `README.md`, `MANIFEST.md`) -- those are left exactly as originally written, an accurate historical record of the 2026-08-02 session when the domain had exactly 7 topics.
+- The CSRF addendum includes a real, reproducible hands-on lab pointing at `practice/java/week-17/csrf-cors-session/` -- a real demo that had existed, unwired into this week's reading, since 2026-09-10; re-run while writing this addendum, still passing. The SSO addendum is honestly reading-only: its own canonical chapter states a faithful demo would require standing up a real SAML Identity Provider, out of scope for this project's practice budget.
+- `study-packs/week-17/README.md`: new dated Addendum section plus 2 new Required Reading rows and 2 new Completion Criteria items; nothing above the Addendum section was altered.
+
 ### Added (SQL and Relational Database Fundamentals substantially deepened, T-2202, 2026-09-17)
 
 - User flagged this chapter as too shallow, twice: only `INNER`/`LEFT JOIN` were covered (no `RIGHT`/`FULL`/`CROSS`/`SELF`), `HAVING` was never explained at all, `GROUP BY`/aggregate functions were used but not taught, key types stopped at primary/foreign (no candidate/alternate/natural/surrogate), and there was no real SQL data-type catalog.
