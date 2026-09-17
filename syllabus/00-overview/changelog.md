@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-16
+last_updated: 2026-09-17
 ---
 
 # Syllabus Changelog
@@ -2034,3 +2034,22 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Real, executed PostgreSQL 16 (Docker) proof added for: all six JOIN types; `WHERE` vs. `HAVING` on the identical `GROUP BY`/`AVG` query; `UNIQUE`/`CHECK`/`NOT NULL` constraints actually rejecting bad inserts with real Postgres error text; `DEFAULT` actually applying on an omitted column; `JSONB`/`TEXT[]` operators; and one report query built up six times, one clause at a time.
 - New content: a full key-types taxonomy (super/candidate/primary/alternate-secondary/natural/surrogate/composite), a constraint-types table, a real PostgreSQL data-type catalog with a real example column per category, and the `SELECT`/`FROM`/`WHERE` logical-processing-order explanation that explains *why* `WHERE` can't reference an aggregate.
 - Bumped chapter `version: 1.0 → 2.0`, `last_updated: 2026-09-17`. Updated cheat sheet and flashcard deck (+6 cards).
+
+## [2026-09-17] — `02-java` gains a 62nd chapter: Comparator: Composition and Pitfalls
+
+### Added (`syllabus/02-java/language-core/comparator-composition-and-pitfalls.md` — T-2413)
+
+- User-flagged gap during a review of `Comparator`/`String` vs. `StringBuilder`/`StringBuffer`/`Serializable`/anonymous-class coverage: `Comparator` had zero dedicated coverage anywhere in the syllabus, appearing only as a constructor argument inside `priorityqueue-internals.md` and a brief decision-framework mention inside `equals-hashcode-and-comparable-contracts.md` (T-101) — no chapter taught `comparing`/`thenComparing`/`reversed`/`nullsFirst`/`nullsLast` composition itself, despite it being one of the most common everyday sorting tasks in real backend code.
+- New topic ID `T-2413` (no pre-existing Master Topic Register slot for this exact topic; continuing the `T-2400`–`T-2499` gap-audit range, verified collision-free against the highest prior assignment, `T-2412`).
+- Real, executed demo (`practice/java/language-core/comparator-composition-and-pitfalls/`, OpenJDK 21.0.12, 3 files): real multi-field and mixed-direction `comparing().thenComparing()` composition; a genuinely reproduced `int`-subtraction-comparator overflow bug (`Integer.MIN_VALUE - 1` wrapping to `Integer.MAX_VALUE`, producing a real, measurably wrong sort order), contrasted directly against `Comparator.comparingInt()`'s overflow-safe `Integer.compare()`; a real `NullPointerException` from a naive comparator on nullable data, fixed both ways with `Comparator.nullsFirst()`/`nullsLast()`; and a real, verified `List.sort()` stability proof using tagged duplicate-key elements.
+- Cross-linked bidirectionally with `equals-hashcode-and-comparable-contracts.md` (T-101) — the new chapter builds directly on that chapter's `Comparable`-vs-`Comparator` decision framework rather than re-deriving it.
+- Updated `syllabus/02-java/INDEX.md` (61 → 62 chapters, T-2413 row added, status line updated).
+
+## [2026-09-17] — `java-oop-fundamentals-classes-objects-and-interfaces.md` (T-2201) gains an anonymous-class Foundation section
+
+### Added (`syllabus/02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md` — Section 3, Foundation (L1))
+
+- Same review that surfaced the `Comparator` gap also flagged anonymous classes: covered only as a bytecode-vs-lambda comparison point inside `lambdas-and-functional-interfaces.md` (T-108, target_levels senior/staff), with no Foundation-level (L1) introduction anywhere — a true Junior reader had no entry point to the concept itself before being thrown into the lambda contrast.
+- New paragraph at the end of Section 3 (Foundation): what an anonymous class is, a `Runnable` example against an interface and a `Shape` example against an abstract class (matching the real `Shape.area()` signature already used in this chapter's own Section 7 demo), when to reach for one, and an explicit forward pointer to `lambdas-and-functional-interfaces.md` for the deeper bytecode-level contrast rather than duplicating it.
+- Added a Mastery Checklist item (Section 20); added `lambdas-and-functional-interfaces.md` to `related:` front matter and Section 19 Further Reading; added the reverse cross-link from `lambdas-and-functional-interfaces.md`'s own `related:` front matter.
+- Bumped chapter `version: 1.0 → 1.1`, `last_updated: 2026-09-17`. No new file created and no existing sentence removed — a pure, additive insertion per this domain's own retrofit convention.

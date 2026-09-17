@@ -198,6 +198,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 165 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | 3 | `syllabus/07-api-design/api-versioning-strategies.md` |
 | 166 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | 3 | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
 | 167 | [Coding Interview Pattern-Recognition Methodology](coding-interview-pattern-recognition-methodology.md) | T-2120 | 4 | `syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` |
+| 168 | [Comparator: Composition and Pitfalls](comparator-composition-and-pitfalls.md) | T-2413 | 4 | `syllabus/02-java/language-core/comparator-composition-and-pitfalls.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -341,6 +342,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-15 (same day) — Database Normalization — 1NF Through BCNF (T-2411) gains a flashcard deck.** Second new `06-databases` chapter added the same day, closing a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 251 decks (250 prior + 1), 847 cards (843 prior + 4).**
 
 **2026-09-16 — Behavior-Driven Development with Cucumber (T-2412) gains a flashcard deck.** New `08-testing` chapter, added the same day to close a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 252 decks (251 prior + 1), 851 cards (847 prior + 4).**
+
+**2026-09-17 — Comparator: Composition and Pitfalls (T-2413) gains a flashcard deck.** New `02-java` chapter, added the same day to close a real, user-flagged gap (`Comparator` had no dedicated coverage anywhere in the syllabus). 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 253 decks (252 prior + 1), 855 cards (851 prior + 4).**
 
 **2026-09-16 — index-completeness audit.** Diffing every file in `flashcards/` against this README's own tables (rather than trusting the count above) found 38 existing decks across 11 domains never listed anywhere in this index — some dating back to the original 22-domain gap audit (T-2400s/T-1300s/T-1700s chapters), never added to this file when their decks were written. Closed in four groups: 26 backend decks appended to the main table above, 3 to the New-Writing Domain table (`19-leadership-staff`, `03-data-structures-algorithms`), 3 to the Frontend table (the D-F4 batch), and 6 new `22-ai-llm-engineering` decks in their own new section below (that domain didn't exist when this file's other batches ran). `frontend-live-coding-and-debugging-protocol.md` is confirmed intentionally excluded, matching its Frontend-table precedent. **New total: 253 decks, 875 cards** (verified as the real file/card count in `flashcards/`, 2026-09-16) — every deck now listed in exactly one table.
 

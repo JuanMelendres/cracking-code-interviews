@@ -1,0 +1,71 @@
+$ java -cp out ComparatorCompositionDemo
+== Unsorted input ==
+Diaz, Bruno (41)
+Diaz, Ana (29)
+Ackerman, Ana (37)
+Diaz, Ana (52)
+Ackerman, Bruno (22)
+
+== Sorted: lastName -> firstName -> age (all ascending) ==
+Ackerman, Ana (37)
+Ackerman, Bruno (22)
+Diaz, Ana (29)
+Diaz, Ana (52)
+Diaz, Bruno (41)
+
+== Sorted: age descending, via .reversed() on the SAME comparator shape ==
+Diaz, Ana (52)
+Diaz, Bruno (41)
+Ackerman, Ana (37)
+Diaz, Ana (29)
+Ackerman, Bruno (22)
+
+== Sorted: lastName DESCENDING, then firstName ascending (mixed directions, one chain) ==
+Diaz, Ana (29)
+Diaz, Ana (52)
+Diaz, Bruno (41)
+Ackerman, Ana (37)
+Ackerman, Bruno (22)
+
+$ java -cp out ComparatorOverflowBugDemo
+== Real values, for reference ==
+Integer.MIN_VALUE = -2147483648
+Integer.MIN_VALUE - 1 (raw int subtraction, wraps) = 2147483647
+
+== Sorted with BROKEN subtraction comparator: (a, b) -> a.value() - b.value() ==
+Mid = 0
+High = 1
+Low = -2147483648
+Actually ascending by value? false
+
+== Sorted with FIXED Comparator.comparingInt(Score::value) (uses Integer.compare) ==
+Low = -2147483648
+Mid = 0
+High = 1
+Actually ascending by value? true
+
+Direct comparator call, broken.compare(MIN_VALUE, 1) = 2147483647  <-- POSITIVE means "MIN_VALUE is greater than 1" to Collections.sort -- WRONG
+Direct comparator call, fixed.compare(MIN_VALUE, 1)  = -1  <-- NEGATIVE, correctly "MIN_VALUE is less than 1"
+
+$ java -cp out NullsAndStableSortDemo
+== Attempting Comparator.comparing(Employee::department) on data containing a null ==
+Real NullPointerException thrown: Cannot invoke "java.lang.Comparable.compareTo(Object)" because the return value of "java.util.function.Function.apply(Object)" is null
+
+== Fixed with Comparator.nullsFirst(Comparator.naturalOrder()) ==
+Osei -> null
+Reyes -> null
+Kim -> Engineering
+Tanaka -> Engineering
+Patel -> Sales
+
+== Same data with Comparator.nullsLast(Comparator.naturalOrder()) instead ==
+Kim -> Engineering
+Tanaka -> Engineering
+Patel -> Sales
+Osei -> null
+Reyes -> null
+
+== Stability proof: tagged elements with an EQUAL sort key ==
+Original insertion order (sortKey, originalIndex): [Tagged[sortKey=5, originalIndex=0], Tagged[sortKey=3, originalIndex=1], Tagged[sortKey=5, originalIndex=2], Tagged[sortKey=1, originalIndex=3], Tagged[sortKey=3, originalIndex=4], Tagged[sortKey=5, originalIndex=5]]
+After sorting by sortKey ONLY: [Tagged[sortKey=1, originalIndex=3], Tagged[sortKey=3, originalIndex=1], Tagged[sortKey=3, originalIndex=4], Tagged[sortKey=5, originalIndex=0], Tagged[sortKey=5, originalIndex=2], Tagged[sortKey=5, originalIndex=5]]
+Elements with equal sortKey kept their original relative order? true
