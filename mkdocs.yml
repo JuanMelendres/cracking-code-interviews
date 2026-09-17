@@ -139,6 +139,11 @@ exclude_docs: |
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  # Mermaid loads above with no theme config, so it always renders its
+  # default light theme -- unreadable in dark mode (bug found 2026-09-16).
+  # Re-initializes mermaid with the theme matching the site's current
+  # light/dark scheme, on first load and on every palette toggle.
+  - javascripts/mermaid-init.js
   # Makes Mastery Checklist / Completion Criteria checkboxes clickable
   # (pymdownx.tasklist's clickable_checkbox above only removes the HTML
   # `disabled` attribute -- a plain checkbox toggle still forgets its state
