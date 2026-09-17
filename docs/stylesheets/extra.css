@@ -244,3 +244,21 @@
   object-fit: cover;
   border: 1px solid var(--md-accent-fg-color);
 }
+
+/* Per-page "Feedback & comments" mailto prompt, injected by
+   overrides/partials/comments.html below the thumbs up/down widget.
+   Muted like .cci-reading-time -- it's a low-priority utility action,
+   not content -- with a bit more vertical room since it follows an <hr>. */
+.cci-page-feedback {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.cci-page-feedback__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 0.68rem;
+  margin-bottom: 0.3rem;
+}
