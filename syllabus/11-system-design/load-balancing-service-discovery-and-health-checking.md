@@ -121,6 +121,12 @@ Practically, if someone asks "how quickly would we notice a backend crashed," th
 
 ## Core Concepts
 
+### The single point of failure this entire mechanism exists to eliminate
+
+A **single point of failure (SPOF)** is any component whose failure alone takes down the whole system, because every request's path runs through it with no alternative. A single backend instance is a SPOF by definition — this is the actual problem load balancing solves: running multiple instances behind a router means one instance's failure removes only its share of capacity, not the whole system's. The general fix behind every specific mechanism in this chapter is the same: **redundancy** — more than one of anything that could otherwise be a sole point of failure — plus a way to route around whichever redundant copy is currently unavailable, which is exactly what service discovery and health checking provide.
+
+This fix has a real trap: the load balancer itself, if there's only one of it, has simply moved the SPOF rather than removed it — the backends are now redundant, but the single router in front of them isn't. Production load-balancer tiers address this the same way: run at least two load-balancer instances behind a mechanism that doesn't itself introduce a new single point of failure (a floating virtual IP that fails over between them, DNS with health-checked records, or a cloud provider's own managed, internally-redundant load balancer) — redundancy has to be applied at every layer a request passes through, not just the layer that happened to be discussed first.
+
 ### Load-balancing algorithms are differentiated entirely by what signal they use
 
 - **Round-robin.** Cycles through backends in fixed order. Uses no runtime signal at all — every backend is treated as identical. This chapter's own [real measurement](#production-scenarios) shows exactly what this costs when that assumption is false.
@@ -388,6 +394,8 @@ Load balancing, service discovery, and health checking work together to route re
 
 ## Key Takeaways
 
+- A single point of failure is any component whose failure alone takes down the whole system; redundancy (multiple instances, routed around dynamically) is the general fix load balancing, service discovery, and health checking all serve.
+- The load balancer itself is a SPOF unless it too is redundant — running multiple backends behind a single, non-redundant router moves the SPOF rather than removing it.
 - Round-robin uses no runtime signal; least-connections uses real, live in-flight load — this chapter measured a real ~4.4x cost from that gap under a 40x backend-cost variance scenario.
 - Health-check detection latency is a real, bounded number (interval plus timeout), not instantaneous — measured directly at 206ms in this chapter's own demo.
 - Active and passive health checking are complementary, not substitutes — active catches failures before user impact; passive catches what a synthetic probe doesn't exercise.
@@ -396,6 +404,7 @@ Load balancing, service discovery, and health checking work together to route re
 
 ## Cheat Sheet
 
+- **SPOF fix:** redundancy everywhere a request passes through — including the load balancer itself.
 - **Round-robin:** no signal, equal share regardless of real cost.
 - **Least-connections:** real, live in-flight count — adapts automatically.
 - **Active health check:** proactive polling, bounded detection latency (interval + timeout).
