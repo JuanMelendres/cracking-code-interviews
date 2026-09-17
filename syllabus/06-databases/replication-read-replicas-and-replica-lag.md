@@ -106,6 +106,12 @@ Reach for a read replica when you need to spread out read-heavy load (reports, d
 
 A replica is initialized from a real base backup (`pg_basebackup`) of the primary's data directory, then enters standby mode and opens a real streaming connection (`walreceiver`) that continuously receives and replays WAL records as the primary generates them — verified directly with real container logs showing `entering standby mode` → `consistent recovery state reached` → `started streaming WAL from primary`. This is a real, ongoing process, not a one-time copy: the replica keeps applying new WAL records for as long as the connection stays open.
 
+### WAL's other job: crash recovery, independent of replication
+
+The WAL exists primarily as PostgreSQL's own crash-recovery mechanism, and replication (the subject of this chapter) is really a second consumer of that same log, not a separate thing. Before any change is applied to the actual data files on disk, PostgreSQL first appends it to the WAL — a durable, sequential, append-only record of intent. If the process crashes between the WAL write and the data-file write, the data files on disk are left in an inconsistent, partially-applied state; on restart, PostgreSQL detects this and replays the WAL from the last checkpoint forward, reconstructing exactly the state the database was in the instant before the crash. No acknowledged write is ever lost this way, even though the change wasn't yet durably applied to its final on-disk location when the crash happened — it was durably recorded in the WAL, which is all recovery needs.
+
+This "record intent to a durable, append-only log first; apply or replay later" pattern generalizes well beyond PostgreSQL: Kafka's own partition log, LSM-tree storage engines (RocksDB's write-ahead log, Cassandra's commit log ahead of its memtable), and most message brokers use the identical mechanism for the identical reason — a sequential append is cheap and durable, and replaying a log after a crash is a simple, always-correct recovery procedure, whereas trying to make every in-place data-file write itself atomic and crash-safe is not. Streaming replication doesn't require a second, separate log for this purpose — it ships the crash-recovery log to a replica instead of only replaying it locally, which is why the WAL-shipping pipeline described above and PostgreSQL's crash recovery are, structurally, the same mechanism serving two different consumers.
+
 ### Replica lag is real and measurable — and mostly not what naive polling suggests
 
 `pg_stat_replication` on the primary exposes real `write_lag`/`flush_lag`/`replay_lag` columns — genuinely sub-millisecond on a local network in this chapter's own measurement. But naive application-level polling (a fresh connection per check) measured a real, much larger ~174ms delay before observing a new row — real evidence that most of what an application "feels" as replication lag is often connection/query overhead, not the underlying WAL-streaming mechanism itself. Both numbers are real; conflating them leads to either underestimating or badly overestimating actual replica staleness.
@@ -337,6 +343,7 @@ PostgreSQL streaming replication ships the primary's WAL to replicas, which repl
 ## Key Takeaways
 
 - Streaming replication is a real, ongoing WAL-shipping and replay process — verified directly, not a one-time copy.
+- The WAL's primary purpose is crash recovery, not replication — a durable "record intent first, apply/replay later" log, the same general pattern used by Kafka's partition log and LSM-tree storage engines.
 - Replica lag is real, measurable, and asynchronous by default — this chapter distinguishes real WAL-level lag (sub-millisecond) from real application-observed polling latency (much larger), a distinction worth knowing precisely.
 - Asynchronous replication creates a genuine read-your-own-writes risk — route staleness-sensitive reads to the primary, not a replica.
 - Promotion is real and irreversible, with a real, reproducible operational side effect (sequence-value discontinuity) beyond "the replica becomes primary."
