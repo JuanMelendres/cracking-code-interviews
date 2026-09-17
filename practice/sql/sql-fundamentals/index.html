@@ -6971,6 +6971,42 @@ docker<span class="w"> </span>stop<span class="w"> </span>sqlfund-pg
 <td>H</td>
 <td><code>GROUP BY</code> + <code>COUNT</code> with a <code>LEFT JOIN</code>, so an author with 0 books shows a real <code>0</code>, not an absence</td>
 </tr>
+<tr>
+<td>I</td>
+<td>A second schema (<code>departments</code>/<code>employees</code>) deliberately linked by a <em>nullable</em> foreign key, so a genuinely unmatched row can exist on either side — needed to honestly demonstrate <code>RIGHT JOIN</code>/<code>FULL JOIN</code>, which the FK-required <code>authors</code>/<code>books</code> schema above cannot. Also introduces <code>UNIQUE</code>, <code>CHECK</code>, <code>DEFAULT</code>, <code>UUID</code>, <code>NUMERIC</code>, <code>DATE</code>, <code>BOOLEAN</code>, <code>TEXT[]</code>, and <code>JSONB</code> — real, declared column types, shown via <code>\d</code></td>
+</tr>
+<tr>
+<td>J</td>
+<td><code>RIGHT JOIN</code> — every department kept (including the zero-employee "Empty Dept"), the unassigned employee ("Dev," <code>dept_id IS NULL</code>) dropped</td>
+</tr>
+<tr>
+<td>K</td>
+<td><code>FULL OUTER JOIN</code> — the real union of J and a <code>LEFT JOIN</code>: both "Empty Dept" (no employees) and "Dev" (no department) appear in the same result</td>
+</tr>
+<tr>
+<td>L</td>
+<td><code>CROSS JOIN</code> — a real Cartesian product, 4 departments × 4 quarters = 16 rows</td>
+</tr>
+<tr>
+<td>M</td>
+<td><code>SELF JOIN</code> — employees joined to employees, each row paired with its own manager's name (via <code>manager_id</code> referencing <code>emp_id</code> on the same table)</td>
+</tr>
+<tr>
+<td>N</td>
+<td><code>WHERE</code> vs. <code>HAVING</code> — the identical <code>GROUP BY</code>/<code>AVG</code> query, once filtered by <code>WHERE</code> (before grouping) and once by <code>HAVING</code> (after aggregation) — real, different result sets</td>
+</tr>
+<tr>
+<td>O</td>
+<td><code>UNIQUE</code>, <code>CHECK</code>, and <code>NOT NULL</code> constraints actually rejecting bad inserts — real Postgres error text for each, not a description; then <code>DEFAULT</code> actually applying when a column is omitted, confirmed by re-querying the inserted row</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Querying a <code>JSONB</code> column with <code>-&gt;&gt;</code> and a <code>TEXT[]</code> column with <code>= ANY(...)</code> — real, working operators beyond plain scalar types</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>One report query built up six times, one clause at a time (<code>SELECT</code> → <code>WHERE</code> → <code>JOIN</code> → <code>GROUP BY</code>/aggregate → <code>HAVING</code> → <code>ORDER BY</code>/<code>LIMIT</code>), each version's real output shown</td>
+</tr>
 </tbody>
 </table>
 
@@ -6993,7 +7029,7 @@ docker<span class="w"> </span>stop<span class="w"> </span>sqlfund-pg
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 04:08:13 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 15:32:57 UTC">September 17, 2026</span>
   </span>
 
     

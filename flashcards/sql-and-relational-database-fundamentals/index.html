@@ -7160,6 +7160,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#card-full-outer-join-as-a-real-union" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: FULL OUTER JOIN as a real union
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-cross-join-by-accident" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: CROSS JOIN by accident
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-where-vs-having-why-you-cant-just-use-where-for-both" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: WHERE vs. HAVING — why you can't just use WHERE for both
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-candidate-key-vs-primary-key-vs-alternate-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Candidate key vs. primary key vs. alternate key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-natural-key-vs-surrogate-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Natural key vs. surrogate key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-numeric-vs-realdouble-precision-for-money" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: NUMERIC vs. REAL/DOUBLE PRECISION for money
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8284,6 +8350,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#card-full-outer-join-as-a-real-union" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: FULL OUTER JOIN as a real union
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-cross-join-by-accident" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: CROSS JOIN by accident
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-where-vs-having-why-you-cant-just-use-where-for-both" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: WHERE vs. HAVING — why you can't just use WHERE for both
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-candidate-key-vs-primary-key-vs-alternate-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Candidate key vs. primary key vs. alternate key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-natural-key-vs-surrogate-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Natural key vs. surrogate key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-numeric-vs-realdouble-precision-for-money" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: NUMERIC vs. REAL/DOUBLE PRECISION for money
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8411,6 +8543,72 @@ A real, common bug source, especially after a <code>LEFT JOIN</code> produces <c
 Writing <code>= NULL</code> and expecting standard equality semantics.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-full-outer-join-as-a-real-union">Card: FULL OUTER JOIN as a real union<a class="headerlink" href="#card-full-outer-join-as-a-real-union" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What does a <code>FULL OUTER JOIN</code> return that neither <code>LEFT JOIN</code> nor <code>RIGHT JOIN</code> alone would?</p>
+<p><strong>Answer:</strong>
+Both sides' unmatched rows at once — a row from the left table with no match on the right (which only <code>LEFT</code>/<code>FULL</code> keep), AND a row from the right table with no match on the left (which only <code>RIGHT</code>/<code>FULL</code> keep), in the same single result set. <code>FULL OUTER JOIN</code> is genuinely the union of what <code>LEFT</code> and <code>RIGHT</code> would each produce separately.</p>
+<p><strong>Why it matters:</strong>
+A real data-reconciliation report ("which departments have no employees, AND which employees have no department") needs exactly this — either <code>LEFT</code> or <code>RIGHT</code> alone only answers half the question.</p>
+<p><strong>Common trap:</strong>
+Assuming <code>LEFT JOIN</code> already covers "everything," when it only covers unmatched rows from one specific side.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-cross-join-by-accident">Card: CROSS JOIN by accident<a class="headerlink" href="#card-cross-join-by-accident" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+You write a <code>JOIN</code> between two tables but forget the <code>ON</code> condition. What actually happens in PostgreSQL?</p>
+<p><strong>Answer:</strong>
+It silently executes as a <code>CROSS JOIN</code> — a Cartesian product, one row per (left row × right row) combination — not a rejected query. If the left table has 100 rows and the right has 50, the result has 5,000 rows, not an error.</p>
+<p><strong>Why it matters:</strong>
+One of the most common real query-writing mistakes: a query that "runs fine" but returns a wildly, silently wrong, much larger result set than intended.</p>
+<p><strong>Common trap:</strong>
+Assuming Postgres would reject a <code>JOIN</code> with no matching condition, rather than silently treating it as a Cartesian product.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-where-vs-having-why-you-cant-just-use-where-for-both">Card: WHERE vs. HAVING — why you can't just use WHERE for both<a class="headerlink" href="#card-where-vs-having-why-you-cant-just-use-where-for-both" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Why does <code>WHERE COUNT(*) &gt; 5</code> fail with a real error, while <code>HAVING COUNT(*) &gt; 5</code> works fine?</p>
+<p><strong>Answer:</strong>
+SQL's logical processing order runs <code>FROM</code> → <code>WHERE</code> → <code>GROUP BY</code> → <code>HAVING</code> → <code>SELECT</code>. <code>WHERE</code> executes <em>before</em> grouping/aggregation happens, so <code>COUNT(*)</code> doesn't exist yet at the point <code>WHERE</code> evaluates — it's a real syntax error, not a wrong-but-valid query. <code>HAVING</code> runs <em>after</em> aggregation specifically so it can filter on the aggregate's computed value.</p>
+<p><strong>Why it matters:</strong>
+Understanding the logical order explains <em>why</em> the rule exists, rather than memorizing "WHERE can't use aggregates" as an arbitrary fact.</p>
+<p><strong>Common trap:</strong>
+Treating <code>WHERE</code> and <code>HAVING</code> as interchangeable synonyms that happen to have different names.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-candidate-key-vs-primary-key-vs-alternate-key">Card: Candidate key vs. primary key vs. alternate key<a class="headerlink" href="#card-candidate-key-vs-primary-key-vs-alternate-key" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+A table has both <code>emp_id</code> (auto-incrementing integer) and <code>email</code> (declared <code>UNIQUE</code>), either of which could uniquely identify a row. What's the correct terminology for each?</p>
+<p><strong>Answer:</strong>
+Both are <strong>candidate keys</strong> (minimal column sets that could uniquely identify a row). Whichever one is actually declared <code>PRIMARY KEY</code> (typically <code>emp_id</code>) is the <strong>primary key</strong>. The other candidate key that exists but wasn't chosen (<code>email</code>) is an <strong>alternate key</strong>, sometimes called a <strong>secondary key</strong> — still real and enforced (via <code>UNIQUE</code>), just not the table's official row identifier.</p>
+<p><strong>Why it matters:</strong>
+A real, common interview gap: most candidates can define "primary key" but not "candidate key" or "alternate key," even though a real schema almost always has more than one candidate key.</p>
+<p><strong>Common trap:</strong>
+Treating "primary key" and "candidate key" as synonyms.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-natural-key-vs-surrogate-key">Card: Natural key vs. surrogate key<a class="headerlink" href="#card-natural-key-vs-surrogate-key" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Why default to an auto-generated <code>SERIAL</code> or <code>UUID</code> as a primary key instead of a real-world unique value like an email address?</p>
+<p><strong>Answer:</strong>
+A natural key (email, ISBN, national ID) can turn out to be not-actually-unique later, or need to change — and a primary key referenced by foreign keys elsewhere is expensive to change once other tables depend on it. A surrogate key (a <code>SERIAL</code> integer or a <code>UUID</code>) has no real-world meaning, so it never needs to change for a real-world reason.</p>
+<p><strong>Why it matters:</strong>
+A real, practical schema-design default, not just terminology — explains <em>why</em> most production schemas use generated IDs rather than "obviously unique" business data.</p>
+<p><strong>Common trap:</strong>
+Assuming a value that looks permanently unique today (like an email) is safe to use as an unchangeable primary key.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-numeric-vs-realdouble-precision-for-money">Card: NUMERIC vs. REAL/DOUBLE PRECISION for money<a class="headerlink" href="#card-numeric-vs-realdouble-precision-for-money" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Why should a <code>salary</code> or <code>price</code> column use <code>NUMERIC(10,2)</code> instead of <code>REAL</code> or <code>DOUBLE PRECISION</code>?</p>
+<p><strong>Answer:</strong>
+<code>NUMERIC</code>/<code>DECIMAL</code> is exact — no floating-point rounding error on repeated arithmetic. <code>REAL</code>/<code>DOUBLE PRECISION</code> are approximate binary floating-point types that can genuinely lose precision, which is unacceptable for money or any value where exact arithmetic matters.</p>
+<p><strong>Why it matters:</strong>
+A real, common data-type choice mistake — floating-point types look interchangeable with exact-decimal types until repeated arithmetic reveals real rounding drift.</p>
+<p><strong>Common trap:</strong>
+Picking <code>REAL</code>/<code>DOUBLE PRECISION</code> for money because it "looks like a decimal number type too."</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
 
 
 
@@ -8431,7 +8629,7 @@ Writing <code>= NULL</code> and expecting standard equality semantics.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 04:37:17 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 15:32:57 UTC">September 17, 2026</span>
   </span>
 
     

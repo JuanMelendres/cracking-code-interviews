@@ -70,10 +70,10 @@ DELETE 1
 (4 rows)
 
 === SECTION F: the foreign key constraint actually rejecting an orphan row ===
-psql:/tmp/lab.sql:60: ERROR:  insert or update on table "books" violates foreign key constraint "books_author_id_fkey"
-DETAIL:  Key (author_id)=(999) is not present in table "authors".
 === SECTION G: INNER JOIN vs LEFT JOIN — the actual difference, shown not asserted ===
 --- INNER JOIN: only authors that have at least one matching book row ---
+psql:/tmp/lab.sql:60: ERROR:  insert or update on table "books" violates foreign key constraint "books_author_id_fkey"
+DETAIL:  Key (author_id)=(999) is not present in table "authors".
        name        |              title              
 -------------------+---------------------------------
  Octavia E. Butler | Kindred
@@ -100,4 +100,203 @@ DETAIL:  Key (author_id)=(999) is not present in table "authors".
  Ted Chiang        |          1
  N. K. Jemisin     |          0
 (4 rows)
+
+=== SECTION I: a second schema for the remaining JOIN types, key types, constraints, and data types ===
+CREATE TABLE
+CREATE TABLE
+                                Table "public.departments"
+  Column   |  Type   | Collation | Nullable |                   Default                    
+-----------+---------+-----------+----------+----------------------------------------------
+ dept_id   | integer |           | not null | nextval('departments_dept_id_seq'::regclass)
+ dept_name | text    |           | not null | 
+Indexes:
+    "departments_pkey" PRIMARY KEY, btree (dept_id)
+    "departments_dept_name_key" UNIQUE CONSTRAINT, btree (dept_name)
+Referenced by:
+    TABLE "employees" CONSTRAINT "employees_dept_id_fkey" FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+
+                                   Table "public.employees"
+   Column   |     Type      | Collation | Nullable |                  Default                  
+------------+---------------+-----------+----------+-------------------------------------------
+ emp_id     | integer       |           | not null | nextval('employees_emp_id_seq'::regclass)
+ emp_uuid   | uuid          |           | not null | gen_random_uuid()
+ emp_name   | text          |           | not null | 
+ email      | text          |           | not null | 
+ dept_id    | integer       |           |          | 
+ manager_id | integer       |           |          | 
+ salary     | numeric(10,2) |           | not null | 
+ hire_date  | date          |           | not null | CURRENT_DATE
+ is_active  | boolean       |           | not null | true
+ tags       | text[]        |           |          | '{}'::text[]
+ metadata   | jsonb         |           |          | 
+Indexes:
+    "employees_pkey" PRIMARY KEY, btree (emp_id)
+    "employees_email_key" UNIQUE CONSTRAINT, btree (email)
+Check constraints:
+    "employees_salary_check" CHECK (salary > 0::numeric)
+Foreign-key constraints:
+    "employees_dept_id_fkey" FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+    "employees_manager_id_fkey" FOREIGN KEY (manager_id) REFERENCES employees(emp_id)
+Referenced by:
+    TABLE "employees" CONSTRAINT "employees_manager_id_fkey" FOREIGN KEY (manager_id) REFERENCES employees(emp_id)
+
+INSERT 0 4
+INSERT 0 4
+ emp_name | dept_id | manager_id |  salary   | hire_date  | is_active |      tags      |      metadata       
+----------+---------+------------+-----------+------------+-----------+----------------+---------------------
+ Alice    |       1 |            | 150000.00 | 2026-09-17 | t         | {lead,backend} | {"level": "senior"}
+ Bob      |       1 |          1 | 110000.00 | 2026-09-17 | t         | {backend}      | {"level": "mid"}
+ Cara     |       2 |            |  95000.00 | 2026-09-17 | t         | {lead}         | {"level": "senior"}
+ Dev      |         |            |  60000.00 | 2026-09-17 | t         | {}             | 
+(4 rows)
+
+=== SECTION J: RIGHT JOIN -- every department kept, unmatched employee columns NULL ===
+ emp_name |  dept_name  
+----------+-------------
+          | Empty Dept
+ Alice    | Engineering
+ Bob      | Engineering
+          | Marketing
+ Cara     | Sales
+(5 rows)
+
+=== SECTION K: FULL OUTER JOIN -- the union of LEFT and RIGHT, both unmatched sides kept ===
+ emp_name |  dept_name  
+----------+-------------
+          | Empty Dept
+ Alice    | Engineering
+ Bob      | Engineering
+          | Marketing
+ Cara     | Sales
+ Dev      | 
+(6 rows)
+
+=== SECTION L: CROSS JOIN -- Cartesian product, every department x every quarter ===
+  dept_name  | quarter 
+-------------+---------
+ Empty Dept  | Q1
+ Empty Dept  | Q2
+ Empty Dept  | Q3
+ Empty Dept  | Q4
+ Engineering | Q1
+ Engineering | Q2
+ Engineering | Q3
+ Engineering | Q4
+ Marketing   | Q1
+ Marketing   | Q2
+ Marketing   | Q3
+ Marketing   | Q4
+ Sales       | Q1
+ Sales       | Q2
+ Sales       | Q3
+ Sales       | Q4
+(16 rows)
+
+=== SECTION M: SELF JOIN -- each employee alongside their own manager ===
+ employee | manager 
+----------+---------
+ Alice    | 
+ Bob      | Alice
+ Cara     | 
+ Dev      | 
+(4 rows)
+
+=== SECTION N: WHERE vs HAVING -- filtering rows before grouping vs filtering groups after ===
+--- WHERE: filters individual employee rows BEFORE grouping ---
+ dept_id |     avg_salary      
+---------+---------------------
+       1 | 130000.000000000000
+       2 |  95000.000000000000
+         |  60000.000000000000
+(3 rows)
+
+--- HAVING: filters the GROUPED results AFTER aggregation -- WHERE cannot do this ---
+ dept_id |     avg_salary      
+---------+---------------------
+       1 | 130000.000000000000
+(1 row)
+
+=== SECTION O: constraints actually being enforced -- real error text, not description ===
+--- UNIQUE: a duplicate department name is rejected ---
+psql:/tmp/lab.sql:169: ERROR:  duplicate key value violates unique constraint "departments_dept_name_key"
+DETAIL:  Key (dept_name)=(Engineering) already exists.
+--- CHECK: a non-positive salary is rejected ---
+--- NOT NULL: a missing required column is rejected ---
+psql:/tmp/lab.sql:172: ERROR:  new row for relation "employees" violates check constraint "employees_salary_check"
+DETAIL:  Failing row contains (5, d8653aae-ae51-45a3-b1cc-370ac93c81fb, Bad Hire, bad@example.com, null, null, -5000.00, 2026-09-17, t, {}, null).
+psql:/tmp/lab.sql:175: ERROR:  null value in column "emp_name" of relation "employees" violates not-null constraint
+DETAIL:  Failing row contains (6, b036baaf-1f94-41c3-b8e5-5f34c26871cd, null, noname@example.com, null, null, 50000.00, 2026-09-17, t, {}, null).
+--- DEFAULT: omitted columns really do get their declared default, not NULL ---
+INSERT 0 1
+ emp_name | hire_date  | is_active | tags 
+----------+------------+-----------+------
+ Erin     | 2026-09-17 | t         | {}
+(1 row)
+
+=== SECTION P: querying beyond text/integer -- JSONB and array operators, for real ===
+ emp_name | level  
+----------+--------
+ Alice    | senior
+ Bob      | mid
+ Cara     | senior
+(3 rows)
+
+ emp_name |      tags      
+----------+----------------
+ Alice    | {lead,backend}
+ Cara     | {lead}
+(2 rows)
+
+=== SECTION Q: a basic-to-advanced query, built up one clause at a time ===
+--- Level 1: plain SELECT ---
+ emp_name 
+----------
+ Alice
+ Bob
+ Cara
+ Dev
+ Erin
+(5 rows)
+
+--- Level 2: + WHERE ---
+ emp_name 
+----------
+ Alice
+ Bob
+ Cara
+ Dev
+ Erin
+(5 rows)
+
+--- Level 3: + JOIN ---
+ emp_name |  dept_name  
+----------+-------------
+ Alice    | Engineering
+ Bob      | Engineering
+ Cara     | Sales
+ Dev      | 
+ Erin     | 
+(5 rows)
+
+--- Level 4: + GROUP BY and an aggregate ---
+  dept_name  | headcount |     avg_salary      
+-------------+-----------+---------------------
+             |         2 |  65000.000000000000
+ Engineering |         2 | 130000.000000000000
+ Sales       |         1 |  95000.000000000000
+(3 rows)
+
+--- Level 5: + HAVING ---
+  dept_name  | headcount |     avg_salary      
+-------------+-----------+---------------------
+             |         2 |  65000.000000000000
+ Engineering |         2 | 130000.000000000000
+ Sales       |         1 |  95000.000000000000
+(3 rows)
+
+--- Level 6: + ORDER BY (already present above) + LIMIT ---
+ dept_name | headcount |     avg_salary     
+-----------+-----------+--------------------
+           |         2 | 65000.000000000000
+(1 row)
 

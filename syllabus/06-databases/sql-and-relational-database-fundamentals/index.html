@@ -3087,19 +3087,12 @@
   <span class="md-ellipsis">
     
   
-    Databases — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--14 of 14 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 15th chapter added 2026-09-07 (SQL and Relational Database Fundamentals, T-2202), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 16th chapter added 2026-09-10 (Window Functions and Common Table Expressions, T-2401 — gap found in a full 22-domain audit, real lab including a ~4,957x measured speedup over a correlated-subquery equivalent); 17th chapter added 2026-09-10, same day (JSONB and Advanced PostgreSQL Index Types, T-2402 — real lab covering GIN/GiST/BRIN, including an honestly-reported case where a GIN index made a query slower); 18th chapter added 2026-09-15 (Views and Materialized Views, T-2410 — real lab measuring a ~457x read speedup from materializing an aggregation, plus the explicit primary key/foreign key/index/view comparison flagged as a content gap by the user); 19th chapter added 2026-09-15, same day (Database Normalization — 1NF Through BCNF, T-2411 — real lab with a captured update anomaly at each normal form and a real ~3.27x read speedup vs. ~80x write-amplification denormalization trade-off, user-requested gap-fill)"></span>
-  
-
   
 
       </a>
@@ -11386,6 +11379,15 @@
 <p>A <strong>primary key</strong> is the column (or columns) that uniquely identifies each row in a table — no two rows can share one, and it can never be empty. <code>author_id</code> as a primary key guarantees the database itself will refuse a second row with the same <code>author_id</code>, rather than trusting every piece of application code to remember not to create a duplicate.</p>
 <p>A <strong>foreign key</strong> is a column in one table that references a primary key in another, and it is how relationships are actually expressed. <code>books.author_id</code> referencing <code>authors.author_id</code> says, in a rule the database itself enforces: "every book row must point at an author row that genuinely exists." Section 7's Example F shows this rule being enforced directly — the database rejecting an attempt to insert a book with an author ID that isn't real, with no application code involved in catching the mistake.</p>
 <p>The four operations you do to data are commonly abbreviated <strong>CRUD</strong>: <code>INSERT</code> (Create), <code>SELECT</code> (Read), <code>UPDATE</code>, and <code>DELETE</code>. Every one of Section 7's demos runs at least one of these against a real, disposable PostgreSQL database.</p>
+<h3 id="select-from-and-where-what-each-one-is-actually-for"><code>SELECT</code>, <code>FROM</code>, and <code>WHERE</code> — what each one is actually for<a class="headerlink" href="#select-from-and-where-what-each-one-is-actually-for" title="Permanent link">&para;</a></h3>
+<p>A <code>SELECT</code> query has three jobs, done by three different clauses, and confusing what each one is <em>for</em> is one of the most common beginner mistakes:</p>
+<ul>
+<li><strong><code>FROM</code></strong> answers "where does the data come from" — one table, or several tables combined with a <code>JOIN</code> (Section 4).</li>
+<li><strong><code>SELECT</code></strong> answers "which columns (or computed values) do I want back" — a list of column names, <code>*</code> for all of them, or an expression like <code>salary * 12</code> for an annual figure computed from a monthly one.</li>
+<li><strong><code>WHERE</code></strong> answers "which <em>rows</em> actually qualify" — a condition evaluated once per row, keeping only the rows where it's true and discarding the rest before anything else happens to them.</li>
+</ul>
+<p>Read in plain English, <code>SELECT title, published_year FROM books WHERE published_year &lt; 1980</code> says: "from the <code>books</code> table, keep only the rows where <code>published_year</code> is less than 1980, then give me back just the <code>title</code> and <code>published_year</code> columns of what's left." Section 7 Example C is this exact query, run for real.</p>
+<p><strong>The clauses don't execute in the order you type them.</strong> SQL's actual <em>logical</em> processing order is: <code>FROM</code> (gather the rows) → <code>WHERE</code> (filter individual rows) → <code>GROUP BY</code> (collapse rows into groups, Section 4) → <code>HAVING</code> (filter the groups, Section 4) → <code>SELECT</code> (compute the final output columns) → <code>ORDER BY</code> (sort the result). This is why <code>WHERE</code> can't reference a column alias defined in <code>SELECT</code> (the alias doesn't exist yet when <code>WHERE</code> runs) and why <code>HAVING</code> can filter on an aggregate like <code>COUNT(*)</code> while <code>WHERE</code> cannot (aggregates aren't computed until after <code>WHERE</code> has already run) — both are direct, mechanical consequences of this order, not arbitrary SQL rules to memorize separately.</p>
 <pre class="mermaid"><code>erDiagram
     authors ||--o{ books : "author_id"
     authors {
@@ -11399,18 +11401,182 @@
     }</code></pre>
 <p><code>books.author_id</code> (the foreign key) points at <code>authors.author_id</code> (the primary key) — Section 7's Example F proves the database itself refuses a <code>books</code> row whose <code>author_id</code> doesn't point at a real <code>authors</code> row.</p>
 <h2 id="4-core-concepts-l2">4. Core Concepts (L2)<a class="headerlink" href="#4-core-concepts-l2" title="Permanent link">&para;</a></h2>
-<p>A <strong><code>JOIN</code></strong> combines rows from two tables based on a matching condition — almost always "this table's foreign key equals that table's primary key." The two most common kinds answer genuinely different questions, not just stylistic variants of the same query:</p>
+<h3 id="the-six-join-types-and-what-each-one-actually-returns">The six JOIN types, and what each one actually returns<a class="headerlink" href="#the-six-join-types-and-what-each-one-actually-returns" title="Permanent link">&para;</a></h3>
+<p>A <strong><code>JOIN</code></strong> combines rows from two tables based on a matching condition — almost always "this table's foreign key equals that table's primary key." Each kind answers a genuinely different question, not a stylistic variant of the same query:</p>
+<table>
+<thead>
+<tr>
+<th>JOIN type</th>
+<th>Returns</th>
+<th>Unmatched left row</th>
+<th>Unmatched right row</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INNER JOIN</code></td>
+<td>Only rows with a match in <em>both</em> tables</td>
+<td>Dropped</td>
+<td>Dropped</td>
+</tr>
+<tr>
+<td><code>LEFT [OUTER] JOIN</code></td>
+<td>Every row from the left table, matched or not</td>
+<td>Kept, right columns <code>NULL</code></td>
+<td>Dropped</td>
+</tr>
+<tr>
+<td><code>RIGHT [OUTER] JOIN</code></td>
+<td>Every row from the right table, matched or not</td>
+<td>Dropped</td>
+<td>Kept, left columns <code>NULL</code></td>
+</tr>
+<tr>
+<td><code>FULL [OUTER] JOIN</code></td>
+<td>Every row from <em>both</em> tables, matched or not</td>
+<td>Kept, right columns <code>NULL</code></td>
+<td>Kept, left columns <code>NULL</code></td>
+</tr>
+<tr>
+<td><code>CROSS JOIN</code></td>
+<td>Every row of the left table paired with every row of the right table (a Cartesian product) — no matching condition at all</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>SELF JOIN</code></td>
+<td>Not a distinct keyword — a table joined to itself, using a different alias for each side, to compare rows within one table</td>
+<td>Depends on which of the above (<code>INNER</code>/<code>LEFT</code>/etc.) is used for the self-join itself</td>
+<td>Depends</td>
+</tr>
+</tbody>
+</table>
+<p>Section 7 Examples G through M run all six for real, against two different schemas: <code>authors</code>/<code>books</code> for <code>INNER</code> and <code>LEFT</code> (Example G, where the foreign key is required, so every book genuinely has a real author), and a second <code>departments</code>/<code>employees</code> schema for <code>RIGHT</code>, <code>FULL</code>, <code>CROSS</code>, and <code>SELF</code> (Examples J–M), where the foreign key is deliberately <em>nullable</em> — needed to honestly demonstrate a row unmatched on the <em>right</em> side, which the required-foreign-key <code>authors</code>/<code>books</code> schema cannot produce at all.</p>
+<p><strong><code>RIGHT JOIN</code> is the mirror image of <code>LEFT JOIN</code></strong> — swap which table is "kept in full," and you get the same behavior from the other direction. In practice, most engineers default to writing <code>LEFT JOIN</code> and reordering the tables rather than reaching for <code>RIGHT JOIN</code> at all, since the two are logically interchangeable this way — Section 7 Example J deliberately uses <code>RIGHT JOIN</code> explicitly so both keywords are demonstrated for real, but Section 6 revisits which one to actually reach for.</p>
+<p><strong><code>FULL OUTER JOIN</code> is the real union of <code>LEFT</code> and <code>RIGHT</code></strong> — every row that either one alone would keep, with <code>NULL</code> on whichever side had no match. Section 7 Example K proves this directly: the zero-employee department ("Empty Dept," which only a <code>RIGHT</code>/<code>FULL</code> join keeps) and the unassigned employee ("Dev," <code>dept_id IS NULL</code>, which only a <code>LEFT</code>/<code>FULL</code> join keeps) both appear in the same <code>FULL OUTER JOIN</code> result.</p>
+<p><strong><code>CROSS JOIN</code> has no matching condition at all</strong> — it pairs every row of one table with every row of the other, producing (row count of table A) × (row count of table B) rows. It looks like a mistake (an accidentally omitted join condition) far more often than it's used deliberately, but it has real, legitimate uses — Section 7 Example L generates one row per (department, quarter) combination, a real pattern for building a report template grid that needs every combination represented, even ones with no data yet.</p>
+<p><strong><code>SELF JOIN</code> isn't a fourth keyword</strong> — it's an ordinary <code>JOIN</code> (any of the types above) where both sides are the <em>same</em> table, given two different aliases so the query can distinguish "this row" from "the other row it's being compared to." Section 7 Example M joins <code>employees</code> to itself (<code>e</code> and <code>m</code>) via <code>e.manager_id = m.emp_id</code>, to list each employee next to their own manager's name — a relationship that only makes sense within one table, not between two different ones.</p>
+<h3 id="aggregate-functions-group-by-and-having-vs-where">Aggregate functions, <code>GROUP BY</code>, and <code>HAVING</code> vs. <code>WHERE</code><a class="headerlink" href="#aggregate-functions-group-by-and-having-vs-where" title="Permanent link">&para;</a></h3>
+<p>An <strong>aggregate function</strong> computes one value from many rows — <code>COUNT(*)</code> (how many rows), <code>COUNT(column)</code> (how many rows where that column is not <code>NULL</code>), <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, and <code>MAX</code> are the five used in essentially every real report query. <code>GROUP BY</code> is what makes an aggregate function compute <em>per group</em> instead of over the entire table at once — <code>GROUP BY dept_id</code> with <code>COUNT(emp_id)</code> computes one count <em>per distinct <code>dept_id</code></em> value, not one count for the whole table. Every column in the <code>SELECT</code> list that isn't wrapped in an aggregate function must appear in the <code>GROUP BY</code> clause — this isn't a style preference, it's because SQL needs to know, for a group containing multiple rows, which single value to report for that column, and an aggregate function is the only thing that tells it how to collapse many values into one.</p>
+<p><strong><code>WHERE</code> and <code>HAVING</code> both filter, but at different points in the logical order established in Section 3</strong> — this is the entire distinction, not two arbitrary keywords that happen to do similar things:</p>
 <ul>
-<li><strong><code>INNER JOIN</code></strong> returns only the rows that have a match in <em>both</em> tables. An author with zero books simply does not appear in the result at all — there is no book row to join against.</li>
-<li><strong><code>LEFT JOIN</code></strong> returns <em>every</em> row from the left-hand table, whether or not it has a match — an author with zero books still appears, with the joined columns filled in as <code>NULL</code>.</li>
+<li><strong><code>WHERE</code> filters individual rows, <em>before</em> grouping happens.</strong> It cannot reference an aggregate function, because aggregates haven't been computed yet at the point <code>WHERE</code> runs.</li>
+<li><strong><code>HAVING</code> filters <em>groups</em>, after <code>GROUP BY</code> and its aggregates have already been computed.</strong> It's the only clause that can say "only keep groups where <code>COUNT(*) &gt; 5</code>" or "only keep departments where the average salary exceeds some threshold" — a condition on the <em>aggregate</em>, not on any individual row.</li>
 </ul>
-<p>Section 7's Example G runs the identical join condition both ways against the identical data specifically to make this concrete: one extra author (with zero books) appears in the <code>LEFT JOIN</code> result and is entirely absent from the <code>INNER JOIN</code> result — the same underlying fact, seen from opposite directions.</p>
+<p>Section 7 Example N runs the identical <code>GROUP BY</code>/<code>AVG(salary)</code> query twice: once filtered by <code>WHERE is_active = TRUE</code> (rows are excluded before averaging), and once filtered by <code>HAVING AVG(salary) &gt; 100000</code> (whole groups are excluded after averaging) — two structurally different filters, producing two different, both-correct result sets from the same underlying data.</p>
+<h3 id="key-types-beyond-primary-and-foreign">Key types beyond primary and foreign<a class="headerlink" href="#key-types-beyond-primary-and-foreign" title="Permanent link">&para;</a></h3>
+<p>A real schema's keys are a small family of related concepts, not just "primary key" and "foreign key":</p>
+<ul>
+<li><strong>Super key</strong> — any column, or set of columns, that uniquely identifies a row. <code>(emp_id)</code> is a super key; so is <code>(emp_id, emp_name)</code> — adding an already-unique column to a super key can never break its uniqueness, just makes it larger than necessary.</li>
+<li><strong>Candidate key</strong> — a <em>minimal</em> super key: no column can be removed from it without losing uniqueness. <code>employees.emp_id</code> is a candidate key; <code>employees.email</code> (declared <code>UNIQUE</code> in Section 7 Example I) is a <em>second</em>, independent candidate key for the same table — a table can genuinely have more than one column (or column combination) that would have worked as the primary key.</li>
+<li><strong>Primary key</strong> — the <em>one</em> candidate key a table's designer actually chose to be the official row identifier, enforced with a <code>PRIMARY KEY</code> constraint. There is exactly one primary key per table, even when multiple candidate keys exist.</li>
+<li><strong>Alternate key</strong> (sometimes called a <strong>secondary key</strong>) — any candidate key that exists but was <em>not</em> chosen as the primary key. <code>employees.email</code> is exactly this: a real, <code>UNIQUE</code>-enforced alternate key, genuinely capable of identifying a row on its own, deliberately not the table's <code>PRIMARY KEY</code>.</li>
+<li><strong>Composite key</strong> — a key (primary, candidate, or otherwise) made of <em>more than one column together</em> — no single column in it is unique alone, but the combination is. Common on join/junction tables (a <code>(order_id, product_id)</code> pair uniquely identifying one line item), covered in full in <a href="../data-modelling-and-explicit-join-tables/">Data Modelling and Explicit Join Tables</a>.</li>
+<li><strong>Natural key vs. surrogate key</strong> — a <strong>natural key</strong> is a real-world, meaningful value that happens to be unique (an ISBN, a national ID number, an email address); a <strong>surrogate key</strong> is a value with no real-world meaning, generated purely to identify a row (an auto-incrementing <code>SERIAL</code> integer, or a generated <code>UUID</code> like <code>employees.emp_uuid</code> in Section 7 Example I). This repository's own examples default to surrogate keys (<code>author_id</code>, <code>book_id</code>, <code>emp_id</code> are all <code>SERIAL</code>) — the practical reason is Section 6.</li>
+</ul>
+<h3 id="constraint-types-beyond-primary-and-foreign-keys">Constraint types beyond primary and foreign keys<a class="headerlink" href="#constraint-types-beyond-primary-and-foreign-keys" title="Permanent link">&para;</a></h3>
+<p>Beyond <code>PRIMARY KEY</code> and <code>FOREIGN KEY</code> (Section 3), four more constraint types show up in essentially every real schema, each enforcing a different rule directly at the database layer:</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Enforces</th>
+<th>Real example (Section 7 Example I/O)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOT NULL</code></td>
+<td>This column can never be empty</td>
+<td><code>employees.emp_name TEXT NOT NULL</code></td>
+</tr>
+<tr>
+<td><code>UNIQUE</code></td>
+<td>No two rows can share this value (but, unlike a primary key, more than one column can be declared <code>UNIQUE</code>, and a <code>UNIQUE</code> column can typically hold one <code>NULL</code>)</td>
+<td><code>employees.email TEXT UNIQUE</code></td>
+</tr>
+<tr>
+<td><code>CHECK</code></td>
+<td>An arbitrary boolean condition must hold for every row</td>
+<td><code>employees.salary NUMERIC(10,2) CHECK (salary &gt; 0)</code></td>
+</tr>
+<tr>
+<td><code>DEFAULT</code></td>
+<td>Not an integrity rule but a real, automatic fallback value applied when a column is omitted from an <code>INSERT</code></td>
+<td><code>employees.hire_date DATE DEFAULT CURRENT_DATE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Section 7 Example O fires a real <code>INSERT</code> violating <code>UNIQUE</code>, <code>CHECK</code>, and <code>NOT NULL</code> in turn, capturing each real Postgres error message — and then a fourth <code>INSERT</code> that <em>omits</em> <code>hire_date</code>, <code>is_active</code>, and <code>tags</code> entirely, proving each one really does receive its declared <code>DEFAULT</code> value rather than coming back <code>NULL</code>.</p>
+<h3 id="sql-data-types-with-real-examples">SQL data types, with real examples<a class="headerlink" href="#sql-data-types-with-real-examples" title="Permanent link">&para;</a></h3>
+<p>Every column has a declared type, and PostgreSQL's real type catalog is considerably richer than "text or number." Section 7 Example I's <code>employees</code>/<code>departments</code> schema deliberately uses one column of each of these categories, and its <code>\d</code> output (also in Example I) shows every type exactly as Postgres itself reports it:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Common types</th>
+<th>Real example from this chapter's own schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td><code>SMALLINT</code>, <code>INTEGER</code>, <code>BIGINT</code>, <code>SERIAL</code>/<code>BIGSERIAL</code> (an auto-incrementing integer, not technically its own type — sugar for an <code>INTEGER</code> plus a sequence)</td>
+<td><code>emp_id SERIAL</code></td>
+</tr>
+<tr>
+<td>Exact decimal</td>
+<td><code>NUMERIC(precision, scale)</code> / <code>DECIMAL(precision, scale)</code> — exact, no floating-point rounding error, the correct choice for money</td>
+<td><code>salary NUMERIC(10,2)</code> — up to 10 total digits, 2 after the decimal point</td>
+</tr>
+<tr>
+<td>Approximate decimal</td>
+<td><code>REAL</code>, <code>DOUBLE PRECISION</code> — real floating-point, faster but <em>can</em> lose precision; wrong choice for money for exactly that reason</td>
+<td>Not used in this chapter's schema, deliberately, given the <code>salary</code> column above</td>
+</tr>
+<tr>
+<td>Text</td>
+<td><code>CHAR(n)</code> (fixed-length, space-padded), <code>VARCHAR(n)</code> (variable-length, capped), <code>TEXT</code> (variable-length, uncapped) — Postgres itself recommends <code>TEXT</code> unless a real length cap is a genuine business rule</td>
+<td><code>emp_name TEXT</code>, <code>email TEXT</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>BOOLEAN</code> — <code>TRUE</code>/<code>FALSE</code>, real third state <code>NULL</code> (unknown) also possible unless <code>NOT NULL</code></td>
+<td><code>is_active BOOLEAN DEFAULT TRUE</code></td>
+</tr>
+<tr>
+<td>Date/time</td>
+<td><code>DATE</code>, <code>TIME</code>, <code>TIMESTAMP</code> (no timezone), <code>TIMESTAMPTZ</code> (with timezone — the one to default to for anything tracking a real-world moment), <code>INTERVAL</code> (a real duration, e.g. <code>'3 days'</code>)</td>
+<td><code>hire_date DATE DEFAULT CURRENT_DATE</code></td>
+</tr>
+<tr>
+<td>Identifier</td>
+<td><code>UUID</code> — a 128-bit generated identifier, real alternative to a <code>SERIAL</code> integer as a surrogate key when values need to be unguessable or generated outside the database</td>
+<td><code>emp_uuid UUID DEFAULT gen_random_uuid()</code></td>
+</tr>
+<tr>
+<td>Semi-structured</td>
+<td><code>JSON</code>/<code>JSONB</code> — real, queryable JSON storage inside a column; <code>JSONB</code> (binary, indexable) is the one to default to over plain <code>JSON</code> for anything actually queried, not just stored</td>
+<td><code>metadata JSONB</code>, queried in Example P with the real <code>-&gt;&gt;</code> operator</td>
+</tr>
+<tr>
+<td>Array</td>
+<td><code>&lt;type&gt;[]</code> — a real, native array of any other type, queryable with operators like <code>ANY(...)</code></td>
+<td><code>tags TEXT[]</code>, queried in Example P with <code>'lead' = ANY(tags)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>A real, observed behavior worth knowing</strong>: <code>AVG()</code> applied to a <code>NUMERIC(10,2)</code> column does not return a value rounded back to 2 decimal places — Section 7 Example N's real output shows <code>130000.000000000000</code>, not <code>130000.00</code>. This is real, documented Postgres behavior (<code>AVG</code> on an exact numeric type expands its scale rather than preserving the input column's declared scale) — worth explicitly rounding (<code>ROUND(AVG(salary), 2)</code>) in a real report query rather than assuming the output already matches the source column's precision.</p>
 <p><strong>Normalization</strong>, at the level this chapter needs, is the practice of storing each fact exactly once and expressing relationships through foreign keys rather than by repeating data. Storing an author's name directly on every one of their book rows means updating that author's name requires updating every book row too, and risks the rows disagreeing with each other; storing <code>author_id</code> on <code>books</code> and looking the name up through a <code>JOIN</code> when needed means the name exists in exactly one place. <a href="../data-modelling-and-explicit-join-tables/">Data Modelling and Explicit Join Tables</a> takes this idea further, into many-to-many relationships this chapter doesn't cover.</p>
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p>A <code>PRIMARY KEY</code> constraint is not just a naming convention — declaring one causes PostgreSQL to automatically build a unique index on that column (visible directly in Section 7 Example A's <code>\d</code> output: <code>"authors_pkey" PRIMARY KEY, btree (author_id)</code>), and every <code>INSERT</code> or <code>UPDATE</code> checks that index before committing, rejecting the operation if the value already exists. A <code>FOREIGN KEY</code> constraint works by the referencing table's write path checking the referenced table's primary-key index at the moment of the write — Section 7 Example F's rejected insert is that check firing in real time, not a delayed validation step.</p>
-<p>A <code>JOIN</code> is executed by the database's own query planner, not by your query dictating a specific algorithm — the same <code>INNER JOIN</code> syntax might run as a nested-loop join, a hash join, or a merge join depending on table sizes and available indexes, a decision <a href="../query-planning-and-explain-analyze/">Query Planning and EXPLAIN ANALYZE</a> covers in full. What matters at this level is only that the <em>result</em> (which rows come back) is fully determined by <code>INNER</code> vs. <code>LEFT</code>, while the <em>execution strategy</em> used to produce that result is an internal decision the planner makes independently, invisible in the query's own syntax.</p>
+<p>A <code>JOIN</code> is executed by the database's own query planner, not by your query dictating a specific algorithm — the same <code>INNER JOIN</code> syntax might run as a nested-loop join, a hash join, or a merge join depending on table sizes and available indexes, a decision <a href="../query-planning-and-explain-analyze/">Query Planning and EXPLAIN ANALYZE</a> covers in full. What matters at this level is only that the <em>result</em> (which rows come back) is fully determined by <code>INNER</code>/<code>LEFT</code>/<code>RIGHT</code>/<code>FULL</code>, while the <em>execution strategy</em> used to produce that result is an internal decision the planner makes independently, invisible in the query's own syntax. <code>CROSS JOIN</code> is the one exception worth naming explicitly: with no condition to evaluate, the planner has no matching work to do at all — it's the one join type whose row count is fully predictable in advance, purely from the two input row counts, regardless of the data itself.</p>
+<p>A <code>UNIQUE</code> constraint works exactly like a <code>PRIMARY KEY</code>'s uniqueness check (Section 5, above) — Postgres builds a real unique index for it (Section 7 Example I's <code>\d</code> output shows <code>"employees_email_key" UNIQUE CONSTRAINT, btree (email)</code>, structurally identical in kind to <code>employees_pkey</code>) — the only real differences are that a table can have many <code>UNIQUE</code> constraints but only one <code>PRIMARY KEY</code>, and a <code>UNIQUE</code> column (unlike a <code>PRIMARY KEY</code> column) can hold <code>NULL</code>, since two <code>NULL</code>s are never considered equal to each other in a uniqueness check. A <code>CHECK</code> constraint is evaluated per-row at write time, exactly like <code>NOT NULL</code> and <code>UNIQUE</code> — the constraint expression (<code>salary &gt; 0</code>) is checked against the new row's actual values before the write commits, and Section 7 Example O's real rejected <code>-5000</code> salary is that check firing, not a delayed validation step run later.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
-<p>Always give every table a primary key, even when nothing seems to require one yet — a table without one cannot reliably be referenced by a future foreign key, and cannot be safely updated or deleted by "this exact row" later. Default to expressing every real relationship between tables as an explicit foreign key rather than trusting application code to keep two tables consistent by convention — Section 8's most common mistake is exactly this shortcut. Reach for <code>LEFT JOIN</code> specifically when the answer needs to account for "zero of something" (Section 7 Example H's book count including authors with zero books); reach for <code>INNER JOIN</code> when a row with no match is genuinely irrelevant to the question being asked.</p>
+<p>Always give every table a primary key, even when nothing seems to require one yet — a table without one cannot reliably be referenced by a future foreign key, and cannot be safely updated or deleted by "this exact row" later. Default to expressing every real relationship between tables as an explicit foreign key rather than trusting application code to keep two tables consistent by convention — Section 8's most common mistake is exactly this shortcut.</p>
+<p><strong>Choosing a JOIN type</strong>: reach for <code>LEFT JOIN</code> specifically when the answer needs to account for "zero of something" (Section 7 Example H's book count including authors with zero books); reach for <code>INNER JOIN</code> when a row with no match is genuinely irrelevant to the question being asked; reach for <code>FULL OUTER JOIN</code> only when the question genuinely needs <em>both</em> sides' unmatched rows at once (a data-reconciliation report — "which departments have no employees, and which employees have no department" — is the canonical real case); default to rewriting a would-be <code>RIGHT JOIN</code> as a <code>LEFT JOIN</code> with the tables swapped, purely for team-wide readability consistency, unless a specific query genuinely reads more naturally the other way; reach for <code>CROSS JOIN</code> only when a real Cartesian product is the actual goal (a report template grid, Section 7 Example L) — an <em>accidental</em> <code>CROSS JOIN</code> (a <code>JOIN</code> with a forgotten or wrong <code>ON</code> condition) is one of the most common real query-writing mistakes, and Section 8 covers its symptom directly.</p>
+<p><strong>Choosing a key type</strong>: default to a surrogate key (<code>SERIAL</code>/<code>BIGSERIAL</code>, or <code>UUID</code> when values must be generated outside the database or must be unguessable) for a table's primary key, even when a natural key (an email, an ISBN) is also available and <code>UNIQUE</code>-constrained as an alternate key — a natural key can turn out to be not-actually-unique later (two people sharing an email due to a typo, a business rule change), or can need to <em>change</em> (a corrected email), and a primary key referenced by foreign keys elsewhere is expensive to change once other tables depend on it; a surrogate key never has this problem, because it was never meant to carry business meaning in the first place.</p>
+<p><strong>Choosing a data type</strong>: default to <code>TEXT</code> over <code>VARCHAR(n)</code> unless a length cap is a genuine, enforced business rule (Postgres itself documents no real performance difference between the two); always use <code>NUMERIC</code>/<code>DECIMAL</code>, never <code>REAL</code>/<code>DOUBLE PRECISION</code>, for money or any value where exact arithmetic matters, since floating-point types can genuinely lose precision on repeated arithmetic; default to <code>TIMESTAMPTZ</code> over plain <code>TIMESTAMP</code> for anything recording a real-world moment (an event time, a <code>created_at</code>) so the stored value is unambiguous across time zones; reach for <code>JSONB</code> over a wider, sparser table (many nullable columns for rarely-used, per-row-varying attributes) when the actual attribute set is genuinely unpredictable per row, but default to a real, named column for anything queried or filtered on regularly — <code>JSONB</code>'s flexibility trades away the query planner's ability to use a normal index on that data as effectively as a real column.</p>
 <h2 id="7-examples">7. Examples<a class="headerlink" href="#7-examples" title="Permanent link">&para;</a></h2>
 <p>All results below are real, executed output from PostgreSQL 16 in a disposable Docker container — <a href="../../practice/sql/sql-fundamentals/"><code>practice/sql/sql-fundamentals/</code></a>, full transcript in <code>fundamentals-lab-output.txt</code>.</p>
 <p><strong>A — <code>CREATE TABLE</code> with a primary key and a foreign key</strong>, real <code>\d</code> output:
@@ -11434,18 +11600,42 @@ DETAIL:  Key (author_id)=(999) is not present in table "authors".
 </code></pre></div></p>
 <p><strong>G — <code>INNER JOIN</code> vs. <code>LEFT JOIN</code>, same condition, run both ways</strong>: <code>INNER JOIN</code> returns 4 rows (one per book); <code>LEFT JOIN</code> returns 5 — the extra row is <code>N. K. Jemisin</code> (seeded with zero books on purpose), with <code>title</code> coming back <code>NULL</code> rather than the row being dropped.</p>
 <p><strong>H — <code>GROUP BY</code> + <code>COUNT</code> with a <code>LEFT JOIN</code></strong>: the same zero-books author correctly shows <code>book_count = 0</code> in the result, rather than being absent from a report that should account for every author.</p>
+<p><strong>I — a second schema, <code>departments</code>/<code>employees</code></strong>, with a <em>nullable</em> <code>dept_id</code> foreign key (unlike <code>authors</code>/<code>books</code>'s required one) — real <code>\d</code> output confirms <code>UNIQUE</code> (<code>employees_email_key</code>), <code>CHECK</code> (<code>employees_salary_check</code>), a self-referencing <code>manager_id</code> foreign key, and real declared types (<code>UUID</code>, <code>NUMERIC(10,2)</code>, <code>DATE</code>, <code>BOOLEAN</code>, <code>TEXT[]</code>, <code>JSONB</code>). Seeded with 4 employees: Alice and Bob in Engineering (Bob managed by Alice), Cara in Sales, and Dev with no department at all (<code>dept_id</code> genuinely <code>NULL</code>); plus a fourth, empty department ("Empty Dept") with zero employees.</p>
+<p><strong>J — <code>RIGHT JOIN</code></strong>: every department is kept (including zero-employee "Empty Dept," employee columns <code>NULL</code>); the unassigned employee ("Dev") is dropped entirely — the mirror image of Example G's <code>LEFT JOIN</code> behavior.</p>
+<p><strong>K — <code>FULL OUTER JOIN</code></strong>: the real union of a <code>LEFT</code> and a <code>RIGHT</code> join — "Empty Dept" (no employees) <em>and</em> "Dev" (no department) both appear in the same 6-row result, each with <code>NULL</code> on the side that has no match.</p>
+<p><strong>L — <code>CROSS JOIN</code></strong>: 4 departments × 4 quarters = a real 16-row Cartesian product, every (department, quarter) pair present exactly once, with no matching condition at all.</p>
+<p><strong>M — <code>SELF JOIN</code></strong>: <code>employees</code> joined to itself via <code>manager_id = emp_id</code> — Bob correctly pairs with manager "Alice"; Alice, Cara, and Dev (all with no manager) correctly show a <code>NULL</code> manager column rather than being dropped, since this self-join uses <code>LEFT JOIN</code> internally.</p>
+<p><strong>N — <code>WHERE</code> vs. <code>HAVING</code>, same <code>GROUP BY</code>/<code>AVG(salary)</code> query, filtered two different ways</strong>: with <code>WHERE is_active = TRUE</code> (filters rows first), all 3 groups (Engineering avg 130000, Sales avg 95000, unassigned avg 60000) survive, since every seeded employee is active. With <code>HAVING AVG(salary) &gt; 100000</code> instead (filters <em>groups</em>, after averaging), only Engineering's row survives — the only group whose average actually exceeds 100000.</p>
+<p><strong>O — <code>UNIQUE</code>, <code>CHECK</code>, and <code>NOT NULL</code> constraints actually rejecting real inserts</strong>, real Postgres error text for each:
+<div class="highlight"><pre><span></span><code>ERROR:  duplicate key value violates unique constraint "departments_dept_name_key"
+DETAIL:  Key (dept_name)=(Engineering) already exists.
+
+ERROR:  new row for relation "employees" violates check constraint "employees_salary_check"
+DETAIL:  Failing row contains (5, ..., Bad Hire, bad@example.com, null, null, -5000.00, ...).
+
+ERROR:  null value in column "emp_name" of relation "employees" violates not-null constraint
+DETAIL:  Failing row contains (6, ..., null, noname@example.com, ..., 50000.00, ...).
+</code></pre></div></p>
+<p>A fourth insert (<code>Erin</code>, omitting <code>hire_date</code>, <code>is_active</code>, and <code>tags</code> entirely) succeeds and, re-queried, really does show today's real date, <code>true</code>, and an empty array <code>{}</code> — the declared <code>DEFAULT</code> for each, not <code>NULL</code>.</p>
+<p><strong>P — <code>JSONB</code> and array operators</strong>: <code>metadata -&gt;&gt; 'level'</code> correctly extracts the real text value (<code>"senior"</code>/<code>"mid"</code>) from each employee's JSON blob; <code>'lead' = ANY(tags)</code> correctly returns only Alice and Cara, the two employees whose <code>tags</code> array genuinely contains <code>'lead'</code>.</p>
+<p><strong>Q — one report query, built up six times</strong>, each version's real output shown: a plain <code>SELECT emp_name</code> (5 rows) → add <code>WHERE is_active = TRUE</code> (still 5, since all seeded employees are active) → add a <code>LEFT JOIN</code> to <code>departments</code> (5 rows, Dev's department now correctly <code>NULL</code>) → add <code>GROUP BY</code>/<code>COUNT</code>/<code>AVG</code> (3 real groups: unassigned/2/65000, Engineering/2/130000, Sales/1/95000) → add <code>HAVING COUNT(emp_id) &gt;= 1</code> (all 3 groups still qualify, since none is empty) → add <code>ORDER BY headcount DESC</code> plus <code>LIMIT 1</code> (returns exactly the top group by headcount).</p>
 <h2 id="8-common-mistakes">8. Common Mistakes<a class="headerlink" href="#8-common-mistakes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Skipping a foreign key and relying on application code to keep two tables consistent</strong> — the exact gap Section 7 Example F closes; without the constraint, a bug in application code can silently insert an orphaned row with no error at all.</li>
 <li><strong>Using <code>INNER JOIN</code> when the question needs to account for "zero of something"</strong> — silently drops the exact rows (Section 7's zero-books author) the report was supposed to include, producing a report that looks complete but isn't.</li>
 <li><strong>Assuming <code>DELETE</code> on a referenced row succeeds automatically</strong> — attempting to delete an author who still has books referencing them fails with a foreign key violation by default (the reverse direction of Section 7 Example F), unless the schema explicitly opts into a cascade or set-null behavior, which changes the failure into a real, possibly-unwanted side effect instead.</li>
 <li><strong>Comparing <code>NULL</code> with <code>=</code> and expecting it to match</strong> — <code>NULL = NULL</code> evaluates to <code>NULL</code> (neither true nor false) in SQL, not <code>true</code>; testing for a <code>NULL</code> result (like Example G's <code>LEFT JOIN</code> unmatched rows) requires <code>IS NULL</code>, never <code>= NULL</code>.</li>
+<li><strong>Trying to filter on an aggregate with <code>WHERE</code></strong> — <code>WHERE COUNT(*) &gt; 5</code> is a real syntax error, not just bad style, because <code>WHERE</code> runs before <code>GROUP BY</code>/aggregation in the logical processing order (Section 3); the aggregate simply doesn't exist yet at the point <code>WHERE</code> evaluates. This is exactly what <code>HAVING</code> exists for (Section 4).</li>
+<li><strong>Writing a <code>JOIN</code> with a forgotten or wrong <code>ON</code> condition</strong> — Postgres doesn't reject this; it silently executes as a <code>CROSS JOIN</code> (Section 4), producing a row count equal to (left rows × right rows) instead of the intended matched set — a real, common source of a query that "runs fine" but returns a wildly wrong, much larger result set.</li>
+<li><strong>Choosing a natural key as the primary key because it "looks" permanently unique</strong> — an email, a national ID, or a product SKU can all turn out to be not-actually-unique later, or need to change, at which point every foreign key referencing it becomes expensive to update; Section 6's surrogate-key default exists specifically to avoid this.</li>
 </ul>
 <h2 id="9-edge-cases">9. Edge Cases<a class="headerlink" href="#9-edge-cases" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A <code>LEFT JOIN</code>'s unmatched columns are exactly and only the columns from the <em>right-hand</em> table — the left-hand table's own columns are never <code>NULL</code> in the result unless the underlying data genuinely contains a <code>NULL</code> there. Getting the join direction backwards silently changes which side's missing-match rows get preserved.</li>
 <li><code>GROUP BY</code> with a <code>LEFT JOIN</code> (Section 7 Example H) is the specific, easy-to-miss combination that correctly reports a <em>zero</em> count for something with no matches; the same query written with <code>INNER JOIN</code> instead would drop that row from the report entirely rather than reporting it as zero — two different, both-plausible-looking results from one word changed.</li>
 <li>A primary key does not have to be a single column — a <strong>composite primary key</strong> (two or more columns together forming the uniqueness guarantee) is common on join tables, covered in <a href="../data-modelling-and-explicit-join-tables/">Data Modelling and Explicit Join Tables</a>, not this chapter.</li>
+<li>A <code>UNIQUE</code> constraint permits <code>NULL</code> — Postgres (like standard SQL) never considers two <code>NULL</code>s equal to each other for uniqueness purposes, so a <code>UNIQUE</code> column can genuinely hold more than one <code>NULL</code> row simultaneously, a real, sometimes-surprising exception to "unique means no duplicates."</li>
+<li><code>AVG()</code> on a <code>NUMERIC</code> column returns a value with <em>more</em> decimal places than the source column's declared scale (Section 4's real observed <code>130000.000000000000</code> from a <code>NUMERIC(10,2)</code> column) — worth an explicit <code>ROUND()</code> in any query whose output is displayed directly rather than further computed on.</li>
 </ul>
 <h2 id="10-performance-implications">10. Performance Implications<a class="headerlink" href="#10-performance-implications" title="Permanent link">&para;</a></h2>
 <p>A primary key's automatic index (Section 5) is why looking up one row by its primary key is fast even in a table with millions of rows — without it, finding one row would mean scanning every row in the table. A foreign key's own enforcement check similarly benefits from an index on the <em>referenced</em> column (which the primary key already provides) — the cost this chapter's fundamentals don't yet cover is indexing the <em>referencing</em> column itself (e.g., <code>books.author_id</code>) for fast lookups in the other direction, which <a href="../index-structures-btree-composite-covering/">Database Index Structures</a> covers in full.</p>
@@ -11476,6 +11666,37 @@ DETAIL:  Key (author_id)=(999) is not present in table "authors".
 </tr>
 </tbody>
 </table>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th><code>WHERE</code></th>
+<th><code>HAVING</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runs</td>
+<td>Before grouping (Section 3's logical order)</td>
+<td>After grouping and aggregation</td>
+</tr>
+<tr>
+<td>Can reference an aggregate (<code>COUNT</code>, <code>AVG</code>, ...)</td>
+<td>No — real syntax error</td>
+<td>Yes — this is its entire purpose</td>
+</tr>
+<tr>
+<td>Correct when</td>
+<td>Excluding individual rows from consideration at all</td>
+<td>Excluding whole groups based on a computed aggregate value</td>
+</tr>
+<tr>
+<td>Common failure if used wrongly</td>
+<td>Attempting <code>WHERE COUNT(*) &gt; 5</code> — a real error, not a wrong result</td>
+<td>Using <code>HAVING</code> for a plain row-level condition that <code>WHERE</code> could handle — works, but filters <em>after</em> unnecessary rows were already grouped, real wasted work</td>
+</tr>
+</tbody>
+</table>
 <h2 id="12-senior-level-considerations-l3">12. Senior-Level Considerations (L3)<a class="headerlink" href="#12-senior-level-considerations-l3" title="Permanent link">&para;</a></h2>
 <p>A Senior engineer reviewing a schema checks not just "does this query return the right answer for today's data" but "does this constraint (or its absence) make an entire bug class impossible, or merely unlikely." A foreign key isn't a formality — it's the difference between "this orphaned-row bug can't happen" and "this orphaned-row bug hasn't happened yet." The same discipline applies to choosing <code>INNER</code> vs. <code>LEFT JOIN</code> deliberately rather than defaulting to whichever one a query happens to return correct-looking results with on today's data — Section 8's under-reporting mistake is specifically dangerous because it produces a plausible, wrong-looking-right report rather than an obvious error.</p>
 <h2 id="13-staffsystem-level-considerations-l4">13. Staff/System-Level Considerations (L4)<a class="headerlink" href="#13-staffsystem-level-considerations-l4" title="Permanent link">&para;</a></h2>
@@ -11496,11 +11717,19 @@ Expected answer: customers with zero orders are silently dropped from the report
 Expected answer: Section 13's framing — a database constraint is the one enforcement point every writer is forced through, regardless of how many services or code paths write to the table; application-level checks must be independently re-implemented correctly everywhere data enters the table.</p>
 <p><strong>Q5 (Senior/Staff): "A table has grown a dozen writers over several years and just failed a data-integrity audit with thousands of orphaned rows. What's your first question?"</strong>
 Expected answer: whether the referencing column ever had an actual foreign key constraint — the Staff-level diagnosis is almost always "the relationship was only ever enforced by convention, not by the schema," which Section 13 frames as the real, structural failure, not a one-off bug in any single writer.</p>
+<p><strong>Q6 (Mid): "What's the difference between <code>WHERE</code> and <code>HAVING</code>, and why can't you just use <code>WHERE</code> for both?"</strong>
+Expected answer: Section 4's logical-order explanation — <code>WHERE</code> filters individual rows before grouping; <code>HAVING</code> filters groups after aggregation, and is the only clause that can reference an aggregate function like <code>COUNT</code> or <code>AVG</code> in its condition. A weak answer says "they're basically the same" or can't explain why <code>WHERE COUNT(*) &gt; 5</code> fails.</p>
+<p><strong>Q7 (Mid/Senior): "Explain the difference between a candidate key, a primary key, and an alternate key."</strong>
+Expected answer: Section 4's key-types breakdown — a candidate key is any minimal set of columns that could uniquely identify a row; a table can have more than one; the primary key is the one actually chosen; every other candidate key that exists but wasn't chosen is an alternate (or secondary) key, typically still enforced with a <code>UNIQUE</code> constraint. A weak answer treats "primary key" and "candidate key" as synonyms.</p>
+<p><strong>Q8 (Junior/Mid): "When would you choose a <code>UUID</code> over an auto-incrementing integer as a primary key?"</strong>
+Expected answer: when IDs need to be generated outside the database (e.g., client-side, before an <code>INSERT</code>) without risking a collision, or when sequential integer IDs would leak real information (row count, creation order) to anyone who can see them (e.g., in a public API URL). Trade-off: a <code>UUID</code> is larger (16 bytes vs. 4/8) and, unless generated in a way that preserves rough insertion order, indexes worse than a sequential integer — a real cost, not a free upgrade.</p>
 <h2 id="16-codingpractice-exercises">16. Coding/Practice Exercises<a class="headerlink" href="#16-codingpractice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Add a <code>publishers</code> table (<code>publisher_id</code> primary key, <code>name</code>) and a <code>publisher_id</code> foreign key column on <code>books</code>. Insert at least one publisher with zero books and one book with a publisher, then write both an <code>INNER JOIN</code> and a <code>LEFT JOIN</code> between <code>books</code> and <code>publishers</code>, confirming the same disappearing-row behavior Example G demonstrates for <code>authors</code>.</li>
 <li>Attempt to <code>DELETE</code> an author who still has books referencing them (e.g., <code>Ursula K. Le Guin</code>, who has 2). Capture the real error message and explain, in your own words, why Postgres refuses by default.</li>
 <li>Rewrite Example H's query to also include a <code>HAVING book_count = 0</code> clause, isolating only the authors with zero books, and confirm it returns exactly the one seeded author.</li>
+<li>Using the <code>employees</code>/<code>departments</code> schema, write a <code>FULL OUTER JOIN</code> query and confirm both "Empty Dept" and "Dev" appear in the same result, per Example K. Then rewrite it as a <code>LEFT JOIN</code> <code>UNION</code> a <code>RIGHT JOIN</code> (with <code>WHERE</code> excluding already-matched rows from one side) and confirm the two approaches produce the same result — a real, hands-on proof that <code>FULL OUTER JOIN</code> is genuinely a union of the other two, not a separate mechanism.</li>
+<li>Add a <code>CHECK</code> constraint to <code>departments</code> requiring <code>dept_name</code> to be at least 2 characters long, attempt to insert a 1-character department name, and capture the real rejection.</li>
 </ol>
 <h2 id="17-debugging-exercises">17. Debugging Exercises<a class="headerlink" href="#17-debugging-exercises" title="Permanent link">&para;</a></h2>
 <p>Given this query, run against the lab's real schema, predict the output before running it:</p>
@@ -11510,20 +11739,31 @@ Expected answer: whether the referencing column ever had an actual foreign key c
 <span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
 </code></pre></div>
 <p>The zero-books author (<code>N. K. Jemisin</code>) does <strong>not</strong> appear in this result at all — not with a <code>0</code>, simply absent — because <code>INNER JOIN</code> drops the row before <code>GROUP BY</code>/<code>COUNT</code> ever see it. A candidate expecting to see <code>N. K. Jemisin | 0</code> is making exactly the Section 8 mistake: assuming <code>INNER JOIN</code> behaves like <code>LEFT JOIN</code> when the count would be zero.</p>
+<p>Given this second query, also predict the output before running it:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">dept_id</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">headcount</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dept_id</span><span class="p">;</span>
+</code></pre></div>
+<p>This is <strong>not</strong> a query that returns a wrong answer — it's a real syntax error (<code>aggregate functions are not allowed in WHERE</code>), because <code>WHERE</code> executes before <code>GROUP BY</code>/aggregation in the logical processing order (Section 3), so <code>COUNT(*)</code> doesn't exist yet at the point <code>WHERE</code> evaluates. The fix is <code>HAVING COUNT(*) &gt; 1</code>, placed after <code>GROUP BY</code>, exactly Section 4's <code>WHERE</code>-vs-<code>HAVING</code> distinction.</p>
 <h2 id="18-design-exercises">18. Design Exercises<a class="headerlink" href="#18-design-exercises" title="Permanent link">&para;</a></h2>
 <p>Design the tables (with explicit primary and foreign keys) for a simple blog: <code>users</code>, <code>posts</code> (each written by one user), and <code>comments</code> (each on one post, written by one user). State, for each foreign key, what real-world mistake it makes structurally impossible — e.g., what does <code>posts.author_id REFERENCES users(user_id)</code> prevent that a plain, unconstrained integer column would not?</p>
+<p>For each of <code>users.email</code>, <code>posts.post_id</code>, and <code>posts.slug</code> (a URL-friendly title, assumed unique), name which key concept from Section 4 it is (primary key, alternate/secondary key, or a plain non-key <code>UNIQUE</code> column) and justify your choice — a real exercise in applying the candidate-key/alternate-key distinction to a schema you designed yourself, not just reciting the definitions.</p>
 <h2 id="19-further-reading">19. Further Reading<a class="headerlink" href="#19-further-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../data-modelling-and-explicit-join-tables/">Data Modelling and Explicit Join Tables</a> — the next step once single-foreign-key relationships are solid: many-to-many relationships and composite keys.</li>
 <li><a href="../index-structures-btree-composite-covering/">Database Index Structures</a> — what actually makes a primary-key lookup, or a foreign-key join, fast at scale.</li>
 <li><a href="../query-planning-and-explain-analyze/">Query Planning and EXPLAIN ANALYZE</a> — how the database actually decides to execute a <code>JOIN</code>, referenced in Section 5.</li>
+<li><a href="https://www.postgresql.org/docs/current/datatype.html">PostgreSQL: Data Types</a> — the full, authoritative type catalog Section 4's data-types table summarizes a small, practical slice of.</li>
 </ul>
 <h2 id="20-mastery-checklist">20. Mastery Checklist<a class="headerlink" href="#20-mastery-checklist" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can state what a primary key guarantees and what a foreign key enforces, in plain language.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can predict, for a given <code>INNER JOIN</code> vs. <code>LEFT JOIN</code>, which rows survive and which are dropped.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can predict, for any of the six JOIN types (Section 4), which rows survive and which are dropped, for a given pair of tables.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can explain why <code>NULL = NULL</code> is not <code>true</code> in SQL, and why <code>IS NULL</code> exists because of it.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can correctly answer the Section 17 debugging exercise before running it.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can correctly answer both Section 17 debugging exercises before running them — including <em>why</em> <code>WHERE COUNT(*) &gt; 1</code> is a real error, not just a wrong-but-valid query.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can name the difference between a candidate key, a primary key, and an alternate/secondary key, and give a real example of each from this chapter's own schema.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can name at least five real PostgreSQL data type categories (Section 4) and state one column from this chapter's schema for each.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can explain, in Staff-level terms, why a foreign key enforced at the database is stronger than the same rule enforced only in application code.</li>
 </ul>
 
@@ -11546,7 +11786,7 @@ Expected answer: whether the referencing column ever had an actual foreign key c
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 05:02:19 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 15:32:57 UTC">September 17, 2026</span>
   </span>
 
     
@@ -11584,7 +11824,7 @@ Expected answer: whether the referencing column ever had an actual foreign key c
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../INDEX/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Databases — Domain Index">
+          <a href="../INDEX/" class="md-footer__link md-footer__link--prev" aria-label="Previous: INDEX">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -11594,7 +11834,7 @@ Expected answer: whether the referencing column ever had an actual foreign key c
                 Previous
               </span>
               <div class="md-ellipsis">
-                Databases — Domain Index
+                INDEX
               </div>
             </div>
           </a>
