@@ -1,8 +1,11 @@
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 public class VersionFeaturesDemo {
 
@@ -44,6 +47,50 @@ public class VersionFeaturesDemo {
     }
 
     public static void main(String[] args) throws Exception {
+
+        // 0a. Java 8 (final): lambda expressions — an anonymous function, replacing a
+        // multi-line anonymous-class implementation of a single-method interface.
+        BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+        System.out.println("Lambda add(3, 4) = " + add.apply(3, 4));
+        check(add.apply(3, 4) == 7, "Java 8 lambda expression correctly implements a functional interface");
+        System.out.println();
+
+        // 0b. Java 8 (final): the Stream API — declarative filter/map/collect over a
+        // collection, instead of a manual for-loop with an explicit accumulator.
+        List<String> names = List.of("Ada", "Bob", "Cy", "Diana", "Ed");
+        List<String> longNamesUpper = names.stream()
+                .filter(n -> n.length() > 2)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+        System.out.println("Stream filter+map result: " + longNamesUpper);
+        check(longNamesUpper.equals(List.of("ADA", "BOB", "DIANA")),
+                "Java 8 Stream correctly filters (length > 2) then maps (toUpperCase) in one declarative pipeline");
+        System.out.println();
+
+        // 0c. Java 8 (final): Optional — an explicit, typed "maybe absent" container,
+        // replacing a bare null with no compile-time signal that a value might be missing.
+        Optional<String> maybeName = names.stream().filter(n -> n.startsWith("Z")).findFirst();
+        String resolved = maybeName.orElse("no match");
+        System.out.println("Optional.orElse result: " + resolved);
+        check(resolved.equals("no match"), "Optional.orElse() correctly supplies a default when the Stream found nothing");
+        System.out.println();
+
+        // 0d. Java 11 (final, JEP 323): `var` in a lambda parameter — mainly useful when
+        // the parameter needs an annotation, which a bare implicit lambda parameter can't carry.
+        BiFunction<Integer, Integer, Integer> multiply = (var a, var b) -> a * b;
+        System.out.println("Lambda with var params multiply(3, 4) = " + multiply.apply(3, 4));
+        check(multiply.apply(3, 4) == 12, "Java 11 var-in-lambda-parameters compiles and behaves identically to an untyped lambda parameter");
+        System.out.println();
+
+        // 0e. Java 11 (final, JEP 327): new String convenience methods — isBlank/strip/lines,
+        // filling real, everyday gaps the API had carried since Java 1.0.
+        String whitespacePadded = "   \n  ";
+        String multiLine = "first\nsecond\nthird";
+        System.out.println("isBlank() on whitespace-only string: " + whitespacePadded.isBlank());
+        System.out.println("lines() count on 3-line string: " + multiLine.lines().count());
+        check(whitespacePadded.isBlank(), "Java 11 String.isBlank() correctly treats a whitespace-only string as blank");
+        check(multiLine.lines().count() == 3, "Java 11 String.lines() correctly splits into 3 real lines");
+        System.out.println();
 
         // 1. Java 10 (final, JEP 286): local-variable type inference with `var`.
         var message = "var infers String here, at compile time — this is NOT dynamic typing";

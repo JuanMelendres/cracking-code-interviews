@@ -262,7 +262,7 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 
 | N40 | [Java Platform Basics: JVM, JDK, JRE, and Primitive Types](java-platform-basics-jvm-jdk-jre-and-primitive-types.md) | T-2209 | 5 | `syllabus/02-java/language-core/java-platform-basics-jvm-jdk-jre-and-primitive-types.md` |
 | N41 | [Java Modifiers and Method Signatures](java-modifiers-and-method-signatures.md) | T-2210 | 5 | `syllabus/02-java/language-core/java-modifiers-and-method-signatures.md` |
-| N42 | [Java Version Features Timeline](java-version-features-timeline.md) | T-2211 | 5 | `syllabus/02-java/language-core/java-version-features-timeline.md` |
+| N42 | [Java Version Features Timeline](java-version-features-timeline.md) | T-2211 | 8 | `syllabus/02-java/language-core/java-version-features-timeline.md` |
 
 **Added 2026-09-08 (batch 6): SDLC and Agile Methodology Fundamentals**, found via a review of 6 additional Notion databases/views — see `cheat-sheets/README.md`'s own sixth batch.
 

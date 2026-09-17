@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 02-java
 topic_id: T-2211
 canonical: ../syllabus/02-java/language-core/java-version-features-timeline.md
-last_updated: 2026-09-14
+last_updated: 2026-09-17
 ---
 
 # Flashcards: Java Version Features Timeline
@@ -96,6 +96,40 @@ Confusing JPMS module boundaries with plain Java packages — a package has no e
 
 **Related:**
 [Java Version Features Timeline](../syllabus/02-java/language-core/java-version-features-timeline.md), [Java Platform Module System](../syllabus/02-java/language-core/java-platform-module-system.md)
+
+## Card: Java 11's own headline, not just an "8 to 17 gap"
+
+**Prompt:**
+Java 8 and Java 17 both have big, easy-to-name headline features. What did Java 11 actually finalize?
+
+**Answer:**
+The `java.net.http` HTTP Client (a real, modern client finally built into the JDK, replacing `HttpURLConnection`); `var` extended to lambda parameters (useful when a parameter needs an annotation); several real `String` convenience methods (`isBlank()`, `strip()`, `lines()`). Java 11 also *removed* several previously-bundled modules (JavaFX, CORBA, Java EE modules like JAXB) — a real migration cost for code relying on their default presence.
+
+**Why it matters:**
+Java 11 is a genuinely smaller LTS by design (the six-month cadence, started with 9/10, let features ship incrementally instead of piling up) — treating it as "nothing happened between 8 and 17" is a real, common gap.
+
+**Common trap:**
+Being unable to name a single Java 11-specific feature when asked directly, defaulting to "I think that one was pretty quiet."
+
+**Related:**
+[Java Version Features Timeline](../syllabus/02-java/language-core/java-version-features-timeline.md)
+
+## Card: Scoped values vs. structured concurrency in Java 25
+
+**Prompt:**
+Java 25 finalized Scoped Values. Did it also finalize Structured Concurrency?
+
+**Answer:**
+No — per the official JDK 25 JEP index, Scoped Values (JEP 506) finalized in Java 25, but Structured Concurrency (JEP 505) was still in its *fifth preview round*, not yet final, despite the two features being closely related and frequently mentioned together.
+
+**Why it matters:**
+A real, easy trap: assuming two closely-related features that are usually discussed together must have finalized together. They didn't.
+
+**Common trap:**
+Claiming structured concurrency is "final as of Java 25" from memory, without checking the actual JEP index.
+
+**Related:**
+[Java Version Features Timeline](../syllabus/02-java/language-core/java-version-features-timeline.md)
 
 ## Card: Exhaustive switch over a sealed type
 
