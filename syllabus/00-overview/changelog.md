@@ -2006,6 +2006,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Updated `syllabus/05-spring/INDEX.md` (13 → 14 chapters, T-520 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.
 
+## [2026-09-17] — `06-databases` gains explicit JPA vs. Hibernate framing in its N+1 chapter
+
+### Added (`syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md` — new "JPA vs. Hibernate: specification vs. implementation" subsection)
+
+- Part of the same user TODO list: explain what JPA and Hibernate each mean, as distinct concepts. The chapter already covered JPA/Hibernate mechanics in real depth but used the two names interchangeably, never stating the specification-vs-implementation distinction itself.
+- New subsection in "Definition and Purpose": JPA (Jakarta Persistence API) is a specification; Hibernate is its most widely used implementation (EclipseLink is the JPA reference implementation; OpenJPA and DataNucleus are others) — same shape as JDBC/a JDBC driver, or SLF4J/Logback. States the real practical consequence: `jakarta.persistence.*`-only code is implementation-portable in principle, Hibernate-specific extensions (`org.hibernate.annotations.*`, `hibernate.*` properties, the `Session` API) are not.
+- No new file created — extends the existing canonical chapter, per this domain's own content-ownership rule, rather than duplicating JPA/Hibernate mechanics in a second place.
+- Bumped chapter `version: 1.1 → 1.2`, `last_updated: 2026-09-17`.
 ## [2026-09-17] — `03-data-structures-algorithms` gains a 19th chapter: Coding Interview Pattern-Recognition Methodology
 
 ### Added (`syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` — T-2120)

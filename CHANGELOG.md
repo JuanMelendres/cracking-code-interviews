@@ -6,6 +6,18 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Mermaid diagrams unreadable in dark mode, 2026-09-17)
+
+- `mkdocs.yml` loads `mermaid@10` via `extra_javascript` with no theme config, so it always auto-renders its hardcoded default light theme regardless of the site's own light/dark palette -- unreadable against the dark "slate" background (user screenshot, 2026-09-16).
+- New `docs/javascripts/mermaid-init.js` re-initializes mermaid with the theme matching `data-md-color-scheme`, on first load and on every light/dark toggle (instant, no page reload -- rendered SVGs are re-rendered from stored source, not just re-colored).
+- Root cause found while building the fix, not assumed: mermaid's own default `startOnLoad` auto-start races a naive fix that only hooks `DOMContentLoaded` -- mermaid's internal listener registers first (it loads first) and fires first, consuming the diagram source before a later listener can grab it. Fixed by calling `mermaid.initialize({startOnLoad:false})` synchronously at script top-level, before `DOMContentLoaded` ever fires.
+- Verified with a real headless-browser render (Playwright, not just `mkdocs build`): a sequence-diagram chapter page rendered correctly in light, in dark, and through a live in-page toggle with no reload.
+
+### Added (JPA vs. Hibernate: specification vs. implementation, 2026-09-17)
+
+- Part of the user's TODO list: explain what JPA and Hibernate each mean. `syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md` already covered JPA/Hibernate mechanics in depth but used the two names interchangeably without ever stating the distinction explicitly.
+- New subsection in that chapter's Definition and Purpose: JPA (Jakarta Persistence API) is a specification, Hibernate is its most widely used implementation (others: EclipseLink, the JPA reference implementation; OpenJPA; DataNucleus) -- same shape as JDBC/a JDBC driver, or SLF4J/Logback. States the practical consequence: `jakarta.persistence.*`-only code is implementation-portable in principle; Hibernate-specific extensions (`org.hibernate.annotations.*`, `hibernate.*` properties, the `Session` API) are not.
+- No new file, no duplication -- extends the existing canonical chapter rather than creating a second one, per this domain's own ownership rule.
 ### Added (Coding Interview Pattern-Recognition Methodology, T-2120, 2026-09-17)
 
 - Part of the user's TODO list: a methodology for solving LeetCode/HackerRank-style problems -- what patterns exist, which data structures help, worked examples of the most commonly asked problems, to understand which methodology to apply. `03-data-structures-algorithms` already had 18 real, deep, pattern-specific chapters but nothing taught how to choose among them for an unfamiliar problem.
