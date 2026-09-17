@@ -3,6 +3,7 @@ nav:
   - INDEX.md
   - rest-api-fundamentals.md
   - api-design.md
+  - api-versioning-strategies.md
   - api-gateway-bff-and-edge-concerns.md
   - graphql-api-design.md
   - grpc-api-design.md

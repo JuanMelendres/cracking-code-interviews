@@ -31,6 +31,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-16 — Microservices Patterns with Spring Boot (T-519) gains a cheat sheet.** New `05-spring` chapter, added the same day to close a real, user-flagged gap (the domain taught microservices patterns as architecture and Spring Boot as a framework, but never connected the two with real code). **New total: 254 cheat sheets.**
 
+**2026-09-16 — API Versioning Strategies (T-919) gains a cheat sheet.** New `07-api-design` chapter closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning). **New total: 255 cheat sheets.**
+
 ## Cheat Sheets
 
 | # | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
@@ -171,6 +173,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 134 | [GraphQL API Design](graphql-api-design.md) | T-917 | — | api-design | `syllabus/07-api-design/graphql-api-design.md` |
 | 135 | [gRPC API Design](grpc-api-design.md) | T-918 | — | api-design | `syllabus/07-api-design/grpc-api-design.md` |
 | 136 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | — | spring | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
+| 137 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | — | api-design | `syllabus/07-api-design/api-versioning-strategies.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 

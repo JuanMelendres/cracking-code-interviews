@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (API Versioning Strategies, T-919, 2026-09-16)
+
+- Part of a larger user-provided TODO list. `syllabus/07-api-design/api-design.md` (T-803) was originally scoped as "API design: REST, gRPC, GraphQL, versioning" -- GraphQL/gRPC were later split into their own chapters (T-917/T-918) when the bundled T-803 named them but never covered them, and versioning had the identical gap. New chapter `syllabus/07-api-design/api-versioning-strategies.md` closes it, following the same split precedent.
+- Real, executed Spring Framework 6.1.14 lab (`practice/java/api-versioning-strategies/`), no Maven/Gradle: real `MockMvc`-driven Spring MVC dispatch (not stubbed) for three real versioning strategies -- URI path, custom header, media-type/content-negotiation -- against the identical real breaking change (a `name` field split into `firstName`/`lastName`).
+- Two genuinely unplanned findings, both verified directly: a request with no `Api-Version` header gets a real `404` (not a default version) from header-based versioning; a generic `Accept: */*` does NOT `406` on media-type-versioned endpoints -- it silently resolves to whichever version-specific handler Spring's content negotiation matches first.
+- New cheat sheet and flashcard deck; updated `syllabus/07-api-design/INDEX.md` (5 -> 6 chapters), `syllabus/00-overview/INDEX.md`, `cheat-sheets/README.md`, `flashcards/README.md`.
+- `validate.py`: errors 0, warnings 13 (unchanged).
+
 ### Added (Microservices Patterns with Spring Boot, T-519, 2026-09-16)
 
 - User asked directly whether this repository covered microservices patterns in Spring Boot. Audit found architecture-level patterns already existed (`syllabus/11-system-design/resilience-patterns.md`, `load-balancing-service-discovery-and-health-checking.md`, `syllabus/07-api-design/api-gateway-bff-and-edge-concerns.md`) and Spring Boot fundamentals already existed (`05-spring`, 12 chapters) — but nothing connected the two with real code. New chapter `syllabus/05-spring/microservices-patterns-with-spring-boot.md` closes that specific gap.
