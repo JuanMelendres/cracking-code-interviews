@@ -20,6 +20,7 @@ prerequisites: []
 related:
   - ../collections/hashmap-internals.md
   - immutability-and-defensive-copying.md
+  - comparator-composition-and-pitfalls.md
   - ../../../study-packs/week-13/02-equals-hashcode-and-comparable-contracts.md
 official_references:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html
@@ -425,6 +426,7 @@ Assuming `TreeSet` falls back to `equals()` the way `HashSet` does within a buck
 
 ## Additional Reading
 
+- [Comparator: Composition and Pitfalls](comparator-composition-and-pitfalls.md) — external `Comparator`s as the alternative to implementing `Comparable`, including a real, reproduced overflow bug in the classic subtraction-comparator idiom.
 - Joshua Bloch, *Effective Java*, Item 10 ("Obey the general contract when overriding equals") and Item 11 ("Always override hashCode when you override equals")
 
 ## Official References

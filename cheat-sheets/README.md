@@ -315,6 +315,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Views and Materialized Views](views-and-materialized-views.md) | T-2410 | databases | `syllabus/06-databases/views-and-materialized-views.md` |
 | [Database Normalization — 1NF Through BCNF](database-normalization-1nf-through-bcnf.md) | T-2411 | databases | `syllabus/06-databases/database-normalization-1nf-through-bcnf.md` |
 | [Behavior-Driven Development with Cucumber](behavior-driven-development-with-cucumber.md) | T-2412 | testing | `syllabus/08-testing/behavior-driven-development-with-cucumber.md` |
+| [Comparator: Composition and Pitfalls](comparator-composition-and-pitfalls.md) | T-2413 | java | `syllabus/02-java/language-core/comparator-composition-and-pitfalls.md` |
 | [Kafka Connect: Source and Sink Connectors](kafka-connect-source-and-sink-connectors.md) | T-2408 | kafka | `syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` |
 | [Kafka Streams and Stateful Processing](kafka-streams-and-stateful-processing.md) | T-709 | kafka | `syllabus/09-messaging-event-driven/kafka-streams-and-stateful-processing.md` |
 | [Retention, Log Compaction, and Tiered Storage](retention-log-compaction-and-tiered-storage.md) | T-706 | kafka | `syllabus/09-messaging-event-driven/retention-log-compaction-and-tiered-storage.md` |
@@ -350,6 +351,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-15 (same day) — Database Normalization — 1NF Through BCNF (T-2411) gains a cheat sheet.** Second new `06-databases` chapter added the same day, closing a real, user-flagged gap (normalization had only a one-paragraph definition anywhere in the syllabus before this). **New total: 251 cheat sheets** (250 prior + 1).
 
 **2026-09-16 — Behavior-Driven Development with Cucumber (T-2412) gains a cheat sheet.** New `08-testing` chapter, added the same day to close a real, user-flagged gap (user asked whether TDD and other development styles were covered; BDD was missing entirely). **New total: 252 cheat sheets** (251 prior + 1).
+
+**2026-09-17 — Comparator: Composition and Pitfalls (T-2413) gains a cheat sheet.** New `02-java` chapter, added the same day to close a real, user-flagged gap (`Comparator` had no dedicated coverage anywhere in the syllabus). **New total: 253 cheat sheets** (252 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
