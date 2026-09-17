@@ -1218,19 +1218,12 @@
   <span class="md-ellipsis">
     
   
-    Java — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--49 of 49 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5) — 49 of 49 done, all four subdomains, 2026-09-04; 50th chapter added 2026-09-07 (Java OOP Fundamentals, T-2201); 51st and 52nd added 2026-09-08 (Java Syntax Fundamentals, T-2206; Collections Usage Fundamentals, T-2207); 53rd, 54th, and 55th added 2026-09-08 (Java Platform Basics, T-2209; Java Modifiers and Method Signatures, T-2210; Java Version Features Timeline, T-2211) — a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning, now covering primitives/JVM-JDK-JRE/access-modifiers/static/final/abstract-vs-concrete-methods/a version timeline explicitly; all 12 `jvm-internals` chapters gained a real Mermaid `## Diagrams` section 2026-09-10 (illustration audit); 4 more chapters gained an inline Mermaid diagram the same day after manual review (Java OOP Fundamentals — reference-aliasing and diamond-default-conflict diagrams; Java Platform Basics — before/after JRE-merge diagram; Collections Usage Fundamentals — List/Set/Map side-by-side; Foreign Function and Memory API — Arena/MethodHandle flow); 3 other `language-core` chapters were reviewed and judged already adequately illustrated (Java Modifiers and Method Signatures' access-level table, Java Version Features Timeline's milestone table, and Java Syntax Fundamentals' basic control flow — no diagram added to any of the three, by decision, not oversight); 56th chapter added 2026-09-10 (PriorityQueue Internals, T-210 — gap found in a full 22-domain audit, real demo proving O(log n) `poll()` via measured comparison counts); 57th chapter added 2026-09-10, same day (java.time API, T-2400 — real demo including a ~70%-corruption reproduced `SimpleDateFormat` thread-safety bug); 58th chapter added 2026-09-10, same day (java.util.concurrent Synchronizers, T-417 — real demo measuring `CountDownLatch`/`CyclicBarrier`/`Semaphore` behavior directly, including a real, measured bounded-concurrency count under genuine contention); 59th chapter added 2026-09-10, same day (Java Platform Module System, T-116 — filling its own real, previously-unwritten slot in the original Master Topic Register, real demo proving `exports`-vs-`opens` and cross-module `ServiceLoader` resolution); 60th chapter added 2026-09-10, same day (MethodHandle and java.lang.invoke, T-2405 — real demo including a `javap` disassembly proving lambdas compile to `invokedynamic`/`LambdaMetafactory`, not a synthetic class); 61st chapter added 2026-09-10, same day (Bytecode and Class File Fundamentals, T-2406 — closing the third and last of `CLAUDE.md`'s three named `02-java` gaps, real demo including a real `UnsupportedClassVersionError` and a real `VerifyError` each reproduced by patching a single byte)"></span>
-  
-
   
 
       </a>
@@ -12183,6 +12176,7 @@
 <li><strong>Inheritance</strong> — let one class reuse and specialize another class's fields and methods. Problem it solves: "how do I avoid rewriting the same fields and methods for every closely related type?"</li>
 <li><strong>Polymorphism</strong> — let the same method call run different code depending on the actual object it's called on. Problem it solves: "how do I write one piece of code that works correctly against a whole family of related types, without an <code>if/else</code> chain checking which one it is?" This one has its own full chapter — <a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch Mechanics</a> — because the actual JVM mechanism behind it (<code>invokevirtual</code>) is deep enough, and differentiating enough at Senior level, to deserve dedicated treatment. This chapter uses polymorphism as a tool in Section 7's examples without re-deriving how it works underneath.</li>
 </ul>
+<p><strong>An anonymous class</strong> lets you write a one-off implementation of an interface or abstract class directly at the place you use it, with no separate named class declared anywhere else in the codebase. <code>Runnable task = new Runnable() { public void run() { System.out.println("running"); } };</code> builds a real object — the compiler generates a real, hidden class for it behind the scenes (named something like <code>Outer$1</code>) — from a definition written inline and used exactly once, without ever writing <code>class SomeTask implements Runnable { ... }</code> as its own top-level file. It works the same way against an abstract class: <code>new Shape() { double area() { return 0; } }</code> fills in <code>Shape</code>'s one abstract method inline, useful for a genuinely one-off variant you don't want a separate named class for. Reach for an anonymous class any time a full, separately-named class would be unnecessary ceremony for something constructed in exactly one place — in modern Java, a <strong>lambda</strong> (see <a href="../lambdas-and-functional-interfaces/">Lambdas and Functional Interfaces</a>) is almost always shorter for the common case of implementing an interface with a single abstract method; that chapter proves, with real compiled bytecode, exactly what an anonymous class costs (a real, extra <code>.class</code> file) that a lambda structurally does not.</p>
 <h2 id="4-core-concepts-l2">4. Core Concepts (L2)<a class="headerlink" href="#4-core-concepts-l2" title="Permanent link">&para;</a></h2>
 <p><strong>Interfaces vs. abstract classes</strong> is the single most common "which tool do I reach for" confusion at this level, and it has a precise answer, not a matter of taste:</p>
 <p>An <strong>abstract class</strong> can hold real fields, a real constructor, and concrete (fully implemented) methods alongside abstract (unimplemented) ones — it is a partial implementation, meant to be completed by a subclass. A class can <code>extend</code> only <strong>one</strong> class, abstract or not — Java has single inheritance for classes, on purpose (Section 5 explains the actual reason).</p>
@@ -12303,6 +12297,7 @@ Expected answer: Section 12's reviewer question (is there a second independent a
 <h2 id="19-further-reading">19. Further Reading<a class="headerlink" href="#19-further-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch Mechanics</a> — the JVM mechanism (<code>invokevirtual</code>) behind the polymorphism this chapter uses but does not re-derive.</li>
+<li><a href="../lambdas-and-functional-interfaces/">Lambdas and Functional Interfaces</a> — the deeper contrast this chapter's Section 3 anonymous-class introduction points to: real bytecode proof of the extra <code>.class</code> file an anonymous class produces that a lambda doesn't, plus the effectively-final capture rule.</li>
 <li><a href="../equals-hashcode-and-comparable-contracts/">equals(), hashCode(), and Comparable Contracts</a> — the next chapter once class basics are solid; covers the contracts every well-designed class needs to honor.</li>
 <li><a href="../../../04-software-design/design-patterns-applied/">Design Patterns Applied (GoF in Production)</a> — composition-over-inheritance, applied at the scale of named, reusable design patterns (Strategy, Decorator, and others build directly on this chapter's Section 4 rule).</li>
 </ul>
@@ -12314,6 +12309,7 @@ Expected answer: Section 12's reviewer question (is there a second independent a
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can identify a class hierarchy that should be composition instead, by spotting a second independent axis of variation.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can predict the output of the Section 17 reference-sharing debugging exercise correctly, and explain why.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can connect this chapter's Section 4 decision rule to at least one named design pattern from <code>syllabus/04-software-design/</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> Can write a simple anonymous class implementing a one-method interface, and explain when a lambda would replace it.</li>
 </ul>
 
 
@@ -12335,7 +12331,7 @@ Expected answer: Section 12's reviewer question (is there a second independent a
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 21:44:42 UTC">September 17, 2026</span>
   </span>
 
     
