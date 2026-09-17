@@ -42,6 +42,8 @@ See `12-week-17-checklist.md` for the day-by-day breakdown (a 9-day cycle, given
 | 12 | [`11-design-exercise-multi-tenant-expense-platform-security-review.md`](11-design-exercise-multi-tenant-expense-platform-security-review.md) | Full security review for a multi-tenant B2B expense-approval platform |
 | 13 | [`12-week-17-checklist.md`](12-week-17-checklist.md) | Day-by-day checklist |
 | 14 | [`resources.md`](resources.md) | Sources classified PRIMARY/TOOL |
+| 15 | [`13-csrf-cors-and-session-security.md`](13-csrf-cors-and-session-security.md) | T-1308, added 2026-09-17 — see Addendum below |
+| 16 | [`14-enterprise-sso-saml-and-federated-identity.md`](14-enterprise-sso-saml-and-federated-identity.md) | T-1309, added 2026-09-17 — see Addendum below |
 
 ## Hands-On Exercises
 
@@ -77,10 +79,20 @@ See `12-week-17-checklist.md`.
 - [ ] All seven labs in `08-hands-on-lab.md` reproduced with matching results
 - [ ] Design exercise completed independently before checking the reference solution
 - [ ] Mock interview average score ≥ 3.5
+- [ ] Addendum: both `13-csrf-cors-and-session-security.md` and `14-enterprise-sso-saml-and-federated-identity.md` read, and the CSRF/session-fixation lab in `13-csrf-cors-and-session-security.md` reproduced (added 2026-09-17)
 
 ## Retrospective
 
 Note which of the seven topics needs a second pass, and whether the design exercise revealed a gap not caught by the individual chapter labs.
+
+## Addendum (2026-09-17): two topics added after this week originally closed
+
+`12-security` grew from 7 to 10 canonical chapters after this week's original sprint shipped (2026-08-02) — two later, separate gap-fill sessions added CSRF/CORS/Session Security (2026-09-10) and Enterprise SSO/SAML/Federated Identity (2026-09-14). Neither was folded back into this week's required reading at the time, a real scheduling gap flagged and now closed:
+
+- [`13-csrf-cors-and-session-security.md`](13-csrf-cors-and-session-security.md) — T-1308, includes a real, reproducible hands-on lab (`practice/java/week-17/csrf-cors-session/`, which already existed, unwired, since 2026-09-10).
+- [`14-enterprise-sso-saml-and-federated-identity.md`](14-enterprise-sso-saml-and-federated-identity.md) — T-1309, reading-only this week; its own canonical chapter is explicit that a faithful end-to-end demo would require standing up a real SAML Identity Provider, out of scope for this project's practice budget.
+
+Everything above this section (Weekly Outcome, Why This Week Matters, the numbered `01`–`12` reading list, hands-on labs 1–7, the flashcard deck, mock interview, and design exercise) is left exactly as originally written — an accurate record of the 2026-08-02 "Security Domain Closure" sprint when the domain had exactly 7 topics, not retroactively rewritten to claim it always covered 9. A learner working through this week today should read all 9 topics; the completion criteria below now include the two added ones.
 
 ## Next Week
 
