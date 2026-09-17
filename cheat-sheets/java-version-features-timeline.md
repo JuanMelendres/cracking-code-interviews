@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 02-java
 topic_id: T-2211
 canonical: ../syllabus/02-java/language-core/java-version-features-timeline.md
-last_updated: 2026-09-14
+last_updated: 2026-09-17
 ---
 
 # Java Version Features Timeline
@@ -32,7 +32,7 @@ Java ships a new release every 6 months since Java 10; LTS releases (8, 11, 17, 
 | Java 11 (2018) | `var` in lambdas, HTTP Client finalized, single-file source launch |
 | Java 17 (2021) | Sealed classes/interfaces finalized |
 | Java 21 (2023) | Virtual threads, pattern matching for `switch`, record patterns — all finalized |
-| Java 25 (2025) | Scoped values, flexible constructor bodies, module import declarations — finalized (verify exact status against the current JEP index) |
+| Java 25 (2025) | Scoped values (JEP 506), flexible constructor bodies (JEP 513), module import declarations (JEP 511), compact object headers (JEP 519) — all finalized; structured concurrency (JEP 505) still preview |
 
 **Non-LTS releases worth naming specifically** (full 9–25 table in the canonical chapter): Java 9 — JPMS module system; Java 14 — switch expressions finalized; Java 16 — records finalized; Java 22 — Foreign Function & Memory API finalized; Java 24 — stream gatherers finalized.
 
@@ -47,7 +47,7 @@ Java ships a new release every 6 months since Java 10; LTS releases (8, 11, 17, 
 
 **30-sec:** Java 8 = lambdas/streams/Optional. Java 17 = sealed classes. Java 21 = virtual threads + exhaustive switch pattern matching + record patterns, all finalized. New release every 6 months; LTS = 8/11/17/21/25.
 
-**2-min:** Add the preview-vs-final distinction and one real example (structured concurrency going through multiple preview rounds before finalizing).
+**2-min:** Add the preview-vs-final distinction and one real example (scoped values reached final in Java 25 after multiple preview rounds; structured concurrency, closely related, is still in its fifth preview round as of Java 25 — not finalized yet).
 
 **Whiteboard:** Draw a timeline with the 5 LTS releases as dots, one headline feature under each.
 

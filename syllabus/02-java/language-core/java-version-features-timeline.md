@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2211
 status: draft
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-17
 mastery_levels_covered: [L1, L2, L3]
 prerequisites:
   - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
@@ -27,6 +27,7 @@ official_references:
   - https://openjdk.org/projects/jdk/
   - https://docs.oracle.com/en/java/javase/21/language/java-language-changes.html
   - https://openjdk.org/jeps/0
+  - https://openjdk.org/projects/jdk/25/jeps-since-jdk-21
 ---
 
 # Java Version Features Timeline: Java 8 Through 25
@@ -68,17 +69,29 @@ Java has shipped a new major release **every six months** since Java 10 (March 2
 
 A feature's status matters as much as its existence: **preview** features (marked with `--enable-preview` required to compile and run) are real, working, and specified, but not yet guaranteed stable across future releases — using one in production code is a deliberate, informed risk, not a default choice. A feature is **final** once it ships without the preview flag requirement, at which point its behavior and API are considered stable.
 
+### The five LTS releases, one at a time, in plain words
+
+**Java 8 (2014) — the functional-programming LTS.** Before Java 8, "pass a small piece of behavior as a value" meant writing a whole anonymous inner class — several lines of ceremony to express something as simple as "compare these two things" or "run this on each element." Java 8 added **lambda expressions**: a short, inline way to write that same small piece of behavior directly, as a value. On top of lambdas, Java 8 added the **Stream API** — a declarative way to say "take this collection, keep only the elements matching a condition, transform each one, then collect the results," instead of writing the equivalent loop by hand with a manual accumulator variable. It also added **`Optional`** — an explicit, typed container that says "this might have nothing in it," making the possibility of absence visible in a method's signature instead of a silent, undocumented `null` a caller has to already know to check for. Java 8 is still, by a wide margin, the single most widely deployed LTS release in the industry — extremely mature, and still a perfectly reasonable production default for a codebase that hasn't yet needed a newer LTS's specific features. *Real example: Section 7, Example 1.*
+
+**Java 11 (2018) — the cleanup-and-packaging LTS.** Java 11 is deliberately smaller than Java 8 or Java 17 — because the new six-month cadence (which started with Java 9 and 10, both non-LTS) let features ship incrementally as they became ready, instead of accumulating for years behind one release the way everything before Java 9 had to. Java 11's own headline moves: the **`java.net.http` HTTP Client** (a real, modern, non-blocking-capable HTTP client finally built into the JDK itself, replacing the old, awkward `HttpURLConnection`) was finalized; `var` (introduced as local-variable type inference in Java 10) was extended to **lambda parameters**, mainly useful when a parameter needs an annotation that a bare, untyped lambda parameter can't carry; a handful of small but genuinely useful **`String` methods** were added (`isBlank()`, `strip()`, `lines()`) filling real, everyday gaps the class had carried since Java 1.0; and Java 11 also **removed** several modules that used to ship bundled with the JDK by default (JavaFX, CORBA, Java EE modules like JAXB) — a real, sometimes-surprising migration cost for code that had been relying on them being present without an explicit dependency. *Real example: Section 7, Example 2.*
+
+**Java 17 (2021) — the sealed-types LTS.** Java 17's real headline is **sealed classes and interfaces**, finalized: a way to declare a type whose complete, closed set of permitted subtypes is known and enforced by the compiler at compile time (`sealed interface Shape permits Circle, Square {}`) — something Java simply couldn't express precisely before, only approximate with a `final` class hierarchy and hope. Java 17 also turned on **strong encapsulation of internal JDK APIs by default** (`sun.*` and similar internal packages are no longer reflectively accessible without an explicit module-system opt-in) — a real, sometimes-breaking change for old libraries that had been reaching into JDK internals. *Real example: Section 7, Example 4, and see [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md) for the full depth on sealed types.*
+
+**Java 21 (2023) — the virtual-threads LTS.** Java 21's real headline is **virtual threads**, finalized: lightweight, JVM-managed threads that let a thread-per-request or thread-per-task style of code scale to hundreds of thousands of concurrent tasks without exhausting OS thread resources, because many virtual threads share a small pool of real OS ("platform") threads underneath, unmounting whenever they block. Java 21 also finalized **pattern matching for `switch`** — including *exhaustive* matching over a sealed type, where the compiler can prove every case is covered and no `default` branch is even required — plus **record patterns** (destructuring a record directly in a pattern, e.g. `case Point(int x, int y) ->`) and **sequenced collections** (a real, unified `getFirst()`/`getLast()`/`reversed()` contract across `List`, `Deque`, and `LinkedHashSet`, finally giving them a shared, well-defined notion of "first" and "last"). *Real example: Section 7, Examples 4 and 5, and see [Virtual Threads](../concurrency/virtual-threads.md) for the full depth on how virtual threads actually schedule.*
+
+**Java 25 (2025) — the structured-concurrency-context LTS.** Java 25's real headline, per the [official JDK 25 JEP list](https://openjdk.org/projects/jdk/25/jeps-since-jdk-21) (verified directly against OpenJDK's own project page, not inferred): **Scoped Values** (JEP 506) finalized — a safer, immutable alternative to `ThreadLocal` for sharing context (like a request ID) down a call stack, specifically designed to work correctly with virtual threads and structured concurrency, where a mutable `ThreadLocal` can leak or get copied incorrectly across thousands of short-lived virtual threads. Also finalized: **Flexible Constructor Bodies** (JEP 513) — statements are now allowed *before* an explicit `this(...)`/`super(...)` call in a constructor, as long as those statements don't touch the instance being constructed (e.g., validating constructor arguments before delegating); **Module Import Declarations** (JEP 511) — `import module java.base;` imports every package a module exports in one line, instead of one `import` per package; **Compact Source Files and Instance Main Methods** (JEP 512) — a real, simplified `void main()` entry point for small programs and scripts, no `public static`, no `String[] args`, no surrounding class required; and **Compact Object Headers** (JEP 519) — a real, opt-in JVM change shrinking every object's header from 96–128 bits down to 64 bits on 64-bit platforms, reducing heap footprint measurably for object-heavy workloads. **Structured Concurrency** (JEP 505) is explicitly *still in preview* as of Java 25 (its fifth preview round) — not finalized yet, despite being closely related to Scoped Values and frequently mentioned alongside it. *No local example here: this environment has OpenJDK 21 only, no JDK 25 installed, so unlike every other version above, this paragraph's claims are sourced directly from the official JEP index rather than a locally compiled demo — see Section 9 for this chapter's own standing accuracy discipline.*
+
 ## 4. Core Concepts (L2)
 
-**The major LTS milestones, at a glance:**
+**A compact summary table of the five LTS releases** (Section 3 above is the deep, plain-words version of each row):
 
 | Version | Released | Headline final features |
 |---|---|---|
-| **Java 8** | 2014 | Lambda expressions, the Stream API, `Optional`, default/static interface methods, the new `java.time` date/time API — see [Lambdas & Functional Interfaces](lambdas-and-functional-interfaces.md), [Streams & Collectors](streams-and-collectors.md), and [Optional and Null Strategy](optional-and-null-strategy.md) for real depth on each |
-| **Java 11** | 2018 | `var` in lambda parameters, the new `java.net.http` HTTP Client API finalized, single-file source-code launching (`java Foo.java` with no separate compile step), several small `String` convenience methods (`isBlank`, `strip`, `lines`) |
-| **Java 17** | 2021 | Sealed classes/interfaces finalized (a closed, exhaustively-known set of permitted subtypes), strong encapsulation of internal JDK APIs by default — see [Records, Sealed Types, and Pattern Matching](records-sealed-types-and-pattern-matching.md) |
-| **Java 21** | 2023 | Virtual threads finalized, pattern matching for `switch` finalized (including exhaustive matching over sealed types with no `default` needed), record patterns finalized, sequenced collections — see [Virtual Threads](../concurrency/virtual-threads.md) |
-| **Java 25** | 2025 | Scoped values finalized, flexible constructor bodies finalized, module import declarations finalized, compact object headers — see Section 9 for an explicit accuracy caveat on this row |
+| **Java 8** | 2014 | Lambda expressions, the Stream API, `Optional`, default/static interface methods, the new `java.time` date/time API |
+| **Java 11** | 2018 | `var` in lambda parameters, the `java.net.http` HTTP Client finalized, several `String` convenience methods, several bundled modules removed |
+| **Java 17** | 2021 | Sealed classes/interfaces finalized, strong encapsulation of internal JDK APIs by default |
+| **Java 21** | 2023 | Virtual threads finalized, exhaustive pattern matching for `switch` finalized, record patterns finalized, sequenced collections |
+| **Java 25** | 2025 | Scoped values finalized (JEP 506), flexible constructor bodies finalized (JEP 513), module import declarations finalized (JEP 511), compact source files/instance main methods finalized (JEP 512), compact object headers finalized (JEP 519) — structured concurrency (JEP 505) still preview |
 
 **The full release-by-release picture, including non-LTS releases** (each one's headline *final* feature — a non-LTS release's own preview-only features are covered by the LTS row where they finalize, not repeated here):
 
@@ -118,10 +131,36 @@ Default to whatever your team's actual production JDK is — usually the most re
 
 ## 7. Examples
 
-Every claim below is verified against a real, compiled, executed program at [`practice/java/oop-fundamentals/java-version-features/`](../../../practice/java/oop-fundamentals/java-version-features/), run on OpenJDK 21.0.12 — 9/9 assertions pass.
+Every claim below is verified against a real, compiled, executed program at [`practice/java/oop-fundamentals/java-version-features/`](../../../practice/java/oop-fundamentals/java-version-features/), run on OpenJDK 21.0.12 — 15/15 assertions pass.
 
 ```java
-// Java 16 (final): records get real, compiler-generated equals/hashCode/accessors,
+// Example 1 — Java 8 (final): a lambda expression, the Stream API's declarative
+// filter/map/collect, and Optional's explicit "might be absent" container.
+BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+add.apply(3, 4); // 7 — a lambda expression IS a value, assignable and callable directly
+
+List<String> names = List.of("Ada", "Bob", "Cy", "Diana", "Ed");
+List<String> longNamesUpper = names.stream()
+        .filter(n -> n.length() > 2)   // keep Ada, Bob, Diana — Cy and Ed are too short
+        .map(String::toUpperCase)      // transform each survivor
+        .collect(Collectors.toList()); // [ADA, BOB, DIANA] — declarative, no manual loop
+
+Optional<String> maybeName = names.stream().filter(n -> n.startsWith("Z")).findFirst();
+maybeName.orElse("no match"); // "no match" — the absence is explicit, typed, and handled
+```
+
+```java
+// Example 2 — Java 11 (final): `var` in a lambda parameter (JEP 323, useful mainly
+// when the parameter needs an annotation), and two small but real String methods.
+BiFunction<Integer, Integer, Integer> multiply = (var a, var b) -> a * b;
+multiply.apply(3, 4); // 12 — behaves identically to an untyped lambda parameter
+
+"   \n  ".isBlank();           // true  — whitespace-only counts as blank
+"first\nsecond\nthird".lines().count(); // 3 — a real line-splitting stream
+```
+
+```java
+// Example 3 — Java 16 (final): records get real, compiler-generated equals/hashCode/accessors,
 // plus a real compact constructor that can enforce validation.
 record Point(int x, int y) {
     Point {
@@ -136,7 +175,7 @@ p1.x();        // 3   — a real, compiler-generated accessor
 ```
 
 ```java
-// Java 17 (final) sealed types + Java 21 (final) exhaustive switch pattern matching —
+// Example 4 — Java 17 (final) sealed types + Java 21 (final) exhaustive switch pattern matching —
 // no `default` branch, and the compiler PROVES this is exhaustive.
 sealed interface Shape permits Circle, Square {}
 record Circle(double radius) implements Shape {}
@@ -151,7 +190,7 @@ static double area(Shape shape) {
 ```
 
 ```java
-// Java 21 (final): 1,000 real virtual threads, completed concurrently.
+// Example 5 — Java 21 (final): 1,000 real virtual threads, completed concurrently.
 try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
     for (int t = 0; t < 1000; t++) {
         executor.submit(() -> completed.incrementAndGet());
@@ -168,9 +207,9 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 
 ## 9. Edge Cases
 
-**An explicit accuracy caveat on Java 25 and later:** this chapter's Java 25 row and any features attributed to Java 22–25 reflect the author's best knowledge as of this chapter's writing, not a live-verified JEP index. Per this repository's own Modern Java Version Policy (see `CLAUDE.md`), verify a specific feature's exact preview-vs-final status against the official OpenJDK JEP index (linked in Official References) before asserting it in an interview or relying on it in production code — feature status for the most recent one or two releases is the single most likely place for any Java-timeline reference (this chapter included) to drift out of date.
+**An accuracy note on Java 25, updated 2026-09-17:** the Java 25 paragraph in Section 3 and its JEP numbers (506, 513, 511, 512, 519, and 505's still-preview status) were verified directly against the [official JDK 25 JEP index](https://openjdk.org/projects/jdk/25/jeps-since-jdk-21) while writing this update — not inferred or guessed. What remains genuinely unverifiable in this environment: none of this chapter's other examples (Section 7) include a Java 25 code sample, because this environment has OpenJDK 21 installed, not JDK 25 — every other example in this chapter is real, compiled, and executed; the Java 25 paragraph alone is sourced from the official spec rather than a local compile. Per this repository's own Modern Java Version Policy (see `CLAUDE.md`), re-verify against the official OpenJDK JEP index (linked in Official References) before asserting Java 25+ feature status in an interview or relying on it in production code, since any release past the one this chapter last checked is the single most likely place for a Java-timeline reference to drift out of date.
 
-Structured concurrency and scoped values are two features worth naming specifically as a caution: both went through multiple preview rounds across several releases before finalizing, and their exact API shape changed between some of those preview rounds — a detail that trips up anyone who learned an earlier preview's syntax and assumes it's still current.
+Structured concurrency and scoped values are two features worth naming specifically as a caution: both went through multiple preview rounds across several releases before finalizing (scoped values reached final in Java 25; structured concurrency, per the same verified JDK 25 JEP index, was still in its *fifth* preview round as of Java 25, not yet final), and their exact API shape changed between some of those preview rounds — a detail that trips up anyone who learned an earlier preview's syntax and assumes it's still current.
 
 ## 10. Performance Implications
 
@@ -252,5 +291,6 @@ Design a small "which JDK version should we target" decision document for a hypo
 - [ ] Can correctly attribute lambdas/streams/Optional to Java 8, records to Java 16, sealed classes to Java 17, and virtual threads/pattern-matching-for-switch to Java 21.
 - [ ] Can explain the difference between a preview feature and a final feature.
 - [ ] Can explain what problem virtual threads solve and what they do not (Question 2).
-- [ ] Reproduced this chapter's real demo and confirmed the same 9/9 assertions pass.
+- [ ] Reproduced this chapter's real demo and confirmed the same 15/15 assertions pass.
+- [ ] Can explain, in plain words, at least one headline feature from each of the five LTS releases (Section 3), not just the two or three most commonly cited ones.
 - [ ] Knows to verify the most recent 1–2 releases' exact feature status before citing them confidently (Section 9).
