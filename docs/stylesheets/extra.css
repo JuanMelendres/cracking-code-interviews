@@ -255,6 +255,23 @@
   color: var(--md-default-fg-color--light);
 }
 
+/* Reading-progress bar, injected by javascripts/reading-progress.js. Fixed
+   to the true top of the viewport (above the header, which can itself
+   slide away via header.autohide) so it stays visible regardless of
+   scroll direction. Accent orange reads clearly against both the navy
+   header and the light/dark body -- same value in both color schemes,
+   so no [data-md-color-scheme="slate"] override is needed here. */
+#cci-reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--md-accent-fg-color);
+  z-index: 10000;
+  transition: width 0.1s linear;
+}
+
 .cci-page-feedback__title {
   font-weight: 700;
   text-transform: uppercase;
