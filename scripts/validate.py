@@ -182,7 +182,13 @@ PATTERNS = [
     (r"(access_token|id_token|api[_-]?key|client_secret)=[A-Za-z0-9._-]{15,}", "token in URL"),
     (r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|io|es|mx|co\.uk)\b", "email address"),
 ]
-ALLOW = re.compile(r"example\.com|@param|@return|@Entity|@Table|@Override|@Test|@Id\b|@Column|@Service")
+ALLOW = re.compile(
+    r"example\.com|@param|@return|@Entity|@Table|@Override|@Test|@Id\b|@Column|@Service"
+    # jmelendresdev@gmail.com: intentionally public feedback address in
+    # mkdocs.yml's page-feedback widget (PR #66) and overrides/partials/
+    # comments.html, not a leaked secret.
+    r"|jmelendresdev@gmail\.com"
+)
 scan_ext = (".md", ".java", ".sql", ".json", ".yml", ".yaml", ".sh", ".py")
 hits = 0
 for dirpath, dirnames, filenames in os.walk("."):
