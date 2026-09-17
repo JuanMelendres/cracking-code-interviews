@@ -4,8 +4,8 @@ slug: jpa-entity-lifecycle-and-the-n1-problem
 document_type: handbook-chapter
 domain: 06-databases
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-17
 source_history:
   - handbook/databases/jpa-entity-lifecycle-and-the-n1-problem.md
 difficulty:
@@ -103,6 +103,14 @@ N+1 is one of this project's own blueprint-named top-25 topics by interview weig
 **The persistence context is a per-transaction identity map: within one session, there is exactly one managed Java object per database row, and every operation — reads, in-place mutations, lazy loads — is mediated through that one map.** `find()` twice for the same id returns the same object because the second call checks the map first. A plain setter call on a managed entity produces a real `UPDATE` at commit because Hibernate compares the entity's current state against a snapshot taken when it entered the map — no explicit "save" step is needed, because the object *is* the thing being tracked. And a lazy association throws once its session closes because the map (and the open connection lazy loading depends on) no longer exists — the object is now "detached," structurally cut off from the mechanism that made lazy loading work in the first place. N+1 is what happens when this same lazy-loading mechanism is invoked once per row in a loop, each invocation issuing its own round-trip, instead of being fetched once, up front, for the whole result set.
 
 ## Definition and Purpose
+
+### JPA vs. Hibernate: specification vs. implementation
+
+This chapter (and this whole domain) uses "JPA/Hibernate" as one phrase, which blurs a distinction worth stating explicitly: **JPA (Jakarta Persistence API, formerly Java Persistence API) is a specification** — an interface contract published as a Jakarta EE standard (the current version is Jakarta Persistence 3.1, `jakarta.persistence.*` package; older code targeting Java EE uses `javax.persistence.*`, the same ideas under the pre-Jakarta name). A specification is not code you can run — it defines *what* annotations like `@Entity`, `@OneToMany`, and `@Id` mean, and *what* the `EntityManager` API must do, without providing the actual engine that does it.
+
+**Hibernate ORM is one concrete implementation of that specification** — the code that actually generates SQL, manages the persistence context described below, and executes dirty checking. It is by far the most widely used JPA implementation in the Java ecosystem, but it is not the only one: **EclipseLink** is the JPA reference implementation (the one the spec's own compatibility test suite is validated against), and **OpenJPA** and **DataNucleus** are other real implementations. The relationship is the same shape as JDBC (a spec) and a specific JDBC driver (an implementation), or SLF4J (a logging façade spec) and Logback (one implementation of it).
+
+**Why this distinction has a practical consequence, not just a naming one**: code written strictly against `jakarta.persistence.*` annotations and the `EntityManager` interface is portable across implementations — swapping Hibernate for EclipseLink under an unchanged `@Entity` class is, in principle, a configuration change, not a rewrite. Code that reaches for Hibernate-specific extensions — `org.hibernate.annotations.@Fetch`, `hibernate.*` configuration properties (like `hibernate.generate_statistics`, used throughout this chapter's real traces), or Hibernate's own `Session` API (a superset of `EntityManager`) — is not portable to another JPA implementation without changes. In practice, the overwhelming majority of Spring Boot applications use Hibernate specifically (it's Spring Boot's default JPA provider, pulled in transitively by `spring-boot-starter-data-jpa`), so "JPA" and "Hibernate" are used almost interchangeably on the job — but knowing which parts of your code are spec-portable and which are Hibernate-specific is exactly the kind of distinction a Staff-level "why did we pick this ORM, and what would it cost to leave it" conversation depends on.
 
 The **persistence context** (Hibernate calls it the *Session*; JPA calls it the *EntityManager*'s first-level cache) is the set of managed entities associated with one unit of work — typically one transaction. It exists to give an application a single, consistent, in-memory view of any row it has touched during that transaction: repeated reads of the same row return the identical object (not just an equal one), and any in-place change to a managed entity is automatically detected and persisted at flush/commit time, without an explicit save call for every mutation.
 
