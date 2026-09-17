@@ -196,6 +196,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 163 | [Behavior-Driven Development with Cucumber](behavior-driven-development-with-cucumber.md) | T-2412 | 4 | `syllabus/08-testing/behavior-driven-development-with-cucumber.md` |
 | 164 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | 4 | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
 | 165 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | 3 | `syllabus/07-api-design/api-versioning-strategies.md` |
+| 166 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | 3 | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -345,6 +346,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-16 — Microservices Patterns with Spring Boot (T-519) gains a flashcard deck.** New `05-spring` chapter, added the same day to close a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 254 decks (253 prior + 1), 879 cards (875 prior + 4).**
 
 **2026-09-16 — API Versioning Strategies (T-919) gains a flashcard deck.** New `07-api-design` chapter closing the last of T-803's four originally-promised topics. 3 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 255 decks (254 prior + 1), 882 cards (879 prior + 3).**
+
+**2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a flashcard deck.** New `05-spring` chapter, part of a larger user TODO list. 3 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 256 decks (255 prior + 1), 885 cards (882 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

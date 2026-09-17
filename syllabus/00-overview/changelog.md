@@ -1995,3 +1995,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Two genuinely unplanned findings, both verified directly rather than assumed: a request with no `Api-Version` header gets a real `404` from header-based versioning (no default-version fallback exists unless explicitly built); a generic `Accept: */*` does NOT `406` on media-type-versioned endpoints -- it silently resolves to whichever version-specific handler Spring's real content negotiation matches first, with no signal to the caller.
 - Updated `syllabus/07-api-design/INDEX.md` (5 → 6 chapters, T-919 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.
+
+## [2026-09-16] — `05-spring` gains a 14th chapter, same day: DTO, Entity, and Mapper Patterns
+
+### Added (`syllabus/05-spring/dto-entity-mapper-patterns.md` — T-520)
+
+- Part of a larger user-provided TODO list: explain what each of DTO/Entity/Model/Mapper/Record is for, real examples, and how they relate. Mentions were scattered across `bean-validation-and-global-exception-handling.md` and `../06-databases/jpa-entity-lifecycle-and-the-n1-problem.md`, but nothing pulled the terms together to answer the actual question directly.
+- Real, executed MapStruct 1.6.3 annotation-processing lab (`practice/java/dto-entity-mapper-patterns/`), no Maven/Gradle: a real `@Mapper(componentModel = "spring")` interface with no hand-written implementation anywhere -- MapStruct's real annotation processor generates `OrderMapperImpl` at compile time, captured verbatim in the pack's own README and this chapter, including genuinely generated null-safety for a nested property.
+- Real, reflective proof (not assumed) that a DTO's missing field for sensitive entity data cannot leak through the mapper: `OrderResponse.class.getRecordComponents()` confirms the DTO record structurally has no component for the entity's internal-only field.
+- Updated `syllabus/05-spring/INDEX.md` (13 → 14 chapters, T-520 row added).
+- `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.

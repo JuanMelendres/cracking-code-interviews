@@ -33,6 +33,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-16 — API Versioning Strategies (T-919) gains a cheat sheet.** New `07-api-design` chapter closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning). **New total: 255 cheat sheets.**
 
+**2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
+
 ## Cheat Sheets
 
 | # | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
@@ -174,6 +176,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 135 | [gRPC API Design](grpc-api-design.md) | T-918 | — | api-design | `syllabus/07-api-design/grpc-api-design.md` |
 | 136 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | — | spring | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
 | 137 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | — | api-design | `syllabus/07-api-design/api-versioning-strategies.md` |
+| 138 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | — | spring | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 

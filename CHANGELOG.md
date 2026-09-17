@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (DTO, Entity, and Mapper Patterns, T-520, 2026-09-16)
+
+- Part of a larger user-provided TODO list: explain what each of DTO/Entity/Model/Mapper/Record is for, real examples, and how they relate. Mentions were scattered across existing chapters (`bean-validation-and-global-exception-handling.md`, `jpa-entity-lifecycle-and-the-n1-problem.md`) but nothing pulled the terms together in one place.
+- Real, executed MapStruct 1.6.3 annotation-processing lab (`practice/java/dto-entity-mapper-patterns/`), no Maven/Gradle. A real `@Mapper(componentModel = "spring")` interface with no hand-written implementation anywhere -- MapStruct's real annotation processor generates `OrderMapperImpl` at compile time, captured verbatim (not described) in the pack's own README and chapter.
+- Real, reflective proof that a DTO's missing field for sensitive entity data (`internalFraudScoreNotes`) cannot leak through the mapper: `OrderResponse.class.getRecordComponents()` confirms the DTO record has no component for it at all -- a structural guarantee, not a this-run-happened-to-work coincidence.
+- New cheat sheet and flashcard deck; updated `syllabus/05-spring/INDEX.md` (13 -> 14 chapters), `syllabus/00-overview/INDEX.md`, both changelogs, `cheat-sheets/README.md`, `flashcards/README.md`, `README.md` stats.
+- `validate.py`: errors 0, warnings 13 (unchanged).
+
 ### Added (API Versioning Strategies, T-919, 2026-09-16)
 
 - Part of a larger user-provided TODO list. `syllabus/07-api-design/api-design.md` (T-803) was originally scoped as "API design: REST, gRPC, GraphQL, versioning" -- GraphQL/gRPC were later split into their own chapters (T-917/T-918) when the bundled T-803 named them but never covered them, and versioning had the identical gap. New chapter `syllabus/07-api-design/api-versioning-strategies.md` closes it, following the same split precedent.
