@@ -2,6 +2,7 @@ title: Databases
 nav:
   - INDEX.md
   - sql-and-relational-database-fundamentals.md
+  - database-normalization-1nf-through-bcnf.md
   - jpa-entity-lifecycle-and-the-n1-problem.md
   - hibernate-second-level-and-query-cache.md
   - data-modelling-and-explicit-join-tables.md
@@ -19,4 +20,3 @@ nav:
   - window-functions-and-ctes.md
   - jsonb-and-advanced-index-types.md
   - views-and-materialized-views.md
-  - database-normalization-1nf-through-bcnf.md

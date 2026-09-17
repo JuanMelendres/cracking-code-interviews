@@ -1,11 +1,11 @@
 title: System Design
 nav:
   - INDEX.md
-  - resilience-patterns.md
-  - storage-selection-tradeoffs.md
   - system-design-method-and-estimation.md
+  - storage-selection-tradeoffs.md
   - caching-strategies-and-invalidation.md
   - load-balancing-service-discovery-and-health-checking.md
+  - resilience-patterns.md
   - rate-limiting-and-throttling-algorithms.md
   - idempotency.md
   - search-and-indexing-systems.md

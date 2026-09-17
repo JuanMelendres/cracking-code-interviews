@@ -2,6 +2,7 @@ title: Data Structures & Algorithms
 nav:
   - INDEX.md
   - arrays-two-pointers-and-sliding-window.md
+  - sorting-algorithms.md
   - hashing-patterns-and-frequency-maps.md
   - binary-search-and-search-on-answer.md
   - linked-lists-and-in-place-manipulation.md
@@ -18,4 +19,3 @@ nav:
   - design-style-coding-problems.md
   - concurrency-coding-problems.md
   - advanced-structures-segment-tree-fenwick-rolling-hash.md
-  - sorting-algorithms.md
