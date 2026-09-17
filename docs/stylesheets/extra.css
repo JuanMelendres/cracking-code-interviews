@@ -81,12 +81,31 @@
 }
 
 /* Center block-level images/diagrams and cap their width so they never
-   force horizontal scroll on narrower screens. */
+   force horizontal scroll on narrower screens. max-width:100% on the
+   container alone does not work for Mermaid: mermaid@10 renders an <svg>
+   child with its own inline pixel width/style (the diagram's natural
+   size), which overflows this container's edge without shrinking, and
+   since nothing clips that overflow it escalates into whole-page
+   horizontal scroll on mobile -- cropping unrelated text above the
+   diagram, not just the diagram itself (real bug, screenshot
+   2026-09-17). Fix: force the SVG itself to scale down, and give the
+   container overflow-x:auto as a fallback for any diagram still too
+   dense to shrink further, so at worst that one diagram scrolls
+   in place instead of the page. */
 .md-content__inner img,
 .md-content__inner .mermaid {
   display: block;
   margin: 1.5rem auto;
   max-width: 100%;
+}
+
+.md-content__inner .mermaid {
+  overflow-x: auto;
+}
+
+.md-content__inner .mermaid svg {
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 /* Click-to-enlarge overlay for Mermaid diagrams (see diagram-zoom.js). */
