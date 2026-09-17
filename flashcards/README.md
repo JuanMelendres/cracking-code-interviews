@@ -195,6 +195,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 162 | [Azure and GCP for Backend Engineers](azure-and-gcp-for-backend-engineers.md) | T-2404 | 3 | `syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md` |
 | 163 | [Behavior-Driven Development with Cucumber](behavior-driven-development-with-cucumber.md) | T-2412 | 4 | `syllabus/08-testing/behavior-driven-development-with-cucumber.md` |
 | 164 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | 4 | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
+| 165 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | 3 | `syllabus/07-api-design/api-versioning-strategies.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -342,6 +343,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-16 — index-completeness audit.** Diffing every file in `flashcards/` against this README's own tables (rather than trusting the count above) found 38 existing decks across 11 domains never listed anywhere in this index — some dating back to the original 22-domain gap audit (T-2400s/T-1300s/T-1700s chapters), never added to this file when their decks were written. Closed in four groups: 26 backend decks appended to the main table above, 3 to the New-Writing Domain table (`19-leadership-staff`, `03-data-structures-algorithms`), 3 to the Frontend table (the D-F4 batch), and 6 new `22-ai-llm-engineering` decks in their own new section below (that domain didn't exist when this file's other batches ran). `frontend-live-coding-and-debugging-protocol.md` is confirmed intentionally excluded, matching its Frontend-table precedent. **New total: 253 decks, 875 cards** (verified as the real file/card count in `flashcards/`, 2026-09-16) — every deck now listed in exactly one table.
 
 **2026-09-16 — Microservices Patterns with Spring Boot (T-519) gains a flashcard deck.** New `05-spring` chapter, added the same day to close a real, user-flagged gap. 4 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 254 decks (253 prior + 1), 879 cards (875 prior + 4).**
+
+**2026-09-16 — API Versioning Strategies (T-919) gains a flashcard deck.** New `07-api-design` chapter closing the last of T-803's four originally-promised topics. 3 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 255 decks (254 prior + 1), 882 cards (879 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

@@ -1985,3 +1985,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Service discovery, Spring Cloud Gateway, and Spring Cloud Config are covered as real, correct reference configuration, explicitly labeled as not executed in this chapter's own lab, rather than presented as tested.
 - Updated `syllabus/05-spring/INDEX.md` (12 → 13 chapters, T-519 row added).
 - `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.
+
+## [2026-09-16] — `07-api-design` gains a 6th chapter, same day: API Versioning Strategies
+
+### Added (`syllabus/07-api-design/api-versioning-strategies.md` — T-919)
+
+- Part of a larger user-provided TODO list. `api-design.md` (T-803) was originally scoped as "API design: REST, gRPC, GraphQL, versioning" -- GraphQL and gRPC were later split into their own full chapters (T-917/T-918, 2026-09-09) when the bundled T-803 named them but never covered them, and versioning had the identical gap: named in the original scope, never written. This chapter closes it, following the exact same split precedent.
+- Real, executed Spring Framework 6.1.14 lab (`practice/java/api-versioning-strategies/`), no Maven/Gradle: real `MockMvcBuilders.standaloneSetup`-driven Spring MVC dispatch (the actual `HandlerMapping` resolving every request, nothing stubbed) for three real versioning strategies -- URI path, custom header, media-type/content-negotiation -- against the identical real breaking change (a `name` field split into `firstName`/`lastName`).
+- Two genuinely unplanned findings, both verified directly rather than assumed: a request with no `Api-Version` header gets a real `404` from header-based versioning (no default-version fallback exists unless explicitly built); a generic `Accept: */*` does NOT `406` on media-type-versioned endpoints -- it silently resolves to whichever version-specific handler Spring's real content negotiation matches first, with no signal to the caller.
+- Updated `syllabus/07-api-design/INDEX.md` (5 → 6 chapters, T-919 row added).
+- `validate.py`: errors 0, warnings 13 (unchanged). Real local `mkdocs build`: exit 0, 0 new "no such anchor" warnings for the new pages.
