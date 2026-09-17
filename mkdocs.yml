@@ -171,6 +171,28 @@ extra:
   analytics:
     provider: google
     property: G-0LL1C3LLHB
+    # Material's built-in "Was this page helpful?" widget (real request,
+    # 2026-09-17: a lightweight per-page feedback signal for future
+    # iterations, without adding a new external service). Firing a rating
+    # sends a gtag event to the analytics property above -- no new
+    # dependency, no GitHub link (repo_url is deliberately unset above).
+    # The negative-rating note links to a mailto: instead of a GitHub
+    # issue since this repo intentionally has no public issue tracker.
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for the feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for the feedback! Let us know what was missing or
+            confusing by
+            <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20{title}&body=Page%3A%20{url}%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/juan-melendres/

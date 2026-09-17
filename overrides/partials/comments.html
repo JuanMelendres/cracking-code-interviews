@@ -1,0 +1,26 @@
+{#-
+  Overrides Material's default comments.html (stock file is empty -- it's
+  the documented extension point for a site's own comment system). No
+  external comment service is wired up here (real request, 2026-09-17):
+  repo_url is deliberately unset elsewhere in this theme, which rules out
+  GitHub-issue/Discussions-backed widgets like giscus/utterances, so this
+  is a plain mailto: link instead. Complements the thumbs up/down widget
+  in partials/feedback.html (extra.analytics.feedback in mkdocs.yml) for
+  readers who want to leave open-ended comments, not just a quick rating.
+-#}
+{% if page.meta and page.meta.hide and "feedback" in page.meta.hide %}
+{% else %}
+  {% set subject = "Feedback: " ~ (page.meta.title if page.meta and page.meta.title else page.title) %}
+  {% set body = "Page: /" ~ page.url %}
+  <hr />
+  <div class="cci-page-feedback">
+    <p class="cci-page-feedback__title">Feedback &amp; comments</p>
+    <p>
+      Found an error, an outdated claim, or something unclear on this page?
+      <a href="mailto:jmelendresdev@gmail.com?subject={{ subject | urlencode }}&body={{ body | urlencode }}%0A%0A">
+        Email jmelendresdev@gmail.com
+      </a>
+      with the page and what to fix.
+    </p>
+  </div>
+{% endif %}
