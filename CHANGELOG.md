@@ -18,6 +18,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 - Part of the user's TODO list: explain what JPA and Hibernate each mean. `syllabus/06-databases/jpa-entity-lifecycle-and-the-n1-problem.md` already covered JPA/Hibernate mechanics in depth but used the two names interchangeably without ever stating the distinction explicitly.
 - New subsection in that chapter's Definition and Purpose: JPA (Jakarta Persistence API) is a specification, Hibernate is its most widely used implementation (others: EclipseLink, the JPA reference implementation; OpenJPA; DataNucleus) -- same shape as JDBC/a JDBC driver, or SLF4J/Logback. States the practical consequence: `jakarta.persistence.*`-only code is implementation-portable in principle; Hibernate-specific extensions (`org.hibernate.annotations.*`, `hibernate.*` properties, the `Session` API) are not.
 - No new file, no duplication -- extends the existing canonical chapter rather than creating a second one, per this domain's own ownership rule.
+### Added (Coding Interview Pattern-Recognition Methodology, T-2120, 2026-09-17)
+
+- Part of the user's TODO list: a methodology for solving LeetCode/HackerRank-style problems -- what patterns exist, which data structures help, worked examples of the most commonly asked problems, to understand which methodology to apply. `03-data-structures-algorithms` already had 18 real, deep, pattern-specific chapters but nothing taught how to choose among them for an unfamiliar problem.
+- New chapter `syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` (T-2120), placed first in the domain's reading order: a five-step method (understand, signals, brute force, optimize, verify), a signal-to-pattern lookup table ranked by this project's own real Master Topic Register IWI data (not guessed popularity), a constraint-to-complexity heuristic table, and three worked signal-spotting walkthroughs (Two Sum, Number of Islands, Coin Change) that deliberately stop at "which pattern, and why" and link to the canonical chapter for the full solution, avoiding duplication.
+- New cheat sheet and flashcard deck; updated `syllabus/03-data-structures-algorithms/INDEX.md`/`.pages` (18 -> 19 chapters), `syllabus/00-overview/INDEX.md`, both changelogs, `cheat-sheets/README.md`, `flashcards/README.md`.
+- `validate.py`: errors 0, warnings 13 (unchanged).
 
 ### Added (DTO, Entity, and Mapper Patterns, T-520, 2026-09-16)
 

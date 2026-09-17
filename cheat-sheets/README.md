@@ -177,6 +177,7 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 136 | [Microservices Patterns with Spring Boot](microservices-patterns-with-spring-boot.md) | T-519 | — | spring | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
 | 137 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | — | api-design | `syllabus/07-api-design/api-versioning-strategies.md` |
 | 138 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | — | spring | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
+| 139 | [Coding Interview Pattern-Recognition Methodology](coding-interview-pattern-recognition-methodology.md) | T-2120 | — | data-structures-algorithms | `syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 
