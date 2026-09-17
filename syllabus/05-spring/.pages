@@ -8,6 +8,7 @@ nav:
   - spring-bean-scopes-and-proxy-modes.md
   - spring-webflux-and-reactive-programming.md
   - spring-data-jpa-repository-abstraction.md
+  - dto-entity-mapper-patterns.md
   - security-filter-chain.md
   - spring-cache-abstraction-and-pitfalls.md
   - spring-testing-slices-and-context-caching.md

@@ -1,0 +1,44 @@
+package demo;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2026-09-16T18:32:48-0600",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.12 (Homebrew)"
+)
+@Component
+public class OrderMapperImpl implements OrderMapper {
+
+    @Override
+    public OrderResponse toResponse(OrderEntity entity) {
+        if ( entity == null ) {
+            return null;
+        }
+
+        String customerName = null;
+        Long id = null;
+        BigDecimal totalAmount = null;
+        Instant createdAt = null;
+
+        customerName = entityCustomerName( entity );
+        id = entity.getId();
+        totalAmount = entity.getTotalAmount();
+        createdAt = entity.getCreatedAt();
+
+        OrderResponse orderResponse = new OrderResponse( id, customerName, totalAmount, createdAt );
+
+        return orderResponse;
+    }
+
+    private String entityCustomerName(OrderEntity orderEntity) {
+        Customer customer = orderEntity.getCustomer();
+        if ( customer == null ) {
+            return null;
+        }
+        return customer.getName();
+    }
+}
