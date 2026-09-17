@@ -48,19 +48,19 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-microservice-decomposition.md` | T-907/908 — summary + link; full chapter now canonical at `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md` |
-| 3 | `02-idempotency.md` | T-809 — summary + link; full chapter now canonical at `syllabus/11-system-design/idempotency.md` |
-| 4 | `03-cap-and-consistency.md` | T-807 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md` |
-| 5 | `04-java-coding-practice.md` | LC 380, 706, 622 — all compiled and run, including the exact audited Circular Queue errata fix |
-| 6 | `05-flashcards.md` | 14 cards |
-| 7 | `06-decomposition-analysis-deliverable.md` | `decomposition-analysis.md` template + worked example, counter-argument included |
-| 8 | `07-story-scope-reframing.md` | T-1503 — rewrite Stories 1, 4, 7, 8 for scope and influence |
-| 9 | `08-week-5-behavioral-mock.md` | 45-min behavioral round, 6 questions |
-| 10 | `09-design-exercise-payment-processing.md` | Summary + link; full design now canonical at `architecture-atlas/payment-processing-system.md` |
-| 11 | `10-week-5-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified by authority |
-| — | `MANIFEST.md` | Every file, verification status, real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-microservice-decomposition.md`](01-microservice-decomposition.md) | T-907/908 — summary + link; full chapter now canonical at `syllabus/17-architecture/microservice-decomposition-and-monolith-tradeoff.md` |
+| 3 | [`02-idempotency.md`](02-idempotency.md) | T-809 — summary + link; full chapter now canonical at `syllabus/11-system-design/idempotency.md` |
+| 4 | [`03-cap-and-consistency.md`](03-cap-and-consistency.md) | T-807 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md` |
+| 5 | [`04-java-coding-practice.md`](04-java-coding-practice.md) | LC 380, 706, 622 — all compiled and run, including the exact audited Circular Queue errata fix |
+| 6 | [`05-flashcards.md`](05-flashcards.md) | 14 cards |
+| 7 | [`06-decomposition-analysis-deliverable.md`](06-decomposition-analysis-deliverable.md) | `decomposition-analysis.md` template + worked example, counter-argument included |
+| 8 | [`07-story-scope-reframing.md`](07-story-scope-reframing.md) | T-1503 — rewrite Stories 1, 4, 7, 8 for scope and influence |
+| 9 | [`08-week-5-behavioral-mock.md`](08-week-5-behavioral-mock.md) | 45-min behavioral round, 6 questions |
+| 10 | [`09-design-exercise-payment-processing.md`](09-design-exercise-payment-processing.md) | Summary + link; full design now canonical at `architecture-atlas/payment-processing-system.md` |
+| 11 | [`10-week-5-checklist.md`](10-week-5-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified by authority |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, verification status, real checksums |
 
 ## Daily schedule (20h/week baseline)
 

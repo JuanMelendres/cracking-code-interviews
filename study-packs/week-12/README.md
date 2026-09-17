@@ -85,13 +85,13 @@ None — Plan B (12 weeks) is complete after this week. Per this repository's `C
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-loop-1-technical-coding-design.md` | Loop 1 — 60 min, 3 rounds |
-| 3 | `02-loop-2-technical-coding-design-behavioral.md` | Loop 2 — 75 min, 4 rounds |
-| 4 | `03-loop-3-java-fluency-coding-production-judgment.md` | Loop 3 — 60 min, 3 rounds |
-| 5 | `04-loop-4-final-full-loop.md` | Loop 4 — 90 min, 4 rounds, the §8.7-scored loop |
-| 6 | `05-diagnostic-rerun.md` | Verbatim D1-D4 re-run, three-point comparison |
-| 7 | `06-final-readiness-assessment.md` | The capstone artifact — go/no-go |
-| 8 | `07-java-coding-practice.md` | 8 problems, all compiled and run |
-| 9 | `MANIFEST.md` | File list, word counts, verification status |
-| 10 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-loop-1-technical-coding-design.md`](01-loop-1-technical-coding-design.md) | Loop 1 — 60 min, 3 rounds |
+| 3 | [`02-loop-2-technical-coding-design-behavioral.md`](02-loop-2-technical-coding-design-behavioral.md) | Loop 2 — 75 min, 4 rounds |
+| 4 | [`03-loop-3-java-fluency-coding-production-judgment.md`](03-loop-3-java-fluency-coding-production-judgment.md) | Loop 3 — 60 min, 3 rounds |
+| 5 | [`04-loop-4-final-full-loop.md`](04-loop-4-final-full-loop.md) | Loop 4 — 90 min, 4 rounds, the §8.7-scored loop |
+| 6 | [`05-diagnostic-rerun.md`](05-diagnostic-rerun.md) | Verbatim D1-D4 re-run, three-point comparison |
+| 7 | [`06-final-readiness-assessment.md`](06-final-readiness-assessment.md) | The capstone artifact — go/no-go |
+| 8 | [`07-java-coding-practice.md`](07-java-coding-practice.md) | 8 problems, all compiled and run |
+| 9 | [`MANIFEST.md`](MANIFEST.md) | File list, word counts, verification status |
+| 10 | [`resources.md`](resources.md) | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |

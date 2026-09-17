@@ -49,18 +49,18 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-kafka-architecture-fundamentals.md` | T-701 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md` |
-| 3 | `02-producer-semantics-and-partition-keys.md` | T-702/705 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md` |
-| 4 | `03-consumer-groups-and-rebalancing.md` | T-703 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md` |
-| 5 | `04-delivery-semantics-and-exactly-once.md` | T-704 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md` |
-| 6 | `05-java-coding-practice.md` | LC 70, 198, 322, 300 (T-1411 DP part 1), all compiled and run |
-| 7 | `06-flashcards.md` | 14 cards |
-| 8 | `07-kafka-guarantees-deliverable.md` | `kafka-guarantees.md` template + full worked answers |
-| 9 | `08-week-8-mock-interview.md` | 45-min messaging deep-dive |
-| 10 | `09-design-exercise-notification-system.md` | Summary + link; full design now canonical at `architecture-atlas/notification-system.md` |
-| 11 | `10-week-8-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-kafka-architecture-fundamentals.md`](01-kafka-architecture-fundamentals.md) | T-701 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/kafka-architecture-fundamentals.md` |
+| 3 | [`02-producer-semantics-and-partition-keys.md`](02-producer-semantics-and-partition-keys.md) | T-702/705 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/producer-semantics-and-partition-keys.md` |
+| 4 | [`03-consumer-groups-and-rebalancing.md`](03-consumer-groups-and-rebalancing.md) | T-703 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/consumer-groups-and-rebalancing.md` |
+| 5 | [`04-delivery-semantics-and-exactly-once.md`](04-delivery-semantics-and-exactly-once.md) | T-704 — summary + link; full chapter now canonical at `syllabus/09-messaging-event-driven/delivery-semantics-and-exactly-once.md` |
+| 6 | [`05-java-coding-practice.md`](05-java-coding-practice.md) | LC 70, 198, 322, 300 (T-1411 DP part 1), all compiled and run |
+| 7 | [`06-flashcards.md`](06-flashcards.md) | 14 cards |
+| 8 | [`07-kafka-guarantees-deliverable.md`](07-kafka-guarantees-deliverable.md) | `kafka-guarantees.md` template + full worked answers |
+| 9 | [`08-week-8-mock-interview.md`](08-week-8-mock-interview.md) | 45-min messaging deep-dive |
+| 10 | [`09-design-exercise-notification-system.md`](09-design-exercise-notification-system.md) | Summary + link; full design now canonical at `architecture-atlas/notification-system.md` |
+| 11 | [`10-week-8-checklist.md`](10-week-8-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 
 ## Daily schedule (10h/week study + 10h practice)
 

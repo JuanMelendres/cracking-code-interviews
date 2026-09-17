@@ -28,20 +28,20 @@ See `12-week-17-checklist.md` for the day-by-day breakdown (a 9-day cycle, given
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-owasp-top-10-for-backend-services.md` | T-1301 — summary + link; full chapter canonical at `syllabus/12-security/owasp-top-10-for-backend-services.md` |
-| 3 | `02-applied-cryptography-hashing-signing-tls.md` | T-1303 — summary + link; full chapter canonical at `syllabus/12-security/applied-cryptography-hashing-signing-tls.md` |
-| 4 | `03-authn-authz-rbac-vs-abac.md` | T-1302 — summary + link; full chapter canonical at `syllabus/12-security/authn-authz-rbac-vs-abac.md` |
-| 5 | `04-injection-input-validation-output-encoding.md` | T-1305 — summary + link; full chapter canonical at `syllabus/12-security/injection-input-validation-output-encoding.md` |
-| 6 | `05-multi-tenancy-isolation-models.md` | T-1307 — summary + link; full chapter canonical at `syllabus/12-security/multi-tenancy-isolation-models.md` |
-| 7 | `06-secrets-management-and-key-rotation.md` | T-1304 — summary + link; full chapter canonical at `syllabus/12-security/secrets-management-and-key-rotation.md` |
-| 8 | `07-supply-chain-security-sbom-and-dependency-risk.md` | T-1306 — summary + link; full chapter canonical at `syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md` |
-| 9 | `08-hands-on-lab.md` | 7 labs reproducing this week's real demonstrations |
-| 10 | `09-flashcards.md` | 21 cards |
-| 11 | `10-week-17-mock-interview.md` | 45-min Security technical round |
-| 12 | `11-design-exercise-multi-tenant-expense-platform-security-review.md` | Full security review for a multi-tenant B2B expense-approval platform |
-| 13 | `12-week-17-checklist.md` | Day-by-day checklist |
-| 14 | `resources.md` | Sources classified PRIMARY/TOOL |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-owasp-top-10-for-backend-services.md`](01-owasp-top-10-for-backend-services.md) | T-1301 — summary + link; full chapter canonical at `syllabus/12-security/owasp-top-10-for-backend-services.md` |
+| 3 | [`02-applied-cryptography-hashing-signing-tls.md`](02-applied-cryptography-hashing-signing-tls.md) | T-1303 — summary + link; full chapter canonical at `syllabus/12-security/applied-cryptography-hashing-signing-tls.md` |
+| 4 | [`03-authn-authz-rbac-vs-abac.md`](03-authn-authz-rbac-vs-abac.md) | T-1302 — summary + link; full chapter canonical at `syllabus/12-security/authn-authz-rbac-vs-abac.md` |
+| 5 | [`04-injection-input-validation-output-encoding.md`](04-injection-input-validation-output-encoding.md) | T-1305 — summary + link; full chapter canonical at `syllabus/12-security/injection-input-validation-output-encoding.md` |
+| 6 | [`05-multi-tenancy-isolation-models.md`](05-multi-tenancy-isolation-models.md) | T-1307 — summary + link; full chapter canonical at `syllabus/12-security/multi-tenancy-isolation-models.md` |
+| 7 | [`06-secrets-management-and-key-rotation.md`](06-secrets-management-and-key-rotation.md) | T-1304 — summary + link; full chapter canonical at `syllabus/12-security/secrets-management-and-key-rotation.md` |
+| 8 | [`07-supply-chain-security-sbom-and-dependency-risk.md`](07-supply-chain-security-sbom-and-dependency-risk.md) | T-1306 — summary + link; full chapter canonical at `syllabus/12-security/supply-chain-security-sbom-and-dependency-risk.md` |
+| 9 | [`08-hands-on-lab.md`](08-hands-on-lab.md) | 7 labs reproducing this week's real demonstrations |
+| 10 | [`09-flashcards.md`](09-flashcards.md) | 21 cards |
+| 11 | [`10-week-17-mock-interview.md`](10-week-17-mock-interview.md) | 45-min Security technical round |
+| 12 | [`11-design-exercise-multi-tenant-expense-platform-security-review.md`](11-design-exercise-multi-tenant-expense-platform-security-review.md) | Full security review for a multi-tenant B2B expense-approval platform |
+| 13 | [`12-week-17-checklist.md`](12-week-17-checklist.md) | Day-by-day checklist |
+| 14 | [`resources.md`](resources.md) | Sources classified PRIMARY/TOOL |
 
 ## Hands-On Exercises
 

@@ -28,11 +28,11 @@ No day-by-day checklist — a single bounded sprint, same format as Weeks 20–2
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-hashing-coding-practice.md` | 5 problems (LC 217, 560, 349, 202, 454) — pattern coverage 4/12 → 9/12 |
-| 3 | `02-binary-search-coding-practice.md` | 5 problems (LC 34, 74, 153, 1011, 4) — pattern coverage 4/12 → 9/12 |
-| 4 | `03-concurrency-coding-practice.md` | 4 problems (LC 1117, 1195, 1226, 1188) — pattern coverage 3/8 → 7/8 |
-| 5 | `04-design-coding-practice.md` | 5 problems (LC 460, 981, 355, 1472, 359) — pattern coverage 4/10 → 9/10 |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-hashing-coding-practice.md`](01-hashing-coding-practice.md) | 5 problems (LC 217, 560, 349, 202, 454) — pattern coverage 4/12 → 9/12 |
+| 3 | [`02-binary-search-coding-practice.md`](02-binary-search-coding-practice.md) | 5 problems (LC 34, 74, 153, 1011, 4) — pattern coverage 4/12 → 9/12 |
+| 4 | [`03-concurrency-coding-practice.md`](03-concurrency-coding-practice.md) | 4 problems (LC 1117, 1195, 1226, 1188) — pattern coverage 3/8 → 7/8 |
+| 5 | [`04-design-coding-practice.md`](04-design-coding-practice.md) | 5 problems (LC 460, 981, 355, 1472, 359) — pattern coverage 4/10 → 9/10 |
 
 ## Hands-On Exercises
 

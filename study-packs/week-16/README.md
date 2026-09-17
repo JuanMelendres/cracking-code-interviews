@@ -28,18 +28,18 @@ See `10-week-16-checklist.md` for the day-by-day breakdown.
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-g1-remembered-sets-and-write-barriers.md` | T-304 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md` |
-| 3 | `02-memory-leak-diagnosis-and-heap-dump-analysis.md` | T-307 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` |
-| 4 | `03-jvm-memory-layout-and-runtime-regions.md` | T-301 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |
-| 5 | `04-jvm-flags-and-container-ergonomics.md` | T-312 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` |
-| 6 | `05-jit-tiered-compilation-and-deoptimization.md` | T-308 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md` |
-| 7 | `06-hands-on-lab.md` | 6 labs reproducing this week's real flag-driven demonstrations |
-| 8 | `07-flashcards.md` | 15 cards |
-| 9 | `08-week-16-mock-interview.md` | 45-min JVM internals technical round |
-| 10 | `09-design-exercise-jvm-sizing-and-diagnostics-playbook.md` | Full sizing/diagnostics playbook for a real-time pricing service |
-| 11 | `10-week-16-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified PRIMARY/SECONDARY/TOOL |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-g1-remembered-sets-and-write-barriers.md`](01-g1-remembered-sets-and-write-barriers.md) | T-304 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/g1-remembered-sets-and-write-barriers.md` |
+| 3 | [`02-memory-leak-diagnosis-and-heap-dump-analysis.md`](02-memory-leak-diagnosis-and-heap-dump-analysis.md) | T-307 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/memory-leak-diagnosis-and-heap-dump-analysis.md` |
+| 4 | [`03-jvm-memory-layout-and-runtime-regions.md`](03-jvm-memory-layout-and-runtime-regions.md) | T-301 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |
+| 5 | [`04-jvm-flags-and-container-ergonomics.md`](04-jvm-flags-and-container-ergonomics.md) | T-312 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jvm-flags-and-container-ergonomics.md` |
+| 6 | [`05-jit-tiered-compilation-and-deoptimization.md`](05-jit-tiered-compilation-and-deoptimization.md) | T-308 — summary + link; full chapter canonical at `syllabus/02-java/jvm-internals/jit-tiered-compilation-and-deoptimization.md` |
+| 7 | [`06-hands-on-lab.md`](06-hands-on-lab.md) | 6 labs reproducing this week's real flag-driven demonstrations |
+| 8 | [`07-flashcards.md`](07-flashcards.md) | 15 cards |
+| 9 | [`08-week-16-mock-interview.md`](08-week-16-mock-interview.md) | 45-min JVM internals technical round |
+| 10 | [`09-design-exercise-jvm-sizing-and-diagnostics-playbook.md`](09-design-exercise-jvm-sizing-and-diagnostics-playbook.md) | Full sizing/diagnostics playbook for a real-time pricing service |
+| 11 | [`10-week-16-checklist.md`](10-week-16-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified PRIMARY/SECONDARY/TOOL |
 
 ## Hands-On Exercises
 

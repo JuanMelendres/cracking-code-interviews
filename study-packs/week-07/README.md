@@ -48,18 +48,18 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-spring-auto-configuration-and-lifecycle.md` | T-506/501 — summary + link; full chapter now canonical at `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md` |
-| 3 | `02-spring-security-filter-chain.md` | T-511 — summary + link; full chapter now canonical at `syllabus/05-spring/security-filter-chain.md` |
-| 4 | `03-oauth2-oidc-and-jwt.md` | T-512/513 — summary + link; full chapter now canonical at `syllabus/12-security/oauth2-oidc-and-jwt.md` |
-| 5 | `04-java-coding-practice.md` | LC 46, 78, 39, 22 — all compiled and run, including the errata #3 fix |
-| 6 | `05-flashcards.md` | 14 cards |
-| 7 | `06-security-chain-trace-deliverable.md` | `security-chain-trace.md` template + worked example |
-| 8 | `07-week-7-mock-interview.md` | 45-min Spring technical round |
-| 9 | `08-design-exercise-authentication-service.md` | Summary + link; full design now canonical at `architecture-atlas/authentication-service.md` |
-| 10 | `09-week-7-checklist.md` | Day-by-day checklist |
-| 11 | `resources.md` | Sources classified by authority |
-| — | `MANIFEST.md` | Every file, verification status, real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-spring-auto-configuration-and-lifecycle.md`](01-spring-auto-configuration-and-lifecycle.md) | T-506/501 — summary + link; full chapter now canonical at `syllabus/05-spring/auto-configuration-and-bean-lifecycle.md` |
+| 3 | [`02-spring-security-filter-chain.md`](02-spring-security-filter-chain.md) | T-511 — summary + link; full chapter now canonical at `syllabus/05-spring/security-filter-chain.md` |
+| 4 | [`03-oauth2-oidc-and-jwt.md`](03-oauth2-oidc-and-jwt.md) | T-512/513 — summary + link; full chapter now canonical at `syllabus/12-security/oauth2-oidc-and-jwt.md` |
+| 5 | [`04-java-coding-practice.md`](04-java-coding-practice.md) | LC 46, 78, 39, 22 — all compiled and run, including the errata #3 fix |
+| 6 | [`05-flashcards.md`](05-flashcards.md) | 14 cards |
+| 7 | [`06-security-chain-trace-deliverable.md`](06-security-chain-trace-deliverable.md) | `security-chain-trace.md` template + worked example |
+| 8 | [`07-week-7-mock-interview.md`](07-week-7-mock-interview.md) | 45-min Spring technical round |
+| 9 | [`08-design-exercise-authentication-service.md`](08-design-exercise-authentication-service.md) | Summary + link; full design now canonical at `architecture-atlas/authentication-service.md` |
+| 10 | [`09-week-7-checklist.md`](09-week-7-checklist.md) | Day-by-day checklist |
+| 11 | [`resources.md`](resources.md) | Sources classified by authority |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, verification status, real checksums |
 
 ## Daily schedule (10h/week study + 10h practice)
 

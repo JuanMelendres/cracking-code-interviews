@@ -28,11 +28,11 @@ No day-by-day checklist — a single bounded sprint, same format as Weeks 20–2
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-dp-coding-practice.md` | 5 problems (LC 91, 63, 337, 188, 132) — pattern coverage 16/32 → 21/32 |
-| 3 | `02-arrays-two-pointers-coding-practice.md` | 5 problems (LC 11, 239, 238, 189, 31) — pattern coverage 7/18 → 12/18 |
-| 4 | `03-heaps-coding-practice.md` | 5 problems (LC 1046, 692, 373, 767, 1642) — pattern coverage 5/12 → 10/12 |
-| 5 | `04-trees-coding-practice.md` | 5 problems (LC 543, 297, 230, 105, 112) — pattern coverage 7/16 → 12/16 |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-dp-coding-practice.md`](01-dp-coding-practice.md) | 5 problems (LC 91, 63, 337, 188, 132) — pattern coverage 16/32 → 21/32 |
+| 3 | [`02-arrays-two-pointers-coding-practice.md`](02-arrays-two-pointers-coding-practice.md) | 5 problems (LC 11, 239, 238, 189, 31) — pattern coverage 7/18 → 12/18 |
+| 4 | [`03-heaps-coding-practice.md`](03-heaps-coding-practice.md) | 5 problems (LC 1046, 692, 373, 767, 1642) — pattern coverage 5/12 → 10/12 |
+| 5 | [`04-trees-coding-practice.md`](04-trees-coding-practice.md) | 5 problems (LC 543, 297, 230, 105, 112) — pattern coverage 7/16 → 12/16 |
 
 ## Hands-On Exercises
 

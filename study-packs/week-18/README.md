@@ -28,18 +28,18 @@ See `10-week-18-checklist.md` for the day-by-day breakdown.
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-performance-and-load-testing-methodology.md` | T-1106 — summary + link; full chapter canonical at `syllabus/08-testing/performance-and-load-testing-methodology.md` |
-| 3 | `02-writing-tests-live-in-an-interview.md` | T-1108 — summary + link; full chapter canonical at `syllabus/08-testing/writing-tests-live-in-an-interview.md` |
-| 4 | `03-contract-testing-for-services.md` | T-1105 — summary + link; full chapter canonical at `syllabus/08-testing/contract-testing-for-services.md` |
-| 5 | `04-junit5-architecture-and-advanced-features.md` | T-1102 — summary + link; full chapter canonical at `syllabus/08-testing/junit5-architecture-and-advanced-features.md` |
-| 6 | `05-mutation-and-property-based-testing.md` | T-1107 — summary + link; full chapter canonical at `syllabus/08-testing/mutation-and-property-based-testing.md` |
-| 7 | `06-hands-on-lab.md` | 5 labs reproducing this week's real demonstrations |
-| 8 | `07-flashcards.md` | 15 cards |
-| 9 | `08-week-18-mock-interview.md` | 45-min Testing technical round |
-| 10 | `09-design-exercise-test-strategy-for-a-checkout-service.md` | Full test-strategy design exercise for a checkout service |
-| 11 | `10-week-18-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified PRIMARY/INTERNAL/TOOL |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-performance-and-load-testing-methodology.md`](01-performance-and-load-testing-methodology.md) | T-1106 — summary + link; full chapter canonical at `syllabus/08-testing/performance-and-load-testing-methodology.md` |
+| 3 | [`02-writing-tests-live-in-an-interview.md`](02-writing-tests-live-in-an-interview.md) | T-1108 — summary + link; full chapter canonical at `syllabus/08-testing/writing-tests-live-in-an-interview.md` |
+| 4 | [`03-contract-testing-for-services.md`](03-contract-testing-for-services.md) | T-1105 — summary + link; full chapter canonical at `syllabus/08-testing/contract-testing-for-services.md` |
+| 5 | [`04-junit5-architecture-and-advanced-features.md`](04-junit5-architecture-and-advanced-features.md) | T-1102 — summary + link; full chapter canonical at `syllabus/08-testing/junit5-architecture-and-advanced-features.md` |
+| 6 | [`05-mutation-and-property-based-testing.md`](05-mutation-and-property-based-testing.md) | T-1107 — summary + link; full chapter canonical at `syllabus/08-testing/mutation-and-property-based-testing.md` |
+| 7 | [`06-hands-on-lab.md`](06-hands-on-lab.md) | 5 labs reproducing this week's real demonstrations |
+| 8 | [`07-flashcards.md`](07-flashcards.md) | 15 cards |
+| 9 | [`08-week-18-mock-interview.md`](08-week-18-mock-interview.md) | 45-min Testing technical round |
+| 10 | [`09-design-exercise-test-strategy-for-a-checkout-service.md`](09-design-exercise-test-strategy-for-a-checkout-service.md) | Full test-strategy design exercise for a checkout service |
+| 11 | [`10-week-18-checklist.md`](10-week-18-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified PRIMARY/INTERNAL/TOOL |
 
 ## Hands-On Exercises
 

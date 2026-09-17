@@ -28,9 +28,9 @@ No day-by-day checklist — a single bounded sprint, same format as Weeks 20–2
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-dp-coding-practice.md` | 5 problems (LC 152, 279, 174, 673, 1220) — pattern coverage 27/32 → **32/32, full closure** |
-| 3 | `02-graphs-coding-practice.md` | 5 problems (LC 130, 417, 863, 1129, 815) — pattern coverage 17/22 → **22/22, full closure** |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-dp-coding-practice.md`](01-dp-coding-practice.md) | 5 problems (LC 152, 279, 174, 673, 1220) — pattern coverage 27/32 → **32/32, full closure** |
+| 3 | [`02-graphs-coding-practice.md`](02-graphs-coding-practice.md) | 5 problems (LC 130, 417, 863, 1129, 815) — pattern coverage 17/22 → **22/22, full closure** |
 
 ## Hands-On Exercises
 

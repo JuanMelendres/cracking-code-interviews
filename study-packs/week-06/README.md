@@ -35,17 +35,17 @@ Every prior week added new technical chapters with real executed code and SQL. T
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-full-flashcard-review.md` | All 72 cards from Weeks 1–5, consolidated for Monday's retrieval pass, with a fail-tracking column |
-| 3 | `02-weak-list-repair.md` | Tuesday's template — re-derive, re-answer aloud, re-record every card that failed Monday |
-| 4 | `03-week-6-mock-technical-coding.md` | Wednesday's 60-min technical + 45-min coding combined mock |
-| 5 | `04-week-6-mock-design-behavioral.md` | Thursday's 60-min design (unseen problem) + 45-min behavioral mock |
-| 6 | `05-diagnostic-rerun.md` | Friday's instructions to repeat D1–D4 from Day 0 verbatim |
-| 7 | `06-week-6-assessment-deliverable.md` | Saturday's `week-6-assessment.md` template + a worked example |
-| 8 | `07-interview-readiness-rubric.md` | The final six-dimension assessment, including the Delta-vs-Day-0 column |
-| 9 | `08-week-6-checklist.md` | Day-by-day checklist |
-| 10 | `resources.md` | Pointers back to every prior week's sources — nothing new this week |
-| — | `MANIFEST.md` | Every file, verification status, real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-full-flashcard-review.md`](01-full-flashcard-review.md) | All 72 cards from Weeks 1–5, consolidated for Monday's retrieval pass, with a fail-tracking column |
+| 3 | [`02-weak-list-repair.md`](02-weak-list-repair.md) | Tuesday's template — re-derive, re-answer aloud, re-record every card that failed Monday |
+| 4 | [`03-week-6-mock-technical-coding.md`](03-week-6-mock-technical-coding.md) | Wednesday's 60-min technical + 45-min coding combined mock |
+| 5 | [`04-week-6-mock-design-behavioral.md`](04-week-6-mock-design-behavioral.md) | Thursday's 60-min design (unseen problem) + 45-min behavioral mock |
+| 6 | [`05-diagnostic-rerun.md`](05-diagnostic-rerun.md) | Friday's instructions to repeat D1–D4 from Day 0 verbatim |
+| 7 | [`06-week-6-assessment-deliverable.md`](06-week-6-assessment-deliverable.md) | Saturday's `week-6-assessment.md` template + a worked example |
+| 8 | [`07-interview-readiness-rubric.md`](07-interview-readiness-rubric.md) | The final six-dimension assessment, including the Delta-vs-Day-0 column |
+| 9 | [`08-week-6-checklist.md`](08-week-6-checklist.md) | Day-by-day checklist |
+| 10 | [`resources.md`](resources.md) | Pointers back to every prior week's sources — nothing new this week |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, verification status, real checksums |
 
 ## Daily schedule
 

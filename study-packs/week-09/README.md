@@ -51,18 +51,18 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-java-memory-model-and-volatile.md` | T-401/402 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` |
-| 3 | `02-executors-and-thread-pool-sizing.md` | T-406 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md` |
-| 4 | `03-deadlock-races-and-thread-diagnostics.md` | T-409 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
-| 5 | `04-virtual-threads.md` | T-410 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/virtual-threads.md` |
-| 6 | `05-gc-fundamentals-and-log-analysis.md` | T-303/306 — summary + link; full chapter now canonical at `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md` |
-| 7 | `06-java-coding-practice.md` | LC 1114/1115/1116 (concurrency) + LC 62/1143/416/5 (DP part 2), all compiled and run |
-| 8 | `07-flashcards.md` | 16 cards |
-| 9 | `08-week-9-checkpoint.md` | Full 3-round loop + the roadmap's own checkpoint scorecard |
-| 10 | `09-design-exercise-distributed-job-scheduler.md` | Summary + link; full design now canonical at `architecture-atlas/distributed-job-scheduler.md` |
-| 11 | `10-week-9-checklist.md` | Day-by-day checklist |
-| 12 | `resources.md` | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-java-memory-model-and-volatile.md`](01-java-memory-model-and-volatile.md) | T-401/402 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/java-memory-model-and-volatile.md` |
+| 3 | [`02-executors-and-thread-pool-sizing.md`](02-executors-and-thread-pool-sizing.md) | T-406 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md` |
+| 4 | [`03-deadlock-races-and-thread-diagnostics.md`](03-deadlock-races-and-thread-diagnostics.md) | T-409 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md` |
+| 5 | [`04-virtual-threads.md`](04-virtual-threads.md) | T-410 — summary + link; full chapter now canonical at `syllabus/02-java/concurrency/virtual-threads.md` |
+| 6 | [`05-gc-fundamentals-and-log-analysis.md`](05-gc-fundamentals-and-log-analysis.md) | T-303/306 — summary + link; full chapter now canonical at `syllabus/02-java/jvm-internals/gc-fundamentals-and-log-analysis.md` |
+| 7 | [`06-java-coding-practice.md`](06-java-coding-practice.md) | LC 1114/1115/1116 (concurrency) + LC 62/1143/416/5 (DP part 2), all compiled and run |
+| 8 | [`07-flashcards.md`](07-flashcards.md) | 16 cards |
+| 9 | [`08-week-9-checkpoint.md`](08-week-9-checkpoint.md) | Full 3-round loop + the roadmap's own checkpoint scorecard |
+| 10 | [`09-design-exercise-distributed-job-scheduler.md`](09-design-exercise-distributed-job-scheduler.md) | Summary + link; full design now canonical at `architecture-atlas/distributed-job-scheduler.md` |
+| 11 | [`10-week-9-checklist.md`](10-week-9-checklist.md) | Day-by-day checklist |
+| 12 | [`resources.md`](resources.md) | Sources classified PRIMARY/BOOK/TOOL/SECONDARY |
 
 ## Daily schedule (12h/week study + 8h practice)
 

@@ -47,18 +47,18 @@ graph LR
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-caching-strategies.md` | T-804 — summary + link; full chapter now canonical at `syllabus/11-system-design/caching-strategies-and-invalidation.md` |
-| 3 | `02-distributed-failure-modes.md` | T-909 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/distributed-systems-failure-modes.md` |
-| 4 | `03-api-design.md` | T-803 — summary + link; full chapter now canonical at `syllabus/07-api-design/api-design.md` |
-| 5 | `04-java-coding-practice.md` | 5 graph problems, all compiled and run, Union-Find and topological sort from scratch |
-| 6 | `05-flashcards.md` | 16 cards |
-| 7 | `06-failure-modes-deliverable.md` | The `failure-modes.md` template + a fully worked example |
-| 8 | `07-week-4-mock-interview.md` | 45-min full system-design round |
-| 9 | `08-design-exercise-news-feed.md` | Summary + link; full design now canonical at `architecture-atlas/news-feed-system.md` |
-| 10 | `09-week-4-checklist.md` | Day-by-day checklist |
-| 11 | `resources.md` | Sources classified by authority |
-| — | `MANIFEST.md` | Every file, verification status, real checksums |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-caching-strategies.md`](01-caching-strategies.md) | T-804 — summary + link; full chapter now canonical at `syllabus/11-system-design/caching-strategies-and-invalidation.md` |
+| 3 | [`02-distributed-failure-modes.md`](02-distributed-failure-modes.md) | T-909 — summary + link; full chapter now canonical at `syllabus/10-distributed-systems/distributed-systems-failure-modes.md` |
+| 4 | [`03-api-design.md`](03-api-design.md) | T-803 — summary + link; full chapter now canonical at `syllabus/07-api-design/api-design.md` |
+| 5 | [`04-java-coding-practice.md`](04-java-coding-practice.md) | 5 graph problems, all compiled and run, Union-Find and topological sort from scratch |
+| 6 | [`05-flashcards.md`](05-flashcards.md) | 16 cards |
+| 7 | [`06-failure-modes-deliverable.md`](06-failure-modes-deliverable.md) | The `failure-modes.md` template + a fully worked example |
+| 8 | [`07-week-4-mock-interview.md`](07-week-4-mock-interview.md) | 45-min full system-design round |
+| 9 | [`08-design-exercise-news-feed.md`](08-design-exercise-news-feed.md) | Summary + link; full design now canonical at `architecture-atlas/news-feed-system.md` |
+| 10 | [`09-week-4-checklist.md`](09-week-4-checklist.md) | Day-by-day checklist |
+| 11 | [`resources.md`](resources.md) | Sources classified by authority |
+| — | [`MANIFEST.md`](MANIFEST.md) | Every file, verification status, real checksums |
 
 ## Daily schedule (20h/week baseline)
 

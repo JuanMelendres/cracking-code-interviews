@@ -28,12 +28,12 @@ No day-by-day checklist this week — this is a single, bounded sprint, not a th
 
 | # | File | Purpose |
 |---|---|---|
-| 1 | `README.md` | This file |
-| 2 | `01-linked-lists-coding-practice.md` | 5 problems (LC 21, 141, 19, 143, 138) — pattern coverage 1/10 → 6/10 |
-| 3 | `02-greedy-coding-practice.md` | 5 problems (LC 45, 134, 621, 763, 402) — pattern coverage 1/10 → 6/10 |
-| 4 | `03-intervals-coding-practice.md` | 4 problems (LC 57, 253, 452, 986) — pattern coverage 1/8 → 5/8 |
-| 5 | `04-bit-manipulation-coding-practice.md` | 5 problems (LC 136, 191, 268, 371, 338) — pattern coverage 0/6 → 5/6 |
-| 6 | `05-graphs-advanced-coding-practice.md` | 5 problems (LC 743, 684, 1584, 994, 787) — pattern coverage 6/22 → 11/22 |
+| 1 | [`README.md`](README.md) | This file |
+| 2 | [`01-linked-lists-coding-practice.md`](01-linked-lists-coding-practice.md) | 5 problems (LC 21, 141, 19, 143, 138) — pattern coverage 1/10 → 6/10 |
+| 3 | [`02-greedy-coding-practice.md`](02-greedy-coding-practice.md) | 5 problems (LC 45, 134, 621, 763, 402) — pattern coverage 1/10 → 6/10 |
+| 4 | [`03-intervals-coding-practice.md`](03-intervals-coding-practice.md) | 4 problems (LC 57, 253, 452, 986) — pattern coverage 1/8 → 5/8 |
+| 5 | [`04-bit-manipulation-coding-practice.md`](04-bit-manipulation-coding-practice.md) | 5 problems (LC 136, 191, 268, 371, 338) — pattern coverage 0/6 → 5/6 |
+| 6 | [`05-graphs-advanced-coding-practice.md`](05-graphs-advanced-coding-practice.md) | 5 problems (LC 743, 684, 1584, 994, 787) — pattern coverage 6/22 → 11/22 |
 
 ## Hands-On Exercises
 
