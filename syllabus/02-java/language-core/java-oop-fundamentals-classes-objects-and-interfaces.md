@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2201
 status: draft
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-17
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - java-syntax-fundamentals-variables-control-flow-and-methods.md
@@ -15,6 +15,7 @@ related:
   - polymorphism-and-dynamic-dispatch.md
   - equals-hashcode-and-comparable-contracts.md
   - immutability-and-defensive-copying.md
+  - lambdas-and-functional-interfaces.md
   - ../../04-software-design/design-patterns-applied.md
 practice: ../../../practice/java/oop-fundamentals/classes-and-objects/
 production_scenarios: []
@@ -72,6 +73,8 @@ Now the four ideas usually called "the pillars of OOP" — not as a list to memo
 - **Abstraction** — expose *what* something does without exposing *how*. Problem it solves: "how do I let calling code depend on a stable contract, so the implementation underneath can change freely?"
 - **Inheritance** — let one class reuse and specialize another class's fields and methods. Problem it solves: "how do I avoid rewriting the same fields and methods for every closely related type?"
 - **Polymorphism** — let the same method call run different code depending on the actual object it's called on. Problem it solves: "how do I write one piece of code that works correctly against a whole family of related types, without an `if/else` chain checking which one it is?" This one has its own full chapter — [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) — because the actual JVM mechanism behind it (`invokevirtual`) is deep enough, and differentiating enough at Senior level, to deserve dedicated treatment. This chapter uses polymorphism as a tool in Section 7's examples without re-deriving how it works underneath.
+
+**An anonymous class** lets you write a one-off implementation of an interface or abstract class directly at the place you use it, with no separate named class declared anywhere else in the codebase. `Runnable task = new Runnable() { public void run() { System.out.println("running"); } };` builds a real object — the compiler generates a real, hidden class for it behind the scenes (named something like `Outer$1`) — from a definition written inline and used exactly once, without ever writing `class SomeTask implements Runnable { ... }` as its own top-level file. It works the same way against an abstract class: `new Shape() { double area() { return 0; } }` fills in `Shape`'s one abstract method inline, useful for a genuinely one-off variant you don't want a separate named class for. Reach for an anonymous class any time a full, separately-named class would be unnecessary ceremony for something constructed in exactly one place — in modern Java, a **lambda** (see [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md)) is almost always shorter for the common case of implementing an interface with a single abstract method; that chapter proves, with real compiled bytecode, exactly what an anonymous class costs (a real, extra `.class` file) that a lambda structurally does not.
 
 ## 4. Core Concepts (L2)
 
@@ -215,6 +218,7 @@ Design a small class hierarchy (or composition-based alternative — decide whic
 ## 19. Further Reading
 
 - [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) — the JVM mechanism (`invokevirtual`) behind the polymorphism this chapter uses but does not re-derive.
+- [Lambdas and Functional Interfaces](lambdas-and-functional-interfaces.md) — the deeper contrast this chapter's Section 3 anonymous-class introduction points to: real bytecode proof of the extra `.class` file an anonymous class produces that a lambda doesn't, plus the effectively-final capture rule.
 - [equals(), hashCode(), and Comparable Contracts](equals-hashcode-and-comparable-contracts.md) — the next chapter once class basics are solid; covers the contracts every well-designed class needs to honor.
 - [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md) — composition-over-inheritance, applied at the scale of named, reusable design patterns (Strategy, Decorator, and others build directly on this chapter's Section 4 rule).
 
@@ -226,3 +230,4 @@ Design a small class hierarchy (or composition-based alternative — decide whic
 - [ ] Can identify a class hierarchy that should be composition instead, by spotting a second independent axis of variation.
 - [ ] Can predict the output of the Section 17 reference-sharing debugging exercise correctly, and explain why.
 - [ ] Can connect this chapter's Section 4 decision rule to at least one named design pattern from `syllabus/04-software-design/`.
+- [ ] Can write a simple anonymous class implementing a one-method interface, and explain when a lambda would replace it.

@@ -18,6 +18,7 @@ topic_id: T-108
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
+  - java-oop-fundamentals-classes-objects-and-interfaces.md
   - streams-and-collectors.md
   - generics-erasure-and-pecs.md
   - reflection-and-dynamic-proxies.md
