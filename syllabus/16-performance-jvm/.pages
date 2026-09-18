@@ -4,3 +4,4 @@ nav:
   - profiling-jfr-and-flame-graphs.md
   - benchmarking-and-jmh-pitfalls.md
   - capacity-planning-and-headroom.md
+  - jvm-startup-performance-cds-and-native-image.md

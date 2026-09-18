@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: testing
 topic_id: T-1106
 canonical: ../syllabus/08-testing/performance-and-load-testing-methodology.md
-last_updated: 2026-08-06
+last_updated: 2026-09-18
 ---
 
 # Flashcards: Performance and Load Testing Methodology
@@ -42,6 +42,23 @@ Distinguishes a load test that generates a genuine confidence signal from one th
 
 **Common trap:**
 Designing a load test around total requests-per-second alone, without matching the real traffic's shape.
+
+**Related:**
+[syllabus/08-testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)
+
+## Card: Closed-loop vs. open-loop load generator, real measured gap
+
+**Prompt:**
+A hand-written load-test client uses N worker threads, each waiting for a response before sending its next request. What real problem does this have, verified directly?
+
+**Answer:**
+This is a closed-loop generator — it implicitly throttles its own rate under load, understating tail latency. Verified directly: a real ~2.75x gap at p95 (100ms closed-loop vs. 275ms open-loop, via k6) against the identical server.
+
+**Why it matters:**
+The gap shows up exactly at the percentile most teams use for alerting/SLOs, not just in an extreme tail.
+
+**Common trap:**
+Assuming a hand-rolled concurrent-worker load-test client is an unbiased measurement tool.
 
 **Related:**
 [syllabus/08-testing/performance-and-load-testing-methodology.md](../syllabus/08-testing/performance-and-load-testing-methodology.md)

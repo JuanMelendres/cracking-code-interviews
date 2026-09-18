@@ -1,0 +1,49 @@
+Machine: arm64, Apple M4
+OpenJDK: openjdk version "21.0.12" 2026-07-21
+GraalVM (used to build main-native): native-image 21.0.12 2026-07-21
+
+=== 1. Plain JVM, java -jar (baseline) (8 runs) ===
+  run 1: 126ms
+  run 2: 140ms
+  run 3: 136ms
+  run 4: 136ms
+  run 5: 136ms
+  run 6: 144ms
+  run 7: 133ms
+  run 8: 143ms
+  average: 136ms
+
+=== 2. JVM + AppCDS (-XX:SharedArchiveFile=app.jsa) (8 runs) ===
+  run 1: 135ms
+  run 2: 141ms
+  run 3: 141ms
+  run 4: 144ms
+  run 5: 139ms
+  run 6: 149ms
+  run 7: 143ms
+  run 8: 136ms
+  average: 141ms
+
+=== 3. GraalVM native-image binary (8 runs) ===
+  run 1: 13ms
+  run 2: 11ms
+  run 3: 9ms
+  run 4: 9ms
+  run 5: 9ms
+  run 6: 8ms
+  run 7: 9ms
+  run 8: 8ms
+  average: 9ms
+
+=== Peak RSS -- Plain JVM ===
+        0.56 real         0.10 user         0.01 sys
+            52559872  maximum resident set size
+
+=== Peak RSS -- GraalVM native-image ===
+        0.06 real         0.00 user         0.00 sys
+            16482304  maximum resident set size
+
+=== Binary/artifact sizes ===
+app.jsa 1835008 bytes
+main-native 17611240 bytes
+main.jar 1681 bytes
