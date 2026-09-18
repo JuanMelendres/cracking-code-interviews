@@ -3848,7 +3848,7 @@
     
   
   
-    <span class="md-status md-status--2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 4th and 5th chapters added 2026-09-09 (GraphQL API Design T-917, gRPC API Design T-918) closing the gap where T-803's title promised both protocols but neither was ever written; 6th chapter added 2026-09-16 (API Versioning Strategies, T-919) closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning) — real Spring MVC demo with two genuinely unplanned findings about missing-version-signal behavior"></span>
+    <span class="md-status md-status--2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 4th and 5th chapters added 2026-09-09 (GraphQL API Design T-917, gRPC API Design T-918) closing the gap where T-803's title promised both protocols but neither was ever written; 6th chapter added 2026-09-16 (API Versioning Strategies, T-919) closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning) — real Spring MVC demo with two genuinely unplanned findings about missing-version-signal behavior; 7th and 8th chapters added 2026-09-18 (OpenAPI and Contract-First API Design T-2414, Webhook Design and Delivery Guarantees T-2415) closing a gap audit that found zero coverage of either topic anywhere in the domain, plus HATEOAS/Richardson Maturity Model, RFC 9457 Problem Details, filtering/sorting, and bulk operations closed in-place in api-design.md (T-803)"></span>
   
 
   
@@ -4400,6 +4400,76 @@
     
   
     gRPC API Design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openapi-and-contract-first-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI and Contract-First API Design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webhook-design-and-delivery-guarantees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webhook Design and Delivery Guarantees
   
 
     
@@ -11471,12 +11541,13 @@
 
 
 
-  <p class="cci-reading-time">~30 min read</p>
+  <p class="cci-reading-time">~38 min read</p>
 
 <h1 id="api-design">API Design<a class="headerlink" href="#api-design" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>Topic register:</strong> T-803 · IWI 7.90 (#15 tied of 198) · Advanced tier · Very High interview frequency [H]
-<strong>Provenance:</strong> the pagination comparison in this chapter is real, executed PostgreSQL 16 output against a 2-million-row table. Reproducible source: <a href="../../../practice/sql/week-04/pagination-lab.sql"><code>practice/sql/week-04/pagination-lab.sql</code></a>.</p>
+<strong>Provenance:</strong> the pagination comparison in this chapter is real, executed PostgreSQL 16 output against a 2-million-row table. Reproducible source: <a href="../../../practice/sql/week-04/pagination-lab.sql"><code>practice/sql/week-04/pagination-lab.sql</code></a>.
+<strong>Gap-audit addition (2026-09-18):</strong> HATEOAS/Richardson Maturity Model, RFC 9457 Problem Details, filtering/sorting query parameters, and bulk operations had zero or link-only coverage in this chapter. Closed with real, executed Spring MVC evidence — <a href="../../practice/java/api-design/"><code>practice/java/api-design/</code></a>.</p>
 </blockquote>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ol>
@@ -11515,6 +11586,9 @@
 <li>Design a resource-naming and standard-methods scheme that lets client code generalize across endpoints.</li>
 <li>Design a consistent error envelope and explain why the status code matters for idempotency reasoning specifically.</li>
 <li>State precisely what makes an API idempotent and connect it to safe client retry behavior.</li>
+<li>Explain HATEOAS and place a given API on the Richardson Maturity Model, with real evidence of state-dependent links.</li>
+<li>Return a real RFC 9457 Problem Details response instead of an ad hoc error shape.</li>
+<li>Design filtering, sorting, and bulk-operation endpoints that a client can use predictably.</li>
 </ul>
 <h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
 <p>API design decisions, once shipped, are among the most expensive to change in a system — a pagination scheme, a resource shape, or an error format is depended upon by every client the moment it's public. This topic is Very-High-frequency because it appears in nearly every design round's API phase, and because the pagination question specifically has a clean, measurable right answer that separates candidates who've hit this at scale from those who haven't.</p>
@@ -11573,6 +11647,14 @@
 <p>Resource naming convention: plural nouns for collections (<code>/orders</code>, not <code>/order</code> or <code>/getOrders</code>), nesting reflecting genuine ownership (<code>/orders/{id}/lines</code>, not a flat <code>/order-lines?orderId=</code>), and no verbs in the path — the HTTP method <em>is</em> the verb.</p>
 <h3 id="error-design">Error design<a class="headerlink" href="#error-design" title="Permanent link">&para;</a></h3>
 <p>A consistent error envelope — status code, machine-readable error code, human-readable message, and (where applicable) which field caused a validation failure — lets client code handle errors programmatically rather than string-matching a message. The specific status code matters for idempotency reasoning too: a <code>409 Conflict</code> on a duplicate <code>POST</code> (with idempotency key) tells the client definitively "already handled," versus a <code>500</code> which is genuinely ambiguous (see <a href="../../10-distributed-systems/distributed-systems-failure-modes/">Distributed Systems Failure Modes</a>).</p>
+<p>RFC 9457 (Problem Details for HTTP APIs, obsoleting RFC 7807) standardizes exactly this envelope instead of leaving every API to invent its own shape: <code>type</code> (a URI identifying the error kind), <code>title</code>, <code>status</code>, <code>detail</code>, <code>instance</code> (a URI identifying this specific occurrence), plus any custom extension fields an API needs. Spring 6 ships a built-in <code>org.springframework.http.ProblemDetail</code> type implementing this directly — this chapter's lab returns one from a real <code>@ExceptionHandler</code>, and Spring's own <code>ExceptionHandlerExceptionResolver</code> automatically sets the response's content type to the real <code>application/problem+json</code> media type, verified directly rather than configured by hand.</p>
+<h3 id="hateoas-and-the-richardson-maturity-model">HATEOAS and the Richardson Maturity Model<a class="headerlink" href="#hateoas-and-the-richardson-maturity-model" title="Permanent link">&para;</a></h3>
+<p><strong>HATEOAS</strong> (Hypermedia as the Engine of Application State) means a response includes the <em>actions currently available</em> on a resource as real links, rather than a client hardcoding "if status is PENDING, I know I can call DELETE on it." This chapter's lab proves it concretely: the identical <code>GET /orders/{id}</code> endpoint returns a <code>cancel</code> and <code>ship</code> link for a <code>PENDING</code> order, and only a <code>return</code> link for a <code>DELIVERED</code> one — the available actions are computed from the resource's real current state, not asserted by the client.</p>
+<p>The <strong>Richardson Maturity Model</strong> ranks REST API designs by how much of HTTP's own design they actually use: <strong>Level 0</strong> is a single URI and a single verb (usually <code>POST</code>) with an <code>action</code> field carrying what should be the method and resource — this chapter's lab includes a real <code>POST /rpc {"action":"getOrder","id":1}</code> endpoint returning byte-for-byte the same data as the proper resource endpoint, to make the contrast concrete rather than abstract. <strong>Level 1</strong> introduces separate resource URIs. <strong>Level 2</strong> uses HTTP verbs and status codes meaningfully (<code>GET</code>/<code>POST</code>/<code>PUT</code>/<code>DELETE</code>, real <code>404</code>s, real <code>409</code>s) — most production REST APIs stop here. <strong>Level 3</strong> adds HATEOAS. Most interview-relevant fact: Level 3 is rare in practice — the operational cost of maintaining accurate, state-dependent links often isn't justified unless clients are meant to be built generically against link relations rather than hardcoded endpoint knowledge.</p>
+<h3 id="filtering-and-sorting-via-query-parameters">Filtering and sorting via query parameters<a class="headerlink" href="#filtering-and-sorting-via-query-parameters" title="Permanent link">&para;</a></h3>
+<p>List endpoints need a predictable, generalizable way to narrow and order results — <code>GET /orders?status=PENDING&amp;sort=amount,desc</code> in this chapter's lab, filtering to a real subset and returning it in a real, verified descending-amount order. The convention worth being consistent about: a single field name per filterable attribute (<code>status=PENDING</code>, not a bespoke query-language string for simple cases), and a <code>sort=field,direction</code> convention (comma-separated, direction defaulting to ascending) rather than one query parameter per possible sort field. Unsupported filter/sort fields should fail with a real, specific <code>400</code>, not silently ignore the parameter — a client that misspells <code>sort=amonut</code> should find out immediately, not get unsorted results with no indication why.</p>
+<h3 id="bulk-operations-and-partial-success">Bulk operations and partial success<a class="headerlink" href="#bulk-operations-and-partial-success" title="Permanent link">&para;</a></h3>
+<p>A bulk endpoint (<code>POST /orders/bulk</code> accepting an array) cannot collapse its outcome into one HTTP status code, because some items in the batch can succeed while others fail for reasons specific to that one item. This chapter's lab returns a real <code>207 Multi-Status</code> with a per-item result array — each entry carrying its original index, a success flag, and either a generated ID or an error message — verified directly with a 3-item batch where item 2 fails validation while items 1 and 3 succeed. The design principle: a bulk operation's response shape must let the caller map every outcome back to the specific input item that produced it; a single aggregate status code cannot do that.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>Design pagination for a 500M-row endpoint. Why not <code>OFFSET</code>?</strong></p>
 <p>Real <code>EXPLAIN ANALYZE</code> output, PostgreSQL 16, 2-million-row table:</p>
@@ -11588,6 +11670,18 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
   -&gt; {items: [...], nextCursor: "1000040"}
 </code></pre></div>
 <p><strong>Real trade-off, stated honestly:</strong> for a UI that needs arbitrary page-number jumping (rare in practice for feeds; common for admin back-office tools), a hybrid is often used: keyset for the common "next page" case, with an approximate, separately-computed count/estimate for a jump-to-page control that doesn't need to be exact.</p>
+<p><strong>HATEOAS, RFC 9457, filtering/sorting, and bulk operations — real Spring MVC evidence</strong> (<code>practice/java/api-design/</code>):</p>
+<div class="highlight"><pre><span></span><code>PENDING order _links: {"id":1,"status":"PENDING","amount":50.0,"_links":{"self":{"href":"/orders/1","method":"GET"},"cancel":{"href":"/orders/1","method":"DELETE"},"ship":{"href":"/orders/1/ship","method":"POST"}}}
+DELIVERED order _links: {"id":2,"status":"DELIVERED","amount":120.0,"_links":{"self":{"href":"/orders/2","method":"GET"},"return":{"href":"/orders/2/return","method":"POST"}}}
+
+RFC 9457 Problem Details body: {"type":"https://api.example.com/errors/order-not-found","title":"Order Not Found","status":404,"detail":"order 999 not found","instance":"/orders/999","errorCode":"ORDER_NOT_FOUND"}
+
+Filtered (status=PENDING): [order id=1, order id=3]   -- id=2 (DELIVERED) correctly excluded
+Sorted (sort=amount,desc): [id=4 amount=200.0, id=2 amount=120.0, ..., id=100 amount=10.0]
+
+Bulk create (2 valid, 1 invalid) -&gt; real HTTP 207: [{"index":0,"success":true,"id":100,...},{"index":1,"success":false,"error":"amount must be positive"},{"index":2,"success":true,"id":101,...}]
+</code></pre></div>
+<p>Full real transcript and 6/6 passing tests: <a href="../../practice/java/api-design/"><code>practice/java/api-design/README.md</code></a>.</p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
     Req[Client requests next page] --&gt; Method{Pagination strategy}
@@ -11638,6 +11732,21 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
 <td>Efficient for small changes</td>
 <td>Idempotency and merge semantics must be defined explicitly, or aren't guaranteed</td>
 </tr>
+<tr>
+<td>HATEOAS (Level 3)</td>
+<td>Clients discover valid actions from the response instead of hardcoding state rules</td>
+<td>Real operational cost maintaining accurate, state-dependent links; most production APIs stop at Level 2</td>
+</tr>
+<tr>
+<td>RFC 9457 Problem Details</td>
+<td>Standardized, tooling-friendly error shape instead of a bespoke one</td>
+<td>Requires adopting <code>application/problem+json</code> and the <code>type</code>/<code>instance</code> URI conventions consistently</td>
+</tr>
+<tr>
+<td>Bulk endpoint with per-item results</td>
+<td>One round trip for many operations, precise per-item outcome</td>
+<td>Response shape is more complex than a single status code; caller must handle partial success</td>
+</tr>
 </tbody>
 </table>
 <h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
@@ -11645,7 +11754,10 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
 <li><strong>Will this endpoint ever be queried at meaningful depth</strong> (thousands of rows deep or more)? If yes, default to keyset pagination.</li>
 <li><strong>Does the UI genuinely need arbitrary page-number jumping</strong>, or only "next page" navigation? If only the latter, keyset alone is sufficient; if the former is a real requirement, use the hybrid approach.</li>
 <li><strong>Is this endpoint's operation naturally idempotent</strong> (a <code>GET</code>, <code>PUT</code>, or <code>DELETE</code>)? If it's a <code>POST</code> with a real side effect that shouldn't duplicate, require a client-supplied idempotency key.</li>
-<li><strong>Does every endpoint in this API return errors in the same envelope shape</strong>? If not, client code cannot generalize error handling across endpoints.</li>
+<li><strong>Does every endpoint in this API return errors in the same envelope shape</strong>? If not, client code cannot generalize error handling across endpoints. Default to RFC 9457 Problem Details rather than inventing a bespoke shape.</li>
+<li><strong>Are clients meant to be built generically against link relations, rather than hardcoded per-endpoint knowledge?</strong> If yes, HATEOAS (Level 3) is worth its maintenance cost; if clients are always purpose-built against documented endpoints, Level 2 is the realistic, sufficient target.</li>
+<li><strong>Does a list endpoint need narrowing/ordering beyond pagination?</strong> If yes, add explicit <code>status=</code>-style filters and a <code>sort=field,direction</code> convention, failing loudly (<code>400</code>) on unsupported fields rather than ignoring them.</li>
+<li><strong>Will clients ever need to submit many items in one request?</strong> If yes, design the bulk response as a per-item result array from the start, not a single aggregate status code retrofitted later.</li>
 </ol>
 <h2 id="comparisons">Comparisons<a class="headerlink" href="#comparisons" title="Permanent link">&para;</a></h2>
 <table>
@@ -11679,11 +11791,45 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
 </tr>
 </tbody>
 </table>
+<table>
+<thead>
+<tr>
+<th>Richardson Maturity Level</th>
+<th>What it adds</th>
+<th>This chapter's lab evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level 0</td>
+<td>One URI, one verb, an <code>action</code> field carries the real intent</td>
+<td>Real <code>POST /rpc {"action":"getOrder",...}</code> endpoint, contrasted directly</td>
+</tr>
+<tr>
+<td>Level 1</td>
+<td>Separate URIs per resource</td>
+<td><code>/orders/{id}</code> vs. a single <code>/rpc</code> endpoint</td>
+</tr>
+<tr>
+<td>Level 2</td>
+<td>HTTP verbs and status codes used meaningfully</td>
+<td>Real <code>404</code>, <code>201</code>, <code>207</code> throughout this chapter's lab</td>
+</tr>
+<tr>
+<td>Level 3 (HATEOAS)</td>
+<td>Responses include real, state-dependent action links</td>
+<td>Real <code>_links</code> differing between a <code>PENDING</code> and a <code>DELIVERED</code> order</td>
+</tr>
+</tbody>
+</table>
 <h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Choosing <code>OFFSET</code> pagination by default without checking whether the endpoint will ever be queried at depth.</li>
 <li>Inconsistent error response shapes across different endpoints in the same API.</li>
 <li>Verbs in resource paths (<code>/getOrders</code>, <code>/createOrder</code>) instead of letting the HTTP method carry that meaning.</li>
+<li>Inventing a bespoke error envelope instead of RFC 9457 Problem Details, then having to document it from scratch for every consumer.</li>
+<li>Assuming a client can infer available next actions on a resource without either HATEOAS links or separate, hand-maintained documentation.</li>
+<li>Collapsing a bulk operation's outcome into one status code, leaving the caller unable to tell which specific items failed.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11691,14 +11837,18 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
 <li><strong>Building each endpoint's error responses independently</strong>, producing an API where client error-handling code cannot generalize.</li>
 <li><strong>Encoding verbs in the URL path</strong> rather than using the HTTP method to carry that meaning.</li>
 <li><strong>Treating idempotency as equivalent to "read-only"</strong> — a <code>PUT</code> is idempotent and can still be a write.</li>
+<li><strong>Silently ignoring an unsupported filter or sort field</strong> instead of returning a real <code>400</code> — a misspelled query parameter should fail loudly, not produce quietly wrong results.</li>
+<li><strong>Adding HATEOAS links that don't actually reflect current resource state</strong> — links that are always present regardless of state are worse than no links, because they actively mislead a client into attempting an invalid transition.</li>
 </ul>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Default new list endpoints to keyset pagination unless arbitrary page-jump is a genuine, stated requirement.</li>
-<li>Use a single, consistent error envelope shape across every endpoint in an API.</li>
+<li>Use a single, consistent error envelope shape across every endpoint in an API — default to RFC 9457 Problem Details rather than a bespoke format.</li>
 <li>Follow standard resource-naming conventions (plural nouns, no verbs in paths, nesting reflecting real ownership).</li>
 <li>Require an idempotency key for any <code>POST</code> with a real, costly side effect.</li>
 <li>Treat pagination and error-format decisions as expensive-to-change contracts, worth getting right before the first client depends on them.</li>
+<li>Fail loudly (<code>400</code>) on unsupported filter/sort query parameters rather than silently ignoring them.</li>
+<li>Design a bulk endpoint's response as a per-item result array from the start, so partial success is representable.</li>
 </ul>
 <h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
 <h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
@@ -11747,14 +11897,62 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
 <p><strong>Likely follow-ups.</strong> "Is <code>POST</code> ever idempotent?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: conflates idempotent with read-only. 3: correct definition plus retry connection. 5: definition, retry connection, plus the idempotency-key mechanism for <code>POST</code>.</p>
 <p><strong>Related references.</strong> <a href="../../11-system-design/idempotency/">Idempotency at System Edges</a>; <a href="../../10-distributed-systems/distributed-systems-failure-modes/">Distributed Systems Failure Modes</a>.</p>
+<hr />
+<h3 id="question-3-what-is-hateoas-and-where-does-a-typical-production-rest-api-actually-sit-on-the-richardson-maturity-model">Question 3 — What is HATEOAS, and where does a typical production REST API actually sit on the Richardson Maturity Model?<a class="headerlink" href="#question-3-what-is-hateoas-and-where-does-a-typical-production-rest-api-actually-sit-on-the-richardson-maturity-model" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether a candidate can name a concept beyond "REST uses HTTP verbs" and knows most real APIs don't reach the model's top level.</p>
+<p><strong>Expected answer.</strong> HATEOAS means a response includes real, state-dependent links describing the actions currently available on that resource. Most production APIs sit at Level 2 (verbs and status codes used meaningfully) — Level 3 (HATEOAS) is comparatively rare because of its real maintenance cost.</p>
+<p><strong>Minimum acceptable answer.</strong> Defines HATEOAS correctly, even without naming the maturity model levels.</p>
+<p><strong>Strong Senior answer.</strong> Defines HATEOAS, names the maturity model levels, and correctly states most APIs stop at Level 2.</p>
+<p><strong>Staff-level extension.</strong> Frames the Level 2-vs-3 decision around whether clients are meant to be built generically against link relations, versus always purpose-built against documented endpoints.</p>
+<p><strong>Common mistakes.</strong> Confusing HATEOAS with "using HTTP verbs correctly," which is Level 2, not Level 3.</p>
+<p><strong>Likely follow-ups.</strong> "Give a concrete example of a link that would change based on resource state."</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: conflates Level 2 and Level 3. 3: correct definition and levels. 5: correct definition, levels, and the generic-client trade-off.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#comparisons">§ Comparisons</a>.</p>
+<hr />
+<h3 id="question-4-design-the-error-response-for-a-404-why-prefer-rfc-9457-problem-details-over-a-custom-json-shape">Question 4 — Design the error response for a <code>404</code>. Why prefer RFC 9457 Problem Details over a custom JSON shape?<a class="headerlink" href="#question-4-design-the-error-response-for-a-404-why-prefer-rfc-9457-problem-details-over-a-custom-json-shape" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether a candidate defaults to inventing a bespoke format or knows a standardized one exists and why it's preferable.</p>
+<p><strong>Expected answer.</strong> RFC 9457 standardizes <code>type</code>, <code>title</code>, <code>status</code>, <code>detail</code>, <code>instance</code>, plus custom extension fields, served as <code>application/problem+json</code> — client tooling and other teams don't need to learn a bespoke format per API.</p>
+<p><strong>Minimum acceptable answer.</strong> Designs a reasonable custom shape with status code, message, and error code, even without naming RFC 9457.</p>
+<p><strong>Strong Senior answer.</strong> Names RFC 9457 specifically and its standard fields.</p>
+<p><strong>Staff-level extension.</strong> Notes that Spring 6's built-in <code>ProblemDetail</code> type makes this essentially free to adopt, removing "it's more work" as a reason not to.</p>
+<p><strong>Common mistakes.</strong> Treating a custom error shape as equally good as a standardized one, ignoring the tooling/consistency cost across many APIs.</p>
+<p><strong>Likely follow-ups.</strong> "What content type does a real Problem Details response use?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: ad hoc shape with no standard named. 3: names RFC 9457 correctly. 5: names RFC 9457, its fields, and the framework support making adoption low-cost.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
+<hr />
+<h3 id="question-5-a-list-endpoint-needs-to-support-filtering-and-sorting-a-caller-sends-sortamonut-misspelled-what-should-happen">Question 5 — A list endpoint needs to support filtering and sorting. A caller sends <code>sort=amonut</code> (misspelled). What should happen?<a class="headerlink" href="#question-5-a-list-endpoint-needs-to-support-filtering-and-sorting-a-caller-sends-sortamonut-misspelled-what-should-happen" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether a candidate defaults to silent, hard-to-debug behavior or a loud, specific failure for malformed input.</p>
+<p><strong>Expected answer.</strong> A real <code>400</code> naming the unsupported field — silently ignoring it and returning unsorted results with no indication why is a debugging trap for the caller.</p>
+<p><strong>Minimum acceptable answer.</strong> States some validation should happen, even without specifying the status code.</p>
+<p><strong>Strong Senior answer.</strong> Specifies a real <code>400</code> with a message naming the invalid field.</p>
+<p><strong>Staff-level extension.</strong> Connects this to the broader principle from <a href="#anti-patterns">§ Anti-Patterns</a>: any mechanism that resolves ambiguous/invalid input silently defers a real bug to whoever debugs the resulting confusion later.</p>
+<p><strong>Common mistakes.</strong> Silently ignoring the unsupported parameter and returning a 200 with unsorted/unfiltered data.</p>
+<p><strong>Likely follow-ups.</strong> "How would you design the query-parameter convention for filtering by multiple fields at once?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: silent ignore. 3: correct 400 with a named field. 5: correct 400 plus the general "fail loudly on ambiguity" principle.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>.</p>
+<hr />
+<h3 id="question-6-a-client-submits-100-items-to-a-bulk-create-endpoint-item-47-fails-validation-what-should-the-response-look-like">Question 6 — A client submits 100 items to a bulk-create endpoint. Item 47 fails validation. What should the response look like?<a class="headerlink" href="#question-6-a-client-submits-100-items-to-a-bulk-create-endpoint-item-47-fails-validation-what-should-the-response-look-like" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether a candidate understands why bulk operations can't collapse to one status code.</p>
+<p><strong>Expected answer.</strong> A real <code>207 Multi-Status</code> (or an equivalent 200 with a structured body) containing a per-item result array — each entry with its original index, success/failure, and either a result or an error — so the caller can map every outcome back to the specific input item.</p>
+<p><strong>Minimum acceptable answer.</strong> States the response needs per-item detail, even without naming a specific status code.</p>
+<p><strong>Strong Senior answer.</strong> Proposes a per-item result array keyed by index, with a specific status code.</p>
+<p><strong>Staff-level extension.</strong> Discusses whether the 99 valid items should commit independently of the 1 failure (partial success) or whether the whole batch should be all-or-nothing, and that this is a deliberate design decision, not a default.</p>
+<p><strong>Common mistakes.</strong> Returning a single <code>400</code> for the whole batch, losing which 99 items actually succeeded.</p>
+<p><strong>Likely follow-ups.</strong> "Should the successful items in the batch be rolled back if one fails?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: single aggregate status code. 3: correct per-item array design. 5: per-item array plus the partial-success-vs-all-or-nothing trade-off discussion.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>API design choices — pagination, resource naming, error format — are contracts that become expensive to change once clients depend on them. <code>OFFSET</code> pagination has a real, measured, linear-with-depth cost (demonstrated at ~3,000× between shallow and deep pages on identical data); keyset pagination avoids it at the cost of losing arbitrary page-jump capability, a trade-off worth stating explicitly rather than treating as a free upgrade.</p>
+<p>API design choices — pagination, resource naming, error format — are contracts that become expensive to change once clients depend on them. <code>OFFSET</code> pagination has a real, measured, linear-with-depth cost (demonstrated at ~3,000× between shallow and deep pages on identical data); keyset pagination avoids it at the cost of losing arbitrary page-jump capability, a trade-off worth stating explicitly rather than treating as a free upgrade. HATEOAS, RFC 9457 Problem Details, filtering/sorting conventions, and bulk-operation response design round out the contract decisions a production REST API needs beyond pagination and basic error handling — all four verified directly against real Spring MVC dispatch in this chapter's own lab.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>OFFSET</code>'s cost grows linearly with page depth because the database must walk and discard every skipped row — measured at ~3,000× in this chapter.</li>
 <li>Keyset pagination's cost is flat regardless of depth, at the honest cost of losing arbitrary page-jump.</li>
 <li>Idempotency (via <code>PUT</code>'s definition, or a client-supplied key for <code>POST</code>) is what makes retries safe.</li>
 <li>Resource naming and error-format consistency exist to let client code be written once and generalize across endpoints.</li>
+<li>HATEOAS (Richardson Maturity Level 3) means responses carry real, state-dependent action links — verified directly, a <code>PENDING</code> order's links differ from a <code>DELIVERED</code> order's.</li>
+<li>RFC 9457 Problem Details standardizes the error envelope (<code>type</code>/<code>title</code>/<code>status</code>/<code>detail</code>/<code>instance</code>); Spring 6's built-in <code>ProblemDetail</code> makes adopting it essentially free.</li>
+<li>Filtering/sorting query parameters should fail loudly (<code>400</code>) on unsupported fields rather than silently ignoring them.</li>
+<li>A bulk operation's response must be a per-item result array — a single status code can't represent partial success.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -11779,7 +11977,19 @@ GET /feed?limit=20&amp;after=1000020                  -- next page, keyset-based
 </tr>
 <tr>
 <td>Designing error responses</td>
-<td>One consistent envelope: status code, machine-readable code, message, field (if applicable)</td>
+<td>RFC 9457 Problem Details (<code>type</code>/<code>title</code>/<code>status</code>/<code>detail</code>/<code>instance</code>), not a bespoke shape</td>
+</tr>
+<tr>
+<td>Clients need to discover valid next actions from a response</td>
+<td>HATEOAS links (Level 3) — but only if clients are built generically against them</td>
+</tr>
+<tr>
+<td>List endpoint needs narrowing/ordering</td>
+<td>Explicit <code>status=</code>-style filters + <code>sort=field,direction</code>, real <code>400</code> on unsupported fields</td>
+</tr>
+<tr>
+<td>Client submits many items in one request</td>
+<td>Per-item result array (e.g., real <code>207 Multi-Status</code>), not one aggregate status code</td>
 </tr>
 </tbody>
 </table>
@@ -11817,19 +12027,46 @@ The precise distinction that resolves the "is idempotent the same as read-only" 
 Assuming only read-only methods can be idempotent.</p>
 <p><strong>Related:</strong>
 <a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-hateoas-in-one-sentence">Card: HATEOAS in one sentence<a class="headerlink" href="#card-hateoas-in-one-sentence" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+What does HATEOAS mean, in terms of what a response actually contains?</p>
+<p><strong>Answer:</strong>
+A response includes real, state-dependent links describing the actions currently available on that resource — a client discovers what it can do next from the response, rather than hardcoding state-based rules client-side.</p>
+<p><strong>Why it matters:</strong>
+This is what separates Richardson Maturity Level 3 from Level 2 — most production APIs stop at Level 2.</p>
+<p><strong>Common trap:</strong>
+Confusing "uses HTTP verbs correctly" (Level 2) with HATEOAS (Level 3).</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-rfc-9457-problem-details-standard-fields">Card: RFC 9457 Problem Details' standard fields<a class="headerlink" href="#card-rfc-9457-problem-details-standard-fields" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Name the standard fields RFC 9457 Problem Details defines for an error response.</p>
+<p><strong>Answer:</strong>
+<code>type</code> (a URI identifying the error kind), <code>title</code>, <code>status</code>, <code>detail</code>, <code>instance</code> (a URI identifying this specific occurrence) — plus any custom extension fields an API needs.</p>
+<p><strong>Why it matters:</strong>
+Spring 6's built-in <code>ProblemDetail</code> implements this directly, and Spring automatically sets the real <code>application/problem+json</code> content type.</p>
+<p><strong>Common trap:</strong>
+Inventing a bespoke error shape instead of reaching for this standard one.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reproduce the pagination measurement yourself: <a href="../../../practice/sql/week-04/pagination-lab.sql"><code>practice/sql/week-04/pagination-lab.sql</code></a>.</li>
 <li>Design a hybrid pagination scheme for an admin UI that needs both efficient "next page" behavior and an approximate jump-to-page control.</li>
 <li>Take an endpoint in a system you know using <code>OFFSET</code> pagination. Estimate the row count at which its cost would become noticeable, using this chapter's measured growth pattern as a reference.</li>
+<li>Run this chapter's own lab (<code>practice/java/api-design/</code>) and add a <code>SHIPPED</code> order's <code>_links</code> branch a real test doesn't yet cover — verify it exposes only a <code>deliver</code> link.</li>
+<li>Change the bulk-create endpoint to make the whole batch all-or-nothing (any single invalid item rolls back the entire batch) instead of partial success, and write a test proving the new behavior.</li>
 </ol>
 <h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
 <p><strong>Exercise 1.</strong> Expected output matches this chapter's measured numbers: sub-millisecond execution for a shallow <code>OFFSET</code> and for keyset pagination at any depth, and a multi-order-of-magnitude increase for <code>OFFSET</code> at deep pages.</p>
 <p><strong>Exercise 2.</strong> A correct hybrid design: expose keyset-based <code>after</code>/<code>before</code> cursors for next/previous navigation as the primary interaction, and a separate, periodically-refreshed (not real-time-exact) row-count estimate to power a jump-to-page control, explicitly documenting that the jump-to-page count is approximate.</p>
 <p><strong>Exercise 3.</strong> No single expected answer — complete when the candidate has estimated a concrete row-depth threshold (informed by this chapter's measured pattern: noticeable degradation typically becomes visible in the tens-of-thousands-to-low-millions-of-rows-deep range, depending on row width and index characteristics) and connected it to the specific table's current and projected size.</p>
+<p><strong>Exercise 4.</strong> A <code>SHIPPED</code> order (per <code>OrderResource</code>'s existing <code>switch</code>) already exposes only a <code>deliver</code> link — the exercise is complete once a real test asserts <code>deliver</code> is present and <code>cancel</code>/<code>ship</code>/<code>return</code> are all absent for that state.</p>
+<p><strong>Exercise 5.</strong> A correct all-or-nothing redesign validates every item first, and only performs any inserts if every item passes — returning a single <code>400</code> naming every failing index if any item is invalid, rather than the partial-success <code>207</code> this chapter's lab implements. Both designs are valid; the point of the exercise is recognizing it's a deliberate choice, not a default.</p>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://cloud.google.com/apis/design">Google API Design Guide</a> — resource naming, standard methods, error design</li>
+<li><a href="https://martinfowler.com/articles/richardsonMaturityModel.html">Martin Fowler — Richardson Maturity Model</a> — the four levels this chapter's HATEOAS section references</li>
 </ul>
 <h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11855,7 +12092,7 @@ Assuming only read-only methods can be idempotent.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 22:02:53 UTC">September 18, 2026</span>
   </span>
 
     

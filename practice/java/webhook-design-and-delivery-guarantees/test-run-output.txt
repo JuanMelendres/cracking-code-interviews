@@ -1,0 +1,35 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+Flaky receiver -> real attempts: [Attempt[attemptNumber=1, statusCode=503], Attempt[attemptNumber=2, statusCode=503], Attempt[attemptNumber=3, statusCode=200]], real elapsed: 204ms
+Same delivery ID sent twice -> processed exactly once: 1, duplicates skipped: 1
+Tampered payload -> real HTTP status: 401
+Valid signature -> real attempts: [Attempt[attemptNumber=1, statusCode=200]]
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mWebhookDeliveryGuaranteesTest[0m [32m✔[0m
+[36m│     ├─[0m [34mflakyReceiver_realExponentialBackoffRecovers()[0m [32m✔[0m
+[36m│     ├─[0m [34mduplicateDelivery_sameDeliveryId_realIdempotentDedup()[0m [32m✔[0m
+[36m│     ├─[0m [34mtamperedPayload_realSignatureMismatch_rejected()[0m [32m✔[0m
+[36m│     └─[0m [34mvalidSignature_realHmacVerification_accepted()[0m [32m✔[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+
+Test run finished after 346 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         4 tests found           ]
+[         0 tests skipped         ]
+[         4 tests started         ]
+[         0 tests aborted         ]
+[         4 tests successful      ]
+[         0 tests failed          ]
+
+
+WARNING: Delegated to the 'execute' command.
+         This behaviour has been deprecated and will be removed in a future release.
+         Please use the 'execute' command directly.

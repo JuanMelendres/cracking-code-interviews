@@ -940,10 +940,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-hateoas-in-one-sentence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: HATEOAS in one sentence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-rfc-9457-problem-details-standard-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: RFC 9457 Problem Details' standard fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-put-vs-post-idempotency" class="md-nav__link">
     <span class="md-ellipsis">
       
         Card: PUT vs POST idempotency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-why-a-bulk-endpoint-cant-return-one-status-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why a bulk endpoint can't return one status code
       
     </span>
   </a>
@@ -5586,6 +5619,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../openapi-and-contract-first-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: OpenAPI and Contract-First API Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
@@ -7882,6 +7943,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../webhook-design-and-delivery-guarantees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Webhook Design and Delivery Guarantees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
@@ -8258,10 +8347,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-hateoas-in-one-sentence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: HATEOAS in one sentence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-rfc-9457-problem-details-standard-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: RFC 9457 Problem Details' standard fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-put-vs-post-idempotency" class="md-nav__link">
     <span class="md-ellipsis">
       
         Card: PUT vs POST idempotency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-why-a-bulk-endpoint-cant-return-one-status-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why a bulk endpoint can't return one status code
       
     </span>
   </a>
@@ -8362,6 +8484,28 @@ The honest trade-off a Staff-level answer states unprompted.</p>
 Presenting keyset pagination as a strict, cost-free upgrade.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/07-api-design/api-design/#core-concepts">Core Concepts</a></p>
+<h2 id="card-hateoas-in-one-sentence">Card: HATEOAS in one sentence<a class="headerlink" href="#card-hateoas-in-one-sentence" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What does HATEOAS mean, in terms of what a response actually contains?</p>
+<p><strong>Answer:</strong>
+A response includes real, state-dependent links describing the actions currently available on that resource — a client discovers what it can do next from the response, rather than hardcoding state-based rules client-side.</p>
+<p><strong>Why it matters:</strong>
+This is what separates Richardson Maturity Level 3 from Level 2 — most production APIs stop at Level 2.</p>
+<p><strong>Common trap:</strong>
+Confusing "uses HTTP verbs correctly" (Level 2) with HATEOAS (Level 3).</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/07-api-design/api-design/#core-concepts">Core Concepts</a></p>
+<h2 id="card-rfc-9457-problem-details-standard-fields">Card: RFC 9457 Problem Details' standard fields<a class="headerlink" href="#card-rfc-9457-problem-details-standard-fields" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Name the standard fields RFC 9457 Problem Details defines for an error response.</p>
+<p><strong>Answer:</strong>
+<code>type</code> (a URI identifying the error kind), <code>title</code>, <code>status</code>, <code>detail</code>, <code>instance</code> (a URI identifying this specific occurrence) — plus any custom extension fields an API needs.</p>
+<p><strong>Why it matters:</strong>
+Spring 6's built-in <code>ProblemDetail</code> implements this directly, served as real <code>application/problem+json</code>.</p>
+<p><strong>Common trap:</strong>
+Inventing a bespoke error shape instead of reaching for this standard one.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/07-api-design/api-design/#core-concepts">Core Concepts</a></p>
 <h2 id="card-put-vs-post-idempotency">Card: PUT vs POST idempotency<a class="headerlink" href="#card-put-vs-post-idempotency" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Is <code>PUT</code> idempotent? Is <code>POST</code>?</p>
@@ -8371,6 +8515,17 @@ Is <code>PUT</code> idempotent? Is <code>POST</code>?</p>
 The precise distinction that resolves the "is idempotent the same as read-only" confusion.</p>
 <p><strong>Common trap:</strong>
 Assuming only read-only methods can be idempotent.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/07-api-design/api-design/#core-concepts">Core Concepts</a></p>
+<h2 id="card-why-a-bulk-endpoint-cant-return-one-status-code">Card: Why a bulk endpoint can't return one status code<a class="headerlink" href="#card-why-a-bulk-endpoint-cant-return-one-status-code" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+A client submits 100 items to a bulk-create endpoint and item 47 fails validation. Why can't the response be a single HTTP status code?</p>
+<p><strong>Answer:</strong>
+Because some items can succeed while others fail for item-specific reasons — the response needs a per-item result array (index, success/failure, result or error) so the caller can map every outcome back to its specific input item.</p>
+<p><strong>Why it matters:</strong>
+A single aggregate status code loses which specific items succeeded and which failed.</p>
+<p><strong>Common trap:</strong>
+Returning one <code>400</code> for the whole batch, losing the 99 items that actually succeeded.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/07-api-design/api-design/#core-concepts">Core Concepts</a></p>
 
@@ -8393,7 +8548,7 @@ Assuming only read-only methods can be idempotent.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 3, 2026 21:52:07 UTC">September 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 22:01:27 UTC">September 18, 2026</span>
   </span>
 
     

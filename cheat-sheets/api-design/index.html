@@ -5588,6 +5588,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../openapi-and-contract-first-api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: OpenAPI and Contract-First API Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
@@ -7884,6 +7912,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../webhook-design-and-delivery-guarantees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: Webhook Design and Delivery Guarantees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
@@ -8459,6 +8515,9 @@
 <li><strong>Resource naming</strong> — plural nouns for collections (<code>/orders</code>, not <code>/order</code>/<code>/getOrders</code>), nesting reflects genuine ownership, no verbs in the path — the HTTP method is the verb.</li>
 <li><strong>Error envelope</strong> — status code, machine-readable error code, human-readable message, and (where applicable) which field caused a validation failure.</li>
 <li><strong>Idempotency</strong> — an operation is idempotent if it produces the same end state no matter how many times it's applied; this is what makes client retries safe.</li>
+<li><strong>HATEOAS</strong> — a response includes real, state-dependent links describing currently-available actions on a resource, rather than a client hardcoding state-based rules.</li>
+<li><strong>RFC 9457 Problem Details</strong> — a standardized error envelope (<code>type</code>/<code>title</code>/<code>status</code>/<code>detail</code>/<code>instance</code>), served as <code>application/problem+json</code>; Spring 6's <code>ProblemDetail</code> implements it directly.</li>
+<li><strong>Richardson Maturity Model</strong> — Level 0 (one URI/verb, action field), Level 1 (separate URIs), Level 2 (real verbs/status codes — most production APIs stop here), Level 3 (HATEOAS).</li>
 </ul>
 <h2 id="decision-table">Decision Table<a class="headerlink" href="#decision-table" title="Permanent link">&para;</a></h2>
 <table>
@@ -8520,7 +8579,19 @@
 </tr>
 <tr>
 <td>Designing error responses</td>
-<td>One consistent envelope across every endpoint</td>
+<td>RFC 9457 Problem Details, not a bespoke envelope</td>
+</tr>
+<tr>
+<td>Clients need to discover valid next actions</td>
+<td>HATEOAS links (Level 3) — only if clients are built generically against them</td>
+</tr>
+<tr>
+<td>List endpoint needs narrowing/ordering</td>
+<td>Explicit <code>status=</code> filters + <code>sort=field,direction</code>; real <code>400</code> on unsupported fields</td>
+</tr>
+<tr>
+<td>Client submits many items in one request</td>
+<td>Per-item result array (real <code>207 Multi-Status</code>), not one aggregate status code</td>
 </tr>
 </tbody>
 </table>
@@ -8537,6 +8608,9 @@
 <li>Inconsistent error response shapes across different endpoints in the same API</li>
 <li>Verbs in resource paths (<code>/getOrders</code>) instead of letting the HTTP method carry that meaning</li>
 <li>Conflating "idempotent" with "read-only" — a <code>PUT</code> is idempotent and can still be a write</li>
+<li>Inventing a bespoke error shape instead of RFC 9457 Problem Details</li>
+<li>Silently ignoring an unsupported filter/sort query parameter instead of returning a real <code>400</code></li>
+<li>Collapsing a bulk operation's outcome into one status code, losing which specific items failed</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> <code>OFFSET</code>'s cost grows linearly with depth because the database walks and discards every skipped row; keyset costs the same at any depth because the index seeks directly. Honest trade-off: keyset can't jump to an arbitrary page, only move from a known cursor.</p>
@@ -8554,6 +8628,8 @@
 <li><a href="../index-structures-btree-composite-covering/">Database Index Structures</a></li>
 <li><a href="../idempotency/">Idempotency at System Edges</a></li>
 <li><code>syllabus/10-distributed-systems/distributed-systems-failure-modes.md</code></li>
+<li><a href="../openapi-and-contract-first-api-design/">OpenAPI and Contract-First API Design</a></li>
+<li><a href="../webhook-design-and-delivery-guarantees/">Webhook Design and Delivery Guarantees</a></li>
 </ul>
 
 
@@ -8575,7 +8651,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 3, 2026 22:28:10 UTC">September 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 22:01:27 UTC">September 18, 2026</span>
   </span>
 
     

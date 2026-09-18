@@ -1,0 +1,59 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms
+DELIVERED order _links: {"id":2,"status":"DELIVERED","amount":120.0,"_links":{"self":{"href":"/orders/2","method":"GET"},"return":{"href":"/orders/2/return","method":"POST"}}}
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+Bulk create (2 valid, 1 invalid) -> real HTTP 207: [{"index":0,"success":true,"id":100,"error":null},{"index":1,"success":false,"id":null,"error":"amount must be positive"},{"index":2,"success":true,"id":101,"error":null}]
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+Filtered (status=PENDING): [{"id":1,"status":"PENDING","amount":50.0,"_links":{"self":{"href":"/orders/1","method":"GET"},"cancel":{"href":"/orders/1","method":"DELETE"},"ship":{"href":"/orders/1/ship","method":"POST"}}},{"id":3,"status":"PENDING","amount":75.0,"_links":{"self":{"href":"/orders/3","method":"GET"},"cancel":{"href":"/orders/3","method":"DELETE"},"ship":{"href":"/orders/3/ship","method":"POST"}}},{"id":100,"status":"PENDING","amount":10.0,"_links":{"self":{"href":"/orders/100","method":"GET"},"cancel":{"href":"/orders/100","method":"DELETE"},"ship":{"href":"/orders/100/ship","method":"POST"}}},{"id":101,"status":"PENDING","amount":25.0,"_links":{"self":{"href":"/orders/101","method":"GET"},"cancel":{"href":"/orders/101","method":"DELETE"},"ship":{"href":"/orders/101/ship","method":"POST"}}}]
+Sorted (sort=amount,desc): [{"id":4,"status":"SHIPPED","amount":200.0,"_links":{"self":{"href":"/orders/4","method":"GET"},"deliver":{"href":"/orders/4/deliver","method":"POST"}}},{"id":2,"status":"DELIVERED","amount":120.0,"_links":{"self":{"href":"/orders/2","method":"GET"},"return":{"href":"/orders/2/return","method":"POST"}}},{"id":3,"status":"PENDING","amount":75.0,"_links":{"self":{"href":"/orders/3","method":"GET"},"cancel":{"href":"/orders/3","method":"DELETE"},"ship":{"href":"/orders/3/ship","method":"POST"}}},{"id":1,"status":"PENDING","amount":50.0,"_links":{"self":{"href":"/orders/1","method":"GET"},"cancel":{"href":"/orders/1","method":"DELETE"},"ship":{"href":"/orders/1/ship","method":"POST"}}},{"id":101,"status":"PENDING","amount":25.0,"_links":{"self":{"href":"/orders/101","method":"GET"},"cancel":{"href":"/orders/101","method":"DELETE"},"ship":{"href":"/orders/101/ship","method":"POST"}}},{"id":100,"status":"PENDING","amount":10.0,"_links":{"self":{"href":"/orders/100","method":"GET"},"cancel":{"href":"/orders/100","method":"DELETE"},"ship":{"href":"/orders/100/ship","method":"POST"}}}]
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+Level-0 RPC (POST /rpc, action field): {"id":1,"status":"PENDING","amount":50.0,"_links":{"self":{"href":"/orders/1","method":"GET"},"cancel":{"href":"/orders/1","method":"DELETE"},"ship":{"href":"/orders/1/ship","method":"POST"}}}
+Resource-oriented (GET /orders/1):     {"id":1,"status":"PENDING","amount":50.0,"_links":{"self":{"href":"/orders/1","method":"GET"},"cancel":{"href":"/orders/1","method":"DELETE"},"ship":{"href":"/orders/1/ship","method":"POST"}}}
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+PENDING order _links: {"id":1,"status":"PENDING","amount":50.0,"_links":{"self":{"href":"/orders/1","method":"GET"},"cancel":{"href":"/orders/1","method":"DELETE"},"ship":{"href":"/orders/1/ship","method":"POST"}}}
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+RFC 9457 Problem Details body: {"type":"https://api.example.com/errors/order-not-found","title":"Order Not Found","status":404,"detail":"order 999 not found","instance":"/orders/999","errorCode":"ORDER_NOT_FOUND"}
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mApiDesignCoreConceptsTest[0m [32m✔[0m
+[36m│     ├─[0m [34mhateoas_deliveredOrderExposesReturnOnly()[0m [32m✔[0m
+[36m│     ├─[0m [34mbulkCreate_partialSuccessPerItem()[0m [32m✔[0m
+[36m│     ├─[0m [34mfilteringAndSorting_realQueryParams()[0m [32m✔[0m
+[36m│     ├─[0m [34mlevel0RpcContrast_sameDataOneUriOneVerb()[0m [32m✔[0m
+[36m│     ├─[0m [34mhateoas_pendingOrderExposesCancelAndShip()[0m [32m✔[0m
+[36m│     └─[0m [34mproblemDetails_notFound_returnsRfc9457Shape()[0m [32m✔[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+
+Test run finished after 213 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         6 tests found           ]
+[         0 tests skipped         ]
+[         6 tests started         ]
+[         0 tests aborted         ]
+[         6 tests successful      ]
+[         0 tests failed          ]
+
+
+WARNING: Delegated to the 'execute' command.
+         This behaviour has been deprecated and will be removed in a future release.
+         Please use the 'execute' command directly.

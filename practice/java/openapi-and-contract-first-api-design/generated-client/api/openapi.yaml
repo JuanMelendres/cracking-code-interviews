@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8099
+paths:
+  /orders:
+    post:
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OrderDto"
+          description: Order created
+      summary: Create a new order
+      tags:
+      - order-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /orders/{id}:
+    get:
+      operationId: getOrder
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OrderDto"
+          description: Order found
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/OrderDto"
+          description: No order with that ID
+      summary: Fetch a single order by ID
+      tags:
+      - order-controller
+      x-accepts:
+      - '*/*'
+components:
+  schemas:
+    CreateOrderRequest:
+      example:
+        customerName: Ada Lovelace
+        amountCents: 1999
+      properties:
+        customerName:
+          description: Customer's full name
+          example: Ada Lovelace
+          minLength: 1
+          type: string
+        amountCents:
+          description: "Order amount, in USD cents"
+          example: 1999
+          format: int64
+          minimum: 1
+          type: integer
+      required:
+      - customerName
+    OrderDto:
+      example:
+        id: 0
+        customerName: customerName
+        amountCents: 6
+      properties:
+        id:
+          format: int64
+          type: integer
+        customerName:
+          type: string
+        amountCents:
+          format: int64
+          type: integer
+
