@@ -1,0 +1,37 @@
+== First run: apply V1 and V2 from a clean database ==
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.FlywayExecutor execute
+INFORMACIÓN: Database: jdbc:postgresql://localhost:5433/flywaylab (PostgreSQL 16.14)
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFORMACIÓN: Schema history table "public"."flyway_schema_history" does not exist yet
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.command.DbValidate validate
+INFORMACIÓN: Successfully validated 2 migrations (execution time 00:00.007s)
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFORMACIÓN: Creating Schema History table "public"."flyway_schema_history" ...
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFORMACIÓN: Current version of schema "public": << Empty Schema >>
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFORMACIÓN: Migrating schema "public" to version "1 - create accounts"
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFORMACIÓN: Migrating schema "public" to version "2 - add email column"
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.command.DbMigrate logSummary
+INFORMACIÓN: Successfully applied 2 migrations to schema "public", now at version v2 (execution time 00:00.008s)
+Real flyway_schema_history table contents:
+  rank=1 version=1 desc=create accounts      checksum=-1706345610 success=true
+  rank=2 version=2 desc=add email column     checksum=86546043 success=true
+
+== Running migrate() AGAIN with no changes: real no-op, nothing re-applied ==
+sept 18, 2026 10:16:29 A. M. org.flywaydb.core.internal.command.DbValidate validate
+INFORMACIÓN: Successfully validated 2 migrations (execution time 00:00.006s)
+sept 18, 2026 10:16:30 A. M. org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFORMACIÓN: Current version of schema "public": 2
+sept 18, 2026 10:16:30 A. M. org.flywaydb.core.internal.command.DbMigrate logSummary
+INFORMACIÓN: Schema "public" is up to date. No migration necessary.
+Migrations executed this run: 0  (expect 0 -- V1/V2 already applied)
+
+== Tampering with V1's file content AFTER it was already applied ==
+Real FlywayException: Validate failed: Migrations have failed validation
+Migration checksum mismatch for migration version 1
+-> Applied to database : -1706345610
+-> Resolved locally    : 1769652059
+Either revert the changes to the migration, or run repair to update the schema history.
+Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE

@@ -8440,6 +8440,8 @@
 <li><strong><code>GROUP BY</code> + aggregate</strong> (<code>COUNT</code>/<code>SUM</code>/<code>AVG</code>/<code>MIN</code>/<code>MAX</code>) — collapses many rows into one value per group.</li>
 <li><strong><code>WHERE</code> vs. <code>HAVING</code></strong> — <code>WHERE</code> filters rows before grouping, can't reference an aggregate; <code>HAVING</code> filters groups after aggregation, can.</li>
 <li><strong><code>UNIQUE</code>/<code>CHECK</code>/<code>DEFAULT</code></strong> — no-duplicates (permits one <code>NULL</code> per row, unlike PK); arbitrary per-row boolean rule; automatic fallback value when a column is omitted.</li>
+<li><strong>ACID</strong> — Atomicity (all-or-nothing per transaction), Consistency (constraints always hold), Isolation (concurrent-transaction visibility, level-dependent), Durability (a commit survives a crash).</li>
+<li><strong>Trigger / stored function</strong> — a function stored inside the database, wired to fire automatically on <code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>; <code>RAISE EXCEPTION</code> inside one aborts the whole statement that fired it.</li>
 </ul>
 <h2 id="join-types">JOIN Types<a class="headerlink" href="#join-types" title="Permanent link">&para;</a></h2>
 <table>
@@ -8556,6 +8558,8 @@
 <li>Writing <code>WHERE COUNT(*) &gt; 5</code> — a real syntax error, not a wrong result; aggregates aren't computed yet when <code>WHERE</code> runs. Use <code>HAVING</code>.</li>
 <li>Forgetting a <code>JOIN</code>'s <code>ON</code> condition — Postgres silently executes it as a <code>CROSS JOIN</code> instead of rejecting it.</li>
 <li><code>AVG()</code> on a <code>NUMERIC(10,2)</code> column returns far more decimal places than the source column's scale — round explicitly for display.</li>
+<li>Running related statements outside an explicit transaction and assuming they're still atomic together — Atomicity only applies inside <code>BEGIN</code>/<code>COMMIT</code>.</li>
+<li>Forgetting a trigger exists when debugging an unexplained data change — a row changing with no obvious application-code cause is a real, common trigger symptom.</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> A primary key uniquely identifies a row and gets an automatic index; a foreign key references another table's primary key and is enforced by the database, not application code. <code>INNER JOIN</code> drops unmatched rows; <code>LEFT JOIN</code> keeps them with <code>NULL</code>s.</p>
@@ -8588,7 +8592,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 15:32:57 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 16:24:30 UTC">September 18, 2026</span>
   </span>
 
     

@@ -7244,6 +7244,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-the-four-acid-guarantees-precisely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The four ACID guarantees, precisely
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-what-a-triggers-raise-exception-actually-aborts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: What a trigger's RAISE EXCEPTION actually aborts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-numeric-vs-realdouble-precision-for-money" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8434,6 +8456,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-the-four-acid-guarantees-precisely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: The four ACID guarantees, precisely
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-what-a-triggers-raise-exception-actually-aborts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: What a trigger's RAISE EXCEPTION actually aborts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-numeric-vs-realdouble-precision-for-money" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8626,6 +8670,28 @@ A real, practical schema-design default, not just terminology — explains <em>w
 Assuming a value that looks permanently unique today (like an email) is safe to use as an unchangeable primary key.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-the-four-acid-guarantees-precisely">Card: The four ACID guarantees, precisely<a class="headerlink" href="#card-the-four-acid-guarantees-precisely" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What does each letter in ACID actually guarantee, concretely?</p>
+<p><strong>Answer:</strong>
+Atomicity: a transaction is all-or-nothing — one failed statement rolls back every statement already run in it. Consistency: no transaction can commit in a state that violates a declared constraint. Isolation: what one transaction can see of another's uncommitted changes, depending on the isolation level. Durability: once committed, data survives a real crash (via the write-ahead log).</p>
+<p><strong>Why it matters:</strong>
+A near-universal Junior/Mid interview question that most candidates can expand the acronym for but can't tie to a concrete consequence.</p>
+<p><strong>Common trap:</strong>
+Reciting the expanded acronym without stating what each guarantee actually prevents.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
+<h2 id="card-what-a-triggers-raise-exception-actually-aborts">Card: What a trigger's RAISE EXCEPTION actually aborts<a class="headerlink" href="#card-what-a-triggers-raise-exception-actually-aborts" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+A <code>BEFORE UPDATE</code> trigger's function raises an exception partway through. What happens to the <code>UPDATE</code> statement that fired it?</p>
+<p><strong>Answer:</strong>
+The entire <code>UPDATE</code> is aborted — not just the trigger's own side effect. Verified directly: a trigger rejecting an invalid new balance leaves the row's real value completely unchanged, and no audit-log row gets written for the rejected attempt either.</p>
+<p><strong>Why it matters:</strong>
+The same all-or-nothing principle as Atomicity, applied to trigger logic specifically — a common point of confusion for candidates who assume a rejected trigger just "skips its own effect."</p>
+<p><strong>Common trap:</strong>
+Assuming a failed trigger only prevents its own side effect while the original statement still succeeds.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/06-databases/sql-and-relational-database-fundamentals/">SQL and Relational Database Fundamentals</a></p>
 <h2 id="card-numeric-vs-realdouble-precision-for-money">Card: NUMERIC vs. REAL/DOUBLE PRECISION for money<a class="headerlink" href="#card-numeric-vs-realdouble-precision-for-money" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Why should a <code>salary</code> or <code>price</code> column use <code>NUMERIC(10,2)</code> instead of <code>REAL</code> or <code>DOUBLE PRECISION</code>?</p>
@@ -8657,7 +8723,7 @@ Picking <code>REAL</code>/<code>DOUBLE PRECISION</code> for money because it "lo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 15:32:57 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 16:24:30 UTC">September 18, 2026</span>
   </span>
 
     
