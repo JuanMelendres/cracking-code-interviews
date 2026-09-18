@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 06-databases
 topic_id: T-2202
 canonical: ../syllabus/06-databases/sql-and-relational-database-fundamentals.md
-last_updated: 2026-09-17
+last_updated: 2026-09-18
 ---
 
 # SQL and Relational Database Fundamentals
@@ -26,6 +26,8 @@ Data lives in tables; relationships between tables are expressed by one table re
 - **`GROUP BY` + aggregate** (`COUNT`/`SUM`/`AVG`/`MIN`/`MAX`) — collapses many rows into one value per group.
 - **`WHERE` vs. `HAVING`** — `WHERE` filters rows before grouping, can't reference an aggregate; `HAVING` filters groups after aggregation, can.
 - **`UNIQUE`/`CHECK`/`DEFAULT`** — no-duplicates (permits one `NULL` per row, unlike PK); arbitrary per-row boolean rule; automatic fallback value when a column is omitted.
+- **ACID** — Atomicity (all-or-nothing per transaction), Consistency (constraints always hold), Isolation (concurrent-transaction visibility, level-dependent), Durability (a commit survives a crash).
+- **Trigger / stored function** — a function stored inside the database, wired to fire automatically on `INSERT`/`UPDATE`/`DELETE`; `RAISE EXCEPTION` inside one aborts the whole statement that fired it.
 
 ## JOIN Types
 
@@ -61,6 +63,8 @@ Data lives in tables; relationships between tables are expressed by one table re
 - Writing `WHERE COUNT(*) > 5` — a real syntax error, not a wrong result; aggregates aren't computed yet when `WHERE` runs. Use `HAVING`.
 - Forgetting a `JOIN`'s `ON` condition — Postgres silently executes it as a `CROSS JOIN` instead of rejecting it.
 - `AVG()` on a `NUMERIC(10,2)` column returns far more decimal places than the source column's scale — round explicitly for display.
+- Running related statements outside an explicit transaction and assuming they're still atomic together — Atomicity only applies inside `BEGIN`/`COMMIT`.
+- Forgetting a trigger exists when debugging an unexplained data change — a row changing with no obvious application-code cause is a real, common trigger symptom.
 
 ## Interview Answer Skeleton
 

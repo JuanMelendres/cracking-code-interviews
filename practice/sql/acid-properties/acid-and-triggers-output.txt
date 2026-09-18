@@ -1,0 +1,122 @@
+=== Part 1: schema, Atomicity, Consistency, Isolation, committed row ===
+=== SETUP: schema ===
+CREATE TABLE
+
+=== SECTION A: Atomicity -- a transaction that fails partway rolls back EVERYTHING ===
+BEGIN
+INSERT 0 1
+INSERT 0 1
+psql:/tmp/part1.sql:16: ERROR:  duplicate key value violates unique constraint "accounts_pkey"
+DETAIL:  Key (id)=(2) already exists.
+Third insert above should show a real duplicate-key error.
+ROLLBACK
+Row count after ROLLBACK (expect 0 -- the two successful inserts were undone too):
+ row_count 
+-----------
+         0
+(1 row)
+
+
+=== SECTION A (continued): the identical transaction, no failure, COMMITs as one unit ===
+BEGIN
+INSERT 0 1
+INSERT 0 1
+COMMIT
+Row count after COMMIT (expect 2):
+ row_count 
+-----------
+         2
+(1 row)
+
+
+=== SECTION B: Consistency -- a CHECK constraint refuses a transaction that would leave an invariant violated ===
+BEGIN
+psql:/tmp/part1.sql:34: ERROR:  new row for relation "accounts" violates check constraint "accounts_balance_check"
+DETAIL:  Failing row contains (1, Alice, -50.00).
+Update above should show a real check-constraint violation (balance >= 0).
+ROLLBACK
+Alice's real balance after ROLLBACK (expect untouched, 100.00):
+ name  | balance 
+-------+---------
+ Alice |  100.00
+(1 row)
+
+
+=== SECTION C: Isolation -- the real DEFAULT isolation level, verified directly ===
+ transaction_isolation 
+-----------------------
+ read committed
+(1 row)
+
+Deep-dive on the anomalies each isolation level does/does not prevent: see isolation-levels-and-concurrency-anomalies.md
+
+=== SECTION D: Durability -- commit a row now, verify it survives a real container restart in Part 2 ===
+BEGIN
+INSERT 0 1
+COMMIT
+Committed row, before restart:
+ id | name | balance 
+----+------+---------
+  3 | Dave |   50.00
+(1 row)
+
+
+=== [real docker restart of the container happens here] ===
+
+=== Part 2: after the real restart ===
+=== SECTION D (continued): after a REAL container restart, is the committed row still here? ===
+ id | name | balance 
+----+------+---------
+  3 | Dave |   50.00
+(1 row)
+
+ total_rows_surviving_restart 
+------------------------------
+                            3
+(1 row)
+
+
+=== Triggers and stored procedures lab (same container/schema, fresh objects) ===
+=== SETUP: a table, a trigger function, and a trigger wired to it ===
+CREATE TABLE
+CREATE TABLE
+CREATE FUNCTION
+CREATE TRIGGER
+
+=== Seed one account, no trigger fires on INSERT (trigger is UPDATE-only) ===
+INSERT 0 1
+ log_rows_after_insert 
+-----------------------
+                     0
+(1 row)
+
+
+=== A real UPDATE: the trigger fires automatically, no application code called it ===
+UPDATE 1
+The trigger inserted a real audit row, and stamped updated_at, with NO explicit INSERT statement written by the caller:
+ log_id | account_id | old_balance | new_balance |          changed_at           
+--------+------------+-------------+-------------+-------------------------------
+      1 |          1 |      100.00 |       80.00 | 2026-09-18 16:16:19.274094+00
+(1 row)
+
+ id | name  | balance | updated_just_now 
+----+-------+---------+------------------
+  1 | Alice |   80.00 | t
+(1 row)
+
+
+=== A real UPDATE the trigger REJECTS: the exception rolls back the whole statement ===
+Balance after the rejected update (expect UNCHANGED at 80.00 -- the trigger's RAISE EXCEPTION aborted the whole UPDATE):
+psql:/tmp/triggers.sql:57: ERROR:  balance cannot go negative: attempted -10.00 on account 1
+CONTEXT:  PL/pgSQL function log_balance_change() line 4 at RAISE
+ id | name  | balance 
+----+-------+---------
+  1 | Alice |   80.00
+(1 row)
+
+Audit log row count (expect still 1 -- the rejected update never got far enough to log anything):
+ log_rows_after_rejected_update 
+--------------------------------
+                              1
+(1 row)
+
