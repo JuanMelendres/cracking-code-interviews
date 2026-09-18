@@ -11590,6 +11590,8 @@
 </tbody>
 </table>
 <p>The scoping consequence worth internalizing precisely: <code>@ComponentScan</code>'s starting point is <em>the package of the class carrying <code>@SpringBootApplication</code></em>, not the project root — which is exactly why this chapter's own default-package incident happened, and exactly why every Spring Boot generator (start.spring.io included) places the application class at the top of a real, project-specific package rather than leaving it unpackaged.</p>
+<h3 id="commandlinerunnerapplicationrunner-the-hook-for-run-this-once-after-everything-else-exists"><code>CommandLineRunner</code>/<code>ApplicationRunner</code>: the hook for "run this once, after everything else exists"<a class="headerlink" href="#commandlinerunnerapplicationrunner-the-hook-for-run-this-once-after-everything-else-exists" title="Permanent link">&para;</a></h3>
+<p>A <code>CommandLineRunner</code> (or <code>ApplicationRunner</code>, identical except it receives parsed <code>ApplicationArguments</code> instead of a raw <code>String[]</code>) bean is the standard way to run one-off startup logic — seeding reference data, warming a cache, validating an external dependency is reachable — that genuinely needs every other bean in the application already built. <code>SpringApplication.run()</code> is specifically what invokes every <code>CommandLineRunner</code>/<code>ApplicationRunner</code> bean, in <code>@Order</code> (or declaration) sequence, after the application context is fully refreshed; a plain <code>AnnotationConfigApplicationContext</code> (no <code>SpringApplication</code> involved) never invokes them at all, since the mechanism lives in <code>SpringApplication</code> itself, not in Spring Framework's core container — verified directly in <a href="#internal-implementation">Internal Implementation</a>, below, where the identical <code>CommandLineRunner</code> bean genuinely never runs under a raw context and genuinely does run under <code>SpringApplication.run()</code>.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>A complete embedded Spring Boot application, measured — no external server, started by <code>java -cp</code>:</strong></p>
 <div class="highlight"><pre><span></span><code>== Starting a Spring Boot application -- no external Tomcat, no WAR, no app-server deployment ==
@@ -11630,6 +11632,17 @@ Context closed. The embedded server, and the process serving it, no longer exist
 </code></pre></div>
 <p>For this specific application (web classpath only, no JDBC/Kafka/Mongo dependencies added), Spring Boot's real report shows <strong>77 positive matches and 168 negative matches</strong> — every one of those 245 evaluated auto-configuration classes reasoned about, individually, against this application's actual classpath, with the exact reason logged. <code>DispatcherServletAutoConfiguration</code> matched because <code>spring-webmvc</code> is on the classpath; <code>DataSourceAutoConfiguration</code>, <code>KafkaAutoConfiguration</code>, and <code>MongoAutoConfiguration</code> all explicitly did <em>not</em> match, each for a stated, specific missing class — not because they were disabled, but because their own conditions genuinely evaluated false.</p>
 <p><strong>A real, caught pitfall this demo's own construction hit</strong> — running the identical application from the JVM's <em>default package</em> (no <code>package</code> declaration) produced a genuine startup crash, <code>NoClassDefFoundError: io/r2dbc/spi/ValidationDepth</code>, because <code>@ComponentScan</code> (which <code>@SpringBootApplication</code> implies) scans starting from its own class's package — and the default package means scanning the <em>entire</em> classpath, including <code>spring-boot-autoconfigure.jar</code>'s own internal classes, one of which references an optional class (R2DBC's SPI) genuinely absent from this demo's dependencies. Placing the application class in a real package (this demo uses <code>demo</code>) scopes the component scan correctly and the failure disappears — a real, well-known Spring Boot gotcha, not a hypothetical one.</p>
+<p><strong>Real proof that <code>CommandLineRunner</code> needs <code>SpringApplication</code>, not just a container</strong> (<a href="../../../practice/java/spring/configuration-properties-and-di-internals/src/SchedulingAndRunnersDemo.java"><code>SchedulingAndRunnersDemo.java</code></a>):</p>
+<div class="highlight"><pre><span></span><code>== CommandLineRunner under a PLAIN AnnotationConfigApplicationContext: never invoked ==
+Context fully refreshed. Has the CommandLineRunner bean executed? false  (the bean EXISTS, but nothing ever calls .run() on it -- that mechanism lives in SpringApplication, not the core container)
+
+== The IDENTICAL bean, under SpringApplication.run(): actually invoked ==
+[...Spring Boot startup banner...]
+Started SchedulingAndRunnersDemo in 0.088 seconds (process running for 0.86)
+CommandLineRunner executing -- every other bean already exists at this point.
+SpringApplication.run() has returned. Has the runner executed? true
+</code></pre></div>
+<p>The identical <code>CommandLineRunner</code> bean, same class, same annotation — genuinely never runs when the context is built by plain <code>AnnotationConfigApplicationContext</code>, and genuinely does run when <code>SpringApplication.run()</code> builds the identical context. A precise, real, observed detail worth knowing exactly: the "Started ... in N seconds" banner logs <em>before</em> the runner executes, not after — the runner is one of the last things <code>SpringApplication.run()</code> does before returning, not the first.</p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
     CP[Classpath after adding&lt;br/&gt;spring-boot-starter-web] --&gt; Cond{"Auto-configuration class's&lt;br/&gt;@Conditional checks"}
@@ -11769,6 +11782,7 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <li>Assuming a starter dependency directly configures something, rather than changing the classpath that auto-configuration's conditions react to.</li>
 <li>Assuming disabling an unwanted auto-configuration requires an explicit exclusion, when defining your own competing bean is usually sufficient (<code>@ConditionalOnMissingBean</code>).</li>
 <li>Placing a <code>@SpringBootApplication</code> class in the default package — a real, not hypothetical, source of a confusing startup crash from over-broad component scanning.</li>
+<li>Assuming a <code>CommandLineRunner</code> bean will run under any <code>ApplicationContext</code> — it only runs because <code>SpringApplication.run()</code> specifically looks it up and invokes it; a plain <code>AnnotationConfigApplicationContext</code> builds the identical bean and never calls it.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11840,6 +11854,17 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <p><strong>Likely follow-ups.</strong> "What would break if you replaced <code>@SpringBootApplication</code> with plain <code>@Configuration</code> on your entry-point class?" (Auto-configuration and component scanning would both stop happening — no starters would activate anything, and no <code>@Component</code>/<code>@Service</code>/<code>@RestController</code> classes would ever be discovered.)</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know it's a composed annotation at all. 3: correctly names all three components. 5: correct components plus the component-scan scoping detail and its real-incident connection.</p>
 <p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a> — "<code>@SpringBootApplication</code> is three real annotations composed into one."</p>
+<hr />
+<h3 id="question-4-you-need-to-run-some-one-off-logic-once-every-other-bean-exists-right-before-the-application-starts-serving-traffic-whats-the-standard-way-to-do-that">Question 4 — You need to run some one-off logic once every other bean exists, right before the application starts serving traffic. What's the standard way to do that?<a class="headerlink" href="#question-4-you-need-to-run-some-one-off-logic-once-every-other-bean-exists-right-before-the-application-starts-serving-traffic-whats-the-standard-way-to-do-that" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether the candidate knows <code>CommandLineRunner</code>/<code>ApplicationRunner</code> specifically, and understands it's a <code>SpringApplication</code>-level mechanism, not a core-container feature.</p>
+<p><strong>Expected answer.</strong> Register a <code>CommandLineRunner</code> (or <code>ApplicationRunner</code>) bean — <code>SpringApplication.run()</code> invokes every one of these, in order, after the application context is fully refreshed, before returning control to the caller.</p>
+<p><strong>Minimum acceptable answer.</strong> Names <code>CommandLineRunner</code>, even without stating precisely when it runs or that it needs <code>SpringApplication</code>.</p>
+<p><strong>Strong Senior answer.</strong> States that the mechanism is driven by <code>SpringApplication</code> itself, not the core <code>ApplicationContext</code>.</p>
+<p><strong>Staff-level extension.</strong> Notes the real, precise ordering this chapter measures directly: <code>SpringApplication</code>'s own "Started ... in N seconds" log line prints <em>before</em> the runner executes, not after — worth knowing exactly rather than assuming runners are the very first or very last thing to happen.</p>
+<p><strong>Common mistakes.</strong> Assuming any <code>ApplicationContext</code> invokes <code>CommandLineRunner</code> beans automatically — verified directly that a plain <code>AnnotationConfigApplicationContext</code> does not.</p>
+<p><strong>Likely follow-ups.</strong> "What's the real, observed order between the startup banner log and the runner executing?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know the mechanism. 3: correctly names <code>CommandLineRunner</code> and its <code>SpringApplication</code> dependency. 5: correct answer plus the precise, real ordering detail.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Spring Boot is not a separate framework — it's an opinionated assembler built on Spring Framework's own ordinary mechanisms (<code>@Configuration</code>, <code>@Bean</code>, <code>@Conditional</code>), adding starters (classpath-changing dependency bundles), auto-configuration (conditional beans reacting to that classpath and to what the application has already defined), and an embedded, application-owned server. This chapter measured both central mechanisms directly: a complete web application, embedded server included, served a real HTTP request from a single <code>java -cp</code> command with no external deployment step, and Spring Boot's own real conditions-evaluation report showed exactly which of 245 evaluated auto-configuration classes matched (77) and which didn't (168), each for a specific, logged, classpath-driven reason.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -11850,6 +11875,7 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <li>The embedded server model means the application starts and owns its own server process — <code>java -jar</code>/<code>java -cp</code> is the complete deployment story.</li>
 <li><code>--debug</code> shows Spring Boot's real, specific reasoning for every auto-configuration decision — use it instead of guessing.</li>
 <li><code>@SpringBootApplication</code> = <code>@SpringBootConfiguration</code> (bean-definition source, findable by tooling) + <code>@EnableAutoConfiguration</code> (triggers auto-configuration) + <code>@ComponentScan</code> (scans this class's own package and below) — three separable mechanisms, not one indivisible unit.</li>
+<li><code>CommandLineRunner</code>/<code>ApplicationRunner</code> beans only run because <code>SpringApplication.run()</code> specifically invokes them after the context refreshes — verified directly that a plain <code>AnnotationConfigApplicationContext</code> never does.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -11887,6 +11913,10 @@ Context closed. The embedded server, and the process serving it, no longer exist
 <tr>
 <td>Where does <code>@ComponentScan</code> start scanning from?</td>
 <td>The annotated class's own package — never the default (unpackaged) package</td>
+</tr>
+<tr>
+<td>Run one-off logic after every bean exists, before serving traffic</td>
+<td>A <code>CommandLineRunner</code>/<code>ApplicationRunner</code> bean — requires <code>SpringApplication.run()</code>, not just any <code>ApplicationContext</code></td>
 </tr>
 </tbody>
 </table>
@@ -11985,7 +12015,7 @@ Assuming component scanning always covers the whole project regardless of where 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 15:43:00 UTC">September 18, 2026</span>
   </span>
 
     

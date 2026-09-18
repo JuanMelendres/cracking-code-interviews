@@ -11538,6 +11538,50 @@
 <p>Auto-configuration classes are processed <em>after</em> application-defined configuration. This ordering is what makes <code>@ConditionalOnMissingBean</code> reliable: if the application already defined its own bean of that type, the condition is false and the auto-configured default is silently skipped. This is what lets a developer override exactly one bean without disabling auto-configuration entirely.</p>
 <h3 id="async-transactional-produces-a-correct-transaction-with-an-invisible-failure"><code>@Async</code> + <code>@Transactional</code> produces a correct transaction with an invisible failure<a class="headerlink" href="#async-transactional-produces-a-correct-transaction-with-an-invisible-failure" title="Permanent link">&para;</a></h3>
 <p>Stacking <code>@Async</code> and <code>@Transactional</code> on the same method is a well-known real gotcha — the transaction itself works correctly (it starts on whichever thread the async executor actually runs the method on), but a <code>void @Async</code> method returns to its caller <strong>immediately</strong>, before the transactional work even executes. Any failure — including a correct rollback — happens invisibly on the background thread.</p>
+<h3 id="configurationproxybeanmethods-decides-whether-calling-one-bean-method-from-another-creates-a-duplicate"><code>@Configuration(proxyBeanMethods = ...)</code> decides whether calling one <code>@Bean</code> method from another creates a duplicate<a class="headerlink" href="#configurationproxybeanmethods-decides-whether-calling-one-bean-method-from-another-creates-a-duplicate" title="Permanent link">&para;</a></h3>
+<p>By default, a plain <code>@Configuration</code> class is itself replaced with a real, generated CGLIB subclass at startup — <code>proxyBeanMethods = true</code> is the default. That subclass overrides every <code>@Bean</code> method so that calling one from inside another, as an ordinary Java method call, is intercepted and redirected to the container: the <em>first</em> call actually constructs the bean and registers it as a singleton; every subsequent call (from any other <code>@Bean</code> method on the same class, or a plain Java call from within the class itself) returns that same singleton instead of running the method body again. This is precisely why <code>@Bean Car car() { return new Car(engine()); }</code> and a second <code>@Bean</code> method also calling <code>engine()</code> both end up holding the <em>same</em> <code>Engine</code> instance, verified directly in <a href="#internal-implementation">Internal Implementation</a> with a real instance counter. Setting <code>@Configuration(proxyBeanMethods = false)</code> removes the interception entirely — <code>engine()</code> becomes a completely ordinary method call, and each caller genuinely gets its own separate object, also verified directly. The trade-off: skipping the proxy avoids CGLIB's small startup cost and lets the class be <code>final</code>, but only ever makes sense when no <code>@Bean</code> method in that class calls another <code>@Bean</code> method inter-bean-reference-style — the moment one does, <code>proxyBeanMethods = false</code> silently produces extra, uncoordinated instances instead of a startup error.</p>
+<h3 id="scheduled-runs-on-a-background-thread-entirely-independent-of-any-lifecycle-callback-covered-above"><code>@Scheduled</code> runs on a background thread, entirely independent of any lifecycle callback covered above<a class="headerlink" href="#scheduled-runs-on-a-background-thread-entirely-independent-of-any-lifecycle-callback-covered-above" title="Permanent link">&para;</a></h3>
+<p><code>@EnableScheduling</code> on a <code>@Configuration</code> class activates <code>ScheduledAnnotationBeanPostProcessor</code> — a <code>BeanPostProcessor</code>, the identical extension point <code>@Transactional</code> and <code>@Async</code> use — which scans every bean for <code>@Scheduled</code> methods and registers each one with a <code>TaskScheduler</code> (a dedicated background thread pool, distinct from the request-handling thread pool and from <code>@Async</code>'s own default executor). Once registered, the method runs repeatedly on that scheduler's own thread, on the timing <code>@Scheduled</code>'s attributes specify (<code>fixedRate</code>, <code>fixedDelay</code>, or a cron expression) — completely independent of any request, any caller, or any of the construction-time lifecycle callbacks earlier in this chapter, which only run once, at startup. Verified directly in <a href="#internal-implementation">Internal Implementation</a>: a real counter increments six times in 550ms while the main thread does nothing but sleep, proving the ticks are driven by a genuinely separate thread.</p>
+<h3 id="springs-event-system-decouples-a-publisher-from-every-listener-and-its-default-synchronicity-has-the-same-visibility-trap-as-plain-transactional">Spring's event system decouples a publisher from every listener, and its default synchronicity has the same visibility trap as plain <code>@Transactional</code><a class="headerlink" href="#springs-event-system-decouples-a-publisher-from-every-listener-and-its-default-synchronicity-has-the-same-visibility-trap-as-plain-transactional" title="Permanent link">&para;</a></h3>
+<p><code>ApplicationEventPublisher.publishEvent(event)</code> is Spring's implementation of the Observer pattern: the publishing bean has zero knowledge of who's listening, or how many listeners there are — any number of <code>@EventListener</code>-annotated methods on any bean can react independently. By default, every listener runs <strong>synchronously, on the publisher's own thread</strong>, in registration order — <code>publishEvent(...)</code> does not return until every listener has finished, which means a slow or failing listener directly, visibly affects the publisher's own call. Adding <code>@Async</code> to a specific listener method changes only that listener to run on a separate thread — and reintroduces the exact same visibility gap this chapter's <code>@Async</code>+<code>@Transactional</code> gotcha already covers: the publisher's <code>publishEvent(...)</code> call returns immediately, with no way to observe that async listener's eventual success or failure.</p>
+<p><code>@TransactionalEventListener</code> adds a third axis: instead of firing immediately, the listener is deferred until a specific phase of the <strong>publisher's own transaction</strong> — <code>AFTER_COMMIT</code> (the default, and the most common real use — e.g., "send a confirmation email only if the order actually committed successfully") fires only if the transaction commits; <code>AFTER_ROLLBACK</code> fires only on rollback; <code>BEFORE_COMMIT</code> fires just before commit is attempted. If the publisher isn't inside an active transaction at all when <code>publishEvent(...)</code> is called, a default-configured <code>@TransactionalEventListener</code> never fires at all — a real, common source of "why didn't my listener run" confusion, since nothing raises an error; the event is simply dropped.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">record</span> <span class="nc">OrderPlaced</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="nd">@Service</span>
+<span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ApplicationEventPublisher</span><span class="w"> </span><span class="n">publisher</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// constructor omitted</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// ... save the order ...</span>
+<span class="w">        </span><span class="n">publisher</span><span class="p">.</span><span class="na">publishEvent</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">OrderPlaced</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="na">getId</span><span class="p">()));</span>
+<span class="w">        </span><span class="c1">// publishEvent() returns immediately -- listeners haven't necessarily run yet</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span> <span class="nc">OrderPlacedListeners</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@EventListener</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">logSynchronously</span><span class="p">(</span><span class="n">OrderPlaced</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Runs on OrderService's OWN thread, before placeOrder() returns.</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Async</span>
+<span class="w">    </span><span class="nd">@EventListener</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">notifyWarehouseAsync</span><span class="p">(</span><span class="n">OrderPlaced</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Runs on a separate thread -- placeOrder() does NOT wait for this,</span>
+<span class="w">        </span><span class="c1">// and cannot see whether it succeeded or failed.</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@TransactionalEventListener</span><span class="p">(</span><span class="n">phase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransactionPhase</span><span class="p">.</span><span class="na">AFTER_COMMIT</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendConfirmationEmail</span><span class="p">(</span><span class="n">OrderPlaced</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Only fires if placeOrder()'s transaction actually commits --</span>
+<span class="w">        </span><span class="c1">// never fires if it rolls back, and never fires at all if</span>
+<span class="w">        </span><span class="c1">// publishEvent() was called outside any transaction.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>Real, observed lifecycle output</strong> (<a href="../../../practice/java/week-07/spring-internals/src/BeanLifecycleDemo.java"><code>BeanLifecycleDemo.java</code></a>):</p>
 <div class="highlight"><pre><span></span><code>3. constructor
@@ -11561,6 +11605,24 @@ GRAVE: Unexpected exception occurred invoking async method: ...
 [test observer] row count after the exception: 0 (0 means the transaction correctly rolled back, even though it ran on a different thread)
 </code></pre></div>
 <p><strong>Reading this precisely:</strong> the transaction is entirely correct (row count 0 confirms the rollback). The "unexpected" part is purely about <em>visibility</em>: the caller's method call returned in 12ms with no exception, and the actual failure — including the real rollback — happened invisibly on a background thread, surfaced only in Spring's default uncaught-exception log line. A caller relying on a try/catch around this call to detect failure will never see one.</p>
+<p><strong>Real <code>@Configuration</code> proxy behavior, both settings, measured with a real instance counter</strong> (<a href="../../../practice/java/spring/configuration-properties-and-di-internals/src/ConfigurationProxyDemo.java"><code>ConfigurationProxyDemo.java</code></a>):</p>
+<div class="highlight"><pre><span></span><code>== Default @Configuration (proxyBeanMethods=true): CGLIB-proxied ==
+@Configuration class itself is a real CGLIB proxy: true
+Total real Engine instances actually constructed: 1  (every engine() call, even a plain Java call, returns the SAME singleton)
+car1.engine == car2.engine == the real 'engine' bean? true
+
+== @Configuration(proxyBeanMethods = false): a real, different outcome ==
+Total real Engine instances actually constructed: 3  (engine() is now a PLAIN Java method call each time, no interception at all)
+car1.engine == directEngineBean? false  (car1 holds its OWN Engine, not the container's 'engine' singleton)
+car1.engine == car2.engine? false  (two separate, uncoordinated Engine instances)
+</code></pre></div>
+<p>Two <code>@Bean</code> methods each calling <code>engine()</code> from inside a proxied <code>@Configuration</code> class produce exactly one real <code>Engine</code> — the proxy intercepts the plain Java call. Turning the proxy off with the identical code produces three separate <code>Engine</code> instances, since <code>engine()</code> is now genuinely just an ordinary method call with no container involvement at all.</p>
+<p><strong>Real <code>@Scheduled</code> background execution, measured with the main thread deliberately idle</strong> (<a href="../../../practice/java/spring/configuration-properties-and-di-internals/src/SchedulingAndRunnersDemo.java"><code>SchedulingAndRunnersDemo.java</code></a>):</p>
+<div class="highlight"><pre><span></span><code>== @Scheduled: real, repeated background execution ==
+Immediately after context refresh, ticks so far: 0
+After sleeping 550ms with the main thread idle, ticks = 6  (fixedRate=100ms -- a background scheduler thread, not the main thread, drove this)
+</code></pre></div>
+<p>The main thread does nothing but <code>Thread.sleep(550)</code> — no request, no explicit call to <code>tick()</code> anywhere in the demo. The counter reaching 6 (550ms / 100ms ≈ 5.5, rounding to 6 real executions) is only possible because a genuinely separate scheduler thread is driving it independently.</p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>sequenceDiagram
     participant Container
@@ -11667,6 +11729,10 @@ GRAVE: Unexpected exception occurred invoking async method: ...
 <li>Believing <code>@Transactional</code> "doesn't work" on <code>@Async</code> methods — it works; the surprise is about visibility, not correctness.</li>
 <li>Using <code>@PostConstruct</code> for logic that depends on other beans' own <code>@PostConstruct</code> having already run — initialization order across beans isn't guaranteed by lifecycle phase alone.</li>
 <li>Assuming auto-configuration can't be overridden without disabling it entirely — <code>@ConditionalOnMissingBean</code> exists specifically so a single bean can be overridden.</li>
+<li>Assuming <code>@Configuration(proxyBeanMethods = false)</code> is a safe, purely-cosmetic optimization on any configuration class — it silently produces extra, uncoordinated instances the moment one <code>@Bean</code> method calls another on the same class, measured directly.</li>
+<li>Forgetting <code>@EnableScheduling</code> and being confused when an <code>@Scheduled</code> method silently never runs — the annotation alone does nothing without the <code>BeanPostProcessor</code> that <code>@EnableScheduling</code> activates.</li>
+<li>Calling <code>publishEvent(...)</code> outside any active transaction and expecting a <code>@TransactionalEventListener</code> to fire anyway — by default, it simply never runs, silently, with no error.</li>
+<li>Adding <code>@Async</code> to an <code>@EventListener</code> and assuming the publisher can still observe whether it succeeded — same visibility gap as <code>@Async</code> + <code>@Transactional</code>, just on a listener instead of the original method.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
@@ -11728,6 +11794,39 @@ GRAVE: Unexpected exception occurred invoking async method: ...
 <p><strong>Likely follow-ups.</strong> "What would break if auto-configuration ran BEFORE application config?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: describes the annotation without the ordering guarantee. 3: states the ordering guarantee. 5: correct statement plus the reversed-ordering failure mode.</p>
 <p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>.</p>
+<hr />
+<h3 id="question-3-you-call-one-bean-method-from-another-on-the-same-configuration-class-does-that-create-a-second-bean-instance">Question 3 — You call one <code>@Bean</code> method from another, on the same <code>@Configuration</code> class. Does that create a second bean instance?<a class="headerlink" href="#question-3-you-call-one-bean-method-from-another-on-the-same-configuration-class-does-that-create-a-second-bean-instance" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether the candidate understands <code>@Configuration</code>'s own CGLIB proxying, a mechanism many engineers use daily without knowing it's there.</p>
+<p><strong>Expected answer.</strong> No, not by default — <code>@Configuration</code> classes are themselves CGLIB-proxied (<code>proxyBeanMethods = true</code> is the default), so the call is intercepted and redirected to the container, returning the existing singleton instead of running the method body again.</p>
+<p><strong>Minimum acceptable answer.</strong> States that it returns the same instance, even without naming the CGLIB-proxy mechanism.</p>
+<p><strong>Strong Senior answer.</strong> Names the CGLIB proxy mechanism and states that <code>proxyBeanMethods = false</code> removes it.</p>
+<p><strong>Staff-level extension.</strong> States the real consequence of turning the proxy off on a class where one <code>@Bean</code> method calls another — silently uncoordinated, duplicate instances, not a startup error, measured directly.</p>
+<p><strong>Common mistakes.</strong> Assuming every <code>@Configuration</code> class behaves identically regardless of <code>proxyBeanMethods</code>, or assuming Spring would raise an error if the assumption were wrong.</p>
+<p><strong>Likely follow-ups.</strong> "Why would you ever set <code>proxyBeanMethods = false</code>?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: assumes a second instance is created (or is unsure). 3: correctly states the singleton behavior and the CGLIB mechanism. 5: correct mechanism plus the real, measured consequence of disabling it.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
+<hr />
+<h3 id="question-4-does-scheduled-block-the-thread-thats-running-your-web-requests">Question 4 — Does <code>@Scheduled</code> block the thread that's running your web requests?<a class="headerlink" href="#question-4-does-scheduled-block-the-thread-thats-running-your-web-requests" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether the candidate understands <code>@Scheduled</code> runs on a genuinely separate thread pool, not whatever thread happens to be free.</p>
+<p><strong>Expected answer.</strong> No — <code>@EnableScheduling</code> registers a dedicated <code>TaskScheduler</code> (its own background thread pool), distinct from the request-handling thread pool and from <code>@Async</code>'s default executor; a scheduled method's execution time has no effect on request latency, verified directly by a counter incrementing while the main thread does nothing but sleep.</p>
+<p><strong>Minimum acceptable answer.</strong> States that <code>@Scheduled</code> runs "in the background," even without naming the <code>TaskScheduler</code> mechanism specifically.</p>
+<p><strong>Strong Senior answer.</strong> Names the dedicated scheduler thread pool and distinguishes it from request-handling threads and <code>@Async</code>'s executor.</p>
+<p><strong>Staff-level extension.</strong> Raises the real operational question this implies: a slow or hanging <code>@Scheduled</code> method can starve other scheduled tasks sharing the same default single-threaded scheduler unless a properly-sized <code>TaskScheduler</code> bean is explicitly configured — the same thread-pool-sizing discipline <code>@Async</code>/<code>@Transactional</code> already require, just for a different pool.</p>
+<p><strong>Common mistakes.</strong> Assuming <code>@Scheduled</code> methods somehow run on the request-handling thread pool, or that forgetting <code>@EnableScheduling</code> produces an error rather than silently doing nothing.</p>
+<p><strong>Likely follow-ups.</strong> "What happens if two <code>@Scheduled</code> methods are registered but no explicit <code>TaskScheduler</code> bean exists?" (Spring falls back to a single-threaded default scheduler — one slow task delays every other scheduled task sharing it.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: assumes scheduled methods share the request thread pool. 3: correctly states a separate scheduler thread pool. 5: correct answer plus the default-single-threaded-scheduler operational risk.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
+<hr />
+<h3 id="question-5-you-want-to-send-a-confirmation-email-only-if-an-orders-transaction-actually-commits-successfully-how-would-you-implement-that-with-springs-event-system">Question 5 — You want to send a confirmation email only if an order's transaction actually commits successfully. How would you implement that with Spring's event system?<a class="headerlink" href="#question-5-you-want-to-send-a-confirmation-email-only-if-an-orders-transaction-actually-commits-successfully-how-would-you-implement-that-with-springs-event-system" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether the candidate knows <code>@TransactionalEventListener</code> specifically, rather than reaching for a plain <code>@EventListener</code> and manually checking transaction state.</p>
+<p><strong>Expected answer.</strong> Publish an event (<code>ApplicationEventPublisher.publishEvent(...)</code>) from inside the transactional method, and listen for it with <code>@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)</code> — the listener only fires if the publisher's transaction actually commits, never on rollback, and (the real gotcha) never at all if <code>publishEvent(...)</code> was called outside any active transaction.</p>
+<p><strong>Minimum acceptable answer.</strong> Knows Spring has an event system (<code>@EventListener</code>), even without naming the transactional variant specifically.</p>
+<p><strong>Strong Senior answer.</strong> Names <code>@TransactionalEventListener</code> and its default <code>AFTER_COMMIT</code> phase correctly.</p>
+<p><strong>Staff-level extension.</strong> Names the silent-no-op failure mode explicitly — calling <code>publishEvent(...)</code> outside a transaction produces no error, the listener simply never runs — and connects it to the same broader "silent failure at a boundary condition" pattern this chapter's <code>@Async</code>+<code>@Transactional</code> gotcha and the sibling <code>Comparator</code> chapter's overflow bug both represent.</p>
+<p><strong>Common mistakes.</strong> Assuming a plain <code>@EventListener</code> is transaction-aware by default (it isn't — it's synchronous but has no relationship to any transaction at all).</p>
+<p><strong>Likely follow-ups.</strong> "What happens if you add <code>@Async</code> to that same listener?" (It reintroduces the visibility gap — the publisher can no longer observe the listener's success or failure, the same trap as <code>@Async</code> + <code>@Transactional</code>.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: doesn't know <code>@TransactionalEventListener</code> exists. 3: correctly names it and its default phase. 5: correct answer plus the outside-a-transaction silent-no-op failure mode.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Bean lifecycle callbacks fire in a fixed, observable order — constructor, <code>BeanPostProcessor.before</code>, <code>@PostConstruct</code>, <code>InitializingBean</code>, custom init-method, <code>BeanPostProcessor.after</code>, then the mirror sequence on shutdown. Auto-configuration layers conditional bean creation on top, ordered to run after application configuration specifically so <code>@ConditionalOnMissingBean</code> reliably detects an application override. Stacking <code>@Async</code> and <code>@Transactional</code> produces a correct transaction with an invisible failure path — reproduced with real numbers (12ms return, no exception visible, correct rollback happening silently).</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -11736,6 +11835,9 @@ GRAVE: Unexpected exception occurred invoking async method: ...
 <li><code>@Transactional</code>'s proxy is created via a <code>BeanPostProcessor</code>, before <code>@PostConstruct</code> even runs.</li>
 <li><code>@ConditionalOnMissingBean</code> relies on auto-configuration running after application configuration.</li>
 <li><code>@Async</code> + <code>@Transactional</code>: the transaction is correct; the caller's visibility into failure is the actual gotcha.</li>
+<li><code>@Configuration</code> classes are CGLIB-proxied by default — calling one <code>@Bean</code> method from another returns the container's existing singleton; <code>proxyBeanMethods = false</code> removes that interception and silently produces separate, uncoordinated instances instead.</li>
+<li><code>@Scheduled</code> (with <code>@EnableScheduling</code>) runs on a dedicated scheduler thread pool, entirely independent of request-handling threads and construction-time lifecycle callbacks — verified directly with a counter incrementing while the main thread sleeps.</li>
+<li><code>@EventListener</code> runs synchronously on the publisher's own thread by default; <code>@TransactionalEventListener</code> defers to a transaction phase (commit by default) and never fires at all outside an active transaction.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -11765,6 +11867,34 @@ GRAVE: Unexpected exception occurred invoking async method: ...
 <tr>
 <td>Observe an <code>@Async</code> method's success/failure</td>
 <td>Return <code>CompletableFuture&lt;T&gt;</code>, or configure <code>AsyncUncaughtExceptionHandler</code></td>
+</tr>
+<tr>
+<td>Call one <code>@Bean</code> method from another and get the SAME instance</td>
+<td>Default <code>@Configuration</code> behavior (<code>proxyBeanMethods = true</code>) — do nothing extra</td>
+</tr>
+<tr>
+<td>Call one <code>@Bean</code> method from another and need a NEW instance each time</td>
+<td>Extract the shared logic to a plain (non-<code>@Bean</code>) helper method instead of relying on <code>proxyBeanMethods = false</code></td>
+</tr>
+<tr>
+<td>Run a method repeatedly on a background thread, independent of requests</td>
+<td><code>@Scheduled</code> on the method, <code>@EnableScheduling</code> on a <code>@Configuration</code> class</td>
+</tr>
+<tr>
+<td>An <code>@Scheduled</code> method silently never runs</td>
+<td>Check for a missing <code>@EnableScheduling</code> — the annotation alone does nothing without it</td>
+</tr>
+<tr>
+<td>Decouple a publisher from what happens next, without it knowing who's listening</td>
+<td><code>ApplicationEventPublisher.publishEvent(...)</code> + <code>@EventListener</code></td>
+</tr>
+<tr>
+<td>Run a listener only if the publisher's transaction actually commits</td>
+<td><code>@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)</code></td>
+</tr>
+<tr>
+<td>A <code>@TransactionalEventListener</code> silently never fires</td>
+<td>Check whether <code>publishEvent(...)</code> was actually called inside an active transaction — outside one, it never fires by default</td>
 </tr>
 </tbody>
 </table>
@@ -11841,7 +11971,7 @@ Concluding the transaction itself is broken rather than identifying the visibili
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 15:43:00 UTC">September 18, 2026</span>
   </span>
 
     

@@ -7098,6 +7098,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spring-configurationproperties-typed-validated-config-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring @ConfigurationProperties: Typed, Validated Config Binding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#production-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11244,6 +11255,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#spring-configurationproperties-typed-validated-config-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring @ConfigurationProperties: Typed, Validated Config Binding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#production-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11567,6 +11589,7 @@ clear startup failure for the identical missing config value.</p>
 <li><a href="#diagrams">Diagrams</a></li>
 <li><a href="#java-examples">Java Examples</a></li>
 <li><a href="#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story">Spring Profiles</a></li>
+<li><a href="#spring-configurationproperties-typed-validated-config-binding">Spring @ConfigurationProperties</a></li>
 <li><a href="#production-scenarios">Production Scenarios</a></li>
 <li><a href="#failure-modes-and-debugging">Failure Modes and Debugging</a></li>
 <li><a href="#trade-offs">Trade-offs</a></li>
@@ -11803,6 +11826,32 @@ Real startup failure -- BEFORE the app ever accepts a single request:
 </code></pre></div>
 <p><strong>More than one profile can be active simultaneously</strong> — <code>spring.profiles.active: dev,debug-logging</code> activates both; when two active profiles define the same key differently, the one listed later wins. <strong>Profile groups</strong> (<code>spring.profiles.group.production: db-prod, cache-prod, security-prod</code>, Spring Boot 2.4+) let one umbrella profile name activate several underlying profiles together, avoiding a growing, error-prone <code>--spring.profiles.active=a,b,c,d</code> list at every deployment. For tests specifically, <code>@ActiveProfiles("test")</code> on a test class activates a profile the same way a runtime flag would, commonly paired with an <code>application-test.yml</code> pointing at an in-memory database.</p>
 <p><strong>A real, common mistake this precedence layering explains directly</strong>: a value "not taking effect" in <code>application-prod.yml</code> after a change is deployed is almost always this chapter's own Level 2 diagnostic — check whether an environment variable or command-line argument at a higher-precedence layer is silently overriding it, before assuming the YAML edit itself is wrong.</p>
+<h2 id="spring-configurationproperties-typed-validated-config-binding">Spring @ConfigurationProperties: Typed, Validated Config Binding<a class="headerlink" href="#spring-configurationproperties-typed-validated-config-binding" title="Permanent link">&para;</a></h2>
+<p><code>@Value("${app.max-retries}")</code> injects one property value at a time, as a string-literal key with no compile-time connection to any other related value — there is nothing stopping two different classes from typo-ing the same key differently, and no single place listing everything a feature actually needs configured. <strong><code>@ConfigurationProperties</code></strong> solves this by binding an entire group of related properties, sharing one prefix, into a single typed object in one step — the modern, recommended default over scattered <code>@Value</code> injections for anything beyond a single, genuinely standalone value.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">AppProperties</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxRetries</span><span class="p">,</span><span class="w"> </span><span class="n">Retry</span><span class="w"> </span><span class="n">retry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Retry</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">maxAttempts</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">backoffMs</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableConfigurationProperties</span><span class="p">(</span><span class="n">AppProperties</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">AppConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Relaxed binding</strong> is the real mechanism that makes this work regardless of the source's naming convention: <code>app.max-retries</code> (kebab-case, the idiomatic YAML style), <code>app.maxRetries</code> (camelCase), and <code>APP_MAX_RETRIES</code> (the real environment-variable shape a container/orchestrator injects) all bind to the identical <code>maxRetries</code> field — verified directly in <a href="#internal-implementation">Internal Implementation</a>, below. <strong>Nested prefixes bind into nested objects automatically</strong>: <code>app.retry.max-attempts</code> and <code>app.retry.backoff-ms</code> populate the <code>Retry</code> record's own fields, with zero manual parsing anywhere — the entire related group of settings arrives as one typed, IDE-navigable object.</p>
+<p><strong>A malformed value fails the whole bind, once, at context-startup time</strong> — not scattered across every <code>@Value</code> injection point that happens to reference the bad key, whenever each of those classes first gets constructed. A real <code>BindException</code> names the exact offending property (verified directly below), turning what would otherwise be N separate, individually-timed failures into one clear, immediate one — the same fail-fast principle this chapter's own Core Concepts section already establishes for config validation generally.</p>
+<p><strong>Real, verified relaxed binding and fail-fast validation</strong> (<a href="../../../practice/java/spring/configuration-properties-and-di-internals/src/ConfigurationPropertiesDemo.java"><code>ConfigurationPropertiesDemo.java</code></a>):</p>
+<div class="highlight"><pre><span></span><code>== Relaxed binding: kebab-case keys -&gt; camelCase record fields, nested prefix -&gt; nested record ==
+Bound record: AppProperties[name=order-service, maxRetries=3, retry=Retry[maxAttempts=5, backoffMs=250]]
+props.retry().maxAttempts() = 5  (nested prefix app.retry.* bound into a nested record, no manual parsing)
+
+== Relaxed binding: top-level fields ALSO bind from real environment-variable-shaped keys ==
+Bound record: AppProperties[name=order-service, maxRetries=3, retry=null]
+
+== A malformed value fails the WHOLE bind, at context-startup time ==
+Real bind failure: BindException: Failed to bind properties under 'app.max-retries' to int
+</code></pre></div>
+<p>Every one of the record's three fields bound correctly from ordinary kebab-case keys, including the nested <code>Retry</code> record from <code>app.retry.*</code>. The identical top-level fields also bound correctly from real environment-variable-shaped keys (<code>APP_NAME</code>, <code>APP_MAX_RETRIES</code>) — the exact form a container orchestrator actually injects. A single malformed value (<code>app.max-retries=not-a-number</code>, a <code>String</code> where the record expects an <code>int</code>) failed the entire bind immediately, with one exception naming the specific broken property — not a <code>NumberFormatException</code> surfacing later, deep in whatever business logic first happened to read that value.</p>
+<p><strong>When <code>@Value</code> is still the right, simpler choice</strong>: a single, genuinely standalone property with no siblings it's naturally grouped with — <code>@Value("${feature.new-checkout-flow.enabled}")</code> for one isolated feature flag is reasonable. The moment two or more properties are conceptually a group (a retry policy, a connection pool's settings, a third-party API's credentials-plus-base-URL), bind them together with <code>@ConfigurationProperties</code> instead, so the relationship between them is a real Java type, not just a shared string prefix a reader has to notice by convention.</p>
 <h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
 <p><strong>Scenario: a service deployed successfully to production, passed its
 health check, and then failed on its very first real request because a
@@ -11938,6 +11987,10 @@ over lenient startup.</p>
 <li>Not knowing the real precedence order, and debugging "why isn't my config
   change taking effect" by guessing rather than checking which source
   actually wins.</li>
+<li>Reaching for a separate <code>@Value</code> injection per property in a related
+  group (a retry policy's max attempts and backoff, a client's base URL
+  and API key) instead of binding the whole group with one
+  <code>@ConfigurationProperties</code>-annotated type.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12085,6 +12138,14 @@ reasoning at Staff level (2).</p>
 <p><strong>Staff-level extension.</strong> Names profile groups (<code>spring.profiles.group</code>) as the fix for a growing, error-prone multi-profile activation list at scale, and connects the whole mechanism explicitly back to this chapter's generic precedence story — profiles aren't a separate system, they're Spring Boot's own concrete implementation of it.</p>
 <p><strong>Common mistakes.</strong> Assuming a profile-specific YAML file is a complete, standalone config rather than an override layer on top of the base file.</p>
 <p><strong>Likely follow-ups.</strong> "What happens if two active profiles define the same config key differently?" (The one listed later in <code>spring.profiles.active</code> wins.)</p>
+<h3 id="question-4-when-would-you-use-configurationproperties-instead-of-value">Question 4: When would you use <code>@ConfigurationProperties</code> instead of <code>@Value</code>?<a class="headerlink" href="#question-4-when-would-you-use-configurationproperties-instead-of-value" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether a candidate treats configuration binding as a real design decision rather than reaching for whichever annotation they saw first.</p>
+<p><strong>Expected answer.</strong> <code>@Value</code> is fine for one genuinely standalone property; <code>@ConfigurationProperties</code> is the right tool the moment two or more properties are conceptually a group (a retry policy, a connection pool's settings) — it binds the whole group into one typed object via relaxed binding (kebab-case, camelCase, and <code>ENV_VAR</code> forms all resolve to the same field), including nested prefixes into nested objects, and fails the entire bind with one clear exception if any value is malformed.</p>
+<p><strong>Minimum acceptable answer.</strong> Knows <code>@ConfigurationProperties</code> exists and roughly binds "a group of properties," even without the relaxed-binding or fail-fast detail.</p>
+<p><strong>Strong Senior answer.</strong> States relaxed binding precisely and gives a concrete example of a related property group that should be bound together.</p>
+<p><strong>Staff-level extension.</strong> Connects the fail-fast bind failure to this chapter's own broader fail-fast-validation principle, and notes <code>@ConfigurationProperties</code> classes are directly unit-testable as plain POJOs/records, independent of Spring, unlike scattered <code>@Value</code> fields.</p>
+<p><strong>Common mistakes.</strong> Describing <code>@ConfigurationProperties</code> as just "a fancier <code>@Value</code>" without naming relaxed binding or nested-object support as the actual differentiators.</p>
+<p><strong>Likely follow-ups.</strong> "What happens if one of the bound properties has the wrong type?" (The whole bind fails immediately with a <code>BindException</code> naming the exact property — verified directly in this chapter's own demo.)</p>
 <p><strong>Evaluation criteria.</strong> Correct <code>@Profile</code> mechanism (2), correct <code>spring.profiles.active</code> precedence (2), correct file-layering behavior at Senior level (1).</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The twelve-factor app methodology's config guidance (Factor III) demands
@@ -12115,6 +12176,7 @@ this register topic.</p>
   configuration is complete — the concrete mechanism behind this chapter's
   own production scenario.</li>
 <li>Spring Profiles (<code>@Profile</code>, <code>spring.profiles.active</code>, <code>application-{profile}.yml</code>) are Spring Boot's own concrete implementation of this precedence story, not a separate mechanism.</li>
+<li><code>@ConfigurationProperties</code> binds a whole related group of properties into one typed object via relaxed binding (kebab-case, camelCase, and <code>ENV_VAR</code> styles all bind to the same field) — verified directly, including a nested prefix binding into a nested record and one <code>BindException</code> naming the exact offending key when a value is malformed.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12126,6 +12188,8 @@ this register topic.</p>
   reporting healthy.</li>
 <li><strong>Health check ≠ config-complete</strong> — a passing health check only proves
   the process runs.</li>
+<li><strong><code>@Value</code> vs. <code>@ConfigurationProperties</code></strong>: one standalone value vs. a
+  whole related group bound into one typed object via relaxed binding.</li>
 <li><strong>Secrets are not plain config</strong> — see the dedicated secrets-management
   chapter.</li>
 <li><strong>Spring Profiles</strong>: <code>@Profile("name")</code> on a bean restricts it to that profile; <code>spring.profiles.active</code> (file &lt; env var &lt; JVM property &lt; CLI arg — this chapter's own precedence order) picks which profile(s) are active; <code>application-{profile}.yml</code> layers on top of the base <code>application.yml</code>, overriding only the keys it defines.</li>
@@ -12193,6 +12257,17 @@ A common, real confusion — assuming the profile file is a complete, standalone
 Duplicating every key into every profile-specific file "to be safe," instead of relying on the override-only-what-differs layering.</p>
 <p><strong>Related:</strong>
 [[twelve-factor-config]]</p>
+<h3 id="card-relaxed-binding-precisely">Card: Relaxed binding, precisely<a class="headerlink" href="#card-relaxed-binding-precisely" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Do <code>app.max-retries</code>, <code>app.maxRetries</code>, and <code>APP_MAX_RETRIES</code> all bind to the same <code>@ConfigurationProperties</code> field?</p>
+<p><strong>Answer:</strong>
+Yes — verified directly. Spring's relaxed binding treats kebab-case, camelCase, and the real environment-variable-shaped form as the identical property, regardless of which one the actual source uses.</p>
+<p><strong>Why it matters:</strong>
+Explains why a <code>@ConfigurationProperties</code> class works unchanged whether config comes from a YAML file, <code>.properties</code> file, or container-injected environment variables.</p>
+<p><strong>Common trap:</strong>
+Assuming a class only binds correctly if the source's exact casing matches the field name.</p>
+<p><strong>Related:</strong>
+[[twelve-factor-config]]</p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Extend <code>AppConfig</code> with a fifth, even-higher-precedence layer: a
@@ -12207,6 +12282,10 @@ Duplicating every key into every profile-specific file "to be safe," instead of 
    pattern from <code>practice/java/system-design/load-balancing-and-health-checking/</code>)
    so the server genuinely refuses to start — not just print an error — when
    required config is missing.</li>
+<li>Add a third nested record to <code>ConfigurationPropertiesDemo</code>'s
+   <code>AppProperties</code> (e.g., a <code>Cors</code> record with an <code>allowedOrigins</code> list),
+   bind it from a real properties map, and confirm relaxed binding handles
+   the new nested prefix identically to the existing <code>Retry</code> record.</li>
 </ol>
 <h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
 <p>Exercise 1 is a direct extension of <code>AppConfig</code>'s existing layered-<code>set</code>
@@ -12218,7 +12297,11 @@ check in <code>validateRequiredConfig</code>; left as self-directed practice. Ex
 3 is a genuinely open integration exercise connecting this chapter's config
 validation to a real server lifecycle; left as self-directed practice since
 it requires combining two existing, separately-proven mechanisms from
-different packs.</p>
+different packs. Exercise 4 mirrors the existing <code>Retry</code> record exactly —
+add the new record, a new <code>@ConfigurationProperties</code>-annotated field for
+it, and matching keys under a new nested prefix; left as self-directed
+practice since the existing <code>Retry</code> record already demonstrates the exact
+pattern to copy.</p>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The original Twelve-Factor App methodology (see
@@ -12258,7 +12341,7 @@ different packs.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 21:45:58 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 15:44:34 UTC">September 18, 2026</span>
   </span>
 
     
