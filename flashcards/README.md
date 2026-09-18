@@ -199,6 +199,8 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 166 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | 3 | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
 | 167 | [Coding Interview Pattern-Recognition Methodology](coding-interview-pattern-recognition-methodology.md) | T-2120 | 4 | `syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` |
 | 168 | [Comparator: Composition and Pitfalls](comparator-composition-and-pitfalls.md) | T-2413 | 4 | `syllabus/02-java/language-core/comparator-composition-and-pitfalls.md` |
+| 169 | [OpenAPI and Contract-First API Design](openapi-and-contract-first-api-design.md) | T-2414 | 3 | `syllabus/07-api-design/openapi-and-contract-first-api-design.md` |
+| 170 | [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md) | T-2415 | 3 | `syllabus/07-api-design/webhook-design-and-delivery-guarantees.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -352,6 +354,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-16 — API Versioning Strategies (T-919) gains a flashcard deck.** New `07-api-design` chapter closing the last of T-803's four originally-promised topics. 3 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 255 decks (254 prior + 1), 882 cards (879 prior + 3).**
 
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a flashcard deck.** New `05-spring` chapter, part of a larger user TODO list. 3 cards extracted from the chapter's own inline `## Flashcards` section. **New total: 256 decks (255 prior + 1), 885 cards (882 prior + 3).**
+
+**2026-09-18 — OpenAPI/Contract-First API Design (T-2414) and Webhook Design and Delivery Guarantees (T-2415) gain flashcard decks, and API Design (T-803) gains 3 more cards.** Two new `07-api-design` chapters closing a gap-audit finding zero coverage of either topic anywhere in the repository (3 cards each), plus 3 new cards added to the existing `api-design.md` deck for that same audit's HATEOAS, RFC 9457, and bulk-operations additions. **New total: 258 decks (256 prior + 2), 894 cards (885 prior + 6 new-deck + 3 existing-deck).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

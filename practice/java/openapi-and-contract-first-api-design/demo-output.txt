@@ -1,0 +1,48 @@
+=== App boot (real Spring Boot 3.5.16 + embedded Tomcat 10.1.55) ===
+2026-09-18T15:45:53.683-06:00  INFO 73914 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8099 (http) with context path '/'
+2026-09-18T15:45:53.687-06:00  INFO 73914 --- [           main] demo.OpenApiDemoApplication              : Started OpenApiDemoApplication in 0.594 seconds (process running for 0.691)
+2026-09-18T15:45:53.688-06:00  WARN 73914 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+
+=== GET /orders/1 (real, seeded data) ===
+{"id":1,"customerName":"Ada Lovelace","amountCents":1999}
+
+=== GET /orders/999 -> real 404 ===
+HTTP/1.1 404 
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+=== GET /v3/api-docs -> real generated OpenAPI 3.1 spec, CreateOrderRequest schema ===
+            "CreateOrderRequest": {
+                "type": "object",
+                "properties": {
+                    "customerName": {
+                        "type": "string",
+                        "description": "Customer's full name",
+                        "example": "Ada Lovelace",
+                        "minLength": 1
+                    },
+                    "amountCents": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Order amount, in USD cents",
+                        "example": 1999,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "customerName"
+                ]
+            },
+
+=== Real openapi-generator-cli 7.25.0 codegen from that same spec ===
+(full run log: openapi-generator-run-output.txt)
+
+=== Real generated client method (org.openapitools.client.api.OrderControllerApi) ===
+173:  public OrderDto createOrder(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest) throws ApiException {
+185:  public OrderDto createOrder(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
+
+=== Real generated model field (org.openapitools.client.model.CreateOrderRequest) -- required propagated from the spec ===
+41:  public static final String JSON_PROPERTY_CUSTOMER_NAME = "customerName";
+42:  @javax.annotation.Nonnull
+43:  private String customerName;
+61:  @javax.annotation.Nonnull

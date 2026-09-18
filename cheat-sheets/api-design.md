@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: system-design
 topic_id: T-803
 canonical: ../syllabus/07-api-design/api-design.md
-last_updated: 2026-08-03
+last_updated: 2026-09-18
 ---
 
 # API Design
@@ -23,6 +23,9 @@ An API is a contract, and every contract decision made today constrains every cl
 - **Resource naming** — plural nouns for collections (`/orders`, not `/order`/`/getOrders`), nesting reflects genuine ownership, no verbs in the path — the HTTP method is the verb.
 - **Error envelope** — status code, machine-readable error code, human-readable message, and (where applicable) which field caused a validation failure.
 - **Idempotency** — an operation is idempotent if it produces the same end state no matter how many times it's applied; this is what makes client retries safe.
+- **HATEOAS** — a response includes real, state-dependent links describing currently-available actions on a resource, rather than a client hardcoding state-based rules.
+- **RFC 9457 Problem Details** — a standardized error envelope (`type`/`title`/`status`/`detail`/`instance`), served as `application/problem+json`; Spring 6's `ProblemDetail` implements it directly.
+- **Richardson Maturity Model** — Level 0 (one URI/verb, action field), Level 1 (separate URIs), Level 2 (real verbs/status codes — most production APIs stop here), Level 3 (HATEOAS).
 
 ## Decision Table
 
@@ -41,7 +44,10 @@ An API is a contract, and every contract decision made today constrains every cl
 | List endpoint, table may grow large | Keyset pagination by default |
 | UI needs arbitrary page-number jumping | Hybrid: keyset for next/prev, approximate count for jump-to-page |
 | A `POST` with a real, costly side effect | Require a client-supplied idempotency key |
-| Designing error responses | One consistent envelope across every endpoint |
+| Designing error responses | RFC 9457 Problem Details, not a bespoke envelope |
+| Clients need to discover valid next actions | HATEOAS links (Level 3) — only if clients are built generically against them |
+| List endpoint needs narrowing/ordering | Explicit `status=` filters + `sort=field,direction`; real `400` on unsupported fields |
+| Client submits many items in one request | Per-item result array (real `207 Multi-Status`), not one aggregate status code |
 
 ## Key Numbers (real EXPLAIN ANALYZE, PostgreSQL 16, 2M-row table)
 
@@ -56,6 +62,9 @@ An API is a contract, and every contract decision made today constrains every cl
 - Inconsistent error response shapes across different endpoints in the same API
 - Verbs in resource paths (`/getOrders`) instead of letting the HTTP method carry that meaning
 - Conflating "idempotent" with "read-only" — a `PUT` is idempotent and can still be a write
+- Inventing a bespoke error shape instead of RFC 9457 Problem Details
+- Silently ignoring an unsupported filter/sort query parameter instead of returning a real `400`
+- Collapsing a bulk operation's outcome into one status code, losing which specific items failed
 
 ## Interview Answer Skeleton
 
@@ -78,3 +87,5 @@ An API is a contract, and every contract decision made today constrains every cl
 - [Database Index Structures](index-structures-btree-composite-covering.md)
 - [Idempotency at System Edges](idempotency.md)
 - `syllabus/10-distributed-systems/distributed-systems-failure-modes.md`
+- [OpenAPI and Contract-First API Design](openapi-and-contract-first-api-design.md)
+- [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md)
