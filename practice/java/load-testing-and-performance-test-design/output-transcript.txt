@@ -1,0 +1,79 @@
+=== Closed-loop generator (Java, concurrency=5, 10s) ===
+Closed-loop generator: concurrency=5, duration=10s
+  total requests: 722
+  p50: 70ms
+  p95: 100ms
+  p99: 396ms
+  max: 403ms
+
+=== Open-loop generator (k6, constant-arrival-rate, 40 req/s, 10s) ===
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/open-loop-test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 300 max VUs, 40s max duration (incl. graceful stop):
+              * open_loop: 40.00 iterations/s for 10s (maxVUs: 100-300, gracefulStop: 30s)
+
+
+running (01.0s), 000/100 VUs, 40 complete and 0 interrupted iterations
+open_loop   [  10% ] 000/100 VUs  01.0s/10s  40.00 iters/s
+
+running (02.0s), 004/100 VUs, 76 complete and 0 interrupted iterations
+open_loop   [  20% ] 004/100 VUs  02.0s/10s  40.00 iters/s
+
+running (03.0s), 000/100 VUs, 120 complete and 0 interrupted iterations
+open_loop   [  30% ] 000/100 VUs  03.0s/10s  40.00 iters/s
+
+running (04.0s), 008/100 VUs, 152 complete and 0 interrupted iterations
+open_loop   [  40% ] 008/100 VUs  04.0s/10s  40.00 iters/s
+
+running (05.0s), 000/100 VUs, 200 complete and 0 interrupted iterations
+open_loop   [  50% ] 000/100 VUs  05.0s/10s  40.00 iters/s
+
+running (06.0s), 000/100 VUs, 240 complete and 0 interrupted iterations
+open_loop   [  60% ] 000/100 VUs  06.0s/10s  40.00 iters/s
+
+running (07.0s), 000/100 VUs, 280 complete and 0 interrupted iterations
+open_loop   [  70% ] 000/100 VUs  07.0s/10s  40.00 iters/s
+
+running (08.0s), 000/100 VUs, 320 complete and 0 interrupted iterations
+open_loop   [  80% ] 000/100 VUs  08.0s/10s  40.00 iters/s
+
+running (09.0s), 001/100 VUs, 359 complete and 0 interrupted iterations
+open_loop   [  90% ] 001/100 VUs  09.0s/10s  40.00 iters/s
+
+running (10.0s), 000/100 VUs, 400 complete and 0 interrupted iterations
+open_loop   [ 100% ] 000/100 VUs  10.0s/10s  40.00 iters/s
+
+
+  █ TOTAL RESULTS 
+
+    HTTP
+    http_req_duration..............: avg=48.98ms min=10.45ms med=13.11ms max=461.09ms p(50)=13.11ms p(95)=275.35ms p(99)=424.85ms
+      { expected_response:true }...: avg=48.98ms min=10.45ms med=13.11ms max=461.09ms p(50)=13.11ms p(95)=275.35ms p(99)=424.85ms
+    http_req_failed................: 0.00% 0 out of 401
+    http_reqs......................: 401   40.042035/s
+
+    EXECUTION
+    iteration_duration.............: avg=49.15ms min=10.76ms med=13.28ms max=461.21ms p(50)=13.28ms p(95)=275.43ms p(99)=424.93ms
+    iterations.....................: 401   40.042035/s
+    vus............................: 0     min=0        max=8  
+    vus_max........................: 100   min=100      max=100
+
+    NETWORK
+    data_received..................: 31 kB 3.1 kB/s
+    data_sent......................: 30 kB 3.0 kB/s
+
+
+
+
+running (10.0s), 000/100 VUs, 401 complete and 0 interrupted iterations
+open_loop ✓ [ 100% ] 000/100 VUs  10s  40.00 iters/s

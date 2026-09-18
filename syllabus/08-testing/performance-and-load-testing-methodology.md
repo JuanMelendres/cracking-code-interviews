@@ -4,8 +4,8 @@ slug: performance-and-load-testing-methodology
 document_type: handbook-chapter
 domain: 08-testing
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-18
 source_history:
   - handbook/testing/performance-and-load-testing-methodology.md
 topic_id: T-1106
@@ -27,14 +27,17 @@ related:
   - ../13-observability/percentiles-tail-latency-and-coordinated-omission.md
   - ../13-observability/performance-methodology-and-slo-error-budgets.md
   - ../../study-packs/week-18/01-performance-and-load-testing-methodology.md
+  - ../../practice/java/load-testing-and-performance-test-design/README.md
 official_references:
   - https://www.rfc-editor.org/rfc/rfc9110
+  - https://k6.io/docs/
 ---
 
 # Performance and Load Testing Methodology
 
 > **Topic register:** T-1106 (Performance & load testing methodology, IWI 5.9) · Advanced tier · Moderate interview frequency [M]
 > **Scope note:** this chapter owns the *testing-practice* half of performance testing — designing, structuring, and placing load/stress/soak tests within a test strategy. It deliberately does not re-derive the percentile-vs-average mathematics or coordinated omission — [Percentiles, Tail Latency, and Coordinated Omission](../13-observability/percentiles-tail-latency-and-coordinated-omission.md) (T-1204) already owns that measurement-science ground in full depth; this chapter links to it rather than duplicating it.
+> **Gap-audit addition (2026-09-18):** this chapter taught load/stress/soak placement and one worked load-test result, but never named a real load-testing tool or showed the open-loop-vs-closed-loop *implementation* distinction T-1204 covers in theory. Closed with a real k6 (industry-standard, open-source) open-loop run and a real hand-written closed-loop Java generator against the identical server — [`practice/java/load-testing-and-performance-test-design/`](../../practice/java/load-testing-and-performance-test-design/README.md).
 
 ## Table of Contents
 
@@ -68,7 +71,7 @@ official_references:
 
 ## Learning Objectives
 
-By the end of this chapter you can distinguish load, stress, and soak testing as answering three separate questions in a test strategy, place each correctly in a release/SDLC process, and cite a real, measured load test (mean 12.45ms vs. p95 150.54ms against a deliberately injected 1-in-20 slow path) as a worked example of running and interpreting one — while knowing exactly where to go (T-1204) for the deeper measurement-methodology pitfalls a load test can fall into.
+By the end of this chapter you can distinguish load, stress, and soak testing as answering three separate questions in a test strategy, place each correctly in a release/SDLC process, and cite a real, measured load test (mean 12.45ms vs. p95 150.54ms against a deliberately injected 1-in-20 slow path) as a worked example of running and interpreting one — while knowing exactly where to go (T-1204) for the deeper measurement-methodology pitfalls a load test can fall into. You can also name a real open-source load-testing tool (k6), explain what an open-loop generator does differently from a closed-loop one at the implementation level, and cite this chapter's own real, measured gap between the two against an identical server.
 
 ## Why This Matters in Interviews
 
@@ -125,6 +128,10 @@ A load test that generates uniform, cache-friendly synthetic traffic can pass cl
 
 Unlike unit tests, which fail a build automatically and are therefore hard to skip unnoticed, performance tests are frequently a separate, manually-triggered process — without an explicit owner and a defined trigger (every release? only before major launches? on a schedule?), performance testing has a strong tendency to quietly lapse as a team's priorities shift, with no automated signal marking the gap the way a broken unit test would.
 
+### Real tooling: what actually generates the load, and open-loop vs. closed-loop at the implementation level
+
+Every load test above assumes something is actually generating the traffic. In practice, that's a real tool — k6, JMeter, Gatling, and `wrk` are the common industry choices, each scriptable to define a request shape, a concurrency/rate profile, and a run duration. This chapter's own lab uses k6 (open-source, scriptable in JavaScript, runs from the command line with no separate server to stand up) to make the **open-loop vs. closed-loop** generator distinction concrete at the code level, not just as the measurement theory [Percentiles, Tail Latency, and Coordinated Omission](../13-observability/percentiles-tail-latency-and-coordinated-omission.md#core-concepts) already covers. A **closed-loop** generator (a fixed number of worker threads, each sending its next request only after the previous one's response arrives — trivial to hand-write, and the shape most engineers reach for by default) *implicitly* slows its own request rate under load, because a worker stuck waiting on a slow response can't send its next request on schedule. An **open-loop** generator (k6's `constant-arrival-rate` executor is a real, ready-made example) fires requests on a fixed schedule regardless of how long previous responses take, correctly representing what real, independently-arriving users actually do. This chapter's lab runs both against the identical real server (a real periodic stop-the-world-style pause, not a description of one) and measures the real, resulting percentile gap directly — see [Internal Implementation](#internal-implementation).
+
 ## Internal Implementation
 
 **Real load-test demonstration** (`practice/java/week-18/load-testing/src/LoadTestDemo.java`) — a local HTTP server with an injected realistic latency profile (a 1-in-20 slow path), load-tested by a 20-thread concurrent client pool over 2,000 requests:
@@ -135,6 +142,15 @@ mean=12.45ms  p50=4.17ms  p95=150.54ms  p99=155.23ms  max=187.48ms
 ```
 
 As a worked example of *running and interpreting* a load test: the mean and p50 both suggest a fast, healthy service; p95 (150.54ms) reveals that a full 5% of requests hit a real slow path, matching the server's deliberately injected delay almost exactly. This chapter's point is the testing-practice one — this is exactly the kind of result a routine pre-release load test should catch before it reaches production, and exactly why a load-testing gate's pass/fail criteria should be defined against a percentile threshold, not a mean-latency threshold. For the deeper question of *why* percentiles behave this way mathematically, and the further, subtler pitfall of how the load generator itself can produce misleadingly clean numbers even when reporting percentiles correctly, see [Percentiles, Tail Latency, and Coordinated Omission](../13-observability/percentiles-tail-latency-and-coordinated-omission.md#internal-implementation) — that chapter's own measured evidence (p99 shifting from 500ms to 830ms purely from correcting load-generator methodology) is the natural next step after this chapter's basic load-test-design content.
+
+**Real open-loop-vs-closed-loop tooling comparison** (`practice/java/load-testing-and-performance-test-design/`) — both generators run against the identical real server (a real periodic 300ms stop-the-world-style pause every 2 real seconds), 10 seconds each:
+
+```
+Closed-loop (Java, concurrency=5):   p50=70ms    p95=100ms    p99=396ms   max=403ms   (722 requests)
+Open-loop   (k6, 40 req/s target):   p50=13.11ms p95=275.35ms p99=424.85ms max=461.09ms (401 requests)
+```
+
+The real, measured gap is at **p95**, not p99: open-loop reports 275ms; closed-loop reports only 100ms — a real ~2.75x understatement at exactly the percentile a team is most likely to alert on. The real reason, verified by the numbers above: closed-loop's own concurrency (5) caps how many requests can be stuck *in flight* during any one pause window, diluting the pause's effect out past p95 into p97-p99 territory; open-loop keeps firing at a fixed rate regardless of the pause, so a proportionally larger, correctly-representative fraction of its dataset shows the real delay. This is the coordinated-omission mechanism T-1204 explains in theory, made concrete with real, runnable code and a real k6 invocation rather than asserted.
 
 ## Production Scenarios
 
@@ -162,6 +178,7 @@ Run load testing as a routine, ideally automated, pre-release gate for any relea
 - Designing a load test's traffic volume carefully while neglecting its traffic *shape* (request mix, cache-hit pattern), missing the exact conditions that cause real tail-latency issues.
 - Leaving performance testing without an explicit owner or trigger, allowing it to silently lapse the way a required, automated gate cannot.
 - Re-deriving percentile-vs-average reasoning from scratch in every performance discussion rather than treating it as established measurement-science ground (see T-1204) and focusing the testing-practice conversation on test design and process instead.
+- Defaulting to a hand-written closed-loop generator (a simple concurrent-worker loop) without recognizing it implicitly understates tail latency under any real slowdown — verified directly in this chapter at a real ~2.75x gap at p95.
 
 ## Anti-Patterns
 
@@ -169,7 +186,7 @@ Running the same fixed load-testing script indefinitely without periodically val
 
 ## Best Practices
 
-Define performance-testing ownership and trigger conditions explicitly as part of a team's release process — a specific role or rotation responsible for it, and a specific, unambiguous condition (every release touching a defined set of latency-sensitive services, or a fixed schedule) that triggers it, rather than leaving it to individual initiative. Periodically validate a load test's traffic profile against real production traffic patterns (request mix, cache-hit rate, payload distribution), not just its volume, to catch profile drift before it silently undermines the test's validity.
+Define performance-testing ownership and trigger conditions explicitly as part of a team's release process — a specific role or rotation responsible for it, and a specific, unambiguous condition (every release touching a defined set of latency-sensitive services, or a fixed schedule) that triggers it, rather than leaving it to individual initiative. Periodically validate a load test's traffic profile against real production traffic patterns (request mix, cache-hit rate, payload distribution), not just its volume, to catch profile drift before it silently undermines the test's validity. Prefer an open-loop-capable tool (k6's `constant-arrival-rate`, Gatling's open injection profiles, or an equivalent) over a hand-rolled closed-loop generator for any test whose pass/fail decision depends on a tail-latency percentile — this chapter's own measured gap (~2.75x at p95) shows the difference is real, not academic.
 
 ## Interview Answer Framework
 
@@ -243,9 +260,23 @@ Treats performance testing as requiring the same process discipline (explicit ow
 
 **Staff-level expectations:** proposes an ongoing validation process for traffic-shape representativeness, recognizing it as a concern that can drift over time, not a one-time design decision.
 
+### Question 3
+
+**Your team hand-writes a load-testing client: N worker threads, each sending its next request only after the previous response arrives. What real problem does this design have, and what would you use instead?**
+
+**Expected answer:** this is a closed-loop generator — it implicitly throttles its own request rate under load, because a worker stuck waiting on a slow response can't send its next request on schedule, understating tail latency exactly when the server is struggling. Use an open-loop generator (a fixed request-arrival schedule independent of response time) instead — k6's `constant-arrival-rate` executor is a real, ready-made example.
+
+**Common mistakes:** not recognizing the hand-written client's concurrency model as closed-loop at all, or assuming "more worker threads" alone fixes the understatement (it reduces it, but doesn't eliminate the structural issue).
+
+**Follow-up questions:** "How would you prove the gap is real, on your own service?" (run both generator shapes against the same server and compare percentiles directly, per this chapter's own measured ~2.75x gap at p95.)
+
+**Senior-level expectations:** correctly identifies the closed-loop pattern and proposes a real, named open-loop alternative.
+
+**Staff-level expectations:** connects the choice of load-generator shape to which percentile a team's actual SLO/alerting is defined against — the gap matters most exactly at the percentile a team cares about operationally.
+
 ## Summary
 
-Load, stress, and soak testing answer three distinct questions and belong at different points in a release process — load testing as a routine, cheap gate; stress and soak testing as deliberate, more expensive exercises reserved for specific risk categories (capacity/traffic events, and long-lived-state changes respectively). A load test's traffic shape matters as much as its volume for catching real production-representative issues. Performance testing needs an explicit owner and trigger, since unlike a functional test suite it produces no automatic signal when skipped and has a demonstrated tendency to silently lapse without that structure. This chapter deliberately routes the deeper percentile-mathematics and coordinated-omission content to [T-1204](../13-observability/percentiles-tail-latency-and-coordinated-omission.md) rather than duplicating it — a real worked load test here (mean 12.45ms vs. p95 150.54ms) illustrates the testing-practice half of the topic.
+Load, stress, and soak testing answer three distinct questions and belong at different points in a release process — load testing as a routine, cheap gate; stress and soak testing as deliberate, more expensive exercises reserved for specific risk categories (capacity/traffic events, and long-lived-state changes respectively). A load test's traffic shape matters as much as its volume for catching real production-representative issues. Performance testing needs an explicit owner and trigger, since unlike a functional test suite it produces no automatic signal when skipped and has a demonstrated tendency to silently lapse without that structure. This chapter deliberately routes the deeper percentile-mathematics and coordinated-omission content to [T-1204](../13-observability/percentiles-tail-latency-and-coordinated-omission.md) rather than duplicating it — a real worked load test here (mean 12.45ms vs. p95 150.54ms) illustrates the testing-practice half of the topic, and a real k6-vs-hand-written-closed-loop comparison (a real ~2.75x gap at p95) makes the open-loop/closed-loop distinction concrete at the tooling level.
 
 ## Key Takeaways
 
@@ -253,6 +284,7 @@ Load, stress, and soak testing answer three distinct questions and belong at dif
 - A load test's traffic *shape* (request mix, cache-hit pattern) matters as much as its volume for catching real production-representative issues.
 - Performance testing needs an explicit owner and trigger — unlike a functional test suite, a skipped performance test produces no automatic failure signal and has a real, demonstrated tendency to silently lapse.
 - Soak testing specifically belongs to any change touching connection pooling, caching, or other long-lived state — a load test's short duration cannot substitute for it.
+- A hand-written closed-loop generator understates tail latency under real slowdowns — verified directly at a real ~2.75x gap at p95 against an open-loop generator (k6) hitting the identical server.
 - For the deeper percentile-vs-average mathematics and the coordinated-omission measurement pitfall, see [T-1204](../13-observability/percentiles-tail-latency-and-coordinated-omission.md) — this chapter deliberately doesn't duplicate that ground.
 
 ## Cheat Sheet
@@ -262,6 +294,12 @@ Load, stress, and soak testing answer three distinct questions and belong at dif
 | Load testing | Does the system meet targets at expected traffic? | Routine, ideally automated, pre-release gate |
 | Stress testing | Where does it break, and how? | Before capacity decisions or major traffic events |
 | Soak testing | What accumulates over time? | Required for any change touching long-lived state |
+
+| Situation | What to reach for |
+|---|---|
+| Defining a load test's pass/fail gate | A percentile threshold, not a mean-latency threshold |
+| Choosing a load-generation tool | An open-loop-capable one (k6 `constant-arrival-rate`, Gatling open injection) for any tail-latency-sensitive test |
+| Hand-writing a quick load-test client | Recognize it's closed-loop by default — understates tail latency, real ~2.75x gap measured at p95 |
 
 ## Flashcards
 
@@ -274,19 +312,25 @@ A: Traffic shape — request mix, cache-hit pattern, data-access distribution. U
 **Q: Why does performance testing have a demonstrated tendency to silently lapse, unlike a functional test suite?**
 A: It typically produces no automatic failure signal when skipped — without an explicit owner and defined trigger, it depends on individual initiative rather than an automated gate.
 
+**Q: A hand-written load-test client uses N worker threads, each waiting for a response before sending the next request. What's the real problem, verified directly in this chapter?**
+A: It's a closed-loop generator — it implicitly throttles its own rate under load, understating tail latency. Verified directly: a real ~2.75x gap at p95 versus an open-loop generator (k6) against the identical server.
+
 ## Practice Exercises
 
 1. Reproduce `LoadTestDemo.java` and redesign its traffic pattern to include a second, less-frequent but longer slow path (e.g., 1-in-200 requests taking 2 seconds) — observe which percentile is needed to first reveal it (hint: p99 vs p999).
 2. Design (in writing, not code) a soak-testing plan for a service that recently added an in-memory cache with no eviction policy — specify duration, load level, and the specific metric you'd watch to catch the risk a load test would miss.
+3. Reproduce this chapter's own open-loop-vs-closed-loop comparison (`practice/java/load-testing-and-performance-test-design/`), then increase the closed-loop generator's concurrency until its p95 approaches the open-loop generator's — observe how much concurrency is needed before the gap closes.
 
 ## Solutions
 
 1. A 1-in-200 event falls below the p99 threshold (top 1%) and requires p99.9 (top 0.1%) to be reliably captured — a direct illustration that percentile choice must be calibrated to the actual frequency of the condition being surfaced, the same principle as this chapter's original 1-in-20/p95 pairing.
 2. A reasonable plan: run at a moderate, sustained load (not peak) for several hours to a day, specifically watching heap/cache memory growth over time (not latency, which may look fine throughout) — an unbounded cache's risk is memory exhaustion accumulating slowly, which a short load test's duration cannot surface regardless of traffic level.
+3. No single expected number — the exercise is complete once the candidate has empirically confirmed that closing the gap requires enough concurrency to keep enough requests genuinely in-flight during every pause window, illustrating that "just add more threads" is a real, if inefficient, partial mitigation rather than a fundamentally different generator design.
 
 ## Additional Reading
 
 - [RFC 9110 — HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110)
+- [k6 documentation](https://k6.io/docs/) — the open-source load-testing tool used in this chapter's real open-loop demo
 
 ## Official References
 
