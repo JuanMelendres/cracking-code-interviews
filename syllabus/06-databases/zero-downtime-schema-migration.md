@@ -4,8 +4,8 @@ slug: zero-downtime-schema-migration
 document_type: handbook-chapter
 domain: 06-databases
 status: canonical
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-18
 source_history:
   - handbook/databases/zero-downtime-schema-migration.md
 difficulty:
@@ -22,6 +22,7 @@ related:
   - table-partitioning-and-sharding-strategies.md
   - ../10-distributed-systems/distributed-transactions-saga-and-outbox.md
   - ../../study-packs/week-10/05-zero-downtime-migration.md
+  - ../../practice/sql/acid-properties/flyway-demo/README.md
 official_references:
   - https://www.postgresql.org/docs/16/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY
   - https://www.postgresql.org/docs/16/explicit-locking.html
@@ -115,6 +116,14 @@ Column renames and type changes need a different technique than index creation, 
 
 `ALTER TABLE ... RENAME COLUMN` is instant at the catalog level regardless of table size (it doesn't rewrite data), but it breaks any still-running old code referencing the old name immediately — "fast" and "safe" are different properties, and this operation is fast but not safe under a rolling deploy.
 
+### Migration tools (Flyway, Liquibase) automate tracking *which* migrations already ran — they don't make any individual migration safer
+
+Every technique above (`CONCURRENTLY`, expand-contract) is about how to write one *safe* migration; a migration tool's actual job is different and narrower: reliably tracking, across every environment and every deploy, exactly which migrations have already been applied, in what order, so the same migration never runs twice and a new environment can be brought up to the current schema automatically. **Flyway** does this with a real `flyway_schema_history` table it creates and maintains itself — one row per applied migration, each with a real, computed checksum of that migration file's content. Naming convention (`V1__create_accounts.sql`, `V2__add_email_column.sql`) encodes the version and description directly in the filename; running `flyway migrate` applies every not-yet-applied migration in version order and is a genuine no-op if nothing new exists.
+
+The real, sharp mechanism worth knowing precisely: if a migration file that's *already been applied* is edited afterward — even fixing what looks like a harmless typo — Flyway's next `migrate()` call recomputes that file's checksum and compares it against the one stored in `flyway_schema_history`, verified directly in [Internal Implementation](#internal-implementation) below. A mismatch fails validation with a real, specific error naming the exact version and both checksums, refusing to proceed rather than silently trusting a file that no longer matches what other environments already ran against. **Liquibase** solves the identical problem (tracked, ordered, checksummed migrations) via its own `DATABASECHANGELOG` table, with changesets typically declared in XML/YAML/JSON rather than Flyway's plain versioned SQL files — same guarantee, different authoring format.
+
+The practical consequence for this chapter's own techniques: a migration tool enforces *that* migrations run in a controlled, tracked order — it has no opinion on whether `CREATE INDEX CONCURRENTLY` or a three-phase expand-contract rename is the safe way to write the migration file itself. Both concerns matter, and neither substitutes for the other.
+
 ## Internal Implementation
 
 **Real setup**: a 2,000,000-row table, `big_table`. Two real sessions: one running `CREATE INDEX`, the other attempting a concurrent `INSERT` shortly after the index build starts.
@@ -142,6 +151,26 @@ RESULT: concurrent INSERT took 84ms while CREATE INDEX CONCURRENTLY was running
 **1943ms vs. 84ms — roughly 23x.** The plain `CREATE INDEX` holds a `SHARE` lock on the table for its entire ~2-second build, which blocks writes (though not reads) — the concurrent `INSERT` in that run had to wait for the ENTIRE index build to finish before it could proceed, visible directly in the output ordering: `CREATE INDEX` completes, THEN `INSERT 0 1` prints. `CREATE INDEX CONCURRENTLY` uses a weaker locking strategy (building the index in multiple passes, each holding only a brief lock) specifically so writes are never blocked for the operation's duration — visible in the output ordering flipping: `INSERT 0 1` completes WHILE the index build is still running, and `CREATE INDEX` finishes afterward.
 
 **"Rename a column on a live 200M-row table"** is answered directly by the expand-contract sequence above: a plain rename is instant at the catalog level regardless of table size, but it breaks any still-running old code referencing the old name immediately — which is why the safe version is expand (add the new column), migrate (dual-write + backfill), contract (drop the old column), never a single atomic rename against a system with a rolling deploy.
+
+**Real Flyway 10.20.1 mechanics** ([`flyway-demo/`](../../practice/sql/acid-properties/flyway-demo/README.md)):
+
+```
+== First run: apply V1 and V2 from a clean database ==
+Real flyway_schema_history table contents:
+  rank=1 version=1 desc=create accounts      checksum=-1706345610 success=true
+  rank=2 version=2 desc=add email column     checksum=86546043 success=true
+
+== Running migrate() AGAIN with no changes: real no-op, nothing re-applied ==
+Migrations executed this run: 0  (expect 0 -- V1/V2 already applied)
+
+== Tampering with V1's file content AFTER it was already applied ==
+Real FlywayException: Validate failed: Migrations have failed validation
+Migration checksum mismatch for migration version 1
+-> Applied to database : -1706345610
+-> Resolved locally    : 1769652059
+```
+
+A real `flyway_schema_history` table, a real no-op on re-run, and a real, specific validation failure naming both the stored and newly-computed checksum the moment an already-applied migration file is edited — exactly the mechanism this chapter's Core Concepts section describes, measured directly rather than taken on faith.
 
 ## Diagrams
 
@@ -208,6 +237,7 @@ sequenceDiagram
 - Assuming a maintenance window is available for schema changes.
 - Using plain `CREATE INDEX` on a large, actively-written table without considering `CONCURRENTLY`.
 - Performing a direct column rename/retype against a system with a rolling deploy, breaking whichever application version doesn't match the new schema during the transition window.
+- Editing an already-applied migration file directly instead of writing a new one — Flyway/Liquibase both detect this via a real checksum mismatch and refuse to proceed, but the fix is always a new migration, never patching history.
 
 ## Anti-Patterns
 
@@ -311,6 +341,28 @@ The 23x measured gap between blocking and `CONCURRENTLY` index creation is a sma
 
 **Related references.** [§ Internal Implementation](#internal-implementation).
 
+---
+
+### Question 3 — What's the actual difference between writing a safe migration and using a migration tool like Flyway or Liquibase?
+
+**Why interviewers ask it.** Tests whether the candidate conflates "we use Flyway" with "our migrations are safe" — two genuinely separate concerns.
+
+**Expected answer.** A migration tool's job is tracking *which* migrations have already run, in what order, across every environment (Flyway via a real `flyway_schema_history` table with a checksum per migration; Liquibase via `DATABASECHANGELOG`) — it has no opinion on whether an individual migration file itself is written safely. `CREATE INDEX CONCURRENTLY` and expand-contract are both about writing one safe migration; the tool just guarantees that migration runs exactly once, in order, everywhere.
+
+**Minimum acceptable answer.** Knows Flyway/Liquibase exist and roughly track "which migrations ran," even without the checksum mechanism.
+
+**Strong Senior answer.** Names the checksum-tracking mechanism and states clearly that the tool doesn't make an individual migration's SQL any safer.
+
+**Staff-level extension.** Names the real, specific failure mode this checksum mechanism catches — editing an already-applied migration file after the fact — and explains why the fix is always a new migration, never patching one already recorded as applied, since other environments already ran the original.
+
+**Common mistakes.** Treating "we use a migration tool" as if it addresses the lock-duration/rolling-deploy hazards this chapter's other techniques exist for.
+
+**Likely follow-ups.** "What happens if you edit a migration file that's already been applied in production?"
+
+**Evaluation criteria (1–5).** 1: conflates the tool with migration safety. 3: correctly separates the two concerns. 5: correct separation plus the real checksum-mismatch mechanism.
+
+**Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation).
+
 ## Summary
 
 A plain `CREATE INDEX` measurably blocked a concurrent `INSERT` for the index build's full ~2-second duration; the identical operation with `CONCURRENTLY` let the same `INSERT` complete in 84ms while the index was still building — roughly 23x faster for the write path, at the cost of a slower overall index build. Column renames/retypes need expand-contract, not a direct schema change, specifically to keep old and new application code both working during a rolling deploy — and the dual-write phase of expand-contract inherits the same atomicity hazard as any other dual write, not a free pass just because it's within one database.
@@ -321,6 +373,7 @@ A plain `CREATE INDEX` measurably blocked a concurrent `INSERT` for the index bu
 - `CREATE INDEX CONCURRENTLY` avoids that block — measured at 84ms — at the cost of a slower, multi-pass build and the risk of a leftover `INVALID` index on failure.
 - Direct column renames/retypes break mixed-version rolling deploys; expand-contract keeps both versions working throughout.
 - The dual-write phase of expand-contract has the same atomicity hazard as any cross-system dual write — it isn't automatically safe just because it's one database.
+- A migration tool (Flyway/Liquibase) tracks *which* migrations already ran via a real, checksummed history table — it has no opinion on whether an individual migration is written safely; that's still `CONCURRENTLY`/expand-contract's job.
 
 ## Cheat Sheet
 
@@ -330,6 +383,8 @@ A plain `CREATE INDEX` measurably blocked a concurrent `INSERT` for the index bu
 | Rename or retype a column | Expand (add new) → migrate (dual-write + backfill) → contract (drop old) |
 | Add a new column with a default | Generally safe directly in modern Postgres (metadata-only default since PG 11) — verify for the specific type/version |
 | Drop a column | Only after confirming zero code references it — the "contract" step, not a standalone operation |
+| Track which migrations already ran, across every environment | A migration tool (Flyway/Liquibase) — separate concern from writing each migration safely |
+| An already-applied migration file was edited after the fact | Never patch it — write a new migration; the tool's checksum check will reject the edited file otherwise |
 
 ## Flashcards
 

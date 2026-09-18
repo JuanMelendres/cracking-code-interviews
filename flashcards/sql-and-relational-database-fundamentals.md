@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 06-databases
 topic_id: T-2202
 canonical: ../syllabus/06-databases/sql-and-relational-database-fundamentals.md
-last_updated: 2026-09-17
+last_updated: 2026-09-18
 ---
 
 # Flashcards: SQL and Relational Database Fundamentals
@@ -178,6 +178,40 @@ A real, practical schema-design default, not just terminology — explains *why*
 
 **Common trap:**
 Assuming a value that looks permanently unique today (like an email) is safe to use as an unchangeable primary key.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: The four ACID guarantees, precisely
+
+**Prompt:**
+What does each letter in ACID actually guarantee, concretely?
+
+**Answer:**
+Atomicity: a transaction is all-or-nothing — one failed statement rolls back every statement already run in it. Consistency: no transaction can commit in a state that violates a declared constraint. Isolation: what one transaction can see of another's uncommitted changes, depending on the isolation level. Durability: once committed, data survives a real crash (via the write-ahead log).
+
+**Why it matters:**
+A near-universal Junior/Mid interview question that most candidates can expand the acronym for but can't tie to a concrete consequence.
+
+**Common trap:**
+Reciting the expanded acronym without stating what each guarantee actually prevents.
+
+**Related:**
+[SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)
+
+## Card: What a trigger's RAISE EXCEPTION actually aborts
+
+**Prompt:**
+A `BEFORE UPDATE` trigger's function raises an exception partway through. What happens to the `UPDATE` statement that fired it?
+
+**Answer:**
+The entire `UPDATE` is aborted — not just the trigger's own side effect. Verified directly: a trigger rejecting an invalid new balance leaves the row's real value completely unchanged, and no audit-log row gets written for the rejected attempt either.
+
+**Why it matters:**
+The same all-or-nothing principle as Atomicity, applied to trigger logic specifically — a common point of confusion for candidates who assume a rejected trigger just "skips its own effect."
+
+**Common trap:**
+Assuming a failed trigger only prevents its own side effect while the original statement still succeeds.
 
 **Related:**
 [SQL and Relational Database Fundamentals](../syllabus/06-databases/sql-and-relational-database-fundamentals.md)

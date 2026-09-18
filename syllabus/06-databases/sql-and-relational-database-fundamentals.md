@@ -5,14 +5,18 @@ document_type: syllabus-topic
 domain: 06-databases
 topic_id: T-2202
 status: canonical
-version: 2.0
-last_updated: 2026-09-17
+version: 2.1
+last_updated: 2026-09-18
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - data-modelling-and-explicit-join-tables.md
   - index-structures-btree-composite-covering.md
   - query-planning-and-explain-analyze.md
+  - isolation-levels-and-concurrency-anomalies.md
+  - replication-read-replicas-and-replica-lag.md
+  - zero-downtime-schema-migration.md
+  - ../../practice/sql/acid-properties/README.md
 practice: ../../practice/sql/sql-fundamentals/
 production_scenarios: []
 interview_paths: [junior-to-mid, interview-emergency-sprint]
@@ -67,7 +71,16 @@ A **foreign key** is a column in one table that references a primary key in anot
 
 The four operations you do to data are commonly abbreviated **CRUD**: `INSERT` (Create), `SELECT` (Read), `UPDATE`, and `DELETE`. Every one of Section 7's demos runs at least one of these against a real, disposable PostgreSQL database.
 
-### `SELECT`, `FROM`, and `WHERE` — what each one is actually for
+### ACID: the four guarantees a real transaction actually makes
+
+A **transaction** is a group of one or more statements the database treats as a single, indivisible unit of work — either every statement in it takes effect, or none do. **ACID** is the standard name for the four specific guarantees a real relational database makes about every transaction, and each one answers a distinct, concrete question:
+
+- **Atomicity** — "if one statement in this transaction fails, do the earlier ones in it still take effect?" No. A transaction is all-or-nothing: `ROLLBACK` (explicit, or automatic after an error) undoes *every* statement already run in that transaction, not just the one that failed. Section 7 Example R reproduces this directly: two successful inserts are fully undone the moment a third insert in the same transaction hits a real duplicate-key error.
+- **Consistency** — "can a transaction ever leave the database in a state that violates a declared rule (a constraint)?" No. Every constraint (`PRIMARY KEY`, `FOREIGN KEY`, `CHECK`, `UNIQUE`) is enforced before a transaction is allowed to commit — a transaction that would violate one is rejected and rolled back instead, verified directly in Example R with a `CHECK` constraint refusing a balance update that would go negative.
+- **Isolation** — "can one transaction see another transaction's in-progress, not-yet-committed changes?" It depends on the isolation level — this is genuinely deep enough to deserve its own full chapter: [Isolation Levels and Concurrency Anomalies](isolation-levels-and-concurrency-anomalies.md) covers exactly which anomalies (dirty reads, non-repeatable reads, phantom reads) each level does and doesn't prevent, with real, measured evidence.
+- **Durability** — "once a transaction commits, is that data guaranteed to survive a crash?" Yes — a committed transaction is written to the database's write-ahead log before the commit is acknowledged, so the data survives even a real process crash or restart. [Replication, Read Replicas, and Replica Lag](replication-read-replicas-and-replica-lag.md) covers the actual WAL/crash-recovery mechanism behind this guarantee in depth.
+
+Reach for this vocabulary specifically when explaining *why* a database transaction is trustworthy in a way a handful of separate, unwrapped statements is not: without a transaction, there is no atomicity (a mid-sequence failure leaves partial changes committed), and without the database's own constraint enforcement, there is no consistency guarantee at all — both are exactly what Example R measures directly, not just describes.
 
 A `SELECT` query has three jobs, done by three different clauses, and confusing what each one is *for* is one of the most common beginner mistakes:
 
@@ -175,6 +188,14 @@ Every column has a declared type, and PostgreSQL's real type catalog is consider
 
 **Normalization**, at the level this chapter needs, is the practice of storing each fact exactly once and expressing relationships through foreign keys rather than by repeating data. Storing an author's name directly on every one of their book rows means updating that author's name requires updating every book row too, and risks the rows disagreeing with each other; storing `author_id` on `books` and looking the name up through a `JOIN` when needed means the name exists in exactly one place. [Data Modelling and Explicit Join Tables](data-modelling-and-explicit-join-tables.md) takes this idea further, into many-to-many relationships this chapter doesn't cover.
 
+### Triggers and stored procedures/functions: logic that runs inside the database itself
+
+A **stored function** (PostgreSQL calls it a function even when used procedurally, via `PL/pgSQL`) is a named, reusable piece of logic stored and executed *inside* the database itself, rather than in application code. A **trigger** wires a stored function to fire *automatically* whenever a specific event happens to a specific table — `BEFORE`/`AFTER` an `INSERT`/`UPDATE`/`DELETE`, `FOR EACH ROW` or once per statement — with no application code calling it explicitly. Section 7 Example S proves this directly: a real `BEFORE UPDATE` trigger writes an audit-log row and stamps a real `updated_at` timestamp, entirely on its own, the moment an ordinary `UPDATE` statement runs.
+
+The real, sharp-edged consequence worth internalizing: a trigger function can call `RAISE EXCEPTION`, and doing so aborts the *entire* statement that fired it — not just the trigger's own side effect — exactly like any other constraint violation (Atomicity, above). Section 7 Example S measures this directly too: an `UPDATE` that would set a negative balance is rejected entirely by the trigger, and the row's real value is verified unchanged afterward.
+
+**When to actually reach for a trigger, versus keeping logic in application code**: a trigger is the right tool for an invariant that must hold *no matter what* touches the table — including a raw `psql` session, a data migration script, or a second application nobody remembers exists — since a trigger fires regardless of which code path performed the write. The real cost is discoverability: trigger logic is invisible from application code, and a candidate reading only the service layer will never see it, which is why triggers are best reserved for genuine, table-level invariants (an audit trail, a computed/denormalized column that must always stay in sync) rather than business logic that's just as easy to keep in the application layer where it's actually visible.
+
 ## 5. How It Works Internally (L3)
 
 A `PRIMARY KEY` constraint is not just a naming convention — declaring one causes PostgreSQL to automatically build a unique index on that column (visible directly in Section 7 Example A's `\d` output: `"authors_pkey" PRIMARY KEY, btree (author_id)`), and every `INSERT` or `UPDATE` checks that index before committing, rejecting the operation if the value already exists. A `FOREIGN KEY` constraint works by the referencing table's write path checking the referenced table's primary-key index at the moment of the write — Section 7 Example F's rejected insert is that check firing in real time, not a delayed validation step.
@@ -258,6 +279,45 @@ A fourth insert (`Erin`, omitting `hire_date`, `is_active`, and `tags` entirely)
 
 **Q — one report query, built up six times**, each version's real output shown: a plain `SELECT emp_name` (5 rows) → add `WHERE is_active = TRUE` (still 5, since all seeded employees are active) → add a `LEFT JOIN` to `departments` (5 rows, Dev's department now correctly `NULL`) → add `GROUP BY`/`COUNT`/`AVG` (3 real groups: unassigned/2/65000, Engineering/2/130000, Sales/1/95000) → add `HAVING COUNT(emp_id) >= 1` (all 3 groups still qualify, since none is empty) → add `ORDER BY headcount DESC` plus `LIMIT 1` (returns exactly the top group by headcount).
 
+**R — ACID, all four guarantees measured directly** — [`practice/sql/acid-properties/`](../../practice/sql/acid-properties/README.md), real output in `acid-and-triggers-output.txt`:
+```
+-- Atomicity: a 3-insert transaction, the 3rd hits a real duplicate-key error
+ERROR:  duplicate key value violates unique constraint "accounts_pkey"
+Row count after ROLLBACK (expect 0): 0
+-- The identical transaction, no failure, commits both inserts as one unit:
+Row count after COMMIT (expect 2): 2
+
+-- Consistency: a CHECK constraint refuses a transaction that would violate it
+ERROR:  new row for relation "accounts" violates check constraint "accounts_balance_check"
+Alice's real balance after ROLLBACK (expect untouched, 100.00): 100.00
+
+-- Isolation: the real default level
+ transaction_isolation
+-----------------------
+ read committed
+
+-- Durability: a row committed, then a REAL container restart (not just a new connection)
+-- Part 2, after docker restart:
+ id | name | balance
+----+------+---------
+  3 | Dave |   50.00
+total_rows_surviving_restart: 3
+```
+
+**S — a real `TRIGGER` firing automatically, including one that rejects the write entirely** — same practice pack:
+```
+-- A BEFORE UPDATE trigger writes a real audit row, no application code called it
+UPDATE 1
+ log_id | account_id | old_balance | new_balance
+--------+------------+-------------+-------------
+      1 |          1 |      100.00 |       80.00
+
+-- The identical trigger's RAISE EXCEPTION aborts the WHOLE UPDATE for an invalid value
+ERROR:  balance cannot go negative: attempted -10.00 on account 1
+Balance after the rejected update (expect UNCHANGED at 80.00): 80.00
+Audit log row count (expect still 1): 1
+```
+
 ## 8. Common Mistakes
 
 - **Skipping a foreign key and relying on application code to keep two tables consistent** — the exact gap Section 7 Example F closes; without the constraint, a bug in application code can silently insert an orphaned row with no error at all.
@@ -267,6 +327,8 @@ A fourth insert (`Erin`, omitting `hire_date`, `is_active`, and `tags` entirely)
 - **Trying to filter on an aggregate with `WHERE`** — `WHERE COUNT(*) > 5` is a real syntax error, not just bad style, because `WHERE` runs before `GROUP BY`/aggregation in the logical processing order (Section 3); the aggregate simply doesn't exist yet at the point `WHERE` evaluates. This is exactly what `HAVING` exists for (Section 4).
 - **Writing a `JOIN` with a forgotten or wrong `ON` condition** — Postgres doesn't reject this; it silently executes as a `CROSS JOIN` (Section 4), producing a row count equal to (left rows × right rows) instead of the intended matched set — a real, common source of a query that "runs fine" but returns a wildly wrong, much larger result set.
 - **Choosing a natural key as the primary key because it "looks" permanently unique** — an email, a national ID, or a product SKU can all turn out to be not-actually-unique later, or need to change, at which point every foreign key referencing it becomes expensive to update; Section 6's surrogate-key default exists specifically to avoid this.
+- **Running several related statements outside an explicit transaction and assuming they're still atomic together** — without `BEGIN`/`COMMIT` wrapping them, a failure partway through leaves the earlier statements' changes committed individually; Section 3's Atomicity guarantee only applies to statements genuinely inside the same transaction.
+- **Assuming trigger logic is optional to know about when debugging unexpected data changes** — a row changing in a way no application code appears to cause is a real, common symptom of an un-noticed trigger, not necessarily a bug in the code being read.
 
 ## 9. Edge Cases
 
@@ -335,6 +397,15 @@ Expected answer: Section 4's key-types breakdown — a candidate key is any mini
 **Q8 (Junior/Mid): "When would you choose a `UUID` over an auto-incrementing integer as a primary key?"**
 Expected answer: when IDs need to be generated outside the database (e.g., client-side, before an `INSERT`) without risking a collision, or when sequential integer IDs would leak real information (row count, creation order) to anyone who can see them (e.g., in a public API URL). Trade-off: a `UUID` is larger (16 bytes vs. 4/8) and, unless generated in a way that preserves rough insertion order, indexes worse than a sequential integer — a real cost, not a free upgrade.
 
+**Q9 (Junior/Mid): "What does ACID stand for, and why does it matter?"**
+Expected answer: Section 3's four guarantees — Atomicity (all-or-nothing), Consistency (constraints always hold), Isolation (concurrent transactions' visibility of each other, level-dependent), Durability (a commit survives a crash) — each tied to a concrete consequence if it didn't hold, not just the expanded acronym recited from memory.
+
+**Q10 (Mid/Senior): "You wrap three inserts in a transaction and the third one fails. What happens to the first two?"**
+Expected answer: all three are rolled back — Atomicity means the transaction is all-or-nothing, verified directly in Section 7 Example R. A weak answer assumes the first two "already happened" and stay committed.
+
+**Q11 (Mid): "When would you reach for a database trigger instead of putting the equivalent logic in your application code?"**
+Expected answer: Section 4's framing — when an invariant must hold no matter which code path writes to the table (including a raw SQL session or a migration script), since a trigger fires regardless of the writer; the real cost is that trigger logic is invisible to anyone reading only the application layer, so it's best reserved for genuine table-level invariants (an audit trail, a computed column) rather than ordinary business logic.
+
 ## 16. Coding/Practice Exercises
 
 1. Add a `publishers` table (`publisher_id` primary key, `name`) and a `publisher_id` foreign key column on `books`. Insert at least one publisher with zero books and one book with a publisher, then write both an `INNER JOIN` and a `LEFT JOIN` between `books` and `publishers`, confirming the same disappearing-row behavior Example G demonstrates for `authors`.
@@ -389,3 +460,5 @@ For each of `users.email`, `posts.post_id`, and `posts.slug` (a URL-friendly tit
 - [ ] Can name the difference between a candidate key, a primary key, and an alternate/secondary key, and give a real example of each from this chapter's own schema.
 - [ ] Can name at least five real PostgreSQL data type categories (Section 4) and state one column from this chapter's schema for each.
 - [ ] Can explain, in Staff-level terms, why a foreign key enforced at the database is stronger than the same rule enforced only in application code.
+- [ ] Can name all four ACID guarantees and state the concrete consequence if each one didn't hold, not just expand the acronym.
+- [ ] Can explain why a trigger's `RAISE EXCEPTION` aborts the whole statement that fired it, and state when a trigger is the right tool versus keeping logic in application code.
