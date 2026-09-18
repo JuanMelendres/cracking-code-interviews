@@ -4,8 +4,8 @@ slug: auto-configuration-and-bean-lifecycle
 document_type: handbook-chapter
 domain: 05-spring
 status: canonical
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-18
 source_history:
   - handbook/spring/auto-configuration-and-bean-lifecycle.md
 difficulty:
@@ -123,6 +123,59 @@ Auto-configuration classes are processed *after* application-defined configurati
 
 Stacking `@Async` and `@Transactional` on the same method is a well-known real gotcha — the transaction itself works correctly (it starts on whichever thread the async executor actually runs the method on), but a `void @Async` method returns to its caller **immediately**, before the transactional work even executes. Any failure — including a correct rollback — happens invisibly on the background thread.
 
+### `@Configuration(proxyBeanMethods = ...)` decides whether calling one `@Bean` method from another creates a duplicate
+
+By default, a plain `@Configuration` class is itself replaced with a real, generated CGLIB subclass at startup — `proxyBeanMethods = true` is the default. That subclass overrides every `@Bean` method so that calling one from inside another, as an ordinary Java method call, is intercepted and redirected to the container: the *first* call actually constructs the bean and registers it as a singleton; every subsequent call (from any other `@Bean` method on the same class, or a plain Java call from within the class itself) returns that same singleton instead of running the method body again. This is precisely why `@Bean Car car() { return new Car(engine()); }` and a second `@Bean` method also calling `engine()` both end up holding the *same* `Engine` instance, verified directly in [Internal Implementation](#internal-implementation) with a real instance counter. Setting `@Configuration(proxyBeanMethods = false)` removes the interception entirely — `engine()` becomes a completely ordinary method call, and each caller genuinely gets its own separate object, also verified directly. The trade-off: skipping the proxy avoids CGLIB's small startup cost and lets the class be `final`, but only ever makes sense when no `@Bean` method in that class calls another `@Bean` method inter-bean-reference-style — the moment one does, `proxyBeanMethods = false` silently produces extra, uncoordinated instances instead of a startup error.
+
+### `@Scheduled` runs on a background thread, entirely independent of any lifecycle callback covered above
+
+`@EnableScheduling` on a `@Configuration` class activates `ScheduledAnnotationBeanPostProcessor` — a `BeanPostProcessor`, the identical extension point `@Transactional` and `@Async` use — which scans every bean for `@Scheduled` methods and registers each one with a `TaskScheduler` (a dedicated background thread pool, distinct from the request-handling thread pool and from `@Async`'s own default executor). Once registered, the method runs repeatedly on that scheduler's own thread, on the timing `@Scheduled`'s attributes specify (`fixedRate`, `fixedDelay`, or a cron expression) — completely independent of any request, any caller, or any of the construction-time lifecycle callbacks earlier in this chapter, which only run once, at startup. Verified directly in [Internal Implementation](#internal-implementation): a real counter increments six times in 550ms while the main thread does nothing but sleep, proving the ticks are driven by a genuinely separate thread.
+
+### Spring's event system decouples a publisher from every listener, and its default synchronicity has the same visibility trap as plain `@Transactional`
+
+`ApplicationEventPublisher.publishEvent(event)` is Spring's implementation of the Observer pattern: the publishing bean has zero knowledge of who's listening, or how many listeners there are — any number of `@EventListener`-annotated methods on any bean can react independently. By default, every listener runs **synchronously, on the publisher's own thread**, in registration order — `publishEvent(...)` does not return until every listener has finished, which means a slow or failing listener directly, visibly affects the publisher's own call. Adding `@Async` to a specific listener method changes only that listener to run on a separate thread — and reintroduces the exact same visibility gap this chapter's `@Async`+`@Transactional` gotcha already covers: the publisher's `publishEvent(...)` call returns immediately, with no way to observe that async listener's eventual success or failure.
+
+`@TransactionalEventListener` adds a third axis: instead of firing immediately, the listener is deferred until a specific phase of the **publisher's own transaction** — `AFTER_COMMIT` (the default, and the most common real use — e.g., "send a confirmation email only if the order actually committed successfully") fires only if the transaction commits; `AFTER_ROLLBACK` fires only on rollback; `BEFORE_COMMIT` fires just before commit is attempted. If the publisher isn't inside an active transaction at all when `publishEvent(...)` is called, a default-configured `@TransactionalEventListener` never fires at all — a real, common source of "why didn't my listener run" confusion, since nothing raises an error; the event is simply dropped.
+
+```java
+record OrderPlaced(Long orderId) {}
+
+@Service
+class OrderService {
+    private final ApplicationEventPublisher publisher;
+    // constructor omitted
+
+    @Transactional
+    void placeOrder(Order order) {
+        // ... save the order ...
+        publisher.publishEvent(new OrderPlaced(order.getId()));
+        // publishEvent() returns immediately -- listeners haven't necessarily run yet
+    }
+}
+
+@Component
+class OrderPlacedListeners {
+    @EventListener
+    void logSynchronously(OrderPlaced event) {
+        // Runs on OrderService's OWN thread, before placeOrder() returns.
+    }
+
+    @Async
+    @EventListener
+    void notifyWarehouseAsync(OrderPlaced event) {
+        // Runs on a separate thread -- placeOrder() does NOT wait for this,
+        // and cannot see whether it succeeded or failed.
+    }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    void sendConfirmationEmail(OrderPlaced event) {
+        // Only fires if placeOrder()'s transaction actually commits --
+        // never fires if it rolls back, and never fires at all if
+        // publishEvent() was called outside any transaction.
+    }
+}
+```
+
 ## Internal Implementation
 
 **Real, observed lifecycle output** ([`BeanLifecycleDemo.java`](../../practice/java/week-07/spring-internals/src/BeanLifecycleDemo.java)):
@@ -153,6 +206,32 @@ GRAVE: Unexpected exception occurred invoking async method: ...
 ```
 
 **Reading this precisely:** the transaction is entirely correct (row count 0 confirms the rollback). The "unexpected" part is purely about *visibility*: the caller's method call returned in 12ms with no exception, and the actual failure — including the real rollback — happened invisibly on a background thread, surfaced only in Spring's default uncaught-exception log line. A caller relying on a try/catch around this call to detect failure will never see one.
+
+**Real `@Configuration` proxy behavior, both settings, measured with a real instance counter** ([`ConfigurationProxyDemo.java`](../../practice/java/spring/configuration-properties-and-di-internals/src/ConfigurationProxyDemo.java)):
+
+```
+== Default @Configuration (proxyBeanMethods=true): CGLIB-proxied ==
+@Configuration class itself is a real CGLIB proxy: true
+Total real Engine instances actually constructed: 1  (every engine() call, even a plain Java call, returns the SAME singleton)
+car1.engine == car2.engine == the real 'engine' bean? true
+
+== @Configuration(proxyBeanMethods = false): a real, different outcome ==
+Total real Engine instances actually constructed: 3  (engine() is now a PLAIN Java method call each time, no interception at all)
+car1.engine == directEngineBean? false  (car1 holds its OWN Engine, not the container's 'engine' singleton)
+car1.engine == car2.engine? false  (two separate, uncoordinated Engine instances)
+```
+
+Two `@Bean` methods each calling `engine()` from inside a proxied `@Configuration` class produce exactly one real `Engine` — the proxy intercepts the plain Java call. Turning the proxy off with the identical code produces three separate `Engine` instances, since `engine()` is now genuinely just an ordinary method call with no container involvement at all.
+
+**Real `@Scheduled` background execution, measured with the main thread deliberately idle** ([`SchedulingAndRunnersDemo.java`](../../practice/java/spring/configuration-properties-and-di-internals/src/SchedulingAndRunnersDemo.java)):
+
+```
+== @Scheduled: real, repeated background execution ==
+Immediately after context refresh, ticks so far: 0
+After sleeping 550ms with the main thread idle, ticks = 6  (fixedRate=100ms -- a background scheduler thread, not the main thread, drove this)
+```
+
+The main thread does nothing but `Thread.sleep(550)` — no request, no explicit call to `tick()` anywhere in the demo. The counter reaching 6 (550ms / 100ms ≈ 5.5, rounding to 6 real executions) is only possible because a genuinely separate scheduler thread is driving it independently.
 
 ## Diagrams
 
@@ -260,6 +339,10 @@ public CompletableFuture<Void> doWorkAndFailObservably() {
 - Believing `@Transactional` "doesn't work" on `@Async` methods — it works; the surprise is about visibility, not correctness.
 - Using `@PostConstruct` for logic that depends on other beans' own `@PostConstruct` having already run — initialization order across beans isn't guaranteed by lifecycle phase alone.
 - Assuming auto-configuration can't be overridden without disabling it entirely — `@ConditionalOnMissingBean` exists specifically so a single bean can be overridden.
+- Assuming `@Configuration(proxyBeanMethods = false)` is a safe, purely-cosmetic optimization on any configuration class — it silently produces extra, uncoordinated instances the moment one `@Bean` method calls another on the same class, measured directly.
+- Forgetting `@EnableScheduling` and being confused when an `@Scheduled` method silently never runs — the annotation alone does nothing without the `BeanPostProcessor` that `@EnableScheduling` activates.
+- Calling `publishEvent(...)` outside any active transaction and expecting a `@TransactionalEventListener` to fire anyway — by default, it simply never runs, silently, with no error.
+- Adding `@Async` to an `@EventListener` and assuming the publisher can still observe whether it succeeded — same visibility gap as `@Async` + `@Transactional`, just on a listener instead of the original method.
 
 ## Anti-Patterns
 
@@ -362,6 +445,72 @@ The `@Async`+`@Transactional` gotcha is a specific instance of a general Staff-l
 
 **Related references.** [§ Core Concepts](#core-concepts).
 
+---
+
+### Question 3 — You call one `@Bean` method from another, on the same `@Configuration` class. Does that create a second bean instance?
+
+**Why interviewers ask it.** Tests whether the candidate understands `@Configuration`'s own CGLIB proxying, a mechanism many engineers use daily without knowing it's there.
+
+**Expected answer.** No, not by default — `@Configuration` classes are themselves CGLIB-proxied (`proxyBeanMethods = true` is the default), so the call is intercepted and redirected to the container, returning the existing singleton instead of running the method body again.
+
+**Minimum acceptable answer.** States that it returns the same instance, even without naming the CGLIB-proxy mechanism.
+
+**Strong Senior answer.** Names the CGLIB proxy mechanism and states that `proxyBeanMethods = false` removes it.
+
+**Staff-level extension.** States the real consequence of turning the proxy off on a class where one `@Bean` method calls another — silently uncoordinated, duplicate instances, not a startup error, measured directly.
+
+**Common mistakes.** Assuming every `@Configuration` class behaves identically regardless of `proxyBeanMethods`, or assuming Spring would raise an error if the assumption were wrong.
+
+**Likely follow-ups.** "Why would you ever set `proxyBeanMethods = false`?"
+
+**Evaluation criteria (1–5).** 1: assumes a second instance is created (or is unsure). 3: correctly states the singleton behavior and the CGLIB mechanism. 5: correct mechanism plus the real, measured consequence of disabling it.
+
+**Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation).
+
+---
+
+### Question 4 — Does `@Scheduled` block the thread that's running your web requests?
+
+**Why interviewers ask it.** Tests whether the candidate understands `@Scheduled` runs on a genuinely separate thread pool, not whatever thread happens to be free.
+
+**Expected answer.** No — `@EnableScheduling` registers a dedicated `TaskScheduler` (its own background thread pool), distinct from the request-handling thread pool and from `@Async`'s default executor; a scheduled method's execution time has no effect on request latency, verified directly by a counter incrementing while the main thread does nothing but sleep.
+
+**Minimum acceptable answer.** States that `@Scheduled` runs "in the background," even without naming the `TaskScheduler` mechanism specifically.
+
+**Strong Senior answer.** Names the dedicated scheduler thread pool and distinguishes it from request-handling threads and `@Async`'s executor.
+
+**Staff-level extension.** Raises the real operational question this implies: a slow or hanging `@Scheduled` method can starve other scheduled tasks sharing the same default single-threaded scheduler unless a properly-sized `TaskScheduler` bean is explicitly configured — the same thread-pool-sizing discipline `@Async`/`@Transactional` already require, just for a different pool.
+
+**Common mistakes.** Assuming `@Scheduled` methods somehow run on the request-handling thread pool, or that forgetting `@EnableScheduling` produces an error rather than silently doing nothing.
+
+**Likely follow-ups.** "What happens if two `@Scheduled` methods are registered but no explicit `TaskScheduler` bean exists?" (Spring falls back to a single-threaded default scheduler — one slow task delays every other scheduled task sharing it.)
+
+**Evaluation criteria (1–5).** 1: assumes scheduled methods share the request thread pool. 3: correctly states a separate scheduler thread pool. 5: correct answer plus the default-single-threaded-scheduler operational risk.
+
+**Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation).
+
+---
+
+### Question 5 — You want to send a confirmation email only if an order's transaction actually commits successfully. How would you implement that with Spring's event system?
+
+**Why interviewers ask it.** Tests whether the candidate knows `@TransactionalEventListener` specifically, rather than reaching for a plain `@EventListener` and manually checking transaction state.
+
+**Expected answer.** Publish an event (`ApplicationEventPublisher.publishEvent(...)`) from inside the transactional method, and listen for it with `@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)` — the listener only fires if the publisher's transaction actually commits, never on rollback, and (the real gotcha) never at all if `publishEvent(...)` was called outside any active transaction.
+
+**Minimum acceptable answer.** Knows Spring has an event system (`@EventListener`), even without naming the transactional variant specifically.
+
+**Strong Senior answer.** Names `@TransactionalEventListener` and its default `AFTER_COMMIT` phase correctly.
+
+**Staff-level extension.** Names the silent-no-op failure mode explicitly — calling `publishEvent(...)` outside a transaction produces no error, the listener simply never runs — and connects it to the same broader "silent failure at a boundary condition" pattern this chapter's `@Async`+`@Transactional` gotcha and the sibling `Comparator` chapter's overflow bug both represent.
+
+**Common mistakes.** Assuming a plain `@EventListener` is transaction-aware by default (it isn't — it's synchronous but has no relationship to any transaction at all).
+
+**Likely follow-ups.** "What happens if you add `@Async` to that same listener?" (It reintroduces the visibility gap — the publisher can no longer observe the listener's success or failure, the same trap as `@Async` + `@Transactional`.)
+
+**Evaluation criteria (1–5).** 1: doesn't know `@TransactionalEventListener` exists. 3: correctly names it and its default phase. 5: correct answer plus the outside-a-transaction silent-no-op failure mode.
+
+**Related references.** [§ Core Concepts](#core-concepts).
+
 ## Summary
 
 Bean lifecycle callbacks fire in a fixed, observable order — constructor, `BeanPostProcessor.before`, `@PostConstruct`, `InitializingBean`, custom init-method, `BeanPostProcessor.after`, then the mirror sequence on shutdown. Auto-configuration layers conditional bean creation on top, ordered to run after application configuration specifically so `@ConditionalOnMissingBean` reliably detects an application override. Stacking `@Async` and `@Transactional` produces a correct transaction with an invisible failure path — reproduced with real numbers (12ms return, no exception visible, correct rollback happening silently).
@@ -372,6 +521,9 @@ Bean lifecycle callbacks fire in a fixed, observable order — constructor, `Bea
 - `@Transactional`'s proxy is created via a `BeanPostProcessor`, before `@PostConstruct` even runs.
 - `@ConditionalOnMissingBean` relies on auto-configuration running after application configuration.
 - `@Async` + `@Transactional`: the transaction is correct; the caller's visibility into failure is the actual gotcha.
+- `@Configuration` classes are CGLIB-proxied by default — calling one `@Bean` method from another returns the container's existing singleton; `proxyBeanMethods = false` removes that interception and silently produces separate, uncoordinated instances instead.
+- `@Scheduled` (with `@EnableScheduling`) runs on a dedicated scheduler thread pool, entirely independent of request-handling threads and construction-time lifecycle callbacks — verified directly with a counter incrementing while the main thread sleeps.
+- `@EventListener` runs synchronously on the publisher's own thread by default; `@TransactionalEventListener` defers to a transaction phase (commit by default) and never fires at all outside an active transaction.
 
 ## Cheat Sheet
 
@@ -382,6 +534,13 @@ Bean lifecycle callbacks fire in a fixed, observable order — constructor, `Bea
 | Wrap/modify a bean before its own init logic runs | `BeanPostProcessor.postProcessBeforeInitialization` (how `@Transactional` proxies are made) |
 | Override exactly one auto-configured bean | Define that bean directly — `@ConditionalOnMissingBean` skips the default |
 | Observe an `@Async` method's success/failure | Return `CompletableFuture<T>`, or configure `AsyncUncaughtExceptionHandler` |
+| Call one `@Bean` method from another and get the SAME instance | Default `@Configuration` behavior (`proxyBeanMethods = true`) — do nothing extra |
+| Call one `@Bean` method from another and need a NEW instance each time | Extract the shared logic to a plain (non-`@Bean`) helper method instead of relying on `proxyBeanMethods = false` |
+| Run a method repeatedly on a background thread, independent of requests | `@Scheduled` on the method, `@EnableScheduling` on a `@Configuration` class |
+| An `@Scheduled` method silently never runs | Check for a missing `@EnableScheduling` — the annotation alone does nothing without it |
+| Decouple a publisher from what happens next, without it knowing who's listening | `ApplicationEventPublisher.publishEvent(...)` + `@EventListener` |
+| Run a listener only if the publisher's transaction actually commits | `@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)` |
+| A `@TransactionalEventListener` silently never fires | Check whether `publishEvent(...)` was actually called inside an active transaction — outside one, it never fires by default |
 
 ## Flashcards
 

@@ -4,8 +4,8 @@ slug: spring-framework-vs-spring-boot
 document_type: handbook-chapter
 domain: 05-spring
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-18
 source_history:
   - handbook/spring/spring-framework-vs-spring-boot.md
 difficulty:
@@ -132,6 +132,10 @@ Every Spring Boot application's entry-point class carries exactly one annotation
 
 The scoping consequence worth internalizing precisely: `@ComponentScan`'s starting point is *the package of the class carrying `@SpringBootApplication`*, not the project root — which is exactly why this chapter's own default-package incident happened, and exactly why every Spring Boot generator (start.spring.io included) places the application class at the top of a real, project-specific package rather than leaving it unpackaged.
 
+### `CommandLineRunner`/`ApplicationRunner`: the hook for "run this once, after everything else exists"
+
+A `CommandLineRunner` (or `ApplicationRunner`, identical except it receives parsed `ApplicationArguments` instead of a raw `String[]`) bean is the standard way to run one-off startup logic — seeding reference data, warming a cache, validating an external dependency is reachable — that genuinely needs every other bean in the application already built. `SpringApplication.run()` is specifically what invokes every `CommandLineRunner`/`ApplicationRunner` bean, in `@Order` (or declaration) sequence, after the application context is fully refreshed; a plain `AnnotationConfigApplicationContext` (no `SpringApplication` involved) never invokes them at all, since the mechanism lives in `SpringApplication` itself, not in Spring Framework's core container — verified directly in [Internal Implementation](#internal-implementation), below, where the identical `CommandLineRunner` bean genuinely never runs under a raw context and genuinely does run under `SpringApplication.run()`.
+
 ## Internal Implementation
 
 **A complete embedded Spring Boot application, measured — no external server, started by `java -cp`:**
@@ -183,6 +187,21 @@ Negative matches:
 For this specific application (web classpath only, no JDBC/Kafka/Mongo dependencies added), Spring Boot's real report shows **77 positive matches and 168 negative matches** — every one of those 245 evaluated auto-configuration classes reasoned about, individually, against this application's actual classpath, with the exact reason logged. `DispatcherServletAutoConfiguration` matched because `spring-webmvc` is on the classpath; `DataSourceAutoConfiguration`, `KafkaAutoConfiguration`, and `MongoAutoConfiguration` all explicitly did *not* match, each for a stated, specific missing class — not because they were disabled, but because their own conditions genuinely evaluated false.
 
 **A real, caught pitfall this demo's own construction hit** — running the identical application from the JVM's *default package* (no `package` declaration) produced a genuine startup crash, `NoClassDefFoundError: io/r2dbc/spi/ValidationDepth`, because `@ComponentScan` (which `@SpringBootApplication` implies) scans starting from its own class's package — and the default package means scanning the *entire* classpath, including `spring-boot-autoconfigure.jar`'s own internal classes, one of which references an optional class (R2DBC's SPI) genuinely absent from this demo's dependencies. Placing the application class in a real package (this demo uses `demo`) scopes the component scan correctly and the failure disappears — a real, well-known Spring Boot gotcha, not a hypothetical one.
+
+**Real proof that `CommandLineRunner` needs `SpringApplication`, not just a container** ([`SchedulingAndRunnersDemo.java`](../../practice/java/spring/configuration-properties-and-di-internals/src/SchedulingAndRunnersDemo.java)):
+
+```
+== CommandLineRunner under a PLAIN AnnotationConfigApplicationContext: never invoked ==
+Context fully refreshed. Has the CommandLineRunner bean executed? false  (the bean EXISTS, but nothing ever calls .run() on it -- that mechanism lives in SpringApplication, not the core container)
+
+== The IDENTICAL bean, under SpringApplication.run(): actually invoked ==
+[...Spring Boot startup banner...]
+Started SchedulingAndRunnersDemo in 0.088 seconds (process running for 0.86)
+CommandLineRunner executing -- every other bean already exists at this point.
+SpringApplication.run() has returned. Has the runner executed? true
+```
+
+The identical `CommandLineRunner` bean, same class, same annotation — genuinely never runs when the context is built by plain `AnnotationConfigApplicationContext`, and genuinely does run when `SpringApplication.run()` builds the identical context. A precise, real, observed detail worth knowing exactly: the "Started ... in N seconds" banner logs *before* the runner executes, not after — the runner is one of the last things `SpringApplication.run()` does before returning, not the first.
 
 ## Diagrams
 
@@ -303,6 +322,7 @@ class GreetingController {
 - Assuming a starter dependency directly configures something, rather than changing the classpath that auto-configuration's conditions react to.
 - Assuming disabling an unwanted auto-configuration requires an explicit exclusion, when defining your own competing bean is usually sufficient (`@ConditionalOnMissingBean`).
 - Placing a `@SpringBootApplication` class in the default package — a real, not hypothetical, source of a confusing startup crash from over-broad component scanning.
+- Assuming a `CommandLineRunner` bean will run under any `ApplicationContext` — it only runs because `SpringApplication.run()` specifically looks it up and invokes it; a plain `AnnotationConfigApplicationContext` builds the identical bean and never calls it.
 
 ## Anti-Patterns
 
@@ -425,6 +445,28 @@ The auto-configuration mechanism is a specific instance of a general Staff-level
 
 **Related references.** [§ Core Concepts](#core-concepts) — "`@SpringBootApplication` is three real annotations composed into one."
 
+---
+
+### Question 4 — You need to run some one-off logic once every other bean exists, right before the application starts serving traffic. What's the standard way to do that?
+
+**Why interviewers ask it.** Tests whether the candidate knows `CommandLineRunner`/`ApplicationRunner` specifically, and understands it's a `SpringApplication`-level mechanism, not a core-container feature.
+
+**Expected answer.** Register a `CommandLineRunner` (or `ApplicationRunner`) bean — `SpringApplication.run()` invokes every one of these, in order, after the application context is fully refreshed, before returning control to the caller.
+
+**Minimum acceptable answer.** Names `CommandLineRunner`, even without stating precisely when it runs or that it needs `SpringApplication`.
+
+**Strong Senior answer.** States that the mechanism is driven by `SpringApplication` itself, not the core `ApplicationContext`.
+
+**Staff-level extension.** Notes the real, precise ordering this chapter measures directly: `SpringApplication`'s own "Started ... in N seconds" log line prints *before* the runner executes, not after — worth knowing exactly rather than assuming runners are the very first or very last thing to happen.
+
+**Common mistakes.** Assuming any `ApplicationContext` invokes `CommandLineRunner` beans automatically — verified directly that a plain `AnnotationConfigApplicationContext` does not.
+
+**Likely follow-ups.** "What's the real, observed order between the startup banner log and the runner executing?"
+
+**Evaluation criteria (1–5).** 1: doesn't know the mechanism. 3: correctly names `CommandLineRunner` and its `SpringApplication` dependency. 5: correct answer plus the precise, real ordering detail.
+
+**Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation).
+
 ## Summary
 
 Spring Boot is not a separate framework — it's an opinionated assembler built on Spring Framework's own ordinary mechanisms (`@Configuration`, `@Bean`, `@Conditional`), adding starters (classpath-changing dependency bundles), auto-configuration (conditional beans reacting to that classpath and to what the application has already defined), and an embedded, application-owned server. This chapter measured both central mechanisms directly: a complete web application, embedded server included, served a real HTTP request from a single `java -cp` command with no external deployment step, and Spring Boot's own real conditions-evaluation report showed exactly which of 245 evaluated auto-configuration classes matched (77) and which didn't (168), each for a specific, logged, classpath-driven reason.
@@ -437,6 +479,7 @@ Spring Boot is not a separate framework — it's an opinionated assembler built 
 - The embedded server model means the application starts and owns its own server process — `java -jar`/`java -cp` is the complete deployment story.
 - `--debug` shows Spring Boot's real, specific reasoning for every auto-configuration decision — use it instead of guessing.
 - `@SpringBootApplication` = `@SpringBootConfiguration` (bean-definition source, findable by tooling) + `@EnableAutoConfiguration` (triggers auto-configuration) + `@ComponentScan` (scans this class's own package and below) — three separable mechanisms, not one indivisible unit.
+- `CommandLineRunner`/`ApplicationRunner` beans only run because `SpringApplication.run()` specifically invokes them after the context refreshes — verified directly that a plain `AnnotationConfigApplicationContext` never does.
 
 ## Cheat Sheet
 
@@ -449,6 +492,7 @@ Spring Boot is not a separate framework — it's an opinionated assembler built 
 | How is a Spring Boot app deployed by default? | `java -jar`/`java -cp` — an embedded server, no external app-server installation |
 | What are the 3 annotations composing `@SpringBootApplication`? | `@SpringBootConfiguration` + `@EnableAutoConfiguration` + `@ComponentScan` |
 | Where does `@ComponentScan` start scanning from? | The annotated class's own package — never the default (unpackaged) package |
+| Run one-off logic after every bean exists, before serving traffic | A `CommandLineRunner`/`ApplicationRunner` bean — requires `SpringApplication.run()`, not just any `ApplicationContext` |
 
 ## Flashcards
 
