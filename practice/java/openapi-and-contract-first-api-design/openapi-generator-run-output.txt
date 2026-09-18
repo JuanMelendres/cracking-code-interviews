@@ -1,0 +1,54 @@
+[main] WARN  o.o.codegen.DefaultCodegen - OpenAPI 3.1 support is still in beta. To report an issue related to 3.1 spec, please kindly open an issue in the Github repo: https://github.com/openAPITools/openapi-generator.
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/tmp/openapi-codegen-log-run) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: java (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'java' is considered stable.
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Environment variable JAVA_POST_PROCESS_FILE not defined so the Java code may not be properly formatted. To define it, try 'export JAVA_POST_PROCESS_FILE="/usr/local/bin/clang-format -i"' (Linux/Mac)
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation createOrder
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getOrder
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/model/CreateOrderRequest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/test/java/org/openapitools/client/model/CreateOrderRequestTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/docs/CreateOrderRequest.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/model/OrderDto.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/test/java/org/openapitools/client/model/OrderDtoTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/docs/OrderDto.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/api/OrderControllerApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/test/java/org/openapitools/client/api/OrderControllerApiTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/docs/OrderControllerApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/pom.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/build.gradle
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/build.sbt
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/settings.gradle
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/gradle.properties
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/AndroidManifest.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/ApiClient.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/ServerConfiguration.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/ServerVariable.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/.github/workflows/maven.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/api/openapi.yaml
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/gradlew
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/gradlew.bat
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/gradle/wrapper/gradle-wrapper.properties
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/gradle/wrapper/gradle-wrapper.jar
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/ApiException.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/Configuration.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/Pair.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/ApiResponse.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/JSON.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/RFC3339DateFormat.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/RFC3339InstantDeserializer.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/src/main/java/org/openapitools/client/RFC3339JavaTimeModule.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /tmp/openapi-codegen-log-run/.openapi-generator/FILES
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donating to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

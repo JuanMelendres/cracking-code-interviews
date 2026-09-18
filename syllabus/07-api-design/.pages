@@ -7,3 +7,5 @@ nav:
   - api-gateway-bff-and-edge-concerns.md
   - graphql-api-design.md
   - grpc-api-design.md
+  - openapi-and-contract-first-api-design.md
+  - webhook-design-and-delivery-guarantees.md

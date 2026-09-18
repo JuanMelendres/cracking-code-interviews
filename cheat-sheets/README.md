@@ -33,6 +33,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-16 — API Versioning Strategies (T-919) gains a cheat sheet.** New `07-api-design` chapter closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning). **New total: 255 cheat sheets.**
 
+**2026-09-18 — OpenAPI/Contract-First API Design (T-2414) and Webhook Design and Delivery Guarantees (T-2415) gain cheat sheets.** Two new `07-api-design` chapters closing a gap-audit finding zero coverage of either topic anywhere in the repository. `api-design.md` (T-803)'s existing cheat sheet was also updated in place for that same audit's HATEOAS/RFC 9457/filtering-sorting/bulk-operations additions. **New total: 257 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -178,6 +180,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 137 | [API Versioning Strategies](api-versioning-strategies.md) | T-919 | — | api-design | `syllabus/07-api-design/api-versioning-strategies.md` |
 | 138 | [DTO, Entity, and Mapper Patterns](dto-entity-mapper-patterns.md) | T-520 | — | spring | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
 | 139 | [Coding Interview Pattern-Recognition Methodology](coding-interview-pattern-recognition-methodology.md) | T-2120 | — | data-structures-algorithms | `syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md` |
+| 140 | [OpenAPI and Contract-First API Design](openapi-and-contract-first-api-design.md) | T-2414 | — | api-design | `syllabus/07-api-design/openapi-and-contract-first-api-design.md` |
+| 141 | [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md) | T-2415 | — | api-design | `syllabus/07-api-design/webhook-design-and-delivery-guarantees.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 

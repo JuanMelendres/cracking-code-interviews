@@ -2,8 +2,8 @@
 title: "API Design — Domain Index"
 document_type: syllabus-domain-index
 domain: 07-api-design
-status: 2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 4th and 5th chapters added 2026-09-09 (GraphQL API Design T-917, gRPC API Design T-918) closing the gap where T-803's title promised both protocols but neither was ever written; 6th chapter added 2026-09-16 (API Versioning Strategies, T-919) closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning) — real Spring MVC demo with two genuinely unplanned findings about missing-version-signal behavior
-last_updated: 2026-09-16
+status: 2 of 2 mapped chapters physically relocated (Phase 2, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 3rd chapter added 2026-09-07 (REST API Fundamentals, T-2205), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 4th and 5th chapters added 2026-09-09 (GraphQL API Design T-917, gRPC API Design T-918) closing the gap where T-803's title promised both protocols but neither was ever written; 6th chapter added 2026-09-16 (API Versioning Strategies, T-919) closing the last of T-803's four originally-promised topics (REST, gRPC, GraphQL, versioning) — real Spring MVC demo with two genuinely unplanned findings about missing-version-signal behavior; 7th and 8th chapters added 2026-09-18 (OpenAPI and Contract-First API Design T-2414, Webhook Design and Delivery Guarantees T-2415) closing a gap audit that found zero coverage of either topic anywhere in the domain, plus HATEOAS/Richardson Maturity Model, RFC 9457 Problem Details, filtering/sorting, and bulk operations closed in-place in api-design.md (T-803)
+last_updated: 2026-09-18
 ---
 
 # API Design
@@ -32,6 +32,8 @@ REST/gRPC/GraphQL design, versioning, and pagination — foundational-through-Se
 | T-917 | GraphQL API Design | L1, L2, L3, L4 — fully written, real graphql-java N+1/DataLoader demo (2026-09-09) | `syllabus/07-api-design/graphql-api-design.md` |
 | T-918 | gRPC API Design | L1, L2, L3, L4 — fully written, real protoc-generated client/server demo (2026-09-09) | `syllabus/07-api-design/grpc-api-design.md` |
 | T-919 | API Versioning Strategies | L1, L2, L3, L4 — fully written, real Spring MVC demo (2026-09-16) | `syllabus/07-api-design/api-versioning-strategies.md` |
+| T-2414 | OpenAPI and Contract-First API Design | L1, L2, L3, L4 — fully written, real springdoc-openapi + openapi-generator-cli demo (2026-09-18) | `syllabus/07-api-design/openapi-and-contract-first-api-design.md` |
+| T-2415 | Webhook Design and Delivery Guarantees | L1, L2, L3, L4 — fully written, real HMAC/retry/dedup demo (2026-09-18) | `syllabus/07-api-design/webhook-design-and-delivery-guarantees.md` |
 
 ## Where this domain's boundary comes from
 
