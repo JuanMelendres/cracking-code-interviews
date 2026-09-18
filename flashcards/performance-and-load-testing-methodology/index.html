@@ -4140,6 +4140,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../jvm-startup-performance-cds-and-native-image/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: JVM Startup Performance — CDS, AppCDS, and GraalVM Native Image
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kafka-architecture-fundamentals/" class="md-nav__link">
         
   
@@ -5755,6 +5783,17 @@
     <span class="md-ellipsis">
       
         Card: What determines whether a load test catches real issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-closed-loop-vs-open-loop-load-generator-real-measured-gap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Closed-loop vs. open-loop load generator, real measured gap
       
     </span>
   </a>
@@ -8320,6 +8359,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#card-closed-loop-vs-open-loop-load-generator-real-measured-gap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Closed-loop vs. open-loop load generator, real measured gap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-why-performance-testing-silently-lapses" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8424,6 +8474,17 @@ Distinguishes a load test that generates a genuine confidence signal from one th
 Designing a load test around total requests-per-second alone, without matching the real traffic's shape.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/08-testing/performance-and-load-testing-methodology/">syllabus/08-testing/performance-and-load-testing-methodology.md</a></p>
+<h2 id="card-closed-loop-vs-open-loop-load-generator-real-measured-gap">Card: Closed-loop vs. open-loop load generator, real measured gap<a class="headerlink" href="#card-closed-loop-vs-open-loop-load-generator-real-measured-gap" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+A hand-written load-test client uses N worker threads, each waiting for a response before sending its next request. What real problem does this have, verified directly?</p>
+<p><strong>Answer:</strong>
+This is a closed-loop generator — it implicitly throttles its own rate under load, understating tail latency. Verified directly: a real ~2.75x gap at p95 (100ms closed-loop vs. 275ms open-loop, via k6) against the identical server.</p>
+<p><strong>Why it matters:</strong>
+The gap shows up exactly at the percentile most teams use for alerting/SLOs, not just in an extreme tail.</p>
+<p><strong>Common trap:</strong>
+Assuming a hand-rolled concurrent-worker load-test client is an unbiased measurement tool.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/08-testing/performance-and-load-testing-methodology/">syllabus/08-testing/performance-and-load-testing-methodology.md</a></p>
 <h2 id="card-why-performance-testing-silently-lapses">Card: Why performance testing silently lapses<a class="headerlink" href="#card-why-performance-testing-silently-lapses" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 Why does performance testing have a demonstrated tendency to silently lapse, unlike a functional test suite?</p>
@@ -8455,7 +8516,7 @@ Assuming a performance-testing practice will persist on its own once established
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 23:30:45 UTC">September 18, 2026</span>
   </span>
 
     

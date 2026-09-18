@@ -585,6 +585,10 @@
          <lastmod>2026-09-18</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/jvm-startup-performance-cds-and-native-image/</loc>
+         <lastmod>2026-09-18</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/kafka-architecture-fundamentals/</loc>
          <lastmod>2026-09-18</lastmod>
     </url>
@@ -1629,6 +1633,10 @@
          <lastmod>2026-09-18</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/jvm-startup-performance-cds-and-native-image/</loc>
+         <lastmod>2026-09-18</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/kafka-architecture-fundamentals/</loc>
          <lastmod>2026-09-18</lastmod>
     </url>
@@ -2493,6 +2501,10 @@
          <lastmod>2026-09-18</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/jvm-startup-performance/</loc>
+         <lastmod>2026-09-18</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/kafka/consumer-lag-backpressure-and-dlq-strategy/</loc>
          <lastmod>2026-09-18</lastmod>
     </url>
@@ -2538,6 +2550,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/llm-evaluation-and-testing/</loc>
+         <lastmod>2026-09-18</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/load-testing-and-performance-test-design/</loc>
          <lastmod>2026-09-18</lastmod>
     </url>
     <url>
@@ -6290,6 +6306,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/16-performance-jvm/capacity-planning-and-headroom/</loc>
+         <lastmod>2026-09-18</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/16-performance-jvm/jvm-startup-performance-cds-and-native-image/</loc>
          <lastmod>2026-09-18</lastmod>
     </url>
     <url>

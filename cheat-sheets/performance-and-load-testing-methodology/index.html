@@ -4087,6 +4087,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../jvm-startup-performance-cds-and-native-image/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: JVM Startup Performance — CDS, AppCDS, and GraalVM Native Image
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kafka-architecture-fundamentals/" class="md-nav__link">
         
   
@@ -8520,6 +8548,8 @@
 <li><strong>Stress testing</strong> — deliberately pushes traffic beyond expected levels to find the breaking point and observe <em>how</em> it fails. Run ahead of capacity-planning decisions or major events, not every release.</li>
 <li><strong>Soak testing</strong> — sustained, moderate load over an extended duration, specifically to surface issues that only accumulate <em>over time</em> (leaks, unbounded caches). A load test's short duration structurally cannot substitute for it.</li>
 <li><strong>Traffic shape</strong> — request mix, cache-hit pattern, data-access distribution; matters as much as traffic volume for whether a load test catches real issues.</li>
+<li><strong>Closed-loop generator</strong> — N worker threads, each sending its next request only after the previous response arrives; implicitly throttles its own rate under load, understating tail latency.</li>
+<li><strong>Open-loop generator</strong> — fires requests on a fixed schedule regardless of response time (k6's <code>constant-arrival-rate</code> is a real example); correctly represents independently-arriving real users.</li>
 </ul>
 <h2 id="decision-table">Decision Table<a class="headerlink" href="#decision-table" title="Permanent link">&para;</a></h2>
 <table>
@@ -8555,12 +8585,18 @@
 mean=12.45ms  p50=4.17ms  p95=150.54ms  p99=155.23ms  max=187.48ms
 </code></pre></div>
 <p>Mean and p50 both look healthy; p95 (150.54ms) reveals the full 5% of requests hitting the deliberately injected slow path — the exact reason a load-testing gate's pass/fail criteria must be defined against a percentile, not a mean, threshold. For the deeper percentile-mathematics and coordinated-omission pitfalls in how the load itself is generated, see <a href="../percentiles-tail-latency-and-coordinated-omission/">Percentiles, Tail Latency, and Coordinated Omission</a> — that chapter's own measured evidence (p99 shifting from 500ms to 830ms purely from correcting load-generator methodology) is the natural next step.</p>
+<p><strong>Real open-loop-vs-closed-loop tooling comparison</strong> (<code>practice/java/load-testing-and-performance-test-design/</code>), both against the identical real server (a real 300ms stop-the-world-style pause every 2s):</p>
+<div class="highlight"><pre><span></span><code>Closed-loop (Java, concurrency=5):   p50=70ms    p95=100ms    p99=396ms
+Open-loop   (k6, 40 req/s target):   p50=13.11ms p95=275.35ms p99=424.85ms
+</code></pre></div>
+<p>Real gap at p95: open-loop 275ms vs. closed-loop 100ms — a real ~2.75x understatement at exactly the percentile most teams alert on.</p>
 <h2 id="common-pitfalls">Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Treating load, stress, and soak testing as interchangeable or one undifferentiated activity.</li>
 <li>Designing traffic volume carefully while neglecting traffic <em>shape</em> — uniform, cache-friendly synthetic traffic can pass cleanly while missing the exact conditions that cause real tail-latency behavior.</li>
 <li>Leaving performance testing without an explicit owner or trigger, letting it silently lapse the way an automated gate cannot.</li>
 <li>Gating on mean latency instead of a percentile threshold, exactly the mistake this chapter's own worked example exposes.</li>
+<li>Hand-writing a closed-loop load-test client without recognizing it understates tail latency — real ~2.75x gap at p95 measured against an open-loop generator.</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> Load, stress, and soak testing answer three different questions — expected-traffic validation, breaking-point behavior, time-accumulated issues — and belong at different points in a release process: load as a routine gate, stress before capacity decisions, soak for long-lived-state changes. Traffic shape, not just volume, determines whether a load test catches real production issues.</p>
@@ -8599,7 +8635,7 @@ mean=12.45ms  p50=4.17ms  p95=150.54ms  p99=155.23ms  max=187.48ms
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 23:30:45 UTC">September 18, 2026</span>
   </span>
 
     
