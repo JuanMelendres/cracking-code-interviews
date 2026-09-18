@@ -4,8 +4,8 @@ slug: spring-webflux-and-reactive-programming
 document_type: handbook-chapter
 domain: 05-spring
 status: canonical
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-18
 source_history:
   - handbook/spring/spring-webflux-and-reactive-programming.md
 difficulty:
@@ -184,6 +184,44 @@ thread-per-request servlet container.
   learning curve — but reactive's explicit backpressure and composability
   remain genuinely valuable for streaming and backpressure-sensitive
   workloads virtual threads don't directly address.
+- **`WebClient` is Spring's modern HTTP client, and it's usable even from an
+  otherwise fully blocking (Servlet-based) application.** `RestTemplate` is
+  officially in maintenance mode — per Spring's own documentation, it will
+  continue to receive minor bug fixes and no longer gains new features —
+  while `WebClient` (shipped in this chapter's `spring-webflux` module) is
+  Spring's current, actively-developed HTTP client for both reactive and
+  blocking callers alike:
+
+  ```java
+  // Fully reactive caller: compose the response into a larger reactive chain.
+  WebClient client = WebClient.create("https://api.example.com");
+  Mono<Order> order = client.get()
+          .uri("/orders/{id}", orderId)
+          .retrieve()
+          .bodyToMono(Order.class);
+
+  // From an otherwise BLOCKING (Servlet/MVC) service: call .block() at the
+  // one point where a synchronous result is genuinely needed. This does
+  // NOT make the calling service reactive -- it's still Spring MVC,
+  // still blocking threads -- it just uses WebClient as a modern,
+  // non-deprecated HTTP client instead of RestTemplate.
+  Order order = client.get()
+          .uri("/orders/{id}", orderId)
+          .retrieve()
+          .bodyToMono(Order.class)
+          .block();
+  ```
+
+  A team does not need to adopt the full reactive programming model to get
+  `WebClient`'s benefits over `RestTemplate` — non-blocking I/O under the
+  hood even when called synchronously via `.block()`, built-in support for
+  streaming and `Mono`/`Flux` composition when it *is* needed later, and
+  ongoing maintenance from a client that isn't frozen. The one real
+  discipline this requires: never call `.block()` from inside a WebFlux
+  reactive chain itself (only from an ordinary blocking Servlet-thread
+  context) — doing so inside a reactive chain reintroduces exactly the
+  blocking-call-on-a-reactive-scheduler hazard this chapter's own
+  Production Scenario measures directly.
 
 ## Internal Implementation
 
@@ -386,6 +424,9 @@ not merely "high concurrency" in the abstract.
 - Migrating a service to WebFlux partially, leaving some blocking calls in
   place — often worse than not migrating, as this chapter's production
   scenario demonstrates.
+- Reaching for `RestTemplate` in new code out of habit — it's officially in
+  maintenance mode; `WebClient` is the current, actively-developed choice,
+  usable even from a fully blocking service via `.block()`.
 
 ## Anti-Patterns
 
@@ -607,6 +648,10 @@ streaming workloads, not a default.
 - Virtual threads have reduced, not eliminated, WebFlux's strategic necessity
   — reactive's remaining, genuine advantage is explicit backpressure and
   streaming composability.
+- `WebClient` is Spring's current HTTP client (`RestTemplate` is in
+  maintenance mode) — usable from a fully blocking service via `.block()`
+  without adopting the full reactive model, but never call `.block()` from
+  inside an actual reactive chain.
 
 ## Cheat Sheet
 
@@ -625,6 +670,10 @@ streaming workloads, not a default.
   time-based operators, no real sleeping.
 - **Virtual threads (JDK 21+)** cover much of reactive's scaling benefit for
   blocking code — reactive's remaining edge is backpressure/streaming.
+- **`WebClient` over `RestTemplate`** for new code — `RestTemplate` is in
+  maintenance mode; `WebClient` works from blocking callers too (`.block()`
+  at the one point a synchronous result is needed — never inside a
+  reactive chain).
 
 ## Flashcards
 

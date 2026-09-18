@@ -1,0 +1,64 @@
+$ java -cp "out:lib/*" ConfigurationPropertiesDemo
+== Relaxed binding: kebab-case keys -> camelCase record fields, nested prefix -> nested record ==
+Bound record: AppProperties[name=order-service, maxRetries=3, retry=Retry[maxAttempts=5, backoffMs=250]]
+props.retry().maxAttempts() = 5  (nested prefix app.retry.* bound into a nested record, no manual parsing)
+
+== Relaxed binding: top-level fields ALSO bind from real environment-variable-shaped keys ==
+Bound record: AppProperties[name=order-service, maxRetries=3, retry=null]
+
+== A malformed value fails the WHOLE bind, at context-startup time ==
+Real bind failure: BindException: Failed to bind properties under 'app.max-retries' to int
+
+$ java -cp "out:lib/*" CircularDependencyDemo
+== Constructor-injected cycle: real, unresolvable startup failure ==
+Real failure: UnsatisfiedDependencyException
+Root cause: BeanCurrentlyInCreationException: Error creating bean with name 'serviceA': Requested bean is currently in creation: Is there an unresolvable circular reference or an asynchronous initialization dependency?
+
+== IDENTICAL cycle via FIELD injection: resolves silently, no error ==
+Started successfully. a.b == real FieldB bean? true
+b.a == real FieldA bean? true
+Why: Spring calls each no-arg constructor FIRST (objects now exist),
+     then wires @Autowired fields afterward -- no ordering problem exists.
+
+== Constructor cycle FIXED with @Lazy on one side ==
+Started successfully.
+a.b is a real CGLIB lazy proxy, not the literal LazyB instance yet resolved: true
+DIRECT FIELD access through the proxy, a.b.a == a ?       false  <-- proxies only intercept METHOD calls, not field reads
+METHOD access through the proxy, a.b.getA() == a ?        true  <-- correctly delegates to the real target
+
+$ java -cp "out:lib/*" ConfigurationProxyDemo
+== Default @Configuration (proxyBeanMethods=true): CGLIB-proxied ==
+@Configuration class itself is a real CGLIB proxy: true
+Total real Engine instances actually constructed: 1  (expected 1 -- every engine() call, even a plain Java call, returns the SAME singleton)
+car1.engine == car2.engine == the real 'engine' bean? true
+
+== @Configuration(proxyBeanMethods = false): a real, different outcome ==
+Total real Engine instances actually constructed: 3  (expected 3 -- engine() is now a PLAIN Java method call each time, no interception at all)
+car1.engine == directEngineBean? false  (false -- car1 holds its OWN Engine, not the container's 'engine' singleton)
+car1.engine == car2.engine? false  (false -- two separate, uncoordinated Engine instances)
+
+$ java -cp "out:lib/*" SchedulingAndRunnersDemo
+== @Scheduled: real, repeated background execution ==
+INFORMACIÓN: No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+Immediately after context refresh, ticks so far: 0
+After sleeping 550ms with the main thread idle, ticks = 6  (fixedRate=100ms -- a background scheduler thread, not the main thread, drove this)
+
+== CommandLineRunner under a PLAIN AnnotationConfigApplicationContext: never invoked ==
+Context fully refreshed. Has the CommandLineRunner bean executed? false  (the bean EXISTS, but nothing ever calls .run() on it -- that mechanism lives in SpringApplication, not the core container)
+
+== The IDENTICAL bean, under SpringApplication.run(): actually invoked ==
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+[2026-09-18 08:21:57.243] - 60889 INFORMACIÓN [main] --- SchedulingAndRunnersDemo: Starting SchedulingAndRunnersDemo using Java 21.0.12 with PID 60889 (/Users/juanmelendres/Developer/cracking-code-interviews/practice/java/spring/configuration-properties-and-di-internals/out started by juanmelendres in /Users/juanmelendres/Developer/cracking-code-interviews/practice/java/spring/configuration-properties-and-di-internals)
+[2026-09-18 08:21:57.250] - 60889 INFORMACIÓN [main] --- SchedulingAndRunnersDemo: No active profile set, falling back to 1 default profile: "default"
+[2026-09-18 08:21:57.258] - 60889 INFORMACIÓN [main] --- SchedulingAndRunnersDemo: Started SchedulingAndRunnersDemo in 0.084 seconds (process running for 0.827)
+CommandLineRunner executing -- every other bean already exists at this point.
+SpringApplication.run() has returned. Has the runner executed? true

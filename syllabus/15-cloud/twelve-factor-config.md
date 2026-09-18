@@ -4,8 +4,8 @@ slug: twelve-factor-config
 document_type: handbook-chapter
 domain: 15-cloud
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-18
 source_history:
   - handbook/system-design/twelve-factor-config.md
 topic_id: T-1008
@@ -29,10 +29,12 @@ related:
   - ../07-api-design/api-gateway-bff-and-edge-concerns.md
   - ../05-spring/spring-mvc-fundamentals.md
   - ../../practice/java/system-design/twelve-factor-config/README.md
+  - ../../practice/java/spring/configuration-properties-and-di-internals/README.md
 official_references:
   - https://12factor.net/config
   - https://12factor.net/
   - https://docs.spring.io/spring-boot/reference/features/external-config.html
+  - https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties
 ---
 
 # The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
@@ -63,24 +65,25 @@ official_references:
 9. [Diagrams](#diagrams)
 10. [Java Examples](#java-examples)
 11. [Spring Profiles](#spring-profiles-the-concrete-spring-boot-implementation-of-this-precedence-story)
-12. [Production Scenarios](#production-scenarios)
-13. [Failure Modes and Debugging](#failure-modes-and-debugging)
-14. [Trade-offs](#trade-offs)
-15. [Decision Framework](#decision-framework)
-16. [Comparisons](#comparisons)
-17. [Common Mistakes](#common-mistakes)
-18. [Anti-Patterns](#anti-patterns)
-19. [Best Practices](#best-practices)
-20. [Interview Answer Framework](#interview-answer-framework)
-21. [Interview Questions](#interview-questions)
-22. [Summary](#summary)
-23. [Key Takeaways](#key-takeaways)
-24. [Cheat Sheet](#cheat-sheet)
-25. [Flashcards](#flashcards)
-26. [Practice Exercises](#practice-exercises)
-27. [Solutions](#solutions)
-28. [Additional Reading](#additional-reading)
-29. [Official References](#official-references)
+12. [Spring @ConfigurationProperties](#spring-configurationproperties-typed-validated-config-binding)
+13. [Production Scenarios](#production-scenarios)
+14. [Failure Modes and Debugging](#failure-modes-and-debugging)
+15. [Trade-offs](#trade-offs)
+16. [Decision Framework](#decision-framework)
+17. [Comparisons](#comparisons)
+18. [Common Mistakes](#common-mistakes)
+19. [Anti-Patterns](#anti-patterns)
+20. [Best Practices](#best-practices)
+21. [Interview Answer Framework](#interview-answer-framework)
+22. [Interview Questions](#interview-questions)
+23. [Summary](#summary)
+24. [Key Takeaways](#key-takeaways)
+25. [Cheat Sheet](#cheat-sheet)
+26. [Flashcards](#flashcards)
+27. [Practice Exercises](#practice-exercises)
+28. [Solutions](#solutions)
+29. [Additional Reading](#additional-reading)
+30. [Official References](#official-references)
 
 ## Learning Objectives
 
@@ -313,6 +316,43 @@ spring:
 
 **A real, common mistake this precedence layering explains directly**: a value "not taking effect" in `application-prod.yml` after a change is deployed is almost always this chapter's own Level 2 diagnostic — check whether an environment variable or command-line argument at a higher-precedence layer is silently overriding it, before assuming the YAML edit itself is wrong.
 
+## Spring @ConfigurationProperties: Typed, Validated Config Binding
+
+`@Value("${app.max-retries}")` injects one property value at a time, as a string-literal key with no compile-time connection to any other related value — there is nothing stopping two different classes from typo-ing the same key differently, and no single place listing everything a feature actually needs configured. **`@ConfigurationProperties`** solves this by binding an entire group of related properties, sharing one prefix, into a single typed object in one step — the modern, recommended default over scattered `@Value` injections for anything beyond a single, genuinely standalone value.
+
+```java
+@ConfigurationProperties(prefix = "app")
+public record AppProperties(String name, int maxRetries, Retry retry) {
+    public record Retry(int maxAttempts, long backoffMs) {}
+}
+
+@Configuration
+@EnableConfigurationProperties(AppProperties.class)
+class AppConfig { }
+```
+
+**Relaxed binding** is the real mechanism that makes this work regardless of the source's naming convention: `app.max-retries` (kebab-case, the idiomatic YAML style), `app.maxRetries` (camelCase), and `APP_MAX_RETRIES` (the real environment-variable shape a container/orchestrator injects) all bind to the identical `maxRetries` field — verified directly in [Internal Implementation](#internal-implementation), below. **Nested prefixes bind into nested objects automatically**: `app.retry.max-attempts` and `app.retry.backoff-ms` populate the `Retry` record's own fields, with zero manual parsing anywhere — the entire related group of settings arrives as one typed, IDE-navigable object.
+
+**A malformed value fails the whole bind, once, at context-startup time** — not scattered across every `@Value` injection point that happens to reference the bad key, whenever each of those classes first gets constructed. A real `BindException` names the exact offending property (verified directly below), turning what would otherwise be N separate, individually-timed failures into one clear, immediate one — the same fail-fast principle this chapter's own Core Concepts section already establishes for config validation generally.
+
+**Real, verified relaxed binding and fail-fast validation** ([`ConfigurationPropertiesDemo.java`](../../practice/java/spring/configuration-properties-and-di-internals/src/ConfigurationPropertiesDemo.java)):
+
+```
+== Relaxed binding: kebab-case keys -> camelCase record fields, nested prefix -> nested record ==
+Bound record: AppProperties[name=order-service, maxRetries=3, retry=Retry[maxAttempts=5, backoffMs=250]]
+props.retry().maxAttempts() = 5  (nested prefix app.retry.* bound into a nested record, no manual parsing)
+
+== Relaxed binding: top-level fields ALSO bind from real environment-variable-shaped keys ==
+Bound record: AppProperties[name=order-service, maxRetries=3, retry=null]
+
+== A malformed value fails the WHOLE bind, at context-startup time ==
+Real bind failure: BindException: Failed to bind properties under 'app.max-retries' to int
+```
+
+Every one of the record's three fields bound correctly from ordinary kebab-case keys, including the nested `Retry` record from `app.retry.*`. The identical top-level fields also bound correctly from real environment-variable-shaped keys (`APP_NAME`, `APP_MAX_RETRIES`) — the exact form a container orchestrator actually injects. A single malformed value (`app.max-retries=not-a-number`, a `String` where the record expects an `int`) failed the entire bind immediately, with one exception naming the specific broken property — not a `NumberFormatException` surfacing later, deep in whatever business logic first happened to read that value.
+
+**When `@Value` is still the right, simpler choice**: a single, genuinely standalone property with no siblings it's naturally grouped with — `@Value("${feature.new-checkout-flow.enabled}")` for one isolated feature flag is reasonable. The moment two or more properties are conceptually a group (a retry policy, a connection pool's settings, a third-party API's credentials-plus-base-URL), bind them together with `@ConfigurationProperties` instead, so the relationship between them is a real Java type, not just a shared string prefix a reader has to notice by convention.
+
 ## Production Scenarios
 
 **Scenario: a service deployed successfully to production, passed its
@@ -411,6 +451,10 @@ over lenient startup.
 - Not knowing the real precedence order, and debugging "why isn't my config
   change taking effect" by guessing rather than checking which source
   actually wins.
+- Reaching for a separate `@Value` injection per property in a related
+  group (a retry policy's max attempts and backoff, a client's base URL
+  and API key) instead of binding the whole group with one
+  `@ConfigurationProperties`-annotated type.
 
 ## Anti-Patterns
 
@@ -606,6 +650,22 @@ reasoning at Staff level (2).
 
 **Likely follow-ups.** "What happens if two active profiles define the same config key differently?" (The one listed later in `spring.profiles.active` wins.)
 
+### Question 4: When would you use `@ConfigurationProperties` instead of `@Value`?
+
+**Why interviewers ask it.** Tests whether a candidate treats configuration binding as a real design decision rather than reaching for whichever annotation they saw first.
+
+**Expected answer.** `@Value` is fine for one genuinely standalone property; `@ConfigurationProperties` is the right tool the moment two or more properties are conceptually a group (a retry policy, a connection pool's settings) — it binds the whole group into one typed object via relaxed binding (kebab-case, camelCase, and `ENV_VAR` forms all resolve to the same field), including nested prefixes into nested objects, and fails the entire bind with one clear exception if any value is malformed.
+
+**Minimum acceptable answer.** Knows `@ConfigurationProperties` exists and roughly binds "a group of properties," even without the relaxed-binding or fail-fast detail.
+
+**Strong Senior answer.** States relaxed binding precisely and gives a concrete example of a related property group that should be bound together.
+
+**Staff-level extension.** Connects the fail-fast bind failure to this chapter's own broader fail-fast-validation principle, and notes `@ConfigurationProperties` classes are directly unit-testable as plain POJOs/records, independent of Spring, unlike scattered `@Value` fields.
+
+**Common mistakes.** Describing `@ConfigurationProperties` as just "a fancier `@Value`" without naming relaxed binding or nested-object support as the actual differentiators.
+
+**Likely follow-ups.** "What happens if one of the bound properties has the wrong type?" (The whole bind fails immediately with a `BindException` naming the exact property — verified directly in this chapter's own demo.)
+
 **Evaluation criteria.** Correct `@Profile` mechanism (2), correct `spring.profiles.active` precedence (2), correct file-layering behavior at Senior level (1).
 
 ## Summary
@@ -639,6 +699,7 @@ this register topic.
   configuration is complete — the concrete mechanism behind this chapter's
   own production scenario.
 - Spring Profiles (`@Profile`, `spring.profiles.active`, `application-{profile}.yml`) are Spring Boot's own concrete implementation of this precedence story, not a separate mechanism.
+- `@ConfigurationProperties` binds a whole related group of properties into one typed object via relaxed binding (kebab-case, camelCase, and `ENV_VAR` styles all bind to the same field) — verified directly, including a nested prefix binding into a nested record and one `BindException` naming the exact offending key when a value is malformed.
 
 ## Cheat Sheet
 
@@ -650,6 +711,8 @@ this register topic.
   reporting healthy.
 - **Health check ≠ config-complete** — a passing health check only proves
   the process runs.
+- **`@Value` vs. `@ConfigurationProperties`**: one standalone value vs. a
+  whole related group bound into one typed object via relaxed binding.
 - **Secrets are not plain config** — see the dedicated secrets-management
   chapter.
 - **Spring Profiles**: `@Profile("name")` on a bean restricts it to that profile; `spring.profiles.active` (file < env var < JVM property < CLI arg — this chapter's own precedence order) picks which profile(s) are active; `application-{profile}.yml` layers on top of the base `application.yml`, overriding only the keys it defines.
@@ -742,6 +805,23 @@ Duplicating every key into every profile-specific file "to be safe," instead of 
 **Related:**
 [[twelve-factor-config]]
 
+### Card: Relaxed binding, precisely
+
+**Prompt:**
+Do `app.max-retries`, `app.maxRetries`, and `APP_MAX_RETRIES` all bind to the same `@ConfigurationProperties` field?
+
+**Answer:**
+Yes — verified directly. Spring's relaxed binding treats kebab-case, camelCase, and the real environment-variable-shaped form as the identical property, regardless of which one the actual source uses.
+
+**Why it matters:**
+Explains why a `@ConfigurationProperties` class works unchanged whether config comes from a YAML file, `.properties` file, or container-injected environment variables.
+
+**Common trap:**
+Assuming a class only binds correctly if the source's exact casing matches the field name.
+
+**Related:**
+[[twelve-factor-config]]
+
 ## Practice Exercises
 
 1. Extend `AppConfig` with a fifth, even-higher-precedence layer: a
@@ -756,6 +836,10 @@ Duplicating every key into every profile-specific file "to be safe," instead of 
    pattern from `practice/java/system-design/load-balancing-and-health-checking/`)
    so the server genuinely refuses to start — not just print an error — when
    required config is missing.
+4. Add a third nested record to `ConfigurationPropertiesDemo`'s
+   `AppProperties` (e.g., a `Cors` record with an `allowedOrigins` list),
+   bind it from a real properties map, and confirm relaxed binding handles
+   the new nested prefix identically to the existing `Retry` record.
 
 ## Solutions
 
@@ -768,7 +852,11 @@ check in `validateRequiredConfig`; left as self-directed practice. Exercise
 3 is a genuinely open integration exercise connecting this chapter's config
 validation to a real server lifecycle; left as self-directed practice since
 it requires combining two existing, separately-proven mechanisms from
-different packs.
+different packs. Exercise 4 mirrors the existing `Retry` record exactly —
+add the new record, a new `@ConfigurationProperties`-annotated field for
+it, and matching keys under a new nested prefix; left as self-directed
+practice since the existing `Retry` record already demonstrates the exact
+pattern to copy.
 
 ## Additional Reading
 
