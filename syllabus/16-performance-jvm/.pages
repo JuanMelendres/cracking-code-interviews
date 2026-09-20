@@ -5,3 +5,6 @@ nav:
   - benchmarking-and-jmh-pitfalls.md
   - capacity-planning-and-headroom.md
   - jvm-startup-performance-cds-and-native-image.md
+  - false-sharing-and-cache-line-contention.md
+  - vector-api-and-simd-performance.md
+  - memory-mapped-files-and-zero-copy-io.md

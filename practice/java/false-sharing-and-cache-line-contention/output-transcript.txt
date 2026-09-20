@@ -1,0 +1,10 @@
+Machine: arm64, Apple M4
+OpenJDK: openjdk version "21.0.12" 2026-07-21
+
+Warmup...
+
+=== Real measurement, 4 threads, 200000000 atomic increments each ===
+
+Unpadded (all 4 counters share a cache line): 5911ms
+Padded (each counter its own cache line):      371ms
+Slowdown from false sharing:                   15.93x

@@ -1,0 +1,15 @@
+Machine: arm64, Apple M4
+OpenJDK: openjdk version "21.0.12" 2026-07-21
+
+Real temp file: /var/folders/dz/948b57792ggdyln29dh25xw40000gn/T/mmap-demo-14452311481810420850.bin (536870912 bytes)
+
+=== Sequential full-file checksum, 536870912 bytes ===
+FileChannel bulk reads:  171ms
+MappedByteBuffer scan:   177ms
+Checksums match: true
+
+=== Random access, 2000000 reads of 8 bytes each ===
+FileChannel positional reads (1 syscall each): 839ms
+MappedByteBuffer random access (0 syscalls):   30ms
+Sums match: true
+Random-access speedup: 27.97x

@@ -37,6 +37,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-18 (same day, follow-up) — JVM Startup Performance (T-2416) gains a cheat sheet.** New `16-performance-jvm` chapter closing a gap-audit finding zero coverage of JVM startup/cold-start cost (CDS, AppCDS, GraalVM native-image) anywhere in the domain. `performance-and-load-testing-methodology.md` (T-1106, `08-testing`)'s existing cheat sheet was also updated in place for the same audit's real open-loop-vs-closed-loop (k6) load-testing-tooling addition. **New total: 258 cheat sheets.**
 
+**2026-09-20 — False Sharing (T-2417), Vector API/SIMD (T-2418), and Memory-Mapped Files (T-2419) gain cheat sheets.** Three new `16-performance-jvm` chapters closing a follow-up gap audit that found zero coverage of mechanical sympathy, SIMD, and zero-copy I/O anywhere in the repository. **New total: 261 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -185,6 +187,9 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 | 140 | [OpenAPI and Contract-First API Design](openapi-and-contract-first-api-design.md) | T-2414 | — | api-design | `syllabus/07-api-design/openapi-and-contract-first-api-design.md` |
 | 141 | [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md) | T-2415 | — | api-design | `syllabus/07-api-design/webhook-design-and-delivery-guarantees.md` |
 | 142 | [JVM Startup Performance: CDS, AppCDS, and GraalVM Native Image](jvm-startup-performance-cds-and-native-image.md) | T-2416 | — | performance-jvm | `syllabus/16-performance-jvm/jvm-startup-performance-cds-and-native-image.md` |
+| 143 | [False Sharing and Cache-Line Contention](false-sharing-and-cache-line-contention.md) | T-2417 | — | performance-jvm | `syllabus/16-performance-jvm/false-sharing-and-cache-line-contention.md` |
+| 144 | [Vector API and SIMD Performance](vector-api-and-simd-performance.md) | T-2418 | — | performance-jvm | `syllabus/16-performance-jvm/vector-api-and-simd-performance.md` |
+| 145 | [Memory-Mapped Files and Zero-Copy I/O](memory-mapped-files-and-zero-copy-io.md) | T-2419 | — | performance-jvm | `syllabus/16-performance-jvm/memory-mapped-files-and-zero-copy-io.md` |
 
 ## Frontend Cheat Sheets (F-codes, no IWI)
 
