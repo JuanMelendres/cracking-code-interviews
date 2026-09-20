@@ -21,6 +21,7 @@ estimated_reading_minutes: 24
 prerequisites:
   - ../02-java/concurrency/java-memory-model-and-volatile.md
 related:
+  - ../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md
   - ../02-java/concurrency/atomics-cas-and-the-aba-problem.md
   - ../02-java/jvm-internals/object-layout-headers-and-compressed-oops.md
   - benchmarking-and-jmh-pitfalls.md
@@ -125,6 +126,11 @@ reasons, and the JVM (like most language runtimes) has no default mechanism that
 fields apart from each other in memory — ordinary field/array layout can accidentally place two hot,
 independently-written variables on the same line, and the resulting performance cost is invisible at the
 Java-language level entirely.
+
+The cache-line mechanism itself — why hardware groups memory into fixed-size lines at all, and what that
+costs and gains for ordinary sequential access — is the foundational subject of [Memory Hierarchy: Caches,
+RAM, and Virtual Memory](../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md);
+this chapter is that mechanism's specific, measured downside under concurrent writes.
 
 ## Core Concepts
 

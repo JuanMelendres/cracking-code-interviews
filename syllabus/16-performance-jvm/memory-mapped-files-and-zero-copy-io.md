@@ -23,6 +23,7 @@ estimated_reading_minutes: 24
 prerequisites:
   - ../02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
 related:
+  - ../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md
   - ../02-java/jvm-internals/native-memory-direct-buffers-and-off-heap.md
   - ../09-messaging-event-driven/kafka-architecture-fundamentals.md
 official_references:
@@ -127,6 +128,11 @@ kernel-mode transition, argument validation, often a data copy between kernel an
 becomes the dominant cost for access patterns involving many small or scattered reads — memory mapping
 removes that per-access overhead entirely for any page already resident, at the cost of giving up explicit
 control over exactly when and how much data is read from disk.
+
+The virtual-memory page-fault mechanism this whole chapter leans on — why a not-yet-resident page traps into
+the operating system at all, and how that differs from an ordinary cache miss — is introduced foundationally
+in [Memory Hierarchy: Caches, RAM, and Virtual Memory](../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md);
+this chapter's real ~28x random-access measurement (Core Concepts, below) is that mechanism's concrete payoff.
 
 ## Core Concepts
 
