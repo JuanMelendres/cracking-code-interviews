@@ -7368,6 +7368,111 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../false-sharing-and-cache-line-contention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    False Sharing and Cache-Line Contention
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-api-and-simd-performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector API and SIMD Performance
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory-mapped-files-and-zero-copy-io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory-Mapped Files and Zero-Copy I/O
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -11022,11 +11127,11 @@
 <p>title: "Performance &amp; JVM Tuning — Domain Index"
 document_type: syllabus-domain-index
 domain: 16-performance-jvm
-status: 3 of 3 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 4th chapter added 2026-09-18 (JVM Startup Performance: CDS, AppCDS, and GraalVM Native Image, T-2416), closing a gap-audit finding zero coverage of JVM startup/cold-start cost anywhere in the domain
-last_updated: 2026-09-18</p>
+status: 3 of 3 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 4th chapter added 2026-09-18 (JVM Startup Performance: CDS, AppCDS, and GraalVM Native Image, T-2416), closing a gap-audit finding zero coverage of JVM startup/cold-start cost anywhere in the domain; 5th-7th chapters added 2026-09-20 (False Sharing and Cache-Line Contention T-2417, Vector API and SIMD Performance T-2418, Memory-Mapped Files and Zero-Copy I/O T-2419), closing a follow-up gap audit
+last_updated: 2026-09-20</p>
 <hr />
 <h1 id="performance-jvm-tuning">Performance &amp; JVM Tuning<a class="headerlink" href="#performance-jvm-tuning" title="Permanent link">&para;</a></h1>
-<p>"How do I make the JVM fast" — GC tuning, JMH benchmarking pitfalls, JFR profiling, capacity planning, and JVM/native-image startup performance. Consolidates chapters previously split across <code>jvm/</code> and <code>performance/</code>.</p>
+<p>"How do I make the JVM fast" — GC tuning, JMH benchmarking pitfalls, JFR profiling, capacity planning, JVM/native-image startup performance, mechanical sympathy (false sharing, SIMD), and zero-copy I/O. Consolidates chapters previously split across <code>jvm/</code> and <code>performance/</code>.</p>
 <blockquote>
 <p><strong>Phase 3 update (2026-09-03).</strong> This domain's full existing content (3 chapter(s)) has physically relocated via <code>git mv</code>, preserving file history. See the repository-root <code>CHANGELOG.md</code> for the full batch account.</p>
 <p><strong>Phase 5 update (2026-09-04) — domain complete.</strong> All 3 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject: a traffic-helicopter-photographing-a-highway analogy for sampling profilers and flame-graph width (profiling); a timing-a-sprinter analogy for JIT warmup, dead-code elimination, and the <code>Blackhole</code> mechanism (benchmarking); a call-center-hold-time analogy for Little's Law and the saturation cliff (capacity planning). Every chapter also gained <code>topic_id</code>/<code>mastery_levels_covered: [L1, L2, L3, L4]</code> front matter. <strong><code>16-performance-jvm</code> is now fully L1–L4 (3/3)</strong> — the fourteenth fully-retrofitted domain in the syllabus.</p>
@@ -11066,6 +11171,24 @@ last_updated: 2026-09-18</p>
 <td>L1, L2, L3, L4 — fully written, real AppCDS + GraalVM native-image demo (2026-09-18)</td>
 <td><code>syllabus/16-performance-jvm/jvm-startup-performance-cds-and-native-image.md</code></td>
 </tr>
+<tr>
+<td>T-2417</td>
+<td>False Sharing and Cache-Line Contention</td>
+<td>L1, L2, L3, L4 — fully written, real ~16x measured demo (2026-09-20)</td>
+<td><code>syllabus/16-performance-jvm/false-sharing-and-cache-line-contention.md</code></td>
+</tr>
+<tr>
+<td>T-2418</td>
+<td>Vector API and SIMD Performance</td>
+<td>L1, L2, L3, L4 — fully written, real Vector API demo (2026-09-20)</td>
+<td><code>syllabus/16-performance-jvm/vector-api-and-simd-performance.md</code></td>
+</tr>
+<tr>
+<td>T-2419</td>
+<td>Memory-Mapped Files and Zero-Copy I/O</td>
+<td>L1, L2, L3, L4 — fully written, real ~28x measured demo (2026-09-20)</td>
+<td><code>syllabus/16-performance-jvm/memory-mapped-files-and-zero-copy-io.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11090,7 +11213,7 @@ last_updated: 2026-09-18</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 23:30:45 UTC">September 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 17:11:56 UTC">September 20, 2026</span>
   </span>
 
     
