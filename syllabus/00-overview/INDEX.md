@@ -24,7 +24,7 @@ Vision, Taxonomy, Topic Specification, and Mastery Model are extracted verbatim 
 
 | # | Domain | Status |
 |---|---|---|
-| 01 | [Computer Science Foundations](../01-computer-science-foundations/INDEX.md) | 5/5 planned topics written — domain complete (Phase 5, 2026-09-03) |
+| 01 | [Computer Science Foundations](../01-computer-science-foundations/INDEX.md) | 6/5 originally-planned topics written — domain complete (Phase 5, 2026-09-03), T-2006 gap-audit addition (2026-09-20) |
 | 02 | [Java](../02-java/INDEX.md) | 49/49 chapters relocated (Phase 3, 2026-09-03); **L1/L2 retrofit complete, 49/49** — first fully L1–L4 domain (Phase 5, 2026-09-04); 61 chapters as of 2026-09-10 (gap audit added PriorityQueue Internals, java.time API, concurrency Synchronizers, the Java Platform Module System filling its own long-reserved T-116 slot, MethodHandle and java.lang.invoke, and Bytecode and Class File Fundamentals — all three of `CLAUDE.md`'s named Java Core gaps now closed) |
 | 03 | [Data Structures & Algorithms](../03-data-structures-algorithms/INDEX.md) | 17/17 planned topics written — domain complete (Phase 5, 2026-09-03); 18 chapters as of 2026-09-10 (gap audit added Sorting Algorithms — never part of the original plan, despite being the domain's most reused primitive); 19 chapters as of 2026-09-17 (user-requested Coding Interview Pattern-Recognition Methodology — a signal-to-pattern lookup routing across the domain's other 18 chapters, not a 19th pattern itself) |
 | 04 | [Software Design](../04-software-design/INDEX.md) | 1/1 chapter relocated (Phase 2, 2026-09-03); **L1/L2 retrofit complete, 1/1** — fully L1–L4 (Phase 5, 2026-09-04); gap-audited and closed, 3/3 (2026-09-10, added SOLID Principles and OOD Interview Problems) |

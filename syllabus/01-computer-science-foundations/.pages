@@ -3,6 +3,7 @@ nav:
   - INDEX.md
   - algorithmic-complexity-and-big-o-from-first-principles.md
   - how-a-computer-executes-a-program.md
+  - memory-hierarchy-caches-ram-and-virtual-memory.md
   - number-representation.md
   - os-process-thread-model.md
   - networking-basics.md

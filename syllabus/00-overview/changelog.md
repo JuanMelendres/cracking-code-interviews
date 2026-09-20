@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-18
+last_updated: 2026-09-20
 ---
 
 # Syllabus Changelog
@@ -2122,4 +2122,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New real demo packs: [`practice/java/false-sharing-and-cache-line-contention/`](../../practice/java/false-sharing-and-cache-line-contention/README.md), [`practice/java/vector-api-and-simd-performance/`](../../practice/java/vector-api-and-simd-performance/README.md), [`practice/java/memory-mapped-files-and-zero-copy-io/`](../../practice/java/memory-mapped-files-and-zero-copy-io/README.md).
 - New standalone cheat sheets and flashcard decks for T-2417, T-2418, T-2419.
 - New chapters at version 1.0, `last_updated: 2026-09-20`. `syllabus/16-performance-jvm/INDEX.md` updated (4 → 7 chapters).
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-20] — `01-computer-science-foundations` gap audit: memory hierarchy and virtual memory closed
+
+### Added
+
+- Gap audit of `01-computer-science-foundations` (marked "domain complete" since 2026-09-03 for its originally-scoped five-topic list — audited anyway, since the domain's reserved `T-2000`–`T-2099` range always had room beyond that original scope). One real, confirmed gap found: **zero coverage anywhere in the domain of the memory hierarchy** (cache lines, RAM latency) **or the virtual-memory page-fault mechanism** — a real gap, not theoretical, because two already-written `16-performance-jvm` chapters ([False Sharing and Cache-Line Contention](../16-performance-jvm/false-sharing-and-cache-line-contention.md), [Memory-Mapped Files and Zero-Copy I/O](../16-performance-jvm/memory-mapped-files-and-zero-copy-io.md)) already depend on exactly this foundation with no citable prerequisite chapter to point back to.
+- **Memory Hierarchy: Caches, RAM, and Virtual Memory** (new chapter, T-2006). Real demo: a pointer-chasing benchmark (Sattolo's-algorithm random single-cycle permutation, defeating both hardware prefetch and out-of-order execution) measured genuine per-tier memory latency across working-set sizes from 4 KiB to 256 MiB on real hardware (Apple M4, OpenJDK 21.0.12) — a real, measured **~1.39ns per access when the working set fits in L1, rising to ~95.3ns once it no longer fits anywhere but RAM, a ~68x range for what Big-O analysis calls the identical O(1) array access.** The largest single measured cliff (16 MiB → 32 MiB) was cross-checked against this exact machine's real, `sysctl`-reported L2 cache capacity (`hw.perflevel0.l2cachesize` = 16,777,216 bytes) and lands precisely at that boundary — a genuine hardware correlation, not an asserted one.
+- Cross-references added both directions: T-2006 cites [False Sharing](../16-performance-jvm/false-sharing-and-cache-line-contention.md) and [Memory-Mapped Files](../16-performance-jvm/memory-mapped-files-and-zero-copy-io.md) as its real, in-repo applied consequences (its own Production Scenarios section, honestly noting no `production-cookbook/` entry roots in CPU-cache-hierarchy latency specifically); both of those chapters updated in place with a `related:` link and a body cross-reference back to T-2006 as their foundational mechanism.
+- New real demo pack: [`practice/java/cs-foundations/memory-hierarchy-and-cache-latency/`](../../practice/java/cs-foundations/memory-hierarchy-and-cache-latency/README.md).
+- New standalone cheat sheet and flashcard deck for T-2006.
+- `syllabus/01-computer-science-foundations/INDEX.md` and `.pages` updated (5 → 6 topics); `syllabus/00-overview/INDEX.md` row updated.
+- New chapter at version 1.0, `last_updated: 2026-09-20`.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).

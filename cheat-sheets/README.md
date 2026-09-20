@@ -39,6 +39,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-20 — False Sharing (T-2417), Vector API/SIMD (T-2418), and Memory-Mapped Files (T-2419) gain cheat sheets.** Three new `16-performance-jvm` chapters closing a follow-up gap audit that found zero coverage of mechanical sympathy, SIMD, and zero-copy I/O anywhere in the repository. **New total: 261 cheat sheets.**
 
+**2026-09-20 (same day, follow-up) — Memory Hierarchy: Caches, RAM, and Virtual Memory (T-2006) gains a cheat sheet.** New `01-computer-science-foundations` chapter closing a gap audit that found zero coverage anywhere in the domain of the memory hierarchy or virtual-memory page-fault mechanism, despite two already-written `16-performance-jvm` chapters (False Sharing, Memory-Mapped Files) depending on it. **New total: 262 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -290,6 +292,10 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **Added 2026-09-08 (batch 4): Docker and Containers Fundamentals**, found the same way — `container-image-internals.md`'s own title says "internals," and never taught what a container or image actually is first.
 
 | N39 | [Docker and Containers Fundamentals](docker-and-containers-fundamentals.md) | T-2208 | devops-containers | `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` |
+
+**Added 2026-09-20: Memory Hierarchy: Caches, RAM, and Virtual Memory**, a gap-audit addition to `01-computer-science-foundations` (T-2006) — zero coverage anywhere of cache lines, RAM latency, or the virtual-memory page-fault mechanism, despite two already-written `16-performance-jvm` chapters depending on it.
+
+| N40 | [Memory Hierarchy: Caches, RAM, and Virtual Memory](memory-hierarchy-caches-ram-and-virtual-memory.md) | T-2006 | computer-science-foundations | `syllabus/01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md` |
 
 **Total across all groups: 202 cheat sheets** (132 backend + 31 frontend + 39 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI `jvm` chapters noted above, left open per the user's 2026-08-05 decision.
 
