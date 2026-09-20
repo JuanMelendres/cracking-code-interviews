@@ -1,0 +1,24 @@
+Machine: arm64, Apple M4
+OpenJDK: openjdk version "21.0.12" 2026-07-21
+
+=== 1. Default JVM settings (C2 SuperWord auto-vectorization ON) ===
+WARNING: Using incubator modules: jdk.incubator.vector
+Vector species: Species[float, 4, S_128_BIT] (4 float lanes per instruction)
+Warmup...
+
+=== Real measurement, N=1000000, 2000 passes (cache-resident, compute-bound) ===
+Scalar loop:  201ms
+Vector API:   206ms
+Speedup:      0.98x
+Every one of 1000000 outputs bit-for-bit identical: true
+
+=== 2. -XX:-UseSuperWord (auto-vectorization OFF -- true scalar baseline) ===
+WARNING: Using incubator modules: jdk.incubator.vector
+Vector species: Species[float, 4, S_128_BIT] (4 float lanes per instruction)
+Warmup...
+
+=== Real measurement, N=1000000, 2000 passes (cache-resident, compute-bound) ===
+Scalar loop:  471ms
+Vector API:   212ms
+Speedup:      2.22x
+Every one of 1000000 outputs bit-for-bit identical: true

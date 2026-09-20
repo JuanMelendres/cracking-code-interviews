@@ -202,6 +202,9 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 169 | [OpenAPI and Contract-First API Design](openapi-and-contract-first-api-design.md) | T-2414 | 3 | `syllabus/07-api-design/openapi-and-contract-first-api-design.md` |
 | 170 | [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md) | T-2415 | 3 | `syllabus/07-api-design/webhook-design-and-delivery-guarantees.md` |
 | 171 | [JVM Startup Performance: CDS, AppCDS, and GraalVM Native Image](jvm-startup-performance-cds-and-native-image.md) | T-2416 | 3 | `syllabus/16-performance-jvm/jvm-startup-performance-cds-and-native-image.md` |
+| 172 | [False Sharing and Cache-Line Contention](false-sharing-and-cache-line-contention.md) | T-2417 | 3 | `syllabus/16-performance-jvm/false-sharing-and-cache-line-contention.md` |
+| 173 | [Vector API and SIMD Performance](vector-api-and-simd-performance.md) | T-2418 | 3 | `syllabus/16-performance-jvm/vector-api-and-simd-performance.md` |
+| 174 | [Memory-Mapped Files and Zero-Copy I/O](memory-mapped-files-and-zero-copy-io.md) | T-2419 | 3 | `syllabus/16-performance-jvm/memory-mapped-files-and-zero-copy-io.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -359,6 +362,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-18 — OpenAPI/Contract-First API Design (T-2414) and Webhook Design and Delivery Guarantees (T-2415) gain flashcard decks, and API Design (T-803) gains 3 more cards.** Two new `07-api-design` chapters closing a gap-audit finding zero coverage of either topic anywhere in the repository (3 cards each), plus 3 new cards added to the existing `api-design.md` deck for that same audit's HATEOAS, RFC 9457, and bulk-operations additions. **New total: 258 decks (256 prior + 2), 894 cards (885 prior + 6 new-deck + 3 existing-deck).**
 
 **2026-09-18 (same day, follow-up) — JVM Startup Performance (T-2416) gains a flashcard deck, and Performance and Load Testing Methodology (T-1106) gains 1 more card.** New `16-performance-jvm` chapter closing a gap-audit finding zero coverage of JVM startup/cold-start cost anywhere in the domain (3 cards), plus 1 new card added to the existing `performance-and-load-testing-methodology.md` deck for that same audit's real open-loop-vs-closed-loop (k6) load-testing-tooling addition. **New total: 259 decks (258 prior + 1), 898 cards (894 prior + 3 new-deck + 1 existing-deck).**
+
+**2026-09-20 — False Sharing (T-2417), Vector API/SIMD (T-2418), and Memory-Mapped Files (T-2419) gain flashcard decks.** Three new `16-performance-jvm` chapters closing a follow-up gap audit that found zero coverage of mechanical sympathy, SIMD, and zero-copy I/O anywhere in the repository. 3 cards each. **New total: 262 decks (259 prior + 3), 907 cards (898 prior + 9).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
