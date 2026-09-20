@@ -968,7 +968,7 @@
     
   
   
-    <span class="md-status md-status--5 of 5 planned topics written (Phase 5, domain complete, 2026-09-03)"></span>
+    <span class="md-status md-status--6 of 5 originally-planned topics written (Phase 5 base complete 2026-09-03; T-2006 gap-audit addition 2026-09-20)"></span>
   
 
   
@@ -993,7 +993,7 @@
     
   
   
-    <span class="md-status md-status--5 of 5 planned topics written (Phase 5, domain complete, 2026-09-03)"></span>
+    <span class="md-status md-status--6 of 5 originally-planned topics written (Phase 5 base complete 2026-09-03; T-2006 gap-audit addition 2026-09-20)"></span>
   
 
   
@@ -1096,6 +1096,41 @@
     
   
     How a Computer Executes a Program
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory-hierarchy-caches-ram-and-virtual-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory Hierarchy: Caches, RAM, and Virtual Memory
   
 
     
@@ -11131,9 +11166,10 @@
 
 
 <h1 id="computer-science-foundations">Computer Science Foundations<a class="headerlink" href="#computer-science-foundations" title="Permanent link">&para;</a></h1>
-<p>How computers actually execute a program, number representation, the OS process/thread model below Java's abstraction, networking basics, and algorithmic complexity from first principles. <strong>New domain — no migrated content; every topic here is new writing</strong>, prioritized first among the gap domains per the plan's Section 7.6, since it is the hard prerequisite for the new Junior entry point.</p>
+<p>How computers actually execute a program, memory hierarchy and virtual memory, number representation, the OS process/thread model below Java's abstraction, networking basics, and algorithmic complexity from first principles. <strong>New domain — no migrated content; every topic here is new writing</strong>, prioritized first among the gap domains per the plan's Section 7.6, since it is the hard prerequisite for the new Junior entry point.</p>
 <blockquote>
 <p><strong>Phase 5 update (2026-09-03).</strong> All five topics named in the plan's own Section 2.5/§7.6 gap description are now written — this domain is complete for its originally-scoped topic list. Each applies the <a href="../../00-overview/topic-specification/">Topic Specification</a> and <a href="../../00-overview/mastery-model/">Mastery Model</a> with genuine L1→L4 coverage in a single file, per the plan's own "one topic, not four seniority-versioned copies" requirement (§5.3), assigned T-codes in the plan's reserved <code>T-2000</code>–<code>T-2099</code> range (§9).</p>
+<p><strong>Gap-audit addition (2026-09-20).</strong> T-2006 closes a real gap the original five-topic scope missed: zero coverage anywhere of the memory hierarchy (cache lines, RAM latency) or the virtual-memory page-fault mechanism, despite two already-written <code>16-performance-jvm</code> chapters (<a href="../../16-performance-jvm/false-sharing-and-cache-line-contention/">False Sharing</a>, <a href="../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/">Memory-Mapped Files</a>) depending on exactly this foundation with no citable prerequisite. The domain's reserved <code>T-2000</code>–<code>T-2099</code> range always had room for this; "complete for its originally-scoped list" was never a hard ceiling.</p>
 </blockquote>
 <h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <table>
@@ -11159,6 +11195,12 @@
 <td><code>syllabus/01-computer-science-foundations/how-a-computer-executes-a-program.md</code></td>
 </tr>
 <tr>
+<td>T-2006</td>
+<td><a href="../memory-hierarchy-caches-ram-and-virtual-memory/">Memory Hierarchy: Caches, RAM, and Virtual Memory</a> (cache lines, spatial locality, pointer-chasing latency measurement, virtual memory and page faults)</td>
+<td>L1, L2, L3, L4 — fully written</td>
+<td><code>syllabus/01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md</code></td>
+</tr>
+<tr>
 <td>T-2003</td>
 <td><a href="../number-representation/">Number Representation</a> (two's complement, IEEE 754 floating point, overflow, narrowing-cast truncation)</td>
 <td>L1, L2, L3, L4 — fully written</td>
@@ -11178,7 +11220,7 @@
 </tr>
 </tbody>
 </table>
-<p>Written in dependency order, each building on real, executed evidence from the one before it: T-2001 (prerequisite-free) → T-2002 (the call stack, the layer below T-2001's own performance vocabulary) → T-2003 (what a number actually is, once T-2002 established that a variable is bits in memory) → T-2004 (what happens when many instruction streams — Section 3 of T-2002 — run on one machine at once) → T-2005 (what happens when two machines need to talk at all). Cheat sheets for all five were added 2026-09-06 and flashcard decks for all five were added 2026-09-07 (see <code>cheat-sheets/README.md</code>'s New-Writing Domain Cheat Sheets table and <code>flashcards/README.md</code>'s New-Writing Domain Decks table). Production-cookbook was investigated rather than batch-written (2026-09-07): 4 of these 5 chapters already cite an existing entry in their own <code>production_scenarios</code> front matter; <code>number-representation.md</code> has no citation but its own Section 14 explicitly documents why (no existing entry has a numeric-representation-specific root cause) with a <code>Planned reference</code> note rather than a placeholder — per <code>production-cookbook/README.md</code>'s own "elevate an existing worked scenario, never invent one" rule, this is a resolved, honest gap, not unbuilt work.</p>
+<p>Written in dependency order, each building on real, executed evidence from the one before it: T-2001 (prerequisite-free) → T-2002 (the call stack, the layer below T-2001's own performance vocabulary) → T-2006 (fills in what sits between a T-2002 register and RAM, with real pointer-chase latency measurements on real hardware) → T-2003 (what a number actually is, once T-2002 established that a variable is bits in memory) → T-2004 (what happens when many instruction streams — Section 3 of T-2002 — run on one machine at once) → T-2005 (what happens when two machines need to talk at all). Cheat sheets for all five original topics were added 2026-09-06 and flashcard decks for all five were added 2026-09-07 (see <code>cheat-sheets/README.md</code>'s New-Writing Domain Cheat Sheets table and <code>flashcards/README.md</code>'s New-Writing Domain Decks table); T-2006's cheat sheet and flashcard deck were added alongside the chapter itself on 2026-09-20. Production-cookbook was investigated rather than batch-written (2026-09-07): 4 of the original 5 chapters already cite an existing entry in their own <code>production_scenarios</code> front matter; <code>number-representation.md</code> has no citation but its own Section 14 explicitly documents why (no existing entry has a numeric-representation-specific root cause) with a <code>Planned reference</code> note rather than a placeholder — per <code>production-cookbook/README.md</code>'s own "elevate an existing worked scenario, never invent one" rule, this is a resolved, honest gap, not unbuilt work. T-2006 follows the same honest pattern (see its own Section 14): no cookbook entry roots in CPU-cache-hierarchy latency specifically, so it cites its own two real, in-repo applied consequences instead.</p>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
 <p>See <code>00-project/syllabus-transformation-plan.md</code> Sections 3.2–3.3 for the full reasoning, and <code>00-project/migration-mapping.md</code> for the exhaustive, verified file-by-file mapping this index was generated from.</p>
 
@@ -11201,7 +11243,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 7, 2026 15:48:27 UTC">September 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 19:20:59 UTC">September 20, 2026</span>
   </span>
 
     

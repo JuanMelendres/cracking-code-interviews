@@ -4638,6 +4638,34 @@
   
   
     <li class="md-nav__item">
+      <a href="memory-hierarchy-caches-ram-and-virtual-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: Memory Hierarchy: Caches, RAM, and Virtual Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="memory-leak-diagnosis-and-heap-dump-analysis/" class="md-nav__link">
         
   
@@ -8624,6 +8652,7 @@
 <p><strong>2026-09-18 — OpenAPI/Contract-First API Design (T-2414) and Webhook Design and Delivery Guarantees (T-2415) gain cheat sheets.</strong> Two new <code>07-api-design</code> chapters closing a gap-audit finding zero coverage of either topic anywhere in the repository. <code>api-design.md</code> (T-803)'s existing cheat sheet was also updated in place for that same audit's HATEOAS/RFC 9457/filtering-sorting/bulk-operations additions. <strong>New total: 257 cheat sheets.</strong></p>
 <p><strong>2026-09-18 (same day, follow-up) — JVM Startup Performance (T-2416) gains a cheat sheet.</strong> New <code>16-performance-jvm</code> chapter closing a gap-audit finding zero coverage of JVM startup/cold-start cost (CDS, AppCDS, GraalVM native-image) anywhere in the domain. <code>performance-and-load-testing-methodology.md</code> (T-1106, <code>08-testing</code>)'s existing cheat sheet was also updated in place for the same audit's real open-loop-vs-closed-loop (k6) load-testing-tooling addition. <strong>New total: 258 cheat sheets.</strong></p>
 <p><strong>2026-09-20 — False Sharing (T-2417), Vector API/SIMD (T-2418), and Memory-Mapped Files (T-2419) gain cheat sheets.</strong> Three new <code>16-performance-jvm</code> chapters closing a follow-up gap audit that found zero coverage of mechanical sympathy, SIMD, and zero-copy I/O anywhere in the repository. <strong>New total: 261 cheat sheets.</strong></p>
+<p><strong>2026-09-20 (same day, follow-up) — Memory Hierarchy: Caches, RAM, and Virtual Memory (T-2006) gains a cheat sheet.</strong> New <code>01-computer-science-foundations</code> chapter closing a gap audit that found zero coverage anywhere in the domain of the memory hierarchy or virtual-memory page-fault mechanism, despite two already-written <code>16-performance-jvm</code> chapters (False Sharing, Memory-Mapped Files) depending on it. <strong>New total: 262 cheat sheets.</strong></p>
 <p><strong>2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.</strong> New <code>05-spring</code> chapter, part of a larger user TODO list. <strong>New total: 256 cheat sheets.</strong></p>
 <h2 id="cheat-sheets_1">Cheat Sheets<a class="headerlink" href="#cheat-sheets_1" title="Permanent link">&para;</a></h2>
 <table>
@@ -10298,6 +10327,8 @@
 | N38 | <a href="java-collections-usage-fundamentals-list-map-and-set/">Collections Usage Fundamentals: List, Map, and Set</a> | T-2207 | java | <code>syllabus/02-java/collections/java-collections-usage-fundamentals-list-map-and-set.md</code> |</p>
 <p><strong>Added 2026-09-08 (batch 4): Docker and Containers Fundamentals</strong>, found the same way — <code>container-image-internals.md</code>'s own title says "internals," and never taught what a container or image actually is first.</p>
 <p>| N39 | <a href="docker-and-containers-fundamentals/">Docker and Containers Fundamentals</a> | T-2208 | devops-containers | <code>syllabus/14-devops-containers/docker-and-containers-fundamentals.md</code> |</p>
+<p><strong>Added 2026-09-20: Memory Hierarchy: Caches, RAM, and Virtual Memory</strong>, a gap-audit addition to <code>01-computer-science-foundations</code> (T-2006) — zero coverage anywhere of cache lines, RAM latency, or the virtual-memory page-fault mechanism, despite two already-written <code>16-performance-jvm</code> chapters depending on it.</p>
+<p>| N40 | <a href="memory-hierarchy-caches-ram-and-virtual-memory/">Memory Hierarchy: Caches, RAM, and Virtual Memory</a> | T-2006 | computer-science-foundations | <code>syllabus/01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md</code> |</p>
 <p><strong>Total across all groups: 202 cheat sheets</strong> (132 backend + 31 frontend + 39 new-writing-domain). With this batch, every syllabus chapter that has ever been flagged in a changelog as missing a cheat sheet is now covered — the only remaining, permanent, documented gap is the 5 no-IWI <code>jvm</code> chapters noted above, left open per the user's 2026-08-05 decision.</p>
 <p><strong>2026-09-08 — 3 new frontend Junior Fundamentals cheat sheets.</strong> Closing the same "assumes the basics" gap found and fixed for the Java backend domain, 3 new floor-level frontend topics (F-001 How the Web Works, F-002 JavaScript Fundamentals, F-003 TypeScript Fundamentals) each got a cheat sheet — see the new rows at the top of the Frontend Cheat Sheets table above. <strong>New total: 205 cheat sheets</strong> (132 backend + 34 frontend + 39 new-writing-domain).</p>
 <p><strong>2026-09-08 (batch 5) — 3 more backend Junior Fundamentals chapters</strong>, found the same day after the user asked directly whether <code>02-java</code> covered primitive types, JVM/JDK/JRE, access modifiers, <code>static</code>/<code>final</code>, abstract-vs-concrete method signatures, and a Java version-features timeline, and to cross-check a connected Notion knowledge base (read-only) for real, commonly-asked questions on these topics.</p>
@@ -10641,7 +10672,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 17:11:56 UTC">September 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 19:20:59 UTC">September 20, 2026</span>
   </span>
 
     
