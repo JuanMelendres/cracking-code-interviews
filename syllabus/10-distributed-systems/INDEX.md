@@ -2,8 +2,8 @@
 title: "Distributed Systems — Domain Index"
 document_type: syllabus-domain-index
 domain: 10-distributed-systems
-status: 5 of 5 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 6th chapter added 2026-09-10 (Consensus Algorithms: Raft and Paxos, T-2403 — gap found in a full 22-domain audit); 7th chapter added 2026-09-10, same day (Vector Clocks and Quorum-Based Replication, T-2407 — closes this domain's last open gap from the same audit)
-last_updated: 2026-09-10
+status: 5 of 5 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 6th chapter added 2026-09-10 (Consensus Algorithms: Raft and Paxos, T-2403 — gap found in a full 22-domain audit); 7th chapter added 2026-09-10, same day (Vector Clocks and Quorum-Based Replication, T-2407 — closes this domain's last open gap from the same audit); 8th chapter added 2026-09-21 (Distributed Locking and Fencing Tokens, T-2422 — a further gap audit found the consensus chapter's own "use a distributed lock" fix referenced twice but never explained, nor its own separate stale-holder failure mode)
+last_updated: 2026-09-21
 ---
 
 # Distributed Systems
@@ -29,6 +29,7 @@ The theory: CAP/PACELC, consistent hashing, replication, distributed transaction
 | T-909 | Distributed Systems Failure Modes | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/10-distributed-systems/distributed-systems-failure-modes.md` |
 | T-2403 | Consensus Algorithms: Raft and Paxos | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/10-distributed-systems/consensus-algorithms-raft-and-paxos.md` |
 | T-2407 | Vector Clocks and Quorum-Based Replication | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` |
+| T-2422 | Distributed Locking and Fencing Tokens | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/10-distributed-systems/distributed-locking-and-fencing-tokens.md` |
 
 ## Where this domain's boundary comes from
 

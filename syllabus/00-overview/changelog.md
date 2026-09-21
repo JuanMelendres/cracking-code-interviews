@@ -2191,3 +2191,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2421.
 - `syllabus/09-messaging-event-driven/INDEX.md` and `.pages` updated (12 → 13 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `10-distributed-systems` gap audit: distributed locking and fencing tokens closed
+
+### Added
+
+- Gap audit of `10-distributed-systems` (7 chapters, previously marked "audit gaps fully closed" 2026-09-10). Found [Consensus Algorithms: Raft and Paxos](../10-distributed-systems/consensus-algorithms-raft-and-paxos.md) references "a real, battle-tested consensus-backed lock (`etcd`'s lease-based distributed lock)" twice as the fix for a real production incident, without ever explaining the lock mechanism itself or its own, separate, classic failure mode. Gossip protocols (SWIM-style membership) were also identified as a real, isolated gap but deprioritized in favor of this one, since it closes an already-presupposed dependency rather than introducing an unreferenced new topic.
+- **Distributed Locking and Fencing Tokens** (new chapter, T-2422). Real demo (`practice/java/distributed-locking-and-fencing-tokens/`), a real, timing-driven Java simulation (real threads, real `Thread.sleep`-based pauses, no mocked time): a real lease-based `LockService` correctly refuses a second acquire while a lease is still valid (`LockContentionDemo`); the classic Kleppmann stale-lock-holder bug reproduced directly — `Client-A` acquires a 300ms lease, pauses for a real 500ms, and its stale write silently overwrites `Client-B`'s legitimate write (`UnsafeLockDemo`, real captured output: `Final UnsafeStorage value: A-value`); and the real fix — the identical timeline, but the protected resource itself rejects the stale write via a real, monotonically increasing fencing token (`FencedLockDemo`, real captured output: `Client-A REJECTED: token 1 <= last accepted token 2`, `Final FencedStorage value: B-value`).
+- `consensus-algorithms-raft-and-paxos.md` (T-2403, 1.0 → 1.1) updated in place with a `related:` link and a body cross-reference at its own "use a distributed lock" remediation, naming this chapter's own residual risk explicitly.
+- New standalone cheat sheet and flashcard deck for T-2422.
+- `syllabus/10-distributed-systems/INDEX.md` and `.pages` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
