@@ -2,12 +2,24 @@
 title: "Flashcards — Index"
 document_type: flashcard-index
 status: draft
-last_updated: 2026-09-16
+last_updated: 2026-09-21
 ---
 
 # Flashcards
 
 Atomic, spaced-repetition-ready Q/A decks, one deck per canonical `handbook/` chapter, per `CLAUDE.md`'s Flashcard Standard. Each card is one concept: a prompt, a concise answer, why it matters for an interview, and the common trap around it. These are **not** rapid-review pages — see `cheat-sheets/` for the one-page-per-chapter refresh; a flashcard is the smallest reviewable unit, meant for daily/weekly drilling on the topic register's `Rev` intervals (`00-project/learning-roadmap.md`), not a pre-interview cram pass.
+
+## Real spaced repetition: export to Anki
+
+These decks live as Markdown so they stay reviewable and diffable alongside the rest of the repository, but Markdown has no actual spaced-repetition scheduler. `scripts/export_flashcards_anki.py` converts every deck here into Anki's plain-text import format:
+
+```bash
+python3 scripts/export_flashcards_anki.py
+```
+
+This writes to `dist/anki/` (gitignored — a regenerable build artifact, not source of truth): one `<slug>.txt` per deck, plus `all-decks.txt` combining all 279 decks with a `#deck column` directive so Anki routes each card into a `Cracking Code Interviews::<domain>::<deck title>` deck automatically on import. In Anki: **File → Import**, pick `all-decks.txt` (or a single deck's file), confirm "Allow HTML in fields" is on (the header line requests it, but older Anki versions prompt anyway) — multi-paragraph answers use `<br>` instead of real newlines since the import format is one note per line.
+
+The Markdown files under `flashcards/` remain the source of truth; re-run the script any time a chapter's `## Flashcards` section changes to regenerate an up-to-date export.
 
 ## A note on scope
 

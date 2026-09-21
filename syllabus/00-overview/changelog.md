@@ -2313,3 +2313,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2306.
 - `syllabus/22-ai-llm-engineering/INDEX.md` updated (6 → 7 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — Real Anki export for all 279 flashcard decks
+
+### Added
+
+- Not a content gap — a retention-layer gap, raised after the full 22/22-domain content audit closed: `flashcards/` had no actual spaced-repetition scheduling, only static Markdown (verified: no `anki`/`export`/`srs` tooling existed anywhere in `scripts/`).
+- `scripts/export_flashcards_anki.py`: parses all 279 `flashcards/*.md` decks (976 cards total, verified against `grep -c "^## Card: "` across the directory) and writes Anki's plain-text import format to `dist/anki/` (gitignored, regenerable — `flashcards/*.md` stays the source of truth). Produces one `<slug>.txt` per deck plus a combined `all-decks.txt` using Anki's `#deck column` directive, routing every card into a `Cracking Code Interviews::<domain>::<deck title>` deck automatically on import. Multi-paragraph answers use `<br>` (HTML) instead of real newlines, since the plain-text import format is one note per line.
+- Verified real: ran the script against the full current `flashcards/` directory — `279/279` decks exported, `976` cards, output card/line counts checked against independent `grep` counts before and after.
+- `flashcards/README.md` documents the new "Real spaced repetition: export to Anki" workflow.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
