@@ -11,6 +11,7 @@ nav:
   - heaps-top-k-and-k-way-merge.md
   - trees-bst-and-traversal-patterns.md
   - graphs-bfs-dfs-and-shortest-paths.md
+  - matrix-and-grid-traversal-patterns.md
   - backtracking-and-pruning.md
   - dynamic-programming.md
   - intervals-merging-and-sweep-line.md

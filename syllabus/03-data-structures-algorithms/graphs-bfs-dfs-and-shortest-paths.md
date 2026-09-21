@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2108
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-20
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -14,6 +14,7 @@ prerequisites:
 related:
   - heaps-top-k-and-k-way-merge.md
   - trees-bst-and-traversal-patterns.md
+  - matrix-and-grid-traversal-patterns.md
 practice: ../../practice/java/week-20/graphs-advanced/
 production_scenarios: []
 interview_paths: [interview-emergency-sprint, senior-to-staff]
@@ -309,7 +310,7 @@ No existing `production-cookbook/` entry has a graph-algorithm-specific root cau
 ## 16. Coding/Practice Exercises
 
 - Run the [existing practice code](../../practice/java/week-20/graphs-advanced/) yourself and confirm the same 11/11 assertions pass.
-- This pattern has additional real, already-solved problems: Number of Islands, Clone Graph, Course Schedule I/II (topological sort), Number of Provinces, and Word Ladder across earlier weeks' practice code — study Course Schedule specifically as this repository's topological-sort representative, a graph technique not directly exercised by this chapter's own five problems.
+- This pattern has additional real, already-solved problems: Clone Graph, Course Schedule I/II (topological sort), Number of Provinces, and Word Ladder across earlier weeks' practice code — study Course Schedule specifically as this repository's topological-sort representative, a graph technique not directly exercised by this chapter's own five problems. Number of Islands (grid flood fill) is now its own worked example, with a real, measured recursion-depth finding, in [Matrix and Grid Traversal Patterns](matrix-and-grid-traversal-patterns.md).
 - Implement Kruskal's algorithm (using the Union-Find implementation from Section 7, Problem 2) for Min Cost to Connect All Points, and compare its real, measured wall-clock performance against the existing Prim's-based solution at a few different point-count sizes — confirm whether Section 5's density-driven prediction (Prim's should win here) actually holds on real data.
 
 ## 17. Debugging Exercises
