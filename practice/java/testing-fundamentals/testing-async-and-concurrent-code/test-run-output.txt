@@ -1,0 +1,61 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  ├─[0m [36mReliableAsyncTest[0m [32m✔[0m
+[36m│  │  └─[0m [36mcompletesBeforeLatchTimeout()[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 1 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 2 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 3 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 4 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 5 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 6 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 7 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 8 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 9 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 10 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 11 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 12 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 13 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 14 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 15 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 16 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 17 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 18 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 19 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 20 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 21 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 22 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 23 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 24 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 25 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 26 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 27 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 28 of 30[0m [32m✔[0m
+[36m│  │     ├─[0m [34mrepetition 29 of 30[0m [32m✔[0m
+[36m│  │     └─[0m [34mrepetition 30 of 30[0m [32m✔[0m
+[36m│  └─[0m [36mSafeCounterStressTest[0m [32m✔[0m
+[36m│     └─[0m [36msafeCounterNeverLosesUpdatesUnderConcurrency()[0m [32m✔[0m
+[36m│        ├─[0m [34mrepetition 1 of 5[0m [32m✔[0m
+[36m│        ├─[0m [34mrepetition 2 of 5[0m [32m✔[0m
+[36m│        ├─[0m [34mrepetition 3 of 5[0m [32m✔[0m
+[36m│        ├─[0m [34mrepetition 4 of 5[0m [32m✔[0m
+[36m│        └─[0m [34mrepetition 5 of 5[0m [32m✔[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+
+Test run finished after 1292 ms
+[         7 containers found      ]
+[         0 containers skipped    ]
+[         7 containers started    ]
+[         0 containers aborted    ]
+[         7 containers successful ]
+[         0 containers failed     ]
+[        35 tests found           ]
+[         0 tests skipped         ]
+[        35 tests started         ]
+[         0 tests aborted         ]
+[        35 tests successful      ]
+[         0 tests failed          ]
+

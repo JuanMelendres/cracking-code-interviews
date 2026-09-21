@@ -1089,6 +1089,10 @@
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/testing-asynchronous-and-concurrent-code/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/threadlocal-mediated-classloader-leaks/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
@@ -2161,6 +2165,10 @@
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/testing-asynchronous-and-concurrent-code/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/threadlocal-mediated-classloader-leaks/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
@@ -2734,6 +2742,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/testing-fundamentals/junit-basics/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/testing-fundamentals/testing-async-and-concurrent-code/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
@@ -6134,6 +6146,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/08-testing/test-strategy-and-test-doubles/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/08-testing/testing-asynchronous-and-concurrent-code/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
