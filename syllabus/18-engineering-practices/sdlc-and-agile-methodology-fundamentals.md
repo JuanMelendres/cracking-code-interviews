@@ -5,12 +5,13 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-2212
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
   - working-with-legacy-code.md
+  - estimation-and-story-points.md
   - ../19-leadership-staff/leading-migrations-and-large-technical-change.md
   - ../08-testing/test-strategy-and-test-doubles.md
 practice: []
@@ -62,7 +63,7 @@ The real mechanism separating the two isn't "old vs. modern" — it's **feedback
 
 **The four values of the Agile Manifesto** (the actual 2001 source document every "Agile" framework traces back to) are stated as preferences, not absolutes: *individuals and interactions* over processes and tools; *working software* over comprehensive documentation; *customer collaboration* over contract negotiation; *responding to change* over following a plan. Each pairing explicitly says the item on the right still has value — "while there is value in the items on the right, we value the items on the left more."
 
-**Scrum's core artifacts and roles**: a **Product Backlog** (the full, prioritized list of everything that might be built), a **Sprint Backlog** (the subset pulled into the current sprint), and an **Increment** (the real, working software produced by the sprint) — maintained by a **Product Owner** (prioritizes the backlog), a **Scrum Master** (facilitates the process and removes blockers), and the **Development Team** (builds the increment).
+**Scrum's core artifacts and roles**: a **Product Backlog** (the full, prioritized list of everything that might be built), a **Sprint Backlog** (the subset pulled into the current sprint), and an **Increment** (the real, working software produced by the sprint) — maintained by a **Product Owner** (prioritizes the backlog), a **Scrum Master** (facilitates the process and removes blockers), and the **Development Team** (builds the increment). Deciding how much fits into that Sprint Backlog is its own real practice — see [Estimation and Story Points](estimation-and-story-points.md) for how relative sizing and velocity actually work, and the real, measured mechanism behind why comparing velocity across two teams is invalid.
 
 ## 5. How It Works Internally (L3)
 
