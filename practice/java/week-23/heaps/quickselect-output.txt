@@ -1,0 +1,31 @@
+  PASS  quickselect trial 0 (n=180, k=50)
+  PASS  quickselect trial 1 (n=260, k=86)
+  PASS  quickselect trial 2 (n=444, k=429)
+  PASS  quickselect trial 3 (n=272, k=121)
+  PASS  quickselect trial 4 (n=245, k=45)
+  PASS  quickselect trial 5 (n=74, k=30)
+  PASS  quickselect trial 6 (n=260, k=51)
+  PASS  quickselect trial 7 (n=152, k=140)
+  PASS  quickselect trial 8 (n=406, k=247)
+  PASS  quickselect trial 9 (n=485, k=203)
+  PASS  quickselect trial 10 (n=176, k=109)
+  PASS  quickselect trial 11 (n=140, k=35)
+  PASS  quickselect trial 12 (n=355, k=10)
+  PASS  quickselect trial 13 (n=490, k=211)
+  PASS  quickselect trial 14 (n=227, k=63)
+  PASS  quickselect trial 15 (n=81, k=27)
+  PASS  quickselect trial 16 (n=166, k=12)
+  PASS  quickselect trial 17 (n=393, k=160)
+  PASS  quickselect trial 18 (n=535, k=93)
+  PASS  quickselect trial 19 (n=149, k=119)
+  PASS  first-element-pivot quickselect, kthLargest(k=1) on ascending input
+  PASS  random-pivot quickselect, kthLargest(k=1) on ascending input
+  n=2000 ascending input, k=1:
+    first-element pivot: 1999000 comparisons
+    random pivot:         8410 comparisons
+  PASS  first-element pivot is at least 10x worse than random pivot on adversarial input
+  PASS  quickselect and heap agree on Kth largest (n=5000000, k=100)
+  n=5000000, k=100:
+    quickselect: 11ms
+    heap:        111ms
+QuickSelect extension (T-2106): 24/24 assertions passed

@@ -29,7 +29,7 @@
     
     
       
-        <title>Data Structures & Algorithms — Domain Index - Cracking Code Interviews</title>
+        <title>INDEX - Cracking Code Interviews</title>
       
     
     
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Data Structures & Algorithms — Domain Index
+              INDEX
             
           </span>
         </div>
@@ -1577,19 +1577,12 @@
   <span class="md-ellipsis">
     
   
-    Data Structures & Algorithms — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--18/17 originally-planned topics written — domain complete (T-1401 and T-1419 covered elsewhere, not duplicated; Phase 5, 2026-09-03); 18th chapter added 2026-09-10 (Sorting Algorithms, T-2119 — gap found in a full 22-domain audit, beyond the original 18-item plan); 19th chapter added 2026-09-17 (Coding Interview Pattern-Recognition Methodology, T-2120 — user asked directly for a methodology to figure out which pattern/data structure to use on an unfamiliar problem; the 18 pattern chapters each taught their own technique deeply but nothing taught how to pick among them)"></span>
-  
-
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -1602,19 +1595,12 @@
   <span class="md-ellipsis">
     
   
-    Data Structures & Algorithms — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--18/17 originally-planned topics written — domain complete (T-1401 and T-1419 covered elsewhere, not duplicated; Phase 5, 2026-09-03); 18th chapter added 2026-09-10 (Sorting Algorithms, T-2119 — gap found in a full 22-domain audit, beyond the original 18-item plan); 19th chapter added 2026-09-17 (Coding Interview Pattern-Recognition Methodology, T-2120 — user asked directly for a methodology to figure out which pattern/data structure to use on an unfamiliar problem; the 18 pattern chapters each taught their own technique deeply but nothing taught how to pick among them)"></span>
-  
-
   
 
       </a>
@@ -1995,6 +1981,41 @@
     
   
     Graphs: BFS, DFS, Topological Sort, Dijkstra, and Union-Find
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrix-and-grid-traversal-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix and Grid Traversal Patterns
   
 
     
@@ -11165,6 +11186,13 @@
 
 
 
+<hr />
+<p>title: "Data Structures &amp; Algorithms — Domain Index"
+document_type: syllabus-domain-index
+domain: 03-data-structures-algorithms
+status: 18/17 originally-planned topics written — domain complete (T-1401 and T-1419 covered elsewhere, not duplicated; Phase 5, 2026-09-03); 18th chapter added 2026-09-10 (Sorting Algorithms, T-2119 — gap found in a full 22-domain audit, beyond the original 18-item plan); 19th chapter added 2026-09-17 (Coding Interview Pattern-Recognition Methodology, T-2120 — user asked directly for a methodology to figure out which pattern/data structure to use on an unfamiliar problem; the 18 pattern chapters each taught their own technique deeply but nothing taught how to pick among them); 20th chapter added 2026-09-20 (Matrix and Grid Traversal Patterns, T-2121 — gap-audit addition: in-place rotation, spiral traversal, and flood fill had zero dedicated coverage; Heaps' T-2106 also gained a Quickselect extension the same day)
+last_updated: 2026-09-20</p>
+<hr />
 <h1 id="data-structures-algorithms">Data Structures &amp; Algorithms<a class="headerlink" href="#data-structures-algorithms" title="Permanent link">&para;</a></h1>
 <p>Complexity analysis through advanced structures (Master Topic Register D14, T-1401–T-1419), plus Sorting Algorithms (T-2119, a gap-audit addition beyond the original D14 list). <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/">Algorithmic Complexity and Big-O</a> in <code>01-computer-science-foundations</code> already covers T-1401 (complexity analysis itself) — this domain covers T-1402 onward, one canonical chapter per coding-interview pattern, each assigned a new <code>T-21xx</code> topic ID per the plan's reserved range (§9), distinct from the D14 practice-log IDs which remain attached to their existing coding-problem meaning.</p>
 <blockquote>
@@ -11330,8 +11358,18 @@
 <td>L1, L2, L3, L4 — fully written (2026-09-17)</td>
 <td><code>syllabus/03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md</code></td>
 </tr>
+<tr>
+<td>T-2121</td>
+<td><a href="../matrix-and-grid-traversal-patterns/">Matrix and Grid Traversal Patterns</a> (rotate, spiral, flood fill, and a real measured recursion-depth-vs-connected-region-size finding)</td>
+<td>— (not in D14; gap-audit addition)</td>
+<td>L1, L2, L3, L4 — fully written (2026-09-20)</td>
+<td><code>syllabus/03-data-structures-algorithms/matrix-and-grid-traversal-patterns.md</code></td>
+</tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Gap found and closed: Matrix and Grid Traversal Patterns, plus a Quickselect extension to Heaps (2026-09-20).</strong> A further gap audit (after Sorting and Pattern-Recognition-Methodology) found matrix/grid problems (in-place rotation, spiral traversal, flood fill) covered nowhere as their own pattern — <a href="../graphs-bfs-dfs-and-shortest-paths/">Graphs</a> named Number of Islands as a real, already-solved-elsewhere problem without elevating it. Closed with <a href="../matrix-and-grid-traversal-patterns/">Matrix and Grid Traversal Patterns</a> (T-2121), backed by a real demo (<code>practice/java/algorithms/matrix-and-grid-traversal-patterns/</code>) proving in-place rotation matches a brute-force ground truth across seven sizes, spiral traversal is correct across degenerate shapes, and — the chapter's real, non-obvious finding — a recursive flood fill's call-stack depth scales with connected-region size, not grid size: a single solid 14,000-cell region recurses fine on this machine's default stack, 16,000 cells overflows, while an explicit <code>ArrayDeque</code>-based iterative version correctly handles 2,000,000 cells with zero risk. The same audit found <a href="../heaps-top-k-and-k-way-merge/">Heaps, Top-K, and K-Way Merge</a> (T-2106) never mentioned Quickselect, the standard O(n)-average follow-up to its own heap-based Kth-largest technique — extended in place (not a new chapter, same owned scope) with a real demo proving a deterministic pivot's ~237x comparison-count regression on adversarial input (matching <a href="../sorting-algorithms/">Sorting Algorithms</a>' own QuickSort pivot lesson) and quickselect's real ~10x wall-clock advantage over the heap approach at n=5,000,000.</p>
+</blockquote>
 <p><strong>This domain is now complete: 17 of 17 canonical chapters written</strong> (D14's T-1402–T-1418; T-1401 and T-1419 are both covered by existing chapters in other domains and deliberately not duplicated here, per the same "one canonical explanation per concept" rule applied to T-1401 above). All 17 chapters were written across three batches (T-2101–T-2105, T-2106–T-2109, T-2110–T-2117), each elevating already-real, already-compiled, already-verified practice code and its study-pack retrospective rather than writing new algorithm solutions from scratch. Every underlying real assertion across all 17 chapters' practice code was re-compiled and re-run on OpenJDK 21.0.12 while writing this domain, not trusted from prior verification alone: 57 (T-2101–T-2105) + 51 (T-2106–T-2109) + 139 (T-2110–T-2117: 15+15 DP, 9 Intervals, 10 Greedy, 10 Bit Manipulation, 14 Tries, 23 Design, 10 Concurrency, 33 Advanced Structures) = 247 total real, passing assertions. T-2108 (Graphs, IWI 6.25) is the register's single highest-weighted pattern overall; T-2117 (Advanced Structures) is explicitly outside the roadmap's core scope (§5 of <code>00-project/learning-roadmap.md</code>), included because the underlying practice code already existed to close that gap. Cheat sheets for all 17 chapters were added 2026-09-06 and flashcard decks for all 17 were added 2026-09-07 (see <code>cheat-sheets/README.md</code>'s New-Writing Domain Cheat Sheets table and <code>flashcards/README.md</code>'s New-Writing Domain Decks table). Production-cookbook was investigated rather than batch-written (2026-09-07): 3 of these 17 chapters (<code>arrays-two-pointers-and-sliding-window.md</code>, <code>hashing-patterns-and-frequency-maps.md</code>, <code>concurrency-coding-problems.md</code>) already cite an existing entry in their own <code>production_scenarios</code> front matter; the other 14 have no citation, but each one's own Section 14 explicitly documents why (no existing entry has that pattern's specific algorithmic root cause) with a <code>Planned reference</code> note describing the exact future scenario shape, not a placeholder awaiting action. Writing a new entry for any of these 14 now would mean inventing the incident from scratch, which directly contradicts <code>production-cookbook/README.md</code>'s own repeatedly-stated rule that this deliverable only ever elevates a scenario a chapter has already worked out, never invents one. This is a resolved, honest, documented gap, not unbuilt work.</p>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
 <p>See <code>00-project/syllabus-transformation-plan.md</code> Sections 3.2–3.3 for the full reasoning, <code>00-project/knowledge-architecture-blueprint.md</code> lines 353–370 for the full D14 register (T-1401–T-1419) this domain's topic list is drawn from, and <code>00-project/migration-mapping.md</code> for the exhaustive, verified file-by-file mapping this index was generated from.</p>
@@ -11355,7 +11393,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 14:54:12 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 00:51:08 UTC">September 21, 2026</span>
   </span>
 
     
@@ -11411,7 +11449,7 @@
                 
                 
               
-              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Data%20Structures%20%26%20Algorithms%20%E2%80%94%20Domain%20Index&body=Page%3A%20/syllabus/03-data-structures-algorithms/INDEX/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
+              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20INDEX&body=Page%3A%20/syllabus/03-data-structures-algorithms/INDEX/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
             </div>
           
         </div>
@@ -11427,7 +11465,7 @@
     <p class="cci-page-feedback__title">Feedback &amp; comments</p>
     <p>
       Found an error, an outdated claim, or something unclear on this page?
-      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Data%20Structures%20%26%20Algorithms%20%E2%80%94%20Domain%20Index&body=Page%3A%20/syllabus/03-data-structures-algorithms/INDEX/%0A%0A">
+      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20INDEX&body=Page%3A%20/syllabus/03-data-structures-algorithms/INDEX/%0A%0A">
         Email jmelendresdev@gmail.com
       </a>
       with the page and what to fix.

@@ -1568,19 +1568,12 @@
   <span class="md-ellipsis">
     
   
-    Data Structures & Algorithms — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--18/17 originally-planned topics written — domain complete (T-1401 and T-1419 covered elsewhere, not duplicated; Phase 5, 2026-09-03); 18th chapter added 2026-09-10 (Sorting Algorithms, T-2119 — gap found in a full 22-domain audit, beyond the original 18-item plan); 19th chapter added 2026-09-17 (Coding Interview Pattern-Recognition Methodology, T-2120 — user asked directly for a methodology to figure out which pattern/data structure to use on an unfamiliar problem; the 18 pattern chapters each taught their own technique deeply but nothing taught how to pick among them)"></span>
-  
-
   
 
       </a>
@@ -2193,6 +2186,41 @@
     
   
     Graphs: BFS, DFS, Topological Sort, Dijkstra, and Union-Find
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrix-and-grid-traversal-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix and Grid Traversal Patterns
   
 
     
@@ -11584,15 +11612,18 @@
 <p><strong>A size-bounded heap ("keep only the top k")</strong> (Section 7, Problem 2, Top K Frequent Words) maintains a min-heap capped at size <code>k</code>, evicting the smallest element whenever the cap is exceeded — counterintuitively using a <em>min</em>-heap to track the <em>largest</em> k elements, since the element you want to discard first, when over capacity, is always the smallest one currently kept.</p>
 <p><strong>A heap-based k-way merge</strong> (Section 7, Problem 3, Find K Pairs with Smallest Sums) generalizes "merge k already-sorted sequences" without materializing all of them upfront: seed the heap with one candidate from each sequence, and each time an element is popped, push that sequence's next candidate — the heap always holds exactly one "next candidate" per active sequence, guaranteeing the true global minimum is always present.</p>
 <p><strong>Greedy heap-based construction</strong> (Section 7, Problems 4 and 5) uses a heap not just to read out a sorted order, but to make a sequence of locally-optimal choices — always placing the currently most-frequent character (Reorganize String), or always reserving a scarce resource for the largest need seen so far (Furthest Building) — where the heap's O(log n) extreme-value access is what makes each greedy step affordable.</p>
+<p><strong>Quickselect is a heap-free alternative for the single "find the Kth largest element" question specifically</strong> (Section 7, Problem 6) — not the more general "top k" or streaming cases the rest of this chapter covers, where a heap genuinely is the right tool. Quickselect reuses QuickSort's own partitioning step (see <a href="../sorting-algorithms/">Sorting Algorithms</a>) but recurses into only <em>one</em> side of the partition instead of both, giving it O(n) <em>average</em> time versus a heap's O(n log k) — at the cost of the same worst-case pivot-choice risk QuickSort itself has.</p>
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p><strong>The comparator-flipping technique for a bounded min-heap simulating "keep the top k largest"</strong> (Section 7, Problem 2): a min-heap always evicts its smallest element via <code>poll()</code>. To keep the <em>largest</em> k elements, the heap is capped at size <code>k</code>, and any time a new candidate arrives, it's added and then the heap's current minimum is evicted if the size exceeds <code>k</code> — meaning the heap always holds exactly the k largest candidates seen so far, with its own minimum being the <em>smallest of the currently-kept largest</em> (the correct eviction target for a new, larger candidate later). Extending this to a <em>string</em> comparator with tie-breaking (Top K Frequent Words) requires inverting the tie-break direction specifically, since the element the heap should evict first is the "worst" by the problem's own ranking, and among tied frequencies, that worst element is the lexicographically <em>larger</em> one — the reverse of <code>String</code>'s natural ordering.</p>
 <p><strong>The k-way-merge-over-an-implicit-grid technique's correctness</strong> (Find K Pairs with Smallest Sums): seeding the heap with pair <code>(i, 0)</code> for every index <code>i</code> of the first array — pairing every element of <code>nums1</code> with <code>nums2</code>'s smallest element — guarantees the single globally smallest sum is already present in the heap. Each pop only ever advances <em>that specific row's</em> second-array index by one, since advancing any other row wouldn't necessarily produce a smaller next candidate than what's already queued for other rows — the heap does the work of deciding which row to advance next, rather than the algorithm needing to reason about it directly. This is structurally identical to merging k sorted linked lists: each "row" is implicitly a sorted sequence (since <code>nums2</code> is sorted), and the heap merges across all of them lazily, only ever materializing the elements actually needed.</p>
 <p><strong>The greedy-with-a-cooldown technique</strong> (Reorganize String) enforces "no two adjacent characters are identical" by holding the just-placed character out of the heap for exactly one iteration, re-admitting it only after a <em>different</em> character has been placed next. This one-step delay is sufficient — not two, not a general "wait until safe" check — specifically because the constraint being enforced (no two <em>identical adjacent</em> characters) only ever concerns the immediately preceding placement, not any earlier ones.</p>
+<p><strong>Quickselect's O(n)-average bound comes from discarding half the problem each partition, rather than recursing into both halves the way QuickSort does.</strong> Partitioning an array around a pivot costs O(current range size); QuickSelect only ever recurses into whichever side of the partition contains the target rank, so the total work is <code>n + n/2 + n/4 + ... ≈ 2n</code> — linear, not <code>n log n</code>. The catch is identical to QuickSort's own (Section 5 of <a href="../sorting-algorithms/">Sorting Algorithms</a>): a <strong>deterministic pivot choice (e.g., always the first element) degrades to O(n²)</strong> on adversarial input, because every partition becomes maximally unbalanced (discards only one element) instead of roughly halving the range. A <strong>random pivot</strong> defeats this — real, measured evidence in Section 10 below.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reach for a heap the moment a problem repeats an extreme-value query</strong> (largest, smallest, most/least frequent) as its core loop, rather than re-sorting or re-scanning on every iteration.</li>
 <li><strong>Use a size-bounded heap for any "top k" or "k closest" requirement</strong> — capping the heap at size <code>k</code> keeps the operation at O(n log k) rather than O(n log n), a real, worthwhile improvement when <code>k</code> is small relative to the input.</li>
 <li><strong>Reach for a heap-based k-way merge whenever multiple already-sorted sequences (explicit or implicit, like a grid of pairwise sums) need their combined smallest/largest elements extracted incrementally</strong>, without fully materializing every combination upfront.</li>
+<li><strong>Reach for quickselect specifically when the question is "give me the single Kth largest/smallest value" and average-case time matters more than worst-case guarantees</strong> — for anything broader (top k <em>as a list</em>, k-way merge, a continuously updating stream), stay with the heap-based techniques above; quickselect only answers the single-value question.</li>
 </ul>
 <h2 id="7-examples">7. Examples<a class="headerlink" href="#7-examples" title="Permanent link">&para;</a></h2>
 <p><strong>Problem 1 — LC 1046, Last Stone Weight.</strong></p>
@@ -11656,17 +11687,46 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Retrospective:</strong> ladders (unlimited climb coverage) should always be reserved for the <em>largest</em> climbs; whenever more than <code>ladders</code> climbs are tracked, the smallest is evicted and paid for with bricks instead, since it's the cheapest to downgrade. <strong>Complexity:</strong> O(n log(ladders)).</p>
+<p><strong>Problem 6 — LC 215, Kth Largest Element in an Array (quickselect, added 2026-09-20).</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">findKthLargest</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">targetIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="c1">// Kth largest == (n-k)th smallest, 0-indexed</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Random</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pivotIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">random</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">hi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">lo</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="p">,</span><span class="w"> </span><span class="n">pivotIndex</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">targetIndex</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">p</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">targetIndex</span><span class="p">)</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">hi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Lomuto partition -- moves the pivot to its final sorted position, returns that index.</span>
+<span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">partition</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">hi</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pivotIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pivot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">pivotIndex</span><span class="o">]</span><span class="p">;</span>
+<span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">pivotIndex</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lo</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lo</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">hi</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">store</span><span class="p">);</span><span class="w"> </span><span class="n">store</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">store</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">store</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Retrospective:</strong> see Section 5's O(n)-average argument. Only the partition containing <code>targetIndex</code> is ever recursed into (via the <code>lo</code>/<code>hi</code> narrowing, not actual recursion — an iterative loop, avoiding call-stack depth entirely). <strong>Complexity:</strong> O(n) average, O(n²) worst case with a bad pivot — see Section 10's real, measured contrast.</p>
 <h2 id="8-common-mistakes">8. Common Mistakes<a class="headerlink" href="#8-common-mistakes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reaching for a max-heap when the problem actually needs a bounded min-heap (or vice versa)</strong> — Section 5's "keep the top k largest via a min-heap" inversion is genuinely counterintuitive on first encounter and a common source of using the wrong heap type entirely.</li>
 <li><strong>Forgetting to flip a tie-break comparator's direction</strong> when the natural ordering (<code>String.compareTo</code>) doesn't match the direction the heap needs to evict in (Section 5) — producing a heap that silently returns the wrong tie-break winner rather than an obvious error.</li>
 <li><strong>Materializing an entire cross-product or full merge upfront</strong> instead of using the lazy, incremental heap-based k-way-merge technique (Section 5) — correct but wastes memory and time proportional to the full product size rather than just <code>k</code>.</li>
+<li><strong>Using a deterministic pivot (always the first or last element) in quickselect</strong> — Section 10's real measurement shows this isn't a minor inefficiency but a ~237x comparison-count regression on already-sorted input, the exact same mistake <a href="../sorting-algorithms/">Sorting Algorithms</a> documents for naive QuickSort.</li>
 </ul>
 <h2 id="9-edge-cases">9. Edge Cases<a class="headerlink" href="#9-edge-cases" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>A single remaining element after repeated extraction</strong> (Last Stone Weight's own verified <code>[1]</code> case, returning <code>1</code> immediately since the loop condition <code>size() &gt; 1</code> never triggers) — the initial-size check matters.</li>
 <li><strong>An impossible reorganization</strong> (Reorganize String's verified <code>"aaab"</code> case, correctly returning <code>""</code>) — the algorithm's own natural termination (running out of characters it can safely place) is the feasibility signal, not a separate upfront check.</li>
 <li><strong>Duplicate values across k-way-merge candidates</strong> (Find K Pairs' verified duplicate-input case, correctly returning <code>[[1,1],[1,1]]</code>) — the heap's comparator must handle ties consistently without special-casing them.</li>
+<li><strong><code>k = 1</code> in quickselect</strong> (the single largest element) — a real, verified boundary case in the practice suite (the adversarial-pivot comparison itself uses <code>k=1</code>), correctly terminating once the partition-narrowing loop converges to a single-element range.</li>
 </ul>
 <h2 id="10-performance-implications">10. Performance Implications<a class="headerlink" href="#10-performance-implications" title="Permanent link">&para;</a></h2>
 <p>Real, executed verification from <code>practice/java/week-23/heaps/</code> (OpenJDK 21.0.12), re-run while writing this chapter:</p>
@@ -11683,6 +11743,15 @@
 Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
 </code></pre></div>
 <p>Every solution here achieves O(log n) or O(log k) per operation rather than O(n) or O(n log n) per operation from re-sorting — the practical performance implication is that a heap-based approach's advantage compounds specifically when the extreme-value query repeats many times over the algorithm's run, which is exactly the shape of every problem in this chapter.</p>
+<p><strong>Quickselect's O(n)-average vs. heap's O(n log k), measured directly (added 2026-09-20)</strong> — <code>practice/java/week-23/heaps/src/QuickSelectDemo.java</code>, OpenJDK 21.0.12, re-run while writing this addition (24/24 assertions passing):</p>
+<div class="highlight"><pre><span></span><code>  n=2000 ascending input, k=1:
+    first-element pivot: 1999000 comparisons
+    random pivot:         8410 comparisons
+  n=5000000, k=100:
+    quickselect: 11ms
+    heap:        111ms
+</code></pre></div>
+<p><strong>Two distinct, real findings.</strong> First, the pivot-choice risk: a deterministic first-element pivot on already-sorted input makes exactly <code>n(n-1)/2 = 1,999,000</code> comparisons (the same worst-case shape <a href="../sorting-algorithms/">Sorting Algorithms</a> documents for naive QuickSort) — a random pivot cuts that to 8,410, a real ~237x reduction, by making a maximally-unbalanced partition statistically improbable rather than guaranteed. Second, at real scale (n=5,000,000, k=100) with a correctly random-pivoted quickselect, quickselect beats the heap-based approach by a real, measured ~10x (11ms vs. 111ms) — the direct, concrete payoff of O(n) average versus O(n log k) once n is large enough for the constant-factor difference to matter less than the asymptotic gap.</p>
 <h2 id="11-trade-offs">11. Trade-offs<a class="headerlink" href="#11-trade-offs" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -11707,6 +11776,11 @@ Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
 <td>Heap-based k-way merge</td>
 <td>Avoids materializing the full cross-product/merge upfront</td>
 <td>More complex bookkeeping (tracking which "row" each heap entry belongs to) than a simple sort</td>
+</tr>
+<tr>
+<td>Quickselect (single Kth-largest value)</td>
+<td>O(n) average, real ~10x measured advantage over a heap at n=5,000,000 (above)</td>
+<td>O(n²) worst case with a bad pivot (mitigated, not eliminated, by randomization); only answers a single rank, not a sorted top-k list</td>
 </tr>
 </tbody>
 </table>
@@ -11736,10 +11810,19 @@ Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
 <p><strong>Staff-level extension.</strong> Connects this to a comparator-design discipline more broadly: any custom comparator or heap ordering should be derived explicitly from "what does peek()/poll() need to return in this specific algorithm," rather than intuited from the problem's surface phrasing — the same discipline that catches the tie-break-direction bug in Top K Frequent Words (Section 5, Section 8).</p>
 <p><strong>Common mistakes.</strong> Defaulting to a max-heap for any "find the largest" framing without checking which specific operation (insertion, eviction, or both) the algorithm actually needs to be fast.</p>
 <p><strong>Follow-up questions.</strong> "How would this change for finding the k <em>smallest</em> elements instead?" (Symmetric — a bounded <em>max</em>-heap, evicting the current largest when over capacity.)</p>
+<h3 id="question-3-can-you-find-the-kth-largest-element-faster-than-a-heaps-on-log-k-added-2026-09-20">Question 3 — Can you find the Kth largest element faster than a heap's O(n log k)? (added 2026-09-20)<a class="headerlink" href="#question-3-can-you-find-the-kth-largest-element-faster-than-a-heaps-on-log-k-added-2026-09-20" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> It's the standard follow-up once a candidate produces the heap-based solution — checking whether they know quickselect exists as an O(n)-average alternative, and, more importantly, whether they know its real cost (worst-case risk) well enough to justify the trade-off rather than reflexively reaching for it.</p>
+<p><strong>Expected answer.</strong> Yes — quickselect, reusing QuickSort's own partitioning step but recursing into only the partition side containing the target rank, achieves O(n) average time versus the heap's O(n log k). The real measured trade-off (Section 10): a deterministic pivot risks O(n²) on adversarial input (a real, measured ~237x comparison-count regression), mitigated by a random pivot; at real scale, correctly-pivoted quickselect measured a real ~10x wall-clock advantage over the heap approach.</p>
+<p><strong>Minimum acceptable answer.</strong> Names quickselect by name and knows it's related to QuickSort's partitioning, even without precise complexity figures.</p>
+<p><strong>Strong Senior answer.</strong> States both complexities precisely (O(n) average, O(n²) worst case) and names the mitigation (random pivot) without prompting.</p>
+<p><strong>Staff-level extension.</strong> Correctly scopes <em>when</em> this trade-off is worth taking: quickselect only answers a single rank, not a sorted top-k list or a continuously-updating stream — for those broader shapes (this chapter's own Problems 2 and 3), the heap remains the right tool regardless of quickselect's average-case speed, because quickselect would need to be re-run from scratch for each new query rather than maintaining state incrementally the way a heap does.</p>
+<p><strong>Common mistakes.</strong> Presenting quickselect as strictly better than the heap approach without mentioning the worst-case risk, or without recognizing it doesn't generalize to the streaming/top-k-as-a-list cases the rest of this chapter covers.</p>
+<p><strong>Follow-up questions.</strong> "Why does a random pivot fix the worst case instead of just making it less likely?" (It doesn't eliminate the worst case — it makes the adversarial input that triggers it different and unpredictable on every run, rather than a fixed input like "already sorted" that reliably triggers it against a deterministic pivot.) "Could you use median-of-medians instead of randomization?" (Yes — it guarantees O(n) worst case deterministically, at a real constant-factor cost typically not worth paying versus a random pivot's practically-always-fast behavior; not implemented in this chapter's demo, an honest scope boundary.)</p>
 <h2 id="16-codingpractice-exercises">16. Coding/Practice Exercises<a class="headerlink" href="#16-codingpractice-exercises" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Run the <a href="../../practice/java/week-23/heaps/">existing practice code</a> yourself and confirm the same 10/10 assertions pass.</li>
-<li>This pattern has additional real, already-solved problems: LC 215 (Kth Largest Element), LC 347 (Top K Frequent Elements), LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 3's implicit-grid k-way merge.</li>
+<li>Run the <a href="../../practice/java/week-23/heaps/">existing practice code</a> yourself and confirm the same 10/10 assertions pass, plus <a href="../../../practice/java/week-23/heaps/src/QuickSelectDemo.java"><code>QuickSelectDemo.java</code></a>'s 24/24.</li>
+<li>This pattern has additional real, already-solved problems: LC 347 (Top K Frequent Elements), LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 3's implicit-grid k-way merge.</li>
+<li>Modify <code>QuickSelectDemo.java</code>'s adversarial-pivot comparison to use <em>descending</em> input instead of ascending, and predict, before running, whether the first-element pivot's comparison count changes — then measure and check (it shouldn't meaningfully change; a first-element pivot is equally adversarial-prone against either monotonic direction).</li>
 <li>Attempt LC 253 (Meeting Rooms II) from scratch — it's heap-shaped but already solved and correctly categorized under <a href="../intervals-merging-and-sweep-line/">Intervals, Merging, and Sweep Line</a> elsewhere in this repository; working through it here checks whether the heap primitive transfers to an interval-scheduling framing.</li>
 </ul>
 <h2 id="17-debugging-exercises">17. Debugging Exercises<a class="headerlink" href="#17-debugging-exercises" title="Permanent link">&para;</a></h2>
@@ -11775,13 +11858,13 @@ Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
 </tr>
 <tr>
 <td>L3</td>
-<td>Derive the comparator-flipping argument for a bounded top-k heap, and explain the k-way-merge-over-an-implicit-grid technique</td>
+<td>Derive the comparator-flipping argument for a bounded top-k heap, explain the k-way-merge-over-an-implicit-grid technique, and derive quickselect's O(n)-average bound along with its pivot-choice risk</td>
 <td><a href="#10-performance-implications">Section 10's real verification</a>, <a href="#5-how-it-works-internally-l3">Section 5</a></td>
 </tr>
 <tr>
 <td>L4</td>
-<td>Diagnose a real tie-break bug in a bounded-heap comparator (Section 17), and design a real streaming top-N system using this chapter's bounded-heap technique (Section 18)</td>
-<td><a href="#17-debugging-exercises">Debugging Exercise</a>, <a href="#13-staffsystem-level-considerations-l4">Section 13</a></td>
+<td>Diagnose a real tie-break bug in a bounded-heap comparator (Section 17), design a real streaming top-N system using this chapter's bounded-heap technique (Section 18), and correctly scope when quickselect's average-case speed is worth its worst-case risk versus a heap's incremental, streaming-friendly guarantees</td>
+<td><a href="#17-debugging-exercises">Debugging Exercise</a>, <a href="#13-staffsystem-level-considerations-l4">Section 13</a>, <a href="#question-3-can-you-find-the-kth-largest-element-faster-than-a-heaps-on-log-k-added-2026-09-20">Interview Question 3</a></td>
 </tr>
 </tbody>
 </table>
@@ -11805,7 +11888,7 @@ Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 00:51:08 UTC">September 21, 2026</span>
   </span>
 
     

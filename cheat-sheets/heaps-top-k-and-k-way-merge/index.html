@@ -3373,6 +3373,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#real-measured-numbers-quickselect-added-2026-09-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Measured Numbers (Quickselect, added 2026-09-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4611,6 +4622,34 @@
     
   
     Cheat Sheet: Logging, Metrics, Tracing, and OpenTelemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrix-and-grid-traversal-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: Matrix and Grid Traversal Patterns
   
 
     
@@ -8548,6 +8587,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#real-measured-numbers-quickselect-added-2026-09-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Measured Numbers (Quickselect, added 2026-09-20)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8638,6 +8688,7 @@
 <li><strong>Size-bounded heap ("keep only the top k")</strong> — maintains a <em>min</em>-heap capped at size <code>k</code>, evicting the smallest whenever the cap is exceeded — counterintuitively using a min-heap to track the largest k elements, since the element to discard first is always the smallest currently kept.</li>
 <li><strong>Heap-based k-way merge</strong> — seed the heap with one candidate from each of k sorted sequences; each pop pushes that sequence's next candidate, so the heap always holds exactly one "next candidate" per active sequence.</li>
 <li><strong>Greedy heap-based construction</strong> — uses a heap to make a sequence of locally-optimal choices (always the most-frequent character, always the largest scarce-resource need), where the heap's O(log n) extreme-value access is what makes each greedy step affordable.</li>
+<li><strong>Quickselect (added 2026-09-20)</strong> — a heap-free alternative for the single "find the Kth largest value" question, reusing QuickSort's partitioning step but recursing into only one side. O(n) average, O(n²) worst case with a bad pivot — see below.</li>
 </ul>
 <h2 id="recognition-signals-when-to-use-this-pattern">Recognition Signals / When to Use This Pattern<a class="headerlink" href="#recognition-signals-when-to-use-this-pattern" title="Permanent link">&para;</a></h2>
 <table>
@@ -8666,12 +8717,13 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Complexity:</strong> Last Stone Weight O(n log n) overall; Top K Frequent Words O(n log k); Find K Pairs with Smallest Sums O(k log(min(k,m))); Reorganize String O(n log a), a = alphabet size; Furthest Building O(n log(ladders)).</p>
+<p><strong>Complexity:</strong> Last Stone Weight O(n log n) overall; Top K Frequent Words O(n log k); Find K Pairs with Smallest Sums O(k log(min(k,m))); Reorganize String O(n log a), a = alphabet size; Furthest Building O(n log(ladders)); Quickselect O(n) average / O(n²) worst case.</p>
 <h2 id="common-pitfalls">Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Reaching for a max-heap when the problem actually needs a bounded min-heap (or vice versa) — "keep the top k largest via a min-heap" is genuinely counterintuitive on first encounter.</li>
 <li>Forgetting to flip a tie-break comparator's direction when the natural ordering doesn't match the direction the heap needs to evict in.</li>
 <li>Materializing an entire cross-product or full merge upfront instead of using the lazy, incremental heap-based k-way-merge technique.</li>
+<li>Using a deterministic (first-element) pivot in quickselect — real, measured ~237x comparison-count regression on already-sorted input; use a random pivot.</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> A heap answers "repeatedly find and remove the current extreme value" in O(log n) per operation, versus O(n log n) to re-sort from scratch every time something changes — reach for it the moment a problem's core loop repeats an extreme-value query.</p>
@@ -8683,9 +8735,15 @@
 <li>A "top k most frequent items" feature works correctly for most inputs but occasionally returns the wrong tie-break winner when two items have identical frequency.</li>
 <li>Diagnose: check the heap comparator's tie-break branch — the tie-break direction inside a bounded min-heap must be the <em>inverse</em> of the problem's stated tie-break rule, since the heap evicts its "worst" element first, and among ties, "worst" is the opposite end of whatever the problem's display-order criterion favors.</li>
 </ul>
+<h2 id="real-measured-numbers-quickselect-added-2026-09-20">Real Measured Numbers (Quickselect, added 2026-09-20)<a class="headerlink" href="#real-measured-numbers-quickselect-added-2026-09-20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>First-element pivot on 2,000 already-sorted elements: 1,999,000 comparisons (<code>n(n-1)/2</code>). Random pivot, identical input: 8,410 — a real ~237x reduction.</li>
+<li>At real scale (n=5,000,000, k=100): quickselect ~11ms vs. heap ~111ms — a real ~10x advantage.</li>
+</ul>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li>syllabus/03-data-structures-algorithms/stacks-and-monotonic-stack.md</li>
+<li>syllabus/03-data-structures-algorithms/sorting-algorithms.md</li>
 </ul>
 
 
@@ -8707,7 +8765,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 7, 2026 02:31:12 UTC">September 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 00:51:08 UTC">September 21, 2026</span>
   </span>
 
     
