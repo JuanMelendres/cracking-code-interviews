@@ -1,0 +1,32 @@
+=== Both teams deliver the IDENTICAL real work in the sprint (same tasks, same real hours) ===
+  Total real ground-truth effort delivered by BOTH teams: 135 hours
+
+=== Team A's calibration: roughly 1 point per 2 hours (their own reference story) ===
+  Fix typo in error message                                    1.0h ->   1 points
+  Add null check to input validator                            2.0h ->   1 points
+  Add a new field to an existing DTO plus migration            4.0h ->   2 points
+  Implement a new REST endpoint with validation                8.0h ->   3 points
+  Integrate a third-party payment API                         16.0h ->   8 points
+  Refactor a legacy module to remove a circular dependency    24.0h ->  13 points
+  Design and implement a new caching layer                    32.0h ->  13 points
+  Migrate a service from REST to gRPC                         48.0h ->  20 points
+  Team A's velocity this sprint: 61 points
+
+=== Team B's calibration: roughly 1 point per 1 hour (a different reference story) ===
+  Fix typo in error message                                    1.0h ->   1 points
+  Add null check to input validator                            2.0h ->   2 points
+  Add a new field to an existing DTO plus migration            4.0h ->   3 points
+  Implement a new REST endpoint with validation                8.0h ->   8 points
+  Integrate a third-party payment API                         16.0h ->  13 points
+  Refactor a legacy module to remove a circular dependency    24.0h ->  20 points
+  Design and implement a new caching layer                    32.0h ->  40 points
+  Migrate a service from REST to gRPC                         48.0h ->  40 points
+  Team B's velocity this sprint: 127 points
+
+=== Result ===
+  Team A velocity: 61 points. Team B velocity: 127 points -- a real 2.1x difference,
+  for delivering the EXACT SAME 135 hours of real work.
+  A manager comparing these two velocity numbers directly would wrongly conclude
+  Team B is faster or more productive -- the difference is entirely calibration,
+  not delivered output. Velocity is only ever a valid trend WITHIN one team's own
+  history, never a cross-team comparison.

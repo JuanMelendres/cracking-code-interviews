@@ -2246,3 +2246,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2425.
 - `syllabus/15-cloud/INDEX.md` updated (4 → 5 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `18-engineering-practices` gap audit: estimation and story points closed
+
+### Added
+
+- Gap audit of `18-engineering-practices` (6 chapters). Found [SDLC and Agile Methodology Fundamentals](../18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md) covers Scrum's artifacts, roles, and sprint cadence in depth, but had zero coverage of estimation itself — story points, velocity, and how both get misused organizationally, despite being among the most commonly asked and most commonly misunderstood real Agile practice topics. Other candidates considered and deprioritized: pair/mob programming (real gap, lower interview frequency than estimation) and TDD as a general practice (already substantially covered in `08-testing/writing-tests-live-in-an-interview.md`, not an isolated gap).
+- **Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses** (new chapter, T-1805). Real, fully deterministic Java demo (`practice/java/engineering-practices/estimation-and-story-points/`, no timing/randomness — every run byte-identical), proving numerically, not just by assertion, why comparing velocity across two teams is invalid: two teams estimate the identical 8 tasks (135 real ground-truth hours) using two different, each internally consistent, point-per-hour calibrations against the standard Fibonacci-like scale (1/2/3/5/8/13/20/40/100) — real captured output: Team A's velocity is 61 points, Team B's velocity for the exact same work is 127 points, a real 2.1x difference explained entirely by calibration, not delivered output.
+- `sdlc-and-agile-methodology-fundamentals.md` (T-2212, 1.1 → 1.2) updated in place with a `related:` link and a body cross-reference at its Scrum-artifacts section, naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-1805.
+- `syllabus/18-engineering-practices/INDEX.md` updated (6 → 7 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
