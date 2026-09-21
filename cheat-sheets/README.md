@@ -353,6 +353,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA](authentication-attack-defense-brute-force-and-mfa.md) | T-1310 | security | `syllabus/12-security/authentication-attack-defense-brute-force-and-mfa.md` |
 | [Metric Cardinality and Alert Fatigue](metric-cardinality-and-alert-fatigue.md) | T-2409 | observability | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |
 | [Chaos Engineering: Fault Injection and Resilience Verification](chaos-engineering-fault-injection-and-resilience-verification.md) | T-2423 | observability | `syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md` |
+| [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) | T-2424 | devops-containers | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
 | [Hiring and Team Building](hiring-and-team-building.md) | T-1907 | leadership-staff | `syllabus/19-leadership-staff/hiring-and-team-building.md` |
 | [Incident Command: Roles and Real-Time Coordination](incident-command-roles-and-real-time-coordination.md) | T-1906 | leadership-staff | `syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` |
 | [Frontend Security: XSS, CSRF, and CSP](frontend-security-xss-csrf-and-csp.md) | F-401 | frontend-web | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
@@ -391,6 +392,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-21 — Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA (T-1310) gains a cheat sheet.** New `12-security` chapter, added the same day to close a real gap audit finding (see the chapter's own changelog entry) — a dependency `owasp-top-10-for-backend-services.md` already named (its A07 routing table) but never explained. New total, verified directly against the file system: **271 cheat sheets** (270 prior + 1) — this note's own count picks up several files added across the interim without an updating note of their own (each PR round added its row silently); the file-system count is authoritative here, not the arithmetic chain above it.
 
 **2026-09-21 (same day, follow-up) — Chaos Engineering: Fault Injection and Resilience Verification (T-2423) gains a cheat sheet.** New `13-observability` chapter, added the same day to close a real gap audit finding — the domain covered detection and reaction but had zero coverage of proactively verifying either actually works. New total, verified directly against the file system: **272 cheat sheets** (271 prior + 1).
+
+**2026-09-21 (same day, follow-up) — Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior (T-2424) gains a cheat sheet.** New `14-devops-containers` chapter, added the same day to close a real gap audit finding — a `HorizontalPodAutoscaler` manifest was already shown but never explained, and a sibling `15-cloud` chapter's claim that it was already covered turned out to be false. New total, verified directly against the file system: **273 cheat sheets** (272 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|

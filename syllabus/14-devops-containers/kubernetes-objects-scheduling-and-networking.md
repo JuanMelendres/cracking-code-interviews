@@ -4,8 +4,8 @@ slug: kubernetes-objects-scheduling-and-networking
 document_type: handbook-chapter
 domain: 14-devops-containers
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-21
 source_history:
   - handbook/cloud/kubernetes-objects-scheduling-and-networking.md
 topic_id: T-1002
@@ -27,6 +27,7 @@ related:
   - kubernetes-resource-limits-probes-and-jvm-sizing.md
   - container-image-internals.md
   - cicd-pipeline-design-and-deployment-strategies.md
+  - horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md
   - ../05-spring/spring-actuator-health-and-observability-hooks.md
   - ../../study-packs/week-15/02-kubernetes-objects-scheduling-and-networking.md
 official_references:
@@ -183,6 +184,8 @@ $ ruby -ryaml -e "docs = YAML.load_stream(File.read('deployment-with-probes-and-
 ```
 
 **Reading `maxSurge: 1, maxUnavailable: 0` precisely:** with 3 desired replicas, a rolling update can temporarily run up to 4 Pods (3 + `maxSurge`) but never fewer than 3 (3 − `maxUnavailable`) — the new Pod starts, passes its readiness probe, then one old Pod is terminated, repeating until all 3 are the new version. The requests/limits memory being equal (`512Mi`/`512Mi`) means the scheduler's placement decision and the kubelet's OOMKill enforcement bind at the exact same number — a deliberate, predictable choice per the previous chapter's decision framework.
+
+This manifest's `HorizontalPodAutoscaler` is shown here for structural completeness only — what its controller actually does with `target: cpu 70%`, `minReplicas: 3`, and `maxReplicas: 12` each time a metric sample arrives (the real formula, the tolerance band, and the scale-up/scale-down asymmetry) is covered in full, with real measured timing evidence, in [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md).
 
 ## A Practical `kubectl` Debugging Workflow
 
