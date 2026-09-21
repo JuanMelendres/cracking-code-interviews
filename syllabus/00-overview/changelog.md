@@ -2268,3 +2268,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-1806.
 - `syllabus/18-engineering-practices/INDEX.md` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `19-leadership-staff` follow-up gap audit: handling underperformance closed
+
+### Added
+
+- Follow-up gap audit of `19-leadership-staff` (7 chapters, previously marked "audit gaps fully closed" 2026-09-11). Found zero coverage anywhere in the repository of one of the most commonly asked real leadership topics — [Mentoring and Developing Others](../19-leadership-staff/mentoring-and-developing-others.md) covers positive growth and delegation, never the harder half of addressing a genuine, sustained performance problem directly, and `20-interview-preparation/behavioral/`'s closest chapter (Conflict and Technical Disagreement) is about disagreement over technical decisions, not a team member's performance.
+- **Handling Underperformance and Difficult Feedback Conversations** (new chapter, T-1908). Follows this domain's own established convention (a representative, explicitly-labeled scenario rather than a Java demo, since this is an interpersonal leadership skill): the pattern-versus-single-instance distinction for identifying a genuine performance problem; separating a specific, behavioral observation from a character-based interpretation when giving feedback; and why an unaddressed performance problem compounds rather than resolves itself. Connects to `18-engineering-practices/sprint-retrospectives.md` and `estimation-and-story-points.md` at the Staff-level section, for recognizing when an apparently individual performance problem actually has a systemic, team-level cause.
+- `mentoring-and-developing-others.md` (T-1901, 1.0 → 1.1) updated in place with a `related:` link and a body cross-reference naming this chapter's coverage of the harder half explicitly.
+- New standalone cheat sheet and flashcard deck for T-1908.
+- `syllabus/19-leadership-staff/INDEX.md` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).

@@ -5,13 +5,14 @@ document_type: syllabus-topic
 domain: 19-leadership-staff
 topic_id: T-1901
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
   - cross-team-influence-without-authority.md
   - hiring-and-team-building.md
+  - handling-underperformance-and-difficult-feedback.md
   - ../20-interview-preparation/behavioral/07-mentoring-and-developing-others.md
 practice: []
 production_scenarios: []
@@ -26,7 +27,7 @@ This is the first canonical chapter in `19-leadership-staff`, assigned **T-1901*
 
 ## 1. Why This Matters
 
-Mentoring is one of the few Staff-level responsibilities that scales an engineer's impact beyond their own individual output — a Staff engineer who develops three other engineers into stronger, more independent contributors has a larger organizational effect than the same engineer spending that time writing more code alone. It is also a skill with a real failure mode in both directions: an engineer who never delegates or teaches becomes an organizational bottleneck (nothing ships without them), while one who delegates without calibration either over-directs (removing all the learning value) or under-supports (setting someone up to fail). Interviewers ask about it separately from general leadership questions because it tests a specific, teachable competency, not just seniority by tenure.
+Mentoring is one of the few Staff-level responsibilities that scales an engineer's impact beyond their own individual output — a Staff engineer who develops three other engineers into stronger, more independent contributors has a larger organizational effect than the same engineer spending that time writing more code alone. It is also a skill with a real failure mode in both directions: an engineer who never delegates or teaches becomes an organizational bottleneck (nothing ships without them), while one who delegates without calibration either over-directs (removing all the learning value) or under-supports (setting someone up to fail). Interviewers ask about it separately from general leadership questions because it tests a specific, teachable competency, not just seniority by tenure. This chapter covers growth and delegation when things are going well; see [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) for the harder, equally necessary half — what to do when they aren't.
 
 ## 2. Prerequisites
 
