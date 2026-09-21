@@ -791,6 +791,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#real-spaced-repetition-export-to-anki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real spaced repetition: export to Anki
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#a-note-on-scope" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8870,6 +8881,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#real-spaced-repetition-export-to-anki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real spaced repetition: export to Anki
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#a-note-on-scope" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9007,6 +9029,12 @@
 
 <h1 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h1>
 <p>Atomic, spaced-repetition-ready Q/A decks, one deck per canonical <code>handbook/</code> chapter, per <code>CLAUDE.md</code>'s Flashcard Standard. Each card is one concept: a prompt, a concise answer, why it matters for an interview, and the common trap around it. These are <strong>not</strong> rapid-review pages — see <code>cheat-sheets/</code> for the one-page-per-chapter refresh; a flashcard is the smallest reviewable unit, meant for daily/weekly drilling on the topic register's <code>Rev</code> intervals (<code>00-project/learning-roadmap.md</code>), not a pre-interview cram pass.</p>
+<h2 id="real-spaced-repetition-export-to-anki">Real spaced repetition: export to Anki<a class="headerlink" href="#real-spaced-repetition-export-to-anki" title="Permanent link">&para;</a></h2>
+<p>These decks live as Markdown so they stay reviewable and diffable alongside the rest of the repository, but Markdown has no actual spaced-repetition scheduler. <code>scripts/export_flashcards_anki.py</code> converts every deck here into Anki's plain-text import format:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/export_flashcards_anki.py
+</code></pre></div>
+<p>This writes to <code>dist/anki/</code> (gitignored — a regenerable build artifact, not source of truth): one <code>&lt;slug&gt;.txt</code> per deck, plus <code>all-decks.txt</code> combining all 279 decks with a <code>#deck column</code> directive so Anki routes each card into a <code>Cracking Code Interviews::&lt;domain&gt;::&lt;deck title&gt;</code> deck automatically on import. In Anki: <strong>File → Import</strong>, pick <code>all-decks.txt</code> (or a single deck's file), confirm "Allow HTML in fields" is on (the header line requests it, but older Anki versions prompt anyway) — multi-paragraph answers use <code>&lt;br&gt;</code> instead of real newlines since the import format is one note per line.</p>
+<p>The Markdown files under <code>flashcards/</code> remain the source of truth; re-run the script any time a chapter's <code>## Flashcards</code> section changes to regenerate an up-to-date export.</p>
 <h2 id="a-note-on-scope">A note on scope<a class="headerlink" href="#a-note-on-scope" title="Permanent link">&para;</a></h2>
 <p>Every card in every deck below already existed, written into its canonical chapter's own <code>## Flashcards</code> section, as part of that chapter's original closure. Building this deliverable is an extraction and reorganization pass, not new content generation: each deck below is copied from its chapter's existing cards, promoted to standalone files (topic-ID-keyed, per the roadmap's own spec — <code>flashcards/</code> "by topic ID, reviewed on the register's <code>Rev</code> intervals"), with in-chapter anchor links rewritten to resolve correctly from <code>flashcards/</code>'s own directory.</p>
 <p>Handbook chapters currently use one of two existing card formats: an explicit <code>### Card:</code> structure (Prompt/Answer/Why it matters/Common trap/Related — the format this deliverable's template follows directly), and a plainer <code>**Q:**</code>/<code>**A:**</code> format used in the newer <code>jvm/</code>, <code>security/</code>, and <code>testing/</code> chapters. Decks built from the second format require light, non-fabricated synthesis to add the "Why it matters" and "Common trap" fields the template requires — grounded in that chapter's own stated interview framing and common-mistakes material, never invented.</p>
@@ -10964,7 +10992,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:45:58 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 23:22:09 UTC">September 21, 2026</span>
   </span>
 
     
