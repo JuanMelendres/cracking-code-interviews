@@ -1,0 +1,38 @@
+=== 1. UnprotectedLoginService: attacker works through wordlist ===
+  attempt 1: "password" -> rejected
+  attempt 2: "123456" -> rejected
+  attempt 3: "letmein" -> rejected
+  attempt 4: "qwerty" -> rejected
+  attempt 5: "admin123" -> rejected
+  attempt 6: "welcome1" -> rejected
+  attempt 7: "dragon99" -> rejected
+  attempt 8: "Tr0ub4dor&3" -> SUCCESS
+  Result: CRACKED, no rate limit stopped this.
+
+=== 2. LockingLoginService: same attacker, same wordlist, 5-attempt lockout ===
+  attempt 1: "password" -> rejected (4 attempts remaining before lockout)
+  attempt 2: "123456" -> rejected (3 attempts remaining before lockout)
+  attempt 3: "letmein" -> rejected (2 attempts remaining before lockout)
+  attempt 4: "qwerty" -> rejected (1 attempts remaining before lockout)
+  attempt 5: "admin123" -> LOCKED just now for 3000ms
+  attempt 6: "welcome1" -> rejected, still locked for 2999ms
+  Result: attacker never reached the real password "Tr0ub4dor&3" before being locked out.
+
+=== 3. Real trade-off: the legitimate user is locked out too, right now ===
+  alice logs in with her REAL password while locked: rejected, still locked for 2998ms
+
+=== Waiting out the 3s lockout window (real Thread.sleep, no mocked clock) ===
+  alice logs in again after the lockout expires: SUCCESS
+
+=== 1. Totp verified against RFC 6238 Appendix B official test vectors (SHA1, 8 digits) ===
+  T=59  expected=94287082  actual=94287082  -> PASS
+  T=1111111109  expected=07081804  actual=07081804  -> PASS
+  T=1111111111  expected=14050471  actual=14050471  -> PASS
+  T=1234567890  expected=89005924  actual=89005924  -> PASS
+  T=2000000000  expected=69279037  actual=69279037  -> PASS
+  All RFC 6238 vectors: PASS
+
+=== 2. Credential stuffing: attacker has alice's REAL password, no TOTP secret ===
+  attacker: correct password, guessed code "000000" -> rejected
+  attacker: correct password, random code "098010" -> rejected
+  alice: correct password, real current TOTP code "084066" -> SUCCESS
