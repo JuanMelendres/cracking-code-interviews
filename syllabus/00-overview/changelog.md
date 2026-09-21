@@ -2246,3 +2246,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2425.
 - `syllabus/15-cloud/INDEX.md` updated (4 → 5 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `17-architecture` gap audit: domain events vs. integration events closed
+
+### Added
+
+- Gap audit of `17-architecture` (9 chapters, first gap audit this domain has had). Found `cqrs-read-write-separation.md` and `ddd-tactical-design-aggregates.md` use "domain event" extensively, and `09-messaging-event-driven/event-driven-architecture-integration-styles.md` covers publishing events across service boundaries — but none of the three ever named the specific, commonly-made mistake at their intersection: treating a domain event's internal shape as if it were the public contract external consumers depend on. Other candidates considered and deprioritized: Team Topologies' specific interaction-mode framework (already covered appropriately in `19-leadership-staff/cross-team-influence-without-authority.md`, not a gap here) and layered architecture depth (already covered as a real comparison baseline in `clean-hexagonal-architecture.md`).
+- **Domain Events vs. Integration Events: Contract Boundaries and Translation** (new chapter, T-2426). Real, fully deterministic Java demo (`practice/java/architecture/domain-events-vs-integration-events/`, no timing/randomness — every run byte-identical): a domain event published directly as the wire message (`OrderCompletedDomainEventV1.publishDirectlyAsWireMessage()`) works fine for a `NotificationConsumer` reading its `"total"` field — until a real, well-motivated internal refactor (`double total` → `BigDecimal grandTotal`) happens, at which point the same consumer genuinely breaks (real captured output: `BROKEN, exactly as expected: Consumer expected field "total" but it was not present in the wire message`). The same consumer, reading a translated `OrderCompletedIntegrationEvent`'s stable `"totalAmount"` field, shows `49.99` before and after the identical refactor — unaffected, because `IntegrationEventTranslator` absorbed the internal change.
+- `cqrs-read-write-separation.md` (T-904, 1.1 → 1.2), `ddd-tactical-design-aggregates.md` (T-903, 1.0 → 1.1), and `09-messaging-event-driven/event-driven-architecture-integration-styles.md` (T-906, 1.1 → 1.2) updated in place with `related:` links and body cross-references naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-2426.
+- `syllabus/17-architecture/INDEX.md` updated (9 → 10 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).

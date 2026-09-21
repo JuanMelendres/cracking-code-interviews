@@ -4,8 +4,8 @@ slug: ddd-tactical-design-aggregates
 document_type: handbook-chapter
 domain: 17-architecture
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-21
 source_history:
   - handbook/architecture/ddd-tactical-design-aggregates.md
 topic_id: T-903
@@ -29,6 +29,7 @@ related:
   - microservice-decomposition-and-monolith-tradeoff.md
   - cqrs-read-write-separation.md
   - modular-monolith-as-a-deliberate-choice.md
+  - domain-events-vs-integration-events.md
   - ../../study-packs/week-02/03-ddd-tactical-aggregates.md
 official_references: []
 ---
@@ -117,7 +118,7 @@ Each aggregate root gets exactly one repository (`OrderRepository`, not `OrderLi
 
 ### Cross-aggregate consistency is eventual, not transactional
 
-A single logical operation spanning two aggregates cannot use a shared ACID transaction across them by design — that would violate the point of drawing separate boundaries. Instead, cross-aggregate consistency uses sagas, an outbox pattern, or domain events, accepting a window of eventual consistency in exchange for aggregates that can each be reasoned about, locked, and scaled independently.
+A single logical operation spanning two aggregates cannot use a shared ACID transaction across them by design — that would violate the point of drawing separate boundaries. Instead, cross-aggregate consistency uses sagas, an outbox pattern, or domain events, accepting a window of eventual consistency in exchange for aggregates that can each be reasoned about, locked, and scaled independently. The moment one of those domain events crosses outside this bounded context to a genuinely external consumer, publishing it directly (rather than through a stable, translated contract) becomes a real, deferred risk — see [Domain Events vs. Integration Events](domain-events-vs-integration-events.md) for real, measured evidence of exactly what breaks.
 
 ## Internal Implementation
 
