@@ -948,6 +948,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#real-measured-numbers-async-202-pattern-added-2026-09-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Measured Numbers (async 202 pattern, added 2026-09-21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8626,6 +8637,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#real-measured-numbers-async-202-pattern-added-2026-09-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Measured Numbers (async 202 pattern, added 2026-09-21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8720,6 +8742,7 @@
 <li><strong>HATEOAS</strong> — a response includes real, state-dependent links describing currently-available actions on a resource, rather than a client hardcoding state-based rules.</li>
 <li><strong>RFC 9457 Problem Details</strong> — a standardized error envelope (<code>type</code>/<code>title</code>/<code>status</code>/<code>detail</code>/<code>instance</code>), served as <code>application/problem+json</code>; Spring 6's <code>ProblemDetail</code> implements it directly.</li>
 <li><strong>Richardson Maturity Model</strong> — Level 0 (one URI/verb, action field), Level 1 (separate URIs), Level 2 (real verbs/status codes — most production APIs stop here), Level 3 (HATEOAS).</li>
+<li><strong>Async 202-Accepted-plus-polling</strong> — a long-running operation returns <code>202 Accepted</code> with a <code>Location</code> header immediately; the client polls that status resource (<code>202</code> while running, <code>303 See Other</code> to the result once done) instead of blocking on one response.</li>
 </ul>
 <h2 id="decision-table">Decision Table<a class="headerlink" href="#decision-table" title="Permanent link">&para;</a></h2>
 <table>
@@ -8795,6 +8818,10 @@
 <td>Client submits many items in one request</td>
 <td>Per-item result array (real <code>207 Multi-Status</code>), not one aggregate status code</td>
 </tr>
+<tr>
+<td>Operation genuinely takes too long for one blocking response</td>
+<td><code>202 Accepted</code> + <code>Location</code>, poll for status, real <code>303</code> to the result once done</td>
+</tr>
 </tbody>
 </table>
 <h2 id="key-numbers-real-explain-analyze-postgresql-16-2m-row-table">Key Numbers (real EXPLAIN ANALYZE, PostgreSQL 16, 2M-row table)<a class="headerlink" href="#key-numbers-real-explain-analyze-postgresql-16-2m-row-table" title="Permanent link">&para;</a></h2>
@@ -8813,6 +8840,7 @@
 <li>Inventing a bespoke error shape instead of RFC 9457 Problem Details</li>
 <li>Silently ignoring an unsupported filter/sort query parameter instead of returning a real <code>400</code></li>
 <li>Collapsing a bulk operation's outcome into one status code, losing which specific items failed</li>
+<li>Returning <code>200</code>/<code>201</code> synchronously from an endpoint that kicks off real background work, blocking the client for the full duration instead of returning <code>202</code> immediately</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> <code>OFFSET</code>'s cost grows linearly with depth because the database walks and discards every skipped row; keyset costs the same at any depth because the index seeks directly. Honest trade-off: keyset can't jump to an arbitrary page, only move from a known cursor.</p>
@@ -8824,6 +8852,11 @@
 <li>An admin tool with <code>OFFSET</code> pagination works fine for a year, then becomes unusably slow at deep pages specifically, while early pages stay fast</li>
 <li><code>EXPLAIN ANALYZE</code> shows a large <code>rows=</code> walked-and-discarded count, execution time scaling with the requested offset</li>
 <li><strong>The trap:</strong> nobody revisited the pagination decision as the table grew past a few million rows. Stopgap: cap max page-jump depth in the UI. Fix: migrate to keyset for the common case, hybrid approximate-count for jump-to-page.</li>
+</ul>
+<h2 id="real-measured-numbers-async-202-pattern-added-2026-09-21">Real Measured Numbers (async 202 pattern, added 2026-09-21)<a class="headerlink" href="#real-measured-numbers-async-202-pattern-added-2026-09-21" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Real background job (<code>ExecutorService</code> + a real 300ms of work): <code>POST /reports</code> → <code>202</code> immediately; immediate <code>GET</code> on the status resource → <code>202</code> + <code>Retry-After: 1</code>; immediate <code>GET</code> on the result → <code>425 Too Early</code>.</li>
+<li>A real polling loop (7 polls, 50ms apart) reaches <code>303 See Other</code> at real elapsed time ≥300ms, matching the job's real sleep — not a fixed sleep-then-assume test.</li>
 </ul>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
@@ -8853,7 +8886,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 18, 2026 22:01:27 UTC">September 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 01:13:26 UTC">September 21, 2026</span>
   </span>
 
     
