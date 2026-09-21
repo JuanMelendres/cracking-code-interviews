@@ -157,6 +157,10 @@
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/authentication-attack-defense-brute-force-and-mfa/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/authn-authz-rbac-vs-abac/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
@@ -1238,6 +1242,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/atomics-cas-and-the-aba-problem/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/authentication-attack-defense-brute-force-and-mfa/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
@@ -2902,6 +2910,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/week-12/final-loop-coding/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/week-17/auth-brute-force-and-mfa/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
@@ -6322,6 +6334,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/12-security/applied-cryptography-hashing-signing-tls/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/12-security/authentication-attack-defense-brute-force-and-mfa/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>

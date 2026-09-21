@@ -6111,7 +6111,7 @@
     
   
   
-    <span class="md-status md-status--10 of 10 chapters written — domain gap-audited and closed (2026-09-10); enterprise SSO/SAML added 2026-09-14, fully L1-L4"></span>
+    <span class="md-status md-status--11 of 11 chapters written — domain gap-audited and closed (2026-09-10); enterprise SSO/SAML added 2026-09-14; authentication attack defense (brute force/credential stuffing/MFA) added 2026-09-21, fully L1-L4"></span>
   
 
   
@@ -11960,6 +11960,7 @@
 <p>Picture a building with a front desk and many internal doors. <strong>Authentication</strong> is the front desk checking your ID and issuing you a badge — it happens once (per session), and everything downstream trusts the badge without re-checking your ID. <strong>Authorization</strong> is every individual door deciding whether <em>this specific badge</em> may open <em>this specific door</em> <em>right now</em> — it can happen many times, at many doors, and each door's decision may depend on more than just "what badge type do you have" (RBAC) — it might depend on which floor you're already on, what time it is, or whether you're escorting a visitor (ABAC's attribute-based context). RBAC gives every badge type a fixed door list decided in advance; ABAC evaluates a rule against the actual situation at the door, at the moment of the request.</p>
 <h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
 <p><strong>Authentication (AuthN)</strong> is the process of verifying a claimed identity — confirming that a request is actually coming from who or what it claims to be, typically via credentials (password, certificate, token) validated against a trusted source. <strong>Authorization (AuthZ)</strong> is the separate, subsequent decision of whether an <em>already-authenticated</em> identity is permitted to perform a specific action on a specific resource. <strong>RBAC (Role-Based Access Control)</strong> grants permissions by assigning users to roles, and roles to fixed sets of permissions, decided in advance and independent of any specific request's context. <strong>ABAC (Attribute-Based Access Control)</strong>, per NIST SP 800-162, evaluates access decisions dynamically against attributes of the subject, the resource, the action, and the environment at request time, expressed as policy rules rather than static role-to-permission tables.</p>
+<p>This chapter covers <em>how</em> an identity gets verified and <em>how</em> a permission decision gets made — it deliberately does not cover what happens when an attacker targets the verification step itself, with either many guesses (brute force) or one already-valid stolen credential (credential stuffing); see <a href="../authentication-attack-defense-brute-force-and-mfa/">Authentication Attack Defense</a> for that real, measured evidence.</p>
 <h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="authn-answers-who-authz-answers-may-they-and-authz-can-run-many-times-per-request">AuthN answers "who," AuthZ answers "may they" — and AuthZ can run many times per request<a class="headerlink" href="#authn-answers-who-authz-answers-may-they-and-authz-can-run-many-times-per-request" title="Permanent link">&para;</a></h3>
 <p>A single incoming request might authenticate once (validate the bearer token at the edge) but authorize multiple times as it flows through a system: an API gateway checks whether the identity may call this endpoint at all; a service checks whether the identity may access this specific resource; a database row-level policy checks whether the identity may see this specific row (see <a href="../multi-tenancy-isolation-models/">Multi-Tenancy Isolation Models</a>). Treating "authorization" as a single check at the front door, rather than a decision that recurs at each layer with potentially different available context, is a common source of authorization gaps — exactly the shape of the IDOR vulnerability covered in <a href="../owasp-top-10-for-backend-services/">OWASP Top 10 for Backend Services</a>.</p>
@@ -12205,7 +12206,7 @@ A: Needing a new, increasingly narrow role for every combination of conditions �
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 16:06:40 UTC">September 21, 2026</span>
   </span>
 
     
