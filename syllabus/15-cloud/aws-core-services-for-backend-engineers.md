@@ -4,7 +4,7 @@ slug: aws-core-services-for-backend-engineers
 document_type: handbook-chapter
 domain: 15-cloud
 status: canonical
-version: 1.1
+version: 1.2
 last_updated: 2026-09-21
 source_history:
   - handbook/cloud/aws-core-services-for-backend-engineers.md
@@ -25,6 +25,7 @@ prerequisites:
 related:
   - ../14-devops-containers/kubernetes-objects-scheduling-and-networking.md
   - ../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md
+  - serverless-lambda-execution-model-cold-starts-and-concurrency.md
   - cloud-cost-and-scaling-economics.md
   - azure-and-gcp-for-backend-engineers.md
   - ../11-system-design/storage-selection-tradeoffs.md
@@ -106,7 +107,7 @@ AWS's core services for backend engineering cluster into a few functional catego
 
 ### Compute: EC2, ECS, EKS, and Lambda trade operational ownership for convenience
 
-**EC2** gives raw virtual machines — full control, full operational ownership (patching, scaling, orchestration all manual or self-built). **ECS** (Elastic Container Service) is AWS's own container orchestrator — less operational ownership than raw EC2, tied to AWS's specific orchestration model. **EKS** (Elastic Kubernetes Service) is managed Kubernetes — the same Kubernetes API and ecosystem this week's earlier chapters cover, with AWS managing the control plane. **Lambda** runs code in response to events with zero server management at all — maximum convenience, at the cost of execution-time limits, cold-start latency, and a fundamentally different programming/deployment model than a long-running server process.
+**EC2** gives raw virtual machines — full control, full operational ownership (patching, scaling, orchestration all manual or self-built). **ECS** (Elastic Container Service) is AWS's own container orchestrator — less operational ownership than raw EC2, tied to AWS's specific orchestration model. **EKS** (Elastic Kubernetes Service) is managed Kubernetes — the same Kubernetes API and ecosystem this week's earlier chapters cover, with AWS managing the control plane. **Lambda** runs code in response to events with zero server management at all — maximum convenience, at the cost of execution-time limits, cold-start latency (the real mechanism behind that cost, and what actually mitigates it, is covered in full in [Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling](serverless-lambda-execution-model-cold-starts-and-concurrency.md)), and a fundamentally different programming/deployment model than a long-running server process.
 
 ### Storage: S3, EBS, and EFS have different access models, not just different price points
 
