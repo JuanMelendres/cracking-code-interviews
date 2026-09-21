@@ -5,7 +5,7 @@ document_type: syllabus-topic
 domain: 19-leadership-staff
 topic_id: T-1908
 status: canonical
-version: 1.0
+version: 1.1
 last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
@@ -14,6 +14,7 @@ related:
   - mentoring-and-developing-others.md
   - hiring-and-team-building.md
   - ../20-interview-preparation/behavioral/06-conflict-and-technical-disagreement.md
+  - ../20-interview-preparation/behavioral/underperformance-and-difficult-feedback-narratives.md
 practice: []
 production_scenarios: []
 interview_paths: [senior-to-staff]
@@ -23,7 +24,7 @@ source_history: []
 
 # Handling Underperformance and Difficult Feedback Conversations
 
-This is the eighth chapter in `19-leadership-staff`, assigned **T-1908** — beyond this domain's own originally-planned five-topic set and its two prior gap-audit additions (Incident Command, T-1906; Hiring and Team Building, T-1907). A follow-up audit found zero coverage anywhere in the repository — not in this domain's own [Mentoring and Developing Others](mentoring-and-developing-others.md) (which covers positive growth and delegation, never the harder half), and not in `20-interview-preparation/behavioral/` (whose closest chapter, [Conflict and Technical Disagreement](../20-interview-preparation/behavioral/06-conflict-and-technical-disagreement.md), is about disagreement over technical decisions, not a team member's performance) — of one of the most commonly asked real leadership topics: how to identify, address, and follow through on genuine underperformance. This chapter covers the working skill itself; a matching behavioral-narration chapter, if built, belongs in `20-interview-preparation/behavioral/`, the same boundary this domain draws for every other topic.
+This is the eighth chapter in `19-leadership-staff`, assigned **T-1908** — beyond this domain's own originally-planned five-topic set and its two prior gap-audit additions (Incident Command, T-1906; Hiring and Team Building, T-1907). A follow-up audit found zero coverage anywhere in the repository — not in this domain's own [Mentoring and Developing Others](mentoring-and-developing-others.md) (which covers positive growth and delegation, never the harder half), and not in `20-interview-preparation/behavioral/` (whose closest chapter, [Conflict and Technical Disagreement](../20-interview-preparation/behavioral/06-conflict-and-technical-disagreement.md), is about disagreement over technical decisions, not a team member's performance) — of one of the most commonly asked real leadership topics: how to identify, address, and follow through on genuine underperformance. This chapter covers the working skill itself; the matching behavioral-narration chapter is [Underperformance and Difficult Feedback Narratives](../20-interview-preparation/behavioral/underperformance-and-difficult-feedback-narratives.md) in `20-interview-preparation/behavioral/`, the same boundary this domain draws for every other topic.
 
 ## 1. Why This Matters
 

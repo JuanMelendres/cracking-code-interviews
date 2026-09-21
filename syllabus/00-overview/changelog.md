@@ -2279,3 +2279,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-1908.
 - `syllabus/19-leadership-staff/INDEX.md` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `20-interview-preparation` gap audit: underperformance and difficult feedback narratives closed
+
+### Added
+
+- Gap audit of `20-interview-preparation` (21 chapters), triggered directly by the same-day `19-leadership-staff` closure above: that chapter explicitly named this domain's own missing counterpart. Confirmed zero coverage across all 16 `behavioral/` chapters of narrating a real conversation about addressing a team member's genuine performance problem — distinct from [Conflict and Technical Disagreement](../20-interview-preparation/behavioral/06-conflict-and-technical-disagreement.md) (disagreement between peers each performing well) and [Mentoring and Developing Others](../20-interview-preparation/behavioral/07-mentoring-and-developing-others.md) (proactive growth coaching, not a performance problem).
+- **Underperformance and Difficult Feedback Narratives** (new chapter, T-1516). Follows this domain's established `behavioral-handbook-chapter` template exactly (Mental Model, Story Structure table, an explicitly-labeled illustrative example, a Distinguishing section, Interview Question with full evaluator/candidate framing, Common Mistakes, Self-Review Checklist, Summary, Related) — the mental model centers a *fair, specific process*, not just a favorable outcome, explicitly normalizing an honestly-told story where the outcome wasn't a clean turnaround.
+- `06-conflict-and-technical-disagreement.md` (T-1506, 1.0 → 1.1) and `07-mentoring-and-developing-others.md` (T-1507, 1.0 → 1.1) updated in place with `related:` links distinguishing each from this new chapter. `19-leadership-staff/handling-underperformance-and-difficult-feedback.md` (T-1908, 1.0 → 1.1) updated in place, replacing its own forward-looking "if built" note with a direct link now that the counterpart exists.
+- New standalone cheat sheet and flashcard deck for T-1516.
+- `syllabus/20-interview-preparation/INDEX.md` updated (21 → 22 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).

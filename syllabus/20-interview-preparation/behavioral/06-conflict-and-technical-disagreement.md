@@ -4,8 +4,8 @@ slug: conflict-and-technical-disagreement
 document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-21
 source_history:
   - behavioral-handbook/06-conflict-and-technical-disagreement.md
 topic_id: T-1506
@@ -24,6 +24,7 @@ prerequisites:
   - 01-star-framework-and-delivery.md
 related:
   - 03-scope-impact-and-influence-framing.md
+  - underperformance-and-difficult-feedback-narratives.md
 official_references: []
 ---
 
@@ -146,3 +147,4 @@ A technical-disagreement story is evaluated primarily on whether the opposing po
 
 - [STAR Framework and Delivery Mechanics](01-star-framework-and-delivery.md) — the base structure this chapter specializes for conflict narratives, including the STAR-L variant for the "didn't resolve well" question.
 - [Scope, Impact, and Influence Framing](03-scope-impact-and-influence-framing.md) — shares this chapter's "strongest form" discipline for representing an opposing view, applied there to any story involving convincing someone rather than dedicated conflict stories specifically.
+- [Underperformance and Difficult Feedback Narratives](underperformance-and-difficult-feedback-narratives.md) — a distinct category: disagreement between two people each performing their role well, versus addressing an actual performance problem.
