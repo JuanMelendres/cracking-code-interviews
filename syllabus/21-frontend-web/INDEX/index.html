@@ -9110,7 +9110,7 @@
     
   
   
-    <span class="md-status md-status--38 of 38 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08; 3 new D-F4 chapters — Frontend Security, WebSocket/SSE, Micro-Frontends — added 2026-09-11 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08)"></span>
+    <span class="md-status md-status--38 of 38 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08; 3 new D-F4 chapters — Frontend Security, WebSocket/SSE, Micro-Frontends — added 2026-09-11 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08); 39th chapter added 2026-09-21 (Service Workers and PWA, F-404, gap audit — the fourth and final D-F4 entry)"></span>
   
 
   
@@ -9135,7 +9135,7 @@
     
   
   
-    <span class="md-status md-status--38 of 38 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08; 3 new D-F4 chapters — Frontend Security, WebSocket/SSE, Micro-Frontends — added 2026-09-11 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08)"></span>
+    <span class="md-status md-status--38 of 38 mapped chapters written (32 relocated Phase 3, 2026-09-03; 3 new Junior Fundamentals chapters added 2026-09-08; 3 new D-F4 chapters — Frontend Security, WebSocket/SSE, Micro-Frontends — added 2026-09-11 — see below); Foundation/Working-Knowledge already present (Beginner–Expert tiers by original design); L1–L4 equivalence formally mapped (Phase 5, 2026-09-05); flashcard decks for all 34 F-coded chapters added (2026-09-07, extended 2026-09-08); 39th chapter added 2026-09-21 (Service Workers and PWA, F-404, gap audit — the fourth and final D-F4 entry)"></span>
   
 
   
@@ -11306,8 +11306,9 @@
 
 
 <h1 id="frontend-web-reactnextjs">Frontend &amp; Web (React/Next.js)<a class="headerlink" href="#frontend-web-reactnextjs" title="Permanent link">&para;</a></h1>
-<p>The additive, deliberately-separate React/Next.js track (37 F-coded chapters spanning Beginner→Expert by design since its 2026-08-12 Scope Addendum, plus 1 interview-craft entry from <code>interview-playbook/frontend/</code>). Kept structurally distinct from the Java backend track per <code>CLAUDE.md</code>'s explicit "additive, not merged" instruction.</p>
+<p>The additive, deliberately-separate React/Next.js track (38 F-coded chapters spanning Beginner→Expert by design since its 2026-08-12 Scope Addendum, plus 1 interview-craft entry from <code>interview-playbook/frontend/</code>). Kept structurally distinct from the Java backend track per <code>CLAUDE.md</code>'s explicit "additive, not merged" instruction.</p>
 <blockquote>
+<p><strong>Gap found and closed: Service Workers and PWA (2026-09-21).</strong> A follow-up gap audit found zero coverage anywhere in this domain of service workers, caching strategies, or offline support — despite the D-F4 tier's original 2026-09-11 audit closing Security, WebSocket/Real-time, and Micro-Frontends, this fourth, commonly-asked D-F4-shaped topic remained open. Closed with F-404 (<a href="../service-workers-and-pwa-caching-strategies/"><code>service-workers-and-pwa-caching-strategies.md</code></a>), backed by real, headless-Chromium-executed evidence (Playwright): a real registered service worker with <code>clients.claim()</code>, a real cache-first strategy proven by a server-side request counter staying flat across 3 repeated fetches, a real network-first strategy proven by the same counter incrementing on every online fetch, and Playwright's own genuine browser-context-level offline mode (<code>setOffline(true)</code>, not a mocked <code>fetch</code> failure) proving offline support is real and selective — a cached asset succeeds offline, a never-cached resource genuinely fails with <code>TypeError: Failed to fetch</code>, in the identical offline context.</p>
 <p><strong>Micro-frontends gap closed (2026-09-11), same day as Frontend Security and WebSocket/SSE — this domain's full gap-audit finding is now closed.</strong> Third and last item of the same repository-wide gap audit's <code>21-frontend-web</code> finding. Closed with F-403 (<code>micro-frontends-and-module-federation.md</code>), the third entry in the D-F4 tier, backed by two genuinely separate, real Webpack 5 builds (a <code>remote</code> exposing one component via <code>ModuleFederationPlugin</code>, a <code>host</code> consuming it at runtime) driven by real headless Chromium: a real, captured network request proving the host fetches the remote's code live at page load, and a real "rebuild only the remote, host bundle never rebuilt" test proving independent deployability directly — the host's rendered button text and computed color both change after the remote-only rebuild.</p>
 <p><strong>WebSocket/real-time gap closed (2026-09-11), same day as Frontend Security.</strong> Second item of the same repository-wide gap audit's <code>21-frontend-web</code> finding (frontend security, WebSocket/real-time, micro-frontends). Closed with F-402 (<code>websocket-and-server-sent-events-for-realtime-ui.md</code>), the second entry in the D-F4 tier, backed by real, headless-Chromium-executed evidence (Playwright, native <code>WebSocket</code>/<code>EventSource</code> APIs): a real WebSocket that stays closed after a real server-initiated close (no auto-reconnect, proven over a real 1.5-second wait), a real, measured exponential-backoff reconnect wrapper (301ms/601ms/1202ms actual against a 300/600/1200ms requested schedule), and a real <code>EventSource</code> that reconnects three times fully automatically with zero client-side retry code — a genuine, spec-level (RFC 6455 vs. WHATWG HTML) contrast in who owns reconnection.</p>
 <p><strong>Frontend Security gap closed (2026-09-11).</strong> A repository-wide gap audit found this domain had zero coverage of frontend security (XSS, CSRF, CSP), WebSocket/real-time, or micro-frontends. Closed the Frontend Security sub-item specifically: one new chapter, F-401 (<code>frontend-security-xss-csrf-and-csp.md</code>), opening a new "D-F4 · Advanced Frontend Architecture &amp; Security" tier in <code>00-project/frontend-topic-register.md</code>, backed by real, headless-Chromium-executed evidence (Playwright, not jsdom) — a real reflected-XSS payload firing, the identical payload neutralized by HTML-escaping, and a real CSP header genuinely blocking inline script execution with the browser's own captured console violation message. WebSocket/real-time and micro-frontends (both closed same day, see above) were flagged as the two remaining open sub-items — all three are now closed.</p>
@@ -11531,6 +11532,12 @@
 <td><code>syllabus/21-frontend-web/micro-frontends-and-module-federation.md</code></td>
 </tr>
 <tr>
+<td>F-404</td>
+<td>Service Workers and PWA: Caching Strategies and Offline Support</td>
+<td>Advanced tier → <strong>L2, L3, L4</strong></td>
+<td><code>syllabus/21-frontend-web/service-workers-and-pwa-caching-strategies.md</code></td>
+</tr>
+<tr>
 <td>—</td>
 <td>Frontend Live-Coding &amp; Debugging Protocol (interview-craft, from <code>interview-playbook/frontend/</code>)</td>
 <td>Interview-application skill (no register tier) → <strong>L2, L3, L4</strong></td>
@@ -11563,7 +11570,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 13, 2026 02:18:42 UTC">September 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:38:14 UTC">September 21, 2026</span>
   </span>
 
     

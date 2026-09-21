@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Service Worker Demo</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <h1>Service Worker and PWA Demo</h1>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</body>
+</html>
