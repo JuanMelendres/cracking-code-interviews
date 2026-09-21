@@ -43,6 +43,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-20 (same day, follow-up) — Matrix and Grid Traversal Patterns (T-2121) gains a cheat sheet, and Heaps, Top-K, and K-Way Merge (T-2106) gains a Quickselect section.** New `03-data-structures-algorithms` chapter closing a gap audit that found zero dedicated coverage of in-place matrix rotation, spiral traversal, or flood fill anywhere in the repository, plus the existing Heaps cheat sheet updated in place for that same audit's real Quickselect addition. **New total: 263 cheat sheets.**
 
+**2026-09-21 — Coupling, Cohesion, and Code Smells (T-1703) gains a cheat sheet.** New `04-software-design` chapter closing a gap audit that found "coupling" and "cohesion" named nowhere in the repository, despite SOLID being a set of mechanisms for achieving exactly those two properties. **New total: 264 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -349,6 +351,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Sorting Algorithms](sorting-algorithms.md) | T-2119 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/sorting-algorithms.md` |
 | [Memory Hierarchy: Caches, RAM, and Virtual Memory](memory-hierarchy-caches-ram-and-virtual-memory.md) | T-2006 | computer-science-foundations | `syllabus/01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md` |
 | [Matrix and Grid Traversal Patterns](matrix-and-grid-traversal-patterns.md) | T-2121 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/matrix-and-grid-traversal-patterns.md` |
+| [Coupling, Cohesion, and Code Smells](coupling-cohesion-and-code-smells.md) | T-1703 | software-design | `syllabus/04-software-design/coupling-cohesion-and-code-smells.md` |
 
 **New total, verified directly against the file system: 235 cheat sheets** (209 prior + 26 gap-audit batch). Every fact in each of the 26 was extracted directly from its canonical chapter's own existing text — most chapters already carried their own inline "Cheat Sheet"/"Key Takeaways" sections (per the canonical template), so this batch elevated existing, already-verified content into the standalone deliverable rather than deriving new claims.
 

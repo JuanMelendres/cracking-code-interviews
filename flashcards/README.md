@@ -205,6 +205,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 172 | [False Sharing and Cache-Line Contention](false-sharing-and-cache-line-contention.md) | T-2417 | 3 | `syllabus/16-performance-jvm/false-sharing-and-cache-line-contention.md` |
 | 173 | [Vector API and SIMD Performance](vector-api-and-simd-performance.md) | T-2418 | 3 | `syllabus/16-performance-jvm/vector-api-and-simd-performance.md` |
 | 174 | [Memory-Mapped Files and Zero-Copy I/O](memory-mapped-files-and-zero-copy-io.md) | T-2419 | 3 | `syllabus/16-performance-jvm/memory-mapped-files-and-zero-copy-io.md` |
+| 175 | [Coupling, Cohesion, and Code Smells](coupling-cohesion-and-code-smells.md) | T-1703 | 3 | `syllabus/04-software-design/coupling-cohesion-and-code-smells.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -376,6 +377,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-20 (same day, follow-up) — Memory Hierarchy: Caches, RAM, and Virtual Memory (T-2006) gains a flashcard deck.** New `01-computer-science-foundations` chapter closing a gap audit that found zero coverage anywhere in the domain of the memory hierarchy or virtual-memory page-fault mechanism, despite two already-written `16-performance-jvm` chapters (False Sharing, Memory-Mapped Files) depending on it. 6 cards, matching this domain's own established 6-card-per-deck convention. **New total: 263 decks (262 prior + 1), 913 cards (907 prior + 6).**
 
 **2026-09-20 (same day, follow-up) — Matrix and Grid Traversal Patterns (T-2121) gains a flashcard deck, and Heaps, Top-K, and K-Way Merge (T-2106) gains 1 more card.** New `03-data-structures-algorithms` chapter closing a gap audit that found zero dedicated coverage of in-place matrix rotation, spiral traversal, or flood fill anywhere in the repository (3 cards), plus 1 new card added to the existing `heaps-top-k-and-k-way-merge.md` deck for that same audit's real Quickselect addition. **New total: 264 decks (263 prior + 1), 917 cards (913 prior + 3 new-deck + 1 existing-deck).**
+
+**2026-09-21 — Coupling, Cohesion, and Code Smells (T-1703) gains a flashcard deck.** New `04-software-design` chapter closing a gap audit that found "coupling" and "cohesion" named nowhere in the repository. 3 cards. **New total: 265 decks (264 prior + 1), 920 cards (917 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

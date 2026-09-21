@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-1804
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - working-with-legacy-code.md
@@ -14,6 +14,7 @@ related:
   - working-with-legacy-code.md
   - code-review-standards-and-practice.md
   - ../17-architecture/technical-debt-and-evolutionary-architecture.md
+  - ../04-software-design/coupling-cohesion-and-code-smells.md
 practice: ../../practice/java/engineering-practices/refactoring-discipline/
 production_scenarios: []
 interview_paths: [senior-to-staff]
@@ -50,6 +51,8 @@ graph LR
 ```
 
 The internals (`C1` -> `C2`) are exactly what's allowed to change — that's the entire point of the exercise. The inputs and outputs on either side are exactly what's *not* allowed to change, and the only way to actually verify that (rather than just believe it) is a test suite that exercises those same inputs and checks those same outputs both before and after the internal restructuring.
+
+This chapter covers *how* to change internal structure safely, once you've decided to; it deliberately doesn't cover *what* to look for or *when* a change is warranted in the first place — that's [Coupling, Cohesion, and Code Smells](../04-software-design/coupling-cohesion-and-code-smells.md)'s own scope, whose God Class and Feature Envy demo uses this exact same before/after test-parity technique to verify its own decomposition preserved behavior.
 
 ## 4. Core Concepts (L2)
 

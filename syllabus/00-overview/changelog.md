@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-20
+last_updated: 2026-09-21
 ---
 
 # Syllabus Changelog
@@ -2147,4 +2147,15 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `graphs-bfs-dfs-and-shortest-paths.md` updated in place (version 1.0 → 1.1): Number of Islands' "not yet elevated" note corrected to point at the new chapter; `related:` link added both directions.
 - New standalone cheat sheet and flashcard deck for T-2121; `heaps-top-k-and-k-way-merge.md`'s existing cheat sheet and flashcard deck both updated in place with the real Quickselect numbers, matching this repository's own "extend the existing deck, don't let it lag the chapter" convention.
 - `syllabus/03-data-structures-algorithms/INDEX.md` and `.pages` updated (19 → 20 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `04-software-design` gap audit: coupling, cohesion, and code smells closed
+
+### Added
+
+- Gap audit of `04-software-design` (3 chapters, already gap-audited once on 2026-09-10 and depth-audited clean on 2026-09-15 — audited again anyway for missing topics, not depth). Found "coupling" and "cohesion" named nowhere in the repository as taught concepts, despite [SOLID Principles](../04-software-design/solid-principles.md) (T-1701) being, collectively, a set of mechanisms for achieving exactly those two properties without ever naming either; the code-smell taxonomy (God Class, Feature Envy, Shotgun Surgery, Primitive Obsession, Data Clumps) had only one passing mention anywhere.
+- **Coupling, Cohesion, and Code Smells** (new chapter, T-1703). Real demo (`practice/java/coupling-cohesion-and-code-smells/`), two parts: (1) a reflection-based coupling measurement — a God Class's 5 distinct collaborator types drop to 1 per class once decomposed into six single-purpose classes, with an honest, measured caveat rather than an overclaimed universal win: the new coordinating orchestrator's own coupling count rises to 6. The same demo moves a real Feature Envy method onto the class it envies and verifies, across 3 real orders, byte-for-byte identical totals before and after — the same before/after test-parity technique [`refactoring-discipline.md`](../18-engineering-practices/refactoring-discipline.md)'s own demo uses. (2) A Law of Demeter fragility measurement: two client styles (train-wreck vs. delegating) produce identical output against a `Customer`/`Wallet`/`Card` object graph; one real internal-structure change to `Wallet` (single card → multiple cards) is applied, and the 6 client files are recompiled completely unchanged — the 3 train-wreck clients fail with real `cannot find symbol: method getCard()` compiler errors, the 3 Demeter-compliant clients compile successfully, unmodified.
+- `solid-principles.md` (T-1701, 1.0 → 1.1) and `refactoring-discipline.md` (`18-engineering-practices`, T-1804, 1.0 → 1.1) both updated in place with a `related:` link and a body cross-reference to the new chapter — the latter explicitly scoped as "the how" (safe refactoring mechanics) versus the new chapter's "the what/when" (recognizing a smell in the first place).
+- New standalone cheat sheet and flashcard deck for T-1703.
+- `syllabus/04-software-design/INDEX.md` and `.pages` updated (3 → 4 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
