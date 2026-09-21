@@ -2,8 +2,8 @@
 title: "Testing — Domain Index"
 document_type: syllabus-domain-index
 domain: 08-testing
-status: 7 of 7 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 8th chapter added 2026-09-07 (Unit Testing Fundamentals with JUnit, T-2204), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 9th chapter added 2026-09-16 (Behavior-Driven Development with Cucumber, T-2412 — user asked whether TDD and other development styles were covered; TDD was, BDD was not — real Cucumber-JVM lab with a genuinely unplanned finding about test-data selection)
-last_updated: 2026-09-16
+status: 7 of 7 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 8th chapter added 2026-09-07 (Unit Testing Fundamentals with JUnit, T-2204), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 9th chapter added 2026-09-16 (Behavior-Driven Development with Cucumber, T-2412 — user asked whether TDD and other development styles were covered; TDD was, BDD was not — real Cucumber-JVM lab with a genuinely unplanned finding about test-data selection); 10th chapter added 2026-09-21 (Testing Asynchronous and Concurrent Code, T-2420 — gap audit found zero coverage of writing reliable tests for async/concurrent code, distinct from flaky-test *diagnosis* already covered)
+last_updated: 2026-09-21
 ---
 
 # Testing
@@ -29,6 +29,7 @@ Test strategy, JUnit 5, contract testing, mutation testing, and live-coding test
 | T-1107 | Mutation and Property-Based Testing | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/08-testing/mutation-and-property-based-testing.md` |
 | T-1108 | Writing Tests Live in an Interview | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/08-testing/writing-tests-live-in-an-interview.md` |
 | T-2412 | Behavior-Driven Development with Cucumber | L1, L2, L3, L4 — fully written, real lab (2026-09-16) | `syllabus/08-testing/behavior-driven-development-with-cucumber.md` |
+| T-2420 | Testing Asynchronous and Concurrent Code | L1, L2, L3, L4 — fully written, real lab (2026-09-21) | `syllabus/08-testing/testing-asynchronous-and-concurrent-code.md` |
 
 ## Where this domain's boundary comes from
 

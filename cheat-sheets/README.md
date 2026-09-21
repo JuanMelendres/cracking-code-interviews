@@ -47,6 +47,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-21 (same day, follow-up) — API Design (T-803) cheat sheet updated in place for the async 202-Accepted-plus-polling pattern.** Closing a gap audit that found the pattern self-flagged as conceptual-only in `rest-api-fundamentals.md`, now backed by a real background job. No new file — 264 remains the correct total.
 
+**2026-09-21 (same day, follow-up) — Testing Asynchronous and Concurrent Code (T-2420) gains a cheat sheet.** New `08-testing` chapter closing a gap audit that found zero coverage of how to write reliable tests for async/concurrent code, distinct from flaky-test diagnosis already covered. **New total: 265 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -354,6 +356,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Memory Hierarchy: Caches, RAM, and Virtual Memory](memory-hierarchy-caches-ram-and-virtual-memory.md) | T-2006 | computer-science-foundations | `syllabus/01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md` |
 | [Matrix and Grid Traversal Patterns](matrix-and-grid-traversal-patterns.md) | T-2121 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/matrix-and-grid-traversal-patterns.md` |
 | [Coupling, Cohesion, and Code Smells](coupling-cohesion-and-code-smells.md) | T-1703 | software-design | `syllabus/04-software-design/coupling-cohesion-and-code-smells.md` |
+| [Testing Asynchronous and Concurrent Code](testing-asynchronous-and-concurrent-code.md) | T-2420 | testing | `syllabus/08-testing/testing-asynchronous-and-concurrent-code.md` |
 
 **New total, verified directly against the file system: 235 cheat sheets** (209 prior + 26 gap-audit batch). Every fact in each of the 26 was extracted directly from its canonical chapter's own existing text — most chapters already carried their own inline "Cheat Sheet"/"Key Takeaways" sections (per the canonical template), so this batch elevated existing, already-verified content into the standalone deliverable rather than deriving new claims.
 

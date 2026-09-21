@@ -1,0 +1,38 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mRaceConditionStressTest[0m [32m✔[0m
+[36m│     └─[0m [31munsafeCounterLosesUpdatesUnderConcurrency()[0m [31m✘[0m [31munsafe, non-atomic increment loses real updates under concurrency ==> expected: <800000> but was: <170146>[0m
+[36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
+[36m└─[0m [36mJUnit Platform Suite[0m [32m✔[0m
+
+Failures (1):
+  JUnit Jupiter:RaceConditionStressTest:unsafeCounterLosesUpdatesUnderConcurrency()
+    MethodSource [className = 'RaceConditionStressTest', methodName = 'unsafeCounterLosesUpdatesUnderConcurrency', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: unsafe, non-atomic increment loses real updates under concurrency ==> expected: <800000> but was: <170146>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+       RaceConditionStressTest.unsafeCounterLosesUpdatesUnderConcurrency(RaceConditionStressTest.java:21)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+Test run finished after 36 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         1 tests found           ]
+[         0 tests skipped         ]
+[         1 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         1 tests failed          ]
+

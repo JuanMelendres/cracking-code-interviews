@@ -2170,3 +2170,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `cheat-sheets/api-design.md` and `flashcards/api-design.md` updated in place with the real numbers; `flashcards/api-design.md`'s row in `flashcards/README.md` (row 39) corrected from a stale "3" to its real "7" cards while touching this entry (a pre-existing staleness from an earlier batch, not introduced here).
 - `syllabus/07-api-design/INDEX.md` and `syllabus/00-overview/INDEX.md` updated in place (no new chapter count — same 8 chapters, one extended).
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `08-testing` gap audit: testing async/concurrent code closed
+
+### Added
+
+- Gap audit of `08-testing` (9 chapters — flaky-test *diagnosis* from shared state already real-evidence-backed in [Integration Testing Against Real Dependencies](../08-testing/integration-testing-against-real-dependencies.md)). Found zero coverage anywhere of how to *write* a reliable test for genuinely asynchronous or concurrent code — a distinct gap from diagnosing flakiness after the fact. Testcontainers, `@ParameterizedTest`, and coverage-metric vocabulary were checked and confirmed already covered; not gaps.
+- **Testing Asynchronous and Concurrent Code** (new chapter, T-2420). Real demo (`practice/java/testing-fundamentals/testing-async-and-concurrent-code/`): a genuine background worker with a real, variable 5–60ms delay, tested two ways — a fixed `Thread.sleep(20)` (the tempting, wrong approach) measured at a real **6/30 successful, 24/30 failed** (~80% failure rate); a `CountDownLatch`-based real completion signal against the identical work measured at **30/30 successful**. A second demo: a real 8-thread, 100,000-increments-each stress test against a plain, unsynchronized `int` measured a real **`expected: <800000> but was: <170146>`** (~79% of updates lost to the classic read-modify-write race, a second independent run landing at a different but equally real 230,415 — the exact number is non-deterministic, the failure itself is reliable), fixed with `AtomicInteger` and the identical stress harness reused unmodified, measuring **5/5 repetitions, all exactly 800,000**.
+- New standalone cheat sheet and flashcard deck for T-2420.
+- `syllabus/08-testing/INDEX.md` and `.pages` updated (9 → 10 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
