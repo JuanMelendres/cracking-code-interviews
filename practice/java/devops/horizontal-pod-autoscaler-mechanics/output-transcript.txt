@@ -1,0 +1,28 @@
+=== Phase 1: near-target noise (68%, 72%) -- tolerance band should suppress both ===
+  t=   0ms  metric=68.0%  actual-replicas=3
+  t= 318ms  metric=72.0%  actual-replicas=3
+
+=== Phase 2: real load spike -- scale-up applies immediately, no stabilization delay ===
+  t= 620ms  metric=140.0%  actual-replicas=6  <-- CHANGED
+  t= 922ms  metric=200.0%  actual-replicas=12  <-- CHANGED
+
+=== Phase 3: load drops to 20% -- naive formula says scale down NOW, real HPA holds for the stabilization window ===
+  t=1227ms  metric=20.0%  instant-formula-says=4  actual-replicas=12
+  t=1535ms  metric=20.0%  instant-formula-says=4  actual-replicas=12
+  t=1836ms  metric=20.0%  instant-formula-says=4  actual-replicas=12
+  t=2142ms  metric=20.0%  instant-formula-says=4  actual-replicas=12
+  t=2445ms  metric=20.0%  instant-formula-says=4  actual-replicas=12
+  t=2750ms  metric=20.0%  instant-formula-says=4  actual-replicas=12
+  t=3052ms  metric=20.0%  instant-formula-says=4  actual-replicas=4  <-- CHANGED
+  t=3356ms  metric=20.0%  instant-formula-says=3  actual-replicas=4
+  t=3661ms  metric=20.0%  instant-formula-says=3  actual-replicas=4
+  t=3967ms  metric=20.0%  instant-formula-says=3  actual-replicas=4
+  t=4272ms  metric=20.0%  instant-formula-says=3  actual-replicas=4
+  t=4578ms  metric=20.0%  instant-formula-says=3  actual-replicas=4
+  t=4883ms  metric=20.0%  instant-formula-says=3  actual-replicas=4
+
+=== Result ===
+  Naive per-sample formula recommended scaling down at t=1227ms.
+  Real HPA controller actually scaled down at t=3052ms -- a real, measured 1825ms stabilization delay,
+  by design: a single low sample must not immediately shrink the fleet.
+  Final replica count settled at: 4

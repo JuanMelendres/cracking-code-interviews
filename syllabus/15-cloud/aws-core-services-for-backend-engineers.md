@@ -4,8 +4,8 @@ slug: aws-core-services-for-backend-engineers
 document_type: handbook-chapter
 domain: 15-cloud
 status: canonical
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-21
 source_history:
   - handbook/cloud/aws-core-services-for-backend-engineers.md
 topic_id: T-1006
@@ -24,6 +24,7 @@ prerequisites:
   - ../14-devops-containers/kubernetes-objects-scheduling-and-networking.md
 related:
   - ../14-devops-containers/kubernetes-objects-scheduling-and-networking.md
+  - ../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md
   - cloud-cost-and-scaling-economics.md
   - azure-and-gcp-for-backend-engineers.md
   - ../11-system-design/storage-selection-tradeoffs.md
@@ -121,7 +122,7 @@ AWS's core services for backend engineering cluster into a few functional catego
 
 ### Traffic distribution and elasticity: ALB and Auto Scaling turn a fleet of instances into one service
 
-An **Application Load Balancer (ALB)** is a Layer-7 (HTTP/HTTPS-aware) load balancer that distributes incoming requests across a target group of instances or containers, health-checking each target and routing only to ones passing that check — the same conceptual role [Load Balancing, Service Discovery, and Health Checking](../11-system-design/load-balancing-service-discovery-and-health-checking.md) covers generally, with AWS managing the balancer itself. Being Layer-7 (as opposed to a Network Load Balancer's Layer-4) means an ALB can route on path or host header (`/api/orders` to one target group, `/api/payments` to another) and terminate TLS at the balancer, which a plain Layer-4 balancer cannot do. **Auto Scaling** (an Auto Scaling Group, or ASG, for EC2; a Service Auto Scaling policy for ECS; a HorizontalPodAutoscaler for EKS, per the previous chapters' Kubernetes coverage) adds or removes instances/tasks/pods in response to a metric — typically CPU or request-count target tracking — so fleet size tracks real load instead of being sized once for peak and left there. The two compose directly: the ALB's target group membership updates automatically as Auto Scaling adds or removes instances, so a scale-out event is invisible to callers — they keep hitting the same ALB endpoint while the pool of healthy targets behind it grows or shrinks.
+An **Application Load Balancer (ALB)** is a Layer-7 (HTTP/HTTPS-aware) load balancer that distributes incoming requests across a target group of instances or containers, health-checking each target and routing only to ones passing that check — the same conceptual role [Load Balancing, Service Discovery, and Health Checking](../11-system-design/load-balancing-service-discovery-and-health-checking.md) covers generally, with AWS managing the balancer itself. Being Layer-7 (as opposed to a Network Load Balancer's Layer-4) means an ALB can route on path or host header (`/api/orders` to one target group, `/api/payments` to another) and terminate TLS at the balancer, which a plain Layer-4 balancer cannot do. **Auto Scaling** (an Auto Scaling Group, or ASG, for EC2; a Service Auto Scaling policy for ECS; a HorizontalPodAutoscaler for EKS — see [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) for the real controller algorithm behind that third option) adds or removes instances/tasks/pods in response to a metric — typically CPU or request-count target tracking — so fleet size tracks real load instead of being sized once for peak and left there. The two compose directly: the ALB's target group membership updates automatically as Auto Scaling adds or removes instances, so a scale-out event is invisible to callers — they keep hitting the same ALB endpoint while the pool of healthy targets behind it grows or shrinks.
 
 ### Networking and access control: VPC, subnets, Security Groups, and IAM decide what can reach what, and who can do what
 

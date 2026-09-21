@@ -210,6 +210,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 177 | [Distributed Locking and Fencing Tokens](distributed-locking-and-fencing-tokens.md) | T-2422 | 3 | `syllabus/10-distributed-systems/distributed-locking-and-fencing-tokens.md` |
 | 178 | [Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA](authentication-attack-defense-brute-force-and-mfa.md) | T-1310 | 3 | `syllabus/12-security/authentication-attack-defense-brute-force-and-mfa.md` |
 | 179 | [Chaos Engineering: Fault Injection and Resilience Verification](chaos-engineering-fault-injection-and-resilience-verification.md) | T-2423 | 3 | `syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md` |
+| 180 | [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) | T-2424 | 3 | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -399,6 +400,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-21 (same day, follow-up) — Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA (T-1310) gains a flashcard deck.** New `12-security` chapter closing a gap audit that found `owasp-top-10-for-backend-services.md`'s own A07 routing table named "Authentication Failures" but no chapter anywhere covered brute force, credential stuffing, account lockout, or MFA. 3 cards. **New total: 269 decks (268 prior + 1), 934 cards (931 prior + 3).**
 
 **2026-09-21 (same day, follow-up) — Chaos Engineering: Fault Injection and Resilience Verification (T-2423) gains a flashcard deck.** New `13-observability` chapter closing a gap audit that found the domain covered detection and reaction but had zero coverage of proactively verifying either actually works. 3 cards. **New total: 270 decks (269 prior + 1), 937 cards (934 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior (T-2424) gains a flashcard deck.** New `14-devops-containers` chapter closing a gap audit that found a `HorizontalPodAutoscaler` manifest already shown but never explained, and a sibling `15-cloud` chapter's claim that it was already covered turned out to be false. 3 cards. **New total: 271 decks (270 prior + 1), 940 cards (937 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

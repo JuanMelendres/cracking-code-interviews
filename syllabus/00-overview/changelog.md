@@ -2224,3 +2224,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2423.
 - `syllabus/13-observability/INDEX.md` updated (5 → 6 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `14-devops-containers` gap audit: Horizontal Pod Autoscaling mechanics closed
+
+### Added
+
+- Gap audit of `14-devops-containers` (5 chapters). Found `kubernetes-objects-scheduling-and-networking.md` already shows a real, syntax-validated `HorizontalPodAutoscaler` manifest but never explains its controller's actual decision logic — and `15-cloud/aws-core-services-for-backend-engineers.md` explicitly (and, until this pass, incorrectly) claimed HPA was covered "per the previous chapters' Kubernetes coverage." A genuinely broken cross-reference, not a paraphrased one. Other candidates considered and deprioritized: GitOps/ArgoCD and StatefulSets/ConfigMaps — real gaps, but neither had an existing false or presupposed claim pointing at them.
+- **Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior** (new chapter, T-2424). Real, timed demo (`practice/java/devops/horizontal-pod-autoscaler-mechanics/`), no mocked clock, implementing the actual documented Kubernetes HPA formula (`desiredReplicas = ceil[currentReplicas * (currentMetricValue/desiredMetricValue)]`) plus its tolerance band and scale-up/scale-down asymmetry: near-target noise (68%/72% vs. a 70% target) produces zero replica-count change; a real spike to 140% then 200% scales up immediately in the same sample each time (real captured output: `t=922ms metric=200.0% actual-replicas=12 <-- CHANGED`); and a real drop to 20% load is recommended for scale-down at `t=1227ms` but the controller doesn't actually shrink the fleet until `t=3052ms` — a real, measured ~1.8-second stabilization delay. Re-run twice — only real-clock timing jitter differs, every replica-count decision is identical both times.
+- `kubernetes-objects-scheduling-and-networking.md` (T-1002, 1.0 → 1.1) and `aws-core-services-for-backend-engineers.md` (T-1006, 1.0 → 1.1) updated in place: `related:` links added, and the AWS chapter's broken claim replaced with a real cross-reference to this chapter's actual coverage.
+- New standalone cheat sheet and flashcard deck for T-2424.
+- `syllabus/14-devops-containers/INDEX.md` updated (5 → 6 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
