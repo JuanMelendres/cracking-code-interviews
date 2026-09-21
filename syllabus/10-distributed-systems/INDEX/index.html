@@ -5613,6 +5613,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../distributed-locking-and-fencing-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Locking and Fencing Tokens
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
@@ -11288,8 +11323,8 @@
 <p>title: "Distributed Systems — Domain Index"
 document_type: syllabus-domain-index
 domain: 10-distributed-systems
-status: 5 of 5 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 6th chapter added 2026-09-10 (Consensus Algorithms: Raft and Paxos, T-2403 — gap found in a full 22-domain audit); 7th chapter added 2026-09-10, same day (Vector Clocks and Quorum-Based Replication, T-2407 — closes this domain's last open gap from the same audit)
-last_updated: 2026-09-10</p>
+status: 5 of 5 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 6th chapter added 2026-09-10 (Consensus Algorithms: Raft and Paxos, T-2403 — gap found in a full 22-domain audit); 7th chapter added 2026-09-10, same day (Vector Clocks and Quorum-Based Replication, T-2407 — closes this domain's last open gap from the same audit); 8th chapter added 2026-09-21 (Distributed Locking and Fencing Tokens, T-2422 — a further gap audit found the consensus chapter's own "use a distributed lock" fix referenced twice but never explained, nor its own separate stale-holder failure mode)
+last_updated: 2026-09-21</p>
 <hr />
 <h1 id="distributed-systems">Distributed Systems<a class="headerlink" href="#distributed-systems" title="Permanent link">&para;</a></h1>
 <p>The theory: CAP/PACELC, consistent hashing, replication, distributed transactions, and failure modes — "what is true about distributed systems," independent of any specific design exercise. Prerequisite to <code>11-system-design</code>, per the plan's Section 3.3 distinction.</p>
@@ -11352,6 +11387,12 @@ last_updated: 2026-09-10</p>
 <td>L1, L2, L3, L4 — fully written, real demo (2026-09-10)</td>
 <td><code>syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md</code></td>
 </tr>
+<tr>
+<td>T-2422</td>
+<td>Distributed Locking and Fencing Tokens</td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
+<td><code>syllabus/10-distributed-systems/distributed-locking-and-fencing-tokens.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11376,7 +11417,7 @@ last_updated: 2026-09-10</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 22:14:30 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 15:22:50 UTC">September 21, 2026</span>
   </span>
 
     

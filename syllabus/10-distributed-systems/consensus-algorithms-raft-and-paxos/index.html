@@ -18,7 +18,7 @@
         <link rel="prev" href="../multi-region-failover-and-disaster-recovery/">
       
       
-        <link rel="next" href="../vector-clocks-and-quorum-based-replication/">
+        <link rel="next" href="../distributed-locking-and-fencing-tokens/">
       
       
         
@@ -5887,6 +5887,41 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributed-locking-and-fencing-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Locking and Fencing Tokens
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
     </li>
   
 
@@ -11862,8 +11897,8 @@ slug: consensus-algorithms-raft-and-paxos
 document_type: handbook-chapter
 domain: 10-distributed-systems
 status: canonical
-version: 1.0
-last_updated: 2026-09-10
+version: 1.1
+last_updated: 2026-09-21
 topic_id: T-2403
 mastery_levels_covered:
   - L1
@@ -11882,6 +11917,7 @@ related:
   - cap-theorem-and-consistency-models.md
   - distributed-systems-failure-modes.md
   - vector-clocks-and-quorum-based-replication.md
+  - distributed-locking-and-fencing-tokens.md
   - ../06-databases/replication-read-replicas-and-replica-lag.md
   - ../../practice/java/consensus-raft/README.md
 official_references:
@@ -12016,7 +12052,7 @@ Round (term) 1: Node A asks for votes -&gt; gets 3 (including itself) -&gt; WINS
 <p><strong>Evidence.</strong> Both instances' logs show them independently concluding "I am now the active scheduler" during the same window — a design that, unlike Raft's real vote-counting rule demonstrated in this chapter, never asked "did I actually get a majority" at all; it only asked "does the other instance look unresponsive to me."</p>
 <p><strong>Diagnosis.</strong> The hand-rolled scheme has no equivalent of Raft's majority-quorum requirement — it can produce two simultaneous "leaders" precisely because nothing in its design makes that mathematically impossible, unlike the real, structural guarantee this chapter's own partition demo shows directly.</p>
 <p><strong>Immediate mitigation.</strong> Manually deduplicate the affected job runs and audit for any non-idempotent side effects from the double execution.</p>
-<p><strong>Permanent remediation.</strong> Replace the hand-rolled scheme with a real, battle-tested consensus-backed lock (<code>etcd</code>'s lease-based distributed lock, built on Raft) — the majority-quorum requirement this chapter demonstrates is exactly the mechanism that makes "two simultaneous leaders" structurally impossible, not merely unlikely.</p>
+<p><strong>Permanent remediation.</strong> Replace the hand-rolled scheme with a real, battle-tested consensus-backed lock (<code>etcd</code>'s lease-based distributed lock, built on Raft) — the majority-quorum requirement this chapter demonstrates is exactly the mechanism that makes "two simultaneous leaders" structurally impossible, not merely unlikely. Even this real fix has its own, separate residual risk if a leader pauses longer than its own lease — see <a href="../distributed-locking-and-fencing-tokens/">Distributed Locking and Fencing Tokens</a> for that exact failure mode, measured directly.</p>
 <p><strong>Alternatives considered.</strong> Tightening the heartbeat-timeout window to reduce the incident's likelihood — rejected as treating the symptom; a shorter timeout reduces the <em>frequency</em> of the failure mode without addressing that the underlying scheme has no real safety guarantee against it at all.</p>
 <p><strong>Trade-offs.</strong> Adopting a real consensus-backed lock adds an operational dependency (running or consuming <code>etcd</code>) in exchange for a genuine, structural correctness guarantee the previous scheme never actually had.</p>
 <p><strong>Prevention.</strong> Treat "we need exactly one active instance" as a consensus-shaped requirement by default, and reach for a real, existing implementation rather than a heuristic (most-recent-heartbeat, lowest-ID) that has no actual majority-quorum mechanism underneath it.</p>
@@ -12271,7 +12307,7 @@ Describing Paxos as "less safe" rather than "harder to implement correctly."</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 15:12:36 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 15:24:14 UTC">September 21, 2026</span>
   </span>
 
     
@@ -12390,13 +12426,13 @@ Describing Paxos as "less safe" rather than "harder to implement correctly."</p>
         
         
           
-          <a href="../vector-clocks-and-quorum-based-replication/" class="md-footer__link md-footer__link--next" aria-label="Next: Vector Clocks and Quorum-Based Replication">
+          <a href="../distributed-locking-and-fencing-tokens/" class="md-footer__link md-footer__link--next" aria-label="Next: Distributed Locking and Fencing Tokens">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Vector Clocks and Quorum-Based Replication
+                Distributed Locking and Fencing Tokens
               </div>
             </div>
             <div class="md-footer__button md-icon">
