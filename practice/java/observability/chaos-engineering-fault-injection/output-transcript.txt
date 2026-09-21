@@ -1,0 +1,14 @@
+=== Phase 1: Steady state (chaos INACTIVE, ~2s at ~10 req/sec) ===
+  Steady-state hypothesis holds: paging = false (burn rate short=0.0, long=0.0)
+
+=== Phase 2: Chaos experiment (downstream payment call fails for the 25% canary cohort) ===
+  ALERT FIRED 1144ms after fault injection began, after 12 real requests.
+
+=== Phase 3: Rollback (chaos INACTIVE again, verifying recovery) ===
+  Alert cleared 310ms after rollback: true
+
+=== Result ===
+  Real fault injected against only the 25% canary cohort (minimized blast radius),
+  real burn-rate monitoring detected it during the experiment, and real monitoring
+  confirmed recovery after rollback -- exactly what a chaos experiment exists to verify:
+  not that the system never fails, but that detection and response actually work.

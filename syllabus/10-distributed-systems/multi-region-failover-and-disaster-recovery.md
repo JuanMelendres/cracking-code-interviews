@@ -4,8 +4,8 @@ slug: multi-region-failover-and-disaster-recovery
 document_type: handbook-chapter
 domain: 10-distributed-systems
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-21
 source_history:
   - handbook/system-design/multi-region-failover-and-disaster-recovery.md
 topic_id: T-814
@@ -30,6 +30,7 @@ related:
   - ../15-cloud/aws-core-services-for-backend-engineers.md
   - ../17-architecture/architecture-decision-records.md
   - ../11-system-design/load-balancing-service-discovery-and-health-checking.md
+  - ../13-observability/chaos-engineering-fault-injection-and-resilience-verification.md
   - ../../practice/sql/multi-region-failover-and-dr/README.md
 official_references:
   - https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-workloads-on-aws.html
@@ -201,7 +202,7 @@ flowchart TB
 
 **Trade-offs.** The warm standby costs real, continuous infrastructure spend for a second running node; log-shipping is dramatically cheaper but, as measured, can silently miss its own configured RPO target under light write load.
 
-**Prevention.** Treat a DR pattern's RPO and RTO as claims to be tested, on a real schedule (a "DR game day"), not values to be read off a configuration file and trusted.
+**Prevention.** Treat a DR pattern's RPO and RTO as claims to be tested, on a real schedule (a "DR game day"), not values to be read off a configuration file and trusted — see [Chaos Engineering](../13-observability/chaos-engineering-fault-injection-and-resilience-verification.md) for the general discipline a DR game day is one specific application of.
 
 ### Scenario: a naive failover produces a real, reproduced split-brain
 
