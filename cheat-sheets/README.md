@@ -410,6 +410,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a cheat sheet.** New `21-frontend-web` chapter, added the same day to close a follow-up gap audit finding — the D-F4 tier's remaining commonly-asked item (offline support/caching) was still uncovered after its original three items closed 2026-09-11. New total, verified directly against the file system: **278 cheat sheets** (277 prior + 1).
 
+**2026-09-21 (same day, follow-up) — Prompt Injection and Agentic Security (T-2306) gains a cheat sheet.** New `22-ai-llm-engineering` chapter, added the same day to close a real gap audit finding — `llm-api-integration-fundamentals.md` named prompt injection as a real risk category without ever explaining or demonstrating it. New total, verified directly against the file system: **279 cheat sheets** (278 prior + 1).
+
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
 | [JVM Memory Layout and Runtime Regions](jvm-memory-layout-and-runtime-regions.md) | T-301 | 6.3 | jvm | `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |
@@ -430,6 +432,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | A4 | [Prompt Engineering Patterns](prompt-engineering-patterns.md) | T-2303 | ai-llm-engineering | `syllabus/22-ai-llm-engineering/prompt-engineering-patterns.md` |
 | A5 | [Agentic Workflows and Tool Orchestration](agentic-workflows-and-tool-orchestration.md) | T-2304 | ai-llm-engineering | `syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` |
 | A6 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | T-2305 | ai-llm-engineering | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
+| A7 | [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) | T-2306 | ai-llm-engineering | `syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md` |
 
 ## How this relates to `flashcards/`
 

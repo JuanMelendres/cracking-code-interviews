@@ -2302,3 +2302,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `syllabus/21-frontend-web/INDEX.md` updated (38 → 39 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - Also corrected, same day: the `20-interview-preparation` entry above's cheat-sheet/flashcard claim for T-1516 (see the correction note there).
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `22-ai-llm-engineering` gap audit: prompt injection and agentic security closed
+
+### Added
+
+- Gap audit of `22-ai-llm-engineering` (6 chapters, domain's originally-planned set, explicitly left open to further topics). Found [LLM API Integration Fundamentals](../22-ai-llm-engineering/llm-api-integration-fundamentals.md) (T-2300) already names prompt injection explicitly — "a real, documented risk category... not a hypothetical" — but never explains or demonstrates it, and confirmed no chapter anywhere in the repository does either.
+- **Prompt Injection and Agentic Security: Attack Vectors and Defenses** (new chapter, T-2306). Real, fully deterministic Java demo (`practice/java/prompt-injection-and-agentic-security/`, no live LLM call, no timing/randomness — every run byte-identical): a real indirect-injection payload embedded in a tool's own output (`SearchTool`) genuinely wipes a simulated database when an `UnsafeAgent` re-parses tool output for embedded directives (real captured output: `Database wiped: true`); the identical payload against a `SafeAgent` that never re-parses tool output for instructions leaves it untouched (`Database wiped: false`); and a real, bidirectional human-approval gate is proven to genuinely block without approval and genuinely allow with it.
+- `llm-api-integration-fundamentals.md` (T-2300, 1.0 → 1.1) and `agentic-workflows-and-tool-orchestration.md` (T-2304, 1.0 → 1.1) updated in place with `related:` links and body cross-references naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-2306.
+- `syllabus/22-ai-llm-engineering/INDEX.md` updated (6 → 7 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
