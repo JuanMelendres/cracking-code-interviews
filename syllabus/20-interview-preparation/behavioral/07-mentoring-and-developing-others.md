@@ -4,8 +4,8 @@ slug: mentoring-and-developing-others
 document_type: behavioral-handbook-chapter
 domain: 20-interview-preparation/behavioral
 status: draft
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-21
 source_history:
   - behavioral-handbook/07-mentoring-and-developing-others.md
 topic_id: T-1507
@@ -23,6 +23,7 @@ prerequisites:
   - 01-star-framework-and-delivery.md
 related:
   - 08-failure-and-learning-narratives.md
+  - underperformance-and-difficult-feedback-narratives.md
 official_references: []
 ---
 
@@ -127,3 +128,4 @@ A strong mentoring story centers the mentee's growth and agency, not the mentor'
 
 - [STAR Framework and Delivery Mechanics](01-star-framework-and-delivery.md) — the base structure this chapter specializes for mentoring narratives.
 - [Failure and Learning Narratives](08-failure-and-learning-narratives.md) — a mentoring relationship that didn't work as intended is itself a valid failure story; the two chapters can share source material.
+- [Underperformance and Difficult Feedback Narratives](underperformance-and-difficult-feedback-narratives.md) — the harder, distinct sibling story: addressing an actual performance problem rather than proactive growth coaching for someone already performing well.
