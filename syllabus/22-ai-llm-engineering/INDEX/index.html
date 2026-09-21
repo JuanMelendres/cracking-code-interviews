@@ -10540,7 +10540,7 @@
     
   
   
-    <span class="md-status md-status--6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics"></span>
+    <span class="md-status md-status--6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics; 7th chapter added 2026-09-21 (Prompt Injection and Agentic Security, T-2306, gap audit)"></span>
   
 
   
@@ -10565,7 +10565,7 @@
     
   
   
-    <span class="md-status md-status--6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics"></span>
+    <span class="md-status md-status--6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics; 7th chapter added 2026-09-21 (Prompt Injection and Agentic Security, T-2306, gap audit)"></span>
   
 
   
@@ -11362,10 +11362,17 @@
 <td>L1, L2, L3, L4 — fully written, real demo (2026-09-10)</td>
 <td><code>syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md</code></td>
 </tr>
+<tr>
+<td>T-2306</td>
+<td><a href="../prompt-injection-and-agentic-security/">Prompt Injection and Agentic Security: Attack Vectors and Defenses</a></td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
+<td><code>syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md</code></td>
+</tr>
 </tbody>
 </table>
-<p><strong>Planned list complete.</strong> This domain remains open — further topics (e.g., fine-tuning, multi-agent systems, cost optimization at scale) may be added later, using the next free ID in the <code>T-2300</code>–<code>T-2399</code> range.</p>
+<p><strong>Planned list complete; domain remains open.</strong> Further topics (e.g., fine-tuning, multi-agent systems, cost optimization at scale) may be added later, using the next free ID in the <code>T-2300</code>–<code>T-2399</code> range.</p>
 <blockquote>
+<p><strong>Gap found and closed: Prompt Injection and Agentic Security (2026-09-21).</strong> A follow-up gap audit found <a href="../llm-api-integration-fundamentals/">LLM API Integration Fundamentals</a> (T-2300) already names prompt injection explicitly as "a real, documented risk category... not a hypothetical" — but never explains or demonstrates it, and no chapter anywhere in the repository does. Closed with <a href="../prompt-injection-and-agentic-security/">Prompt Injection and Agentic Security: Attack Vectors and Defenses</a> (T-2306), backed by a real, fully deterministic Java demo (<code>practice/java/prompt-injection-and-agentic-security/</code>, no live LLM call, no timing/randomness — every run byte-identical): a real indirect-injection payload embedded in a tool's own output genuinely wipes a simulated database when an <code>UnsafeAgent</code> re-parses tool output for embedded directives; the identical payload against a <code>SafeAgent</code> that never re-parses tool output for instructions leaves the database untouched; and a real, bidirectional human-approval gate is proven to genuinely block without approval and genuinely allow with it.</p>
 <p><strong>Complementary-deliverable gap closed (2026-09-12).</strong> User asked what else needed checking; a direct diff found all 6 chapters in this domain had zero cheat sheet and zero flashcard deck since they were written (2026-09-09/10) — this deliverable's batch process had simply never run against a domain this new. Closed in one pass: <code>cheat-sheets/README.md</code> and <code>flashcards/README.md</code> each gain 6 new entries (18 new flashcards total, 3 per deck), every fact extracted directly from each chapter's own Foundation/Core Concepts/Common Mistakes sections.</p>
 </blockquote>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11390,7 +11397,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 13, 2026 02:13:34 UTC">September 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:45:58 UTC">September 21, 2026</span>
   </span>
 
     

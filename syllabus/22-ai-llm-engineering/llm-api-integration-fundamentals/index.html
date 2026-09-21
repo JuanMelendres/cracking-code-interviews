@@ -10531,7 +10531,7 @@
     
   
   
-    <span class="md-status md-status--6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics"></span>
+    <span class="md-status md-status--6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics; 7th chapter added 2026-09-21 (Prompt Injection and Agentic Security, T-2306, gap audit)"></span>
   
 
   
@@ -11845,7 +11845,7 @@ attempt 3: HTTP 200 -- succeeded after backoff
 </ul>
 <h2 id="9-edge-cases">9. Edge Cases<a class="headerlink" href="#9-edge-cases" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>A tool's arguments come from the model, not a trusted client</strong> — even though the model is "your own" integration, its tool-call arguments should be validated exactly like any other untrusted input (<a href="../../12-security/injection-input-validation-output-encoding/">Injection, Input Validation, and Output Encoding</a>) before being used to, say, construct a file path or a SQL query; a model that hallucinates or is prompt-injected into requesting <code>get_weather</code> with a malicious <code>location</code> string is a real, documented risk category (prompt injection), not a hypothetical.</li>
+<li><strong>A tool's arguments come from the model, not a trusted client</strong> — even though the model is "your own" integration, its tool-call arguments should be validated exactly like any other untrusted input (<a href="../../12-security/injection-input-validation-output-encoding/">Injection, Input Validation, and Output Encoding</a>) before being used to, say, construct a file path or a SQL query; a model that hallucinates or is prompt-injected into requesting <code>get_weather</code> with a malicious <code>location</code> string is a real, documented risk category (prompt injection) — see <a href="../prompt-injection-and-agentic-security/">Prompt Injection and Agentic Security</a> for the real, executed attack and its structural defense — not a hypothetical.</li>
 <li><strong>A streaming call that's cancelled mid-stream</strong> (the user navigates away) still consumed real output tokens up to the cancellation point on the provider's side in most real APIs — a client needs to decide whether to bill/log the partial usage or treat a cancelled stream as a no-op, and both are defensible depending on the product's billing model.</li>
 <li><strong><code>max_tokens</code> cutting a reply off mid-sentence</strong> is a real, distinct outcome from the model naturally finishing (<code>stop_reason: "end_turn"</code> versus a length-limited stop) — production code should check <code>stop_reason</code> explicitly rather than assuming every response completed naturally.</li>
 </ul>
@@ -11952,7 +11952,7 @@ Turn 2: user sends "Hi" again, full history resent          -&gt; input_tokens =
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 05:02:19 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:45:58 UTC">September 21, 2026</span>
   </span>
 
     
