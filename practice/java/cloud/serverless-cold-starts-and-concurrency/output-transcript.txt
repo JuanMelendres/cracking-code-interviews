@@ -1,0 +1,23 @@
+=== Cold invocation: construct a fresh ExecutionEnvironment, then invoke once ===
+  handled:request-1:2067435881:poolSize=200000
+  Real elapsed (INIT + first invoke): 176ms
+
+=== Warm invocations: reuse the SAME environment for 10 more calls ===
+  Real average elapsed per warm invoke: 0.009ms
+
+=== Result ===
+  Cold invocation (176ms) was 20038x slower than the average warm invocation (0.009ms).
+  This is the real, structural reason cold starts exist: a fresh execution
+  environment must pay its INIT cost once before ANY invocation can proceed,
+  and that cost is invisible to every invocation after the first.
+
+=== Burst 1: 5 concurrent requests arrive, ZERO warm environments exist ===
+  Real wall-clock time for all 5 requests to complete (parallel cold starts): 236.031ms
+
+=== Burst 2: identical 5 concurrent requests, reusing the now-WARM environments ===
+  Real wall-clock time for all 5 requests to complete (warm, no new INIT): 0.080ms
+
+=== Result ===
+  Burst 1 (cold, parallel scale-out) took 236.031ms. Burst 2 (warm reuse) took 0.080ms --
+  a real 2947x difference, entirely explained by whether a warm execution
+  environment was available for each concurrent request.

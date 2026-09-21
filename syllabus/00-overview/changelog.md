@@ -2235,3 +2235,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2424.
 - `syllabus/14-devops-containers/INDEX.md` updated (5 → 6 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `15-cloud` gap audit: serverless (Lambda) execution mechanics closed
+
+### Added
+
+- Gap audit of `15-cloud` (4 chapters). Found `aws-core-services-for-backend-engineers.md` names Lambda's "cold-start latency" as a real trade-off five separate times (a compute-spectrum comparison, a comparison table row, a common-mistakes warning, an interview-answer talking point, a practice-exercise reference) without ever once explaining the mechanism behind it. Other candidate considered and deprioritized: IAM/VPC/IaC depth — already substantially covered by this chapter's own 2026-09-08 addition, not an isolated gap.
+- **Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling** (new chapter, T-2425). Real Java simulation (`practice/java/cloud/serverless-cold-starts-and-concurrency/`), no AWS account or credentials required, no mocked clock: real JVM class-loading/object-construction work used as a technically substantiated proxy for a real Lambda INIT phase (the dominant real contributor to cold-start latency for an actual JVM-based Lambda function). `ColdStartDemo` measured a cold invocation at ~176ms versus ~0.009ms for a warm one (real captured output: `Cold invocation (176ms) was 20038x slower than the average warm invocation (0.009ms)`). `ConcurrencyScalingDemo` used a real `CountDownLatch` to release 5 real threads simultaneously, proving concurrency multiplies cold starts rather than merely delaying one: a burst against zero warm environments measured ~236ms wall-clock versus ~0.08ms for a repeat burst against already-warm ones. Re-run twice — exact millisecond values vary with real JVM/OS scheduling noise, but the order of magnitude is consistent both times.
+- `aws-core-services-for-backend-engineers.md` (T-1006, 1.1 → 1.2) updated in place with a `related:` link and a body cross-reference at its first "cold-start latency" mention, naming this chapter's real mechanism and evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-2425.
+- `syllabus/15-cloud/INDEX.md` updated (4 → 5 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
