@@ -49,6 +49,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-21 (same day, follow-up) — Testing Asynchronous and Concurrent Code (T-2420) gains a cheat sheet.** New `08-testing` chapter closing a gap audit that found zero coverage of how to write reliable tests for async/concurrent code, distinct from flaky-test diagnosis already covered. **New total: 265 cheat sheets.**
 
+**2026-09-21 (same day, follow-up) — Kafka Security: SASL Authentication and ACL Authorization (T-2421) gains a cheat sheet.** New `09-messaging-event-driven` chapter closing a gap audit that found zero coverage of Kafka authentication/authorization anywhere in the repository. **New total: 266 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -339,6 +341,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Behavior-Driven Development with Cucumber](behavior-driven-development-with-cucumber.md) | T-2412 | testing | `syllabus/08-testing/behavior-driven-development-with-cucumber.md` |
 | [Comparator: Composition and Pitfalls](comparator-composition-and-pitfalls.md) | T-2413 | java | `syllabus/02-java/language-core/comparator-composition-and-pitfalls.md` |
 | [Kafka Connect: Source and Sink Connectors](kafka-connect-source-and-sink-connectors.md) | T-2408 | kafka | `syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` |
+| [Kafka Security: SASL Authentication and ACL Authorization](kafka-security-authentication-and-authorization.md) | T-2421 | kafka | `syllabus/09-messaging-event-driven/kafka-security-authentication-and-authorization.md` |
 | [Kafka Streams and Stateful Processing](kafka-streams-and-stateful-processing.md) | T-709 | kafka | `syllabus/09-messaging-event-driven/kafka-streams-and-stateful-processing.md` |
 | [Retention, Log Compaction, and Tiered Storage](retention-log-compaction-and-tiered-storage.md) | T-706 | kafka | `syllabus/09-messaging-event-driven/retention-log-compaction-and-tiered-storage.md` |
 | [Consensus Algorithms: Raft and Paxos](consensus-algorithms-raft-and-paxos.md) | T-2403 | system-design | `syllabus/10-distributed-systems/consensus-algorithms-raft-and-paxos.md` |

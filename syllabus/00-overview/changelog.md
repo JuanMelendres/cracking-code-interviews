@@ -2180,3 +2180,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2420.
 - `syllabus/08-testing/INDEX.md` and `.pages` updated (9 → 10 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `09-messaging-event-driven` gap audit: Kafka security (SASL/ACL) closed
+
+### Added
+
+- Gap audit of `09-messaging-event-driven` (12 chapters, previously marked "audit gaps fully closed" 2026-09-11 — audited again for missing topics, not depth). Found zero coverage anywhere of Kafka authentication (SASL) or authorization (ACLs), despite otherwise deep, real-evidence-backed Kafka mechanics coverage across 12 other chapters. RabbitMQ (deliberately out of this domain's stated Kafka-centric scope) and the Saga pattern (correctly owned by `10-distributed-systems/distributed-transactions-saga-and-outbox.md`) were checked and confirmed not gaps.
+- **Kafka Security: SASL Authentication and ACL Authorization** (new chapter, T-2421). Real demo (`practice/java/kafka/kafka-security-authentication-and-authorization/`): a real, disposable Kafka 3.8.0 broker (Docker, KRaft mode) with real SASL/PLAIN authentication and the real KRaft-native `StandardAuthorizer`. Real evidence: a wrong password producing a real `SaslAuthenticationException`; a missing topic ACL producing a real `TopicAuthorizationException`; and a genuine, discovered gotcha this demo's own construction surfaced (not a pre-known fact stated up front) — a principal with full `Read`/`Write`/`Describe` on a topic still fails to *consume* it with a real `GroupAuthorizationException`, because Kafka's consumer protocol separately authorizes the consumer-group resource, requiring a second, independent ACL grant. A configured super user (`admin`) was verified to bypass ACL checks entirely, producing to and consuming from a topic with zero grants. Getting the broker to even start took three real, documented Docker-image configuration gotchas (an `ensure KAFKA_OPTS` startup-script requirement, a real vs. dummy JAAS system property, and a listener-naming ambiguity in the image's underscore-to-dot environment variable translation) — all three fixed and explained in the practice pack's own README rather than hidden.
+- `applied-cryptography-hashing-signing-tls.md` (`12-security`, T-1303, 1.0 → 1.1) updated in place with a `related:` cross-link to the new chapter.
+- New standalone cheat sheet and flashcard deck for T-2421.
+- `syllabus/09-messaging-event-driven/INDEX.md` and `.pages` updated (12 → 13 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
