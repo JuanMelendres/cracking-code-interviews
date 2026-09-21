@@ -69,7 +69,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 36 | [AWS Core Services for Backend Engineers](aws-core-services-for-backend-engineers.md) | T-1006 | 3 | `syllabus/15-cloud/aws-core-services-for-backend-engineers.md` |
 | 37 | [Cloud Cost and Scaling Economics](cloud-cost-and-scaling-economics.md) | T-1007 | 3 | `syllabus/15-cloud/cloud-cost-and-scaling-economics.md` |
 | 38 | [CI/CD Pipeline Design and Deployment Strategies](cicd-pipeline-design-and-deployment-strategies.md) | T-1009 | 3 | `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md` |
-| 39 | [API Design](api-design.md) | T-803 | 3 | `syllabus/07-api-design/api-design.md` |
+| 39 | [API Design](api-design.md) | T-803 | 7 | `syllabus/07-api-design/api-design.md` |
 | 40 | [Caching Strategies and Invalidation](caching-strategies-and-invalidation.md) | T-804 | 4 | `syllabus/11-system-design/caching-strategies-and-invalidation.md` |
 | 41 | [Data Partitioning and Consistent Hashing](data-partitioning-and-consistent-hashing.md) | T-806 | 3 | `syllabus/10-distributed-systems/data-partitioning-and-consistent-hashing.md` |
 | 42 | [CAP Theorem and Consistency Models](cap-theorem-and-consistency-models.md) | T-807 | 4 | `syllabus/10-distributed-systems/cap-theorem-and-consistency-models.md` |
@@ -379,6 +379,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-20 (same day, follow-up) — Matrix and Grid Traversal Patterns (T-2121) gains a flashcard deck, and Heaps, Top-K, and K-Way Merge (T-2106) gains 1 more card.** New `03-data-structures-algorithms` chapter closing a gap audit that found zero dedicated coverage of in-place matrix rotation, spiral traversal, or flood fill anywhere in the repository (3 cards), plus 1 new card added to the existing `heaps-top-k-and-k-way-merge.md` deck for that same audit's real Quickselect addition. **New total: 264 decks (263 prior + 1), 917 cards (913 prior + 3 new-deck + 1 existing-deck).**
 
 **2026-09-21 — Coupling, Cohesion, and Code Smells (T-1703) gains a flashcard deck.** New `04-software-design` chapter closing a gap audit that found "coupling" and "cohesion" named nowhere in the repository. 3 cards. **New total: 265 decks (264 prior + 1), 920 cards (917 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — API Design (T-803) gains 1 more card for the async 202-Accepted-plus-polling pattern.** Existing `07-api-design/api-design.md` deck updated in place, closing a gap audit that found the async long-running-operation pattern was self-flagged as conceptual-only in `rest-api-fundamentals.md`, now backed by a real background job. Row 39's card count corrected to 7 (the file's own real count — was already stale at "3" before this addition, from earlier batches that added cards without updating this index; not otherwise re-audited here). **New total: 265 decks (unchanged), 921 cards (920 prior + 1).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

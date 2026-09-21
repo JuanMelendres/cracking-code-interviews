@@ -1,9 +1,10 @@
 # API Design — Core Concepts Batch — Real, Executed Demos
 
-Backs [API Design](../../../syllabus/07-api-design/api-design.md) (T-803) — four
+Backs [API Design](../../../syllabus/07-api-design/api-design.md) (T-803) — five
 gaps this chapter previously lacked entirely: HATEOAS/Richardson Maturity Model,
-RFC 9457 Problem Details, filtering/sorting query parameters, and bulk operations
-with partial success. Real Spring MVC 6.1.14 request dispatch
+RFC 9457 Problem Details, filtering/sorting query parameters, bulk operations
+with partial success, and (added 2026-09-21) the async long-running-operation
+pattern (202 Accepted + polling). Real Spring MVC 6.1.14 request dispatch
 (`MockMvcBuilders.standaloneSetup` — the actual `HandlerMapping` and
 `ExceptionHandlerExceptionResolver` resolving every request below, nothing
 stubbed), no Maven/Gradle, jars fetched directly from Maven Central.
@@ -19,10 +20,11 @@ javac -parameters -cp "lib/*" -d out src/demo/*.java
 ## Run
 
 ```bash
-java -cp "out:lib/*" org.junit.platform.console.ConsoleLauncher --select-class demo.ApiDesignCoreConceptsTest
+java -cp "out:lib/*" org.junit.platform.console.ConsoleLauncher \
+    --select-class demo.ApiDesignCoreConceptsTest --select-class demo.AsyncLongRunningOperationTest
 ```
 
-Real output ([full capture](test-run-output.txt)); all 6 tests pass.
+Real output ([full capture](test-run-output.txt)); all 8 tests pass.
 
 ## What each test proves
 
@@ -66,3 +68,25 @@ Real output ([full capture](test-run-output.txt)); all 6 tests pass.
    a per-item result array — index 0 succeeded with a real generated ID, index 1
    failed with `"amount must be positive"`, index 2 succeeded — proving why bulk
    endpoints can't collapse to one all-or-nothing status code.
+
+6. **Async long-running operations — 202 Accepted + polling, with a genuinely
+   asynchronous background job, not a stubbed flag.** [`ReportJobService.java`](src/demo/ReportJobService.java)
+   submits real work to a real `ExecutorService`, with a real `Thread.sleep(300)`
+   standing in for genuine work — the calling thread never blocks on it.
+   `submitReturns202WithLocation_andRealBackgroundJobEventuallyCompletes` proves
+   the full real lifecycle: `POST /reports` returns `202 Accepted` with a real
+   `Location` header immediately (the job hasn't finished — it's only just been
+   submitted); an immediate `GET` on that `Location` returns `202` again with a
+   real `Retry-After: 1` header, since the background thread hasn't had its real
+   300ms yet; hitting `/result` directly at this point returns a real `425 Too
+   Early` — a deliberate, pragmatic reuse of the status code (RFC 8470 itself
+   scopes `425` to TLS early-data replay risk, not general "not ready yet"
+   semantics — stated honestly here, not claimed as the RFC's intended use) —
+   the client jumped ahead of the real 303 redirect the
+   status endpoint is meant to hand out once actually done. A real polling loop
+   (no fixed sleep-then-assume) polls every 50ms until the status endpoint
+   returns `303 See Other` with a `Location` pointing at the result — measured
+   directly at **real elapsed time ≥ 300ms** (asserted, not assumed), proving the
+   test genuinely waited on real background work rather than a synchronous call
+   dressed up with a 202 status code. Following that `Location` returns a real
+   `200 OK` with the actual generated report body.

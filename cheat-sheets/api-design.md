@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: system-design
 topic_id: T-803
 canonical: ../syllabus/07-api-design/api-design.md
-last_updated: 2026-09-18
+last_updated: 2026-09-21
 ---
 
 # API Design
@@ -26,6 +26,7 @@ An API is a contract, and every contract decision made today constrains every cl
 - **HATEOAS** — a response includes real, state-dependent links describing currently-available actions on a resource, rather than a client hardcoding state-based rules.
 - **RFC 9457 Problem Details** — a standardized error envelope (`type`/`title`/`status`/`detail`/`instance`), served as `application/problem+json`; Spring 6's `ProblemDetail` implements it directly.
 - **Richardson Maturity Model** — Level 0 (one URI/verb, action field), Level 1 (separate URIs), Level 2 (real verbs/status codes — most production APIs stop here), Level 3 (HATEOAS).
+- **Async 202-Accepted-plus-polling** — a long-running operation returns `202 Accepted` with a `Location` header immediately; the client polls that status resource (`202` while running, `303 See Other` to the result once done) instead of blocking on one response.
 
 ## Decision Table
 
@@ -48,6 +49,7 @@ An API is a contract, and every contract decision made today constrains every cl
 | Clients need to discover valid next actions | HATEOAS links (Level 3) — only if clients are built generically against them |
 | List endpoint needs narrowing/ordering | Explicit `status=` filters + `sort=field,direction`; real `400` on unsupported fields |
 | Client submits many items in one request | Per-item result array (real `207 Multi-Status`), not one aggregate status code |
+| Operation genuinely takes too long for one blocking response | `202 Accepted` + `Location`, poll for status, real `303` to the result once done |
 
 ## Key Numbers (real EXPLAIN ANALYZE, PostgreSQL 16, 2M-row table)
 
@@ -65,6 +67,7 @@ An API is a contract, and every contract decision made today constrains every cl
 - Inventing a bespoke error shape instead of RFC 9457 Problem Details
 - Silently ignoring an unsupported filter/sort query parameter instead of returning a real `400`
 - Collapsing a bulk operation's outcome into one status code, losing which specific items failed
+- Returning `200`/`201` synchronously from an endpoint that kicks off real background work, blocking the client for the full duration instead of returning `202` immediately
 
 ## Interview Answer Skeleton
 
@@ -81,6 +84,11 @@ An API is a contract, and every contract decision made today constrains every cl
 - An admin tool with `OFFSET` pagination works fine for a year, then becomes unusably slow at deep pages specifically, while early pages stay fast
 - `EXPLAIN ANALYZE` shows a large `rows=` walked-and-discarded count, execution time scaling with the requested offset
 - **The trap:** nobody revisited the pagination decision as the table grew past a few million rows. Stopgap: cap max page-jump depth in the UI. Fix: migrate to keyset for the common case, hybrid approximate-count for jump-to-page.
+
+## Real Measured Numbers (async 202 pattern, added 2026-09-21)
+
+- Real background job (`ExecutorService` + a real 300ms of work): `POST /reports` → `202` immediately; immediate `GET` on the status resource → `202` + `Retry-After: 1`; immediate `GET` on the result → `425 Too Early`.
+- A real polling loop (7 polls, 50ms apart) reaches `303 See Other` at real elapsed time ≥300ms, matching the job's real sleep — not a fixed sleep-then-assume test.
 
 ## Related
 
