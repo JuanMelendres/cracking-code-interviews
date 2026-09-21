@@ -2,8 +2,8 @@
 title: "Messaging & Event-Driven Systems — Domain Index"
 document_type: syllabus-domain-index
 domain: 09-messaging-event-driven
-status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 12 chapters as of 2026-09-11 (gap audit filled two long-reserved, never-written Master Topic Register slots — T-706 and T-709 — plus a new topic, Kafka Connect (T-2408) — this domain's audit gaps are now fully closed)
-last_updated: 2026-09-11
+status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 12 chapters as of 2026-09-11 (gap audit filled two long-reserved, never-written Master Topic Register slots — T-706 and T-709 — plus a new topic, Kafka Connect (T-2408)); 13th chapter added 2026-09-21 (Kafka Security: SASL Authentication and ACL Authorization, T-2421 — a further gap audit found zero coverage of Kafka authN/authZ anywhere in the repository)
+last_updated: 2026-09-21
 ---
 
 # Messaging & Event-Driven Systems
@@ -34,6 +34,7 @@ Kafka mechanics plus the event-driven/event-sourcing/CDC chapters previously spl
 | T-905 | Event Sourcing and Its Real Costs | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/09-messaging-event-driven/event-sourcing-and-its-real-costs.md` |
 | T-906 | Event-Driven Architecture: Integration Styles, Choreography, and Orchestration | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md` |
 | T-2408 | Kafka Connect: Source and Sink Connectors | L1, L2, L3, L4 — fully written, real demo (2026-09-11) | `syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` |
+| T-2421 | Kafka Security: SASL Authentication and ACL Authorization | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/09-messaging-event-driven/kafka-security-authentication-and-authorization.md` |
 
 ## Where this domain's boundary comes from
 

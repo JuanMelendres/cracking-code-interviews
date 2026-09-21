@@ -4,8 +4,8 @@ slug: applied-cryptography-hashing-signing-tls
 document_type: handbook-chapter
 domain: 12-security
 status: canonical
-version: 1.0
-last_reviewed: 2026-09-09
+version: 1.1
+last_reviewed: 2026-09-21
 topic_id: T-1303
 mastery_levels_covered:
   - L1
@@ -22,6 +22,7 @@ related:
   - owasp-top-10-for-backend-services.md
   - secrets-management-and-key-rotation.md
   - oauth2-oidc-and-jwt.md
+  - ../09-messaging-event-driven/kafka-security-authentication-and-authorization.md
   - ../../study-packs/week-17/02-applied-cryptography-hashing-signing-tls.md
 official_references:
   - https://csrc.nist.gov/pubs/sp/800/63/b/upd2/final

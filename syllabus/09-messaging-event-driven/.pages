@@ -13,3 +13,4 @@ nav:
   - event-sourcing-and-its-real-costs.md
   - event-driven-architecture-integration-styles.md
   - kafka-connect-source-and-sink-connectors.md
+  - kafka-security-authentication-and-authorization.md
