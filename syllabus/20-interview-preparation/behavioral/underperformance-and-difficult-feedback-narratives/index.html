@@ -12,31 +12,31 @@
         <meta name="author" content="Juan Melendres">
       
       
-        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/06-databases/optimistic-vs-pessimistic-locking/">
+        <link rel="canonical" href="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/behavioral/underperformance-and-difficult-feedback-narratives/">
       
       
-        <link rel="prev" href="../locks-deadlocks-and-lock-escalation/">
+        <link rel="prev" href="../company-loop-structures-and-question-pattern-recognition/">
       
       
-        <link rel="next" href="../table-partitioning-and-sharding-strategies/">
+        <link rel="next" href="../../question-bank/01-computer-science-foundations/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Optimistic vs. Pessimistic Locking - Cracking Code Interviews</title>
+        <title>Underperformance and Difficult Feedback Narratives - Cracking Code Interviews</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/print-site.css">
+      <link rel="stylesheet" href="../../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -88,7 +88,7 @@
   <meta property="og:title" content="Cracking Code Interviews">
   <meta property="og:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
   <meta property="og:image" content="https://juanmelendres.github.io/cracking-code-interviews/assets/images/social-card.png">
-  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/06-databases/optimistic-vs-pessimistic-locking/">
+  <meta property="og:url" content="https://juanmelendres.github.io/cracking-code-interviews/syllabus/20-interview-preparation/behavioral/underperformance-and-difficult-feedback-narratives/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cracking Code Interviews">
   <meta name="twitter:description" content="Structured interview preparation for Java backend engineers, Junior through Staff, plus a React/Next.js frontend track.">
@@ -113,7 +113,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#optimistic-vs-pessimistic-locking" class="md-skip">
+        <a href="#underperformance-and-difficult-feedback-narratives" class="md-skip">
           Skip to content
         </a>
       
@@ -127,9 +127,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-header__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
-  <img src="../../../assets/images/logo.png" alt="logo">
+  <img src="../../../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Optimistic vs. Pessimistic Locking
+              Underperformance and Difficult Feedback Narratives
             
           </span>
         </div>
@@ -262,7 +262,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -294,7 +294,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../00-overview/INDEX/" class="md-tabs__link">
+        <a href="../../../00-overview/INDEX/" class="md-tabs__link">
           
   
   
@@ -317,7 +317,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../study-packs/" class="md-tabs__link">
+        <a href="../../../../study-packs/" class="md-tabs__link">
           
   
   
@@ -337,7 +337,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cheat-sheets/" class="md-tabs__link">
+        <a href="../../../../cheat-sheets/" class="md-tabs__link">
           
   
   
@@ -357,7 +357,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../flashcards/" class="md-tabs__link">
+        <a href="../../../../flashcards/" class="md-tabs__link">
           
   
   
@@ -377,7 +377,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../architecture-atlas/" class="md-tabs__link">
+        <a href="../../../../architecture-atlas/" class="md-tabs__link">
           
   
   
@@ -397,7 +397,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../production-cookbook/" class="md-tabs__link">
+        <a href="../../../../production-cookbook/" class="md-tabs__link">
           
   
   
@@ -417,7 +417,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../practice/" class="md-tabs__link">
+        <a href="../../../../practice/" class="md-tabs__link">
           
   
   
@@ -451,9 +451,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
+    <a href="../../../.." title="Cracking Code Interviews" class="md-nav__button md-logo" aria-label="Cracking Code Interviews" data-md-component="logo">
       
-  <img src="../../../assets/images/logo.png" alt="logo">
+  <img src="../../../../assets/images/logo.png" alt="logo">
 
     </a>
     Cracking Code Interviews
@@ -468,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/INDEX/" class="md-nav__link">
+      <a href="../../../00-overview/INDEX/" class="md-nav__link">
         
   
   
@@ -646,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/learning-paths/" class="md-nav__link">
+      <a href="../../../00-overview/learning-paths/" class="md-nav__link">
         
   
   
@@ -681,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/mastery-model/" class="md-nav__link">
+      <a href="../../../00-overview/mastery-model/" class="md-nav__link">
         
   
   
@@ -716,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/taxonomy/" class="md-nav__link">
+      <a href="../../../00-overview/taxonomy/" class="md-nav__link">
         
   
   
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/topic-specification/" class="md-nav__link">
+      <a href="../../../00-overview/topic-specification/" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00-overview/vision/" class="md-nav__link">
+      <a href="../../../00-overview/vision/" class="md-nav__link">
         
   
   
@@ -841,7 +841,7 @@
   
   
   
-    <a href="../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
+    <a href="../../../00-overview/learning-paths/backend-java-specialization/" class="md-nav__link">
       
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/INDEX/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/INDEX/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/" class="md-nav__link">
         
   
   
@@ -1010,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/how-a-computer-executes-a-program/" class="md-nav__link">
         
   
   
@@ -1045,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/number-representation/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/number-representation/" class="md-nav__link">
         
   
   
@@ -1115,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/os-process-thread-model/" class="md-nav__link">
         
   
   
@@ -1150,7 +1150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
+      <a href="../../../01-computer-science-foundations/networking-basics/" class="md-nav__link">
         
   
   
@@ -1250,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02-java/INDEX/" class="md-nav__link">
+      <a href="../../../02-java/INDEX/" class="md-nav__link">
         
   
   
@@ -1298,7 +1298,7 @@
   
   
   
-    <a href="../../02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods/" class="md-nav__link">
+    <a href="../../../02-java/language-core/java-syntax-fundamentals-variables-control-flow-and-methods/" class="md-nav__link">
       
   
   
@@ -1352,7 +1352,7 @@
   
   
   
-    <a href="../../02-java/collections/java-collections-usage-fundamentals-list-map-and-set/" class="md-nav__link">
+    <a href="../../../02-java/collections/java-collections-usage-fundamentals-list-map-and-set/" class="md-nav__link">
       
   
   
@@ -1406,7 +1406,7 @@
   
   
   
-    <a href="../../02-java/concurrency/java-memory-model-and-volatile/" class="md-nav__link">
+    <a href="../../../02-java/concurrency/java-memory-model-and-volatile/" class="md-nav__link">
       
   
   
@@ -1460,7 +1460,7 @@
   
   
   
-    <a href="../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
+    <a href="../../../02-java/jvm-internals/bytecode-and-class-file-fundamentals/" class="md-nav__link">
       
   
   
@@ -1559,7 +1559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/INDEX/" class="md-nav__link">
         
   
   
@@ -1587,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/coding-interview-pattern-recognition-methodology/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/coding-interview-pattern-recognition-methodology/" class="md-nav__link">
         
   
   
@@ -1622,7 +1622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/arrays-two-pointers-and-sliding-window/" class="md-nav__link">
         
   
   
@@ -1657,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/sorting-algorithms/" class="md-nav__link">
         
   
   
@@ -1692,7 +1692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/hashing-patterns-and-frequency-maps/" class="md-nav__link">
         
   
   
@@ -1727,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/binary-search-and-search-on-answer/" class="md-nav__link">
         
   
   
@@ -1762,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/linked-lists-and-in-place-manipulation/" class="md-nav__link">
         
   
   
@@ -1797,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/stacks-and-monotonic-stack/" class="md-nav__link">
         
   
   
@@ -1832,7 +1832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/heaps-top-k-and-k-way-merge/" class="md-nav__link">
         
   
   
@@ -1867,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/trees-bst-and-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -1902,7 +1902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/graphs-bfs-dfs-and-shortest-paths/" class="md-nav__link">
         
   
   
@@ -1937,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/matrix-and-grid-traversal-patterns/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/matrix-and-grid-traversal-patterns/" class="md-nav__link">
         
   
   
@@ -1972,7 +1972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/backtracking-and-pruning/" class="md-nav__link">
         
   
   
@@ -2007,7 +2007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/dynamic-programming/" class="md-nav__link">
         
   
   
@@ -2042,7 +2042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/intervals-merging-and-sweep-line/" class="md-nav__link">
         
   
   
@@ -2077,7 +2077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/greedy-and-the-exchange-argument/" class="md-nav__link">
         
   
   
@@ -2112,7 +2112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/bit-manipulation/" class="md-nav__link">
         
   
   
@@ -2147,7 +2147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/tries-and-prefix-structures/" class="md-nav__link">
         
   
   
@@ -2182,7 +2182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/design-style-coding-problems/" class="md-nav__link">
         
   
   
@@ -2217,7 +2217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/concurrency-coding-problems/" class="md-nav__link">
         
   
   
@@ -2252,7 +2252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
+      <a href="../../../03-data-structures-algorithms/advanced-structures-segment-tree-fenwick-rolling-hash/" class="md-nav__link">
         
   
   
@@ -2352,7 +2352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/INDEX/" class="md-nav__link">
+      <a href="../../../04-software-design/INDEX/" class="md-nav__link">
         
   
   
@@ -2387,7 +2387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/solid-principles/" class="md-nav__link">
+      <a href="../../../04-software-design/solid-principles/" class="md-nav__link">
         
   
   
@@ -2422,7 +2422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/coupling-cohesion-and-code-smells/" class="md-nav__link">
+      <a href="../../../04-software-design/coupling-cohesion-and-code-smells/" class="md-nav__link">
         
   
   
@@ -2457,7 +2457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/design-patterns-applied/" class="md-nav__link">
+      <a href="../../../04-software-design/design-patterns-applied/" class="md-nav__link">
         
   
   
@@ -2492,7 +2492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04-software-design/ood-interview-problems/" class="md-nav__link">
+      <a href="../../../04-software-design/ood-interview-problems/" class="md-nav__link">
         
   
   
@@ -2592,7 +2592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/INDEX/" class="md-nav__link">
+      <a href="../../../05-spring/INDEX/" class="md-nav__link">
         
   
   
@@ -2620,7 +2620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
+      <a href="../../../05-spring/spring-mvc-fundamentals/" class="md-nav__link">
         
   
   
@@ -2655,7 +2655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
+      <a href="../../../05-spring/transactional-proxy-mechanics-and-propagation/" class="md-nav__link">
         
   
   
@@ -2690,7 +2690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
+      <a href="../../../05-spring/auto-configuration-and-bean-lifecycle/" class="md-nav__link">
         
   
   
@@ -2725,7 +2725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/spring-framework-vs-spring-boot/" class="md-nav__link">
         
   
   
@@ -2760,7 +2760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
+      <a href="../../../05-spring/spring-bean-scopes-and-proxy-modes/" class="md-nav__link">
         
   
   
@@ -2795,7 +2795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
+      <a href="../../../05-spring/spring-webflux-and-reactive-programming/" class="md-nav__link">
         
   
   
@@ -2830,7 +2830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
+      <a href="../../../05-spring/spring-data-jpa-repository-abstraction/" class="md-nav__link">
         
   
   
@@ -2865,7 +2865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/dto-entity-mapper-patterns/" class="md-nav__link">
+      <a href="../../../05-spring/dto-entity-mapper-patterns/" class="md-nav__link">
         
   
   
@@ -2900,7 +2900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/security-filter-chain/" class="md-nav__link">
+      <a href="../../../05-spring/security-filter-chain/" class="md-nav__link">
         
   
   
@@ -2935,7 +2935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
+      <a href="../../../05-spring/spring-cache-abstraction-and-pitfalls/" class="md-nav__link">
         
   
   
@@ -2970,7 +2970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
+      <a href="../../../05-spring/spring-testing-slices-and-context-caching/" class="md-nav__link">
         
   
   
@@ -3005,7 +3005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
+      <a href="../../../05-spring/spring-actuator-health-and-observability-hooks/" class="md-nav__link">
         
   
   
@@ -3040,7 +3040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
+      <a href="../../../05-spring/bean-validation-and-global-exception-handling/" class="md-nav__link">
         
   
   
@@ -3075,7 +3075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05-spring/microservices-patterns-with-spring-boot/" class="md-nav__link">
+      <a href="../../../05-spring/microservices-patterns-with-spring-boot/" class="md-nav__link">
         
   
   
@@ -3115,8 +3115,6 @@
                 
   
   
-    
-  
   
   
     
@@ -3134,11 +3132,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
         
           
           <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
@@ -3159,7 +3157,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3177,7 +3175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../INDEX/" class="md-nav__link">
+      <a href="../../../06-databases/INDEX/" class="md-nav__link">
         
   
   
@@ -3205,7 +3203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-and-relational-database-fundamentals/" class="md-nav__link">
+      <a href="../../../06-databases/sql-and-relational-database-fundamentals/" class="md-nav__link">
         
   
   
@@ -3240,7 +3238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../database-normalization-1nf-through-bcnf/" class="md-nav__link">
+      <a href="../../../06-databases/database-normalization-1nf-through-bcnf/" class="md-nav__link">
         
   
   
@@ -3275,7 +3273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
+      <a href="../../../06-databases/jpa-entity-lifecycle-and-the-n1-problem/" class="md-nav__link">
         
   
   
@@ -3310,7 +3308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hibernate-second-level-and-query-cache/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-second-level-and-query-cache/" class="md-nav__link">
         
   
   
@@ -3345,7 +3343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-modelling-and-explicit-join-tables/" class="md-nav__link">
+      <a href="../../../06-databases/data-modelling-and-explicit-join-tables/" class="md-nav__link">
         
   
   
@@ -3380,7 +3378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
+      <a href="../../../06-databases/hibernate-flush-modes-and-batch-writes/" class="md-nav__link">
         
   
   
@@ -3415,7 +3413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index-structures-btree-composite-covering/" class="md-nav__link">
+      <a href="../../../06-databases/index-structures-btree-composite-covering/" class="md-nav__link">
         
   
   
@@ -3450,7 +3448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../query-planning-and-explain-analyze/" class="md-nav__link">
+      <a href="../../../06-databases/query-planning-and-explain-analyze/" class="md-nav__link">
         
   
   
@@ -3485,7 +3483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
+      <a href="../../../06-databases/isolation-levels-and-concurrency-anomalies/" class="md-nav__link">
         
   
   
@@ -3520,7 +3518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mvcc-vacuum-and-bloat/" class="md-nav__link">
+      <a href="../../../06-databases/mvcc-vacuum-and-bloat/" class="md-nav__link">
         
   
   
@@ -3555,7 +3553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../connection-pooling-and-sizing/" class="md-nav__link">
+      <a href="../../../06-databases/connection-pooling-and-sizing/" class="md-nav__link">
         
   
   
@@ -3590,7 +3588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../locks-deadlocks-and-lock-escalation/" class="md-nav__link">
+      <a href="../../../06-databases/locks-deadlocks-and-lock-escalation/" class="md-nav__link">
         
   
   
@@ -3622,44 +3620,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Optimistic vs. Pessimistic Locking
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--canonical"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../06-databases/optimistic-vs-pessimistic-locking/" class="md-nav__link">
         
   
   
@@ -3682,378 +3646,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Table of Contents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters-in-interviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters in Interviews
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-1-foundation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 1 — Foundation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-2-working-knowledge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 2 — Working Knowledge
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mental Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definition and Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Internal Implementation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Java Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-modes-and-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Modes and Debugging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#concurrency-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Concurrency Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Mistakes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4066,7 +3658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../table-partitioning-and-sharding-strategies/" class="md-nav__link">
+      <a href="../../../06-databases/table-partitioning-and-sharding-strategies/" class="md-nav__link">
         
   
   
@@ -4101,7 +3693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../replication-read-replicas-and-replica-lag/" class="md-nav__link">
+      <a href="../../../06-databases/replication-read-replicas-and-replica-lag/" class="md-nav__link">
         
   
   
@@ -4136,7 +3728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zero-downtime-schema-migration/" class="md-nav__link">
+      <a href="../../../06-databases/zero-downtime-schema-migration/" class="md-nav__link">
         
   
   
@@ -4171,7 +3763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../window-functions-and-ctes/" class="md-nav__link">
+      <a href="../../../06-databases/window-functions-and-ctes/" class="md-nav__link">
         
   
   
@@ -4206,7 +3798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jsonb-and-advanced-index-types/" class="md-nav__link">
+      <a href="../../../06-databases/jsonb-and-advanced-index-types/" class="md-nav__link">
         
   
   
@@ -4241,7 +3833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../views-and-materialized-views/" class="md-nav__link">
+      <a href="../../../06-databases/views-and-materialized-views/" class="md-nav__link">
         
   
   
@@ -4341,7 +3933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/INDEX/" class="md-nav__link">
+      <a href="../../../07-api-design/INDEX/" class="md-nav__link">
         
   
   
@@ -4376,7 +3968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
+      <a href="../../../07-api-design/rest-api-fundamentals/" class="md-nav__link">
         
   
   
@@ -4411,7 +4003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/api-design/" class="md-nav__link">
         
   
   
@@ -4446,7 +4038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-versioning-strategies/" class="md-nav__link">
+      <a href="../../../07-api-design/api-versioning-strategies/" class="md-nav__link">
         
   
   
@@ -4481,7 +4073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
+      <a href="../../../07-api-design/api-gateway-bff-and-edge-concerns/" class="md-nav__link">
         
   
   
@@ -4516,7 +4108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/graphql-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/graphql-api-design/" class="md-nav__link">
         
   
   
@@ -4551,7 +4143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/grpc-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/grpc-api-design/" class="md-nav__link">
         
   
   
@@ -4586,7 +4178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/openapi-and-contract-first-api-design/" class="md-nav__link">
+      <a href="../../../07-api-design/openapi-and-contract-first-api-design/" class="md-nav__link">
         
   
   
@@ -4621,7 +4213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07-api-design/webhook-design-and-delivery-guarantees/" class="md-nav__link">
+      <a href="../../../07-api-design/webhook-design-and-delivery-guarantees/" class="md-nav__link">
         
   
   
@@ -4721,7 +4313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/INDEX/" class="md-nav__link">
+      <a href="../../../08-testing/INDEX/" class="md-nav__link">
         
   
   
@@ -4756,7 +4348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
+      <a href="../../../08-testing/unit-testing-fundamentals-with-junit/" class="md-nav__link">
         
   
   
@@ -4791,7 +4383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
+      <a href="../../../08-testing/test-strategy-and-test-doubles/" class="md-nav__link">
         
   
   
@@ -4826,7 +4418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
+      <a href="../../../08-testing/junit5-architecture-and-advanced-features/" class="md-nav__link">
         
   
   
@@ -4861,7 +4453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
+      <a href="../../../08-testing/integration-testing-against-real-dependencies/" class="md-nav__link">
         
   
   
@@ -4896,7 +4488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/testing-asynchronous-and-concurrent-code/" class="md-nav__link">
+      <a href="../../../08-testing/testing-asynchronous-and-concurrent-code/" class="md-nav__link">
         
   
   
@@ -4931,7 +4523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/contract-testing-for-services/" class="md-nav__link">
+      <a href="../../../08-testing/contract-testing-for-services/" class="md-nav__link">
         
   
   
@@ -4966,7 +4558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
+      <a href="../../../08-testing/performance-and-load-testing-methodology/" class="md-nav__link">
         
   
   
@@ -5001,7 +4593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
+      <a href="../../../08-testing/mutation-and-property-based-testing/" class="md-nav__link">
         
   
   
@@ -5036,7 +4628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
+      <a href="../../../08-testing/writing-tests-live-in-an-interview/" class="md-nav__link">
         
   
   
@@ -5071,7 +4663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08-testing/behavior-driven-development-with-cucumber/" class="md-nav__link">
+      <a href="../../../08-testing/behavior-driven-development-with-cucumber/" class="md-nav__link">
         
   
   
@@ -5171,7 +4763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/INDEX/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/INDEX/" class="md-nav__link">
         
   
   
@@ -5199,7 +4791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-architecture-fundamentals/" class="md-nav__link">
         
   
   
@@ -5234,7 +4826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/producer-semantics-and-partition-keys/" class="md-nav__link">
         
   
   
@@ -5269,7 +4861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-groups-and-rebalancing/" class="md-nav__link">
         
   
   
@@ -5304,7 +4896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/delivery-semantics-and-exactly-once/" class="md-nav__link">
         
   
   
@@ -5339,7 +4931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/retention-log-compaction-and-tiered-storage/" class="md-nav__link">
         
   
   
@@ -5374,7 +4966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/consumer-lag-backpressure-and-dlq-strategy/" class="md-nav__link">
         
   
   
@@ -5409,7 +5001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/schema-registry-and-compatibility-evolution/" class="md-nav__link">
         
   
   
@@ -5444,7 +5036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
   
@@ -5479,7 +5071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/messaging-patterns-and-change-data-capture/" class="md-nav__link">
         
   
   
@@ -5514,7 +5106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-sourcing-and-its-real-costs/" class="md-nav__link">
         
   
   
@@ -5549,7 +5141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/event-driven-architecture-integration-styles/" class="md-nav__link">
         
   
   
@@ -5584,7 +5176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-connect-source-and-sink-connectors/" class="md-nav__link">
         
   
   
@@ -5619,7 +5211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09-messaging-event-driven/kafka-security-authentication-and-authorization/" class="md-nav__link">
+      <a href="../../../09-messaging-event-driven/kafka-security-authentication-and-authorization/" class="md-nav__link">
         
   
   
@@ -5719,7 +5311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/INDEX/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/INDEX/" class="md-nav__link">
         
   
   
@@ -5747,7 +5339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/cap-theorem-and-consistency-models/" class="md-nav__link">
         
   
   
@@ -5782,7 +5374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-systems-failure-modes/" class="md-nav__link">
         
   
   
@@ -5817,7 +5409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/data-partitioning-and-consistent-hashing/" class="md-nav__link">
         
   
   
@@ -5852,7 +5444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-transactions-saga-and-outbox/" class="md-nav__link">
         
   
   
@@ -5887,7 +5479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/multi-region-failover-and-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -5922,7 +5514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/consensus-algorithms-raft-and-paxos/" class="md-nav__link">
         
   
   
@@ -5950,7 +5542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/distributed-locking-and-fencing-tokens/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/distributed-locking-and-fencing-tokens/" class="md-nav__link">
         
   
   
@@ -5985,7 +5577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
+      <a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/" class="md-nav__link">
         
   
   
@@ -6085,7 +5677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/INDEX/" class="md-nav__link">
+      <a href="../../../11-system-design/INDEX/" class="md-nav__link">
         
   
   
@@ -6120,7 +5712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
+      <a href="../../../11-system-design/system-design-method-and-estimation/" class="md-nav__link">
         
   
   
@@ -6155,7 +5747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
+      <a href="../../../11-system-design/storage-selection-tradeoffs/" class="md-nav__link">
         
   
   
@@ -6190,7 +5782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
+      <a href="../../../11-system-design/caching-strategies-and-invalidation/" class="md-nav__link">
         
   
   
@@ -6225,7 +5817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
+      <a href="../../../11-system-design/load-balancing-service-discovery-and-health-checking/" class="md-nav__link">
         
   
   
@@ -6260,7 +5852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/resilience-patterns/" class="md-nav__link">
+      <a href="../../../11-system-design/resilience-patterns/" class="md-nav__link">
         
   
   
@@ -6295,7 +5887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
+      <a href="../../../11-system-design/rate-limiting-and-throttling-algorithms/" class="md-nav__link">
         
   
   
@@ -6330,7 +5922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/idempotency/" class="md-nav__link">
+      <a href="../../../11-system-design/idempotency/" class="md-nav__link">
         
   
   
@@ -6365,7 +5957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
+      <a href="../../../11-system-design/search-and-indexing-systems/" class="md-nav__link">
         
   
   
@@ -6400,7 +5992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
+      <a href="../../../11-system-design/realtime-delivery-websocket-sse-and-long-polling/" class="md-nav__link">
         
   
   
@@ -6500,7 +6092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/INDEX/" class="md-nav__link">
+      <a href="../../../12-security/INDEX/" class="md-nav__link">
         
   
   
@@ -6535,7 +6127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
+      <a href="../../../12-security/owasp-top-10-for-backend-services/" class="md-nav__link">
         
   
   
@@ -6570,7 +6162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
+      <a href="../../../12-security/applied-cryptography-hashing-signing-tls/" class="md-nav__link">
         
   
   
@@ -6605,7 +6197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
+      <a href="../../../12-security/authn-authz-rbac-vs-abac/" class="md-nav__link">
         
   
   
@@ -6640,7 +6232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
+      <a href="../../../12-security/oauth2-oidc-and-jwt/" class="md-nav__link">
         
   
   
@@ -6675,7 +6267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/enterprise-sso-saml-and-federated-identity/" class="md-nav__link">
+      <a href="../../../12-security/enterprise-sso-saml-and-federated-identity/" class="md-nav__link">
         
   
   
@@ -6710,7 +6302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
+      <a href="../../../12-security/secrets-management-and-key-rotation/" class="md-nav__link">
         
   
   
@@ -6745,7 +6337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
+      <a href="../../../12-security/csrf-cors-and-session-security/" class="md-nav__link">
         
   
   
@@ -6780,7 +6372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
+      <a href="../../../12-security/multi-tenancy-isolation-models/" class="md-nav__link">
         
   
   
@@ -6815,7 +6407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
+      <a href="../../../12-security/injection-input-validation-output-encoding/" class="md-nav__link">
         
   
   
@@ -6850,7 +6442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
+      <a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/" class="md-nav__link">
         
   
   
@@ -6950,7 +6542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/INDEX/" class="md-nav__link">
+      <a href="../../../13-observability/INDEX/" class="md-nav__link">
         
   
   
@@ -6978,7 +6570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
+      <a href="../../../13-observability/percentiles-tail-latency-and-coordinated-omission/" class="md-nav__link">
         
   
   
@@ -7013,7 +6605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
+      <a href="../../../13-observability/performance-methodology-and-slo-error-budgets/" class="md-nav__link">
         
   
   
@@ -7048,7 +6640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
+      <a href="../../../13-observability/logging-metrics-tracing-and-opentelemetry/" class="md-nav__link">
         
   
   
@@ -7083,7 +6675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
+      <a href="../../../13-observability/incident-response-and-blameless-postmortems/" class="md-nav__link">
         
   
   
@@ -7118,7 +6710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
+      <a href="../../../13-observability/metric-cardinality-and-alert-fatigue/" class="md-nav__link">
         
   
   
@@ -7218,7 +6810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/INDEX/" class="md-nav__link">
+      <a href="../../../14-devops-containers/INDEX/" class="md-nav__link">
         
   
   
@@ -7246,7 +6838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/docker-and-containers-fundamentals/" class="md-nav__link">
         
   
   
@@ -7281,7 +6873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/container-image-internals/" class="md-nav__link">
+      <a href="../../../14-devops-containers/container-image-internals/" class="md-nav__link">
         
   
   
@@ -7316,7 +6908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/" class="md-nav__link">
         
   
   
@@ -7351,7 +6943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
+      <a href="../../../14-devops-containers/kubernetes-objects-scheduling-and-networking/" class="md-nav__link">
         
   
   
@@ -7386,7 +6978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
+      <a href="../../../14-devops-containers/cicd-pipeline-design-and-deployment-strategies/" class="md-nav__link">
         
   
   
@@ -7486,7 +7078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/INDEX/" class="md-nav__link">
+      <a href="../../../15-cloud/INDEX/" class="md-nav__link">
         
   
   
@@ -7514,7 +7106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/aws-core-services-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -7549,7 +7141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/twelve-factor-config/" class="md-nav__link">
+      <a href="../../../15-cloud/twelve-factor-config/" class="md-nav__link">
         
   
   
@@ -7584,7 +7176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
+      <a href="../../../15-cloud/cloud-cost-and-scaling-economics/" class="md-nav__link">
         
   
   
@@ -7619,7 +7211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
+      <a href="../../../15-cloud/azure-and-gcp-for-backend-engineers/" class="md-nav__link">
         
   
   
@@ -7719,7 +7311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/INDEX/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/INDEX/" class="md-nav__link">
         
   
   
@@ -7747,7 +7339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/" class="md-nav__link">
         
   
   
@@ -7782,7 +7374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/benchmarking-and-jmh-pitfalls/" class="md-nav__link">
         
   
   
@@ -7817,7 +7409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/capacity-planning-and-headroom/" class="md-nav__link">
         
   
   
@@ -7852,7 +7444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/" class="md-nav__link">
         
   
   
@@ -7887,7 +7479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/false-sharing-and-cache-line-contention/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/false-sharing-and-cache-line-contention/" class="md-nav__link">
         
   
   
@@ -7922,7 +7514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/vector-api-and-simd-performance/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/vector-api-and-simd-performance/" class="md-nav__link">
         
   
   
@@ -7957,7 +7549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/" class="md-nav__link">
+      <a href="../../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/" class="md-nav__link">
         
   
   
@@ -8057,7 +7649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/INDEX/" class="md-nav__link">
+      <a href="../../../17-architecture/INDEX/" class="md-nav__link">
         
   
   
@@ -8092,7 +7684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/clean-hexagonal-architecture/" class="md-nav__link">
         
   
   
@@ -8127,7 +7719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-tactical-design-aggregates/" class="md-nav__link">
         
   
   
@@ -8162,7 +7754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
+      <a href="../../../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping/" class="md-nav__link">
         
   
   
@@ -8197,7 +7789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
+      <a href="../../../17-architecture/cqrs-read-write-separation/" class="md-nav__link">
         
   
   
@@ -8232,7 +7824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
+      <a href="../../../17-architecture/microservice-decomposition-and-monolith-tradeoff/" class="md-nav__link">
         
   
   
@@ -8267,7 +7859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
+      <a href="../../../17-architecture/modular-monolith-as-a-deliberate-choice/" class="md-nav__link">
         
   
   
@@ -8302,7 +7894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
+      <a href="../../../17-architecture/strangler-fig-and-migration-patterns/" class="md-nav__link">
         
   
   
@@ -8337,7 +7929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
+      <a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/" class="md-nav__link">
         
   
   
@@ -8372,7 +7964,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../17-architecture/architecture-decision-records/" class="md-nav__link">
+      <a href="../../../17-architecture/architecture-decision-records/" class="md-nav__link">
         
   
   
@@ -8472,7 +8064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/INDEX/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/INDEX/" class="md-nav__link">
         
   
   
@@ -8507,7 +8099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/sdlc-and-agile-methodology-fundamentals/" class="md-nav__link">
         
   
   
@@ -8542,7 +8134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/code-review-standards-and-practice/" class="md-nav__link">
         
   
   
@@ -8577,7 +8169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/architecture-decision-records-and-technical-writing/" class="md-nav__link">
         
   
   
@@ -8612,7 +8204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/working-with-legacy-code/" class="md-nav__link">
         
   
   
@@ -8647,7 +8239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/refactoring-discipline/" class="md-nav__link">
         
   
   
@@ -8682,7 +8274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
+      <a href="../../../18-engineering-practices/git-internals-and-collaboration-workflows/" class="md-nav__link">
         
   
   
@@ -8782,7 +8374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/INDEX/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/INDEX/" class="md-nav__link">
         
   
   
@@ -8810,7 +8402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/mentoring-and-developing-others/" class="md-nav__link">
         
   
   
@@ -8845,7 +8437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/cross-team-influence-without-authority/" class="md-nav__link">
         
   
   
@@ -8880,7 +8472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/leading-migrations-and-large-technical-change/" class="md-nav__link">
         
   
   
@@ -8915,7 +8507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/technical-debt-prioritization-and-advocacy/" class="md-nav__link">
         
   
   
@@ -8950,7 +8542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/design-reviews-and-rfcs-as-organizational-practice/" class="md-nav__link">
         
   
   
@@ -8985,7 +8577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/incident-command-roles-and-real-time-coordination/" class="md-nav__link">
         
   
   
@@ -9020,7 +8612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
+      <a href="../../../19-leadership-staff/hiring-and-team-building/" class="md-nav__link">
         
   
   
@@ -9060,6 +8652,8 @@
                 
   
   
+    
+  
   
   
     
@@ -9077,11 +8671,11 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
         
           
           <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
@@ -9102,7 +8696,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_21">
             <span class="md-nav__icon md-icon"></span>
             
@@ -9120,7 +8714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../20-interview-preparation/INDEX/" class="md-nav__link">
+      <a href="../../INDEX/" class="md-nav__link">
         
   
   
@@ -9175,7 +8769,7 @@
   
   
   
-    <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/" class="md-nav__link">
+    <a href="../../technical-answers/technical-answer-framework/" class="md-nav__link">
       
   
   
@@ -9229,7 +8823,7 @@
   
   
   
-    <a href="../../20-interview-preparation/system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
+    <a href="../../system-design/system-design-narration-and-whiteboard-discipline/" class="md-nav__link">
       
   
   
@@ -9283,7 +8877,7 @@
   
   
   
-    <a href="../../20-interview-preparation/coding/coding-interview-communication-protocol/" class="md-nav__link">
+    <a href="../../coding/coding-interview-communication-protocol/" class="md-nav__link">
       
   
   
@@ -9314,6 +8908,8 @@
                 
   
   
+    
+  
   
   
     
@@ -9327,18 +8923,16 @@
     
     
       
-        
-        
-      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../../20-interview-preparation/behavioral/" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21_5" id="__nav_2_21_5_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -9352,12 +8946,860 @@
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_21_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Behavioral
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Behavioral Handbook — Index
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-star-framework-and-delivery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STAR Framework and Delivery Mechanics
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-story-portfolio-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Story Portfolio Design
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-scope-impact-and-influence-framing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope, Impact, and Influence Framing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-production-incident-narratives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production Incident Narratives
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-architecture-trade-off-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Trade-off Narration
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-conflict-and-technical-disagreement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conflict and Technical Disagreement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-mentoring-and-developing-others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mentoring and Developing Others
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-failure-and-learning-narratives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure and Learning Narratives
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-cross-team-influence-without-authority/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Team Influence Without Authority
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-migrations-and-large-technical-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrations and Large Technical Change
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-technical-debt-advocacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Debt Advocacy
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-design-reviews-and-rfcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Reviews and RFCs
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-company-specific-frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Company-Specific Leadership Frameworks
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-questions-to-ask-your-interviewer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Questions to Ask Your Interviewer
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-offer-evaluation-and-negotiation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offer Evaluation and Negotiation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../company-loop-structures-and-question-pattern-recognition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Underperformance and Difficult Feedback Narratives
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Underperformance and Difficult Feedback Narratives
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-in-interviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters in Interviews
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 — Foundation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-working-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 — Working Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mental-model-the-story-is-about-the-fair-specific-process-you-followed-not-just-whether-it-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model: The Story Is About the Fair, Specific Process You Followed, Not Just Whether It Worked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-underperformance-story-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Underperformance Story Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#illustrative-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Illustrative Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distinguishing-this-from-a-conflict-story-or-a-mentoring-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishing This from a Conflict Story or a Mentoring Story
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-question-tell-me-about-a-time-you-had-to-give-someone-difficult-feedback-about-their-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Question: "Tell me about a time you had to give someone difficult feedback about their performance."
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-review-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Review Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -9391,7 +9833,7 @@
   
   
   
-    <a href="../../20-interview-preparation/question-bank/01-computer-science-foundations/" class="md-nav__link">
+    <a href="../../question-bank/01-computer-science-foundations/" class="md-nav__link">
       
   
   
@@ -9490,7 +9932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/INDEX/" class="md-nav__link">
+      <a href="../../../21-frontend-web/INDEX/" class="md-nav__link">
         
   
   
@@ -9525,7 +9967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
+      <a href="../../../21-frontend-web/how-the-web-works-html-css-dom-and-http/" class="md-nav__link">
         
   
   
@@ -9560,7 +10002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
+      <a href="../../../21-frontend-web/javascript-fundamentals-variables-functions-and-asynchrony/" class="md-nav__link">
         
   
   
@@ -9595,7 +10037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
+      <a href="../../../21-frontend-web/typescript-fundamentals-types-interfaces-and-generics/" class="md-nav__link">
         
   
   
@@ -9630,7 +10072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-fundamentals-jsx-components-props-and-state/" class="md-nav__link">
         
   
   
@@ -9665,7 +10107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-hooks-useeffect-and-useref/" class="md-nav__link">
         
   
   
@@ -9700,7 +10142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usememo-usecallback-and-usecontext/" class="md-nav__link">
         
   
   
@@ -9735,7 +10177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-usereducer-and-custom-hooks/" class="md-nav__link">
         
   
   
@@ -9770,7 +10212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-component-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-component-patterns/" class="md-nav__link">
         
   
   
@@ -9805,7 +10247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-reconciliation-and-fiber/" class="md-nav__link">
         
   
   
@@ -9840,7 +10282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-concurrent-rendering/" class="md-nav__link">
         
   
   
@@ -9875,7 +10317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-forms/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-forms/" class="md-nav__link">
         
   
   
@@ -9910,7 +10352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-error-boundaries/" class="md-nav__link">
         
   
   
@@ -9945,7 +10387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-accessibility/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-accessibility/" class="md-nav__link">
         
   
   
@@ -9980,7 +10422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-performance/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-performance/" class="md-nav__link">
         
   
   
@@ -10015,7 +10457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-testing/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-testing/" class="md-nav__link">
         
   
   
@@ -10050,7 +10492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-typescript/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-typescript/" class="md-nav__link">
         
   
   
@@ -10085,7 +10527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/react-state-management/" class="md-nav__link">
+      <a href="../../../21-frontend-web/react-state-management/" class="md-nav__link">
         
   
   
@@ -10120,7 +10562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fundamentals/" class="md-nav__link">
         
   
   
@@ -10155,7 +10597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-app-router-fundamentals/" class="md-nav__link">
         
   
   
@@ -10190,7 +10632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-vs-client-components/" class="md-nav__link">
         
   
   
@@ -10225,7 +10667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-data-fetching-and-caching/" class="md-nav__link">
         
   
   
@@ -10260,7 +10702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-rendering-strategies/" class="md-nav__link">
         
   
   
@@ -10295,7 +10737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-streaming-and-suspense/" class="md-nav__link">
         
   
   
@@ -10330,7 +10772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-route-handlers/" class="md-nav__link">
         
   
   
@@ -10365,7 +10807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-proxy-and-edge-runtime/" class="md-nav__link">
         
   
   
@@ -10400,7 +10842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-metadata-api-and-seo/" class="md-nav__link">
         
   
   
@@ -10435,7 +10877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-image-font-optimization-and-web-vitals/" class="md-nav__link">
         
   
   
@@ -10470,7 +10912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-authentication-patterns/" class="md-nav__link">
         
   
   
@@ -10505,7 +10947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-server-actions-and-mutations/" class="md-nav__link">
         
   
   
@@ -10540,7 +10982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-deployment-models/" class="md-nav__link">
         
   
   
@@ -10575,7 +11017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-fullstack-integration/" class="md-nav__link">
         
   
   
@@ -10610,7 +11052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-build-tooling-vite-vs-turbopack/" class="md-nav__link">
         
   
   
@@ -10645,7 +11087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-styling-approaches/" class="md-nav__link">
         
   
   
@@ -10680,7 +11122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
+      <a href="../../../21-frontend-web/nextjs-monorepo-layout/" class="md-nav__link">
         
   
   
@@ -10715,7 +11157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-security-xss-csrf-and-csp/" class="md-nav__link">
         
   
   
@@ -10750,7 +11192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
+      <a href="../../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui/" class="md-nav__link">
         
   
   
@@ -10785,7 +11227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
+      <a href="../../../21-frontend-web/micro-frontends-and-module-federation/" class="md-nav__link">
         
   
   
@@ -10820,7 +11262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
+      <a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/" class="md-nav__link">
         
   
   
@@ -10920,7 +11362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/INDEX/" class="md-nav__link">
         
   
   
@@ -10955,7 +11397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-api-integration-fundamentals/" class="md-nav__link">
         
   
   
@@ -10990,7 +11432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/rag-and-vector-databases/" class="md-nav__link">
         
   
   
@@ -11025,7 +11467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/embeddings/" class="md-nav__link">
         
   
   
@@ -11060,7 +11502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/prompt-engineering-patterns/" class="md-nav__link">
         
   
   
@@ -11095,7 +11537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/agentic-workflows-and-tool-orchestration/" class="md-nav__link">
         
   
   
@@ -11130,7 +11572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
+      <a href="../../../22-ai-llm-engineering/llm-evaluation-and-testing/" class="md-nav__link">
         
   
   
@@ -11200,7 +11642,7 @@
   
   
   
-    <a href="../../../study-packs/" class="md-nav__link">
+    <a href="../../../../study-packs/" class="md-nav__link">
       
   
   
@@ -11253,7 +11695,7 @@
   
   
   
-    <a href="../../../cheat-sheets/" class="md-nav__link">
+    <a href="../../../../cheat-sheets/" class="md-nav__link">
       
   
   
@@ -11306,7 +11748,7 @@
   
   
   
-    <a href="../../../flashcards/" class="md-nav__link">
+    <a href="../../../../flashcards/" class="md-nav__link">
       
   
   
@@ -11359,7 +11801,7 @@
   
   
   
-    <a href="../../../architecture-atlas/" class="md-nav__link">
+    <a href="../../../../architecture-atlas/" class="md-nav__link">
       
   
   
@@ -11412,7 +11854,7 @@
   
   
   
-    <a href="../../../production-cookbook/" class="md-nav__link">
+    <a href="../../../../production-cookbook/" class="md-nav__link">
       
   
   
@@ -11465,7 +11907,7 @@
   
   
   
-    <a href="../../../practice/" class="md-nav__link">
+    <a href="../../../../practice/" class="md-nav__link">
       
   
   
@@ -11573,10 +12015,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mental-model" class="md-nav__link">
+  <a href="#mental-model-the-story-is-about-the-fair-specific-process-you-followed-not-just-whether-it-worked" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mental Model
+        Mental Model: The Story Is About the Fair, Specific Process You Followed, Not Just Whether It Worked
       
     </span>
   </a>
@@ -11584,10 +12026,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#definition-and-purpose" class="md-nav__link">
+  <a href="#the-underperformance-story-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Definition and Purpose
+        The Underperformance Story Structure
       
     </span>
   </a>
@@ -11595,10 +12037,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#illustrative-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Illustrative Example
       
     </span>
   </a>
@@ -11606,10 +12048,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#internal-implementation" class="md-nav__link">
+  <a href="#distinguishing-this-from-a-conflict-story-or-a-mentoring-story" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Internal Implementation
+        Distinguishing This from a Conflict Story or a Mentoring Story
       
     </span>
   </a>
@@ -11617,109 +12059,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
+  <a href="#interview-question-tell-me-about-a-time-you-had-to-give-someone-difficult-feedback-about-their-performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrams
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Java Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Scenarios
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-modes-and-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Modes and Debugging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trade-offs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#concurrency-implications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Concurrency Implications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparisons
+        Interview Question: "Tell me about a time you had to give someone difficult feedback about their performance."
       
     </span>
   </a>
@@ -11738,43 +12081,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
+  <a href="#self-review-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-answer-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Answer Framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interview-questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interview Questions
+        Self-Review Checklist
       
     </span>
   </a>
@@ -11793,76 +12103,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cheat-sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cheat Sheet
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flashcards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flashcards
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practice-exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practice Exercises
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Reading
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#official-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Official References
+        Related
       
     </span>
   </a>
@@ -11894,7 +12138,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -11917,7 +12161,7 @@
     
     
       <li class="md-path__item">
-        <a href="../../00-overview/INDEX/" class="md-path__link">
+        <a href="../../../00-overview/INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
     Syllabus
@@ -11938,10 +12182,28 @@
     
     
       <li class="md-path__item">
-        <a href="../INDEX/" class="md-path__link">
+        <a href="../../INDEX/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Databases
+    Interview Preparation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Behavioral
   </span>
 
         </a>
@@ -11965,664 +12227,99 @@
 
 
 
-  <p class="cci-reading-time">~40 min read</p>
-
-<h1 id="optimistic-vs-pessimistic-locking">Optimistic vs. Pessimistic Locking<a class="headerlink" href="#optimistic-vs-pessimistic-locking" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>Topic register:</strong> T-604 · IWI 7.1 · Advanced tier · High interview frequency.
-<strong>Provenance:</strong> every exception, every version number, and every measured
-millisecond in this chapter is real, executed output against a real Hibernate 6.6
-<code>SessionFactory</code> — a genuine <code>jakarta.persistence.OptimisticLockException</code> thrown by
-real Hibernate code, and a real thread genuinely blocked by a real
-<code>PESSIMISTIC_WRITE</code> row lock. Reproducible source:
-<a href="../../practice/java/hibernate-jpa/optimistic-vs-pessimistic-locking/"><code>practice/java/hibernate-jpa/optimistic-vs-pessimistic-locking/</code></a>.</p>
-</blockquote>
+<h1 id="underperformance-and-difficult-feedback-narratives">Underperformance and Difficult Feedback Narratives<a class="headerlink" href="#underperformance-and-difficult-feedback-narratives" title="Permanent link">&para;</a></h1>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
-<ol>
+<ul>
 <li><a href="#learning-objectives">Learning Objectives</a></li>
 <li><a href="#why-this-matters-in-interviews">Why This Matters in Interviews</a></li>
 <li><a href="#level-1-foundation">Level 1 — Foundation</a></li>
 <li><a href="#level-2-working-knowledge">Level 2 — Working Knowledge</a></li>
-<li><a href="#mental-model">Mental Model</a></li>
-<li><a href="#definition-and-purpose">Definition and Purpose</a></li>
-<li><a href="#core-concepts">Core Concepts</a></li>
-<li><a href="#internal-implementation">Internal Implementation</a></li>
-<li><a href="#execution-flow">Execution Flow</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
-<li><a href="#java-examples">Java Examples</a></li>
-<li><a href="#production-scenarios">Production Scenarios</a></li>
-<li><a href="#failure-modes-and-debugging">Failure Modes and Debugging</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
-<li><a href="#performance-implications">Performance Implications</a></li>
-<li><a href="#concurrency-implications">Concurrency Implications</a></li>
-<li><a href="#decision-framework">Decision Framework</a></li>
-<li><a href="#comparisons">Comparisons</a></li>
+<li><a href="#mental-model-the-story-is-about-the-fair-specific-process-you-followed-not-just-whether-it-worked">Mental Model: The Story Is About the Fair, Specific Process You Followed, Not Just Whether It Worked</a></li>
+<li><a href="#the-underperformance-story-structure">The Underperformance Story Structure</a></li>
+<li><a href="#illustrative-example">Illustrative Example</a></li>
+<li><a href="#distinguishing-this-from-a-conflict-story-or-a-mentoring-story">Distinguishing This from a Conflict Story or a Mentoring Story</a></li>
+<li><a href="#interview-question-tell-me-about-a-time-you-had-to-give-someone-difficult-feedback-about-their-performance">Interview Question: "Tell me about a time you had to give someone difficult feedback about their performance."</a></li>
 <li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#anti-patterns">Anti-Patterns</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#interview-answer-framework">Interview Answer Framework</a></li>
-<li><a href="#interview-questions">Interview Questions</a></li>
+<li><a href="#self-review-checklist">Self-Review Checklist</a></li>
 <li><a href="#summary">Summary</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#flashcards">Flashcards</a></li>
-<li><a href="#practice-exercises">Practice Exercises</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#additional-reading">Additional Reading</a></li>
-<li><a href="#official-references">Official References</a></li>
-</ol>
+<li><a href="#related">Related</a></li>
+</ul>
 <h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>After this chapter you should be able to:</p>
-<ul>
-<li>Reproduce a real lost update, and explain precisely what <code>@Version</code> changes about
-  that scenario and what it doesn't.</li>
-<li>Explain why optimistic locking <em>detects</em> conflicts rather than <em>preventing</em> them,
-  and why that distinction is the register's own named misconception.</li>
-<li>Implement a correct retry-on-conflict loop for <code>OptimisticLockException</code>.</li>
-<li>Use <code>LockModeType.PESSIMISTIC_WRITE</code> correctly, and explain its real cost in terms
-  of blocked time, not just "it's slower."</li>
-<li>Choose between the two strategies based on a system's actual contention profile,
-  not by default habit.</li>
-</ul>
+<p>After this chapter, you can tell an underperformance-and-difficult-feedback story that demonstrates a fair, specific, timely process — not just an outcome — and you can narrate one honestly even when the eventual result wasn't a clean turnaround, without the story sounding like a failure to tell it well.</p>
 <h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
-<p>The register names its own trap precisely: candidates who believe optimistic locking
-<em>prevents</em> conflicts, when it only <em>detects</em> them after the fact. This single
-confusion is exactly the kind of clean, checkable misconception a Staff interviewer
-can catch in thirty seconds of follow-up questioning, and it fails candidates who have
-memorized the term <code>@Version</code> without ever having reproduced what actually happens
-when two concurrent requests genuinely collide. The register's own named follow-up —
-"two users edit the same record, walk both strategies" — specifically rewards a
-candidate who can narrate the mechanism (not commit-time exception vs. read-time
-block, but nothing) rather than just naming the annotation.</p>
+<p>"Tell me about a time you had to give someone difficult feedback" is one of the most consistently asked Staff and lead-engineer behavioral questions, and it's specifically designed to surface whether a candidate has ever actually had this conversation, or has only ever told comfortable, positive-feedback stories. A candidate who deflects toward a mentoring story, or claims never to have needed to give difficult feedback, is themselves giving a real, negative signal — avoidance of the hard conversation is the most common real failure mode this question exists to detect, in the story itself, not just in the underlying behavior.</p>
 <h2 id="level-1-foundation">Level 1 — Foundation<a class="headerlink" href="#level-1-foundation" title="Permanent link">&para;</a></h2>
-<p><strong>When two people update the same database row at the same time with nothing protecting them, one update can silently overwrite the other</strong> — the "lost update" problem. Optimistic and pessimistic locking are two different ways of preventing this: <strong>optimistic locking</strong> lets both people proceed and only catches the conflict at the moment of saving (using a version number that changes on every update); <strong>pessimistic locking</strong> blocks the second person from even starting until the first one is completely done.</p>
+<p>Picture the difference between a doctor who tells a patient "you're fine" because bad news is uncomfortable to deliver, and one who says, clearly and specifically, "your test results show X, and here's what we should do about it." The second doctor isn't being harsh — they're respecting the patient enough to give them the accurate information needed to actually address the problem. A strong underperformance story works the same way: it shows you delivering specific, accurate, timely information the other person needed, not withholding it to avoid an uncomfortable moment.</p>
 <h2 id="level-2-working-knowledge">Level 2 — Working Knowledge<a class="headerlink" href="#level-2-working-knowledge" title="Permanent link">&para;</a></h2>
-<p><strong>A practical, everyday default</strong>: reach for optimistic locking (a <code>@Version</code> field on your entity) as the default choice for most web applications — it doesn't block anyone, and real conflicts are relatively rare for most everyday data. Reach for pessimistic locking (<code>SELECT ... FOR UPDATE</code>) specifically for genuinely high-contention, must-not-fail operations — reserving the last ticket for an event, transferring money between two accounts — where a conflict happening at all is unacceptable, not just rare.</p>
-<p><strong>The one rule that matters if you use optimistic locking</strong>: always be ready to actually catch the resulting exception (<code>OptimisticLockException</code>) and retry the operation — don't let it crash the request. Optimistic locking's entire value depends on the calling code actually handling the conflict it detects, not just treating detection as the end of the story.</p>
-<h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
-<p>Both strategies exist to answer the same question — "what happens when two
-transactions try to modify the same row at the same time?" — but they answer it at
-completely different moments. Optimistic locking lets both transactions proceed as if
-there were no conflict, and only checks for one at the moment of writing — cheap while
-uncontended, and it fails loudly (an exception) exactly when a real conflict occurred.
-Pessimistic locking prevents the second transaction from even reading the row for
-update until the first is done — no exception, no lost update, but the second
-transaction pays for that guarantee in real wall-clock wait time, contended or not.</p>
-<h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>Optimistic locking</strong> detects a lost-update conflict at write time by comparing a
-version marker (a <code>@Version</code>-annotated column, incremented on every update) against
-the version the transaction originally read; if they don't match, the write is
-rejected with an exception rather than silently overwriting a concurrent change.
-<strong>Pessimistic locking</strong> prevents the conflict from ever occurring by acquiring a real
-database row lock (<code>SELECT ... FOR UPDATE</code>, exposed in JPA as
-<code>LockModeType.PESSIMISTIC_READ</code>/<code>PESSIMISTIC_WRITE</code>) at read time, forcing any other
-transaction that wants the same lock to wait until the first releases it. These
-mechanisms exist because a naive read-modify-write sequence against shared data —
-read a value, compute a new value from it, write the new value back — has no inherent
-protection against another concurrent transaction doing the identical sequence in
-between the read and the write, silently discarding one of the two updates: the lost
-update this chapter's own baseline demo reproduces directly.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>The baseline problem: a lost update.</strong> Two transactions read the same row, each
-  computes an update from its own (identical) read, and whichever commits second wins
-  — the first transaction's change simply disappears with no error, no warning, and no
-  trace. See <a href="#java-examples">Java Examples</a> for a real, measured reproduction.</li>
-<li><strong>Detection, not prevention.</strong> Optimistic locking allows the exact same
-  read-then-stale-write sequence to happen — it only intervenes at the commit,
-  comparing the row's real current version against the version the transaction last
-  saw. This chapter's own build process discovered, while writing the demos, that
-  Hibernate enforces this unconditionally on any entity with a <code>@Version</code> field —
-  there is no way to write to a versioned entity "without locking" once the annotation
-  is present.</li>
-<li><strong>The retry contract.</strong> A caught <code>OptimisticLockException</code> is not a terminal
-  failure — it's a signal to reload the current state and reapply the business
-  operation, which is what makes optimistic locking usable in practice rather than
-  just a way to fail requests.</li>
-<li><strong>Blocking, not detecting.</strong> <code>PESSIMISTIC_WRITE</code> acquires a real row lock at read
-  time; a concurrent request for the same lock genuinely waits, measured in this
-  chapter directly at ~1520ms against an intentional 1500ms hold.</li>
-<li><strong>A third technique: the atomic conditional <code>UPDATE</code>.</strong> Neither <code>@Version</code> nor a
-  pessimistic lock is required when the operation is a single, self-contained
-  arithmetic change — most commonly, decrementing inventory. Instead of a
-  read-then-write sequence (<code>SELECT stock FROM inventory WHERE id = ?</code>, check in
-  application code, then <code>UPDATE</code>), the check and the write happen in one atomic SQL
-  statement:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">inventory</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">rowsAffected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jdbcTemplate</span><span class="p">.</span><span class="na">update</span><span class="p">(</span>
-<span class="w">    </span><span class="s">"UPDATE inventory SET stock = stock - 1 WHERE product_id = ? AND stock &gt; 0"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">productId</span>
-<span class="p">);</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rowsAffected</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OutOfStockException</span><span class="p">(</span><span class="n">productId</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The race a separate <code>SELECT</code> + <code>UPDATE</code> has — two concurrent requests both read
-  <code>stock = 1</code>, both see the guard condition pass in application code, and both
-  proceed to decrement, producing <code>stock = -1</code> — cannot occur here, because the
-  database evaluates the <code>WHERE</code> clause and performs the decrement as one atomic
-  operation against the current row value, not the value the application last read.
-  A second concurrent request targeting the same now-zero row simply fails its own
-  <code>WHERE stock &gt; 0</code> check and updates zero rows — <code>rowsAffected</code> is the only signal
-  the application needs, and checking it is mandatory: a silently ignored
-  zero-rows-affected result reintroduces the overselling bug this exact statement
-  exists to prevent, just moved from the database into application code that forgot
-  to check. This technique is narrower than <code>@Version</code> (it only works when the
-  entire business rule reduces to a single-row conditional arithmetic update — it
-  has no answer for a multi-field business invariant, which is exactly what
-  <code>@Version</code> optimistic locking or <code>SELECT ... FOR UPDATE</code> exist for), but where it
-  applies, it is cheaper than both: no version column, no retry loop, no lock held —
-  a single round trip either succeeds or fails with an unambiguous, mechanically
-  checkable signal.</p>
-<h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
-<p>This chapter's practice code uses two structurally identical entities to isolate the
-mechanism precisely:
-<a href="../../../practice/java/hibernate-jpa/optimistic-vs-pessimistic-locking/src/Account.java"><code>Account.java</code></a>
-carries a <code>@Version</code> field; <a href="../../../practice/java/hibernate-jpa/optimistic-vs-pessimistic-locking/src/UnversionedAccount.java"><code>UnversionedAccount.java</code></a>
-does not. This split exists because of a real finding made while building the demos:
-Hibernate applies optimistic version checking to <em>every</em> UPDATE against a
-<code>@Version</code>-bearing entity unconditionally, so the baseline "no locking at all"
-scenario genuinely requires a separate, versionless entity to reproduce — there's no
-config flag to temporarily disable it on a versioned type.
-<a href="../../../practice/java/hibernate-jpa/optimistic-vs-pessimistic-locking/src/PessimisticLockingBlockingDemo.java"><code>PessimisticLockingBlockingDemo.java</code></a>
-uses two real <code>Thread</code>s and a <code>CountDownLatch</code> to guarantee genuine overlap: Thread A
-acquires the lock and signals its acquisition before Thread B is allowed to request
-the same one, so Thread B's real wait time is attributable entirely to Thread A's held
-lock, not incidental scheduling.</p>
-<h2 id="execution-flow">Execution Flow<a class="headerlink" href="#execution-flow" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant A as Transaction A
-    participant DB as Database Row
-    participant B as Transaction B
-
-    Note over A,B: Optimistic
-    A-&gt;&gt;DB: read (version=0)
-    B-&gt;&gt;DB: read (version=0)
-    A-&gt;&gt;DB: write (version 0 -&gt; 1) -- succeeds
-    B-&gt;&gt;DB: write (expects version=0) -- REJECTED, real version is 1
-
-    Note over A,B: Pessimistic
-    A-&gt;&gt;DB: SELECT ... FOR UPDATE (lock acquired)
-    B-&gt;&gt;DB: SELECT ... FOR UPDATE (BLOCKS)
-    A-&gt;&gt;DB: write, commit (lock released)
-    DB--&gt;&gt;B: lock granted, B proceeds</code></pre>
-<h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    subgraph "Optimistic: cheap, detects late"
-        O1["Both transactions proceed&lt;br/&gt;concurrently, unaware"] --&gt; O2["Conflict discovered&lt;br/&gt;only at commit"]
-        O2 --&gt; O3["Loser: exception + retry"]
-    end
-    subgraph "Pessimistic: costly, prevents early"
-        P1["Second transaction&lt;br/&gt;blocked at read time"] --&gt; P2["No conflict ever&lt;br/&gt;occurs"]
-        P2 --&gt; P3["Loser: real wait time"]
-    end</code></pre>
-<h2 id="java-examples">Java Examples<a class="headerlink" href="#java-examples" title="Permanent link">&para;</a></h2>
-<p>The real lost update, with no locking at all:</p>
-<div class="highlight"><pre><span></span><code>Session A committed its deposit -&gt; balance now $150
-Session B committed its deposit -&gt; balance now $150 (computed from its OWN stale read of $100)
-
-=== Real final balance in the database: $150 === (expected $200)
-</code></pre></div>
-<p>The identical scenario, with <code>@Version</code>, real and unhandled:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Account</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Account</span><span class="p">(...);</span><span class="w"> </span><span class="c1">// has @Version private long version;</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Session A committed -&gt; balance=$150 version incremented to 1
-REAL jakarta.persistence.OptimisticLockException thrown at commit time.
-=== Real final balance: $150, version 1 === (Session A's deposit intact, B's rejected -- not lost)
-</code></pre></div>
-<p>The real retry-on-conflict pattern, catching the exception and reloading:</p>
-<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">sessionB</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">staleEntity</span><span class="p">);</span>
-<span class="w">    </span><span class="n">sessionB</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
-<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">OptimisticLockException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">sessionB</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">rollback</span><span class="p">();</span>
-<span class="w">    </span><span class="c1">// reload fresh state and reapply the operation -- shown in full in the demo</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Attempt 1: merging stale detached entity, version=0 (real current DB version is higher)
-Attempt 1: REAL OptimisticLockException -- retrying with a fresh read.
-Attempt 2: fresh read -- balance=$150 version=1
-Attempt 2: committed successfully -&gt; balance=$200
-</code></pre></div>
-<p>The real, measured pessimistic block:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Account</span><span class="w"> </span><span class="n">accountA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sessionA</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Account</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">accountId</span><span class="p">,</span><span class="w"> </span><span class="n">LockModeType</span><span class="p">.</span><span class="na">PESSIMISTIC_WRITE</span><span class="p">);</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Thread B now requests the same PESSIMISTIC_WRITE lock (will really block)...
-Thread B acquired the lock after Thread A released it, balance=$150
-
-=== Real measured block time for Thread B: 1520ms (expected ~1500ms) ===
-</code></pre></div>
-<h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
-<p><strong>Scenario: a flash-sale inventory system that used pessimistic locking everywhere,
-and buckled under its own success.</strong> Symptoms: during a promotional flash sale, the
-inventory-decrement endpoint's p99 latency rose from 40ms to over 4 seconds, and a
-significant fraction of requests timed out entirely, even though the database's CPU
-and I/O utilization were both well within normal bounds. Initial hypothesis: a
-database performance regression or a missing index. Evidence: the inventory-decrement
-code used <code>LockModeType.PESSIMISTIC_WRITE</code> on every read of a product's stock row —
-under normal traffic, contention on any single popular product was rare enough that
-this was invisible, but during the flash sale, thousands of concurrent requests
-targeted the same handful of popular product rows simultaneously, and each request
-genuinely serialized behind the previous one's full transaction duration (including
-payment authorization, which the lock was held across) — exactly the mechanism this
-chapter's <code>PessimisticLockingBlockingDemo</code> measures directly, just compounded across
-thousands of waiters instead of one. Diagnosis: pessimistic locking was the wrong
-default for a workload with occasional extreme contention on a small number of hot
-rows, because every waiting request pays the <em>entire</em> held-lock duration, and that
-duration included slow, external calls that had no reason to happen while holding a
-database lock. Immediate mitigation: moved payment authorization outside the locked
-transaction entirely, shrinking the lock's held duration dramatically. Permanent
-remediation: switched to optimistic locking with a bounded retry loop for the
-stock-decrement operation specifically, accepting a small number of real
-<code>OptimisticLockException</code> retries under contention in exchange for not holding a
-database lock across any external call ever again. Trade-off accepted: a small
-percentage of requests during peak contention now retry once or twice rather than
-waiting in a lock queue — a real, measured latency cost, but bounded and far smaller
-than the multi-second queuing the pessimistic approach produced. Prevention: any new
-locking decision on a hot-row workload must now explicitly state its expected
-contention profile and justify pessimistic locking specifically when chosen, rather
-than defaulting to it as the "safer-sounding" option. Interview lesson: this is the
-concrete, production form of "choosing by contention profile" — pessimistic locking's
-real cost scales with how long the lock is held and how many requests are waiting
-behind it, not just whether a conflict is "likely."</p>
-<h2 id="failure-modes-and-debugging">Failure Modes and Debugging<a class="headerlink" href="#failure-modes-and-debugging" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Holding a pessimistic lock across a slow external call</strong> (the scenario above) —
-  every concurrent request targeting the same row pays the <em>entire</em> external call's
-  latency as wait time, not just the database write itself. Debug signal: lock wait
-  time correlates with an external dependency's latency, not with database load.</li>
-<li><strong>An optimistic retry loop with no maximum attempt count</strong> — under sustained high
-  contention, a request can retry indefinitely without making progress, functionally
-  becoming a livelock rather than a bounded, predictable failure.</li>
-<li><strong>Forgetting that <code>@Version</code> applies unconditionally once present</strong> — a real finding
-  from this chapter's own build process: any code path that updates a versioned
-  entity, even one that "shouldn't need locking," is still subject to the version
-  check, which can surprise a team retrofitting <code>@Version</code> onto an existing entity
-  with many existing write paths.</li>
-<li><strong>Mixing optimistic and pessimistic strategies on the same table inconsistently</strong> —
-  a pessimistic writer's lock does not protect against an optimistic writer that
-  bypasses <code>find(..., LockModeType...)</code> and uses a plain read; the two strategies only
-  compose correctly when applied consistently to every write path against that data.</li>
-</ul>
-<h2 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h2>
-<p>Optimistic locking: cheap under low contention (no lock held, no blocking), and fails
-fast and loud rather than silently — at the real cost of needing a correct,
-bounded retry strategy in every calling code path, and real wasted work on every
-conflict (a full read-modify-write cycle that gets thrown away). Pessimistic locking:
-guarantees no conflict ever occurs, with no retry logic needed by the caller — at the
-real cost this chapter measures directly: every waiting transaction pays the full
-duration the lock is held, which compounds badly if that duration includes anything
-slow (an external call, a large batch operation).</p>
-<h2 id="performance-implications">Performance Implications<a class="headerlink" href="#performance-implications" title="Permanent link">&para;</a></h2>
-<p>Optimistic locking's cost is nearly zero under low contention (a single extra WHERE
-clause comparison on UPDATE) and scales with conflict <em>frequency</em>, not with how many
-requests are concurrently trying to write. Pessimistic locking's cost is proportional
-to lock <em>hold duration</em> multiplied by the number of waiters — this chapter's demo
-measured a single waiter's real cost at ~1520ms against a 1500ms hold; the production
-scenario above shows that cost compounding catastrophically once thousands of
-requests queue behind the same held lock during a real traffic spike.</p>
-<h2 id="concurrency-implications">Concurrency Implications<a class="headerlink" href="#concurrency-implications" title="Permanent link">&para;</a></h2>
-<p>Optimistic locking has no lock-ordering deadlock risk at all, because no lock is ever
-held across a wait — the only failure mode is a real, thrown exception, always
-recoverable by retry. Pessimistic locking introduces the same lock-ordering deadlock
-risk covered in <a href="../locks-deadlocks-and-lock-escalation/">Locks, Deadlocks, and Lock Escalation in RDBMS</a>:
-if two transactions acquire pessimistic locks on multiple rows in different orders,
-a real deadlock is possible, and the database's deadlock detector will abort one of
-them — a failure mode optimistic locking structurally cannot produce.</p>
-<h2 id="decision-framework">Decision Framework<a class="headerlink" href="#decision-framework" title="Permanent link">&para;</a></h2>
+<p>At this level, the working signal to watch for in your own story is whether it's built around a <em>fair process</em>, not just a favorable outcome. A story where the outcome was an improvement is a good story; a story where the outcome was, honestly, that the person didn't improve and was eventually moved to a different role or off the team can be an equally strong story, if the process described — specific observations, a private and prompt conversation, a genuine chance to improve, a clear follow-up — was fair and well-executed throughout. Interviewers specifically probe for whether a candidate can tell this second kind of story honestly, because it's a real, common outcome and refusing to have one in your portfolio (per <a href="../02-story-portfolio-design/">Story Portfolio Design</a>) is itself a gap.</p>
+<h2 id="mental-model-the-story-is-about-the-fair-specific-process-you-followed-not-just-whether-it-worked">Mental Model: The Story Is About the Fair, Specific Process You Followed, Not Just Whether It Worked<a class="headerlink" href="#mental-model-the-story-is-about-the-fair-specific-process-you-followed-not-just-whether-it-worked" title="Permanent link">&para;</a></h2>
+<p>The most common structural error in this story type is treating the <em>outcome</em> (did the person improve) as the entire measure of whether the story is a good one to tell. It isn't — a fair, specific, well-executed process that didn't produce a turnaround is a legitimate, tellable story, and a lucky improvement following a vague, avoidant, or unfair process is not actually a strong story, even if the outcome looks clean on the surface. Interviewers assessing this competency are evaluating your judgment and process, not the other person's eventual performance, which you don't fully control.</p>
+<h2 id="the-underperformance-story-structure">The Underperformance Story Structure<a class="headerlink" href="#the-underperformance-story-structure" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Question</th>
-<th>If yes, lean toward</th>
+<th>STAR component</th>
+<th>Underperformance-specific content</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Is contention on the specific row/entity rare in practice?</td>
-<td>Optimistic locking</td>
+<td>Situation</td>
+<td>The specific, recurring pattern observed (not a single bad week) — named concretely, with enough detail to show it was a real pattern, not a one-off</td>
 </tr>
 <tr>
-<td>Does the write operation involve a slow external call that shouldn't hold a DB lock?</td>
-<td>Optimistic locking (or move the external call outside any lock)</td>
+<td>Task</td>
+<td>The candidate's specific role and responsibility for addressing it — a peer noticing and raising it, a lead directly responsible, someone stepping in without formal authority</td>
 </tr>
 <tr>
-<td>Is the caller's retry logic well-tested and bounded?</td>
-<td>Optimistic locking</td>
+<td>Action</td>
+<td>The specific, fair process followed: a private and prompt conversation, leading with specific observed behavior rather than character judgment, asking what was going on before assuming a cause, agreeing on concrete next steps, setting a real follow-up date</td>
 </tr>
 <tr>
-<td>Is guaranteed no-conflict behavior required, with no caller retry logic acceptable?</td>
-<td>Pessimistic locking</td>
-</tr>
-<tr>
-<td>Is the workload dominated by short, fast transactions on hot rows?</td>
-<td>Pessimistic locking, if held duration is kept genuinely short</td>
-</tr>
-<tr>
-<td>Is the workload bursty with occasional extreme contention on a few rows?</td>
-<td>Optimistic locking, per this chapter's production scenario</td>
+<td>Result</td>
+<td>The actual outcome, honestly — a real, specific improvement with evidence, OR a genuine, fair process that didn't produce a turnaround, described honestly rather than glossed over</td>
 </tr>
 </tbody>
 </table>
-<h2 id="comparisons">Comparisons<a class="headerlink" href="#comparisons" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Dimension</th>
-<th>Optimistic (<code>@Version</code>)</th>
-<th>Pessimistic (<code>PESSIMISTIC_WRITE</code>)</th>
-<th>Atomic conditional <code>UPDATE</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>When conflict is caught</td>
-<td>At commit/flush time</td>
-<td>Never occurs — prevented at read time</td>
-<td>At the single <code>UPDATE</code> statement itself</td>
-</tr>
-<tr>
-<td>Cost under low contention</td>
-<td>Near zero</td>
-<td>Real lock-acquisition overhead</td>
-<td>Near zero — one round trip</td>
-</tr>
-<tr>
-<td>Cost under high contention</td>
-<td>Real, bounded retries</td>
-<td>Real, potentially unbounded wait time</td>
-<td>Near zero — losing requests just affect 0 rows, no wait and no retry needed</td>
-</tr>
-<tr>
-<td>Deadlock risk</td>
-<td>None</td>
-<td>Real, same as any row lock (see <a href="../locks-deadlocks-and-lock-escalation/">Locks, Deadlocks, and Lock Escalation in RDBMS</a>)</td>
-<td>None</td>
-</tr>
-<tr>
-<td>Caller obligation</td>
-<td>Must implement retry logic</td>
-<td>None — but must not hold the lock across slow work</td>
-<td>Must check <code>rowsAffected</code>/<code>executeUpdate()</code>'s return value</td>
-</tr>
-<tr>
-<td>Scope of what it can express</td>
-<td>Any field, any business invariant</td>
-<td>Any field, any business invariant</td>
-<td>Single-row, single-statement conditional arithmetic only</td>
-</tr>
-</tbody>
-</table>
+<p>The "asking what was going on before assuming a cause" detail in Action is a specific, credible signal: a candidate who describes only telling the person what to fix, with no genuine attempt to understand the actual cause first, is demonstrating a one-directional lecture, not a real feedback conversation.</p>
+<h2 id="illustrative-example">Illustrative Example<a class="headerlink" href="#illustrative-example" title="Permanent link">&para;</a></h2>
+<p>This example is illustrative — a representative scenario, not a real candidate's actual experience.</p>
+<p><em>"An engineer who'd joined our team about six months earlier and initially performed well started, over about three sprints, repeatedly submitting PRs that failed basic tests and missing stand-ups without notice. I noticed the pattern building over the second and third sprint, not just a single bad week, and since I was his direct lead, I scheduled a private conversation within a few days rather than waiting for our next scheduled 1:1. I opened with the three specific, dated instances rather than a general 'you've seemed off lately,' and then asked directly what had been going on, rather than assuming I already knew. It turned out he'd been dealing with a family health situation he hadn't disclosed to anyone on the team. We agreed together on a temporary, explicit reduction in his sprint commitment, and I set a two-week follow-up to check back specifically on how it was going, not just a vague 'let me know if you need anything.' At the two-week mark, his output had measurably recovered, and about a month later he mentioned, unprompted, that having the conversation directly rather than having it show up as a vague concern in his next performance review had actually made it easier for him to be honest about what was going on."</em></p>
+<h2 id="distinguishing-this-from-a-conflict-story-or-a-mentoring-story">Distinguishing This from a Conflict Story or a Mentoring Story<a class="headerlink" href="#distinguishing-this-from-a-conflict-story-or-a-mentoring-story" title="Permanent link">&para;</a></h2>
+<p>This is not the same as a <a href="../06-conflict-and-technical-disagreement/">Conflict and Technical Disagreement</a> story — that chapter covers disagreement over a technical decision between peers who are each performing their role well; this chapter covers a genuine, recurring performance pattern, a different and more sensitive category. It's also not the same as a <a href="../07-mentoring-and-developing-others/">Mentoring and Developing Others</a> story — mentoring is proactive growth coaching for someone already performing adequately who wants to develop further; this chapter is about identifying and addressing an actual performance problem, a harder and more consequential conversation. Conflating the three produces a story that answers the wrong question when an interviewer specifically asks for this one.</p>
+<h2 id="interview-question-tell-me-about-a-time-you-had-to-give-someone-difficult-feedback-about-their-performance">Interview Question: "Tell me about a time you had to give someone difficult feedback about their performance."<a class="headerlink" href="#interview-question-tell-me-about-a-time-you-had-to-give-someone-difficult-feedback-about-their-performance" title="Permanent link">&para;</a></h2>
+<p><strong>What the interviewer is assessing:</strong> whether the candidate has actually had this specific, uncomfortable conversation, has a real process for it, and can narrate an honest outcome rather than only a clean success story.</p>
+<p><strong>Weak answer characteristics:</strong> the candidate redirects to a mentoring or positive-feedback story instead; the "difficult feedback" described is actually mild or was delivered indirectly (through a manager, in a group setting, in writing only); the story never states what actually changed as a result, if anything.</p>
+<p><strong>Strong answer structure:</strong> S/T/A/R with Situation naming a specific, recurring pattern (not a single incident), Action describing a private, prompt, specific conversation with a genuine attempt to understand the cause, and Result stating the actual outcome honestly, including if it wasn't a clean turnaround.</p>
+<p><strong>Staff-level expectations:</strong> evidence of recognizing whether the underlying cause was individual or systemic (per <a href="../../../19-leadership-staff/handling-underperformance-and-difficult-feedback/">Handling Underperformance and Difficult Feedback Conversations</a>'s Staff-level section) — did the candidate consider whether a broader team or process issue was actually behind what looked like one person's problem.</p>
+<p><strong>Probing follow-ups:</strong> "How did you know it was a real pattern and not just a rough patch?"; "What would you have done if the follow-up conversation showed no improvement at all?"; "Did you consider whether something systemic was contributing to this?"</p>
+<p><strong>Self-review checklist:</strong>
+- [ ] The story describes a real, recurring pattern, not a single bad instance
+- [ ] Action shows a specific, fair process — private, prompt, behavior-based, with a real attempt to understand the cause
+- [ ] A concrete follow-up step is named, not just "we talked about it"
+- [ ] Result is stated honestly, including if the outcome wasn't a full turnaround</p>
 <h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Believing optimistic locking prevents conflicts from happening — the register's own
-  named misconception. It detects them, after both sides have already proceeded.</li>
-<li>Writing an optimistic retry loop with no bound, risking unbounded retries under
-  sustained contention.</li>
-<li>Holding a pessimistic lock across an external call (payment, email, a downstream
-  API) rather than committing quickly and doing slow work outside the transaction.</li>
-<li>Assuming pessimistic locking is the "safer" default without considering its real
-  cost under bursty, high-contention traffic — the exact assumption this chapter's
-  production scenario corrects the hard way.</li>
+<li>Redirecting to a mentoring or positive-feedback story when specifically asked for a <em>difficult</em> one.</li>
+<li>Describing feedback delivered indirectly (through someone else, only in writing, only in a group setting) rather than a direct, private conversation.</li>
+<li>Leading with a character judgment ("they didn't care") rather than a specific, observed behavior.</li>
+<li>Only having a clean-success-story version prepared, with no honest account of a harder or less resolved outcome.</li>
 </ul>
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>A pessimistic lock held across anything but a fast, local database write</strong> — the
-  central anti-pattern in this chapter's production scenario, converting a 40ms
-  operation's lock-hold time into a multi-second one under contention.</li>
-<li><strong>Retrofitting <code>@Version</code> onto a heavily-used entity without auditing every write
-  path</strong> — since Hibernate enforces the check unconditionally, code that assumed
-  writes always succeed can start failing in previously-unseen ways.</li>
-<li><strong>An optimistic retry loop that reapplies the ORIGINAL stale computation instead of
-  recomputing against the fresh read</strong> — silently reintroducing the lost-update bug
-  the retry was supposed to fix, just delayed by one attempt.</li>
+<h2 id="self-review-checklist">Self-Review Checklist<a class="headerlink" href="#self-review-checklist" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> The pattern described is specific and recurring, not a single instance</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> The conversation described was private, prompt, and led with observed behavior</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> A real attempt to understand the underlying cause is shown, not just an assertion</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox"/><span class="task-list-indicator"></span></label> The Result is honest, including a partial or non-improvement outcome if that's what actually happened</li>
 </ul>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Default to optimistic locking for most application-level entities; reserve
-  pessimistic locking for narrow, short-held, high-certainty-of-conflict operations.</li>
-<li>Always bound optimistic retry loops with a maximum attempt count and an explicit
-  final failure path (surface to the user, not an infinite loop).</li>
-<li>Never hold a pessimistic lock across an external call, a slow computation, or
-  anything that isn't itself a fast database operation.</li>
-<li>Recompute the business operation against freshly-read state on every optimistic
-  retry attempt — never reapply a stale computed value.</li>
-</ul>
-<h2 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h2>
-<h3 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h3>
-<p>Optimistic locking detects a lost-update conflict at write time via a version
-column, and fails loudly with an exception rather than silently overwriting — it
-doesn't prevent the conflict, it catches it after the fact. Pessimistic locking
-prevents the conflict entirely by holding a real database row lock, at the cost of
-making the second transaction wait for however long the first holds that lock.</p>
-<h3 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h3>
-<p>Two transactions reading and writing the same row without protection produce a lost
-update — whichever commits second silently overwrites the first, with no error. A
-<code>@Version</code> column fixes the silence, not the race: both transactions still proceed
-concurrently, but the second one's commit is rejected with an
-<code>OptimisticLockException</code> once the database notices its version is stale, and the
-caller retries by reloading and reapplying. Pessimistic locking takes the opposite
-approach entirely — it acquires a real row lock at read time, so the second
-transaction can't even start until the first finishes, at the real cost of blocking
-for however long that hold lasts. In production, the choice comes down to contention
-profile: optimistic locking is nearly free when conflicts are rare and can retry
-cheaply, but pessimistic locking's cost compounds badly if the lock is ever held
-across something slow, as a real flash-sale incident can demonstrate directly.</p>
-<h3 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h3>
-<p>Cover: the real baseline lost-update reproduction and why it matters as the shared
-starting point; the real proof that optimistic locking detects rather than prevents
-(same stale read allowed through, only the commit differs); the retry pattern and its
-bounding requirement; the real measured pessimistic block time and what determines its
-magnitude (hold duration, not contention likelihood); the production scenario of a
-pessimistic lock held across a slow external call under flash-sale load; and the
-decision framework connecting contention profile to strategy choice.</p>
-<h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
-<p>Draw two parallel timelines for Transaction A and Transaction B. For optimistic: let
-both timelines proceed side by side unchanged until B's commit arrow hits a red "X" —
-label it "conflict discovered here, not before." For pessimistic: draw B's entire
-timeline as a flat, waiting line until A's timeline ends, then B's begins — label the
-flat segment "B blocked, full duration of A's lock." The visual point is exactly when
-each strategy "notices" the conflict.</p>
-<h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
-<p>Use the flash-sale scenario from <a href="#production-scenarios">Production Scenarios</a>: a
-pessimistic lock held across payment authorization, turning a 40ms operation into a
-multi-second queue under real contention.</p>
-<h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
-<p>Cheap-but-needs-retry-logic (optimistic) vs. guaranteed-but-blocks (pessimistic); the
-real cost multiplier of held-lock duration times waiter count for pessimistic
-locking specifically.</p>
-<h3 id="common-candidate-mistakes">Common Candidate Mistakes<a class="headerlink" href="#common-candidate-mistakes" title="Permanent link">&para;</a></h3>
-<p>Stating that optimistic locking "prevents" conflicts; proposing an unbounded retry
-loop; defaulting to pessimistic locking without considering held-duration cost under
-real contention.</p>
-<h3 id="typical-follow-up-questions">Typical Follow-Up Questions<a class="headerlink" href="#typical-follow-up-questions" title="Permanent link">&para;</a></h3>
-<p>"Two users edit the same record. Walk both strategies." "What happens if the
-optimistic retry itself conflicts again?" "Why would you ever choose pessimistic
-locking if optimistic is cheaper?" "What's the actual cost if a pessimistic lock is
-held across a slow call?"</p>
-<h3 id="senior-level-expectations">Senior-Level Expectations<a class="headerlink" href="#senior-level-expectations" title="Permanent link">&para;</a></h3>
-<p>Correctly implement both strategies, and articulate the detect-vs-prevent
-distinction without prompting.</p>
-<h3 id="staff-level-discussion">Staff-Level Discussion<a class="headerlink" href="#staff-level-discussion" title="Permanent link">&para;</a></h3>
-<p>Reason about contention profile as the deciding factor, not habit or "safety" framing;
-connect pessimistic locking's real cost to the deadlock risk covered in
-<a href="../locks-deadlocks-and-lock-escalation/">Locks, Deadlocks, and Lock Escalation in RDBMS</a>; and
-discuss the organizational discipline required to keep locking strategy decisions
-explicit and reviewed, rather than defaulted per-developer per-entity.</p>
-<h2 id="interview-questions">Interview Questions<a class="headerlink" href="#interview-questions" title="Permanent link">&para;</a></h2>
-<h3 id="question-1-two-users-edit-the-same-record-walk-both-strategies">Question 1: Two users edit the same record. Walk both strategies.<a class="headerlink" href="#question-1-two-users-edit-the-same-record-walk-both-strategies" title="Permanent link">&para;</a></h3>
-<p><strong>Why interviewers ask it.</strong> It's the register's own named follow-up, and it forces
-the candidate to narrate the actual mechanism for both strategies side by side rather
-than naming them in isolation.</p>
-<p><strong>Expected answer.</strong> Under optimistic locking, both reads succeed, both computations
-proceed, and only the second commit fails with an exception due to a stale version —
-the app then retries with fresh state. Under pessimistic locking, the second user's
-read-for-update blocks until the first user's transaction completes, so no conflict
-is ever possible.</p>
-<p><strong>Minimum acceptable answer.</strong> Describes one strategy correctly, gestures vaguely at
-the other.</p>
-<p><strong>Strong Senior answer.</strong> Correctly narrates both, including that optimistic locking
-allows the stale read to happen and only fails at commit.</p>
-<p><strong>Staff-level extension.</strong> Adds the contention-profile decision criterion and a
-concrete real cost for each (retry cost vs. block-duration cost).</p>
-<p><strong>Common mistakes.</strong> Describing optimistic locking as if it prevents the second
-user's read entirely, conflating it with pessimistic behavior.</p>
-<p><strong>Likely follow-ups.</strong> "What if the retry conflicts again?" "How would you decide
-which to use here?"</p>
-<p><strong>Evaluation criteria.</strong> Correct optimistic mechanism (2), correct pessimistic
-mechanism (2), contention-based decision criterion at Staff level (1).</p>
-<h3 id="question-2-does-optimistic-locking-prevent-lost-updates">Question 2: Does optimistic locking prevent lost updates?<a class="headerlink" href="#question-2-does-optimistic-locking-prevent-lost-updates" title="Permanent link">&para;</a></h3>
-<p><strong>Why interviewers ask it.</strong> It's the register's own named misconception, asked
-directly to see if the candidate falls for it.</p>
-<p><strong>Expected answer.</strong> No — it detects them at commit time via a version mismatch,
-after both transactions have already read and computed against potentially stale
-data. The lost update is converted into a loud, recoverable exception instead of a
-silent overwrite.</p>
-<p><strong>Minimum acceptable answer.</strong> Says "sort of" or hedges without a clear detect-vs-
-prevent distinction.</p>
-<p><strong>Strong Senior answer.</strong> States the distinction precisely and unprompted.</p>
-<p><strong>Staff-level extension.</strong> Explains why this distinction matters operationally — the
-caller must implement retry logic, since detection alone doesn't complete the
-operation.</p>
-<p><strong>Common mistakes.</strong> Answering "yes" outright.</p>
-<p><strong>Likely follow-ups.</strong> "What does the application need to do when that exception is
-thrown?"</p>
-<p><strong>Evaluation criteria.</strong> Correct "no, it detects" answer (3), explains the retry
-obligation this implies (2).</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>A lost update happens when two transactions read the same row and whichever commits
-second silently overwrites the first — this chapter reproduces that exactly, with a
-real Hibernate session pair. Optimistic locking (<code>@Version</code>) converts that silent
-overwrite into a loud, real <code>OptimisticLockException</code> at commit time — detecting the
-conflict, not preventing it, which is the register's own named misconception.
-Pessimistic locking (<code>PESSIMISTIC_WRITE</code>) prevents the conflict entirely by blocking
-the second transaction at read time, at a real, measured cost proportional to how
-long the first transaction holds the lock. The right choice depends on contention
-profile and lock-hold duration, not habit.</p>
-<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
+<p>A strong underperformance-and-difficult-feedback story centers a fair, specific process — not just a favorable outcome you don't fully control. Distinguish it clearly from a conflict story (disagreement between two people each performing well) and a mentoring story (proactive growth coaching, not a performance problem). An honestly-told story where the outcome wasn't a clean turnaround, but the process was fair and well-executed throughout, is a legitimate and often stronger answer than a suspiciously tidy success story.</p>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Without any locking, a real lost update silently loses one of two concurrent
-  updates — measured directly at $150 instead of an expected $200.</li>
-<li>Optimistic locking detects, not prevents — proven directly: the same stale read
-  happens either way, only the commit's outcome differs (real
-  <code>OptimisticLockException</code> vs. silent overwrite).</li>
-<li>A correct optimistic retry recovers fully — measured directly at $200, zero data
-  loss, after one real, genuine conflict and retry.</li>
-<li>Pessimistic locking's real cost is proportional to hold duration — measured
-  directly at ~1520ms of blocked time against a 1500ms hold, and this cost compounds
-  badly under real contention if the hold includes anything slow.</li>
-</ul>
-<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Optimistic (<code>@Version</code>)</strong>: detects conflict at commit via version mismatch. Cheap
-  uncontended, needs bounded retry logic.</li>
-<li><strong>Pessimistic (<code>PESSIMISTIC_WRITE</code>/<code>PESSIMISTIC_READ</code>)</strong>: prevents conflict via a
-  real row lock at read time. No retry needed, but real wait cost proportional to
-  hold duration.</li>
-<li><strong>Misconception to avoid</strong>: optimistic locking does NOT prevent the conflict from
-  happening — it only makes it loud instead of silent.</li>
-<li><strong>Never</strong> hold a pessimistic lock across a slow external call.</li>
-<li><strong>Always</strong> bound optimistic retry loops with a max attempt count.</li>
-<li><strong>Decision</strong>: rare contention + fast retries → optimistic. Guaranteed no-conflict,
-  short hold → pessimistic.</li>
-</ul>
-<h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
-<h3 id="card-detects-vs-prevents">Card: Detects vs. prevents<a class="headerlink" href="#card-detects-vs-prevents" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-Does optimistic locking prevent a conflict, or detect one?</p>
-<p><strong>Answer:</strong>
-Detects. Both transactions are allowed to read and compute concurrently; only the
-second commit is rejected, via a real version mismatch, once the conflict has already
-occurred.</p>
-<p><strong>Why it matters:</strong>
-This is the register's own named misconception — the fastest way to lose credibility
-on this topic in an interview.</p>
-<p><strong>Common trap:</strong>
-Describing optimistic locking as if it blocks the second reader, which is
-pessimistic locking's behavior, not optimistic's.</p>
-<p><strong>Related:</strong>
-[[optimistic-vs-pessimistic-locking]]</p>
-<h3 id="card-the-real-cost-of-pessimistic-locking">Card: The real cost of pessimistic locking<a class="headerlink" href="#card-the-real-cost-of-pessimistic-locking" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-What determines how expensive a pessimistic lock actually is in production?</p>
-<p><strong>Answer:</strong>
-The lock's held duration multiplied by how many concurrent requests are waiting for
-it — not whether a conflict is "likely." This chapter measured a single waiter's real
-cost at ~1520ms against a 1500ms hold; holding a lock across a slow external call
-multiplies that cost by every waiter during a real traffic spike.</p>
-<p><strong>Why it matters:</strong>
-It reframes "pessimistic is safer" into "pessimistic has a real, measurable,
-sometimes catastrophic cost" — the exact lesson of this chapter's production
-scenario.</p>
-<p><strong>Common trap:</strong>
-Choosing pessimistic locking by default as the "safe" option without considering
-held-duration cost under real contention.</p>
-<p><strong>Related:</strong>
-[[optimistic-vs-pessimistic-locking]], [[locks-deadlocks-and-lock-escalation]]</p>
-<h3 id="card-why-cant-a-version-entity-skip-locking">Card: Why can't a @Version entity skip locking?<a class="headerlink" href="#card-why-cant-a-version-entity-skip-locking" title="Permanent link">&para;</a></h3>
-<p><strong>Prompt:</strong>
-Can you write to a <code>@Version</code>-annotated entity without triggering the optimistic
-check?</p>
-<p><strong>Answer:</strong>
-No — Hibernate enforces the version check unconditionally on every UPDATE against a
-versioned entity, a real finding from building this chapter's own demos. There's no
-way to temporarily disable it; a genuinely unversioned entity is required to
-reproduce a true "no locking at all" baseline.</p>
-<p><strong>Why it matters:</strong>
-Retrofitting <code>@Version</code> onto an existing, heavily-used entity means every existing
-write path is now subject to the check, which can surface previously-invisible
-concurrent-write bugs.</p>
-<p><strong>Common trap:</strong>
-Assuming <code>@Version</code> only applies where you explicitly check for conflicts.</p>
-<p><strong>Related:</strong>
-[[optimistic-vs-pessimistic-locking]]</p>
-<h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Extend <code>PessimisticLockingBlockingDemo</code> to measure real wait time for 5 concurrent
-   threads all requesting the same lock, and verify they're served in real FIFO
-   order matching the database's own lock queue — compare total wall time against 1
-   waiter's cost times 5.</li>
-<li>Implement a bounded optimistic retry helper (a generic method taking a
-   <code>Supplier</code> of the operation and a max-attempts count) and use it to replace
-   <code>OptimisticLockRetryDemo</code>'s hand-written loop — verify it still produces the
-   identical real $200 result.</li>
-<li>Build a real mixed-strategy demo: one thread uses <code>PESSIMISTIC_WRITE</code> while
-   another writes the same row via a plain <code>session.merge()</code> on a <code>@Version</code> entity
-   with no explicit lock mode — verify whether the pessimistic lock actually
-   prevents the optimistic writer's conflict, or whether the two strategies fail to
-   compose as expected.</li>
-</ol>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p>Exercise 1 is a direct extension of <code>PessimisticLockingBlockingDemo</code>'s existing
-<code>CountDownLatch</code> pattern, generalized to N threads instead of 2; left as
-self-directed practice since the existing two-thread version provides the exact
-mechanism to extend. Exercise 2 is a straightforward refactor extracting
-<code>OptimisticLockRetryDemo</code>'s while-loop into a reusable generic method; left as
-self-directed practice. Exercise 3 is intentionally left unimplemented in this
-chapter's practice code — the answer (the two strategies do NOT automatically
-compose; the pessimistic writer's lock only blocks other pessimistic-lock requests
-and plain reads-for-update, not an optimistic writer using a plain <code>merge()</code>) is an
-important, subtle finding worth deriving directly rather than being told, and follows
-directly from Internal Implementation's explanation of what each lock mode actually
-acquires.</p>
-<h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li>The Hibernate User Guide's locking chapter (see <a href="#official-references">Official References</a>)
-  is the authoritative source for <code>LockModeType</code> semantics across all supported
-  databases, including nuances (<code>PESSIMISTIC_FORCE_INCREMENT</code>, lock timeouts) beyond
-  this chapter's scope.</li>
-<li><a href="../locks-deadlocks-and-lock-escalation/">Locks, Deadlocks, and Lock Escalation in RDBMS</a>
-  covers the deadlock risk pessimistic locking introduces in depth, deliberately not
-  repeated here.</li>
-</ul>
-<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Hibernate ORM 6.6 User Guide, <a href="https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html#locking">Locking</a></li>
-<li>Jakarta EE, <a href="https://jakarta.ee/specifications/persistence/3.1/jakarta-persistence-spec-3.1.html">Jakarta Persistence 3.1 Specification</a></li>
+<li><a href="../01-star-framework-and-delivery/">STAR Framework and Delivery Mechanics</a> — the base structure this chapter specializes for underperformance narratives.</li>
+<li><a href="../06-conflict-and-technical-disagreement/">Conflict and Technical Disagreement</a> — a distinct category (disagreement between peers performing well); see the distinguishing section above.</li>
+<li><a href="../07-mentoring-and-developing-others/">Mentoring and Developing Others</a> — a distinct category (proactive growth coaching, not a performance problem); the two can share a portfolio slot only if genuinely different stories.</li>
+<li><a href="../../../19-leadership-staff/handling-underperformance-and-difficult-feedback/">Handling Underperformance and Difficult Feedback Conversations</a> — the underlying working skill this chapter narrates; read that chapter first for the actual method, this one for how to tell the story about using it.</li>
 </ul>
 
 
@@ -12644,7 +12341,7 @@ acquires.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:30:59 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:29:17 UTC">September 21, 2026</span>
   </span>
 
     
@@ -12700,7 +12397,7 @@ acquires.</p>
                 
                 
               
-              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Optimistic%20vs.%20Pessimistic%20Locking&body=Page%3A%20/syllabus/06-databases/optimistic-vs-pessimistic-locking/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
+              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Underperformance%20and%20Difficult%20Feedback%20Narratives&body=Page%3A%20/syllabus/20-interview-preparation/behavioral/underperformance-and-difficult-feedback-narratives/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
             </div>
           
         </div>
@@ -12716,7 +12413,7 @@ acquires.</p>
     <p class="cci-page-feedback__title">Feedback &amp; comments</p>
     <p>
       Found an error, an outdated claim, or something unclear on this page?
-      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Optimistic%20vs.%20Pessimistic%20Locking&body=Page%3A%20/syllabus/06-databases/optimistic-vs-pessimistic-locking/%0A%0A">
+      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Underperformance%20and%20Difficult%20Feedback%20Narratives&body=Page%3A%20/syllabus/20-interview-preparation/behavioral/underperformance-and-difficult-feedback-narratives/%0A%0A">
         Email jmelendresdev@gmail.com
       </a>
       with the page and what to fix.
@@ -12746,7 +12443,7 @@ acquires.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../locks-deadlocks-and-lock-escalation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Locks, Deadlocks, and Lock Escalation in RDBMS">
+          <a href="../company-loop-structures-and-question-pattern-recognition/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -12756,20 +12453,20 @@ acquires.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Locks, Deadlocks, and Lock Escalation in RDBMS
+                Behavioral Interview-Day Logistics: Loop Structures and Question-Pattern Recognition
               </div>
             </div>
           </a>
         
         
           
-          <a href="../table-partitioning-and-sharding-strategies/" class="md-footer__link md-footer__link--next" aria-label="Next: Table Partitioning and Sharding Strategies">
+          <a href="../../question-bank/01-computer-science-foundations/" class="md-footer__link md-footer__link--next" aria-label="Next: Interview Question Bank — 01-computer-science-foundations">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Table Partitioning and Sharding Strategies
+                Interview Question Bank — 01-computer-science-foundations
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -12800,7 +12497,7 @@ acquires.</p>
         
 <div class="md-social">
   <a href="https://www.linkedin.com/in/juan-melendres/" target="_blank" rel="noopener" title="Juan Melendres" class="md-social__link cci-footer-avatar">
-    <img src="../../../assets/images/author-avatar.png" alt="Juan Melendres">
+    <img src="../../../../assets/images/author-avatar.png" alt="Juan Melendres">
   </a>
   
     
@@ -12850,30 +12547,30 @@ acquires.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.path", "navigation.tracking", "navigation.prune", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../js/print-site.js"></script>
+        <script src="../../../../js/print-site.js"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../javascripts/mermaid-init.js"></script>
+        <script src="../../../../javascripts/mermaid-init.js"></script>
       
-        <script src="../../../javascripts/checklist-progress.js"></script>
+        <script src="../../../../javascripts/checklist-progress.js"></script>
       
-        <script src="../../../javascripts/diagram-zoom.js"></script>
+        <script src="../../../../javascripts/diagram-zoom.js"></script>
       
-        <script src="../../../javascripts/level-badges.js"></script>
+        <script src="../../../../javascripts/level-badges.js"></script>
       
-        <script src="../../../javascripts/chapter-context.js"></script>
+        <script src="../../../../javascripts/chapter-context.js"></script>
       
-        <script src="../../../javascripts/search-placeholder-hint.js"></script>
+        <script src="../../../../javascripts/search-placeholder-hint.js"></script>
       
-        <script src="../../../javascripts/wide-table-scroll-hint.js"></script>
+        <script src="../../../../javascripts/wide-table-scroll-hint.js"></script>
       
-        <script src="../../../javascripts/reading-progress.js"></script>
+        <script src="../../../../javascripts/reading-progress.js"></script>
       
     
   </body>
