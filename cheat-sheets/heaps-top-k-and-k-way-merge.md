@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: 03-data-structures-algorithms
 topic_id: T-2106
 canonical: ../syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md
-last_updated: 2026-09-06
+last_updated: 2026-09-20
 ---
 
 # Heaps, Top-K, and K-Way Merge
@@ -22,6 +22,7 @@ A heap doesn't maintain a total order over every element — it only guarantees 
 - **Size-bounded heap ("keep only the top k")** — maintains a *min*-heap capped at size `k`, evicting the smallest whenever the cap is exceeded — counterintuitively using a min-heap to track the largest k elements, since the element to discard first is always the smallest currently kept.
 - **Heap-based k-way merge** — seed the heap with one candidate from each of k sorted sequences; each pop pushes that sequence's next candidate, so the heap always holds exactly one "next candidate" per active sequence.
 - **Greedy heap-based construction** — uses a heap to make a sequence of locally-optimal choices (always the most-frequent character, always the largest scarce-resource need), where the heap's O(log n) extreme-value access is what makes each greedy step affordable.
+- **Quickselect (added 2026-09-20)** — a heap-free alternative for the single "find the Kth largest value" question, reusing QuickSort's partitioning step but recursing into only one side. O(n) average, O(n²) worst case with a bad pivot — see below.
 
 ## Recognition Signals / When to Use This Pattern
 
@@ -32,13 +33,14 @@ A heap doesn't maintain a total order over every element — it only guarantees 
 | Multiple already-sorted sequences (explicit or implicit) need combined extraction | Heap-based k-way merge |
 | Need to know which element to *evict* when over capacity | Choose the heap type by what `peek()`/`poll()` must return for eviction, not by the problem's surface phrasing |
 
-**Complexity:** Last Stone Weight O(n log n) overall; Top K Frequent Words O(n log k); Find K Pairs with Smallest Sums O(k log(min(k,m))); Reorganize String O(n log a), a = alphabet size; Furthest Building O(n log(ladders)).
+**Complexity:** Last Stone Weight O(n log n) overall; Top K Frequent Words O(n log k); Find K Pairs with Smallest Sums O(k log(min(k,m))); Reorganize String O(n log a), a = alphabet size; Furthest Building O(n log(ladders)); Quickselect O(n) average / O(n²) worst case.
 
 ## Common Pitfalls
 
 - Reaching for a max-heap when the problem actually needs a bounded min-heap (or vice versa) — "keep the top k largest via a min-heap" is genuinely counterintuitive on first encounter.
 - Forgetting to flip a tie-break comparator's direction when the natural ordering doesn't match the direction the heap needs to evict in.
 - Materializing an entire cross-product or full merge upfront instead of using the lazy, incremental heap-based k-way-merge technique.
+- Using a deterministic (first-element) pivot in quickselect — real, measured ~237x comparison-count regression on already-sorted input; use a random pivot.
 
 ## Interview Answer Skeleton
 
@@ -55,6 +57,12 @@ A heap doesn't maintain a total order over every element — it only guarantees 
 - A "top k most frequent items" feature works correctly for most inputs but occasionally returns the wrong tie-break winner when two items have identical frequency.
 - Diagnose: check the heap comparator's tie-break branch — the tie-break direction inside a bounded min-heap must be the *inverse* of the problem's stated tie-break rule, since the heap evicts its "worst" element first, and among ties, "worst" is the opposite end of whatever the problem's display-order criterion favors.
 
+## Real Measured Numbers (Quickselect, added 2026-09-20)
+
+- First-element pivot on 2,000 already-sorted elements: 1,999,000 comparisons (`n(n-1)/2`). Random pivot, identical input: 8,410 — a real ~237x reduction.
+- At real scale (n=5,000,000, k=100): quickselect ~11ms vs. heap ~111ms — a real ~10x advantage.
+
 ## Related
 
 - syllabus/03-data-structures-algorithms/stacks-and-monotonic-stack.md
+- syllabus/03-data-structures-algorithms/sorting-algorithms.md

@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2106
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-20
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -62,6 +62,8 @@ This is a valid min-heap: every parent is `<=` both its children (`3<=8`, `3<=5`
 
 **Greedy heap-based construction** (Section 7, Problems 4 and 5) uses a heap not just to read out a sorted order, but to make a sequence of locally-optimal choices — always placing the currently most-frequent character (Reorganize String), or always reserving a scarce resource for the largest need seen so far (Furthest Building) — where the heap's O(log n) extreme-value access is what makes each greedy step affordable.
 
+**Quickselect is a heap-free alternative for the single "find the Kth largest element" question specifically** (Section 7, Problem 6) — not the more general "top k" or streaming cases the rest of this chapter covers, where a heap genuinely is the right tool. Quickselect reuses QuickSort's own partitioning step (see [Sorting Algorithms](sorting-algorithms.md)) but recurses into only *one* side of the partition instead of both, giving it O(n) *average* time versus a heap's O(n log k) — at the cost of the same worst-case pivot-choice risk QuickSort itself has.
+
 ## 5. How It Works Internally (L3)
 
 **The comparator-flipping technique for a bounded min-heap simulating "keep the top k largest"** (Section 7, Problem 2): a min-heap always evicts its smallest element via `poll()`. To keep the *largest* k elements, the heap is capped at size `k`, and any time a new candidate arrives, it's added and then the heap's current minimum is evicted if the size exceeds `k` — meaning the heap always holds exactly the k largest candidates seen so far, with its own minimum being the *smallest of the currently-kept largest* (the correct eviction target for a new, larger candidate later). Extending this to a *string* comparator with tie-breaking (Top K Frequent Words) requires inverting the tie-break direction specifically, since the element the heap should evict first is the "worst" by the problem's own ranking, and among tied frequencies, that worst element is the lexicographically *larger* one — the reverse of `String`'s natural ordering.
@@ -70,11 +72,14 @@ This is a valid min-heap: every parent is `<=` both its children (`3<=8`, `3<=5`
 
 **The greedy-with-a-cooldown technique** (Reorganize String) enforces "no two adjacent characters are identical" by holding the just-placed character out of the heap for exactly one iteration, re-admitting it only after a *different* character has been placed next. This one-step delay is sufficient — not two, not a general "wait until safe" check — specifically because the constraint being enforced (no two *identical adjacent* characters) only ever concerns the immediately preceding placement, not any earlier ones.
 
+**Quickselect's O(n)-average bound comes from discarding half the problem each partition, rather than recursing into both halves the way QuickSort does.** Partitioning an array around a pivot costs O(current range size); QuickSelect only ever recurses into whichever side of the partition contains the target rank, so the total work is `n + n/2 + n/4 + ... ≈ 2n` — linear, not `n log n`. The catch is identical to QuickSort's own (Section 5 of [Sorting Algorithms](sorting-algorithms.md)): a **deterministic pivot choice (e.g., always the first element) degrades to O(n²)** on adversarial input, because every partition becomes maximally unbalanced (discards only one element) instead of roughly halving the range. A **random pivot** defeats this — real, measured evidence in Section 10 below.
+
 ## 6. Practical Usage
 
 - **Reach for a heap the moment a problem repeats an extreme-value query** (largest, smallest, most/least frequent) as its core loop, rather than re-sorting or re-scanning on every iteration.
 - **Use a size-bounded heap for any "top k" or "k closest" requirement** — capping the heap at size `k` keeps the operation at O(n log k) rather than O(n log n), a real, worthwhile improvement when `k` is small relative to the input.
 - **Reach for a heap-based k-way merge whenever multiple already-sorted sequences (explicit or implicit, like a grid of pairwise sums) need their combined smallest/largest elements extracted incrementally**, without fully materializing every combination upfront.
+- **Reach for quickselect specifically when the question is "give me the single Kth largest/smallest value" and average-case time matters more than worst-case guarantees** — for anything broader (top k *as a list*, k-way merge, a continuously updating stream), stay with the heap-based techniques above; quickselect only answers the single-value question.
 
 ## 7. Examples
 
@@ -159,17 +164,50 @@ static int furthestBuilding(int[] heights, int bricks, int ladders) {
 
 **Retrospective:** ladders (unlimited climb coverage) should always be reserved for the *largest* climbs; whenever more than `ladders` climbs are tracked, the smallest is evicted and paid for with bricks instead, since it's the cheapest to downgrade. **Complexity:** O(n log(ladders)).
 
+**Problem 6 — LC 215, Kth Largest Element in an Array (quickselect, added 2026-09-20).**
+
+```java
+static int findKthLargest(int[] nums, int k) {
+    int[] a = nums.clone();
+    int targetIndex = a.length - k; // Kth largest == (n-k)th smallest, 0-indexed
+    int lo = 0, hi = a.length - 1;
+    Random random = new Random();
+    while (true) {
+        int pivotIndex = lo + random.nextInt(hi - lo + 1);
+        int p = partition(a, lo, hi, pivotIndex);
+        if (p == targetIndex) return a[p];
+        if (p < targetIndex) lo = p + 1; else hi = p - 1;
+    }
+}
+
+// Lomuto partition -- moves the pivot to its final sorted position, returns that index.
+static int partition(int[] a, int lo, int hi, int pivotIndex) {
+    int pivot = a[pivotIndex];
+    swap(a, pivotIndex, hi);
+    int store = lo;
+    for (int i = lo; i < hi; i++) {
+        if (a[i] < pivot) { swap(a, i, store); store++; }
+    }
+    swap(a, store, hi);
+    return store;
+}
+```
+
+**Retrospective:** see Section 5's O(n)-average argument. Only the partition containing `targetIndex` is ever recursed into (via the `lo`/`hi` narrowing, not actual recursion — an iterative loop, avoiding call-stack depth entirely). **Complexity:** O(n) average, O(n²) worst case with a bad pivot — see Section 10's real, measured contrast.
+
 ## 8. Common Mistakes
 
 - **Reaching for a max-heap when the problem actually needs a bounded min-heap (or vice versa)** — Section 5's "keep the top k largest via a min-heap" inversion is genuinely counterintuitive on first encounter and a common source of using the wrong heap type entirely.
 - **Forgetting to flip a tie-break comparator's direction** when the natural ordering (`String.compareTo`) doesn't match the direction the heap needs to evict in (Section 5) — producing a heap that silently returns the wrong tie-break winner rather than an obvious error.
 - **Materializing an entire cross-product or full merge upfront** instead of using the lazy, incremental heap-based k-way-merge technique (Section 5) — correct but wastes memory and time proportional to the full product size rather than just `k`.
+- **Using a deterministic pivot (always the first or last element) in quickselect** — Section 10's real measurement shows this isn't a minor inefficiency but a ~237x comparison-count regression on already-sorted input, the exact same mistake [Sorting Algorithms](sorting-algorithms.md) documents for naive QuickSort.
 
 ## 9. Edge Cases
 
 - **A single remaining element after repeated extraction** (Last Stone Weight's own verified `[1]` case, returning `1` immediately since the loop condition `size() > 1` never triggers) — the initial-size check matters.
 - **An impossible reorganization** (Reorganize String's verified `"aaab"` case, correctly returning `""`) — the algorithm's own natural termination (running out of characters it can safely place) is the feasibility signal, not a separate upfront check.
 - **Duplicate values across k-way-merge candidates** (Find K Pairs' verified duplicate-input case, correctly returning `[[1,1],[1,1]]`) — the heap's comparator must handle ties consistently without special-casing them.
+- **`k = 1` in quickselect** (the single largest element) — a real, verified boundary case in the practice suite (the adversarial-pivot comparison itself uses `k=1`), correctly terminating once the partition-narrowing loop converges to a single-element range.
 
 ## 10. Performance Implications
 
@@ -191,6 +229,19 @@ Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
 
 Every solution here achieves O(log n) or O(log k) per operation rather than O(n) or O(n log n) per operation from re-sorting — the practical performance implication is that a heap-based approach's advantage compounds specifically when the extreme-value query repeats many times over the algorithm's run, which is exactly the shape of every problem in this chapter.
 
+**Quickselect's O(n)-average vs. heap's O(n log k), measured directly (added 2026-09-20)** — `practice/java/week-23/heaps/src/QuickSelectDemo.java`, OpenJDK 21.0.12, re-run while writing this addition (24/24 assertions passing):
+
+```
+  n=2000 ascending input, k=1:
+    first-element pivot: 1999000 comparisons
+    random pivot:         8410 comparisons
+  n=5000000, k=100:
+    quickselect: 11ms
+    heap:        111ms
+```
+
+**Two distinct, real findings.** First, the pivot-choice risk: a deterministic first-element pivot on already-sorted input makes exactly `n(n-1)/2 = 1,999,000` comparisons (the same worst-case shape [Sorting Algorithms](sorting-algorithms.md) documents for naive QuickSort) — a random pivot cuts that to 8,410, a real ~237x reduction, by making a maximally-unbalanced partition statistically improbable rather than guaranteed. Second, at real scale (n=5,000,000, k=100) with a correctly random-pivoted quickselect, quickselect beats the heap-based approach by a real, measured ~10x (11ms vs. 111ms) — the direct, concrete payoff of O(n) average versus O(n log k) once n is large enough for the constant-factor difference to matter less than the asymptotic gap.
+
 ## 11. Trade-offs
 
 | Choice | Gains | Costs |
@@ -198,6 +249,7 @@ Every solution here achieves O(log n) or O(log k) per operation rather than O(n)
 | Heap (repeated extraction) | O(log n) per insert/extract, far better than repeated full re-sorts | O(n) space; only the single extreme value is directly accessible, not any arbitrary rank |
 | Size-bounded heap ("top k") | O(n log k), better than O(n log n) full sort when k ≪ n | Only correct for exactly "top k," not general sorted access |
 | Heap-based k-way merge | Avoids materializing the full cross-product/merge upfront | More complex bookkeeping (tracking which "row" each heap entry belongs to) than a simple sort |
+| Quickselect (single Kth-largest value) | O(n) average, real ~10x measured advantage over a heap at n=5,000,000 (above) | O(n²) worst case with a bad pivot (mitigated, not eliminated, by randomization); only answers a single rank, not a sorted top-k list |
 
 ## 12. Senior-Level Considerations (L3)
 
@@ -247,10 +299,27 @@ No existing `production-cookbook/` entry has a heap/top-k-specific algorithmic r
 
 **Follow-up questions.** "How would this change for finding the k *smallest* elements instead?" (Symmetric — a bounded *max*-heap, evicting the current largest when over capacity.)
 
+### Question 3 — Can you find the Kth largest element faster than a heap's O(n log k)? (added 2026-09-20)
+
+**Why interviewers ask it.** It's the standard follow-up once a candidate produces the heap-based solution — checking whether they know quickselect exists as an O(n)-average alternative, and, more importantly, whether they know its real cost (worst-case risk) well enough to justify the trade-off rather than reflexively reaching for it.
+
+**Expected answer.** Yes — quickselect, reusing QuickSort's own partitioning step but recursing into only the partition side containing the target rank, achieves O(n) average time versus the heap's O(n log k). The real measured trade-off (Section 10): a deterministic pivot risks O(n²) on adversarial input (a real, measured ~237x comparison-count regression), mitigated by a random pivot; at real scale, correctly-pivoted quickselect measured a real ~10x wall-clock advantage over the heap approach.
+
+**Minimum acceptable answer.** Names quickselect by name and knows it's related to QuickSort's partitioning, even without precise complexity figures.
+
+**Strong Senior answer.** States both complexities precisely (O(n) average, O(n²) worst case) and names the mitigation (random pivot) without prompting.
+
+**Staff-level extension.** Correctly scopes *when* this trade-off is worth taking: quickselect only answers a single rank, not a sorted top-k list or a continuously-updating stream — for those broader shapes (this chapter's own Problems 2 and 3), the heap remains the right tool regardless of quickselect's average-case speed, because quickselect would need to be re-run from scratch for each new query rather than maintaining state incrementally the way a heap does.
+
+**Common mistakes.** Presenting quickselect as strictly better than the heap approach without mentioning the worst-case risk, or without recognizing it doesn't generalize to the streaming/top-k-as-a-list cases the rest of this chapter covers.
+
+**Follow-up questions.** "Why does a random pivot fix the worst case instead of just making it less likely?" (It doesn't eliminate the worst case — it makes the adversarial input that triggers it different and unpredictable on every run, rather than a fixed input like "already sorted" that reliably triggers it against a deterministic pivot.) "Could you use median-of-medians instead of randomization?" (Yes — it guarantees O(n) worst case deterministically, at a real constant-factor cost typically not worth paying versus a random pivot's practically-always-fast behavior; not implemented in this chapter's demo, an honest scope boundary.)
+
 ## 16. Coding/Practice Exercises
 
-- Run the [existing practice code](../../practice/java/week-23/heaps/) yourself and confirm the same 10/10 assertions pass.
-- This pattern has additional real, already-solved problems: LC 215 (Kth Largest Element), LC 347 (Top K Frequent Elements), LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 3's implicit-grid k-way merge.
+- Run the [existing practice code](../../practice/java/week-23/heaps/) yourself and confirm the same 10/10 assertions pass, plus [`QuickSelectDemo.java`](../../practice/java/week-23/heaps/src/QuickSelectDemo.java)'s 24/24.
+- This pattern has additional real, already-solved problems: LC 347 (Top K Frequent Elements), LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 3's implicit-grid k-way merge.
+- Modify `QuickSelectDemo.java`'s adversarial-pivot comparison to use *descending* input instead of ascending, and predict, before running, whether the first-element pivot's comparison count changes — then measure and check (it shouldn't meaningfully change; a first-element pivot is equally adversarial-prone against either monotonic direction).
 - Attempt LC 253 (Meeting Rooms II) from scratch — it's heap-shaped but already solved and correctly categorized under [Intervals, Merging, and Sweep Line](intervals-merging-and-sweep-line.md) elsewhere in this repository; working through it here checks whether the heap primitive transfers to an interval-scheduling framing.
 
 ## 17. Debugging Exercises
@@ -276,5 +345,5 @@ Design this using the bounded min-heap technique from Section 5/15 directly: a m
 |---|---|---|
 | L1 | Explain, in plain language, what a heap is for and why it beats re-sorting for repeated extreme-value queries | [Section 3](#3-foundation-l1) |
 | L2 | Choose correctly between a max-heap, a min-heap, and a size-bounded heap for a new problem | [Interview Question 2](#question-2-why-does-keeping-the-top-k-largest-elements-use-a-min-heap-rather-than-a-max-heap) |
-| L3 | Derive the comparator-flipping argument for a bounded top-k heap, and explain the k-way-merge-over-an-implicit-grid technique | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
-| L4 | Diagnose a real tie-break bug in a bounded-heap comparator (Section 17), and design a real streaming top-N system using this chapter's bounded-heap technique (Section 18) | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4) |
+| L3 | Derive the comparator-flipping argument for a bounded top-k heap, explain the k-way-merge-over-an-implicit-grid technique, and derive quickselect's O(n)-average bound along with its pivot-choice risk | [Section 10's real verification](#10-performance-implications), [Section 5](#5-how-it-works-internally-l3) |
+| L4 | Diagnose a real tie-break bug in a bounded-heap comparator (Section 17), design a real streaming top-N system using this chapter's bounded-heap technique (Section 18), and correctly scope when quickselect's average-case speed is worth its worst-case risk versus a heap's incremental, streaming-friendly guarantees | [Debugging Exercise](#17-debugging-exercises), [Section 13](#13-staffsystem-level-considerations-l4), [Interview Question 3](#question-3-can-you-find-the-kth-largest-element-faster-than-a-heaps-on-log-k-added-2026-09-20) |

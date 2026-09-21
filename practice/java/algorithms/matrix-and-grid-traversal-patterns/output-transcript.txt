@@ -1,0 +1,37 @@
+### 1. Rotate Image (LC 48): in-place transpose+reverse vs. brute-force ground truth
+n=1    in-place rotation matches brute-force ground truth: true
+n=2    in-place rotation matches brute-force ground truth: true
+n=3    in-place rotation matches brute-force ground truth: true
+n=4    in-place rotation matches brute-force ground truth: true
+n=7    in-place rotation matches brute-force ground truth: true
+n=20   in-place rotation matches brute-force ground truth: true
+n=200  in-place rotation matches brute-force ground truth: true
+3x3 [[1,2,3],[4,5,6],[7,8,9]] rotated 90deg clockwise -> [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+
+### 2. Spiral Matrix (LC 54): correctness across square, non-square, and degenerate shapes
+PASS [[1, 2, 3], [4, 5, 6], [7, 8, 9]] -> [1, 2, 3, 6, 9, 8, 7, 4, 5]
+PASS [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]] -> [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
+PASS [[1, 2, 3, 4, 5]] -> [1, 2, 3, 4, 5]
+PASS [[1], [2], [3]] -> [1, 2, 3]
+PASS [[42]] -> [42]
+All spiral-traversal correctness checks passed.
+
+### 3a. Recursive DFS flood fill: real breaking point, one fresh JVM process per size
+        (a same-process sweep produces a JIT-warmup artifact -- see GridFloodFillStackDemo's own comment)
+  cells=1000     rows=100    cols=10   recursive DFS: OK, counted=1000
+  cells=5000     rows=500    cols=10   recursive DFS: OK, counted=5000
+  cells=10000    rows=1000   cols=10   recursive DFS: OK, counted=10000
+  cells=12000    rows=1200   cols=10   recursive DFS: OK, counted=12000
+  cells=14000    rows=1400   cols=10   recursive DFS: OK, counted=14000
+  cells=16000    rows=1600   cols=10   recursive DFS: StackOverflowError
+  cells=18000    rows=1800   cols=10   recursive DFS: StackOverflowError
+  cells=20000    rows=2000   cols=10   recursive DFS: StackOverflowError
+
+### 3b. Iterative DFS/BFS (explicit stack/queue) at 2,000,000 cells -- far past the recursive breaking point
+         and LC 200 (Number of Islands) correctness check
+
+cells=2000000 (far beyond the recursive breaking point above):
+  iterative DFS (explicit stack): counted=2000000, matches expected=true
+  iterative BFS (explicit queue): counted=2000000, matches expected=true
+
+LC200 number-of-islands example: expected=3, actual=3

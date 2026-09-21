@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: 03-data-structures-algorithms
 topic_id: "T-2106"
 canonical: ../syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md
-last_updated: 2026-09-07
+last_updated: 2026-09-20
 ---
 
 # Flashcards: Heaps, Top-K, and K-Way Merge
@@ -76,6 +76,23 @@ A minimal, precise mechanism — not a general "wait until safe" check — worth
 
 **Common trap:**
 Assuming a longer or more general cooldown window is needed than the constraint actually requires.
+
+**Related:**
+[syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md](../syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md)
+
+## Card: Quickselect vs. heap for a single Kth-largest value (added 2026-09-20)
+
+**Prompt:**
+Can you find the Kth largest element faster than a heap's O(n log k)? What's the real, measured trade-off?
+
+**Answer:**
+Yes — quickselect reuses QuickSort's partitioning step, recursing into only the side containing the target rank, for O(n) average time. Real, measured trade-off: a deterministic pivot makes it O(n²)-risky (1,999,000 comparisons on 2,000 sorted elements, vs. 8,410 with a random pivot — a real ~237x difference); correctly random-pivoted, it measured a real ~10x wall-clock advantage over the heap at n=5,000,000.
+
+**Why it matters:**
+The standard interviewer follow-up once the heap-based solution is produced — and it only answers a single rank, not a sorted top-k list or a streaming query, where the heap remains the right tool.
+
+**Common trap:**
+Presenting quickselect as strictly better than the heap without mentioning its worst-case risk or its narrower scope (single value only).
 
 **Related:**
 [syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md](../syllabus/03-data-structures-algorithms/heaps-top-k-and-k-way-merge.md)
