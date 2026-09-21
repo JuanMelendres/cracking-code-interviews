@@ -8092,7 +8092,7 @@
     
   
   
-    <span class="md-status md-status--5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06); 6th chapter added 2026-09-08 (SDLC and Agile Methodology Fundamentals, T-2212, a Junior Fundamentals addition found via a Notion knowledge-base review); 7th chapter added 2026-09-21 (Estimation and Story Points, T-1805 — gap audit)"></span>
+    <span class="md-status md-status--5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06); 6th chapter added 2026-09-08 (SDLC and Agile Methodology Fundamentals, T-2212, a Junior Fundamentals addition found via a Notion knowledge-base review); 7th chapter added 2026-09-21 (Estimation and Story Points, T-1805 — gap audit); 8th chapter added 2026-09-21, same day (Sprint Retrospectives, T-1806 — follow-up gap audit)"></span>
   
 
   
@@ -8117,7 +8117,7 @@
     
   
   
-    <span class="md-status md-status--5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06); 6th chapter added 2026-09-08 (SDLC and Agile Methodology Fundamentals, T-2212, a Junior Fundamentals addition found via a Notion knowledge-base review); 7th chapter added 2026-09-21 (Estimation and Story Points, T-1805 — gap audit)"></span>
+    <span class="md-status md-status--5 of 5 planned topics present — domain complete and fully L1–L4 (Phase 5, 2026-09-06); 6th chapter added 2026-09-08 (SDLC and Agile Methodology Fundamentals, T-2212, a Junior Fundamentals addition found via a Notion knowledge-base review); 7th chapter added 2026-09-21 (Estimation and Story Points, T-1805 — gap audit); 8th chapter added 2026-09-21, same day (Sprint Retrospectives, T-1806 — follow-up gap audit)"></span>
   
 
   
@@ -11306,7 +11306,7 @@
 
 
 <h1 id="engineering-practices">Engineering Practices<a class="headerlink" href="#engineering-practices" title="Permanent link">&para;</a></h1>
-<p>Git internals, code review, technical writing (ADRs), working with legacy code, refactoring discipline, and estimation/story points. New topics in this domain are assigned IDs in the plan's reserved <code>T-1800</code>–<code>T-1899</code> range (§9).</p>
+<p>Git internals, code review, technical writing (ADRs), working with legacy code, refactoring discipline, estimation/story points, and sprint retrospectives. New topics in this domain are assigned IDs in the plan's reserved <code>T-1800</code>–<code>T-1899</code> range (§9).</p>
 <blockquote>
 <p><strong>Phase 5 update (2026-09-03).</strong> All four gap topics named in the plan's own Section 7.6 ("code review, technical writing standards, working with legacy code, refactoring discipline") are now written, closing this domain. Each new chapter is written against the full 20-section Topic Specification with genuine L1–L4 coverage in one file. Two chapters (Legacy Code, Refactoring Discipline) are backed by real, compiled, executed Java demos; Code Review and ADRs are grounded in real, existing repository artifacts (this repository's own commit history, <code>templates/adr-template.md</code>, and <code>scripts/check_adr_completeness.py</code>, actually run) rather than a Java compile-and-run demo, since neither topic is itself an algorithm.
 <strong>Phase 5 update (2026-09-06).</strong> <code>git-internals-and-collaboration-workflows.md</code>, the one chapter left L3/L4-only after the 2026-09-03 update, has been retrofitted with real Level 1 — Foundation and Level 2 — Working Knowledge sections (a library content-deduplication and bookmark-pointer analogy, built up to the object-model and merge/rebase mechanics its existing L3/L4 content already covers). This closes the domain's last known gap and the transformation plan's last outstanding Phase 5 item — every domain in <code>syllabus/</code> is now genuinely L1–L4.</p>
@@ -11364,10 +11364,17 @@
 <td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
 <td><code>syllabus/18-engineering-practices/estimation-and-story-points.md</code></td>
 </tr>
+<tr>
+<td>T-1806</td>
+<td><a href="../sprint-retrospectives/">Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater</a></td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
+<td><code>syllabus/18-engineering-practices/sprint-retrospectives.md</code></td>
+</tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>Gap found and closed: Estimation and Story Points (2026-09-21).</strong> A follow-up gap audit found <a href="../sdlc-and-agile-methodology-fundamentals/">SDLC and Agile Methodology Fundamentals</a> covers Scrum's artifacts, roles, and sprint cadence in depth, but had zero coverage of estimation itself — story points, velocity, and how both get misused organizationally. Closed with <a href="../estimation-and-story-points/">Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses</a> (T-1805), backed by a real, fully deterministic Java demo (<code>practice/java/engineering-practices/estimation-and-story-points/</code>) proving numerically, not just by assertion, that comparing velocity across two teams is invalid: two teams estimating the identical 135 hours of real work, under two different (each internally consistent) point-per-hour calibrations, produce real velocities of 61 and 127 points respectively — a real 2.1x difference for delivering exactly the same work.</p>
+<p><strong>Gap found and closed: Sprint Retrospectives (2026-09-21, same day).</strong> A second follow-up pass found <a href="../sdlc-and-agile-methodology-fundamentals/">SDLC and Agile Methodology Fundamentals</a> names the sprint retrospective three separate times (as a Scrum ceremony, a common-mistakes note, and an interview answer) without ever explaining what actually happens in one or the specific, common way retrospectives fail. Closed with <a href="../sprint-retrospectives/">Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater</a> (T-1806), following the same real-artifact discipline this domain's own ADR chapter established rather than a Java demo: a new real template (<code>templates/retro-action-item-template.md</code>) and a real, executed mechanical checker (<code>scripts/check_retro_action_items.py</code>) verifying every action item names an explicit owner and deadline — real captured output passing against the template and a real, filled-out example retrospective (<code>practice/engineering-practices/retro-examples/sprint-14-retrospective.md</code>), and correctly failing against a deliberately incomplete one, naming exactly the missing fields.</p>
 </blockquote>
 <p><strong>This domain is now complete.</strong> T-1802 deliberately does not duplicate <a href="../../20-interview-preparation/technical-answers/trade-off-narration-and-adrs/">Trade-off Narration and Architecture Decision Records</a> (the interview-answer application of the same underlying skill, already migrated to <code>20-interview-preparation</code>) — it is the canonical, general engineering-practice reference that playbook entry's own "ADRs — the Written Form of the Same Skill" section points to. T-1803's practice code (<code>practice/java/engineering-practices/legacy-code/</code>) surfaced a genuine, real finding while being built — a discount-cliff quirk in the demo's own deliberately-legacy pricing method — used directly as the chapter's central worked example of characterization testing, rather than an invented one. T-1804's practice code (<code>practice/java/engineering-practices/refactoring-discipline/</code>) proves a real three-step Extract Method refactor is behavior-preserving via a parity test comparing before/after output across 10 real cases, all passing. Cheat sheets and flashcard decks for all four new topics were added 2026-09-06 and 2026-09-07 respectively (see <code>cheat-sheets/README.md</code>'s New-Writing Domain Cheat Sheets table and <code>flashcards/README.md</code>'s New-Writing Domain Decks table; <code>git-internals-and-collaboration-workflows.md</code> already had both from an earlier batch). Production-cookbook was investigated rather than batch-written (2026-09-07): <code>code-review-standards-and-practice.md</code> and <code>architecture-decision-records-and-technical-writing.md</code> already cite an existing entry; <code>refactoring-discipline.md</code> and <code>working-with-legacy-code.md</code> have no citation, but each one's own Section 14 explicitly documents why (no existing entry has that specific root cause) with a <code>Planned reference</code> note, not a placeholder awaiting action — per <code>production-cookbook/README.md</code>'s own "elevate an existing worked scenario, never invent one" rule, this is a resolved, honest gap.</p>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11392,7 +11399,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:11:38 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:19:26 UTC">September 21, 2026</span>
   </span>
 
     
