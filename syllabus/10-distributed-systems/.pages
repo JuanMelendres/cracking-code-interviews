@@ -7,4 +7,5 @@ nav:
   - distributed-transactions-saga-and-outbox.md
   - multi-region-failover-and-disaster-recovery.md
   - consensus-algorithms-raft-and-paxos.md
+  - distributed-locking-and-fencing-tokens.md
   - vector-clocks-and-quorum-based-replication.md

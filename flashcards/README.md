@@ -207,6 +207,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 174 | [Memory-Mapped Files and Zero-Copy I/O](memory-mapped-files-and-zero-copy-io.md) | T-2419 | 3 | `syllabus/16-performance-jvm/memory-mapped-files-and-zero-copy-io.md` |
 | 175 | [Coupling, Cohesion, and Code Smells](coupling-cohesion-and-code-smells.md) | T-1703 | 3 | `syllabus/04-software-design/coupling-cohesion-and-code-smells.md` |
 | 176 | [Kafka Security: SASL Authentication and ACL Authorization](kafka-security-authentication-and-authorization.md) | T-2421 | 3 | `syllabus/09-messaging-event-driven/kafka-security-authentication-and-authorization.md` |
+| 177 | [Distributed Locking and Fencing Tokens](distributed-locking-and-fencing-tokens.md) | T-2422 | 3 | `syllabus/10-distributed-systems/distributed-locking-and-fencing-tokens.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -390,6 +391,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-21 (same day, follow-up) — Testing Asynchronous and Concurrent Code (T-2420) gains a flashcard deck.** New `08-testing` chapter closing a gap audit that found zero coverage of how to write reliable tests for async/concurrent code. 4 cards. **New total: 266 decks (265 prior + 1), 925 cards (921 prior + 4).**
 
 **2026-09-21 (same day, follow-up) — Kafka Security: SASL Authentication and ACL Authorization (T-2421) gains a flashcard deck.** New `09-messaging-event-driven` chapter closing a gap audit that found zero coverage of Kafka authentication/authorization anywhere in the repository. 3 cards. **New total: 267 decks (266 prior + 1), 928 cards (925 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Distributed Locking and Fencing Tokens (T-2422) gains a flashcard deck.** New `10-distributed-systems` chapter closing a gap audit that found the consensus chapter's own "use a distributed lock" fix referenced twice but never explained. 3 cards. **New total: 268 decks (267 prior + 1), 931 cards (928 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

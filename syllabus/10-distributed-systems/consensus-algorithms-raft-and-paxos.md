@@ -4,8 +4,8 @@ slug: consensus-algorithms-raft-and-paxos
 document_type: handbook-chapter
 domain: 10-distributed-systems
 status: canonical
-version: 1.0
-last_updated: 2026-09-10
+version: 1.1
+last_updated: 2026-09-21
 topic_id: T-2403
 mastery_levels_covered:
   - L1
@@ -24,6 +24,7 @@ related:
   - cap-theorem-and-consistency-models.md
   - distributed-systems-failure-modes.md
   - vector-clocks-and-quorum-based-replication.md
+  - distributed-locking-and-fencing-tokens.md
   - ../06-databases/replication-read-replicas-and-replica-lag.md
   - ../../practice/java/consensus-raft/README.md
 official_references:
@@ -218,7 +219,7 @@ Every arrow into `Follower` except the very first one is triggered by the same r
 
 **Immediate mitigation.** Manually deduplicate the affected job runs and audit for any non-idempotent side effects from the double execution.
 
-**Permanent remediation.** Replace the hand-rolled scheme with a real, battle-tested consensus-backed lock (`etcd`'s lease-based distributed lock, built on Raft) — the majority-quorum requirement this chapter demonstrates is exactly the mechanism that makes "two simultaneous leaders" structurally impossible, not merely unlikely.
+**Permanent remediation.** Replace the hand-rolled scheme with a real, battle-tested consensus-backed lock (`etcd`'s lease-based distributed lock, built on Raft) — the majority-quorum requirement this chapter demonstrates is exactly the mechanism that makes "two simultaneous leaders" structurally impossible, not merely unlikely. Even this real fix has its own, separate residual risk if a leader pauses longer than its own lease — see [Distributed Locking and Fencing Tokens](distributed-locking-and-fencing-tokens.md) for that exact failure mode, measured directly.
 
 **Alternatives considered.** Tightening the heartbeat-timeout window to reduce the incident's likelihood — rejected as treating the symptom; a shorter timeout reduces the *frequency* of the failure mode without addressing that the underlying scheme has no real safety guarantee against it at all.
 

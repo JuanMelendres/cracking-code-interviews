@@ -51,6 +51,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-21 (same day, follow-up) — Kafka Security: SASL Authentication and ACL Authorization (T-2421) gains a cheat sheet.** New `09-messaging-event-driven` chapter closing a gap audit that found zero coverage of Kafka authentication/authorization anywhere in the repository. **New total: 266 cheat sheets.**
 
+**2026-09-21 (same day, follow-up) — Distributed Locking and Fencing Tokens (T-2422) gains a cheat sheet.** New `10-distributed-systems` chapter closing a gap audit that found the consensus chapter's own "use a distributed lock" fix referenced twice but never explained, nor its own separate stale-lock-holder failure mode. **New total: 267 cheat sheets.**
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets
@@ -345,6 +347,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Kafka Streams and Stateful Processing](kafka-streams-and-stateful-processing.md) | T-709 | kafka | `syllabus/09-messaging-event-driven/kafka-streams-and-stateful-processing.md` |
 | [Retention, Log Compaction, and Tiered Storage](retention-log-compaction-and-tiered-storage.md) | T-706 | kafka | `syllabus/09-messaging-event-driven/retention-log-compaction-and-tiered-storage.md` |
 | [Consensus Algorithms: Raft and Paxos](consensus-algorithms-raft-and-paxos.md) | T-2403 | system-design | `syllabus/10-distributed-systems/consensus-algorithms-raft-and-paxos.md` |
+| [Distributed Locking and Fencing Tokens](distributed-locking-and-fencing-tokens.md) | T-2422 | system-design | `syllabus/10-distributed-systems/distributed-locking-and-fencing-tokens.md` |
 | [Vector Clocks and Quorum-Based Replication](vector-clocks-and-quorum-based-replication.md) | T-2407 | system-design | `syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` |
 | [CSRF, CORS, and Session Security](csrf-cors-and-session-security.md) | T-1308 | security | `syllabus/12-security/csrf-cors-and-session-security.md` |
 | [Metric Cardinality and Alert Fatigue](metric-cardinality-and-alert-fatigue.md) | T-2409 | observability | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |

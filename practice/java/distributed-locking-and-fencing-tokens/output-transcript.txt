@@ -1,0 +1,26 @@
+=== LockContentionDemo (ordinary case -- real mutual exclusion while a lease is still valid) ===
+Client-A acquired lock, token=1 (5s TTL, still valid)
+Client-B correctly refused: Client-B cannot acquire: lock currently held by Client-A (token 1, not yet expired)
+
+=== UnsafeLockDemo (no fencing tokens -- real data corruption) ===
+Client-A acquired lock, token=1, ttl=300ms
+Client-A pausing for 500ms (simulated GC pause)...
+Client-B acquired lock (A's lease expired), token=2
+  [UnsafeStorage] Client-B wrote: B-value
+Client-A resumed -- writes without ever re-checking its own lease
+  [UnsafeStorage] Client-A wrote: A-value
+
+Final UnsafeStorage value: A-value
+BUG REPRODUCED: stale Client-A silently overwrote Client-B's authoritative write.
+
+=== FencedLockDemo (real fencing tokens -- stale write rejected) ===
+Client-A acquired lock, token=1, ttl=300ms
+Client-A pausing for 500ms (simulated GC pause)...
+Client-B acquired lock (A's lease expired), token=2
+  [FencedStorage] Client-B ACCEPTED (token 2): wrote B-value
+Client-A resumed -- attempts write with its now-stale token=1
+  [FencedStorage] Client-A REJECTED: token 1 <= last accepted token 2 (stale writer)
+
+Final FencedStorage value: B-value
+Client-A's stale write accepted? false
+FIX VERIFIED: stale Client-A's write was rejected; Client-B's authoritative write survived.
