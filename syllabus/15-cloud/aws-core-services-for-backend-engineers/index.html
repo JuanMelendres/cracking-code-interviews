@@ -6817,19 +6817,12 @@
   <span class="md-ellipsis">
     
   
-    DevOps & Containers — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-08 (Docker and Containers Fundamentals, T-2208), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning"></span>
-  
-
   
 
       </a>
@@ -11890,7 +11883,7 @@
 <h3 id="messaging-sqs-and-sns-solve-different-problems-and-are-often-used-together">Messaging: SQS and SNS solve different problems and are often used together<a class="headerlink" href="#messaging-sqs-and-sns-solve-different-problems-and-are-often-used-together" title="Permanent link">&para;</a></h3>
 <p><strong>SQS</strong> (Simple Queue Service) is a durable, point-to-point queue — one message is processed by (typically) one consumer, providing buffering and backpressure between a producer and a consumer at different rates. <strong>SNS</strong> (Simple Notification Service) is pub/sub — one message fanned out to potentially many independent subscribers. The common "SNS fan-out to multiple SQS queues" pattern combines both: SNS distributes one event to several independent consumer queues, each processed independently and durably.</p>
 <h3 id="traffic-distribution-and-elasticity-alb-and-auto-scaling-turn-a-fleet-of-instances-into-one-service">Traffic distribution and elasticity: ALB and Auto Scaling turn a fleet of instances into one service<a class="headerlink" href="#traffic-distribution-and-elasticity-alb-and-auto-scaling-turn-a-fleet-of-instances-into-one-service" title="Permanent link">&para;</a></h3>
-<p>An <strong>Application Load Balancer (ALB)</strong> is a Layer-7 (HTTP/HTTPS-aware) load balancer that distributes incoming requests across a target group of instances or containers, health-checking each target and routing only to ones passing that check — the same conceptual role <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/">Load Balancing, Service Discovery, and Health Checking</a> covers generally, with AWS managing the balancer itself. Being Layer-7 (as opposed to a Network Load Balancer's Layer-4) means an ALB can route on path or host header (<code>/api/orders</code> to one target group, <code>/api/payments</code> to another) and terminate TLS at the balancer, which a plain Layer-4 balancer cannot do. <strong>Auto Scaling</strong> (an Auto Scaling Group, or ASG, for EC2; a Service Auto Scaling policy for ECS; a HorizontalPodAutoscaler for EKS, per the previous chapters' Kubernetes coverage) adds or removes instances/tasks/pods in response to a metric — typically CPU or request-count target tracking — so fleet size tracks real load instead of being sized once for peak and left there. The two compose directly: the ALB's target group membership updates automatically as Auto Scaling adds or removes instances, so a scale-out event is invisible to callers — they keep hitting the same ALB endpoint while the pool of healthy targets behind it grows or shrinks.</p>
+<p>An <strong>Application Load Balancer (ALB)</strong> is a Layer-7 (HTTP/HTTPS-aware) load balancer that distributes incoming requests across a target group of instances or containers, health-checking each target and routing only to ones passing that check — the same conceptual role <a href="../../11-system-design/load-balancing-service-discovery-and-health-checking/">Load Balancing, Service Discovery, and Health Checking</a> covers generally, with AWS managing the balancer itself. Being Layer-7 (as opposed to a Network Load Balancer's Layer-4) means an ALB can route on path or host header (<code>/api/orders</code> to one target group, <code>/api/payments</code> to another) and terminate TLS at the balancer, which a plain Layer-4 balancer cannot do. <strong>Auto Scaling</strong> (an Auto Scaling Group, or ASG, for EC2; a Service Auto Scaling policy for ECS; a HorizontalPodAutoscaler for EKS — see <a href="../../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior/">Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior</a> for the real controller algorithm behind that third option) adds or removes instances/tasks/pods in response to a metric — typically CPU or request-count target tracking — so fleet size tracks real load instead of being sized once for peak and left there. The two compose directly: the ALB's target group membership updates automatically as Auto Scaling adds or removes instances, so a scale-out event is invisible to callers — they keep hitting the same ALB endpoint while the pool of healthy targets behind it grows or shrinks.</p>
 <h3 id="networking-and-access-control-vpc-subnets-security-groups-and-iam-decide-what-can-reach-what-and-who-can-do-what">Networking and access control: VPC, subnets, Security Groups, and IAM decide what can reach what, and who can do what<a class="headerlink" href="#networking-and-access-control-vpc-subnets-security-groups-and-iam-decide-what-can-reach-what-and-who-can-do-what" title="Permanent link">&para;</a></h3>
 <p><strong>Added 2026-09-08</strong>, closing a real gap found when the user asked directly whether this chapter covered VPC networking, IAM, and observability/IaC tooling — it did not, despite these being among the most commonly asked AWS interview questions.</p>
 <p>A <strong>VPC (Virtual Private Cloud)</strong> is an isolated, private network inside AWS — your own address space, with no default connectivity to anything outside it or to any other customer's VPC. A VPC is divided into <strong>subnets</strong>, each pinned to one Availability Zone: a <strong>public subnet</strong> has a route to an Internet Gateway (resources inside it can have a public IP and reach, or be reached from, the internet directly); a <strong>private subnet</strong> has no such route (resources inside it can only be reached from within the VPC, or reach the internet indirectly through a NAT Gateway sitting in a public subnet). The standard pattern places a backend application's database and internal services in a private subnet — reachable by the application tier, unreachable directly from the internet — with only the load balancer or a bastion host in a public subnet.</p>
@@ -12208,7 +12201,7 @@ Assuming both work the same way just at different layers, rather than one genuin
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 16:47:37 UTC">September 21, 2026</span>
   </span>
 
     
