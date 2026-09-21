@@ -416,6 +416,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-21 (same day, follow-up) — Handling Underperformance and Difficult Feedback Conversations (T-1908) gains a flashcard deck.** New `19-leadership-staff` chapter closing a follow-up gap audit that found zero coverage anywhere of one of the most commonly asked real leadership topics. 3 cards. **New total: 275 decks (274 prior + 1), 952 cards (949 prior + 3).**
 
 **2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a flashcard deck.** New `21-frontend-web` chapter closing a follow-up gap audit that found the D-F4 tier's remaining commonly-asked item (offline support/caching) still uncovered after its original three items closed 2026-09-11. 3 cards. **New total: 276 decks (275 prior + 1), 955 cards (952 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Prompt Injection and Agentic Security (T-2306) gains a flashcard deck.** New `22-ai-llm-engineering` chapter closing a gap audit that found `llm-api-integration-fundamentals.md` named prompt injection as a real risk category without ever explaining or demonstrating it. 3 cards. **New total: 277 decks (276 prior + 1), 958 cards (955 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
@@ -433,6 +435,7 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | A4 | [Prompt Engineering Patterns](prompt-engineering-patterns.md) | T-2303 | 3 | `syllabus/22-ai-llm-engineering/prompt-engineering-patterns.md` |
 | A5 | [Agentic Workflows and Tool Orchestration](agentic-workflows-and-tool-orchestration.md) | T-2304 | 3 | `syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` |
 | A6 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | T-2305 | 3 | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
+| A7 | [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) | T-2306 | 3 | `syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md` |
 
 ## How this relates to other deliverables
 

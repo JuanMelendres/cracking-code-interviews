@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 22-ai-llm-engineering
 topic_id: T-2300
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../07-api-design/rest-api-fundamentals.md
@@ -14,6 +14,7 @@ related:
   - rag-and-vector-databases.md
   - prompt-engineering-patterns.md
   - agentic-workflows-and-tool-orchestration.md
+  - prompt-injection-and-agentic-security.md
   - ../07-api-design/api-design.md
   - ../10-distributed-systems/distributed-systems-failure-modes.md
   - ../12-security/injection-input-validation-output-encoding.md
@@ -192,7 +193,7 @@ attempt 3: HTTP 200 -- succeeded after backoff
 
 ## 9. Edge Cases
 
-- **A tool's arguments come from the model, not a trusted client** — even though the model is "your own" integration, its tool-call arguments should be validated exactly like any other untrusted input ([Injection, Input Validation, and Output Encoding](../12-security/injection-input-validation-output-encoding.md)) before being used to, say, construct a file path or a SQL query; a model that hallucinates or is prompt-injected into requesting `get_weather` with a malicious `location` string is a real, documented risk category (prompt injection), not a hypothetical.
+- **A tool's arguments come from the model, not a trusted client** — even though the model is "your own" integration, its tool-call arguments should be validated exactly like any other untrusted input ([Injection, Input Validation, and Output Encoding](../12-security/injection-input-validation-output-encoding.md)) before being used to, say, construct a file path or a SQL query; a model that hallucinates or is prompt-injected into requesting `get_weather` with a malicious `location` string is a real, documented risk category (prompt injection) — see [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) for the real, executed attack and its structural defense — not a hypothetical.
 - **A streaming call that's cancelled mid-stream** (the user navigates away) still consumed real output tokens up to the cancellation point on the provider's side in most real APIs — a client needs to decide whether to bill/log the partial usage or treat a cancelled stream as a no-op, and both are defensible depending on the product's billing model.
 - **`max_tokens` cutting a reply off mid-sentence** is a real, distinct outcome from the model naturally finishing (`stop_reason: "end_turn"` versus a length-limited stop) — production code should check `stop_reason` explicitly rather than assuming every response completed naturally.
 

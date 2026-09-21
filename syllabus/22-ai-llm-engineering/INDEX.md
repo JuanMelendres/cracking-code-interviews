@@ -2,8 +2,8 @@
 title: "AI/LLM Engineering — Domain Index"
 document_type: syllabus-domain-index
 domain: 22-ai-llm-engineering
-status: 6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics
-last_updated: 2026-09-12
+status: 6 of 6 originally-planned topics present (2026-09-10) — domain opened 2026-09-09, remains open to further topics; 7th chapter added 2026-09-21 (Prompt Injection and Agentic Security, T-2306, gap audit)
+last_updated: 2026-09-21
 ---
 
 # AI/LLM Engineering
@@ -32,8 +32,11 @@ LLM API integration, prompting, retrieval-augmented generation (RAG), vector dat
 | T-2303 | [Prompt Engineering Patterns](prompt-engineering-patterns.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/22-ai-llm-engineering/prompt-engineering-patterns.md` |
 | T-2304 | [Agentic Workflows and Tool Orchestration](agentic-workflows-and-tool-orchestration.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` |
 | T-2305 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
+| T-2306 | [Prompt Injection and Agentic Security: Attack Vectors and Defenses](prompt-injection-and-agentic-security.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md` |
 
-**Planned list complete.** This domain remains open — further topics (e.g., fine-tuning, multi-agent systems, cost optimization at scale) may be added later, using the next free ID in the `T-2300`–`T-2399` range.
+**Planned list complete; domain remains open.** Further topics (e.g., fine-tuning, multi-agent systems, cost optimization at scale) may be added later, using the next free ID in the `T-2300`–`T-2399` range.
+
+> **Gap found and closed: Prompt Injection and Agentic Security (2026-09-21).** A follow-up gap audit found [LLM API Integration Fundamentals](llm-api-integration-fundamentals.md) (T-2300) already names prompt injection explicitly as "a real, documented risk category... not a hypothetical" — but never explains or demonstrates it, and no chapter anywhere in the repository does. Closed with [Prompt Injection and Agentic Security: Attack Vectors and Defenses](prompt-injection-and-agentic-security.md) (T-2306), backed by a real, fully deterministic Java demo (`practice/java/prompt-injection-and-agentic-security/`, no live LLM call, no timing/randomness — every run byte-identical): a real indirect-injection payload embedded in a tool's own output genuinely wipes a simulated database when an `UnsafeAgent` re-parses tool output for embedded directives; the identical payload against a `SafeAgent` that never re-parses tool output for instructions leaves the database untouched; and a real, bidirectional human-approval gate is proven to genuinely block without approval and genuinely allow with it.
 
 > **Complementary-deliverable gap closed (2026-09-12).** User asked what else needed checking; a direct diff found all 6 chapters in this domain had zero cheat sheet and zero flashcard deck since they were written (2026-09-09/10) — this deliverable's batch process had simply never run against a domain this new. Closed in one pass: `cheat-sheets/README.md` and `flashcards/README.md` each gain 6 new entries (18 new flashcards total, 3 per deck), every fact extracted directly from each chapter's own Foundation/Core Concepts/Common Mistakes sections.
 

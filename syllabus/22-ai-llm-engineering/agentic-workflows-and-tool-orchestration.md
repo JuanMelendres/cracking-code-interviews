@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 22-ai-llm-engineering
 topic_id: T-2304
 status: canonical
-version: 1.0
-last_updated: 2026-09-10
+version: 1.1
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - llm-api-integration-fundamentals.md
@@ -14,6 +14,7 @@ related:
   - prompt-engineering-patterns.md
   - rag-and-vector-databases.md
   - llm-evaluation-and-testing.md
+  - prompt-injection-and-agentic-security.md
   - ../10-distributed-systems/distributed-systems-failure-modes.md
   - ../12-security/injection-input-validation-output-encoding.md
 practice: ../../practice/java/agentic-workflows-and-tool-orchestration/
@@ -170,7 +171,7 @@ A Senior engineer building an agentic loop states the iteration cap and the reas
 
 ## 13. Staff/System-Level Considerations (L4)
 
-At Staff scope, an agentic system's real operational risk is cost and blast radius at scale, not just individual-loop correctness — a subtle bug that occasionally sends a loop to its iteration cap on 1% of requests is a real, ongoing cost multiplier once traffic is high enough, the agentic-system equivalent of [Distributed Systems Failure Modes](../10-distributed-systems/distributed-systems-failure-modes.md)'s retry-amplification concern. A Staff engineer also owns the real security boundary question directly: every tool an agentic system can call is a real action it might take autonomously across several steps, not a single, human-reviewed action — which means tool permissions, argument validation, and a real audit trail of what the loop actually did (not just what it was asked to do) become organizational requirements, not nice-to-haves, once an agentic system has access to anything with real side effects (sending an email, making a purchase, modifying a record).
+At Staff scope, an agentic system's real operational risk is cost and blast radius at scale, not just individual-loop correctness — a subtle bug that occasionally sends a loop to its iteration cap on 1% of requests is a real, ongoing cost multiplier once traffic is high enough, the agentic-system equivalent of [Distributed Systems Failure Modes](../10-distributed-systems/distributed-systems-failure-modes.md)'s retry-amplification concern. A Staff engineer also owns the real security boundary question directly: every tool an agentic system can call is a real action it might take autonomously across several steps, not a single, human-reviewed action — which means tool permissions, argument validation, and a real audit trail of what the loop actually did (not just what it was asked to do) become organizational requirements, not nice-to-haves, once an agentic system has access to anything with real side effects (sending an email, making a purchase, modifying a record) — see [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) for the real, executed attack this exact risk surface enables, and the structural defense against it.
 
 ## 14. Production Scenarios
 
