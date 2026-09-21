@@ -29,7 +29,7 @@
     
     
       
-        <title>Observability — Domain Index - Cracking Code Interviews</title>
+        <title>INDEX - Cracking Code Interviews</title>
       
     
     
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Observability — Domain Index
+              INDEX
             
           </span>
         </div>
@@ -6560,19 +6560,12 @@
   <span class="md-ellipsis">
     
   
-    Observability — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-11 (Metric Cardinality and Alert Fatigue, T-2409 — gap found in a full 22-domain audit)"></span>
-  
-
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -6585,19 +6578,12 @@
   <span class="md-ellipsis">
     
   
-    Observability — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-11 (Metric Cardinality and Alert Fatigue, T-2409 — gap found in a full 22-domain audit)"></span>
-  
-
   
 
       </a>
@@ -11326,12 +11312,20 @@
 
 
 
+<hr />
+<p>title: "Observability — Domain Index"
+document_type: syllabus-domain-index
+domain: 13-observability
+status: 4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-11 (Metric Cardinality and Alert Fatigue, T-2409 — gap found in a full 22-domain audit); 6th chapter added 2026-09-21 (Chaos Engineering: Fault Injection and Resilience Verification, T-2423 — gap audit)
+last_updated: 2026-09-21</p>
+<hr />
 <h1 id="observability">Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h1>
-<p>"How do I know something is wrong in production" — logging/metrics/tracing, SLOs and error budgets, incident response, percentile/tail-latency measurement, and metric cardinality/alert-fatigue management. Split out of <code>performance/</code> per the plan's Section 3.3 (a different skill than JVM tuning).</p>
+<p>"How do I know something is wrong in production" — logging/metrics/tracing, SLOs and error budgets, incident response, percentile/tail-latency measurement, metric cardinality/alert-fatigue management, and chaos engineering (proactive fault-injection verification). Split out of <code>performance/</code> per the plan's Section 3.3 (a different skill than JVM tuning).</p>
 <blockquote>
 <p><strong>Phase 3 update (2026-09-03).</strong> This domain's full existing content (4 chapter(s)) has physically relocated via <code>git mv</code>, preserving file history. See the repository-root <code>CHANGELOG.md</code> for the full batch account.</p>
 <p><strong>Phase 5 update (2026-09-04) — domain complete.</strong> All 4 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject (a car-diagnostics analogy for USE/RED and a monthly-allowance analogy for error budgets, a coffee-shop-wait-time analogy for percentiles and coordinated omission, a package-tracking-number analogy for logs/metrics/traces, and a leaking-kitchen-sink analogy for mitigate-before-diagnose and blameless postmortems). Every chapter also gained <code>topic_id</code>/<code>mastery_levels_covered: [L1, L2, L3, L4]</code> front matter. <strong><code>13-observability</code> is now fully L1–L4 (4/4)</strong> — the eleventh fully-retrofitted domain in the syllabus.</p>
 <p><strong>Gap found and closed: Metric Cardinality and Alert Fatigue (2026-09-11).</strong> A full repository-wide 22-domain gap audit found this domain had zero coverage of metric cardinality management or alert fatigue/runbook discipline, despite both being real, common, costly production problems with no dedicated entry anywhere in the original Master Topic Register. Closed with <a href="../metric-cardinality-and-alert-fatigue/">Metric Cardinality and Alert Fatigue</a> (T-2409), backed by a real demo (<code>practice/java/observability/metric-cardinality-and-alert-fatigue/</code>) proving two things directly: a real Micrometer <code>SimpleMeterRegistry</code> shows an unbounded metric label producing a real 6,667x more distinct time series (and ~43x more heap) than a bounded one for identical request volume; and a real, seeded 7-day synthetic error-rate simulation shows Google's own published multi-window, multi-burn-rate alerting technique firing 14x less often than a naive single-threshold rule, while both real, injected incidents are still caught by both rules — real, quantified proof the technique reduces alert noise without sacrificing detection.</p>
+<p><strong>Gap found and closed: Chaos Engineering (2026-09-21).</strong> A further gap audit found this domain covered detection (alerting) and reaction (incident response) but had zero coverage anywhere in the repository of proactively verifying that either actually works — zero grep hits for "chaos" before this pass, and <code>multi-region-failover-and-disaster-recovery.md</code> referenced a "DR game day" once, without explaining the broader discipline it's one instance of. Closed with <a href="../chaos-engineering-fault-injection-and-resilience-verification/">Chaos Engineering: Fault Injection and Resilience Verification</a> (T-2423), backed by a real, timed demo (<code>practice/java/observability/chaos-engineering-fault-injection/</code>) proving a real fault deliberately injected against only a minimized 25% canary cohort was detected by real multi-window burn-rate monitoring (the same technique T-2409 documents) in ~1.1 real seconds / 12 real requests, with real recovery confirmed ~310ms after rollback — no mocked clock anywhere in the demo.</p>
 </blockquote>
 <h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <table>
@@ -11374,6 +11368,12 @@
 <td>L1, L2, L3, L4 — fully written, real demo (2026-09-11)</td>
 <td><code>syllabus/13-observability/metric-cardinality-and-alert-fatigue.md</code></td>
 </tr>
+<tr>
+<td>T-2423</td>
+<td>Chaos Engineering: Fault Injection and Resilience Verification</td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
+<td><code>syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11398,7 +11398,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 15:01:05 UTC">September 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 16:36:31 UTC">September 21, 2026</span>
   </span>
 
     
@@ -11454,7 +11454,7 @@
                 
                 
               
-              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Observability%20%E2%80%94%20Domain%20Index&body=Page%3A%20/syllabus/13-observability/INDEX/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
+              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20INDEX&body=Page%3A%20/syllabus/13-observability/INDEX/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
             </div>
           
         </div>
@@ -11470,7 +11470,7 @@
     <p class="cci-page-feedback__title">Feedback &amp; comments</p>
     <p>
       Found an error, an outdated claim, or something unclear on this page?
-      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Observability%20%E2%80%94%20Domain%20Index&body=Page%3A%20/syllabus/13-observability/INDEX/%0A%0A">
+      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20INDEX&body=Page%3A%20/syllabus/13-observability/INDEX/%0A%0A">
         Email jmelendresdev@gmail.com
       </a>
       with the page and what to fix.
