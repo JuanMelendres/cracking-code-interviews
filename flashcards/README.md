@@ -414,9 +414,12 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-21 (same day, follow-up) — Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater (T-1806) gains a flashcard deck.** New `18-engineering-practices` chapter closing a second follow-up gap audit that found `sdlc-and-agile-methodology-fundamentals.md` named the sprint retrospective three times without ever explaining it. 3 cards. **New total: 274 decks (273 prior + 1), 949 cards (946 prior + 3).**
 
 **2026-09-21 (same day, follow-up) — Handling Underperformance and Difficult Feedback Conversations (T-1908) gains a flashcard deck.** New `19-leadership-staff` chapter closing a follow-up gap audit that found zero coverage anywhere of one of the most commonly asked real leadership topics. 3 cards. **New total: 275 decks (274 prior + 1), 952 cards (949 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a flashcard deck.** New `21-frontend-web` chapter closing a follow-up gap audit that found the D-F4 tier's remaining commonly-asked item (offline support/caching) still uncovered after its original three items closed 2026-09-11. 3 cards. **New total: 276 decks (275 prior + 1), 955 cards (952 prior + 3).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
+| F35 | [Service Workers and PWA: Caching Strategies and Offline Support](service-workers-and-pwa-caching-strategies.md) | F-404 | Advanced | `syllabus/21-frontend-web/service-workers-and-pwa-caching-strategies.md` |
 
 ## AI/LLM Engineering Decks (T-2300s, no IWI)
 

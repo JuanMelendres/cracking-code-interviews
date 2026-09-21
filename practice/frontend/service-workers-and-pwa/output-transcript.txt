@@ -1,0 +1,26 @@
+server listening on 8919
+=== 1. Registering the real service worker and waiting for it to take control ===
+  Service worker is now controlling this page (real navigator.serviceWorker.controller set, no reload needed -- clients.claim() in effect).
+  Server counts after initial page load + SW install caching: cssRequestCount=2, apiRequestCount=0
+
+=== 2. Cache-first strategy for /app.css: repeated fetches should NOT increase server request count ===
+  fetch #1 of /app.css returned 75 bytes
+  fetch #2 of /app.css returned 75 bytes
+  fetch #3 of /app.css returned 75 bytes
+  Server cssRequestCount before: 2, after 3 more fetches: 2 (real proof: cache-first served all 3 with zero new network hits)
+
+=== 3. Network-first strategy for /api/data: each online fetch SHOULD hit the real server ===
+  fetch #1 of /api/data returned value=1
+  fetch #2 of /api/data returned value=2
+  Server apiRequestCount before: 0, after 2 more fetches: 2 (real proof: network-first hit the server every time while online)
+
+=== 4. Real offline mode (Playwright browser-context-level network cutoff, not a mocked failure) ===
+  Offline fetch of /app.css (cached asset): {"ok":true,"bytes":75}
+  Offline fetch of /api/data (network-first, falls back to last cached value): {"ok":true,"data":{"value":2,"servedByRequestNumber":2}}
+  Last value seen while online was 2; offline fallback returned value=2
+  Offline fetch of /never-cached.txt (never cached, no SW strategy applies): {"ok":false,"error":"TypeError: Failed to fetch"}
+  Server counts unchanged during offline fetches (confirms no real network reached the server): cssRequestCount=2, apiRequestCount=2
+
+=== 5. Back online: network-first resumes hitting the real server ===
+  Fetch of /api/data after going back online returned value=3
+  Server apiRequestCount increased to 3 (real proof: real network resumed)
