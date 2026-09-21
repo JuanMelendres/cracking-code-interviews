@@ -4,8 +4,8 @@ slug: solid-principles
 document_type: handbook-chapter
 domain: 04-software-design
 status: canonical
-version: 1.0
-last_reviewed: 2026-09-10
+version: 1.1
+last_reviewed: 2026-09-21
 topic_id: T-1701
 mastery_levels_covered:
   - L1
@@ -26,6 +26,7 @@ prerequisites:
 related:
   - design-patterns-applied.md
   - ood-interview-problems.md
+  - coupling-cohesion-and-code-smells.md
   - ../17-architecture/clean-hexagonal-architecture.md
 official_references:
   - https://docs.oracle.com/javase/specs/jls/se21/html/jls-9.html
@@ -108,7 +109,7 @@ Keep one question per letter, and ask it about the specific piece of code in fro
 
 ## Definition and Purpose
 
-**SOLID** is an acronym for five object-oriented design principles, popularized by Robert C. Martin, aimed at producing code that is easier to understand, extend, and maintain as requirements change over time. **Single Responsibility Principle (SRP)**: a class should have only one reason to change. **Open/Closed Principle (OCP)**: software entities should be open for extension but closed for modification. **Liskov Substitution Principle (LSP)**: objects of a superclass should be replaceable with objects of a subclass without altering the correctness of the program. **Interface Segregation Principle (ISP)**: no client should be forced to depend on methods it does not use. **Dependency Inversion Principle (DIP)**: high-level modules should not depend on low-level modules — both should depend on abstractions.
+**SOLID** is an acronym for five object-oriented design principles, popularized by Robert C. Martin, aimed at producing code that is easier to understand, extend, and maintain as requirements change over time. Collectively, the five principles are concrete mechanisms for achieving the two underlying properties [Coupling, Cohesion, and Code Smells](coupling-cohesion-and-code-smells.md) names directly — low coupling and high cohesion — without SOLID itself ever naming either property. **Single Responsibility Principle (SRP)**: a class should have only one reason to change. **Open/Closed Principle (OCP)**: software entities should be open for extension but closed for modification. **Liskov Substitution Principle (LSP)**: objects of a superclass should be replaceable with objects of a subclass without altering the correctness of the program. **Interface Segregation Principle (ISP)**: no client should be forced to depend on methods it does not use. **Dependency Inversion Principle (DIP)**: high-level modules should not depend on low-level modules — both should depend on abstractions.
 
 ## Core Concepts
 

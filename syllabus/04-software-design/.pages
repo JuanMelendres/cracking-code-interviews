@@ -2,5 +2,6 @@ title: Software Design
 nav:
   - INDEX.md
   - solid-principles.md
+  - coupling-cohesion-and-code-smells.md
   - design-patterns-applied.md
   - ood-interview-problems.md
