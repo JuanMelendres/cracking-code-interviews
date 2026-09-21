@@ -363,6 +363,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Frontend Security: XSS, CSRF, and CSP](frontend-security-xss-csrf-and-csp.md) | F-401 | frontend-web | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | frontend-web | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | frontend-web | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
+| [Service Workers and PWA: Caching Strategies and Offline Support](service-workers-and-pwa-caching-strategies.md) | F-404 | frontend-web | `syllabus/21-frontend-web/service-workers-and-pwa-caching-strategies.md` |
 | [SOLID Principles](solid-principles.md) | T-1701 | software-design | `syllabus/04-software-design/solid-principles.md` |
 | [Object-Oriented Design Interview Problems](ood-interview-problems.md) | T-1702 | software-design | `syllabus/04-software-design/ood-interview-problems.md` |
 | [Sorting Algorithms](sorting-algorithms.md) | T-2119 | data-structures-algorithms | `syllabus/03-data-structures-algorithms/sorting-algorithms.md` |
@@ -406,6 +407,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-21 (same day, follow-up) — Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater (T-1806) gains a cheat sheet.** New `18-engineering-practices` chapter, added the same day to close a second follow-up gap audit finding — `sdlc-and-agile-methodology-fundamentals.md` named the sprint retrospective three times without ever explaining it. New total, verified directly against the file system: **276 cheat sheets** (275 prior + 1).
 
 **2026-09-21 (same day, follow-up) — Handling Underperformance and Difficult Feedback Conversations (T-1908) gains a cheat sheet.** New `19-leadership-staff` chapter, added the same day to close a follow-up gap audit finding — zero coverage anywhere of one of the most commonly asked real leadership topics. New total, verified directly against the file system: **277 cheat sheets** (276 prior + 1).
+
+**2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a cheat sheet.** New `21-frontend-web` chapter, added the same day to close a follow-up gap audit finding — the D-F4 tier's remaining commonly-asked item (offline support/caching) was still uncovered after its original three items closed 2026-09-11. New total, verified directly against the file system: **278 cheat sheets** (277 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
