@@ -7087,19 +7087,12 @@
   <span class="md-ellipsis">
     
   
-    Cloud — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--4 originally-mapped-plus-gap-audit chapters — 3 physically relocated (Phase 3, 2026-09-03), L1/L2 retrofit complete (Phase 5, 2026-09-04); 4th chapter added 2026-09-10 (Azure and GCP for Backend Engineers, T-2404 — gap found in a full 22-domain audit)"></span>
-  
-
   
 
       </a>
@@ -11875,7 +11868,7 @@
 <p>AWS's core services for backend engineering cluster into a few functional categories relevant to nearly every backend system: <strong>compute</strong> (where code runs), <strong>storage</strong> (where data persists, distinct from a managed database), <strong>database</strong> (managed, purpose-built data stores), <strong>messaging</strong> (asynchronous communication between components), and <strong>networking</strong> (how traffic reaches and moves between the above). Each category typically offers multiple services trading off operational ownership against control and cost — understanding that trade-off, not just each service's feature list, is what this topic actually tests.</p>
 <h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="compute-ec2-ecs-eks-and-lambda-trade-operational-ownership-for-convenience">Compute: EC2, ECS, EKS, and Lambda trade operational ownership for convenience<a class="headerlink" href="#compute-ec2-ecs-eks-and-lambda-trade-operational-ownership-for-convenience" title="Permanent link">&para;</a></h3>
-<p><strong>EC2</strong> gives raw virtual machines — full control, full operational ownership (patching, scaling, orchestration all manual or self-built). <strong>ECS</strong> (Elastic Container Service) is AWS's own container orchestrator — less operational ownership than raw EC2, tied to AWS's specific orchestration model. <strong>EKS</strong> (Elastic Kubernetes Service) is managed Kubernetes — the same Kubernetes API and ecosystem this week's earlier chapters cover, with AWS managing the control plane. <strong>Lambda</strong> runs code in response to events with zero server management at all — maximum convenience, at the cost of execution-time limits, cold-start latency, and a fundamentally different programming/deployment model than a long-running server process.</p>
+<p><strong>EC2</strong> gives raw virtual machines — full control, full operational ownership (patching, scaling, orchestration all manual or self-built). <strong>ECS</strong> (Elastic Container Service) is AWS's own container orchestrator — less operational ownership than raw EC2, tied to AWS's specific orchestration model. <strong>EKS</strong> (Elastic Kubernetes Service) is managed Kubernetes — the same Kubernetes API and ecosystem this week's earlier chapters cover, with AWS managing the control plane. <strong>Lambda</strong> runs code in response to events with zero server management at all — maximum convenience, at the cost of execution-time limits, cold-start latency (the real mechanism behind that cost, and what actually mitigates it, is covered in full in <a href="../serverless-lambda-execution-model-cold-starts-and-concurrency/">Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling</a>), and a fundamentally different programming/deployment model than a long-running server process.</p>
 <h3 id="storage-s3-ebs-and-efs-have-different-access-models-not-just-different-price-points">Storage: S3, EBS, and EFS have different access models, not just different price points<a class="headerlink" href="#storage-s3-ebs-and-efs-have-different-access-models-not-just-different-price-points" title="Permanent link">&para;</a></h3>
 <p><strong>S3</strong> is object storage — accessed via HTTP-style API calls (put/get by key), not mounted as a filesystem, durable and effectively infinitely scalable, ideal for large, infrequently-modified objects (backups, static assets, data lake storage). <strong>EBS</strong> (Elastic Block Store) is block storage attached to a single EC2 instance at a time — behaves like a regular disk, needed for a traditional database or filesystem that expects real block-device semantics. <strong>EFS</strong> (Elastic File System) is a managed, network-attached filesystem that multiple instances can mount simultaneously — for genuinely shared, POSIX-filesystem-semantics access across many compute instances.</p>
 <h3 id="database-rds-and-dynamodb-follow-the-same-access-pattern-method-as-any-storage-decision">Database: RDS and DynamoDB follow the same access-pattern method as any storage decision<a class="headerlink" href="#database-rds-and-dynamodb-follow-the-same-access-pattern-method-as-any-storage-decision" title="Permanent link">&para;</a></h3>
@@ -12201,7 +12194,7 @@ Assuming both work the same way just at different layers, rather than one genuin
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 16:47:37 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 17:38:02 UTC">September 21, 2026</span>
   </span>
 
     
@@ -12303,7 +12296,7 @@ Assuming both work the same way just at different layers, rather than one genuin
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../INDEX/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cloud — Domain Index">
+          <a href="../INDEX/" class="md-footer__link md-footer__link--prev" aria-label="Previous: INDEX">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -12313,7 +12306,7 @@ Assuming both work the same way just at different layers, rather than one genuin
                 Previous
               </span>
               <div class="md-ellipsis">
-                Cloud — Domain Index
+                INDEX
               </div>
             </div>
           </a>

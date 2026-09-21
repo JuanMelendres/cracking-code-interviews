@@ -29,7 +29,7 @@
     
     
       
-        <title>Cloud — Domain Index - Cracking Code Interviews</title>
+        <title>INDEX - Cracking Code Interviews</title>
       
     
     
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cloud — Domain Index
+              INDEX
             
           </span>
         </div>
@@ -7096,19 +7096,12 @@
   <span class="md-ellipsis">
     
   
-    Cloud — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--4 originally-mapped-plus-gap-audit chapters — 3 physically relocated (Phase 3, 2026-09-03), L1/L2 retrofit complete (Phase 5, 2026-09-04); 4th chapter added 2026-09-10 (Azure and GCP for Backend Engineers, T-2404 — gap found in a full 22-domain audit)"></span>
-  
-
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -7121,19 +7114,12 @@
   <span class="md-ellipsis">
     
   
-    Cloud — Domain Index
+    INDEX
   
 
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--4 originally-mapped-plus-gap-audit chapters — 3 physically relocated (Phase 3, 2026-09-03), L1/L2 retrofit complete (Phase 5, 2026-09-04); 4th chapter added 2026-09-10 (Azure and GCP for Backend Engineers, T-2404 — gap found in a full 22-domain audit)"></span>
-  
-
   
 
       </a>
@@ -11312,12 +11298,20 @@
 
 
 
+<hr />
+<p>title: "Cloud — Domain Index"
+document_type: syllabus-domain-index
+domain: 15-cloud
+status: 4 originally-mapped-plus-gap-audit chapters — 3 physically relocated (Phase 3, 2026-09-03), L1/L2 retrofit complete (Phase 5, 2026-09-04); 4th chapter added 2026-09-10 (Azure and GCP for Backend Engineers, T-2404 — gap found in a full 22-domain audit); 5th chapter added 2026-09-21 (Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling, T-2425 — gap audit)
+last_updated: 2026-09-21</p>
+<hr />
 <h1 id="cloud">Cloud<a class="headerlink" href="#cloud" title="Permanent link">&para;</a></h1>
-<p>AWS core services (ECS/EKS/RDS/SQS/SNS/ALB/Auto Scaling), Azure and GCP equivalents, cloud cost economics, and twelve-factor configuration — the more architectural, less daily-operational half of what was <code>cloud/</code>.</p>
+<p>AWS core services (ECS/EKS/RDS/SQS/SNS/ALB/Auto Scaling), Azure and GCP equivalents, cloud cost economics, twelve-factor configuration, and serverless (Lambda) execution mechanics — the more architectural, less daily-operational half of what was <code>cloud/</code>.</p>
 <blockquote>
 <p><strong>Phase 3 update (2026-09-03).</strong> This domain's full existing content (3 chapter(s)) has physically relocated via <code>git mv</code>, preserving file history. See the repository-root <code>CHANGELOG.md</code> for the full batch account.</p>
 <p><strong>Phase 5 update (2026-09-04) — domain complete.</strong> All 3 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject: a car-ownership-spectrum analogy for the compute spectrum plus a safe-deposit-box/external-hard-drive/vending-machine analogy for storage and database access models (AWS core services); a gym-membership analogy for on-demand/reserved/spot pricing (cloud cost economics); a recipe-card-vs-fridge-ingredients analogy for config-vs-code separation (twelve-factor config). Every chapter also gained <code>topic_id</code>/<code>mastery_levels_covered: [L1, L2, L3, L4]</code> front matter. <strong><code>15-cloud</code> is now fully L1–L4 (3/3)</strong> — the thirteenth fully-retrofitted domain in the syllabus.</p>
 <p><strong>Gap found and closed: Azure and GCP, 2026-09-10.</strong> A full repository-wide 22-domain gap audit found this domain named "AWS core services" in its own top-level description and covered AWS exclusively — a real single-provider gap against a program whose own target-company list (Microsoft, and any GCP-based or multi-cloud organization) requires cross-provider fluency, not AWS-only vocabulary. Closed with <a href="../azure-and-gcp-for-backend-engineers/">Azure and GCP for Backend Engineers</a> (T-2404), which maps every AWS service the existing chapter teaches to its real Azure and GCP counterpart by underlying access-model/ownership trade-off rather than by name, verified against current official documentation via <code>WebFetch</code> before writing — including a real 2023 rename (Azure AD → Microsoft Entra ID) and a real GCP native-IaC transition (Deployment Manager → Infrastructure Manager), both confirmed live, not assumed from memory.</p>
+<p><strong>Gap found and closed: Serverless (Lambda) execution mechanics, 2026-09-21.</strong> A further gap audit found <code>aws-core-services-for-backend-engineers.md</code> names Lambda's "cold-start latency" as a real trade-off five separate times without ever explaining the mechanism behind it. Closed with <a href="../serverless-lambda-execution-model-cold-starts-and-concurrency/">Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling</a> (T-2425), backed by a real Java simulation (<code>practice/java/cloud/serverless-cold-starts-and-concurrency/</code>) using genuine JVM class-loading/object-construction work as a technically substantiated proxy for a real Lambda INIT phase (the dominant real contributor to cold-start latency for an actual JVM-based Lambda function): a real cold invocation measured at ~176ms versus ~0.009ms for a warm one, and a real 5-way concurrent burst against zero warm environments measured at ~236ms wall-clock versus ~0.08ms for a repeat burst against already-warm ones — real, direct proof that concurrency multiplies cold starts rather than merely delaying one.</p>
 </blockquote>
 <h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <table>
@@ -11354,6 +11348,12 @@
 <td>L1, L2, L3, L4 — fully written, verified against current official docs (2026-09-10)</td>
 <td><code>syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md</code></td>
 </tr>
+<tr>
+<td>T-2425</td>
+<td>Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling</td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
+<td><code>syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11378,7 +11378,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 20:43:24 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 17:38:02 UTC">September 21, 2026</span>
   </span>
 
     
@@ -11434,7 +11434,7 @@
                 
                 
               
-              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Cloud%20%E2%80%94%20Domain%20Index&body=Page%3A%20/syllabus/15-cloud/INDEX/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
+              Thanks for the feedback! Let us know what was missing or confusing by <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20INDEX&body=Page%3A%20/syllabus/15-cloud/INDEX/%0A%0AWhat%20was%20missing%20or%20confusing%3A%20" target="_blank" rel="noopener">emailing jmelendresdev@gmail.com</a>.
             </div>
           
         </div>
@@ -11450,7 +11450,7 @@
     <p class="cci-page-feedback__title">Feedback &amp; comments</p>
     <p>
       Found an error, an outdated claim, or something unclear on this page?
-      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20Cloud%20%E2%80%94%20Domain%20Index&body=Page%3A%20/syllabus/15-cloud/INDEX/%0A%0A">
+      <a href="mailto:jmelendresdev@gmail.com?subject=Feedback%3A%20INDEX&body=Page%3A%20/syllabus/15-cloud/INDEX/%0A%0A">
         Email jmelendresdev@gmail.com
       </a>
       with the page and what to fix.

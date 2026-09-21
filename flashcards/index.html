@@ -7256,6 +7256,34 @@
   
   
     <li class="md-nav__item">
+      <a href="serverless-lambda-execution-model-cold-starts-and-concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Serverless Cold Starts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="solid-principles/" class="md-nav__link">
         
   
@@ -10120,6 +10148,13 @@
 <td>3</td>
 <td><code>syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md</code></td>
 </tr>
+<tr>
+<td>181</td>
+<td><a href="serverless-lambda-execution-model-cold-starts-and-concurrency/">Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling</a></td>
+<td>T-2425</td>
+<td>3</td>
+<td><code>syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="new-writing-domain-decks-t-1800st-1900st-2000s-no-embedded-flashcards-section">New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded <code>## Flashcards</code> section)<a class="headerlink" href="#new-writing-domain-decks-t-1800st-1900st-2000s-no-embedded-flashcards-section" title="Permanent link">&para;</a></h2>
@@ -10667,7 +10702,8 @@
 <p><strong>2026-09-21 (same day, follow-up) — Distributed Locking and Fencing Tokens (T-2422) gains a flashcard deck.</strong> New <code>10-distributed-systems</code> chapter closing a gap audit that found the consensus chapter's own "use a distributed lock" fix referenced twice but never explained. 3 cards. <strong>New total: 268 decks (267 prior + 1), 931 cards (928 prior + 3).</strong></p>
 <p><strong>2026-09-21 (same day, follow-up) — Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA (T-1310) gains a flashcard deck.</strong> New <code>12-security</code> chapter closing a gap audit that found <code>owasp-top-10-for-backend-services.md</code>'s own A07 routing table named "Authentication Failures" but no chapter anywhere covered brute force, credential stuffing, account lockout, or MFA. 3 cards. <strong>New total: 269 decks (268 prior + 1), 934 cards (931 prior + 3).</strong></p>
 <p><strong>2026-09-21 (same day, follow-up) — Chaos Engineering: Fault Injection and Resilience Verification (T-2423) gains a flashcard deck.</strong> New <code>13-observability</code> chapter closing a gap audit that found the domain covered detection and reaction but had zero coverage of proactively verifying either actually works. 3 cards. <strong>New total: 270 decks (269 prior + 1), 937 cards (934 prior + 3).</strong></p>
-<p><strong>2026-09-21 (same day, follow-up) — Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior (T-2424) gains a flashcard deck.</strong> New <code>14-devops-containers</code> chapter closing a gap audit that found a <code>HorizontalPodAutoscaler</code> manifest already shown but never explained, and a sibling <code>15-cloud</code> chapter's claim that it was already covered turned out to be false. 3 cards. <strong>New total: 271 decks (270 prior + 1), 940 cards (937 prior + 3).</strong>
+<p><strong>2026-09-21 (same day, follow-up) — Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior (T-2424) gains a flashcard deck.</strong> New <code>14-devops-containers</code> chapter closing a gap audit that found a <code>HorizontalPodAutoscaler</code> manifest already shown but never explained, and a sibling <code>15-cloud</code> chapter's claim that it was already covered turned out to be false. 3 cards. <strong>New total: 271 decks (270 prior + 1), 940 cards (937 prior + 3).</strong></p>
+<p><strong>2026-09-21 (same day, follow-up) — Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling (T-2425) gains a flashcard deck.</strong> New <code>15-cloud</code> chapter closing a gap audit that found <code>aws-core-services-for-backend-engineers.md</code> named Lambda's "cold-start latency" five times without ever explaining the mechanism. 3 cards. <strong>New total: 272 decks (271 prior + 1), 943 cards (940 prior + 3).</strong>
 | F32 | <a href="frontend-security-xss-csrf-and-csp/">Frontend Security: XSS, CSRF, and Content Security Policy</a> | F-401 | Advanced | <code>syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md</code> |
 | F33 | <a href="websocket-and-server-sent-events-for-realtime-ui/">WebSocket and Server-Sent Events for Real-Time UI</a> | F-402 | Advanced | <code>syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md</code> |
 | F34 | <a href="micro-frontends-and-module-federation/">Micro-Frontends and Module Federation</a> | F-403 | Advanced | <code>syllabus/21-frontend-web/micro-frontends-and-module-federation.md</code> |</p>
@@ -10754,7 +10790,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 16:47:37 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 17:38:02 UTC">September 21, 2026</span>
   </span>
 
     
