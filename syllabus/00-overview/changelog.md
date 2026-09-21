@@ -2257,3 +2257,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-1805.
 - `syllabus/18-engineering-practices/INDEX.md` updated (6 → 7 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `18-engineering-practices` follow-up gap audit: sprint retrospectives closed
+
+### Added
+
+- Second follow-up gap audit of `18-engineering-practices` (7 chapters, same day as the estimation-and-story-points closure above). Found [SDLC and Agile Methodology Fundamentals](../18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md) names the sprint retrospective three separate times (as a Scrum ceremony, a common-mistakes note, and an interview answer) without ever explaining what actually happens in one, how to facilitate it, or the specific, common way retrospectives fail (retro theater).
+- **Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater** (new chapter, T-1806). Follows this domain's own real-artifact discipline (established by its ADR chapter's `templates/adr-template.md`/`scripts/check_adr_completeness.py`) rather than a Java demo: a new real template (`templates/retro-action-item-template.md`) and a new real, executed mechanical checker (`scripts/check_retro_action_items.py`) verifying every retrospective action item names an explicit Owner and Deadline. Real captured output: `PASS` against both the template and a real, filled-out example retrospective (`practice/engineering-practices/retro-examples/sprint-14-retrospective.md`, 2 action items each, both complete); `FAIL` against a deliberately incomplete retrospective, naming exactly the missing fields (`item missing Owner, Deadline: "- [ ] Figure out a better reviewer rotation"`).
+- `sdlc-and-agile-methodology-fundamentals.md` (T-2212, 1.2 → 1.3) and `architecture-decision-records-and-technical-writing.md` (T-1802, 1.0 → 1.1) updated in place with `related:` links and a body cross-reference naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-1806.
+- `syllabus/18-engineering-practices/INDEX.md` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
