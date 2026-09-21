@@ -287,6 +287,10 @@ Built as five parallel, bounded batches (one per domain, `03-data-structures-alg
 
 | N48 | [Matrix and Grid Traversal Patterns](matrix-and-grid-traversal-patterns.md) | T-2121 | 3 | `syllabus/03-data-structures-algorithms/matrix-and-grid-traversal-patterns.md` |
 
+**Added 2026-09-21: Testing Asynchronous and Concurrent Code**, a gap-audit addition to `08-testing` (T-2420) — zero coverage anywhere of how to write reliable tests for async/concurrent code, distinct from flaky-test diagnosis already covered.
+
+| N49 | [Testing Asynchronous and Concurrent Code](testing-asynchronous-and-concurrent-code.md) | T-2420 | 4 | `syllabus/08-testing/testing-asynchronous-and-concurrent-code.md` |
+
 ## Frontend Decks (F-codes, no IWI)
 
 **Added 2026-09-07.** The frontend domain (`syllabus/21-frontend-web/`) uses the Master Topic Register's F-codes and a Beginner/Intermediate/Advanced/Expert tier instead of the backend's numeric IWI score, same as `cheat-sheets/`'s own Frontend Cheat Sheets section (which closed this same gap for cheat sheets on 2026-09-03). Unlike the new-writing-domain decks above, every one of these 31 chapters already has its own embedded `## Flashcards` section, written when the chapter itself was authored — this batch is a pure extraction, not new content, matching the same discipline used for the 137 pre-existing backend decks. `frontend-live-coding-and-debugging-protocol.md` (a `playbook-technical-answer`-typed chapter with no F-code) is deliberately excluded, matching the identical, already-established exclusion in `cheat-sheets/README.md`'s own Frontend Cheat Sheets table (31, not 32).
@@ -381,6 +385,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-21 — Coupling, Cohesion, and Code Smells (T-1703) gains a flashcard deck.** New `04-software-design` chapter closing a gap audit that found "coupling" and "cohesion" named nowhere in the repository. 3 cards. **New total: 265 decks (264 prior + 1), 920 cards (917 prior + 3).**
 
 **2026-09-21 (same day, follow-up) — API Design (T-803) gains 1 more card for the async 202-Accepted-plus-polling pattern.** Existing `07-api-design/api-design.md` deck updated in place, closing a gap audit that found the async long-running-operation pattern was self-flagged as conceptual-only in `rest-api-fundamentals.md`, now backed by a real background job. Row 39's card count corrected to 7 (the file's own real count — was already stale at "3" before this addition, from earlier batches that added cards without updating this index; not otherwise re-audited here). **New total: 265 decks (unchanged), 921 cards (920 prior + 1).**
+
+**2026-09-21 (same day, follow-up) — Testing Asynchronous and Concurrent Code (T-2420) gains a flashcard deck.** New `08-testing` chapter closing a gap audit that found zero coverage of how to write reliable tests for async/concurrent code. 4 cards. **New total: 266 decks (265 prior + 1), 925 cards (921 prior + 4).**
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
