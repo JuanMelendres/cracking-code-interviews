@@ -2202,3 +2202,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-2422.
 - `syllabus/10-distributed-systems/INDEX.md` and `.pages` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `12-security` gap audit: authentication attack defense (brute force, credential stuffing, MFA) closed
+
+### Added
+
+- Gap audit of `12-security` (10 chapters, previously marked "gap-audited and closed" 2026-09-10, then extended 2026-09-14). Found `owasp-top-10-for-backend-services.md`'s own routing table names "A07 Authentication Failures" and points to `oauth2-oidc-and-jwt.md` and `authn-authz-rbac-vs-abac.md` — but neither chapter, nor anywhere else in the domain, covered an actual authentication attack or its defense: zero grep hits anywhere in `12-security` for brute force, credential stuffing, account lockout, or MFA before this pass. Other candidates considered and deprioritized: backend security headers (CSP/HSTS — already covered frontend-side, less isolated) and security audit logging (real gap, but lower interview frequency than this one).
+- **Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA** (new chapter, T-1310). Real demo (`practice/java/week-17/auth-brute-force-and-mfa/`), real timing (`System.currentTimeMillis`/`Thread.sleep`, no mocked clock): an `UnprotectedLoginService` cracked via a 10-entry wordlist (`BruteForceDemo`, real captured output: `attempt 8: "Tr0ub4dor&3" -> SUCCESS`); a `LockingLoginService` (5 attempts / 10s window / 3s lockout) stopping the identical attack three attempts short of the real password, while directly proving its own denial-of-service trade-off — the legitimate user is locked out too, right now (`rejected, still locked for 2998ms`) — before succeeding once the real 3-second window elapses; a from-scratch `Totp` implementation (RFC 6238/RFC 4226, HMAC-SHA1) verified against all 5 of RFC 6238 Appendix B's own official test vectors (`All RFC 6238 vectors: PASS`); and a simulated credential-stuffing attacker holding alice's *correct* password still rejected by `MfaProtectedLoginService` without the TOTP code, while alice's password plus a real freshly generated code succeeds.
+- `owasp-top-10-for-backend-services.md` (T-1301, 2.0 → 2.1) and `authn-authz-rbac-vs-abac.md` (T-1302, 1.0 → 1.1) updated in place with `related:` links and body cross-references naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-1310.
+- `syllabus/12-security/INDEX.md` updated (10 → 11 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).

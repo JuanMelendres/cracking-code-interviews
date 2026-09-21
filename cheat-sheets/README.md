@@ -350,6 +350,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Distributed Locking and Fencing Tokens](distributed-locking-and-fencing-tokens.md) | T-2422 | system-design | `syllabus/10-distributed-systems/distributed-locking-and-fencing-tokens.md` |
 | [Vector Clocks and Quorum-Based Replication](vector-clocks-and-quorum-based-replication.md) | T-2407 | system-design | `syllabus/10-distributed-systems/vector-clocks-and-quorum-based-replication.md` |
 | [CSRF, CORS, and Session Security](csrf-cors-and-session-security.md) | T-1308 | security | `syllabus/12-security/csrf-cors-and-session-security.md` |
+| [Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA](authentication-attack-defense-brute-force-and-mfa.md) | T-1310 | security | `syllabus/12-security/authentication-attack-defense-brute-force-and-mfa.md` |
 | [Metric Cardinality and Alert Fatigue](metric-cardinality-and-alert-fatigue.md) | T-2409 | observability | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |
 | [Hiring and Team Building](hiring-and-team-building.md) | T-1907 | leadership-staff | `syllabus/19-leadership-staff/hiring-and-team-building.md` |
 | [Incident Command: Roles and Real-Time Coordination](incident-command-roles-and-real-time-coordination.md) | T-1906 | leadership-staff | `syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` |
@@ -385,6 +386,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-16 — Behavior-Driven Development with Cucumber (T-2412) gains a cheat sheet.** New `08-testing` chapter, added the same day to close a real, user-flagged gap (user asked whether TDD and other development styles were covered; BDD was missing entirely). **New total: 252 cheat sheets** (251 prior + 1).
 
 **2026-09-17 — Comparator: Composition and Pitfalls (T-2413) gains a cheat sheet.** New `02-java` chapter, added the same day to close a real, user-flagged gap (`Comparator` had no dedicated coverage anywhere in the syllabus). **New total: 253 cheat sheets** (252 prior + 1).
+
+**2026-09-21 — Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA (T-1310) gains a cheat sheet.** New `12-security` chapter, added the same day to close a real gap audit finding (see the chapter's own changelog entry) — a dependency `owasp-top-10-for-backend-services.md` already named (its A07 routing table) but never explained. New total, verified directly against the file system: **271 cheat sheets** (270 prior + 1) — this note's own count picks up several files added across the interim without an updating note of their own (each PR round added its row silently); the file-system count is authoritative here, not the arithmetic chain above it.
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|

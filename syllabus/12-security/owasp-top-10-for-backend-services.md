@@ -4,8 +4,8 @@ slug: owasp-top-10-for-backend-services
 document_type: handbook-chapter
 domain: 12-security
 status: canonical
-version: 2.0
-last_reviewed: 2026-09-14
+version: 2.1
+last_reviewed: 2026-09-21
 topic_id: T-1301
 mastery_levels_covered:
   - L1
@@ -27,6 +27,7 @@ related:
   - supply-chain-security-sbom-and-dependency-risk.md
   - multi-tenancy-isolation-models.md
   - csrf-cors-and-session-security.md
+  - authentication-attack-defense-brute-force-and-mfa.md
   - ../02-java/language-core/serialization-hazards-and-alternatives.md
   - oauth2-oidc-and-jwt.md
   - ../05-spring/security-filter-chain.md
@@ -128,7 +129,7 @@ The **OWASP Top 10** is a periodically-updated (roughly every 3–4 years) ranke
 | A04 | Cryptographic Failures | A02 (moved down #2→#4) | [Applied Cryptography](applied-cryptography-hashing-signing-tls.md) |
 | A05 | Injection | A03 (moved down #3→#5) | [Injection, Input Validation, Output Encoding](injection-input-validation-output-encoding.md) |
 | A06 | Insecure Design | A04 (moved down #4→#6) | This chapter — a design-level, not implementation-level, category (see below) |
-| A07 | Authentication Failures | A07 "Identification and Authentication Failures" (renamed only) | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md); [AuthN/AuthZ](authn-authz-rbac-vs-abac.md) |
+| A07 | Authentication Failures | A07 "Identification and Authentication Failures" (renamed only) | [OAuth2, OIDC, and JWT](oauth2-oidc-and-jwt.md); [AuthN/AuthZ](authn-authz-rbac-vs-abac.md); [Authentication Attack Defense](authentication-attack-defense-brute-force-and-mfa.md) for brute force, credential stuffing, and MFA specifically |
 | A08 | Software or Data Integrity Failures | A08 "Software **and** Data Integrity Failures" (renamed only) | [Applied Cryptography](applied-cryptography-hashing-signing-tls.md) (signing); [Supply Chain Security](supply-chain-security-sbom-and-dependency-risk.md) (pipeline integrity) |
 | A09 | Security Logging & Alerting Failures | A09 "...and Monitoring Failures" (renamed only) | This chapter — cross-cutting; see Production Scenarios |
 | A10 | Mishandling of Exceptional Conditions | **New in 2025** — no 2021 equivalent | This chapter — cross-cutting; see Production Scenarios |

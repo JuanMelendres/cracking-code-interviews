@@ -4,8 +4,8 @@ slug: authn-authz-rbac-vs-abac
 document_type: handbook-chapter
 domain: 12-security
 status: canonical
-version: 1.0
-last_reviewed: 2026-09-09
+version: 1.1
+last_reviewed: 2026-09-21
 topic_id: T-1302
 mastery_levels_covered:
   - L1
@@ -24,6 +24,7 @@ related:
   - oauth2-oidc-and-jwt.md
   - multi-tenancy-isolation-models.md
   - csrf-cors-and-session-security.md
+  - authentication-attack-defense-brute-force-and-mfa.md
   - ../05-spring/security-filter-chain.md
   - ../../study-packs/week-17/03-authn-authz-rbac-vs-abac.md
 official_references:
@@ -113,6 +114,8 @@ Picture a building with a front desk and many internal doors. **Authentication**
 ## Definition and Purpose
 
 **Authentication (AuthN)** is the process of verifying a claimed identity — confirming that a request is actually coming from who or what it claims to be, typically via credentials (password, certificate, token) validated against a trusted source. **Authorization (AuthZ)** is the separate, subsequent decision of whether an *already-authenticated* identity is permitted to perform a specific action on a specific resource. **RBAC (Role-Based Access Control)** grants permissions by assigning users to roles, and roles to fixed sets of permissions, decided in advance and independent of any specific request's context. **ABAC (Attribute-Based Access Control)**, per NIST SP 800-162, evaluates access decisions dynamically against attributes of the subject, the resource, the action, and the environment at request time, expressed as policy rules rather than static role-to-permission tables.
+
+This chapter covers *how* an identity gets verified and *how* a permission decision gets made — it deliberately does not cover what happens when an attacker targets the verification step itself, with either many guesses (brute force) or one already-valid stolen credential (credential stuffing); see [Authentication Attack Defense](authentication-attack-defense-brute-force-and-mfa.md) for that real, measured evidence.
 
 ## Core Concepts
 
