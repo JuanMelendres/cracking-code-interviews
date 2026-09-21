@@ -2213,3 +2213,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-1310.
 - `syllabus/12-security/INDEX.md` updated (10 → 11 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `13-observability` gap audit: chaos engineering (fault injection and resilience verification) closed
+
+### Added
+
+- Gap audit of `13-observability` (5 chapters). Found the domain covered detection (`metric-cardinality-and-alert-fatigue.md`'s burn-rate alerting) and reaction (`incident-response-and-blameless-postmortems.md`) but had zero coverage of proactively verifying that either actually works — zero grep hits for "chaos" anywhere in the repository before this pass, and `10-distributed-systems/multi-region-failover-and-disaster-recovery.md` referenced a "DR game day" once without explaining the broader discipline it's one instance of. Other candidate considered and deprioritized: structured logging/correlation-ID as a standalone topic — already substantially covered implicitly via `logging-metrics-tracing-and-opentelemetry.md`'s traceId-propagation content, not an isolated gap.
+- **Chaos Engineering: Fault Injection and Resilience Verification** (new chapter, T-2423). Real, timed demo (`practice/java/observability/chaos-engineering-fault-injection/`), no mocked clock: a real steady-state phase (20 real requests, `paging = false` confirmed); a real fault deliberately injected against `OrderService`'s downstream payment call, scoped to a minimized 25% canary cohort (`ChaosExperimentDemo`, real captured output: `ALERT FIRED 1144ms after fault injection began, after 12 real requests`), detected by the same multi-window burn-rate technique `metric-cardinality-and-alert-fatigue.md` (T-2409) documents; and a real rollback phase confirming recovery (`Alert cleared 310ms after rollback: true`). Re-run twice — only real-clock timing jitter differs; the request count at detection (12) and the recovery outcome are identical both times.
+- `incident-response-and-blameless-postmortems.md` (T-1207, 1.1 → 1.2) and `multi-region-failover-and-disaster-recovery.md` (T-814, 1.0 → 1.1) updated in place with `related:` links and body cross-references naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-2423.
+- `syllabus/13-observability/INDEX.md` updated (5 → 6 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).

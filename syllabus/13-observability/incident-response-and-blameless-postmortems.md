@@ -4,8 +4,8 @@ slug: incident-response-and-blameless-postmortems
 document_type: handbook-chapter
 domain: 13-observability
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-21
 source_history:
   - handbook/performance/incident-response-and-blameless-postmortems.md
 topic_id: T-1207
@@ -25,6 +25,7 @@ prerequisites:
 related:
   - performance-methodology-and-slo-error-budgets.md
   - logging-metrics-tracing-and-opentelemetry.md
+  - chaos-engineering-fault-injection-and-resilience-verification.md
   - ../17-architecture/architecture-decision-records.md
   - ../11-system-design/resilience-patterns.md
   - ../20-interview-preparation/behavioral/04-production-incident-narratives.md
@@ -157,6 +158,8 @@ by definition, situations where a system behaved in a way its designers didn't f
 anticipate — treating that as an individual's mistake discourages the honest,
 detailed self-reporting that's actually needed to find every real contributing factor,
 while treating it as a systems-and-process question makes that honest reporting safe.
+
+Everything in this chapter is reactive — it starts once a real incident is already underway. [Chaos Engineering: Fault Injection and Resilience Verification](chaos-engineering-fault-injection-and-resilience-verification.md) covers the proactive counterpart: deliberately, safely triggering a controlled version of a real failure ahead of time, specifically to find out whether the detection and response this chapter describes actually work, before a real incident is the first time anyone finds out.
 
 ## Core Concepts
 
