@@ -5,13 +5,14 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-1802
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - code-review-standards-and-practice.md
 related:
   - code-review-standards-and-practice.md
+  - sprint-retrospectives.md
   - ../20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md
 practice: ../../templates/
 production_scenarios:

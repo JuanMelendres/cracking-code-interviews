@@ -356,6 +356,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) | T-2424 | devops-containers | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
 | [Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling](serverless-lambda-execution-model-cold-starts-and-concurrency.md) | T-2425 | cloud | `syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md` |
 | [Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses](estimation-and-story-points.md) | T-1805 | engineering-practices | `syllabus/18-engineering-practices/estimation-and-story-points.md` |
+| [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | engineering-practices | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
 | [Hiring and Team Building](hiring-and-team-building.md) | T-1907 | leadership-staff | `syllabus/19-leadership-staff/hiring-and-team-building.md` |
 | [Incident Command: Roles and Real-Time Coordination](incident-command-roles-and-real-time-coordination.md) | T-1906 | leadership-staff | `syllabus/19-leadership-staff/incident-command-roles-and-real-time-coordination.md` |
 | [Frontend Security: XSS, CSRF, and CSP](frontend-security-xss-csrf-and-csp.md) | F-401 | frontend-web | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
@@ -400,6 +401,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-21 (same day, follow-up) — Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling (T-2425) gains a cheat sheet.** New `15-cloud` chapter, added the same day to close a real gap audit finding — `aws-core-services-for-backend-engineers.md` named Lambda's "cold-start latency" five times without ever explaining the mechanism. New total, verified directly against the file system: **274 cheat sheets** (273 prior + 1).
 
 **2026-09-21 (same day, follow-up) — Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses (T-1805) gains a cheat sheet.** New `18-engineering-practices` chapter, added the same day to close a real gap audit finding — `sdlc-and-agile-methodology-fundamentals.md` covered Scrum's artifacts and roles but had zero coverage of estimation itself. New total, verified directly against the file system: **275 cheat sheets** (274 prior + 1).
+
+**2026-09-21 (same day, follow-up) — Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater (T-1806) gains a cheat sheet.** New `18-engineering-practices` chapter, added the same day to close a second follow-up gap audit finding — `sdlc-and-agile-methodology-fundamentals.md` named the sprint retrospective three times without ever explaining it. New total, verified directly against the file system: **276 cheat sheets** (275 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
