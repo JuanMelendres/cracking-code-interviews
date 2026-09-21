@@ -4,8 +4,8 @@ slug: api-design
 document_type: handbook-chapter
 domain: 07-api-design
 status: canonical
-version: 1.1
-last_updated: 2026-09-18
+version: 1.2
+last_updated: 2026-09-21
 source_history:
   - handbook/system-design/api-design.md
 topic_id: T-803
@@ -43,6 +43,7 @@ official_references:
 > **Topic register:** T-803 · IWI 7.90 (#15 tied of 198) · Advanced tier · Very High interview frequency [H]
 > **Provenance:** the pagination comparison in this chapter is real, executed PostgreSQL 16 output against a 2-million-row table. Reproducible source: [`practice/sql/week-04/pagination-lab.sql`](../../practice/sql/week-04/pagination-lab.sql).
 > **Gap-audit addition (2026-09-18):** HATEOAS/Richardson Maturity Model, RFC 9457 Problem Details, filtering/sorting query parameters, and bulk operations had zero or link-only coverage in this chapter. Closed with real, executed Spring MVC evidence — [`practice/java/api-design/`](../../practice/java/api-design/README.md).
+> **Gap-audit addition (2026-09-21):** the async long-running-operation pattern (202 Accepted + polling) was explicitly flagged as conceptual-only in [REST API Fundamentals](rest-api-fundamentals.md) ("a fabricated one would be a fake, not real evidence") — no genuinely asynchronous operation existed anywhere in this domain. Closed with a real background job (a real `ExecutorService`, a real 300ms of work), added to the same lab above.
 
 ## Table of Contents
 
@@ -153,6 +154,10 @@ List endpoints need a predictable, generalizable way to narrow and order results
 
 A bulk endpoint (`POST /orders/bulk` accepting an array) cannot collapse its outcome into one HTTP status code, because some items in the batch can succeed while others fail for reasons specific to that one item. This chapter's lab returns a real `207 Multi-Status` with a per-item result array — each entry carrying its original index, a success flag, and either a generated ID or an error message — verified directly with a 3-item batch where item 2 fails validation while items 1 and 3 succeed. The design principle: a bulk operation's response shape must let the caller map every outcome back to the specific input item that produced it; a single aggregate status code cannot do that.
 
+### Async long-running operations: 202 Accepted and polling
+
+Some operations (report generation, video transcoding, a bulk export) genuinely take longer than a client should block waiting on a single HTTP response for. The standard pattern: the initial request returns immediately with `202 Accepted` and a `Location` header pointing at a status resource, not the eventual result — this chapter's lab proves the full real lifecycle with a genuinely asynchronous background job (a real `ExecutorService`, real elapsed wall-clock time), not a synchronous call wearing a `202` as a costume. Polling the status resource returns `202` again (with a `Retry-After` header suggesting a poll interval) while the work is still running, and `303 See Other` pointing at the actual result resource once it's done — a real, structural signal the work finished, not a field the client has to inspect and branch on. Reaching directly for the result resource before it's ready returns a real `425 Too Early` in this chapter's lab — a deliberate, pragmatic reuse of the status code (RFC 8470 itself scopes `425` to TLS early-data replay risk, not general "not ready yet" semantics; stated honestly in [§ Official References](#official-references)) rather than an overloaded `404`/`409` a client would have to disambiguate by response body alone.
+
 ## Internal Implementation
 
 **Design pagination for a 500M-row endpoint. Why not `OFFSET`?**
@@ -192,6 +197,18 @@ Bulk create (2 valid, 1 invalid) -> real HTTP 207: [{"index":0,"success":true,"i
 ```
 
 Full real transcript and 6/6 passing tests: [`practice/java/api-design/README.md`](../../practice/java/api-design/README.md).
+
+**Async long-running operations — a real background job, real elapsed time, real status transitions** (`practice/java/api-design/`, added 2026-09-21):
+
+```
+POST /reports -> 202 Accepted, Location: /reports/1, body: {"id":1,"status":"RUNNING",...}
+Immediate GET /reports/1 -> 202 Accepted, Retry-After: 1, body: {"id":1,"status":"RUNNING",...}
+Immediate GET /reports/1/result -> 425 Too Early (RFC 8470), body: {"error":"report not ready yet, status=RUNNING"}
+Poll #7 GET /reports/1 -> 303 See Other, real elapsed=334ms, body: {"id":1,"status":"COMPLETED",...}
+GET /reports/1/result -> 200 OK, real result body: {"id":1,"result":"Report 'quarterly-sales' generated at ...","completedAt":"..."}
+```
+
+The test asserts real elapsed time is `>= 300ms` (the background job's own real `Thread.sleep(300)`) before accepting the `303` — proof the test genuinely waited on real background work across 7 real polls, rather than a synchronous handler dressed up with a `202` status code and an immediately-true completion flag. Full real transcript and 8/8 passing tests (the original 6 plus this pattern's 2): [`practice/java/api-design/README.md`](../../practice/java/api-design/README.md).
 
 ## Diagrams
 
@@ -241,6 +258,7 @@ flowchart TD
 | HATEOAS (Level 3) | Clients discover valid actions from the response instead of hardcoding state rules | Real operational cost maintaining accurate, state-dependent links; most production APIs stop at Level 2 |
 | RFC 9457 Problem Details | Standardized, tooling-friendly error shape instead of a bespoke one | Requires adopting `application/problem+json` and the `type`/`instance` URI conventions consistently |
 | Bulk endpoint with per-item results | One round trip for many operations, precise per-item outcome | Response shape is more complex than a single status code; caller must handle partial success |
+| Async 202 + polling | Client never blocks on a slow operation; real background work can genuinely take as long as it needs | More moving parts than a synchronous response (a status resource, a result resource, a polling client); the client must implement retry/poll logic, not just a single request-response |
 
 ## Decision Framework
 
@@ -251,6 +269,7 @@ flowchart TD
 5. **Are clients meant to be built generically against link relations, rather than hardcoded per-endpoint knowledge?** If yes, HATEOAS (Level 3) is worth its maintenance cost; if clients are always purpose-built against documented endpoints, Level 2 is the realistic, sufficient target.
 6. **Does a list endpoint need narrowing/ordering beyond pagination?** If yes, add explicit `status=`-style filters and a `sort=field,direction` convention, failing loudly (`400`) on unsupported fields rather than ignoring them.
 7. **Will clients ever need to submit many items in one request?** If yes, design the bulk response as a per-item result array from the start, not a single aggregate status code retrofitted later.
+8. **Will this operation genuinely take long enough that a client shouldn't block waiting on one response?** If yes, return `202 Accepted` with a `Location` pointing at a status resource, not a synchronous response — and give the status resource a real, structural way (a `303` to the result, not just a status field) to signal completion.
 
 ## Comparisons
 
@@ -276,6 +295,7 @@ flowchart TD
 - Inventing a bespoke error envelope instead of RFC 9457 Problem Details, then having to document it from scratch for every consumer.
 - Assuming a client can infer available next actions on a resource without either HATEOAS links or separate, hand-maintained documentation.
 - Collapsing a bulk operation's outcome into one status code, leaving the caller unable to tell which specific items failed.
+- Returning `200`/`201` synchronously from an endpoint that actually kicks off real background work, forcing the client to block (or the server to hold the connection open) for the full duration instead of returning `202` immediately.
 
 ## Anti-Patterns
 
@@ -285,6 +305,7 @@ flowchart TD
 - **Treating idempotency as equivalent to "read-only"** — a `PUT` is idempotent and can still be a write.
 - **Silently ignoring an unsupported filter or sort field** instead of returning a real `400` — a misspelled query parameter should fail loudly, not produce quietly wrong results.
 - **Adding HATEOAS links that don't actually reflect current resource state** — links that are always present regardless of state are worse than no links, because they actively mislead a client into attempting an invalid transition.
+- **A status-polling endpoint whose only signal is a `status` field the client must inspect and branch on**, rather than a real `303` redirect to the result once done — technically workable, but discards a structural, unambiguous completion signal in favor of a client-side convention every consumer has to reimplement identically.
 
 ## Best Practices
 
@@ -295,6 +316,7 @@ flowchart TD
 - Treat pagination and error-format decisions as expensive-to-change contracts, worth getting right before the first client depends on them.
 - Fail loudly (`400`) on unsupported filter/sort query parameters rather than silently ignoring them.
 - Design a bulk endpoint's response as a per-item result array from the start, so partial success is representable.
+- Return `202 Accepted` with a real `Location` header immediately for any genuinely long-running operation, and give the status resource a real `303` redirect to the result once complete rather than only a status field.
 
 ## Interview Answer Framework
 
@@ -472,9 +494,31 @@ API design decisions, once shipped, are among the most expensive to change in a 
 
 **Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation).
 
+---
+
+### Question 7 — An endpoint kicks off a report that takes 30 seconds to generate. How should this endpoint respond, and how does a client find out when it's done?
+
+**Why interviewers ask it.** Tests whether a candidate reaches for the standard async pattern or defaults to either blocking the request for 30 seconds or inventing an ad hoc "check back later" convention.
+
+**Expected answer.** The endpoint returns `202 Accepted` immediately with a `Location` header pointing at a status resource — never blocking the caller for the full 30 seconds. The client polls that status resource; while running, it returns `202` again (optionally with `Retry-After`); once done, it returns `303 See Other` pointing at the actual result resource, a real structural completion signal rather than a status field the client has to branch on.
+
+**Minimum acceptable answer.** Proposes returning some kind of "in progress" response and having the client check back later, even without precise status codes.
+
+**Strong Senior answer.** Names `202 Accepted` with a `Location` header specifically, and describes a polling loop against a status resource.
+
+**Staff-level extension.** Names the `303 See Other` completion signal specifically (versus a status field alone) and can discuss the alternative — a webhook callback (per [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md)) — as a push-based alternative to polling, with its own trade-off (the client must expose a reachable endpoint; polling requires no inbound connectivity from the client at all).
+
+**Common mistakes.** Blocking the HTTP response for the full 30 seconds; returning `200`/`201` immediately with no real way for the client to know when the work is actually done.
+
+**Likely follow-ups.** "What should happen if a client requests the result before it's ready?" (A real, deliberately-repurposed `425 Too Early` in this chapter's lab, stated honestly as a pragmatic reuse rather than RFC 8470's own literal TLS-early-data scope — not a misleading `404` or an incomplete `200`.)
+
+**Evaluation criteria (1–5).** 1: blocks the response for 30 seconds. 3: correct `202` + polling pattern. 5: `202` + polling, the `303` completion signal, and the webhook alternative with its trade-off.
+
+**Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation); [Webhook Design and Delivery Guarantees](webhook-design-and-delivery-guarantees.md).
+
 ## Summary
 
-API design choices — pagination, resource naming, error format — are contracts that become expensive to change once clients depend on them. `OFFSET` pagination has a real, measured, linear-with-depth cost (demonstrated at ~3,000× between shallow and deep pages on identical data); keyset pagination avoids it at the cost of losing arbitrary page-jump capability, a trade-off worth stating explicitly rather than treating as a free upgrade. HATEOAS, RFC 9457 Problem Details, filtering/sorting conventions, and bulk-operation response design round out the contract decisions a production REST API needs beyond pagination and basic error handling — all four verified directly against real Spring MVC dispatch in this chapter's own lab.
+API design choices — pagination, resource naming, error format — are contracts that become expensive to change once clients depend on them. `OFFSET` pagination has a real, measured, linear-with-depth cost (demonstrated at ~3,000× between shallow and deep pages on identical data); keyset pagination avoids it at the cost of losing arbitrary page-jump capability, a trade-off worth stating explicitly rather than treating as a free upgrade. HATEOAS, RFC 9457 Problem Details, filtering/sorting conventions, bulk-operation response design, and the async 202-Accepted-plus-polling pattern round out the contract decisions a production REST API needs beyond pagination and basic error handling — all five verified directly against real Spring MVC dispatch in this chapter's own lab, the last with a genuinely asynchronous background job proving the full real 202 → poll → 303 → result lifecycle, not a synchronous call wearing a 202 status code as a costume.
 
 ## Key Takeaways
 
@@ -486,6 +530,7 @@ API design choices — pagination, resource naming, error format — are contrac
 - RFC 9457 Problem Details standardizes the error envelope (`type`/`title`/`status`/`detail`/`instance`); Spring 6's built-in `ProblemDetail` makes adopting it essentially free.
 - Filtering/sorting query parameters should fail loudly (`400`) on unsupported fields rather than silently ignoring them.
 - A bulk operation's response must be a per-item result array — a single status code can't represent partial success.
+- A genuinely long-running operation should return `202 Accepted` with a `Location` header immediately, and signal completion via a real `303 See Other` to the result resource — verified with a real background job whose real elapsed time (≥300ms across 7 real polls) proves the test waited on genuine async work, not a synchronous call.
 
 ## Cheat Sheet
 
@@ -498,6 +543,7 @@ API design choices — pagination, resource naming, error format — are contrac
 | Clients need to discover valid next actions from a response | HATEOAS links (Level 3) — but only if clients are built generically against them |
 | List endpoint needs narrowing/ordering | Explicit `status=`-style filters + `sort=field,direction`, real `400` on unsupported fields |
 | Client submits many items in one request | Per-item result array (e.g., real `207 Multi-Status`), not one aggregate status code |
+| An operation genuinely takes too long for one blocking response | `202 Accepted` + `Location`, poll for status, real `303` to the result once done |
 
 ## Flashcards
 
@@ -586,6 +632,23 @@ Inventing a bespoke error shape instead of reaching for this standard one.
 **Related:**
 [Core Concepts](#core-concepts)
 
+### Card: The async 202 lifecycle's real completion signal
+
+**Prompt:**
+Once a long-running operation finishes, how should the status endpoint signal that — a status field, or something else?
+
+**Answer:**
+A real `303 See Other` redirect pointing at the result resource — a structural, unambiguous signal every HTTP client already knows how to follow, rather than a `status` field the client has to inspect and branch on by convention.
+
+**Why it matters:**
+This chapter's real demo measured the full lifecycle: `202` (running) → `202` + `Retry-After` (still running) → `303` (done, here's the result) → `200` (the actual result) — each transition a real, distinct, structural signal.
+
+**Common trap:**
+Building a status endpoint that only ever returns `200` with a `status` field, discarding HTTP's own structural signals for "not done yet" (`202`) and "done, go here" (`303`).
+
+**Related:**
+[Internal Implementation](#internal-implementation)
+
 ## Practice Exercises
 
 1. Reproduce the pagination measurement yourself: [`practice/sql/week-04/pagination-lab.sql`](../../practice/sql/week-04/pagination-lab.sql).
@@ -593,6 +656,7 @@ Inventing a bespoke error shape instead of reaching for this standard one.
 3. Take an endpoint in a system you know using `OFFSET` pagination. Estimate the row count at which its cost would become noticeable, using this chapter's measured growth pattern as a reference.
 4. Run this chapter's own lab (`practice/java/api-design/`) and add a `SHIPPED` order's `_links` branch a real test doesn't yet cover — verify it exposes only a `deliver` link.
 5. Change the bulk-create endpoint to make the whole batch all-or-nothing (any single invalid item rolls back the entire batch) instead of partial success, and write a test proving the new behavior.
+6. Modify `ReportJobService` so a job can fail (not just succeed), add a `FAILED` status, and design what the status endpoint should return while polling a failed job — should it still redirect anywhere, or respond differently than the running/completed cases?
 
 ## Solutions
 
@@ -606,6 +670,8 @@ Inventing a bespoke error shape instead of reaching for this standard one.
 
 **Exercise 5.** A correct all-or-nothing redesign validates every item first, and only performs any inserts if every item passes — returning a single `400` naming every failing index if any item is invalid, rather than the partial-success `207` this chapter's lab implements. Both designs are valid; the point of the exercise is recognizing it's a deliberate choice, not a default.
 
+**Exercise 6.** A reasonable design: the status endpoint returns a real `200` (not `303`) for a `FAILED` job, since there's no result resource to redirect to — the response body carries the failure reason directly, distinguishing "done, here's where the result is" (`303`) from "done, but there's no result to fetch" (`200` with an error body) rather than overloading either existing status code for both meanings.
+
 ## Additional Reading
 
 - [Google API Design Guide](https://cloud.google.com/apis/design) — resource naming, standard methods, error design
@@ -614,3 +680,4 @@ Inventing a bespoke error shape instead of reaching for this standard one.
 ## Official References
 
 - [RFC 9457 — Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457) — a standardized error-response format
+- [RFC 8470 — Using Early Data in HTTP](https://www.rfc-editor.org/rfc/rfc8470) — defines the `425 Too Early` status code this chapter's async-result endpoint reuses when a client requests a result before the underlying job has completed; stated honestly, RFC 8470 itself scopes `425` specifically to TLS 1.3 early-data replay risk, not general "not ready yet" semantics — this chapter's use is a deliberate, pragmatic repurposing (a distinctive status a client can branch on programmatically, rather than an overloaded `404`/`409`), not a claim that the RFC itself endorses this exact use case

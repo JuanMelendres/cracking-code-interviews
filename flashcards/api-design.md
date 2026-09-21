@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: system-design
 topic_id: T-803
 canonical: ../syllabus/07-api-design/api-design.md
-last_updated: 2026-09-18
+last_updated: 2026-09-21
 ---
 
 # Flashcards: API Design
@@ -113,3 +113,20 @@ Returning one `400` for the whole batch, losing the 99 items that actually succe
 
 **Related:**
 [Core Concepts](../syllabus/07-api-design/api-design.md#core-concepts)
+
+## Card: The async 202 lifecycle's real completion signal
+
+**Prompt:**
+An endpoint kicks off a 30-second report job. How should it respond, and how does a client find out when it's done?
+
+**Answer:**
+Return `202 Accepted` immediately with a `Location` header pointing at a status resource — never blocking for the full 30 seconds. The client polls that resource: `202` again while running, `303 See Other` pointing at the result once done — a real, structural completion signal, not a status field the client has to inspect and branch on.
+
+**Why it matters:**
+Real, measured lifecycle: `202` → `202` + `Retry-After` → `303` → `200` (the result) — each transition a distinct, structural HTTP signal, verified with a genuinely asynchronous background job (real elapsed time ≥300ms across 7 real polls).
+
+**Common trap:**
+Blocking the HTTP response for the full duration, or building a status endpoint that only ever returns `200` with a `status` field to inspect.
+
+**Related:**
+[Internal Implementation](../syllabus/07-api-design/api-design.md#internal-implementation)

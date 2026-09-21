@@ -45,6 +45,8 @@ Every fact in every cheat sheet below (definitions, decision tables, measured nu
 
 **2026-09-21 — Coupling, Cohesion, and Code Smells (T-1703) gains a cheat sheet.** New `04-software-design` chapter closing a gap audit that found "coupling" and "cohesion" named nowhere in the repository, despite SOLID being a set of mechanisms for achieving exactly those two properties. **New total: 264 cheat sheets.**
 
+**2026-09-21 (same day, follow-up) — API Design (T-803) cheat sheet updated in place for the async 202-Accepted-plus-polling pattern.** Closing a gap audit that found the pattern self-flagged as conceptual-only in `rest-api-fundamentals.md`, now backed by a real background job. No new file — 264 remains the correct total.
+
 **2026-09-16 — DTO, Entity, and Mapper Patterns (T-520) gains a cheat sheet.** New `05-spring` chapter, part of a larger user TODO list. **New total: 256 cheat sheets.**
 
 ## Cheat Sheets

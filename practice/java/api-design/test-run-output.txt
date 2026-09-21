@@ -27,30 +27,45 @@ PENDING order _links: {"id":1,"status":"PENDING","amount":50.0,"_links":{"self":
 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
 RFC 9457 Problem Details body: {"type":"https://api.example.com/errors/order-not-found","title":"Order Not Found","status":404,"detail":"order 999 not found","instance":"/orders/999","errorCode":"ORDER_NOT_FOUND"}
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+Unknown job id 999999 -> 404 on both status and result endpoints
+[main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+POST /reports -> 202 Accepted, Location: /reports/1, body: {"id":1,"status":"RUNNING","submittedAt":"2026-09-21T01:06:02.052096Z"}
+Immediate GET /reports/1 -> 202 Accepted, Retry-After: 1, body: {"id":1,"status":"RUNNING","submittedAt":"2026-09-21T01:06:02.052096Z"}
+Immediate GET /reports/1/result -> 425 Too Early (RFC 8470), body: {"error":"report not ready yet, status=RUNNING"}
+Poll #7 GET /reports/1 -> 303 See Other, real elapsed=332ms, body: {"id":1,"status":"COMPLETED","submittedAt":"2026-09-21T01:06:02.052096Z"}
+GET /reports/1/result -> 200 OK, real result body: {"id":1,"result":"Report 'quarterly-sales' generated at 2026-09-21T01:06:02.355025Z","completedAt":"2026-09-21T01:06:02.355259Z"}
 [36m╷[0m
 [36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
-[36m│  └─[0m [36mApiDesignCoreConceptsTest[0m [32m✔[0m
-[36m│     ├─[0m [34mhateoas_deliveredOrderExposesReturnOnly()[0m [32m✔[0m
-[36m│     ├─[0m [34mbulkCreate_partialSuccessPerItem()[0m [32m✔[0m
-[36m│     ├─[0m [34mfilteringAndSorting_realQueryParams()[0m [32m✔[0m
-[36m│     ├─[0m [34mlevel0RpcContrast_sameDataOneUriOneVerb()[0m [32m✔[0m
-[36m│     ├─[0m [34mhateoas_pendingOrderExposesCancelAndShip()[0m [32m✔[0m
-[36m│     └─[0m [34mproblemDetails_notFound_returnsRfc9457Shape()[0m [32m✔[0m
+[36m│  ├─[0m [36mApiDesignCoreConceptsTest[0m [32m✔[0m
+[36m│  │  ├─[0m [34mhateoas_deliveredOrderExposesReturnOnly()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mbulkCreate_partialSuccessPerItem()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mfilteringAndSorting_realQueryParams()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mlevel0RpcContrast_sameDataOneUriOneVerb()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mhateoas_pendingOrderExposesCancelAndShip()[0m [32m✔[0m
+[36m│  │  └─[0m [34mproblemDetails_notFound_returnsRfc9457Shape()[0m [32m✔[0m
+[36m│  └─[0m [36mAsyncLongRunningOperationTest[0m [32m✔[0m
+[36m│     ├─[0m [34munknownJobId_returns404()[0m [32m✔[0m
+[36m│     └─[0m [34msubmitReturns202WithLocation_andRealBackgroundJobEventuallyCompletes()[0m [32m✔[0m
 [36m├─[0m [36mJUnit Vintage[0m [32m✔[0m
 [36m└─[0m [36mJUnit Platform Suite[0m [32m✔[0m
 
-Test run finished after 213 ms
-[         4 containers found      ]
+Test run finished after 579 ms
+[         5 containers found      ]
 [         0 containers skipped    ]
-[         4 containers started    ]
+[         5 containers started    ]
 [         0 containers aborted    ]
-[         4 containers successful ]
+[         5 containers successful ]
 [         0 containers failed     ]
-[         6 tests found           ]
+[         8 tests found           ]
 [         0 tests skipped         ]
-[         6 tests started         ]
+[         8 tests started         ]
 [         0 tests aborted         ]
-[         6 tests successful      ]
+[         8 tests successful      ]
 [         0 tests failed          ]
 
 

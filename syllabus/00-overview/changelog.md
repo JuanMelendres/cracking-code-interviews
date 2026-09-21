@@ -2159,3 +2159,14 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - New standalone cheat sheet and flashcard deck for T-1703.
 - `syllabus/04-software-design/INDEX.md` and `.pages` updated (3 → 4 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `07-api-design` gap audit: async 202-Accepted-plus-polling pattern closed
+
+### Added
+
+- Gap audit of `07-api-design` (8 chapters, already gap-audited twice — PR closing HATEOAS/RFC 9457/filtering-sorting/bulk-operations, and API Versioning Strategies). Found the async long-running-operation pattern (202 Accepted + polling) had no real evidence anywhere — [`rest-api-fundamentals.md`](../07-api-design/rest-api-fundamentals.md)'s own text explicitly flagged this as conceptual-only ("this chapter's `BookController` has no real async operation to demonstrate it honestly; a fabricated one would be a fake, not real evidence"), a self-documented gap rather than a newly-discovered one. Idempotency keys, `OFFSET`-vs-keyset pagination, and `Deprecation`/`Sunset` headers were checked and confirmed already real-evidence-backed, not gaps.
+- **`api-design.md` (T-803, 1.1 → 1.2) extended in place** with a real async demo added to `practice/java/api-design/` — a genuine background job (`ReportJobService`, a real `ExecutorService` and a real 300ms of work, not a stubbed flag) proving the full real lifecycle: `POST /reports` → `202 Accepted` + `Location`; immediate poll → `202` + `Retry-After`; the result endpoint hit early → a real (honestly, deliberately repurposed — RFC 8470 itself scopes it to TLS early-data replay risk, stated explicitly rather than overclaimed) `425 Too Early`; a real polling loop (7 polls, 50ms apart) reaching `303 See Other` at real elapsed time ≥300ms; following that `Location` → real `200 OK` with the actual generated report body.
+- New chapter sections: Core Concepts, Internal Implementation evidence, a Trade-offs/Decision Framework/Common Mistakes/Anti-Patterns/Best Practices entry each, a new Interview Question 7, Summary/Key Takeaways/Cheat Sheet/Flashcards/Practice Exercises extensions — all in place in `api-design.md`, no new topic_id.
+- `cheat-sheets/api-design.md` and `flashcards/api-design.md` updated in place with the real numbers; `flashcards/api-design.md`'s row in `flashcards/README.md` (row 39) corrected from a stale "3" to its real "7" cards while touching this entry (a pre-existing staleness from an earlier batch, not introduced here).
+- `syllabus/07-api-design/INDEX.md` and `syllabus/00-overview/INDEX.md` updated in place (no new chapter count — same 8 chapters, one extended).
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
