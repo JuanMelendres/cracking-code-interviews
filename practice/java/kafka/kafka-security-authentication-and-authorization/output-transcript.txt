@@ -1,0 +1,66 @@
+### 1. Real topics created as admin (a real SASL/PLAIN-authenticated super user)
+Created topic alice-allowed-topic.
+Created topic alice-forbidden-topic.
+
+### 2. Real ACL grant: alice gets Read/Write/Describe on ONE topic only -- no group grant yet
+Adding ACLs for resource `ResourcePattern(resourceType=TOPIC, name=alice-allowed-topic, patternType=LITERAL)`: 
+ 	(principal=User:alice, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:alice, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:alice, host=*, operation=WRITE, permissionType=ALLOW) 
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=alice-allowed-topic, patternType=LITERAL)`: 
+ 	(principal=User:alice, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:alice, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:alice, host=*, operation=READ, permissionType=ALLOW) 
+
+
+### 3. alice produces to her ALLOWED topic -- real success
+
+### 4. alice produces to the FORBIDDEN topic -- real TopicAuthorizationException
+[2026-09-21 01:31:33,886] WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {alice-forbidden-topic=TOPIC_AUTHORIZATION_FAILED} (org.apache.kafka.clients.NetworkClient)
+[2026-09-21 01:31:33,886] ERROR [Producer clientId=console-producer] Topic authorization failed for topics [alice-forbidden-topic] (org.apache.kafka.clients.Metadata)
+java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.TopicAuthorizationException: Not authorized to access topics: [alice-forbidden-topic]
+	at org.apache.kafka.clients.producer.KafkaProducer$FutureFailure.<init>(KafkaProducer.java:1502)
+	at org.apache.kafka.clients.producer.KafkaProducer.doSend(KafkaProducer.java:1113)
+	at org.apache.kafka.clients.producer.KafkaProducer.send(KafkaProducer.java:991)
+	at org.apache.kafka.clients.producer.KafkaProducer.send(KafkaProducer.java:873)
+	at kafka.tools.ConsoleProducer$.send(ConsoleProducer.scala:116)
+	at kafka.tools.ConsoleProducer$.loopReader(ConsoleProducer.scala:91)
+	at kafka.tools.ConsoleProducer$.main(ConsoleProducer.scala:100)
+	at kafka.tools.ConsoleProducer.main(ConsoleProducer.scala)
+Caused by: org.apache.kafka.common.errors.TopicAuthorizationException: Not authorized to access topics: [alice-forbidden-topic]
+
+### 5. alice with a WRONG password -- real SaslAuthenticationException (authentication, not authorization)
+[2026-09-21 01:31:35,075] ERROR [Producer clientId=console-producer] Connection to node -1 (localhost/127.0.0.1:9092) failed authentication due to: Authentication failed: Invalid username or password (org.apache.kafka.clients.NetworkClient)
+[2026-09-21 01:31:35,075] WARN [Producer clientId=console-producer] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected (org.apache.kafka.clients.NetworkClient)
+java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.SaslAuthenticationException: Authentication failed: Invalid username or password
+	at org.apache.kafka.clients.producer.KafkaProducer$FutureFailure.<init>(KafkaProducer.java:1502)
+	at org.apache.kafka.clients.producer.KafkaProducer.doSend(KafkaProducer.java:1113)
+	at org.apache.kafka.clients.producer.KafkaProducer.send(KafkaProducer.java:991)
+	at org.apache.kafka.clients.producer.KafkaProducer.send(KafkaProducer.java:873)
+	at kafka.tools.ConsoleProducer$.send(ConsoleProducer.scala:116)
+	at kafka.tools.ConsoleProducer$.loopReader(ConsoleProducer.scala:91)
+	at kafka.tools.ConsoleProducer$.main(ConsoleProducer.scala:100)
+	at kafka.tools.ConsoleProducer.main(ConsoleProducer.scala)
+Caused by: org.apache.kafka.common.errors.SaslAuthenticationException: Authentication failed: Invalid username or password
+
+### 6. alice tries to CONSUME her own allowed topic -- real GroupAuthorizationException
+    (a real, discovered gotcha: topic ACLs alone do not grant consume access --
+     consuming also requires a real ACL grant on the consumer GROUP resource)
+[2026-09-21 01:31:35,918] ERROR Error processing message, terminating consumer process:  (org.apache.kafka.tools.consumer.ConsoleConsumer)
+org.apache.kafka.common.errors.GroupAuthorizationException: Not authorized to access group: console-consumer-44961
+Processed a total of 0 messages
+
+### 7. Real fix: grant the missing group ACL, retry -- real success, real message
+Adding ACLs for resource `ResourcePattern(resourceType=GROUP, name=*, patternType=LITERAL)`: 
+ 	(principal=User:alice, host=*, operation=READ, permissionType=ALLOW) 
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=*, patternType=LITERAL)`: 
+ 	(principal=User:alice, host=*, operation=READ, permissionType=ALLOW) 
+
+hello-from-alice
+Processed a total of 1 messages
+
+### 8. admin (super user) freely produces+consumes the topic alice is forbidden from -- real ACL bypass
+hello-from-admin
+Processed a total of 1 messages

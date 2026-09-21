@@ -4400,6 +4400,34 @@
   
   
     <li class="md-nav__item">
+      <a href="kafka-security-authentication-and-authorization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Kafka Security — SASL Authentication and ACL Authorization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="kafka-streams-and-stateful-processing/" class="md-nav__link">
         
   
@@ -9945,6 +9973,13 @@
 <td>3</td>
 <td><code>syllabus/04-software-design/coupling-cohesion-and-code-smells.md</code></td>
 </tr>
+<tr>
+<td>176</td>
+<td><a href="kafka-security-authentication-and-authorization/">Kafka Security: SASL Authentication and ACL Authorization</a></td>
+<td>T-2421</td>
+<td>3</td>
+<td><code>syllabus/09-messaging-event-driven/kafka-security-authentication-and-authorization.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="new-writing-domain-decks-t-1800st-1900st-2000s-no-embedded-flashcards-section">New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded <code>## Flashcards</code> section)<a class="headerlink" href="#new-writing-domain-decks-t-1800st-1900st-2000s-no-embedded-flashcards-section" title="Permanent link">&para;</a></h2>
@@ -10487,7 +10522,8 @@
 <p><strong>2026-09-20 (same day, follow-up) — Matrix and Grid Traversal Patterns (T-2121) gains a flashcard deck, and Heaps, Top-K, and K-Way Merge (T-2106) gains 1 more card.</strong> New <code>03-data-structures-algorithms</code> chapter closing a gap audit that found zero dedicated coverage of in-place matrix rotation, spiral traversal, or flood fill anywhere in the repository (3 cards), plus 1 new card added to the existing <code>heaps-top-k-and-k-way-merge.md</code> deck for that same audit's real Quickselect addition. <strong>New total: 264 decks (263 prior + 1), 917 cards (913 prior + 3 new-deck + 1 existing-deck).</strong></p>
 <p><strong>2026-09-21 — Coupling, Cohesion, and Code Smells (T-1703) gains a flashcard deck.</strong> New <code>04-software-design</code> chapter closing a gap audit that found "coupling" and "cohesion" named nowhere in the repository. 3 cards. <strong>New total: 265 decks (264 prior + 1), 920 cards (917 prior + 3).</strong></p>
 <p><strong>2026-09-21 (same day, follow-up) — API Design (T-803) gains 1 more card for the async 202-Accepted-plus-polling pattern.</strong> Existing <code>07-api-design/api-design.md</code> deck updated in place, closing a gap audit that found the async long-running-operation pattern was self-flagged as conceptual-only in <code>rest-api-fundamentals.md</code>, now backed by a real background job. Row 39's card count corrected to 7 (the file's own real count — was already stale at "3" before this addition, from earlier batches that added cards without updating this index; not otherwise re-audited here). <strong>New total: 265 decks (unchanged), 921 cards (920 prior + 1).</strong></p>
-<p><strong>2026-09-21 (same day, follow-up) — Testing Asynchronous and Concurrent Code (T-2420) gains a flashcard deck.</strong> New <code>08-testing</code> chapter closing a gap audit that found zero coverage of how to write reliable tests for async/concurrent code. 4 cards. <strong>New total: 266 decks (265 prior + 1), 925 cards (921 prior + 4).</strong>
+<p><strong>2026-09-21 (same day, follow-up) — Testing Asynchronous and Concurrent Code (T-2420) gains a flashcard deck.</strong> New <code>08-testing</code> chapter closing a gap audit that found zero coverage of how to write reliable tests for async/concurrent code. 4 cards. <strong>New total: 266 decks (265 prior + 1), 925 cards (921 prior + 4).</strong></p>
+<p><strong>2026-09-21 (same day, follow-up) — Kafka Security: SASL Authentication and ACL Authorization (T-2421) gains a flashcard deck.</strong> New <code>09-messaging-event-driven</code> chapter closing a gap audit that found zero coverage of Kafka authentication/authorization anywhere in the repository. 3 cards. <strong>New total: 267 decks (266 prior + 1), 928 cards (925 prior + 3).</strong>
 | F32 | <a href="frontend-security-xss-csrf-and-csp/">Frontend Security: XSS, CSRF, and Content Security Policy</a> | F-401 | Advanced | <code>syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md</code> |
 | F33 | <a href="websocket-and-server-sent-events-for-realtime-ui/">WebSocket and Server-Sent Events for Real-Time UI</a> | F-402 | Advanced | <code>syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md</code> |
 | F34 | <a href="micro-frontends-and-module-federation/">Micro-Frontends and Module Federation</a> | F-403 | Advanced | <code>syllabus/21-frontend-web/micro-frontends-and-module-federation.md</code> |</p>
@@ -10574,7 +10610,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 01:24:47 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 15:11:04 UTC">September 21, 2026</span>
   </span>
 
     

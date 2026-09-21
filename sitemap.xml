@@ -605,6 +605,10 @@
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/kafka-security-authentication-and-authorization/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/kafka-streams-and-stateful-processing/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
@@ -1681,6 +1685,10 @@
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/kafka-security-authentication-and-authorization/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/kafka-streams-and-stateful-processing/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
@@ -2582,6 +2590,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/kafka/kafka-connect-source-and-sink/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/kafka/kafka-security-authentication-and-authorization/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
@@ -6190,6 +6202,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors/</loc>
+         <lastmod>2026-09-21</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/09-messaging-event-driven/kafka-security-authentication-and-authorization/</loc>
          <lastmod>2026-09-21</lastmod>
     </url>
     <url>
