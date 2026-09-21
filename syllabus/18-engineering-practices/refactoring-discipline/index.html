@@ -2369,7 +2369,7 @@
     
   
   
-    <span class="md-status md-status--3 of 3 chapters written — domain gap-audited and closed (2026-09-10), fully L1-L4"></span>
+    <span class="md-status md-status--4 of 3 originally-planned chapters written — 3/3 closed 2026-09-10; T-1703 gap-audit addition 2026-09-21; fully L1-L4"></span>
   
 
   
@@ -2395,6 +2395,41 @@
     
   
     SOLID Principles
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-software-design/coupling-cohesion-and-code-smells/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling, Cohesion, and Code Smells
   
 
     
@@ -11606,6 +11641,7 @@
         I2["same input"] --&gt; C2["cleaner internal structure"] --&gt; O2["same output"]
     end</code></pre>
 <p>The internals (<code>C1</code> -&gt; <code>C2</code>) are exactly what's allowed to change — that's the entire point of the exercise. The inputs and outputs on either side are exactly what's <em>not</em> allowed to change, and the only way to actually verify that (rather than just believe it) is a test suite that exercises those same inputs and checks those same outputs both before and after the internal restructuring.</p>
+<p>This chapter covers <em>how</em> to change internal structure safely, once you've decided to; it deliberately doesn't cover <em>what</em> to look for or <em>when</em> a change is warranted in the first place — that's <a href="../../04-software-design/coupling-cohesion-and-code-smells/">Coupling, Cohesion, and Code Smells</a>'s own scope, whose God Class and Feature Envy demo uses this exact same before/after test-parity technique to verify its own decomposition preserved behavior.</p>
 <h2 id="4-core-concepts-l2">4. Core Concepts (L2)<a class="headerlink" href="#4-core-concepts-l2" title="Permanent link">&para;</a></h2>
 <p><strong>Extract Method</strong> — pulling a self-contained piece of logic out of a larger method into its own, separately named method — is the single most common refactoring, and the one this chapter's own practice demo (Section 7) applies three times in sequence to decompose one long method into three focused ones.</p>
 <p><strong>Refactoring should proceed in small, individually-verifiable steps, not as one large restructuring done all at once</strong> — each Extract Method (or other individual refactoring) should be followed by running the test suite before starting the next one, so that if a step does introduce an accidental behavior change, it's caught immediately and traced to exactly that one small step, not lost somewhere inside a much larger batch of changes.</p>
@@ -11774,7 +11810,7 @@ All 10 cases: before and after produce identical output.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 01:03:03 UTC">September 21, 2026</span>
   </span>
 
     

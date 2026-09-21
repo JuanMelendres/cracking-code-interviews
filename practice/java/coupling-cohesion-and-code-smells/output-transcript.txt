@@ -1,0 +1,50 @@
+### 1. Coupling measurement: God Class vs. decomposed, plus Feature Envy fix (behavior parity)
+=== Coupling measurement: distinct collaborator field types ===
+GodOrderProcessor (before): 5 -> [TaxTable, ShippingRateTable, InventoryStore, EmailGateway, PaymentGateway]
+OrderProcessor (orchestrator) (after): 6 -> [OrderValidator, TaxCalculator, ShippingCalculator, InventoryUpdater, EmailNotifier, PaymentProcessor]
+OrderValidator (after): 0 -> []
+TaxCalculator (after): 1 -> [TaxTable]
+ShippingCalculator (after): 1 -> [ShippingRateTable]
+InventoryUpdater (after): 1 -> [InventoryStore]
+EmailNotifier (after): 1 -> [EmailGateway]
+PaymentProcessor (after): 1 -> [PaymentGateway]
+
+God class coupling: 5 vs. largest single decomposed class's coupling: 1
+
+=== Behavior parity: God Class vs. decomposed, same real orders ===
+  order 1: before=196.7600 after=196.7600 match=true
+  order 2: before=59.4397 after=59.4397 match=true
+  order 3: before=856.1380 after=856.1380 match=true
+All 3 orders: identical totals before and after decomposition.
+
+### 2a. Law of Demeter, v1 baseline: train-wreck and Demeter-compliant styles produce identical output
+train-wreck: Receipt for Alice, card ending 4242
+demeter:     Receipt for Alice, card ending 4242
+v1 baseline: both styles produce identical output = true
+Refunding to card ending 4242
+Refunding to card ending 4242
+Hi Alice, your order was charged to card ending 4242
+Hi Alice, your order was charged to card ending 4242
+
+### 2b. Law of Demeter, v2: Wallet's internal structure changes (single card -> multiple cards)
+         Demeter-compliant clients (unchanged source) still compile:
+  SUCCESS: all 3 Demeter-compliant clients compiled UNCHANGED against the new Wallet
+
+         Train-wreck clients (unchanged source) now fail to compile:
+src/demeter/v2/TrainWreckReceiptPrinter.java:6: error: cannot find symbol
+        return "Receipt for " + customer.getName() + ", card ending " + customer.getWallet().getCard().getLast4Digits();
+                                                                                            ^
+  symbol:   method getCard()
+  location: class Wallet
+src/demeter/v2/TrainWreckRefundService.java:6: error: cannot find symbol
+        return "Refunding to card ending " + customer.getWallet().getCard().getLast4Digits();
+                                                                 ^
+  symbol:   method getCard()
+  location: class Wallet
+src/demeter/v2/TrainWreckOrderConfirmationEmailer.java:7: error: cannot find symbol
+                + customer.getWallet().getCard().getLast4Digits();
+                                      ^
+  symbol:   method getCard()
+  location: class Wallet
+3 errors
+  (3 real compile errors above, one per train-wreck client, all 'cannot find symbol: method getCard()')

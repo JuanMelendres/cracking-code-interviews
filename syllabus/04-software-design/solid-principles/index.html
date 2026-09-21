@@ -18,7 +18,7 @@
         <link rel="prev" href="../INDEX/">
       
       
-        <link rel="next" href="../design-patterns-applied/">
+        <link rel="next" href="../coupling-cohesion-and-code-smells/">
       
       
         
@@ -2371,7 +2371,7 @@
     
   
   
-    <span class="md-status md-status--3 of 3 chapters written — domain gap-audited and closed (2026-09-10), fully L1-L4"></span>
+    <span class="md-status md-status--4 of 3 originally-planned chapters written — 3/3 closed 2026-09-10; T-1703 gap-audit addition 2026-09-21; fully L1-L4"></span>
   
 
   
@@ -2774,6 +2774,41 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coupling-cohesion-and-code-smells/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling, Cohesion, and Code Smells
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
     </li>
   
 
@@ -11824,7 +11859,7 @@
 <h2 id="mental-model">Mental Model<a class="headerlink" href="#mental-model" title="Permanent link">&para;</a></h2>
 <p>Keep one question per letter, and ask it about the specific piece of code in front of you. <strong>S</strong>: "how many genuinely different reasons would cause this class to change?" — more than one is a smell. <strong>O</strong>: "to support a plausible new case, would I add a new class, or edit an existing one?" — editing is the smell. <strong>L</strong>: "if I swap in any subtype here, does every promise the supertype's own callers were relying on still hold?" — a broken promise is the smell, even if the code compiles. <strong>I</strong>: "does every implementer of this interface actually need every method on it?" — an implementer with an empty or throwing stub is the smell. <strong>D</strong>: "does this high-level class name a concrete, specific low-level detail, or an abstraction it was handed?" — naming the concrete detail directly is the smell.</p>
 <h2 id="definition-and-purpose">Definition and Purpose<a class="headerlink" href="#definition-and-purpose" title="Permanent link">&para;</a></h2>
-<p><strong>SOLID</strong> is an acronym for five object-oriented design principles, popularized by Robert C. Martin, aimed at producing code that is easier to understand, extend, and maintain as requirements change over time. <strong>Single Responsibility Principle (SRP)</strong>: a class should have only one reason to change. <strong>Open/Closed Principle (OCP)</strong>: software entities should be open for extension but closed for modification. <strong>Liskov Substitution Principle (LSP)</strong>: objects of a superclass should be replaceable with objects of a subclass without altering the correctness of the program. <strong>Interface Segregation Principle (ISP)</strong>: no client should be forced to depend on methods it does not use. <strong>Dependency Inversion Principle (DIP)</strong>: high-level modules should not depend on low-level modules — both should depend on abstractions.</p>
+<p><strong>SOLID</strong> is an acronym for five object-oriented design principles, popularized by Robert C. Martin, aimed at producing code that is easier to understand, extend, and maintain as requirements change over time. Collectively, the five principles are concrete mechanisms for achieving the two underlying properties <a href="../coupling-cohesion-and-code-smells/">Coupling, Cohesion, and Code Smells</a> names directly — low coupling and high cohesion — without SOLID itself ever naming either property. <strong>Single Responsibility Principle (SRP)</strong>: a class should have only one reason to change. <strong>Open/Closed Principle (OCP)</strong>: software entities should be open for extension but closed for modification. <strong>Liskov Substitution Principle (LSP)</strong>: objects of a superclass should be replaceable with objects of a subclass without altering the correctness of the program. <strong>Interface Segregation Principle (ISP)</strong>: no client should be forced to depend on methods it does not use. <strong>Dependency Inversion Principle (DIP)</strong>: high-level modules should not depend on low-level modules — both should depend on abstractions.</p>
 <h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="srps-reason-to-change-is-about-actors-and-axes-of-change-not-literal-method-count">SRP's "reason to change" is about actors and axes of change, not literal method count<a class="headerlink" href="#srps-reason-to-change-is-about-actors-and-axes-of-change-not-literal-method-count" title="Permanent link">&para;</a></h3>
 <p>A class with five methods isn't automatically an SRP violation, and a class with one method isn't automatically compliant — the actual test is whether the class's various pieces of behavior are driven by genuinely different sources of change (a validation-rules change, a database-technology change, a notification-channel change are three independent axes, even if today they happen to live in one small class).</p>
@@ -12066,7 +12101,7 @@ A: Yes — injecting a fat interface as a dependency technically satisfies "depe
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 01:03:03 UTC">September 21, 2026</span>
   </span>
 
     
@@ -12185,13 +12220,13 @@ A: Yes — injecting a fat interface as a dependency technically satisfies "depe
         
         
           
-          <a href="../design-patterns-applied/" class="md-footer__link md-footer__link--next" aria-label="Next: Design Patterns Applied (GoF in Production)">
+          <a href="../coupling-cohesion-and-code-smells/" class="md-footer__link md-footer__link--next" aria-label="Next: Coupling, Cohesion, and Code Smells">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Design Patterns Applied (GoF in Production)
+                Coupling, Cohesion, and Code Smells
               </div>
             </div>
             <div class="md-footer__button md-icon">
