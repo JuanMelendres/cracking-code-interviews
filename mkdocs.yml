@@ -166,6 +166,10 @@ extra_javascript:
   # Fixed top-of-viewport bar showing scroll progress through the current
   # page -- see the script for why it's hidden on non-scrollable pages.
   - javascripts/reading-progress.js
+  # Drives the interactive system-design practice canvas (drag components,
+  # connect them, export a PNG) embedded in architecture-atlas's canvas
+  # page -- no-op on every other page, see the script for why.
+  - javascripts/design-canvas.js
 
 extra_css:
   - stylesheets/extra.css
