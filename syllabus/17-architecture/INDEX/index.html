@@ -7677,7 +7677,7 @@
     
   
   
-    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4"></span>
+    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit)"></span>
   
 
   
@@ -7702,7 +7702,7 @@
     
   
   
-    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4"></span>
+    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit)"></span>
   
 
   
@@ -11306,10 +11306,11 @@
 
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
-<p>System-level architectural decision-making: Clean/Hexagonal Architecture, DDD (strategic and tactical), CQRS, microservice decomposition, modular monoliths, and evolutionary architecture. <code>handbook/architecture/</code> minus <code>design-patterns-applied.md</code> (→ <code>04-software-design</code>) and its two event-driven chapters (→ <code>09-messaging-event-driven</code>).</p>
+<p>System-level architectural decision-making: Clean/Hexagonal Architecture, DDD (strategic and tactical), CQRS, microservice decomposition, modular monoliths, evolutionary architecture, and the domain-event/integration-event contract boundary. <code>handbook/architecture/</code> minus <code>design-patterns-applied.md</code> (→ <code>04-software-design</code>) and its two event-driven chapters (→ <code>09-messaging-event-driven</code>).</p>
 <blockquote>
 <p><strong>Phase 3 update (2026-09-03).</strong> This domain's full existing content (9 chapter(s)) has physically relocated via <code>git mv</code>, preserving file history. See the repository-root <code>CHANGELOG.md</code> for the full batch account.</p>
 <p><strong>Phase 5 update (2026-09-04) — domain complete.</strong> All 9 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject: a wall-power-outlet analogy for ports/adapters (Clean/Hexagonal); a "football means different sports in different countries" analogy for bounded contexts (DDD Strategic); a packing-boxes-for-a-move analogy for aggregate boundaries (DDD Tactical); a newsroom-vs-printed-newspaper analogy for the write/read model lag (CQRS); a roommates-splitting-apartments analogy for service boundaries (Microservice Decomposition); a door-sign-vs-real-lock analogy for enforced module boundaries (Modular Monolith); a renovating-a-house-while-living-in-it analogy for incremental migration and rollback safety (Strangler Fig); a worn-brake-pads-and-vehicle-inspection analogy for economic debt framing and fitness functions (Technical Debt); a scientist's-lab-notebook analogy for durable decision reasoning (ADRs). Every chapter also gained <code>topic_id</code>/<code>mastery_levels_covered: [L1, L2, L3, L4]</code> front matter. <strong><code>17-architecture</code> is now fully L1–L4 (9/9)</strong> — the fifteenth fully-retrofitted domain in the syllabus.</p>
+<p><strong>Gap found and closed: Domain Events vs. Integration Events (2026-09-21).</strong> A gap audit found <code>cqrs-read-write-separation.md</code> and <code>ddd-tactical-design-aggregates.md</code> use "domain event" extensively, and <code>../09-messaging-event-driven/event-driven-architecture-integration-styles.md</code> covers publishing events across service boundaries — but none of the three ever named the specific, commonly-made mistake at their intersection: publishing a domain event's internal shape directly as an external contract. Closed with <a href="../domain-events-vs-integration-events/">Domain Events vs. Integration Events: Contract Boundaries and Translation</a> (T-2426), backed by a real, fully deterministic Java demo (<code>practice/java/architecture/domain-events-vs-integration-events/</code>) proving a downstream consumer genuinely breaks when a domain event is published directly and a real, well-motivated internal refactor happens (<code>double total</code> → <code>BigDecimal grandTotal</code>), and does not break when the same refactor is absorbed by a translated, stable integration-event contract — real captured output: <code>BROKEN, exactly as expected: Consumer expected field "total" but it was not present</code>, versus an unchanged <code>totalAmount=49.99</code> both before and after via the translated path.</p>
 </blockquote>
 <h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <table>
@@ -11376,6 +11377,12 @@
 <td>L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04)</td>
 <td><code>syllabus/17-architecture/architecture-decision-records.md</code></td>
 </tr>
+<tr>
+<td>T-2426</td>
+<td>Domain Events vs. Integration Events: Contract Boundaries and Translation</td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-21)</td>
+<td><code>syllabus/17-architecture/domain-events-vs-integration-events.md</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="where-this-domains-boundary-comes-from">Where this domain's boundary comes from<a class="headerlink" href="#where-this-domains-boundary-comes-from" title="Permanent link">&para;</a></h2>
@@ -11400,7 +11407,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2026 04:38:11 UTC">September 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 22, 2026 17:40:01 UTC">September 22, 2026</span>
   </span>
 
     

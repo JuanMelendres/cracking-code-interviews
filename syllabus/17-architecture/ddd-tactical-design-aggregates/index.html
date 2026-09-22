@@ -7668,7 +7668,7 @@
     
   
   
-    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4"></span>
+    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit)"></span>
   
 
   
@@ -11919,7 +11919,7 @@
 <h3 id="repository-per-aggregate">Repository-per-aggregate<a class="headerlink" href="#repository-per-aggregate" title="Permanent link">&para;</a></h3>
 <p>Each aggregate root gets exactly one repository (<code>OrderRepository</code>, not <code>OrderLineRepository</code>) — this is the same port pattern as any repository abstraction, applied at aggregate granularity. <code>OrderLine</code> has no repository because nothing outside the <code>Order</code> aggregate is allowed to load or save it independently.</p>
 <h3 id="cross-aggregate-consistency-is-eventual-not-transactional">Cross-aggregate consistency is eventual, not transactional<a class="headerlink" href="#cross-aggregate-consistency-is-eventual-not-transactional" title="Permanent link">&para;</a></h3>
-<p>A single logical operation spanning two aggregates cannot use a shared ACID transaction across them by design — that would violate the point of drawing separate boundaries. Instead, cross-aggregate consistency uses sagas, an outbox pattern, or domain events, accepting a window of eventual consistency in exchange for aggregates that can each be reasoned about, locked, and scaled independently.</p>
+<p>A single logical operation spanning two aggregates cannot use a shared ACID transaction across them by design — that would violate the point of drawing separate boundaries. Instead, cross-aggregate consistency uses sagas, an outbox pattern, or domain events, accepting a window of eventual consistency in exchange for aggregates that can each be reasoned about, locked, and scaled independently. The moment one of those domain events crosses outside this bounded context to a genuinely external consumer, publishing it directly (rather than through a stable, translated contract) becomes a real, deferred risk — see <a href="../domain-events-vs-integration-events/">Domain Events vs. Integration Events</a> for real, measured evidence of exactly what breaks.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>Sketch — illustrates the shape, not compiled standalone:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span>
@@ -12181,7 +12181,7 @@ Creating a repository for every entity class regardless of aggregate membership.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 22, 2026 17:40:01 UTC">September 22, 2026</span>
   </span>
 
     
