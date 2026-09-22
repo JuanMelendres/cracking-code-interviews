@@ -1,0 +1,17 @@
+=== UNSAFE: publishing the domain event directly as the wire message ===
+  Before refactor, consumer reads field "total": Notification sent for order order-123: amount=49.99
+
+  --- Internal refactor happens: double total -> BigDecimal grandTotal ---
+  --- (a real, well-motivated internal fix -- primitives are a precision risk for money) ---
+
+  After refactor, consumer STILL asks for field "total" (its contract never changed):
+  BROKEN, exactly as expected: Consumer expected field "total" but it was not present in the wire message. Actual fields present: [loyaltyPointsEarned, orderId, grandTotal, customerId]
+
+=== SAFE: translating through a stable OrderCompletedIntegrationEvent contract ===
+  Before refactor, consumer reads field "totalAmount": Notification sent for order order-123: amount=49.99
+  After the SAME internal refactor, consumer reads field "totalAmount": Notification sent for order order-124: amount=49.99
+
+=== Result ===
+  The direct-publish consumer broke the instant an internal-only refactor happened.
+  The translated-contract consumer never noticed the same refactor at all --
+  its field, "totalAmount", was identical before and after (49.99 both times), because the translation boundary absorbed the internal change.
