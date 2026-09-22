@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (System Design Patterns: Recognition and Quick-Reference Guide, T-2427, 2026-09-22)
+
+- User requested real examples and visual examples for `syllabus/11-system-design/`'s existing patterns. Rather than duplicating any of the domain's 9 already-deep chapters, added a new recognition/routing chapter — same pattern as `03-data-structures-algorithms`'s T-2120 — with a signal-to-pattern table, one new example plus one compact Mermaid diagram per pattern (8 total), and a decision framework for the three most commonly confused overlapping pattern pairs.
+- New standalone cheat sheet and flashcard deck (3 cards); `syllabus/11-system-design/INDEX.md`, `syllabus/11-system-design/.pages`, `syllabus/00-overview/INDEX.md`, and both changelogs updated. See `syllabus/00-overview/changelog.md`'s matching entry for full detail.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (Committed E2E regression tests + real mobile-viewport check for the two interactive Architecture Atlas tools, 2026-09-22)
 
 - Both `docs/javascripts/design-canvas.js` (Interactive System Design Canvas, PR #96) and `docs/javascripts/whiteboard-timer.js` (Timed Whiteboard Practice, PR #97) had only been verified with an ephemeral, uncommitted Playwright harness at build time — a known, flagged gap, not actioned until now.

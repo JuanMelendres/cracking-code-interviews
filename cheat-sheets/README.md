@@ -356,6 +356,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) | T-2424 | devops-containers | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
 | [Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling](serverless-lambda-execution-model-cold-starts-and-concurrency.md) | T-2425 | cloud | `syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md` |
 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | architecture | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
+| [System Design Patterns: Recognition and Quick-Reference Guide](system-design-patterns-recognition-and-quick-reference.md) | T-2427 | system-design | `syllabus/11-system-design/system-design-patterns-recognition-and-quick-reference.md` |
 | [Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses](estimation-and-story-points.md) | T-1805 | engineering-practices | `syllabus/18-engineering-practices/estimation-and-story-points.md` |
 | [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | engineering-practices | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
 | [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) | T-1908 | leadership-staff | `syllabus/19-leadership-staff/handling-underperformance-and-difficult-feedback.md` |
@@ -414,6 +415,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-21 (same day, follow-up) — Prompt Injection and Agentic Security (T-2306) gains a cheat sheet.** New `22-ai-llm-engineering` chapter, added the same day to close a real gap audit finding — `llm-api-integration-fundamentals.md` named prompt injection as a real risk category without ever explaining or demonstrating it. New total, verified directly against the file system: **279 cheat sheets** (278 prior + 1).
 
 **2026-09-21 (same day, follow-up) — Domain Events vs. Integration Events: Contract Boundaries and Translation (T-2426) gains a cheat sheet.** New `17-architecture` chapter, added the same day to close a real gap audit finding — three existing chapters used "domain event" extensively without ever naming the mistake of publishing one directly as an external contract. New total, verified directly against the file system: **280 cheat sheets** (279 prior + 1).
+
+**2026-09-22 — System Design Patterns: Recognition and Quick-Reference Guide (T-2427) gains a cheat sheet.** New `11-system-design` chapter, user-requested: real examples and visual (Mermaid) diagrams for each of this domain's 8 existing patterns, framed as a signal-to-pattern recognition guide (mirroring `03-data-structures-algorithms`'s T-2120 pattern-recognition chapter) rather than duplicating any canonical chapter's own depth. New total, verified directly against the file system: **281 cheat sheets** (280 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
