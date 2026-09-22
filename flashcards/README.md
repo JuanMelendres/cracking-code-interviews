@@ -227,6 +227,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 182 | [Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses](estimation-and-story-points.md) | T-1805 | 3 | `syllabus/18-engineering-practices/estimation-and-story-points.md` |
 | 183 | [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | 3 | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
 | 184 | [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) | T-1908 | 3 | `syllabus/19-leadership-staff/handling-underperformance-and-difficult-feedback.md` |
+| 185 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | 3 | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -430,6 +431,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a flashcard deck.** New `21-frontend-web` chapter closing a follow-up gap audit that found the D-F4 tier's remaining commonly-asked item (offline support/caching) still uncovered after its original three items closed 2026-09-11. 3 cards. **New total: 276 decks (275 prior + 1), 955 cards (952 prior + 3).**
 
 **2026-09-21 (same day, follow-up) — Prompt Injection and Agentic Security (T-2306) gains a flashcard deck.** New `22-ai-llm-engineering` chapter closing a gap audit that found `llm-api-integration-fundamentals.md` named prompt injection as a real risk category without ever explaining or demonstrating it. 3 cards. **New total: 277 decks (276 prior + 1), 958 cards (955 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Domain Events vs. Integration Events: Contract Boundaries and Translation (T-2426) gains a flashcard deck.** New `17-architecture` chapter closing a gap audit that found three existing chapters used "domain event" extensively without ever naming the mistake of publishing one directly as an external contract. 3 cards. New total, verified directly against the file system: **280 decks, 979 cards** — this note's own arithmetic chain (277 prior + 1 = 278) undercounts by 2, the same "several files added across the interim without an updating note of their own" drift `cheat-sheets/README.md` already documented; the file-system count is authoritative here, not the arithmetic chain above it.
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
