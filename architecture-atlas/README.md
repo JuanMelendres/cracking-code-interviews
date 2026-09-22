@@ -55,6 +55,7 @@ Not reference entries — real, in-browser tools for rehearsing a specific inter
 | Tool | What it's for |
 |---|---|
 | [Interactive System Design Canvas](interactive-system-design-canvas.md) | Drag-and-connect component boxes in the browser for rehearsing the drawing half of a system design interview, complementing [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s Whiteboard Explanation section. Layout persists locally, exports as PNG. Added 2026-09-22, following a post-audit review that found this Atlas's diagrams are all static — no way to actually place and rearrange boxes short of physical paper. |
+| [Timed Whiteboard Practice](timed-whiteboard-practice.md) | A real countdown timer that walks through the same chapter's six phases in order, using its own stated per-phase minute ranges, auto-advancing (with a beep) when a phase runs out — rehearsing the time-pressure discipline the chapter names explicitly (running out of time before Bottlenecks is a scored gap), not just its content. Pairs with the canvas above. Added 2026-09-22, same review. |
 
 ## How this relates to other deliverables
 

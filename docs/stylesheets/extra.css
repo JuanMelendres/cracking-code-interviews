@@ -417,3 +417,108 @@
   color: var(--md-default-fg-color--light);
   margin-top: 0.4rem;
 }
+
+/* Timed whiteboard practice, injected/driven by
+   javascripts/whiteboard-timer.js. */
+.whiteboard-timer {
+  margin: 1.5rem 0;
+  border: 1px solid var(--md-default-fg-color--light);
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+
+.whiteboard-timer__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.whiteboard-timer__presets button,
+.whiteboard-timer__controls button {
+  font-family: inherit;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--md-default-fg-color--light);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+}
+
+.whiteboard-timer__presets button:hover,
+.whiteboard-timer__controls button:not(:disabled):hover {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.whiteboard-timer__controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.whiteboard-timer__phases {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.whiteboard-timer__phases input[type="number"] {
+  width: 4.5rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  border: 1px solid var(--md-default-fg-color--light);
+  border-radius: 0.2rem;
+  padding: 0.15rem 0.3rem;
+}
+
+.whiteboard-timer__display {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.whiteboard-timer__phase-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.whiteboard-timer__clock {
+  font-family: var(--md-code-font, monospace);
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.whiteboard-timer__progress {
+  display: flex;
+  gap: 0.3rem;
+  margin: 0.75rem 0;
+}
+
+.whiteboard-timer__segment {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--light);
+}
+
+.whiteboard-timer__segment.is-current {
+  background: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+}
+
+.whiteboard-timer__segment.is-done {
+  background: var(--md-default-fg-color--light);
+}
+
+.whiteboard-timer__controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.whiteboard-timer__hint {
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.6rem;
+}

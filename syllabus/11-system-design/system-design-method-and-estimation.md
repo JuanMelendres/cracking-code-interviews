@@ -4,7 +4,7 @@ slug: system-design-method-and-estimation
 document_type: handbook-chapter
 domain: 11-system-design
 status: canonical
-version: 1.1
+version: 1.2
 last_updated: 2026-09-22
 source_history:
   - handbook/system-design/system-design-method-and-estimation.md
@@ -28,6 +28,7 @@ related:
   - load-balancing-service-discovery-and-health-checking.md
   - ../../study-packs/week-03/03-system-design-method.md
   - ../../architecture-atlas/interactive-system-design-canvas.md
+  - ../../architecture-atlas/timed-whiteboard-practice.md
 official_references: []
 ---
 
@@ -339,6 +340,8 @@ A repeatable six-phase procedure — Clarify, Estimate, API, Data, Architecture,
 | 4. Data | 3–5 min | Data model and storage choice, driven by Phase 2's numbers |
 | 5. Architecture | 10–15 min | Draw the system, justify every box against Phase 2 |
 | 6. Bottlenecks | 5–10 min | Name ≥3 failure modes and mitigations — don't skip this |
+
+[Timed Whiteboard Practice](../../architecture-atlas/timed-whiteboard-practice.md) loads these exact minute ranges into a real countdown timer that auto-advances phase to phase.
 
 ## Flashcards
 
