@@ -2,6 +2,7 @@ title: System Design
 nav:
   - INDEX.md
   - system-design-method-and-estimation.md
+  - system-design-patterns-recognition-and-quick-reference.md
   - storage-selection-tradeoffs.md
   - caching-strategies-and-invalidation.md
   - load-balancing-service-discovery-and-health-checking.md
