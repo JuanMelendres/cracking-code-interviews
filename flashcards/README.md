@@ -228,6 +228,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 183 | [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | 3 | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
 | 184 | [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) | T-1908 | 3 | `syllabus/19-leadership-staff/handling-underperformance-and-difficult-feedback.md` |
 | 185 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | 3 | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
+| 186 | [System Design Patterns: Recognition and Quick-Reference Guide](system-design-patterns-recognition-and-quick-reference.md) | T-2427 | 3 | `syllabus/11-system-design/system-design-patterns-recognition-and-quick-reference.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
