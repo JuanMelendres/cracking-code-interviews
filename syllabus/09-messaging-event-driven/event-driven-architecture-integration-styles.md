@@ -4,8 +4,8 @@ slug: event-driven-architecture-integration-styles
 document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-21
 source_history:
   - handbook/architecture/event-driven-architecture-integration-styles.md
 topic_id: T-906
@@ -24,6 +24,7 @@ prerequisites:
   - ../17-architecture/clean-hexagonal-architecture.md
 related:
   - ../17-architecture/cqrs-read-write-separation.md
+  - ../17-architecture/domain-events-vs-integration-events.md
   - event-sourcing-and-its-real-costs.md
   - ../17-architecture/ddd-strategic-bounded-contexts-and-context-mapping.md
   - ../10-distributed-systems/distributed-transactions-saga-and-outbox.md
@@ -159,6 +160,8 @@ directly-coupled call chain (Service A calls B calls C calls D) makes every down
 service's availability and latency a hard dependency for the caller — event-driven
 integration exists to break that specific coupling, at the cost of introducing new
 coupling elsewhere, which is this chapter's central, recurring point.
+
+Whichever style is chosen, the events actually crossing a service boundary here are, by definition, **integration events** — a separate, deliberate decision from whatever internal domain events a publisher's own bounded context uses; see [Domain Events vs. Integration Events](../17-architecture/domain-events-vs-integration-events.md) for the real, measured cost of skipping that distinction and publishing an internal domain event directly as this layer's message instead.
 
 ## Core Concepts
 
