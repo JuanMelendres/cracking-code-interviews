@@ -295,3 +295,125 @@
   font-size: 0.68rem;
   margin-bottom: 0.3rem;
 }
+
+/* Interactive system-design canvas, injected/driven by
+   javascripts/design-canvas.js. Surface uses a fixed height with
+   overflow:hidden -- node dragging is clamped in JS to stay within these
+   bounds, so nothing ever needs to scroll here. */
+.design-canvas {
+  margin: 1.5rem 0;
+}
+
+.design-canvas__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.design-canvas__palette,
+.design-canvas__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.design-canvas [data-add],
+.design-canvas__actions button {
+  font-family: inherit;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--md-default-fg-color--light);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+}
+
+.design-canvas [data-add]:hover,
+.design-canvas__actions button:hover {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.design-canvas__actions button[aria-pressed="true"] {
+  background: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-default-bg-color);
+}
+
+.design-canvas__surface {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  border: 1px dashed var(--md-default-fg-color--light);
+  border-radius: 0.3rem;
+  background: var(--md-code-bg-color);
+}
+
+.design-canvas__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.design-canvas__edge {
+  stroke: var(--md-default-fg-color--light);
+  stroke-width: 2;
+}
+
+.design-canvas__node {
+  position: absolute;
+  width: 150px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.4rem 0 0.5rem;
+  border-radius: 0.35rem;
+  border: 1.5px solid var(--md-accent-fg-color);
+  background: var(--md-default-bg-color);
+  font-size: 0.78rem;
+  text-align: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.design-canvas__node--pending {
+  box-shadow: 0 0 0 2px var(--md-accent-fg-color);
+}
+
+.design-canvas__node-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.design-canvas__node-delete {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  border: none;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 2px;
+}
+
+.design-canvas__node-delete:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.design-canvas__hint {
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.4rem;
+}

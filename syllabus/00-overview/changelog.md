@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-21
+last_updated: 2026-09-22
 ---
 
 # Syllabus Changelog
@@ -2322,4 +2322,17 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `scripts/export_flashcards_anki.py`: parses all 279 `flashcards/*.md` decks (976 cards total, verified against `grep -c "^## Card: "` across the directory) and writes Anki's plain-text import format to `dist/anki/` (gitignored, regenerable — `flashcards/*.md` stays the source of truth). Produces one `<slug>.txt` per deck plus a combined `all-decks.txt` using Anki's `#deck column` directive, routing every card into a `Cracking Code Interviews::<domain>::<deck title>` deck automatically on import. Multi-paragraph answers use `<br>` (HTML) instead of real newlines, since the plain-text import format is one note per line.
 - Verified real: ran the script against the full current `flashcards/` directory — `279/279` decks exported, `976` cards, output card/line counts checked against independent `grep` counts before and after.
 - `flashcards/README.md` documents the new "Real spaced repetition: export to Anki" workflow.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-22] — Interactive System Design Canvas (real practice tool, not a chapter)
+
+### Added
+
+- Another retention/practice-layer gap, same post-audit review as the Anki export above: every diagram in `architecture-atlas/` is static — no way to actually place and rearrange system-design components short of physical paper, despite [System Design Method and Estimation](../11-system-design/system-design-method-and-estimation.md) explicitly teaching a Whiteboard Explanation that's meant to be drawn, not just read.
+- `docs/javascripts/design-canvas.js` (new, vanilla JS, no dependency, matching this repo's existing `docs/javascripts/` scripts): a real drag-and-drop canvas — click a palette button to add a component, drag to reposition, double-click to rename, click a connect-mode toggle then two components in turn to draw a connection, export the current layout as a real PNG via an offscreen `<canvas>` render. Layout persists per reader per page in `localStorage` (same pattern as `checklist-progress.js`), never sent anywhere. No-op on every page except the one embedding it.
+- `architecture-atlas/interactive-system-design-canvas.md` (new): explicitly labeled a practice tool, not an Architecture Atlas Standard entry (doesn't follow the 15-element reference template) — embeds the canvas widget directly, with real usage instructions and an explicit "What this isn't" section (doesn't grade a design, doesn't replace a real mock interview's narration requirement).
+- `architecture-atlas/README.md` gets a new "Practice Tools" section, deliberately separate from the Entries reference table — this doesn't count toward the Atlas's existing case-study totals.
+- `system-design-method-and-estimation.md` (T-801/T-802, 1.0 → 1.1) updated in place with a `related:` link and a body cross-reference from its own Whiteboard Explanation section.
+- `mkdocs.yml` registers the new script (`extra_javascript`); `docs/stylesheets/extra.css` gets the widget's styling.
+- Verified real, via a headless-Chromium harness (Playwright, reusing the dependency already installed for `practice/frontend/service-workers-and-pwa/`) driving the actual widget markup and script: adding two components, dragging one (position genuinely changed), toggling connect mode and drawing a real connection (an SVG edge element actually appeared), renaming via the double-click prompt, exporting a real downloaded PNG (valid `89 50 4E 47` PNG signature, 16,555 bytes, non-blank), deleting a component (its connection was removed with it), reloading the page (layout survived via `localStorage`), and clearing the canvas. Not verified inside the live Material/mkdocs theme itself — `mkdocs`/`mkdocs-material` aren't installed in this environment, so theme-level rendering (fonts, dark mode, sidebar layout) is unverified; only the widget's own DOM/script/CSS logic is confirmed working.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
