@@ -866,6 +866,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#practice-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-this-relates-to-other-deliverables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1120,6 +1131,41 @@
   
   
     <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interactive-system-design-canvas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive System Design Canvas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
   
 
   
@@ -1522,6 +1568,41 @@
   
   
     <li class="md-nav__item">
+      <a href="timed-whiteboard-practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timed Whiteboard Practice
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="url-shortener-system/" class="md-nav__link">
         
   
@@ -1782,6 +1863,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#practice-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practice Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-this-relates-to-other-deliverables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1971,6 +2063,26 @@
 | <a href="distributed-file-storage-system/">Distributed File Storage System</a> | CAP Theorem and Consistency Models / Consensus Algorithms | A GFS/HDFS-shaped system whose central idea is separating a tiny, in-memory metadata path (which chunkservers hold a file's chunks) from a huge, throughput-bound data path (the actual bytes, which never route through the master) — chunk size is the one number controlling whether metadata fits in one machine's memory at scale. Master failover via an operation log and standby, not a distributed metadata layer, is the deliberately simpler fix for the master's real single-point-of-failure risk. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
 | <a href="web-crawler-system/">Web Crawler System</a> | Search and Indexing Systems / Data Partitioning and Consistent Hashing | A domain-sharded URL frontier with per-domain politeness queues resolves the real tension between "crawl fast" and "never overwhelm one site" — aggregate throughput is a function of concurrent distinct-domain count, not per-domain speed, quantified directly in the capacity math. A Bloom filter (not an exact set) backs seen-URL dedup, sized with the real, worked formula for a stated false-positive trade at billions of URLs. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
 | <a href="autocomplete-typeahead-system/">Autocomplete/Typeahead System</a> | Tries and Prefix Structures / Heaps, Top-K, and K-Way Merge | Fast prefix matching and fast ranked retrieval are two different problems a naive design conflates — precomputing and caching each trie node's own top-K completions is what keeps read latency a single trie descent, independent of how many completions exist under a prefix, with ranking recomputed by a fully decoupled, periodic offline pipeline. Real capacity math shows typeahead's per-keystroke request volume at roughly 15x the completed-search rate it's commonly compared against. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |</p>
+<h2 id="practice-tools">Practice Tools<a class="headerlink" href="#practice-tools" title="Permanent link">&para;</a></h2>
+<p>Not reference entries — real, in-browser tools for rehearsing a specific interview skill, not a system-design write-up.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it's for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="interactive-system-design-canvas/">Interactive System Design Canvas</a></td>
+<td>Drag-and-connect component boxes in the browser for rehearsing the drawing half of a system design interview, complementing <a href="../syllabus/11-system-design/system-design-method-and-estimation/">System Design Method and Estimation</a>'s Whiteboard Explanation section. Layout persists locally, exports as PNG. Added 2026-09-22, following a post-audit review that found this Atlas's diagrams are all static — no way to actually place and rearrange boxes short of physical paper.</td>
+</tr>
+<tr>
+<td><a href="timed-whiteboard-practice/">Timed Whiteboard Practice</a></td>
+<td>A real countdown timer that walks through the same chapter's six phases in order, using its own stated per-phase minute ranges, auto-advancing (with a beep) when a phase runs out — rehearsing the time-pressure discipline the chapter names explicitly (running out of time before Bottlenecks is a scored gap), not just its content. Pairs with the canvas above. Added 2026-09-22, same review.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="how-this-relates-to-other-deliverables">How this relates to other deliverables<a class="headerlink" href="#how-this-relates-to-other-deliverables" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>syllabus/</code> — canonical explanations of individual concepts (storage selection, partitioning, isolation levels) that a full system design draws on; this Atlas references them rather than re-teaching them.</li>
@@ -1997,7 +2109,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 14:53:18 UTC">September 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 22, 2026 14:13:22 UTC">September 22, 2026</span>
   </span>
 
     
@@ -2227,6 +2339,10 @@
         <script src="../javascripts/wide-table-scroll-hint.js"></script>
       
         <script src="../javascripts/reading-progress.js"></script>
+      
+        <script src="../javascripts/design-canvas.js"></script>
+      
+        <script src="../javascripts/whiteboard-timer.js"></script>
       
     
   </body>

@@ -12015,6 +12015,7 @@ Total storage per year ≈ 27.3 TB/year
 <p>Cover, in order: the mental model — every box traces back to a number (mental model); the six phases in detail, with particular attention to why estimation must precede architecture (internals); the worked 10M-DAU estimation example with every assumption stated explicitly, especially the peak-to-average ratio (internals, real worked math); why bottleneck analysis is a scored phase, not optional padding, and is the phase most often skipped under time pressure (common mistake + why it matters); the Staff-level framing that this method is a real design-review discipline, not interview theater (Staff-level connection); and close with the production scenario — a design document that skipped explicit estimation and failed at real peak load exactly where it mattered.</p>
 <h3 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h3>
 <p>Draw the <a href="#diagrams">§ Diagrams</a> six-box flowchart first, left to right, with the dotted "iterate" arrow looping back from Bottlenecks to Architecture. Narrate each box's time budget as you draw it (2–3 min, 3–5 min, etc.) — this signals from the very first second that a procedure, with an explicit time budget, is being followed, which is itself part of the Staff-level signal this topic tests for.</p>
+<p>To rehearse this away from a real whiteboard, the <a href="../../../architecture-atlas/interactive-system-design-canvas/">Interactive System Design Canvas</a> lets a reader drag component boxes and connect them directly in the browser — a lower-fidelity but zero-setup stand-in for the drawing half of this section.</p>
 <h3 id="production-example">Production Example<a class="headerlink" href="#production-example" title="Permanent link">&para;</a></h3>
 <p>The notification-service incident in <a href="#production-scenarios">§ Production Scenarios</a>: a design document that skipped explicit capacity estimation shipped with guess-sized consumer counts and queue partitions, then fell over during a promotional campaign — the exact high-load event the service existed to support, and exactly the failure this six-phase method's ordering (estimate before architecture) exists to prevent.</p>
 <h3 id="trade-offs-to-mention">Trade-offs to Mention<a class="headerlink" href="#trade-offs-to-mention" title="Permanent link">&para;</a></h3>
@@ -12105,6 +12106,7 @@ Total storage per year ≈ 27.3 TB/year
 </tr>
 </tbody>
 </table>
+<p><a href="../../../architecture-atlas/timed-whiteboard-practice/">Timed Whiteboard Practice</a> loads these exact minute ranges into a real countdown timer that auto-advances phase to phase.</p>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
 <h3 id="card-the-six-phases-in-order">Card: The six phases in order<a class="headerlink" href="#card-the-six-phases-in-order" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
@@ -12188,7 +12190,7 @@ Letting the architecture phase consume all remaining time.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 22, 2026 14:13:22 UTC">September 22, 2026</span>
   </span>
 
     
@@ -12418,6 +12420,10 @@ Letting the architecture phase consume all remaining time.</p>
         <script src="../../../javascripts/wide-table-scroll-hint.js"></script>
       
         <script src="../../../javascripts/reading-progress.js"></script>
+      
+        <script src="../../../javascripts/design-canvas.js"></script>
+      
+        <script src="../../../javascripts/whiteboard-timer.js"></script>
       
     
   </body>
