@@ -4,11 +4,12 @@ slug: interactive-system-design-canvas
 document_type: interactive-practice-tool
 domain: architecture-atlas
 status: canonical
-version: 1.0
+version: 1.1
 last_updated: 2026-09-22
 topic_id: —
 related:
   - ../syllabus/11-system-design/system-design-method-and-estimation.md
+  - timed-whiteboard-practice.md
   - README.md
 ---
 
@@ -20,7 +21,7 @@ related:
 
 [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s Whiteboard Explanation section is written to be read, not drawn along with. Every worked example in this Atlas ships a static Mermaid diagram — accurate, but fixed; there was no way to actually place boxes, second-guess a connection, and redraw, short of physical paper. This canvas fills that specific gap: drag components onto a surface, connect them, rename anything, delete what turns out to be wrong, export the result as a PNG to keep.
 
-It's deliberately low-fidelity — eight generic component types, straight-line connections, no auto-layout. The point isn't a polished diagram; it's rehearsing the physical act of building a design up piece by piece under time pressure, the same motion a real whiteboard or shared-screen interview requires.
+It's deliberately low-fidelity — eight generic component types, straight-line connections, no auto-layout. The point isn't a polished diagram; it's rehearsing the physical act of building a design up piece by piece under time pressure, the same motion a real whiteboard or shared-screen interview requires. Pair it with [Timed Whiteboard Practice](timed-whiteboard-practice.md) for the time-pressure half of that rehearsal.
 
 ## How to use it
 

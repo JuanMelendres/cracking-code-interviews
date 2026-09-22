@@ -170,6 +170,10 @@ extra_javascript:
   # connect them, export a PNG) embedded in architecture-atlas's canvas
   # page -- no-op on every other page, see the script for why.
   - javascripts/design-canvas.js
+  # Drives the timed six-phase whiteboard practice countdown embedded in
+  # architecture-atlas's timed-practice page -- no-op on every other page,
+  # see the script for why.
+  - javascripts/whiteboard-timer.js
 
 extra_css:
   - stylesheets/extra.css
