@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Committed E2E regression tests + real mobile-viewport check for the two interactive Architecture Atlas tools, 2026-09-22)
+
+- Both `docs/javascripts/design-canvas.js` (Interactive System Design Canvas, PR #96) and `docs/javascripts/whiteboard-timer.js` (Timed Whiteboard Practice, PR #97) had only been verified with an ephemeral, uncommitted Playwright harness at build time — a known, flagged gap, not actioned until now.
+- New `architecture-atlas/interactive-tools-e2e/`: a committed Playwright suite (`design-canvas.spec.js`, `whiteboard-timer.spec.js`, `mobile-viewport.spec.js`) that runs against the real built MkDocs site (`scripts/build_docs_site.sh` + `mkdocs serve`, the same site that deploys to GitHub Pages), not a stub page. Covers add/drag/connect/delete/rename/export-PNG/clear/reload-persistence for the canvas, and preset/start/pause/reset/full-six-phase-auto-advance for the timer — the auto-advance test drives real per-phase countdowns (minutes set to 0.1 = 6s each) rather than mocking the clock.
+- New: a real 375px-viewport check (a genuinely untested width before this) confirms neither tool causes horizontal page overflow and that both work when driven with `tap()` instead of `click()`/mouse drag.
+- `playwright.config.js` pins `workers: 1` / `fullyParallel: false` — a real, captured bug: `mkdocs serve`'s dev server is single-threaded, and the default parallel worker count caused genuine page-load timeouts (30s+) under concurrent load that a single worker doesn't hit (confirmed by re-running the exact same navigation alone in ~1s).
+- Matches this repo's existing `practice/frontend/react-testing/e2e/` precedent: committed, but not wired into `.github/workflows/` — a from-scratch site build takes roughly a minute, so it's run manually (`npm install && npx playwright install chromium && npm test`), documented in the new directory's `README.md`.
+
 ### Added (Week 17 study pack: closed the CSRF/SSO scheduling gap, 2026-09-17)
 
 - A prior sync-check session (2026-09-15) flagged that `syllabus/12-security/csrf-cors-and-session-security.md` (T-1308, added 2026-09-10) and `enterprise-sso-saml-and-federated-identity.md` (T-1309, added 2026-09-14) were never scheduled into any study pack, since both were written after `study-packs/week-17` (the security-domain closure sprint) had already shipped on 2026-08-02 -- flagged, not fixed, since closing it meant deciding which week absorbs them.
