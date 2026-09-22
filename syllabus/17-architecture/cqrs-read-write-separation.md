@@ -4,8 +4,8 @@ slug: cqrs-read-write-separation
 document_type: handbook-chapter
 domain: 17-architecture
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-21
 source_history:
   - handbook/architecture/cqrs-read-write-separation.md
 topic_id: T-904
@@ -25,6 +25,7 @@ prerequisites:
   - ddd-tactical-design-aggregates.md
 related:
   - microservice-decomposition-and-monolith-tradeoff.md
+  - domain-events-vs-integration-events.md
   - ../09-messaging-event-driven/event-driven-architecture-integration-styles.md
   - ../09-messaging-event-driven/event-sourcing-and-its-real-costs.md
   - ../10-distributed-systems/distributed-transactions-saga-and-outbox.md
@@ -131,7 +132,7 @@ CQRS descends directly from **Command-Query Separation (CQS)**, a much older and
 
 ### The write model (command side)
 
-Owns invariants. In this chapter's practice code, `OrderCommandService` is the *only* code path allowed to mutate the write store, and every mutation both changes state and publishes a domain event describing what changed (`OrderCreated`, `ItemAdded`, `OrderCompleted` — see [`DomainEvent.java`](../../practice/java/architecture/cqrs-read-write-separation/DomainEvent.java)). The write model stays normalized — an `Order` and a separate list of `OrderItem`s — because normalization is what makes enforcing "the total is derived from the items, not stored independently" straightforward. The write side never reads its own events back and has no awareness that a read model exists downstream; coupling only flows one direction.
+Owns invariants. In this chapter's practice code, `OrderCommandService` is the *only* code path allowed to mutate the write store, and every mutation both changes state and publishes a domain event describing what changed (`OrderCreated`, `ItemAdded`, `OrderCompleted` — see [`DomainEvent.java`](../../practice/java/architecture/cqrs-read-write-separation/DomainEvent.java)). The write model stays normalized — an `Order` and a separate list of `OrderItem`s — because normalization is what makes enforcing "the total is derived from the items, not stored independently" straightforward. The write side never reads its own events back and has no awareness that a read model exists downstream; coupling only flows one direction. These domain events stay internal to this bounded context, consumed only by this chapter's own projector — if any of them were ever published directly to a consumer *outside* this context, that would need the translation boundary [Domain Events vs. Integration Events](domain-events-vs-integration-events.md) covers, not the direct publish this chapter's own demo uses internally.
 
 ### The read model (query side)
 

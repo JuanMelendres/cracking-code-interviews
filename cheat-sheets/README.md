@@ -355,6 +355,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Chaos Engineering: Fault Injection and Resilience Verification](chaos-engineering-fault-injection-and-resilience-verification.md) | T-2423 | observability | `syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md` |
 | [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) | T-2424 | devops-containers | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
 | [Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling](serverless-lambda-execution-model-cold-starts-and-concurrency.md) | T-2425 | cloud | `syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md` |
+| [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | architecture | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
 | [Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses](estimation-and-story-points.md) | T-1805 | engineering-practices | `syllabus/18-engineering-practices/estimation-and-story-points.md` |
 | [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | engineering-practices | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
 | [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) | T-1908 | leadership-staff | `syllabus/19-leadership-staff/handling-underperformance-and-difficult-feedback.md` |
@@ -411,6 +412,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a cheat sheet.** New `21-frontend-web` chapter, added the same day to close a follow-up gap audit finding — the D-F4 tier's remaining commonly-asked item (offline support/caching) was still uncovered after its original three items closed 2026-09-11. New total, verified directly against the file system: **278 cheat sheets** (277 prior + 1).
 
 **2026-09-21 (same day, follow-up) — Prompt Injection and Agentic Security (T-2306) gains a cheat sheet.** New `22-ai-llm-engineering` chapter, added the same day to close a real gap audit finding — `llm-api-integration-fundamentals.md` named prompt injection as a real risk category without ever explaining or demonstrating it. New total, verified directly against the file system: **279 cheat sheets** (278 prior + 1).
+
+**2026-09-21 (same day, follow-up) — Domain Events vs. Integration Events: Contract Boundaries and Translation (T-2426) gains a cheat sheet.** New `17-architecture` chapter, added the same day to close a real gap audit finding — three existing chapters used "domain event" extensively without ever naming the mistake of publishing one directly as an external contract. New total, verified directly against the file system: **280 cheat sheets** (279 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
