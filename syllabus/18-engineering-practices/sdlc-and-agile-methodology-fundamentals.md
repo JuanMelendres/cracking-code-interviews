@@ -5,12 +5,14 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-2212
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.3
+last_updated: 2026-09-21
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
   - working-with-legacy-code.md
+  - estimation-and-story-points.md
+  - sprint-retrospectives.md
   - ../19-leadership-staff/leading-migrations-and-large-technical-change.md
   - ../08-testing/test-strategy-and-test-doubles.md
 practice: []
@@ -40,7 +42,7 @@ None — this is a true entry point, independent of any specific programming lan
 
 **The Waterfall model** runs through all six SDLC phases exactly once, strictly in order, with each phase fully completing before the next begins — Requirements are entirely finalized before Design starts, Design is entirely finalized before Implementation starts, and so on. It is called "Waterfall" because progress flows in one direction, like water over a series of steps, with no expected return to an earlier phase.
 
-**The Agile model** runs through the same six phases repeatedly, in short cycles (commonly called **sprints**, typically 1–4 weeks), each cycle producing a small, working increment of the software rather than waiting for the entire system to be complete. **Scrum** is the most widely used Agile framework in industry: it organizes work into fixed-length sprints, with a **sprint planning** meeting at the start, a **daily standup** to surface blockers, and a **sprint review**/**retrospective** at the end.
+**The Agile model** runs through the same six phases repeatedly, in short cycles (commonly called **sprints**, typically 1–4 weeks), each cycle producing a small, working increment of the software rather than waiting for the entire system to be complete. **Scrum** is the most widely used Agile framework in industry: it organizes work into fixed-length sprints, with a **sprint planning** meeting at the start, a **daily standup** to surface blockers, and a **sprint review**/**retrospective** at the end — see [Sprint Retrospectives](sprint-retrospectives.md) for what actually needs to happen in that last ceremony for it to produce real change, rather than the same complaints recurring sprint after sprint.
 
 ```mermaid
 graph TD
@@ -62,7 +64,7 @@ The real mechanism separating the two isn't "old vs. modern" — it's **feedback
 
 **The four values of the Agile Manifesto** (the actual 2001 source document every "Agile" framework traces back to) are stated as preferences, not absolutes: *individuals and interactions* over processes and tools; *working software* over comprehensive documentation; *customer collaboration* over contract negotiation; *responding to change* over following a plan. Each pairing explicitly says the item on the right still has value — "while there is value in the items on the right, we value the items on the left more."
 
-**Scrum's core artifacts and roles**: a **Product Backlog** (the full, prioritized list of everything that might be built), a **Sprint Backlog** (the subset pulled into the current sprint), and an **Increment** (the real, working software produced by the sprint) — maintained by a **Product Owner** (prioritizes the backlog), a **Scrum Master** (facilitates the process and removes blockers), and the **Development Team** (builds the increment).
+**Scrum's core artifacts and roles**: a **Product Backlog** (the full, prioritized list of everything that might be built), a **Sprint Backlog** (the subset pulled into the current sprint), and an **Increment** (the real, working software produced by the sprint) — maintained by a **Product Owner** (prioritizes the backlog), a **Scrum Master** (facilitates the process and removes blockers), and the **Development Team** (builds the increment). Deciding how much fits into that Sprint Backlog is its own real practice — see [Estimation and Story Points](estimation-and-story-points.md) for how relative sizing and velocity actually work, and the real, measured mechanism behind why comparing velocity across two teams is invalid.
 
 ## 5. How It Works Internally (L3)
 

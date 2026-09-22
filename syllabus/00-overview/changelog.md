@@ -2,7 +2,7 @@
 title: "Syllabus Changelog"
 document_type: syllabus-changelog
 status: active
-last_updated: 2026-09-21
+last_updated: 2026-09-22
 ---
 
 # Syllabus Changelog
@@ -2256,4 +2256,107 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `cqrs-read-write-separation.md` (T-904, 1.1 → 1.2), `ddd-tactical-design-aggregates.md` (T-903, 1.0 → 1.1), and `09-messaging-event-driven/event-driven-architecture-integration-styles.md` (T-906, 1.1 → 1.2) updated in place with `related:` links and body cross-references naming this chapter's real evidence explicitly.
 - New standalone cheat sheet and flashcard deck for T-2426.
 - `syllabus/17-architecture/INDEX.md` updated (9 → 10 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `18-engineering-practices` gap audit: estimation and story points closed
+
+### Added
+
+- Gap audit of `18-engineering-practices` (6 chapters). Found [SDLC and Agile Methodology Fundamentals](../18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md) covers Scrum's artifacts, roles, and sprint cadence in depth, but had zero coverage of estimation itself — story points, velocity, and how both get misused organizationally, despite being among the most commonly asked and most commonly misunderstood real Agile practice topics. Other candidates considered and deprioritized: pair/mob programming (real gap, lower interview frequency than estimation) and TDD as a general practice (already substantially covered in `08-testing/writing-tests-live-in-an-interview.md`, not an isolated gap).
+- **Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses** (new chapter, T-1805). Real, fully deterministic Java demo (`practice/java/engineering-practices/estimation-and-story-points/`, no timing/randomness — every run byte-identical), proving numerically, not just by assertion, why comparing velocity across two teams is invalid: two teams estimate the identical 8 tasks (135 real ground-truth hours) using two different, each internally consistent, point-per-hour calibrations against the standard Fibonacci-like scale (1/2/3/5/8/13/20/40/100) — real captured output: Team A's velocity is 61 points, Team B's velocity for the exact same work is 127 points, a real 2.1x difference explained entirely by calibration, not delivered output.
+- `sdlc-and-agile-methodology-fundamentals.md` (T-2212, 1.1 → 1.2) updated in place with a `related:` link and a body cross-reference at its Scrum-artifacts section, naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-1805.
+- `syllabus/18-engineering-practices/INDEX.md` updated (6 → 7 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `18-engineering-practices` follow-up gap audit: sprint retrospectives closed
+
+### Added
+
+- Second follow-up gap audit of `18-engineering-practices` (7 chapters, same day as the estimation-and-story-points closure above). Found [SDLC and Agile Methodology Fundamentals](../18-engineering-practices/sdlc-and-agile-methodology-fundamentals.md) names the sprint retrospective three separate times (as a Scrum ceremony, a common-mistakes note, and an interview answer) without ever explaining what actually happens in one, how to facilitate it, or the specific, common way retrospectives fail (retro theater).
+- **Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater** (new chapter, T-1806). Follows this domain's own real-artifact discipline (established by its ADR chapter's `templates/adr-template.md`/`scripts/check_adr_completeness.py`) rather than a Java demo: a new real template (`templates/retro-action-item-template.md`) and a new real, executed mechanical checker (`scripts/check_retro_action_items.py`) verifying every retrospective action item names an explicit Owner and Deadline. Real captured output: `PASS` against both the template and a real, filled-out example retrospective (`practice/engineering-practices/retro-examples/sprint-14-retrospective.md`, 2 action items each, both complete); `FAIL` against a deliberately incomplete retrospective, naming exactly the missing fields (`item missing Owner, Deadline: "- [ ] Figure out a better reviewer rotation"`).
+- `sdlc-and-agile-methodology-fundamentals.md` (T-2212, 1.2 → 1.3) and `architecture-decision-records-and-technical-writing.md` (T-1802, 1.0 → 1.1) updated in place with `related:` links and a body cross-reference naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-1806.
+- `syllabus/18-engineering-practices/INDEX.md` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `19-leadership-staff` follow-up gap audit: handling underperformance closed
+
+### Added
+
+- Follow-up gap audit of `19-leadership-staff` (7 chapters, previously marked "audit gaps fully closed" 2026-09-11). Found zero coverage anywhere in the repository of one of the most commonly asked real leadership topics — [Mentoring and Developing Others](../19-leadership-staff/mentoring-and-developing-others.md) covers positive growth and delegation, never the harder half of addressing a genuine, sustained performance problem directly, and `20-interview-preparation/behavioral/`'s closest chapter (Conflict and Technical Disagreement) is about disagreement over technical decisions, not a team member's performance.
+- **Handling Underperformance and Difficult Feedback Conversations** (new chapter, T-1908). Follows this domain's own established convention (a representative, explicitly-labeled scenario rather than a Java demo, since this is an interpersonal leadership skill): the pattern-versus-single-instance distinction for identifying a genuine performance problem; separating a specific, behavioral observation from a character-based interpretation when giving feedback; and why an unaddressed performance problem compounds rather than resolves itself. Connects to `18-engineering-practices/sprint-retrospectives.md` and `estimation-and-story-points.md` at the Staff-level section, for recognizing when an apparently individual performance problem actually has a systemic, team-level cause.
+- `mentoring-and-developing-others.md` (T-1901, 1.0 → 1.1) updated in place with a `related:` link and a body cross-reference naming this chapter's coverage of the harder half explicitly.
+- New standalone cheat sheet and flashcard deck for T-1908.
+- `syllabus/19-leadership-staff/INDEX.md` updated (7 → 8 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `20-interview-preparation` gap audit: underperformance and difficult feedback narratives closed
+
+### Added
+
+- Gap audit of `20-interview-preparation` (21 chapters), triggered directly by the same-day `19-leadership-staff` closure above: that chapter explicitly named this domain's own missing counterpart. Confirmed zero coverage across all 16 `behavioral/` chapters of narrating a real conversation about addressing a team member's genuine performance problem — distinct from [Conflict and Technical Disagreement](../20-interview-preparation/behavioral/06-conflict-and-technical-disagreement.md) (disagreement between peers each performing well) and [Mentoring and Developing Others](../20-interview-preparation/behavioral/07-mentoring-and-developing-others.md) (proactive growth coaching, not a performance problem).
+- **Underperformance and Difficult Feedback Narratives** (new chapter, T-1516). Follows this domain's established `behavioral-handbook-chapter` template exactly (Mental Model, Story Structure table, an explicitly-labeled illustrative example, a Distinguishing section, Interview Question with full evaluator/candidate framing, Common Mistakes, Self-Review Checklist, Summary, Related) — the mental model centers a *fair, specific process*, not just a favorable outcome, explicitly normalizing an honestly-told story where the outcome wasn't a clean turnaround.
+- `06-conflict-and-technical-disagreement.md` (T-1506, 1.0 → 1.1) and `07-mentoring-and-developing-others.md` (T-1507, 1.0 → 1.1) updated in place with `related:` links distinguishing each from this new chapter. `19-leadership-staff/handling-underperformance-and-difficult-feedback.md` (T-1908, 1.0 → 1.1) updated in place, replacing its own forward-looking "if built" note with a direct link now that the counterpart exists.
+- No cheat sheet or flashcard deck added for T-1516, matching this domain's own established convention — none of the 16 sibling `behavioral/` STAR-narration chapters have one (their own Self-Review Checklist serves that role instead). **Correction (2026-09-21, same day):** this entry originally, incorrectly, said a cheat sheet and flashcard deck were added for T-1516 — they were not; fixed here rather than left silently wrong.
+- `syllabus/20-interview-preparation/INDEX.md` updated (21 → 22 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `21-frontend-web` follow-up gap audit: Service Workers and PWA closed
+
+### Added
+
+- Follow-up gap audit of `21-frontend-web` (38 chapters). Found zero coverage anywhere in the domain of service workers, caching strategies, or offline support — the D-F4 "Advanced Frontend Architecture & Security" tier's original 2026-09-11 audit closed Security (F-401), WebSocket/Real-time (F-402), and Micro-Frontends (F-403), but this fourth, commonly-asked D-F4-shaped topic remained open.
+- **Service Workers and PWA: Caching Strategies and Offline Support** (new chapter, F-404). Real, headless-Chromium-executed evidence (Playwright) at `practice/frontend/service-workers-and-pwa/`: a real registered service worker using `clients.claim()` for immediate control without a reload; a real cache-first strategy proven by a server-side request counter staying flat (2 → 2) across 3 repeated fetches; a real network-first strategy proven by the same kind of counter incrementing on every single online fetch (0 → 2); and Playwright's own genuine browser-context-level offline mode (`setOffline(true)`, not a mocked `fetch` failure) proving offline support is real and selective — a cached asset (`/app.css`) succeeds offline, a network-first endpoint (`/api/data`) falls back to its last real cached value, and a never-cached resource (`/never-cached.txt`) genuinely fails with `TypeError: Failed to fetch`, all in the identical offline context, with server request counters confirmed unchanged throughout. Re-run twice — byte-identical output both times, fully deterministic.
+- `websocket-and-server-sent-events-for-realtime-ui.md` (F-402, 1.0 → 1.1) updated in place with a `related:` link to this chapter.
+- New standalone cheat sheet and flashcard deck for F-404, matching this domain's own convention (unlike `19-leadership-staff`/`20-interview-preparation`'s behavioral chapters, `21-frontend-web`'s F-coded chapters do get standalone decks).
+- `syllabus/21-frontend-web/INDEX.md` updated (38 → 39 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- Also corrected, same day: the `20-interview-preparation` entry above's cheat-sheet/flashcard claim for T-1516 (see the correction note there).
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — `22-ai-llm-engineering` gap audit: prompt injection and agentic security closed
+
+### Added
+
+- Gap audit of `22-ai-llm-engineering` (6 chapters, domain's originally-planned set, explicitly left open to further topics). Found [LLM API Integration Fundamentals](../22-ai-llm-engineering/llm-api-integration-fundamentals.md) (T-2300) already names prompt injection explicitly — "a real, documented risk category... not a hypothetical" — but never explains or demonstrates it, and confirmed no chapter anywhere in the repository does either.
+- **Prompt Injection and Agentic Security: Attack Vectors and Defenses** (new chapter, T-2306). Real, fully deterministic Java demo (`practice/java/prompt-injection-and-agentic-security/`, no live LLM call, no timing/randomness — every run byte-identical): a real indirect-injection payload embedded in a tool's own output (`SearchTool`) genuinely wipes a simulated database when an `UnsafeAgent` re-parses tool output for embedded directives (real captured output: `Database wiped: true`); the identical payload against a `SafeAgent` that never re-parses tool output for instructions leaves it untouched (`Database wiped: false`); and a real, bidirectional human-approval gate is proven to genuinely block without approval and genuinely allow with it.
+- `llm-api-integration-fundamentals.md` (T-2300, 1.0 → 1.1) and `agentic-workflows-and-tool-orchestration.md` (T-2304, 1.0 → 1.1) updated in place with `related:` links and body cross-references naming this chapter's real evidence explicitly.
+- New standalone cheat sheet and flashcard deck for T-2306.
+- `syllabus/22-ai-llm-engineering/INDEX.md` updated (6 → 7 chapters); `syllabus/00-overview/INDEX.md` row updated.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-21] — Real Anki export for all 279 flashcard decks
+
+### Added
+
+- Not a content gap — a retention-layer gap, raised after the full 22/22-domain content audit closed: `flashcards/` had no actual spaced-repetition scheduling, only static Markdown (verified: no `anki`/`export`/`srs` tooling existed anywhere in `scripts/`).
+- `scripts/export_flashcards_anki.py`: parses all 279 `flashcards/*.md` decks (976 cards total, verified against `grep -c "^## Card: "` across the directory) and writes Anki's plain-text import format to `dist/anki/` (gitignored, regenerable — `flashcards/*.md` stays the source of truth). Produces one `<slug>.txt` per deck plus a combined `all-decks.txt` using Anki's `#deck column` directive, routing every card into a `Cracking Code Interviews::<domain>::<deck title>` deck automatically on import. Multi-paragraph answers use `<br>` (HTML) instead of real newlines, since the plain-text import format is one note per line.
+- Verified real: ran the script against the full current `flashcards/` directory — `279/279` decks exported, `976` cards, output card/line counts checked against independent `grep` counts before and after.
+- `flashcards/README.md` documents the new "Real spaced repetition: export to Anki" workflow.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-22] — Interactive System Design Canvas (real practice tool, not a chapter)
+
+### Added
+
+- Another retention/practice-layer gap, same post-audit review as the Anki export above: every diagram in `architecture-atlas/` is static — no way to actually place and rearrange system-design components short of physical paper, despite [System Design Method and Estimation](../11-system-design/system-design-method-and-estimation.md) explicitly teaching a Whiteboard Explanation that's meant to be drawn, not just read.
+- `docs/javascripts/design-canvas.js` (new, vanilla JS, no dependency, matching this repo's existing `docs/javascripts/` scripts): a real drag-and-drop canvas — click a palette button to add a component, drag to reposition, double-click to rename, click a connect-mode toggle then two components in turn to draw a connection, export the current layout as a real PNG via an offscreen `<canvas>` render. Layout persists per reader per page in `localStorage` (same pattern as `checklist-progress.js`), never sent anywhere. No-op on every page except the one embedding it.
+- `architecture-atlas/interactive-system-design-canvas.md` (new): explicitly labeled a practice tool, not an Architecture Atlas Standard entry (doesn't follow the 15-element reference template) — embeds the canvas widget directly, with real usage instructions and an explicit "What this isn't" section (doesn't grade a design, doesn't replace a real mock interview's narration requirement).
+- `architecture-atlas/README.md` gets a new "Practice Tools" section, deliberately separate from the Entries reference table — this doesn't count toward the Atlas's existing case-study totals.
+- `system-design-method-and-estimation.md` (T-801/T-802, 1.0 → 1.1) updated in place with a `related:` link and a body cross-reference from its own Whiteboard Explanation section.
+- `mkdocs.yml` registers the new script (`extra_javascript`); `docs/stylesheets/extra.css` gets the widget's styling.
+- Verified real, via a headless-Chromium harness (Playwright, reusing the dependency already installed for `practice/frontend/service-workers-and-pwa/`) driving the actual widget markup and script: adding two components, dragging one (position genuinely changed), toggling connect mode and drawing a real connection (an SVG edge element actually appeared), renaming via the double-click prompt, exporting a real downloaded PNG (valid `89 50 4E 47` PNG signature, 16,555 bytes, non-blank), deleting a component (its connection was removed with it), reloading the page (layout survived via `localStorage`), and clearing the canvas. Not verified inside the live Material/mkdocs theme itself — `mkdocs`/`mkdocs-material` aren't installed in this environment, so theme-level rendering (fonts, dark mode, sidebar layout) is unverified; only the widget's own DOM/script/CSS logic is confirmed working.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-22] — Timed Whiteboard Practice (real six-phase countdown, second practice-layer follow-up)
+
+### Added
+
+- Second practice-tool follow-up from the same post-audit review as the Interactive System Design Canvas above (this one is the kinesthetic/time-pressure half, not the visual-spatial half): [System Design Method and Estimation](../11-system-design/system-design-method-and-estimation.md)'s own cheat sheet states real per-phase minute ranges (Clarify 2–3, Estimate 3–5, API 2–3, Data 3–5, Architecture 10–15, Bottlenecks 5–10) and names running out of time before Bottlenecks as a scored gap — but there was no way to actually rehearse against a real, ticking clock.
+- `docs/javascripts/whiteboard-timer.js` (new, vanilla JS, no dependency): a real six-phase countdown timer using those exact minute ranges. Two presets load the lower-bound (25 min total) or upper-bound (41 min total) pace exactly as stated in the chapter's table; any phase's minutes can also be hand-edited. Auto-advances phase to phase with a Web Audio beep on each transition, Pause/Resume, Reset. No state persistence (a timer session isn't meant to survive a reload) — no-op on every page except the one embedding it.
+- Fixed a real off-by-one bug found during verification: the initial tick logic advanced a phase one second later than its configured duration (a 1-second test phase actually ran ~2 seconds) — corrected before shipping (`remainingSeconds <= 0` check instead of `< 0`), then re-verified.
+- `architecture-atlas/timed-whiteboard-practice.md` (new): same "not a full Atlas entry" framing as the canvas tool, embeds the timer widget with real usage instructions, explicitly recommends pairing it with the Interactive System Design Canvas for a fuller rehearsal.
+- `architecture-atlas/README.md`'s "Practice Tools" section gets a second row. `interactive-system-design-canvas.md` (1.0 → 1.1) and `system-design-method-and-estimation.md` (1.1 → 1.2) cross-linked in both directions, including a direct link from the chapter's own cheat-sheet table.
+- `mkdocs.yml` registers the new script; `docs/stylesheets/extra.css` gets the widget's styling.
+- Verified real, via the same kind of headless-Chromium harness as the canvas tool: set all six phases to ~1-second durations, ran a full session start-to-finish (6/6 segments marked done, 6 beeps fired — one per phase transition — confirmed via a spied `AudioContext.createOscillator` call count), confirmed Pause genuinely freezes the displayed clock (`00:04` unchanged across a 2-second paused wait) and Resume genuinely continues it (`00:04 → 00:03` after resuming), and confirmed both presets set the exact minute values from the chapter's table (25 and 41 total). Same scope limitation as the canvas tool: not verified inside the live Material/mkdocs theme, since `mkdocs`/`mkdocs-material` aren't installed in this environment.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).

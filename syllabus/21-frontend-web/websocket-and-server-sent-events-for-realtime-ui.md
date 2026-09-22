@@ -4,8 +4,8 @@ slug: websocket-and-server-sent-events-for-realtime-ui
 document_type: handbook-chapter
 domain: 21-frontend-web
 status: canonical
-version: 1.0
-last_updated: 2026-09-11
+version: 1.1
+last_updated: 2026-09-21
 topic_id: F-402
 mastery_levels_covered:
   - L2
@@ -23,6 +23,7 @@ prerequisites:
   - react-hooks-useeffect-and-useref.md
 related:
   - ../09-messaging-event-driven/kafka-architecture-fundamentals.md
+  - service-workers-and-pwa-caching-strategies.md
   - ../../00-project/frontend-topic-register.md
 official_references:
   - https://html.spec.whatwg.org/multipage/server-sent-events.html

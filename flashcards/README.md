@@ -2,12 +2,24 @@
 title: "Flashcards — Index"
 document_type: flashcard-index
 status: draft
-last_updated: 2026-09-16
+last_updated: 2026-09-21
 ---
 
 # Flashcards
 
 Atomic, spaced-repetition-ready Q/A decks, one deck per canonical `handbook/` chapter, per `CLAUDE.md`'s Flashcard Standard. Each card is one concept: a prompt, a concise answer, why it matters for an interview, and the common trap around it. These are **not** rapid-review pages — see `cheat-sheets/` for the one-page-per-chapter refresh; a flashcard is the smallest reviewable unit, meant for daily/weekly drilling on the topic register's `Rev` intervals (`00-project/learning-roadmap.md`), not a pre-interview cram pass.
+
+## Real spaced repetition: export to Anki
+
+These decks live as Markdown so they stay reviewable and diffable alongside the rest of the repository, but Markdown has no actual spaced-repetition scheduler. `scripts/export_flashcards_anki.py` converts every deck here into Anki's plain-text import format:
+
+```bash
+python3 scripts/export_flashcards_anki.py
+```
+
+This writes to `dist/anki/` (gitignored — a regenerable build artifact, not source of truth): one `<slug>.txt` per deck, plus `all-decks.txt` combining all 279 decks with a `#deck column` directive so Anki routes each card into a `Cracking Code Interviews::<domain>::<deck title>` deck automatically on import. In Anki: **File → Import**, pick `all-decks.txt` (or a single deck's file), confirm "Allow HTML in fields" is on (the header line requests it, but older Anki versions prompt anyway) — multi-paragraph answers use `<br>` instead of real newlines since the import format is one note per line.
+
+The Markdown files under `flashcards/` remain the source of truth; re-run the script any time a chapter's `## Flashcards` section changes to regenerate an up-to-date export.
 
 ## A note on scope
 
@@ -212,7 +224,10 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 179 | [Chaos Engineering: Fault Injection and Resilience Verification](chaos-engineering-fault-injection-and-resilience-verification.md) | T-2423 | 3 | `syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md` |
 | 180 | [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) | T-2424 | 3 | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
 | 181 | [Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling](serverless-lambda-execution-model-cold-starts-and-concurrency.md) | T-2425 | 3 | `syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md` |
-| 182 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | 3 | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
+| 182 | [Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses](estimation-and-story-points.md) | T-1805 | 3 | `syllabus/18-engineering-practices/estimation-and-story-points.md` |
+| 183 | [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | 3 | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
+| 184 | [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) | T-1908 | 3 | `syllabus/19-leadership-staff/handling-underperformance-and-difficult-feedback.md` |
+| 185 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | 3 | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -407,10 +422,21 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 
 **2026-09-21 (same day, follow-up) — Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling (T-2425) gains a flashcard deck.** New `15-cloud` chapter closing a gap audit that found `aws-core-services-for-backend-engineers.md` named Lambda's "cold-start latency" five times without ever explaining the mechanism. 3 cards. **New total: 272 decks (271 prior + 1), 943 cards (940 prior + 3).**
 
-**2026-09-21 (same day, follow-up) — Domain Events vs. Integration Events: Contract Boundaries and Translation (T-2426) gains a flashcard deck.** New `17-architecture` chapter closing a gap audit that found three existing chapters used "domain event" extensively without ever naming the mistake of publishing one directly as an external contract. 3 cards. **New total: 273 decks (272 prior + 1), 946 cards (943 prior + 3).**
+**2026-09-21 (same day, follow-up) — Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses (T-1805) gains a flashcard deck.** New `18-engineering-practices` chapter closing a gap audit that found `sdlc-and-agile-methodology-fundamentals.md` covered Scrum's artifacts and roles but had zero coverage of estimation itself. 3 cards. **New total: 273 decks (272 prior + 1), 946 cards (943 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater (T-1806) gains a flashcard deck.** New `18-engineering-practices` chapter closing a second follow-up gap audit that found `sdlc-and-agile-methodology-fundamentals.md` named the sprint retrospective three times without ever explaining it. 3 cards. **New total: 274 decks (273 prior + 1), 949 cards (946 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Handling Underperformance and Difficult Feedback Conversations (T-1908) gains a flashcard deck.** New `19-leadership-staff` chapter closing a follow-up gap audit that found zero coverage anywhere of one of the most commonly asked real leadership topics. 3 cards. **New total: 275 decks (274 prior + 1), 952 cards (949 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Service Workers and PWA: Caching Strategies and Offline Support (F-404) gains a flashcard deck.** New `21-frontend-web` chapter closing a follow-up gap audit that found the D-F4 tier's remaining commonly-asked item (offline support/caching) still uncovered after its original three items closed 2026-09-11. 3 cards. **New total: 276 decks (275 prior + 1), 955 cards (952 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Prompt Injection and Agentic Security (T-2306) gains a flashcard deck.** New `22-ai-llm-engineering` chapter closing a gap audit that found `llm-api-integration-fundamentals.md` named prompt injection as a real risk category without ever explaining or demonstrating it. 3 cards. **New total: 277 decks (276 prior + 1), 958 cards (955 prior + 3).**
+
+**2026-09-21 (same day, follow-up) — Domain Events vs. Integration Events: Contract Boundaries and Translation (T-2426) gains a flashcard deck.** New `17-architecture` chapter closing a gap audit that found three existing chapters used "domain event" extensively without ever naming the mistake of publishing one directly as an external contract. 3 cards. New total, verified directly against the file system: **280 decks, 979 cards** — this note's own arithmetic chain (277 prior + 1 = 278) undercounts by 2, the same "several files added across the interim without an updating note of their own" drift `cheat-sheets/README.md` already documented; the file-system count is authoritative here, not the arithmetic chain above it.
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |
+| F35 | [Service Workers and PWA: Caching Strategies and Offline Support](service-workers-and-pwa-caching-strategies.md) | F-404 | Advanced | `syllabus/21-frontend-web/service-workers-and-pwa-caching-strategies.md` |
 
 ## AI/LLM Engineering Decks (T-2300s, no IWI)
 
@@ -424,6 +450,7 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | A4 | [Prompt Engineering Patterns](prompt-engineering-patterns.md) | T-2303 | 3 | `syllabus/22-ai-llm-engineering/prompt-engineering-patterns.md` |
 | A5 | [Agentic Workflows and Tool Orchestration](agentic-workflows-and-tool-orchestration.md) | T-2304 | 3 | `syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` |
 | A6 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | T-2305 | 3 | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
+| A7 | [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) | T-2306 | 3 | `syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md` |
 
 ## How this relates to other deliverables
 

@@ -2,7 +2,7 @@
 title: "Architecture Atlas — Index"
 document_type: architecture-atlas-index
 status: draft
-last_updated: 2026-09-01
+last_updated: 2026-09-22
 ---
 
 # Architecture Atlas
@@ -47,6 +47,15 @@ The remaining 5 weeks' exercises (Weeks 15–19) are differently shaped — doma
 | [Distributed File Storage System](distributed-file-storage-system.md) | CAP Theorem and Consistency Models / Consensus Algorithms | A GFS/HDFS-shaped system whose central idea is separating a tiny, in-memory metadata path (which chunkservers hold a file's chunks) from a huge, throughput-bound data path (the actual bytes, which never route through the master) — chunk size is the one number controlling whether metadata fits in one machine's memory at scale. Master failover via an operation log and standby, not a distributed metadata layer, is the deliberately simpler fix for the master's real single-point-of-failure risk. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
 | [Web Crawler System](web-crawler-system.md) | Search and Indexing Systems / Data Partitioning and Consistent Hashing | A domain-sharded URL frontier with per-domain politeness queues resolves the real tension between "crawl fast" and "never overwhelm one site" — aggregate throughput is a function of concurrent distinct-domain count, not per-domain speed, quantified directly in the capacity math. A Bloom filter (not an exact set) backs seen-URL dedup, sized with the real, worked formula for a stated false-positive trade at billions of URLs. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
 | [Autocomplete/Typeahead System](autocomplete-typeahead-system.md) | Tries and Prefix Structures / Heaps, Top-K, and K-Way Merge | Fast prefix matching and fast ranked retrieval are two different problems a naive design conflates — precomputing and caching each trie node's own top-K completions is what keeps read latency a single trie descent, independent of how many completions exist under a prefix, with ranking recomputed by a fully decoupled, periodic offline pipeline. Real capacity math shows typeahead's per-keystroke request volume at roughly 15x the completed-search rate it's commonly compared against. New entry, not elevated from a study-pack exercise, added beyond T-813's own closed target; see the file's own sourcing note. |
+
+## Practice Tools
+
+Not reference entries — real, in-browser tools for rehearsing a specific interview skill, not a system-design write-up.
+
+| Tool | What it's for |
+|---|---|
+| [Interactive System Design Canvas](interactive-system-design-canvas.md) | Drag-and-connect component boxes in the browser for rehearsing the drawing half of a system design interview, complementing [System Design Method and Estimation](../syllabus/11-system-design/system-design-method-and-estimation.md)'s Whiteboard Explanation section. Layout persists locally, exports as PNG. Added 2026-09-22, following a post-audit review that found this Atlas's diagrams are all static — no way to actually place and rearrange boxes short of physical paper. |
+| [Timed Whiteboard Practice](timed-whiteboard-practice.md) | A real countdown timer that walks through the same chapter's six phases in order, using its own stated per-phase minute ranges, auto-advancing (with a beep) when a phase runs out — rehearsing the time-pressure discipline the chapter names explicitly (running out of time before Bottlenecks is a scored gap), not just its content. Pairs with the canvas above. Added 2026-09-22, same review. |
 
 ## How this relates to other deliverables
 

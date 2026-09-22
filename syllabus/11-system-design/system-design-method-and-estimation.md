@@ -4,8 +4,8 @@ slug: system-design-method-and-estimation
 document_type: handbook-chapter
 domain: 11-system-design
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.2
+last_updated: 2026-09-22
 source_history:
   - handbook/system-design/system-design-method-and-estimation.md
 topic_id: T-801/T-802
@@ -27,6 +27,8 @@ related:
   - ../10-distributed-systems/distributed-systems-failure-modes.md
   - load-balancing-service-discovery-and-health-checking.md
   - ../../study-packs/week-03/03-system-design-method.md
+  - ../../architecture-atlas/interactive-system-design-canvas.md
+  - ../../architecture-atlas/timed-whiteboard-practice.md
 official_references: []
 ---
 
@@ -244,6 +246,8 @@ Cover, in order: the mental model — every box traces back to a number (mental 
 
 Draw the [§ Diagrams](#diagrams) six-box flowchart first, left to right, with the dotted "iterate" arrow looping back from Bottlenecks to Architecture. Narrate each box's time budget as you draw it (2–3 min, 3–5 min, etc.) — this signals from the very first second that a procedure, with an explicit time budget, is being followed, which is itself part of the Staff-level signal this topic tests for.
 
+To rehearse this away from a real whiteboard, the [Interactive System Design Canvas](../../architecture-atlas/interactive-system-design-canvas.md) lets a reader drag component boxes and connect them directly in the browser — a lower-fidelity but zero-setup stand-in for the drawing half of this section.
+
 ### Production Example
 
 The notification-service incident in [§ Production Scenarios](#production-scenarios): a design document that skipped explicit capacity estimation shipped with guess-sized consumer counts and queue partitions, then fell over during a promotional campaign — the exact high-load event the service existed to support, and exactly the failure this six-phase method's ordering (estimate before architecture) exists to prevent.
@@ -336,6 +340,8 @@ A repeatable six-phase procedure — Clarify, Estimate, API, Data, Architecture,
 | 4. Data | 3–5 min | Data model and storage choice, driven by Phase 2's numbers |
 | 5. Architecture | 10–15 min | Draw the system, justify every box against Phase 2 |
 | 6. Bottlenecks | 5–10 min | Name ≥3 failure modes and mitigations — don't skip this |
+
+[Timed Whiteboard Practice](../../architecture-atlas/timed-whiteboard-practice.md) loads these exact minute ranges into a real countdown timer that auto-advances phase to phase.
 
 ## Flashcards
 
