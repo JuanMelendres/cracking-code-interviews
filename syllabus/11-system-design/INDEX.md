@@ -2,8 +2,8 @@
 title: "System Design — Domain Index"
 document_type: syllabus-domain-index
 domain: 11-system-design
-status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4
-last_updated: 2026-09-04
+status: 9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10 chapters as of 2026-09-22 (System Design Patterns: Recognition and Quick-Reference Guide, user-requested)
+last_updated: 2026-09-22
 ---
 
 # System Design
@@ -27,6 +27,7 @@ The applied method and case studies: the six-phase design method plus all 21 Arc
 | T-809 | Idempotency at System Edges | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/idempotency.md` |
 | T-810 | Search and Indexing Systems | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/search-and-indexing-systems.md` |
 | T-812 | Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md` |
+| T-2427 | System Design Patterns: Recognition and Quick-Reference Guide | L1, L2, L3, L4 — fully written (2026-09-22) | `syllabus/11-system-design/system-design-patterns-recognition-and-quick-reference.md` |
 
 ## Where this domain's boundary comes from
 
