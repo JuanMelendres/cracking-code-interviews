@@ -2,8 +2,8 @@
 title: "Interview Preparation — Domain Index"
 document_type: syllabus-domain-index
 domain: 20-interview-preparation
-status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated; L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 20th behavioral chapter added 2026-09-21 (Underperformance and Difficult Feedback Narratives, T-1516 — gap audit, the narration counterpart to 19-leadership-staff's T-1908)
-last_updated: 2026-09-21
+status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated; L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 20th behavioral chapter added 2026-09-21 (Underperformance and Difficult Feedback Narratives, T-1516 — gap audit, the narration counterpart to 19-leadership-staff's T-1908); 21st chapter added 2026-09-23 (Project Ownership Narrative, T-1605, technical-answers/, user-requested)
+last_updated: 2026-09-23
 ---
 
 # Interview Preparation
@@ -69,10 +69,11 @@ The interview-application layer: behavioral (from `behavioral-handbook/`, reloca
 |---|---|---|
 | The Technical Answer Framework — Nine Layers (T-1601) | `interview-playbook/technical-answers/technical-answer-framework.md` | `syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md` |
 | Trade-off Narration and Architecture Decision Records (T-1505/T-916) | `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` | `syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md` |
+| Project Ownership Narrative: Design, Build, Deploy, Support (T-1605, added 2026-09-23, user-requested) | — (new, not migrated) | `syllabus/20-interview-preparation/technical-answers/project-ownership-narrative.md` |
 
 ## mock-interviews/ (referenced, not relocated)
 
-`practice/mock-interviews/` (12 real mock-interview transcripts plus its own README) stays at its current path per the plan's Section 7.4 — `practice/` never relocates, to avoid multiplying broken-link risk across a directory that's already flat and discoverable by filename. Referenced here, not duplicated:
+`practice/mock-interviews/` (16 real mock-interview transcripts plus its own README, as of the 2026-09-23 Project Ownership Deep-Dive round — see that directory's own README for its full addition history) stays at its current path per the plan's Section 7.4 — `practice/` never relocates, to avoid multiplying broken-link risk across a directory that's already flat and discoverable by filename. Referenced here, not duplicated:
 
 - [`practice/mock-interviews/`](../../practice/mock-interviews/README.md)
 

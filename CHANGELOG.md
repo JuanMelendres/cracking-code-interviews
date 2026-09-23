@@ -11,6 +11,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 - User shared a third-party SOLID infographic and asked whether the chapter already covers it — it did, more deeply, but lacked a single-glance visual summary of all five principles. Added a Mermaid `mindmap` diagram to `syllabus/04-software-design/solid-principles.md`'s Diagrams section, verified to render with zero errors against the exact `mermaid@10` version pinned in `mkdocs.yml`.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
 
+### Added (Project Ownership Narrative + Project Deep-Dive mock round, T-1605, 2026-09-23)
+
+- User audited a Java-developer job-posting checklist against the repo: all 9 named technologies (Java 8-21, Spring Boot/Cloud, microservices, REST, SQL/NoSQL, Kafka, Docker/Kubernetes, AWS/Azure/GCP, CI/CD) were already covered. The checklist's own explicit tip — "be prepared to explain how you designed, developed, deployed, and supported applications" — named a real, confirmed gap: no chapter taught narrating one project's full lifecycle as a single story.
+- New `syllabus/20-interview-preparation/technical-answers/project-ownership-narrative.md` (T-1605): a four-phase (Design/Develop/Deploy/Support) narration structure, with the same representative example project told four times at Junior/Mid/Senior/Staff scope, per explicit user request, plus a phase-by-phase scope-escalation table.
+- New `practice/mock-interviews/project-ownership-deep-dive-round.md` (round 16) — runs against the candidate's own real project, target levels Junior through Staff.
+- `syllabus/20-interview-preparation/INDEX.md`'s mock-interviews count corrected from a stale "12" to the real 16 while adding this round. See `syllabus/00-overview/changelog.md`'s matching entry for full detail.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (System Design Patterns: Recognition and Quick-Reference Guide, T-2427, 2026-09-22)
 
 - User requested real examples and visual examples for `syllabus/11-system-design/`'s existing patterns. Rather than duplicating any of the domain's 9 already-deep chapters, added a new recognition/routing chapter — same pattern as `03-data-structures-algorithms`'s T-2120 — with a signal-to-pattern table, one new example plus one compact Mermaid diagram per pattern (8 total), and a decision framework for the three most commonly confused overlapping pattern pairs.
