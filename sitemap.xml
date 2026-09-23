@@ -381,6 +381,10 @@
          <lastmod>2026-09-23</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/docker-compose-multi-service-orchestration/</loc>
+         <lastmod>2026-09-23</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/domain-events-vs-integration-events/</loc>
          <lastmod>2026-09-23</lastmod>
     </url>
@@ -1509,6 +1513,10 @@
          <lastmod>2026-09-23</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/docker-compose-multi-service-orchestration/</loc>
+         <lastmod>2026-09-23</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/domain-events-vs-integration-events/</loc>
          <lastmod>2026-09-23</lastmod>
     </url>
@@ -2390,6 +2398,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/architecture/adr-examples/bad-example-missing-consequences/</loc>
+         <lastmod>2026-09-23</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/docker-compose-multi-service-orchestration/</loc>
          <lastmod>2026-09-23</lastmod>
     </url>
     <url>
@@ -6550,6 +6562,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/14-devops-containers/docker-and-containers-fundamentals/</loc>
+         <lastmod>2026-09-23</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/14-devops-containers/docker-compose-multi-service-orchestration/</loc>
          <lastmod>2026-09-23</lastmod>
     </url>
     <url>

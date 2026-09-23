@@ -6972,6 +6972,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../docker-compose-multi-service-orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose: Multi-Service Orchestration
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--canonical"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../container-image-internals/" class="md-nav__link">
         
   
@@ -11330,8 +11365,8 @@
 <p>title: "DevOps &amp; Containers — Domain Index"
 document_type: syllabus-domain-index
 domain: 14-devops-containers
-status: 4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-08 (Docker and Containers Fundamentals, T-2208), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 6th chapter added 2026-09-21 (Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior, T-2424 — gap audit)
-last_updated: 2026-09-21</p>
+status: 4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-08 (Docker and Containers Fundamentals, T-2208), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 6th chapter added 2026-09-21 (Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior, T-2424 — gap audit); 7th chapter added 2026-09-23 (Docker Compose: Multi-Service Orchestration, T-2428, user-requested)
+last_updated: 2026-09-23</p>
 <hr />
 <h1 id="devops-containers">DevOps &amp; Containers<a class="headerlink" href="#devops-containers" title="Permanent link">&para;</a></h1>
 <p>Kubernetes objects/scheduling/networking, resource limits and probes, container image internals, CI/CD pipeline design, and horizontal pod autoscaling mechanics — the operational mechanics a backend engineer runs day-to-day. Split out of <code>cloud/</code> per Section 3.3.</p>
@@ -11340,6 +11375,7 @@ last_updated: 2026-09-21</p>
 <p><strong>Phase 5 update (2026-09-04) — domain complete.</strong> All 4 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject (an overhead-projector-transparency analogy for image layers plus a curtain-and-budget analogy for namespaces/cgroups, a restaurant-shift-manager analogy for Deployments/ReplicaSets/Services, a storage-unit-and-loose-items analogy for <code>OutOfMemoryError</code> vs. OOM kill plus a manager-check-in analogy for probes, and a restaurant-new-menu-rollout analogy for rolling/blue-green/canary deployments). Every chapter also gained <code>topic_id</code>/<code>mastery_levels_covered: [L1, L2, L3, L4]</code> front matter. <strong><code>14-devops-containers</code> is now fully L1–L4 (4/4)</strong> — the twelfth fully-retrofitted domain in the syllabus.</p>
 <p><strong>Junior Fundamentals gap closed (2026-09-08).</strong> The Phase 5 retrofit above added intuition for existing Senior-level topics; <a href="../container-image-internals/">Containers &amp; Image Internals</a> — its title says "internals" — never taught what a container or an image actually <em>is</em> first, because this domain's original scope assumed that baseline already. Found during a repository-wide audit (see <code>syllabus/02-java/INDEX.md</code>'s matching note) after the user asked whether this repository genuinely served a low-to-high-seniority reader yet. <a href="../docker-and-containers-fundamentals/">Docker and Containers Fundamentals</a> (T-2208, reserved range <code>T-2200</code>–<code>T-2299</code>) closes it, with a real image built and run against the actual Docker Engine (29.6.2) — including a genuine, observed proof of container network isolation (a container reachable via <code>docker exec</code> from inside its own network namespace, but completely unreachable from the host without an explicit <code>-p</code> port mapping).</p>
 <p><strong>Gap found and closed: Horizontal Pod Autoscaling (2026-09-21).</strong> A gap audit found <code>kubernetes-objects-scheduling-and-networking.md</code> already shows a real, syntax-validated <code>HorizontalPodAutoscaler</code> manifest but never explains what its controller actually does — and <code>../15-cloud/aws-core-services-for-backend-engineers.md</code> explicitly (and, until this fix, incorrectly) claimed HPA was covered "per the previous chapters' Kubernetes coverage." Closed with <a href="../horizontal-pod-autoscaling-mechanics-and-scaling-behavior/">Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior</a> (T-2424), backed by a real, timed Java simulation (<code>practice/java/devops/horizontal-pod-autoscaler-mechanics/</code>) of the actual documented Kubernetes HPA algorithm: real captured output shows near-target noise (68%/72%) producing zero replica-count change, a real spike scaling up immediately in the same sample, and a real, measured ~1.8-second stabilization delay before a scale-down recommendation actually took effect — no mocked clock anywhere in the demo.</p>
+<p><strong>Gap found and closed: Docker Compose Multi-Service Orchestration (2026-09-23).</strong> User shared a social-media infographic naming Docker Compose as its own topic; confirmed via grep that this repository's own practice labs already run 16 real <code>docker-compose.yml</code> files (Kafka, Postgres, RAG demos) but no chapter ever taught what the file does. Closed with <a href="../docker-compose-multi-service-orchestration/">Docker Compose: Multi-Service Orchestration</a> (T-2428), backed by a real, reproducible demo (<code>practice/docker-compose-multi-service-orchestration/</code>): on a genuinely fresh Postgres volume, plain <code>depends_on</code> lets an <code>api</code> service start before Postgres finishes initializing, producing a real, captured <code>Connection refused</code>; adding a <code>healthcheck</code> plus <code>condition: service_healthy</code> fixes it, visibly waiting for <code>db-1: Healthy</code> before <code>api-1</code> ever starts. Re-run twice on a fresh volume each time — identical results both times.</p>
 </blockquote>
 <h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <table>
@@ -11357,6 +11393,12 @@ last_updated: 2026-09-21</p>
 <td>Docker and Containers Fundamentals</td>
 <td>L1, L2 — fully written, real executed demo (2026-09-08)</td>
 <td><code>syllabus/14-devops-containers/docker-and-containers-fundamentals.md</code></td>
+</tr>
+<tr>
+<td>T-2428</td>
+<td>Docker Compose: Multi-Service Orchestration</td>
+<td>L1, L2, L3, L4 — fully written, real demo (2026-09-23)</td>
+<td><code>syllabus/14-devops-containers/docker-compose-multi-service-orchestration.md</code></td>
 </tr>
 <tr>
 <td>T-1001</td>
@@ -11412,7 +11454,7 @@ last_updated: 2026-09-21</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 16:47:37 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 23, 2026 22:24:01 UTC">September 23, 2026</span>
   </span>
 
     

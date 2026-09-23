@@ -1,0 +1,23 @@
+# BROKEN (on purpose): depends_on here only waits for the "db" CONTAINER
+# to start, not for Postgres itself to finish initializing and accept
+# connections. On a genuinely fresh volume (first-ever run), Postgres's
+# own initdb takes real time -- long enough that "api"'s startup-time
+# connect attempt can race it and lose. See docker-compose.fixed.yml for
+# the real fix (a healthcheck plus condition: service_healthy).
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: ./api
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
