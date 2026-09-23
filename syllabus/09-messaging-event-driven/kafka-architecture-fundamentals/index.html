@@ -11960,6 +11960,29 @@ key=customer-6   -&gt; partition=3 offset=0
 <p><code>customer-42</code>'s six records land on partition 1 in strict offset order 0→5: total order <strong>for that key</strong>. Interleave two different customers' records and there is no guaranteed relative order between them — they may sit on entirely different partitions, consumed by different consumers, in parallel, with no cross-partition ordering guarantee at all.</p>
 <p>This directly feeds <code>acks=all</code> semantics (T-702): <code>acks=all</code> means "wait for the full <strong>current</strong> ISR," not "wait for <code>replication.factor</code> replicas" — if the ISR has shrunk to just the leader, <code>acks=all</code> provides no more durability than <code>acks=1</code> until <code>min.insync.replicas</code> is also set and enforced.</p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
+<p><strong>The full message lifecycle, producer to consumer</strong> — each stage below is taught in depth in a different chapter; this sequence is the one place they're shown as a single, ordered flow. Serialization: <a href="../producer-semantics-and-partition-keys/#serialization-happens-before-partitioning-not-after">Producer Semantics § Serialization happens before partitioning</a>. Partition selection and acks: <a href="../producer-semantics-and-partition-keys/#core-concepts">Producer Semantics § Partition key design</a>. Leader/replication/ISR: this chapter's own Core Concepts, above. Consumer fetch, deserialize, and offset commit: <a href="../consumer-groups-and-rebalancing/#core-concepts">Consumer Groups and Rebalancing</a>.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant App as Producer app
+    participant Ser as Serializer
+    participant Part as Partitioner
+    participant Leader as Partition leader
+    participant Follower as ISR followers
+    participant Consumer as Consumer
+
+    App-&gt;&gt;Ser: record (typed key, value)
+    Ser-&gt;&gt;Part: key bytes, value bytes
+    Part-&gt;&gt;Leader: send(topic, partition, key, value)
+    Leader-&gt;&gt;Leader: append to log, assign offset
+    Leader--&gt;&gt;Follower: replicate
+    Follower--&gt;&gt;Leader: ack (per acks setting)
+    Leader--&gt;&gt;App: RecordMetadata (partition, offset)
+
+    Note over Consumer,Leader: Pull model -- consumer initiates every fetch
+    Consumer-&gt;&gt;Leader: poll() / fetch request (from last committed offset)
+    Leader--&gt;&gt;Consumer: batch of records
+    Consumer-&gt;&gt;Consumer: deserialize, process
+    Consumer-&gt;&gt;Leader: commit offset</code></pre>
+<p>A record is not deleted the moment a consumer processes it — Kafka has no concept of "consumed" at the broker level, only <a href="../retention-log-compaction-and-tiered-storage/">retention</a> — and a second consumer group can independently re-read the identical partition from its own last committed offset, including from the very beginning, with zero effect on the first group's position.</p>
 <pre class="mermaid"><code>graph TB
     subgraph Topic: orders 4 partitions
     P0[partition-0]
@@ -12099,6 +12122,7 @@ key=customer-6   -&gt; partition=3 offset=0
 <li>Partition-to-key mapping is deterministic and effectively permanent once keyed data exists.</li>
 <li>The ISR, not <code>replication.factor</code>, is what <code>acks=all</code> actually waits on.</li>
 <li>Hot partitions come from key skew, not partition count — more partitions doesn't fix a skewed key.</li>
+<li>The full producer-to-consumer lifecycle is nine ordered steps (serialize → partition → send to leader → append/offset → replicate → consumer fetch → deserialize → process → commit) — each taught in depth in its own chapter, tied together as one sequence in this chapter's Diagrams section.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -12195,7 +12219,7 @@ Assuming <code>replication.factor=3</code> means three replicas always ack a wri
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 23, 2026 22:35:12 UTC">September 23, 2026</span>
   </span>
 
     
