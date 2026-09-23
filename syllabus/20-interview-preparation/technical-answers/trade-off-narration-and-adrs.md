@@ -24,6 +24,7 @@ estimated_reading_minutes: 15
 prerequisites: []
 related:
   - technical-answer-framework.md
+  - project-ownership-narrative.md
   - ../../11-system-design/storage-selection-tradeoffs.md
   - ../../../study-packs/week-02/05-trade-off-narration-and-adrs.md
   - ../../../study-packs/week-02/10-adr-exercise.md
