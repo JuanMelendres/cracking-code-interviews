@@ -12007,6 +12007,24 @@
   Same OrderServiceFixed.java, zero changes -- only the injected implementation differs.
 </code></pre></div>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
+<p><strong>At a glance — all five principles, smell and fix side by side:</strong></p>
+<pre class="mermaid"><code>mindmap
+  root((SOLID))
+    S: Single Responsibility
+      Smell: one class,&lt;br/&gt;many unrelated reasons to change
+      Fix: split along independent axes
+    O: Open/Closed
+      Smell: must edit existing code&lt;br/&gt;for every new case
+      Fix: new case becomes a new class
+    L: Liskov Substitution
+      Smell: compiles fine,&lt;br/&gt;breaks the contract
+      Fix: honor the supertype's&lt;br/&gt;behavioral contract
+    I: Interface Segregation
+      Smell: fat interface forces&lt;br/&gt;unused method stubs
+      Fix: split into small,&lt;br/&gt;role-scoped interfaces
+    D: Dependency Inversion
+      Smell: high-level class constructs&lt;br/&gt;a concrete low-level detail
+      Fix: constructor-inject&lt;br/&gt;an abstraction</code></pre>
 <p>The OCP and DIP demos above share the same underlying shape — a fixed, unmodified piece of code (<code>AreaCalculatorFixed</code>, <code>OrderServiceFixed</code>) consuming new behavior through an interface it was already written against, rather than being edited to know about a new concrete type:</p>
 <pre class="mermaid"><code>flowchart LR
     subgraph before["Before: new requirement arrives"]
@@ -12206,7 +12224,7 @@ A: Yes — injecting a fat interface as a dependency technically satisfies "depe
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 01:03:03 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 23, 2026 17:32:14 UTC">September 23, 2026</span>
   </span>
 
     
