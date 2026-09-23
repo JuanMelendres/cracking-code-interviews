@@ -1,0 +1,28 @@
+# FIXED: a real healthcheck on "db" (pg_isready, the same tool Postgres
+# ships for exactly this purpose) plus condition: service_healthy on
+# "api"'s depends_on entry. Compose now genuinely waits for Postgres to
+# report ready to accept connections before starting "api" at all --
+# not just for the db container process to exist.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./api
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

@@ -2,6 +2,7 @@ title: DevOps & Containers
 nav:
   - INDEX.md
   - docker-and-containers-fundamentals.md
+  - docker-compose-multi-service-orchestration.md
   - container-image-internals.md
   - kubernetes-resource-limits-probes-and-jvm-sizing.md
   - kubernetes-objects-scheduling-and-networking.md
