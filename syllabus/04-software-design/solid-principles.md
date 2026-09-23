@@ -4,8 +4,8 @@ slug: solid-principles
 document_type: handbook-chapter
 domain: 04-software-design
 status: canonical
-version: 1.1
-last_reviewed: 2026-09-21
+version: 1.2
+last_reviewed: 2026-09-23
 topic_id: T-1701
 mastery_levels_covered:
   - L1
@@ -179,6 +179,28 @@ A single giant interface technically lets a high-level class "depend on an abstr
 ```
 
 ## Diagrams
+
+**At a glance — all five principles, smell and fix side by side:**
+
+```mermaid
+mindmap
+  root((SOLID))
+    S: Single Responsibility
+      Smell: one class,<br/>many unrelated reasons to change
+      Fix: split along independent axes
+    O: Open/Closed
+      Smell: must edit existing code<br/>for every new case
+      Fix: new case becomes a new class
+    L: Liskov Substitution
+      Smell: compiles fine,<br/>breaks the contract
+      Fix: honor the supertype's<br/>behavioral contract
+    I: Interface Segregation
+      Smell: fat interface forces<br/>unused method stubs
+      Fix: split into small,<br/>role-scoped interfaces
+    D: Dependency Inversion
+      Smell: high-level class constructs<br/>a concrete low-level detail
+      Fix: constructor-inject<br/>an abstraction
+```
 
 The OCP and DIP demos above share the same underlying shape — a fixed, unmodified piece of code (`AreaCalculatorFixed`, `OrderServiceFixed`) consuming new behavior through an interface it was already written against, rather than being edited to know about a new concrete type:
 

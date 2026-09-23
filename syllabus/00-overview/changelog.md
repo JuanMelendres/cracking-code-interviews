@@ -2372,3 +2372,13 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - `syllabus/11-system-design/INDEX.md` updated (9 → 10 chapters); `syllabus/00-overview/INDEX.md` row updated.
 - Unlike a gap-audit addition, no existing chapter was cross-linked back to this one — matching T-2120's own precedent, where none of its 18 routed-to sibling chapters were retrofitted with a backlink either; the routing is one-directional by design.
 - `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
+## [2026-09-23] — `04-software-design/solid-principles.md` gains an at-a-glance visual summary (T-1701, user-requested)
+
+### Added
+
+- User shared a third-party "SOLID Principles in Java" infographic and asked whether this chapter already covers the same ground. It does, and goes further (real compiled/executed Java evidence for all five demos, a runtime-proven LSP failure, production scenarios, a decision framework, full interview Q&A) — the one thing the infographic had that this chapter didn't was a single-glance visual overview of all five principles side by side; the chapter's own `## Cheat Sheet` table already covers the same content but as a table, not a diagram.
+- New `mermaid` `mindmap` diagram (`## Diagrams`, first entry) giving all five principles — smell and fix — in one compact visual, the same "poster" role the infographic served, without duplicating the chapter's own existing depth. Verified real: rendered in actual Chromium against `mermaid@10` (the exact version pinned in `mkdocs.yml`), confirmed it parses with zero errors and produces a real SVG, before shipping.
+- Considered and rejected: adding the same diagram to the standalone `cheat-sheets/solid-principles.md` instead — no cheat sheet in this repository currently uses a Mermaid diagram (verified via grep), and the Cheat Sheet Standard's "aim for a one-page equivalent" framing fits this domain's existing chapters, which all carry their diagrams in the canonical chapter's own `## Diagrams` section, not in the cheat sheet.
+- `version: 1.1 -> 1.2`, `last_reviewed: 2026-09-23`.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).

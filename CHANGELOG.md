@@ -6,6 +6,11 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (SOLID Principles gains an at-a-glance Mermaid mindmap, T-1701, 2026-09-23)
+
+- User shared a third-party SOLID infographic and asked whether the chapter already covers it — it did, more deeply, but lacked a single-glance visual summary of all five principles. Added a Mermaid `mindmap` diagram to `syllabus/04-software-design/solid-principles.md`'s Diagrams section, verified to render with zero errors against the exact `mermaid@10` version pinned in `mkdocs.yml`.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (System Design Patterns: Recognition and Quick-Reference Guide, T-2427, 2026-09-22)
 
 - User requested real examples and visual examples for `syllabus/11-system-design/`'s existing patterns. Rather than duplicating any of the domain's 9 already-deep chapters, added a new recognition/routing chapter — same pattern as `03-data-structures-algorithms`'s T-2120 — with a signal-to-pattern table, one new example plus one compact Mermaid diagram per pattern (8 total), and a decision framework for the three most commonly confused overlapping pattern pairs.
