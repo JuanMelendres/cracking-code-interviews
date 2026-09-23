@@ -6269,6 +6269,41 @@
   
   
     <li class="md-nav__item">
+      <a href="project-ownership-deep-dive-round/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock Interview: Project Ownership Deep-Dive Round (30 min)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="security-technical-round/" class="md-nav__link">
         
   
@@ -7789,7 +7824,8 @@
 <p><strong>Batches 1–2 covered all 7 of the Weeks 13–19 rounds</strong> — the ones already closest to the Standard (candidate/evaluator hard-separated, per-question pass/fail signals, scoring rubric) — per <code>CLAUDE.md</code>'s instruction against generating an entire deliverable in one operation. The two JVM-internals rounds (Weeks 16 and 19) cover genuinely distinct topics with zero question overlap, cross-linked to each other for candidates taking both.</p>
 <p><strong>Batches 3–4 converted the remaining 5 earlier-format rounds</strong> (Weeks 1, 2, 4, 7, 8). These use a <code>Part A — Candidate script</code> / <code>Part B — Interviewer script</code> structure with no inline per-question pass/fail signals, and are scored in the source against a shared six-dimension rubric (<code>study-packs/week-01/10-week-1-evaluation-rubric.md</code>, either all six dimensions for Weeks 1/2/4 or just Technical Depth and Production Judgment for Weeks 7/8, per each source mock's own instruction) rather than a per-question 1–5 scale. Converting these into the Standard's evaluator structure required constructing pass/borderline/fail signals — genuinely heavier than the mechanical elevation done in batches 1–2 — but every signal is grounded in the source's own rubric evidence anchors and interviewer-script "listening for"/push-back cues, and in the real, measured content of the canonical <code>handbook/</code> chapters each round draws on, never invented independent of the source. The Week 4 round is also structurally different: a single 45-minute open-ended design prompt rather than a numbered question bank, so its Evaluator Section is organized around the six-phase design method plus the source's named interviewer probes instead of per-question numbering.</p>
 <p><strong>This closed the Mock Interviews deliverable at 12/12 rounds (2026-08-11), against its own original scope — all 12 real study-pack mock-interview files elevated.</strong></p>
-<p><strong>Round 13 added 2026-09-13.</strong> A repository-wide freshness audit found this deliverable, like <code>study-packs/</code>, <code>cheat-sheets/</code>, and <code>production-cookbook/</code> before it, had never been re-checked against the domains added after its 12/12 closure — specifically <code>22-ai-llm-engineering</code> (added 2026-09-09/10), <code>07-api-design</code>'s GraphQL/gRPC advanced topics, and <code>21-frontend-web</code>'s newest chapters (F-401–F-403), none of which had a mock round. <a href="ai-llm-engineering-technical-round/">AI/LLM Engineering Technical Round</a>, <a href="graphql-grpc-api-design-round/">GraphQL and gRPC API Design Round</a>, and <a href="frontend-security-realtime-and-microfrontends-round/">Frontend Security, Real-Time UI, and Micro-Frontends Round</a> close all three of these gaps — each built without a prior study-pack mock source (all three domains postdate every relevant study-pack program), but not invented: every question is drawn from the relevant canonical chapter's own already-written Interview Questions or flashcard deck, restructured into this deliverable's Mock Interview Standard. <strong>This closes the mock-interview freshness audit in full — no known outstanding gap remains.</strong></p>
+<p><strong>Round 13 added 2026-09-13.</strong> A repository-wide freshness audit found this deliverable, like <code>study-packs/</code>, <code>cheat-sheets/</code>, and <code>production-cookbook/</code> before it, had never been re-checked against the domains added after its 12/12 closure — specifically <code>22-ai-llm-engineering</code> (added 2026-09-09/10), <code>07-api-design</code>'s GraphQL/gRPC advanced topics, and <code>21-frontend-web</code>'s newest chapters (F-401–F-403), none of which had a mock round. <a href="ai-llm-engineering-technical-round/">AI/LLM Engineering Technical Round</a>, <a href="graphql-grpc-api-design-round/">GraphQL and gRPC API Design Round</a>, and <a href="frontend-security-realtime-and-microfrontends-round/">Frontend Security, Real-Time UI, and Micro-Frontends Round</a> close all three of these gaps — each built without a prior study-pack mock source (all three domains postdate every relevant study-pack program), but not invented: every question is drawn from the relevant canonical chapter's own already-written Interview Questions or flashcard deck, restructured into this deliverable's Mock Interview Standard. <strong>This closed the mock-interview freshness audit in full.</strong></p>
+<p><strong>Round 16 added 2026-09-23.</strong> User asked whether the repository has a place to practice narrating "how you designed, developed, deployed, and supported" a real project end to end — the underlying technical skill a widely-referenced Java-developer job-posting checklist explicitly names, distinct from any single topic-specific round above. Confirmed a real gap via grep: no round, chapter, or worksheet in the repository taught this as one coherent lifecycle narrative before this addition. <a href="project-ownership-deep-dive-round/">Project Ownership Deep-Dive Round</a> closes it — built from a new canonical chapter, <a href="../../syllabus/20-interview-preparation/technical-answers/project-ownership-narrative/">Project Ownership Narrative: Design, Build, Deploy, Support</a> (T-1605), which also includes a worked example of the same project narrated at Junior, Mid, Senior, and Staff scope. Unlike every other round in this deliverable, this one runs against the candidate's own real project rather than a repository-supplied prompt, and its target level is Junior through Staff (the question format itself doesn't change by level — only the expected scope of the answer does).</p>
 <h2 id="rounds">Rounds<a class="headerlink" href="#rounds" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -7891,6 +7927,12 @@
 <td>CSP's real scope vs. XSS, CSRF as a distinct problem, WebSocket reconnect-storm/backoff, WebSocket vs. EventSource auto-reconnection, Module Federation <code>shared</code>/<code>singleton</code>, proving independent deployability</td>
 <td>None — built from each chapter's own Interview Questions (F-401–F-403, no prior study-pack mock existed for this domain)</td>
 </tr>
+<tr>
+<td>16</td>
+<td><a href="project-ownership-deep-dive-round/">Project Ownership Deep-Dive Round</a></td>
+<td>Full-lifecycle narration (Design/Develop/Deploy/Support), Support-phase depth, scope honesty across seniority, live trade-off narration</td>
+<td>None — built from a new canonical chapter, <a href="../../syllabus/20-interview-preparation/technical-answers/project-ownership-narrative/">Project Ownership Narrative</a> (T-1605), user-requested</td>
+</tr>
 </tbody>
 </table>
 <h2 id="how-this-relates-to-other-deliverables">How this relates to other deliverables<a class="headerlink" href="#how-this-relates-to-other-deliverables" title="Permanent link">&para;</a></h2>
@@ -7920,7 +7962,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 13, 2026 17:36:38 UTC">September 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 23, 2026 22:02:42 UTC">September 23, 2026</span>
   </span>
 
     
