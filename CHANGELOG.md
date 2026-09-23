@@ -6,6 +6,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Docker Compose: Multi-Service Orchestration, T-2428, 2026-09-23)
+
+- User shared a social-media infographic naming Docker Compose as its own topic — confirmed a real gap via grep: 16 real `docker-compose.yml` files already exist in this repo's practice labs, but no chapter ever taught what the file does.
+- New `syllabus/14-devops-containers/docker-compose-multi-service-orchestration.md` (T-2428): a real, reproducible demo (`practice/docker-compose-multi-service-orchestration/`) proving `depends_on`'s real limitation — a genuine `Connection refused` race against a fresh Postgres volume — and its real fix (a `healthcheck` plus `condition: service_healthy`), re-run twice with identical results.
+- Fixed a real, self-caused gap found while updating these files: `flashcards/README.md`'s dated note-chain had silently skipped the previous day's T-2427 deck entry.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (SOLID Principles gains an at-a-glance Mermaid mindmap, T-1701, 2026-09-23)
 
 - User shared a third-party SOLID infographic and asked whether the chapter already covers it — it did, more deeply, but lacked a single-glance visual summary of all five principles. Added a Mermaid `mindmap` diagram to `syllabus/04-software-design/solid-principles.md`'s Diagrams section, verified to render with zero errors against the exact `mermaid@10` version pinned in `mkdocs.yml`.

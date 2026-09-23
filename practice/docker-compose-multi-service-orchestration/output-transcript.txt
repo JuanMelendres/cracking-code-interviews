@@ -1,0 +1,64 @@
+=== Scenario 1: BROKEN (docker-compose.yml) -- depends_on with no healthcheck condition, fresh volume ===
+$ docker compose down -v --remove-orphans
+
+$ docker compose up -d --build
+ Network docker-compose-multi-service-orchestration_default Creating 
+ Network docker-compose-multi-service-orchestration_default Created 
+ Volume docker-compose-multi-service-orchestration_pgdata Creating 
+ Volume docker-compose-multi-service-orchestration_pgdata Created 
+ Container docker-compose-multi-service-orchestration-db-1 Creating 
+ Container docker-compose-multi-service-orchestration-db-1 Created 
+ Container docker-compose-multi-service-orchestration-api-1 Creating 
+ Container docker-compose-multi-service-orchestration-api-1 Created 
+ Container docker-compose-multi-service-orchestration-db-1 Starting 
+ Container docker-compose-multi-service-orchestration-db-1 Started 
+ Container docker-compose-multi-service-orchestration-api-1 Starting 
+ Container docker-compose-multi-service-orchestration-api-1 Started 
+
+$ docker compose logs api
+api-1  | Startup DB check: FAILED to connect to db:5432 after 10ms -- Connection refused
+api-1  | ApiServer started on port 8080
+
+$ curl -s http://localhost:8081/health
+ok
+
+$ curl -s http://localhost:8081/db-check   (retried manually after Postgres finished initializing)
+CONNECTED to db:5432 in 0ms
+
+$ docker compose down -v --remove-orphans
+ Container docker-compose-multi-service-orchestration-db-1 Removed 
+ Network docker-compose-multi-service-orchestration_default Removing 
+ Volume docker-compose-multi-service-orchestration_pgdata Removing 
+ Volume docker-compose-multi-service-orchestration_pgdata Removed 
+ Network docker-compose-multi-service-orchestration_default Removed 
+
+=== Scenario 2: FIXED (docker-compose.fixed.yml) -- healthcheck + condition: service_healthy, fresh volume ===
+$ docker compose -f docker-compose.fixed.yml up -d --build
+ Network docker-compose-multi-service-orchestration_default Creating 
+ Network docker-compose-multi-service-orchestration_default Created 
+ Volume docker-compose-multi-service-orchestration_pgdata Creating 
+ Volume docker-compose-multi-service-orchestration_pgdata Created 
+ Container docker-compose-multi-service-orchestration-db-1 Creating 
+ Container docker-compose-multi-service-orchestration-db-1 Created 
+ Container docker-compose-multi-service-orchestration-api-1 Creating 
+ Container docker-compose-multi-service-orchestration-api-1 Created 
+ Container docker-compose-multi-service-orchestration-db-1 Starting 
+ Container docker-compose-multi-service-orchestration-db-1 Started 
+ Container docker-compose-multi-service-orchestration-db-1 Waiting 
+ Container docker-compose-multi-service-orchestration-db-1 Healthy 
+ Container docker-compose-multi-service-orchestration-api-1 Starting 
+ Container docker-compose-multi-service-orchestration-api-1 Started 
+
+$ docker compose -f docker-compose.fixed.yml logs api
+api-1  | Startup DB check: CONNECTED to db:5432 in 9ms
+api-1  | ApiServer started on port 8080
+
+$ curl -s http://localhost:8081/db-check   (first attempt, no manual retry needed)
+CONNECTED to db:5432 in 0ms
+
+$ docker compose -f docker-compose.fixed.yml down -v --remove-orphans
+ Container docker-compose-multi-service-orchestration-db-1 Removed 
+ Volume docker-compose-multi-service-orchestration_pgdata Removing 
+ Network docker-compose-multi-service-orchestration_default Removing 
+ Volume docker-compose-multi-service-orchestration_pgdata Removed 
+ Network docker-compose-multi-service-orchestration_default Removed 

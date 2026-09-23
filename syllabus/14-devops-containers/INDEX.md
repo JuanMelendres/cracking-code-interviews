@@ -2,8 +2,8 @@
 title: "DevOps & Containers — Domain Index"
 document_type: syllabus-domain-index
 domain: 14-devops-containers
-status: 4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-08 (Docker and Containers Fundamentals, T-2208), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 6th chapter added 2026-09-21 (Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior, T-2424 — gap audit)
-last_updated: 2026-09-21
+status: 4 of 4 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 5th chapter added 2026-09-08 (Docker and Containers Fundamentals, T-2208), a true Junior on-ramp per the repository's expanded Junior-to-Staff positioning; 6th chapter added 2026-09-21 (Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior, T-2424 — gap audit); 7th chapter added 2026-09-23 (Docker Compose: Multi-Service Orchestration, T-2428, user-requested)
+last_updated: 2026-09-23
 ---
 
 # DevOps & Containers
@@ -17,12 +17,15 @@ Kubernetes objects/scheduling/networking, resource limits and probes, container 
 > **Junior Fundamentals gap closed (2026-09-08).** The Phase 5 retrofit above added intuition for existing Senior-level topics; [Containers & Image Internals](container-image-internals.md) — its title says "internals" — never taught what a container or an image actually *is* first, because this domain's original scope assumed that baseline already. Found during a repository-wide audit (see `syllabus/02-java/INDEX.md`'s matching note) after the user asked whether this repository genuinely served a low-to-high-seniority reader yet. [Docker and Containers Fundamentals](docker-and-containers-fundamentals.md) (T-2208, reserved range `T-2200`–`T-2299`) closes it, with a real image built and run against the actual Docker Engine (29.6.2) — including a genuine, observed proof of container network isolation (a container reachable via `docker exec` from inside its own network namespace, but completely unreachable from the host without an explicit `-p` port mapping).
 >
 > **Gap found and closed: Horizontal Pod Autoscaling (2026-09-21).** A gap audit found `kubernetes-objects-scheduling-and-networking.md` already shows a real, syntax-validated `HorizontalPodAutoscaler` manifest but never explains what its controller actually does — and `../15-cloud/aws-core-services-for-backend-engineers.md` explicitly (and, until this fix, incorrectly) claimed HPA was covered "per the previous chapters' Kubernetes coverage." Closed with [Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior](horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md) (T-2424), backed by a real, timed Java simulation (`practice/java/devops/horizontal-pod-autoscaler-mechanics/`) of the actual documented Kubernetes HPA algorithm: real captured output shows near-target noise (68%/72%) producing zero replica-count change, a real spike scaling up immediately in the same sample, and a real, measured ~1.8-second stabilization delay before a scale-down recommendation actually took effect — no mocked clock anywhere in the demo.
+>
+> **Gap found and closed: Docker Compose Multi-Service Orchestration (2026-09-23).** User shared a social-media infographic naming Docker Compose as its own topic; confirmed via grep that this repository's own practice labs already run 16 real `docker-compose.yml` files (Kafka, Postgres, RAG demos) but no chapter ever taught what the file does. Closed with [Docker Compose: Multi-Service Orchestration](docker-compose-multi-service-orchestration.md) (T-2428), backed by a real, reproducible demo (`practice/docker-compose-multi-service-orchestration/`): on a genuinely fresh Postgres volume, plain `depends_on` lets an `api` service start before Postgres finishes initializing, producing a real, captured `Connection refused`; adding a `healthcheck` plus `condition: service_healthy` fixes it, visibly waiting for `db-1: Healthy` before `api-1` ever starts. Re-run twice on a fresh volume each time — identical results both times.
 
 ## Topics
 
 | Topic ID | Title | Mastery levels covered today | Current location |
 |---|---|---|---|
 | T-2208 | Docker and Containers Fundamentals | L1, L2 — fully written, real executed demo (2026-09-08) | `syllabus/14-devops-containers/docker-and-containers-fundamentals.md` |
+| T-2428 | Docker Compose: Multi-Service Orchestration | L1, L2, L3, L4 — fully written, real demo (2026-09-23) | `syllabus/14-devops-containers/docker-compose-multi-service-orchestration.md` |
 | T-1001 | Containers & Image Internals | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/14-devops-containers/container-image-internals.md` |
 | T-1002 | Kubernetes Objects, Scheduling, and Networking | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/14-devops-containers/kubernetes-objects-scheduling-and-networking.md` |
 | T-1003 | Kubernetes Resource Limits, Probes, and JVM Sizing | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
