@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Kafka message lifecycle: serialization step + end-to-end diagram, 2026-09-23)
+
+- User shared a social-media infographic covering the full Kafka producer-to-consumer lifecycle (9 steps). Confirmed via grep: every stage already has real depth across `syllabus/09-messaging-event-driven/`, but serialization (record-to-bytes, before partitioning) had zero coverage, and no diagram tied all 9 stages together in one sequence.
+- Closed in place (no new chapter): `producer-semantics-and-partition-keys.md` (`1.0 → 1.1`) gained a serialization section; `kafka-architecture-fundamentals.md` (`1.0 → 1.1`) gained an end-to-end sequence diagram cross-linking each stage to its real depth elsewhere. Both diagrams verified rendering against the real `mermaid@10` version pinned in `mkdocs.yml`.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (Docker Compose: Multi-Service Orchestration, T-2428, 2026-09-23)
 
 - User shared a social-media infographic naming Docker Compose as its own topic — confirmed a real gap via grep: 16 real `docker-compose.yml` files already exist in this repo's practice labs, but no chapter ever taught what the file does.
