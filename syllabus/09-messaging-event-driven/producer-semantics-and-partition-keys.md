@@ -4,8 +4,8 @@ slug: producer-semantics-and-partition-keys
 document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-23
 source_history:
   - handbook/kafka/producer-semantics-and-partition-keys.md
 topic_id: T-702/T-705
@@ -110,6 +110,20 @@ The **partitioner** decides which partition a record is routed to, driven by the
 Prior to **KIP-480** (Kafka 2.4, 2019), the default partitioner for unkeyed records used strict round-robin — one record per partition, cycling through all of them. This produced small, inefficient batches, since every record's target partition changed before enough records could accumulate to fill a batch. The **sticky partitioner** introduced by KIP-480 changed this: it sticks to one partition for an entire in-flight batch, then switches, trading strict per-record round-robin distribution for materially larger batches and better throughput. Idempotent producers were introduced alongside transactional producers in **KIP-98** (Kafka 0.11, 2017) — the same release that made exactly-once semantics achievable for Kafka-to-Kafka pipelines (see [Kafka Delivery Semantics and Exactly-Once Processing](delivery-semantics-and-exactly-once.md)).
 
 ## Core Concepts
+
+### Serialization happens before partitioning, not after
+
+`KafkaProducer<K, V>` is generic over the key and value types your application code works with, but Kafka itself only ever stores and transmits bytes — a configured `Serializer<K>` and `Serializer<V>` (set via `key.serializer`/`value.serializer`) convert your typed key and value into `byte[]` before anything else in this chapter's flow happens, including partition selection. The three real choices in production: `StringSerializer`/`LongSerializer` (the JDK-provided ones, no schema, no compatibility checking — fine for simple values, unsafe for evolving record shapes), a plain JSON serializer (human-readable, no compact binary encoding, no schema enforcement), and Avro or Protobuf via a schema registry client (compact binary encoding, real schema evolution rules enforced at write time — see [Schema Registry and Compatibility Evolution](schema-registry-and-compatibility-evolution.md) for the full mechanism). This ordering matters for one concrete reason: the *key's serialized bytes* are what `DefaultPartitioner`'s hash actually operates on (`hash(keyBytes) % numPartitions`, per [Kafka Architecture Fundamentals](kafka-architecture-fundamentals.md#core-concepts)), not the key object itself — two logically-equal keys serialized inconsistently (e.g., a POJO with a non-deterministic custom serializer) can hash to different partitions, silently breaking the exact per-entity ordering guarantee this chapter's partition-key design section depends on.
+
+```java
+Properties props = new Properties();
+props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+// producer.send() serializes key and value to bytes FIRST, then the
+// partitioner hashes the resulting key bytes -- never the raw String.
+producer.send(new ProducerRecord<>("orders", "customer-42", "order-created"));
+```
 
 ### Partition key design is a permanent ordering commitment
 
@@ -356,6 +370,7 @@ Producer durability (`acks`, `min.insync.replicas`) and producer-retry deduplica
 - Idempotent producers dedupe producer-side retries only; they do not make the pipeline end-to-end exactly-once.
 - The sticky partitioner batches null-key records per-partition-per-batch for throughput, not strict round-robin.
 - Partition key choice trades ordering granularity against hot-partition risk, and is effectively permanent for existing data.
+- Serialization happens before partitioning — `DefaultPartitioner` hashes the key's serialized bytes, not the key object, so an inconsistent custom serializer can silently break per-entity ordering.
 
 ## Cheat Sheet
 

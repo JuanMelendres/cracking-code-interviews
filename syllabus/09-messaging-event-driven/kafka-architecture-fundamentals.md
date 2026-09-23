@@ -4,8 +4,8 @@ slug: kafka-architecture-fundamentals
 document_type: handbook-chapter
 domain: 09-messaging-event-driven
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-23
 source_history:
   - handbook/kafka/kafka-architecture-fundamentals.md
 topic_id: T-701/T-702/T-703/T-704/T-705
@@ -150,6 +150,34 @@ key=customer-6   -> partition=3 offset=0
 This directly feeds `acks=all` semantics (T-702): `acks=all` means "wait for the full **current** ISR," not "wait for `replication.factor` replicas" — if the ISR has shrunk to just the leader, `acks=all` provides no more durability than `acks=1` until `min.insync.replicas` is also set and enforced.
 
 ## Diagrams
+
+**The full message lifecycle, producer to consumer** — each stage below is taught in depth in a different chapter; this sequence is the one place they're shown as a single, ordered flow. Serialization: [Producer Semantics § Serialization happens before partitioning](producer-semantics-and-partition-keys.md#serialization-happens-before-partitioning-not-after). Partition selection and acks: [Producer Semantics § Partition key design](producer-semantics-and-partition-keys.md#core-concepts). Leader/replication/ISR: this chapter's own Core Concepts, above. Consumer fetch, deserialize, and offset commit: [Consumer Groups and Rebalancing](consumer-groups-and-rebalancing.md#core-concepts).
+
+```mermaid
+sequenceDiagram
+    participant App as Producer app
+    participant Ser as Serializer
+    participant Part as Partitioner
+    participant Leader as Partition leader
+    participant Follower as ISR followers
+    participant Consumer as Consumer
+
+    App->>Ser: record (typed key, value)
+    Ser->>Part: key bytes, value bytes
+    Part->>Leader: send(topic, partition, key, value)
+    Leader->>Leader: append to log, assign offset
+    Leader-->>Follower: replicate
+    Follower-->>Leader: ack (per acks setting)
+    Leader-->>App: RecordMetadata (partition, offset)
+
+    Note over Consumer,Leader: Pull model -- consumer initiates every fetch
+    Consumer->>Leader: poll() / fetch request (from last committed offset)
+    Leader-->>Consumer: batch of records
+    Consumer->>Consumer: deserialize, process
+    Consumer->>Leader: commit offset
+```
+
+A record is not deleted the moment a consumer processes it — Kafka has no concept of "consumed" at the broker level, only [retention](retention-log-compaction-and-tiered-storage.md) — and a second consumer group can independently re-read the identical partition from its own last committed offset, including from the very beginning, with zero effect on the first group's position.
 
 ```mermaid
 graph TB
@@ -324,6 +352,7 @@ Kafka splits a topic into independently-ordered partitions to parallelize throug
 - Partition-to-key mapping is deterministic and effectively permanent once keyed data exists.
 - The ISR, not `replication.factor`, is what `acks=all` actually waits on.
 - Hot partitions come from key skew, not partition count — more partitions doesn't fix a skewed key.
+- The full producer-to-consumer lifecycle is nine ordered steps (serialize → partition → send to leader → append/offset → replicate → consumer fetch → deserialize → process → commit) — each taught in depth in its own chapter, tied together as one sequence in this chapter's Diagrams section.
 
 ## Cheat Sheet
 
