@@ -7740,7 +7740,7 @@
     
   
   
-    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit)"></span>
+    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit); still 10 chapters as of 2026-09-26 — a real gap (no Spring Boot wiring example for Clean/Hexagonal Architecture) closed in place inside the existing T-901 chapter, not a new file"></span>
   
 
   
@@ -7765,7 +7765,7 @@
     
   
   
-    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit)"></span>
+    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit); still 10 chapters as of 2026-09-26 — a real gap (no Spring Boot wiring example for Clean/Hexagonal Architecture) closed in place inside the existing T-901 chapter, not a new file"></span>
   
 
   
@@ -11374,6 +11374,7 @@
 <p><strong>Phase 3 update (2026-09-03).</strong> This domain's full existing content (9 chapter(s)) has physically relocated via <code>git mv</code>, preserving file history. See the repository-root <code>CHANGELOG.md</code> for the full batch account.</p>
 <p><strong>Phase 5 update (2026-09-04) — domain complete.</strong> All 9 chapters gained a new "Level 1 — Foundation" and "Level 2 — Working Knowledge" section, inserted between "Why This Matters in Interviews" and "Mental Model" per the plan's additive retrofit method (§2.4) — a pure insertion on every chapter, verified by diff. Each pair is grounded in that chapter's own real subject: a wall-power-outlet analogy for ports/adapters (Clean/Hexagonal); a "football means different sports in different countries" analogy for bounded contexts (DDD Strategic); a packing-boxes-for-a-move analogy for aggregate boundaries (DDD Tactical); a newsroom-vs-printed-newspaper analogy for the write/read model lag (CQRS); a roommates-splitting-apartments analogy for service boundaries (Microservice Decomposition); a door-sign-vs-real-lock analogy for enforced module boundaries (Modular Monolith); a renovating-a-house-while-living-in-it analogy for incremental migration and rollback safety (Strangler Fig); a worn-brake-pads-and-vehicle-inspection analogy for economic debt framing and fitness functions (Technical Debt); a scientist's-lab-notebook analogy for durable decision reasoning (ADRs). Every chapter also gained <code>topic_id</code>/<code>mastery_levels_covered: [L1, L2, L3, L4]</code> front matter. <strong><code>17-architecture</code> is now fully L1–L4 (9/9)</strong> — the fifteenth fully-retrofitted domain in the syllabus.</p>
 <p><strong>Gap found and closed: Domain Events vs. Integration Events (2026-09-21).</strong> A gap audit found <code>cqrs-read-write-separation.md</code> and <code>ddd-tactical-design-aggregates.md</code> use "domain event" extensively, and <code>../09-messaging-event-driven/event-driven-architecture-integration-styles.md</code> covers publishing events across service boundaries — but none of the three ever named the specific, commonly-made mistake at their intersection: publishing a domain event's internal shape directly as an external contract. Closed with <a href="../domain-events-vs-integration-events/">Domain Events vs. Integration Events: Contract Boundaries and Translation</a> (T-2426), backed by a real, fully deterministic Java demo (<code>practice/java/architecture/domain-events-vs-integration-events/</code>) proving a downstream consumer genuinely breaks when a domain event is published directly and a real, well-motivated internal refactor happens (<code>double total</code> → <code>BigDecimal grandTotal</code>), and does not break when the same refactor is absorbed by a translated, stable integration-event contract — real captured output: <code>BROKEN, exactly as expected: Consumer expected field "total" but it was not present</code>, versus an unchanged <code>totalAmount=49.99</code> both before and after via the translated path.</p>
+<p><strong>Gap found and closed, in place — no new chapter (2026-09-26).</strong> User shared a social-media infographic showing Clean Architecture wired with real Spring Boot code (<code>@Service</code>/<code>@Repository</code> implementing a domain-owned port) and asked whether this repository covers it. <a href="../clean-hexagonal-architecture/">Clean and Hexagonal Architecture</a> already teaches ports/adapters/DIP in depth, deliberately framework-agnostic (a Stripe/<code>PaymentGateway</code> example) — but confirmed via grep, <code>05-spring/</code> only had three one-line cross-references, no worked example of the pattern using Spring's own annotations and DI container. Closed with a new "Wiring this with Spring Boot" section (<code>1.0 → 1.1</code>) inside the existing chapter: a domain-owned <code>CustomerRepositoryPort</code>, a <code>@Service</code>-annotated use case depending only on the port, and a <code>@Repository</code> adapter wrapping Spring Data JPA — plus a new Anti-Patterns entry (injecting <code>JpaRepository&lt;T, ID&gt;</code> directly as if it were the domain's own port) and a <code>related:</code> cross-link to <code>05-spring/spring-bean-scopes-and-proxy-modes.md</code> and <code>05-spring/spring-data-jpa-repository-abstraction.md</code>.</p>
 </blockquote>
 <h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <table>
@@ -11470,7 +11471,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 22, 2026 17:40:01 UTC">September 22, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 03:34:12 UTC">September 27, 2026</span>
   </span>
 
     

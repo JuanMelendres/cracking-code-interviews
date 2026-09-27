@@ -7731,7 +7731,7 @@
     
   
   
-    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit)"></span>
+    <span class="md-status md-status--9 of 9 mapped chapters physically relocated (Phase 3, 2026-09-03); L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 10th chapter added 2026-09-21 (Domain Events vs. Integration Events, T-2426 — gap audit); still 10 chapters as of 2026-09-26 — a real gap (no Spring Boot wiring example for Clean/Hexagonal Architecture) closed in place inside the existing T-901 chapter, not a new file"></span>
   
 
   
@@ -12047,6 +12047,56 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="wiring-this-with-spring-boot">Wiring this with Spring Boot<a class="headerlink" href="#wiring-this-with-spring-boot" title="Permanent link">&para;</a></h3>
+<p><strong>Sketch — illustrates the shape, same convention as the sketch above.</strong> Spring's role here is narrow and specific: its component scan finds every <code>@Service</code>/<code>@Repository</code>-annotated class and wires them together through the port interfaces they depend on. Spring is not the architecture — it is the dependency-injection mechanism that makes the architecture's own dependency rule (Section 8, "Primary vs. secondary ports") executable without a hand-rolled factory.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// domain/customer/CustomerRepositoryPort.java — the port, owned by the</span>
+<span class="c1">// domain, with zero Spring or JPA imports.</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">domain.customer</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerRepositoryPort</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// application/customer/GetCustomerUseCase.java — depends only on the port.</span>
+<span class="c1">// @Service is Spring's own bean-registration annotation; it carries no</span>
+<span class="c1">// architectural meaning by itself, and this class has no compile-time</span>
+<span class="c1">// dependency on JPA, Hibernate, or the adapter's concrete class below.</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">application.customer</span><span class="p">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GetCustomerUseCase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CustomerRepositoryPort</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">GetCustomerUseCase</span><span class="p">(</span><span class="n">CustomerRepositoryPort</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">customerRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// infrastructure/persistence/CustomerRepositoryAdapter.java — infrastructure</span>
+<span class="c1">// implements the domain's own port. Spring Data JPA's repository is a</span>
+<span class="c1">// collaborator *inside* the adapter, never something the domain or the</span>
+<span class="c1">// use case references directly.</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">infrastructure.persistence</span><span class="p">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerRepositoryAdapter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">CustomerRepositoryPort</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CustomerJpaRepository</span><span class="w"> </span><span class="n">jpaRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">CustomerRepositoryAdapter</span><span class="p">(</span><span class="n">CustomerJpaRepository</span><span class="w"> </span><span class="n">jpaRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">jpaRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jpaRepository</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">jpaRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">map</span><span class="p">(</span><span class="n">CustomerMapper</span><span class="p">::</span><span class="n">toDomain</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Spring's constructor injection resolves <code>CustomerRepositoryPort</code> to whichever single bean implements it — here, <code>CustomerRepositoryAdapter</code> — entirely at wiring time; <code>GetCustomerUseCase</code>'s own source code never names that class. This is the concrete, practical version of Section 8's dependency rule: swapping Postgres for MongoDB, or substituting an in-memory fake in a test, means writing a new class that implements <code>CustomerRepositoryPort</code> and changes zero lines in <code>GetCustomerUseCase</code>.</p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
     subgraph Driving["Driving side (things that call your app)"]
@@ -12199,6 +12249,7 @@
 <li><strong>One port per method</strong> rather than one port per cohesive capability — produces dozens of single-method interfaces and defeats the readability the pattern is meant to provide.</li>
 <li><strong>Answering "would you use this on every project?" with an unconditional yes</strong> — the single most common failure on this topic, reading as memorized rather than understood.</li>
 <li><strong>Trusting folder structure alone as evidence of dependency inversion</strong>, with no automated check.</li>
+<li><strong>Injecting Spring Data's own <code>JpaRepository&lt;Customer, Long&gt;</code> directly into a use case</strong>, treating it as if it were the domain's port — it already looks like an interface, so the temptation is real, but it's Spring Data's own generic persistence abstraction, not a port the domain deliberately defined; the domain still ends up depending on a Spring Data type it never chose.</li>
 </ul>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12352,6 +12403,7 @@
 <li>Transactions live at the application-service layer, never inside the domain.</li>
 <li>The pattern has a real cost (mapping code, indirection) — naming that cost unprompted is a Senior/Staff signal.</li>
 <li>"Would you use this on every project?" — the honest answer is no, with a stated criterion.</li>
+<li>Spring Boot's <code>@Service</code>/<code>@Repository</code> are wiring, not architecture — constructor injection resolves a domain-owned port to whichever adapter bean implements it, and the use case's own source never names the concrete adapter class.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <p>See <a href="#decision-framework">§ Decision Framework</a>'s table.</p>
@@ -12427,7 +12479,7 @@ Answering "use it everywhere" unconditionally.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 03:34:12 UTC">September 27, 2026</span>
   </span>
 
     
