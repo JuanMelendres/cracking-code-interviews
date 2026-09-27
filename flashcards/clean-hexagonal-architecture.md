@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: architecture
 topic_id: T-901
 canonical: ../syllabus/17-architecture/clean-hexagonal-architecture.md
-last_updated: 2026-08-06
+last_updated: 2026-09-26
 ---
 
 # Flashcards: Clean and Hexagonal Architecture
@@ -62,3 +62,20 @@ Answering "use it everywhere" unconditionally.
 
 **Related:**
 [Trade-offs](../syllabus/17-architecture/clean-hexagonal-architecture.md#trade-offs)
+
+## Card: What Spring Boot actually contributes to this pattern
+
+**Prompt:**
+When you wire a port/adapter pair with `@Service` and `@Repository`, what is Spring actually doing?
+
+**Answer:**
+Dependency injection only — component scanning finds the classes, and constructor injection resolves the port interface to whichever single bean implements it. Spring is the wiring mechanism, not the architecture; the use case's own source code never names the concrete adapter class.
+
+**Why it matters:**
+Distinguishes "Spring's DI container" from "the architectural pattern" — a common point of confusion, since the annotations make the wiring look automatic.
+
+**Common trap:**
+Injecting Spring Data's own `JpaRepository<T, ID>` directly into a use case, treating it as if it were the domain's deliberately-defined port.
+
+**Related:**
+[Wiring this with Spring Boot](../syllabus/17-architecture/clean-hexagonal-architecture.md#wiring-this-with-spring-boot)

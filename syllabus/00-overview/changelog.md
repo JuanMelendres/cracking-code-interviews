@@ -2420,3 +2420,16 @@ Tracks changes to the `syllabus/` tree specifically — domain content migration
 - Both diagrams verified real: rendered in actual Chromium against `mermaid@10` (the exact version pinned in `mkdocs.yml`) before shipping — zero parse errors, real SVG produced.
 - Both chapters' Key Takeaways sections updated with one new bullet each; `syllabus/09-messaging-event-driven/INDEX.md` status/note updated (chapter count unchanged at 13 — this was an in-place fix, not a new topic).
 - `validate.py`: errors 0, warnings 13 (unchanged baseline); all relative links and anchor fragments verified resolving.
+
+## [2026-09-26] — `17-architecture` gap closed in place: Spring Boot wiring for Clean/Hexagonal Architecture (user-requested, no new chapter)
+
+### Added
+
+- User shared a social-media infographic showing Clean Architecture wired with real Spring Boot code (`@Service`/`@Repository` implementing a domain-owned port) and asked whether it's covered. [Clean and Hexagonal Architecture](../17-architecture/clean-hexagonal-architecture.md) (T-901) already teaches ports/adapters/dependency inversion in real depth — but deliberately framework-agnostic, using a Stripe/`PaymentGateway` example. Confirmed via grep: `05-spring/` had only three one-line cross-references to hexagonal/clean architecture (in `transactional-proxy-mechanics-and-propagation.md`, `dto-entity-mapper-patterns.md`, `spring-mvc-fundamentals.md`), no worked example anywhere of wiring the pattern with Spring's own annotations and DI container.
+- Closed in place (no new chapter, matching the same-week Kafka precedent): [Clean and Hexagonal Architecture](../17-architecture/clean-hexagonal-architecture.md) (`1.0 → 1.1`) gained a new "Wiring this with Spring Boot" section — a domain-owned `CustomerRepositoryPort` with zero Spring/JPA imports, a `@Service`-annotated use case depending only on the port, and a `@Repository` adapter wrapping Spring Data JPA, with the concrete payoff stated explicitly: `GetCustomerUseCase`'s own source never names the adapter's concrete class, so swapping databases or substituting an in-memory fake in a test costs zero changes to the use case.
+- New Anti-Patterns entry: injecting Spring Data's own `JpaRepository<T, ID>` directly into a use case, treating it as if it were the domain's deliberately-defined port — it already looks like an interface, which is exactly why this is a real, common temptation.
+- New `related:` cross-links to `05-spring/spring-bean-scopes-and-proxy-modes.md` and `05-spring/spring-data-jpa-repository-abstraction.md`.
+- Standalone `cheat-sheets/clean-hexagonal-architecture.md` gained a matching pitfall bullet; `flashcards/clean-hexagonal-architecture.md` gained one new card ("What Spring Boot actually contributes to this pattern") — an existing deck gaining a card, not a new deck file (282 decks unchanged, 985 → 986 cards).
+- `syllabus/17-architecture/INDEX.md` status/note updated (chapter count unchanged at 10 — an in-place fix, not a new topic).
+- `validate.py`: errors 0, warnings 13 (unchanged baseline); all relative links and anchor fragments verified resolving.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline); all relative links and anchor fragments verified resolving.
