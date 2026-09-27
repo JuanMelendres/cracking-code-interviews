@@ -12826,7 +12826,7 @@
 <h1 id="immutability-and-defensive-copying">Immutability and Defensive Copying<a class="headerlink" href="#immutability-and-defensive-copying" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>Topic register:</strong> T-103 · IWI 5.4 · Foundation tier, High interview frequency
-<strong>Provenance:</strong> the trace in this chapter is real, executed output from <a href="../../../../practice/java/week-13/immutability/src/MutableLeakDemo.java"><code>practice/java/week-13/immutability/src/MutableLeakDemo.java</code></a> on OpenJDK 21.0.12.</p>
+<strong>Provenance:</strong> the traces in this chapter are real, executed output from <a href="../../../../practice/java/week-13/immutability/src/MutableLeakDemo.java"><code>practice/java/week-13/immutability/src/MutableLeakDemo.java</code></a> and <a href="../../../../practice/java/week-13/immutability/src/CloneDemo.java"><code>practice/java/week-13/immutability/src/CloneDemo.java</code></a> on OpenJDK 21.0.12.</p>
 </blockquote>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ol>
@@ -12865,6 +12865,7 @@
 <li>Apply defensive copying correctly on both construction and retrieval.</li>
 <li>Explain why <code>List.copyOf()</code> is stronger than a plain defensive copy (it rejects mutation outright, rather than merely being independent of the original).</li>
 <li>Connect immutability directly to thread-safety guarantees without synchronization.</li>
+<li>Explain precisely why <code>Object.clone()</code>'s default behavior is a shallow copy, not a deep one, and fix it correctly by overriding <code>clone()</code> for a class with mutable fields.</li>
 </ul>
 <h2 id="why-this-matters-in-interviews">Why This Matters in Interviews<a class="headerlink" href="#why-this-matters-in-interviews" title="Permanent link">&para;</a></h2>
 <p>This topic tests whether "immutable" is understood as a structural guarantee or just a naming convention (<code>final</code> fields, no setters). A class can look immutable by every surface signal and still leak a mutable reference through its constructor or a getter — and that leak is exactly the kind of subtle correctness bug that shows up in real production incidents involving shared mutable state, which is why interviewers use it to probe beyond the textbook definition.</p>
@@ -12888,6 +12889,9 @@
 <p>If a getter does <code>return attendees;</code> on a mutable <code>List</code> field, external code that calls the getter can mutate the class's own internal list directly, bypassing every method the class provides for controlled mutation (or lack thereof).</p>
 <h3 id="listcopyof-is-stronger-than-a-defensive-copy-into-a-new-mutable-list"><code>List.copyOf()</code> is stronger than a defensive copy into a new mutable list<a class="headerlink" href="#listcopyof-is-stronger-than-a-defensive-copy-into-a-new-mutable-list" title="Permanent link">&para;</a></h3>
 <p>Copying into a new <code>ArrayList</code> prevents the <em>original</em> list from affecting the class, but the returned copy is still itself mutable if handed out directly. <code>List.copyOf()</code> produces an unmodifiable view that throws <code>UnsupportedOperationException</code> on any mutation attempt — closing both the "still mutable if returned" gap and the independence gap in one call.</p>
+<h3 id="objectclones-default-behavior-is-a-shallow-copy-not-a-deep-one"><code>Object.clone()</code>'s default behavior is a shallow copy, not a deep one<a class="headerlink" href="#objectclones-default-behavior-is-a-shallow-copy-not-a-deep-one" title="Permanent link">&para;</a></h3>
+<p><code>clone()</code> is a <code>protected</code> method on <code>Object</code>; calling it on a class that doesn't implement the <code>Cloneable</code> marker interface throws <code>CloneNotSupportedException</code> — <code>Cloneable</code> carries no methods of its own, it only flips a switch <code>Object.clone()</code>'s native implementation checks internally. Once implemented, <code>super.clone()</code> performs a <strong>field-by-field copy</strong>: primitive fields are copied by value, and reference fields (a <code>List</code>, an array, another object) are copied <em>as references</em> — the clone ends up pointing at the exact same nested objects the original does. This is precisely the same "leak" shape as this chapter's Section 3 constructor/getter leaks, just introduced by <code>clone()</code>'s own default mechanism instead of a hand-written constructor or getter: mutating a mutable field through the clone silently mutates the original too, since both objects still share one underlying instance.</p>
+<p><strong>Fixing it requires overriding <code>clone()</code> explicitly</strong>, calling <code>super.clone()</code> for the shallow, field-by-field copy first, then manually deep-copying every mutable-typed field on the result — exactly the same defensive-copying discipline this chapter's Section 3/Internal Implementation already applies to constructors and getters, just applied to the object returned by <code>super.clone()</code> instead.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
 <p><strong>Leak #1 — constructor storing a live reference, measured:</strong></p>
 <div class="highlight"><pre><span></span><code>== Leak #1: caller mutates the Date AFTER construction ==
@@ -12903,6 +12907,22 @@ attendees after calling getAttendees().add("mallory") from OUTSIDE the class: [c
 <div class="highlight"><pre><span></span><code>== The fixed, truly immutable version resists both leaks ==
 Event date after caller mutates the ORIGINAL Date passed to the constructor: Tue Nov 14 16:13:20 CST 2023  (unchanged -- the constructor copied it)
 getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf() returns an immutable view -- mutation is rejected outright, not just copied)
+</code></pre></div>
+<p><strong>A class that doesn't implement <code>Cloneable</code>, real captured exception:</strong></p>
+<div class="highlight"><pre><span></span><code>== A class NOT implementing Cloneable: super.clone() throws ==
+clone() threw CloneNotSupportedException  (Cloneable was never implemented)
+</code></pre></div>
+<p><strong><code>Object.clone()</code>'s default shallow copy, measured — the clone and the original end up sharing the same <code>List</code>:</strong></p>
+<div class="highlight"><pre><span></span><code>== Object.clone()'s default behavior is a SHALLOW copy ==
+original.members before mutating the CLONE: [alice, bob]
+original.members AFTER clone.members.add("mallory"): [alice, bob, mallory]  (changed! shallow clone copied the LIST REFERENCE, not the list itself)
+originalShallow.members == clonedShallow.members: true  (same object, confirmed by reference equality)
+</code></pre></div>
+<p><strong>Overriding <code>clone()</code> to deep-copy the mutable field, measured — the same mutation no longer reaches the original:</strong></p>
+<div class="highlight"><pre><span></span><code>== Overriding clone() to deep-copy the mutable field fixes it ==
+original.members before mutating the CLONE: [alice, bob]
+original.members AFTER clone.members.add("mallory"): [alice, bob]  (unchanged -- clone() made an independent copy of the list)
+originalDeep.members == clonedDeep.members: false  (different objects, confirmed by reference equality)
 </code></pre></div>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
@@ -12927,6 +12947,47 @@ getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf(
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Complexity note:</strong> defensive copying is <code>O(n)</code> in the size of the copied structure per construction/getter call — a real, bounded cost, not free, which is why immutable record-like classes often prefer genuinely immutable types (<code>java.time</code> types instead of <code>Date</code>, <code>List.copyOf()</code> instead of repeated <code>ArrayList</code> copies) where possible to reduce the copying overhead.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Java 21. Shallow vs. deep clone(), side by side.</span>
+<span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ShallowTeam</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Cloneable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">members</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">ShallowTeam</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">members</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">members</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ShallowTeam</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">ShallowTeam</span><span class="p">)</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w"> </span><span class="c1">// field-by-field copy, NOT recursive</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AssertionError</span><span class="p">(</span><span class="s">"Cloneable is implemented, this can't happen"</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DeepTeam</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Cloneable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">members</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">DeepTeam</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">members</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">members</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DeepTeam</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">DeepTeam</span><span class="w"> </span><span class="n">copy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DeepTeam</span><span class="p">)</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span>
+<span class="w">            </span><span class="n">copy</span><span class="p">.</span><span class="na">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">members</span><span class="p">);</span><span class="w"> </span><span class="c1">// deep-copy the mutable field</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">copy</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AssertionError</span><span class="p">(</span><span class="s">"Cloneable is implemented, this can't happen"</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
 <h3 id="scenario-a-shared-configuration-object-is-silently-mutated-by-one-caller-corrupting-behavior-for-every-other-caller">Scenario: a shared configuration object is silently mutated by one caller, corrupting behavior for every other caller<a class="headerlink" href="#scenario-a-shared-configuration-object-is-silently-mutated-by-one-caller-corrupting-behavior-for-every-other-caller" title="Permanent link">&para;</a></h3>
 <p><strong>Symptoms.</strong> A service loads a <code>Config</code> object once at startup and passes it by reference to multiple independent subsystems. Weeks after a refactor, one subsystem begins behaving as if a feature flag changed mid-request, even though the flag was never intentionally toggled — and other subsystems using the same <code>Config</code> instance intermittently see the same unexpected flip.</p>
@@ -12984,12 +13045,14 @@ getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf(
 <li>Believing <code>final</code> fields alone make a class immutable, without checking whether the referenced objects are themselves mutable.</li>
 <li>Copying on construction but not on the getter (or vice versa) — both boundaries need protection.</li>
 <li>Returning a new mutable copy from a getter (safer than the live reference, but still allows the caller to mutate their own copy without realizing the original class considers itself immutable — usually harmless, but weaker than an immutable view when the intent is to signal "you cannot mutate this").</li>
+<li>Assuming <code>clone()</code> performs a deep copy by default — <code>super.clone()</code> is shallow, copying reference fields as references, not recursively copying what they point to.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><code>final List&lt;String&gt; items;</code> with a getter that does <code>return items;</code></strong> — the single most common instance of Leak #2.</li>
 <li><strong>Storing a constructor argument directly</strong> (<code>this.when = when;</code>) for any mutable type, assuming <code>final</code> alone provides protection.</li>
 <li><strong>Assuming a class with no setters is automatically immutable</strong>, without auditing every getter and constructor for a live-reference leak.</li>
+<li><strong>Implementing <code>Cloneable</code> and relying on <code>super.clone()</code> alone for a class with any mutable-typed field</strong> — every mutable field must be explicitly deep-copied inside the overridden <code>clone()</code>, or the clone silently shares that field's underlying object with the original.</li>
 </ul>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <ul>
@@ -13044,6 +13107,17 @@ getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf(
 <p><strong>Likely follow-ups.</strong> "When would you still prefer a plain mutable copy over an immutable view?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: treats them as equivalent. 3: correctly explains both properties. 5: correct explanation plus the structural-guarantee-vs-convention framing.</p>
 <p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#java-examples">§ Java Examples</a>.</p>
+<hr />
+<h3 id="question-3-whats-the-difference-between-a-shallow-copy-and-a-deep-copy-does-objectclone-give-you-one-or-the-other">Question 3 — What's the difference between a shallow copy and a deep copy? Does <code>Object.clone()</code> give you one or the other?<a class="headerlink" href="#question-3-whats-the-difference-between-a-shallow-copy-and-a-deep-copy-does-objectclone-give-you-one-or-the-other" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Tests whether the candidate understands <code>clone()</code>'s actual default mechanism, rather than assuming "clone" means "fully independent copy" by name alone.</p>
+<p><strong>Expected answer.</strong> A shallow copy copies an object's fields as-is — primitives by value, references by reference — so a shallow copy of an object with a mutable field (a <code>List</code>, an array) still shares that same underlying field object with the original. A deep copy recursively copies every referenced mutable object too, so the copy is fully independent all the way down. <code>Object.clone()</code>'s default (<code>super.clone()</code>) is shallow; getting a deep copy requires overriding <code>clone()</code> to explicitly copy every mutable-typed field afterward.</p>
+<p><strong>Minimum acceptable answer.</strong> States that <code>clone()</code> is shallow by default, even without a concrete example of the consequence.</p>
+<p><strong>Strong Senior answer.</strong> Gives a concrete example (this chapter's own: cloning an object with a <code>List</code> field, then mutating the clone's list and observing the original's list change too, since both reference the same <code>List</code> instance) and correctly overrides <code>clone()</code> to fix it.</p>
+<p><strong>Staff-level extension.</strong> Connects this to why many senior engineers avoid <code>Cloneable</code>/<code>clone()</code> entirely in new code (per <em>Effective Java</em>'s well-known criticism of the mechanism — no way to enforce <code>Cloneable</code> at compile time, <code>clone()</code>'s checked-exception signature is awkward, and subclassing interacts badly with it) and prefers a copy constructor or a static factory method instead, which can express a deep copy directly and explicitly with none of <code>clone()</code>'s surprises.</p>
+<p><strong>Common mistakes.</strong> Assuming <code>clone()</code> (or "clone" generically) always produces a fully independent copy; forgetting that arrays are also mutable reference types subject to the identical shallow-copy issue.</p>
+<p><strong>Likely follow-ups.</strong> "If you avoid <code>clone()</code>, how would you give a class a proper deep-copy capability?" (A copy constructor, or a static <code>copyOf</code>-style factory method, that explicitly constructs new instances of every mutable-typed field.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: assumes <code>clone()</code> is always a full deep copy. 3: correctly states <code>clone()</code>'s default is shallow. 5: correct mechanism, a concrete shared-reference example, and knows the standard alternative (copy constructor) senior engineers actually reach for.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="#internal-implementation">§ Internal Implementation</a>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>A class with only <code>final</code> fields is not automatically immutable — mutability can leak through a constructor that stores a caller's mutable reference directly, or a getter that returns a live reference to internal mutable state, both measured directly in this chapter. Defensive copying at both boundaries closes the leak; <code>List.copyOf()</code> (and its <code>Map</code>/<code>Set</code> equivalents) is stronger still, rejecting any mutation attempt outright rather than merely being independent of the original.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -13052,6 +13126,7 @@ getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf(
 <li>A constructor storing a mutable argument directly, or a getter returning a live mutable reference, both leak mutability.</li>
 <li>Defensive copying at both boundaries (constructor and getter) is required for genuine immutability.</li>
 <li><code>List.copyOf()</code>/<code>Map.copyOf()</code>/<code>Set.copyOf()</code> reject mutation outright, a stronger guarantee than a plain defensive copy.</li>
+<li><code>Object.clone()</code>'s default (<code>super.clone()</code>) is a shallow, field-by-field copy — a mutable-typed field is copied as a shared reference, not recursively; overriding <code>clone()</code> to deep-copy that field is required for a real deep copy.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -13073,6 +13148,10 @@ getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf(
 <tr>
 <td>Is <code>List.copyOf()</code>/equivalent used rather than a plain mutable copy, where mutation should be rejected outright?</td>
 <td>Weaker guarantee than intended</td>
+</tr>
+<tr>
+<td>Does an overridden <code>clone()</code> only call <code>super.clone()</code>, with no further copying?</td>
+<td>Shallow-clone leak — every mutable field needs its own explicit deep copy</td>
 </tr>
 </tbody>
 </table>
@@ -13110,16 +13189,29 @@ A structural guarantee (loud failure on violation) is stronger than a convention
 Treating a plain defensive copy as equivalent to an immutable view.</p>
 <p><strong>Related:</strong>
 <a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-clone-is-shallow-by-default">Card: clone() is shallow by default<a class="headerlink" href="#card-clone-is-shallow-by-default" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Does <code>Object.clone()</code>'s default implementation (<code>super.clone()</code>) produce a deep copy?</p>
+<p><strong>Answer:</strong>
+No — verified directly: a shallow <code>clone()</code> on an object with a <code>List</code> field produces a clone that shares the exact same <code>List</code> instance as the original; mutating the clone's list changed the original's list too.</p>
+<p><strong>Why it matters:</strong>
+A common misconception — "clone" sounds like it should mean "fully independent copy," but the default mechanism is field-by-field, not recursive.</p>
+<p><strong>Common trap:</strong>
+Implementing <code>Cloneable</code> and relying on <code>super.clone()</code> alone for a class with any mutable-typed field.</p>
+<p><strong>Related:</strong>
+<a href="#internal-implementation">Internal Implementation</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Reproduce: <a href="../../../../practice/java/week-13/immutability/src/MutableLeakDemo.java"><code>MutableLeakDemo.java</code></a>.</li>
+<li>Reproduce: <a href="../../../../practice/java/week-13/immutability/src/MutableLeakDemo.java"><code>MutableLeakDemo.java</code></a> and <a href="../../../../practice/java/week-13/immutability/src/CloneDemo.java"><code>CloneDemo.java</code></a>.</li>
 <li>Add a third leak to the demo: a constructor that stores an array field (<code>private final int[] scores</code>) directly rather than cloning it, and demonstrate the same class of bug with <code>int[]</code> instead of <code>List</code>/<code>Date</code>.</li>
 <li>Rewrite <code>LeakyEvent</code> to use <code>java.time.Instant</code> instead of <code>java.util.Date</code> for the <code>when</code> field, and explain why this eliminates the need for defensive copying on that field specifically.</li>
+<li>Add a second mutable field (a <code>Map&lt;String, String&gt;</code>) to <code>DeepTeam</code>, and extend its overridden <code>clone()</code> to deep-copy that field too — confirm mutating the clone's map no longer affects the original's map.</li>
 </ol>
 <h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<p><strong>Exercise 1.</strong> Expected output matches this chapter's measured traces: both leaks reproduce (the event's date changes after external mutation of the original <code>Date</code>; the attendees list gains an externally-added entry), and the fixed version resists both.</p>
+<p><strong>Exercise 1.</strong> Expected output matches this chapter's measured traces: both leaks reproduce (the event's date changes after external mutation of the original <code>Date</code>; the attendees list gains an externally-added entry), and the fixed version resists both; <code>CloneDemo.java</code> reproduces the <code>CloneNotSupportedException</code>, the shared-reference shallow-clone leak, and the fixed deep clone.</p>
 <p><strong>Exercise 2.</strong> An <code>int[]</code> field stored directly via <code>this.scores = scores;</code> (not <code>scores.clone()</code>) lets a caller mutate the array's elements after construction (<code>scores[0] = 999;</code>) and see that change reflected in the "immutable" object's state — arrays are mutable reference types just like <code>List</code>/<code>Date</code>, and <code>final</code> on the field reference does nothing to protect the array's contents.</p>
 <p><strong>Exercise 3.</strong> <code>java.time.Instant</code> (and the rest of the <code>java.time</code> package) is itself genuinely immutable — every "mutating" method (<code>plusSeconds()</code>, etc.) returns a new <code>Instant</code> rather than modifying the receiver. Storing an <code>Instant</code> directly (no copy needed) is safe because there is no way for a caller to mutate the object after handing it to the constructor; the entire defensive-copying discipline exists only because <code>java.util.Date</code> (a legacy, genuinely mutable type) requires it.</p>
+<p><strong>Exercise 4.</strong> The pattern is identical to <code>members</code>: <code>copy.extraField = new HashMap&lt;&gt;(this.extraField);</code> inside the overridden <code>clone()</code>, after the <code>super.clone()</code> call — each additional mutable field needs its own explicit deep-copy line; there's no shortcut that deep-copies every field automatically.</p>
 <h2 id="additional-reading">Additional Reading<a class="headerlink" href="#additional-reading" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Joshua Bloch, <em>Effective Java</em>, Item 17 ("Minimize mutability") and Item 50 ("Make defensive copies when needed")</li>
@@ -13148,7 +13240,7 @@ Treating a plain defensive copy as equivalent to an immutable view.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 15:28:05 UTC">September 27, 2026</span>
   </span>
 
     

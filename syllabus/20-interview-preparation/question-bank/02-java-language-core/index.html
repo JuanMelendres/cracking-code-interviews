@@ -12930,18 +12930,20 @@
 <p>Part of the <code>02-java</code> compendium — the last of its 4 subdomain files. See
 <a href="../02-java-collections/"><code>02-java-collections.md</code></a> for the tier-explanation format
 and sourcing discipline.</p>
-<p><strong>Honest count for this subdomain:</strong> 24 chapters yielded 46 deep questions + 10
+<p><strong>Honest count for this subdomain:</strong> 24 chapters yielded 47 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 57 quick-fire
-questions = <strong>113 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
+<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 58 quick-fire
+questions = <strong>115 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
 checklist audit. Updated again 2026-09-27: <code>comparator-composition-and-pitfalls.md</code>
 had a complete Interview Questions section written 2026-09-17 that this index never
 picked up — a stale-index gap, not a content gap. Added its 2 questions + 3
-quick-fire cards.)</p>
+quick-fire cards. Updated again 2026-09-27, same day: <code>immutability-and-defensive-copying.md</code>
+gained a new Q3 on shallow-vs-deep copy / <code>Object.clone()</code>, closing a real content
+gap — <code>clone()</code>/<code>Cloneable</code> had zero dedicated explanation anywhere in this domain.)</p>
 <p><strong>02-java domain total across all 4 subdomains:</strong> 52 (collections) + 72 (concurrency)
-+ 31 (jvm-internals) + 113 (language-core) = <strong>268 real questions</strong> — the largest of
++ 31 (jvm-internals) + 115 (language-core) = <strong>270 real questions</strong> — the largest of
 the 22 domains this initiative covers, consistent with <code>02-java</code> being the biggest
 domain in the syllabus (64 chapters).</p>
 <hr />
@@ -13161,6 +13163,12 @@ domain in the syllabus (64 chapters).</p>
 - <strong>Junior/Mid:</strong> Treats the two approaches as equivalent — the common mistake this question targets.
 - <strong>Senior:</strong> A new <code>ArrayList</code> copy is independent but still mutable; <code>List.copyOf()</code> produces an unmodifiable view that throws on any mutation attempt.
 - <strong>Staff:</strong> Connects this to the general principle that a structural guarantee is stronger and more debuggable than a convention.</p>
+<h3 id="q3-whats-the-difference-between-a-shallow-copy-and-a-deep-copy-does-objectclone-give-you-one-or-the-other">Q3 — What's the difference between a shallow copy and a deep copy? Does <code>Object.clone()</code> give you one or the other?<a class="headerlink" href="#q3-whats-the-difference-between-a-shallow-copy-and-a-deep-copy-does-objectclone-give-you-one-or-the-other" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/immutability-and-defensive-copying/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes <code>clone()</code> always produces a fully independent copy — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states <code>clone()</code>'s default (<code>super.clone()</code>) is shallow — a mutable field is copied by reference, still shared with the original — and fixes it by overriding <code>clone()</code> to deep-copy that field.
+- <strong>Staff:</strong> Explains why many engineers avoid <code>Cloneable</code>/<code>clone()</code> in new code entirely (no compile-time enforcement, awkward checked-exception signature) and prefers a copy constructor or static factory instead.</p>
 <hr />
 <h2 id="java-platform-module-system-jpms">Java Platform Module System (JPMS)<a class="headerlink" href="#java-platform-module-system-jpms" title="Permanent link">&para;</a></h2>
 <h3 id="q1-a-dependency-broke-after-a-java-17-upgrade-with-inaccessibleobjectexception-walk-me-through-diagnosis-and-fix">Q1 — A dependency broke after a Java 17 upgrade with <code>InaccessibleObjectException</code>. Walk me through diagnosis and fix.<a class="headerlink" href="#q1-a-dependency-broke-after-a-java-17-upgrade-with-inaccessibleobjectexception-walk-me-through-diagnosis-and-fix" title="Permanent link">&para;</a></h3>
@@ -13639,6 +13647,11 @@ domain in the syllabus (64 chapters).</p>
 <td>How do you sort a list where some elements have a <code>null</code> sort key, without a manual null-check?</td>
 <td><a href="../../../02-java/language-core/comparator-composition-and-pitfalls/#flashcards">Comparator: Composition and Pitfalls</a></td>
 </tr>
+<tr>
+<td>58</td>
+<td>Does <code>Object.clone()</code>'s default implementation produce a deep copy?</td>
+<td><a href="../../../02-java/language-core/immutability-and-defensive-copying/#flashcards">Immutability and Defensive Copying</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13669,7 +13682,7 @@ domain in the syllabus (64 chapters).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 15:28:05 UTC">September 27, 2026</span>
   </span>
 
     

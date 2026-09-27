@@ -3799,6 +3799,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#key-numbers-real-executed-clonedemojava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Numbers (real, executed — CloneDemo.java)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9097,6 +9108,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#key-numbers-real-executed-clonedemojava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Numbers (real, executed — CloneDemo.java)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9221,6 +9243,8 @@
 <li><strong>Leak on the way in</strong> — a constructor storing the caller's mutable reference directly (<code>this.when = when;</code>).</li>
 <li><strong>Leak on the way out</strong> — a getter returning a live internal reference (<code>return attendees;</code>).</li>
 <li><strong><code>List.copyOf()</code></strong> — stronger than a plain defensive copy: produces an unmodifiable view that throws <code>UnsupportedOperationException</code> on mutation, rather than merely being independent of the original.</li>
+<li><strong>Shallow copy</strong> — copies fields as-is (references stay shared); <code>Object.clone()</code>'s default (<code>super.clone()</code>) is shallow.</li>
+<li><strong>Deep copy</strong> — recursively copies every referenced mutable object too; requires overriding <code>clone()</code> (or using a copy constructor) explicitly.</li>
 </ul>
 <h2 id="decision-table">Decision Table<a class="headerlink" href="#decision-table" title="Permanent link">&para;</a></h2>
 <table>
@@ -9263,11 +9287,17 @@ Leak #2 (getter returns live reference):
   Event date after caller mutates original: Tue Nov 14 16:13:20 CST 2023  &lt;- UNCHANGED
   getAttendees().add("mallory") threw UnsupportedOperationException  &lt;- rejected outright
 </code></pre></div>
+<h2 id="key-numbers-real-executed-clonedemojava">Key Numbers (real, executed — <code>CloneDemo.java</code>)<a class="headerlink" href="#key-numbers-real-executed-clonedemojava" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Shallow clone: original.members == clone.members -&gt; true (SAME list, mutation leaks both ways)
+Deep clone (clone() overridden to copy the field): original.members == clone.members -&gt; false (independent)
+A class NOT implementing Cloneable: clone() throws CloneNotSupportedException
+</code></pre></div>
 <h2 id="common-pitfalls">Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Believing <code>final</code> fields alone make a class immutable, without checking whether the referenced objects are themselves mutable.</li>
 <li>Copying on construction but not on the getter (or vice versa) — both boundaries need protection.</li>
 <li>Treating a plain mutable-copy getter as equivalent to an immutable view — it's safer than a live reference but still allows unnoticed local mutation.</li>
+<li>Assuming <code>clone()</code> performs a deep copy by default — <code>super.clone()</code> only copies fields, references included, not what they point to.</li>
 </ul>
 <h2 id="interview-answer-skeleton">Interview Answer Skeleton<a class="headerlink" href="#interview-answer-skeleton" title="Permanent link">&para;</a></h2>
 <p><strong>30-sec:</strong> <code>final</code> fields prevent reassignment, not mutation of the referenced object — a class can leak mutability through its constructor (storing a caller's reference) or its getters (returning a live reference), measured directly in both cases. Defensive copying on both boundaries, or an immutable view like <code>List.copyOf()</code>, closes both leaks.</p>
@@ -9305,7 +9335,7 @@ Leak #2 (getter returns live reference):
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 15:28:05 UTC">September 27, 2026</span>
   </span>
 
     
