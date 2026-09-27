@@ -230,6 +230,7 @@ This is the same 46-chapter list as the `cheat-sheets/` batch, but the two deliv
 | 185 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | 3 | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
 | 186 | [System Design Patterns: Recognition and Quick-Reference Guide](system-design-patterns-recognition-and-quick-reference.md) | T-2427 | 3 | `syllabus/11-system-design/system-design-patterns-recognition-and-quick-reference.md` |
 | 187 | [Docker Compose: Multi-Service Orchestration](docker-compose-multi-service-orchestration.md) | T-2428 | 3 | `syllabus/14-devops-containers/docker-compose-multi-service-orchestration.md` |
+| 188 | [Spring and Spring Boot Fundamentals](spring-and-spring-boot-fundamentals.md) | T-2213 | 5 | `syllabus/05-spring/spring-and-spring-boot-fundamentals.md` |
 
 ## New-Writing Domain Decks (T-1800s/T-1900s/T-2000s, no embedded `## Flashcards` section)
 
@@ -441,6 +442,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 **2026-09-23 — Docker Compose: Multi-Service Orchestration (T-2428) gains a flashcard deck.** New `14-devops-containers` chapter, user-requested: a real, reproducible `depends_on` race on a fresh Postgres volume, and its real fix (a health check plus `condition: service_healthy`). 3 cards. New total, verified directly against the file system: **282 decks, 985 cards**.
 
 **2026-09-26 — Clean and Hexagonal Architecture (T-901) gains a fourth card, no new deck.** User asked whether the canonical chapter shows how Clean/Hexagonal Architecture is actually wired with Spring Boot's own `@Service`/`@Repository` annotations — it didn't; only one-line cross-references existed elsewhere in `05-spring/`. The canonical chapter gained a new "Wiring this with Spring Boot" section (`1.0 → 1.1`); this existing deck gained one matching card ("What Spring Boot actually contributes to this pattern"), not a new deck file. New total, verified directly against the file system: **282 decks, 986 cards**.
+
+**2026-09-26 (same day) — Spring and Spring Boot Fundamentals (T-2213) gains a flashcard deck.** New `05-spring` chapter, user-requested: a 20-question interview checklist audit found every concept already taught in prose, but none formatted as an actual seniority-tiered interview question — also closed a narrower IoC-definition and bean-scope-breadth gap. 5 cards. New total, verified directly against the file system: **283 decks, 991 cards**.
 | F32 | [Frontend Security: XSS, CSRF, and Content Security Policy](frontend-security-xss-csrf-and-csp.md) | F-401 | Advanced | `syllabus/21-frontend-web/frontend-security-xss-csrf-and-csp.md` |
 | F33 | [WebSocket and Server-Sent Events for Real-Time UI](websocket-and-server-sent-events-for-realtime-ui.md) | F-402 | Advanced | `syllabus/21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md` |
 | F34 | [Micro-Frontends and Module Federation](micro-frontends-and-module-federation.md) | F-403 | Advanced | `syllabus/21-frontend-web/micro-frontends-and-module-federation.md` |

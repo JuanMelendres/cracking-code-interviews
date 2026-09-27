@@ -20,12 +20,14 @@ mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - auto-configuration-and-bean-lifecycle.md
 related:
+  - spring-and-spring-boot-fundamentals.md
   - auto-configuration-and-bean-lifecycle.md
   - transactional-proxy-mechanics-and-propagation.md
   - security-filter-chain.md
   - spring-mvc-fundamentals.md
   - spring-testing-slices-and-context-caching.md
   - ../14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md
+  - ../15-cloud/twelve-factor-config.md
 official_references:
   - https://docs.spring.io/spring-boot/reference/using/auto-configuration.html
   - https://docs.spring.io/spring-boot/reference/web/servlet.html

@@ -6,6 +6,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Spring and Spring Boot Fundamentals, T-2213, 2026-09-26)
+
+- User shared a 20-question "Spring Fundamentals" interview checklist (IoC, DI, beans, bean lifecycle, bean scopes, stereotype annotations, `@Autowired` internals, `@Primary`/`@Qualifier`, `@SpringBootApplication`, auto-configuration, starters, profiles) and asked for each explained per seniority level. Audited via grep: every concept was already taught in this domain's prose, but none existed as an actual, seniority-tiered interview question — this domain's Interview Questions sections all skip straight to intermediate/advanced scenarios.
+- Also found two narrower gaps: IoC was named as a topic tag but never defined in body text; only 2 of 6 real bean scopes were ever named together. Fixed a real cross-link gap too: Spring Profiles content lives entirely in `15-cloud/twelve-factor-config.md` with no `related:` link from `spring-framework-vs-spring-boot.md`.
+- New `syllabus/05-spring/spring-and-spring-boot-fundamentals.md` (T-2213): all 20 questions answered in full CLAUDE.md Interview Question Standard form (Junior through Staff, per question), plus new content closing the IoC-definition and full-bean-scope gaps.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Fixed (Clean/Hexagonal Architecture gains real Spring Boot wiring example, 2026-09-26)
 
 - User shared a social-media infographic showing Clean Architecture wired with real Spring Boot code and asked whether it's covered. `clean-hexagonal-architecture.md` (T-901) already teaches ports/adapters/DIP deeply but deliberately framework-agnostic; confirmed via grep that `05-spring/` had only one-line cross-references, no worked Spring example.

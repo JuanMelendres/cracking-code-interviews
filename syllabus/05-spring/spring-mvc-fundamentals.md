@@ -11,6 +11,7 @@ mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md
 related:
+  - spring-and-spring-boot-fundamentals.md
   - auto-configuration-and-bean-lifecycle.md
   - spring-bean-scopes-and-proxy-modes.md
   - spring-framework-vs-spring-boot.md
