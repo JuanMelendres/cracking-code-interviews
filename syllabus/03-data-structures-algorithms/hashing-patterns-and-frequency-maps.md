@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2102
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-27
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -25,7 +25,7 @@ source_history:
 
 # Hashing Patterns and Frequency Maps
 
-> **Provenance.** The five worked problems and retrospectives in Sections 7 and 15 are elevated from `study-packs/week-22/01-hashing-coding-practice.md` — real, compiled, executed code (`practice/java/week-22/hashing/`), re-verified on OpenJDK 21.0.12 while writing this chapter (11/11 assertions passing).
+> **Provenance.** The first five worked problems and retrospectives in Sections 7 and 15 are elevated from `study-packs/week-22/01-hashing-coding-practice.md` — real, compiled, executed code (`practice/java/week-22/hashing/`), re-verified on OpenJDK 21.0.12 while writing this chapter. Two more (Find All Duplicates in an Array, First Unique Character) were added 2026-09-27 closing a real gap found via a generic interview-checklist audit, with the full recognition-signal/clarifying-question/brute-force/pseudocode treatment. All seven are now verified together (16/16 assertions passing).
 
 This is Master Topic Register **T-1403** (IWI 6.0, near-certain frequency). [HashMap Internals](../02-java/collections/hashmap-internals.md) explains how `HashMap` and `HashSet` work *underneath*; this chapter is about *using* them as an interview technique — turning an O(n) or O(n²) lookup or counting problem into O(1) average-case lookups.
 
@@ -152,6 +152,75 @@ static int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
 
 **Retrospective:** the key restructuring is recognizing `a+b+c+d == 0` is equivalent to `a+b == -(c+d)` — decomposing an O(n⁴) quadruple-nested loop into two independent O(n²) passes joined by a hash-map lookup. **Complexity:** O(n²) time, O(n²) space.
 
+**Problem 6 — LC 442, Find All Duplicates in an Array.**
+
+**Recognition signal:** the problem's own constraint — every value is in `[1, n]` for an array of length `n` — is the tell. Whenever a problem hands you a value range tied directly to the array's own length, the array itself can be reused as a hash table, with no separate `Set`/`Map` allocation needed.
+
+**Clarifying question worth asking:** can the input array be mutated? (LC 442 allows it, which is what makes the O(1)-extra-space solution possible; if not, the `HashSet`-based Problem 1 approach — track seen values, collect the second-time-seen ones — is the fallback, at O(n) space instead.)
+
+**Brute force:** a `HashSet`, exactly Problem 1's technique — add each value, and if `add()` returns `false`, it's a duplicate, collect it. Correct, O(n) time, but O(n) *extra* space, which this problem's own constraints make avoidable.
+
+**Optimized approach — pseudocode ("index as a hash key"):**
+
+```text
+for each value v in nums:
+    idx = abs(v) - 1                  # v's own "home slot"
+    if nums[idx] is negative:
+        idx+1 is a duplicate -> record it
+    else:
+        negate nums[idx]              # mark "value idx+1 has been seen"
+restore every entry to its absolute value (undo the marking)
+```
+
+```java
+static List<Integer> findDuplicates(int[] nums) {
+    List<Integer> result = new ArrayList<>();
+    for (int n : nums) {
+        int idx = Math.abs(n) - 1;
+        if (nums[idx] < 0) {
+            result.add(idx + 1);
+        } else {
+            nums[idx] = -nums[idx];
+        }
+    }
+    for (int i = 0; i < nums.length; i++) nums[i] = Math.abs(nums[i]); // restore input
+    return result;
+}
+```
+
+**Retrospective:** negating `nums[idx]` is a real hash-table insertion in disguise — the array's own indices *are* the hash buckets, since the value range is guaranteed to fit them exactly. This is the same "index as a hash key" idea Cyclic Sort-style problems reuse constantly, and is worth naming explicitly as a distinct technique from "allocate a `Set`," since it's the O(1)-extra-space answer to a whole family of "find the missing/duplicate number in `[1,n]`" problems. **Common bugs:** reading `nums[idx]` for the sign check *after* it may have already been negated by an earlier iteration touching the same slot from a different value — the order matters, which is why the check (`if negative`) must come before the negation, not after; forgetting the restore pass, leaving the input corrupted for any caller that inspects it afterward (a real, easy-to-miss "did I mutate something I shouldn't have" interview follow-up). **Test cases:** an array with exactly one duplicate value appearing twice, an array with no duplicates at all (returns an empty list). **Complexity:** O(n) time, O(1) extra space (excluding the required output list).
+
+**Problem 7 — LC 387, First Unique Character in a String.**
+
+**Recognition signal:** "first" plus "unique/non-repeating" together mean two passes are basically unavoidable — one pass to know each character's *total* frequency, a second to find the first one whose total frequency is exactly 1 — and that's fine; it's still O(n), not a sign something smarter is being missed.
+
+**Clarifying question worth asking:** is the input guaranteed to be lowercase English letters only? (LC 387's own constraint says yes, which is what licenses a fixed 26-slot array instead of a general-purpose `HashMap<Character, Integer>`.)
+
+**Brute force:** for each character, scan the entire rest of the string checking for another occurrence — correct, but O(n²), since it re-scans from scratch for every character.
+
+**Optimized approach — pseudocode:**
+
+```text
+freq = array of 26 zeros
+for each char c in s: freq[c - 'a'] += 1
+for i from 0 to length-1:
+    if freq[s[i] - 'a'] == 1: return i
+return -1
+```
+
+```java
+static int firstUniqChar(String s) {
+    int[] freq = new int[26];
+    for (char c : s.toCharArray()) freq[c - 'a']++;
+    for (int i = 0; i < s.length(); i++) {
+        if (freq[s.charAt(i) - 'a'] == 1) return i;
+    }
+    return -1;
+}
+```
+
+**Retrospective:** the second pass has to walk the string again *in original order*, rather than iterating the frequency array — the frequency array only knows *counts*, not *positions*, so finding the *first* index with count 1 genuinely requires re-visiting the string itself, not just the 26-slot summary. A common shortcut instinct (just scan `freq[]` for the first slot equal to 1) silently returns the wrong answer, since array order there is alphabetical, not the string's actual character order. **Common bugs:** exactly that shortcut above; assuming a general `HashMap` is required when the problem's own lowercase-only constraint makes a flat `int[26]` both simpler and faster. **Test cases:** the unique character is the very first one (`"leetcode"` → index 0), the unique character is in the middle (`"loveleetcode"` → index 2), no unique character exists at all (`"aabb"` → `-1`). **Complexity:** O(n) time, O(1) space (bounded by the 26-letter alphabet, not the string length).
+
 ## 8. Common Mistakes
 
 - **Reaching for a sliding window on a subarray-sum problem without checking whether negative numbers are allowed.** Section 4/5 covers exactly why this silently produces wrong answers rather than an obvious crash — the window-shrink logic simply stops being valid, with no exception to signal it.
@@ -180,7 +249,12 @@ Real, executed verification from `practice/java/week-22/hashing/` (OpenJDK 21.0.
   PASS  LC202 isHappy(2) -> false (cycles, never reaches 1)
   PASS  LC454 fourSumCount(4 arrays of 2) = 2
   PASS  LC454 fourSumCount(4 zero arrays) = 1
-Week 22 — Hashing (LC 217, 560, 349, 202, 454): 11/11 assertions passed
+  PASS  LC442 findDuplicates([4,3,2,7,8,2,3,1]) = [2,3]
+  PASS  LC442 restores original array after marking
+  PASS  LC387 firstUniqChar("leetcode") = 0 ('l')
+  PASS  LC387 firstUniqChar("loveleetcode") = 2 ('v')
+  PASS  LC387 firstUniqChar("aabb") = -1 (no unique char)
+Week 22 — Hashing (LC 217, 560, 349, 202, 454, 442, 387): 16/16 assertions passed
 ```
 
 Every solution here trades O(n) (or O(n²), for 4Sum II) extra memory for a reduction from a worse time complexity — the standard hashing trade-off, and exactly why [HashMap Internals](../02-java/collections/hashmap-internals.md) matters as a prerequisite: these techniques only deliver their promised O(1)-average lookups if the underlying `hashCode()` distribution is actually reasonable, per that chapter's own coverage of the worst-case degradation.
@@ -242,7 +316,7 @@ At Staff scope, the transfer from these interview patterns is directly to real s
 
 ## 16. Coding/Practice Exercises
 
-- Run the [existing practice code](../../practice/java/week-22/hashing/) yourself and confirm the same 11/11 assertions pass.
+- Run the [existing practice code](../../practice/java/week-22/hashing/) yourself and confirm the same 16/16 assertions pass.
 - This pattern has additional real, already-solved problems: LC 1 (Two Sum), LC 3 (Longest Substring Without Repeating Characters), LC 49 (Group Anagrams), and LC 242 (Valid Anagram) are covered in `study-packs/week-01/07-java-coding-practice.md`'s underlying practice code — study Group Anagrams specifically as the canonical "group by computed key" hash-map pattern this chapter's Section 6 references.
 - Attempt LC 128 (Longest Consecutive Sequence) from scratch — it's hashing-shaped (a `HashSet` of all values, checking each value's "is this the start of a sequence" condition in O(1)) but is deliberately not duplicated here, since it's already solved elsewhere in this repository's practice code.
 

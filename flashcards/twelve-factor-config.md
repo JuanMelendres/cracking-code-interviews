@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: system-design
 topic_id: T-1008
 canonical: ../syllabus/15-cloud/twelve-factor-config.md
-last_updated: 2026-09-01
+last_updated: 2026-09-27
 ---
 
 # Flashcards: The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
@@ -77,6 +77,23 @@ complete.
 **Common trap:**
 Assuming a passing health check is sufficient proof of correct
 configuration.
+
+**Related:**
+[syllabus/15-cloud/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)
+
+## Card: "Works in staging, fails in production" — where do you look?
+
+**Prompt:**
+A service behaves correctly in staging and fails immediately in production, with identical code in both. What's the ordered troubleshooting checklist?
+
+**Answer:**
+Config/environment variables, then secrets/credentials, then feature flags, then data/schema differences, then infrastructure (network/DNS/TLS), then scale-only resource limits — cheapest and most common causes first.
+
+**Why it matters:**
+A structured elimination process finds the real cause far faster than guessing at "race condition" or "load" first.
+
+**Common trap:**
+Jumping straight to a scale/concurrency explanation before ruling out the cheaper, more common config-and-data category.
 
 **Related:**
 [syllabus/15-cloud/twelve-factor-config.md](../syllabus/15-cloud/twelve-factor-config.md)

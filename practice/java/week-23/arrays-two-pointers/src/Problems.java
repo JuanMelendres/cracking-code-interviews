@@ -60,6 +60,29 @@ final class Problems {
         }
     }
 
+    // ---- LC 344: Reverse String (in place, no built-in reverse) ----
+    // The exact same two-pointer swap idea as reverse(int[], lo, hi) above,
+    // as its own standalone, most-commonly-asked form.
+    static void reverseString(char[] s) {
+        int lo = 0, hi = s.length - 1;
+        while (lo < hi) {
+            char tmp = s[lo]; s[lo] = s[hi]; s[hi] = tmp;
+            lo++; hi--;
+        }
+    }
+
+    // ---- LC 125: Valid Palindrome (alphanumeric only, case-insensitive) ----
+    static boolean isPalindrome(String s) {
+        int lo = 0, hi = s.length() - 1;
+        while (lo < hi) {
+            while (lo < hi && !Character.isLetterOrDigit(s.charAt(lo))) lo++;
+            while (lo < hi && !Character.isLetterOrDigit(s.charAt(hi))) hi--;
+            if (Character.toLowerCase(s.charAt(lo)) != Character.toLowerCase(s.charAt(hi))) return false;
+            lo++; hi--;
+        }
+        return true;
+    }
+
     // ---- LC 31: Next Permutation ----
     static void nextPermutation(int[] nums) {
         int n = nums.length;

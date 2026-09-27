@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: concurrency
 topic_id: T-409
 canonical: ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
-last_updated: 2026-08-06
+last_updated: 2026-09-27
 ---
 
 # Flashcards: Deadlock, Race Conditions, and Thread Diagnostics
@@ -62,3 +62,20 @@ Assuming this kind of bug is rare or unlikely to matter in practice.
 
 **Related:**
 [Internal Implementation](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#internal-implementation)
+
+## Card: wait() vs sleep() vs join()
+
+**Prompt:**
+Which of `wait()`, `sleep()`, and `join()` releases the monitor lock while paused?
+
+**Answer:**
+Only `wait()` — it must be called while holding the object's monitor and releases it while waiting. `sleep()` and `join()` hold any locks the calling thread already has for their entire duration.
+
+**Why it matters:**
+Calling `sleep()` inside a `synchronized` block blocks every other thread waiting on that lock for the full sleep duration.
+
+**Common trap:**
+Assuming `sleep()` releases locks the way `wait()` does.
+
+**Related:**
+[Core Concepts](../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#core-concepts)

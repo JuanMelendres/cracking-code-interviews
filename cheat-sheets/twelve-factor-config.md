@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: system-design
 topic_id: T-1008
 canonical: ../syllabus/15-cloud/twelve-factor-config.md
-last_updated: 2026-09-01
+last_updated: 2026-09-27
 ---
 
 # The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation
@@ -80,6 +80,10 @@ FIXED (real startup validation): Missing required config key 'database.url' -- r
 - A service passes its readiness probe, shows healthy, then fails on its very first real request with a generic `NullPointerException` — a required environment variable present in staging but omitted from the production manifest during a refactor.
 - The same build behaving differently in two environments with no code difference — expected and healthy if intentional (Factor III working); a real bug if from an environment-name branch in code.
 - A config value "isn't taking effect" despite being set somewhere — check the real precedence order; a higher-precedence source may be silently overriding it.
+
+## "Works in staging, fails in production" checklist
+
+Identical code, different environments — the bug lives in something that legitimately varies. Check in this order: **config/env vars** -> **secrets/credentials** -> **feature flags** -> **data/schema differences** -> **infrastructure** (network/DNS/TLS/firewall) -> **scale-only limits** (connection pool, thread pool, memory). Cheapest and most common causes first — don't jump to "must be load" before ruling out config.
 
 ## Related
 

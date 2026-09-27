@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2115
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-27
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - linked-lists-and-in-place-manipulation.md
@@ -27,7 +27,7 @@ source_history:
 
 # Design-Style Coding Problems (LRU, LFU, Iterators)
 
-> **Provenance.** The five worked problems and retrospectives in Sections 7 and 15 are elevated from `study-packs/week-22/04-design-coding-practice.md` — real, compiled, executed code (`practice/java/week-22/design/`), re-verified on OpenJDK 21.0.12 while writing this chapter (23/23 assertions passing).
+> **Provenance.** The original five worked problems and retrospectives in Sections 7 and 15 are elevated from `study-packs/week-22/04-design-coding-practice.md` — real, compiled, executed code (`practice/java/week-22/design/`), re-verified on OpenJDK 21.0.12 while writing this chapter. LRU Cache (Section 7, Problem 1) was added 2026-09-27, promoted from a prose-only Interview Question into its own full worked Problem with real code, closing a real gap found via a generic interview-checklist audit — this domain's most foundational design pattern had never had its own compiling implementation in the syllabus, only a pointer to non-syllabus practice code. All six problems are now verified together (28/28 assertions passing).
 
 This is Master Topic Register **T-1416** (IWI 6.2, ⭐, very-high frequency). A design-style problem asks for a small class with multiple operations — not a single function — and its difficulty is almost always in composing 2–3 already-familiar data structures so every required operation hits its target complexity simultaneously, not in any single novel algorithm.
 
@@ -60,15 +60,17 @@ This is exactly an LRU cache's structure: `get(B)` uses the hash map for O(1) lo
 
 ## 4. Core Concepts (L2)
 
-**LFU Cache's two-eviction-dimension composition** (Section 7, Problem 1) extends the LRU pattern with a second competing tiebreaker: evict the least *frequently* used entry, and among ties, the least *recently* used one. A `key -> Node` map gives O(1) lookup; a `frequency -> LinkedHashSet<Node>` map gives O(1) access to each frequency bucket, with the `LinkedHashSet`'s own insertion order providing the LRU-within-a-frequency tiebreak for free; a tracked `minFreq` pointer avoids ever having to scan for the globally least-frequent bucket.
+**LRU Cache's hash-map-plus-doubly-linked-list composition** (Section 7, Problem 1) is the foundational pattern this entire chapter builds from: a `key -> Node` `HashMap` gives O(1) lookup, and a doubly linked list (with dummy head/tail sentinels, avoiding null-check special cases at the boundaries) gives O(1) move-to-front and O(1) removal-from-the-tail — the two operations "mark as most recently used" and "evict the least recently used" both need. Neither structure alone achieves O(1) for both `get` and `put`; the composition is what does.
 
-**Timestamp-ordered storage plus binary search** (Time Based Key-Value Store, Section 7 Problem 2) reuses [Binary Search's](binary-search-and-search-on-answer.md#4-core-concepts-l2) boundary-finding template directly: since each key's values arrive in strictly increasing timestamp order (a guarantee this specific problem provides), the per-key list is already sorted with no extra work, and a "find the floor" binary search (largest timestamp ≤ query) answers point-in-time lookups in O(log k).
+**LFU Cache's two-eviction-dimension composition** (Section 7, Problem 2) extends the LRU pattern with a second competing tiebreaker: evict the least *frequently* used entry, and among ties, the least *recently* used one. A `key -> Node` map gives O(1) lookup; a `frequency -> LinkedHashSet<Node>` map gives O(1) access to each frequency bucket, with the `LinkedHashSet`'s own insertion order providing the LRU-within-a-frequency tiebreak for free; a tracked `minFreq` pointer avoids ever having to scan for the globally least-frequent bucket.
 
-**Bounded per-source heap merge** (Design Twitter, Section 7 Problem 3) reuses [Heaps'](heaps-top-k-and-k-way-merge.md#4-core-concepts-l2) k-way-merge idea, but bounds each source's contribution upfront: feeding only each followee's *last 10* tweets into the heap (never their entire history) is safe because the final answer can only ever contain 10 tweets total, so no followee could ever contribute an 11th-most-recent tweet to a top-10 result.
+**Timestamp-ordered storage plus binary search** (Time Based Key-Value Store, Section 7 Problem 3) reuses [Binary Search's](binary-search-and-search-on-answer.md#4-core-concepts-l2) boundary-finding template directly: since each key's values arrive in strictly increasing timestamp order (a guarantee this specific problem provides), the per-key list is already sorted with no extra work, and a "find the floor" binary search (largest timestamp ≤ query) answers point-in-time lookups in O(log k).
 
-**Structure-collapsing recognition** (Design Browser History, Section 7 Problem 4): the "two stacks" design many candidates reach for instinctively can be replaced by a single growable list plus a movable current-position pointer, since "forward history" is just the suffix of the list past the current pointer — recognizing when a problem's apparent two-structure shape collapses into one simpler structure is a real, transferable design instinct.
+**Bounded per-source heap merge** (Design Twitter, Section 7 Problem 4) reuses [Heaps'](heaps-top-k-and-k-way-merge.md#4-core-concepts-l2) k-way-merge idea, but bounds each source's contribution upfront: feeding only each followee's *last 10* tweets into the heap (never their entire history) is safe because the final answer can only ever contain 10 tweets total, so no followee could ever contribute an 11th-most-recent tweet to a top-10 result.
 
-**Judgment about what a "design" problem's name implies** (Logger Rate Limiter, Section 7 Problem 5): despite sounding like it might require thread-safety, this specific problem is LeetCode-tagged plain "Design," not "Concurrency" — its actual difficulty is entirely in the data model (one last-seen timestamp per distinct message), not synchronization. Correctly identifying that a "rate limiter"-sounding problem doesn't automatically imply concurrency concerns (contrasted directly with [Concurrency Coding Problems'](concurrency-coding-problems.md) genuinely thread-safe bounded queue) is itself a signal of judgment, not just implementation speed.
+**Structure-collapsing recognition** (Design Browser History, Section 7 Problem 5): the "two stacks" design many candidates reach for instinctively can be replaced by a single growable list plus a movable current-position pointer, since "forward history" is just the suffix of the list past the current pointer — recognizing when a problem's apparent two-structure shape collapses into one simpler structure is a real, transferable design instinct.
+
+**Judgment about what a "design" problem's name implies** (Logger Rate Limiter, Section 7 Problem 6): despite sounding like it might require thread-safety, this specific problem is LeetCode-tagged plain "Design," not "Concurrency" — its actual difficulty is entirely in the data model (one last-seen timestamp per distinct message), not synchronization. Correctly identifying that a "rate limiter"-sounding problem doesn't automatically imply concurrency concerns (contrasted directly with [Concurrency Coding Problems'](concurrency-coding-problems.md) genuinely thread-safe bounded queue) is itself a signal of judgment, not just implementation speed.
 
 ## 5. How It Works Internally (L3)
 
@@ -86,7 +88,97 @@ This is exactly an LRU cache's structure: `get(B)` uses the hash map for O(1) lo
 
 ## 7. Examples
 
-**Problem 1 — LC 460, LFU Cache.**
+**Problem 1 — LC 146, LRU Cache.**
+
+**Recognition signal:** "O(1) `get` and `put`, evict the least recently used" is the exact phrase that rules out either structure alone — an array/`ArrayList` gives O(1) access by index but O(n) removal from the middle; a plain `HashMap` gives O(1) lookup but no notion of "order of use" at all. Needing *both* O(1) lookup *and* O(1) reordering is the signal a hash-map-plus-linked-list composition is required.
+
+**Clarifying question worth asking:** what should `put` do when the key already exists — does it count as a "use" that refreshes recency (yes, per LC 146's own spec), or does it just update the value in place without moving it?
+
+**Brute force:** a `LinkedHashMap` with `accessOrder=true` gets this in a few lines by relying on the JDK's own built-in implementation — correct, and worth mentioning, but most interviewers will immediately ask for the underlying mechanism instead, which is the actual point of the exercise.
+
+**Optimized approach — pseudocode:**
+
+```text
+structures: HashMap<key, Node>, doubly linked list with dummy head/tail
+             (head side = most recently used, tail side = least recently used)
+
+get(key):
+    if key not in map: return -1
+    move that node to the front (right after head)
+    return its value
+
+put(key, value):
+    if key already in map:
+        update its value, move it to the front
+        return
+    if map is at capacity:
+        remove the node just before tail (the actual LRU entry)
+        remove it from the map too
+    create a new node, add it to the front, add it to the map
+```
+
+```java
+static class LRUCache {
+    private static class Node {
+        int key, value;
+        Node prev, next;
+        Node(int key, int value) { this.key = key; this.value = value; }
+    }
+
+    private final int capacity;
+    private final Map<Integer, Node> map = new HashMap<>();
+    private final Node head = new Node(-1, -1); // dummy, most-recently-used side
+    private final Node tail = new Node(-1, -1); // dummy, least-recently-used side
+
+    LRUCache(int capacity) {
+        this.capacity = capacity;
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    int get(int key) {
+        Node node = map.get(key);
+        if (node == null) return -1;
+        moveToFront(node);
+        return node.value;
+    }
+
+    void put(int key, int value) {
+        Node existing = map.get(key);
+        if (existing != null) {
+            existing.value = value;
+            moveToFront(existing);
+            return;
+        }
+        if (map.size() == capacity) {
+            Node lru = tail.prev;
+            remove(lru);
+            map.remove(lru.key);
+        }
+        Node node = new Node(key, value);
+        map.put(key, node);
+        addToFront(node);
+    }
+
+    private void moveToFront(Node node) { remove(node); addToFront(node); }
+
+    private void remove(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void addToFront(Node node) {
+        node.next = head.next;
+        node.prev = head;
+        head.next.prev = node;
+        head.next = node;
+    }
+}
+```
+
+**Retrospective:** the two dummy sentinel nodes (`head`/`tail`) are what let every insert/remove operation be branch-free — without them, removing the actual first or last real node needs a null check most candidates get wrong on the first attempt (forgetting to update `head.next` when the list was empty, or NPE-ing on `tail.prev.prev` when only one real node exists). Both `get` and `put` funnel through the same `moveToFront`/`remove`/`addToFront` primitives — a real signal of clean design is *not* writing separate pointer-juggling logic for each public method. **Common bugs:** updating the `HashMap` but forgetting to unlink the evicted node from the linked list (or vice versa) — the two structures must always agree, or a "phantom" entry becomes reachable through one but not the other; evicting from the wrong end (the front, which is most-recently-used, instead of just before `tail`). **Test cases:** `get` on a missing key returns `-1`; `put` on an already-present key updates the value *and* refreshes recency; a capacity-1 cache, where every `put` evicts the immediately preceding entry. **Complexity:** O(1) time for both `get` and `put`, O(capacity) space.
+
+**Problem 2 — LC 460, LFU Cache.**
 
 ```java
 private void touch(Node node) {
@@ -103,7 +195,7 @@ private void touch(Node node) {
 
 **Retrospective:** see Section 5's `minFreq`-invariant argument. **Complexity:** O(1) for both `get` and `put`.
 
-**Problem 2 — LC 981, Time Based Key-Value Store.**
+**Problem 3 — LC 981, Time Based Key-Value Store.**
 
 ```java
 String get(String key, int timestamp) {
@@ -121,7 +213,7 @@ String get(String key, int timestamp) {
 
 **Retrospective:** the "floor" binary-search template, applied to a per-key timestamp list already sorted by the problem's own constraints. **Complexity:** O(log k) per `get`, O(1) amortized per `set`.
 
-**Problem 3 — LC 355, Design Twitter.**
+**Problem 4 — LC 355, Design Twitter.**
 
 ```java
 List<Integer> getNewsFeed(int userId) {
@@ -145,7 +237,7 @@ List<Integer> getNewsFeed(int userId) {
 
 **Retrospective:** see Section 5's bounded-input argument. **Complexity:** O(f · log(10f)), f = followee count.
 
-**Problem 4 — LC 1472, Design Browser History.**
+**Problem 5 — LC 1472, Design Browser History.**
 
 ```java
 void visit(String url) {
@@ -162,7 +254,7 @@ String back(int steps) {
 
 **Retrospective:** see Section 5's structure-collapsing argument. **Complexity:** O(1) for `back`/`forward` (index arithmetic), amortized O(1) for `visit`.
 
-**Problem 5 — LC 359, Logger Rate Limiter.**
+**Problem 6 — LC 359, Logger Rate Limiter.**
 
 ```java
 boolean shouldPrintMessage(int timestamp, String message) {
@@ -193,6 +285,11 @@ boolean shouldPrintMessage(int timestamp, String message) {
 Real, executed verification from `practice/java/week-22/design/` (OpenJDK 21.0.12), re-run while writing this chapter:
 
 ```
+  PASS  LC146 get(1) after put(1,1),put(2,2) = 1
+  PASS  LC146 get(2) after eviction = -1
+  PASS  LC146 get(1) after second eviction = -1
+  PASS  LC146 get(3) survives = 3
+  PASS  LC146 get(4) survives = 4
   PASS  LC460 get(1) after put(1,1),put(2,2) = 1
   PASS  LC460 get(2) after eviction = -1
   PASS  LC460 get(3) = 3
@@ -216,7 +313,7 @@ Real, executed verification from `practice/java/week-22/design/` (OpenJDK 21.0.1
   PASS  LC359 shouldPrintMessage(2,foo) -> false (within 10s)
   PASS  LC359 shouldPrintMessage(10,foo) -> false (still within 10s window, 10-1=9)
   PASS  LC359 shouldPrintMessage(11,foo) -> true (11-1=10, window elapsed)
-Week 22 — Design (LC 460, 981, 355, 1472, 359): 23/23 assertions passed
+Week 22 — Design (LC 146, 460, 981, 355, 1472, 359): 28/28 assertions passed
 ```
 
 The performance lesson specific to design problems isn't any single number — it's that a correct design achieves its *stated* complexity for *every* required operation simultaneously, verified here across all five problems' full operation sets, not just their most prominent method.
@@ -248,7 +345,7 @@ No existing `production-cookbook/` entry has a design-problem-specific algorithm
 
 ### Question 1 — Design a data structure that supports get and put in O(1), evicting the least recently used entry when a capacity limit is reached.
 
-**Why interviewers ask it.** LRU Cache is the foundational design problem this entire pattern builds from — it's the canonical hash-map-plus-linked-list composition, and how a candidate arrives at it (and defends each piece's necessity) predicts how they'll handle every harder variant (LFU, here Section 7 Problem 1).
+**Why interviewers ask it.** LRU Cache (Section 7, Problem 1) is the foundational design problem this entire pattern builds from — it's the canonical hash-map-plus-linked-list composition, and how a candidate arrives at it (and defends each piece's necessity) predicts how they'll handle every harder variant (LFU, Section 7, Problem 2).
 
 **Expected answer.** A hash map from key to a doubly-linked-list node gives O(1) lookup. The doubly-linked list maintains recency order (most recently used at one end, least at the other); accessing an existing entry requires O(1) removal and re-insertion at the recent end, which a doubly-linked list supports directly (a singly-linked list would need O(n) to find the node's predecessor for removal). Eviction removes the node at the least-recent end, also O(1).
 
@@ -256,7 +353,7 @@ No existing `production-cookbook/` entry has a design-problem-specific algorithm
 
 **Strong Senior answer.** Explicitly states why a doubly-linked list is required (O(1) removal of an arbitrary interior node needs a reference to its predecessor, which only a doubly-linked list's own node carries) rather than a singly-linked one.
 
-**Staff-level extension.** Extends directly to LFU Cache (Section 7, Problem 1) unprompted, correctly identifying the additional `frequency -> LinkedHashSet<Node>` layer and the `minFreq` pointer as the natural generalization once a second eviction dimension is introduced.
+**Staff-level extension.** Extends directly to LFU Cache (Section 7, Problem 2) unprompted, correctly identifying the additional `frequency -> LinkedHashSet<Node>` layer and the `minFreq` pointer as the natural generalization once a second eviction dimension is introduced.
 
 **Common mistakes.** Using a singly-linked list and then needing an O(n) traversal to find a node's predecessor for removal — technically workable but violates the required O(1) bound.
 
@@ -280,8 +377,8 @@ No existing `production-cookbook/` entry has a design-problem-specific algorithm
 
 ## 16. Coding/Practice Exercises
 
-- Run the [existing practice code](../../practice/java/week-22/design/) yourself and confirm the same 23/23 assertions pass.
-- This pattern has additional real, already-solved problems: LC 146 (LRU Cache), LC 380 (Insert Delete GetRandom O(1)), LC 706 (Design HashMap), and LC 622 (Design Circular Queue) across earlier weeks' practice code — study LRU Cache directly alongside this chapter's LFU Cache (Section 7, Problem 1) as the simpler, single-eviction-dimension precursor.
+- Run the [existing practice code](../../practice/java/week-22/design/) yourself and confirm the same 28/28 assertions pass.
+- This pattern has additional real, already-solved problems: LC 380 (Insert Delete GetRandom O(1)), LC 706 (Design HashMap), and LC 622 (Design Circular Queue) across earlier weeks' practice code — study these alongside this chapter's LRU Cache (Section 7, Problem 1) and LFU Cache (Section 7, Problem 2), the simpler single-eviction-dimension precursor and its two-dimension extension, respectively.
 - Implement LC 1206 (Design Skiplist) or LC 155 (Min Stack, already solved and correctly tagged under Stacks rather than Design) as an exercise in recognizing which pattern category a new "design" problem actually belongs to, given the overlap-resolution discipline this chapter's own source material documents explicitly (Section 1).
 
 ## 17. Debugging Exercises

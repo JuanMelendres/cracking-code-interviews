@@ -2,6 +2,18 @@ import java.util.*;
 
 final class Main {
     public static void main(String[] args) {
+        // LC 146
+        Problems.LRUCache lru = new Problems.LRUCache(2);
+        lru.put(1, 1);
+        lru.put(2, 2);
+        Check.eq(1, lru.get(1), "LC146 get(1) after put(1,1),put(2,2) = 1");
+        lru.put(3, 3); // capacity 2, key 1 was just touched by get -> key 2 is LRU, gets evicted
+        Check.eq(-1, lru.get(2), "LC146 get(2) after eviction = -1");
+        lru.put(4, 4); // key 1 is now LRU (key 3 touched more recently by its own put) -> key 1 evicted
+        Check.eq(-1, lru.get(1), "LC146 get(1) after second eviction = -1");
+        Check.eq(3, lru.get(3), "LC146 get(3) survives = 3");
+        Check.eq(4, lru.get(4), "LC146 get(4) survives = 4");
+
         // LC 460
         Problems.LFUCache lfu = new Problems.LFUCache(2);
         lfu.put(1, 1);
@@ -55,6 +67,6 @@ final class Main {
         Check.isTrue(!logger.shouldPrintMessage(10, "foo"), "LC359 shouldPrintMessage(10,foo) -> false (still within 10s window, 10-1=9)");
         Check.isTrue(logger.shouldPrintMessage(11, "foo"), "LC359 shouldPrintMessage(11,foo) -> true (11-1=10, window elapsed)");
 
-        Check.summary("Week 22 — Design (LC 460, 981, 355, 1472, 359)");
+        Check.summary("Week 22 — Design (LC 146, 460, 981, 355, 1472, 359)");
     }
 }

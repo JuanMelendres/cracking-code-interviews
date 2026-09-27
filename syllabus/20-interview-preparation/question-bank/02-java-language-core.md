@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-26
+last_updated: 2026-09-27
 related:
   - ../../02-java/language-core/INDEX.md
   - 02-java-jvm-internals.md
@@ -17,16 +17,19 @@ Part of the `02-java` compendium — the last of its 4 subdomain files. See
 [`02-java-collections.md`](02-java-collections.md) for the tier-explanation format
 and sourcing discipline.
 
-**Honest count for this subdomain:** 24 chapters yielded 44 deep questions + 10
+**Honest count for this subdomain:** 24 chapters yielded 46 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 54 quick-fire
-questions = **108 real questions**. (Updated 2026-09-26: added Java File I/O and
+`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 57 quick-fire
+questions = **113 real questions**. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
-checklist audit.)
+checklist audit. Updated again 2026-09-27: `comparator-composition-and-pitfalls.md`
+had a complete Interview Questions section written 2026-09-17 that this index never
+picked up — a stale-index gap, not a content gap. Added its 2 questions + 3
+quick-fire cards.)
 
-**02-java domain total across all 4 subdomains:** 52 (collections) + 70 (concurrency)
-+ 31 (jvm-internals) + 108 (language-core) = **261 real questions** — the largest of
+**02-java domain total across all 4 subdomains:** 52 (collections) + 72 (concurrency)
++ 31 (jvm-internals) + 113 (language-core) = **268 real questions** — the largest of
 the 22 domains this initiative covers, consistent with `02-java` being the biggest
 domain in the syllabus (64 chapters).
 
@@ -236,6 +239,28 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 - **Junior/Mid:** Assumes this must be a JVM bug — the common mistake this question targets.
 - **Senior:** A class's real identity is (fully-qualified name, defining ClassLoader) — if loaded by two different classloaders, the JVM treats them as genuinely distinct types.
 - **Staff:** Generalizes to the broader principle that isolation mechanisms can produce structurally-identical-but-incompatible objects across their boundaries.
+
+---
+
+## Comparator: Composition and Pitfalls
+
+### Q1 — Why is `(a, b) -> a.getX() - b.getX()` considered a bug, not just old style?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../02-java/language-core/comparator-composition-and-pitfalls.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes the subtraction pattern as merely "less readable" or "old-fashioned" — the common mistake this question targets.
+- **Senior:** `int` subtraction can silently overflow (`Integer.MIN_VALUE - 1` wraps to `Integer.MAX_VALUE`), producing a genuinely wrong sort order at that extreme; `Comparator.comparingInt()` is backed by `Integer.compare()`, which never overflows.
+- **Staff:** Generalizes to the broader pattern of arithmetic shortcuts having unexercised boundary conditions, and why standard-library composition is generally safer than hand-written comparison arithmetic.
+
+### Q2 — How would you sort a list where some elements have a `null` value for the sort key?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../02-java/language-core/comparator-composition-and-pitfalls.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Writes a manual `if (a == null) return -1;` inside the comparator lambda — the common mistake this question targets.
+- **Senior:** Wraps the key comparator in `Comparator.nullsFirst(...)`/`nullsLast(...)` — a naive `Comparator.comparing(keyExtractor)` throws a real `NullPointerException` on the first `null` key.
+- **Staff:** Notes this is the same "let the standard library handle a known-hazardous case" pattern as `comparingInt` over subtraction.
 
 ---
 
@@ -693,6 +718,9 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 52 | Why is calling `String.matches(regex)` repeatedly slower than reusing a precompiled `Pattern`? | [Java Regular Expressions](../../02-java/language-core/java-regular-expressions.md#flashcards) |
 | 53 | Can a possessive quantifier (`.++`) ever fail to match input the equivalent greedy quantifier (`.+`) matches? | [Java Regular Expressions](../../02-java/language-core/java-regular-expressions.md#flashcards) |
 | 54 | Does `^(a+)+$` cause catastrophic backtracking in `java.util.regex`? | [Java Regular Expressions](../../02-java/language-core/java-regular-expressions.md#flashcards) |
+| 55 | Does `Comparator.comparing(a).thenComparing(b)` sort by `b` independently of `a`? | [Comparator: Composition and Pitfalls](../../02-java/language-core/comparator-composition-and-pitfalls.md#flashcards) |
+| 56 | Why can `(a, b) -> a.getX() - b.getX()` produce a wrong sort order? | [Comparator: Composition and Pitfalls](../../02-java/language-core/comparator-composition-and-pitfalls.md#flashcards) |
+| 57 | How do you sort a list where some elements have a `null` sort key, without a manual null-check? | [Comparator: Composition and Pitfalls](../../02-java/language-core/comparator-composition-and-pitfalls.md#flashcards) |
 
 ---
 

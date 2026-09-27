@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2101
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-27
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -23,7 +23,7 @@ source_history:
 
 # Arrays, Two Pointers, and Sliding Window
 
-> **Provenance.** The five worked problems and their retrospectives in Sections 7 and 15 are elevated, not rewritten, from `study-packs/week-23/02-arrays-two-pointers-coding-practice.md` — real, compiled, executed code (`practice/java/week-23/arrays-two-pointers/`), verified again on OpenJDK 21.0.12 while writing this chapter (11/11 assertions passing). This is the pattern the [syllabus transformation plan](../../00-project/syllabus-transformation-plan.md) itself named: canonical prose is new, but the underlying practice code is real and reusable as-is.
+> **Provenance.** The first five worked problems and their retrospectives in Sections 7 and 15 are elevated, not rewritten, from `study-packs/week-23/02-arrays-two-pointers-coding-practice.md` — real, compiled, executed code (`practice/java/week-23/arrays-two-pointers/`), verified again on OpenJDK 21.0.12 while writing this chapter. Two more (Reverse String, Valid Palindrome) were added 2026-09-27 closing a real gap found via a generic interview-checklist audit, with the full recognition-signal/clarifying-question/brute-force/pseudocode treatment. All seven are now verified together (16/16 assertions passing). This is the pattern the [syllabus transformation plan](../../00-project/syllabus-transformation-plan.md) itself named: canonical prose is new, but the underlying practice code is real and reusable as-is.
 
 This is the first canonical chapter in `03-data-structures-algorithms`, corresponding to Master Topic Register **T-1402** (Arrays, two pointers, sliding window) — the highest-weighted pattern in the entire coding-interview register (IWI 6.3, near-certain interview frequency). [Algorithmic Complexity and Big-O](../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md) is the one hard prerequisite: every technique below is a specific, learnable way to turn an O(n²) brute-force scan into O(n).
 
@@ -158,6 +158,71 @@ static void nextPermutation(int[] nums) {
 
 **Retrospective:** the suffix after the rightmost ascent is, by definition, non-increasing, meaning it's already at its lexicographically *largest* arrangement — reversing it produces the *smallest*, which is exactly what "next permutation" needs. Swapping with the smallest suffix value still greater than `nums[i]` is what makes the result the *immediate* next permutation rather than some larger one. **Complexity:** O(n) time, O(1) space.
 
+**Problem 6 — LC 344, Reverse String (in place, no built-in `reverse()`).**
+
+**Recognition signal:** "reverse this in place" with a stated O(1)-extra-space constraint — the moment an interviewer forbids the obvious `new StringBuilder(s).reverse()` one-liner, they're testing whether the underlying two-pointer mechanism is actually understood, not just the API that hides it.
+
+**Clarifying question worth asking:** is the input a `char[]` (mutable, as LeetCode's own signature requires) or an immutable `String` — the answer changes whether "in place" is even possible without allocating a new array first.
+
+**Brute force:** allocate a new array, copy characters back-to-front by index (`result[i] = s[n-1-i]`). Correct, but O(n) *extra* space — exactly what "in place" rules out.
+
+**Optimized approach — pseudocode:**
+
+```text
+lo = 0, hi = length - 1
+while lo < hi:
+    swap s[lo] and s[hi]
+    lo = lo + 1
+    hi = hi - 1
+```
+
+```java
+static void reverseString(char[] s) {
+    int lo = 0, hi = s.length - 1;
+    while (lo < hi) {
+        char tmp = s[lo]; s[lo] = s[hi]; s[hi] = tmp;
+        lo++; hi--;
+    }
+}
+```
+
+**Retrospective:** this is the exact same swap-the-ends-and-converge idea already used twice in this chapter — inside `rotate`'s triple-reversal (Problem 4) and `nextPermutation`'s suffix reversal (Problem 5) — surfaced here as its own standalone, most-commonly-asked form. Recognizing it as "the same primitive I already have" rather than a new problem is the actual interview signal. **Common bugs:** using `lo <= hi` instead of `lo < hi` (harmless for even length, but swaps the middle character with itself unnecessarily for odd length — not wrong, just a sign the boundary condition wasn't reasoned through); forgetting the swap needs a temporary variable (`s[lo] = s[hi]; s[hi] = s[lo];` silently loses the original `s[lo]` value). **Test cases:** even length (`"hello"` → `"olleh"`), a single character (no-op, loop body never executes). **Complexity:** O(n) time, O(1) space.
+
+**Problem 7 — LC 125, Valid Palindrome (alphanumeric only, case-insensitive).**
+
+**Recognition signal:** "is this a palindrome" plus a filtering rule (ignore punctuation/spaces, ignore case) — the filtering rule is the actual difficulty; the palindrome check itself is the same converging two-pointer shape as Problem 6, run as a comparison instead of a swap.
+
+**Clarifying question worth asking:** what exactly counts as an "alphanumeric" character for this problem's definition of ignorable — confirm digits count (they do, per LC 125's own spec: `"0P"` is not a palindrome, but a digit paired with a matching digit is fine).
+
+**Brute force:** build a new filtered, lowercased string first (a single pass), then compare it against its own reverse (another full pass plus an allocation) — correct, but does two full passes and an extra O(n) allocation where one pass suffices.
+
+**Optimized approach — pseudocode:**
+
+```text
+lo = 0, hi = length - 1
+while lo < hi:
+    advance lo while s[lo] is not alphanumeric
+    retreat hi while s[hi] is not alphanumeric
+    if lowercase(s[lo]) != lowercase(s[hi]): return false
+    lo = lo + 1, hi = hi - 1
+return true
+```
+
+```java
+static boolean isPalindrome(String s) {
+    int lo = 0, hi = s.length() - 1;
+    while (lo < hi) {
+        while (lo < hi && !Character.isLetterOrDigit(s.charAt(lo))) lo++;
+        while (lo < hi && !Character.isLetterOrDigit(s.charAt(hi))) hi--;
+        if (Character.toLowerCase(s.charAt(lo)) != Character.toLowerCase(s.charAt(hi))) return false;
+        lo++; hi--;
+    }
+    return true;
+}
+```
+
+**Retrospective:** filtering and comparing in the *same* pass (rather than building a filtered string first) is what makes this O(1) extra space instead of O(n) — the two inner `while` loops don't add a separate pass, they just let `lo`/`hi` skip non-alphanumeric characters as part of the same single outward-to-inward sweep. **Common bugs:** filtering with the wrong `while` guard order (checking `Character.isLetterOrDigit` before checking `lo < hi` inside the inner loop lets `lo` walk past `hi` on an input that's entirely punctuation, e.g. `"..,"`, before the bounds check catches it — the `lo < hi &&` must come first, short-circuiting before the character check runs off the end). **Test cases:** a real mixed-punctuation palindrome (`"A man, a plan, a canal: Panama"`), a same-length near-miss (`"race a car"`), an empty string after filtering (`""` or all-punctuation input — vacuously `true`, since the loop body never finds two characters to compare). **Complexity:** O(n) time, O(1) space.
+
 ## 8. Common Mistakes
 
 - **Reaching for a nested loop out of habit before checking whether a monotonic property makes two pointers or a sliding window applicable.** The mechanical tell: if the brute force is "for every `i`, scan some range depending on `i`," and that range has a monotonic relationship to `i`, a linear pass is very likely possible.
@@ -186,7 +251,12 @@ Real, executed verification from `practice/java/week-23/arrays-two-pointers/` (O
   PASS  LC31 nextPermutation([1,2,3]) = [1,3,2]
   PASS  LC31 nextPermutation([3,2,1]) wraps to [1,2,3]
   PASS  LC31 nextPermutation([1,1,5]) = [1,5,1]
-Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31): 11/11 assertions passed
+  PASS  LC344 reverseString("hello") = "olleh"
+  PASS  LC344 reverseString single char unchanged
+  PASS  LC125 isPalindrome("A man, a plan, a canal: Panama") -> true
+  PASS  LC125 isPalindrome("race a car") -> false
+  PASS  LC125 isPalindrome(empty after filtering) -> true
+Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31, 344, 125): 16/16 assertions passed
 ```
 
 All five solutions are O(n) time, O(1) extra space (Product of Array Except Self excludes the required output array from that count, as is standard). The practical performance implication worth internalizing over any specific number: every one of these replaces what would naturally be written as an O(n²) brute force, and the gap between O(n) and O(n²) at realistic interview-scale inputs (thousands to low millions of elements) is exactly the gap [Algorithmic Complexity's own measurements](../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md#10-performance-implications) quantify directly — milliseconds versus multiple seconds at `n = 10,000,000`.
@@ -250,7 +320,7 @@ No existing `production-cookbook/` entry has an array/two-pointer algorithmic ro
 
 ## 16. Coding/Practice Exercises
 
-- Run the [existing practice code](../../practice/java/week-23/arrays-two-pointers/) yourself (`javac -d out src/*.java && java -cp out Main`) and confirm the same 11/11 assertions pass on your machine.
+- Run the [existing practice code](../../practice/java/week-23/arrays-two-pointers/) yourself (`javac -d out src/*.java && java -cp out Main`) and confirm the same 16/16 assertions pass on your machine.
 - This pattern has additional, real, already-solved problems beyond this chapter's five: `twoSumSorted` (LC 167) in [`practice/java/week-01/src/Problems.java`](../../practice/java/week-01/src/Problems.java), and `threeSum` (LC 15), `trap` (LC 42, Trapping Rain Water), and `minWindow` (LC 76, the canonical variable-size sliding window) in [`practice/java/week-11/mixed-review/src/MixedReviewProblems.java`](../../practice/java/week-11/mixed-review/src/MixedReviewProblems.java) — study `minWindow` specifically as the variable-size counterpart to this chapter's fixed-size Sliding Window Maximum.
 - Attempt LC 3 (Longest Substring Without Repeating Characters) from scratch, applying the variable-size sliding-window shrink-condition reasoning from Section 8, before checking any existing solution.
 

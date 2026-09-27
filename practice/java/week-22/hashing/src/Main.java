@@ -29,6 +29,18 @@ final class Main {
         Check.eq(1, Problems.fourSumCount(new int[]{0}, new int[]{0}, new int[]{0}, new int[]{0}),
             "LC454 fourSumCount(4 zero arrays) = 1");
 
-        Check.summary("Week 22 — Hashing (LC 217, 560, 349, 202, 454)");
+        // LC 442
+        int[] dupInput = {4,3,2,7,8,2,3,1};
+        List<Integer> dups = Problems.findDuplicates(dupInput);
+        Collections.sort(dups);
+        Check.isTrue(dups.equals(List.of(2, 3)), "LC442 findDuplicates([4,3,2,7,8,2,3,1]) = [2,3]");
+        Check.isTrue(Arrays.equals(new int[]{4,3,2,7,8,2,3,1}, dupInput), "LC442 restores original array after marking");
+
+        // LC 387
+        Check.eq(0, Problems.firstUniqChar("leetcode"), "LC387 firstUniqChar(\"leetcode\") = 0 ('l')");
+        Check.eq(2, Problems.firstUniqChar("loveleetcode"), "LC387 firstUniqChar(\"loveleetcode\") = 2 ('v')");
+        Check.eq(-1, Problems.firstUniqChar("aabb"), "LC387 firstUniqChar(\"aabb\") = -1 (no unique char)");
+
+        Check.summary("Week 22 — Hashing (LC 217, 560, 349, 202, 454, 442, 387)");
     }
 }

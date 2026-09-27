@@ -57,6 +57,33 @@ final class Problems {
         return sum;
     }
 
+    // ---- LC 442: Find All Duplicates in an Array (O(1) extra space, values in [1,n]) ----
+    // "Index as a hash key" trick: for value v, negate nums[v-1] to mark "v has been seen."
+    // If nums[v-1] is already negative when we get there, v is a duplicate.
+    static List<Integer> findDuplicates(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        for (int n : nums) {
+            int idx = Math.abs(n) - 1;
+            if (nums[idx] < 0) {
+                result.add(idx + 1);
+            } else {
+                nums[idx] = -nums[idx];
+            }
+        }
+        for (int i = 0; i < nums.length; i++) nums[i] = Math.abs(nums[i]); // restore input
+        return result;
+    }
+
+    // ---- LC 387: First Unique Character in a String ----
+    static int firstUniqChar(String s) {
+        int[] freq = new int[26];
+        for (char c : s.toCharArray()) freq[c - 'a']++;
+        for (int i = 0; i < s.length(); i++) {
+            if (freq[s.charAt(i) - 'a'] == 1) return i;
+        }
+        return -1;
+    }
+
     // ---- LC 454: 4Sum II ----
     static int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
         Map<Integer, Integer> sumCounts = new HashMap<>();

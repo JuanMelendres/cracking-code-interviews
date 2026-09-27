@@ -38,6 +38,20 @@ final class Main {
         Problems.nextPermutation(perm3);
         Check.isTrue(Arrays.equals(new int[]{1,5,1}, perm3), "LC31 nextPermutation([1,1,5]) = [1,5,1]");
 
-        Check.summary("Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31)");
+        // LC 344
+        char[] rev1 = {'h','e','l','l','o'};
+        Problems.reverseString(rev1);
+        Check.isTrue(Arrays.equals(new char[]{'o','l','l','e','h'}, rev1), "LC344 reverseString(\"hello\") = \"olleh\"");
+        char[] rev2 = {'a'};
+        Problems.reverseString(rev2);
+        Check.isTrue(Arrays.equals(new char[]{'a'}, rev2), "LC344 reverseString single char unchanged");
+
+        // LC 125
+        Check.isTrue(Problems.isPalindrome("A man, a plan, a canal: Panama"),
+            "LC125 isPalindrome(\"A man, a plan, a canal: Panama\") -> true");
+        Check.isTrue(!Problems.isPalindrome("race a car"), "LC125 isPalindrome(\"race a car\") -> false");
+        Check.isTrue(Problems.isPalindrome(""), "LC125 isPalindrome(empty after filtering) -> true");
+
+        Check.summary("Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31, 344, 125)");
     }
 }
