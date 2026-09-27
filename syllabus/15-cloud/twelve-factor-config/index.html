@@ -12629,6 +12629,15 @@ reasoning at Staff level (2).</p>
 <p><strong>Common mistakes.</strong> Describing <code>@ConfigurationProperties</code> as just "a fancier <code>@Value</code>" without naming relaxed binding or nested-object support as the actual differentiators.</p>
 <p><strong>Likely follow-ups.</strong> "What happens if one of the bound properties has the wrong type?" (The whole bind fails immediately with a <code>BindException</code> naming the exact property — verified directly in this chapter's own demo.)</p>
 <p><strong>Evaluation criteria.</strong> Correct <code>@Profile</code> mechanism (2), correct <code>spring.profiles.active</code> precedence (2), correct file-layering behavior at Senior level (1).</p>
+<h3 id="question-5-a-service-works-perfectly-in-staging-but-fails-immediately-in-production-with-no-code-difference-between-the-two-deployments-whats-your-systematic-troubleshooting-approach">Question 5: A service works perfectly in staging but fails immediately in production, with no code difference between the two deployments. What's your systematic troubleshooting approach?<a class="headerlink" href="#question-5-a-service-works-perfectly-in-staging-but-fails-immediately-in-production-with-no-code-difference-between-the-two-deployments-whats-your-systematic-troubleshooting-approach" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> One of the most commonly asked scenario-based questions — it tests whether a candidate has an actual, ordered methodology for a genuinely common real-world situation, rather than guessing at causes one at a time with no structure.</p>
+<p><strong>Expected answer.</strong> Since the code is identical, the difference must live in one of the things that legitimately vary by environment (this chapter's entire Factor III concern) or in something outside config entirely. Work through them in order of how cheap they are to check: (1) <strong>config/environment variables</strong> — diff the actual resolved config between environments (this chapter's own precedence-order tooling), not just the files, since a higher-precedence source can silently override an expected value; (2) <strong>secrets and credentials</strong> — confirm production has valid, non-expired credentials for every external dependency, a very common staging-vs-prod gap since staging often uses long-lived test credentials; (3) <strong>feature flags</strong> — confirm the flag state actually matches between environments, not just the code; (4) <strong>data and schema differences</strong> — production data volume, edge-case values, or a schema migration that ran in one environment but not the other; (5) <strong>infrastructure differences</strong> — network policies, firewall rules, DNS, TLS certificate validity, and outbound connectivity to third-party services (staging frequently talks to a sandbox/mock endpoint with looser rules than production's real one); (6) <strong>scale-only failures</strong> — a resource limit (connection pool size, thread pool size, memory) that's adequate at staging's traffic volume but exhausted at production's.</p>
+<p><strong>Minimum acceptable answer.</strong> Names "probably a config difference" as a first guess, without a structured way to work through the rest of the list if that first guess is wrong.</p>
+<p><strong>Strong Senior answer.</strong> Produces most of the ordered list above unprompted, and explicitly states the guiding principle: since the code is identical, the bug is not in the code — it's in something that legitimately varies by environment, so the investigation should enumerate everything that varies, not just config.</p>
+<p><strong>Staff-level extension.</strong> Proposes systemic prevention rather than only reactive diagnosis: an automated diff of resolved config (not just files) between environments as a pre-deployment gate (this chapter's own Staff-level extension for a related question), and treats "staging and production have drifted in some untracked way" as a standing organizational risk worth actively monitoring, not a one-off incident to close and forget.</p>
+<p><strong>Common mistakes.</strong> Jumping straight to "it must be a race condition" or "it must be load-related" without first ruling out the far more common and far cheaper to check config/secrets/data category; treating this as a single-cause question rather than a systematic elimination process.</p>
+<p><strong>Likely follow-ups.</strong> "The config is verified identical — what's your next check?" (Secrets/credentials validity, then data/schema, then infrastructure, then scale — in that order, cheapest and most common causes first.)</p>
+<p><strong>Evaluation criteria.</strong> Structured, ordered methodology covering config (1), secrets (1), data/schema (1), infrastructure (1), and scale (1) as distinct categories — not a single guess.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The twelve-factor app methodology's config guidance (Factor III) demands
 strict separation between code and anything that varies between
@@ -12659,6 +12668,7 @@ this register topic.</p>
   own production scenario.</li>
 <li>Spring Profiles (<code>@Profile</code>, <code>spring.profiles.active</code>, <code>application-{profile}.yml</code>) are Spring Boot's own concrete implementation of this precedence story, not a separate mechanism.</li>
 <li><code>@ConfigurationProperties</code> binds a whole related group of properties into one typed object via relaxed binding (kebab-case, camelCase, and <code>ENV_VAR</code> styles all bind to the same field) — verified directly, including a nested prefix binding into a nested record and one <code>BindException</code> naming the exact offending key when a value is malformed.</li>
+<li>"Works in staging, fails in production, no code difference" means the bug lives in something that legitimately varies by environment — work through config, secrets, feature flags, data/schema, infrastructure, and scale, in that order, rather than guessing.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12675,6 +12685,7 @@ this register topic.</p>
 <li><strong>Secrets are not plain config</strong> — see the dedicated secrets-management
   chapter.</li>
 <li><strong>Spring Profiles</strong>: <code>@Profile("name")</code> on a bean restricts it to that profile; <code>spring.profiles.active</code> (file &lt; env var &lt; JVM property &lt; CLI arg — this chapter's own precedence order) picks which profile(s) are active; <code>application-{profile}.yml</code> layers on top of the base <code>application.yml</code>, overriding only the keys it defines.</li>
+<li><strong>"Works in staging, fails in prod" checklist</strong>: config/env vars -&gt; secrets/credentials -&gt; feature flags -&gt; data/schema -&gt; infrastructure (network/DNS/TLS) -&gt; scale-only limits — cheapest and most common causes first.</li>
 </ul>
 <h2 id="flashcards">Flashcards<a class="headerlink" href="#flashcards" title="Permanent link">&para;</a></h2>
 <h3 id="card-what-does-factor-iii-actually-require">Card: What does Factor III actually require?<a class="headerlink" href="#card-what-does-factor-iii-actually-require" title="Permanent link">&para;</a></h3>
@@ -12750,6 +12761,17 @@ Explains why a <code>@ConfigurationProperties</code> class works unchanged wheth
 Assuming a class only binds correctly if the source's exact casing matches the field name.</p>
 <p><strong>Related:</strong>
 [[twelve-factor-config]]</p>
+<h3 id="card-works-in-staging-fails-in-production-where-do-you-look">Card: "Works in staging, fails in production" — where do you look?<a class="headerlink" href="#card-works-in-staging-fails-in-production-where-do-you-look" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+A service behaves correctly in staging and fails immediately in production, with identical code in both. What's the ordered troubleshooting checklist?</p>
+<p><strong>Answer:</strong>
+Config/environment variables, then secrets/credentials, then feature flags, then data/schema differences, then infrastructure (network/DNS/TLS), then scale-only resource limits — cheapest and most common causes first, since identical code means the bug lives in something that legitimately varies by environment.</p>
+<p><strong>Why it matters:</strong>
+A structured elimination process finds the real cause far faster than guessing at "race condition" or "load" first, when the far more common culprit is config or secrets.</p>
+<p><strong>Common trap:</strong>
+Jumping straight to a scale/concurrency explanation before ruling out the cheaper, more common config-and-data category.</p>
+<p><strong>Related:</strong>
+[[twelve-factor-config]]</p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Extend <code>AppConfig</code> with a fifth, even-higher-precedence layer: a
@@ -12823,7 +12845,7 @@ pattern to copy.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 04:26:38 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:52:42 UTC">September 27, 2026</span>
   </span>
 
     

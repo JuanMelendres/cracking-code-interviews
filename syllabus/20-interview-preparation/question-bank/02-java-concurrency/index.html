@@ -12711,13 +12711,16 @@
 <a href="../02-java-collections/"><code>02-java-collections.md</code></a> for the tier-explanation format
 and sourcing discipline, and <code>00-project/interview-question-bank-plan.md</code> for the
 full 22-domain plan.</p>
-<p><strong>Honest count for this subdomain:</strong> 15 chapters yielded 29 deep questions + 41
-quick-fire questions = <strong>70 real questions</strong>. This subdomain has no dedicated Junior
-Fundamentals chapter (concurrency is inherently a Mid+ topic in this repository's own
-target-level design), so unlike <code>collections/</code>, there's no separate leveled-Junior
-question set to fold in — several individual questions below still have real, honest
-Junior/Mid framings where the underlying misconception is one a less experienced
-engineer would genuinely have.</p>
+<p><strong>Honest count for this subdomain:</strong> 15 chapters yielded 30 deep questions + 42
+quick-fire questions = <strong>72 real questions</strong>. (Updated 2026-09-27: added a wait()
+vs. sleep() vs. join() question to Deadlock, Race Conditions, and Thread Diagnostics
+— a genuinely missing, commonly-asked basic question found via a generic interview
+checklist audit.) This subdomain has no dedicated Junior Fundamentals chapter
+(concurrency is inherently a Mid+ topic in this repository's own target-level
+design), so unlike <code>collections/</code>, there's no separate leveled-Junior question set
+to fold in — several individual questions below still have real, honest Junior/Mid
+framings where the underlying misconception is one a less experienced engineer
+would genuinely have.</p>
 <hr />
 <h2 id="java-memory-model-and-volatile">Java Memory Model and <code>volatile</code><a class="headerlink" href="#java-memory-model-and-volatile" title="Permanent link">&para;</a></h2>
 <h3 id="q1-why-does-double-checked-locking-break-without-volatile">Q1 — Why does double-checked locking break without <code>volatile</code>?<a class="headerlink" href="#q1-why-does-double-checked-locking-break-without-volatile" title="Permanent link">&para;</a></h3>
@@ -12781,6 +12784,13 @@ engineer would genuinely have.</p>
 - <strong>Mid:</strong> States that <code>count++</code> is unsafe under concurrency, even without measured numbers.
 - <strong>Senior:</strong> <code>count++</code> isn't atomic; concurrent threads lose updates via interleaved read-modify-write. Names <code>AtomicLong</code>/<code>AtomicInteger</code> as the fix.
 - <strong>Staff:</strong> Knows <code>LongAdder</code> trades single-value read consistency for higher-throughput writes under heavy contention — the right choice specifically for write-heavy, read-rarely counters like metrics.</p>
+<h3 id="q3-whats-the-difference-between-wait-sleep-and-join">Q3 — What's the difference between wait(), sleep(), and join()?<a class="headerlink" href="#q3-whats-the-difference-between-wait-sleep-and-join" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Treats all three as interchangeable "pause the thread" calls — the common mistake this question targets.
+- <strong>Mid:</strong> Correctly describes what each method does in isolation, even without the monitor-release distinction.
+- <strong>Senior:</strong> Names the monitor-release distinction unprompted: <code>wait()</code> requires holding and releases the object's monitor; <code>sleep()</code> and <code>join()</code> hold any locks the whole time. Explains why <code>wait()</code> specifically requires holding the lock first.
+- <strong>Staff:</strong> Connects this to why hand-rolled <code>wait()</code>/<code>notify()</code> coordination is risky (missed notifications, spurious wakeups) and why purpose-built synchronizers are preferred in production code.</p>
 <hr />
 <h2 id="executors-and-thread-pool-sizing">Executors and Thread Pool Sizing<a class="headerlink" href="#executors-and-thread-pool-sizing" title="Permanent link">&para;</a></h2>
 <h3 id="q1-size-this-pool-show-the-arithmetic">Q1 — Size this pool. Show the arithmetic.<a class="headerlink" href="#q1-size-this-pool-show-the-arithmetic" title="Permanent link">&para;</a></h3>
@@ -13159,6 +13169,11 @@ engineer would genuinely have.</p>
 <td>Why is pooling virtual threads considered an anti-pattern?</td>
 <td><a href="../../../02-java/concurrency/virtual-threads/#flashcards">Virtual Threads</a></td>
 </tr>
+<tr>
+<td>42</td>
+<td>Which of <code>wait()</code>, <code>sleep()</code>, and <code>join()</code> releases the monitor lock while paused?</td>
+<td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock, Race Conditions, and Thread Diagnostics</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13188,7 +13203,7 @@ engineer would genuinely have.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
   </span>
 
     

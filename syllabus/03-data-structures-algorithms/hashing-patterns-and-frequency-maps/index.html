@@ -11801,7 +11801,7 @@
 
 <h1 id="hashing-patterns-and-frequency-maps">Hashing Patterns and Frequency Maps<a class="headerlink" href="#hashing-patterns-and-frequency-maps" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Provenance.</strong> The five worked problems and retrospectives in Sections 7 and 15 are elevated from <code>study-packs/week-22/01-hashing-coding-practice.md</code> — real, compiled, executed code (<code>practice/java/week-22/hashing/</code>), re-verified on OpenJDK 21.0.12 while writing this chapter (11/11 assertions passing).</p>
+<p><strong>Provenance.</strong> The first five worked problems and retrospectives in Sections 7 and 15 are elevated from <code>study-packs/week-22/01-hashing-coding-practice.md</code> — real, compiled, executed code (<code>practice/java/week-22/hashing/</code>), re-verified on OpenJDK 21.0.12 while writing this chapter. Two more (Find All Duplicates in an Array, First Unique Character) were added 2026-09-27 closing a real gap found via a generic interview-checklist audit, with the full recognition-signal/clarifying-question/brute-force/pseudocode treatment. All seven are now verified together (16/16 assertions passing).</p>
 </blockquote>
 <p>This is Master Topic Register <strong>T-1403</strong> (IWI 6.0, near-certain frequency). <a href="../../02-java/collections/hashmap-internals/">HashMap Internals</a> explains how <code>HashMap</code> and <code>HashSet</code> work <em>underneath</em>; this chapter is about <em>using</em> them as an interview technique — turning an O(n) or O(n²) lookup or counting problem into O(1) average-case lookups.</p>
 <h2 id="1-why-this-matters">1. Why This Matters<a class="headerlink" href="#1-why-this-matters" title="Permanent link">&para;</a></h2>
@@ -11888,6 +11888,55 @@ i=1, val=7:  need 9-7=2.  map={2:0} -&gt; FOUND (index 0)!  answer = [0, 1]
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Retrospective:</strong> the key restructuring is recognizing <code>a+b+c+d == 0</code> is equivalent to <code>a+b == -(c+d)</code> — decomposing an O(n⁴) quadruple-nested loop into two independent O(n²) passes joined by a hash-map lookup. <strong>Complexity:</strong> O(n²) time, O(n²) space.</p>
+<p><strong>Problem 6 — LC 442, Find All Duplicates in an Array.</strong></p>
+<p><strong>Recognition signal:</strong> the problem's own constraint — every value is in <code>[1, n]</code> for an array of length <code>n</code> — is the tell. Whenever a problem hands you a value range tied directly to the array's own length, the array itself can be reused as a hash table, with no separate <code>Set</code>/<code>Map</code> allocation needed.</p>
+<p><strong>Clarifying question worth asking:</strong> can the input array be mutated? (LC 442 allows it, which is what makes the O(1)-extra-space solution possible; if not, the <code>HashSet</code>-based Problem 1 approach — track seen values, collect the second-time-seen ones — is the fallback, at O(n) space instead.)</p>
+<p><strong>Brute force:</strong> a <code>HashSet</code>, exactly Problem 1's technique — add each value, and if <code>add()</code> returns <code>false</code>, it's a duplicate, collect it. Correct, O(n) time, but O(n) <em>extra</em> space, which this problem's own constraints make avoidable.</p>
+<p><strong>Optimized approach — pseudocode ("index as a hash key"):</strong></p>
+<div class="highlight"><pre><span></span><code>for each value v in nums:
+    idx = abs(v) - 1                  # v's own "home slot"
+    if nums[idx] is negative:
+        idx+1 is a duplicate -&gt; record it
+    else:
+        negate nums[idx]              # mark "value idx+1 has been seen"
+restore every entry to its absolute value (undo the marking)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findDuplicates</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">nums</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">nums</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span><span class="w"> </span><span class="c1">// restore input</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Retrospective:</strong> negating <code>nums[idx]</code> is a real hash-table insertion in disguise — the array's own indices <em>are</em> the hash buckets, since the value range is guaranteed to fit them exactly. This is the same "index as a hash key" idea Cyclic Sort-style problems reuse constantly, and is worth naming explicitly as a distinct technique from "allocate a <code>Set</code>," since it's the O(1)-extra-space answer to a whole family of "find the missing/duplicate number in <code>[1,n]</code>" problems. <strong>Common bugs:</strong> reading <code>nums[idx]</code> for the sign check <em>after</em> it may have already been negated by an earlier iteration touching the same slot from a different value — the order matters, which is why the check (<code>if negative</code>) must come before the negation, not after; forgetting the restore pass, leaving the input corrupted for any caller that inspects it afterward (a real, easy-to-miss "did I mutate something I shouldn't have" interview follow-up). <strong>Test cases:</strong> an array with exactly one duplicate value appearing twice, an array with no duplicates at all (returns an empty list). <strong>Complexity:</strong> O(n) time, O(1) extra space (excluding the required output list).</p>
+<p><strong>Problem 7 — LC 387, First Unique Character in a String.</strong></p>
+<p><strong>Recognition signal:</strong> "first" plus "unique/non-repeating" together mean two passes are basically unavoidable — one pass to know each character's <em>total</em> frequency, a second to find the first one whose total frequency is exactly 1 — and that's fine; it's still O(n), not a sign something smarter is being missed.</p>
+<p><strong>Clarifying question worth asking:</strong> is the input guaranteed to be lowercase English letters only? (LC 387's own constraint says yes, which is what licenses a fixed 26-slot array instead of a general-purpose <code>HashMap&lt;Character, Integer&gt;</code>.)</p>
+<p><strong>Brute force:</strong> for each character, scan the entire rest of the string checking for another occurrence — correct, but O(n²), since it re-scans from scratch for every character.</p>
+<p><strong>Optimized approach — pseudocode:</strong></p>
+<div class="highlight"><pre><span></span><code>freq = array of 26 zeros
+for each char c in s: freq[c - 'a'] += 1
+for i from 0 to length-1:
+    if freq[s[i] - 'a'] == 1: return i
+return -1
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">firstUniqChar</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">26</span><span class="o">]</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="n">freq</span><span class="o">[</span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'a'</span><span class="o">]++</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">freq</span><span class="o">[</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'a'</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Retrospective:</strong> the second pass has to walk the string again <em>in original order</em>, rather than iterating the frequency array — the frequency array only knows <em>counts</em>, not <em>positions</em>, so finding the <em>first</em> index with count 1 genuinely requires re-visiting the string itself, not just the 26-slot summary. A common shortcut instinct (just scan <code>freq[]</code> for the first slot equal to 1) silently returns the wrong answer, since array order there is alphabetical, not the string's actual character order. <strong>Common bugs:</strong> exactly that shortcut above; assuming a general <code>HashMap</code> is required when the problem's own lowercase-only constraint makes a flat <code>int[26]</code> both simpler and faster. <strong>Test cases:</strong> the unique character is the very first one (<code>"leetcode"</code> → index 0), the unique character is in the middle (<code>"loveleetcode"</code> → index 2), no unique character exists at all (<code>"aabb"</code> → <code>-1</code>). <strong>Complexity:</strong> O(n) time, O(1) space (bounded by the 26-letter alphabet, not the string length).</p>
 <h2 id="8-common-mistakes">8. Common Mistakes<a class="headerlink" href="#8-common-mistakes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reaching for a sliding window on a subarray-sum problem without checking whether negative numbers are allowed.</strong> Section 4/5 covers exactly why this silently produces wrong answers rather than an obvious crash — the window-shrink logic simply stops being valid, with no exception to signal it.</li>
@@ -11913,7 +11962,12 @@ i=1, val=7:  need 9-7=2.  map={2:0} -&gt; FOUND (index 0)!  answer = [0, 1]
   PASS  LC202 isHappy(2) -&gt; false (cycles, never reaches 1)
   PASS  LC454 fourSumCount(4 arrays of 2) = 2
   PASS  LC454 fourSumCount(4 zero arrays) = 1
-Week 22 — Hashing (LC 217, 560, 349, 202, 454): 11/11 assertions passed
+  PASS  LC442 findDuplicates([4,3,2,7,8,2,3,1]) = [2,3]
+  PASS  LC442 restores original array after marking
+  PASS  LC387 firstUniqChar("leetcode") = 0 ('l')
+  PASS  LC387 firstUniqChar("loveleetcode") = 2 ('v')
+  PASS  LC387 firstUniqChar("aabb") = -1 (no unique char)
+Week 22 — Hashing (LC 217, 560, 349, 202, 454, 442, 387): 16/16 assertions passed
 </code></pre></div>
 <p>Every solution here trades O(n) (or O(n²), for 4Sum II) extra memory for a reduction from a worse time complexity — the standard hashing trade-off, and exactly why <a href="../../02-java/collections/hashmap-internals/">HashMap Internals</a> matters as a prerequisite: these techniques only deliver their promised O(1)-average lookups if the underlying <code>hashCode()</code> distribution is actually reasonable, per that chapter's own coverage of the worst-case degradation.</p>
 <h2 id="11-trade-offs">11. Trade-offs<a class="headerlink" href="#11-trade-offs" title="Permanent link">&para;</a></h2>
@@ -11975,7 +12029,7 @@ Week 22 — Hashing (LC 217, 560, 349, 202, 454): 11/11 assertions passed
 <p><strong>Follow-up questions.</strong> "Could you solve this with two pointers instead of a hash map?" (Not in general, for arbitrary negative numbers, without first sorting — which would lose the original subarray indices/order needed for a <em>contiguous</em> subarray count.)</p>
 <h2 id="16-codingpractice-exercises">16. Coding/Practice Exercises<a class="headerlink" href="#16-codingpractice-exercises" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Run the <a href="../../practice/java/week-22/hashing/">existing practice code</a> yourself and confirm the same 11/11 assertions pass.</li>
+<li>Run the <a href="../../practice/java/week-22/hashing/">existing practice code</a> yourself and confirm the same 16/16 assertions pass.</li>
 <li>This pattern has additional real, already-solved problems: LC 1 (Two Sum), LC 3 (Longest Substring Without Repeating Characters), LC 49 (Group Anagrams), and LC 242 (Valid Anagram) are covered in <code>study-packs/week-01/07-java-coding-practice.md</code>'s underlying practice code — study Group Anagrams specifically as the canonical "group by computed key" hash-map pattern this chapter's Section 6 references.</li>
 <li>Attempt LC 128 (Longest Consecutive Sequence) from scratch — it's hashing-shaped (a <code>HashSet</code> of all values, checking each value's "is this the start of a sequence" condition in O(1)) but is deliberately not duplicated here, since it's already solved elsewhere in this repository's practice code.</li>
 </ul>
@@ -12043,7 +12097,7 @@ Week 22 — Hashing (LC 217, 560, 349, 202, 454): 11/11 assertions passed
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
   </span>
 
     

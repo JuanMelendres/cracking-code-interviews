@@ -12614,6 +12614,39 @@
 <h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="the-real-six-state-thread-lifecycle">The real six-state thread lifecycle<a class="headerlink" href="#the-real-six-state-thread-lifecycle" title="Permanent link">&para;</a></h3>
 <p><code>Thread.State</code> has exactly six values: <code>NEW</code>, <code>RUNNABLE</code>, <code>BLOCKED</code>, <code>WAITING</code>, <code>TIMED_WAITING</code>, <code>TERMINATED</code> — no separate "Running" state distinct from <code>RUNNABLE</code>. The distinction between <code>WAITING</code> and <code>TIMED_WAITING</code> matters diagnostically: a thread stuck in <code>WAITING</code> forever with nothing to wake it is a real bug (a missed <code>notify()</code>), while <code>TIMED_WAITING</code> will self-resolve regardless of whether anything wakes it. <code>BLOCKED</code> specifically means contending for a monitor another thread holds — it requires genuine lock contention to observe, distinct from <code>WAITING</code>/<code>TIMED_WAITING</code>.</p>
+<h3 id="wait-sleep-and-join-answer-three-genuinely-different-questions-not-three-spellings-of-pause">wait(), sleep(), and join() answer three genuinely different questions, not three spellings of "pause"<a class="headerlink" href="#wait-sleep-and-join-answer-three-genuinely-different-questions-not-three-spellings-of-pause" title="Permanent link">&para;</a></h3>
+<p>All three can put a thread into <code>WAITING</code> or <code>TIMED_WAITING</code> (Section "The real six-state thread lifecycle" above), and all three declare <code>InterruptedException</code> — but they exist for structurally different reasons, and confusing them is a real, common mistake.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Releases the monitor lock?</th>
+<th>Who/what resumes it</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Object.wait()</code></td>
+<td>Yes — must be called while holding the object's monitor (inside <code>synchronized</code>), and releases it while waiting</td>
+<td>Another thread calling <code>notify()</code>/<code>notifyAll()</code> on the same object, or a timeout if <code>wait(ms)</code> was used</td>
+<td>Coordinating threads around a shared condition (a producer/consumer queue's "not empty"/"not full" check)</td>
+</tr>
+<tr>
+<td><code>Thread.sleep(ms)</code></td>
+<td>No — a static method, not tied to any monitor at all; holds any locks the calling thread already holds the entire time</td>
+<td>A timeout, always — nothing else can wake it early</td>
+<td>Pausing the current thread's own execution, unrelated to any shared condition</td>
+</tr>
+<tr>
+<td><code>Thread.join()</code></td>
+<td>No — the calling thread isn't holding a lock on the target thread's behalf; it simply blocks until the target finishes</td>
+<td>The target thread terminating, or an optional timeout</td>
+<td>Waiting for another thread to finish before proceeding (a simple one-shot alternative to <code>CountDownLatch</code> for a single thread)</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>wait()</code> requires the monitor precisely because it releases it</strong> — a thread parked in <code>wait()</code> while still holding the lock would deadlock the very thread that's supposed to call <code>notify()</code> to wake it, so the JVM enforces <code>IllegalMonitorStateException</code> if <code>wait()</code> is called outside a <code>synchronized</code> block on that object. <code>sleep()</code> and <code>join()</code> carry no such requirement, because neither one is coordinating around a shared, lock-protected condition — <code>sleep()</code> doesn't touch any object's monitor at all, and <code>join()</code> waits on the <em>target</em> thread's own internal completion state, not a lock the caller holds.</p>
 <h3 id="deadlock-detection-is-a-graph-problem-not-a-guess">Deadlock detection is a graph problem, not a guess<a class="headerlink" href="#deadlock-detection-is-a-graph-problem-not-a-guess" title="Permanent link">&para;</a></h3>
 <p><code>ThreadMXBean.findDeadlockedThreads()</code> — the same mechanism <code>jstack</code> and most APM tools use under the hood — walks the lock-ownership graph looking for a real cycle: thread A blocked waiting for a lock thread B holds, while B is blocked waiting for a lock A holds. This is a precise, mechanical detection, not a human reading a thread dump and inferring a cycle by eye.</p>
 <h3 id="deadlock-is-structurally-preventable-not-just-detectable">Deadlock is structurally preventable, not just detectable<a class="headerlink" href="#deadlock-is-structurally-preventable-not-just-detectable" title="Permanent link">&para;</a></h3>
@@ -12905,6 +12938,17 @@ expected=1000000 actual=1000000 lost=0
 <p><strong>Likely follow-ups.</strong> "AtomicInteger vs LongAdder — when does it matter?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: "that shouldn't really happen much." 3: names the mechanism and <code>AtomicInteger</code>. 5: mechanism, <code>AtomicInteger</code>, plus <code>LongAdder</code>'s specific trade-off for high-contention write-heavy counters.</p>
 <p><strong>Related references.</strong> <a href="#internal-implementation">§ Internal Implementation</a>; <a href="../java-memory-model-and-volatile/">Java Memory Model and volatile</a>.</p>
+<hr />
+<h3 id="question-3-whats-the-difference-between-wait-sleep-and-join">Question 3 — What's the difference between wait(), sleep(), and join()?<a class="headerlink" href="#question-3-whats-the-difference-between-wait-sleep-and-join" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> One of the most commonly asked basic concurrency questions — it tests whether a candidate treats these as three interchangeable "pause the thread" calls, or actually understands the structurally different reason each one exists, particularly around monitor-lock release.</p>
+<p><strong>Expected answer.</strong> <code>wait()</code> (an <code>Object</code> instance method) must be called while holding that object's monitor, and it releases the monitor while waiting — another thread calls <code>notify()</code>/<code>notifyAll()</code> on the same object to wake it. <code>sleep()</code> (a static <code>Thread</code> method) pauses the current thread for a fixed duration without releasing any locks it holds, and only a timeout wakes it. <code>join()</code> (a <code>Thread</code> instance method) blocks the calling thread until the target thread terminates (or an optional timeout elapses) — it isn't tied to any monitor at all.</p>
+<p><strong>Minimum acceptable answer.</strong> Correctly states what each method does in isolation, even without the monitor-release distinction.</p>
+<p><strong>Strong Senior answer.</strong> Names the monitor-release distinction unprompted, and explains <em>why</em> <code>wait()</code> requires holding the lock in the first place (a thread parked in <code>wait()</code> while still holding the lock would prevent the very thread that needs to call <code>notify()</code> from ever acquiring it).</p>
+<p><strong>Staff-level extension.</strong> Connects this to why hand-rolled coordination with raw <code>wait()</code>/<code>notify()</code> is a real, well-documented risk (missed notifications if <code>notify()</code> fires before the waiter starts waiting, spurious wakeups requiring a <code>while</code> loop instead of an <code>if</code> around the wait condition) — and why purpose-built synchronizers (<a href="../synchronizers-countdownlatch-cyclicbarrier-semaphore/"><code>CountDownLatch</code>, <code>CyclicBarrier</code>, <code>Semaphore</code></a>) are preferred over hand-rolled <code>wait()</code>/<code>notify()</code> in real production code for exactly that reason.</p>
+<p><strong>Common mistakes.</strong> Treating all three as generic "pause the thread" calls with no real distinction; not knowing <code>wait()</code> throws <code>IllegalMonitorStateException</code> if called outside a <code>synchronized</code> block on that object; assuming <code>sleep()</code> releases locks the way <code>wait()</code> does (it does not — a thread that <code>sleep()</code>s while holding a lock blocks every other thread waiting on that same lock for the full duration).</p>
+<p><strong>Likely follow-ups.</strong> "If <code>sleep()</code> doesn't release locks, what's a real production risk of calling it inside a <code>synchronized</code> block?" (Any other thread contending for that same lock is blocked for the entire sleep duration, not just the actual work — a real, easy-to-introduce latency bug distinct from any correctness issue.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: describes all three as interchangeable. 3: correctly describes each method's behavior individually. 5: correctly explains the monitor-release distinction, why <code>wait()</code> specifically requires holding the lock, and can name a concrete real risk of confusing <code>sleep()</code>'s lock-holding behavior with <code>wait()</code>'s lock-releasing one.</p>
+<p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>; <a href="../synchronizers-countdownlatch-cyclicbarrier-semaphore/">java.util.concurrent Synchronizers</a>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>The real <code>Thread.State</code> enum has six values, not the invented five-state model with a missing <code>TIMED_WAITING</code> — corrected directly from a running JVM in this chapter. Deadlock is detectable in a live system via <code>ThreadMXBean.findDeadlockedThreads()</code>, the same mechanism <code>jstack</code> uses, and is structurally preventable via consistent lock-ordering. Race conditions from unsynchronized compound operations are not a rare failure mode — measured at 83.8% lost updates under realistic concurrent load, resolved completely by <code>AtomicInteger</code>.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -12913,6 +12957,7 @@ expected=1000000 actual=1000000 lost=0
 <li><code>ThreadMXBean.findDeadlockedThreads()</code> is the real production diagnostic, underlying <code>jstack</code> and most APM tooling.</li>
 <li>Deadlock is structurally preventable via consistent lock-acquisition ordering.</li>
 <li>Unsynchronized compound operations under real concurrent load lose the vast majority of updates, not a small fraction.</li>
+<li><code>wait()</code> releases the monitor lock and requires holding it first; <code>sleep()</code> and <code>join()</code> hold any locks the calling thread already has for their entire duration.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -12938,6 +12983,11 @@ expected=1000000 actual=1000000 lost=0
 <td>Thread stuck in <code>WAITING</code> forever</td>
 <td>Missed <code>notify()</code>/<code>notifyAll()</code></td>
 <td>Ensure every <code>wait()</code> has a matching, reachable <code>notify()</code></td>
+</tr>
+<tr>
+<td>Other threads blocked far longer than expected</td>
+<td>A <code>sleep()</code> (or slow work) called inside a <code>synchronized</code> block, holding the lock the whole time</td>
+<td>Move the sleep/slow work outside the synchronized section, or hold the lock for the minimum necessary scope</td>
 </tr>
 </tbody>
 </table>
@@ -12975,6 +13025,17 @@ Race conditions under concurrency are a near-certainty, not a theoretical risk.<
 Assuming this kind of bug is rare or unlikely to matter in practice.</p>
 <p><strong>Related:</strong>
 <a href="#internal-implementation">Internal Implementation</a></p>
+<h3 id="card-wait-vs-sleep-vs-join">Card: wait() vs sleep() vs join()<a class="headerlink" href="#card-wait-vs-sleep-vs-join" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Which of <code>wait()</code>, <code>sleep()</code>, and <code>join()</code> releases the monitor lock while paused?</p>
+<p><strong>Answer:</strong>
+Only <code>wait()</code> — it must be called while holding the object's monitor and releases it while waiting, so another thread can call <code>notify()</code>. <code>sleep()</code> and <code>join()</code> hold any locks the calling thread already has for their entire duration.</p>
+<p><strong>Why it matters:</strong>
+Calling <code>sleep()</code> inside a <code>synchronized</code> block blocks every other thread waiting on that lock for the full sleep duration — a real, easy-to-introduce latency bug distinct from a correctness bug.</p>
+<p><strong>Common trap:</strong>
+Assuming <code>sleep()</code> releases locks the way <code>wait()</code> does.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reproduce all three demos: <a href="../../../../practice/java/week-09/concurrency-fundamentals/src/ThreadStateDemo.java"><code>ThreadStateDemo.java</code></a>, <a href="../../../../practice/java/week-09/deadlock-diagnostics/src/DeadlockDemo.java"><code>DeadlockDemo.java</code></a>, <a href="../../../../practice/java/week-09/deadlock-diagnostics/src/RaceConditionDemo.java"><code>RaceConditionDemo.java</code></a>.</li>
@@ -13014,7 +13075,7 @@ Assuming this kind of bug is rare or unlikely to matter in practice.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
   </span>
 
     

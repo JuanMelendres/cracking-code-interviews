@@ -12468,8 +12468,11 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 4 chapters yielded 8 deep questions + 13 quick-fire
-questions = <strong>21 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 4 chapters yielded 9 deep questions + 14 quick-fire
+questions = <strong>23 real questions</strong>. (Updated 2026-09-27: added a "works in staging,
+fails in production" systematic-troubleshooting question to The Twelve-Factor App —
+a genuinely missing, very commonly-asked scenario question found via a generic
+interview checklist audit.) No Junior Fundamentals chapter exists in this
 domain — this is a genuinely small domain (only 4 chapters).</p>
 <hr />
 <h2 id="aws-core-services-for-backend-engineers">AWS Core Services for Backend Engineers<a class="headerlink" href="#aws-core-services-for-backend-engineers" title="Permanent link">&para;</a></h2>
@@ -12527,6 +12530,12 @@ domain — this is a genuinely small domain (only 4 chapters).</p>
 - <strong>Junior/Mid:</strong> Names roughly the right order without stating that only the overridden keys change.
 - <strong>Senior:</strong> States the full order precisely — command-line arguments, then environment variables, then the config file, then hardcoded defaults — and notes it matches the order most frameworks (e.g., Spring Boot) use.
 - <strong>Staff:</strong> Discusses why this specific order makes operational sense — defaults are safest, file is per-environment, env vars are orchestrator-injected, CLI args are per-invocation debugging overrides.</p>
+<h3 id="q5-a-service-works-perfectly-in-staging-but-fails-immediately-in-production-with-no-code-difference-whats-your-systematic-troubleshooting-approach">Q5 — A service works perfectly in staging but fails immediately in production, with no code difference. What's your systematic troubleshooting approach?<a class="headerlink" href="#q5-a-service-works-perfectly-in-staging-but-fails-immediately-in-production-with-no-code-difference-whats-your-systematic-troubleshooting-approach" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../15-cloud/twelve-factor-config/#interview-questions">§ Interview Questions, Q5</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Guesses "probably a config difference" with no structured way to continue if that guess is wrong — the common mistake this question targets.
+- <strong>Senior:</strong> Produces an ordered methodology: config/env vars, secrets/credentials, feature flags, data/schema differences, infrastructure, then scale-only limits — since identical code means the bug lives in something that legitimately varies by environment.
+- <strong>Staff:</strong> Proposes an automated resolved-config diff between environments as a pre-deployment gate, treating environment drift as a standing organizational risk, not a one-off incident.</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12603,6 +12612,11 @@ domain — this is a genuinely small domain (only 4 chapters).</p>
 <td>Why does fail-fast startup validation matter for a missing required config value?</td>
 <td><a href="../../../15-cloud/twelve-factor-config/#flashcards">The Twelve-Factor App</a></td>
 </tr>
+<tr>
+<td>14</td>
+<td>A service works in staging but fails in production with no code difference — what's the ordered troubleshooting checklist?</td>
+<td><a href="../../../15-cloud/twelve-factor-config/#flashcards">The Twelve-Factor App</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12643,7 +12657,7 @@ domain — this is a genuinely small domain (only 4 chapters).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:23:53 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
   </span>
 
     

@@ -32,6 +32,14 @@ final class Main {
         Check.eq(7, Problems.furthestBuilding(new int[]{4,12,2,7,3,18,20,3,19}, 10, 2),
             "LC1642 furthestBuilding(bricks=10, ladders=2) = 7");
 
-        Check.summary("Week 23 — Heaps (LC 1046, 692, 373, 767, 1642)");
+        // LC 347
+        Check.isTrue(Arrays.equals(new int[]{1,2},
+            Problems.topKFrequentBucket(new int[]{1,1,1,2,2,3}, 2)),
+            "LC347 topKFrequentBucket([1,1,1,2,2,3], k=2) = [1,2]");
+        Check.isTrue(Arrays.equals(new int[]{1},
+            Problems.topKFrequentBucket(new int[]{1}, 1)),
+            "LC347 topKFrequentBucket([1], k=1) = [1]");
+
+        Check.summary("Week 23 — Heaps (LC 1046, 692, 373, 767, 1642, 347)");
     }
 }

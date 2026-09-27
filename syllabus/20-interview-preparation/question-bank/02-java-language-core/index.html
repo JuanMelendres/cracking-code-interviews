@@ -9410,6 +9410,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comparator-composition-and-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparator: Composition and Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enums-enummap-and-enumset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12582,6 +12593,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comparator-composition-and-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparator: Composition and Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enums-enummap-and-enumset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12908,15 +12930,18 @@
 <p>Part of the <code>02-java</code> compendium — the last of its 4 subdomain files. See
 <a href="../02-java-collections/"><code>02-java-collections.md</code></a> for the tier-explanation format
 and sourcing discipline.</p>
-<p><strong>Honest count for this subdomain:</strong> 24 chapters yielded 44 deep questions + 10
+<p><strong>Honest count for this subdomain:</strong> 24 chapters yielded 46 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 54 quick-fire
-questions = <strong>108 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
+<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 57 quick-fire
+questions = <strong>113 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
-checklist audit.)</p>
-<p><strong>02-java domain total across all 4 subdomains:</strong> 52 (collections) + 70 (concurrency)
-+ 31 (jvm-internals) + 108 (language-core) = <strong>261 real questions</strong> — the largest of
+checklist audit. Updated again 2026-09-27: <code>comparator-composition-and-pitfalls.md</code>
+had a complete Interview Questions section written 2026-09-17 that this index never
+picked up — a stale-index gap, not a content gap. Added its 2 questions + 3
+quick-fire cards.)</p>
+<p><strong>02-java domain total across all 4 subdomains:</strong> 52 (collections) + 72 (concurrency)
++ 31 (jvm-internals) + 113 (language-core) = <strong>268 real questions</strong> — the largest of
 the 22 domains this initiative covers, consistent with <code>02-java</code> being the biggest
 domain in the syllabus (64 chapters).</p>
 <hr />
@@ -13050,6 +13075,20 @@ domain in the syllabus (64 chapters).</p>
 - <strong>Junior/Mid:</strong> Assumes this must be a JVM bug — the common mistake this question targets.
 - <strong>Senior:</strong> A class's real identity is (fully-qualified name, defining ClassLoader) — if loaded by two different classloaders, the JVM treats them as genuinely distinct types.
 - <strong>Staff:</strong> Generalizes to the broader principle that isolation mechanisms can produce structurally-identical-but-incompatible objects across their boundaries.</p>
+<hr />
+<h2 id="comparator-composition-and-pitfalls">Comparator: Composition and Pitfalls<a class="headerlink" href="#comparator-composition-and-pitfalls" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-is-a-b-agetx-bgetx-considered-a-bug-not-just-old-style">Q1 — Why is <code>(a, b) -&gt; a.getX() - b.getX()</code> considered a bug, not just old style?<a class="headerlink" href="#q1-why-is-a-b-agetx-bgetx-considered-a-bug-not-just-old-style" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/comparator-composition-and-pitfalls/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes the subtraction pattern as merely "less readable" or "old-fashioned" — the common mistake this question targets.
+- <strong>Senior:</strong> <code>int</code> subtraction can silently overflow (<code>Integer.MIN_VALUE - 1</code> wraps to <code>Integer.MAX_VALUE</code>), producing a genuinely wrong sort order at that extreme; <code>Comparator.comparingInt()</code> is backed by <code>Integer.compare()</code>, which never overflows.
+- <strong>Staff:</strong> Generalizes to the broader pattern of arithmetic shortcuts having unexercised boundary conditions, and why standard-library composition is generally safer than hand-written comparison arithmetic.</p>
+<h3 id="q2-how-would-you-sort-a-list-where-some-elements-have-a-null-value-for-the-sort-key">Q2 — How would you sort a list where some elements have a <code>null</code> value for the sort key?<a class="headerlink" href="#q2-how-would-you-sort-a-list-where-some-elements-have-a-null-value-for-the-sort-key" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/comparator-composition-and-pitfalls/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Writes a manual <code>if (a == null) return -1;</code> inside the comparator lambda — the common mistake this question targets.
+- <strong>Senior:</strong> Wraps the key comparator in <code>Comparator.nullsFirst(...)</code>/<code>nullsLast(...)</code> — a naive <code>Comparator.comparing(keyExtractor)</code> throws a real <code>NullPointerException</code> on the first <code>null</code> key.
+- <strong>Staff:</strong> Notes this is the same "let the standard library handle a known-hazardous case" pattern as <code>comparingInt</code> over subtraction.</p>
 <hr />
 <h2 id="enums-enummap-and-enumset">Enums, EnumMap, and EnumSet<a class="headerlink" href="#enums-enummap-and-enumset" title="Permanent link">&para;</a></h2>
 <h3 id="q1-why-is-persisting-enumordinal-dangerous">Q1 — Why is persisting <code>Enum.ordinal()</code> dangerous?<a class="headerlink" href="#q1-why-is-persisting-enumordinal-dangerous" title="Permanent link">&para;</a></h3>
@@ -13585,6 +13624,21 @@ domain in the syllabus (64 chapters).</p>
 <td>Does <code>^(a+)+$</code> cause catastrophic backtracking in <code>java.util.regex</code>?</td>
 <td><a href="../../../02-java/language-core/java-regular-expressions/#flashcards">Java Regular Expressions</a></td>
 </tr>
+<tr>
+<td>55</td>
+<td>Does <code>Comparator.comparing(a).thenComparing(b)</code> sort by <code>b</code> independently of <code>a</code>?</td>
+<td><a href="../../../02-java/language-core/comparator-composition-and-pitfalls/#flashcards">Comparator: Composition and Pitfalls</a></td>
+</tr>
+<tr>
+<td>56</td>
+<td>Why can <code>(a, b) -&gt; a.getX() - b.getX()</code> produce a wrong sort order?</td>
+<td><a href="../../../02-java/language-core/comparator-composition-and-pitfalls/#flashcards">Comparator: Composition and Pitfalls</a></td>
+</tr>
+<tr>
+<td>57</td>
+<td>How do you sort a list where some elements have a <code>null</code> sort key, without a manual null-check?</td>
+<td><a href="../../../02-java/language-core/comparator-composition-and-pitfalls/#flashcards">Comparator: Composition and Pitfalls</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13615,7 +13669,7 @@ domain in the syllabus (64 chapters).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 04:24:51 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
   </span>
 
     

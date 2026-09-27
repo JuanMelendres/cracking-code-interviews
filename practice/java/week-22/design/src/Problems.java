@@ -2,6 +2,67 @@ import java.util.*;
 
 final class Problems {
 
+    // ---- LC 146: LRU Cache (O(1) get/put via HashMap + doubly linked list) ----
+    static class LRUCache {
+        private static class Node {
+            int key, value;
+            Node prev, next;
+            Node(int key, int value) { this.key = key; this.value = value; }
+        }
+
+        private final int capacity;
+        private final Map<Integer, Node> map = new HashMap<>();
+        private final Node head = new Node(-1, -1); // dummy, most-recently-used side
+        private final Node tail = new Node(-1, -1); // dummy, least-recently-used side
+
+        LRUCache(int capacity) {
+            this.capacity = capacity;
+            head.next = tail;
+            tail.prev = head;
+        }
+
+        int get(int key) {
+            Node node = map.get(key);
+            if (node == null) return -1;
+            moveToFront(node);
+            return node.value;
+        }
+
+        void put(int key, int value) {
+            Node existing = map.get(key);
+            if (existing != null) {
+                existing.value = value;
+                moveToFront(existing);
+                return;
+            }
+            if (map.size() == capacity) {
+                Node lru = tail.prev;
+                remove(lru);
+                map.remove(lru.key);
+            }
+            Node node = new Node(key, value);
+            map.put(key, node);
+            addToFront(node);
+        }
+
+        private void moveToFront(Node node) {
+            remove(node);
+            addToFront(node);
+        }
+
+        private void remove(Node node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+
+        private void addToFront(Node node) {
+            node.next = head.next;
+            node.prev = head;
+            head.next.prev = node;
+            head.next = node;
+        }
+    }
+
     // ---- LC 460: LFU Cache (O(1) get/put) ----
     static class LFUCache {
         private static class Node {
