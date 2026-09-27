@@ -9,7 +9,9 @@ nav:
   - immutability-and-defensive-copying.md
   - generics-erasure-and-pecs.md
   - exception-design-and-hierarchy-strategy.md
+  - java-file-io-and-nio2.md
   - strings-interning-compact-strings-and-builders.md
+  - java-regular-expressions.md
   - streams-and-collectors.md
   - lambdas-and-functional-interfaces.md
   - optional-and-null-strategy.md

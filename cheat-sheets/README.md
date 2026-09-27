@@ -424,6 +424,10 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 
 **2026-09-26 — Spring and Spring Boot Fundamentals (T-2213) gains a cheat sheet.** New `05-spring` chapter, user-requested: a 20-question interview checklist audit found every concept already taught in prose, but none formatted as an actual seniority-tiered interview question. New total, verified directly against the file system: **283 cheat sheets** (282 prior + 1).
 
+**2026-09-26 (same day, follow-up) — Java File I/O and NIO.2 (T-2429) gains a cheat sheet.** New `02-java/language-core` chapter, user-requested: a generic Java/Spring interview checklist audit found `java.io`/`java.nio.file` had no dedicated chapter anywhere. New total, verified directly against the file system: **284 cheat sheets** (283 prior + 1).
+
+**2026-09-26 (same day, follow-up) — Java Regular Expressions (T-2430) gains a cheat sheet.** New `02-java/language-core` chapter, same audit: `java.util.regex` had zero mentions anywhere in the syllabus. New total, verified directly against the file system: **285 cheat sheets** (284 prior + 1).
+
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|
 | [JVM Memory Layout and Runtime Regions](jvm-memory-layout-and-runtime-regions.md) | T-301 | 6.3 | jvm | `syllabus/02-java/jvm-internals/jvm-memory-layout-and-runtime-regions.md` |

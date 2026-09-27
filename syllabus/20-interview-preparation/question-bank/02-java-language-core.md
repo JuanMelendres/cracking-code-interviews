@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-26
 related:
   - ../../02-java/language-core/INDEX.md
   - 02-java-jvm-internals.md
@@ -17,15 +17,18 @@ Part of the `02-java` compendium — the last of its 4 subdomain files. See
 [`02-java-collections.md`](02-java-collections.md) for the tier-explanation format
 and sourcing discipline.
 
-**Honest count for this subdomain:** 22 chapters yielded 38 deep questions + 10
+**Honest count for this subdomain:** 24 chapters yielded 44 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 48 quick-fire
-questions = **96 real questions**.
+`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 54 quick-fire
+questions = **108 real questions**. (Updated 2026-09-26: added Java File I/O and
+NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
+quick-fire cards — closing a real gap found via a generic Java/Spring interview
+checklist audit.)
 
 **02-java domain total across all 4 subdomains:** 52 (collections) + 70 (concurrency)
-+ 31 (jvm-internals) + 96 (language-core) = **249 real questions** — the largest of
++ 31 (jvm-internals) + 108 (language-core) = **261 real questions** — the largest of
 the 22 domains this initiative covers, consistent with `02-java` being the biggest
-domain in the syllabus (61 chapters).
+domain in the syllabus (64 chapters).
 
 ---
 
@@ -392,6 +395,68 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 
 ---
 
+## Java File I/O and NIO.2
+
+### Q1 — Why wrap a `FileReader` in a `BufferedReader`? What does buffering actually save?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../02-java/language-core/java-file-io-and-nio2.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** States that `BufferedReader` is "faster" without explaining the mechanism.
+- **Senior:** Explains the real syscall-overhead mechanism and cites the chapter's own measured order of magnitude (4.6x).
+- **Staff:** Connects this to the general JDK "decorator" I/O pattern and knows when buffering stops being the relevant lever (very large single reads, memory-mapped I/O).
+
+### Q2 — What happens if `close()` throws after the `try`-with-resources body already threw?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../02-java/language-core/java-file-io-and-nio2.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes the `close()` exception is silently dropped, or that it replaces the original — the common mistake this question targets.
+- **Senior:** Names `getSuppressed()` explicitly and contrasts it with a manual `finally` block's silent-replacement behavior.
+- **Staff:** Connects this to production debugging — a suppressed exception preserves evidence a manual `finally` block would have destroyed.
+
+### Q3 — A nightly export job writes UTF-8 source data but the output is garbled for non-ASCII characters. Diagnose it.
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/language-core/java-file-io-and-nio2.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Guesses "an encoding issue" without naming the platform-default-charset mechanism — the common mistake this question targets.
+- **Senior:** Names the platform-default-charset mechanism specifically and states the fix (an explicit `StandardCharsets.UTF_8`).
+- **Staff:** Proposes a codebase-wide static-analysis rule as systemic prevention, not a one-off fix.
+
+---
+
+## Java Regular Expressions
+
+### Q1 — Why does calling `String.matches(regex)` in a loop perform worse than a precompiled `Pattern`?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../02-java/language-core/java-regular-expressions.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** States precompiling "is faster" without explaining that `String.matches()` recompiles every call.
+- **Senior:** Explains the recompilation mechanism precisely and cites the chapter's own measured order of magnitude (5.3x).
+- **Staff:** Connects this to the general pattern of expensive-to-construct, immutable, shareable objects (`Pattern`, `DateTimeFormatter`) versus their stateful, non-shareable counterparts.
+
+### Q2 — Can a greedy and a possessive quantifier ever produce different match results, not just different performance?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../02-java/language-core/java-regular-expressions.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats possessive quantifiers as "greedy but faster" with no result difference — the common mistake this question targets.
+- **Senior:** Gives a concrete case where the two diverge (`<.+>` matches `"<a><b><c>"` fully; `<.++>` fails to match it at all).
+- **Staff:** Knows when swapping greedy for possessive is safe (no genuine backtracking need) versus a real, risky behavior change.
+
+### Q3 — A public sign-up form's validation regex causes request threads to hang under certain crafted usernames. Diagnose and fix it.
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/language-core/java-regular-expressions.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Recognizes "a regex performance problem" without identifying the quantifier-ambiguity mechanism.
+- **Senior:** Names the mechanism precisely, proposes a length cap as an immediate mitigation and a pattern rewrite as the permanent fix.
+- **Staff:** Proposes worst-case-time fuzz testing as a standing security-review item, and notes that ReDoS folklore must be verified against the actual engine, not assumed (this chapter's own honest finding: `(a+)+`/`(a|aa)+` did not reproduce blowup on the current JDK, while an adjacent-quantifier shape did).
+
+---
+
 ## Lambdas and Functional Interfaces
 
 ### Q1 — Why can't a lambda capture a mutable local variable?
@@ -622,6 +687,12 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 46 | Does `new String("hello") == "hello"` evaluate to `true`? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
 | 47 | If a mostly-English string has ONE non-Latin-1 character, does only that character cost extra memory? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
 | 48 | How much slower is `String +=` in a loop than `StringBuilder.append()`, roughly? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
+| 49 | What does wrapping a `FileReader` in a `BufferedReader` actually save, mechanically? | [Java File I/O and NIO.2](../../02-java/language-core/java-file-io-and-nio2.md#flashcards) |
+| 50 | If you write text as UTF-8 and read it back as `ISO-8859-1`, what happens? | [Java File I/O and NIO.2](../../02-java/language-core/java-file-io-and-nio2.md#flashcards) |
+| 51 | In `try`-with-resources, if the body throws and `close()` also throws, what happens to the `close()` exception? | [Java File I/O and NIO.2](../../02-java/language-core/java-file-io-and-nio2.md#flashcards) |
+| 52 | Why is calling `String.matches(regex)` repeatedly slower than reusing a precompiled `Pattern`? | [Java Regular Expressions](../../02-java/language-core/java-regular-expressions.md#flashcards) |
+| 53 | Can a possessive quantifier (`.++`) ever fail to match input the equivalent greedy quantifier (`.+`) matches? | [Java Regular Expressions](../../02-java/language-core/java-regular-expressions.md#flashcards) |
+| 54 | Does `^(a+)+$` cause catastrophic backtracking in `java.util.regex`? | [Java Regular Expressions](../../02-java/language-core/java-regular-expressions.md#flashcards) |
 
 ---
 

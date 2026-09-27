@@ -1,0 +1,29 @@
+$ javac -d out src/FileIoDemo.java
+$ java -cp out FileIoDemo
+
+Working directory: /var/folders/dz/948b57792ggdyln29dh25xw40000gn/T/file-io-demo6077745687991901092
+
+Demo A: Buffered vs. unbuffered reads (200,000 lines, 2,288,890 bytes)
+Unbuffered read() char-by-char: 79 ms (2288890 chars)
+Buffered   read() char-by-char: 17 ms (2288890 chars)
+Speedup: 4.6x
+
+Demo B: charset mismatch (source string: "café résumé naïve")
+Written as UTF-8, size on disk: 21 bytes (source string is 17 chars)
+Read back with the SAME charset (UTF-8):     "café résumé naïve" -- correct, round-trips exactly
+Read back with the WRONG charset (ISO-8859-1): "cafÃ© rÃ©sumÃ© naÃ¯ve" -- silent corruption, no exception thrown
+Matches original? UTF-8 read: true | ISO-8859-1 read: false
+
+Demo C: suppressed exceptions in try-with-resources
+Caught primary exception: body failed before close() ever ran
+  Suppressed (from close()): close() also failed
+
+Demo D: NIO.2 (java.nio.file) basics
+Files.write() wrote 3 lines; Files.exists(): true
+Files.readAllLines() returned: [first line, second line, third line]
+Files.size(): 34 bytes
+Matches what was written? true
+
+# Environment: OpenJDK 21.0.12 (Homebrew), macOS (Darwin 27.0.0)
+# The exact millisecond counts in Demo A are timing-dependent and will vary by run and
+# machine; the qualitative result (buffered is measurably faster) reproduces reliably.

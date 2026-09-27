@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Java File I/O and NIO.2, T-2429; Java Regular Expressions, T-2430, 2026-09-26)
+
+- User shared a generic "27 Java/Spring interview topics" checklist and asked whether all points were covered "bien detallados" in the questions section. Audited via grep: 25 of 27 already covered, several far deeper than the checklist. Two real, zero-coverage gaps found: `java.io`/`java.nio.file` (no dedicated chapter, only incidental mentions) and `java.util.regex` (zero mentions anywhere in the syllabus or question bank).
+- New `syllabus/02-java/language-core/java-file-io-and-nio2.md` (T-2429): real demo (`practice/java/language-core/java-file-io-and-nio2/`) measuring a 4.6x buffered-vs-unbuffered read speedup, a real silent UTF-8-vs-ISO-8859-1 mojibake corruption, and a real captured suppressed exception from a `try`-with-resources double failure.
+- New `syllabus/02-java/language-core/java-regular-expressions.md` (T-2430): real demo (`practice/java/language-core/java-regular-expressions/`) measuring a 5.3x `Pattern`-precompilation speedup, a real possessive-vs-greedy match-result divergence, and real, measured exponential catastrophic-backtracking growth (34ms to 13.4 seconds, n=10 to 19) from an adjacent-quantifier pattern — while also honestly recording that the textbook `(a+)+`/`(a|aa)+` "evil regex" shapes did NOT reproduce blowup on this JDK, a verified current finding rather than assumed folklore.
+- New cheat sheets, flashcard decks, and question-bank entries (`syllabus/20-interview-preparation/question-bank/02-java-language-core.md`) for both chapters.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (Spring and Spring Boot Fundamentals, T-2213, 2026-09-26)
 
 - User shared a 20-question "Spring Fundamentals" interview checklist (IoC, DI, beans, bean lifecycle, bean scopes, stereotype annotations, `@Autowired` internals, `@Primary`/`@Qualifier`, `@SpringBootApplication`, auto-configuration, starters, profiles) and asked for each explained per seniority level. Audited via grep: every concept was already taught in this domain's prose, but none existed as an actual, seniority-tiered interview question — this domain's Interview Questions sections all skip straight to intermediate/advanced scenarios.
