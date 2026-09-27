@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../17-architecture/INDEX.md
   - 16-performance-jvm.md
@@ -17,11 +17,14 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 9 chapters yielded 28 deep questions + 28 quick-fire
-questions = **56 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 10 chapters yielded 30 deep questions + 31 quick-fire
+questions = **61 real questions**. No Junior Fundamentals chapter exists in this
 domain — architecture presupposes backend fundamentals already covered elsewhere.
 `clean-hexagonal-architecture.md` genuinely has 10 deep questions (not a leveled
 Junior/Mid template — the plain template with more Q&A pairs than usual).
+(Updated 2026-09-27: Domain Events vs. Integration Events had a complete Interview
+Questions section never indexed — a stale-index gap, not a content gap. Added 2
+questions + 3 quick-fire cards.)
 
 ---
 
@@ -313,6 +316,28 @@ Junior/Mid template — the plain template with more Q&A pairs than usual).
 
 ---
 
+## Domain Events vs. Integration Events
+
+### Q1 — Your team's aggregate publishes a domain event that another team's service has started consuming directly off the broker. Is that a problem, and if so, what would you do?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../17-architecture/domain-events-vs-integration-events.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats it as acceptable since "it works today" — the common mistake this question targets.
+- **Senior:** Recognizes yes, this is a real risk: the other team now depends on a shape your team never promised to keep stable; names the fix — introduce a translation boundary and a real, versioned integration event, then migrate the consumer onto it.
+- **Staff:** Discusses how to detect this pattern organizationally (schema registry access logs, contract-testing coverage) before it causes an incident, not just how to remediate one instance.
+
+### Q2 — Why might a domain event and its corresponding integration event legitimately have different fields, not just different names for the same fields?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../17-architecture/domain-events-vs-integration-events.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes identical fields always, i.e. that the translation boundary only renames fields and never drops them — the common mistake this question targets.
+- **Senior:** States that a domain event can carry internal-only details (audit fields, internal identifiers, convenience denormalizations) that no external consumer needs or should see, and gives a concrete example of a field that should be dropped (this chapter's demo: `loyaltyPointsEarned`).
+- **Staff:** Connects this to minimizing public API surface area generally, and the cost of accidentally over-exposing internal detail that then becomes de facto load-bearing for external consumers.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -345,6 +370,9 @@ Junior/Mid template — the plain template with more Q&A pairs than usual).
 | 26 | Why does "this code is messy" usually fail to persuade a stakeholder? | [Technical Debt and Evolutionary Architecture](../../17-architecture/technical-debt-and-evolutionary-architecture.md#flashcards) |
 | 27 | Give a concrete, minimal example of a fitness function. | [Technical Debt and Evolutionary Architecture](../../17-architecture/technical-debt-and-evolutionary-architecture.md#flashcards) |
 | 28 | Why doesn't a good architecture review at project kickoff prevent this kind of coupling? | [Technical Debt and Evolutionary Architecture](../../17-architecture/technical-debt-and-evolutionary-architecture.md#flashcards) |
+| 29 | What's the real difference between a domain event and an integration event? | [Domain Events vs. Integration Events](../../17-architecture/domain-events-vs-integration-events.md#flashcards) |
+| 30 | What real, measured evidence shows publishing a domain event directly as an external message is dangerous? | [Domain Events vs. Integration Events](../../17-architecture/domain-events-vs-integration-events.md#flashcards) |
+| 31 | Does a translation boundary between a domain event and an integration event only rename fields? | [Domain Events vs. Integration Events](../../17-architecture/domain-events-vs-integration-events.md#flashcards) |
 
 ---
 

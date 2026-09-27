@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-14
+last_updated: 2026-09-27
 related:
   - ../../21-frontend-web/INDEX.md
   - 21-frontend-web-react.md
@@ -25,10 +25,12 @@ TypeScript, browser fundamentals, security, and cross-cutting practice — 7 cha
 [`21-frontend-web-react.md`](21-frontend-web-react.md) (14 chapters), and
 [`21-frontend-web-nextjs.md`](21-frontend-web-nextjs.md) (17 chapters).
 
-**Honest count for this file:** 7 chapters yielded 15 deep questions + 23 quick-fire
-questions = **38 real questions**. No Junior Fundamentals chapter in this specific
+**Honest count for this file:** 8 chapters yielded 17 deep questions + 26 quick-fire
+questions = **43 real questions**. No Junior Fundamentals chapter in this specific
 group, though the frontend domain overall spans the full Junior–Staff ladder per its
-Scope Addendum in `CLAUDE.md`.
+Scope Addendum in `CLAUDE.md`. (Updated 2026-09-27: `service-workers-and-pwa-caching-strategies.md`
+had a complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions + 3 quick-fire cards.)
 
 ---
 
@@ -195,6 +197,28 @@ Scope Addendum in `CLAUDE.md`.
 
 ---
 
+## Service Workers and PWA Caching Strategies
+
+### Q1 — Your team just added a service worker to cache API responses. A user reports seeing week-old data even though they have a good connection. What's your first hypothesis?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../21-frontend-web/service-workers-and-pwa-caching-strategies.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes the service worker itself is malfunctioning — the common mistake this question targets.
+- **Senior:** Correctly identifies the endpoint is likely using a cache-first strategy when it should use network-first, so it never re-checks the network once cached, regardless of connectivity.
+- **Staff:** Discusses cache versioning/invalidation as the immediate mitigation versus fixing the strategy choice as the permanent remediation.
+
+### Q2 — Does having a service worker mean your app works offline?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../21-frontend-web/service-workers-and-pwa-caching-strategies.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Claims "yes" without qualification — the common mistake this question targets.
+- **Senior:** Correctly states only requests matching a caching strategy that actually populates and reads from the cache survive being offline; anything else fails exactly as it would with no service worker.
+- **Staff:** Discusses how to systematically test genuine offline behavior across every route an app depends on, rather than assuming coverage from a successful service-worker registration alone.
+
+---
+
 ## Quick-fire questions (from this file's chapters' Flashcards)
 
 | # | Question | Canonical chapter |
@@ -222,6 +246,9 @@ Scope Addendum in `CLAUDE.md`.
 | 21 | Why does a WebSocket reconnect wrapper use increasing delays (backoff) instead of retrying immediately? | [WebSocket and SSE for Real-Time UI](../../21-frontend-web/websocket-and-server-sent-events-for-realtime-ui.md#flashcards) |
 | 22 | Name the two distinct frontend live-coding round formats and each one's primary risk. | [Frontend Live-Coding & Debugging Protocol](../../21-frontend-web/frontend-live-coding-and-debugging-protocol.md#flashcards) |
 | 23 | Which phase of the frontend-adapted protocol is the single highest-leverage, most frequently skipped phase? | [Frontend Live-Coding & Debugging Protocol](../../21-frontend-web/frontend-live-coding-and-debugging-protocol.md#flashcards) |
+| 24 | If a page registers a service worker for the first time, does that same page load's own resource requests get intercepted by it? | [Service Workers and PWA Caching Strategies](../../21-frontend-web/service-workers-and-pwa-caching-strategies.md#flashcards) |
+| 25 | What's the actual trade-off difference between cache-first and network-first, not just the mechanical order of operations? | [Service Workers and PWA Caching Strategies](../../21-frontend-web/service-workers-and-pwa-caching-strategies.md#flashcards) |
+| 26 | What did a real demo prove about offline support with a service worker? | [Service Workers and PWA Caching Strategies](../../21-frontend-web/service-workers-and-pwa-caching-strategies.md#flashcards) |
 
 ---
 

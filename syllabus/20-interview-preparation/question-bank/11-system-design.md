@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../11-system-design/INDEX.md
   - 10-distributed-systems.md
@@ -17,9 +17,12 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 9 chapters yielded 18 deep questions + 30 quick-fire
-questions = **48 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 10 chapters yielded 20 deep questions + 30 quick-fire
+questions = **50 real questions**. No Junior Fundamentals chapter exists in this
 domain — system design presupposes backend fundamentals already covered elsewhere.
+(Updated 2026-09-27: `system-design-patterns-recognition-and-quick-reference.md` had
+a complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions; no Flashcards section in that chapter to mine.)
 
 ---
 
@@ -218,6 +221,28 @@ domain — system design presupposes backend fundamentals already covered elsewh
 - **Junior/Mid:** Presents a bare final number with no visible reasoning — the common mistake this question targets.
 - **Senior:** Produces the worked estimate with every assumption stated.
 - **Staff:** Revises live when challenged and shows the downstream architectural consequence of the changed assumption (e.g., "at 5x peak, the single-cache design might need to become a sharded cache").
+
+---
+
+## System Design Patterns: Recognition and Quick-Reference Guide
+
+### Q1 — A search endpoint is getting slow under load. Before proposing a fix, what would you ask, and what pattern would you expect to reach for?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../11-system-design/system-design-patterns-recognition-and-quick-reference.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Jumps straight to "add a cache" without first checking whether the bottleneck is actually read-repetition versus an unindexed scan — the common mistake this question targets.
+- **Senior:** Asks a clarifying question first (does the same query repeat often? is load spread across enough instances? is the search itself doing a slow scan?), then names the specific pattern the answer points to, distinguishing it from the other plausible candidates.
+- **Staff:** Notes a real slow endpoint often needs more than one pattern simultaneously (e.g., both an inverted index AND caching of common queries), and discusses how to prioritize which to build first based on measured impact.
+
+### Q2 — How do rate limiting and a circuit breaker differ, given both exist to "protect" something under load?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../11-system-design/system-design-patterns-recognition-and-quick-reference.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats the two as interchangeable "protection" mechanisms — the common mistake this question targets.
+- **Senior:** States the proactive-vs-reactive distinction — rate limiting bounds how much load a caller sends regardless of the callee's health, a circuit breaker reacts to observed failures from the callee — and gives a concrete example of needing both at once.
+- **Staff:** Discusses where each belongs architecturally in a real request path (rate limiting typically at the edge/gateway, circuit breakers typically at each service-to-service call site).
 
 ---
 

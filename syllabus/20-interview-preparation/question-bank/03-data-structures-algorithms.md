@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../03-data-structures-algorithms/INDEX.md
   - 02-java-language-core.md
@@ -18,7 +18,11 @@ Part of the multi-domain compendium. See
 `00-project/interview-question-bank-plan.md` for the full 22-domain plan and
 sourcing discipline.
 
-**Honest count for this domain:** 18 chapters yielded 36 deep questions. This domain
+**Honest count for this domain:** 20 chapters yielded 40 deep questions. (Updated
+2026-09-27: `coding-interview-pattern-recognition-methodology.md` and
+`matrix-and-grid-traversal-patterns.md` had complete Interview Questions sections
+never indexed — a stale-index gap, not a content gap. Added 4 questions; neither
+chapter has a Flashcards section.) This domain
 has **no Flashcards sections at all** — its chapters follow the Coding Interview
 Standard template (recognition signals, brute force, optimized approach, complexity,
 edge cases) rather than the canonical Handbook Chapter template, so there's no
@@ -424,6 +428,50 @@ solution) rather than invented as a separate, simpler question.
 - **Junior/Mid:** Recognizes this is faster than O(n²) brute force, without producing the full binary-trie solution unprompted.
 - **Senior:** Produces the binary-trie solution and explains why greedily preferring the opposite bit at each level is provably optimal.
 - **Staff:** Connects binary tries to a real system application — IP routing's longest-prefix-match.
+
+---
+
+## Coding Interview Pattern-Recognition Methodology
+
+### Q1 — Walk me through how you'd approach a coding problem you've never seen before.
+
+**Canonical treatment:** [§15](../../03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Mentions reading the problem carefully and starting with a brute force, without a named repeatable method.
+- **Senior:** States the five-step method by name (understand → signals → brute force → optimize → verify), and can point at specific signals (constraint size, keywords like "contiguous" or "shortest path") that route to specific patterns.
+- **Staff:** Connects the same method to real production algorithm selection — evaluating a teammate's PR that introduces an O(n²) loop over a collection whose size assumptions might not hold in a year.
+
+### Q2 — A teammate's code passes all tests but times out on the hidden large-input test case. How do you debug that?
+
+**Canonical treatment:** [§15](../../03-data-structures-algorithms/coding-interview-pattern-recognition-methodology.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Suggests checking the algorithm's Big-O against the input size, without a structured diagnostic approach.
+- **Senior:** Asks what the actual input bound is, computes what complexity class that bound requires, and compares it against the submitted solution's real complexity to locate the mismatch precisely.
+- **Staff:** Frames this as exactly the same review a Staff engineer performs on a production PR before merge, not a skill that only applies to interview timers.
+
+---
+
+## Matrix and Grid Traversal Patterns
+
+### Q1 — How would you rotate an N×N matrix 90 degrees clockwise, in place?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../03-data-structures-algorithms/matrix-and-grid-traversal-patterns.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Produces a correct rotation, even via a second allocated matrix rather than truly in-place.
+- **Senior:** Transposes the matrix then reverses each row in place, and can derive/explain why this composition specifically produces a clockwise (not counter-clockwise) rotation.
+- **Staff:** Recognizes this as a specific instance of composing two simpler in-place transforms to achieve a more complex one without extra memory, and can name another example of the same idea.
+
+### Q2 — Your recursive "Number of Islands" solution passes every test case you can think of. Are you confident it's production-ready?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../03-data-structures-algorithms/matrix-and-grid-traversal-patterns.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats "it works on LeetCode's test cases" as equivalent to "it's production-ready" — the common mistake this question targets.
+- **Senior:** No — a recursive flood fill's call-stack depth scales with the largest single connected region, not the grid's overall dimensions; a sufficiently large real region can trigger a real `StackOverflowError` regardless of how many small-grid unit tests pass. Proposes an iterative, `ArrayDeque`-based fix.
+- **Staff:** Generalizes to the broader principle: any recursive traversal over externally-supplied or unbounded-shape data carries an implicit depth assumption worth stating and defending explicitly during design review.
 
 ---
 

@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-14
+last_updated: 2026-09-27
 related:
   - ../INDEX.md
   - 01-computer-science-foundations.md
@@ -31,9 +31,12 @@ normally. `mock-interviews/` and `company-prep/` are reference-only per this dom
 own `INDEX.md` and were not mined (private/non-canonical, per the domain's Phase 3
 migration notes).
 
-**Honest count for this domain:** 6 chapters yielded 12 deep questions + 16 quick-fire
-questions = **28 real questions**. No Junior Fundamentals chapter — this material
-targets Senior/Staff interview delivery specifically.
+**Honest count for this domain:** 7 chapters yielded 14 deep questions + 19 quick-fire
+questions = **33 real questions**. No Junior Fundamentals chapter — this material
+targets Senior/Staff interview delivery specifically. (Updated 2026-09-27:
+`project-ownership-narrative.md` had a complete Interview Questions section never
+indexed — a stale-index gap, not a content gap. Added 2 questions + 3 quick-fire
+cards.)
 
 ---
 
@@ -169,6 +172,28 @@ targets Senior/Staff interview delivery specifically.
 
 ---
 
+## Project Ownership Narrative
+
+### Q1 — "Walk me through a project you built, from initial design through how you supported it after launch."
+
+**Canonical treatment:** [§ Interview Questions, Q1](../technical-answers/project-ownership-narrative.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Only covers Develop, or lists technologies instead of narrating the lifecycle — the common mistake this question targets.
+- **Senior:** All four phases (Design, Develop, Deploy, Support) present with specific detail, including a real trade-off in Design and a real production signal in Support, at a scope matching "owned the service."
+- **Staff:** Frames the story's highest-value contribution as a decision, standard, or pattern that affected more than the candidate's own individual output.
+
+### Q2 — "How would this same story sound different if you were interviewing for a more senior role than the one you actually held at the time?"
+
+**Canonical treatment:** [§ Interview Questions, Q2](../technical-answers/project-ownership-narrative.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Interprets the question as permission to inflate the story rather than reframe emphasis on the same real facts — the common mistake this question targets.
+- **Senior:** Names specifically which parts of the story would shift emphasis at a more senior framing, without changing the underlying facts.
+- **Staff:** Explicitly distinguishes "the same facts, told with different emphasis" from "a bigger, embellished version," and can articulate why interviewers can usually tell the difference.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -189,6 +214,9 @@ targets Senior/Staff interview delivery specifically.
 | 14 | Name the four beats of trade-off narration, in order. | [Trade-off Narration and ADRs](../technical-answers/trade-off-narration-and-adrs.md#flashcards) |
 | 15 | Which beat does the named interview feedback specifically target? | [Trade-off Narration and ADRs](../technical-answers/trade-off-narration-and-adrs.md#flashcards) |
 | 16 | What's an ADR? | [Trade-off Narration and ADRs](../technical-answers/trade-off-narration-and-adrs.md#flashcards) |
+| 17 | Name the four phases of a complete project-ownership narrative, in order. | [Project Ownership Narrative](../technical-answers/project-ownership-narrative.md#flashcards) |
+| 18 | When the same real project is narrated at a higher seniority level, what actually changes? | [Project Ownership Narrative](../technical-answers/project-ownership-narrative.md#flashcards) |
+| 19 | Why is the Support phase the most revealing part of this kind of answer? | [Project Ownership Narrative](../technical-answers/project-ownership-narrative.md#flashcards) |
 
 ---
 

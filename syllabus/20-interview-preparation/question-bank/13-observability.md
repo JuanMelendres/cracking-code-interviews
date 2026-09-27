@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../13-observability/INDEX.md
   - 12-security.md
@@ -17,10 +17,13 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 5 chapters yielded 10 deep questions + 14 quick-fire
-questions = **24 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 6 chapters yielded 12 deep questions + 14 quick-fire
+questions = **26 real questions**. No Junior Fundamentals chapter exists in this
 domain — observability presupposes backend fundamentals already covered elsewhere.
-This is a genuinely small domain (5 chapters).
+This is a genuinely small domain (6 chapters). (Updated 2026-09-27:
+`chaos-engineering-fault-injection-and-resilience-verification.md` had a complete
+Interview Questions section never indexed — a stale-index gap, not a content gap.
+Added 2 questions; no Flashcards section in that chapter.)
 
 ---
 
@@ -131,6 +134,28 @@ This is a genuinely small domain (5 chapters).
 - **Junior/Mid:** States the timeout should come from real latency data, without connecting it to a named signal.
 - **Senior:** Connects RED's Duration signal to percentile selection — from a high percentile (p99), not a round number.
 - **Staff:** Notes that a closed-loop-measured Duration distribution would understate the real tail (per coordinated omission), meaning a timeout set from that data could be miscalibrated — tying resilience, percentiles, and RED into one coherent answer.
+
+---
+
+## Chaos Engineering, Fault Injection, and Resilience Verification
+
+### Q1 — Your team has a circuit breaker around a payment dependency and an SLO alert for checkout failures. How would you find out whether either actually works, without waiting for a real outage?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../13-observability/chaos-engineering-fault-injection-and-resilience-verification.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Suggests "more thorough staging tests" as equivalent — the common mistake this question targets, since staging's traffic and failure patterns don't match production's.
+- **Senior:** Names running a real, scoped chaos experiment — injecting a real failure at a minimized blast radius, and observing whether the circuit breaker trips and the alert fires as claimed.
+- **Staff:** Discusses moving from a one-time manual game day to automated, recurring experiments, and the organizational buy-in required to run experiments against real production traffic safely.
+
+### Q2 — What's the difference between a chaos experiment and a circuit breaker?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../13-observability/chaos-engineering-fault-injection-and-resilience-verification.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes them as the same thing, or as alternatives to each other rather than complementary — the common mistake this question targets.
+- **Senior:** Correctly explains a circuit breaker is the resilience implementation reacting to a real failure at runtime; a chaos experiment deliberately triggers a real failure on purpose to verify the breaker (and its alerting) actually works.
+- **Staff:** Connects this to why chaos engineering sits in the observability domain, not purely resilience/architecture — its real value is verifying the detection chain, not just the failover code.
 
 ---
 

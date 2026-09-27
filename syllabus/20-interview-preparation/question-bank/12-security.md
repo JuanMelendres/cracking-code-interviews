@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../12-security/INDEX.md
   - 11-system-design.md
@@ -17,8 +17,11 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 9 chapters yielded 18 deep questions + 28 quick-fire
-questions = **46 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 11 chapters yielded 22 deep questions + 32 quick-fire
+questions = **54 real questions**. (Updated 2026-09-27: `authentication-attack-defense-brute-force-and-mfa.md`
+and `enterprise-sso-saml-and-federated-identity.md` had complete Interview Questions
+sections never indexed — a stale-index gap, not a content gap. Added 4 questions +
+4 quick-fire cards.) No Junior Fundamentals chapter exists in this
 domain. Eight of nine chapters use a plain-bold-question Flashcards format
 (`**Q: ...** / A: ...`) rather than the `### Card:` template; only
 `oauth2-oidc-and-jwt.md` uses the standard template. Eight of nine deep-question
@@ -227,6 +230,50 @@ Junior/Mid candidate actually makes), matching the same derivation method used f
 
 ---
 
+## Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA
+
+### Q1 — Your system has account lockout after 5 failed attempts. Is that sufficient authentication defense?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../12-security/authentication-attack-defense-brute-force-and-mfa.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Says lockout is sufficient — the common mistake this question targets.
+- **Senior:** Names credential stuffing specifically: lockout only stops brute force/guessing, doing nothing against a stolen-but-correct password, which generates zero failures.
+- **Staff:** Discusses which account tiers should get mandatory MFA and the friction/risk trade-off behind that decision.
+
+### Q2 — Explain how TOTP-based MFA actually works, without saying "it generates a random code."
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../12-security/authentication-attack-defense-brute-force-and-mfa.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes the code as random or server-pushed rather than independently computed — the common mistake this question targets.
+- **Senior:** Correctly describes HOTP's HMAC-based counter mechanism wrapped by TOTP's time-step rule (RFC 6238), and why enrollment is the security-critical moment.
+- **Staff:** Discusses clock-skew tolerance trade-offs and real-time phishing (an attacker relaying a live TOTP code) as MFA's own residual attack surface.
+
+---
+
+## Enterprise SSO, SAML, and Federated Identity
+
+### Q1 — What's the actual difference between SSO and Federated SSO, and why does it matter which one you're building?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../12-security/enterprise-sso-saml-and-federated-identity.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats the two terms as fully interchangeable — the common mistake this question targets.
+- **Senior:** Names the actual mechanism difference (shared session/cookie vs. a portable signed assertion/token validated independently) with a concrete example of each.
+- **Staff:** Connects the distinction to a real integration-planning decision — federating against an external partner requires a genuine security review and formal trust-establishment process internal SSO never needs.
+
+### Q2 — How would you integrate a Spring Boot application with an enterprise SAML identity provider like PingFederate?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../12-security/enterprise-sso-saml-and-federated-identity.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes only the OIDC/OAuth2 flow when specifically asked about SAML — the common mistake this question targets.
+- **Senior:** Names the real dependency (`spring-security-saml2-service-provider`) and `application.yml` structure without needing to look it up.
+- **Staff:** Discusses the operational side beyond initial setup — IdP certificate rotation monitoring, clock-skew tolerance, and the coordination cost across application engineering and enterprise identity teams.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -259,6 +306,10 @@ Junior/Mid candidate actually makes), matching the same derivation method used f
 | 26 | Why is reviewing only a project's directly-declared dependencies insufficient for supply-chain risk assessment? | [Supply Chain Security, SBOM, Dependency Risk](../../12-security/supply-chain-security-sbom-and-dependency-risk.md#flashcards) |
 | 27 | What did the real docker scout scan against `eclipse-temurin:21-jre` find? | [Supply Chain Security, SBOM, Dependency Risk](../../12-security/supply-chain-security-sbom-and-dependency-risk.md#flashcards) |
 | 28 | Why should base-image vulnerability remediation typically be owned centrally rather than per-service? | [Supply Chain Security, SBOM, Dependency Risk](../../12-security/supply-chain-security-sbom-and-dependency-risk.md#flashcards) |
+| 29 | What's the precise difference between SSO and Federated SSO? | [Enterprise SSO, SAML, and Federated Identity](../../12-security/enterprise-sso-saml-and-federated-identity.md#flashcards) |
+| 30 | What is a SAML Assertion, mechanically? | [Enterprise SSO, SAML, and Federated Identity](../../12-security/enterprise-sso-saml-and-federated-identity.md#flashcards) |
+| 31 | Why can't a bare OAuth2 access token be used to reliably identify a user? | [Enterprise SSO, SAML, and Federated Identity](../../12-security/enterprise-sso-saml-and-federated-identity.md#flashcards) |
+| 32 | Beyond checking the signature, what else must a Service Provider validate on an incoming SAML assertion? | [Enterprise SSO, SAML, and Federated Identity](../../12-security/enterprise-sso-saml-and-federated-identity.md#flashcards) |
 
 ---
 

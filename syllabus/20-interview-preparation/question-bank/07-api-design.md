@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../07-api-design/INDEX.md
   - 05-spring.md
@@ -17,10 +17,13 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 5 chapters yielded 8 deep questions + 9
+**Honest count for this domain:** 8 chapters yielded 14 deep questions + 9
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `rest-api-fundamentals.md`) + 12 quick-fire questions = **29 real
-questions**.
+chapter, `rest-api-fundamentals.md`) + 20 quick-fire questions = **43 real
+questions**. (Updated 2026-09-27: `api-versioning-strategies.md`,
+`openapi-and-contract-first-api-design.md`, and `webhook-design-and-delivery-guarantees.md`
+had complete Interview Questions sections never indexed — a stale-index gap, not
+a content gap. Added 6 questions + 8 quick-fire cards.)
 
 ---
 
@@ -190,6 +193,72 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 
 ---
 
+## API Versioning Strategies (T-919)
+
+### Q1 — Your team migrated from URI-path versioning to header-based versioning. What real failure mode should you expect from that migration, and why?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../07-api-design/api-versioning-strategies.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes there's a sensible default version returned automatically when the header is missing — the common mistake this question targets.
+- **Senior:** Correctly predicts that any existing caller that never sends the new `Api-Version` header gets a real `404` from Spring's `headers` request condition having no matching handler — not a default version, not a descriptive error — and proposes an explicit default-version fallback or a transition period keeping both schemes live.
+- **Staff:** Frames this as an organizational rollout risk (which teams/clients haven't migrated yet) rather than only a technical dispatch detail.
+
+### Q2 — A caller hits your media-type-versioned endpoint with `Accept: */*`. What real HTTP status do they get, and why does that matter?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../07-api-design/api-versioning-strategies.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes an ambiguous `Accept` header is rejected outright (a `406`) — the common mistake this question targets.
+- **Senior:** Correctly predicts a real `200`, not a `406` — content negotiation resolves the generic `Accept` against whichever version-specific `produces` handler it matches first, silently — and can name the underlying reason (content negotiation is designed to always find something acceptable).
+- **Staff:** Connects this to a broader API-contract-clarity principle: any mechanism that resolves ambiguity silently, rather than rejecting it, defers a real bug to whoever debugs the resulting confusion later.
+
+---
+
+## OpenAPI and Contract-First API Design (T-2414)
+
+### Q1 — A hand-written Swagger doc and the real API you're documenting have drifted apart. How does that happen, and how would you prevent it?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../07-api-design/openapi-and-contract-first-api-design.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes "more frequent manual reviews" of the hand-written doc as the fix, rather than removing the manual step entirely — the common mistake this question targets.
+- **Senior:** Recognizes that a hand-written spec is a second artifact with no mechanism forcing it to track the real code, and proposes annotation-driven generation (e.g., springdoc), describing the basic mechanism (reading `@GetMapping` and DTO fields).
+- **Staff:** Frames this as an organizational tooling decision — consistent generation across every team's APIs, published to a shared catalog — rather than a single-API fix.
+
+### Q2 — Your validation annotation (`@Min(1)`) and your API documentation both need to say "amount must be at least 1." How do you avoid maintaining that fact twice?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../07-api-design/openapi-and-contract-first-api-design.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes `@Schema` annotations are the only way to express constraints in the spec, duplicating what `@Min`/`@NotBlank` already provide — the common mistake this question targets.
+- **Senior:** Names the specific mechanism — `jakarta.validation` constraints like `@Min(1)` are read by the spec generator too, becoming a real `"minimum": 1` in the generated schema with zero OpenAPI-specific syntax added — with a concrete before/after example.
+- **Staff:** Connects this to the broader principle of a single source of truth: the fewer places a fact is expressed, the fewer places it can silently disagree with reality.
+
+---
+
+## Webhook Design and Delivery Guarantees (T-2415)
+
+### Q1 — How does a webhook receiver know a request really came from the claimed provider, and not an attacker who found the URL?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../07-api-design/webhook-design-and-delivery-guarantees.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats a hard-to-guess URL as sufficient security — the common mistake this question targets.
+- **Senior:** Correctly names HMAC signature verification — the provider computes a hash of the payload using a shared secret and sends it as a header; the receiver recomputes it and compares using a constant-time comparison to avoid a timing side-channel — and knows it proves authenticity/integrity but not confidentiality.
+- **Staff:** Discusses secret rotation and what happens to in-flight signed requests during a rotation.
+
+### Q2 — Why can a webhook be delivered twice for the same logical event, and whose responsibility is it to handle that?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../07-api-design/webhook-design-and-delivery-guarantees.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes a provider's "retry" mechanism implies duplicates are the provider's bug to fix, rather than an inherent property of at-least-once delivery — the common mistake this question targets.
+- **Senior:** Explains that a provider can't always know for certain a delivery was processed (a response can be lost even after successful processing), so it retries rather than risk losing an event, and correctly places deduplication responsibility on the receiver, using the provider's delivery ID.
+- **Staff:** Connects this to the general distributed-systems principle that exactly-once delivery is not achievable without idempotent processing on the receiving side.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 `rest-api-fundamentals.md` has no Flashcards section (it uses the leveled Q1-Q9
@@ -209,6 +278,14 @@ format above instead).
 | 10 | Why does gRPC avoid the "client and server interpret the contract independently" risk REST + JSON has? | [gRPC API Design](../../07-api-design/grpc-api-design.md#flashcards) |
 | 11 | How do you tell gRPC's four call shapes apart from a `.proto` file? | [gRPC API Design](../../07-api-design/grpc-api-design.md#flashcards) |
 | 12 | What concretely goes wrong if an internal gRPC call has no deadline? | [gRPC API Design](../../07-api-design/grpc-api-design.md#flashcards) |
+| 13 | What real HTTP status does a header-versioned endpoint return when the version header is missing entirely? | [API Versioning Strategies](../../07-api-design/api-versioning-strategies.md#flashcards) |
+| 14 | Does a generic `Accept: */*` fail on a media-type-versioned endpoint? | [API Versioning Strategies](../../07-api-design/api-versioning-strategies.md#flashcards) |
+| 15 | Why can't a spec generated by a tool like springdoc silently drift from the API's real behavior? | [OpenAPI and Contract-First API Design](../../07-api-design/openapi-and-contract-first-api-design.md#flashcards) |
+| 16 | What does `@Min(1)` become in a generated OpenAPI schema? | [OpenAPI and Contract-First API Design](../../07-api-design/openapi-and-contract-first-api-design.md#flashcards) |
+| 17 | What real dependency gap did this chapter's lab find in springdoc before generation worked? | [OpenAPI and Contract-First API Design](../../07-api-design/openapi-and-contract-first-api-design.md#flashcards) |
+| 18 | What does an HMAC webhook signature actually prove, and what does it NOT provide? | [Webhook Design and Delivery Guarantees](../../07-api-design/webhook-design-and-delivery-guarantees.md#flashcards) |
+| 19 | Should a webhook sender retry a `401` the same way it retries a `503`? | [Webhook Design and Delivery Guarantees](../../07-api-design/webhook-design-and-delivery-guarantees.md#flashcards) |
+| 20 | Why do real webhook providers guarantee "at least once" delivery instead of "exactly once"? | [Webhook Design and Delivery Guarantees](../../07-api-design/webhook-design-and-delivery-guarantees.md#flashcards) |
 
 ---
 

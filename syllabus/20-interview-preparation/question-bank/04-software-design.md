@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../04-software-design/INDEX.md
   - 03-data-structures-algorithms.md
@@ -17,10 +17,13 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 3 chapters (`design-patterns-applied.md`,
-`ood-interview-problems.md`, `solid-principles.md`) yielded 6 deep questions + 4
-quick-fire questions = **10 real questions** — the smallest domain covered so far,
-genuinely reflecting the domain's real size (only 3 canonical chapters exist here).
+**Honest count for this domain:** 4 chapters (`design-patterns-applied.md`,
+`ood-interview-problems.md`, `solid-principles.md`, `coupling-cohesion-and-code-smells.md`)
+yielded 8 deep questions + 4 quick-fire questions = **12 real questions** — one of
+the smallest domains covered, genuinely reflecting the domain's real size. (Updated
+2026-09-27: `coupling-cohesion-and-code-smells.md` had a complete Interview Questions
+section never indexed — a stale-index gap, not a content gap. Added 2 questions; no
+Flashcards section in that chapter.)
 No Junior Fundamentals chapter exists in this domain; the object-oriented design
 reasoning these chapters teach presupposes the OOP fundamentals already covered in
 `02-java/language-core`.
@@ -106,6 +109,28 @@ two chapters (`solid-principles.md`, `ood-interview-problems.md`) don't.
 | 2 | Why is `if (instance == null) instance = new X();` not thread-safe? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
 | 3 | For `N` independent optional behaviors, how many classes does Decorator need, versus subclassing? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
 | 4 | Which Singleton implementation is thread-safe with zero hand-written synchronization code? | [Design Patterns Applied (GoF in Production)](../../04-software-design/design-patterns-applied.md#flashcards) |
+
+---
+
+## Coupling, Cohesion, and Code Smells
+
+### Q1 — A `ReportBuilder` class validates report parameters, queries the database directly via a hardcoded JDBC connection, formats the result as HTML, and emails it to a distribution list — all in one class. What's wrong, and how would you describe it precisely?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../04-software-design/coupling-cohesion-and-code-smells.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes the problem only as "it does too much" without the specific vocabulary ("low cohesion," "God Class") an interviewer is listening for.
+- **Senior:** Correctly names this a cohesion problem — a God Class whose honest one-sentence description needs "and" four times — and proposes decomposing along the four independent responsibilities into separate classes coordinated by a thin orchestrator.
+- **Staff:** Names the hardcoded JDBC connection as a *separate*, layered coupling problem (a DIP violation), and discusses when decomposing this far is worth it versus a smaller, targeted fix.
+
+### Q2 — Code review finds `shipment.getOrder().getCustomer().getPreferredCarrier()` duplicated in three files. Is this worth flagging, and why?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../04-software-design/coupling-cohesion-and-code-smells.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Flags it purely as "long method chain, looks ugly" without connecting it to a concrete future-change risk.
+- **Senior:** Correctly identifies this as a Law of Demeter violation ("train wreck"), worth flagging specifically because it's duplicated — a future internal change to `Customer` requires editing all three files, versus one delegating method if fixed.
+- **Staff:** Weighs the fix's cost against its real payoff (duplication count, likelihood the reached-through structure changes) rather than applying the discipline as an absolute rule.
 
 ---
 

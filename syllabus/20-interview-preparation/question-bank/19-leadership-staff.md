@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../19-leadership-staff/INDEX.md
   - 18-engineering-practices.md
@@ -17,11 +17,15 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 7 chapters yielded 12 deep questions = **12 real
+**Honest count for this domain:** 8 chapters yielded 14 deep questions = **14 real
 questions**. No Junior Fundamentals chapter exists in this domain — this is
-inherently Senior/Staff-scoped material. All 7 chapters use the older numbered
+inherently Senior/Staff-scoped material. All 8 chapters use the older numbered
 `## 15. Interview Questions` template with **no Flashcards section at all**, so
 there is no lighter quick-fire layer to mine here, unlike most other domains.
+(Updated 2026-09-27: Handling Underperformance and Difficult Feedback had a
+complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions; no Flashcards section exists, so no quick-fire
+cards were added.)
 
 ---
 
@@ -66,6 +70,28 @@ there is no lighter quick-fire layer to mine here, unlike most other domains.
 - **Junior/Mid:** Describes a fix that was "we all agreed to try harder," with no structural change to decision rights, scope, or timeboxing — the common mistake this question targets.
 - **Senior:** Explicitly connects the observed symptom to a named failure mode (rubber-stamping, bikeshedding, unbounded cycles) and the specific structural fix that addressed the actual cause.
 - **Staff:** Discusses how the fix was rolled out as a durable team norm rather than a one-off intervention, and whether it required visibly modeling the new norm to take hold.
+
+---
+
+## Handling Underperformance and Difficult Feedback
+
+### Q1 — Tell me about a time you had to give someone difficult feedback about their performance.
+
+**Canonical treatment:** [§15, Q1](../../19-leadership-staff/handling-underperformance-and-difficult-feedback.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes only a positive-feedback story when asked specifically about a *difficult* one — a real, common redirect candidates attempt when uncomfortable with the actual question, the common mistake this question targets.
+- **Senior:** Gives a real, specific example naming the observed pattern (not a single incident), a private and prompt conversation leading with specific behavior rather than character judgment, explicitly separating observation from interpretation, and a concrete agreed-upon next step with a follow-up date.
+- **Staff:** Considers whether the individual problem had a systemic cause worth addressing at the team level, not just the individual level.
+
+### Q2 — How do you distinguish a genuine performance problem from a temporary rough patch?
+
+**Canonical treatment:** [§15, Q2](../../19-leadership-staff/handling-underperformance-and-difficult-feedback.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats any single missed deadline as grounds for a formal performance conversation — the common mistake this question targets.
+- **Senior:** States that a genuine performance problem is a recurring pattern of the same specific issue across multiple, distinct instances — not a single bad sprint, which nearly everyone has occasionally — and gives a concrete example of what counts as a pattern versus what doesn't.
+- **Staff:** Discusses asking directly about external causes (personal circumstances, unclear expectations) before assuming a skill or motivation problem, especially for a sudden change in a previously strong performer.
 
 ---
 

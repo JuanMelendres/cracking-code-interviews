@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-14
+last_updated: 2026-09-27
 related:
   - ../../22-ai-llm-engineering/INDEX.md
   - 21-frontend-web-nextjs.md
@@ -25,11 +25,13 @@ per chapter, one per tier from Junior/Mid through Staff) and **no Flashcards sec
 all** — the same pattern as `14-devops-containers`' Junior Fundamentals chapter, but
 applied uniformly across every chapter in this domain, since this is a genuinely new
 domain (added 2026-09-09) built with the leveled format from the start rather than
-retrofitted. 6 chapters × 5 leveled questions = **30 real questions**. No separate
-deep-question/quick-fire split exists here — each chapter's own 5 questions already
-span the full seniority ladder directly, so they're presented as one leveled set per
-chapter rather than forced into this compendium's usual 4-tier "What's expected"
-breakdown.
+retrofitted. 6 chapters × 5 leveled questions = 30 real questions, plus a 7th chapter
+(`prompt-injection-and-agentic-security.md`, added 2026-09-21, indexed 2026-09-27 —
+a stale-index gap, not a content gap) contributing 2 more deep questions in this
+compendium's usual "What's expected" format = **32 real questions** total. No separate
+deep-question/quick-fire split exists for the original 6 — each chapter's own 5
+questions already span the full seniority ladder directly, so they're presented as
+one leveled set per chapter rather than forced into the 4-tier breakdown.
 
 ---
 
@@ -186,6 +188,30 @@ breakdown.
 ### Q5 (Staff) — How do you know your golden dataset itself is still testing the right thing?
 
 **What's expected:** A golden dataset needs to be actively maintained as product requirements evolve — a stale dataset can pass every case while no longer reflecting what "correct" actually means for the current product, a real, permanent maintenance obligation, not a one-time setup cost.
+
+---
+
+## Prompt Injection and Agentic Security
+
+A 7th chapter, added 2026-09-21 (after this file's original 6) closing a gap-audit finding — it uses the newer full-standard `## Interview Questions` format (not the 5-leveled-question style above), so it's presented in this compendium's usual "What's expected" tier breakdown instead.
+
+### Q1 — What's the difference between direct and indirect prompt injection, and why is indirect injection the more dangerous one in an agentic system?
+
+**Canonical treatment:** [§15, Interview Questions, Q1](../../22-ai-llm-engineering/prompt-injection-and-agentic-security.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Only discusses direct injection, or treats the two as equivalent risks — the common mistake this question targets.
+- **Senior:** Correctly distinguishes direct injection (attacker text in the user-facing prompt) from indirect injection (embedded in content the agent retrieves on its own — tool output, documents, search results), naming indirect as more dangerous due to its larger, less visible attack surface.
+- **Staff:** Discusses defense-in-depth across a multi-agent pipeline, where each agent-to-agent hop is its own injection surface.
+
+### Q2 — Why is filtering tool output for suspicious phrases a weaker defense than never re-parsing it for instructions at all?
+
+**Canonical treatment:** [§15, Interview Questions, Q2](../../22-ai-llm-engineering/prompt-injection-and-agentic-security.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes a more sophisticated filter as the fix, rather than recognizing the entire filtering approach as structurally weaker — the common mistake this question targets.
+- **Senior:** Correctly explains the arms-race dynamic — a filter is something an attacker can route around by rephrasing the injected instruction, while a structural refusal to treat tool output as anything but data has nothing for a rephrased instruction to be interpreted by.
+- **Staff:** Connects this to a real, separately-gated human-approval mechanism for consequential actions as defense-in-depth beyond the structural fix alone.
 
 ---
 

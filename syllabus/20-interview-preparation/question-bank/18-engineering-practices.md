@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../18-engineering-practices/INDEX.md
   - 17-architecture.md
@@ -17,11 +17,15 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 6 chapters yielded 12 deep questions + 2 quick-fire
-questions = **14 real questions**. No Junior Fundamentals chapter exists in this
-domain. Five of six chapters use the older numbered `## 15. Interview Questions`
+**Honest count for this domain:** 8 chapters yielded 16 deep questions + 2 quick-fire
+questions = **18 real questions**. No Junior Fundamentals chapter exists in this
+domain. Seven of eight chapters use the older numbered `## 15. Interview Questions`
 template with no Flashcards section at all; only `git-internals-and-collaboration-workflows.md`
 has a `### Card:` Flashcards section.
+(Updated 2026-09-27: Estimation and Story Points and Sprint Retrospectives had
+complete Interview Questions sections never indexed — a stale-index gap, not a
+content gap. Added 4 questions; neither chapter has a Flashcards section, so no
+quick-fire cards were added.)
 
 ---
 
@@ -66,6 +70,28 @@ has a `### Card:` Flashcards section.
 - **Junior/Mid:** States that smaller changes are easier to review, even without the specific cognitive-load mechanism.
 - **Senior:** Articulates the non-linear degradation explicitly and can describe concrete splitting techniques (separating a refactor from the feature change it enables).
 - **Staff:** Connects this to the compounding-latency argument as a second, related lever affecting overall team throughput.
+
+---
+
+## Estimation and Story Points
+
+### Q1 — Is it valid to compare two teams' velocity to decide which one is more productive?
+
+**Canonical treatment:** [§15, Q1](../../18-engineering-practices/estimation-and-story-points.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Says it's fine to compare velocity across teams — the common mistake this question targets.
+- **Senior:** States that comparing velocity across teams is invalid and explains the mechanism precisely — each team calibrates its point scale independently against its own reference stories, so two teams' "5 points" were never guaranteed to represent the same amount of real work; velocity is only meaningful as a trend within one team's own history.
+- **Staff:** Proposes a concrete alternative (cycle time, commitment accuracy) for the real organizational need (comparative throughput visibility) the invalid comparison was trying to serve.
+
+### Q2 — Why is the story-point scale Fibonacci-like (1, 2, 3, 5, 8, 13...) instead of linear (1, 2, 3, 4, 5...)?
+
+**Canonical treatment:** [§15, Q2](../../18-engineering-practices/estimation-and-story-points.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes the scale is arbitrary or purely traditional rather than functionally motivated — the common mistake this question targets.
+- **Senior:** Connects the scale's shape directly to estimation-uncertainty growth — the gap between a 1 and a 2 is meaningful, but the gap between a 40 and a 41 isn't distinguishable at that scale, so the scale widens its gaps to match real estimation uncertainty.
+- **Staff:** Discusses what a team should do when a story genuinely doesn't fit the top of the scale — typically a sign the story needs to be split before estimation, not force-fit into a "100."
 
 ---
 
@@ -132,6 +158,28 @@ has a `### Card:` Flashcards section.
 - **Junior/Mid:** Treats "Agile," "Scrum," and "sprint" as fully interchangeable terms — the common mistake this question targets.
 - **Senior:** Can name at least the Scrum artifacts and roles and briefly explain what each one is for.
 - **Staff:** Can diagnose a team practicing "Scrum in name only" and identify the specific missing practice undermining it.
+
+---
+
+## Sprint Retrospectives
+
+### Q1 — What's "retro theater," and how would you recognize it on a team you just joined?
+
+**Canonical treatment:** [§15, Q1](../../18-engineering-practices/sprint-retrospectives.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Vaguely says retros "can feel pointless" without naming the actual mechanism — the common mistake this question targets.
+- **Senior:** Names the specific, recognizable symptom precisely — a retrospective that produces the ritual of naming problems without the substance of fixing them, recognizable by the same complaints recurring sprint after sprint and by action items with no named owner or deadline that never get revisited.
+- **Staff:** Frames unproductive retrospectives as an early team-health signal worth surfacing organizationally, and names a concrete, low-cost first fix (owner/deadline discipline, reviewing prior action items).
+
+### Q2 — Why does every retrospective action item need an explicit owner and deadline?
+
+**Canonical treatment:** [§15, Q2](../../18-engineering-practices/sprint-retrospectives.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Names only the owner half, missing why a deadline is equally necessary — the common mistake this question targets.
+- **Senior:** Explains both halves and why each one specifically matters — without an explicit owner, an action item is nobody's job by default and quietly becomes nobody's job in practice; without a deadline, there's no moment at which its absence becomes visible enough to notice.
+- **Staff:** Connects this to reviewing the PREVIOUS retrospective's action items at the start of the next one, as the real feedback loop that makes the owner/deadline discipline actually matter.
 
 ---
 
