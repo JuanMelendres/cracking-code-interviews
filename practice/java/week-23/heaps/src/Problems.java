@@ -34,6 +34,30 @@ final class Problems {
         return result;
     }
 
+    // ---- LC 347: Top K Frequent Elements (bucket sort, O(n) -- no heap needed) ----
+    // Frequency of any element is bounded by nums.length, so frequency itself can be
+    // used as a bucket index instead of comparing frequencies via a heap.
+    static int[] topKFrequentBucket(int[] nums, int k) {
+        Map<Integer, Integer> freq = new HashMap<>();
+        for (int n : nums) freq.merge(n, 1, Integer::sum);
+        List<Integer>[] buckets = new List[nums.length + 1]; // index = frequency
+        for (Map.Entry<Integer, Integer> e : freq.entrySet()) {
+            int f = e.getValue();
+            if (buckets[f] == null) buckets[f] = new ArrayList<>();
+            buckets[f].add(e.getKey());
+        }
+        int[] result = new int[k];
+        int idx = 0;
+        for (int f = buckets.length - 1; f >= 0 && idx < k; f--) {
+            if (buckets[f] == null) continue;
+            for (int val : buckets[f]) {
+                if (idx == k) break;
+                result[idx++] = val;
+            }
+        }
+        return result;
+    }
+
     // ---- LC 373: Find K Pairs with Smallest Sums ----
     static List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<List<Integer>> result = new ArrayList<>();

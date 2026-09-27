@@ -4,8 +4,8 @@ slug: twelve-factor-config
 document_type: handbook-chapter
 domain: 15-cloud
 status: canonical
-version: 1.2
-last_updated: 2026-09-18
+version: 1.3
+last_updated: 2026-09-27
 source_history:
   - handbook/system-design/twelve-factor-config.md
 topic_id: T-1008
@@ -668,6 +668,24 @@ reasoning at Staff level (2).
 
 **Evaluation criteria.** Correct `@Profile` mechanism (2), correct `spring.profiles.active` precedence (2), correct file-layering behavior at Senior level (1).
 
+### Question 5: A service works perfectly in staging but fails immediately in production, with no code difference between the two deployments. What's your systematic troubleshooting approach?
+
+**Why interviewers ask it.** One of the most commonly asked scenario-based questions — it tests whether a candidate has an actual, ordered methodology for a genuinely common real-world situation, rather than guessing at causes one at a time with no structure.
+
+**Expected answer.** Since the code is identical, the difference must live in one of the things that legitimately vary by environment (this chapter's entire Factor III concern) or in something outside config entirely. Work through them in order of how cheap they are to check: (1) **config/environment variables** — diff the actual resolved config between environments (this chapter's own precedence-order tooling), not just the files, since a higher-precedence source can silently override an expected value; (2) **secrets and credentials** — confirm production has valid, non-expired credentials for every external dependency, a very common staging-vs-prod gap since staging often uses long-lived test credentials; (3) **feature flags** — confirm the flag state actually matches between environments, not just the code; (4) **data and schema differences** — production data volume, edge-case values, or a schema migration that ran in one environment but not the other; (5) **infrastructure differences** — network policies, firewall rules, DNS, TLS certificate validity, and outbound connectivity to third-party services (staging frequently talks to a sandbox/mock endpoint with looser rules than production's real one); (6) **scale-only failures** — a resource limit (connection pool size, thread pool size, memory) that's adequate at staging's traffic volume but exhausted at production's.
+
+**Minimum acceptable answer.** Names "probably a config difference" as a first guess, without a structured way to work through the rest of the list if that first guess is wrong.
+
+**Strong Senior answer.** Produces most of the ordered list above unprompted, and explicitly states the guiding principle: since the code is identical, the bug is not in the code — it's in something that legitimately varies by environment, so the investigation should enumerate everything that varies, not just config.
+
+**Staff-level extension.** Proposes systemic prevention rather than only reactive diagnosis: an automated diff of resolved config (not just files) between environments as a pre-deployment gate (this chapter's own Staff-level extension for a related question), and treats "staging and production have drifted in some untracked way" as a standing organizational risk worth actively monitoring, not a one-off incident to close and forget.
+
+**Common mistakes.** Jumping straight to "it must be a race condition" or "it must be load-related" without first ruling out the far more common and far cheaper to check config/secrets/data category; treating this as a single-cause question rather than a systematic elimination process.
+
+**Likely follow-ups.** "The config is verified identical — what's your next check?" (Secrets/credentials validity, then data/schema, then infrastructure, then scale — in that order, cheapest and most common causes first.)
+
+**Evaluation criteria.** Structured, ordered methodology covering config (1), secrets (1), data/schema (1), infrastructure (1), and scale (1) as distinct categories — not a single guess.
+
 ## Summary
 
 The twelve-factor app methodology's config guidance (Factor III) demands
@@ -700,6 +718,7 @@ this register topic.
   own production scenario.
 - Spring Profiles (`@Profile`, `spring.profiles.active`, `application-{profile}.yml`) are Spring Boot's own concrete implementation of this precedence story, not a separate mechanism.
 - `@ConfigurationProperties` binds a whole related group of properties into one typed object via relaxed binding (kebab-case, camelCase, and `ENV_VAR` styles all bind to the same field) — verified directly, including a nested prefix binding into a nested record and one `BindException` naming the exact offending key when a value is malformed.
+- "Works in staging, fails in production, no code difference" means the bug lives in something that legitimately varies by environment — work through config, secrets, feature flags, data/schema, infrastructure, and scale, in that order, rather than guessing.
 
 ## Cheat Sheet
 
@@ -716,6 +735,7 @@ this register topic.
 - **Secrets are not plain config** — see the dedicated secrets-management
   chapter.
 - **Spring Profiles**: `@Profile("name")` on a bean restricts it to that profile; `spring.profiles.active` (file < env var < JVM property < CLI arg — this chapter's own precedence order) picks which profile(s) are active; `application-{profile}.yml` layers on top of the base `application.yml`, overriding only the keys it defines.
+- **"Works in staging, fails in prod" checklist**: config/env vars -> secrets/credentials -> feature flags -> data/schema -> infrastructure (network/DNS/TLS) -> scale-only limits — cheapest and most common causes first.
 
 ## Flashcards
 
@@ -818,6 +838,23 @@ Explains why a `@ConfigurationProperties` class works unchanged whether config c
 
 **Common trap:**
 Assuming a class only binds correctly if the source's exact casing matches the field name.
+
+**Related:**
+[[twelve-factor-config]]
+
+### Card: "Works in staging, fails in production" — where do you look?
+
+**Prompt:**
+A service behaves correctly in staging and fails immediately in production, with identical code in both. What's the ordered troubleshooting checklist?
+
+**Answer:**
+Config/environment variables, then secrets/credentials, then feature flags, then data/schema differences, then infrastructure (network/DNS/TLS), then scale-only resource limits — cheapest and most common causes first, since identical code means the bug lives in something that legitimately varies by environment.
+
+**Why it matters:**
+A structured elimination process finds the real cause far faster than guessing at "race condition" or "load" first, when the far more common culprit is config or secrets.
+
+**Common trap:**
+Jumping straight to a scale/concurrency explanation before ruling out the cheaper, more common config-and-data category.
 
 **Related:**
 [[twelve-factor-config]]

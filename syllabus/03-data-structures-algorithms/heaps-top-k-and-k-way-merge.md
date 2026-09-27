@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2106
 status: canonical
-version: 1.2
-last_updated: 2026-09-20
+version: 1.3
+last_updated: 2026-09-27
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -24,7 +24,7 @@ source_history:
 
 # Heaps, Top-K, and K-Way Merge
 
-> **Provenance.** The five worked problems and retrospectives in Sections 7 and 15 are elevated from `study-packs/week-23/03-heaps-coding-practice.md` — real, compiled, executed code (`practice/java/week-23/heaps/`), re-verified on OpenJDK 21.0.12 while writing this chapter (10/10 assertions passing).
+> **Provenance.** The original five worked problems and retrospectives in Sections 7 and 15 are elevated from `study-packs/week-23/03-heaps-coding-practice.md` — real, compiled, executed code (`practice/java/week-23/heaps/`), re-verified on OpenJDK 21.0.12 while writing this chapter. Top K Frequent Elements (Section 7, Problem 3) was added 2026-09-27, promoted from a "study elsewhere" pointer into its own full worked Problem with real code, closing a real gap found via a generic interview-checklist audit — only the string variant (Top K Frequent Words) had a compiling implementation in this chapter, and the numeric LC 347 form is the one most commonly asked. All problems in `Main.java` are now verified together (12/12 assertions passing; the separate quickselect measurement below is unaffected).
 
 This is Master Topic Register **T-1407** (IWI 5.5, very-high frequency). A heap (Java's `PriorityQueue`) is the standard tool whenever a problem repeatedly needs "the current largest/smallest" from a changing collection — this chapter covers the pattern family, not `PriorityQueue`'s own internal implementation.
 
@@ -58,11 +58,11 @@ This is a valid min-heap: every parent is `<=` both its children (`3<=8`, `3<=5`
 
 **A size-bounded heap ("keep only the top k")** (Section 7, Problem 2, Top K Frequent Words) maintains a min-heap capped at size `k`, evicting the smallest element whenever the cap is exceeded — counterintuitively using a *min*-heap to track the *largest* k elements, since the element you want to discard first, when over capacity, is always the smallest one currently kept.
 
-**A heap-based k-way merge** (Section 7, Problem 3, Find K Pairs with Smallest Sums) generalizes "merge k already-sorted sequences" without materializing all of them upfront: seed the heap with one candidate from each sequence, and each time an element is popped, push that sequence's next candidate — the heap always holds exactly one "next candidate" per active sequence, guaranteeing the true global minimum is always present.
+**A heap-based k-way merge** (Section 7, Problem 4, Find K Pairs with Smallest Sums) generalizes "merge k already-sorted sequences" without materializing all of them upfront: seed the heap with one candidate from each sequence, and each time an element is popped, push that sequence's next candidate — the heap always holds exactly one "next candidate" per active sequence, guaranteeing the true global minimum is always present.
 
 **Greedy heap-based construction** (Section 7, Problems 4 and 5) uses a heap not just to read out a sorted order, but to make a sequence of locally-optimal choices — always placing the currently most-frequent character (Reorganize String), or always reserving a scarce resource for the largest need seen so far (Furthest Building) — where the heap's O(log n) extreme-value access is what makes each greedy step affordable.
 
-**Quickselect is a heap-free alternative for the single "find the Kth largest element" question specifically** (Section 7, Problem 6) — not the more general "top k" or streaming cases the rest of this chapter covers, where a heap genuinely is the right tool. Quickselect reuses QuickSort's own partitioning step (see [Sorting Algorithms](sorting-algorithms.md)) but recurses into only *one* side of the partition instead of both, giving it O(n) *average* time versus a heap's O(n log k) — at the cost of the same worst-case pivot-choice risk QuickSort itself has.
+**Quickselect is a heap-free alternative for the single "find the Kth largest element" question specifically** (Section 7, Problem 7) — not the more general "top k" or streaming cases the rest of this chapter covers, where a heap genuinely is the right tool. Quickselect reuses QuickSort's own partitioning step (see [Sorting Algorithms](sorting-algorithms.md)) but recurses into only *one* side of the partition instead of both, giving it O(n) *average* time versus a heap's O(n log k) — at the cost of the same worst-case pivot-choice risk QuickSort itself has.
 
 ## 5. How It Works Internally (L3)
 
@@ -115,7 +115,55 @@ for (String w : freq.keySet()) {
 
 **Retrospective:** see Section 5's comparator-flipping argument. **Complexity:** O(n log k).
 
-**Problem 3 — LC 373, Find K Pairs with Smallest Sums.**
+**Problem 3 — LC 347, Top K Frequent Elements (bucket sort, O(n) — no heap needed).**
+
+**Recognition signal:** this looks identical to Problem 2 (Top K Frequent Words) — same "count frequencies, then find the top k" shape — but the numeric-array version has one extra constraint a heap-based solution doesn't exploit: frequency itself is bounded by the array's own length. That bound is what makes an O(n) bucket-sort solution possible where Problem 2's string version stayed at O(n log k).
+
+**Clarifying question worth asking:** does the order among elements with equal frequency matter? (LC 347 says no — any order is accepted for ties — which is exactly what makes bucket sort viable; if a specific tie-break order were required, as in Problem 2's lexicographic tiebreak, the extra ordering constraint would need to be layered back in.)
+
+**Brute force:** sort all `(value, frequency)` pairs by frequency descending, take the first `k` — correct, but O(n log n), paying for a full sort when only the top `k` are ever needed.
+
+**Better, still not optimal:** Problem 2's bounded min-heap technique applies here too — O(n log k), strictly better than sorting everything when `k` is small relative to `n`.
+
+**Optimized approach — pseudocode (bucket sort by frequency):**
+
+```text
+freq = count of each value                       # HashMap<value, count>
+buckets = array of size (n + 1), each slot a list  # index = frequency
+for each (value, count) in freq: buckets[count].add(value)
+result = []
+for frequency from n down to 0:
+    for value in buckets[frequency]:
+        result.add(value)
+        if result has k elements: return result
+```
+
+```java
+static int[] topKFrequentBucket(int[] nums, int k) {
+    Map<Integer, Integer> freq = new HashMap<>();
+    for (int n : nums) freq.merge(n, 1, Integer::sum);
+    List<Integer>[] buckets = new List[nums.length + 1]; // index = frequency
+    for (Map.Entry<Integer, Integer> e : freq.entrySet()) {
+        int f = e.getValue();
+        if (buckets[f] == null) buckets[f] = new ArrayList<>();
+        buckets[f].add(e.getKey());
+    }
+    int[] result = new int[k];
+    int idx = 0;
+    for (int f = buckets.length - 1; f >= 0 && idx < k; f--) {
+        if (buckets[f] == null) continue;
+        for (int val : buckets[f]) {
+            if (idx == k) break;
+            result[idx++] = val;
+        }
+    }
+    return result;
+}
+```
+
+**Retrospective:** the reason this beats even the O(n log k) heap approach is the same reason [Sorting Algorithms'](sorting-algorithms.md) counting sort beats a comparison sort — when the range of the sort key (here, frequency, bounded by `[0, n]`) is known and small relative to the general case, indexing directly into a bucket array replaces comparison-based ordering entirely, dropping the `log` factor. This is a real, concrete instance of "check whether a value is range-bounded before reaching for a comparison-based structure," worth naming explicitly rather than reflexively reaching for a heap on every "top k" phrasing. **Common bugs:** sizing the bucket array to the number of *distinct* values instead of `n` (the maximum possible frequency is `n`, when every element is identical, not the count of distinct values, which is usually much smaller); iterating buckets from low to high frequency instead of high to low, which would return the *least* frequent elements instead of the most. **Test cases:** a clear frequency ordering (`[1,1,1,2,2,3], k=2` → `[1,2]`), a single-element input (`[1], k=1` → `[1]`). **Complexity:** O(n) time, O(n) space — strictly better than Problem 2's O(n log k), specifically because of the bounded-frequency property this problem's own constraints provide.
+
+**Problem 4 — LC 373, Find K Pairs with Smallest Sums.**
 
 ```java
 PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> nums1[a[0]] + nums2[a[1]]));
@@ -129,7 +177,7 @@ while (k-- > 0 && !minHeap.isEmpty()) {
 
 **Retrospective:** see Section 5's k-way-merge argument. **Complexity:** O(k log(min(k, m))).
 
-**Problem 4 — LC 767, Reorganize String.**
+**Problem 5 — LC 767, Reorganize String.**
 
 ```java
 Map.Entry<Character, Integer> prev = null;
@@ -144,7 +192,7 @@ while (!maxHeap.isEmpty()) {
 
 **Retrospective:** see Section 5's cooldown argument. If reorganization is impossible, the result simply falls short of the input length — no separate feasibility check needed. **Complexity:** O(n log a), a = alphabet size.
 
-**Problem 5 — LC 1642, Furthest Building You Can Reach.**
+**Problem 6 — LC 1642, Furthest Building You Can Reach.**
 
 ```java
 static int furthestBuilding(int[] heights, int bricks, int ladders) {
@@ -164,7 +212,7 @@ static int furthestBuilding(int[] heights, int bricks, int ladders) {
 
 **Retrospective:** ladders (unlimited climb coverage) should always be reserved for the *largest* climbs; whenever more than `ladders` climbs are tracked, the smallest is evicted and paid for with bricks instead, since it's the cheapest to downgrade. **Complexity:** O(n log(ladders)).
 
-**Problem 6 — LC 215, Kth Largest Element in an Array (quickselect, added 2026-09-20).**
+**Problem 7 — LC 215, Kth Largest Element in an Array (quickselect, added 2026-09-20).**
 
 ```java
 static int findKthLargest(int[] nums, int k) {
@@ -218,13 +266,15 @@ Real, executed verification from `practice/java/week-23/heaps/` (OpenJDK 21.0.12
   PASS  LC1046 lastStoneWeight([1]) = 1
   PASS  LC692 topKFrequent(k=2) = [i, love]
   PASS  LC692 topKFrequent(k=4) = [the, is, sunny, day]
+  PASS  LC347 topKFrequentBucket([1,1,1,2,2,3], k=2) = [1,2]
+  PASS  LC347 topKFrequentBucket([1], k=1) = [1]
   PASS  LC373 kSmallestPairs(k=3) = [[1,2],[1,4],[1,6]]
   PASS  LC373 kSmallestPairs(duplicates, k=2) = [[1,1],[1,1]]
   PASS  LC767 reorganizeString(aab) = aba
   PASS  LC767 reorganizeString(aaab) = "" (impossible)
   PASS  LC1642 furthestBuilding(bricks=5, ladders=1) = 4
   PASS  LC1642 furthestBuilding(bricks=10, ladders=2) = 7
-Week 23 — Heaps (LC 1046, 692, 373, 767, 1642): 10/10 assertions passed
+Week 23 — Heaps (LC 1046, 692, 347, 373, 767, 1642): 12/12 assertions passed
 ```
 
 Every solution here achieves O(log n) or O(log k) per operation rather than O(n) or O(n log n) per operation from re-sorting — the practical performance implication is that a heap-based approach's advantage compounds specifically when the extreme-value query repeats many times over the algorithm's run, which is exactly the shape of every problem in this chapter.
@@ -253,7 +303,7 @@ Every solution here achieves O(log n) or O(log k) per operation rather than O(n)
 
 ## 12. Senior-Level Considerations (L3)
 
-The Senior-level skill is recognizing heap applicability in problems that don't superficially look like "find the max/min" — Furthest Building (Section 7, Problem 5) is phrased as a resource-allocation simulation, not a heap problem, and recognizing "reserve the scarce resource for the largest need, using a bounded heap to track which needs are currently 'reserved'" is the actual insight the problem tests, not `PriorityQueue` API fluency itself.
+The Senior-level skill is recognizing heap applicability in problems that don't superficially look like "find the max/min" — Furthest Building (Section 7, Problem 6) is phrased as a resource-allocation simulation, not a heap problem, and recognizing "reserve the scarce resource for the largest need, using a bounded heap to track which needs are currently 'reserved'" is the actual insight the problem tests, not `PriorityQueue` API fluency itself.
 
 ## 13. Staff/System-Level Considerations (L4)
 
@@ -309,7 +359,7 @@ No existing `production-cookbook/` entry has a heap/top-k-specific algorithmic r
 
 **Strong Senior answer.** States both complexities precisely (O(n) average, O(n²) worst case) and names the mitigation (random pivot) without prompting.
 
-**Staff-level extension.** Correctly scopes *when* this trade-off is worth taking: quickselect only answers a single rank, not a sorted top-k list or a continuously-updating stream — for those broader shapes (this chapter's own Problems 2 and 3), the heap remains the right tool regardless of quickselect's average-case speed, because quickselect would need to be re-run from scratch for each new query rather than maintaining state incrementally the way a heap does.
+**Staff-level extension.** Correctly scopes *when* this trade-off is worth taking: quickselect only answers a single rank, not a sorted top-k list or a continuously-updating stream — for those broader shapes (this chapter's own Problems 2 and 4), the heap remains the right tool regardless of quickselect's average-case speed, because quickselect would need to be re-run from scratch for each new query rather than maintaining state incrementally the way a heap does.
 
 **Common mistakes.** Presenting quickselect as strictly better than the heap approach without mentioning the worst-case risk, or without recognizing it doesn't generalize to the streaming/top-k-as-a-list cases the rest of this chapter covers.
 
@@ -317,8 +367,8 @@ No existing `production-cookbook/` entry has a heap/top-k-specific algorithmic r
 
 ## 16. Coding/Practice Exercises
 
-- Run the [existing practice code](../../practice/java/week-23/heaps/) yourself and confirm the same 10/10 assertions pass, plus [`QuickSelectDemo.java`](../../practice/java/week-23/heaps/src/QuickSelectDemo.java)'s 24/24.
-- This pattern has additional real, already-solved problems: LC 347 (Top K Frequent Elements), LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 3's implicit-grid k-way merge.
+- Run the [existing practice code](../../practice/java/week-23/heaps/) yourself and confirm the same 12/12 assertions pass, plus [`QuickSelectDemo.java`](../../practice/java/week-23/heaps/src/QuickSelectDemo.java)'s 24/24.
+- This pattern has additional real, already-solved problems: LC 23 (Merge K Sorted Lists), LC 295 (Find Median from Data Stream, the two-heap pattern), and LC 973 (K Closest Points to Origin) across earlier weeks' practice code — study Merge K Sorted Lists specifically as the explicit-list version of this chapter's Problem 4's implicit-grid k-way merge.
 - Modify `QuickSelectDemo.java`'s adversarial-pivot comparison to use *descending* input instead of ascending, and predict, before running, whether the first-element pivot's comparison count changes — then measure and check (it shouldn't meaningfully change; a first-element pivot is equally adversarial-prone against either monotonic direction).
 - Attempt LC 253 (Meeting Rooms II) from scratch — it's heap-shaped but already solved and correctly categorized under [Intervals, Merging, and Sweep Line](intervals-merging-and-sweep-line.md) elsewhere in this repository; working through it here checks whether the heap primitive transfers to an interval-scheduling framing.
 

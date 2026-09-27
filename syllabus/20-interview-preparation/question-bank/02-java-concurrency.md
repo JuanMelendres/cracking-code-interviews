@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../02-java/concurrency/INDEX.md
   - 02-java-collections.md
@@ -18,13 +18,16 @@ Part of the `02-java` compendium. See
 and sourcing discipline, and `00-project/interview-question-bank-plan.md` for the
 full 22-domain plan.
 
-**Honest count for this subdomain:** 15 chapters yielded 29 deep questions + 41
-quick-fire questions = **70 real questions**. This subdomain has no dedicated Junior
-Fundamentals chapter (concurrency is inherently a Mid+ topic in this repository's own
-target-level design), so unlike `collections/`, there's no separate leveled-Junior
-question set to fold in — several individual questions below still have real, honest
-Junior/Mid framings where the underlying misconception is one a less experienced
-engineer would genuinely have.
+**Honest count for this subdomain:** 15 chapters yielded 30 deep questions + 42
+quick-fire questions = **72 real questions**. (Updated 2026-09-27: added a wait()
+vs. sleep() vs. join() question to Deadlock, Race Conditions, and Thread Diagnostics
+— a genuinely missing, commonly-asked basic question found via a generic interview
+checklist audit.) This subdomain has no dedicated Junior Fundamentals chapter
+(concurrency is inherently a Mid+ topic in this repository's own target-level
+design), so unlike `collections/`, there's no separate leveled-Junior question set
+to fold in — several individual questions below still have real, honest Junior/Mid
+framings where the underlying misconception is one a less experienced engineer
+would genuinely have.
 
 ---
 
@@ -120,6 +123,16 @@ engineer would genuinely have.
 - **Mid:** States that `count++` is unsafe under concurrency, even without measured numbers.
 - **Senior:** `count++` isn't atomic; concurrent threads lose updates via interleaved read-modify-write. Names `AtomicLong`/`AtomicInteger` as the fix.
 - **Staff:** Knows `LongAdder` trades single-value read consistency for higher-throughput writes under heavy contention — the right choice specifically for write-heavy, read-rarely counters like metrics.
+
+### Q3 — What's the difference between wait(), sleep(), and join()?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#interview-questions)
+
+**What's expected:**
+- **Junior:** Treats all three as interchangeable "pause the thread" calls — the common mistake this question targets.
+- **Mid:** Correctly describes what each method does in isolation, even without the monitor-release distinction.
+- **Senior:** Names the monitor-release distinction unprompted: `wait()` requires holding and releases the object's monitor; `sleep()` and `join()` hold any locks the whole time. Explains why `wait()` specifically requires holding the lock first.
+- **Staff:** Connects this to why hand-rolled `wait()`/`notify()` coordination is risky (missed notifications, spurious wakeups) and why purpose-built synchronizers are preferred in production code.
 
 ---
 
@@ -415,6 +428,7 @@ engineer would genuinely have.
 | 39 | What does a virtual thread's carrier do when the virtual thread blocks on supported IO? | [Virtual Threads](../../02-java/concurrency/virtual-threads.md#flashcards) |
 | 40 | What causes a virtual thread to pin its carrier? | [Virtual Threads](../../02-java/concurrency/virtual-threads.md#flashcards) |
 | 41 | Why is pooling virtual threads considered an anti-pattern? | [Virtual Threads](../../02-java/concurrency/virtual-threads.md#flashcards) |
+| 42 | Which of `wait()`, `sleep()`, and `join()` releases the monitor lock while paused? | [Deadlock, Race Conditions, and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
 
 ---
 

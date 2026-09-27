@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../05-spring/INDEX.md
   - 04-software-design.md
@@ -17,10 +17,16 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 12 chapters yielded 24 deep questions + 5
+**Honest count for this domain:** 13 chapters yielded 27 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `spring-mvc-fundamentals.md`) + 32 quick-fire questions = **61 real
-questions**.
+chapter, `spring-mvc-fundamentals.md`) + 34 quick-fire questions = **66 real
+questions**. (Updated 2026-09-27: `microservices-patterns-with-spring-boot.md`
+had a complete Interview Questions section this index never picked up — a
+stale-index gap, not a content gap, found via a generic interview checklist
+audit. Added its 3 questions + 2 quick-fire cards, plus a cross-domain note
+pointing to `17-architecture.md` for the Microservices-vs-Monolith trade-off
+itself. Known remaining gaps, not yet closed: `dto-entity-mapper-patterns.md`
+and `spring-and-spring-boot-fundamentals.md` are also unindexed here.)
 
 ---
 
@@ -330,6 +336,39 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 
 ---
 
+## Microservices Patterns with Spring Boot
+
+**Cross-domain note:** "Microservices vs. Monolith" itself (the architectural trade-off, not its Spring-specific implementation) is covered in [`question-bank/17-architecture.md`](17-architecture.md), § "Microservice Decomposition and the Monolith Trade-off" — this section covers only how those patterns become concrete Spring Boot mechanisms.
+
+### Q1 — Your circuit breaker's dashboard shows it has never opened, but users are reporting a specific downstream call is consistently slow. What's going on?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../05-spring/microservices-patterns-with-spring-boot.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes the breaker must be misconfigured with the wrong threshold *value* — the common mistake this question targets.
+- **Senior:** Names the missing configuration precisely: the breaker's config almost certainly sets `failureRateThreshold` but not `slowCallDurationThreshold`/`slowCallRateThreshold` — a call that succeeds slowly isn't counted as a failure by default, so the breaker has nothing to react to.
+- **Staff:** Raises the platform-wide version of the question — is this one service's oversight, or a template every service copied?
+
+### Q2 — Why did a circuit breaker open on the 4th failing call rather than the 5th, given `minimumNumberOfCalls(5)`?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../05-spring/microservices-patterns-with-spring-boot.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes `minimumNumberOfCalls` means "N consecutive failures required" — the common mistake this question targets.
+- **Senior:** Correctly reconstructs the sliding window's contents: it already held 1 prior healthy call plus the first 4 failing calls — 5 calls total, 80% failure rate, already past the 50% threshold. The window counts every recorded call, not just calls since the last failure began.
+- **Staff:** Discusses count-based vs. time-based sliding windows and when each is the right choice for a given traffic pattern.
+
+### Q3 — Why choose Spring's `@HttpExchange` over Spring Cloud OpenFeign for a brand-new microservice today?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../05-spring/microservices-patterns-with-spring-boot.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Claims Feign is deprecated or "wrong" — the common mistake this question targets.
+- **Senior:** States the real trade-off honestly: `@HttpExchange` is part of Spring Framework itself (6.0+), needs no Spring Cloud BOM, and is Spring's own current recommendation; OpenFeign remains common in existing Spring-Cloud-heavy stacks.
+- **Staff:** Frames this as a platform-consistency decision — a new service joining an existing Feign-heavy estate has a real cost to breaking pattern, independent of which client is technically better.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -366,6 +405,8 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 30 | Does a checked exception roll back a `@Transactional` method by default? | [Transactional Proxy Mechanics](../../05-spring/transactional-proxy-mechanics-and-propagation.md#flashcards) |
 | 31 | What's the specific deadlock risk unique to `REQUIRES_NEW`? | [Transactional Proxy Mechanics](../../05-spring/transactional-proxy-mechanics-and-propagation.md#flashcards) |
 | 32 | Is `@Transactional(readOnly = true)` guaranteed to prevent writes? | [Transactional Proxy Mechanics](../../05-spring/transactional-proxy-mechanics-and-propagation.md#flashcards) |
+| 33 | What does a circuit breaker's sliding window actually count? | [Microservices Patterns with Spring Boot](../../05-spring/microservices-patterns-with-spring-boot.md#flashcards) |
+| 34 | Does a default circuit breaker protect against a slow-but-successful downstream call? | [Microservices Patterns with Spring Boot](../../05-spring/microservices-patterns-with-spring-boot.md#flashcards) |
 
 ---
 

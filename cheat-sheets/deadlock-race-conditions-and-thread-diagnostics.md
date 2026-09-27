@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: concurrency
 topic_id: T-409
 canonical: ../syllabus/02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md
-last_updated: 2026-08-04
+last_updated: 2026-09-27
 ---
 
 # Deadlock, Race Conditions, and Thread Diagnostics
@@ -37,6 +37,15 @@ Deadlock, livelock, starvation, and a plain race condition are four different an
 | Threads permanently stuck, CPU idle | `ThreadMXBean.findDeadlockedThreads()` / `jstack` | Consistent lock-acquisition ordering |
 | Counter/metric undercounting under load | Code review for `count++`-style ops | `AtomicInteger`/`AtomicLong`/`LongAdder` |
 | Thread stuck in `WAITING` forever | Missed `notify()`/`notifyAll()` | Ensure every `wait()` has a matching, reachable `notify()` |
+| Other threads blocked far longer than expected | `sleep()` (or slow work) called inside a `synchronized` block | Move it outside the synchronized section, or minimize lock scope |
+
+## wait() vs. sleep() vs. join()
+
+| Method | Releases the lock? | Resumed by |
+|---|---|---|
+| `Object.wait()` | Yes — must hold the monitor first | `notify()`/`notifyAll()`, or a timeout |
+| `Thread.sleep(ms)` | No | Timeout only |
+| `Thread.join()` | No | Target thread terminating, or a timeout |
 
 ## Key Numbers (real, executed — `DeadlockDemo.java`, `RaceConditionDemo.java`)
 

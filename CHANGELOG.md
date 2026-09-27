@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Coding Interview Standard applied to 6 exercises; wait/sleep/join and staging-vs-prod scenario closed; 3 stale question-bank indices fixed, 2026-09-27)
+
+- User shared a generic "Honeywell Java Developer" interview checklist and asked whether the Q&A section covered it, plus asked for the repo's own Coding Interview Standard (recognition signal, clarifying question, brute-force, optimized, pseudocode, compiling code, complexity, edge cases) applied to its 8 named coding exercises. Audited via subagent against all 50 checklist items, checking actual file contents.
+- 6 exercises got the full Standard, added to their existing pattern chapters (not new files): Reverse a String and Valid Palindrome (`arrays-two-pointers-and-sliding-window.md`), Find All Duplicates and First Unique Character (`hashing-patterns-and-frequency-maps.md`), LRU Cache promoted from a prose-only pointer to a full worked Problem (`design-style-coding-problems.md`), and Top K Frequent Elements via O(n) bucket sort (`heaps-top-k-and-k-way-merge.md`). All four chapters' practice suites re-verified: 16/16, 16/16, 28/28, 12/12 assertions passing.
+- Two more genuine Q&A gaps closed: `wait()`/`sleep()`/`join()` in `deadlock-race-conditions-and-thread-diagnostics.md`, and a "works in staging, fails in production" systematic-troubleshooting scenario in `twelve-factor-config.md`.
+- 3 stale question-bank indices fixed (content already existed, the index never picked it up): `comparator-composition-and-pitfalls.md` in `02-java-language-core.md`, `microservices-patterns-with-spring-boot.md` in `05-spring.md` (plus a cross-domain link to `17-architecture.md`), and the new wait/sleep/join question in `02-java-concurrency.md`.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (Java File I/O and NIO.2, T-2429; Java Regular Expressions, T-2430, 2026-09-26)
 
 - User shared a generic "27 Java/Spring interview topics" checklist and asked whether all points were covered "bien detallados" in the questions section. Audited via grep: 25 of 27 already covered, several far deeper than the checklist. Two real, zero-coverage gaps found: `java.io`/`java.nio.file` (no dedicated chapter, only incidental mentions) and `java.util.regex` (zero mentions anywhere in the syllabus or question bank).

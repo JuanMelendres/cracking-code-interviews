@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../15-cloud/INDEX.md
   - 14-devops-containers.md
@@ -17,8 +17,11 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 4 chapters yielded 8 deep questions + 13 quick-fire
-questions = **21 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 4 chapters yielded 9 deep questions + 14 quick-fire
+questions = **23 real questions**. (Updated 2026-09-27: added a "works in staging,
+fails in production" systematic-troubleshooting question to The Twelve-Factor App —
+a genuinely missing, very commonly-asked scenario question found via a generic
+interview checklist audit.) No Junior Fundamentals chapter exists in this
 domain — this is a genuinely small domain (only 4 chapters).
 
 ---
@@ -109,6 +112,15 @@ domain — this is a genuinely small domain (only 4 chapters).
 - **Senior:** States the full order precisely — command-line arguments, then environment variables, then the config file, then hardcoded defaults — and notes it matches the order most frameworks (e.g., Spring Boot) use.
 - **Staff:** Discusses why this specific order makes operational sense — defaults are safest, file is per-environment, env vars are orchestrator-injected, CLI args are per-invocation debugging overrides.
 
+### Q5 — A service works perfectly in staging but fails immediately in production, with no code difference. What's your systematic troubleshooting approach?
+
+**Canonical treatment:** [§ Interview Questions, Q5](../../15-cloud/twelve-factor-config.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Guesses "probably a config difference" with no structured way to continue if that guess is wrong — the common mistake this question targets.
+- **Senior:** Produces an ordered methodology: config/env vars, secrets/credentials, feature flags, data/schema differences, infrastructure, then scale-only limits — since identical code means the bug lives in something that legitimately varies by environment.
+- **Staff:** Proposes an automated resolved-config diff between environments as a pre-deployment gate, treating environment drift as a standing organizational risk, not a one-off incident.
+
 ---
 
 ## Quick-fire questions (from this domain's Flashcards)
@@ -128,6 +140,7 @@ domain — this is a genuinely small domain (only 4 chapters).
 | 11 | What does the twelve-factor app's Factor III (config) require, precisely? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
 | 12 | What's the real config precedence order between a file, an environment variable, and a CLI argument? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
 | 13 | Why does fail-fast startup validation matter for a missing required config value? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
+| 14 | A service works in staging but fails in production with no code difference — what's the ordered troubleshooting checklist? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
 
 ---
 
