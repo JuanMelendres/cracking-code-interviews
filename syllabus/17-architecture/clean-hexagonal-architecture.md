@@ -4,8 +4,8 @@ slug: clean-hexagonal-architecture
 document_type: handbook-chapter
 domain: 17-architecture
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-26
 source_history:
   - handbook/architecture/clean-hexagonal-architecture.md
 topic_id: T-901
@@ -29,6 +29,8 @@ related:
   - microservice-decomposition-and-monolith-tradeoff.md
   - cqrs-read-write-separation.md
   - modular-monolith-as-a-deliberate-choice.md
+  - ../05-spring/spring-bean-scopes-and-proxy-modes.md
+  - ../05-spring/spring-data-jpa-repository-abstraction.md
   - ../../study-packs/week-01/01-clean-hexagonal-architecture.md
 official_references:
   - https://alistair.cockburn.us/hexagonal-architecture/
@@ -167,6 +169,61 @@ public class PostgresOrderRepository implements OrderRepository {
     }
 }
 ```
+
+### Wiring this with Spring Boot
+
+**Sketch — illustrates the shape, same convention as the sketch above.** Spring's role here is narrow and specific: its component scan finds every `@Service`/`@Repository`-annotated class and wires them together through the port interfaces they depend on. Spring is not the architecture — it is the dependency-injection mechanism that makes the architecture's own dependency rule (Section 8, "Primary vs. secondary ports") executable without a hand-rolled factory.
+
+```java
+// domain/customer/CustomerRepositoryPort.java — the port, owned by the
+// domain, with zero Spring or JPA imports.
+package domain.customer;
+
+public interface CustomerRepositoryPort {
+    Optional<Customer> findById(Long id);
+}
+
+// application/customer/GetCustomerUseCase.java — depends only on the port.
+// @Service is Spring's own bean-registration annotation; it carries no
+// architectural meaning by itself, and this class has no compile-time
+// dependency on JPA, Hibernate, or the adapter's concrete class below.
+package application.customer;
+
+@Service
+public class GetCustomerUseCase {
+    private final CustomerRepositoryPort customerRepository;
+
+    public GetCustomerUseCase(CustomerRepositoryPort customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
+    public Optional<Customer> execute(Long id) {
+        return customerRepository.findById(id);
+    }
+}
+
+// infrastructure/persistence/CustomerRepositoryAdapter.java — infrastructure
+// implements the domain's own port. Spring Data JPA's repository is a
+// collaborator *inside* the adapter, never something the domain or the
+// use case references directly.
+package infrastructure.persistence;
+
+@Repository
+public class CustomerRepositoryAdapter implements CustomerRepositoryPort {
+    private final CustomerJpaRepository jpaRepository;
+
+    public CustomerRepositoryAdapter(CustomerJpaRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
+
+    @Override
+    public Optional<Customer> findById(Long id) {
+        return jpaRepository.findById(id).map(CustomerMapper::toDomain);
+    }
+}
+```
+
+Spring's constructor injection resolves `CustomerRepositoryPort` to whichever single bean implements it — here, `CustomerRepositoryAdapter` — entirely at wiring time; `GetCustomerUseCase`'s own source code never names that class. This is the concrete, practical version of Section 8's dependency rule: swapping Postgres for MongoDB, or substituting an in-memory fake in a test, means writing a new class that implements `CustomerRepositoryPort` and changes zero lines in `GetCustomerUseCase`.
 
 ## Diagrams
 
@@ -307,6 +364,7 @@ Hexagonal architecture is a compile-time/organizational pattern, not a runtime o
 - **One port per method** rather than one port per cohesive capability — produces dozens of single-method interfaces and defeats the readability the pattern is meant to provide.
 - **Answering "would you use this on every project?" with an unconditional yes** — the single most common failure on this topic, reading as memorized rather than understood.
 - **Trusting folder structure alone as evidence of dependency inversion**, with no automated check.
+- **Injecting Spring Data's own `JpaRepository<Customer, Long>` directly into a use case**, treating it as if it were the domain's port — it already looks like an interface, so the temptation is real, but it's Spring Data's own generic persistence abstraction, not a port the domain deliberately defined; the domain still ends up depending on a Spring Data type it never chose.
 
 ## Best Practices
 
@@ -592,6 +650,7 @@ Hexagonal architecture inverts the dependency between domain and infrastructure 
 - Transactions live at the application-service layer, never inside the domain.
 - The pattern has a real cost (mapping code, indirection) — naming that cost unprompted is a Senior/Staff signal.
 - "Would you use this on every project?" — the honest answer is no, with a stated criterion.
+- Spring Boot's `@Service`/`@Repository` are wiring, not architecture — constructor injection resolves a domain-owned port to whichever adapter bean implements it, and the use case's own source never names the concrete adapter class.
 
 ## Cheat Sheet
 

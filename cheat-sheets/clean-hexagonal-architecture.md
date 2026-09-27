@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: architecture
 topic_id: T-901
 canonical: ../syllabus/17-architecture/clean-hexagonal-architecture.md
-last_updated: 2026-08-04
+last_updated: 2026-09-26
 ---
 
 # Clean and Hexagonal Architecture
@@ -49,6 +49,7 @@ This is a compile-time/organizational pattern, not a runtime one — the chapter
 - Believing hexagonal architecture is a folder layout — `domain/`, `application/`, `infrastructure/` packages with zero enforcement of the dependency rule is theater; a domain class can still `import javax.persistence.Entity` inside those folders
 - Anemic use cases that just forward to the repository — if every "use case" is `repository.save(mapper.toEntity(dto))`, there is no domain logic being protected
 - Claiming the mapping-code cost is negligible without having actually estimated it
+- Injecting Spring Data's `JpaRepository<T, ID>` directly into a use case, treating it as if it were the domain's own port — it looks like an interface, but it's Spring Data's generic abstraction, not one the domain deliberately defined
 
 ## Interview Answer Skeleton
 

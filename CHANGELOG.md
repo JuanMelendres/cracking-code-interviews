@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Fixed (Clean/Hexagonal Architecture gains real Spring Boot wiring example, 2026-09-26)
+
+- User shared a social-media infographic showing Clean Architecture wired with real Spring Boot code and asked whether it's covered. `clean-hexagonal-architecture.md` (T-901) already teaches ports/adapters/DIP deeply but deliberately framework-agnostic; confirmed via grep that `05-spring/` had only one-line cross-references, no worked Spring example.
+- Closed in place (no new chapter): the existing chapter (`1.0 → 1.1`) gained a "Wiring this with Spring Boot" section (`@Service` use case, domain-owned port, `@Repository` adapter over Spring Data JPA) and a new anti-pattern (injecting `JpaRepository<T, ID>` directly as if it were the domain's port). Matching cheat-sheet pitfall and flashcard added.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Fixed (Kafka message lifecycle: serialization step + end-to-end diagram, 2026-09-23)
 
 - User shared a social-media infographic covering the full Kafka producer-to-consumer lifecycle (9 steps). Confirmed via grep: every stage already has real depth across `syllabus/09-messaging-event-driven/`, but serialization (record-to-bytes, before partitioning) had zero coverage, and no diagram tied all 9 stages together in one sequence.
