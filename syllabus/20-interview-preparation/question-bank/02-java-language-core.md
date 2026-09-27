@@ -17,19 +17,21 @@ Part of the `02-java` compendium — the last of its 4 subdomain files. See
 [`02-java-collections.md`](02-java-collections.md) for the tier-explanation format
 and sourcing discipline.
 
-**Honest count for this subdomain:** 24 chapters yielded 46 deep questions + 10
+**Honest count for this subdomain:** 24 chapters yielded 47 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 57 quick-fire
-questions = **113 real questions**. (Updated 2026-09-26: added Java File I/O and
+`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 58 quick-fire
+questions = **115 real questions**. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
 checklist audit. Updated again 2026-09-27: `comparator-composition-and-pitfalls.md`
 had a complete Interview Questions section written 2026-09-17 that this index never
 picked up — a stale-index gap, not a content gap. Added its 2 questions + 3
-quick-fire cards.)
+quick-fire cards. Updated again 2026-09-27, same day: `immutability-and-defensive-copying.md`
+gained a new Q3 on shallow-vs-deep copy / `Object.clone()`, closing a real content
+gap — `clone()`/`Cloneable` had zero dedicated explanation anywhere in this domain.)
 
 **02-java domain total across all 4 subdomains:** 52 (collections) + 72 (concurrency)
-+ 31 (jvm-internals) + 113 (language-core) = **268 real questions** — the largest of
++ 31 (jvm-internals) + 115 (language-core) = **270 real questions** — the largest of
 the 22 domains this initiative covers, consistent with `02-java` being the biggest
 domain in the syllabus (64 chapters).
 
@@ -373,6 +375,15 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 - **Junior/Mid:** Treats the two approaches as equivalent — the common mistake this question targets.
 - **Senior:** A new `ArrayList` copy is independent but still mutable; `List.copyOf()` produces an unmodifiable view that throws on any mutation attempt.
 - **Staff:** Connects this to the general principle that a structural guarantee is stronger and more debuggable than a convention.
+
+### Q3 — What's the difference between a shallow copy and a deep copy? Does `Object.clone()` give you one or the other?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/language-core/immutability-and-defensive-copying.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes `clone()` always produces a fully independent copy — the common mistake this question targets.
+- **Senior:** Correctly states `clone()`'s default (`super.clone()`) is shallow — a mutable field is copied by reference, still shared with the original — and fixes it by overriding `clone()` to deep-copy that field.
+- **Staff:** Explains why many engineers avoid `Cloneable`/`clone()` in new code entirely (no compile-time enforcement, awkward checked-exception signature) and prefers a copy constructor or static factory instead.
 
 ---
 
@@ -721,6 +732,7 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 55 | Does `Comparator.comparing(a).thenComparing(b)` sort by `b` independently of `a`? | [Comparator: Composition and Pitfalls](../../02-java/language-core/comparator-composition-and-pitfalls.md#flashcards) |
 | 56 | Why can `(a, b) -> a.getX() - b.getX()` produce a wrong sort order? | [Comparator: Composition and Pitfalls](../../02-java/language-core/comparator-composition-and-pitfalls.md#flashcards) |
 | 57 | How do you sort a list where some elements have a `null` sort key, without a manual null-check? | [Comparator: Composition and Pitfalls](../../02-java/language-core/comparator-composition-and-pitfalls.md#flashcards) |
+| 58 | Does `Object.clone()`'s default implementation produce a deep copy? | [Immutability and Defensive Copying](../../02-java/language-core/immutability-and-defensive-copying.md#flashcards) |
 
 ---
 

@@ -4,8 +4,8 @@ slug: immutability-and-defensive-copying
 document_type: handbook-chapter
 domain: 02-java/language-core
 status: draft
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-27
 source_history:
   - handbook/java-core/immutability-and-defensive-copying.md
 difficulty:
@@ -29,7 +29,7 @@ official_references:
 # Immutability and Defensive Copying
 
 > **Topic register:** T-103 · IWI 5.4 · Foundation tier, High interview frequency
-> **Provenance:** the trace in this chapter is real, executed output from [`practice/java/week-13/immutability/src/MutableLeakDemo.java`](../../../practice/java/week-13/immutability/src/MutableLeakDemo.java) on OpenJDK 21.0.12.
+> **Provenance:** the traces in this chapter are real, executed output from [`practice/java/week-13/immutability/src/MutableLeakDemo.java`](../../../practice/java/week-13/immutability/src/MutableLeakDemo.java) and [`practice/java/week-13/immutability/src/CloneDemo.java`](../../../practice/java/week-13/immutability/src/CloneDemo.java) on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -70,6 +70,7 @@ By the end of this chapter you can:
 - Apply defensive copying correctly on both construction and retrieval.
 - Explain why `List.copyOf()` is stronger than a plain defensive copy (it rejects mutation outright, rather than merely being independent of the original).
 - Connect immutability directly to thread-safety guarantees without synchronization.
+- Explain precisely why `Object.clone()`'s default behavior is a shallow copy, not a deep one, and fix it correctly by overriding `clone()` for a class with mutable fields.
 
 ## Why This Matters in Interviews
 
@@ -115,6 +116,12 @@ If a getter does `return attendees;` on a mutable `List` field, external code th
 
 Copying into a new `ArrayList` prevents the *original* list from affecting the class, but the returned copy is still itself mutable if handed out directly. `List.copyOf()` produces an unmodifiable view that throws `UnsupportedOperationException` on any mutation attempt — closing both the "still mutable if returned" gap and the independence gap in one call.
 
+### `Object.clone()`'s default behavior is a shallow copy, not a deep one
+
+`clone()` is a `protected` method on `Object`; calling it on a class that doesn't implement the `Cloneable` marker interface throws `CloneNotSupportedException` — `Cloneable` carries no methods of its own, it only flips a switch `Object.clone()`'s native implementation checks internally. Once implemented, `super.clone()` performs a **field-by-field copy**: primitive fields are copied by value, and reference fields (a `List`, an array, another object) are copied *as references* — the clone ends up pointing at the exact same nested objects the original does. This is precisely the same "leak" shape as this chapter's Section 3 constructor/getter leaks, just introduced by `clone()`'s own default mechanism instead of a hand-written constructor or getter: mutating a mutable field through the clone silently mutates the original too, since both objects still share one underlying instance.
+
+**Fixing it requires overriding `clone()` explicitly**, calling `super.clone()` for the shallow, field-by-field copy first, then manually deep-copying every mutable-typed field on the result — exactly the same defensive-copying discipline this chapter's Section 3/Internal Implementation already applies to constructors and getters, just applied to the object returned by `super.clone()` instead.
+
 ## Internal Implementation
 
 **Leak #1 — constructor storing a live reference, measured:**
@@ -139,6 +146,31 @@ attendees after calling getAttendees().add("mallory") from OUTSIDE the class: [c
 == The fixed, truly immutable version resists both leaks ==
 Event date after caller mutates the ORIGINAL Date passed to the constructor: Tue Nov 14 16:13:20 CST 2023  (unchanged -- the constructor copied it)
 getAttendees().add("mallory") threw UnsupportedOperationException  (List.copyOf() returns an immutable view -- mutation is rejected outright, not just copied)
+```
+
+**A class that doesn't implement `Cloneable`, real captured exception:**
+
+```
+== A class NOT implementing Cloneable: super.clone() throws ==
+clone() threw CloneNotSupportedException  (Cloneable was never implemented)
+```
+
+**`Object.clone()`'s default shallow copy, measured — the clone and the original end up sharing the same `List`:**
+
+```
+== Object.clone()'s default behavior is a SHALLOW copy ==
+original.members before mutating the CLONE: [alice, bob]
+original.members AFTER clone.members.add("mallory"): [alice, bob, mallory]  (changed! shallow clone copied the LIST REFERENCE, not the list itself)
+originalShallow.members == clonedShallow.members: true  (same object, confirmed by reference equality)
+```
+
+**Overriding `clone()` to deep-copy the mutable field, measured — the same mutation no longer reaches the original:**
+
+```
+== Overriding clone() to deep-copy the mutable field fixes it ==
+original.members before mutating the CLONE: [alice, bob]
+original.members AFTER clone.members.add("mallory"): [alice, bob]  (unchanged -- clone() made an independent copy of the list)
+originalDeep.members == clonedDeep.members: false  (different objects, confirmed by reference equality)
 ```
 
 ## Diagrams
@@ -171,6 +203,49 @@ final class SafeEvent {
 ```
 
 **Complexity note:** defensive copying is `O(n)` in the size of the copied structure per construction/getter call — a real, bounded cost, not free, which is why immutable record-like classes often prefer genuinely immutable types (`java.time` types instead of `Date`, `List.copyOf()` instead of repeated `ArrayList` copies) where possible to reduce the copying overhead.
+
+```java
+// Java 21. Shallow vs. deep clone(), side by side.
+static class ShallowTeam implements Cloneable {
+    String name;
+    List<String> members;
+
+    ShallowTeam(String name, List<String> members) {
+        this.name = name;
+        this.members = members;
+    }
+
+    @Override
+    public ShallowTeam clone() {
+        try {
+            return (ShallowTeam) super.clone(); // field-by-field copy, NOT recursive
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloneable is implemented, this can't happen", e);
+        }
+    }
+}
+
+static class DeepTeam implements Cloneable {
+    String name;
+    List<String> members;
+
+    DeepTeam(String name, List<String> members) {
+        this.name = name;
+        this.members = members;
+    }
+
+    @Override
+    public DeepTeam clone() {
+        try {
+            DeepTeam copy = (DeepTeam) super.clone();
+            copy.members = new ArrayList<>(this.members); // deep-copy the mutable field
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloneable is implemented, this can't happen", e);
+        }
+    }
+}
+```
 
 ## Production Scenarios
 
@@ -219,12 +294,14 @@ final class SafeEvent {
 - Believing `final` fields alone make a class immutable, without checking whether the referenced objects are themselves mutable.
 - Copying on construction but not on the getter (or vice versa) — both boundaries need protection.
 - Returning a new mutable copy from a getter (safer than the live reference, but still allows the caller to mutate their own copy without realizing the original class considers itself immutable — usually harmless, but weaker than an immutable view when the intent is to signal "you cannot mutate this").
+- Assuming `clone()` performs a deep copy by default — `super.clone()` is shallow, copying reference fields as references, not recursively copying what they point to.
 
 ## Anti-Patterns
 
 - **`final List<String> items;` with a getter that does `return items;`** — the single most common instance of Leak #2.
 - **Storing a constructor argument directly** (`this.when = when;`) for any mutable type, assuming `final` alone provides protection.
 - **Assuming a class with no setters is automatically immutable**, without auditing every getter and constructor for a live-reference leak.
+- **Implementing `Cloneable` and relying on `super.clone()` alone for a class with any mutable-typed field** — every mutable field must be explicitly deep-copied inside the overridden `clone()`, or the clone silently shares that field's underlying object with the original.
 
 ## Best Practices
 
@@ -320,6 +397,28 @@ Immutability is one of the few Java Core disciplines that pays for itself direct
 
 **Related references.** [§ Core Concepts](#core-concepts); [§ Java Examples](#java-examples).
 
+---
+
+### Question 3 — What's the difference between a shallow copy and a deep copy? Does `Object.clone()` give you one or the other?
+
+**Why interviewers ask it.** Tests whether the candidate understands `clone()`'s actual default mechanism, rather than assuming "clone" means "fully independent copy" by name alone.
+
+**Expected answer.** A shallow copy copies an object's fields as-is — primitives by value, references by reference — so a shallow copy of an object with a mutable field (a `List`, an array) still shares that same underlying field object with the original. A deep copy recursively copies every referenced mutable object too, so the copy is fully independent all the way down. `Object.clone()`'s default (`super.clone()`) is shallow; getting a deep copy requires overriding `clone()` to explicitly copy every mutable-typed field afterward.
+
+**Minimum acceptable answer.** States that `clone()` is shallow by default, even without a concrete example of the consequence.
+
+**Strong Senior answer.** Gives a concrete example (this chapter's own: cloning an object with a `List` field, then mutating the clone's list and observing the original's list change too, since both reference the same `List` instance) and correctly overrides `clone()` to fix it.
+
+**Staff-level extension.** Connects this to why many senior engineers avoid `Cloneable`/`clone()` entirely in new code (per *Effective Java*'s well-known criticism of the mechanism — no way to enforce `Cloneable` at compile time, `clone()`'s checked-exception signature is awkward, and subclassing interacts badly with it) and prefers a copy constructor or a static factory method instead, which can express a deep copy directly and explicitly with none of `clone()`'s surprises.
+
+**Common mistakes.** Assuming `clone()` (or "clone" generically) always produces a fully independent copy; forgetting that arrays are also mutable reference types subject to the identical shallow-copy issue.
+
+**Likely follow-ups.** "If you avoid `clone()`, how would you give a class a proper deep-copy capability?" (A copy constructor, or a static `copyOf`-style factory method, that explicitly constructs new instances of every mutable-typed field.)
+
+**Evaluation criteria (1–5).** 1: assumes `clone()` is always a full deep copy. 3: correctly states `clone()`'s default is shallow. 5: correct mechanism, a concrete shared-reference example, and knows the standard alternative (copy constructor) senior engineers actually reach for.
+
+**Related references.** [§ Core Concepts](#core-concepts); [§ Internal Implementation](#internal-implementation).
+
 ## Summary
 
 A class with only `final` fields is not automatically immutable — mutability can leak through a constructor that stores a caller's mutable reference directly, or a getter that returns a live reference to internal mutable state, both measured directly in this chapter. Defensive copying at both boundaries closes the leak; `List.copyOf()` (and its `Map`/`Set` equivalents) is stronger still, rejecting any mutation attempt outright rather than merely being independent of the original.
@@ -330,6 +429,7 @@ A class with only `final` fields is not automatically immutable — mutability c
 - A constructor storing a mutable argument directly, or a getter returning a live mutable reference, both leak mutability.
 - Defensive copying at both boundaries (constructor and getter) is required for genuine immutability.
 - `List.copyOf()`/`Map.copyOf()`/`Set.copyOf()` reject mutation outright, a stronger guarantee than a plain defensive copy.
+- `Object.clone()`'s default (`super.clone()`) is a shallow, field-by-field copy — a mutable-typed field is copied as a shared reference, not recursively; overriding `clone()` to deep-copy that field is required for a real deep copy.
 
 ## Cheat Sheet
 
@@ -338,6 +438,7 @@ A class with only `final` fields is not automatically immutable — mutability c
 | Does the constructor copy every mutable-typed argument? | Constructor-side leak |
 | Does every getter return a copy or immutable view, not the live field? | Getter-side leak |
 | Is `List.copyOf()`/equivalent used rather than a plain mutable copy, where mutation should be rejected outright? | Weaker guarantee than intended |
+| Does an overridden `clone()` only call `super.clone()`, with no further copying? | Shallow-clone leak — every mutable field needs its own explicit deep copy |
 
 ## Flashcards
 
@@ -392,19 +493,39 @@ Treating a plain defensive copy as equivalent to an immutable view.
 **Related:**
 [Core Concepts](#core-concepts)
 
+### Card: clone() is shallow by default
+
+**Prompt:**
+Does `Object.clone()`'s default implementation (`super.clone()`) produce a deep copy?
+
+**Answer:**
+No — verified directly: a shallow `clone()` on an object with a `List` field produces a clone that shares the exact same `List` instance as the original; mutating the clone's list changed the original's list too.
+
+**Why it matters:**
+A common misconception — "clone" sounds like it should mean "fully independent copy," but the default mechanism is field-by-field, not recursive.
+
+**Common trap:**
+Implementing `Cloneable` and relying on `super.clone()` alone for a class with any mutable-typed field.
+
+**Related:**
+[Internal Implementation](#internal-implementation)
+
 ## Practice Exercises
 
-1. Reproduce: [`MutableLeakDemo.java`](../../../practice/java/week-13/immutability/src/MutableLeakDemo.java).
+1. Reproduce: [`MutableLeakDemo.java`](../../../practice/java/week-13/immutability/src/MutableLeakDemo.java) and [`CloneDemo.java`](../../../practice/java/week-13/immutability/src/CloneDemo.java).
 2. Add a third leak to the demo: a constructor that stores an array field (`private final int[] scores`) directly rather than cloning it, and demonstrate the same class of bug with `int[]` instead of `List`/`Date`.
 3. Rewrite `LeakyEvent` to use `java.time.Instant` instead of `java.util.Date` for the `when` field, and explain why this eliminates the need for defensive copying on that field specifically.
+4. Add a second mutable field (a `Map<String, String>`) to `DeepTeam`, and extend its overridden `clone()` to deep-copy that field too — confirm mutating the clone's map no longer affects the original's map.
 
 ## Solutions
 
-**Exercise 1.** Expected output matches this chapter's measured traces: both leaks reproduce (the event's date changes after external mutation of the original `Date`; the attendees list gains an externally-added entry), and the fixed version resists both.
+**Exercise 1.** Expected output matches this chapter's measured traces: both leaks reproduce (the event's date changes after external mutation of the original `Date`; the attendees list gains an externally-added entry), and the fixed version resists both; `CloneDemo.java` reproduces the `CloneNotSupportedException`, the shared-reference shallow-clone leak, and the fixed deep clone.
 
 **Exercise 2.** An `int[]` field stored directly via `this.scores = scores;` (not `scores.clone()`) lets a caller mutate the array's elements after construction (`scores[0] = 999;`) and see that change reflected in the "immutable" object's state — arrays are mutable reference types just like `List`/`Date`, and `final` on the field reference does nothing to protect the array's contents.
 
 **Exercise 3.** `java.time.Instant` (and the rest of the `java.time` package) is itself genuinely immutable — every "mutating" method (`plusSeconds()`, etc.) returns a new `Instant` rather than modifying the receiver. Storing an `Instant` directly (no copy needed) is safe because there is no way for a caller to mutate the object after handing it to the constructor; the entire defensive-copying discipline exists only because `java.util.Date` (a legacy, genuinely mutable type) requires it.
+
+**Exercise 4.** The pattern is identical to `members`: `copy.extraField = new HashMap<>(this.extraField);` inside the overridden `clone()`, after the `super.clone()` call — each additional mutable field needs its own explicit deep-copy line; there's no shortcut that deep-copies every field automatically.
 
 ## Additional Reading
 

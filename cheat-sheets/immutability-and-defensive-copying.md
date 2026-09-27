@@ -5,7 +5,7 @@ document_type: cheat-sheet
 domain: java-core
 topic_id: T-103
 canonical: ../syllabus/02-java/language-core/immutability-and-defensive-copying.md
-last_updated: 2026-08-05
+last_updated: 2026-09-27
 ---
 
 # Immutability and Defensive Copying
@@ -23,6 +23,8 @@ A class is only as immutable as its most permissive point of entry or exit for m
 - **Leak on the way in** — a constructor storing the caller's mutable reference directly (`this.when = when;`).
 - **Leak on the way out** — a getter returning a live internal reference (`return attendees;`).
 - **`List.copyOf()`** — stronger than a plain defensive copy: produces an unmodifiable view that throws `UnsupportedOperationException` on mutation, rather than merely being independent of the original.
+- **Shallow copy** — copies fields as-is (references stay shared); `Object.clone()`'s default (`super.clone()`) is shallow.
+- **Deep copy** — recursively copies every referenced mutable object too; requires overriding `clone()` (or using a copy constructor) explicitly.
 
 ## Decision Table
 
@@ -53,11 +55,20 @@ Fixed version (defensive copy + List.copyOf()):
   getAttendees().add("mallory") threw UnsupportedOperationException  <- rejected outright
 ```
 
+## Key Numbers (real, executed — `CloneDemo.java`)
+
+```
+Shallow clone: original.members == clone.members -> true (SAME list, mutation leaks both ways)
+Deep clone (clone() overridden to copy the field): original.members == clone.members -> false (independent)
+A class NOT implementing Cloneable: clone() throws CloneNotSupportedException
+```
+
 ## Common Pitfalls
 
 - Believing `final` fields alone make a class immutable, without checking whether the referenced objects are themselves mutable.
 - Copying on construction but not on the getter (or vice versa) — both boundaries need protection.
 - Treating a plain mutable-copy getter as equivalent to an immutable view — it's safer than a live reference but still allows unnoticed local mutation.
+- Assuming `clone()` performs a deep copy by default — `super.clone()` only copies fields, references included, not what they point to.
 
 ## Interview Answer Skeleton
 
