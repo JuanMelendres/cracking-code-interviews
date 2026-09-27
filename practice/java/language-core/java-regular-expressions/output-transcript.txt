@@ -1,0 +1,39 @@
+$ javac -d out src/RegexDemo.java
+$ java -cp out RegexDemo
+
+Demo A: named groups
+Match: 2026-06-15 -> year=2026 month=06 day=15
+Match: 2026-06-20 -> year=2026 month=06 day=20
+
+Demo B: greedy vs. reluctant vs. possessive quantifiers
+Greedy   <.+>   on "<a><b><c>" -> "<a><b><c>" (consumes as much as possible, then backtracks to match)
+Reluctant <.+?> on "<a><b><c>" -> "<a>" (consumes as little as possible, expands only on failure)
+Possessive <.++> on "<a><b><c>" -> matched: false (never backtracks -- '.' consumes the trailing '>' too, then can't give it back)
+
+Demo C: precompiled Pattern vs. String.matches() (which compiles every call)
+200,000 calls to String.matches(): 112 ms (recompiles the pattern every time)
+200,000 calls to a precompiled Pattern.matcher(): 21 ms
+Speedup: 5.3x
+
+Demo D: catastrophic backtracking (a real, measured ReDoS shape)
+n=10 ('a' x 10): matched=false, elapsed=34 ms
+n=11 ('a' x 11): matched=false, elapsed=74 ms
+n=12 ('a' x 12): matched=false, elapsed=160 ms
+n=13 ('a' x 13): matched=false, elapsed=330 ms
+n=14 ('a' x 14): matched=false, elapsed=635 ms
+n=15 ('a' x 15): matched=false, elapsed=1,184 ms
+n=16 ('a' x 16): matched=false, elapsed=2,275 ms
+n=17 ('a' x 17): matched=false, elapsed=4,207 ms
+n=18 ('a' x 18): matched=false, elapsed=7,552 ms
+n=19 ('a' x 19): matched=false, elapsed=13,402 ms
+
+# Environment: OpenJDK 21.0.12 (Homebrew), macOS (Darwin 27.0.0)
+#
+# Honest side-note not shown in this transcript, from exploratory probing before settling
+# on the pattern above: the textbook nested-group ReDoS shapes usually cited for this topic
+# -- "^(a+)+$", "^(a|aa)+$" against a near-miss run of 'a's -- did NOT reproduce catastrophic
+# blowup on this JDK even out to 45 repetitions (consistently 0ms). The adjacent-quantifier
+# shape used above ("a*" repeated 15 times before a required literal) DOES reproduce real,
+# exponential blowup reliably. Both are genuine, measured findings on this exact JDK build --
+# see the chapter's Internal Implementation section for the full comparison and why it matters
+# for how you reason about regex safety on modern Java specifically, rather than by folklore.

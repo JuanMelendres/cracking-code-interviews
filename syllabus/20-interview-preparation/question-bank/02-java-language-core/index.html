@@ -9487,6 +9487,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#java-file-io-and-nio2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java File I/O and NIO.2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-regular-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Regular Expressions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lambdas-and-functional-interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12637,6 +12659,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#java-file-io-and-nio2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java File I/O and NIO.2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-regular-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Regular Expressions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lambdas-and-functional-interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12864,14 +12908,17 @@
 <p>Part of the <code>02-java</code> compendium — the last of its 4 subdomain files. See
 <a href="../02-java-collections/"><code>02-java-collections.md</code></a> for the tier-explanation format
 and sourcing discipline.</p>
-<p><strong>Honest count for this subdomain:</strong> 22 chapters yielded 38 deep questions + 10
+<p><strong>Honest count for this subdomain:</strong> 24 chapters yielded 44 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 48 quick-fire
-questions = <strong>96 real questions</strong>.</p>
+<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 54 quick-fire
+questions = <strong>108 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
+NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
+quick-fire cards — closing a real gap found via a generic Java/Spring interview
+checklist audit.)</p>
 <p><strong>02-java domain total across all 4 subdomains:</strong> 52 (collections) + 70 (concurrency)
-+ 31 (jvm-internals) + 96 (language-core) = <strong>249 real questions</strong> — the largest of
++ 31 (jvm-internals) + 108 (language-core) = <strong>261 real questions</strong> — the largest of
 the 22 domains this initiative covers, consistent with <code>02-java</code> being the biggest
-domain in the syllabus (61 chapters).</p>
+domain in the syllabus (64 chapters).</p>
 <hr />
 <h2 id="java-oop-fundamentals-classes-objects-and-interfaces">Java OOP Fundamentals — Classes, Objects, and Interfaces<a class="headerlink" href="#java-oop-fundamentals-classes-objects-and-interfaces" title="Permanent link">&para;</a></h2>
 <p>Junior Fundamentals chapter — its Interview Questions already tag each by seniority.</p>
@@ -13103,6 +13150,46 @@ domain in the syllabus (61 chapters).</p>
 - <strong>Junior/Mid:</strong> Assumes the issue only produces exceptions — the common mistake this question targets.
 - <strong>Senior:</strong> <code>SimpleDateFormat</code> holds mutable internal state its <code>parse()</code>/<code>format()</code> read and write without synchronization; <code>DateTimeFormatter</code> is immutable and safe to share.
 - <strong>Staff:</strong> Connects this to the broader "legacy mutable types shared across threads" pattern and proposes it as a standing code-review flag.</p>
+<hr />
+<h2 id="java-file-io-and-nio2">Java File I/O and NIO.2<a class="headerlink" href="#java-file-io-and-nio2" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-wrap-a-filereader-in-a-bufferedreader-what-does-buffering-actually-save">Q1 — Why wrap a <code>FileReader</code> in a <code>BufferedReader</code>? What does buffering actually save?<a class="headerlink" href="#q1-why-wrap-a-filereader-in-a-bufferedreader-what-does-buffering-actually-save" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/java-file-io-and-nio2/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that <code>BufferedReader</code> is "faster" without explaining the mechanism.
+- <strong>Senior:</strong> Explains the real syscall-overhead mechanism and cites the chapter's own measured order of magnitude (4.6x).
+- <strong>Staff:</strong> Connects this to the general JDK "decorator" I/O pattern and knows when buffering stops being the relevant lever (very large single reads, memory-mapped I/O).</p>
+<h3 id="q2-what-happens-if-close-throws-after-the-try-with-resources-body-already-threw">Q2 — What happens if <code>close()</code> throws after the <code>try</code>-with-resources body already threw?<a class="headerlink" href="#q2-what-happens-if-close-throws-after-the-try-with-resources-body-already-threw" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/java-file-io-and-nio2/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes the <code>close()</code> exception is silently dropped, or that it replaces the original — the common mistake this question targets.
+- <strong>Senior:</strong> Names <code>getSuppressed()</code> explicitly and contrasts it with a manual <code>finally</code> block's silent-replacement behavior.
+- <strong>Staff:</strong> Connects this to production debugging — a suppressed exception preserves evidence a manual <code>finally</code> block would have destroyed.</p>
+<h3 id="q3-a-nightly-export-job-writes-utf-8-source-data-but-the-output-is-garbled-for-non-ascii-characters-diagnose-it">Q3 — A nightly export job writes UTF-8 source data but the output is garbled for non-ASCII characters. Diagnose it.<a class="headerlink" href="#q3-a-nightly-export-job-writes-utf-8-source-data-but-the-output-is-garbled-for-non-ascii-characters-diagnose-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/java-file-io-and-nio2/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Guesses "an encoding issue" without naming the platform-default-charset mechanism — the common mistake this question targets.
+- <strong>Senior:</strong> Names the platform-default-charset mechanism specifically and states the fix (an explicit <code>StandardCharsets.UTF_8</code>).
+- <strong>Staff:</strong> Proposes a codebase-wide static-analysis rule as systemic prevention, not a one-off fix.</p>
+<hr />
+<h2 id="java-regular-expressions">Java Regular Expressions<a class="headerlink" href="#java-regular-expressions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-does-calling-stringmatchesregex-in-a-loop-perform-worse-than-a-precompiled-pattern">Q1 — Why does calling <code>String.matches(regex)</code> in a loop perform worse than a precompiled <code>Pattern</code>?<a class="headerlink" href="#q1-why-does-calling-stringmatchesregex-in-a-loop-perform-worse-than-a-precompiled-pattern" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/java-regular-expressions/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States precompiling "is faster" without explaining that <code>String.matches()</code> recompiles every call.
+- <strong>Senior:</strong> Explains the recompilation mechanism precisely and cites the chapter's own measured order of magnitude (5.3x).
+- <strong>Staff:</strong> Connects this to the general pattern of expensive-to-construct, immutable, shareable objects (<code>Pattern</code>, <code>DateTimeFormatter</code>) versus their stateful, non-shareable counterparts.</p>
+<h3 id="q2-can-a-greedy-and-a-possessive-quantifier-ever-produce-different-match-results-not-just-different-performance">Q2 — Can a greedy and a possessive quantifier ever produce different match results, not just different performance?<a class="headerlink" href="#q2-can-a-greedy-and-a-possessive-quantifier-ever-produce-different-match-results-not-just-different-performance" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/java-regular-expressions/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats possessive quantifiers as "greedy but faster" with no result difference — the common mistake this question targets.
+- <strong>Senior:</strong> Gives a concrete case where the two diverge (<code>&lt;.+&gt;</code> matches <code>"&lt;a&gt;&lt;b&gt;&lt;c&gt;"</code> fully; <code>&lt;.++&gt;</code> fails to match it at all).
+- <strong>Staff:</strong> Knows when swapping greedy for possessive is safe (no genuine backtracking need) versus a real, risky behavior change.</p>
+<h3 id="q3-a-public-sign-up-forms-validation-regex-causes-request-threads-to-hang-under-certain-crafted-usernames-diagnose-and-fix-it">Q3 — A public sign-up form's validation regex causes request threads to hang under certain crafted usernames. Diagnose and fix it.<a class="headerlink" href="#q3-a-public-sign-up-forms-validation-regex-causes-request-threads-to-hang-under-certain-crafted-usernames-diagnose-and-fix-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/java-regular-expressions/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Recognizes "a regex performance problem" without identifying the quantifier-ambiguity mechanism.
+- <strong>Senior:</strong> Names the mechanism precisely, proposes a length cap as an immediate mitigation and a pattern rewrite as the permanent fix.
+- <strong>Staff:</strong> Proposes worst-case-time fuzz testing as a standing security-review item, and notes that ReDoS folklore must be verified against the actual engine, not assumed (this chapter's own honest finding: <code>(a+)+</code>/<code>(a|aa)+</code> did not reproduce blowup on the current JDK, while an adjacent-quantifier shape did).</p>
 <hr />
 <h2 id="lambdas-and-functional-interfaces">Lambdas and Functional Interfaces<a class="headerlink" href="#lambdas-and-functional-interfaces" title="Permanent link">&para;</a></h2>
 <h3 id="q1-why-cant-a-lambda-capture-a-mutable-local-variable">Q1 — Why can't a lambda capture a mutable local variable?<a class="headerlink" href="#q1-why-cant-a-lambda-capture-a-mutable-local-variable" title="Permanent link">&para;</a></h3>
@@ -13468,6 +13555,36 @@ domain in the syllabus (61 chapters).</p>
 <td>How much slower is <code>String +=</code> in a loop than <code>StringBuilder.append()</code>, roughly?</td>
 <td><a href="../../../02-java/language-core/strings-interning-compact-strings-and-builders/#flashcards">Strings: Interning, Compact Strings, and Builders</a></td>
 </tr>
+<tr>
+<td>49</td>
+<td>What does wrapping a <code>FileReader</code> in a <code>BufferedReader</code> actually save, mechanically?</td>
+<td><a href="../../../02-java/language-core/java-file-io-and-nio2/#flashcards">Java File I/O and NIO.2</a></td>
+</tr>
+<tr>
+<td>50</td>
+<td>If you write text as UTF-8 and read it back as <code>ISO-8859-1</code>, what happens?</td>
+<td><a href="../../../02-java/language-core/java-file-io-and-nio2/#flashcards">Java File I/O and NIO.2</a></td>
+</tr>
+<tr>
+<td>51</td>
+<td>In <code>try</code>-with-resources, if the body throws and <code>close()</code> also throws, what happens to the <code>close()</code> exception?</td>
+<td><a href="../../../02-java/language-core/java-file-io-and-nio2/#flashcards">Java File I/O and NIO.2</a></td>
+</tr>
+<tr>
+<td>52</td>
+<td>Why is calling <code>String.matches(regex)</code> repeatedly slower than reusing a precompiled <code>Pattern</code>?</td>
+<td><a href="../../../02-java/language-core/java-regular-expressions/#flashcards">Java Regular Expressions</a></td>
+</tr>
+<tr>
+<td>53</td>
+<td>Can a possessive quantifier (<code>.++</code>) ever fail to match input the equivalent greedy quantifier (<code>.+</code>) matches?</td>
+<td><a href="../../../02-java/language-core/java-regular-expressions/#flashcards">Java Regular Expressions</a></td>
+</tr>
+<tr>
+<td>54</td>
+<td>Does <code>^(a+)+$</code> cause catastrophic backtracking in <code>java.util.regex</code>?</td>
+<td><a href="../../../02-java/language-core/java-regular-expressions/#flashcards">Java Regular Expressions</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13498,7 +13615,7 @@ domain in the syllabus (61 chapters).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 04:24:51 UTC">September 27, 2026</span>
   </span>
 
     

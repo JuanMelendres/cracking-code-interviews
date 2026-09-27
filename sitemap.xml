@@ -577,6 +577,10 @@
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/java-file-io-and-nio2/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/java-memory-model-and-volatile/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
@@ -594,6 +598,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/java-platform-module-system/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/java-regular-expressions/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
@@ -1713,6 +1721,10 @@
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/java-file-io-and-nio2/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/java-memory-model-and-volatile/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
@@ -1730,6 +1742,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/java-platform-module-system/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/java-regular-expressions/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
@@ -2774,6 +2790,14 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/language-core/comparator-composition-and-pitfalls/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/language-core/java-file-io-and-nio2/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/language-core/java-regular-expressions/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
@@ -5961,6 +5985,10 @@
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/02-java/language-core/java-file-io-and-nio2/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/02-java/language-core/java-modifiers-and-method-signatures/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
@@ -5974,6 +6002,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/02-java/language-core/java-platform-module-system/</loc>
+         <lastmod>2026-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/02-java/language-core/java-regular-expressions/</loc>
          <lastmod>2026-09-27</lastmod>
     </url>
     <url>
