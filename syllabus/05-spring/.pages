@@ -1,6 +1,7 @@
 title: Spring
 nav:
   - INDEX.md
+  - spring-and-spring-boot-fundamentals.md
   - spring-mvc-fundamentals.md
   - transactional-proxy-mechanics-and-propagation.md
   - auto-configuration-and-bean-lifecycle.md

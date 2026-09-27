@@ -358,6 +358,7 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 | [Domain Events vs. Integration Events: Contract Boundaries and Translation](domain-events-vs-integration-events.md) | T-2426 | architecture | `syllabus/17-architecture/domain-events-vs-integration-events.md` |
 | [System Design Patterns: Recognition and Quick-Reference Guide](system-design-patterns-recognition-and-quick-reference.md) | T-2427 | system-design | `syllabus/11-system-design/system-design-patterns-recognition-and-quick-reference.md` |
 | [Docker Compose: Multi-Service Orchestration](docker-compose-multi-service-orchestration.md) | T-2428 | devops-containers | `syllabus/14-devops-containers/docker-compose-multi-service-orchestration.md` |
+| [Spring and Spring Boot Fundamentals](spring-and-spring-boot-fundamentals.md) | T-2213 | spring | `syllabus/05-spring/spring-and-spring-boot-fundamentals.md` |
 | [Estimation and Story Points: Relative Sizing, Velocity, and Its Misuses](estimation-and-story-points.md) | T-1805 | engineering-practices | `syllabus/18-engineering-practices/estimation-and-story-points.md` |
 | [Sprint Retrospectives: Structure, Facilitation, and Avoiding Retro Theater](sprint-retrospectives.md) | T-1806 | engineering-practices | `syllabus/18-engineering-practices/sprint-retrospectives.md` |
 | [Handling Underperformance and Difficult Feedback Conversations](handling-underperformance-and-difficult-feedback.md) | T-1908 | leadership-staff | `syllabus/19-leadership-staff/handling-underperformance-and-difficult-feedback.md` |
@@ -420,6 +421,8 @@ Built as five parallel batches (one per domain, with `03-data-structures-algorit
 **2026-09-22 — System Design Patterns: Recognition and Quick-Reference Guide (T-2427) gains a cheat sheet.** New `11-system-design` chapter, user-requested: real examples and visual (Mermaid) diagrams for each of this domain's 8 existing patterns, framed as a signal-to-pattern recognition guide (mirroring `03-data-structures-algorithms`'s T-2120 pattern-recognition chapter) rather than duplicating any canonical chapter's own depth. New total, verified directly against the file system: **281 cheat sheets** (280 prior + 1).
 
 **2026-09-23 — Docker Compose: Multi-Service Orchestration (T-2428) gains a cheat sheet.** New `14-devops-containers` chapter, user-requested: a real, reproducible `depends_on` race on a fresh Postgres volume, and its real fix. New total, verified directly against the file system: **282 cheat sheets** (281 prior + 1).
+
+**2026-09-26 — Spring and Spring Boot Fundamentals (T-2213) gains a cheat sheet.** New `05-spring` chapter, user-requested: a 20-question interview checklist audit found every concept already taught in prose, but none formatted as an actual seniority-tiered interview question. New total, verified directly against the file system: **283 cheat sheets** (282 prior + 1).
 
 | Cheat Sheet | Topic ID | IWI | Domain | Canonical Chapter |
 |---|---|---|---|---|

@@ -20,6 +20,7 @@ mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - transactional-proxy-mechanics-and-propagation.md
 related:
+  - spring-and-spring-boot-fundamentals.md
   - transactional-proxy-mechanics-and-propagation.md
   - spring-cache-abstraction-and-pitfalls.md
   - auto-configuration-and-bean-lifecycle.md
