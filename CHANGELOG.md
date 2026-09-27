@@ -6,6 +6,13 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (clone()/shallow-vs-deep-copy gap closed; repo-wide question-bank completeness audit, 2026-09-27)
+
+- User shared a "50 Java Interview Questions for Experienced Developers" checklist and asked to also audit whether all previously-checked questions across the session are correctly reflected in `question-bank/` and their canonical chapters. Confirmed one real gap from the 50-item checklist: `Object.clone()`/shallow-vs-deep-copy had zero coverage anywhere — `immutability-and-defensive-copying.md` covers defensive copying deeply but never explained `clone()`'s own shallow-copy mechanism.
+- `immutability-and-defensive-copying.md` (`1.0 → 1.1`): new Core Concepts subsection and Interview Question 3, full standard. Real demo (`CloneDemo.java`) proving `super.clone()`'s shallow copy shares a mutable field's reference between original and clone (confirmed by reference equality), fixed by overriding `clone()` to deep-copy it. Standalone cheat sheet/flashcard deck updated in place.
+- A repo-wide subagent audit for the broader question found a much larger gap population than previously known: roughly 35 canonical chapters across 20 of 22 domains have a complete Interview Questions section with zero appearance in their domain's question-bank index (an older numbered-heading style the previous narrower audits' grep missed). Recorded, not yet fixed — a separate follow-up.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline).
+
 ### Added (Coding Interview Standard applied to 6 exercises; wait/sleep/join and staging-vs-prod scenario closed; 3 stale question-bank indices fixed, 2026-09-27)
 
 - User shared a generic "Honeywell Java Developer" interview checklist and asked whether the Q&A section covered it, plus asked for the repo's own Coding Interview Standard (recognition signal, clarifying question, brute-force, optimized, pseudocode, compiling code, complexity, edge cases) applied to its 8 named coding exercises. Audited via subagent against all 50 checklist items, checking actual file contents.

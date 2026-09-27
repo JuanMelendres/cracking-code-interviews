@@ -5,7 +5,7 @@ document_type: flashcard-deck
 domain: java-core
 topic_id: T-103
 canonical: ../syllabus/02-java/language-core/immutability-and-defensive-copying.md
-last_updated: 2026-08-06
+last_updated: 2026-09-27
 ---
 
 # Flashcards: Immutability and Defensive Copying
@@ -62,3 +62,20 @@ Treating a plain defensive copy as equivalent to an immutable view.
 
 **Related:**
 [Core Concepts](../syllabus/02-java/language-core/immutability-and-defensive-copying.md#core-concepts)
+
+## Card: clone() is shallow by default
+
+**Prompt:**
+Does `Object.clone()`'s default implementation (`super.clone()`) produce a deep copy?
+
+**Answer:**
+No — verified directly: a shallow `clone()` on an object with a `List` field produces a clone that shares the exact same `List` instance as the original; mutating the clone's list changed the original's list too.
+
+**Why it matters:**
+A common misconception — "clone" sounds like it should mean "fully independent copy," but the default mechanism is field-by-field, not recursive.
+
+**Common trap:**
+Implementing `Cloneable` and relying on `super.clone()` alone for a class with any mutable-typed field.
+
+**Related:**
+[Internal Implementation](../syllabus/02-java/language-core/immutability-and-defensive-copying.md#internal-implementation)
