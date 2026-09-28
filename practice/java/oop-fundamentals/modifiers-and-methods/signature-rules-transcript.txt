@@ -1,0 +1,64 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+
+$ javac -Xlint:all -d out src/MethodSignatureRulesDemo.java
+src/MethodSignatureRulesDemo.java:113: warning: [varargs] Varargs method could cause heap pollution from non-reifiable varargs parameter items
+        return new ArrayList<>(Arrays.asList(items));
+                                             ^
+src/MethodSignatureRulesDemo.java:116: warning: [unchecked] Possible heap pollution from parameterized vararg type T
+    static <T> T[] unsafeToArray(T... items) {
+                                      ^
+  where T is a type-variable:
+    T extends Object declared in method <T>unsafeToArray(T...)
+src/MethodSignatureRulesDemo.java:124: warning: [unchecked] unchecked generic array creation for varargs parameter of type List<String>[]
+        List<String>[] polluted = unsafeToArray(List.of("a"), List.of("b"));
+                                               ^
+3 warnings
+
+$ java -cp out MethodSignatureRulesDemo
+
+=== 1. A varargs parameter is an array at runtime ===
+joinAll("-", "a", "b", "c") = String[] of length 3 -> "a-b-c"
+joinAll("-")                   = String[] of length 0 -> ""
+A varargs call with zero arguments gets an empty array, never null.
+
+=== 2. Overload resolution runs in three phases, and varargs loses all of them ===
+pick(42) with all three overloads present:  pick(long)      [phase 1: widening primitive conversion]
+Phase 1 (no boxing, no varargs) already found a match, so it wins outright.
+
+only(42) with just boxing and varargs:      only(Integer)
+Boxing (phase 2) is still preferred over varargs (phase 3).
+
+only(1, 2) -- two arguments, only varargs applies: only(int...)
+
+=== 3. An array can be passed straight to a varargs parameter -- sometimes surprisingly ===
+describe(names) where names is String[3]:      describe() received 3 element(s)
+describe((Object) names) -- explicit cast:     describe() received 1 element(s)
+A String[] IS an Object[], so it is spread into three arguments,
+not wrapped as one. Casting to Object forces the single-element reading.
+
+describe(numbers) where numbers is int[3]:     describe() received 1 element(s)
+int[] is NOT an Object[] (primitives do not covary), so the whole array
+arrives as one element -- the same source shape, the opposite result.
+
+Arrays.asList(numbers).size() = 1  <- the classic bug this causes
+Arrays.asList(names).size()   = 3
+
+=== 4. Generic varargs and heap pollution ===
+listOf("x", "y") = [x, y]   (@SafeVarargs, read-only use)
+unsafeToArray(...) runtime array type: List[]
+Declared as List<String>[], but the JVM created a plain List[] --
+the element type was erased, which is exactly what heap pollution means.
+Reading polluted[0].get(0) as String threw: ClassCastException
+  message: class java.lang.Integer cannot be cast to class java.lang.String (java.lang.Integer and java.lang.String are in module java.base of loader 'bootstrap')
+The cast the compiler inserted failed at a line that contains no cast.
+
+=== 5. Covariant return types ===
+((Animal) new Dog()).reproduce() returns: Dog
+Dog.reproduce() declares Dog, not Animal -- legal since Java 5.
+Callers holding a Dog reference need no cast: Dog
+
+=== 6. Static methods are hidden, not overridden ===
+Instance method through a Base reference: Derived.instanceGreet()   <- dynamic dispatch, runtime type wins
+Static method resolved through Base:      Base.staticGreet()        <- static binding, compile-time type wins
+Static method resolved through Derived:   Derived.staticGreet()
+@Override on a static method is a compile error -- there is nothing to override.

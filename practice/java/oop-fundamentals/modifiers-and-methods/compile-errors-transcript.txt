@@ -28,3 +28,16 @@ src/BrokenPrivateAccess.java:4: error: balance has private access in BankAccount
         System.out.println(acc.balance); // ERROR: balance has private access in BankAccount (different top-level class)
                               ^
 1 error
+
+=== BrokenVarargsAmbiguity (real error) ===
+src/BrokenVarargsAmbiguity.java:18: error: reference to handle is ambiguous
+        handle("a", "b"); // ambiguous: neither overload is more specific
+        ^
+  both method handle(String,Object...) in BrokenVarargsAmbiguity and method handle(Object,String...) in BrokenVarargsAmbiguity match
+1 error
+
+=== BrokenStaticOverride (real error) ===
+src/BrokenStaticOverride.java:16: error: static methods cannot be annotated with @Override
+        @Override
+        ^
+1 error

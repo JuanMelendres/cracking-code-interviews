@@ -8,7 +8,7 @@ last_updated: 2026-09-21
 
 # Software Design
 
-Class/module-level design decisions — a different altitude from `17-architecture`'s system-level concerns. `design-patterns-applied.md` (relocated), `solid-principles.md`, `ood-interview-problems.md`, and `coupling-cohesion-and-code-smells.md` (gap-audit addition) plus `practice/java/{oop-fundamentals,design-patterns,solid-principles,ood-interview-problems,coupling-cohesion-and-code-smells}/`.
+Class/module-level design decisions — a different altitude from `17-architecture`'s system-level concerns. `design-patterns-applied.md` (relocated), `solid-principles.md`, `ood-interview-problems.md`, `coupling-cohesion-and-code-smells.md` (gap-audit addition), and `design-patterns-catalog-beyond-the-core-four.md` (2026-09-28 gap-audit addition: Factory Method, Abstract Factory, Adapter, Proxy, Facade, Observer, Command, Chain of Responsibility, and Template Method, none of which had canonical coverage) plus `practice/java/{oop-fundamentals,design-patterns,solid-principles,ood-interview-problems,coupling-cohesion-and-code-smells}/`.
 
 > **Phase 2 update (2026-09-03).** `design-patterns-applied.md` has physically relocated here via `git mv` from `handbook/architecture/` — one of the plan's own named low-risk relocations (§10 Phase 2). It was the one chapter this domain had at the time.
 >
@@ -26,6 +26,7 @@ Class/module-level design decisions — a different altitude from `17-architectu
 | T-1701 | SOLID Principles | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/04-software-design/solid-principles.md` |
 | T-1702 | Object-Oriented Design Interview Problems | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/04-software-design/ood-interview-problems.md` |
 | T-1703 | Coupling, Cohesion, and Code Smells | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/04-software-design/coupling-cohesion-and-code-smells.md` |
+| T-2432 | Design Patterns Catalog Beyond the Core Four | L1, L2, L3, L4 — fully written, real demo (2026-09-28) | `syllabus/04-software-design/design-patterns-catalog-beyond-the-core-four.md` |
 
 ## Where this domain's boundary comes from
 

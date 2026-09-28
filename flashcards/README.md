@@ -473,6 +473,8 @@ Built as two parallel batches (14 React, 17 Next.js — the same split cheat-she
 | A6 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | T-2305 | 3 | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
 | A7 | [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) | T-2306 | 3 | `syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md` |
 
+**2026-09-28 — three new decks from a checklist-audit gap closure.** An audit of a generated Java/backend interview checklist against real repository content found four genuine gaps; three produced new canonical chapters, each of which gains a deck here: **Nested and Inner Classes** (T-2431, `02-java/language-core`), **Design Patterns Catalog Beyond the Core Four** (T-2432, `04-software-design`), and **Broker Selection: Kafka vs. RabbitMQ vs. SQS** (T-2433, `09-messaging-event-driven`). 5 cards each. Counted directly against the file system rather than carried forward: **288 decks, 1015 cards** (285 decks / 1000 cards before this change). Note that the 2026-09-26 entry above states 997 cards where the tree actually held 1000 — a stale figure corrected here by direct measurement, not a loss of cards.
+
 ## How this relates to other deliverables
 
 - `syllabus/` — the canonical chapters these cards are drawn from. For the 137 pre-existing decks, each source chapter's own `## Flashcards` section remains in place (unchanged) as the chapter's own embedded review aid; the 31 new-writing-domain decks above have no such embedded section to leave in place, since their source template doesn't carry one.

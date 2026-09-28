@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../04-software-design/INDEX.md
   - 03-data-structures-algorithms.md
@@ -17,13 +17,16 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 4 chapters (`design-patterns-applied.md`,
-`ood-interview-problems.md`, `solid-principles.md`, `coupling-cohesion-and-code-smells.md`)
-yielded 8 deep questions + 4 quick-fire questions = **12 real questions** — one of
-the smallest domains covered, genuinely reflecting the domain's real size. (Updated
+**Honest count for this domain:** 5 chapters (`design-patterns-applied.md`,
+`ood-interview-problems.md`, `solid-principles.md`, `coupling-cohesion-and-code-smells.md`,
+`design-patterns-catalog-beyond-the-core-four.md`)
+yielded 11 deep questions + 4 quick-fire questions = **15 real questions**. (Updated
 2026-09-27: `coupling-cohesion-and-code-smells.md` had a complete Interview Questions
 section never indexed — a stale-index gap, not a content gap. Added 2 questions; no
-Flashcards section in that chapter.)
+Flashcards section in that chapter. Updated 2026-09-28:
+`design-patterns-catalog-beyond-the-core-four.md` is a new chapter closing a real
+coverage gap — the domain previously covered only Strategy, Builder, Decorator, and
+Singleton — and contributes 3 questions.)
 No Junior Fundamentals chapter exists in this domain; the object-oriented design
 reasoning these chapters teach presupposes the OOP fundamentals already covered in
 `02-java/language-core`.
@@ -131,6 +134,37 @@ two chapters (`solid-principles.md`, `ood-interview-problems.md`) don't.
 - **Junior/Mid:** Flags it purely as "long method chain, looks ugly" without connecting it to a concrete future-change risk.
 - **Senior:** Correctly identifies this as a Law of Demeter violation ("train wreck"), worth flagging specifically because it's duplicated — a future internal change to `Customer` requires editing all three files, versus one delegating method if fixed.
 - **Staff:** Weighs the fix's cost against its real payoff (duplication count, likelihood the reached-through structure changes) rather than applying the discipline as an absolute rule.
+
+---
+
+## Design Patterns Catalog Beyond the Core Four
+
+### Q1 — What is the difference between Adapter, Facade, and Proxy? They all wrap something.
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../04-software-design/design-patterns-catalog-beyond-the-core-four.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows Adapter is about incompatible interfaces and Facade is about simplification; vague on Proxy.
+- **Senior:** Uses the interface as the discriminator — Adapter changes it, Facade shrinks it, Proxy keeps it identical — and explains that the identical interface is exactly what allows transparent insertion, hence AOP and `@Transactional`. Distinguishes Proxy from Decorator (both preserve the interface; a Decorator is composed deliberately by the caller, a Proxy controls access and is usually invisible).
+- **Staff:** Frames Proxy transparency as a governance trade-off — behavior added by annotation never appears in review of the call site — arguing for a small sanctioned set of cross-cutting proxies over unconstrained AOP.
+
+### Q2 — Our event listeners sometimes don't fire and nothing is logged. How do you debug that, and what is the fix?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../04-software-design/design-patterns-catalog-beyond-the-core-four.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Identifies that one listener's exception can prevent later listeners from running.
+- **Senior:** Knows mid-dispatch unsubscription does **not** reliably throw — removing the second of three `ArrayList` elements leaves the iterator's cursor equal to the new size, so `hasNext()` returns false and the third listener is silently skipped, verified by real executed output. Fix: dispatch over a snapshot with per-listener try/catch plus a failure metric.
+- **Staff:** Questions in-process Observer for side effects that must not be lost — isolation prevents starvation but gives no retry or durability — and insists any real ordering dependency between listeners be made explicit rather than left implicit in registration order.
+
+### Q3 — You need to add retries to twelve HTTP clients without modifying them. What do you build, and what could go wrong?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../04-software-design/design-patterns-catalog-beyond-the-core-four.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes a wrapper implementing the same interface rather than editing twelve classes.
+- **Senior:** Names Proxy (JDK dynamic proxy for interfaces, CGLIB/framework AOP otherwise), states idempotency as the precondition, and adds backoff, jitter, and a circuit breaker. Knows `final` classes and methods cannot be proxied, and that `InvocationTargetException` must be unwrapped or callers see the wrong exception type.
+- **Staff:** Raises retry amplification explicitly — uniform fixed retries multiply load exactly when the dependency can least take it — and puts the retry budget in platform defaults with per-client observability.
 
 ---
 

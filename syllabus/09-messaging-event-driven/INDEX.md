@@ -37,6 +37,7 @@ Kafka mechanics plus the event-driven/event-sourcing/CDC chapters previously spl
 | T-906 | Event-Driven Architecture: Integration Styles, Choreography, and Orchestration | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/09-messaging-event-driven/event-driven-architecture-integration-styles.md` |
 | T-2408 | Kafka Connect: Source and Sink Connectors | L1, L2, L3, L4 — fully written, real demo (2026-09-11) | `syllabus/09-messaging-event-driven/kafka-connect-source-and-sink-connectors.md` |
 | T-2421 | Kafka Security: SASL Authentication and ACL Authorization | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/09-messaging-event-driven/kafka-security-authentication-and-authorization.md` |
+| T-2433 | Broker Selection: Kafka vs. RabbitMQ vs. SQS | L1, L2, L3, L4 — fully written (2026-09-28) | `syllabus/09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs.md` |
 
 ## Where this domain's boundary comes from
 

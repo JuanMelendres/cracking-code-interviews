@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../02-java/language-core/INDEX.md
   - 02-java-jvm-internals.md
@@ -17,10 +17,10 @@ Part of the `02-java` compendium — the last of its 4 subdomain files. See
 [`02-java-collections.md`](02-java-collections.md) for the tier-explanation format
 and sourcing discipline.
 
-**Honest count for this subdomain:** 24 chapters yielded 47 deep questions + 10
+**Honest count for this subdomain:** 25 chapters yielded 53 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
 `java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 58 quick-fire
-questions = **115 real questions**. (Updated 2026-09-26: added Java File I/O and
+questions = **121 real questions**. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
 checklist audit. Updated again 2026-09-27: `comparator-composition-and-pitfalls.md`
@@ -28,12 +28,18 @@ had a complete Interview Questions section written 2026-09-17 that this index ne
 picked up — a stale-index gap, not a content gap. Added its 2 questions + 3
 quick-fire cards. Updated again 2026-09-27, same day: `immutability-and-defensive-copying.md`
 gained a new Q3 on shallow-vs-deep copy / `Object.clone()`, closing a real content
-gap — `clone()`/`Cloneable` had zero dedicated explanation anywhere in this domain.)
+gap — `clone()`/`Cloneable` had zero dedicated explanation anywhere in this domain.
+Updated again 2026-09-28: added Nested and Inner Classes, T-2431, a new chapter
+closing a real gap (no canonical treatment of static nested vs. inner vs. local vs.
+anonymous existed) — 3 deep questions — plus 3 new deep questions on varargs,
+overload resolution, heap pollution, and static hiding added to
+`java-modifiers-and-method-signatures.md`, where `varargs` previously had zero
+mentions anywhere in the repository.)
 
 **02-java domain total across all 4 subdomains:** 52 (collections) + 72 (concurrency)
-+ 31 (jvm-internals) + 115 (language-core) = **270 real questions** — the largest of
++ 31 (jvm-internals) + 121 (language-core) = **276 real questions** — the largest of
 the 22 domains this initiative covers, consistent with `02-java` being the biggest
-domain in the syllabus (64 chapters).
+domain in the syllabus (65 chapters).
 
 ---
 
@@ -174,6 +180,66 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 - **Mid:** Correctly states an abstract class can have both, with an example.
 - **Senior:** Correctly distinguishes when to use an abstract class (shared state + default behavior) versus an interface (pure contract).
 - **Staff:** Discusses the trade-off of introducing an abstract base class into an existing hierarchy versus retrofitting an interface with default methods.
+
+### Q3 — What is varargs, and which overload wins when a varargs method and a boxing overload both apply?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/language-core/java-modifiers-and-method-signatures.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Knows `Type... name` accepts a variable number of arguments and is an array inside the method.
+- **Mid:** Knows it must be the last parameter, that a zero-argument call yields an empty array rather than `null`, and that only one varargs parameter is allowed.
+- **Senior:** States the three resolution phases in order (widening, then boxing, then varargs) and that varargs therefore loses to a boxing overload — `only(42)` picks `only(Integer)` over `only(int...)`, verified by real executed output. Knows two varargs overloads can be mutually ambiguous and produce a real `reference to handle is ambiguous` compile error.
+- **Staff:** Treats varargs in a published API as a compatibility decision — converting a fixed-arity method to varargs is source-compatible but not binary-compatible, since the erased descriptor changes.
+
+### Q4 — What is heap pollution, and what does `@SafeVarargs` actually guarantee?
+
+**Canonical treatment:** [§ Interview Questions, Q4](../../02-java/language-core/java-modifiers-and-method-signatures.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows generic varargs produce an unchecked warning related to erasure.
+- **Senior:** Defines heap pollution as a variable whose declared parameterized type does not match the referenced object's actual type; explains that a `List<String>[]` from generic varargs has runtime type `List[]`, that storing an `Integer`-bearing list through an `Object[]` alias raises no `ArrayStoreException`, and that the failure surfaces as a `ClassCastException` on a read line containing no visible cast. States that `@SafeVarargs` verifies nothing and is honest only when the method never stores, writes to, or exposes the array.
+- **Staff:** Frames reflexive `@SafeVarargs` as converting a compiler warning into an unchecked human review process.
+
+### Q5 — A subclass declares a `static` method with the same signature as its superclass. Which one runs, and why?
+
+**Canonical treatment:** [§ Interview Questions, Q5](../../02-java/language-core/java-modifiers-and-method-signatures.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows static methods are not polymorphic.
+- **Senior:** Answers by compile-time type because statics are *hidden*, not overridden — real contrast with `Base viewedAsBase = new Derived()`: the instance method resolves to `Derived`, the static to `Base`. Names `invokestatic` versus `invokevirtual`, and knows `@Override` on a static method is a real compile error.
+- **Staff:** Treats static hiding as an API-design smell — varying a static's behavior in a subclass means the method is really an instance concern.
+
+---
+
+## Nested and Inner Classes
+
+### Q1 — What is the difference between a static nested class and an inner class, and what does that difference cost at runtime?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../02-java/language-core/nested-and-inner-classes.md#interview-questions)
+
+**What's expected:**
+- **Junior:** An inner class needs an enclosing instance (`outer.new X()`); a static nested class does not.
+- **Mid:** Knows `static` here means "no enclosing instance," not "shared state."
+- **Senior:** Names the compiler-generated `final synthetic this$0` field, added as the first constructor parameter, and gives the runtime consequence: the entire enclosing object stays reachable for as long as the inner instance is — measured at 8 MB retained in the chapter's own demo — plus the serialization consequence.
+- **Staff:** Frames it as a defaults problem rather than a knowledge problem: the dangerous form is shorter to write and its cost is invisible at the declaration, so static analysis (`SIC_INNER_SHOULD_BE_STATIC`), review rules, and old-gen growth alerting matter more than individual knowledge.
+
+### Q2 — This `Serializable` class has only `String` and `int` fields, but serializing it throws `NotSerializableException` naming a different class entirely. What happened?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../02-java/language-core/nested-and-inner-classes.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Connects the failure to the hidden outer reference.
+- **Senior:** Explains that serialization walks the object graph, reaches `this$0`, and fails naming the outer class — real captured output: `NotSerializableException: NestedClassesDemo`. Notes that `transient` cannot help (the reference is not declared in source) and that making the outer class `Serializable` "fixes" it by writing far more than intended.
+- **Staff:** Argues for moving off graph-walking serialization for anything crossing a process or version boundary, since this failure class comes from a wire format derived from object structure rather than declared.
+
+### Q3 — A service leaks roughly 8 MB per scheduled job run. Heap dump shows a static list of tiny callback objects. Walk me through it.
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/language-core/nested-and-inner-classes.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Identifies that the callbacks retain their enclosing objects.
+- **Senior:** Traces reachability (GC root → static list → callback → `this$0` → job → buffer), describes the diagnostic path (dominator tree, retained size, inspecting callback fields), and gives both the tactical fix (`finally` unregistration) and the structural one (static nested callback taking only what it needs), with the trade-off stated. Knows the retention on JDK 21 is conditional — javac elides `this$0` when the body never uses the enclosing instance, confirmed with `javap`.
+- **Staff:** Adds prevention: static analysis for nested classes with no enclosing access, a review rule for registration into longer-lived collections, and multi-day old-gen growth alerting rather than waiting for OOM.
 
 ---
 

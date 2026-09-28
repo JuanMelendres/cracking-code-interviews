@@ -1,0 +1,109 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+
+$ javac -d out src/CreationalDemo.java
+$ java -cp out CreationalDemo
+
+
+=== Factory Method: the caller names WHAT it wants, never HOW it is built ===
+processorFor("stripe").charge(2500) -> Stripe charged 2500 cents (PaymentIntent API)
+processorFor("adyen").charge(2500) -> Adyen charged 2500 cents (Payments API)
+processorFor("paypal") -> IllegalArgumentException: Unknown payment provider: paypal
+The call site never mentions StripeProcessor or AdyenProcessor by name.
+
+=== Abstract Factory: one choice fixes a whole consistent family ===
+DE: Rechnung: 100,00 EUR (davon 19,00 EUR MwSt.)
+US: Invoice: $100.00 (incl. $8.75 sales tax)
+Picking the factory once guarantees the tax rule and the invoice wording
+always come from the same region -- a mismatched pair is unrepresentable.
+
+=== Why this is not just a switch statement in disguise ===
+Adding a third provider touches exactly one method (processorFor).
+Adding a third region touches exactly one map (REGIONS) plus a new factory class.
+Every consumer of PaymentProcessor / TaxCalculator / InvoiceFormatter is untouched.
+That single-point-of-change property is the pattern's actual payoff --
+not the existence of a class with 'Factory' in its name.
+
+$ javac -d out src/StructuralDemo.java
+$ java -cp out StructuralDemo
+
+
+=== Adapter: making an unchangeable third-party shape fit our interface ===
+lookup.countryOf("203.0.113.7") = DE
+The Object[] unpacking exists in exactly one class, not at every call site.
+Swapping the SDK later means rewriting one adapter, not the application.
+
+=== Proxy: adding retry behaviour with zero changes to the implementation ===
+guarded.stockFor("SKU-1") = 42
+  stockFor failed on attempt 1: transient upstream failure on attempt 1
+  stockFor failed on attempt 2: transient upstream failure on attempt 2
+  stockFor succeeded on attempt 3
+Real underlying calls made: 3
+Proxy runtime class: $Proxy0
+FlakyInventoryClient contains no retry code at all.
+
+With maxAttempts=2 against 5 failures, the last error propagates: transient upstream failure on attempt 2
+
+=== Facade: one call that hides a four-step orchestration ===
+new CheckoutFacade().checkout("SKU-1", 3):
+  RES-SKU-1-3 | subtotal 59.97 | tax 12.59 | total 72.56
+Callers cannot get the order wrong (reserve before pricing, tax on the wrong base)
+because the ordering lives in one place. The four services stay independently usable.
+
+$ javac -d out src/BehavioralDemo.java
+$ java -cp out BehavioralDemo
+
+
+=== Observer: one event, many independent reactions ===
+  EmailListener: confirmation queued for ORD-1001
+  AnalyticsListener: order_placed recorded for ORD-1001
+The publisher does not know what either listener does.
+
+=== Observer failure mode 1: one throwing listener starves the rest ===
+Naive publish():
+  EmailListener: confirmation queued for ORD-1002
+  propagated out of publish(): downstream webhook endpoint is down
+  AnalyticsListener never ran -- registration order silently decided
+  which subscribers survive an unrelated failure.
+
+Hardened publishIsolated():
+  EmailListener: confirmation queued for ORD-1003
+  AnalyticsListener: order_placed recorded for ORD-1003
+  contained failures: [BrokenListener: downstream webhook endpoint is down]
+
+=== Observer failure mode 2: unsubscribing during dispatch ===
+  EmailListener: confirmation queued for ORD-1004
+  one-shot listener fired for ORD-1004, unsubscribing now
+  publish() returned with NO exception at all.
+  AnalyticsListener was third in the list and never ran: removing the
+  second-of-three element left the iterator's cursor equal to the new
+  size, so hasNext() returned false before the modCount check could fire.
+  A silently skipped subscriber is strictly worse than the
+  ConcurrentModificationException most people expect here.
+Same scenario with CopyOnWriteArrayList as the listener store:
+  EmailListener: confirmation queued for ORD-1005
+  AnalyticsListener: order_placed recorded for ORD-1005
+  no exception; listeners remaining afterwards: 0
+
+=== Command: behaviour as an object, which makes undo possible ===
+After three commands: "Hello, world!!!"
+undo -> AppendText("!!!")  document: "Hello, world"
+undo -> AppendText(", world")  document: "Hello"
+undo -> AppendText("Hello")  document: ""
+undo -> (nothing)  document: ""
+Undo is possible only because each action is a first-class object that
+captured everything needed to reverse itself.
+
+=== Chain of Responsibility: each handler decides to handle or pass along ===
+200 handled /api/orders
+AuthHandler stopped it: 401 missing API key
+SizeLimitHandler stopped it: 413 body too large (5000 bytes)
+RouteHandler stopped it: 404 no route for /admin
+Order is the whole design: auth runs before size, so an unauthenticated
+oversized request is rejected as 401, never 413.
+
+=== Template Method: the skeleton is fixed, the steps are not ===
+DailySalesReport.run()  -> emailed [sales=1500,refunds=30]
+ComplianceExport.run()  -> uploaded to SFTP [PII=REDACTED,ROWS=42]
+Both ran fetch -> transform -> publish in that order, enforced by a final method.
+ComplianceExport changed one step; it could not reorder or skip any.
+
