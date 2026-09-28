@@ -9732,6 +9732,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#broker-selection-kafka-vs-rabbitmq-vs-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broker Selection: Kafka vs. RabbitMQ vs. SQS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12538,6 +12549,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#broker-selection-kafka-vs-rabbitmq-vs-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broker Selection: Kafka vs. RabbitMQ vs. SQS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12666,13 +12688,16 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 13 chapters yielded 26 deep questions + 36
-quick-fire questions = <strong>62 real questions</strong>. No Junior Fundamentals chapter exists
+<p><strong>Honest count for this domain:</strong> 14 chapters yielded 29 deep questions + 36
+quick-fire questions = <strong>65 real questions</strong>. No Junior Fundamentals chapter exists
 in this domain — Kafka/event-driven architecture presupposes backend fundamentals
 already covered elsewhere, so no separate leveled-Junior question set applies here.
 (Updated 2026-09-27: <code>kafka-security-authentication-and-authorization.md</code> had a
 complete Interview Questions section never indexed — a stale-index gap, not a
-content gap. Added 2 questions + 3 quick-fire cards.)</p>
+content gap. Added 2 questions + 3 quick-fire cards. Updated 2026-09-28:
+<code>broker-selection-kafka-rabbitmq-and-sqs.md</code> is a new chapter closing a real
+coverage gap — the domain taught Kafka thoroughly but never answered "why this
+broker and not another one?" — and contributes 3 questions.)</p>
 <p><strong>Incidental fix while mining this domain:</strong> <code>schema-registry-and-compatibility-evolution.md</code>'s
 Flashcards section used <code>## Card:</code> (heading level 2) instead of the file's own
 surrounding <code>### Card:</code> convention (heading level 3) for all three of its cards — a
@@ -13053,6 +13078,26 @@ real, verified markdown-hierarchy inconsistency, corrected in the same pass.</p>
 </tbody>
 </table>
 <hr />
+<h2 id="broker-selection-kafka-vs-rabbitmq-vs-sqs">Broker Selection: Kafka vs. RabbitMQ vs. SQS<a class="headerlink" href="#broker-selection-kafka-vs-rabbitmq-vs-sqs" title="Permanent link">&para;</a></h2>
+<h3 id="q1-when-would-you-choose-rabbitmq-over-kafka">Q1 — When would you choose RabbitMQ over Kafka?<a class="headerlink" href="#q1-when-would-you-choose-rabbitmq-over-kafka" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows RabbitMQ is queue-based and Kafka is log-based, and that queues suit task distribution.
+- <strong>Senior:</strong> Names queue-native capabilities Kafka lacks — per-message retry, delay, dead-lettering, broker-side routing via exchanges, unbounded consumer parallelism — and the ordering consequence: RabbitMQ preserves order per queue only with a single consumer, so scaling out trades ordering away, which is fine for independent tasks and fatal for per-entity sequences. Knows unconsumed queue messages are broker-held pending work while unconsumed log entries are just data within retention.
+- <strong>Staff:</strong> Treats it as a platform decision — a second broker roughly doubles the governance surface (schemas, DLQ conventions, lag alerting, on-call ownership) — while naming the inverse failure: forcing job queues onto a log produces per-team workarounds worse than the second broker would have been.</p>
+<h3 id="q2-your-consumer-processed-three-days-of-events-with-a-bug-how-do-you-recover-on-each-broker">Q2 — Your consumer processed three days of events with a bug. How do you recover on each broker?<a class="headerlink" href="#q2-your-consumer-processed-three-days-of-events-with-a-bug-how-do-you-recover-on-each-broker" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows Kafka can replay and queues cannot.
+- <strong>Senior:</strong> Gives the Kafka procedure (new consumer group, offset by timestamp, existing group undisturbed) and its preconditions — retention must actually cover three days, downstream writes must be idempotent, reprocessing load must be controlled. States that on RabbitMQ/SQS recovery depends entirely on an independent archive.
+- <strong>Staff:</strong> Points out that "do we need replay?" is answered <em>no</em> by assumption at design time and <em>yes</em> at incident time, so it belongs in a written decision with a revisit trigger — and that a cheap archival sink buys most of the recovery value on a queue-based estate without a broker migration.</p>
+<h3 id="q3-why-not-just-use-kafka-for-everything">Q3 — Why not just use Kafka for everything?<a class="headerlink" href="#q3-why-not-just-use-kafka-for-everything" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names operational cost and at least one workload that fits badly.
+- <strong>Senior:</strong> Gives the mechanism — partition-bound consumption means one slow message stalls its partition while other consumers idle — with a concrete workload (a task class 40x slower than the rest) and the alternative design: a queue per task class, visibility timeout sized to the slowest task, workers scaled per queue. Also notes consumer parallelism is capped by partition count and that per-message retry/DLQ must be hand-built.
+- <strong>Staff:</strong> Reframes as choosing the smallest technology that meets the requirement, with explicit written triggers for revisiting (a replay requirement, or a second independent consumer of the same events) — both visible well before they become urgent.</p>
+<hr />
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../08-testing/"><code>08-testing.md</code></a></li>
@@ -13084,7 +13129,7 @@ real, verified markdown-hierarchy inconsistency, corrected in the same pass.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 16:24:27 UTC">September 28, 2026</span>
   </span>
 
     

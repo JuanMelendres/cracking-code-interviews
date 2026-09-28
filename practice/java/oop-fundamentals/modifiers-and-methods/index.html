@@ -2883,6 +2883,66 @@
   
   
   
+    <a href="../../design-patterns/catalog-beyond-core-four/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design patterns
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
     <a href="../../devops/horizontal-pod-autoscaler-mechanics/" class="md-nav__link">
       
   
@@ -4112,10 +4172,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8_38" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8_39" checked>
         
           
-          <label class="md-nav__link" for="__nav_8_8_38" id="__nav_8_8_38_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_8_39" id="__nav_8_8_39_label" tabindex="0">
             
   
   
@@ -4133,8 +4193,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_8_38_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8_8_38">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_8_39_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_8_39">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4222,10 +4282,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8_38_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8_39_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_8_8_38_2" id="__nav_8_8_38_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_8_39_2" id="__nav_8_8_39_2_label" tabindex="0">
             
   
   
@@ -4243,8 +4303,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_8_38_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8_8_38_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_8_39_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_8_39_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8136,12 +8196,15 @@
 <li><code>src/StaticFinalDemo.java</code> — real, measured static-vs-instance state (a shared counter), real <code>final</code> fields, and a real abstract class with both an abstract method and a concrete method, implemented by a real subclass. 6/6 assertions pass.</li>
 <li><code>src/BrokenFinalReassignment.java</code>, <code>BrokenFinalMethodOverride.java</code>, <code>BrokenFinalClassExtension.java</code>, <code>BrokenAbstractInstantiation.java</code>, <code>BrokenPrivateAccess.java</code> + <code>BankAccount.java</code> — five deliberately broken programs, each producing a real, captured <code>javac</code> compiler error (reassigning a <code>final</code> variable, overriding a <code>final</code> method, extending a <code>final</code> class, instantiating an <code>abstract</code> class, and accessing a <code>private</code> field from a genuinely different top-level class). Full transcript in <code>compile-errors-transcript.txt</code>.</li>
 <li><code>src/NestedPrivateAccessDemo.java</code> — a real, genuine finding discovered while building <code>BrokenPrivateAccess.java</code>: <code>private</code> access in Java is scoped to the <em>top-level</em> enclosing class, not the immediate class body, so a sibling nested class within the same top-level class <em>can</em> read another nested class's <code>private</code> field. This was not planned — the first version of the private-access demo accidentally used two nested classes inside the same outer class and compiled successfully instead of failing, which is itself the real, correct behavior, kept here as a genuine, unplanned-but-true finding rather than discarded.</li>
+<li><code>src/MethodSignatureRulesDemo.java</code> — real, executed signature rules: varargs arity (including the empty-array case), the three-phase overload resolution order proving a boxing overload beats a varargs one, array-versus-varargs spreading for <code>String[]</code> (spread) versus <code>int[]</code> (single element, the <code>Arrays.asList</code> bug), generic varargs heap pollution ending in a genuine <code>ClassCastException</code> on a cast-free line, covariant return types, and static hiding versus instance overriding. Output plus the three real <code>-Xlint:all</code> warnings in <code>signature-rules-transcript.txt</code>.</li>
+<li><code>src/BrokenVarargsAmbiguity.java</code>, <code>src/BrokenStaticOverride.java</code> — two more deliberately broken programs producing real <code>javac</code> errors (<code>reference to handle is ambiguous</code> between two varargs overloads, and <code>static methods cannot be annotated with @Override</code>), appended to <code>compile-errors-transcript.txt</code>.</li>
 </ul>
 <h2 id="reproduce-it-yourself">Reproduce it yourself<a class="headerlink" href="#reproduce-it-yourself" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>practice/java/oop-fundamentals/modifiers-and-methods
-javac<span class="w"> </span>-d<span class="w"> </span>out<span class="w"> </span>src/StaticFinalDemo.java<span class="w"> </span>src/NestedPrivateAccessDemo.java
+javac<span class="w"> </span>-d<span class="w"> </span>out<span class="w"> </span>src/StaticFinalDemo.java<span class="w"> </span>src/NestedPrivateAccessDemo.java<span class="w"> </span>src/MethodSignatureRulesDemo.java
 java<span class="w"> </span>-cp<span class="w"> </span>out<span class="w"> </span>StaticFinalDemo
 java<span class="w"> </span>-cp<span class="w"> </span>out<span class="w"> </span>NestedPrivateAccessDemo
+java<span class="w"> </span>-cp<span class="w"> </span>out<span class="w"> </span>MethodSignatureRulesDemo
 
 <span class="c1"># Each Broken*.java file fails to compile on purpose — see compile-errors-transcript.txt</span>
 <span class="c1"># for the real captured error, or reproduce one yourself:</span>
@@ -8167,7 +8230,7 @@ javac<span class="w"> </span>src/BrokenFinalReassignment.java
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 20:29:54 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 16:24:27 UTC">September 28, 2026</span>
   </span>
 
     
