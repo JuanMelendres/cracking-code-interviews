@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../02-java/collections/INDEX.md
   - 06-databases.md
@@ -20,9 +20,13 @@ more real questions (234) than one file can hold at the same depth as the
 `06-databases` pilot. See that file for the tier-explanation format and sourcing
 discipline.
 
-**Honest count for this subdomain:** 11 chapters yielded 20 deep questions + 5
+**Honest count for this subdomain:** 12 chapters yielded 22 deep questions + 5
 already-leveled Junior/Mid questions (from the one Junior Fundamentals chapter) + 27
-quick-fire questions = **52 real questions**.
+quick-fire questions = **54 real questions**. (Updated 2026-09-27:
+`arraydeque-internals-and-the-legacy-stack-problem.md` had a complete Interview
+Questions section never indexed — a stale-index gap, not a content gap; only its
+Flashcards had already been mined into the quick-fire table below. Added 2
+questions; 0 new quick-fire cards, since its 3 flashcards were already indexed.)
 
 ---
 

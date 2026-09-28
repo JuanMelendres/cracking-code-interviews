@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../14-devops-containers/INDEX.md
   - 13-observability.md
@@ -17,11 +17,15 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 5 chapters yielded 8 deep questions + 5 leveled
-Junior/Mid questions + 9 quick-fire questions = **22 real questions**. This is a
-genuinely small domain (5 chapters); `docker-and-containers-fundamentals.md` is this
+**Honest count for this domain:** 7 chapters yielded 12 deep questions + 5 leveled
+Junior/Mid questions + 12 quick-fire questions = **29 real questions**. This is a
+genuinely small domain (7 chapters); `docker-and-containers-fundamentals.md` is this
 domain's Junior Fundamentals chapter (older numbered `## 15. Interview Questions`
-template, no Flashcards section of its own).
+template, no Flashcards section of its own). (Updated 2026-09-27:
+`docker-compose-multi-service-orchestration.md` and
+`horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` had complete
+Interview Questions sections never indexed — a stale-index gap, not a content gap.
+Added 4 questions + 3 quick-fire cards.)
 
 ---
 
@@ -139,6 +143,50 @@ template, no Flashcards section of its own).
 
 ---
 
+## Docker Compose: Multi-Service Orchestration
+
+### Q1 — `api` depends on `db` via `depends_on: [db]`. On a fresh clone, `api` sometimes fails to connect on startup but always works on retry. Why?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../14-devops-containers/docker-compose-multi-service-orchestration.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes `depends_on` guarantees readiness — the common mistake this question targets.
+- **Senior:** Names the specific mechanism: `depends_on`'s plain list form only waits for `db`'s container to start, not for Postgres to finish `initdb` and start accepting connections — a genuinely fresh volume races this.
+- **Staff:** Explains why this bug is invisible on a developer's own already-initialized volume but reliably reappears for a genuinely fresh checkout or CI runner.
+
+### Q2 — How does the `api` service know how to reach `db` — does it need the database's IP address?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../14-devops-containers/docker-compose-multi-service-orchestration.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes an IP address or `localhost` is needed — the common mistake this question targets.
+- **Senior:** Correctly states Compose creates a private network per project with real DNS resolution by service name — `api` reaches `db` simply by connecting to the hostname `"db"`.
+- **Staff:** Connects this to why hardcoding IPs or `localhost` in multi-service Compose configs is a common, avoidable portability bug.
+
+---
+
+## Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior
+
+### Q1 — A team reports their HPA is "too slow" to scale down after a traffic spike ends. Walk me through how you'd investigate.
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Immediately assumes a metrics pipeline bug without checking the stabilization-window explanation first — the common mistake this question targets.
+- **Senior:** Checks whether this matches expected stabilization-window behavior (default 300s) — the controller deliberately holds at the highest recent recommendation, not the latest, to protect against premature shrinkage.
+- **Staff:** Discusses when shortening the window is actually justified, and what measurement should precede that decision.
+
+### Q2 — What does the HPA's tolerance band actually protect against, and does it apply the same way for scale-up as scale-down?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Conflates the tolerance band with the scale-up/scale-down asymmetry as a single rule — the common mistake this question targets.
+- **Senior:** Correctly states the tolerance band suppresses recommended changes within a default 10% margin symmetrically in both directions — separate from the fact that scale-up applies immediately while scale-down is stabilized.
+- **Staff:** Discusses tuning both parameters independently for a given workload's real traffic shape.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -152,6 +200,9 @@ template, no Flashcards section of its own).
 | 7 | What does JDK 10+ container-aware heap sizing actually read? | [Kubernetes Resource Limits, Probes, and JVM Sizing](../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#flashcards) |
 | 8 | What's the structural difference between `OutOfMemoryError` and an OOMKill? | [Kubernetes Resource Limits, Probes, and JVM Sizing](../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#flashcards) |
 | 9 | What's the difference between a readiness probe and a liveness probe? | [Kubernetes Resource Limits, Probes, and JVM Sizing](../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md#flashcards) |
+| 10 | Does `depends_on: [db]` guarantee `db` is ready to accept connections before the dependent service starts? | [Docker Compose: Multi-Service Orchestration](../../14-devops-containers/docker-compose-multi-service-orchestration.md#flashcards) |
+| 11 | How do you make Compose wait for a dependency to be genuinely ready, not just started? | [Docker Compose: Multi-Service Orchestration](../../14-devops-containers/docker-compose-multi-service-orchestration.md#flashcards) |
+| 12 | How does one service in a `docker-compose.yml` reach another — by IP address? | [Docker Compose: Multi-Service Orchestration](../../14-devops-containers/docker-compose-multi-service-orchestration.md#flashcards) |
 
 ---
 

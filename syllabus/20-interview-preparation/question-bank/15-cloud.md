@@ -17,12 +17,15 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 4 chapters yielded 9 deep questions + 14 quick-fire
-questions = **23 real questions**. (Updated 2026-09-27: added a "works in staging,
+**Honest count for this domain:** 5 chapters yielded 11 deep questions + 14 quick-fire
+questions = **25 real questions**. (Updated 2026-09-27: added a "works in staging,
 fails in production" systematic-troubleshooting question to The Twelve-Factor App —
 a genuinely missing, very commonly-asked scenario question found via a generic
-interview checklist audit.) No Junior Fundamentals chapter exists in this
-domain — this is a genuinely small domain (only 4 chapters).
+interview checklist audit. Updated again, same day: `serverless-lambda-execution-model-cold-starts-and-concurrency.md`
+had a complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions; no Flashcards section in that chapter.) No Junior
+Fundamentals chapter exists in this domain — this is a genuinely small domain
+(5 chapters).
 
 ---
 
@@ -120,6 +123,28 @@ domain — this is a genuinely small domain (only 4 chapters).
 - **Junior/Mid:** Guesses "probably a config difference" with no structured way to continue if that guess is wrong — the common mistake this question targets.
 - **Senior:** Produces an ordered methodology: config/env vars, secrets/credentials, feature flags, data/schema differences, infrastructure, then scale-only limits — since identical code means the bug lives in something that legitimately varies by environment.
 - **Staff:** Proposes an automated resolved-config diff between environments as a pre-deployment gate, treating environment drift as a standing organizational risk, not a one-off incident.
+
+---
+
+## Serverless: Lambda Execution Model, Cold Starts, and Concurrency
+
+### Q1 — Your Lambda-based API's p99 latency spikes during traffic bursts even though average latency looks healthy. How would you investigate?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes cold start only affects the first request after a lull, not every concurrent request beyond the warm count — the common mistake this question targets.
+- **Senior:** Checks `InitDuration`/cold-start metrics correlated with the concurrency spike — each concurrent request beyond the warm-environment count triggers its own cold start.
+- **Staff:** Discusses provisioning ahead of a known future spike versus reactive provisioned-concurrency tuning after the first incident.
+
+### Q2 — What's the actual difference between what runs in a Lambda function's initializer versus its handler, and why does it matter?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Conflates the two phases, or claims all Lambda code runs "per request" — the common mistake this question targets.
+- **Senior:** Correctly states initializer code (static/global scope) runs once per execution environment during INIT; handler code runs once per invocation during INVOKE, reusing what the initializer built.
+- **Staff:** Connects this to language/runtime choice — a JVM-based function's real class-loading cost as the dominant INIT contributor, versus a more lightweight runtime.
 
 ---
 

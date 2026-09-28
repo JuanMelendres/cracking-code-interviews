@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../08-testing/INDEX.md
   - 07-api-design.md
@@ -17,10 +17,13 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 8 chapters yielded 14 deep questions + 5
+**Honest count for this domain:** 10 chapters yielded 19 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `unit-testing-fundamentals-with-junit.md`) + 6 quick-fire questions = **25
-real questions**.
+chapter, `unit-testing-fundamentals-with-junit.md`) + 9 quick-fire questions = **33
+real questions**. (Updated 2026-09-27: `behavior-driven-development-with-cucumber.md`
+and `testing-asynchronous-and-concurrent-code.md` had complete Interview Questions
+sections never indexed — a stale-index gap, not a content gap. Added 5 questions +
+3 quick-fire cards; the latter chapter has no Flashcards section.)
 
 ---
 
@@ -224,6 +227,59 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 
 ---
 
+## Behavior-Driven Development with Cucumber (T-2412)
+
+### Q1 — What's the real difference between TDD and BDD?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../08-testing/behavior-driven-development-with-cucumber.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes BDD as a stricter or different testing methodology rather than a vocabulary/audience layer on top of the same underlying mechanics — the common mistake this question targets.
+- **Senior:** States the audience/vocabulary distinction precisely — both use the same red-green rhythm underneath; TDD writes the check directly in code, for developers; BDD writes it in structured natural language (Gherkin) that non-developers can also read and validate — without conflating it with a claim that BDD tests "more thoroughly."
+- **Staff:** Discusses when BDD adoption has failed organizationally (no real non-developer involvement) versus when it's working as intended.
+
+### Q2 — How does a `Scenario Outline` with an `Examples` table actually execute?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../08-testing/behavior-driven-development-with-cucumber.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes it as "just a for-loop" rather than understanding each row is a real, distinct test node in the reported results — the common mistake this question targets.
+- **Senior:** States that each row in the `Examples` table becomes a genuinely separate, independently-reported test instance without needing to be told, and can name a real risk in how rows are chosen (a row whose expected value doesn't actually depend on the logic being varied can't catch a bug in it).
+- **Staff:** Connects this to broader data-driven-testing discipline: choosing test data that genuinely exercises different code paths, not just superficially different inputs.
+
+### Q3 — What happens when Cucumber encounters a Gherkin step with no matching step definition?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../08-testing/behavior-driven-development-with-cucumber.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes an undefined step is silently skipped or ignored — the common mistake this question targets.
+- **Senior:** Knows this produces a real, reported failure (`UndefinedStepException`) with real, actionable output — Cucumber generates a ready-to-paste Java method snippet inferred directly from the step's own wording, marked with a `PendingException` convention rather than an empty method body.
+- **Staff:** Frames this as a genuine productivity affordance for incrementally building out step definitions from stakeholder-written scenarios.
+
+---
+
+## Testing Asynchronous and Concurrent Code (T-2420)
+
+### Q1 — You write a test for a method that kicks off async work, using `Thread.sleep(100)` before asserting the result. It passes locally but fails intermittently in CI. Why, and how would you fix it?
+
+**Canonical treatment:** [§ 15, Interview Questions, Q1](../../08-testing/testing-asynchronous-and-concurrent-code.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Recognizes the sleep duration as the problem but proposes "increase the sleep" as the fix — a real, measured improvement in failure rate, never a real fix, and still genuinely flaky in principle. This is the common mistake this question targets.
+- **Senior:** Names `CountDownLatch` (or an equivalent real completion signal, like `CompletableFuture.join()`) specifically, and explains why widening the sleep only narrows the failure window rather than closing it — the real work occasionally takes longer than the guessed sleep, especially on a more loaded CI machine.
+- **Staff:** Connects this to a broader diagnostic habit: treating new test flakiness as a real signal worth root-causing (timing guess vs. genuine concurrency bug) rather than something to retry past.
+
+### Q2 — How would you write a test that reliably catches a race condition, given that race conditions are inherently non-deterministic?
+
+**Canonical treatment:** [§ 15, Interview Questions, Q2](../../08-testing/testing-asynchronous-and-concurrent-code.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes a single-threaded test, or a multi-threaded test with too few iterations to make the race statistically likely to reproduce — both provide false confidence, the common mistake this question targets.
+- **Senior:** Names the specific mechanism — running many threads performing many concurrent operations against the shared state, released simultaneously to maximize contention, with real iteration counts large enough to make luck-based passing unlikely (this chapter's real demo: 8 threads × 100,000 increments) — and can cite or estimate a real order-of-magnitude failure rate at that scale.
+- **Staff:** Generalizes this into a pre-release verification practice for any genuinely concurrent production code change before it ships.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 Only 2 of the 8 chapters in this domain have Flashcards sections.
@@ -236,6 +292,9 @@ Only 2 of the 8 chapters in this domain have Flashcards sections.
 | 4 | What does `verify(gateway, times(3))` prove that `assertTrue(result)` alone cannot? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
 | 5 | What's wrong with mocking the database in a repository test? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
 | 6 | What does coverage percentage actually measure? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
+| 7 | What's the actual difference between TDD and BDD, beyond syntax? | [Behavior-Driven Development with Cucumber](../../08-testing/behavior-driven-development-with-cucumber.md#flashcards) |
+| 8 | Does a `Scenario Outline`'s `Examples` table run as one test looping over data, or as genuinely separate tests? | [Behavior-Driven Development with Cucumber](../../08-testing/behavior-driven-development-with-cucumber.md#flashcards) |
+| 9 | What happens when Cucumber hits a Gherkin step with no matching step definition? | [Behavior-Driven Development with Cucumber](../../08-testing/behavior-driven-development-with-cucumber.md#flashcards) |
 
 ---
 

@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../09-messaging-event-driven/INDEX.md
   - 08-testing.md
@@ -17,10 +17,13 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 12 chapters yielded 24 deep questions + 33
-quick-fire questions = **57 real questions**. No Junior Fundamentals chapter exists
+**Honest count for this domain:** 13 chapters yielded 26 deep questions + 36
+quick-fire questions = **62 real questions**. No Junior Fundamentals chapter exists
 in this domain — Kafka/event-driven architecture presupposes backend fundamentals
 already covered elsewhere, so no separate leveled-Junior question set applies here.
+(Updated 2026-09-27: `kafka-security-authentication-and-authorization.md` had a
+complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions + 3 quick-fire cards.)
 
 **Incidental fix while mining this domain:** `schema-registry-and-compatibility-evolution.md`'s
 Flashcards section used `## Card:` (heading level 2) instead of the file's own
@@ -293,6 +296,28 @@ real, verified markdown-hierarchy inconsistency, corrected in the same pass.
 
 ---
 
+## Kafka Security: SASL Authentication and ACL Authorization (T-2421)
+
+### Q1 — A Kafka client authenticates successfully but fails to produce to a specific topic. What's happening, and how would you diagnose it?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Suggests the client "re-login" or "check the password" — the problem is never credentials once authentication has already succeeded, the common mistake this question targets.
+- **Senior:** Names `TopicAuthorizationException` specifically as an ACL authorization failure distinct from authentication — the principal is genuinely who it claims to be but has no ACL grant for the specific `WRITE` operation on that specific topic — and describes the real `kafka-acls.sh --list` diagnostic step.
+- **Staff:** Connects this to the broader authentication-vs-authorization mental model and can state precisely why this couldn't be an authentication problem, since the connection already succeeded.
+
+### Q2 — You grant a new consumer `Read` access on a topic, but it still can't consume messages. Why?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Re-grants the already-correct topic ACL instead of identifying the actually-missing resource type — the common mistake this question targets.
+- **Senior:** Names the consumer-group ACL requirement specifically — a topic-level `Read` ACL is necessary but not sufficient for consuming, since Kafka's consumer protocol also authorizes the consumer *group* resource independently, failing with `GroupAuthorizationException` without a separate grant on it.
+- **Staff:** Generalizes this into an onboarding-process fix — any consumer-access request template should require both grants together, since omitting either produces the identical real incident for every future consumer onboarded the same incomplete way.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -330,6 +355,9 @@ real, verified markdown-hierarchy inconsistency, corrected in the same pass.
 | 31 | Under BACKWARD compatibility, which is safe: removing a field, or adding one without a default? | [Schema Registry and Compatibility Evolution](../../09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#flashcards) |
 | 32 | What question should decide BACKWARD vs. FORWARD for a topic? | [Schema Registry and Compatibility Evolution](../../09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#flashcards) |
 | 33 | What real failure does a Schema Registry's compatibility check prevent, mechanically? | [Schema Registry and Compatibility Evolution](../../09-messaging-event-driven/schema-registry-and-compatibility-evolution.md#flashcards) |
+| 34 | What's the real, distinct difference between Kafka SASL authentication and ACL authorization? | [Kafka Security: SASL Authentication and ACL Authorization](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#flashcards) |
+| 35 | A principal has full Read/Write/Describe access on a topic. Can it consume that topic? | [Kafka Security: SASL Authentication and ACL Authorization](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#flashcards) |
+| 36 | Does a Kafka super user get a very permissive set of ACLs, or something architecturally different? | [Kafka Security: SASL Authentication and ACL Authorization](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#flashcards) |
 
 ---
 

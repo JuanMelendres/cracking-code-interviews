@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../01-computer-science-foundations/INDEX.md
   - 03-data-structures-algorithms.md
@@ -17,14 +17,18 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 5 chapters yielded 10 deep questions = **10 real
-questions**. All 5 chapters use the older numbered `## 15. Interview Questions`
+**Honest count for this domain:** 6 chapters yielded 12 deep questions = **12 real
+questions**. All 6 chapters use the older numbered `## 15. Interview Questions`
 template with **no Flashcards section at all**, so there is no quick-fire layer to
 mine here — the same pattern as [`19-leadership-staff.md`](19-leadership-staff.md).
 Despite being the domain's own "true fundamentals" starting point, the Interview
 Questions sections themselves are not written as a separate leveled Junior/Mid
 format; Junior/Mid below is honestly derived from each question's own "Minimum
-acceptable answer" and "Common mistakes" fields.
+acceptable answer" and "Common mistakes" fields. (Updated 2026-09-27:
+`memory-hierarchy-caches-ram-and-virtual-memory.md` had a complete Interview
+Questions section never indexed — a stale-index gap, not a content gap. Added 2
+questions; no quick-fire cards, since this chapter also has no Flashcards
+section.)
 
 ---
 
@@ -69,6 +73,28 @@ acceptable answer" and "Common mistakes" fields.
 - **Junior/Mid:** Describes `StackOverflowError` as "running out of memory" without distinguishing which memory region — the common mistake this question targets, conflating it with `OutOfMemoryError`.
 - **Senior:** States that this is measurable and predictable, and can describe how to confirm it (run the recursive path under a debugger or with depth instrumentation).
 - **Staff:** Names the resource-model trade-off — raising `-Xss` has a real cost multiplied across every thread in a large pool, so the correct fix for adversarially deep recursion is usually bounding or restructuring the recursion itself.
+
+---
+
+## Memory Hierarchy: Caches, RAM, and Virtual Memory
+
+### Q1 — Why can two pieces of code with identical Big-O complexity have dramatically different real performance?
+
+**Canonical treatment:** [§15, Q1](../../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows that "some memory accesses are faster than others" without necessarily naming cache levels or a specific mechanism — commonly treats O(1) as a literal, constant number of nanoseconds, or assumes identical Big-O implies comparable real-world performance in all cases.
+- **Senior:** Names cache lines and spatial locality specifically, and can describe or cite a concrete measured example — the chapter's own pointer-chase data, or the `ArrayList`-vs-`LinkedList` real-world case.
+- **Staff:** Connects this to a resource-identification principle — fixing a cache-locality problem requires changing data layout or access pattern, not adding more of an unrelated resource like total RAM.
+
+### Q2 — What is a page fault, and why does it matter for I/O-heavy code?
+
+**Canonical treatment:** [§15, Q2](../../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows a page fault involves the operating system and has some real cost, even without precise mechanism detail — commonly confuses a page fault with a cache miss, or claims memory mapping is "always faster" without qualifying by access pattern.
+- **Senior:** Distinguishes this from a cache miss (a hardware-only event, no OS trap) and explains specifically why the advantage concentrates in random/scattered access rather than sequential access.
+- **Staff:** Recognizes the trade-off is access-pattern-dependent, not universal — recommending memory-mapped I/O for an already-sequential workload would add real complexity for no measured benefit.
 
 ---
 

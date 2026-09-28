@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Repo-wide question-bank completeness sweep: 33 chapters across 20 domains indexed, 2026-09-27)
+
+- User asked to close the full gap population found by the same-day audit: 33 canonical chapters across 20 of 22 domains had a complete, real Interview Questions section never indexed in their domain's question-bank file. Dispatched to 4 parallel subagents; all 4 hit a session rate limit mid-run, so finished the remaining ~15 files directly, verifying exact completion state via `git diff` first.
+- Every question-bank entry summarizes that chapter's own real Junior/Mid/Senior/Staff answer content — no invented questions. Caught and fixed one real defect before shipping: all 20 questions for `spring-and-spring-boot-fundamentals.md` used the wrong anchor style (`#interview-questions` instead of that chapter's actual `#15-interview-questions`), found via a repo-wide programmatic anchor-resolution check written specifically to verify this batch.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline); anchor-resolution check clean across all 26 question-bank files.
+
 ### Added (clone()/shallow-vs-deep-copy gap closed; repo-wide question-bank completeness audit, 2026-09-27)
 
 - User shared a "50 Java Interview Questions for Experienced Developers" checklist and asked to also audit whether all previously-checked questions across the session are correctly reflected in `question-bank/` and their canonical chapters. Confirmed one real gap from the 50-item checklist: `Object.clone()`/shallow-vs-deep-copy had zero coverage anywhere — `immutability-and-defensive-copying.md` covers defensive copying deeply but never explained `clone()`'s own shallow-copy mechanism.

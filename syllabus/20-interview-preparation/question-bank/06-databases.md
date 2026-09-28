@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: pilot
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../06-databases/INDEX.md
   - ../../../00-project/interview-question-bank-plan.md
@@ -34,11 +34,14 @@ strained answer. This follows `CLAUDE.md`'s own Depth-by-Interview-Level definit
 | **Senior** | Internals, failure modes, alternatives, decision criteria |
 | **Staff** | Cross-system consequences, migration/operational cost, organizational judgment |
 
-**Honest count.** This domain's 16 chapters yielded **40 deep questions** (each with
+**Honest count.** This domain's 16 chapters yielded **48 deep questions** (each with
 full Interview Question Standard treatment already in the canonical chapter) and
-**48 quick-fire questions** (from Flashcards), plus **5 already-leveled Junior/Mid
-questions** from the one Junior Fundamentals chapter — **93 real questions total**,
-short of the requested ~150. Padding to an exact quota with invented, low-value
+**57 quick-fire questions** (from Flashcards), plus **5 already-leveled Junior/Mid
+questions** from the one Junior Fundamentals chapter — **110 real questions total**,
+short of the requested ~150. (Updated 2026-09-27: `database-normalization-1nf-through-bcnf.md`
+and `views-and-materialized-views.md` had complete Interview Questions sections
+never indexed — a stale-index gap, not a content gap. Added 8 questions + 9
+quick-fire cards.) Padding to an exact quota with invented, low-value
 questions was rejected per the plan's own sourcing discipline. Reaching closer to 150
 for this domain would mean either (a) writing new Junior/Mid questions for the 13
 chapters that currently target `senior`/`staff` only, genuinely grounded in their
@@ -555,6 +558,86 @@ directly rather than re-derived.
 
 ---
 
+## Database Normalization — 1NF Through BCNF (T-2411)
+
+### Q1 — What's the difference between 2NF and 3NF, concretely?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../06-databases/database-normalization-1nf-through-bcnf.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Attempts to state the two rules but often treats them as unrelated definitions to memorize separately, without recognizing the shared underlying pattern — the common mistake this question targets.
+- **Senior:** Names the shared pattern unprompted — 2NF removes a *partial* dependency (a column depending on only part of a composite key), 3NF removes a *transitive* dependency (a column depending on a non-key column) — and states both produce the identical anomaly shape, a fact duplicated across rows able to disagree with itself.
+- **Staff:** Connects this to schema-review practice — recognizing the pattern quickly when reviewing a new table design, before it ships.
+
+### Q2 — Give a table that satisfies 3NF but not BCNF.
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../06-databases/database-normalization-1nf-through-bcnf.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Cannot produce a concrete counterexample at all, or confuses BCNF with a stricter form of 1NF or 2NF rather than a narrower closure of a specific 3NF gap.
+- **Senior:** Produces `enrollments(student_id, course_id, instructor)`, correctly identifying `instructor → course_id` as a real functional dependency from a non-candidate-key column, and can state precisely which part of 3NF's own definition the counterexample exploits — 3NF only constrains dependencies *on* non-key columns, not dependencies *from* one.
+- **Staff:** Discusses when this gap actually matters in practice versus when 3NF is a perfectly sufficient stopping point.
+
+### Q3 — When would you deliberately denormalize a schema, and what would you measure first?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../06-databases/database-normalization-1nf-through-bcnf.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats denormalization as a default performance lever rather than a measured, justified exception, and doesn't know to check the write-side cost before committing.
+- **Senior:** Denormalizes only after confirming via `EXPLAIN ANALYZE` (not assumption) that a specific read path is genuinely slow and the read:write ratio favors it, measures the real write-amplification cost first, and names both sides of the trade with real reasoning rather than just "it's faster" — preferring a materialized view over denormalizing the source schema when possible.
+- **Staff:** Frames it as an organizational-risk question when applied repeatedly across a system, not just a single-table decision.
+
+### Q4 — Explain the anomaly-first way to think about all four normal forms in under a minute.
+
+**Canonical treatment:** [§ Interview Questions, Q4](../../06-databases/database-normalization-1nf-through-bcnf.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Falls back to reciting the formal definitions instead of the anomaly framing when asked to explain quickly.
+- **Senior:** Delivers the anomaly-first framing fluently, unprompted — every normal form exists to make one specific way a schema can represent two contradictory facts about the same real-world thing structurally impossible (1NF: an unqueryable repeating cell; 2NF/3NF: a fact duplicated via a partial or transitive dependency; BCNF: a non-key column's own real-world rule going unenforced).
+- **Staff:** Extends it to why this framing matters for schema *review*, not just schema *design* — reviewers who think in anomalies catch real bugs faster than reviewers checking definitions off a list.
+
+---
+
+## Views and Materialized Views (T-2410)
+
+### Q1 — What's the actual difference between a view and a materialized view?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../06-databases/views-and-materialized-views.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Calls a plain view "cached" (it isn't — nothing is stored) or assumes a materialized view "updates automatically" without an explicit or scheduled `REFRESH` — the common mistakes this question targets.
+- **Senior:** States it precisely — a view is a stored query, re-executed on every read, with no storage of its own; a materialized view is a stored result set, fast to read but stale between refreshes — and cites the real trade-off (staleness for speed) with a concrete scenario where it's worth it.
+- **Staff:** Frames it as an operational/ownership question — who monitors the refresh, what's the documented staleness contract — not just a technical mechanism.
+
+### Q2 — Why can you `UPDATE` through some views but not others?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../06-databases/views-and-materialized-views.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Treats this as an arbitrary PostgreSQL limitation rather than a real logical impossibility for aggregated/joined views, and doesn't know `INSTEAD OF` triggers exist as the escape hatch.
+- **Senior:** States the exact rule — PostgreSQL can only unambiguously map a write back to one base-table row when the view involves exactly one base table and has no aggregation, `DISTINCT`, `UNION`, or `LIMIT`/`OFFSET` — rather than "it depends on the view."
+- **Staff:** Discusses when reaching for an `INSTEAD OF` trigger is the right call versus a sign the schema itself should change.
+
+### Q3 — A materialized view refresh job silently stopped running three weeks ago. What's the actual failure here, and how would you have caught it sooner?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../06-databases/views-and-materialized-views.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Assumes PostgreSQL surfaces staleness somehow on its own, or proposes "just refresh more often" as a fix for what's actually a monitoring gap.
+- **Senior:** Correctly identifies this as a monitoring gap, not a database bug — a materialized view produces no error when stale, so reads keep succeeding against old data indefinitely — and proposes an explicit monitored signal (a job-success/failure metric, or a queryable `last_refreshed_at` marker).
+- **Staff:** Generalizes to the org-wide risk of many independently-scheduled materialized views with no shared monitoring convention.
+
+### Q4 — What's the difference between what a primary key, a foreign key, an index, and a view each guarantee?
+
+**Canonical treatment:** [§ Interview Questions, Q4](../../06-databases/views-and-materialized-views.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Conflates "index" with "primary key" (a primary key creates an index automatically but is a distinct constraint), or believes a view enforces something on its own.
+- **Senior:** States all four distinctly without conflating any pair — a primary key guarantees row uniqueness/identity, a foreign key guarantees a reference points at something real, an index makes lookups fast without changing what's logically true, and a view provides a reusable, possibly access-controlled or precomputed way to read the result of combining the other three.
+- **Staff:** Connects the distinction to schema-design judgment — e.g., recognizing that a well-keyed, well-indexed schema can still need a view layer for safe, controlled external access.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 Lighter-weight, single-answer questions mined directly from each chapter's own
@@ -611,6 +694,15 @@ its canonical chapter for the complete context.
 | 45 | "Detects" vs. "prevents" — which word describes optimistic locking correctly? | [Optimistic vs. Pessimistic Locking](../../06-databases/optimistic-vs-pessimistic-locking.md#flashcards) |
 | 46 | What's the real, ongoing cost of pessimistic locking under contention? | [Optimistic vs. Pessimistic Locking](../../06-databases/optimistic-vs-pessimistic-locking.md#flashcards) |
 | 47 | Why can't a `@Version`-annotated entity skip locking entirely? | [Optimistic vs. Pessimistic Locking](../../06-databases/optimistic-vs-pessimistic-locking.md#flashcards) |
+| 48 | What single question does every normal form (1NF–BCNF) answer, underneath its formal definition? | [Database Normalization](../../06-databases/database-normalization-1nf-through-bcnf.md#flashcards) |
+| 49 | What's the real structural difference between a 2NF violation and a 3NF violation? | [Database Normalization](../../06-databases/database-normalization-1nf-through-bcnf.md#flashcards) |
+| 50 | Give a real example of a table that satisfies 3NF but still has an anomaly BCNF would prevent. | [Database Normalization](../../06-databases/database-normalization-1nf-through-bcnf.md#flashcards) |
+| 51 | This chapter measured a specific denormalization trade-off — what was the real read win, and what was the real write cost? | [Database Normalization](../../06-databases/database-normalization-1nf-through-bcnf.md#flashcards) |
+| 52 | In one sentence each, what's the real difference between a view and a materialized view? | [Views and Materialized Views](../../06-databases/views-and-materialized-views.md#flashcards) |
+| 53 | What exact conditions make a view automatically updatable in PostgreSQL? | [Views and Materialized Views](../../06-databases/views-and-materialized-views.md#flashcards) |
+| 54 | This chapter's lab measured a specific live-query-versus-materialized-view speedup — what was it, and what did it cost? | [Views and Materialized Views](../../06-databases/views-and-materialized-views.md#flashcards) |
+| 55 | Why does `REFRESH MATERIALIZED VIEW CONCURRENTLY` require a unique index on the materialized view? | [Views and Materialized Views](../../06-databases/views-and-materialized-views.md#flashcards) |
+| 56 | State, in one line each, what a primary key, a foreign key, an index, and a view each guarantee. | [Views and Materialized Views](../../06-databases/views-and-materialized-views.md#flashcards) |
 
 ---
 

@@ -17,16 +17,21 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 13 chapters yielded 27 deep questions + 5
+**Honest count for this domain:** 15 chapters yielded 49 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `spring-mvc-fundamentals.md`) + 34 quick-fire questions = **66 real
+chapter, `spring-mvc-fundamentals.md`) + 36 quick-fire questions = **90 real
 questions**. (Updated 2026-09-27: `microservices-patterns-with-spring-boot.md`
 had a complete Interview Questions section this index never picked up — a
 stale-index gap, not a content gap, found via a generic interview checklist
 audit. Added its 3 questions + 2 quick-fire cards, plus a cross-domain note
 pointing to `17-architecture.md` for the Microservices-vs-Monolith trade-off
-itself. Known remaining gaps, not yet closed: `dto-entity-mapper-patterns.md`
-and `spring-and-spring-boot-fundamentals.md` are also unindexed here.)
+itself. Updated again, same day: `dto-entity-mapper-patterns.md` and
+`spring-and-spring-boot-fundamentals.md` — previously flagged as known
+remaining gaps — are now indexed too. Added 2 questions + 2 quick-fire cards
+for the former; 20 questions for the latter — its own Interview Questions
+section already tags each answer by seniority tier directly, so summarized
+concisely below rather than re-derived; it has no embedded Flashcards section
+in the canonical chapter to mine for quick-fire, only a standalone deck.)
 
 ---
 
@@ -369,6 +374,234 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 
 ---
 
+## DTO/Entity/Mapper Patterns
+
+### Q1 — Why not just return the JPA entity directly from a `@RestController` method?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../05-spring/dto-entity-mapper-patterns.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Answers only "it's best practice" with no specific mechanism named — the common mistake this question targets.
+- **Senior:** Names at least two real mechanisms: a lazy-loaded association can throw `LazyInitializationException` once the entity leaves its persistence-context scope, internal-only fields may have no business reason to be exposed, and the API's public contract becomes accidentally coupled to the database schema.
+- **Staff:** Frames DTO/Entity separation as an explicit, platform-wide contract-stability rule rather than a per-team convention.
+
+### Q2 — Why does real MapStruct-generated code never reference an entity's sensitive field the DTO doesn't declare?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../05-spring/dto-entity-mapper-patterns.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes this as the mapper "filtering out" the field, implying an active exclusion step — the common mistake this question targets.
+- **Senior:** Correctly distinguishes "never declared as a target field" from "actively filtered" — MapStruct only generates code copying fields the target DTO actually has slots for, a structural guarantee provable via reflection on the DTO's own declared components.
+- **Staff:** Connects this to a broader security principle: a boundary's safety should come from what it structurally cannot do, not from remembering to add a check.
+
+---
+
+## Spring and Spring Boot Fundamentals
+
+A 20-question interview checklist audit found every concept already taught in this domain's prose, but none formatted as an actual, answerable interview question with a Junior baseline through a Staff extension — this chapter's own Interview Questions section closes that directly, tagging each answer by tier already, summarized concisely below.
+
+### Q1 — What is the Spring Framework?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** A Java framework providing DI, a container managing "beans," and supporting modules (MVC, transactions, data access).
+- **Mid:** Adds that Spring's core is the IoC container; everything else is a module built on it.
+- **Senior:** Distinguishes Spring Framework (the programming model) from Spring Boot (starters, auto-configuration, embedded server) precisely.
+- **Staff:** Frames adopting Spring as an organizational choice — a common vocabulary across teams, at the cost of some flexibility.
+
+### Q2 — What is Dependency Injection (DI)?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** A class declares what it needs (usually a constructor parameter) instead of calling `new`; the container builds and hands it in.
+- **Mid:** Names all three injection styles (constructor, setter, field) and states the recommended default.
+- **Senior:** Explains DI as the specific mechanism implementing the broader IoC principle.
+- **Staff:** Connects DI to organizational testability — constructor-injected code can be unit-tested with plain `new`, no Spring context needed, a real velocity difference at team scale.
+
+### Q3 — Constructor Injection vs. Field Injection — which approach and why?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Constructor injection is recommended — dependencies are visible in the constructor signature, and the class is testable with plain `new`.
+- **Mid:** Adds the immutability point (`final` fields) and the "too many dependencies" visible-smell argument.
+- **Senior:** States field injection makes a class untestable with plain `new` as the real, practical cost.
+- **Staff:** Names the real circular-dependency divergence: constructor injection fails loudly (`BeanCurrentlyInCreationException`); field injection resolves the identical cycle silently.
+
+### Q4 — What is IoC (Inversion of Control)?
+
+**Canonical treatment:** [§ Interview Questions, Q4](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Control over object creation/wiring is handed to a container; your code just states what it needs.
+- **Mid:** States explicitly that DI is one implementation of the broader IoC principle, not a synonym.
+- **Senior:** Names the `ApplicationContext` as the concrete container performing the inversion.
+- **Staff:** Discusses the real trade-off — a class's behavior can't be fully understood from its own source alone, since what gets injected depends on external container configuration.
+
+### Q5 — What is a Spring Bean?
+
+**Canonical treatment:** [§ Interview Questions, Q5](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Any object the Spring IoC container creates, configures, and manages — unlike a plain object your own code creates with `new`.
+- **Mid:** States how a class becomes a bean (a stereotype annotation, or a `@Bean` method) and that the container discovers it via component scanning.
+- **Senior:** Distinguishes "a bean" from "a POJO instantiated with `new`" precisely, even for the identical class.
+- **Staff:** Connects bean management to every proxy-based framework feature (transactions, caching, security) built on it.
+
+### Q6 — Explain the Spring Bean Lifecycle.
+
+**Canonical treatment:** [§ Interview Questions, Q6](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Created → dependencies injected → initialized → destroyed; `@PostConstruct` is the everyday "ready" hook.
+- **Mid:** States the constructor runs before field injection completes, which is exactly why `@PostConstruct` (not the constructor) is right for logic needing injected fields.
+- **Senior:** Names `BeanPostProcessor` as the hook behind features like `@Transactional` proxy creation.
+- **Staff:** Explains why knowing the exact lifecycle moment a feature hooks into is what lets an engineer correctly diagnose annotation-interaction surprises (e.g., `@Async` + `@Transactional`).
+
+### Q7 — What are the different Bean Scopes?
+
+**Canonical treatment:** [§ Interview Questions, Q7](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** `singleton` (default, one shared instance) and `prototype` (new instance every request).
+- **Mid:** Names all six real scopes, including the four web-context ones (`request`/`session`/`application`/`websocket`).
+- **Senior:** States the real gotcha: injecting a `prototype` bean into a `singleton` via ordinary injection resolves it once, permanently — not fresh each use.
+- **Staff:** Names the actual fix (`ObjectProvider<T>` or a scoped proxy) and explains why a plain injected field can't solve it.
+
+### Q8 — Difference between `@Component`, `@Service`, `@Repository`, and `@Controller`.
+
+**Canonical treatment:** [§ Interview Questions, Q8](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** All four register a bean via component scanning; the other three are self-documenting names for conventional layers.
+- **Mid:** Names the one real behavioral difference: `@Repository` enables persistence exception translation.
+- **Senior:** States that `@Service` and `@Controller` add no behavior beyond `@Component` — pure documentation/convention.
+- **Staff:** Frames using specific stereotypes (versus `@Component` everywhere) as an organizational-clarity decision at multi-team scale.
+
+### Q9 — `@RestController` vs. `@Controller`.
+
+**Canonical treatment:** [§ Interview Questions, Q9](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** `@RestController` = `@Controller` + `@ResponseBody` — the return value is written directly to the response body instead of resolved as a view name.
+- **Mid:** States what `@Controller` alone does without `@ResponseBody` (server-rendered view resolution).
+- **Senior:** Connects this composition pattern to its parallel: `@RestControllerAdvice` = `@ControllerAdvice` + `@ResponseBody`.
+- **Staff:** Notes a mixed codebase (some `@Controller`, some `@RestController`) is a legitimate migration-era pattern, not automatically inconsistency.
+
+### Q10 — How does `@Autowired` work internally?
+
+**Canonical treatment:** [§ Interview Questions, Q10](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** The container inspects the annotated constructor/field/setter's type and looks for a matching bean in the `ApplicationContext`.
+- **Mid:** States `@Autowired` has been unnecessary on a class's only constructor since Spring 4.3.
+- **Senior:** Explains resolution order precisely: type → `@Qualifier` name → `@Primary` → `NoUniqueBeanDefinitionException`.
+- **Staff:** Connects this to the recursive nature of dependency-graph resolution, the same mechanism behind `BeanCurrentlyInCreationException`.
+
+### Q11 — What happens when multiple beans of the same type are available?
+
+**Canonical treatment:** [§ Interview Questions, Q11](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Spring fails to start with `NoUniqueBeanDefinitionException`, unless resolved via `@Qualifier`/`@Primary`.
+- **Mid:** States both mechanisms and their relationship.
+- **Senior:** Notes this is a startup-time failure, not a runtime one — a deliberate fail-fast design choice.
+- **Staff:** Discusses the trade-off of having multiple implementations of the same interface as beans at all, and the disambiguation discipline it requires everywhere.
+
+### Q12 — `@Primary` vs. `@Qualifier`.
+
+**Canonical treatment:** [§ Interview Questions, Q12](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** `@Qualifier("name")` picks a specific bean by name; `@Primary` marks the default when no qualifier narrows the choice.
+- **Mid:** States the precedence: an explicit `@Qualifier` always wins over `@Primary`.
+- **Senior:** Gives a concrete example distinguishing when each is the right tool.
+- **Staff:** Notes the maintainability cost of `@Qualifier` string literals at scale versus a custom qualifier annotation.
+
+### Q13 — What are `@Configuration` and `@Bean`?
+
+**Canonical treatment:** [§ Interview Questions, Q13](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** `@Configuration` marks a bean-definition source class; a `@Bean` method's return value is registered as a bean — the alternative for classes you don't own.
+- **Mid:** States precisely why: you can't add `@Component` to a third-party class.
+- **Senior:** Explains `@Configuration` classes are CGLIB-proxied by default, so one `@Bean` method calling another returns the same singleton instance.
+- **Staff:** Discusses when `proxyBeanMethods = false` is the deliberate right choice.
+
+### Q14 — What is Component Scanning?
+
+**Canonical treatment:** [§ Interview Questions, Q14](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Spring walks the application's packages at startup looking for `@Component`-annotated classes to register as beans.
+- **Mid:** States the scanning boundary is set by `@ComponentScan` — a class outside it is never discovered.
+- **Senior:** Names the real failure mode: a class outside the main application class's package tree is silently never scanned.
+- **Staff:** Frames package structure itself as an architectural decision because of this mechanism.
+
+### Q15 — What does `@SpringBootApplication` contain?
+
+**Canonical treatment:** [§ Interview Questions, Q15](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** A composition of `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`.
+- **Mid:** States what each of the three specifically contributes on its own.
+- **Senior:** Connects `@ComponentScan`'s inclusion directly to Q14's package-boundary gotcha.
+- **Staff:** Discusses why Spring Boot chose composition over three separately-required annotations — reducing universal boilerplate.
+
+### Q16 — How does Spring Boot Auto-Configuration work?
+
+**Canonical treatment:** [§ Interview Questions, Q16](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Spring Boot ships conditional `@Configuration` classes that activate based on classpath contents and existing beans.
+- **Mid:** Names `@ConditionalOnMissingBean` as the guard letting an application override one piece of auto-configured behavior.
+- **Senior:** States where these classes live (`spring-boot-autoconfigure`) and that `@EnableAutoConfiguration` turns the mechanism on.
+- **Staff:** Connects this to a real risk: a test-scoped dependency leaking onto the production classpath can silently activate unintended auto-configuration.
+
+### Q17 — What is `@EnableAutoConfiguration`?
+
+**Canonical treatment:** [§ Interview Questions, Q17](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** The specific annotation, composed inside `@SpringBootApplication`, that turns on auto-configuration.
+- **Mid:** States it's one of exactly three composed annotations, each with a distinct job.
+- **Senior:** Explains it can, in principle, be used standalone — a real, independent annotation.
+- **Staff:** Discusses why Spring Boot separates "turn on auto-configuration" from "scan for components" as distinct concerns.
+
+### Q18 — What are Spring Boot Starter Dependencies?
+
+**Canonical treatment:** [§ Interview Questions, Q18](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Curated dependency bundles (e.g., `spring-boot-starter-web`) with pre-aligned, compatible versions.
+- **Mid:** States the specific problem solved: manually choosing and version-matching every dependency.
+- **Senior:** Connects starters to auto-configuration directly — starters put things on the classpath; auto-configuration reacts to that classpath.
+- **Staff:** Discusses the dependency-footprint trade-off of broad starters at organizational scale.
+
+### Q19 — How do Profiles work?
+
+**Canonical treatment:** [§ Interview Questions, Q19](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** A profile is a named label controlling which beans and config values load; `@Profile("dev")` restricts a bean to that profile.
+- **Mid:** States the concrete swap-per-environment pattern (a real vs. sandbox gateway implementation) this enables.
+- **Senior:** Connects `spring.profiles.active` to which profile-gated beans and property overrides take effect.
+- **Staff:** Frames profile-per-environment as an organizational discipline question — who can introduce a new profile, and how config drift is prevented.
+
+### Q20 — How do you handle Configuration Management across different environments?
+
+**Canonical treatment:** [§ Interview Questions, Q20](../../05-spring/spring-and-spring-boot-fundamentals.md#15-interview-questions)
+
+**What's expected:**
+- **Junior:** Externalize environment-specific values into `application-{profile}.yml` or environment variables, activating the correct profile per environment.
+- **Mid:** States Spring Boot's property-source precedence (CLI args/env vars override profile YAML, which overrides base YAML).
+- **Senior:** Names secrets specifically as needing more than plain profile-scoped YAML — a real secrets manager, never committed.
+- **Staff:** Frames this as the concrete Spring Boot instance of the general twelve-factor "config in the environment" principle.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -407,6 +640,8 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 32 | Is `@Transactional(readOnly = true)` guaranteed to prevent writes? | [Transactional Proxy Mechanics](../../05-spring/transactional-proxy-mechanics-and-propagation.md#flashcards) |
 | 33 | What does a circuit breaker's sliding window actually count? | [Microservices Patterns with Spring Boot](../../05-spring/microservices-patterns-with-spring-boot.md#flashcards) |
 | 34 | Does a default circuit breaker protect against a slow-but-successful downstream call? | [Microservices Patterns with Spring Boot](../../05-spring/microservices-patterns-with-spring-boot.md#flashcards) |
+| 35 | Why does this chapter recommend `record` for DTOs but not for JPA entities? | [DTO/Entity/Mapper Patterns](../../05-spring/dto-entity-mapper-patterns.md#flashcards) |
+| 36 | Is a mapper never referencing an undeclared sensitive field a real guarantee, or coincidence? | [DTO/Entity/Mapper Patterns](../../05-spring/dto-entity-mapper-patterns.md#flashcards) |
 
 ---
 

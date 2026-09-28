@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-13
+last_updated: 2026-09-27
 related:
   - ../../10-distributed-systems/INDEX.md
   - 09-messaging-event-driven.md
@@ -17,10 +17,12 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 7 chapters yielded 15 deep questions + 24 quick-fire
-questions = **39 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 8 chapters yielded 16 deep questions + 27 quick-fire
+questions = **43 real questions**. No Junior Fundamentals chapter exists in this
 domain — distributed systems presupposes backend fundamentals already covered
-elsewhere.
+elsewhere. (Updated 2026-09-27: `distributed-locking-and-fencing-tokens.md` had a
+complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 1 question + 3 quick-fire cards.)
 
 **Incidental fix while mining this domain:** `multi-region-failover-and-disaster-recovery.md`'s
 Flashcards section used `## Card:` (heading level 2) instead of the file's own
@@ -193,6 +195,19 @@ of markdown-hierarchy inconsistency found and fixed in `09-messaging-event-drive
 
 ---
 
+## Distributed Locking and Fencing Tokens (T-2422)
+
+### Q1 — Your service uses a distributed lock to ensure only one instance processes a job at a time. Is this sufficient to prevent duplicate processing?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../10-distributed-systems/distributed-locking-and-fencing-tokens.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Answers "yes, the lock is sufficient" — the common mistake this question targets.
+- **Senior:** Names the pause-then-stale-write mechanism specifically — if the lock holder pauses (a GC pause, a slow I/O call) longer than its lease's TTL, the lock service reassigns the lock, and the original holder can resume and act as if it still holds it — and proposes fencing tokens, checked by the job's own side-effecting operations, as the fix.
+- **Staff:** Explains precisely why shortening the lease TTL doesn't fully solve it (any TTL has some real pause duration that exceeds it), and discusses what to do when the protected resource can't support fencing tokens directly (introducing a fencing-aware intermediary).
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -221,6 +236,9 @@ of markdown-hierarchy inconsistency found and fixed in `09-messaging-event-drive
 | 22 | What does fencing actually guarantee, and why is it non-optional? | [Multi-Region Failover and DR](../../10-distributed-systems/multi-region-failover-and-disaster-recovery.md#flashcards) |
 | 23 | What are the three possible outcomes of comparing two vector clocks? | [Vector Clocks and Quorum-Based Replication](../../10-distributed-systems/vector-clocks-and-quorum-based-replication.md#flashcards) |
 | 24 | What's the exact condition guaranteeing a read quorum overlaps a write quorum, and is `W + R = N` sufficient? | [Vector Clocks and Quorum-Based Replication](../../10-distributed-systems/vector-clocks-and-quorum-based-replication.md#flashcards) |
+| 25 | Does shortening a distributed lock's lease TTL fix the pause-then-stale-write bug? | [Distributed Locking and Fencing Tokens](../../10-distributed-systems/distributed-locking-and-fencing-tokens.md#flashcards) |
+| 26 | What did this chapter's real demo measure for a 300ms lease against a real 500ms pause, with and without fencing tokens? | [Distributed Locking and Fencing Tokens](../../10-distributed-systems/distributed-locking-and-fencing-tokens.md#flashcards) |
+| 27 | Why must the fencing-token check happen at the resource being written to, rather than inside the lock service itself? | [Distributed Locking and Fencing Tokens](../../10-distributed-systems/distributed-locking-and-fencing-tokens.md#flashcards) |
 
 ---
 
