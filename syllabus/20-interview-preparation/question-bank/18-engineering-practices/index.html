@@ -9992,6 +9992,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#branching-strategy-versioning-and-release-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branching Strategy, Versioning, and Release Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12428,6 +12439,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#branching-strategy-versioning-and-release-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branching Strategy, Versioning, and Release Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12556,8 +12578,11 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 8 chapters yielded 16 deep questions + 2 quick-fire
-questions = <strong>18 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 9 chapters yielded 19 deep questions + 2 quick-fire
+questions = <strong>21 real questions</strong>. (Updated 2026-09-28:
+<code>branching-strategy-versioning-and-release-management.md</code> is a new chapter closing a
+real coverage gap — <code>semver</code> had zero occurrences and branching models were mentioned
+only in passing — contributing 3 questions.) No Junior Fundamentals chapter exists in this
 domain. Seven of eight chapters use the older numbered <code>## 15. Interview Questions</code>
 template with no Flashcards section at all; only <code>git-internals-and-collaboration-workflows.md</code>
 has a <code>### Card:</code> Flashcards section.
@@ -12701,6 +12726,26 @@ quick-fire cards were added.)</p>
 </tbody>
 </table>
 <hr />
+<hr />
+<h2 id="branching-strategy-versioning-and-release-management">Branching Strategy, Versioning, and Release Management<a class="headerlink" href="#branching-strategy-versioning-and-release-management" title="Permanent link">&para;</a></h2>
+<h3 id="q1-how-does-your-team-branch-and-why">Q1 — How does your team branch, and why?<a class="headerlink" href="#q1-how-does-your-team-branch-and-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/branching-strategy-versioning-and-release-management/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes a workflow accurately, even if the justification is "it is what we use."
+- <strong>Senior:</strong> Derives the model from the deciding question — do we support more than one version in production at once? — and names feature flags as what makes trunk-based development workable rather than an optional extra. Explains that merge cost grows with branch divergence, which is the mechanical argument for short-lived branches.
+- <strong>Staff:</strong> Frames branching as a deployment-frequency decision wearing process clothes, and treats the number of supported versions as a product and contractual commitment whose engineering cost should be explicit when the promise is made.</p>
+<h3 id="q2-a-production-bug-is-found-in-version-10-while-main-has-moved-on-walk-me-through-the-fix">Q2 — A production bug is found in version 1.0 while main has moved on. Walk me through the fix.<a class="headerlink" href="#q2-a-production-bug-is-found-in-version-10-while-main-has-moved-on-walk-me-through-the-fix" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/branching-strategy-versioning-and-release-management/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Fixes both lines and knows the release branch ships first.
+- <strong>Senior:</strong> Knows the back-port is the step that gets forgotten, that <code>cherry-pick</code> may conflict (it genuinely did in the captured run), and that the result is two different commit hashes for one change with no shared ancestry — so git cannot warn about a skipped back-port. Prefers merging the release branch where history allows, so ancestry records the fix.
+- <strong>Staff:</strong> Makes back-port completion part of the incident's definition of done with per-line verification, and adds cross-line automation, treating the multiplied cost as the visible price of supporting multiple versions.</p>
+<h3 id="q3-you-changed-one-line-and-it-broke-every-consumer-what-version-number-should-it-have-been">Q3 — You changed one line and it broke every consumer. What version number should it have been?<a class="headerlink" href="#q3-you-changed-one-line-and-it-broke-every-consumer-what-version-number-should-it-have-been" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/branching-strategy-versioning-and-release-management/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows MAJOR signals a breaking change.
+- <strong>Senior:</strong> States that a version is a compatibility promise rather than a measure of effort — a one-line change altering a response field is MAJOR, a thousand-line internal refactor is PATCH — reframes team debates into "will any caller have to change?", and proposes an API-compatibility checker in CI rather than a judgement call. Notes <code>0.x</code> is explicitly outside the guarantee.
+- <strong>Staff:</strong> Treats a MAJOR bump as a coordination event needing a deprecation policy, a supported-version window, and a migration path, connecting it to the same governance problem in API versioning.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../17-architecture/"><code>17-architecture.md</code></a></li>
@@ -12741,7 +12786,7 @@ quick-fire cards were added.)</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 21:43:57 UTC">September 28, 2026</span>
   </span>
 
     

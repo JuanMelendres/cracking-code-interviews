@@ -217,6 +217,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/branching-strategy-versioning-and-release-management/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/broker-selection-kafka-rabbitmq-and-sqs/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -341,6 +345,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/data-privacy-pii-handling-and-retention/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/database-normalization-1nf-through-bcnf/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -454,6 +462,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/false-sharing-and-cache-line-contention/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/file-systems-and-durable-io/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -578,6 +590,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/index-structures-btree-composite-covering/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/infrastructure-as-code/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1393,6 +1409,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/branching-strategy-versioning-and-release-management/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/broker-selection-kafka-rabbitmq-and-sqs/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -1517,6 +1537,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/data-privacy-pii-handling-and-retention/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/database-normalization-1nf-through-bcnf/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -1630,6 +1654,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/false-sharing-and-cache-line-contention/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/file-systems-and-durable-io/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1754,6 +1782,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/index-structures-btree-composite-covering/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/infrastructure-as-code/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -2549,6 +2581,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/git/branching-and-release/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -2702,6 +2738,14 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/cs-foundations/algorithmic-complexity/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/cs-foundations/concurrency-vs-parallelism/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/cs-foundations/file-systems-and-durable-io/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -2958,6 +3002,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/rest-api-fundamentals/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/security/data-privacy/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -5861,6 +5909,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/01-computer-science-foundations/file-systems-and-durable-io/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/01-computer-science-foundations/how-a-computer-executes-a-program/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -6641,6 +6693,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/12-security/data-privacy-pii-handling-and-retention/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/12-security/enterprise-sso-saml-and-federated-identity/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -6753,6 +6809,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/15-cloud/infrastructure-as-code/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -6842,6 +6902,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/18-engineering-practices/architecture-decision-records-and-technical-writing/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/18-engineering-practices/branching-strategy-versioning-and-release-management/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>

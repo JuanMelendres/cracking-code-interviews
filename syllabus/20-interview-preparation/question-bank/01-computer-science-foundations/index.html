@@ -9259,6 +9259,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#file-systems-and-durable-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Systems and Durable I/O
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-process-and-thread-model-concurrency-versus-parallelism-added-2026-09-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OS Process and Thread Model — concurrency versus parallelism (added 2026-09-28)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12362,6 +12384,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#file-systems-and-durable-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Systems and Durable I/O
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-process-and-thread-model-concurrency-versus-parallelism-added-2026-09-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OS Process and Thread Model — concurrency versus parallelism (added 2026-09-28)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12490,8 +12534,12 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 6 chapters yielded 12 deep questions = <strong>12 real
-questions</strong>. All 6 chapters use the older numbered <code>## 15. Interview Questions</code>
+<p><strong>Honest count for this domain:</strong> 7 chapters yielded 17 deep questions = <strong>17 real
+questions</strong>. (Updated 2026-09-28: <code>file-systems-and-durable-io.md</code> is a new chapter
+closing a real coverage gap — <code>fsync</code>, <code>inode</code>, and block size had zero occurrences
+repository-wide — contributing 3 questions; <code>os-process-thread-model.md</code> gained 2
+questions on concurrency versus parallelism and Amdahl's law, where <code>parallel</code> had
+zero occurrences in that chapter.) All 6 chapters use the older numbered <code>## 15. Interview Questions</code>
 template with <strong>no Flashcards section at all</strong>, so there is no quick-fire layer to
 mine here — the same pattern as <a href="../19-leadership-staff/"><code>19-leadership-staff.md</code></a>.
 Despite being the domain's own "true fundamentals" starting point, the Interview
@@ -12587,6 +12635,40 @@ section.)</p>
 - <strong>Senior:</strong> Names the mount/unmount mechanism specifically and can cite or reproduce a real measurement rather than repeating the claim unverified.
 - <strong>Staff:</strong> Names the pinning edge case as the mechanism's real, documented limitation, and connects it to the organizational risk of a large-scale virtual-thread migration — not a free, unconditional win.</p>
 <hr />
+<hr />
+<h2 id="file-systems-and-durable-io">File Systems and Durable I/O<a class="headerlink" href="#file-systems-and-durable-io" title="Permanent link">&para;</a></h2>
+<h3 id="q1-does-a-successful-write-mean-the-data-is-on-disk">Q1 — Does a successful <code>write()</code> mean the data is on disk?<a class="headerlink" href="#q1-does-a-successful-write-mean-the-data-is-on-disk" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/file-systems-and-durable-io/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows the OS buffers writes and an explicit sync is needed.
+- <strong>Senior:</strong> Explains the mechanism — <code>write()</code> copies into the page cache and marks pages dirty, writeback persists later, and only <code>fsync</code>/<code>fdatasync</code> waits for device acknowledgement. Distinguishes <code>flush()</code> (your buffer into the kernel) from <code>fsync</code> (kernel to device), and cites the measured cost: 2,000 small appends took 3 ms un-synced versus 7,704 ms with a sync per record.
+- <strong>Staff:</strong> Frames the durability level as a written product decision with an owner, and separates disk-level durability from replication-level durability — acknowledging on three replicas' page caches survives a machine loss, syncing to one disk survives a power cut, and a design should state which it bought.</p>
+<h3 id="q2-a-job-writing-many-small-records-is-far-slower-in-production-than-locally-how-do-you-diagnose-it">Q2 — A job writing many small records is far slower in production than locally. How do you diagnose it?<a class="headerlink" href="#q2-a-job-writing-many-small-records-is-far-slower-in-production-than-locally-how-do-you-diagnose-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/file-systems-and-durable-io/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Suspects the storage and checks disk metrics.
+- <strong>Senior:</strong> Separates bandwidth, IOPS, and sync latency before anything else, since small-record workloads are dominated by syscall count and sync frequency — neither visible on a bandwidth graph. Proposes batching syncs with an explicit statement of what is now at risk, citing the measured ~2,000x per-record cost falling to ~30x when batched every 100. Also checks buffer sizes: 512 B versus 64 KB was a ~10x difference for identical bytes.
+- <strong>Staff:</strong> Notes storage semantics as a portability hazard — a durability guarantee validated on local NVMe is not validated on a network volume or cloud block store — and prefers a deliberate power-loss test over discovering it in an incident.</p>
+<h3 id="q3-are-random-reads-really-10100x-slower-than-sequential-reads">Q3 — Are random reads really 10–100x slower than sequential reads?<a class="headerlink" href="#q3-are-random-reads-really-10100x-slower-than-sequential-reads" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/file-systems-and-durable-io/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Repeats the textbook figure.
+- <strong>Senior:</strong> Qualifies it correctly: that penalty is a spinning-disk, cache-miss phenomenon. Measured on NVMe with a warm page cache, 20,000 4 KB reads each way came out at a ratio of 0.68x — indistinguishable. Explains why sequential access still matters anyway (readahead, erase-block alignment, prefetching layers), so B-trees, log-structured storage, and Kafka's design remain sequential-friendly.
+- <strong>Staff:</strong> Generalises to re-measuring inherited performance folklore on the hardware actually in use, since storage characteristics have changed by orders of magnitude within the lifetime of the rules people still quote.</p>
+<hr />
+<h2 id="os-process-and-thread-model-concurrency-versus-parallelism-added-2026-09-28">OS Process and Thread Model — concurrency versus parallelism (added 2026-09-28)<a class="headerlink" href="#os-process-and-thread-model-concurrency-versus-parallelism-added-2026-09-28" title="Permanent link">&para;</a></h2>
+<h3 id="q3-what-is-the-difference-between-concurrency-and-parallelism-and-why-does-it-change-thread-pool-sizing">Q3 — What is the difference between concurrency and parallelism, and why does it change thread-pool sizing?<a class="headerlink" href="#q3-what-is-the-difference-between-concurrency-and-parallelism-and-why-does-it-change-thread-pool-sizing" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/os-process-thread-model/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows parallelism needs multiple cores and concurrency does not.
+- <strong>Senior:</strong> Derives the sizing rule from measurement rather than recitation: 40 CPU-bound tasks took 610 ms on 1 thread, 90 ms on 10 (one per core), and 84 ms on 40 — no gain past the core count; while 200 tasks each waiting 50 ms went from 10,656 ms on 1 thread to 71 ms on 200, a 150x improvement, because a waiting thread uses no CPU. Concludes CPU-bound pools ≈ core count, I/O-bound pools ≈ desired in-flight operations.
+- <strong>Staff:</strong> Treats pool sizing as a capacity decision to revisit when workload shape changes, and notes that a pool sized on a CPU-bound assumption silently throttles I/O-bound work — nothing errors, it just gets slow.</p>
+<h3 id="q4-your-batch-job-parallelised-across-16-cores-and-got-a-4x-speedup-is-something-broken">Q4 — Your batch job parallelised across 16 cores and got a 4x speedup. Is something broken?<a class="headerlink" href="#q4-your-batch-job-parallelised-across-16-cores-and-got-a-4x-speedup-is-something-broken" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/os-process-thread-model/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Recognises that the non-parallel portion limits speedup.
+- <strong>Senior:</strong> Names Amdahl's law and the measured shape — a serial phase plus 40 parallel tasks gave 5.02x on 10 cores, not 10x — and lists candidates for the hidden serial portion: setup, a final merge, lock contention, a single-threaded I/O stage, GC pauses.
+- <strong>Staff:</strong> Reframes it as a cost conversation — beyond the point the serial fraction dominates, more cores is hardware that cannot help — so the recommendation may be to stop scaling and re-architect the serial stage.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../03-data-structures-algorithms/"><code>03-data-structures-algorithms.md</code></a></li>
@@ -12629,7 +12711,7 @@ section.)</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 21:43:57 UTC">September 28, 2026</span>
   </span>
 
     

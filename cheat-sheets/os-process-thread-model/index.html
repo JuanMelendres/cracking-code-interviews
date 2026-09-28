@@ -1427,6 +1427,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../branching-strategy-versioning-and-release-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: Branching Strategy, Versioning, and Release Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../broker-selection-kafka-rabbitmq-and-sqs/" class="md-nav__link">
         
   
@@ -2295,6 +2323,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../data-privacy-pii-handling-and-retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: Data Privacy — PII Handling, Retention, and Erasure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../database-normalization-1nf-through-bcnf/" class="md-nav__link">
         
   
@@ -3087,6 +3143,34 @@
     
   
     Cheat Sheet: False Sharing and Cache-Line Contention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-systems-and-durable-io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: File Systems and Durable I/O
   
 
     
@@ -3955,6 +4039,34 @@
     
   
     Cheat Sheet: Database Index Structures (B+Tree, Composite, Covering)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet: Infrastructure as Code
   
 
     
@@ -6273,6 +6385,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concurrency-vs-parallelism-measured-10-cores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency vs. Parallelism (measured, 10 cores)
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#core-mental-model" class="md-nav__link">
@@ -9277,6 +9400,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#concurrency-vs-parallelism-measured-10-cores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency vs. Parallelism (measured, 10 cores)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-mental-model" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9436,6 +9570,34 @@
 
 <h1 id="the-os-processthread-model-below-javas-abstraction-of-it">The OS Process/Thread Model, Below Java's Abstraction of It<a class="headerlink" href="#the-os-processthread-model-below-javas-abstraction-of-it" title="Permanent link">&para;</a></h1>
 <p><strong>Canonical chapter:</strong> <a href="../../syllabus/01-computer-science-foundations/os-process-thread-model/"><code>syllabus/01-computer-science-foundations/os-process-thread-model.md</code></a></p>
+<h2 id="concurrency-vs-parallelism-measured-10-cores">Concurrency vs. Parallelism (measured, 10 cores)<a class="headerlink" href="#concurrency-vs-parallelism-measured-10-cores" title="Permanent link">&para;</a></h2>
+<p>Concurrency = several tasks <strong>in progress</strong> (structural). Parallelism = several tasks <strong>executing at once</strong> (physical, needs cores).</p>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>1 thread</th>
+<th>10 threads</th>
+<th>Many threads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU-bound (40 tasks)</td>
+<td>610 ms</td>
+<td>90 ms</td>
+<td>84 ms at 40 — <strong>no gain past core count</strong></td>
+</tr>
+<tr>
+<td>I/O-bound (200 tasks × 50 ms)</td>
+<td>10,656 ms</td>
+<td>1,072 ms</td>
+<td><strong>71 ms at 200</strong>; 64 ms with virtual threads</td>
+</tr>
+</tbody>
+</table>
+<p>Sizing follows: CPU-bound ≈ core count; I/O-bound ≈ desired in-flight operations.</p>
+<p><strong>Amdahl's law:</strong> a serial phase plus 40 parallel tasks gave <strong>5.02x on 10 cores</strong>, not 10x. The serial fraction, not the core count, sets the ceiling.</p>
 <h2 id="core-mental-model">Core Mental Model<a class="headerlink" href="#core-mental-model" title="Permanent link">&para;</a></h2>
 <p>A CPU core can genuinely execute only one thread's instructions at any single instant — everything else is context switching, and Java's platform-vs-virtual-thread split is fundamentally a question of what each one actually costs the operating system.</p>
 <h2 id="essential-definitions">Essential Definitions<a class="headerlink" href="#essential-definitions" title="Permanent link">&para;</a></h2>
@@ -9548,7 +9710,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 7, 2026 02:31:12 UTC">September 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 21:43:57 UTC">September 28, 2026</span>
   </span>
 
     

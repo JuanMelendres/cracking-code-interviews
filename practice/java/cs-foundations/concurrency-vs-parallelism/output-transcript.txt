@@ -1,0 +1,50 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS, 10 cores.
+
+$ javac -d out src/ConcurrencyVsParallelismDemo.java
+$ java -cp out ConcurrencyVsParallelismDemo
+availableProcessors() = 10
+
+=== 1. CPU-BOUND work: adding threads helps until you run out of cores ===
+  40 CPU-bound tasks, no I/O whatsoever:
+      1 threads ->    631 ms
+      2 threads ->    313 ms
+      4 threads ->    184 ms
+     10 threads ->    137 ms   <- one per core
+     40 threads ->    108 ms   <- MORE threads, no better
+  Speedup tracks core count and then flattens. Extra threads beyond the
+  core count add context switching, not throughput -- there is no idle CPU
+  left for them to use. This is PARALLELISM: doing work simultaneously,
+  and it is bounded by hardware.
+
+=== 2. I/O-BOUND work: adding threads helps far beyond the core count ===
+  200 tasks that each wait 50 ms (a stand-in for a network call):
+      1 threads ->  11166 ms
+     10 threads ->   1142 ms   <- one per core
+     50 threads ->    234 ms
+    200 threads ->     69 ms   <- one per task
+  Here threads help far past the core count, because a waiting thread uses
+  no CPU at all. This is CONCURRENCY: many tasks in flight, overlapping their
+  waiting. Total time approaches the latency of ONE call, not their sum.
+  The same 200 tasks with virtual threads:
+    virtual threads ->     65 ms   (one per task, no pool sizing decision)
+
+=== 3. Amdahl's law: the serial fraction sets the ceiling ===
+  serial phase + 40 parallel tasks
+    1 thread       ->    698 ms
+    10 threads     ->    104 ms
+    speedup: 6.71x with 10 cores
+  The speedup is well below the core count because the serial phase is
+  unchanged no matter how many cores you add. That ceiling is Amdahl's law,
+  and it is why 'just add threads' stops working long before it should.
+
+=== 4. Concurrency without parallelism: one thread, interleaved progress ===
+  Two tasks interleaved by ONE thread, cooperatively:
+    step 0: task A slice (2 left)
+    step 1: task B slice (2 left)
+    step 2: task A slice (1 left)
+    step 3: task B slice (1 left)
+    step 4: task A slice (0 left)
+    step 5: task B slice (0 left)
+  Both tasks were in progress at the same time; neither ran simultaneously.
+  That is concurrency with zero parallelism -- exactly what a single-threaded
+  event loop does, and why Node.js handles many connections on one thread.

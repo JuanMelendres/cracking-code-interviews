@@ -1480,6 +1480,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../branching-strategy-versioning-and-release-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Branching Strategy, Versioning, and Release Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../broker-selection-kafka-rabbitmq-and-sqs/" class="md-nav__link">
         
   
@@ -2348,6 +2376,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../data-privacy-pii-handling-and-retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Data Privacy — PII Handling, Retention, and Erasure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../database-normalization-1nf-through-bcnf/" class="md-nav__link">
         
   
@@ -3140,6 +3196,34 @@
     
   
     Flashcards: False Sharing and Cache-Line Contention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-systems-and-durable-io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: File Systems and Durable I/O
   
 
     
@@ -4008,6 +4092,34 @@
     
   
     Flashcards: Database Index Structures — B+Tree, Composite, Covering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Infrastructure as Code
   
 
     
@@ -6326,6 +6438,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#card-concurrency-vs-parallelism-and-why-pool-sizing-differs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Concurrency vs. parallelism, and why pool sizing differs
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#card-process-vs-thread-whats-isolated-whats-shared" class="md-nav__link">
@@ -9255,6 +9378,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#card-concurrency-vs-parallelism-and-why-pool-sizing-differs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Concurrency vs. parallelism, and why pool sizing differs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#card-process-vs-thread-whats-isolated-whats-shared" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9392,6 +9526,17 @@
 
 <h1 id="flashcards-the-os-processthread-model-below-javas-abstraction-of-it">Flashcards: The OS Process/Thread Model, Below Java's Abstraction of It<a class="headerlink" href="#flashcards-the-os-processthread-model-below-javas-abstraction-of-it" title="Permanent link">&para;</a></h1>
 <p><strong>Canonical chapter:</strong> <a href="../../syllabus/01-computer-science-foundations/os-process-thread-model/"><code>syllabus/01-computer-science-foundations/os-process-thread-model.md</code></a></p>
+<h2 id="card-concurrency-vs-parallelism-and-why-pool-sizing-differs">Card: Concurrency vs. parallelism, and why pool sizing differs<a class="headerlink" href="#card-concurrency-vs-parallelism-and-why-pool-sizing-differs" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+What is the difference between concurrency and parallelism, and how does it change thread-pool sizing?</p>
+<p><strong>Answer:</strong>
+Concurrency is structural — several tasks in progress over the same period, interleaving. Parallelism is physical — several tasks executing simultaneously, which needs multiple cores. Measured on a 10-core machine: 40 CPU-bound tasks took 610 ms on 1 thread, 90 ms on 10, and 84 ms on 40 — no gain past the core count. The identical increase applied to 200 tasks each waiting 50 ms went from 10,656 ms on 1 thread to 71 ms on 200, a 150x improvement, because a waiting thread uses no CPU.</p>
+<p><strong>Why it matters:</strong>
+CPU-bound pools are sized near the core count; I/O-bound pools are sized by desired in-flight operations. The two numbers can differ by an order of magnitude.</p>
+<p><strong>Common trap:</strong>
+Applying one "threads = cores + 1" rule to every workload. A pool sized for a CPU-bound assumption silently throttles I/O-bound work — nothing errors, it just gets slow.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/02-java/concurrency/executors-and-thread-pool-sizing/">Executors and Thread Pool Sizing</a></p>
 <h2 id="card-process-vs-thread-whats-isolated-whats-shared">Card: Process vs. thread — what's isolated, what's shared<a class="headerlink" href="#card-process-vs-thread-whats-isolated-whats-shared" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong>
 What does a process get that a thread inside it does not, and what do all threads inside the same process share?</p>
@@ -9478,7 +9623,7 @@ Treating process memory isolation as a matter of the OS "being careful," rather 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 7, 2026 14:41:25 UTC">September 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 21:43:57 UTC">September 28, 2026</span>
   </span>
 
     

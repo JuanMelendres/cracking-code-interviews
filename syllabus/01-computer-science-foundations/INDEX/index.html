@@ -11456,6 +11456,12 @@
 <td>L1, L2, L3, L4 — fully written</td>
 <td><code>syllabus/01-computer-science-foundations/networking-basics.md</code></td>
 </tr>
+<tr>
+<td>T-2440</td>
+<td><a href="../file-systems-and-durable-io/">File Systems and Durable I/O: Page Cache, Buffering, and fsync</a> (the page cache, syscall cost, the real price of durability)</td>
+<td>L1, L2, L3, L4 — fully written, real measurements (2026-09-28)</td>
+<td><code>syllabus/01-computer-science-foundations/file-systems-and-durable-io.md</code></td>
+</tr>
 </tbody>
 </table>
 <p>Written in dependency order, each building on real, executed evidence from the one before it: T-2001 (prerequisite-free) → T-2002 (the call stack, the layer below T-2001's own performance vocabulary) → T-2006 (fills in what sits between a T-2002 register and RAM, with real pointer-chase latency measurements on real hardware) → T-2003 (what a number actually is, once T-2002 established that a variable is bits in memory) → T-2004 (what happens when many instruction streams — Section 3 of T-2002 — run on one machine at once) → T-2005 (what happens when two machines need to talk at all). Cheat sheets for all five original topics were added 2026-09-06 and flashcard decks for all five were added 2026-09-07 (see <code>cheat-sheets/README.md</code>'s New-Writing Domain Cheat Sheets table and <code>flashcards/README.md</code>'s New-Writing Domain Decks table); T-2006's cheat sheet and flashcard deck were added alongside the chapter itself on 2026-09-20. Production-cookbook was investigated rather than batch-written (2026-09-07): 4 of the original 5 chapters already cite an existing entry in their own <code>production_scenarios</code> front matter; <code>number-representation.md</code> has no citation but its own Section 14 explicitly documents why (no existing entry has a numeric-representation-specific root cause) with a <code>Planned reference</code> note rather than a placeholder — per <code>production-cookbook/README.md</code>'s own "elevate an existing worked scenario, never invent one" rule, this is a resolved, honest gap, not unbuilt work. T-2006 follows the same honest pattern (see its own Section 14): no cookbook entry roots in CPU-cache-hierarchy latency specifically, so it cites its own two real, in-repo applied consequences instead.</p>
@@ -11481,7 +11487,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 19:20:59 UTC">September 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 21:43:57 UTC">September 28, 2026</span>
   </span>
 
     

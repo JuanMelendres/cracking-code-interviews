@@ -1,0 +1,55 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+
+$ javac -d out src/DataPrivacyDemo.java
+$ java -cp out DataPrivacyDemo
+
+=== 1. Pseudonymisation: a stable reference that is useless on its own ===
+Application/event/log records carry:  user_ref=u-1001
+The mapping u-1001 -> the real identifier lives in ONE system,
+with its own access control and its own audit trail.
+Same subject, asked twice: u-1001 (stable, so joins still work)
+
+Pseudonymised data is STILL personal data under GDPR -- re-identification is
+possible by design, because the mapping exists. It reduces blast radius and
+narrows who can re-identify; it does not take the data out of scope.
+
+=== 2. Why an unsalted hash of an email is NOT anonymisation ===
+Stored 'anonymised' value: ff8d9819fc0e12bf0d24892e45987e24...
+  guess bob@example.com        -> no match
+  guess carol@example.com      -> no match
+  guess alice@example.com      -> MATCH -- identity recovered
+
+The value space of email addresses is small enough to enumerate or to test
+against a known customer list, so an unsalted hash is a lookup away from the
+original. Hashing an identifier is PSEUDONYMISATION, not anonymisation.
+A keyed hash (HMAC with a secret) raises the bar; true anonymisation means
+the subject cannot be re-identified BY ANYONE, which usually means losing
+row-level granularity (aggregation, k-anonymity), not transforming a column.
+
+=== 3. Crypto-shredding: erasure by destroying the key ===
+Two ciphertexts exist, in systems with different deletion capabilities:
+  backup:  32dc034b829e66ffacb7c9f94a39bdfb036581f8...
+  archive: 28ae939ae3340d9c9d41bb65830a839c861ba6c4...
+Readable today: "Alice Smith, 12 Rose Lane, born 1988-04-02"
+
+Erasure request received. Destroying the subject's key (NOT chasing the copies):
+  backup -> unrecoverable: no key for subject u-1001
+  archive -> unrecoverable: no key for subject u-1001
+
+The ciphertext is still physically present in both systems and is now
+permanently unreadable. This is how erasure is honoured in immutable
+backups, append-only logs, and event stores that cannot delete a row --
+the one design that makes 'delete my data' compatible with 'we keep an
+immutable audit log'. Its cost: key management becomes availability-critical,
+because losing a key is indistinguishable from erasing a subject.
+
+=== 4. What each technique does and does not give you ===
+  TECHNIQUE                  GIVES YOU                              STILL PERSONAL DATA?
+  Pseudonymisation           smaller blast radius, joins still work YES
+  Unsalted hash              very little -- enumerable              YES
+  Keyed hash (HMAC)          pseudonym an attacker cannot reverse   YES
+  Crypto-shredding           erasure where deletion is impossible   until the key dies
+  Aggregation / k-anonymity  genuine anonymisation                  NO (if done right)
+
+Only the last row leaves the regulation's scope, and it costs row-level detail.
+Everything above it is risk reduction, which is valuable and is not the same thing.
