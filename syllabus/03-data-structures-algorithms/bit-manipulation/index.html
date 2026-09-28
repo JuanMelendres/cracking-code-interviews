@@ -11832,6 +11832,18 @@ result: 100 = 4, the one value that appeared an odd number of times
 <p><strong>Missing Number's XOR-cancellation derivation, precisely</strong>: seeding the running XOR with <code>nums.length</code> (rather than starting from <code>0</code>) accounts for the one index (<code>n</code>, the array's length) that has no corresponding array slot to pair with, since the array holds <code>n</code> distinct values drawn from the range <code>0</code> to <code>n</code> inclusive, with exactly one missing. XOR-ing every <code>i ^ nums[i]</code> together with that seed means every value actually present in the array cancels with its own corresponding index — leaving only the one missing value un-cancelled at the end. This sidesteps a real, separate concern with the alternative "expected sum minus actual sum" approach: for large arrays, the expected sum itself could silently overflow <code>int</code> (a direct, concrete instance of <a href="../../01-computer-science-foundations/number-representation/#4-core-concepts-l2">Number Representation's</a> overflow lesson), whereas XOR never has an analogous overflow failure mode.</p>
 <p><strong>Sum of Two Integers' correctness for negative operands, precisely</strong>: this bit-level addition technique works identically for negative numbers <em>specifically because</em> Java's <code>int</code> already uses two's complement representation — the same bit-level addition-with-carry mechanism that makes two's complement negation and addition work correctly (per <a href="../../01-computer-science-foundations/number-representation/#5-how-it-works-internally-l3">Number Representation's</a> own derivation) is exactly what this technique relies on and exploits directly, rather than needing separate logic for negative operands.</p>
 <p><strong>Counting Bits' recurrence derivation, precisely</strong>: <code>i &gt;&gt; 1</code> is <code>i</code> with its lowest bit removed — a value strictly smaller than <code>i</code>, whose popcount was already computed earlier in the same loop (since the loop proceeds from <code>1</code> upward). <code>i</code>'s own popcount is exactly that already-known smaller value's popcount, plus one more <em>only if</em> <code>i</code>'s own lowest bit (<code>i &amp; 1</code>) happens to be set. This turns computing each value's popcount into an O(1) lookup-plus-addition, rather than an O(popcount) Kernighan-style inner loop repeated independently for every value from <code>1</code> to <code>n</code>.</p>
+<p><strong>Visual: XOR cancelling, one bit lane at a time.</strong> "XOR cancels duplicates" is a sentence people repeat without seeing it. Watching the accumulator in binary makes the mechanism concrete. Real, executed trace:</p>
+<div class="highlight"><pre><span></span><code>step  value  value(bits)  running XOR(bits)  running XOR
+   0      -            -               0000            0
+   1      4         0100               0100            4
+   2      1         0001               0101            5
+   3      2         0010               0111            7
+   4      1         0001               0110            6
+   5      2         0010               0100            4
+Answer: 4  (every duplicate cancelled itself bit by bit)
+</code></pre></div>
+<p>Each column of the <code>running XOR(bits)</code> field is an independent lane, and each lane simply counts its own 1-bits modulo 2. At step 3 the accumulator is <code>0111</code>, which corresponds to no element at all — an intermediate state, not a partial answer. By the end every value that appeared twice has flipped its lanes back to where they started, leaving only <code>0100</code>. Order is irrelevant for the same reason: XOR is associative and commutative, so the duplicates cancel whenever they happen to meet.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reach for XOR-of-everything the moment a problem describes "every value appears twice except one"</strong> — a strong, distinctive trigger phrase for this specific technique.</li>
@@ -12043,7 +12055,7 @@ Week 20 — Bit Manipulation (LC 136, 191, 268, 371, 338): 10/10 assertions pass
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

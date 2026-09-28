@@ -10180,6 +10180,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hallucination-groundedness-and-output-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallucination, Groundedness, and Output Guardrails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-window-management-token-budgets-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Window Management, Token Budgets, and Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12384,6 +12406,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hallucination-groundedness-and-output-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallucination, Groundedness, and Output Guardrails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-window-management-token-budgets-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Window Management, Token Budgets, and Cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12514,7 +12558,7 @@ tier-explanation format and <code>00-project/interview-question-bank-plan.md</co
 22-domain plan and sourcing discipline. <strong>This is the final domain in the 22-domain
 plan</strong> — see <code>00-project/interview-question-bank-plan.md</code> for the full initiative
 summary.</p>
-<p><strong>Honest count for this domain:</strong> 6 chapters, each using the older numbered
+<p><strong>Honest count for this domain:</strong> 8 chapters (6 original plus 2 added 2026-09-28), each using the older numbered
 <code>## 15. Interview Questions</code> template with a Junior→Staff leveled Q&amp;A set (5 questions
 per chapter, one per tier from Junior/Mid through Staff) and <strong>no Flashcards section at
 all</strong> — the same pattern as <code>14-devops-containers</code>' Junior Fundamentals chapter, but
@@ -12523,7 +12567,11 @@ domain (added 2026-09-09) built with the leveled format from the start rather th
 retrofitted. 6 chapters × 5 leveled questions = 30 real questions, plus a 7th chapter
 (<code>prompt-injection-and-agentic-security.md</code>, added 2026-09-21, indexed 2026-09-27 —
 a stale-index gap, not a content gap) contributing 2 more deep questions in this
-compendium's usual "What's expected" format = <strong>32 real questions</strong> total. No separate
+compendium's usual "What's expected" format, plus two chapters added 2026-09-28
+(<code>hallucination-groundedness-and-output-guardrails.md</code> and
+<code>context-window-management-token-budgets-and-cost.md</code>, closing real coverage gaps —
+hallucination, guardrails, and <code>context window</code> had zero occurrences in the domain)
+contributing 3 questions each = <strong>38 real questions</strong> total. No separate
 deep-question/quick-fire split exists for the original 6 — each chapter's own 5
 questions already span the full seniority ladder directly, so they're presented as
 one leveled set per chapter rather than forced into the 4-tier breakdown.</p>
@@ -12621,6 +12669,46 @@ one leveled set per chapter rather than forced into the 4-tier breakdown.</p>
 - <strong>Senior:</strong> Correctly explains the arms-race dynamic — a filter is something an attacker can route around by rephrasing the injected instruction, while a structural refusal to treat tool output as anything but data has nothing for a rephrased instruction to be interpreted by.
 - <strong>Staff:</strong> Connects this to a real, separately-gated human-approval mechanism for consequential actions as defense-in-depth beyond the structural fix alone.</p>
 <hr />
+<hr />
+<h2 id="hallucination-groundedness-and-output-guardrails">Hallucination, Groundedness, and Output Guardrails<a class="headerlink" href="#hallucination-groundedness-and-output-guardrails" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-a-hallucination-why-do-models-produce-them-and-what-actually-reduces-them">Q1 — What is a hallucination, why do models produce them, and what actually reduces them?<a class="headerlink" href="#q1-what-is-a-hallucination-why-do-models-produce-them-and-what-actually-reduces-them" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Defines it as fluent, confident, false output and names RAG as the main mitigation.
+- <strong>Senior:</strong> Explains the mechanism — generation samples likely continuations, likelihood reflects pattern fit rather than truth, and there is no internal "I know this" flag — then gives the layered mitigation (retrieve, instruct to use only context and abstain, constrain with a schema, verify deterministically, check groundedness, human review) and names what each layer misses. States plainly that schema validation guarantees shape only.
+- <strong>Staff:</strong> Frames it as risk placement — which actions the model is authorized to take without a human — plus a stated error budget for ungrounded output, monitored like any other SLO.</p>
+<h3 id="q2-your-assistant-cited-a-real-document-and-still-gave-the-wrong-answer-walk-me-through-it">Q2 — Your assistant cited a real document and still gave the wrong answer. Walk me through it.<a class="headerlink" href="#q2-your-assistant-cited-a-real-document-and-still-gave-the-wrong-answer-walk-me-through-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Suspects the retrieval step.
+- <strong>Senior:</strong> Applies the diagnostic — were the right documents in the prompt? If yes, it is a generation failure, so the fix is per-claim verification against the cited source plus instructions forbidding outside knowledge and a schema requiring a <code>source_id</code> per claim. Notes that a real citation makes a wrong answer <em>more</em> persuasive, and that the cheapest check is whether the cited ID appears in the retrieved set at all.
+- <strong>Staff:</strong> Routes commitment-bearing output (amounts, dates, entitlements) to human review by policy and tracks the ungrounded rate as a monitored budget.</p>
+<h3 id="q3-how-do-you-evaluate-whether-your-guardrails-work">Q3 — How do you evaluate whether your guardrails work?<a class="headerlink" href="#q3-how-do-you-evaluate-whether-your-guardrails-work" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes a labelled test set and an accuracy number.
+- <strong>Senior:</strong> Scores groundedness per atomic claim rather than per answer (four good claims plus one fabrication still passes whole-answer scoring), includes unanswerable questions to measure abstention, and calibrates any model judge against human labels — noting that judging with the same model family hides correlated blind spots.
+- <strong>Staff:</strong> Treats it as an SLO with an owner and a breach response, and argues for a shared evaluation harness so quality is comparable across teams rather than each team grading its own homework.</p>
+<hr />
+<h2 id="context-window-management-token-budgets-and-cost">Context Window Management, Token Budgets, and Cost<a class="headerlink" href="#context-window-management-token-budgets-and-cost" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-in-the-context-window-and-what-happens-when-your-prompt-no-longer-fits">Q1 — What is in the context window, and what happens when your prompt no longer fits?<a class="headerlink" href="#q1-what-is-in-the-context-window-and-what-happens-when-your-prompt-no-longer-fits" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../22-ai-llm-engineering/context-window-management-token-budgets-and-cost/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names system prompt, history, and retrieved context.
+- <strong>Senior:</strong> Includes tool definitions, tool results, and the reserved output space — the commonly forgotten one, since a request that fits and then truncates the answer looks like a quality problem. Budgets explicitly (reserve output first, fixed system and tools, bounded history, remainder to ranked context) and drops whole units rather than truncating mid-document. Counts with the real tokenizer because JSON and non-Latin text fragment badly.
+- <strong>Staff:</strong> Puts the budget in a shared prompt-assembly layer so limits, tokenizer, ordering, and logging are consistent, and notes that a design expressing a budget adapts when providers change window sizes while one assuming a specific window does not.</p>
+<h3 id="q2-would-adding-more-retrieved-context-improve-answers">Q2 — Would adding more retrieved context improve answers?<a class="headerlink" href="#q2-would-adding-more-retrieved-context-improve-answers" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../22-ai-llm-engineering/context-window-management-token-budgets-and-cost/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Suspects diminishing returns.
+- <strong>Senior:</strong> Explains the plateau — precision falls with lower-ranked chunks, attention to mid-context material is less reliable, cost and latency grow — so past a point more context costs more and answers get worse. Sets <code>k</code> by measuring on an evaluation set, and connects dilution to groundedness risk. Names reranking and compression as the alternatives to raising <code>k</code>.
+- <strong>Staff:</strong> Points out that <code>k</code> is a cost lever disguised as a quality knob, that changing it is often not a code deploy and therefore invisible in the deploy timeline, and that cost per request belongs on the same dashboard as latency with an alert on input tokens.</p>
+<h3 id="q3-how-would-you-cut-llm-cost-by-half-without-changing-models">Q3 — How would you cut LLM cost by half without changing models?<a class="headerlink" href="#q3-how-would-you-cut-llm-cost-by-half-without-changing-models" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../22-ai-llm-engineering/context-window-management-token-budgets-and-cost/#15-interview-questions">§15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Suggests shorter prompts and capping output.
+- <strong>Senior:</strong> Orders the levers by return — send less, reorder for prompt caching, cap output (higher rate), cache whole responses, route by difficulty — and measures per-segment tokens first. Notes that prompt caching is free quality-wise and is commonly defeated by a dynamic value accidentally placed early in the prompt.
+- <strong>Staff:</strong> Treats spend as an operating cost with an owner, per-feature attribution, and anomaly alerting, since a prompt change can double cost overnight with no deploy, and notes model routing is usually the largest saving but is only safe behind a shared evaluation harness.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../21-frontend-web-nextjs/"><code>21-frontend-web-nextjs.md</code></a></li>
@@ -12651,7 +12739,7 @@ one leveled set per chapter rather than forced into the 4-tier breakdown.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
   </span>
 
     

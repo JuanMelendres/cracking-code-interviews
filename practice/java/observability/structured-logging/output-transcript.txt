@@ -1,0 +1,60 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+
+$ javac -d out src/StructuredLoggingDemo.java
+$ java -cp out StructuredLoggingDemo
+
+=== 1. The same event, unstructured then structured ===
+Unstructured (what most services actually emit):
+2026-09-28 10:15:30.123 INFO  OrderService - Order ORD-1001 placed successfully in 412ms
+
+Structured, same event:
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"main","event":"order_placed","order_id":"ORD-1001","duration_ms":"412"}
+
+The first can only be searched with a regex that breaks the day someone
+rewords the sentence. The second supports `duration_ms > 400` as a query,
+and the message text is a stable event NAME, not prose.
+
+=== 2. Correlation ID tying one request's records together ===
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"main","event":"request_received","correlation_id":"c-7f3a91","user_id":"u-2048","path":"/orders","method":"POST"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"DEBUG","logger":"OrderService","thread":"main","event":"inventory_checked","correlation_id":"c-7f3a91","user_id":"u-2048","sku":"SKU-1","available":"true"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"WARN","logger":"OrderService","thread":"main","event":"payment_retry","correlation_id":"c-7f3a91","user_id":"u-2048","attempt":"2","reason":"gateway_timeout"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"main","event":"order_placed","correlation_id":"c-7f3a91","user_id":"u-2048","order_id":"ORD-1002","duration_ms":"980"}
+
+Every record carries correlation_id without any call site passing it.
+One query -- correlation_id="c-7f3a91" -- returns the whole request story.
+
+=== 3. What happens to context when work crosses a thread boundary ===
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"main","event":"before_async_dispatch","correlation_id":"c-aa0102"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"pool-1-thread-1","event":"inside_pool_naive"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"pool-1-thread-2","event":"inside_pool_propagated","correlation_id":"c-aa0102"}
+
+The naive record lost correlation_id entirely: the pool thread has its own
+ThreadLocal, and nothing copied the context across. That is the single most
+common reason a trace goes silent halfway through a request. The fix is to
+capture a snapshot on the submitting thread and adopt it inside the task --
+and to clear it afterwards, because pooled threads are reused and stale
+context is worse than none: it attributes work to the wrong request.
+
+=== 4. Redaction: what must never reach the log in the first place ===
+Raw message (must never be logged):
+  payment failed for alice@example.com using card 4111 1111 1111 1111
+Redacted:
+  payment failed for <email redacted> using card <card redacted, last4=1111>
+
+{"ts":"2026-09-28T10:15:30.123Z","level":"ERROR","logger":"OrderService","thread":"main","event":"payment_failed","correlation_id":"c-bb0304","user_ref":"u-2048","card_last4":"1111","message":"payment failed for <email redacted> using card <card redacted, last4=1111>"}
+
+Redaction at the sink is a safety net, not the design. The design is to log
+STABLE REFERENCES (user_ref, card_last4) instead of the values themselves --
+a log that never received the PAN cannot leak it, and logs are replicated to
+places your access-control review never looks.
+
+=== 5. Level discipline: what each level is actually for ===
+{"ts":"2026-09-28T10:15:30.123Z","level":"ERROR","logger":"OrderService","thread":"main","event":"order_rejected","correlation_id":"c-cc0506","reason":"downstream_unavailable","actionable":"true"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"WARN","logger":"OrderService","thread":"main","event":"retry_budget_low","correlation_id":"c-cc0506","remaining":"1","actionable":"soon"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"INFO","logger":"OrderService","thread":"main","event":"order_placed","correlation_id":"c-cc0506","order_id":"ORD-1003"}
+{"ts":"2026-09-28T10:15:30.123Z","level":"DEBUG","logger":"OrderService","thread":"main","event":"cache_lookup","correlation_id":"c-cc0506","key":"product:42","hit":"false"}
+
+ERROR means a human must do something. WARN means it is heading that way.
+INFO is the business event trail. DEBUG is for reproducing a specific bug
+and is off in production by default. An ERROR that nobody acts on trains
+everyone to ignore ERROR, which is how real incidents get missed.

@@ -11979,6 +11979,28 @@
 </tbody>
 </table>
 <p>Hashing and Sorting aren't ranked in the IWI table above because the Master Topic Register scores them as foundational primitives other patterns build on (T-1403's own register entry is IWI 6.0, genuinely high — it's left unranked in this list only because "does this problem involve counting/grouping/deduplication" is a signal that co-occurs inside most of the other 16 rows rather than standing alone as its own problem category).</p>
+<p><strong>Visual: the table above as a routing decision.</strong> The table is exhaustive and sorted by interview weight, which makes it the right reference but the wrong shape for the 30 seconds you actually have in a round. This tree is the same content ordered by the question you can answer fastest about an unseen problem — what the <em>input</em> is — because input shape narrows the candidate set further and faster than the goal wording does.</p>
+<pre class="mermaid"><code>flowchart TD
+    Q["Unseen problem"] --&gt; IN{"What is the input?"}
+
+    IN --&gt;|"Array or string"| A{"What is asked?"}
+    A --&gt;|"Contiguous range, running sum,&lt;br/&gt;pair in a sorted array"| A1["Two pointers / sliding window"]
+    A --&gt;|"Sorted, or 'minimise a feasible value'"| A2["Binary search&lt;br/&gt;(possibly on the answer)"]
+    A --&gt;|"Next greater/smaller,&lt;br/&gt;'how far until a bigger value'"| A3["Monotonic stack"]
+    A --&gt;|"Count, group, first unique, anagram"| A4["Hashing / frequency map"]
+    A --&gt;|"Count ways, min/max cost,&lt;br/&gt;knapsack-shaped"| A5["Dynamic programming"]
+    A --&gt;|"All combinations / permutations / subsets"| A6["Backtracking"]
+
+    IN --&gt;|"Tree"| T["Tree traversal&lt;br/&gt;(DFS unless levels matter)"]
+    IN --&gt;|"Graph, grid, or dependencies"| G["Graph traversal&lt;br/&gt;BFS / DFS / Union-Find / Dijkstra"]
+    IN --&gt;|"Linked list"| L["In-place manipulation&lt;br/&gt;fast/slow or dummy head"]
+    IN --&gt;|"Intervals or events"| V["Sort by start, then merge&lt;br/&gt;or sweep the event points"]
+    IN --&gt;|"Stream, or 'top K' / 'kth'"| H["Heap / priority queue"]
+    IN --&gt;|"Many words sharing prefixes"| P["Trie"]
+    IN --&gt;|"Integers, and the goal smells like parity or subsets"| B["Bit manipulation"]
+    IN --&gt;|"'Design a structure with O(1) get/put'"| D["Design-style composition"]
+    IN --&gt;|"'Thread-safe', producer-consumer, rate limiter"| C["Concurrency coding"]</code></pre>
+<p>Three cautions about using it. First, a leaf is a <em>hypothesis</em>, not an answer — state it out loud as one ("this looks like a sliding-window problem because the subarray is contiguous") and let the interviewer redirect you cheaply. Second, several problems have two legitimate routes; Top-K is a heap at O(n log k) and a quickselect at O(n) average, and naming both is worth more than silently picking one. Third, the tree deliberately stops where the <a href="#4-core-concepts-l2-the-signal-to-pattern-table">signal-to-pattern table</a> continues: when the input shape does not decide it, fall back to the table's wording signals and to the complexity budget in Section 5.</p>
 <h2 id="5-how-it-works-internally-l3-reading-constraints-as-a-complexity-budget">5. How It Works Internally (L3) — reading constraints as a complexity budget<a class="headerlink" href="#5-how-it-works-internally-l3-reading-constraints-as-a-complexity-budget" title="Permanent link">&para;</a></h2>
 <p><strong>The single most underused signal is the constraint on <code>n</code> itself</strong> — competitive-programming and interview problems alike are usually solvable in roughly 10⁸ basic operations within a typical time limit, so the stated bound on input size tells you, before you write a line of code, roughly which row of the table above you're even allowed to land on:</p>
 <table>
@@ -12129,7 +12151,7 @@ Step 4 (optimize): memoize by remaining amount (top-down) or build a 1D table in
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 14:54:12 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:43:22 UTC">September 28, 2026</span>
   </span>
 
     

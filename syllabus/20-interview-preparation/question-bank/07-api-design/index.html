@@ -9607,6 +9607,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#http-caching-for-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Caching for APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12428,6 +12439,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#http-caching-for-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Caching for APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12556,10 +12578,12 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 8 chapters yielded 14 deep questions + 9
+<p><strong>Honest count for this domain:</strong> 9 chapters yielded 17 deep questions + 9
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, <code>rest-api-fundamentals.md</code>) + 20 quick-fire questions = <strong>43 real
-questions</strong>. (Updated 2026-09-27: <code>api-versioning-strategies.md</code>,
+chapter, <code>rest-api-fundamentals.md</code>) + 20 quick-fire questions = <strong>46 real
+questions</strong>. (Updated 2026-09-28: <code>http-caching-for-apis.md</code> is a new chapter
+closing a real coverage gap — <code>Cache-Control</code> appeared once in the whole repository,
+in a frontend chapter — contributing 3 questions.) (Updated 2026-09-27: <code>api-versioning-strategies.md</code>,
 <code>openapi-and-contract-first-api-design.md</code>, and <code>webhook-design-and-delivery-guarantees.md</code>
 had complete Interview Questions sections never indexed — a stale-index gap, not
 a content gap. Added 6 questions + 8 quick-fire cards.)</p>
@@ -12825,6 +12849,26 @@ format above instead).</p>
 </tbody>
 </table>
 <hr />
+<hr />
+<h2 id="http-caching-for-apis">HTTP Caching for APIs<a class="headerlink" href="#http-caching-for-apis" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-the-difference-between-no-cache-no-store-and-must-revalidate">Q1 — What is the difference between <code>no-cache</code>, <code>no-store</code>, and <code>must-revalidate</code>?<a class="headerlink" href="#q1-what-is-the-difference-between-no-cache-no-store-and-must-revalidate" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/http-caching-for-apis/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows <code>no-store</code> is the one that actually prevents storage.
+- <strong>Senior:</strong> Defines all three precisely — <code>no-store</code> forbids storing anywhere; <code>no-cache</code> permits storing but requires revalidation before every reuse; <code>must-revalidate</code> applies only once a response is already stale, forbidding a cache from serving it without revalidating. Adds that <code>no-cache</code> plus an <code>ETag</code> is a deliberate combination (always current, body only on change) and that saying nothing at all is worse than any of them, because caches may apply heuristic freshness derived from <code>Last-Modified</code>.
+- <strong>Staff:</strong> Frames the default as organizational — <code>private, no-store</code> everywhere with <code>public</code> as a reviewed per-route exception, because the cost of a wrong <code>public</code> is a confidentiality incident while the cost of a missing one is bandwidth.</p>
+<h3 id="q2-we-added-etags-and-request-volume-did-not-drop-why">Q2 — We added ETags and request volume did not drop. Why?<a class="headerlink" href="#q2-we-added-etags-and-request-volume-did-not-drop-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/http-caching-for-apis/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows a <code>304</code> still involves a request.
+- <strong>Senior:</strong> Separates the two mechanisms — validation saves the body (measured: 50 bytes to 0), freshness saves the round trip — and identifies the server-side subtlety: a body-hash ETag renders before deciding to send a <code>304</code>, so only a version-derived ETag saves the work. Measured in the chapter's demo as 2 renders across 4 requests.
+- <strong>Staff:</strong> Raises the mobile dimension — on a radio link the round trip, not the payload, is the expensive part — so the fix for a config endpoint is <code>max-age</code> plus <code>stale-while-revalidate</code>, with a separate uncached endpoint for the few values that must be immediate.</p>
+<h3 id="q3-a-cdn-served-one-customers-data-to-another-the-query-filtering-is-correct-what-happened">Q3 — A CDN served one customer's data to another. The query filtering is correct. What happened?<a class="headerlink" href="#q3-a-cdn-served-one-customers-data-to-another-the-query-filtering-is-correct-what-happened" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/http-caching-for-apis/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Identifies that a shared cache stored a user-specific response.
+- <strong>Senior:</strong> Names <code>Cache-Control: public</code> as the specific override of the default rule that shared caches must not store responses to <code>Authorization</code>-carrying requests, plus the missing <code>Vary</code>. Notes the diagnostic tell — one origin request in the logs while many users saw the response — and explains why <code>Vary: Authorization</code> is a poor substitute for <code>private</code>/<code>no-store</code>.
+- <strong>Staff:</strong> Moves the control to the edge: a default <code>private, no-store</code> at the gateway with <code>public</code> requiring a reviewed opt-in and a contract test, plus purge authority and purge latency as part of the incident plan.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../05-spring/"><code>05-spring.md</code></a></li>
@@ -12854,7 +12898,7 @@ format above instead).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
   </span>
 
     

@@ -11826,6 +11826,18 @@ step 2:                        lo=4  mid=5(11)=hi=6  found at index 5
 <p><strong>The 2D-matrix-as-flattened-array technique</strong> (Section 7, Problem 2) relies on a specific, stated guarantee — every row's first element exceeds the previous row's last element — which makes the entire matrix behave as a single sorted sequence when read in row-major order. Converting a flat index <code>mid</code> to 2D coordinates via <code>mid / cols</code> and <code>mid % cols</code> is the standard row-major mapping; this only works because that stronger sortedness guarantee holds. A weaker guarantee (only "each row and each column individually sorted," without the cross-row ordering) requires a genuinely different, O(rows + cols) algorithm (starting from a corner and eliminating a row or column per step) — recognizing which guarantee is actually given, and which algorithm it unlocks, is the real skill.</p>
 <p><strong>Binary search on the answer's correctness argument, made precise</strong>: for Capacity to Ship Packages Within D Days (Section 7, Problem 4), the feasibility function <code>daysNeeded(capacity)</code> is monotonic — decreasing (or flat) as <code>capacity</code> increases, since a larger ship can only ever need the same or fewer days, never more. This monotonicity is what licenses treating "is this capacity feasible" as the same kind of yes/no-flips-once condition an ordinary binary search exploits, even though no array is ever searched — the search happens directly over the integer range from "smallest possible feasible capacity" (the single heaviest package) to "trivially feasible" (the sum of everything).</p>
 <p><strong>Median of Two Sorted Arrays</strong> (Section 7, Problem 5) is the hardest example: instead of searching for a value, it binary-searches for a <em>partition point</em> in the smaller of the two arrays such that the combined left partition (across both arrays) has exactly half the total elements, and every element in that left partition is ≤ every element in the combined right partition. Forcing the search onto the <em>smaller</em> array bounds the search space to <code>O(log(min(m,n)))</code> (the actual required complexity, strictly better than the <code>O(log(m+n))</code> a naive equal-split approach might produce) and guarantees the second array's corresponding cut point is always a valid index. The sentinel values (<code>Integer.MIN_VALUE</code>/<code>MAX_VALUE</code> standing in for "off the edge of this array") let every boundary comparison work uniformly without special-casing either array's edges — a sentinel technique that generalizes well beyond this one problem, to essentially any partition- or merge-based algorithm needing uniform edge handling.</p>
+<p><strong>Visual: the search space collapsing when you binary-search the answer, not the array.</strong> The hardest leap in this chapter is that the thing being halved is a <em>range of candidate answers</em>, with a feasibility predicate standing in for the comparison. Real, executed trace:</p>
+<div class="highlight"><pre><span></span><code>Search space: [10, 55]  (max single weight .. total weight)
+step   lo   hi  mid  daysNeeded(mid)  feasible?  next window
+   0   10   55   32                2  yes        hi = mid   -&gt; [10, 32]
+   1   10   32   21                3  yes        hi = mid   -&gt; [10, 21]
+   2   10   21   15                5  yes        hi = mid   -&gt; [10, 15]
+   3   10   15   12                6  no         lo = mid+1 -&gt; [13, 15]
+   4   13   15   14                6  no         lo = mid+1 -&gt; [15, 15]
+Answer: 15
+</code></pre></div>
+<p>Nothing here searches the array. The window <code>[10, 55]</code> is every capacity worth considering — no smaller than the heaviest single package, no larger than shipping everything in one day — and <code>daysNeeded(mid)</code> is the monotone predicate: once a capacity is feasible, every larger capacity is too. That monotonicity is exactly what makes halving legal. Five probes replace 46 candidate capacities, and the loop ends with <code>lo == hi</code> on the smallest feasible one.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reach for boundary-finding binary search (two narrowing searches) instead of "find one match, then scan outward"</strong> whenever a sorted array can contain many duplicates of the target.</li>
@@ -12057,7 +12069,7 @@ Week 22 — Binary Search (LC 34, 74, 153, 1011, 4): 12/12 assertions passed
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

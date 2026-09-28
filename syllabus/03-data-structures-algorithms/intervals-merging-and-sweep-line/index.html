@@ -11830,6 +11830,18 @@ merged:    [================]  [======]        [=========]
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p><strong>Why Minimum Number of Arrows sorts by end, precisely</strong>: shooting an arrow at the earliest end among all remaining, unpopped balloons guarantees that arrow pops every balloon whose range includes that point — and critically, it pops the balloon that's <em>about to close its window</em> first, since any balloon ending even earlier would already have been handled. Shooting anywhere later than the earliest end risks missing that specific balloon entirely, since its window may close before a later shot. Sorting by <em>start</em> instead — a common, plausible-looking mistake — produces a wrong, usually too-high arrow count, since it no longer guarantees the greedy choice is covering the most urgently-expiring balloon first.</p>
 <p><strong>Meeting Rooms II's heap-reuse correctness</strong>: the heap's minimum (earliest end time among all currently-occupied rooms) is checked against the new meeting's start time. If that earliest end time is already ≤ the new start, that specific room is free and can be reused — and it's <em>always</em> correct to check only that one room, never any other occupied room, because if the earliest-ending room isn't yet free, no other occupied room (all ending later) could be free either.</p>
+<p><strong>Visual: the sweep line, event by event.</strong> Sorting intervals is the easy half; the half people get wrong is what you sweep and what you count. Real, executed trace:</p>
+<div class="highlight"><pre><span></span><code>time  delta  active rooms  peak  event
+   0      1             1     1  start of [0,30]
+   5      1             2     2  start of [5,10]
+  10     -1             1     2  end   of [5,10]
+  15      1             2     2  start of [15,20]
+  20     -1             1     2  end   of [15,20]
+  30     -1             0     2  end   of [0,30]
+Answer: 2  (the answer is the PEAK of the running count, never the number of intervals)
+</code></pre></div>
+<p>The intervals are decomposed into six independent events, sorted by time, with ends ordered before starts at the same timestamp — that tie-break is what lets a meeting ending at 10 free its room for one starting at 10. The running count rises and falls; the answer is its <strong>peak</strong>, never the number of intervals and never the final value, which is 0 by construction. Every sweep-line problem in this chapter is this same skeleton with a different thing being counted.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Ask "am I selecting covering points (sort by end) or merging/tracking active ranges (sort by start)" before choosing a sort key</strong> — the single fastest way to avoid the most common interval-problem mistake.</li>
@@ -12049,7 +12061,7 @@ Week 20 — Intervals (LC 57, 253, 452, 986): 9/9 assertions passed
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

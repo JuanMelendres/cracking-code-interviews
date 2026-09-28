@@ -11911,6 +11911,56 @@ real HNSW index build took 126ms
   Execution Time: 0.090 ms
 </code></pre></div>
 <p>A real, measured <strong>~7x execution-time reduction</strong> on 5,000 rows — and the plan itself confirms the mechanism changed, <code>Seq Scan</code> to <code>Index Scan</code>, not just that it got faster for an unexplained reason. The gap widens sharply as table size grows past this chapter's deliberately small demo scale, which is exactly why HNSW indexing matters for real production vector search, not just this toy example.</p>
+<h3 id="retrieval-versus-fine-tuning-they-solve-different-problems">Retrieval versus fine-tuning: they solve different problems<a class="headerlink" href="#retrieval-versus-fine-tuning-they-solve-different-problems" title="Permanent link">&para;</a></h3>
+<p>The most common design question this chapter attracts is "should we fine-tune instead?" Treating the two as alternatives is the mistake; they change different things.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Retrieval (RAG)</th>
+<th>Fine-tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Changes</td>
+<td>What is in the prompt</td>
+<td>The model's weights</td>
+</tr>
+<tr>
+<td>Good at</td>
+<td>Facts that change, are private, or are too numerous to memorize</td>
+<td>Format, style, tone, domain vocabulary, consistent structure</td>
+</tr>
+<tr>
+<td>Update cost</td>
+<td>Re-index a document — minutes</td>
+<td>Re-train and re-evaluate — hours to days</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>Natural: you can cite the retrieved source</td>
+<td>None: the answer comes from weights</td>
+</tr>
+<tr>
+<td>Access control</td>
+<td>Enforceable at retrieval time, per user</td>
+<td>Not enforceable: training data is baked in for everyone</td>
+</tr>
+<tr>
+<td>Failure mode</td>
+<td>Retrieves the wrong documents, or none</td>
+<td>Confidently produces outdated or wrong facts in the right style</td>
+</tr>
+</tbody>
+</table>
+<p>Three consequences are worth stating plainly, because they decide most real cases:</p>
+<ol>
+<li><strong>Changing facts belong in retrieval.</strong> A price, a policy, or a document revised weekly cannot be kept current by re-training. If the answer must reflect what is true today, it must come from the prompt.</li>
+<li><strong>Per-user or per-tenant data must not be fine-tuned in.</strong> Weights have no access control, so anything trained in is available to every caller. Retrieval filters by tenant at query time; fine-tuning cannot.</li>
+<li><strong>Fine-tuning is the right tool for <em>how</em> the model answers.</strong> If the complaint is "it never uses our terminology" or "the structure is inconsistent," that is a weights-and-examples problem, and no amount of retrieved context fixes it reliably.</li>
+</ol>
+<p>They also compose, and the combination is often the correct answer at scale: fine-tune for a consistent output format and domain voice, retrieve for the facts, and keep citations pointing at the retrieved sources. Before reaching for either, exhaust prompt engineering and retrieval quality — most "we need to fine-tune" conclusions in practice turn out to be retrieval or instruction problems, and they are far cheaper to diagnose than to train around. <a href="../hallucination-groundedness-and-output-guardrails/">Hallucination, Groundedness, and Output Guardrails</a> covers the diagnostic that separates the two: were the right documents in the prompt or not?</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <p>Always normalize embedding vectors before storing them if you intend to compare with cosine distance (or use <code>pgvector</code>'s dedicated cosine operator <code>&lt;=&gt;</code>, which handles this correctly regardless) — <a href="#4-core-concepts-l2">Section 4</a>'s pitfall is a real, silent ranking bug, not a cosmetic one. Build an HNSW (or IVFFlat) index once your table is large enough that a sequential scan is measurably slow — for a small table, the index's own overhead may not be worth it, the same "don't index prematurely" judgment call as any other database index. Always use a real, trained embedding model in production — never a hand-rolled scheme like this chapter's demo, which exists solely to make the storage/distance/indexing mechanics verifiable without a live API dependency.</p>
 <h2 id="7-examples">7. Examples<a class="headerlink" href="#7-examples" title="Permanent link">&para;</a></h2>
@@ -12045,7 +12095,7 @@ Query B: a fluent paraphrase of Query A using entirely different words          
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 05:02:19 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
   </span>
 
     

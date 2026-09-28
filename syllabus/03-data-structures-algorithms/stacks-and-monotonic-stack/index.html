@@ -11832,6 +11832,19 @@ result: next-greater = [3, 3, 3, -1]   (index 3 has none: stack ends with just i
 <p><strong>The amortized-O(n) argument for every monotonic-stack problem in this chapter rests on one fact: each element is pushed onto the stack exactly once and popped at most once, across the entire run of the algorithm</strong> — exactly the same style of accounting <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/#4-core-concepts-l2">Algorithmic Complexity's amortized-analysis section</a> introduces for <code>ArrayList.add()</code>, and the same accounting <a href="../arrays-two-pointers-and-sliding-window/#5-how-it-works-internally-l3">Arrays, Two Pointers, and Sliding Window's Sliding Window Maximum</a> uses for its monotonic deque. Even though the inner <code>while</code> loop in Largest Rectangle in Histogram (Section 7, Problem 2) looks like it could run up to <code>n</code> times per outer iteration, summed across the entire pass, total pushes and pops are bounded by <code>2n</code>, not <code>n²</code>.</p>
 <p><strong>Largest Rectangle in Histogram's correctness argument, precisely</strong>: for any bar, the widest rectangle with that bar as its limiting height extends exactly from the nearest strictly-shorter bar on its left to the nearest strictly-shorter bar on its right (exclusive of both). A monotonic increasing stack of indices tracks exactly the set of bars whose right boundary hasn't been found yet; the moment a shorter bar arrives, every taller bar still on the stack has just had its right boundary determined (the current index), and its left boundary is automatically the new stack top after popping (the nearest <em>remaining</em> shorter bar). Appending a sentinel height of <code>0</code> after the real array forces every bar still on the stack at the end to be resolved, rather than needing separate cleanup logic.</p>
 <p><strong>The two-stack queue's amortized cost, precisely</strong>: <code>transferIfNeeded()</code> only actually reverses <code>inStack</code> into <code>outStack</code> when <code>outStack</code> is empty, not on every <code>pop()</code>/<code>peek()</code> call — so while any single transfer can cost O(n) in the worst case, each individual element is moved from <code>inStack</code> to <code>outStack</code> exactly once over its entire lifetime in the structure. Summed across <code>n</code> total operations, total transfer work is bounded by O(n), making the <em>amortized</em> per-operation cost O(1) even though a specific, individual call can occasionally cost more.</p>
+<p><strong>Visual: the monotonic stack, index by index.</strong> The rule "pop while the stack top is taller than the current bar" is short to state and hard to trust until you watch which rectangle each pop measures. Real, executed trace over <code>[2, 1, 5, 6, 2, 3]</code>:</p>
+<div class="highlight"><pre><span></span><code>index  height  popped (height x width = area)  best  stack after (indices)
+    0       2                               -     0  [0]
+    1       1                       2 x 1 = 2     2  [1]
+    2       5                               -     2  [2, 1]
+    3       6                               -     2  [3, 2, 1]
+    4       2           6 x 1 = 6; 5 x 2 = 10    10  [4, 1]
+    5       3                               -    10  [5, 4, 1]
+  end      0*  3 x 1 = 3; 2 x 4 = 8; 1 x 6 = 6    10  [6]
+Answer: 10  (* a sentinel height of 0 at the end forces every remaining bar to be popped and measured)
+</code></pre></div>
+<p>Every bar is pushed exactly once and popped exactly once, which is the O(n) despite the inner <code>while</code> loop. A pop is the moment a bar's rectangle is finally bounded on both sides: the current index is its right boundary, and the new stack top is its left one, so the width is <code>i - stack.peek() - 1</code>. Watch index 4: popping <code>6</code> measures a width of 1, then popping <code>5</code> measures a width of 2 — reaching left across the bar that was just removed, because that bar was taller and therefore cannot limit this one. The sentinel <code>0</code> at the end is not a trick; it is how you avoid duplicating the pop logic after the loop.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reach for a monotonic stack the moment a problem asks for "the next/previous greater or smaller element"</strong> for every position in an array — the single most reliable trigger phrase for this pattern.</li>
@@ -12077,7 +12090,7 @@ Week 21 — Stacks (LC 496, 84, 150, 232, 503): 13/13 assertions passed
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

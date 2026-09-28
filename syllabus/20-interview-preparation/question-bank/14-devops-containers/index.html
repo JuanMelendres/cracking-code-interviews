@@ -9841,6 +9841,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#graceful-shutdown-and-connection-draining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Shutdown and Connection Draining
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12406,6 +12417,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#graceful-shutdown-and-connection-draining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Shutdown and Connection Draining
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12534,9 +12556,11 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 7 chapters yielded 12 deep questions + 5 leveled
-Junior/Mid questions + 12 quick-fire questions = <strong>29 real questions</strong>. This is a
-genuinely small domain (7 chapters); <code>docker-and-containers-fundamentals.md</code> is this
+<p><strong>Honest count for this domain:</strong> 8 chapters yielded 15 deep questions + 5 leveled
+Junior/Mid questions + 12 quick-fire questions = <strong>32 real questions</strong>. This is a
+small domain (8 chapters; <code>graceful-shutdown-and-connection-draining.md</code> added
+2026-09-28, closing a real coverage gap — graceful shutdown had one mention in the
+entire repository — and contributing 3 questions); <code>docker-and-containers-fundamentals.md</code> is this
 domain's Junior Fundamentals chapter (older numbered <code>## 15. Interview Questions</code>
 template, no Flashcards section of its own). (Updated 2026-09-27:
 <code>docker-compose-multi-service-orchestration.md</code> and
@@ -12714,6 +12738,26 @@ Added 4 questions + 3 quick-fire cards.)</p>
 </tbody>
 </table>
 <hr />
+<hr />
+<h2 id="graceful-shutdown-and-connection-draining">Graceful Shutdown and Connection Draining<a class="headerlink" href="#graceful-shutdown-and-connection-draining" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-happens-between-kubectl-delete-pod-and-the-container-disappearing-and-which-part-is-your-codes-responsibility">Q1 — What happens between <code>kubectl delete pod</code> and the container disappearing, and which part is your code's responsibility?<a class="headerlink" href="#q1-what-happens-between-kubectl-delete-pod-and-the-container-disappearing-and-which-part-is-your-codes-responsibility" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/graceful-shutdown-and-connection-draining/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows <code>SIGTERM</code> comes first, <code>SIGKILL</code> follows after a grace period, and the app should finish in-flight work.
+- <strong>Senior:</strong> Gives the sequence with the key concurrency — the endpoint controller removes the pod from Service endpoints <em>in parallel</em> with <code>preStop</code> and <code>SIGTERM</code>, so the process knows before the routing layer does. Names the application's three phases (flip readiness and keep serving, close the listener and drain bounded, shut pools down bounded) and treats the grace period as a budget every timeout must fit inside.
+- <strong>Staff:</strong> Frames it as a platform default in a shared base image or service template with reviewed timeouts, since N services implementing it independently produces N chances to get the ordering wrong.</p>
+<h3 id="q2-every-deploy-produces-a-burst-of-502s-walk-me-through-the-diagnosis-and-the-fix">Q2 — Every deploy produces a burst of 502s. Walk me through the diagnosis and the fix.<a class="headerlink" href="#q2-every-deploy-produces-a-burst-of-502s-walk-me-through-the-diagnosis-and-the-fix" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/graceful-shutdown-and-connection-draining/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Connects the errors to shutdown and proposes a shutdown hook.
+- <strong>Senior:</strong> Correlates with pod <em>terminations</em> rather than starts, names the evidence (ingress logs showing requests to a pod IP after its process exited), and separates the two causes — dropped in-flight work and traffic still being routed to a closed socket. Offers the <code>preStop</code> sleep as a same-day mitigation and the three-phase hook as the real fix, noting that rollout duration is addressed with <code>maxSurge</code> rather than a shorter drain.
+- <strong>Staff:</strong> Adds verification and prevention — a deploy-window error-rate check and a platform default so new services inherit the behavior.</p>
+<h3 id="q3-how-does-graceful-shutdown-differ-for-a-kafka-consumer-and-why-isnt-it-enough-on-its-own">Q3 — How does graceful shutdown differ for a Kafka consumer, and why isn't it enough on its own?<a class="headerlink" href="#q3-how-does-graceful-shutdown-differ-for-a-kafka-consumer-and-why-isnt-it-enough-on-its-own" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/graceful-shutdown-and-connection-draining/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows to stop polling and finish the current batch.
+- <strong>Senior:</strong> Re-derives the pattern without a load balancer — stop polling, finish, commit offsets, close with a bounded timeout so the group rebalances promptly rather than by session timeout — and identifies the commit point as the design decision, with redelivery safe only under idempotency.
+- <strong>Staff:</strong> States that graceful shutdown is a frequency reduction rather than a correctness guarantee, since node failures and <code>SIGKILL</code> remain, so idempotency for state-changing operations is a review standard. Cites the double-charge shape: the client's retry was correct, the missing idempotency key was the defect.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../13-observability/"><code>13-observability.md</code></a></li>
@@ -12750,7 +12794,7 @@ Added 4 questions + 3 quick-fire cards.)</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
   </span>
 
     

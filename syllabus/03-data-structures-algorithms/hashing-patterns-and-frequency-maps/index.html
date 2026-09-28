@@ -11825,6 +11825,19 @@ i=1, val=7:  need 9-7=2.  map={2:0} -&gt; FOUND (index 0)!  answer = [0, 1]
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p><strong>Hash-set-based cycle detection (Happy Number, Section 7, Problem 4) works because of the pigeonhole principle</strong>: the sum-of-squared-digits sequence for any starting number is bounded (it can never exceed a small constant number of digits' worth of squares), so there are only finitely many possible values the sequence can visit. A sequence with finitely many possible values that never terminates must eventually repeat a value — there's nowhere else for it to go. The loop condition <code>seen.add(n)</code> exploits this directly: it doubles as both "have I been here before" (returns <code>false</code> on a repeat, meaning a cycle was just detected) and the insertion itself, so the loop naturally terminates the moment either <code>n</code> reaches 1 (happy) or a cycle is detected (unhappy) — no separate cycle-detection pass needed. This is the same underlying idea as Floyd's tortoise-and-hare cycle detection for linked lists (<a href="../linked-lists-and-in-place-manipulation/">Linked Lists and In-Place Manipulation</a>), just using O(n) extra memory (the hash set) to detect the cycle directly, rather than O(1) memory with two pointers at different speeds — a genuine, explicit space-for-simplicity trade-off worth naming in an interview.</p>
 <p><strong>The prefix-sum-plus-hash-map technique's correctness rests on one algebraic identity</strong>: a subarray <code>nums[i+1..j]</code> sums to exactly <code>k</code> precisely when <code>prefixSum[j] - prefixSum[i] == k</code>, which rearranges to <code>prefixSum[i] == prefixSum[j] - k</code>. So at each position <code>j</code>, the number of valid subarrays <em>ending</em> at <code>j</code> equals the number of earlier positions <code>i</code> whose prefix sum equals <code>prefixSum[j] - k</code> — a direct hash-map lookup, accumulated in one single left-to-right pass. Seeding the map with <code>{0: 1}</code> before the loop starts is what correctly counts subarrays that start at index 0 (representing the "empty prefix," whose sum is trivially 0).</p>
+<p><strong>Visual: the prefix-sum map as it fills.</strong> The insight — a subarray sums to <code>k</code> exactly when some earlier prefix equals <code>prefix - k</code> — becomes obvious once the map is visible at every step. Real, executed trace over <code>[1, 2, 3, -3, 1, 1, 1]</code> with <code>k = 3</code>:</p>
+<div class="highlight"><pre><span></span><code>index  value  prefix  looking for (prefix-k)  found  count  map after step
+    0      1       1                      -2      0      0  {0=1, 1=1}
+    1      2       3                       0      1      1  {0=1, 1=1, 3=1}
+    2      3       6                       3      1      2  {0=1, 1=1, 3=1, 6=1}
+    3     -3       3                       0      1      3  {0=1, 1=1, 3=2, 6=1}
+    4      1       4                       1      1      4  {0=1, 1=1, 3=2, 4=1, 6=1}
+    5      1       5                       2      0      4  {0=1, 1=1, 3=2, 4=1, 5=1, 6=1}
+    6      1       6                       3      2      6  {0=1, 1=1, 3=2, 4=1, 5=1, 6=2}
+Answer: 6  (a subarray sums to k exactly when an earlier prefix equals prefix-k)
+</code></pre></div>
+<p>Two details in this trace answer the two most common follow-ups. First, the map is seeded with <code>{0=1}</code> before any element, which is what lets a subarray starting at index 0 be counted at all (step 1 finds it). Second, the map stores <em>counts</em>, not just presence: at the final step the lookup finds <code>3=2</code> and adds <strong>two</strong> subarrays at once. Negative numbers are handled with no special case — which is exactly why the sliding-window approach fails here and the prefix-sum map does not.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reach for a <code>HashSet</code> the moment a problem's core question is "has this exact value appeared before"</strong> — before reaching for a sorted-array-plus-two-pointers approach, since a <code>HashSet</code> doesn't require sorting the input at all.</li>
@@ -12097,7 +12110,7 @@ Week 22 — Hashing (LC 217, 560, 349, 202, 454, 442, 387): 16/16 assertions pas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

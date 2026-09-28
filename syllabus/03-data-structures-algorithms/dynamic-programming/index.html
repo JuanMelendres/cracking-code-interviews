@@ -11869,6 +11869,18 @@
 <p><strong>Interval DP's fill-order requirement, precisely</strong> (Longest Palindromic Subsequence): computing <code>dp[i][j]</code> requires <code>dp[i+1][j-1]</code>, <code>dp[i+1][j]</code>, and <code>dp[i][j-1]</code> to already be known — all three cover strictly shorter ranges than <code>[i, j]</code>. Iterating <code>i</code> downward from <code>n-1</code> and <code>j</code> upward from <code>i+1</code> guarantees every dependency is filled before it's read, since any range <code>[i,j]</code> is only ever computed after every range strictly contained within <code>[i, j]</code>'s span in the relevant direction. Getting this fill order backwards produces a program that reads uninitialized (zero-valued) array cells instead of throwing an out-of-bounds exception — a silently wrong answer, not a crash.</p>
 <p><strong>The state-machine's cooldown-encoding mechanism, precisely</strong> (Section 7 Problem 7): <code>rest</code>'s transition formula, <code>Math.max(prevRest, prevSold)</code>, deliberately excludes <code>prevHold</code> as a source — meaning the algorithm can only enter the <code>rest</code> state from a previous <code>rest</code> or <code>sold</code> state, never directly from <code>hold</code>. This asymmetry is what structurally encodes "you can't buy the day immediately after selling" as a property of which state transitions are even representable, rather than as an <code>if</code> statement checking a day-counter against the last sale date.</p>
 <p><strong>Tree DP's parent-child dependency, precisely</strong>: at every node, whether that node itself is robbed forces a specific constraint on its children (<code>node.val + left[1] + right[1]</code> if robbed — both children <em>must</em> be in their not-robbed state) versus leaves each child free to independently choose its own better state if the current node isn't robbed (<code>Math.max(left[0], left[1]) + Math.max(right[0], right[1])</code>). This mirrors <a href="../trees-bst-and-traversal-patterns/#5-how-it-works-internally-l3">Diameter of Binary Tree's</a> side-channel-accumulation technique structurally, but here the "side information" (whether robbed) is carried explicitly in the return tuple rather than through a separate mutable channel, since both possible values are genuinely needed by the parent, not just tracked as a running maximum.</p>
+<p><strong>Visual: the DP table, filled.</strong> A recurrence written as an equation stays abstract until you see the grid it fills. Real, executed table for <code>"horse" -&gt; "ros"</code>:</p>
+<div class="highlight"><pre><span></span><code>        ''   r   o   s
+  ''   0   1   2   3
+   h   1   1   2   3
+   o   2   2   1   2
+   r   3   2   2   2
+   s   4   3   3   2
+   e   5   4   4   3
+Answer: 3  (bottom-right cell; each cell depends only on its left, top, and diagonal neighbour)
+</code></pre></div>
+<p>The first row and column are the base cases: turning a prefix into the empty string costs one deletion per character. Every other cell looks at exactly three neighbours — left (insert), top (delete), diagonal (replace, or free when the characters match) — which is why <code>dp[2][2] = 1</code>: <code>ho</code> and <code>ro</code> differ by one replacement. The answer sits at the bottom-right, and the dependency pattern is also the proof that a single row of state is enough if you only need the number, not the edit script.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Write the state definition as a plain-English sentence before writing any code</strong> — "<code>dp[i][j]</code> = the edit distance between the first <code>i</code> characters of <code>word1</code> and the first <code>j</code> characters of <code>word2</code>" — and only then derive the recurrence from that sentence.</li>
@@ -12211,7 +12223,7 @@ Week 23 — Dynamic Programming (LC 91, 63, 337, 188, 132): 15/15 assertions pas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

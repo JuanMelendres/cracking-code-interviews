@@ -9795,6 +9795,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#structured-logging-correlation-ids-and-log-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structured Logging, Correlation IDs, and Log Hygiene
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12384,6 +12395,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#structured-logging-correlation-ids-and-log-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structured Logging, Correlation IDs, and Log Hygiene
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12512,10 +12534,14 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 6 chapters yielded 12 deep questions + 14 quick-fire
-questions = <strong>26 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 7 chapters yielded 15 deep questions + 14 quick-fire
+questions = <strong>29 real questions</strong>. No Junior Fundamentals chapter exists in this
 domain — observability presupposes backend fundamentals already covered elsewhere.
-This is a genuinely small domain (6 chapters). (Updated 2026-09-27:
+This is a small domain (7 chapters). (Updated 2026-09-28:
+<code>structured-logging-correlation-ids-and-log-hygiene.md</code> is a new chapter closing a
+real coverage gap — the OpenTelemetry chapter covered traces but nothing on record
+shape, correlation-ID propagation, level semantics, or sensitive data — contributing
+3 questions.) (Updated 2026-09-27:
 <code>chaos-engineering-fault-injection-and-resilience-verification.md</code> had a complete
 Interview Questions section never indexed — a stale-index gap, not a content gap.
 Added 2 questions; no Flashcards section in that chapter.)</p>
@@ -12687,6 +12713,26 @@ Added 2 questions; no Flashcards section in that chapter.)</p>
 </tbody>
 </table>
 <hr />
+<hr />
+<h2 id="structured-logging-correlation-ids-and-log-hygiene">Structured Logging, Correlation IDs, and Log Hygiene<a class="headerlink" href="#structured-logging-correlation-ids-and-log-hygiene" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-structured-logging-and-what-does-it-let-you-do-that-prose-logging-does-not">Q1 — What is structured logging, and what does it let you do that prose logging does not?<a class="headerlink" href="#q1-what-is-structured-logging-and-what-does-it-let-you-do-that-prose-logging-does-not" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/structured-logging-correlation-ids-and-log-hygiene/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows it means machine-parseable named fields, usually JSON.
+- <strong>Senior:</strong> Names both changes — values become named fields so <code>duration_ms &gt; 400</code> is a filter rather than a regex capture, and the message becomes a stable event identifier rather than prose that gets reworded. Emphasizes the shared field vocabulary across services as what makes cross-service queries possible, and that it is cheap at the start and expensive to retrofit.
+- <strong>Staff:</strong> Treats consistency as the deliverable and names the trade-off: a shared logging library gives one correct implementation with coupling and upgrade cost; a written convention avoids coupling and reliably produces several incompatible dialects.</p>
+<h3 id="q2-a-requests-log-trail-stops-halfway-through-with-no-error-anywhere-what-happened">Q2 — A request's log trail stops halfway through, with no error anywhere. What happened?<a class="headerlink" href="#q2-a-requests-log-trail-stops-halfway-through-with-no-error-anywhere-what-happened" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/structured-logging-correlation-ids-and-log-hygiene/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Connects the gap to asynchronous execution or a thread change.
+- <strong>Senior:</strong> Knows MDC is a <code>ThreadLocal</code>, so a pooled task has its own empty context — verified directly, the pooled record carried no <code>correlation_id</code> at all, so the records exist but are unlabelled. Adds the <code>clear()</code> requirement, because pooled threads are reused and stale context attributes work to the wrong request, and knows <code>InheritableThreadLocal</code> does not help for pools.
+- <strong>Staff:</strong> Raises virtual threads: the per-thread-map assumption gets expensive when threads are numerous, which is what scoped values address, so a platform logging library needs a position on it before adoption rather than after.</p>
+<h3 id="q3-how-do-you-keep-sensitive-data-out-of-logs">Q3 — How do you keep sensitive data out of logs?<a class="headerlink" href="#q3-how-do-you-keep-sensitive-data-out-of-logs" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/structured-logging-correlation-ids-and-log-hygiene/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Says not to log PII or credentials, and mentions masking.
+- <strong>Senior:</strong> Puts design before redaction — log stable references (<code>user_ref</code>, <code>card_last4</code>) so the value never enters the pipeline — and explains why pattern redaction is insufficient (it catches only anticipated shapes, and free-text defeats it) and why exposure is wide (hot search, cold archives, vendor systems, laptops during incidents). Names the realistic failure: a temporary request-header dump that outlived its incident.
+- <strong>Staff:</strong> Contrasts deny-list (fails open) with allow-list (fails closed) controls, argues for allow-lists in payment or health-data contexts, and adds retention limits to bound the blast radius.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../12-security/"><code>12-security.md</code></a></li>
@@ -12722,7 +12768,7 @@ Added 2 questions; no Flashcards section in that chapter.)</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
   </span>
 
     

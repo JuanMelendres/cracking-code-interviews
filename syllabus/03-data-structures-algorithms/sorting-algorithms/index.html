@@ -11821,6 +11821,37 @@
 <p><strong>Java's own <code>Arrays.sort()</code> uses two genuinely different algorithms depending on the element type, and this is a real, documented, and verifiable fact, not folklore.</strong> For primitive arrays (<code>int[]</code>, <code>long[]</code>, <code>double[]</code>, and so on), <code>Arrays.sort()</code> uses a <strong>Dual-Pivot QuickSort</strong> (Yaroslavskiy, Bentley, Bloch) — real, documented O(n log n) performance on all inputs (a refinement over classic single-pivot QuickSort, still not stable, but stability is meaningless for primitives, which have no object identity to preserve). For object arrays (<code>Arrays.sort(Object[])</code>, and <code>Collections.sort(List)</code>, which delegates to it), Java uses <strong>TimSort</strong>, a real, documented adaptation of Tim Peters's algorithm for Python — a stable, adaptive hybrid of merge sort and insertion sort that is <em>guaranteed</em> stable per its own Javadoc, and that exploits already-sorted runs in real input to do genuinely less work than a naive merge sort would.</p>
 <p><strong>Why the worst case of naive QuickSort is exactly <code>n(n-1)/2</code> comparisons, and why randomizing the pivot fixes it — proven directly, not asserted:</strong> this chapter's own real demo instruments a Lomuto-partition QuickSort that always picks the first element as pivot. On a 2000-element already-sorted (or reverse-sorted) array, every single partition step is maximally unbalanced — one side gets everything, the other gets nothing — degrading the recursion from O(log n) depth to O(n) depth, and the real, measured comparison count comes out to exactly 1,999,000, which is precisely <code>n(n-1)/2</code> for n=2000. Switching the identical algorithm to pick a <em>uniformly random</em> pivot index, and rerunning against the exact same already-sorted and reverse-sorted inputs, drops the real comparison count to roughly 23,000–24,000 — back in line with random input's own ~25,000, because a random pivot makes a pathological, adversarial input structurally no different from a random one.</p>
 <p><strong>Why TimSort is really stable and a naive in-place QuickSort really is not — proven directly, not asserted:</strong> this chapter's own real demo sorts an identical 12-element array of <code>(key, originalIndex)</code> pairs with deliberately duplicated keys, once via <code>Arrays.sort(Object[])</code> and once via a hand-rolled in-place QuickSort using the same comparator. A programmatic check (not a visual scan) confirms <code>Arrays.sort()</code> preserves every tied element's original relative order exactly; the naive QuickSort does not — its in-place swaps have no mechanism to prefer one tied element's original position over another's.</p>
+<p><strong>Visual: merge sort's real recursion order.</strong> The recursion tree is usually drawn as a tidy symmetric diagram, which hides the fact that the splits happen all the way down <em>before</em> any merging starts. Real, executed split/merge order for <code>[38, 27, 43, 3, 9, 82, 10]</code>, indented by depth:</p>
+<div class="highlight"><pre><span></span><code>split  [38, 27, 43, 3, 9, 82, 10] -&gt; [38, 27, 43, 3] | [9, 82, 10]
+  split  [38, 27, 43, 3] -&gt; [38, 27] | [43, 3]
+    split  [38, 27] -&gt; [38] | [27]
+    merge  -&gt; [27, 38]
+    split  [43, 3] -&gt; [43] | [3]
+    merge  -&gt; [3, 43]
+  merge  -&gt; [3, 27, 38, 43]
+  split  [9, 82, 10] -&gt; [9, 82] | [10]
+    split  [9, 82] -&gt; [9] | [82]
+    merge  -&gt; [9, 82]
+  merge  -&gt; [9, 10, 82]
+merge  -&gt; [3, 9, 10, 27, 38, 43, 82]
+Sorted: [3, 9, 10, 27, 38, 43, 82]
+</code></pre></div>
+<p>Read it top to bottom as the actual call order, not as a shape. The whole left half is fully split and fully merged before the right half is even touched — depth-first, not level-by-level. The merges are the only place any comparison happens, each one is linear in the size of the two runs it joins, and there are <code>log n</code> levels of them, which is precisely where O(n log n) comes from. The odd split (4 and 3) also shows why the tree is rarely perfectly balanced in practice and why that does not change the bound.</p>
+<p>The same structure as a tree, for the whiteboard:</p>
+<pre class="mermaid"><code>graph TD
+    A["38 27 43 3 9 82 10"] --&gt; B["38 27 43 3"]
+    A --&gt; C["9 82 10"]
+    B --&gt; D["38 27"]
+    B --&gt; E["43 3"]
+    C --&gt; F["9 82"]
+    C --&gt; G["10"]
+    D --&gt; H["38"]
+    D --&gt; I["27"]
+    E --&gt; J["43"]
+    E --&gt; K["3"]
+    F --&gt; L["9"]
+    F --&gt; M["82"]</code></pre>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Default to <code>Arrays.sort()</code>/<code>Collections.sort()</code> in real code</strong> — Java's own real implementations (Dual-Pivot QuickSort for primitives, TimSort for objects) are both genuinely well-engineered and outperform a hand-rolled sort in essentially every real scenario.</li>
@@ -12045,7 +12076,7 @@ large, random (n=5000)           insertionSort comparisons=6237056  mergeSort co
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 16:26:25 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

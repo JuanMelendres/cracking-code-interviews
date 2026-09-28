@@ -11827,6 +11827,20 @@ array: [ 4 ][ 2 ][ 1 ][ 7 ][ 3 ][ 5 ]
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <p><strong>The amortized-cost argument is what makes a sliding-window or monotonic-deque solution genuinely O(n) rather than looking like it might be O(n·k) or worse.</strong> In Sliding Window Maximum (Section 7, Problem 2), the inner <code>while</code> loops that expire and evict elements look, at first glance, like they could run up to <code>k</code> times per outer iteration — but each index is pushed onto the deque exactly once and popped at most once, across the <em>entire</em> run of the algorithm, not per window. Summed across all <code>n</code> outer iterations, the total number of push and pop operations is bounded by <code>2n</code>, not <code>n·k</code> — this is precisely the amortized-analysis reasoning <a href="../../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles/#4-core-concepts-l2">Algorithmic Complexity</a> introduces generally, applied to a specific, concrete data structure here.</p>
 <p><strong>The "safe to skip" justification for opposite-direction two pointers is a proof by contradiction, not an intuition to take on faith.</strong> For Container With Most Water: suppose the shorter line is at <code>lo</code> and you moved <code>hi</code> inward instead of <code>lo</code>. Every area you could form with the new <code>hi'</code> and the old <code>lo</code> has width strictly less than or equal to before, and height still capped by the same shorter line at <code>lo</code> (since <code>hi'</code> is somewhere between <code>lo</code> and the old <code>hi</code>, and could only be taller, not shorter, than the eliminated <code>hi</code> — but the <em>limiting</em> height is still <code>height[lo]</code>, unchanged). So no area found this way can exceed what's already been checked. This is the general shape of <em>every</em> two-pointer correctness argument in this pattern: identify exactly what moving a specific pointer can and cannot produce, and show the discarded region is provably dominated.</p>
+<p><strong>Visual: watching the two pointers actually move.</strong> The pattern's whole argument is that discarding a line can never cost you the answer, and that is far easier to believe once you watch it happen. Real, executed trace over <code>[1, 8, 6, 2, 5, 4, 8, 3, 7]</code>:</p>
+<div class="highlight"><pre><span></span><code>step  left  right  h[left]  h[right]  width  area  best  action
+   0     0      8        1         7      8     8     8  left++  (shorter side)
+   1     1      8        8         7      7    49    49  right-- (shorter side)
+   2     1      7        8         3      6    18    49  right-- (shorter side)
+   3     1      6        8         8      5    40    49  right-- (shorter side)
+   4     1      5        8         4      4    16    49  right-- (shorter side)
+   5     1      4        8         5      3    15    49  right-- (shorter side)
+   6     1      3        8         2      2     4    49  right-- (shorter side)
+   7     1      2        8         6      1     6    49  right-- (shorter side)
+Answer: 49
+</code></pre></div>
+<p>Read the <code>action</code> column: the pointer at the <em>shorter</em> line always moves, because the area is capped by the shorter side, so keeping it and shrinking the width can only ever produce a smaller rectangle. Step 1 already finds the answer (49); the remaining six steps prove nothing better exists, and the whole walk touches each index at most once — that is the O(n) the pattern buys over the O(n²) pair enumeration.</p>
+<p>The trace above is real executed output, regenerable from <a href="../../practice/java/algorithms/visual-traces/"><code>../../practice/java/algorithms/visual-traces/</code></a>.</p>
 <h2 id="6-practical-usage">6. Practical Usage<a class="headerlink" href="#6-practical-usage" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Reach for opposite-direction two pointers when the array is sorted, or when a comparison at the two ends tells you something monotonic</strong> (which side to move) — Container With Most Water, and the classic Two Sum on a sorted array (referenced in Section 16).</li>
@@ -12100,7 +12114,7 @@ Week 23 — Arrays/Two-Pointers (LC 11, 239, 238, 189, 31, 344, 125): 16/16 asse
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:46:46 UTC">September 28, 2026</span>
   </span>
 
     

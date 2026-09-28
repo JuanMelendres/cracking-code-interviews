@@ -1,0 +1,45 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+
+$ javac -d out src/HttpCachingDemo.java
+$ java -cp out HttpCachingDemo
+
+=== 1. First request: no validator held by the client ===
+--> GET /product/42   (no If-None-Match)
+<-- 200 OK
+    ETag:          "bbddaf275528fffc"
+    Cache-Control: private, max-age=30, must-revalidate
+    Vary:          Accept, Accept-Encoding
+    body:          {"id":42,"name":"Widget","price":1999,"version":1}  [50 bytes]
+
+=== 2. Same resource, unchanged, WITH If-None-Match ===
+--> GET /product/42   If-None-Match: "bbddaf275528fffc"
+<-- 304 Not Modified
+    ETag:          "bbddaf275528fffc"
+    Cache-Control: private, max-age=30, must-revalidate
+    Vary:          Accept, Accept-Encoding
+    body:          (empty)  [0 bytes]
+
+=== 3. Resource changes on the server ===
+(price updated; the ETag is derived from the body, so it changes too)
+--> GET /product/42   If-None-Match: "bbddaf275528fffc"
+<-- 200 OK
+    ETag:          "70b829ff9c98a964"
+    Cache-Control: private, max-age=30, must-revalidate
+    Vary:          Accept, Accept-Encoding
+    body:          {"id":42,"name":"Widget","price":2499,"version":2}  [50 bytes]
+
+=== 4. Revalidating with the NEW ETag ===
+--> GET /product/42   If-None-Match: "70b829ff9c98a964"
+<-- 304 Not Modified
+    ETag:          "70b829ff9c98a964"
+    Cache-Control: private, max-age=30, must-revalidate
+    Vary:          Accept, Accept-Encoding
+    body:          (empty)  [0 bytes]
+
+=== Summary ===
+200 response body: 50 bytes
+304 response body: 0 bytes  (50 bytes saved on the wire per revalidation)
+Server-side renders performed: 2 for 4 requests -- the 304s skipped serialization entirely.
+
+Both 304s still cost a full round trip. Cache-Control: max-age is what
+removes the round trip; a validator only removes the body.

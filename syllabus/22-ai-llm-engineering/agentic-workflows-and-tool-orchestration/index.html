@@ -11878,6 +11878,15 @@ parallel:   Paris=18C, cloudy, Tokyo=24C, clear -- real elapsed: 207ms
 &gt;&gt;&gt; real, measured speedup: 2.0x
 </code></pre></div>
 <p>Real tool-calling APIs support a model requesting <em>multiple</em> <code>tool_use</code> blocks in a single response specifically so a client can recognize "these are independent" and execute them concurrently — the API surface exists because this real speedup exists.</p>
+<p><strong>The Model Context Protocol (MCP) is the standardization of everything above.</strong> Each provider originally defined its own JSON shape for declaring tools and returning results, so a tool implemented for one vendor's API had to be re-declared for another, and an agent framework had to carry an adapter per provider. MCP is an open protocol that separates the two sides: an <strong>MCP server</strong> exposes tools, resources, and prompts over a defined transport, and any <strong>MCP client</strong> — an agent runtime, an IDE, a desktop assistant — can discover and call them without knowing who implemented them.</p>
+<p>The engineering consequences are the familiar ones from any integration-standardization move, and they are what an interview actually probes:</p>
+<ul>
+<li><strong>Tools become reusable across hosts.</strong> A database query tool written once is callable from any MCP-speaking client, rather than being re-declared per vendor SDK.</li>
+<li><strong>Discovery becomes dynamic.</strong> A client can ask a server what it offers at runtime instead of hard-coding a tool catalogue, which is convenient and is also a real context-budget concern — every discovered tool definition occupies tokens in every request, as <a href="../context-window-management-token-budgets-and-cost/">Context Window Management, Token Budgets, and Cost</a> covers.</li>
+<li><strong>The trust boundary moves and multiplies.</strong> A tool server is a separate process, often written by someone else, returning content that lands directly in the model's context. Every caution in <a href="../prompt-injection-and-agentic-security/">Prompt Injection and Agentic Security</a> applies with more force once tools are third-party: a server's tool <em>description</em> is itself untrusted text that the model reads, and a malicious or compromised server can attempt to steer the agent through the description alone, before any tool is ever called.</li>
+<li><strong>Authorization does not come for free.</strong> The protocol standardizes the plumbing, not your policy. Which tools a given user's session may invoke, and with what scope, remains yours to enforce — and enforcing it on the server side rather than by omitting the tool from the catalogue is the only version that holds, since a client can call anything a server exposes.</li>
+</ul>
+<p>The interview-grade summary: MCP standardizes <em>how</em> tools are described and invoked, which removes per-vendor adapter work and enables a genuine ecosystem — and it standardizes nothing about whether a given tool call is safe, authorized, or correct, which stays exactly where it was.</p>
 <h2 id="5-how-it-works-internally-l3">5. How It Works Internally (L3)<a class="headerlink" href="#5-how-it-works-internally-l3" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
     Start["Task received"] --&gt; Ask["Ask model: what's next?&lt;br/&gt;(a real tool-calling round-trip, per T-2300)"]
@@ -12023,7 +12032,7 @@ Run in parallel (2-thread pool) -&gt; real elapsed time = ?
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 22:45:58 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
   </span>
 
     

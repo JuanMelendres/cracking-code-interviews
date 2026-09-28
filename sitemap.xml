@@ -305,6 +305,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/context-window-management-token-budgets-and-cost/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/contract-testing-for-services/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -489,6 +493,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/graceful-shutdown-and-connection-draining/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/graphql-api-design/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -502,6 +510,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/grpc-api-design/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/hallucination-groundedness-and-output-guardrails/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -542,6 +554,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/how-the-web-works-html-css-dom-and-http/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/http-caching-for-apis/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1149,6 +1165,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/structured-logging-correlation-ids-and-log-hygiene/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/supply-chain-security-sbom-and-dependency-risk/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -1461,6 +1481,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/context-window-management-token-budgets-and-cost/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/contract-testing-for-services/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -1645,6 +1669,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/graceful-shutdown-and-connection-draining/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/graphql-api-design/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -1658,6 +1686,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/grpc-api-design/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/hallucination-groundedness-and-output-guardrails/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1698,6 +1730,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/how-the-web-works-html-css-dom-and-http/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/http-caching-for-apis/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -2305,6 +2341,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/structured-logging-correlation-ids-and-log-hygiene/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/supply-chain-security-sbom-and-dependency-risk/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -2529,7 +2569,15 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/algorithms/visual-traces/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/api-design/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/api-design/http-caching/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -2682,6 +2730,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/design-patterns/catalog-beyond-core-four/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/devops/graceful-shutdown/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -2862,6 +2914,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/observability/metric-cardinality-and-alert-fatigue/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/observability/structured-logging/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -6365,6 +6421,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/07-api-design/http-caching-for-apis/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/07-api-design/openapi-and-contract-first-api-design/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -6637,6 +6697,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/13-observability/structured-logging-correlation-ids-and-log-hygiene/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/14-devops-containers/INDEX/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -6654,6 +6718,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/14-devops-containers/docker-compose-multi-service-orchestration/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/14-devops-containers/graceful-shutdown-and-connection-draining/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -7217,7 +7285,15 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/22-ai-llm-engineering/context-window-management-token-budgets-and-cost/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/22-ai-llm-engineering/embeddings/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
