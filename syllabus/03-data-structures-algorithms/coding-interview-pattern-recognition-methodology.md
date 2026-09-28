@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2120
 status: canonical
-version: 1.0
-last_updated: 2026-09-17
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -87,6 +87,33 @@ This is the chapter's central deliverable: a real lookup table from problem sign
 | — | "sort this," or "is the naive sort here actually the bottleneck" | Sorting fundamentals | Array | O(n log n) comparison-based lower bound | [Sorting Algorithms](sorting-algorithms.md) |
 
 Hashing and Sorting aren't ranked in the IWI table above because the Master Topic Register scores them as foundational primitives other patterns build on (T-1403's own register entry is IWI 6.0, genuinely high — it's left unranked in this list only because "does this problem involve counting/grouping/deduplication" is a signal that co-occurs inside most of the other 16 rows rather than standing alone as its own problem category).
+
+**Visual: the table above as a routing decision.** The table is exhaustive and sorted by interview weight, which makes it the right reference but the wrong shape for the 30 seconds you actually have in a round. This tree is the same content ordered by the question you can answer fastest about an unseen problem — what the *input* is — because input shape narrows the candidate set further and faster than the goal wording does.
+
+```mermaid
+flowchart TD
+    Q["Unseen problem"] --> IN{"What is the input?"}
+
+    IN -->|"Array or string"| A{"What is asked?"}
+    A -->|"Contiguous range, running sum,<br/>pair in a sorted array"| A1["Two pointers / sliding window"]
+    A -->|"Sorted, or 'minimise a feasible value'"| A2["Binary search<br/>(possibly on the answer)"]
+    A -->|"Next greater/smaller,<br/>'how far until a bigger value'"| A3["Monotonic stack"]
+    A -->|"Count, group, first unique, anagram"| A4["Hashing / frequency map"]
+    A -->|"Count ways, min/max cost,<br/>knapsack-shaped"| A5["Dynamic programming"]
+    A -->|"All combinations / permutations / subsets"| A6["Backtracking"]
+
+    IN -->|"Tree"| T["Tree traversal<br/>(DFS unless levels matter)"]
+    IN -->|"Graph, grid, or dependencies"| G["Graph traversal<br/>BFS / DFS / Union-Find / Dijkstra"]
+    IN -->|"Linked list"| L["In-place manipulation<br/>fast/slow or dummy head"]
+    IN -->|"Intervals or events"| V["Sort by start, then merge<br/>or sweep the event points"]
+    IN -->|"Stream, or 'top K' / 'kth'"| H["Heap / priority queue"]
+    IN -->|"Many words sharing prefixes"| P["Trie"]
+    IN -->|"Integers, and the goal smells like parity or subsets"| B["Bit manipulation"]
+    IN -->|"'Design a structure with O(1) get/put'"| D["Design-style composition"]
+    IN -->|"'Thread-safe', producer-consumer, rate limiter"| C["Concurrency coding"]
+```
+
+Three cautions about using it. First, a leaf is a *hypothesis*, not an answer — state it out loud as one ("this looks like a sliding-window problem because the subarray is contiguous") and let the interviewer redirect you cheaply. Second, several problems have two legitimate routes; Top-K is a heap at O(n log k) and a quickselect at O(n) average, and naming both is worth more than silently picking one. Third, the tree deliberately stops where the [signal-to-pattern table](#4-core-concepts-l2-the-signal-to-pattern-table) continues: when the input shape does not decide it, fall back to the table's wording signals and to the complexity budget in Section 5.
 
 ## 5. How It Works Internally (L3) — reading constraints as a complexity budget
 

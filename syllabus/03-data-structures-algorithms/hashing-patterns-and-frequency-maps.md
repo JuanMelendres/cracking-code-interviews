@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2102
 status: canonical
-version: 1.2
-last_updated: 2026-09-27
+version: 1.3
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -67,6 +67,24 @@ The map holds "every value seen so far, and at what index" — so at each new el
 **Hash-set-based cycle detection (Happy Number, Section 7, Problem 4) works because of the pigeonhole principle**: the sum-of-squared-digits sequence for any starting number is bounded (it can never exceed a small constant number of digits' worth of squares), so there are only finitely many possible values the sequence can visit. A sequence with finitely many possible values that never terminates must eventually repeat a value — there's nowhere else for it to go. The loop condition `seen.add(n)` exploits this directly: it doubles as both "have I been here before" (returns `false` on a repeat, meaning a cycle was just detected) and the insertion itself, so the loop naturally terminates the moment either `n` reaches 1 (happy) or a cycle is detected (unhappy) — no separate cycle-detection pass needed. This is the same underlying idea as Floyd's tortoise-and-hare cycle detection for linked lists ([Linked Lists and In-Place Manipulation](linked-lists-and-in-place-manipulation.md)), just using O(n) extra memory (the hash set) to detect the cycle directly, rather than O(1) memory with two pointers at different speeds — a genuine, explicit space-for-simplicity trade-off worth naming in an interview.
 
 **The prefix-sum-plus-hash-map technique's correctness rests on one algebraic identity**: a subarray `nums[i+1..j]` sums to exactly `k` precisely when `prefixSum[j] - prefixSum[i] == k`, which rearranges to `prefixSum[i] == prefixSum[j] - k`. So at each position `j`, the number of valid subarrays *ending* at `j` equals the number of earlier positions `i` whose prefix sum equals `prefixSum[j] - k` — a direct hash-map lookup, accumulated in one single left-to-right pass. Seeding the map with `{0: 1}` before the loop starts is what correctly counts subarrays that start at index 0 (representing the "empty prefix," whose sum is trivially 0).
+
+**Visual: the prefix-sum map as it fills.** The insight — a subarray sums to `k` exactly when some earlier prefix equals `prefix - k` — becomes obvious once the map is visible at every step. Real, executed trace over `[1, 2, 3, -3, 1, 1, 1]` with `k = 3`:
+
+```text
+index  value  prefix  looking for (prefix-k)  found  count  map after step
+    0      1       1                      -2      0      0  {0=1, 1=1}
+    1      2       3                       0      1      1  {0=1, 1=1, 3=1}
+    2      3       6                       3      1      2  {0=1, 1=1, 3=1, 6=1}
+    3     -3       3                       0      1      3  {0=1, 1=1, 3=2, 6=1}
+    4      1       4                       1      1      4  {0=1, 1=1, 3=2, 4=1, 6=1}
+    5      1       5                       2      0      4  {0=1, 1=1, 3=2, 4=1, 5=1, 6=1}
+    6      1       6                       3      2      6  {0=1, 1=1, 3=2, 4=1, 5=1, 6=2}
+Answer: 6  (a subarray sums to k exactly when an earlier prefix equals prefix-k)
+```
+
+Two details in this trace answer the two most common follow-ups. First, the map is seeded with `{0=1}` before any element, which is what lets a subarray starting at index 0 be counted at all (step 1 finds it). Second, the map stores *counts*, not just presence: at the final step the lookup finds `3=2` and adds **two** subarrays at once. Negative numbers are handled with no special case — which is exactly why the sliding-window approach fails here and the prefix-sum map does not.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

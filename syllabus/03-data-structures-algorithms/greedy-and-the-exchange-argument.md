@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2112
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - dynamic-programming.md
@@ -79,6 +79,21 @@ Picking by earliest *finish* time (not earliest start, and not shortest duration
 **Task Scheduler's closed-form derivation, precisely**: the most frequent task (frequency `maxFreq`) forces `(maxFreq - 1)` complete "cooldown windows," each of size `(n + 1)` (the task itself, plus `n` slots that must be filled by other tasks or left idle) — think of laying out `maxFreq` copies of the most frequent task with exactly `n` slots between consecutive copies. The final formula adds `maxCount` (however many *other* tasks are tied at that same maximum frequency, since each needs its own slot in the final, otherwise-idle window). Whenever there are enough total distinct tasks to fill every idle slot across all windows, the true answer is simply the total task count (no idle time needed at all) — which is exactly why the result is `Math.max(formula, tasks.length)`, not the formula alone.
 
 **Remove K Digits' greedy-correctness argument**: a larger digit immediately followed by a smaller one is always worth removing the larger one, because doing so strictly decreases the resulting number from a more significant digit position — no alternative removal choice at that point could ever produce a smaller result. A monotonic-increasing stack enforces exactly this rule automatically: whenever the incoming digit is smaller than the stack's top, the top is popped (if removals remain), repeating until the stack's top is no longer larger than the incoming digit.
+
+**Visual: the greedy choice, level by level.** The exchange argument for Jump Game II says a BFS-like level expansion is optimal; the trace shows what a "level" actually is. Real, executed trace:
+
+```text
+index  nums[i]  i+nums[i]  farthest  currentEnd  jumps  event
+    0        2          2         2           2      1  reached end of level -> jump, new level ends at 2
+    1        3          4         4           2      1  
+    2        1          3         4           4      2  reached end of level -> jump, new level ends at 4
+    3        1          4         4           4      2  
+Answer: 2  (each 'level' is everything reachable with one more jump)
+```
+
+`farthest` is the furthest index reachable using one more jump from anywhere in the current level; `currentEnd` is the boundary of the current level. A jump is committed only when the scan reaches that boundary — twice here, hence the answer 2. Nothing ever backtracks or reconsiders, which is the greedy property; the exchange argument is what licenses it, by showing any optimal solution can be rewritten to make these same choices without getting worse.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 
