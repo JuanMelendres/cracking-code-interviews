@@ -1,0 +1,92 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+
+$ javac -d out src/NestedClassesDemo.java src/InnerClassLeakDemo.java
+$ java -cp out NestedClassesDemo
+
+
+=== 1. Construction: a static nested class needs no outer instance, an inner class does ===
+Static nested, no outer instance needed: new Config(3).retries() = 3
+Inner, requires an outer instance (outer.new Session()): session of alice
+A bare `new Session()` from a static context does not compile at all.
+
+=== 2. The hidden field: what the compiler actually adds to an inner class ===
+Declared fields of the STATIC nested class Config:
+  int retries  synthetic=false
+Declared fields of the INNER class Session:
+  NestedClassesDemo this$0  synthetic=true
+Synthetic field name: this$0
+Does it point at the exact outer instance? true
+This reference is why an inner class keeps its whole outer object reachable.
+
+=== 3. Outer.this: disambiguating a shadowed field ===
+Unqualified `label` inside the inner class:        INNER-label
+Qualified `NestedClassesDemo.this.label`:          OUTER-label
+
+=== 4. Serialization: an inner class drags its outer instance into the byte stream ===
+Serializing the static nested SafeRecordHolder:
+  wrote SafeRecordHolder successfully
+Serializing the inner UnsafeRecordHolder (outer is NOT Serializable):
+  NotSerializableException: NestedClassesDemo
+
+=== 5. Local and anonymous classes capture effectively-final locals ===
+Local class result:     42
+Anonymous class result: 700
+Local class runtime name:     NestedClassesDemo$1Multiplier
+Anonymous class runtime name: NestedClassesDemo$1
+Is the anonymous class synthetic? false  (anonymous != synthetic -- it is a real emitted class)
+
+=== 6. What the compiler emitted for each form ===
+  NestedClassesDemo$Config  [static nested]
+  NestedClassesDemo$SafeRecordHolder  [static nested]
+  NestedClassesDemo$Session  [inner]
+  NestedClassesDemo$Shadowing  [inner]
+  NestedClassesDemo$UnsafeRecordHolder  [inner]
+  (local and anonymous classes are NOT reported by getDeclaredClasses())
+
+$ java -cp out InnerClassLeakDemo
+
+=== A: inner-class callback that USES the enclosing instance ===
+Fields emitted on the callback: LeakyService this$0
+LeakyService collected after GC? false
+
+=== B: inner-class callback that never touches the enclosing instance ===
+Fields emitted on the callback: (none)
+IndifferentService collected after GC? true
+
+=== C: same callback written as a static nested class ===
+Fields emitted on the callback: (none)
+CleanService collected after GC?  true
+
+Registry still holds 3 callbacks -- none were unregistered.
+
+$ ls out
+InnerClassLeakDemo$CleanService$Callback.class
+InnerClassLeakDemo$CleanService.class
+InnerClassLeakDemo$IndifferentService$Callback.class
+InnerClassLeakDemo$IndifferentService.class
+InnerClassLeakDemo$LeakyService$Callback.class
+InnerClassLeakDemo$LeakyService.class
+InnerClassLeakDemo.class
+NestedClassesDemo$1.class
+NestedClassesDemo$1Multiplier.class
+NestedClassesDemo$Config.class
+NestedClassesDemo$SafeRecordHolder.class
+NestedClassesDemo$Session.class
+NestedClassesDemo$Shadowing.class
+NestedClassesDemo$UnsafeRecordHolder.class
+NestedClassesDemo.class
+
+$ javap -p out/'InnerClassLeakDemo$IndifferentService$Callback.class'
+Compiled from "InnerClassLeakDemo.java"
+class InnerClassLeakDemo$IndifferentService$Callback implements java.lang.Runnable {
+  InnerClassLeakDemo$IndifferentService$Callback(InnerClassLeakDemo$IndifferentService);
+  public void run();
+}
+
+$ javap -p out/'InnerClassLeakDemo$LeakyService$Callback.class'
+Compiled from "InnerClassLeakDemo.java"
+class InnerClassLeakDemo$LeakyService$Callback implements java.lang.Runnable {
+  final InnerClassLeakDemo$LeakyService this$0;
+  InnerClassLeakDemo$LeakyService$Callback(InnerClassLeakDemo$LeakyService);
+  public void run();
+}

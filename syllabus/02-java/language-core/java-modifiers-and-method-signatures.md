@@ -5,15 +5,17 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2210
 status: draft
-version: 1.1
-last_updated: 2026-09-14
-mastery_levels_covered: [L1, L2]
+version: 1.2
+last_updated: 2026-09-28
+mastery_levels_covered: [L1, L2, L3]
 prerequisites:
   - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
   - java-syntax-fundamentals-variables-control-flow-and-methods.md
 related:
   - java-oop-fundamentals-classes-objects-and-interfaces.md
   - polymorphism-and-dynamic-dispatch.md
+  - generics-erasure-and-pecs.md
+  - nested-and-inner-classes.md
 practice: ../../../practice/java/oop-fundamentals/modifiers-and-methods/
 production_scenarios: []
 interview_paths: [junior-to-mid, interview-emergency-sprint]
@@ -97,6 +99,32 @@ There is no keyword for "package-private" — it is simply what you get by writi
 | `private`/`static`/`final` methods | Can be overloaded normally | Cannot be overridden at all — see Section 9 (a subclass "redefining" one hides it instead) |
 | Annotation | None (there's no `@Overload`) | `@Override` — always use it; it makes `javac` verify a real match exists |
 
+**Varargs (`String... parts`) is a parameter, an array, and an overload-resolution tiebreaker all at once.** Writing `...` after a parameter's type lets a caller pass any number of arguments of that type, including none. At runtime the method receives a plain array — real, executed output from Section 7's demo: `joinAll("-", "a", "b", "c")` sees `String[] of length 3`, and `joinAll("-")` sees `String[] of length 0`, never `null`. Three rules follow, and all three are asked about:
+
+- **A varargs parameter must be last**, and a method can have only one, because otherwise the compiler could not tell where one variable-length list ended and the next began.
+- **An array can be passed directly** where varargs is expected, since that is what the parameter already is. This is where the surprises live (below).
+- **Varargs loses every overload contest it can lose.** Java resolves an overloaded call in three phases, stopping at the first phase that finds an applicable method: phase 1 considers only subtyping and widening primitive conversion, phase 2 additionally allows boxing/unboxing, and phase 3 — only if the first two found nothing — allows varargs. Real, executed evidence from the same demo: with `pick(long)`, `pick(Integer)`, and `pick(int...)` all in scope, `pick(42)` selects `pick(long)`; remove the `long` overload and `only(42)` selects `only(Integer)`, not the varargs method. Varargs runs last, which is why adding a varargs overload to an existing API rarely changes what existing calls resolve to — and why a call that *does* fall through to varargs is often a sign the intended overload does not actually apply.
+
+**Passing an array to a varargs parameter behaves differently for reference and primitive arrays**, which produces one of Java's most-cited real bugs. Because `String[]` *is* an `Object[]`, `describe(names)` against `describe(Object... items)` spreads the array into three separate arguments. Because `int[]` is *not* an `Object[]` (primitive arrays do not participate in that covariance), the identical-looking `describe(numbers)` passes the whole array as a single element. Measured directly:
+
+```text
+Arrays.asList(numbers).size() = 1  <- the classic bug this causes
+Arrays.asList(names).size()   = 3
+```
+
+`Arrays.asList(int[])` returning a one-element `List<int[]>` is not a quirk of `Arrays`; it is this rule. Casting to `(Object)` forces the single-element reading deliberately when that is what you want.
+
+**A covariant return type is a legal override that narrows the return.** Since Java 5, an override may declare a return type that is a subtype of the overridden method's: `Dog reproduce()` legally overrides `Animal reproduce()`. Real output: calling it through an `Animal` reference returns a `Dog`, and callers holding a `Dog` reference need no cast at all. This is what lets `clone()` in a well-written class return the concrete type rather than `Object` — see [Immutability and Defensive Copying](immutability-and-defensive-copying.md). Narrowing is allowed; widening is not, because existing callers assigned the old, narrower type.
+
+**A `static` method in a subclass with the same signature hides rather than overrides.** The table above notes that `static` methods cannot be overridden; the consequence is that resolution is by the *compile-time* type. Real, executed contrast from the same demo, with `Base viewedAsBase = new Derived()`:
+
+```text
+Instance method through a Base reference: Derived.instanceGreet()   <- dynamic dispatch, runtime type wins
+Static method resolved through Base:      Base.staticGreet()        <- static binding, compile-time type wins
+```
+
+`@Override` on a static method is a real compile error — `static methods cannot be annotated with @Override` — captured verbatim in the practice directory's transcript. The bytecode-level reason (`invokestatic` versus `invokevirtual`) belongs to [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md).
+
 This chapter stops at the signature-and-modifier rules above; the actual dispatch mechanism — *why* overload resolution is a compile-time decision and override resolution is a runtime one, down to the `invokestatic` vs. `invokevirtual` bytecode difference — is [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md)'s own job, including the field-hiding and static-hiding gotchas that follow directly from this same static-vs-dynamic distinction.
 
 ## 5. How It Works Internally (L3)
@@ -104,6 +132,15 @@ This chapter stops at the signature-and-modifier rules above; the actual dispatc
 Access control is enforced entirely at **compile time** by `javac` — there is no runtime access check for a normal field/method access (reflection can bypass it deliberately via `setAccessible(true)`, which is exactly why [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) treats that call as a real security-relevant decision, not a routine one). A `private` field access from outside its permitted scope is a real compilation failure, not a runtime exception — demonstrated concretely in Section 7.
 
 `static` fields live in the class's own storage, allocated once when the class is loaded by the JVM's classloader, before any instance of that class is ever created — this is why `Counter.totalCreated` in Section 7's demo already has a defined value (`0`) even before the first `new Counter()` call. `final` local variables and fields are enforced by the compiler's definite-assignment analysis: it tracks, at compile time, every possible code path to guarantee a `final` variable is assigned exactly once before any read, which is also what makes a `final` local variable safely capturable by a lambda or anonymous inner class (the compiler can prove it will never change).
+
+**Varargs is compile-time sugar over an array, and generics make that leaky.** javac rewrites `joinAll("-", "a", "b")` into `joinAll("-", new String[]{"a", "b"})`; the method's real descriptor takes an array. For a *generic* varargs parameter (`<T> T... items`) the compiler cannot create an array of the erased type parameter, so it creates an array of the erasure bound — usually `Object[]` — and warns about **heap pollution**: a variable whose declared type says one thing while the object it points at is genuinely something else. Measured directly in Section 7's demo, a `List<String>[]` returned from a generic varargs method reports its runtime type as `List[]`, an `Integer`-bearing list is stored into it through an `Object[]` alias with no `ArrayStoreException`, and the failure surfaces later as:
+
+```text
+Reading polluted[0].get(0) as String threw: ClassCastException
+  message: class java.lang.Integer cannot be cast to class java.lang.String
+```
+
+on a line of source that contains no visible cast — the cast was inserted by the compiler at the read. `@SafeVarargs` suppresses the warning and is a promise, not a check: it is correct only when the method merely *reads* the array and never stores it, exposes it, or writes to it. Generics erasure itself is [Generics, Erasure, and PECS](generics-erasure-and-pecs.md)'s topic.
 
 ## 6. Practical Usage
 
@@ -141,11 +178,27 @@ src/BrokenPrivateAccess.java:4: error: balance has private access in BankAccount
 
 And the real, unplanned finding from Section 4 — `NestedPrivateAccessDemo.java` compiles and runs cleanly, printing `Account.balance accessed from a sibling nested class: 100.0`, even though `balance` is `private` — because both classes share the same top-level enclosing class.
 
+Two further real, deliberately broken programs in the same directory, with their genuine `javac` output appended to `compile-errors-transcript.txt`:
+
+```
+src/BrokenVarargsAmbiguity.java:18: error: reference to handle is ambiguous
+  both method handle(String,Object...) in BrokenVarargsAmbiguity and method handle(Object,String...) in BrokenVarargsAmbiguity match
+src/BrokenStaticOverride.java:16: error: static methods cannot be annotated with @Override
+```
+
+The ambiguity error is the practical limit of varargs overloading: `handle("a", "b")` matches `handle(String, Object...)` and `handle(Object, String...)` equally well, neither is more specific than the other, and the compiler refuses rather than guessing. Two varargs overloads whose fixed-arity prefixes differ in this way are simply unusable together.
+
+`src/MethodSignatureRulesDemo.java` covers the signature rules from Sections 4 and 5 — varargs arity, the three-phase overload resolution order, array-versus-varargs spreading, generic varargs heap pollution ending in a real `ClassCastException`, covariant return types, and static hiding versus instance overriding. Its full output, including the three real `-Xlint:all` warnings javac emits for the heap-pollution examples, is captured in `signature-rules-transcript.txt`.
+
 ## 8. Common Mistakes
 
 - **Making every field `public` "to keep things simple"** — defeats encapsulation immediately; any external code can then set a field to an invalid state with no validation path.
 - **Assuming `private` means "only this exact class"** — Section 4's nested-class finding shows the real rule is scoped to the top-level class, which can matter for inner-class-heavy designs.
 - **Confusing a `final` class with an `abstract` class** — they are opposites in intent: `final` forbids all subclassing, `abstract` requires it (you can never instantiate an abstract class directly).
+- **Expecting a varargs overload to win over a boxing one** — resolution reaches varargs only in its third and final phase, so `only(42)` picks `only(Integer)` over `only(int...)`, measured directly.
+- **Passing an `int[]` where an `Object...` is expected and expecting it to spread** — it arrives as one element, because `int[]` is not an `Object[]`. This is exactly why `Arrays.asList(someIntArray).size()` is `1`.
+- **Treating `@SafeVarargs` as a check rather than a promise** — it silences the warning without verifying anything; it is only correct when the method never stores, writes to, or exposes the varargs array.
+- **Writing `@Override` on a `static` method** — a real compile error, because hiding a static method is not overriding it.
 - **Forgetting that `static` methods cannot access instance (non-static) fields or call instance methods directly** — there is no implicit `this` in a static context, since a static method isn't tied to any particular instance.
 
 ## 9. Edge Cases
@@ -211,6 +264,54 @@ No dedicated `production-cookbook/` entry exists yet for an access-modifier or f
 
 **Evaluation criteria:** correctly explains the body/no-body distinction, correctly states instantiation is forbidden, and can articulate at least one real reason to choose an abstract class over an interface.
 
+### Question 3: What is varargs, and which overload wins when a varargs method and a boxing overload both apply?
+
+**Expected answer:** `Type... name` lets a caller pass any number of arguments, including zero; at runtime the method receives an array (`String[] of length 0` for a no-argument call, never `null`). It must be the last parameter and there can be only one. Java resolves an overloaded call in three phases — phase 1 subtyping and widening primitive conversion, phase 2 additionally boxing/unboxing, phase 3 varargs — stopping at the first phase with an applicable method. So a boxing overload beats a varargs overload: with `only(Integer)` and `only(int...)` in scope, `only(42)` selects `only(Integer)`, verified by real, executed output.
+
+**Minimum acceptable answer:** knows varargs accepts a variable number of arguments and is an array inside the method.
+
+**Strong Senior answer:** states the three phases in order, notes that varargs losing every contest is what makes adding a varargs overload to an existing API relatively safe, and knows that two varargs overloads can be mutually ambiguous — `handle(String, Object...)` and `handle(Object, String...)` produce a real `reference to handle is ambiguous` compile error for `handle("a", "b")`.
+
+**Staff-level extension:** treats varargs in a published API as a compatibility decision — changing a fixed-arity method to varargs is source-compatible but not binary-compatible, because the erased descriptor changes from `(String,String)` to `(String,String[])`, so callers compiled against the old signature break at link time until recompiled.
+
+**Common mistakes:** believing a varargs parameter arrives as `null` when no arguments are passed; assuming varargs wins over boxing; trying to declare two varargs parameters.
+
+**Likely follow-ups:** "what happens if you pass an `int[]` to an `Object...` parameter?" (It arrives as a single element, because `int[]` is not an `Object[]` — this is exactly why `Arrays.asList(someIntArray).size()` is `1` while `Arrays.asList(someStringArray).size()` is the array's length.) "How do you force an array to be treated as one argument?" (Cast it to `(Object)`.)
+
+**Evaluation criteria:** correct phase ordering, correct empty-varargs behavior, and awareness that array-versus-varargs behaves differently for primitive and reference arrays.
+
+### Question 4: What is heap pollution, and what does `@SafeVarargs` actually guarantee?
+
+**Expected answer:** heap pollution is a variable whose declared parameterized type does not match the type of the object it actually references, which erasure makes possible. A generic varargs parameter (`<T> T... items`) is the common source: the compiler cannot create an array of the erased type parameter, so it creates one of the erasure bound. Real, measured: a method returning `T[]` from generic varargs produced a value declared `List<String>[]` whose runtime type printed as `List[]`; storing an `Integer`-bearing list into it through an `Object[]` alias raised no `ArrayStoreException`, and the failure surfaced later as a `ClassCastException` on a read with no visible cast in the source. `@SafeVarargs` only suppresses the warning — it verifies nothing. It is honest only when the method reads the array and never stores it, writes to it, or lets it escape.
+
+**Minimum acceptable answer:** knows generic varargs produce an unchecked warning related to erasure.
+
+**Strong Senior answer:** explains why the error surfaces far from its cause (the compiler-inserted cast at the read site), and states the concrete rule for when `@SafeVarargs` is a true claim.
+
+**Staff-level extension:** frames blanket `@SafeVarargs` annotation as a review hazard — it is an assertion a reviewer must verify by reading the body, so a codebase that applies it reflexively has converted a compiler warning into an unchecked human process.
+
+**Common mistakes:** treating `@SafeVarargs` as a compiler check; believing the `ArrayStoreException` mechanism protects generic arrays (it does not, because the runtime element type is the erasure).
+
+**Likely follow-ups:** "why is `List<String>[]` not creatable directly?" (Generic array creation is forbidden precisely because the runtime store check cannot see the type argument.) "Can you annotate any method with `@SafeVarargs`?" (Only `static`, `final`, or `private` methods, plus constructors — an overridable method could break the promise in a subclass.)
+
+**Evaluation criteria:** defines heap pollution correctly, connects the delayed `ClassCastException` to erasure, and states a usable rule for `@SafeVarargs`.
+
+### Question 5: A subclass declares a `static` method with the same signature as its superclass. Which one runs, and why?
+
+**Expected answer:** the one selected by the *compile-time* type of the reference, because static methods are hidden rather than overridden. Real, executed contrast with `Base viewedAsBase = new Derived()`: the instance method resolves to `Derived.instanceGreet()` by dynamic dispatch on the runtime type, while `Base.staticGreet()` resolves to the base version by static binding. `@Override` on a static method is a real compile error: `static methods cannot be annotated with @Override`.
+
+**Minimum acceptable answer:** knows static methods are not polymorphic.
+
+**Strong Senior answer:** names the bytecode reason — `invokestatic` resolves against the compile-time type, `invokevirtual` dispatches on the runtime type — and notes that calling a static method through an instance reference (`viewedAsBase.staticGreet()`) compiles but is misleading enough that most style guides forbid it.
+
+**Staff-level extension:** treats static hiding as an API-design smell: if a subclass wants to vary a static method's behavior, the method is really an instance concern, and the class is fighting the language rather than expressing a hierarchy.
+
+**Common mistakes:** predicting `Derived.staticGreet()` because the object is a `Derived`; assuming `@Override` works on statics.
+
+**Likely follow-ups:** "does the same rule apply to fields?" (Yes — field access is also resolved by the compile-time type, which is field hiding.) "Does a covariant return type still count as an override?" (Yes — narrowing the return type is legal since Java 5 and is a genuine override, verified by real output.)
+
+**Evaluation criteria:** correct answer with the compile-time-versus-runtime reason, and ideally the bytecode-level explanation.
+
 ## 16. Coding/Practice Exercises
 
 1. Write a `static` counter class of your own (not copied from this chapter) that tracks how many times a specific method has been called across all instances.
@@ -229,6 +330,9 @@ Design a small class hierarchy for a company's employee types (e.g., `Employee` 
 - [Java OOP Fundamentals](java-oop-fundamentals-classes-objects-and-interfaces.md) — classes, interfaces, and the diamond problem this chapter's abstract-class material builds toward.
 - [Reflection and Dynamic Proxies](reflection-and-dynamic-proxies.md) — how `setAccessible(true)` deliberately bypasses the compile-time access checks this chapter describes.
 - [Immutability and Defensive Copying](immutability-and-defensive-copying.md) — `final` fields as one ingredient of real immutability, at Senior depth.
+- [Generics, Erasure, and PECS](generics-erasure-and-pecs.md) — why a generic varargs parameter cannot produce a properly-typed array, and what heap pollution costs.
+- [Polymorphism and Dynamic Dispatch Mechanics](polymorphism-and-dynamic-dispatch.md) — the `invokestatic` versus `invokevirtual` reason static methods hide while instance methods override.
+- [Nested and Inner Classes](nested-and-inner-classes.md) — the full treatment of the nested-class access rule this chapter's Section 4 finding touches.
 
 ## 20. Mastery Checklist
 
@@ -236,4 +340,8 @@ Design a small class hierarchy for a company's employee types (e.g., `Employee` 
 - [ ] Can explain the difference between `static` and instance state with a concrete example.
 - [ ] Can explain all three effects of `final` (variable, method, class) without conflating them.
 - [ ] Can explain the difference between an abstract method and a concrete method, and why an abstract class cannot be instantiated.
+- [ ] Can state the three phases of overload resolution in order and explain why varargs always loses.
+- [ ] Can predict, correctly, what `Arrays.asList(new int[]{1,2,3}).size()` returns and say why.
+- [ ] Can explain heap pollution and state exactly when `@SafeVarargs` is honest.
+- [ ] Can explain why a `static` method in a subclass hides rather than overrides, and what that changes at the call site.
 - [ ] Reproduced this chapter's real demo and all five real compile errors, and can explain each one's root cause.

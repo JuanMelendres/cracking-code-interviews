@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../09-messaging-event-driven/INDEX.md
   - 08-testing.md
@@ -17,13 +17,16 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 13 chapters yielded 26 deep questions + 36
-quick-fire questions = **62 real questions**. No Junior Fundamentals chapter exists
+**Honest count for this domain:** 14 chapters yielded 29 deep questions + 36
+quick-fire questions = **65 real questions**. No Junior Fundamentals chapter exists
 in this domain — Kafka/event-driven architecture presupposes backend fundamentals
 already covered elsewhere, so no separate leveled-Junior question set applies here.
 (Updated 2026-09-27: `kafka-security-authentication-and-authorization.md` had a
 complete Interview Questions section never indexed — a stale-index gap, not a
-content gap. Added 2 questions + 3 quick-fire cards.)
+content gap. Added 2 questions + 3 quick-fire cards. Updated 2026-09-28:
+`broker-selection-kafka-rabbitmq-and-sqs.md` is a new chapter closing a real
+coverage gap — the domain taught Kafka thoroughly but never answered "why this
+broker and not another one?" — and contributes 3 questions.)
 
 **Incidental fix while mining this domain:** `schema-registry-and-compatibility-evolution.md`'s
 Flashcards section used `## Card:` (heading level 2) instead of the file's own
@@ -358,6 +361,37 @@ real, verified markdown-hierarchy inconsistency, corrected in the same pass.
 | 34 | What's the real, distinct difference between Kafka SASL authentication and ACL authorization? | [Kafka Security: SASL Authentication and ACL Authorization](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#flashcards) |
 | 35 | A principal has full Read/Write/Describe access on a topic. Can it consume that topic? | [Kafka Security: SASL Authentication and ACL Authorization](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#flashcards) |
 | 36 | Does a Kafka super user get a very permissive set of ACLs, or something architecturally different? | [Kafka Security: SASL Authentication and ACL Authorization](../../09-messaging-event-driven/kafka-security-authentication-and-authorization.md#flashcards) |
+
+---
+
+## Broker Selection: Kafka vs. RabbitMQ vs. SQS
+
+### Q1 — When would you choose RabbitMQ over Kafka?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows RabbitMQ is queue-based and Kafka is log-based, and that queues suit task distribution.
+- **Senior:** Names queue-native capabilities Kafka lacks — per-message retry, delay, dead-lettering, broker-side routing via exchanges, unbounded consumer parallelism — and the ordering consequence: RabbitMQ preserves order per queue only with a single consumer, so scaling out trades ordering away, which is fine for independent tasks and fatal for per-entity sequences. Knows unconsumed queue messages are broker-held pending work while unconsumed log entries are just data within retention.
+- **Staff:** Treats it as a platform decision — a second broker roughly doubles the governance surface (schemas, DLQ conventions, lag alerting, on-call ownership) — while naming the inverse failure: forcing job queues onto a log produces per-team workarounds worse than the second broker would have been.
+
+### Q2 — Your consumer processed three days of events with a bug. How do you recover on each broker?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows Kafka can replay and queues cannot.
+- **Senior:** Gives the Kafka procedure (new consumer group, offset by timestamp, existing group undisturbed) and its preconditions — retention must actually cover three days, downstream writes must be idempotent, reprocessing load must be controlled. States that on RabbitMQ/SQS recovery depends entirely on an independent archive.
+- **Staff:** Points out that "do we need replay?" is answered *no* by assumption at design time and *yes* at incident time, so it belongs in a written decision with a revisit trigger — and that a cheap archival sink buys most of the recovery value on a queue-based estate without a broker migration.
+
+### Q3 — Why not just use Kafka for everything?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../09-messaging-event-driven/broker-selection-kafka-rabbitmq-and-sqs.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Names operational cost and at least one workload that fits badly.
+- **Senior:** Gives the mechanism — partition-bound consumption means one slow message stalls its partition while other consumers idle — with a concrete workload (a task class 40x slower than the rest) and the alternative design: a queue per task class, visibility timeout sized to the slowest task, workers scaled per queue. Also notes consumer parallelism is capped by partition count and that per-message retry/DLQ must be hand-built.
+- **Staff:** Reframes as choosing the smallest technology that meets the requirement, with explicit written triggers for revisiting (a replay requirement, or a second independent consumer of the same events) — both visible well before they become urgent.
 
 ---
 
