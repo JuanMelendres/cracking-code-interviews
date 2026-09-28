@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../13-observability/INDEX.md
   - 12-security.md
@@ -17,10 +17,14 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 6 chapters yielded 12 deep questions + 14 quick-fire
-questions = **26 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 7 chapters yielded 15 deep questions + 14 quick-fire
+questions = **29 real questions**. No Junior Fundamentals chapter exists in this
 domain — observability presupposes backend fundamentals already covered elsewhere.
-This is a genuinely small domain (6 chapters). (Updated 2026-09-27:
+This is a small domain (7 chapters). (Updated 2026-09-28:
+`structured-logging-correlation-ids-and-log-hygiene.md` is a new chapter closing a
+real coverage gap — the OpenTelemetry chapter covered traces but nothing on record
+shape, correlation-ID propagation, level semantics, or sensitive data — contributing
+3 questions.) (Updated 2026-09-27:
 `chaos-engineering-fault-injection-and-resilience-verification.md` had a complete
 Interview Questions section never indexed — a stale-index gap, not a content gap.
 Added 2 questions; no Flashcards section in that chapter.)
@@ -179,6 +183,38 @@ Added 2 questions; no Flashcards section in that chapter.)
 | 14 | Why can a monthly error-budget aggregate be misleading on its own? | [Performance Methodology (USE/RED) and SLI/SLO/Error Budgets](../../13-observability/performance-methodology-and-slo-error-budgets.md#flashcards) |
 
 ---
+
+---
+
+## Structured Logging, Correlation IDs, and Log Hygiene
+
+### Q1 — What is structured logging, and what does it let you do that prose logging does not?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../13-observability/structured-logging-correlation-ids-and-log-hygiene.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows it means machine-parseable named fields, usually JSON.
+- **Senior:** Names both changes — values become named fields so `duration_ms > 400` is a filter rather than a regex capture, and the message becomes a stable event identifier rather than prose that gets reworded. Emphasizes the shared field vocabulary across services as what makes cross-service queries possible, and that it is cheap at the start and expensive to retrofit.
+- **Staff:** Treats consistency as the deliverable and names the trade-off: a shared logging library gives one correct implementation with coupling and upgrade cost; a written convention avoids coupling and reliably produces several incompatible dialects.
+
+### Q2 — A request's log trail stops halfway through, with no error anywhere. What happened?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../13-observability/structured-logging-correlation-ids-and-log-hygiene.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Connects the gap to asynchronous execution or a thread change.
+- **Senior:** Knows MDC is a `ThreadLocal`, so a pooled task has its own empty context — verified directly, the pooled record carried no `correlation_id` at all, so the records exist but are unlabelled. Adds the `clear()` requirement, because pooled threads are reused and stale context attributes work to the wrong request, and knows `InheritableThreadLocal` does not help for pools.
+- **Staff:** Raises virtual threads: the per-thread-map assumption gets expensive when threads are numerous, which is what scoped values address, so a platform logging library needs a position on it before adoption rather than after.
+
+### Q3 — How do you keep sensitive data out of logs?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../13-observability/structured-logging-correlation-ids-and-log-hygiene.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Says not to log PII or credentials, and mentions masking.
+- **Senior:** Puts design before redaction — log stable references (`user_ref`, `card_last4`) so the value never enters the pipeline — and explains why pattern redaction is insufficient (it catches only anticipated shapes, and free-text defeats it) and why exposure is wide (hot search, cold archives, vendor systems, laptops during incidents). Names the realistic failure: a temporary request-header dump that outlived its incident.
+- **Staff:** Contrasts deny-list (fails open) with allow-list (fails closed) controls, argues for allow-lists in payment or health-data contexts, and adds retention limits to bound the blast radius.
+
 
 ## Related
 

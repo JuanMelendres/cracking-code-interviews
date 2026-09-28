@@ -5,12 +5,13 @@ document_type: syllabus-topic
 domain: 22-ai-llm-engineering
 topic_id: T-2304
 status: canonical
-version: 1.1
-last_updated: 2026-09-21
+version: 1.2
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - llm-api-integration-fundamentals.md
 related:
+  - context-window-management-token-budgets-and-cost.md
   - prompt-engineering-patterns.md
   - rag-and-vector-databases.md
   - llm-evaluation-and-testing.md
@@ -98,6 +99,17 @@ parallel:   Paris=18C, cloudy, Tokyo=24C, clear -- real elapsed: 207ms
 ```
 
 Real tool-calling APIs support a model requesting *multiple* `tool_use` blocks in a single response specifically so a client can recognize "these are independent" and execute them concurrently — the API surface exists because this real speedup exists.
+
+**The Model Context Protocol (MCP) is the standardization of everything above.** Each provider originally defined its own JSON shape for declaring tools and returning results, so a tool implemented for one vendor's API had to be re-declared for another, and an agent framework had to carry an adapter per provider. MCP is an open protocol that separates the two sides: an **MCP server** exposes tools, resources, and prompts over a defined transport, and any **MCP client** — an agent runtime, an IDE, a desktop assistant — can discover and call them without knowing who implemented them.
+
+The engineering consequences are the familiar ones from any integration-standardization move, and they are what an interview actually probes:
+
+- **Tools become reusable across hosts.** A database query tool written once is callable from any MCP-speaking client, rather than being re-declared per vendor SDK.
+- **Discovery becomes dynamic.** A client can ask a server what it offers at runtime instead of hard-coding a tool catalogue, which is convenient and is also a real context-budget concern — every discovered tool definition occupies tokens in every request, as [Context Window Management, Token Budgets, and Cost](context-window-management-token-budgets-and-cost.md) covers.
+- **The trust boundary moves and multiplies.** A tool server is a separate process, often written by someone else, returning content that lands directly in the model's context. Every caution in [Prompt Injection and Agentic Security](prompt-injection-and-agentic-security.md) applies with more force once tools are third-party: a server's tool *description* is itself untrusted text that the model reads, and a malicious or compromised server can attempt to steer the agent through the description alone, before any tool is ever called.
+- **Authorization does not come for free.** The protocol standardizes the plumbing, not your policy. Which tools a given user's session may invoke, and with what scope, remains yours to enforce — and enforcing it on the server side rather than by omitting the tool from the catalogue is the only version that holds, since a client can call anything a server exposes.
+
+The interview-grade summary: MCP standardizes *how* tools are described and invoked, which removes per-vendor adapter work and enables a genuine ecosystem — and it standardizes nothing about whether a given tool call is safe, authorized, or correct, which stays exactly where it was.
 
 ## 5. How It Works Internally (L3)
 

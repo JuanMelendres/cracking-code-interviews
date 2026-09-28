@@ -1,0 +1,35 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS.
+$ ./run-demo.sh
+
+================================================================
+CASE: abrupt
+================================================================
+[server] abrupt server listening on port 8111 (pid 45037)
+[client] GET /readyz -> 200
+[client] starting GET /work (server takes ~3s)
+[server] request start
+[driver] sending SIGTERM to server pid 45037, 1s into a 3s request
+[client] curl: (52) Empty reply from server
+[client] 
+[client] [client] /work HTTP status: 000, total 1.371782s
+[driver] server process exited
+
+================================================================
+CASE: graceful
+================================================================
+[server] graceful server listening on port 8112 (pid 45180)
+[client] GET /readyz -> 200
+[client] starting GET /work (server takes ~3s)
+[server] request start
+[driver] sending SIGTERM to server pid 45180, 1s into a 3s request
+[server] SIGTERM received
+[server] readiness flipped to NOT ready; in-flight requests: 1
+[server] no longer accepting new connections; draining up to 10s
+[server] request finished
+[client] done
+[client] 
+[client] [client] /work HTTP status: 200, total 3.002947s
+[server] worker pool drained cleanly: true
+[server] shutdown complete in 2007ms; completed=1 rejected=0
+[driver] server process exited
+

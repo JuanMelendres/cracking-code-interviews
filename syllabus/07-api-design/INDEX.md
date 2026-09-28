@@ -34,6 +34,7 @@ REST/gRPC/GraphQL design, versioning, and pagination — foundational-through-Se
 | T-919 | API Versioning Strategies | L1, L2, L3, L4 — fully written, real Spring MVC demo (2026-09-16) | `syllabus/07-api-design/api-versioning-strategies.md` |
 | T-2414 | OpenAPI and Contract-First API Design | L1, L2, L3, L4 — fully written, real springdoc-openapi + openapi-generator-cli demo (2026-09-18) | `syllabus/07-api-design/openapi-and-contract-first-api-design.md` |
 | T-2415 | Webhook Design and Delivery Guarantees | L1, L2, L3, L4 — fully written, real HMAC/retry/dedup demo (2026-09-18) | `syllabus/07-api-design/webhook-design-and-delivery-guarantees.md` |
+| T-2435 | HTTP Caching for APIs: Cache-Control, ETags, and Conditional Requests | L1, L2, L3, L4 — fully written, real server + HttpClient conditional-request demo (2026-09-28) | `syllabus/07-api-design/http-caching-for-apis.md` |
 
 ## Where this domain's boundary comes from
 
