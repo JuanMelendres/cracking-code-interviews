@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../15-cloud/INDEX.md
   - 14-devops-containers.md
@@ -17,8 +17,11 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 5 chapters yielded 11 deep questions + 14 quick-fire
-questions = **25 real questions**. (Updated 2026-09-27: added a "works in staging,
+**Honest count for this domain:** 6 chapters yielded 14 deep questions + 14 quick-fire
+questions = **28 real questions**. (Updated 2026-09-28: `infrastructure-as-code.md` is a
+new chapter closing a real coverage gap — remote state, GitOps, and immutable
+infrastructure had zero occurrences across this domain and `14-devops-containers` —
+contributing 3 questions.) (Updated 2026-09-27: added a "works in staging,
 fails in production" systematic-troubleshooting question to The Twelve-Factor App —
 a genuinely missing, very commonly-asked scenario question found via a generic
 interview checklist audit. Updated again, same day: `serverless-lambda-execution-model-cold-starts-and-concurrency.md`
@@ -168,6 +171,38 @@ Fundamentals chapter exists in this domain — this is a genuinely small domain
 | 14 | A service works in staging but fails in production with no code difference — what's the ordered troubleshooting checklist? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
 
 ---
+
+---
+
+## Infrastructure as Code
+
+### Q1 — What is in a Terraform state file, and why does it matter operationally?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../15-cloud/infrastructure-as-code.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows state tracks what the tool created and must not be committed to git.
+- **Senior:** Names the four operational consequences — it holds secrets such as generated passwords in plaintext, so it is a credential store; it must be shared via a remote backend; it must be locked, because concurrent applies corrupt it; and it should be versioned for recovery. Knows losing state orphans resources rather than destroying them.
+- **Staff:** Treats state access as a production-credential-grade control with audit, and connects state splitting to blast radius: one state for everything means one lock, one plan against the world, and one mistake with unbounded reach.
+
+### Q2 — Someone fixed a security group by hand during an incident. What happens at the next apply?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../15-cloud/infrastructure-as-code.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows the tool will propose to revert the manual change.
+- **Senior:** Treats drift as a signal with distinct causes — emergency fix, unmanaged resource, ownership overlap, provider-side automatic change — each with a different correct response, and points out that chronic drift noise is a safety problem because reviewers stop reading plans.
+- **Staff:** Addresses the root cause: standing console write access to production guarantees drift, so the durable fix is removing it with a logged break-glass path, plus scheduled drift detection so it surfaces on a quiet day rather than mid-change.
+
+### Q3 — A one-line change destroyed a production database. How does that happen, and how do you prevent it?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../15-cloud/infrastructure-as-code.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows some changes force replacement and the plan shows it.
+- **Senior:** Notes replacement is a *provider* property, so the same logical change is safe on one resource type and destructive on another — which is why the plan must be read rather than reasoned about. Prefers mechanisms over exhortation: `prevent_destroy` on stateful resources and a CI check failing on destructive plans with a deliberate override.
+- **Staff:** Generalises to the asymmetry argument (destructive operations are rare and catastrophic, so friction is correct) and prefers applying a *saved* plan, removing the window in which reality changes between review and execution.
+
 
 ## Related
 

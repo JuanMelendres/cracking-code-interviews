@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../18-engineering-practices/INDEX.md
   - 17-architecture.md
@@ -17,8 +17,11 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 8 chapters yielded 16 deep questions + 2 quick-fire
-questions = **18 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 9 chapters yielded 19 deep questions + 2 quick-fire
+questions = **21 real questions**. (Updated 2026-09-28:
+`branching-strategy-versioning-and-release-management.md` is a new chapter closing a
+real coverage gap — `semver` had zero occurrences and branching models were mentioned
+only in passing — contributing 3 questions.) No Junior Fundamentals chapter exists in this
 domain. Seven of eight chapters use the older numbered `## 15. Interview Questions`
 template with no Flashcards section at all; only `git-internals-and-collaboration-workflows.md`
 has a `### Card:` Flashcards section.
@@ -213,6 +216,38 @@ quick-fire cards were added.)
 | 2 | Why does `git reflog` recover work after a `git reset --hard`? | [Git Internals and Collaboration Workflows](../../18-engineering-practices/git-internals-and-collaboration-workflows.md#flashcards) |
 
 ---
+
+---
+
+## Branching Strategy, Versioning, and Release Management
+
+### Q1 — How does your team branch, and why?
+
+**Canonical treatment:** [§15](../../18-engineering-practices/branching-strategy-versioning-and-release-management.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Describes a workflow accurately, even if the justification is "it is what we use."
+- **Senior:** Derives the model from the deciding question — do we support more than one version in production at once? — and names feature flags as what makes trunk-based development workable rather than an optional extra. Explains that merge cost grows with branch divergence, which is the mechanical argument for short-lived branches.
+- **Staff:** Frames branching as a deployment-frequency decision wearing process clothes, and treats the number of supported versions as a product and contractual commitment whose engineering cost should be explicit when the promise is made.
+
+### Q2 — A production bug is found in version 1.0 while main has moved on. Walk me through the fix.
+
+**Canonical treatment:** [§15](../../18-engineering-practices/branching-strategy-versioning-and-release-management.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Fixes both lines and knows the release branch ships first.
+- **Senior:** Knows the back-port is the step that gets forgotten, that `cherry-pick` may conflict (it genuinely did in the captured run), and that the result is two different commit hashes for one change with no shared ancestry — so git cannot warn about a skipped back-port. Prefers merging the release branch where history allows, so ancestry records the fix.
+- **Staff:** Makes back-port completion part of the incident's definition of done with per-line verification, and adds cross-line automation, treating the multiplied cost as the visible price of supporting multiple versions.
+
+### Q3 — You changed one line and it broke every consumer. What version number should it have been?
+
+**Canonical treatment:** [§15](../../18-engineering-practices/branching-strategy-versioning-and-release-management.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows MAJOR signals a breaking change.
+- **Senior:** States that a version is a compatibility promise rather than a measure of effort — a one-line change altering a response field is MAJOR, a thousand-line internal refactor is PATCH — reframes team debates into "will any caller have to change?", and proposes an API-compatibility checker in CI rather than a judgement call. Notes `0.x` is explicitly outside the guarantee.
+- **Staff:** Treats a MAJOR bump as a coordination event needing a deprecation policy, a supported-version window, and a migration path, connecting it to the same governance problem in API versioning.
+
 
 ## Related
 

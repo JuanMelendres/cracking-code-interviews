@@ -1,0 +1,51 @@
+Captured 2026-09-28 on OpenJDK 21.0.12 (Homebrew), macOS, APFS on NVMe, 10 cores.
+
+$ javac -d out src/FileSystemIoDemo.java
+$ java -cp out FileSystemIoDemo
+
+=== Setup ===
+Created data.bin (256 MB) at /var/folders/dz/948b57792ggdyln29dh25xw40000gn/T/fs-io-demo18093208871738619124
+
+=== 1. Sequential vs. random reads of the SAME number of bytes (page cache WARM) ===
+  sequential       17.5 ms     4458.3 MB/s
+  random           16.0 ms     4889.4 MB/s
+Ratio random/sequential for the identical 80000 KB: 0.91x
+HONEST RESULT: on this machine the two are indistinguishable. The file was
+written moments ago and is resident in the OS page cache, and the backing
+store is NVMe, so neither access pattern pays a seek. The textbook 10-100x
+random-read penalty is a SPINNING-DISK, CACHE-MISS phenomenon; quoting it as
+a universal fact about 'disk' is folklore. Dropping the page cache requires
+elevated privileges, so this demo deliberately does not claim a number it
+cannot measure. What still holds everywhere: sequential access is friendlier
+to readahead, to erase-block-sized writes, and to any layer that prefetches.
+
+=== 2. The page cache: reading the same file twice ===
+  first read        3.3 ms     9789.4 MB/s
+  second read       2.6 ms    12324.3 MB/s
+  third read        2.9 ms    11154.8 MB/s
+The file did not change and the code did not change. The OS page cache
+served the later reads from RAM, so 'disk is slow' is really 'a cache MISS
+is slow' -- which is why a benchmark that ignores cache state is meaningless.
+
+=== 3. Buffer size: same bytes, different syscall counts ===
+  buffer     512 B ->     53 ms   (131072 read() calls)
+  buffer    4096 B ->     10 ms   (16384 read() calls)
+  buffer   65536 B ->      5 ms   (1024 read() calls)
+  buffer 1048576 B ->      4 ms   (64 read() calls)
+Identical bytes read. The difference is the number of syscalls, each of
+which crosses the user/kernel boundary -- the reason buffered streams exist.
+
+=== 4. The cost of durability: write, flush, and fsync ===
+  no fsync at all                    4 ms
+  fsync every record              7215 ms
+  fsync every 100 records           88 ms
+Durability per record cost 1766x the un-synced write.
+Batching amortises it -- which is exactly what a database's group commit does,
+trading a little latency for a large throughput gain, at the same durability.
+
+=== 5. What fsync actually guarantees ===
+A write() returns once the data is in the OS page cache -- NOT on disk.
+Until fsync() returns, a power loss or kernel crash can lose it, even though
+the process already moved on. Every database's durability (the D in ACID)
+is built on exactly this call, which is why commit latency has a floor set
+by storage hardware and why group commit exists.
