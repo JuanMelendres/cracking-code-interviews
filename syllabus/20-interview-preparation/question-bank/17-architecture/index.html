@@ -9957,6 +9957,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#domain-events-vs-integration-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Events vs. Integration Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12439,6 +12450,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#domain-events-vs-integration-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Events vs. Integration Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12578,11 +12600,14 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 9 chapters yielded 28 deep questions + 28 quick-fire
-questions = <strong>56 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 10 chapters yielded 30 deep questions + 31 quick-fire
+questions = <strong>61 real questions</strong>. No Junior Fundamentals chapter exists in this
 domain — architecture presupposes backend fundamentals already covered elsewhere.
 <code>clean-hexagonal-architecture.md</code> genuinely has 10 deep questions (not a leveled
-Junior/Mid template — the plain template with more Q&amp;A pairs than usual).</p>
+Junior/Mid template — the plain template with more Q&amp;A pairs than usual).
+(Updated 2026-09-27: Domain Events vs. Integration Events had a complete Interview
+Questions section never indexed — a stale-index gap, not a content gap. Added 2
+questions + 3 quick-fire cards.)</p>
 <hr />
 <h2 id="architecture-decision-records">Architecture Decision Records<a class="headerlink" href="#architecture-decision-records" title="Permanent link">&para;</a></h2>
 <h3 id="q1-whats-the-single-most-common-way-an-adr-fails-to-be-useful-even-when-its-technically-well-formatted">Q1 — What's the single most common way an ADR fails to be useful, even when it's technically well-formatted?<a class="headerlink" href="#q1-whats-the-single-most-common-way-an-adr-fails-to-be-useful-even-when-its-technically-well-formatted" title="Permanent link">&para;</a></h3>
@@ -12770,6 +12795,20 @@ Junior/Mid template — the plain template with more Q&amp;A pairs than usual).<
 - <strong>Senior:</strong> Names fitness functions specifically and describes a concrete example (a coupling count, a dependency-direction rule).
 - <strong>Staff:</strong> Addresses threshold ownership and the review process for changing it, so the fitness function remains real governance.</p>
 <hr />
+<h2 id="domain-events-vs-integration-events">Domain Events vs. Integration Events<a class="headerlink" href="#domain-events-vs-integration-events" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-teams-aggregate-publishes-a-domain-event-that-another-teams-service-has-started-consuming-directly-off-the-broker-is-that-a-problem-and-if-so-what-would-you-do">Q1 — Your team's aggregate publishes a domain event that another team's service has started consuming directly off the broker. Is that a problem, and if so, what would you do?<a class="headerlink" href="#q1-your-teams-aggregate-publishes-a-domain-event-that-another-teams-service-has-started-consuming-directly-off-the-broker-is-that-a-problem-and-if-so-what-would-you-do" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../17-architecture/domain-events-vs-integration-events/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats it as acceptable since "it works today" — the common mistake this question targets.
+- <strong>Senior:</strong> Recognizes yes, this is a real risk: the other team now depends on a shape your team never promised to keep stable; names the fix — introduce a translation boundary and a real, versioned integration event, then migrate the consumer onto it.
+- <strong>Staff:</strong> Discusses how to detect this pattern organizationally (schema registry access logs, contract-testing coverage) before it causes an incident, not just how to remediate one instance.</p>
+<h3 id="q2-why-might-a-domain-event-and-its-corresponding-integration-event-legitimately-have-different-fields-not-just-different-names-for-the-same-fields">Q2 — Why might a domain event and its corresponding integration event legitimately have different fields, not just different names for the same fields?<a class="headerlink" href="#q2-why-might-a-domain-event-and-its-corresponding-integration-event-legitimately-have-different-fields-not-just-different-names-for-the-same-fields" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../17-architecture/domain-events-vs-integration-events/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes identical fields always, i.e. that the translation boundary only renames fields and never drops them — the common mistake this question targets.
+- <strong>Senior:</strong> States that a domain event can carry internal-only details (audit fields, internal identifiers, convenience denormalizations) that no external consumer needs or should see, and gives a concrete example of a field that should be dropped (this chapter's demo: <code>loyaltyPointsEarned</code>).
+- <strong>Staff:</strong> Connects this to minimizing public API surface area generally, and the cost of accidentally over-exposing internal detail that then becomes de facto load-bearing for external consumers.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -12920,6 +12959,21 @@ Junior/Mid template — the plain template with more Q&amp;A pairs than usual).<
 <td>Why doesn't a good architecture review at project kickoff prevent this kind of coupling?</td>
 <td><a href="../../../17-architecture/technical-debt-and-evolutionary-architecture/#flashcards">Technical Debt and Evolutionary Architecture</a></td>
 </tr>
+<tr>
+<td>29</td>
+<td>What's the real difference between a domain event and an integration event?</td>
+<td><a href="../../../17-architecture/domain-events-vs-integration-events/#flashcards">Domain Events vs. Integration Events</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>What real, measured evidence shows publishing a domain event directly as an external message is dangerous?</td>
+<td><a href="../../../17-architecture/domain-events-vs-integration-events/#flashcards">Domain Events vs. Integration Events</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>Does a translation boundary between a domain event and an integration event only rename fields?</td>
+<td><a href="../../../17-architecture/domain-events-vs-integration-events/#flashcards">Domain Events vs. Integration Events</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12962,7 +13016,7 @@ Junior/Mid template — the plain template with more Q&amp;A pairs than usual).<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

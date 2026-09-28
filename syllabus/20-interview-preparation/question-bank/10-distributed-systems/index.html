@@ -9690,6 +9690,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#distributed-locking-and-fencing-tokens-t-2422" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Locking and Fencing Tokens (T-2422)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12395,6 +12406,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#distributed-locking-and-fencing-tokens-t-2422" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Locking and Fencing Tokens (T-2422)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12534,10 +12556,12 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 7 chapters yielded 15 deep questions + 24 quick-fire
-questions = <strong>39 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 8 chapters yielded 16 deep questions + 27 quick-fire
+questions = <strong>43 real questions</strong>. No Junior Fundamentals chapter exists in this
 domain — distributed systems presupposes backend fundamentals already covered
-elsewhere.</p>
+elsewhere. (Updated 2026-09-27: <code>distributed-locking-and-fencing-tokens.md</code> had a
+complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 1 question + 3 quick-fire cards.)</p>
 <p><strong>Incidental fix while mining this domain:</strong> <code>multi-region-failover-and-disaster-recovery.md</code>'s
 Flashcards section used <code>## Card:</code> (heading level 2) instead of the file's own
 <code>### Card:</code> convention (heading level 3) for all three of its cards — the same class
@@ -12647,6 +12671,14 @@ of markdown-hierarchy inconsistency found and fixed in <code>09-messaging-event-
 - <strong>Junior/Mid:</strong> Assumes a timestamp alone can reliably distinguish concurrent from causally-ordered writes — the common mistake this question targets, unreliable due to clock skew and network delay.
 - <strong>Senior:</strong> Correctly names vector clocks and the dominates/concurrent distinction — a <code>CONCURRENT</code> comparison means neither can be safely discarded.
 - <strong>Staff:</strong> Names a concrete real merge strategy (Dynamo's shopping-cart union) and states plainly that vector clocks detect but never resolve the conflict.</p>
+<hr />
+<h2 id="distributed-locking-and-fencing-tokens-t-2422">Distributed Locking and Fencing Tokens (T-2422)<a class="headerlink" href="#distributed-locking-and-fencing-tokens-t-2422" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-service-uses-a-distributed-lock-to-ensure-only-one-instance-processes-a-job-at-a-time-is-this-sufficient-to-prevent-duplicate-processing">Q1 — Your service uses a distributed lock to ensure only one instance processes a job at a time. Is this sufficient to prevent duplicate processing?<a class="headerlink" href="#q1-your-service-uses-a-distributed-lock-to-ensure-only-one-instance-processes-a-job-at-a-time-is-this-sufficient-to-prevent-duplicate-processing" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../10-distributed-systems/distributed-locking-and-fencing-tokens/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Answers "yes, the lock is sufficient" — the common mistake this question targets.
+- <strong>Senior:</strong> Names the pause-then-stale-write mechanism specifically — if the lock holder pauses (a GC pause, a slow I/O call) longer than its lease's TTL, the lock service reassigns the lock, and the original holder can resume and act as if it still holds it — and proposes fencing tokens, checked by the job's own side-effecting operations, as the fix.
+- <strong>Staff:</strong> Explains precisely why shortening the lease TTL doesn't fully solve it (any TTL has some real pause duration that exceeds it), and discusses what to do when the protected resource can't support fencing tokens directly (introducing a fencing-aware intermediary).</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12778,6 +12810,21 @@ of markdown-hierarchy inconsistency found and fixed in <code>09-messaging-event-
 <td>What's the exact condition guaranteeing a read quorum overlaps a write quorum, and is <code>W + R = N</code> sufficient?</td>
 <td><a href="../../../10-distributed-systems/vector-clocks-and-quorum-based-replication/#flashcards">Vector Clocks and Quorum-Based Replication</a></td>
 </tr>
+<tr>
+<td>25</td>
+<td>Does shortening a distributed lock's lease TTL fix the pause-then-stale-write bug?</td>
+<td><a href="../../../10-distributed-systems/distributed-locking-and-fencing-tokens/#flashcards">Distributed Locking and Fencing Tokens</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>What did this chapter's real demo measure for a 300ms lease against a real 500ms pause, with and without fencing tokens?</td>
+<td><a href="../../../10-distributed-systems/distributed-locking-and-fencing-tokens/#flashcards">Distributed Locking and Fencing Tokens</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Why must the fencing-token check happen at the resource being written to, rather than inside the lock service itself?</td>
+<td><a href="../../../10-distributed-systems/distributed-locking-and-fencing-tokens/#flashcards">Distributed Locking and Fencing Tokens</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12813,7 +12860,7 @@ of markdown-hierarchy inconsistency found and fixed in <code>09-messaging-event-
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

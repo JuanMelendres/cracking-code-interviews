@@ -9808,6 +9808,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-compose-multi-service-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose: Multi-Service Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaling-mechanics-metrics-and-scaling-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12351,6 +12373,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-compose-multi-service-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose: Multi-Service Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaling-mechanics-metrics-and-scaling-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12490,11 +12534,15 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 5 chapters yielded 8 deep questions + 5 leveled
-Junior/Mid questions + 9 quick-fire questions = <strong>22 real questions</strong>. This is a
-genuinely small domain (5 chapters); <code>docker-and-containers-fundamentals.md</code> is this
+<p><strong>Honest count for this domain:</strong> 7 chapters yielded 12 deep questions + 5 leveled
+Junior/Mid questions + 12 quick-fire questions = <strong>29 real questions</strong>. This is a
+genuinely small domain (7 chapters); <code>docker-and-containers-fundamentals.md</code> is this
 domain's Junior Fundamentals chapter (older numbered <code>## 15. Interview Questions</code>
-template, no Flashcards section of its own).</p>
+template, no Flashcards section of its own). (Updated 2026-09-27:
+<code>docker-compose-multi-service-orchestration.md</code> and
+<code>horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md</code> had complete
+Interview Questions sections never indexed — a stale-index gap, not a content gap.
+Added 4 questions + 3 quick-fire cards.)</p>
 <hr />
 <h2 id="docker-and-containers-fundamentals-junior-fundamentals">Docker and Containers Fundamentals (Junior Fundamentals)<a class="headerlink" href="#docker-and-containers-fundamentals-junior-fundamentals" title="Permanent link">&para;</a></h2>
 <p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/docker-and-containers-fundamentals/#15-interview-questions">§15, Interview Questions</a></p>
@@ -12565,6 +12613,34 @@ template, no Flashcards section of its own).</p>
 - <strong>Senior:</strong> Correctly distinguishes readiness from liveness probe purposes and explains that a <code>startupProbe</code> suppresses liveness checks until genuinely-slow startup completes.
 - <strong>Staff:</strong> Notes the failure mode if misconfigured — a slow-starting pod gets killed and restarted repeatedly, a startup crash-loop that looks like an application bug but is actually a probe-timing misconfiguration.</p>
 <hr />
+<h2 id="docker-compose-multi-service-orchestration">Docker Compose: Multi-Service Orchestration<a class="headerlink" href="#docker-compose-multi-service-orchestration" title="Permanent link">&para;</a></h2>
+<h3 id="q1-api-depends-on-db-via-depends_on-db-on-a-fresh-clone-api-sometimes-fails-to-connect-on-startup-but-always-works-on-retry-why">Q1 — <code>api</code> depends on <code>db</code> via <code>depends_on: [db]</code>. On a fresh clone, <code>api</code> sometimes fails to connect on startup but always works on retry. Why?<a class="headerlink" href="#q1-api-depends-on-db-via-depends_on-db-on-a-fresh-clone-api-sometimes-fails-to-connect-on-startup-but-always-works-on-retry-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/docker-compose-multi-service-orchestration/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes <code>depends_on</code> guarantees readiness — the common mistake this question targets.
+- <strong>Senior:</strong> Names the specific mechanism: <code>depends_on</code>'s plain list form only waits for <code>db</code>'s container to start, not for Postgres to finish <code>initdb</code> and start accepting connections — a genuinely fresh volume races this.
+- <strong>Staff:</strong> Explains why this bug is invisible on a developer's own already-initialized volume but reliably reappears for a genuinely fresh checkout or CI runner.</p>
+<h3 id="q2-how-does-the-api-service-know-how-to-reach-db-does-it-need-the-databases-ip-address">Q2 — How does the <code>api</code> service know how to reach <code>db</code> — does it need the database's IP address?<a class="headerlink" href="#q2-how-does-the-api-service-know-how-to-reach-db-does-it-need-the-databases-ip-address" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/docker-compose-multi-service-orchestration/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes an IP address or <code>localhost</code> is needed — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states Compose creates a private network per project with real DNS resolution by service name — <code>api</code> reaches <code>db</code> simply by connecting to the hostname <code>"db"</code>.
+- <strong>Staff:</strong> Connects this to why hardcoding IPs or <code>localhost</code> in multi-service Compose configs is a common, avoidable portability bug.</p>
+<hr />
+<h2 id="horizontal-pod-autoscaling-mechanics-metrics-and-scaling-behavior">Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior<a class="headerlink" href="#horizontal-pod-autoscaling-mechanics-metrics-and-scaling-behavior" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-team-reports-their-hpa-is-too-slow-to-scale-down-after-a-traffic-spike-ends-walk-me-through-how-youd-investigate">Q1 — A team reports their HPA is "too slow" to scale down after a traffic spike ends. Walk me through how you'd investigate.<a class="headerlink" href="#q1-a-team-reports-their-hpa-is-too-slow-to-scale-down-after-a-traffic-spike-ends-walk-me-through-how-youd-investigate" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Immediately assumes a metrics pipeline bug without checking the stabilization-window explanation first — the common mistake this question targets.
+- <strong>Senior:</strong> Checks whether this matches expected stabilization-window behavior (default 300s) — the controller deliberately holds at the highest recent recommendation, not the latest, to protect against premature shrinkage.
+- <strong>Staff:</strong> Discusses when shortening the window is actually justified, and what measurement should precede that decision.</p>
+<h3 id="q2-what-does-the-hpas-tolerance-band-actually-protect-against-and-does-it-apply-the-same-way-for-scale-up-as-scale-down">Q2 — What does the HPA's tolerance band actually protect against, and does it apply the same way for scale-up as scale-down?<a class="headerlink" href="#q2-what-does-the-hpas-tolerance-band-actually-protect-against-and-does-it-apply-the-same-way-for-scale-up-as-scale-down" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Conflates the tolerance band with the scale-up/scale-down asymmetry as a single rule — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states the tolerance band suppresses recommended changes within a default 10% margin symmetrically in both directions — separate from the fact that scale-up applies immediately while scale-down is stabilized.
+- <strong>Staff:</strong> Discusses tuning both parameters independently for a given workload's real traffic shape.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -12620,6 +12696,21 @@ template, no Flashcards section of its own).</p>
 <td>What's the difference between a readiness probe and a liveness probe?</td>
 <td><a href="../../../14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing/#flashcards">Kubernetes Resource Limits, Probes, and JVM Sizing</a></td>
 </tr>
+<tr>
+<td>10</td>
+<td>Does <code>depends_on: [db]</code> guarantee <code>db</code> is ready to accept connections before the dependent service starts?</td>
+<td><a href="../../../14-devops-containers/docker-compose-multi-service-orchestration/#flashcards">Docker Compose: Multi-Service Orchestration</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>How do you make Compose wait for a dependency to be genuinely ready, not just started?</td>
+<td><a href="../../../14-devops-containers/docker-compose-multi-service-orchestration/#flashcards">Docker Compose: Multi-Service Orchestration</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>How does one service in a <code>docker-compose.yml</code> reach another — by IP address?</td>
+<td><a href="../../../14-devops-containers/docker-compose-multi-service-orchestration/#flashcards">Docker Compose: Multi-Service Orchestration</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12659,7 +12750,7 @@ template, no Flashcards section of its own).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:20:47 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

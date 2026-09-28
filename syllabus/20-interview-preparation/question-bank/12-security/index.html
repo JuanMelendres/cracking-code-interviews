@@ -9782,6 +9782,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#authentication-attack-defense-brute-force-credential-stuffing-and-mfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enterprise-sso-saml-and-federated-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enterprise SSO, SAML, and Federated Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12439,6 +12461,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#authentication-attack-defense-brute-force-credential-stuffing-and-mfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enterprise-sso-saml-and-federated-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enterprise SSO, SAML, and Federated Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12578,8 +12622,11 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 9 chapters yielded 18 deep questions + 28 quick-fire
-questions = <strong>46 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 11 chapters yielded 22 deep questions + 32 quick-fire
+questions = <strong>54 real questions</strong>. (Updated 2026-09-27: <code>authentication-attack-defense-brute-force-and-mfa.md</code>
+and <code>enterprise-sso-saml-and-federated-identity.md</code> had complete Interview Questions
+sections never indexed — a stale-index gap, not a content gap. Added 4 questions +
+4 quick-fire cards.) No Junior Fundamentals chapter exists in this
 domain. Eight of nine chapters use a plain-bold-question Flashcards format
 (<code>**Q: ...** / A: ...</code>) rather than the <code>### Card:</code> template; only
 <code>oauth2-oidc-and-jwt.md</code> uses the standard template. Eight of nine deep-question
@@ -12713,6 +12760,34 @@ Junior/Mid candidate actually makes), matching the same derivation method used f
 - <strong>Junior/Mid:</strong> Treats quarterly generation as adequate because it satisfies the audit requirement that originally motivated it — the common mistake this question targets.
 - <strong>Senior:</strong> Correctly identifies quarterly generation as insufficient for continuous risk visibility, since new CVEs are disclosed continuously against already-deployed software.
 - <strong>Staff:</strong> Distinguishes build-time scanning from continuous scanning of already-deployed software and explains why both are needed.</p>
+<hr />
+<h2 id="authentication-attack-defense-brute-force-credential-stuffing-and-mfa">Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA<a class="headerlink" href="#authentication-attack-defense-brute-force-credential-stuffing-and-mfa" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-system-has-account-lockout-after-5-failed-attempts-is-that-sufficient-authentication-defense">Q1 — Your system has account lockout after 5 failed attempts. Is that sufficient authentication defense?<a class="headerlink" href="#q1-your-system-has-account-lockout-after-5-failed-attempts-is-that-sufficient-authentication-defense" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/authentication-attack-defense-brute-force-and-mfa/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Says lockout is sufficient — the common mistake this question targets.
+- <strong>Senior:</strong> Names credential stuffing specifically: lockout only stops brute force/guessing, doing nothing against a stolen-but-correct password, which generates zero failures.
+- <strong>Staff:</strong> Discusses which account tiers should get mandatory MFA and the friction/risk trade-off behind that decision.</p>
+<h3 id="q2-explain-how-totp-based-mfa-actually-works-without-saying-it-generates-a-random-code">Q2 — Explain how TOTP-based MFA actually works, without saying "it generates a random code."<a class="headerlink" href="#q2-explain-how-totp-based-mfa-actually-works-without-saying-it-generates-a-random-code" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/authentication-attack-defense-brute-force-and-mfa/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes the code as random or server-pushed rather than independently computed — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly describes HOTP's HMAC-based counter mechanism wrapped by TOTP's time-step rule (RFC 6238), and why enrollment is the security-critical moment.
+- <strong>Staff:</strong> Discusses clock-skew tolerance trade-offs and real-time phishing (an attacker relaying a live TOTP code) as MFA's own residual attack surface.</p>
+<hr />
+<h2 id="enterprise-sso-saml-and-federated-identity">Enterprise SSO, SAML, and Federated Identity<a class="headerlink" href="#enterprise-sso-saml-and-federated-identity" title="Permanent link">&para;</a></h2>
+<h3 id="q1-whats-the-actual-difference-between-sso-and-federated-sso-and-why-does-it-matter-which-one-youre-building">Q1 — What's the actual difference between SSO and Federated SSO, and why does it matter which one you're building?<a class="headerlink" href="#q1-whats-the-actual-difference-between-sso-and-federated-sso-and-why-does-it-matter-which-one-youre-building" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/enterprise-sso-saml-and-federated-identity/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats the two terms as fully interchangeable — the common mistake this question targets.
+- <strong>Senior:</strong> Names the actual mechanism difference (shared session/cookie vs. a portable signed assertion/token validated independently) with a concrete example of each.
+- <strong>Staff:</strong> Connects the distinction to a real integration-planning decision — federating against an external partner requires a genuine security review and formal trust-establishment process internal SSO never needs.</p>
+<h3 id="q2-how-would-you-integrate-a-spring-boot-application-with-an-enterprise-saml-identity-provider-like-pingfederate">Q2 — How would you integrate a Spring Boot application with an enterprise SAML identity provider like PingFederate?<a class="headerlink" href="#q2-how-would-you-integrate-a-spring-boot-application-with-an-enterprise-saml-identity-provider-like-pingfederate" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../12-security/enterprise-sso-saml-and-federated-identity/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes only the OIDC/OAuth2 flow when specifically asked about SAML — the common mistake this question targets.
+- <strong>Senior:</strong> Names the real dependency (<code>spring-security-saml2-service-provider</code>) and <code>application.yml</code> structure without needing to look it up.
+- <strong>Staff:</strong> Discusses the operational side beyond initial setup — IdP certificate rotation monitoring, clock-skew tolerance, and the coordination cost across application engineering and enterprise identity teams.</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12864,6 +12939,26 @@ Junior/Mid candidate actually makes), matching the same derivation method used f
 <td>Why should base-image vulnerability remediation typically be owned centrally rather than per-service?</td>
 <td><a href="../../../12-security/supply-chain-security-sbom-and-dependency-risk/#flashcards">Supply Chain Security, SBOM, Dependency Risk</a></td>
 </tr>
+<tr>
+<td>29</td>
+<td>What's the precise difference between SSO and Federated SSO?</td>
+<td><a href="../../../12-security/enterprise-sso-saml-and-federated-identity/#flashcards">Enterprise SSO, SAML, and Federated Identity</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>What is a SAML Assertion, mechanically?</td>
+<td><a href="../../../12-security/enterprise-sso-saml-and-federated-identity/#flashcards">Enterprise SSO, SAML, and Federated Identity</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>Why can't a bare OAuth2 access token be used to reliably identify a user?</td>
+<td><a href="../../../12-security/enterprise-sso-saml-and-federated-identity/#flashcards">Enterprise SSO, SAML, and Federated Identity</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td>Beyond checking the signature, what else must a Service Provider validate on an incoming SAML assertion?</td>
+<td><a href="../../../12-security/enterprise-sso-saml-and-federated-identity/#flashcards">Enterprise SSO, SAML, and Federated Identity</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12901,7 +12996,7 @@ Junior/Mid candidate actually makes), matching the same derivation method used f
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:08:40 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

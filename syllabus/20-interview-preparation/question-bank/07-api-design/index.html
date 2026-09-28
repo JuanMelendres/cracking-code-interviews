@@ -9563,6 +9563,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#api-versioning-strategies-t-919" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Versioning Strategies (T-919)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openapi-and-contract-first-api-design-t-2414" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAPI and Contract-First API Design (T-2414)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhook-design-and-delivery-guarantees-t-2415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhook Design and Delivery Guarantees (T-2415)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12351,6 +12384,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#api-versioning-strategies-t-919" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Versioning Strategies (T-919)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openapi-and-contract-first-api-design-t-2414" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAPI and Contract-First API Design (T-2414)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhook-design-and-delivery-guarantees-t-2415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhook Design and Delivery Guarantees (T-2415)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12490,10 +12556,13 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 5 chapters yielded 8 deep questions + 9
+<p><strong>Honest count for this domain:</strong> 8 chapters yielded 14 deep questions + 9
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, <code>rest-api-fundamentals.md</code>) + 12 quick-fire questions = <strong>29 real
-questions</strong>.</p>
+chapter, <code>rest-api-fundamentals.md</code>) + 20 quick-fire questions = <strong>43 real
+questions</strong>. (Updated 2026-09-27: <code>api-versioning-strategies.md</code>,
+<code>openapi-and-contract-first-api-design.md</code>, and <code>webhook-design-and-delivery-guarantees.md</code>
+had complete Interview Questions sections never indexed — a stale-index gap, not
+a content gap. Added 6 questions + 8 quick-fire cards.)</p>
 <hr />
 <h2 id="rest-api-fundamentals">REST API Fundamentals<a class="headerlink" href="#rest-api-fundamentals" title="Permanent link">&para;</a></h2>
 <p>Junior Fundamentals chapter — its Interview Questions already tag each by seniority.</p>
@@ -12599,6 +12668,48 @@ questions</strong>.</p>
 - <strong>Senior:</strong> Correctly explains the thread-exhaustion cascade mechanism — a slow downstream call holds the caller's thread indefinitely, and enough concurrent slow calls exhaust the caller's own pool.
 - <strong>Staff:</strong> Proposes enforcing deadline propagation as a platform-level convention (shared client library or lint rule) rather than a per-call judgment call.</p>
 <hr />
+<h2 id="api-versioning-strategies-t-919">API Versioning Strategies (T-919)<a class="headerlink" href="#api-versioning-strategies-t-919" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-team-migrated-from-uri-path-versioning-to-header-based-versioning-what-real-failure-mode-should-you-expect-from-that-migration-and-why">Q1 — Your team migrated from URI-path versioning to header-based versioning. What real failure mode should you expect from that migration, and why?<a class="headerlink" href="#q1-your-team-migrated-from-uri-path-versioning-to-header-based-versioning-what-real-failure-mode-should-you-expect-from-that-migration-and-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/api-versioning-strategies/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes there's a sensible default version returned automatically when the header is missing — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly predicts that any existing caller that never sends the new <code>Api-Version</code> header gets a real <code>404</code> from Spring's <code>headers</code> request condition having no matching handler — not a default version, not a descriptive error — and proposes an explicit default-version fallback or a transition period keeping both schemes live.
+- <strong>Staff:</strong> Frames this as an organizational rollout risk (which teams/clients haven't migrated yet) rather than only a technical dispatch detail.</p>
+<h3 id="q2-a-caller-hits-your-media-type-versioned-endpoint-with-accept-what-real-http-status-do-they-get-and-why-does-that-matter">Q2 — A caller hits your media-type-versioned endpoint with <code>Accept: */*</code>. What real HTTP status do they get, and why does that matter?<a class="headerlink" href="#q2-a-caller-hits-your-media-type-versioned-endpoint-with-accept-what-real-http-status-do-they-get-and-why-does-that-matter" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/api-versioning-strategies/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes an ambiguous <code>Accept</code> header is rejected outright (a <code>406</code>) — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly predicts a real <code>200</code>, not a <code>406</code> — content negotiation resolves the generic <code>Accept</code> against whichever version-specific <code>produces</code> handler it matches first, silently — and can name the underlying reason (content negotiation is designed to always find something acceptable).
+- <strong>Staff:</strong> Connects this to a broader API-contract-clarity principle: any mechanism that resolves ambiguity silently, rather than rejecting it, defers a real bug to whoever debugs the resulting confusion later.</p>
+<hr />
+<h2 id="openapi-and-contract-first-api-design-t-2414">OpenAPI and Contract-First API Design (T-2414)<a class="headerlink" href="#openapi-and-contract-first-api-design-t-2414" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-hand-written-swagger-doc-and-the-real-api-youre-documenting-have-drifted-apart-how-does-that-happen-and-how-would-you-prevent-it">Q1 — A hand-written Swagger doc and the real API you're documenting have drifted apart. How does that happen, and how would you prevent it?<a class="headerlink" href="#q1-a-hand-written-swagger-doc-and-the-real-api-youre-documenting-have-drifted-apart-how-does-that-happen-and-how-would-you-prevent-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/openapi-and-contract-first-api-design/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes "more frequent manual reviews" of the hand-written doc as the fix, rather than removing the manual step entirely — the common mistake this question targets.
+- <strong>Senior:</strong> Recognizes that a hand-written spec is a second artifact with no mechanism forcing it to track the real code, and proposes annotation-driven generation (e.g., springdoc), describing the basic mechanism (reading <code>@GetMapping</code> and DTO fields).
+- <strong>Staff:</strong> Frames this as an organizational tooling decision — consistent generation across every team's APIs, published to a shared catalog — rather than a single-API fix.</p>
+<h3 id="q2-your-validation-annotation-min1-and-your-api-documentation-both-need-to-say-amount-must-be-at-least-1-how-do-you-avoid-maintaining-that-fact-twice">Q2 — Your validation annotation (<code>@Min(1)</code>) and your API documentation both need to say "amount must be at least 1." How do you avoid maintaining that fact twice?<a class="headerlink" href="#q2-your-validation-annotation-min1-and-your-api-documentation-both-need-to-say-amount-must-be-at-least-1-how-do-you-avoid-maintaining-that-fact-twice" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/openapi-and-contract-first-api-design/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes <code>@Schema</code> annotations are the only way to express constraints in the spec, duplicating what <code>@Min</code>/<code>@NotBlank</code> already provide — the common mistake this question targets.
+- <strong>Senior:</strong> Names the specific mechanism — <code>jakarta.validation</code> constraints like <code>@Min(1)</code> are read by the spec generator too, becoming a real <code>"minimum": 1</code> in the generated schema with zero OpenAPI-specific syntax added — with a concrete before/after example.
+- <strong>Staff:</strong> Connects this to the broader principle of a single source of truth: the fewer places a fact is expressed, the fewer places it can silently disagree with reality.</p>
+<hr />
+<h2 id="webhook-design-and-delivery-guarantees-t-2415">Webhook Design and Delivery Guarantees (T-2415)<a class="headerlink" href="#webhook-design-and-delivery-guarantees-t-2415" title="Permanent link">&para;</a></h2>
+<h3 id="q1-how-does-a-webhook-receiver-know-a-request-really-came-from-the-claimed-provider-and-not-an-attacker-who-found-the-url">Q1 — How does a webhook receiver know a request really came from the claimed provider, and not an attacker who found the URL?<a class="headerlink" href="#q1-how-does-a-webhook-receiver-know-a-request-really-came-from-the-claimed-provider-and-not-an-attacker-who-found-the-url" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/webhook-design-and-delivery-guarantees/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats a hard-to-guess URL as sufficient security — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly names HMAC signature verification — the provider computes a hash of the payload using a shared secret and sends it as a header; the receiver recomputes it and compares using a constant-time comparison to avoid a timing side-channel — and knows it proves authenticity/integrity but not confidentiality.
+- <strong>Staff:</strong> Discusses secret rotation and what happens to in-flight signed requests during a rotation.</p>
+<h3 id="q2-why-can-a-webhook-be-delivered-twice-for-the-same-logical-event-and-whose-responsibility-is-it-to-handle-that">Q2 — Why can a webhook be delivered twice for the same logical event, and whose responsibility is it to handle that?<a class="headerlink" href="#q2-why-can-a-webhook-be-delivered-twice-for-the-same-logical-event-and-whose-responsibility-is-it-to-handle-that" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../07-api-design/webhook-design-and-delivery-guarantees/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes a provider's "retry" mechanism implies duplicates are the provider's bug to fix, rather than an inherent property of at-least-once delivery — the common mistake this question targets.
+- <strong>Senior:</strong> Explains that a provider can't always know for certain a delivery was processed (a response can be lost even after successful processing), so it retries rather than risk losing an event, and correctly places deduplication responsibility on the receiver, using the provider's delivery ID.
+- <strong>Staff:</strong> Connects this to the general distributed-systems principle that exactly-once delivery is not achievable without idempotent processing on the receiving side.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <p><code>rest-api-fundamentals.md</code> has no Flashcards section (it uses the leveled Q1-Q9
 format above instead).</p>
@@ -12671,6 +12782,46 @@ format above instead).</p>
 <td>What concretely goes wrong if an internal gRPC call has no deadline?</td>
 <td><a href="../../../07-api-design/grpc-api-design/#flashcards">gRPC API Design</a></td>
 </tr>
+<tr>
+<td>13</td>
+<td>What real HTTP status does a header-versioned endpoint return when the version header is missing entirely?</td>
+<td><a href="../../../07-api-design/api-versioning-strategies/#flashcards">API Versioning Strategies</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Does a generic <code>Accept: */*</code> fail on a media-type-versioned endpoint?</td>
+<td><a href="../../../07-api-design/api-versioning-strategies/#flashcards">API Versioning Strategies</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>Why can't a spec generated by a tool like springdoc silently drift from the API's real behavior?</td>
+<td><a href="../../../07-api-design/openapi-and-contract-first-api-design/#flashcards">OpenAPI and Contract-First API Design</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>What does <code>@Min(1)</code> become in a generated OpenAPI schema?</td>
+<td><a href="../../../07-api-design/openapi-and-contract-first-api-design/#flashcards">OpenAPI and Contract-First API Design</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>What real dependency gap did this chapter's lab find in springdoc before generation worked?</td>
+<td><a href="../../../07-api-design/openapi-and-contract-first-api-design/#flashcards">OpenAPI and Contract-First API Design</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>What does an HMAC webhook signature actually prove, and what does it NOT provide?</td>
+<td><a href="../../../07-api-design/webhook-design-and-delivery-guarantees/#flashcards">Webhook Design and Delivery Guarantees</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Should a webhook sender retry a <code>401</code> the same way it retries a <code>503</code>?</td>
+<td><a href="../../../07-api-design/webhook-design-and-delivery-guarantees/#flashcards">Webhook Design and Delivery Guarantees</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Why do real webhook providers guarantee "at least once" delivery instead of "exactly once"?</td>
+<td><a href="../../../07-api-design/webhook-design-and-delivery-guarantees/#flashcards">Webhook Design and Delivery Guarantees</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12703,7 +12854,7 @@ format above instead).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 03:19:25 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

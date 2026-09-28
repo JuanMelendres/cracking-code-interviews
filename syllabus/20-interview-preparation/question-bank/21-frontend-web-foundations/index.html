@@ -10075,6 +10075,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#service-workers-and-pwa-caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Workers and PWA Caching Strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-files-chapters-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12395,6 +12406,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#service-workers-and-pwa-caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Workers and PWA Caching Strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-files-chapters-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12540,10 +12562,12 @@ files matching this domain's own natural topic groups: this file (JavaScript,
 TypeScript, browser fundamentals, security, and cross-cutting practice — 7 chapters),
 <a href="../21-frontend-web-react/"><code>21-frontend-web-react.md</code></a> (14 chapters), and
 <a href="../21-frontend-web-nextjs/"><code>21-frontend-web-nextjs.md</code></a> (17 chapters).</p>
-<p><strong>Honest count for this file:</strong> 7 chapters yielded 15 deep questions + 23 quick-fire
-questions = <strong>38 real questions</strong>. No Junior Fundamentals chapter in this specific
+<p><strong>Honest count for this file:</strong> 8 chapters yielded 17 deep questions + 26 quick-fire
+questions = <strong>43 real questions</strong>. No Junior Fundamentals chapter in this specific
 group, though the frontend domain overall spans the full Junior–Staff ladder per its
-Scope Addendum in <code>CLAUDE.md</code>.</p>
+Scope Addendum in <code>CLAUDE.md</code>. (Updated 2026-09-27: <code>service-workers-and-pwa-caching-strategies.md</code>
+had a complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions + 3 quick-fire cards.)</p>
 <hr />
 <h2 id="how-the-web-works-html-css-the-dom-and-http">How the Web Works: HTML, CSS, the DOM, and HTTP<a class="headerlink" href="#how-the-web-works-html-css-the-dom-and-http" title="Permanent link">&para;</a></h2>
 <h3 id="q1-whats-the-difference-between-the-html-you-write-and-the-dom">Q1 — What's the difference between the HTML you write and the DOM?<a class="headerlink" href="#q1-whats-the-difference-between-the-html-you-write-and-the-dom" title="Permanent link">&para;</a></h3>
@@ -12648,6 +12672,20 @@ Scope Addendum in <code>CLAUDE.md</code>.</p>
 - <strong>Junior/Mid:</strong> Treats this as purely a time-management tip rather than connecting it to why isolating cause-and-effect is structurally harder once multiple UI bugs are visible at once — the common mistake this question targets.
 - <strong>Senior:</strong> Explains that a UI's multiple simultaneous bugs are harder to isolate after the fact than a backend function's single wrong return value, and that incremental rendering avoids that compounding.
 - <strong>Staff:</strong> Generalizes to real development practice — a large, unreviewed frontend PR risks the identical compounding problem at team scale, part of the case for small, incrementally-reviewable PRs.</p>
+<hr />
+<h2 id="service-workers-and-pwa-caching-strategies">Service Workers and PWA Caching Strategies<a class="headerlink" href="#service-workers-and-pwa-caching-strategies" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-team-just-added-a-service-worker-to-cache-api-responses-a-user-reports-seeing-week-old-data-even-though-they-have-a-good-connection-whats-your-first-hypothesis">Q1 — Your team just added a service worker to cache API responses. A user reports seeing week-old data even though they have a good connection. What's your first hypothesis?<a class="headerlink" href="#q1-your-team-just-added-a-service-worker-to-cache-api-responses-a-user-reports-seeing-week-old-data-even-though-they-have-a-good-connection-whats-your-first-hypothesis" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../21-frontend-web/service-workers-and-pwa-caching-strategies/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes the service worker itself is malfunctioning — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly identifies the endpoint is likely using a cache-first strategy when it should use network-first, so it never re-checks the network once cached, regardless of connectivity.
+- <strong>Staff:</strong> Discusses cache versioning/invalidation as the immediate mitigation versus fixing the strategy choice as the permanent remediation.</p>
+<h3 id="q2-does-having-a-service-worker-mean-your-app-works-offline">Q2 — Does having a service worker mean your app works offline?<a class="headerlink" href="#q2-does-having-a-service-worker-mean-your-app-works-offline" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../21-frontend-web/service-workers-and-pwa-caching-strategies/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Claims "yes" without qualification — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly states only requests matching a caching strategy that actually populates and reads from the cache survive being offline; anything else fails exactly as it would with no service worker.
+- <strong>Staff:</strong> Discusses how to systematically test genuine offline behavior across every route an app depends on, rather than assuming coverage from a successful service-worker registration alone.</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-files-chapters-flashcards">Quick-fire questions (from this file's chapters' Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-files-chapters-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12774,6 +12812,21 @@ Scope Addendum in <code>CLAUDE.md</code>.</p>
 <td>Which phase of the frontend-adapted protocol is the single highest-leverage, most frequently skipped phase?</td>
 <td><a href="../../../21-frontend-web/frontend-live-coding-and-debugging-protocol/#flashcards">Frontend Live-Coding &amp; Debugging Protocol</a></td>
 </tr>
+<tr>
+<td>24</td>
+<td>If a page registers a service worker for the first time, does that same page load's own resource requests get intercepted by it?</td>
+<td><a href="../../../21-frontend-web/service-workers-and-pwa-caching-strategies/#flashcards">Service Workers and PWA Caching Strategies</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>What's the actual trade-off difference between cache-first and network-first, not just the mechanical order of operations?</td>
+<td><a href="../../../21-frontend-web/service-workers-and-pwa-caching-strategies/#flashcards">Service Workers and PWA Caching Strategies</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>What did a real demo prove about offline support with a service worker?</td>
+<td><a href="../../../21-frontend-web/service-workers-and-pwa-caching-strategies/#flashcards">Service Workers and PWA Caching Strategies</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12808,7 +12861,7 @@ Scope Addendum in <code>CLAUDE.md</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 14:35:07 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

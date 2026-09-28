@@ -9631,6 +9631,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#behavior-driven-development-with-cucumber-t-2412" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior-Driven Development with Cucumber (T-2412)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-asynchronous-and-concurrent-code-t-2420" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Asynchronous and Concurrent Code (T-2420)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12417,6 +12439,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#behavior-driven-development-with-cucumber-t-2412" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior-Driven Development with Cucumber (T-2412)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-asynchronous-and-concurrent-code-t-2420" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Asynchronous and Concurrent Code (T-2420)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12556,10 +12600,13 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 8 chapters yielded 14 deep questions + 5
+<p><strong>Honest count for this domain:</strong> 10 chapters yielded 19 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, <code>unit-testing-fundamentals-with-junit.md</code>) + 6 quick-fire questions = <strong>25
-real questions</strong>.</p>
+chapter, <code>unit-testing-fundamentals-with-junit.md</code>) + 9 quick-fire questions = <strong>33
+real questions</strong>. (Updated 2026-09-27: <code>behavior-driven-development-with-cucumber.md</code>
+and <code>testing-asynchronous-and-concurrent-code.md</code> had complete Interview Questions
+sections never indexed — a stale-index gap, not a content gap. Added 5 questions +
+3 quick-fire cards; the latter chapter has no Flashcards section.)</p>
 <hr />
 <h2 id="unit-testing-fundamentals-with-junit">Unit Testing Fundamentals with JUnit<a class="headerlink" href="#unit-testing-fundamentals-with-junit" title="Permanent link">&para;</a></h2>
 <p>Junior Fundamentals chapter — its Interview Questions already tag each by seniority.</p>
@@ -12687,6 +12734,40 @@ real questions</strong>.</p>
 - <strong>Senior:</strong> Describes a calm, evidence-first investigation process — reading the actual assertion failure message before changing anything.
 - <strong>Staff:</strong> Explicitly draws the parallel to real production debugging discipline, recognizing the interview format's actual purpose.</p>
 <hr />
+<h2 id="behavior-driven-development-with-cucumber-t-2412">Behavior-Driven Development with Cucumber (T-2412)<a class="headerlink" href="#behavior-driven-development-with-cucumber-t-2412" title="Permanent link">&para;</a></h2>
+<h3 id="q1-whats-the-real-difference-between-tdd-and-bdd">Q1 — What's the real difference between TDD and BDD?<a class="headerlink" href="#q1-whats-the-real-difference-between-tdd-and-bdd" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../08-testing/behavior-driven-development-with-cucumber/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes BDD as a stricter or different testing methodology rather than a vocabulary/audience layer on top of the same underlying mechanics — the common mistake this question targets.
+- <strong>Senior:</strong> States the audience/vocabulary distinction precisely — both use the same red-green rhythm underneath; TDD writes the check directly in code, for developers; BDD writes it in structured natural language (Gherkin) that non-developers can also read and validate — without conflating it with a claim that BDD tests "more thoroughly."
+- <strong>Staff:</strong> Discusses when BDD adoption has failed organizationally (no real non-developer involvement) versus when it's working as intended.</p>
+<h3 id="q2-how-does-a-scenario-outline-with-an-examples-table-actually-execute">Q2 — How does a <code>Scenario Outline</code> with an <code>Examples</code> table actually execute?<a class="headerlink" href="#q2-how-does-a-scenario-outline-with-an-examples-table-actually-execute" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../08-testing/behavior-driven-development-with-cucumber/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes it as "just a for-loop" rather than understanding each row is a real, distinct test node in the reported results — the common mistake this question targets.
+- <strong>Senior:</strong> States that each row in the <code>Examples</code> table becomes a genuinely separate, independently-reported test instance without needing to be told, and can name a real risk in how rows are chosen (a row whose expected value doesn't actually depend on the logic being varied can't catch a bug in it).
+- <strong>Staff:</strong> Connects this to broader data-driven-testing discipline: choosing test data that genuinely exercises different code paths, not just superficially different inputs.</p>
+<h3 id="q3-what-happens-when-cucumber-encounters-a-gherkin-step-with-no-matching-step-definition">Q3 — What happens when Cucumber encounters a Gherkin step with no matching step definition?<a class="headerlink" href="#q3-what-happens-when-cucumber-encounters-a-gherkin-step-with-no-matching-step-definition" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../08-testing/behavior-driven-development-with-cucumber/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes an undefined step is silently skipped or ignored — the common mistake this question targets.
+- <strong>Senior:</strong> Knows this produces a real, reported failure (<code>UndefinedStepException</code>) with real, actionable output — Cucumber generates a ready-to-paste Java method snippet inferred directly from the step's own wording, marked with a <code>PendingException</code> convention rather than an empty method body.
+- <strong>Staff:</strong> Frames this as a genuine productivity affordance for incrementally building out step definitions from stakeholder-written scenarios.</p>
+<hr />
+<h2 id="testing-asynchronous-and-concurrent-code-t-2420">Testing Asynchronous and Concurrent Code (T-2420)<a class="headerlink" href="#testing-asynchronous-and-concurrent-code-t-2420" title="Permanent link">&para;</a></h2>
+<h3 id="q1-you-write-a-test-for-a-method-that-kicks-off-async-work-using-threadsleep100-before-asserting-the-result-it-passes-locally-but-fails-intermittently-in-ci-why-and-how-would-you-fix-it">Q1 — You write a test for a method that kicks off async work, using <code>Thread.sleep(100)</code> before asserting the result. It passes locally but fails intermittently in CI. Why, and how would you fix it?<a class="headerlink" href="#q1-you-write-a-test-for-a-method-that-kicks-off-async-work-using-threadsleep100-before-asserting-the-result-it-passes-locally-but-fails-intermittently-in-ci-why-and-how-would-you-fix-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../08-testing/testing-asynchronous-and-concurrent-code/#15-interview-questions">§ 15, Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Recognizes the sleep duration as the problem but proposes "increase the sleep" as the fix — a real, measured improvement in failure rate, never a real fix, and still genuinely flaky in principle. This is the common mistake this question targets.
+- <strong>Senior:</strong> Names <code>CountDownLatch</code> (or an equivalent real completion signal, like <code>CompletableFuture.join()</code>) specifically, and explains why widening the sleep only narrows the failure window rather than closing it — the real work occasionally takes longer than the guessed sleep, especially on a more loaded CI machine.
+- <strong>Staff:</strong> Connects this to a broader diagnostic habit: treating new test flakiness as a real signal worth root-causing (timing guess vs. genuine concurrency bug) rather than something to retry past.</p>
+<h3 id="q2-how-would-you-write-a-test-that-reliably-catches-a-race-condition-given-that-race-conditions-are-inherently-non-deterministic">Q2 — How would you write a test that reliably catches a race condition, given that race conditions are inherently non-deterministic?<a class="headerlink" href="#q2-how-would-you-write-a-test-that-reliably-catches-a-race-condition-given-that-race-conditions-are-inherently-non-deterministic" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../08-testing/testing-asynchronous-and-concurrent-code/#15-interview-questions">§ 15, Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes a single-threaded test, or a multi-threaded test with too few iterations to make the race statistically likely to reproduce — both provide false confidence, the common mistake this question targets.
+- <strong>Senior:</strong> Names the specific mechanism — running many threads performing many concurrent operations against the shared state, released simultaneously to maximize contention, with real iteration counts large enough to make luck-based passing unlikely (this chapter's real demo: 8 threads × 100,000 increments) — and can cite or estimate a real order-of-magnitude failure rate at that scale.
+- <strong>Staff:</strong> Generalizes this into a pre-release verification practice for any genuinely concurrent production code change before it ships.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <p>Only 2 of the 8 chapters in this domain have Flashcards sections.</p>
 <table>
@@ -12728,6 +12809,21 @@ real questions</strong>.</p>
 <td>What does coverage percentage actually measure?</td>
 <td><a href="../../../08-testing/test-strategy-and-test-doubles/#flashcards">Test Strategy, the Pyramid, and Test Doubles</a></td>
 </tr>
+<tr>
+<td>7</td>
+<td>What's the actual difference between TDD and BDD, beyond syntax?</td>
+<td><a href="../../../08-testing/behavior-driven-development-with-cucumber/#flashcards">Behavior-Driven Development with Cucumber</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Does a <code>Scenario Outline</code>'s <code>Examples</code> table run as one test looping over data, or as genuinely separate tests?</td>
+<td><a href="../../../08-testing/behavior-driven-development-with-cucumber/#flashcards">Behavior-Driven Development with Cucumber</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>What happens when Cucumber hits a Gherkin step with no matching step definition?</td>
+<td><a href="../../../08-testing/behavior-driven-development-with-cucumber/#flashcards">Behavior-Driven Development with Cucumber</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12761,7 +12857,7 @@ real questions</strong>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

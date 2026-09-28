@@ -9856,6 +9856,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#false-sharing-and-cache-line-contention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        False Sharing and Cache-Line Contention
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-startup-performance-cds-and-native-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JVM Startup Performance: CDS and Native Image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-mapped-files-and-zero-copy-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory-Mapped Files and Zero-Copy I/O
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-api-and-simd-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector API and SIMD Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12307,6 +12351,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#false-sharing-and-cache-line-contention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        False Sharing and Cache-Line Contention
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-startup-performance-cds-and-native-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JVM Startup Performance: CDS and Native Image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-mapped-files-and-zero-copy-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory-Mapped Files and Zero-Copy I/O
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-api-and-simd-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector API and SIMD Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12446,12 +12534,17 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 3 chapters yielded 6 deep questions + 9 quick-fire
-questions = <strong>15 real questions</strong>. No Junior Fundamentals chapter exists in this
-domain — this is a genuinely small domain (only 3 chapters), a companion to
+<p><strong>Honest count for this domain:</strong> 7 chapters yielded 12 deep questions + 21 quick-fire
+questions = <strong>33 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain — this is a genuinely small domain (7 chapters), a companion to
 <a href="../02-java-jvm-internals/"><code>02-java-jvm-internals.md</code></a> targeting Senior/Staff
-production-performance work specifically. Two of three chapters use a plain
-<code>**Q:** ... **A:** ...</code> Flashcards format instead of the <code>### Card:</code> template.</p>
+production-performance work specifically. Two of the original three chapters use a
+plain <code>**Q:** ... **A:** ...</code> Flashcards format instead of the <code>### Card:</code> template.
+(Updated 2026-09-27: <code>false-sharing-and-cache-line-contention.md</code>,
+<code>jvm-startup-performance-cds-and-native-image.md</code>, <code>memory-mapped-files-and-zero-copy-io.md</code>,
+and <code>vector-api-and-simd-performance.md</code> had complete Interview Questions sections
+never indexed — a stale-index gap, not a content gap. Added 6 questions + 12
+quick-fire cards.)</p>
 <hr />
 <h2 id="benchmarking-jmh-pitfalls">Benchmarking &amp; JMH Pitfalls<a class="headerlink" href="#benchmarking-jmh-pitfalls" title="Permanent link">&para;</a></h2>
 <h3 id="q1-a-teammate-shows-you-a-benchmark-claiming-optimization-a-is-40-faster-than-the-current-code-what-do-you-check-before-believing-it">Q1 — A teammate shows you a benchmark claiming Optimization A is 40% faster than the current code. What do you check before believing it?<a class="headerlink" href="#q1-a-teammate-shows-you-a-benchmark-claiming-optimization-a-is-40-faster-than-the-current-code-what-do-you-check-before-believing-it" title="Permanent link">&para;</a></h3>
@@ -12494,6 +12587,50 @@ production-performance work specifically. Two of three chapters use a plain
 - <strong>Junior/Mid:</strong> Names both tools without a clear differentiator — the common mistake this question targets.
 - <strong>Senior:</strong> States the built-in-vs-agent distinction and the native-frame visibility difference — JFR ships with the JDK at low overhead; async-profiler is a separate native agent with typically lower overhead and better native-frame visibility.
 - <strong>Staff:</strong> Gives a concrete scenario where each tool's specific strength would be the deciding factor.</p>
+<hr />
+<h2 id="false-sharing-and-cache-line-contention">False Sharing and Cache-Line Contention<a class="headerlink" href="#false-sharing-and-cache-line-contention" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-sharded-counter-design-one-counter-per-thread-summed-periodically-gets-slower-not-faster-as-more-shard-threads-are-added-how-would-you-diagnose-it">Q1 — A sharded counter design (one counter per thread, summed periodically) gets slower, not faster, as more shard threads are added. How would you diagnose it?<a class="headerlink" href="#q1-a-sharded-counter-design-one-counter-per-thread-summed-periodically-gets-slower-not-faster-as-more-shard-threads-are-added-how-would-you-diagnose-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/false-sharing-and-cache-line-contention/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Investigates lock contention or GC pressure first, missing that the design is explicitly lock-free with low allocation — the common mistake this question targets.
+- <strong>Senior:</strong> Names false sharing — the per-thread counters are likely packed close together (e.g., a plain array), landing multiple counters on the same 64-byte cache line; more shard threads means more cores actively invalidating that shared line.
+- <strong>Staff:</strong> Connects this to the general recognizable symptom pattern: "more parallelism made it slower, despite no logical contention."</p>
+<h3 id="q2-why-doesnt-padding-an-array-of-atomiclong-objects-at-the-array-slot-level-eliminate-false-sharing">Q2 — Why doesn't padding an array of <code>AtomicLong</code> objects at the array-slot level eliminate false sharing?<a class="headerlink" href="#q2-why-doesnt-padding-an-array-of-atomiclong-objects-at-the-array-slot-level-eliminate-false-sharing" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/false-sharing-and-cache-line-contention/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes object-array padding works the same as primitive-array padding — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly explains the reference-vs-inline-storage distinction — an array of object references controls where the references sit, not where the referenced objects themselves land on the heap.
+- <strong>Staff:</strong> Connects this to a real, discovered pitfall this chapter's own lab hit while building it — verified directly, not theoretical.</p>
+<hr />
+<h2 id="jvm-startup-performance-cds-and-native-image">JVM Startup Performance: CDS and Native Image<a class="headerlink" href="#jvm-startup-performance-cds-and-native-image" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-serverless-java-function-has-intermittent-latency-spikes-correlated-with-low-traffic-periods-how-would-you-diagnose-and-fix-it">Q1 — A serverless Java function has intermittent latency spikes correlated with low-traffic periods. How would you diagnose and fix it?<a class="headerlink" href="#q1-a-serverless-java-function-has-intermittent-latency-spikes-correlated-with-low-traffic-periods-how-would-you-diagnose-and-fix-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Investigates downstream dependencies or database performance before considering the invocation's own startup cost — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly diagnoses cold start (full JVM startup cost paid after scale-to-zero) and proposes GraalVM native-image or provisioned concurrency, naming the trade-off of each.
+- <strong>Staff:</strong> Frames the fix as a platform-wide build-pipeline decision rather than a one-off migration.</p>
+<h3 id="q2-your-team-enables-appcds-for-a-service-and-sees-no-measurable-startup-improvement-is-something-broken">Q2 — Your team enables AppCDS for a service and sees no measurable startup improvement. Is something broken?<a class="headerlink" href="#q2-your-team-enables-appcds-for-a-service-and-sees-no-measurable-startup-improvement-is-something-broken" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes something is broken or misconfigured — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly names the class-loading-volume mechanism — AppCDS's benefit is proportional to how many classes the application loads at startup; a small application has little for it to save.
+- <strong>Staff:</strong> Connects this to a broader principle: performance techniques quoted with a single percentage number are almost always conditional on workload shape.</p>
+<hr />
+<h2 id="memory-mapped-files-and-zero-copy-io">Memory-Mapped Files and Zero-Copy I/O<a class="headerlink" href="#memory-mapped-files-and-zero-copy-io" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-service-does-frequent-scattered-lookups-into-a-large-on-disk-index-file-using-ordinary-positional-reads-latency-is-high-but-disk-utilization-is-low-how-would-you-diagnose-it">Q1 — A service does frequent, scattered lookups into a large on-disk index file using ordinary positional reads. Latency is high, but disk utilization is low. How would you diagnose it?<a class="headerlink" href="#q1-a-service-does-frequent-scattered-lookups-into-a-large-on-disk-index-file-using-ordinary-positional-reads-latency-is-high-but-disk-utilization-is-low-how-would-you-diagnose-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes the disk hardware itself is the bottleneck despite the low-utilization signal contradicting that — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly diagnoses per-call syscall overhead from many scattered positional reads, not actual disk throughput, and proposes migrating to a memory-mapped file.
+- <strong>Staff:</strong> Connects the fix to real memory-capacity planning (does the index file's working set fit in available memory) rather than treating memory mapping as an unconditional win.</p>
+<hr />
+<h2 id="vector-api-and-simd-performance">Vector API and SIMD Performance<a class="headerlink" href="#vector-api-and-simd-performance" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-team-adopts-the-vector-api-for-a-hot-numeric-loop-expecting-a-big-speedup-and-measures-almost-none-whats-the-likely-explanation">Q1 — A team adopts the Vector API for a hot numeric loop expecting a big speedup and measures almost none. What's the likely explanation?<a class="headerlink" href="#q1-a-team-adopts-the-vector-api-for-a-hot-numeric-loop-expecting-a-big-speedup-and-measures-almost-none-whats-the-likely-explanation" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../16-performance-jvm/vector-api-and-simd-performance/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes a bug in the Vector API implementation — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly names HotSpot's SuperWord auto-vectorization as the likely cause — the loop was probably already being vectorized under default JVM settings — and proposes a with/without comparison (<code>-XX:-UseSuperWord</code>) to confirm.
+- <strong>Staff:</strong> Frames this as a general measurement-discipline principle: always measure a specific loop's real headroom before adopting a more complex, less portable optimization technique.</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12550,6 +12687,66 @@ production-performance work specifically. Two of three chapters use a plain
 <td>When would you reach for async-profiler instead of JFR?</td>
 <td><a href="../../../16-performance-jvm/profiling-jfr-and-flame-graphs/#flashcards">Profiling: async-profiler, JFR, Flame Graphs</a></td>
 </tr>
+<tr>
+<td>10</td>
+<td>What is false sharing, in one sentence?</td>
+<td><a href="../../../16-performance-jvm/false-sharing-and-cache-line-contention/#flashcards">False Sharing and Cache-Line Contention</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>What's the real measured cost of false sharing?</td>
+<td><a href="../../../16-performance-jvm/false-sharing-and-cache-line-contention/#flashcards">False Sharing and Cache-Line Contention</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Why doesn't padding an <code>AtomicLong</code> array work?</td>
+<td><a href="../../../16-performance-jvm/false-sharing-and-cache-line-contention/#flashcards">False Sharing and Cache-Line Contention</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Why did AppCDS show no measurable improvement in this chapter's own measurement?</td>
+<td><a href="../../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/#flashcards">JVM Startup Performance: CDS and Native Image</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>What does native-image's "closed-world assumption" actually break?</td>
+<td><a href="../../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/#flashcards">JVM Startup Performance: CDS and Native Image</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>What are the real measured startup-time and memory numbers, plain JVM vs. native-image?</td>
+<td><a href="../../../16-performance-jvm/jvm-startup-performance-cds-and-native-image/#flashcards">JVM Startup Performance: CDS and Native Image</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>Sequential vs. random access — which one does memory mapping actually help?</td>
+<td><a href="../../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/#flashcards">Memory-Mapped Files and Zero-Copy I/O</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>What's the real mechanism behind memory mapping's random-access speedup?</td>
+<td><a href="../../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/#flashcards">Memory-Mapped Files and Zero-Copy I/O</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Which real production system relies on memory-mapped file I/O?</td>
+<td><a href="../../../16-performance-jvm/memory-mapped-files-and-zero-copy-io/#flashcards">Memory-Mapped Files and Zero-Copy I/O</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Does HotSpot already vectorize simple loops?</td>
+<td><a href="../../../16-performance-jvm/vector-api-and-simd-performance/#flashcards">Vector API and SIMD Performance</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>What's the real measured Vector API speedup, with and without auto-vectorization?</td>
+<td><a href="../../../16-performance-jvm/vector-api-and-simd-performance/#flashcards">Vector API and SIMD Performance</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Why did <code>fma()</code> and <code>a*b+a</code> produce different bit-level results?</td>
+<td><a href="../../../16-performance-jvm/vector-api-and-simd-performance/#flashcards">Vector API and SIMD Performance</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12592,7 +12789,7 @@ production-performance work specifically. Two of three chapters use a plain
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:29:20 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

@@ -9671,6 +9671,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#database-normalization-1nf-through-bcnf-t-2411" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Normalization — 1NF Through BCNF (T-2411)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#views-and-materialized-views-t-2410" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views and Materialized Views (T-2410)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12637,6 +12659,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#database-normalization-1nf-through-bcnf-t-2411" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Normalization — 1NF Through BCNF (T-2411)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#views-and-materialized-views-t-2410" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views and Materialized Views (T-2410)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12811,11 +12855,14 @@ strained answer. This follows <code>CLAUDE.md</code>'s own Depth-by-Interview-Le
 </tr>
 </tbody>
 </table>
-<p><strong>Honest count.</strong> This domain's 16 chapters yielded <strong>40 deep questions</strong> (each with
+<p><strong>Honest count.</strong> This domain's 16 chapters yielded <strong>48 deep questions</strong> (each with
 full Interview Question Standard treatment already in the canonical chapter) and
-<strong>48 quick-fire questions</strong> (from Flashcards), plus <strong>5 already-leveled Junior/Mid
-questions</strong> from the one Junior Fundamentals chapter — <strong>93 real questions total</strong>,
-short of the requested ~150. Padding to an exact quota with invented, low-value
+<strong>57 quick-fire questions</strong> (from Flashcards), plus <strong>5 already-leveled Junior/Mid
+questions</strong> from the one Junior Fundamentals chapter — <strong>110 real questions total</strong>,
+short of the requested ~150. (Updated 2026-09-27: <code>database-normalization-1nf-through-bcnf.md</code>
+and <code>views-and-materialized-views.md</code> had complete Interview Questions sections
+never indexed — a stale-index gap, not a content gap. Added 8 questions + 9
+quick-fire cards.) Padding to an exact quota with invented, low-value
 questions was rejected per the plan's own sourcing discipline. Reaching closer to 150
 for this domain would mean either (a) writing new Junior/Mid questions for the 13
 chapters that currently target <code>senior</code>/<code>staff</code> only, genuinely grounded in their
@@ -13159,6 +13206,58 @@ directly rather than re-derived.</p>
 - <strong>Senior:</strong> States that HikariCP pools within one JVM and PgBouncer pools at the database tier across many app instances, and that production topologies typically run both.
 - <strong>Staff:</strong> Names the real PgBouncer <code>pool_mode = transaction</code> session-state-leak risk (advisory locks, <code>SET</code> variables silently surviving across logically unrelated requests reusing the same backend) as the reason <code>transaction</code> mode isn't a drop-in, zero-caveat upgrade over <code>session</code> mode.</p>
 <hr />
+<h2 id="database-normalization-1nf-through-bcnf-t-2411">Database Normalization — 1NF Through BCNF (T-2411)<a class="headerlink" href="#database-normalization-1nf-through-bcnf-t-2411" title="Permanent link">&para;</a></h2>
+<h3 id="q1-whats-the-difference-between-2nf-and-3nf-concretely">Q1 — What's the difference between 2NF and 3NF, concretely?<a class="headerlink" href="#q1-whats-the-difference-between-2nf-and-3nf-concretely" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/database-normalization-1nf-through-bcnf/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Attempts to state the two rules but often treats them as unrelated definitions to memorize separately, without recognizing the shared underlying pattern — the common mistake this question targets.
+- <strong>Senior:</strong> Names the shared pattern unprompted — 2NF removes a <em>partial</em> dependency (a column depending on only part of a composite key), 3NF removes a <em>transitive</em> dependency (a column depending on a non-key column) — and states both produce the identical anomaly shape, a fact duplicated across rows able to disagree with itself.
+- <strong>Staff:</strong> Connects this to schema-review practice — recognizing the pattern quickly when reviewing a new table design, before it ships.</p>
+<h3 id="q2-give-a-table-that-satisfies-3nf-but-not-bcnf">Q2 — Give a table that satisfies 3NF but not BCNF.<a class="headerlink" href="#q2-give-a-table-that-satisfies-3nf-but-not-bcnf" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/database-normalization-1nf-through-bcnf/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Cannot produce a concrete counterexample at all, or confuses BCNF with a stricter form of 1NF or 2NF rather than a narrower closure of a specific 3NF gap.
+- <strong>Senior:</strong> Produces <code>enrollments(student_id, course_id, instructor)</code>, correctly identifying <code>instructor → course_id</code> as a real functional dependency from a non-candidate-key column, and can state precisely which part of 3NF's own definition the counterexample exploits — 3NF only constrains dependencies <em>on</em> non-key columns, not dependencies <em>from</em> one.
+- <strong>Staff:</strong> Discusses when this gap actually matters in practice versus when 3NF is a perfectly sufficient stopping point.</p>
+<h3 id="q3-when-would-you-deliberately-denormalize-a-schema-and-what-would-you-measure-first">Q3 — When would you deliberately denormalize a schema, and what would you measure first?<a class="headerlink" href="#q3-when-would-you-deliberately-denormalize-a-schema-and-what-would-you-measure-first" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/database-normalization-1nf-through-bcnf/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats denormalization as a default performance lever rather than a measured, justified exception, and doesn't know to check the write-side cost before committing.
+- <strong>Senior:</strong> Denormalizes only after confirming via <code>EXPLAIN ANALYZE</code> (not assumption) that a specific read path is genuinely slow and the read:write ratio favors it, measures the real write-amplification cost first, and names both sides of the trade with real reasoning rather than just "it's faster" — preferring a materialized view over denormalizing the source schema when possible.
+- <strong>Staff:</strong> Frames it as an organizational-risk question when applied repeatedly across a system, not just a single-table decision.</p>
+<h3 id="q4-explain-the-anomaly-first-way-to-think-about-all-four-normal-forms-in-under-a-minute">Q4 — Explain the anomaly-first way to think about all four normal forms in under a minute.<a class="headerlink" href="#q4-explain-the-anomaly-first-way-to-think-about-all-four-normal-forms-in-under-a-minute" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/database-normalization-1nf-through-bcnf/#interview-questions">§ Interview Questions, Q4</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Falls back to reciting the formal definitions instead of the anomaly framing when asked to explain quickly.
+- <strong>Senior:</strong> Delivers the anomaly-first framing fluently, unprompted — every normal form exists to make one specific way a schema can represent two contradictory facts about the same real-world thing structurally impossible (1NF: an unqueryable repeating cell; 2NF/3NF: a fact duplicated via a partial or transitive dependency; BCNF: a non-key column's own real-world rule going unenforced).
+- <strong>Staff:</strong> Extends it to why this framing matters for schema <em>review</em>, not just schema <em>design</em> — reviewers who think in anomalies catch real bugs faster than reviewers checking definitions off a list.</p>
+<hr />
+<h2 id="views-and-materialized-views-t-2410">Views and Materialized Views (T-2410)<a class="headerlink" href="#views-and-materialized-views-t-2410" title="Permanent link">&para;</a></h2>
+<h3 id="q1-whats-the-actual-difference-between-a-view-and-a-materialized-view">Q1 — What's the actual difference between a view and a materialized view?<a class="headerlink" href="#q1-whats-the-actual-difference-between-a-view-and-a-materialized-view" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/views-and-materialized-views/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Calls a plain view "cached" (it isn't — nothing is stored) or assumes a materialized view "updates automatically" without an explicit or scheduled <code>REFRESH</code> — the common mistakes this question targets.
+- <strong>Senior:</strong> States it precisely — a view is a stored query, re-executed on every read, with no storage of its own; a materialized view is a stored result set, fast to read but stale between refreshes — and cites the real trade-off (staleness for speed) with a concrete scenario where it's worth it.
+- <strong>Staff:</strong> Frames it as an operational/ownership question — who monitors the refresh, what's the documented staleness contract — not just a technical mechanism.</p>
+<h3 id="q2-why-can-you-update-through-some-views-but-not-others">Q2 — Why can you <code>UPDATE</code> through some views but not others?<a class="headerlink" href="#q2-why-can-you-update-through-some-views-but-not-others" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/views-and-materialized-views/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats this as an arbitrary PostgreSQL limitation rather than a real logical impossibility for aggregated/joined views, and doesn't know <code>INSTEAD OF</code> triggers exist as the escape hatch.
+- <strong>Senior:</strong> States the exact rule — PostgreSQL can only unambiguously map a write back to one base-table row when the view involves exactly one base table and has no aggregation, <code>DISTINCT</code>, <code>UNION</code>, or <code>LIMIT</code>/<code>OFFSET</code> — rather than "it depends on the view."
+- <strong>Staff:</strong> Discusses when reaching for an <code>INSTEAD OF</code> trigger is the right call versus a sign the schema itself should change.</p>
+<h3 id="q3-a-materialized-view-refresh-job-silently-stopped-running-three-weeks-ago-whats-the-actual-failure-here-and-how-would-you-have-caught-it-sooner">Q3 — A materialized view refresh job silently stopped running three weeks ago. What's the actual failure here, and how would you have caught it sooner?<a class="headerlink" href="#q3-a-materialized-view-refresh-job-silently-stopped-running-three-weeks-ago-whats-the-actual-failure-here-and-how-would-you-have-caught-it-sooner" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/views-and-materialized-views/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes PostgreSQL surfaces staleness somehow on its own, or proposes "just refresh more often" as a fix for what's actually a monitoring gap.
+- <strong>Senior:</strong> Correctly identifies this as a monitoring gap, not a database bug — a materialized view produces no error when stale, so reads keep succeeding against old data indefinitely — and proposes an explicit monitored signal (a job-success/failure metric, or a queryable <code>last_refreshed_at</code> marker).
+- <strong>Staff:</strong> Generalizes to the org-wide risk of many independently-scheduled materialized views with no shared monitoring convention.</p>
+<h3 id="q4-whats-the-difference-between-what-a-primary-key-a-foreign-key-an-index-and-a-view-each-guarantee">Q4 — What's the difference between what a primary key, a foreign key, an index, and a view each guarantee?<a class="headerlink" href="#q4-whats-the-difference-between-what-a-primary-key-a-foreign-key-an-index-and-a-view-each-guarantee" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../06-databases/views-and-materialized-views/#interview-questions">§ Interview Questions, Q4</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Conflates "index" with "primary key" (a primary key creates an index automatically but is a distinct constraint), or believes a view enforces something on its own.
+- <strong>Senior:</strong> States all four distinctly without conflating any pair — a primary key guarantees row uniqueness/identity, a foreign key guarantees a reference points at something real, an index makes lookups fast without changing what's logically true, and a view provides a reusable, possibly access-controlled or precomputed way to read the result of combining the other three.
+- <strong>Staff:</strong> Connects the distinction to schema-design judgment — e.g., recognizing that a well-keyed, well-indexed schema can still need a view layer for safe, controlled external access.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <p>Lighter-weight, single-answer questions mined directly from each chapter's own
 <code>## Flashcards</code> section — genuinely real, not invented, but not given the full
@@ -13408,6 +13507,51 @@ its canonical chapter for the complete context.</p>
 <td>Why can't a <code>@Version</code>-annotated entity skip locking entirely?</td>
 <td><a href="../../../06-databases/optimistic-vs-pessimistic-locking/#flashcards">Optimistic vs. Pessimistic Locking</a></td>
 </tr>
+<tr>
+<td>48</td>
+<td>What single question does every normal form (1NF–BCNF) answer, underneath its formal definition?</td>
+<td><a href="../../../06-databases/database-normalization-1nf-through-bcnf/#flashcards">Database Normalization</a></td>
+</tr>
+<tr>
+<td>49</td>
+<td>What's the real structural difference between a 2NF violation and a 3NF violation?</td>
+<td><a href="../../../06-databases/database-normalization-1nf-through-bcnf/#flashcards">Database Normalization</a></td>
+</tr>
+<tr>
+<td>50</td>
+<td>Give a real example of a table that satisfies 3NF but still has an anomaly BCNF would prevent.</td>
+<td><a href="../../../06-databases/database-normalization-1nf-through-bcnf/#flashcards">Database Normalization</a></td>
+</tr>
+<tr>
+<td>51</td>
+<td>This chapter measured a specific denormalization trade-off — what was the real read win, and what was the real write cost?</td>
+<td><a href="../../../06-databases/database-normalization-1nf-through-bcnf/#flashcards">Database Normalization</a></td>
+</tr>
+<tr>
+<td>52</td>
+<td>In one sentence each, what's the real difference between a view and a materialized view?</td>
+<td><a href="../../../06-databases/views-and-materialized-views/#flashcards">Views and Materialized Views</a></td>
+</tr>
+<tr>
+<td>53</td>
+<td>What exact conditions make a view automatically updatable in PostgreSQL?</td>
+<td><a href="../../../06-databases/views-and-materialized-views/#flashcards">Views and Materialized Views</a></td>
+</tr>
+<tr>
+<td>54</td>
+<td>This chapter's lab measured a specific live-query-versus-materialized-view speedup — what was it, and what did it cost?</td>
+<td><a href="../../../06-databases/views-and-materialized-views/#flashcards">Views and Materialized Views</a></td>
+</tr>
+<tr>
+<td>55</td>
+<td>Why does <code>REFRESH MATERIALIZED VIEW CONCURRENTLY</code> require a unique index on the materialized view?</td>
+<td><a href="../../../06-databases/views-and-materialized-views/#flashcards">Views and Materialized Views</a></td>
+</tr>
+<tr>
+<td>56</td>
+<td>State, in one line each, what a primary key, a foreign key, an index, and a view each guarantee.</td>
+<td><a href="../../../06-databases/views-and-materialized-views/#flashcards">Views and Materialized Views</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13436,7 +13580,7 @@ its canonical chapter for the complete context.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

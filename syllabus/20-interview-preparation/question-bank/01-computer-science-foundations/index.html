@@ -9215,6 +9215,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#memory-hierarchy-caches-ram-and-virtual-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Hierarchy: Caches, RAM, and Virtual Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#networking-basics-tcpip-and-http-mechanics-below-the-spring-mvc-layer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12307,6 +12318,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#memory-hierarchy-caches-ram-and-virtual-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Hierarchy: Caches, RAM, and Virtual Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#networking-basics-tcpip-and-http-mechanics-below-the-spring-mvc-layer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12468,14 +12490,18 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 5 chapters yielded 10 deep questions = <strong>10 real
-questions</strong>. All 5 chapters use the older numbered <code>## 15. Interview Questions</code>
+<p><strong>Honest count for this domain:</strong> 6 chapters yielded 12 deep questions = <strong>12 real
+questions</strong>. All 6 chapters use the older numbered <code>## 15. Interview Questions</code>
 template with <strong>no Flashcards section at all</strong>, so there is no quick-fire layer to
 mine here — the same pattern as <a href="../19-leadership-staff/"><code>19-leadership-staff.md</code></a>.
 Despite being the domain's own "true fundamentals" starting point, the Interview
 Questions sections themselves are not written as a separate leveled Junior/Mid
 format; Junior/Mid below is honestly derived from each question's own "Minimum
-acceptable answer" and "Common mistakes" fields.</p>
+acceptable answer" and "Common mistakes" fields. (Updated 2026-09-27:
+<code>memory-hierarchy-caches-ram-and-virtual-memory.md</code> had a complete Interview
+Questions section never indexed — a stale-index gap, not a content gap. Added 2
+questions; no quick-fire cards, since this chapter also has no Flashcards
+section.)</p>
 <hr />
 <h2 id="algorithmic-complexity-and-big-o-from-first-principles">Algorithmic Complexity and Big-O, From First Principles<a class="headerlink" href="#algorithmic-complexity-and-big-o-from-first-principles" title="Permanent link">&para;</a></h2>
 <h3 id="q1-whats-the-big-o-of-this-code-and-why">Q1 — What's the Big-O of this code, and why?<a class="headerlink" href="#q1-whats-the-big-o-of-this-code-and-why" title="Permanent link">&para;</a></h3>
@@ -12504,6 +12530,20 @@ acceptable answer" and "Common mistakes" fields.</p>
 - <strong>Junior/Mid:</strong> Describes <code>StackOverflowError</code> as "running out of memory" without distinguishing which memory region — the common mistake this question targets, conflating it with <code>OutOfMemoryError</code>.
 - <strong>Senior:</strong> States that this is measurable and predictable, and can describe how to confirm it (run the recursive path under a debugger or with depth instrumentation).
 - <strong>Staff:</strong> Names the resource-model trade-off — raising <code>-Xss</code> has a real cost multiplied across every thread in a large pool, so the correct fix for adversarially deep recursion is usually bounding or restructuring the recursion itself.</p>
+<hr />
+<h2 id="memory-hierarchy-caches-ram-and-virtual-memory">Memory Hierarchy: Caches, RAM, and Virtual Memory<a class="headerlink" href="#memory-hierarchy-caches-ram-and-virtual-memory" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-can-two-pieces-of-code-with-identical-big-o-complexity-have-dramatically-different-real-performance">Q1 — Why can two pieces of code with identical Big-O complexity have dramatically different real performance?<a class="headerlink" href="#q1-why-can-two-pieces-of-code-with-identical-big-o-complexity-have-dramatically-different-real-performance" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory/#15-interview-questions">§15, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows that "some memory accesses are faster than others" without necessarily naming cache levels or a specific mechanism — commonly treats O(1) as a literal, constant number of nanoseconds, or assumes identical Big-O implies comparable real-world performance in all cases.
+- <strong>Senior:</strong> Names cache lines and spatial locality specifically, and can describe or cite a concrete measured example — the chapter's own pointer-chase data, or the <code>ArrayList</code>-vs-<code>LinkedList</code> real-world case.
+- <strong>Staff:</strong> Connects this to a resource-identification principle — fixing a cache-locality problem requires changing data layout or access pattern, not adding more of an unrelated resource like total RAM.</p>
+<h3 id="q2-what-is-a-page-fault-and-why-does-it-matter-for-io-heavy-code">Q2 — What is a page fault, and why does it matter for I/O-heavy code?<a class="headerlink" href="#q2-what-is-a-page-fault-and-why-does-it-matter-for-io-heavy-code" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../01-computer-science-foundations/memory-hierarchy-caches-ram-and-virtual-memory/#15-interview-questions">§15, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows a page fault involves the operating system and has some real cost, even without precise mechanism detail — commonly confuses a page fault with a cache miss, or claims memory mapping is "always faster" without qualifying by access pattern.
+- <strong>Senior:</strong> Distinguishes this from a cache miss (a hardware-only event, no OS trap) and explains specifically why the advantage concentrates in random/scattered access rather than sequential access.
+- <strong>Staff:</strong> Recognizes the trade-off is access-pattern-dependent, not universal — recommending memory-mapped I/O for an already-sequential workload would add real complexity for no measured benefit.</p>
 <hr />
 <h2 id="networking-basics-tcpip-and-http-mechanics-below-the-spring-mvc-layer">Networking Basics: TCP/IP and HTTP Mechanics Below the Spring MVC Layer<a class="headerlink" href="#networking-basics-tcpip-and-http-mechanics-below-the-spring-mvc-layer" title="Permanent link">&para;</a></h2>
 <h3 id="q1-walk-me-through-what-happens-at-the-network-level-between-a-client-sending-an-http-request-and-receiving-a-response">Q1 — Walk me through what happens, at the network level, between a client sending an HTTP request and receiving a response.<a class="headerlink" href="#q1-walk-me-through-what-happens-at-the-network-level-between-a-client-sending-an-http-request-and-receiving-a-response" title="Permanent link">&para;</a></h3>
@@ -12589,7 +12629,7 @@ acceptable answer" and "Common mistakes" fields.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 14:20:01 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

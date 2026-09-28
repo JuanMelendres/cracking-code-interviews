@@ -9915,6 +9915,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#estimation-and-story-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estimation and Story Points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#git-internals-and-collaboration-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9941,6 +9952,17 @@
     <span class="md-ellipsis">
       
         SDLC and Agile Methodology Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-retrospectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint Retrospectives
       
     </span>
   </a>
@@ -12329,6 +12351,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#estimation-and-story-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estimation and Story Points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#git-internals-and-collaboration-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12355,6 +12388,17 @@
     <span class="md-ellipsis">
       
         SDLC and Agile Methodology Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-retrospectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint Retrospectives
       
     </span>
   </a>
@@ -12512,11 +12556,15 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 6 chapters yielded 12 deep questions + 2 quick-fire
-questions = <strong>14 real questions</strong>. No Junior Fundamentals chapter exists in this
-domain. Five of six chapters use the older numbered <code>## 15. Interview Questions</code>
+<p><strong>Honest count for this domain:</strong> 8 chapters yielded 16 deep questions + 2 quick-fire
+questions = <strong>18 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain. Seven of eight chapters use the older numbered <code>## 15. Interview Questions</code>
 template with no Flashcards section at all; only <code>git-internals-and-collaboration-workflows.md</code>
-has a <code>### Card:</code> Flashcards section.</p>
+has a <code>### Card:</code> Flashcards section.
+(Updated 2026-09-27: Estimation and Story Points and Sprint Retrospectives had
+complete Interview Questions sections never indexed — a stale-index gap, not a
+content gap. Added 4 questions; neither chapter has a Flashcards section, so no
+quick-fire cards were added.)</p>
 <hr />
 <h2 id="architecture-decision-records-and-technical-writing-for-engineers">Architecture Decision Records and Technical Writing for Engineers<a class="headerlink" href="#architecture-decision-records-and-technical-writing-for-engineers" title="Permanent link">&para;</a></h2>
 <h3 id="q1-what-are-the-required-sections-of-an-adr-and-why-does-consequences-need-to-include-negative-consequences-specifically">Q1 — What are the required sections of an ADR, and why does "Consequences" need to include negative consequences specifically?<a class="headerlink" href="#q1-what-are-the-required-sections-of-an-adr-and-why-does-consequences-need-to-include-negative-consequences-specifically" title="Permanent link">&para;</a></h3>
@@ -12545,6 +12593,20 @@ has a <code>### Card:</code> Flashcards section.</p>
 - <strong>Junior/Mid:</strong> States that smaller changes are easier to review, even without the specific cognitive-load mechanism.
 - <strong>Senior:</strong> Articulates the non-linear degradation explicitly and can describe concrete splitting techniques (separating a refactor from the feature change it enables).
 - <strong>Staff:</strong> Connects this to the compounding-latency argument as a second, related lever affecting overall team throughput.</p>
+<hr />
+<h2 id="estimation-and-story-points">Estimation and Story Points<a class="headerlink" href="#estimation-and-story-points" title="Permanent link">&para;</a></h2>
+<h3 id="q1-is-it-valid-to-compare-two-teams-velocity-to-decide-which-one-is-more-productive">Q1 — Is it valid to compare two teams' velocity to decide which one is more productive?<a class="headerlink" href="#q1-is-it-valid-to-compare-two-teams-velocity-to-decide-which-one-is-more-productive" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/estimation-and-story-points/#15-interview-questions">§15, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Says it's fine to compare velocity across teams — the common mistake this question targets.
+- <strong>Senior:</strong> States that comparing velocity across teams is invalid and explains the mechanism precisely — each team calibrates its point scale independently against its own reference stories, so two teams' "5 points" were never guaranteed to represent the same amount of real work; velocity is only meaningful as a trend within one team's own history.
+- <strong>Staff:</strong> Proposes a concrete alternative (cycle time, commitment accuracy) for the real organizational need (comparative throughput visibility) the invalid comparison was trying to serve.</p>
+<h3 id="q2-why-is-the-story-point-scale-fibonacci-like-1-2-3-5-8-13-instead-of-linear-1-2-3-4-5">Q2 — Why is the story-point scale Fibonacci-like (1, 2, 3, 5, 8, 13...) instead of linear (1, 2, 3, 4, 5...)?<a class="headerlink" href="#q2-why-is-the-story-point-scale-fibonacci-like-1-2-3-5-8-13-instead-of-linear-1-2-3-4-5" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/estimation-and-story-points/#15-interview-questions">§15, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Assumes the scale is arbitrary or purely traditional rather than functionally motivated — the common mistake this question targets.
+- <strong>Senior:</strong> Connects the scale's shape directly to estimation-uncertainty growth — the gap between a 1 and a 2 is meaningful, but the gap between a 40 and a 41 isn't distinguishable at that scale, so the scale widens its gaps to match real estimation uncertainty.
+- <strong>Staff:</strong> Discusses what a team should do when a story genuinely doesn't fit the top of the scale — typically a sign the story needs to be split before estimation, not force-fit into a "100."</p>
 <hr />
 <h2 id="git-internals-and-collaboration-workflows">Git Internals and Collaboration Workflows<a class="headerlink" href="#git-internals-and-collaboration-workflows" title="Permanent link">&para;</a></h2>
 <h3 id="q1-whats-actually-different-about-the-resulting-git-history-between-git-merge-and-git-rebase-and-why-does-that-matter-for-a-branch-other-people-have-already-pulled">Q1 — What's actually different about the resulting git history between <code>git merge</code> and <code>git rebase</code>, and why does that matter for a branch other people have already pulled?<a class="headerlink" href="#q1-whats-actually-different-about-the-resulting-git-history-between-git-merge-and-git-rebase-and-why-does-that-matter-for-a-branch-other-people-have-already-pulled" title="Permanent link">&para;</a></h3>
@@ -12587,6 +12649,20 @@ has a <code>### Card:</code> Flashcards section.</p>
 - <strong>Junior/Mid:</strong> Treats "Agile," "Scrum," and "sprint" as fully interchangeable terms — the common mistake this question targets.
 - <strong>Senior:</strong> Can name at least the Scrum artifacts and roles and briefly explain what each one is for.
 - <strong>Staff:</strong> Can diagnose a team practicing "Scrum in name only" and identify the specific missing practice undermining it.</p>
+<hr />
+<h2 id="sprint-retrospectives">Sprint Retrospectives<a class="headerlink" href="#sprint-retrospectives" title="Permanent link">&para;</a></h2>
+<h3 id="q1-whats-retro-theater-and-how-would-you-recognize-it-on-a-team-you-just-joined">Q1 — What's "retro theater," and how would you recognize it on a team you just joined?<a class="headerlink" href="#q1-whats-retro-theater-and-how-would-you-recognize-it-on-a-team-you-just-joined" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/sprint-retrospectives/#15-interview-questions">§15, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Vaguely says retros "can feel pointless" without naming the actual mechanism — the common mistake this question targets.
+- <strong>Senior:</strong> Names the specific, recognizable symptom precisely — a retrospective that produces the ritual of naming problems without the substance of fixing them, recognizable by the same complaints recurring sprint after sprint and by action items with no named owner or deadline that never get revisited.
+- <strong>Staff:</strong> Frames unproductive retrospectives as an early team-health signal worth surfacing organizationally, and names a concrete, low-cost first fix (owner/deadline discipline, reviewing prior action items).</p>
+<h3 id="q2-why-does-every-retrospective-action-item-need-an-explicit-owner-and-deadline">Q2 — Why does every retrospective action item need an explicit owner and deadline?<a class="headerlink" href="#q2-why-does-every-retrospective-action-item-need-an-explicit-owner-and-deadline" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../18-engineering-practices/sprint-retrospectives/#15-interview-questions">§15, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Names only the owner half, missing why a deadline is equally necessary — the common mistake this question targets.
+- <strong>Senior:</strong> Explains both halves and why each one specifically matters — without an explicit owner, an action item is nobody's job by default and quietly becomes nobody's job in practice; without a deadline, there's no moment at which its absence becomes visible enough to notice.
+- <strong>Staff:</strong> Connects this to reviewing the PREVIOUS retrospective's action items at the start of the next one, as the real feedback loop that makes the owner/deadline discipline actually matter.</p>
 <hr />
 <h2 id="working-with-legacy-code">Working with Legacy Code<a class="headerlink" href="#working-with-legacy-code" title="Permanent link">&para;</a></h2>
 <h3 id="q1-you-need-to-make-a-change-to-a-method-with-no-existing-tests-in-code-you-dont-fully-understand-whats-your-process">Q1 — You need to make a change to a method with no existing tests, in code you don't fully understand. What's your process?<a class="headerlink" href="#q1-you-need-to-make-a-change-to-a-method-with-no-existing-tests-in-code-you-dont-fully-understand-whats-your-process" title="Permanent link">&para;</a></h3>
@@ -12665,7 +12741,7 @@ has a <code>### Card:</code> Flashcards section.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:37:17 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

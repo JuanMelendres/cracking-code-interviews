@@ -9581,6 +9581,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dtoentitymapper-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DTO/Entity/Mapper Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-and-spring-boot-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring and Spring Boot Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12527,6 +12549,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dtoentitymapper-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DTO/Entity/Mapper Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-and-spring-boot-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring and Spring Boot Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12666,16 +12710,21 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 13 chapters yielded 27 deep questions + 5
+<p><strong>Honest count for this domain:</strong> 15 chapters yielded 49 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, <code>spring-mvc-fundamentals.md</code>) + 34 quick-fire questions = <strong>66 real
+chapter, <code>spring-mvc-fundamentals.md</code>) + 36 quick-fire questions = <strong>90 real
 questions</strong>. (Updated 2026-09-27: <code>microservices-patterns-with-spring-boot.md</code>
 had a complete Interview Questions section this index never picked up — a
 stale-index gap, not a content gap, found via a generic interview checklist
 audit. Added its 3 questions + 2 quick-fire cards, plus a cross-domain note
 pointing to <code>17-architecture.md</code> for the Microservices-vs-Monolith trade-off
-itself. Known remaining gaps, not yet closed: <code>dto-entity-mapper-patterns.md</code>
-and <code>spring-and-spring-boot-fundamentals.md</code> are also unindexed here.)</p>
+itself. Updated again, same day: <code>dto-entity-mapper-patterns.md</code> and
+<code>spring-and-spring-boot-fundamentals.md</code> — previously flagged as known
+remaining gaps — are now indexed too. Added 2 questions + 2 quick-fire cards
+for the former; 20 questions for the latter — its own Interview Questions
+section already tags each answer by seniority tier directly, so summarized
+concisely below rather than re-derived; it has no embedded Flashcards section
+in the canonical chapter to mine for quick-fire, only a standalone deck.)</p>
 <hr />
 <h2 id="spring-mvc-fundamentals">Spring MVC Fundamentals<a class="headerlink" href="#spring-mvc-fundamentals" title="Permanent link">&para;</a></h2>
 <p>Junior Fundamentals chapter — its Interview Questions already tag each by seniority.</p>
@@ -12892,6 +12941,163 @@ and <code>spring-and-spring-boot-fundamentals.md</code> are also unindexed here.
 - <strong>Senior:</strong> States the real trade-off honestly: <code>@HttpExchange</code> is part of Spring Framework itself (6.0+), needs no Spring Cloud BOM, and is Spring's own current recommendation; OpenFeign remains common in existing Spring-Cloud-heavy stacks.
 - <strong>Staff:</strong> Frames this as a platform-consistency decision — a new service joining an existing Feign-heavy estate has a real cost to breaking pattern, independent of which client is technically better.</p>
 <hr />
+<h2 id="dtoentitymapper-patterns">DTO/Entity/Mapper Patterns<a class="headerlink" href="#dtoentitymapper-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-not-just-return-the-jpa-entity-directly-from-a-restcontroller-method">Q1 — Why not just return the JPA entity directly from a <code>@RestController</code> method?<a class="headerlink" href="#q1-why-not-just-return-the-jpa-entity-directly-from-a-restcontroller-method" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/dto-entity-mapper-patterns/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Answers only "it's best practice" with no specific mechanism named — the common mistake this question targets.
+- <strong>Senior:</strong> Names at least two real mechanisms: a lazy-loaded association can throw <code>LazyInitializationException</code> once the entity leaves its persistence-context scope, internal-only fields may have no business reason to be exposed, and the API's public contract becomes accidentally coupled to the database schema.
+- <strong>Staff:</strong> Frames DTO/Entity separation as an explicit, platform-wide contract-stability rule rather than a per-team convention.</p>
+<h3 id="q2-why-does-real-mapstruct-generated-code-never-reference-an-entitys-sensitive-field-the-dto-doesnt-declare">Q2 — Why does real MapStruct-generated code never reference an entity's sensitive field the DTO doesn't declare?<a class="headerlink" href="#q2-why-does-real-mapstruct-generated-code-never-reference-an-entitys-sensitive-field-the-dto-doesnt-declare" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/dto-entity-mapper-patterns/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes this as the mapper "filtering out" the field, implying an active exclusion step — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly distinguishes "never declared as a target field" from "actively filtered" — MapStruct only generates code copying fields the target DTO actually has slots for, a structural guarantee provable via reflection on the DTO's own declared components.
+- <strong>Staff:</strong> Connects this to a broader security principle: a boundary's safety should come from what it structurally cannot do, not from remembering to add a check.</p>
+<hr />
+<h2 id="spring-and-spring-boot-fundamentals">Spring and Spring Boot Fundamentals<a class="headerlink" href="#spring-and-spring-boot-fundamentals" title="Permanent link">&para;</a></h2>
+<p>A 20-question interview checklist audit found every concept already taught in this domain's prose, but none formatted as an actual, answerable interview question with a Junior baseline through a Staff extension — this chapter's own Interview Questions section closes that directly, tagging each answer by tier already, summarized concisely below.</p>
+<h3 id="q1-what-is-the-spring-framework">Q1 — What is the Spring Framework?<a class="headerlink" href="#q1-what-is-the-spring-framework" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> A Java framework providing DI, a container managing "beans," and supporting modules (MVC, transactions, data access).
+- <strong>Mid:</strong> Adds that Spring's core is the IoC container; everything else is a module built on it.
+- <strong>Senior:</strong> Distinguishes Spring Framework (the programming model) from Spring Boot (starters, auto-configuration, embedded server) precisely.
+- <strong>Staff:</strong> Frames adopting Spring as an organizational choice — a common vocabulary across teams, at the cost of some flexibility.</p>
+<h3 id="q2-what-is-dependency-injection-di">Q2 — What is Dependency Injection (DI)?<a class="headerlink" href="#q2-what-is-dependency-injection-di" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> A class declares what it needs (usually a constructor parameter) instead of calling <code>new</code>; the container builds and hands it in.
+- <strong>Mid:</strong> Names all three injection styles (constructor, setter, field) and states the recommended default.
+- <strong>Senior:</strong> Explains DI as the specific mechanism implementing the broader IoC principle.
+- <strong>Staff:</strong> Connects DI to organizational testability — constructor-injected code can be unit-tested with plain <code>new</code>, no Spring context needed, a real velocity difference at team scale.</p>
+<h3 id="q3-constructor-injection-vs-field-injection-which-approach-and-why">Q3 — Constructor Injection vs. Field Injection — which approach and why?<a class="headerlink" href="#q3-constructor-injection-vs-field-injection-which-approach-and-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Constructor injection is recommended — dependencies are visible in the constructor signature, and the class is testable with plain <code>new</code>.
+- <strong>Mid:</strong> Adds the immutability point (<code>final</code> fields) and the "too many dependencies" visible-smell argument.
+- <strong>Senior:</strong> States field injection makes a class untestable with plain <code>new</code> as the real, practical cost.
+- <strong>Staff:</strong> Names the real circular-dependency divergence: constructor injection fails loudly (<code>BeanCurrentlyInCreationException</code>); field injection resolves the identical cycle silently.</p>
+<h3 id="q4-what-is-ioc-inversion-of-control">Q4 — What is IoC (Inversion of Control)?<a class="headerlink" href="#q4-what-is-ioc-inversion-of-control" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q4</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Control over object creation/wiring is handed to a container; your code just states what it needs.
+- <strong>Mid:</strong> States explicitly that DI is one implementation of the broader IoC principle, not a synonym.
+- <strong>Senior:</strong> Names the <code>ApplicationContext</code> as the concrete container performing the inversion.
+- <strong>Staff:</strong> Discusses the real trade-off — a class's behavior can't be fully understood from its own source alone, since what gets injected depends on external container configuration.</p>
+<h3 id="q5-what-is-a-spring-bean">Q5 — What is a Spring Bean?<a class="headerlink" href="#q5-what-is-a-spring-bean" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q5</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Any object the Spring IoC container creates, configures, and manages — unlike a plain object your own code creates with <code>new</code>.
+- <strong>Mid:</strong> States how a class becomes a bean (a stereotype annotation, or a <code>@Bean</code> method) and that the container discovers it via component scanning.
+- <strong>Senior:</strong> Distinguishes "a bean" from "a POJO instantiated with <code>new</code>" precisely, even for the identical class.
+- <strong>Staff:</strong> Connects bean management to every proxy-based framework feature (transactions, caching, security) built on it.</p>
+<h3 id="q6-explain-the-spring-bean-lifecycle">Q6 — Explain the Spring Bean Lifecycle.<a class="headerlink" href="#q6-explain-the-spring-bean-lifecycle" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q6</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Created → dependencies injected → initialized → destroyed; <code>@PostConstruct</code> is the everyday "ready" hook.
+- <strong>Mid:</strong> States the constructor runs before field injection completes, which is exactly why <code>@PostConstruct</code> (not the constructor) is right for logic needing injected fields.
+- <strong>Senior:</strong> Names <code>BeanPostProcessor</code> as the hook behind features like <code>@Transactional</code> proxy creation.
+- <strong>Staff:</strong> Explains why knowing the exact lifecycle moment a feature hooks into is what lets an engineer correctly diagnose annotation-interaction surprises (e.g., <code>@Async</code> + <code>@Transactional</code>).</p>
+<h3 id="q7-what-are-the-different-bean-scopes">Q7 — What are the different Bean Scopes?<a class="headerlink" href="#q7-what-are-the-different-bean-scopes" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q7</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> <code>singleton</code> (default, one shared instance) and <code>prototype</code> (new instance every request).
+- <strong>Mid:</strong> Names all six real scopes, including the four web-context ones (<code>request</code>/<code>session</code>/<code>application</code>/<code>websocket</code>).
+- <strong>Senior:</strong> States the real gotcha: injecting a <code>prototype</code> bean into a <code>singleton</code> via ordinary injection resolves it once, permanently — not fresh each use.
+- <strong>Staff:</strong> Names the actual fix (<code>ObjectProvider&lt;T&gt;</code> or a scoped proxy) and explains why a plain injected field can't solve it.</p>
+<h3 id="q8-difference-between-component-service-repository-and-controller">Q8 — Difference between <code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, and <code>@Controller</code>.<a class="headerlink" href="#q8-difference-between-component-service-repository-and-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q8</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> All four register a bean via component scanning; the other three are self-documenting names for conventional layers.
+- <strong>Mid:</strong> Names the one real behavioral difference: <code>@Repository</code> enables persistence exception translation.
+- <strong>Senior:</strong> States that <code>@Service</code> and <code>@Controller</code> add no behavior beyond <code>@Component</code> — pure documentation/convention.
+- <strong>Staff:</strong> Frames using specific stereotypes (versus <code>@Component</code> everywhere) as an organizational-clarity decision at multi-team scale.</p>
+<h3 id="q9-restcontroller-vs-controller">Q9 — <code>@RestController</code> vs. <code>@Controller</code>.<a class="headerlink" href="#q9-restcontroller-vs-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q9</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> <code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code> — the return value is written directly to the response body instead of resolved as a view name.
+- <strong>Mid:</strong> States what <code>@Controller</code> alone does without <code>@ResponseBody</code> (server-rendered view resolution).
+- <strong>Senior:</strong> Connects this composition pattern to its parallel: <code>@RestControllerAdvice</code> = <code>@ControllerAdvice</code> + <code>@ResponseBody</code>.
+- <strong>Staff:</strong> Notes a mixed codebase (some <code>@Controller</code>, some <code>@RestController</code>) is a legitimate migration-era pattern, not automatically inconsistency.</p>
+<h3 id="q10-how-does-autowired-work-internally">Q10 — How does <code>@Autowired</code> work internally?<a class="headerlink" href="#q10-how-does-autowired-work-internally" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q10</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> The container inspects the annotated constructor/field/setter's type and looks for a matching bean in the <code>ApplicationContext</code>.
+- <strong>Mid:</strong> States <code>@Autowired</code> has been unnecessary on a class's only constructor since Spring 4.3.
+- <strong>Senior:</strong> Explains resolution order precisely: type → <code>@Qualifier</code> name → <code>@Primary</code> → <code>NoUniqueBeanDefinitionException</code>.
+- <strong>Staff:</strong> Connects this to the recursive nature of dependency-graph resolution, the same mechanism behind <code>BeanCurrentlyInCreationException</code>.</p>
+<h3 id="q11-what-happens-when-multiple-beans-of-the-same-type-are-available">Q11 — What happens when multiple beans of the same type are available?<a class="headerlink" href="#q11-what-happens-when-multiple-beans-of-the-same-type-are-available" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q11</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Spring fails to start with <code>NoUniqueBeanDefinitionException</code>, unless resolved via <code>@Qualifier</code>/<code>@Primary</code>.
+- <strong>Mid:</strong> States both mechanisms and their relationship.
+- <strong>Senior:</strong> Notes this is a startup-time failure, not a runtime one — a deliberate fail-fast design choice.
+- <strong>Staff:</strong> Discusses the trade-off of having multiple implementations of the same interface as beans at all, and the disambiguation discipline it requires everywhere.</p>
+<h3 id="q12-primary-vs-qualifier">Q12 — <code>@Primary</code> vs. <code>@Qualifier</code>.<a class="headerlink" href="#q12-primary-vs-qualifier" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q12</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> <code>@Qualifier("name")</code> picks a specific bean by name; <code>@Primary</code> marks the default when no qualifier narrows the choice.
+- <strong>Mid:</strong> States the precedence: an explicit <code>@Qualifier</code> always wins over <code>@Primary</code>.
+- <strong>Senior:</strong> Gives a concrete example distinguishing when each is the right tool.
+- <strong>Staff:</strong> Notes the maintainability cost of <code>@Qualifier</code> string literals at scale versus a custom qualifier annotation.</p>
+<h3 id="q13-what-are-configuration-and-bean">Q13 — What are <code>@Configuration</code> and <code>@Bean</code>?<a class="headerlink" href="#q13-what-are-configuration-and-bean" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q13</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> <code>@Configuration</code> marks a bean-definition source class; a <code>@Bean</code> method's return value is registered as a bean — the alternative for classes you don't own.
+- <strong>Mid:</strong> States precisely why: you can't add <code>@Component</code> to a third-party class.
+- <strong>Senior:</strong> Explains <code>@Configuration</code> classes are CGLIB-proxied by default, so one <code>@Bean</code> method calling another returns the same singleton instance.
+- <strong>Staff:</strong> Discusses when <code>proxyBeanMethods = false</code> is the deliberate right choice.</p>
+<h3 id="q14-what-is-component-scanning">Q14 — What is Component Scanning?<a class="headerlink" href="#q14-what-is-component-scanning" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q14</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Spring walks the application's packages at startup looking for <code>@Component</code>-annotated classes to register as beans.
+- <strong>Mid:</strong> States the scanning boundary is set by <code>@ComponentScan</code> — a class outside it is never discovered.
+- <strong>Senior:</strong> Names the real failure mode: a class outside the main application class's package tree is silently never scanned.
+- <strong>Staff:</strong> Frames package structure itself as an architectural decision because of this mechanism.</p>
+<h3 id="q15-what-does-springbootapplication-contain">Q15 — What does <code>@SpringBootApplication</code> contain?<a class="headerlink" href="#q15-what-does-springbootapplication-contain" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q15</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> A composition of <code>@Configuration</code> + <code>@EnableAutoConfiguration</code> + <code>@ComponentScan</code>.
+- <strong>Mid:</strong> States what each of the three specifically contributes on its own.
+- <strong>Senior:</strong> Connects <code>@ComponentScan</code>'s inclusion directly to Q14's package-boundary gotcha.
+- <strong>Staff:</strong> Discusses why Spring Boot chose composition over three separately-required annotations — reducing universal boilerplate.</p>
+<h3 id="q16-how-does-spring-boot-auto-configuration-work">Q16 — How does Spring Boot Auto-Configuration work?<a class="headerlink" href="#q16-how-does-spring-boot-auto-configuration-work" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q16</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Spring Boot ships conditional <code>@Configuration</code> classes that activate based on classpath contents and existing beans.
+- <strong>Mid:</strong> Names <code>@ConditionalOnMissingBean</code> as the guard letting an application override one piece of auto-configured behavior.
+- <strong>Senior:</strong> States where these classes live (<code>spring-boot-autoconfigure</code>) and that <code>@EnableAutoConfiguration</code> turns the mechanism on.
+- <strong>Staff:</strong> Connects this to a real risk: a test-scoped dependency leaking onto the production classpath can silently activate unintended auto-configuration.</p>
+<h3 id="q17-what-is-enableautoconfiguration">Q17 — What is <code>@EnableAutoConfiguration</code>?<a class="headerlink" href="#q17-what-is-enableautoconfiguration" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q17</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> The specific annotation, composed inside <code>@SpringBootApplication</code>, that turns on auto-configuration.
+- <strong>Mid:</strong> States it's one of exactly three composed annotations, each with a distinct job.
+- <strong>Senior:</strong> Explains it can, in principle, be used standalone — a real, independent annotation.
+- <strong>Staff:</strong> Discusses why Spring Boot separates "turn on auto-configuration" from "scan for components" as distinct concerns.</p>
+<h3 id="q18-what-are-spring-boot-starter-dependencies">Q18 — What are Spring Boot Starter Dependencies?<a class="headerlink" href="#q18-what-are-spring-boot-starter-dependencies" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q18</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Curated dependency bundles (e.g., <code>spring-boot-starter-web</code>) with pre-aligned, compatible versions.
+- <strong>Mid:</strong> States the specific problem solved: manually choosing and version-matching every dependency.
+- <strong>Senior:</strong> Connects starters to auto-configuration directly — starters put things on the classpath; auto-configuration reacts to that classpath.
+- <strong>Staff:</strong> Discusses the dependency-footprint trade-off of broad starters at organizational scale.</p>
+<h3 id="q19-how-do-profiles-work">Q19 — How do Profiles work?<a class="headerlink" href="#q19-how-do-profiles-work" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q19</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> A profile is a named label controlling which beans and config values load; <code>@Profile("dev")</code> restricts a bean to that profile.
+- <strong>Mid:</strong> States the concrete swap-per-environment pattern (a real vs. sandbox gateway implementation) this enables.
+- <strong>Senior:</strong> Connects <code>spring.profiles.active</code> to which profile-gated beans and property overrides take effect.
+- <strong>Staff:</strong> Frames profile-per-environment as an organizational discipline question — who can introduce a new profile, and how config drift is prevented.</p>
+<h3 id="q20-how-do-you-handle-configuration-management-across-different-environments">Q20 — How do you handle Configuration Management across different environments?<a class="headerlink" href="#q20-how-do-you-handle-configuration-management-across-different-environments" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/spring-and-spring-boot-fundamentals/#15-interview-questions">§ Interview Questions, Q20</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior:</strong> Externalize environment-specific values into <code>application-{profile}.yml</code> or environment variables, activating the correct profile per environment.
+- <strong>Mid:</strong> States Spring Boot's property-source precedence (CLI args/env vars override profile YAML, which overrides base YAML).
+- <strong>Senior:</strong> Names secrets specifically as needing more than plain profile-scoped YAML — a real secrets manager, never committed.
+- <strong>Staff:</strong> Frames this as the concrete Spring Boot instance of the general twelve-factor "config in the environment" principle.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -13072,6 +13278,16 @@ and <code>spring-and-spring-boot-fundamentals.md</code> are also unindexed here.
 <td>Does a default circuit breaker protect against a slow-but-successful downstream call?</td>
 <td><a href="../../../05-spring/microservices-patterns-with-spring-boot/#flashcards">Microservices Patterns with Spring Boot</a></td>
 </tr>
+<tr>
+<td>35</td>
+<td>Why does this chapter recommend <code>record</code> for DTOs but not for JPA entities?</td>
+<td><a href="../../../05-spring/dto-entity-mapper-patterns/#flashcards">DTO/Entity/Mapper Patterns</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td>Is a mapper never referencing an undeclared sensitive field a real guarantee, or coincidence?</td>
+<td><a href="../../../05-spring/dto-entity-mapper-patterns/#flashcards">DTO/Entity/Mapper Patterns</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13103,7 +13319,7 @@ and <code>spring-and-spring-boot-fundamentals.md</code> are also unindexed here.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

@@ -9773,6 +9773,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#chaos-engineering-fault-injection-and-resilience-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaos Engineering, Fault Injection, and Resilience Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12351,6 +12362,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#chaos-engineering-fault-injection-and-resilience-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaos Engineering, Fault Injection, and Resilience Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12490,10 +12512,13 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 5 chapters yielded 10 deep questions + 14 quick-fire
-questions = <strong>24 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 6 chapters yielded 12 deep questions + 14 quick-fire
+questions = <strong>26 real questions</strong>. No Junior Fundamentals chapter exists in this
 domain — observability presupposes backend fundamentals already covered elsewhere.
-This is a genuinely small domain (5 chapters).</p>
+This is a genuinely small domain (6 chapters). (Updated 2026-09-27:
+<code>chaos-engineering-fault-injection-and-resilience-verification.md</code> had a complete
+Interview Questions section never indexed — a stale-index gap, not a content gap.
+Added 2 questions; no Flashcards section in that chapter.)</p>
 <hr />
 <h2 id="incident-response-and-blameless-postmortems">Incident Response and Blameless Postmortems<a class="headerlink" href="#incident-response-and-blameless-postmortems" title="Permanent link">&para;</a></h2>
 <h3 id="q1-mitigate-or-diagnose-first-defend-it">Q1 — Mitigate or diagnose first? Defend it.<a class="headerlink" href="#q1-mitigate-or-diagnose-first-defend-it" title="Permanent link">&para;</a></h3>
@@ -12564,6 +12589,20 @@ This is a genuinely small domain (5 chapters).</p>
 - <strong>Junior/Mid:</strong> States the timeout should come from real latency data, without connecting it to a named signal.
 - <strong>Senior:</strong> Connects RED's Duration signal to percentile selection — from a high percentile (p99), not a round number.
 - <strong>Staff:</strong> Notes that a closed-loop-measured Duration distribution would understate the real tail (per coordinated omission), meaning a timeout set from that data could be miscalibrated — tying resilience, percentiles, and RED into one coherent answer.</p>
+<hr />
+<h2 id="chaos-engineering-fault-injection-and-resilience-verification">Chaos Engineering, Fault Injection, and Resilience Verification<a class="headerlink" href="#chaos-engineering-fault-injection-and-resilience-verification" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-team-has-a-circuit-breaker-around-a-payment-dependency-and-an-slo-alert-for-checkout-failures-how-would-you-find-out-whether-either-actually-works-without-waiting-for-a-real-outage">Q1 — Your team has a circuit breaker around a payment dependency and an SLO alert for checkout failures. How would you find out whether either actually works, without waiting for a real outage?<a class="headerlink" href="#q1-your-team-has-a-circuit-breaker-around-a-payment-dependency-and-an-slo-alert-for-checkout-failures-how-would-you-find-out-whether-either-actually-works-without-waiting-for-a-real-outage" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/chaos-engineering-fault-injection-and-resilience-verification/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Suggests "more thorough staging tests" as equivalent — the common mistake this question targets, since staging's traffic and failure patterns don't match production's.
+- <strong>Senior:</strong> Names running a real, scoped chaos experiment — injecting a real failure at a minimized blast radius, and observing whether the circuit breaker trips and the alert fires as claimed.
+- <strong>Staff:</strong> Discusses moving from a one-time manual game day to automated, recurring experiments, and the organizational buy-in required to run experiments against real production traffic safely.</p>
+<h3 id="q2-whats-the-difference-between-a-chaos-experiment-and-a-circuit-breaker">Q2 — What's the difference between a chaos experiment and a circuit breaker?<a class="headerlink" href="#q2-whats-the-difference-between-a-chaos-experiment-and-a-circuit-breaker" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/chaos-engineering-fault-injection-and-resilience-verification/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Describes them as the same thing, or as alternatives to each other rather than complementary — the common mistake this question targets.
+- <strong>Senior:</strong> Correctly explains a circuit breaker is the resilience implementation reacting to a real failure at runtime; a chaos experiment deliberately triggers a real failure on purpose to verify the breaker (and its alerting) actually works.
+- <strong>Staff:</strong> Connects this to why chaos engineering sits in the observability domain, not purely resilience/architecture — its real value is verifying the detection chain, not just the failover code.</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12683,7 +12722,7 @@ This is a genuinely small domain (5 chapters).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:14:25 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     

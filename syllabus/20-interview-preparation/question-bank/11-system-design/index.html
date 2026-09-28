@@ -9747,6 +9747,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#system-design-patterns-recognition-and-quick-reference-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Design Patterns: Recognition and Quick-Reference Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12439,6 +12450,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#system-design-patterns-recognition-and-quick-reference-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Design Patterns: Recognition and Quick-Reference Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12578,9 +12600,12 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 9 chapters yielded 18 deep questions + 30 quick-fire
-questions = <strong>48 real questions</strong>. No Junior Fundamentals chapter exists in this
-domain — system design presupposes backend fundamentals already covered elsewhere.</p>
+<p><strong>Honest count for this domain:</strong> 10 chapters yielded 20 deep questions + 30 quick-fire
+questions = <strong>50 real questions</strong>. No Junior Fundamentals chapter exists in this
+domain — system design presupposes backend fundamentals already covered elsewhere.
+(Updated 2026-09-27: <code>system-design-patterns-recognition-and-quick-reference.md</code> had
+a complete Interview Questions section never indexed — a stale-index gap, not a
+content gap. Added 2 questions; no Flashcards section in that chapter to mine.)</p>
 <hr />
 <h2 id="caching-strategies-and-invalidation">Caching Strategies and Invalidation<a class="headerlink" href="#caching-strategies-and-invalidation" title="Permanent link">&para;</a></h2>
 <h3 id="q1-cache-and-database-disagree-how-did-it-happen-how-do-you-detect-it-how-do-you-fix-it">Q1 — Cache and database disagree. How did it happen, how do you detect it, how do you fix it?<a class="headerlink" href="#q1-cache-and-database-disagree-how-did-it-happen-how-do-you-detect-it-how-do-you-fix-it" title="Permanent link">&para;</a></h3>
@@ -12707,6 +12732,20 @@ domain — system design presupposes backend fundamentals already covered elsewh
 - <strong>Junior/Mid:</strong> Presents a bare final number with no visible reasoning — the common mistake this question targets.
 - <strong>Senior:</strong> Produces the worked estimate with every assumption stated.
 - <strong>Staff:</strong> Revises live when challenged and shows the downstream architectural consequence of the changed assumption (e.g., "at 5x peak, the single-cache design might need to become a sharded cache").</p>
+<hr />
+<h2 id="system-design-patterns-recognition-and-quick-reference-guide">System Design Patterns: Recognition and Quick-Reference Guide<a class="headerlink" href="#system-design-patterns-recognition-and-quick-reference-guide" title="Permanent link">&para;</a></h2>
+<h3 id="q1-a-search-endpoint-is-getting-slow-under-load-before-proposing-a-fix-what-would-you-ask-and-what-pattern-would-you-expect-to-reach-for">Q1 — A search endpoint is getting slow under load. Before proposing a fix, what would you ask, and what pattern would you expect to reach for?<a class="headerlink" href="#q1-a-search-endpoint-is-getting-slow-under-load-before-proposing-a-fix-what-would-you-ask-and-what-pattern-would-you-expect-to-reach-for" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../11-system-design/system-design-patterns-recognition-and-quick-reference/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Jumps straight to "add a cache" without first checking whether the bottleneck is actually read-repetition versus an unindexed scan — the common mistake this question targets.
+- <strong>Senior:</strong> Asks a clarifying question first (does the same query repeat often? is load spread across enough instances? is the search itself doing a slow scan?), then names the specific pattern the answer points to, distinguishing it from the other plausible candidates.
+- <strong>Staff:</strong> Notes a real slow endpoint often needs more than one pattern simultaneously (e.g., both an inverted index AND caching of common queries), and discusses how to prioritize which to build first based on measured impact.</p>
+<h3 id="q2-how-do-rate-limiting-and-a-circuit-breaker-differ-given-both-exist-to-protect-something-under-load">Q2 — How do rate limiting and a circuit breaker differ, given both exist to "protect" something under load?<a class="headerlink" href="#q2-how-do-rate-limiting-and-a-circuit-breaker-differ-given-both-exist-to-protect-something-under-load" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../11-system-design/system-design-patterns-recognition-and-quick-reference/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Treats the two as interchangeable "protection" mechanisms — the common mistake this question targets.
+- <strong>Senior:</strong> States the proactive-vs-reactive distinction — rate limiting bounds how much load a caller sends regardless of the callee's health, a circuit breaker reacts to observed failures from the callee — and gives a concrete example of needing both at once.
+- <strong>Staff:</strong> Discusses where each belongs architecturally in a real request path (rate limiting typically at the edge/gateway, circuit breakers typically at each service-to-service call site).</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12904,7 +12943,7 @@ domain — system design presupposes backend fundamentals already covered elsewh
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 04:04:46 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
   </span>
 
     
