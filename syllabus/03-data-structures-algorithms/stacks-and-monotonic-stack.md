@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2105
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -73,6 +73,24 @@ The `3` at index 3 evicts every smaller element still on the stack in one pass, 
 **Largest Rectangle in Histogram's correctness argument, precisely**: for any bar, the widest rectangle with that bar as its limiting height extends exactly from the nearest strictly-shorter bar on its left to the nearest strictly-shorter bar on its right (exclusive of both). A monotonic increasing stack of indices tracks exactly the set of bars whose right boundary hasn't been found yet; the moment a shorter bar arrives, every taller bar still on the stack has just had its right boundary determined (the current index), and its left boundary is automatically the new stack top after popping (the nearest *remaining* shorter bar). Appending a sentinel height of `0` after the real array forces every bar still on the stack at the end to be resolved, rather than needing separate cleanup logic.
 
 **The two-stack queue's amortized cost, precisely**: `transferIfNeeded()` only actually reverses `inStack` into `outStack` when `outStack` is empty, not on every `pop()`/`peek()` call — so while any single transfer can cost O(n) in the worst case, each individual element is moved from `inStack` to `outStack` exactly once over its entire lifetime in the structure. Summed across `n` total operations, total transfer work is bounded by O(n), making the *amortized* per-operation cost O(1) even though a specific, individual call can occasionally cost more.
+
+**Visual: the monotonic stack, index by index.** The rule "pop while the stack top is taller than the current bar" is short to state and hard to trust until you watch which rectangle each pop measures. Real, executed trace over `[2, 1, 5, 6, 2, 3]`:
+
+```text
+index  height  popped (height x width = area)  best  stack after (indices)
+    0       2                               -     0  [0]
+    1       1                       2 x 1 = 2     2  [1]
+    2       5                               -     2  [2, 1]
+    3       6                               -     2  [3, 2, 1]
+    4       2           6 x 1 = 6; 5 x 2 = 10    10  [4, 1]
+    5       3                               -    10  [5, 4, 1]
+  end      0*  3 x 1 = 3; 2 x 4 = 8; 1 x 6 = 6    10  [6]
+Answer: 10  (* a sentinel height of 0 at the end forces every remaining bar to be popped and measured)
+```
+
+Every bar is pushed exactly once and popped exactly once, which is the O(n) despite the inner `while` loop. A pop is the moment a bar's rectangle is finally bounded on both sides: the current index is its right boundary, and the new stack top is its left one, so the width is `i - stack.peek() - 1`. Watch index 4: popping `6` measures a width of 1, then popping `5` measures a width of 2 — reaching left across the bar that was just removed, because that bar was taller and therefore cannot limit this one. The sentinel `0` at the end is not a trick; it is how you avoid duplicating the pop logic after the loop.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2103
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -66,6 +66,23 @@ Two comparisons eliminated 5 of the 7 elements without ever inspecting them — 
 **Binary search on the answer's correctness argument, made precise**: for Capacity to Ship Packages Within D Days (Section 7, Problem 4), the feasibility function `daysNeeded(capacity)` is monotonic — decreasing (or flat) as `capacity` increases, since a larger ship can only ever need the same or fewer days, never more. This monotonicity is what licenses treating "is this capacity feasible" as the same kind of yes/no-flips-once condition an ordinary binary search exploits, even though no array is ever searched — the search happens directly over the integer range from "smallest possible feasible capacity" (the single heaviest package) to "trivially feasible" (the sum of everything).
 
 **Median of Two Sorted Arrays** (Section 7, Problem 5) is the hardest example: instead of searching for a value, it binary-searches for a *partition point* in the smaller of the two arrays such that the combined left partition (across both arrays) has exactly half the total elements, and every element in that left partition is ≤ every element in the combined right partition. Forcing the search onto the *smaller* array bounds the search space to `O(log(min(m,n)))` (the actual required complexity, strictly better than the `O(log(m+n))` a naive equal-split approach might produce) and guarantees the second array's corresponding cut point is always a valid index. The sentinel values (`Integer.MIN_VALUE`/`MAX_VALUE` standing in for "off the edge of this array") let every boundary comparison work uniformly without special-casing either array's edges — a sentinel technique that generalizes well beyond this one problem, to essentially any partition- or merge-based algorithm needing uniform edge handling.
+
+**Visual: the search space collapsing when you binary-search the answer, not the array.** The hardest leap in this chapter is that the thing being halved is a *range of candidate answers*, with a feasibility predicate standing in for the comparison. Real, executed trace:
+
+```text
+Search space: [10, 55]  (max single weight .. total weight)
+step   lo   hi  mid  daysNeeded(mid)  feasible?  next window
+   0   10   55   32                2  yes        hi = mid   -> [10, 32]
+   1   10   32   21                3  yes        hi = mid   -> [10, 21]
+   2   10   21   15                5  yes        hi = mid   -> [10, 15]
+   3   10   15   12                6  no         lo = mid+1 -> [13, 15]
+   4   13   15   14                6  no         lo = mid+1 -> [15, 15]
+Answer: 15
+```
+
+Nothing here searches the array. The window `[10, 55]` is every capacity worth considering — no smaller than the heaviest single package, no larger than shipping everything in one day — and `daysNeeded(mid)` is the monotone predicate: once a capacity is feasible, every larger capacity is too. That monotonicity is exactly what makes halving legal. Five probes replace 46 candidate capacities, and the loop ends with `lo == hi` on the smallest feasible one.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

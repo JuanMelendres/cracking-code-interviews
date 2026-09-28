@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2119
 status: canonical
-version: 1.0
-last_updated: 2026-09-10
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -60,6 +60,46 @@ Two properties matter beyond raw speed: **stability** (do elements that compare 
 **Why the worst case of naive QuickSort is exactly `n(n-1)/2` comparisons, and why randomizing the pivot fixes it — proven directly, not asserted:** this chapter's own real demo instruments a Lomuto-partition QuickSort that always picks the first element as pivot. On a 2000-element already-sorted (or reverse-sorted) array, every single partition step is maximally unbalanced — one side gets everything, the other gets nothing — degrading the recursion from O(log n) depth to O(n) depth, and the real, measured comparison count comes out to exactly 1,999,000, which is precisely `n(n-1)/2` for n=2000. Switching the identical algorithm to pick a *uniformly random* pivot index, and rerunning against the exact same already-sorted and reverse-sorted inputs, drops the real comparison count to roughly 23,000–24,000 — back in line with random input's own ~25,000, because a random pivot makes a pathological, adversarial input structurally no different from a random one.
 
 **Why TimSort is really stable and a naive in-place QuickSort really is not — proven directly, not asserted:** this chapter's own real demo sorts an identical 12-element array of `(key, originalIndex)` pairs with deliberately duplicated keys, once via `Arrays.sort(Object[])` and once via a hand-rolled in-place QuickSort using the same comparator. A programmatic check (not a visual scan) confirms `Arrays.sort()` preserves every tied element's original relative order exactly; the naive QuickSort does not — its in-place swaps have no mechanism to prefer one tied element's original position over another's.
+
+**Visual: merge sort's real recursion order.** The recursion tree is usually drawn as a tidy symmetric diagram, which hides the fact that the splits happen all the way down *before* any merging starts. Real, executed split/merge order for `[38, 27, 43, 3, 9, 82, 10]`, indented by depth:
+
+```text
+split  [38, 27, 43, 3, 9, 82, 10] -> [38, 27, 43, 3] | [9, 82, 10]
+  split  [38, 27, 43, 3] -> [38, 27] | [43, 3]
+    split  [38, 27] -> [38] | [27]
+    merge  -> [27, 38]
+    split  [43, 3] -> [43] | [3]
+    merge  -> [3, 43]
+  merge  -> [3, 27, 38, 43]
+  split  [9, 82, 10] -> [9, 82] | [10]
+    split  [9, 82] -> [9] | [82]
+    merge  -> [9, 82]
+  merge  -> [9, 10, 82]
+merge  -> [3, 9, 10, 27, 38, 43, 82]
+Sorted: [3, 9, 10, 27, 38, 43, 82]
+```
+
+Read it top to bottom as the actual call order, not as a shape. The whole left half is fully split and fully merged before the right half is even touched — depth-first, not level-by-level. The merges are the only place any comparison happens, each one is linear in the size of the two runs it joins, and there are `log n` levels of them, which is precisely where O(n log n) comes from. The odd split (4 and 3) also shows why the tree is rarely perfectly balanced in practice and why that does not change the bound.
+
+The same structure as a tree, for the whiteboard:
+
+```mermaid
+graph TD
+    A["38 27 43 3 9 82 10"] --> B["38 27 43 3"]
+    A --> C["9 82 10"]
+    B --> D["38 27"]
+    B --> E["43 3"]
+    C --> F["9 82"]
+    C --> G["10"]
+    D --> H["38"]
+    D --> I["27"]
+    E --> J["43"]
+    E --> K["3"]
+    F --> L["9"]
+    F --> M["82"]
+```
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2110
 status: canonical
-version: 1.1
-last_updated: 2026-09-14
+version: 1.2
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -83,6 +83,23 @@ DP problems have a reputation for being the hardest, most anxiety-inducing categ
 **The state-machine's cooldown-encoding mechanism, precisely** (Section 7 Problem 7): `rest`'s transition formula, `Math.max(prevRest, prevSold)`, deliberately excludes `prevHold` as a source — meaning the algorithm can only enter the `rest` state from a previous `rest` or `sold` state, never directly from `hold`. This asymmetry is what structurally encodes "you can't buy the day immediately after selling" as a property of which state transitions are even representable, rather than as an `if` statement checking a day-counter against the last sale date.
 
 **Tree DP's parent-child dependency, precisely**: at every node, whether that node itself is robbed forces a specific constraint on its children (`node.val + left[1] + right[1]` if robbed — both children *must* be in their not-robbed state) versus leaves each child free to independently choose its own better state if the current node isn't robbed (`Math.max(left[0], left[1]) + Math.max(right[0], right[1])`). This mirrors [Diameter of Binary Tree's](trees-bst-and-traversal-patterns.md#5-how-it-works-internally-l3) side-channel-accumulation technique structurally, but here the "side information" (whether robbed) is carried explicitly in the return tuple rather than through a separate mutable channel, since both possible values are genuinely needed by the parent, not just tracked as a running maximum.
+
+**Visual: the DP table, filled.** A recurrence written as an equation stays abstract until you see the grid it fills. Real, executed table for `"horse" -> "ros"`:
+
+```text
+        ''   r   o   s
+  ''   0   1   2   3
+   h   1   1   2   3
+   o   2   2   1   2
+   r   3   2   2   2
+   s   4   3   3   2
+   e   5   4   4   3
+Answer: 3  (bottom-right cell; each cell depends only on its left, top, and diagonal neighbour)
+```
+
+The first row and column are the base cases: turning a prefix into the empty string costs one deletion per character. Every other cell looks at exactly three neighbours — left (insert), top (delete), diagonal (replace, or free when the characters match) — which is why `dp[2][2] = 1`: `ho` and `ro` differ by one replacement. The answer sits at the bottom-right, and the dependency pattern is also the proof that a single row of state is enough if you only need the number, not the edit script.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

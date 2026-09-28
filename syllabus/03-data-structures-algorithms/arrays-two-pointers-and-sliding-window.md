@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2101
 status: canonical
-version: 1.1
-last_updated: 2026-09-27
+version: 1.2
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md
@@ -68,6 +68,25 @@ array: [ 4 ][ 2 ][ 1 ][ 7 ][ 3 ][ 5 ]
 **The amortized-cost argument is what makes a sliding-window or monotonic-deque solution genuinely O(n) rather than looking like it might be O(n·k) or worse.** In Sliding Window Maximum (Section 7, Problem 2), the inner `while` loops that expire and evict elements look, at first glance, like they could run up to `k` times per outer iteration — but each index is pushed onto the deque exactly once and popped at most once, across the *entire* run of the algorithm, not per window. Summed across all `n` outer iterations, the total number of push and pop operations is bounded by `2n`, not `n·k` — this is precisely the amortized-analysis reasoning [Algorithmic Complexity](../01-computer-science-foundations/algorithmic-complexity-and-big-o-from-first-principles.md#4-core-concepts-l2) introduces generally, applied to a specific, concrete data structure here.
 
 **The "safe to skip" justification for opposite-direction two pointers is a proof by contradiction, not an intuition to take on faith.** For Container With Most Water: suppose the shorter line is at `lo` and you moved `hi` inward instead of `lo`. Every area you could form with the new `hi'` and the old `lo` has width strictly less than or equal to before, and height still capped by the same shorter line at `lo` (since `hi'` is somewhere between `lo` and the old `hi`, and could only be taller, not shorter, than the eliminated `hi` — but the *limiting* height is still `height[lo]`, unchanged). So no area found this way can exceed what's already been checked. This is the general shape of *every* two-pointer correctness argument in this pattern: identify exactly what moving a specific pointer can and cannot produce, and show the discarded region is provably dominated.
+
+**Visual: watching the two pointers actually move.** The pattern's whole argument is that discarding a line can never cost you the answer, and that is far easier to believe once you watch it happen. Real, executed trace over `[1, 8, 6, 2, 5, 4, 8, 3, 7]`:
+
+```text
+step  left  right  h[left]  h[right]  width  area  best  action
+   0     0      8        1         7      8     8     8  left++  (shorter side)
+   1     1      8        8         7      7    49    49  right-- (shorter side)
+   2     1      7        8         3      6    18    49  right-- (shorter side)
+   3     1      6        8         8      5    40    49  right-- (shorter side)
+   4     1      5        8         4      4    16    49  right-- (shorter side)
+   5     1      4        8         5      3    15    49  right-- (shorter side)
+   6     1      3        8         2      2     4    49  right-- (shorter side)
+   7     1      2        8         6      1     6    49  right-- (shorter side)
+Answer: 49
+```
+
+Read the `action` column: the pointer at the *shorter* line always moves, because the area is capped by the shorter side, so keeping it and shrinking the width can only ever produce a smaller rectangle. Step 1 already finds the answer (49); the remaining six steps prove nothing better exists, and the whole walk touches each index at most once — that is the O(n) the pattern buys over the O(n²) pair enumeration.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

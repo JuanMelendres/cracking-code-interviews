@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2113
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/number-representation.md
@@ -74,6 +74,23 @@ Order doesn't matter — XOR is commutative and associative, so every pair of du
 **Sum of Two Integers' correctness for negative operands, precisely**: this bit-level addition technique works identically for negative numbers *specifically because* Java's `int` already uses two's complement representation — the same bit-level addition-with-carry mechanism that makes two's complement negation and addition work correctly (per [Number Representation's](../01-computer-science-foundations/number-representation.md#5-how-it-works-internally-l3) own derivation) is exactly what this technique relies on and exploits directly, rather than needing separate logic for negative operands.
 
 **Counting Bits' recurrence derivation, precisely**: `i >> 1` is `i` with its lowest bit removed — a value strictly smaller than `i`, whose popcount was already computed earlier in the same loop (since the loop proceeds from `1` upward). `i`'s own popcount is exactly that already-known smaller value's popcount, plus one more *only if* `i`'s own lowest bit (`i & 1`) happens to be set. This turns computing each value's popcount into an O(1) lookup-plus-addition, rather than an O(popcount) Kernighan-style inner loop repeated independently for every value from `1` to `n`.
+
+**Visual: XOR cancelling, one bit lane at a time.** "XOR cancels duplicates" is a sentence people repeat without seeing it. Watching the accumulator in binary makes the mechanism concrete. Real, executed trace:
+
+```text
+step  value  value(bits)  running XOR(bits)  running XOR
+   0      -            -               0000            0
+   1      4         0100               0100            4
+   2      1         0001               0101            5
+   3      2         0010               0111            7
+   4      1         0001               0110            6
+   5      2         0010               0100            4
+Answer: 4  (every duplicate cancelled itself bit by bit)
+```
+
+Each column of the `running XOR(bits)` field is an independent lane, and each lane simply counts its own 1-bits modulo 2. At step 3 the accumulator is `0111`, which corresponds to no element at all — an intermediate state, not a partial answer. By the end every value that appeared twice has flipped its lanes back to where they started, leaving only `0100`. Order is irrelevant for the same reason: XOR is associative and commutative, so the duplicates cancel whenever they happen to meet.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 

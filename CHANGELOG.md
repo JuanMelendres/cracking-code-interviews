@@ -6,6 +6,15 @@ All notable changes to this repository are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+### Added (Visual explanations for 10 `03-data-structures-algorithms` chapters, 2026-09-28)
+
+- Full-repo audit (309 chapters scanned programmatically) found 10 of the 20 algorithms chapters carrying **zero diagrams** — no Mermaid, no real ASCII — in the one domain whose own Coding Interview Standard in `CLAUDE.md` requires a "visual explanation" per algorithm. User approved closing this first, as its own PR.
+- Nine chapters gained a real, **executed** step-by-step trace at the end of Section 5 (How It Works Internally), where the mechanism is being explained: two-pointer walk (LC 11), collapsing search-on-answer window (LC 1011), XOR bit lanes (LC 136), a filled edit-distance DP grid (LC 72), greedy level expansion (LC 45), the prefix-sum frequency map step by step (LC 560), the sweep-line event list with its running and peak counts (LC 253), merge sort's real depth-first split/merge order, and the monotonic stack's evolution with each pop's `height x width = area` (LC 84).
+- All nine traces come from one new program, `practice/java/algorithms/visual-traces/src/VisualTraces.java` (OpenJDK 21.0.12), so every number in every diagram is regenerable rather than hand-drawn — transcript committed.
+- The tenth chapter, `coding-interview-pattern-recognition-methodology.md`, gained a Mermaid routing tree keyed on input shape instead: it teaches a decision, not an algorithm, so there is nothing to execute. It complements rather than replaces that chapter's IWI-ranked signal-to-pattern table, which stays the reference.
+- All 10 chapters got a version bump and `last_updated: 2026-09-28`; `syllabus/03-data-structures-algorithms/INDEX.md` records the closure.
+- `validate.py`: errors 0, warnings 13 (unchanged baseline). Anchor-resolution check across all touched files: 82 anchored links, 0 bad — it caught one real defect before commit (a same-file link to `#4-core-concepts-l2--the-signal-to-pattern-table` with a doubled hyphen).
+
 ### Added (Four checklist-audit gaps closed: nested/inner classes, GoF catalog, varargs/signature rules, broker selection, 2026-09-28)
 
 - Ran a self-generated Java/backend interview checklist (~70 questions, target-company shape) against real repository content rather than memory. Most items were already covered more deeply than the checklist — including several near-miss false positives verified and discarded (the `Integer` −128..127 cache is covered in `java-platform-basics...` §15, static-initialization triggers in `classloaders-and-class-initialization.md`). Four genuine gaps confirmed and closed here in one pass.
