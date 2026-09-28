@@ -27,6 +27,7 @@ AWS core services (ECS/EKS/RDS/SQS/SNS/ALB/Auto Scaling), Azure and GCP equivale
 | T-1008 | The Twelve-Factor App: Config, Precedence, and Fail-Fast Validation | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/15-cloud/twelve-factor-config.md` |
 | T-2404 | Azure and GCP for Backend Engineers | L1, L2, L3, L4 — fully written, verified against current official docs (2026-09-10) | `syllabus/15-cloud/azure-and-gcp-for-backend-engineers.md` |
 | T-2425 | Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/15-cloud/serverless-lambda-execution-model-cold-starts-and-concurrency.md` |
+| T-2438 | Infrastructure as Code: Declarative State, Drift, and Safe Change | L1, L2, L3, L4 — fully written, concepts-only by design (no billable infrastructure provisioned; see the chapter's scope note) (2026-09-28) | `syllabus/15-cloud/infrastructure-as-code.md` |
 
 ## Where this domain's boundary comes from
 

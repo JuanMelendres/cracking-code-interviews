@@ -35,6 +35,7 @@ OWASP Top 10, OAuth2/OIDC/JWT, enterprise SSO/SAML/federated identity, secrets m
 | T-512/T-513 | OAuth2, OIDC, and JWT | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/12-security/oauth2-oidc-and-jwt.md` |
 | T-1309 | Enterprise SSO: SAML, Federated Identity, and Commercial IAM Integration | L1, L2, L3, L4 — fully written, user-requested (2026-09-14) | `syllabus/12-security/enterprise-sso-saml-and-federated-identity.md` |
 | T-1310 | Authentication Attack Defense: Brute Force, Credential Stuffing, and MFA | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/12-security/authentication-attack-defense-brute-force-and-mfa.md` |
+| T-2437 | Data Privacy: PII Handling, Retention, and Erasure | L1, L2, L3, L4 — fully written, real crypto-shredding demo (2026-09-28) | `syllabus/12-security/data-privacy-pii-handling-and-retention.md` |
 
 ## Where this domain's boundary comes from
 

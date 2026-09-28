@@ -5,12 +5,29 @@ document_type: flashcard-deck
 domain: 01-computer-science-foundations
 topic_id: "T-2004"
 canonical: ../syllabus/01-computer-science-foundations/os-process-thread-model.md
-last_updated: 2026-09-07
+last_updated: 2026-09-28
 ---
 
 # Flashcards: The OS Process/Thread Model, Below Java's Abstraction of It
 
 **Canonical chapter:** [`syllabus/01-computer-science-foundations/os-process-thread-model.md`](../syllabus/01-computer-science-foundations/os-process-thread-model.md)
+
+## Card: Concurrency vs. parallelism, and why pool sizing differs
+
+**Prompt:**
+What is the difference between concurrency and parallelism, and how does it change thread-pool sizing?
+
+**Answer:**
+Concurrency is structural — several tasks in progress over the same period, interleaving. Parallelism is physical — several tasks executing simultaneously, which needs multiple cores. Measured on a 10-core machine: 40 CPU-bound tasks took 610 ms on 1 thread, 90 ms on 10, and 84 ms on 40 — no gain past the core count. The identical increase applied to 200 tasks each waiting 50 ms went from 10,656 ms on 1 thread to 71 ms on 200, a 150x improvement, because a waiting thread uses no CPU.
+
+**Why it matters:**
+CPU-bound pools are sized near the core count; I/O-bound pools are sized by desired in-flight operations. The two numbers can differ by an order of magnitude.
+
+**Common trap:**
+Applying one "threads = cores + 1" rule to every workload. A pool sized for a CPU-bound assumption silently throttles I/O-bound work — nothing errors, it just gets slow.
+
+**Related:**
+[Executors and Thread Pool Sizing](../syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md)
 
 ## Card: Process vs. thread — what's isolated, what's shared
 

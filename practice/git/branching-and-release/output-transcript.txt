@@ -1,0 +1,79 @@
+Captured 2026-09-28 with git 2.55.0 on macOS. Commit hashes differ per run.
+$ ./run-demo.sh
+
+================================================================
+A. TRUNK-BASED: short-lived branches, one integration point
+================================================================
+$ git log --oneline --graph --decorate --all
+*   37470a4 (HEAD -> main, tag: v1.2.0) Merge feat/tax
+|\  
+| * b8af1a3 feat: tax table
+|/  
+*   d089cef (tag: v1.1.0) Merge feat/pricing
+|\  
+| * 3204ce0 feat: pricing rules
+|/  
+* 050af28 (tag: v1.0.0) feat: initial version
+
+$ git tag -n1
+v1.0.0          1.0.0
+v1.1.0          1.1.0
+v1.2.0          1.2.0
+
+Branches alive right now:
+  main
+Each feature lived hours-to-days and merged into one line. There is exactly
+one place to ask 'what is in production': the tag on main.
+
+================================================================
+B. RELEASE-BRANCH MODEL: a hotfix must be applied twice
+================================================================
+Production bug found in 1.0, while main has already moved on.
+$ git log --oneline release/1.0
+b963e7d fix: clamp negative totals
+050af28 feat: initial version
+
+The fix exists ONLY on release/1.0. main is still broken:
+$ git log --oneline main
+31fbd04 feat: work continues on main
+050af28 feat: initial version
+
+$ git checkout main && git cherry-pick b963e7d
+  Auto-merging app.txt
+  CONFLICT (content): Merge conflict in app.txt
+  error: could not apply b963e7d... fix: clamp negative totals
+  hint: After resolving the conflicts, mark them with
+  hint: "git add/rm <pathspec>", then run
+  hint: "git cherry-pick --continue".
+  hint: You can instead skip this commit with "git cherry-pick --skip".
+  hint: To abort and get back to the state before "git cherry-pick",
+  hint: run "git cherry-pick --abort".
+  hint: Disable this message with "git config set advice.mergeConflict false"
+
+The cherry-pick CONFLICTED -- back-porting is not free. Resolving it the way
+a human would, keeping both main's new work and the hotfix line:
+$ git log --oneline --graph --decorate --all
+* 96d1ed2 (HEAD -> main) fix: clamp negative totals
+* 31fbd04 feat: work continues on main
+| * b963e7d (tag: v1.0.1, release/1.0) fix: clamp negative totals
+|/  
+* 050af28 (tag: v1.0.0) feat: initial version
+
+Note the two DIFFERENT commit hashes for the identical change:
+96d1ed2 fix: clamp negative totals
+b963e7d fix: clamp negative totals
+A cherry-pick copies the change onto a new commit, so the two lines now
+carry the same fix under different identities -- which is why a forgotten
+back-merge silently reintroduces a fixed bug in the next release.
+
+================================================================
+C. SEMANTIC VERSIONING: what each bump is a PROMISE about
+================================================================
+BUMP       MEANING                                    EXAMPLE
+MAJOR      a caller must change to keep working       1.2.3 -> 2.0.0
+MINOR      new capability, existing callers unaffected 1.2.3 -> 1.3.0
+PATCH      bug fix only, no interface change          1.2.3 -> 1.2.4
+
+The version is a compatibility claim to consumers, not a measure of effort.
+A one-line change that alters a response field is MAJOR; a thousand-line
+internal refactor with no API change is PATCH.

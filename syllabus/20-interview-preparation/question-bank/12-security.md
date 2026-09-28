@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../12-security/INDEX.md
   - 11-system-design.md
@@ -17,8 +17,10 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 11 chapters yielded 22 deep questions + 32 quick-fire
-questions = **54 real questions**. (Updated 2026-09-27: `authentication-attack-defense-brute-force-and-mfa.md`
+**Honest count for this domain:** 12 chapters yielded 25 deep questions + 32 quick-fire
+questions = **57 real questions**. (Updated 2026-09-28: `data-privacy-pii-handling-and-retention.md`
+is a new chapter closing a real coverage gap — GDPR, retention, encryption at rest, and
+data classification had zero occurrences in this domain — contributing 3 questions.) (Updated 2026-09-27: `authentication-attack-defense-brute-force-and-mfa.md`
 and `enterprise-sso-saml-and-federated-identity.md` had complete Interview Questions
 sections never indexed — a stale-index gap, not a content gap. Added 4 questions +
 4 quick-fire cards.) No Junior Fundamentals chapter exists in this
@@ -312,6 +314,38 @@ Junior/Mid candidate actually makes), matching the same derivation method used f
 | 32 | Beyond checking the signature, what else must a Service Provider validate on an incoming SAML assertion? | [Enterprise SSO, SAML, and Federated Identity](../../12-security/enterprise-sso-saml-and-federated-identity.md#flashcards) |
 
 ---
+
+---
+
+## Data Privacy: PII Handling, Retention, and Erasure
+
+### Q1 — A user requests erasure of their data. Walk me through what actually has to happen.
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../12-security/data-privacy-pii-handling-and-retention.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Deletes from the primary database and recognises other copies exist.
+- **Senior:** Enumerates the copies unprompted — replicas, backups, event log, search index, caches, warehouse, log files, third-party processors — identifies backups and append-only event logs as unable to delete a single record, and proposes crypto-shredding for those: destroying the per-subject key renders existing ciphertext permanently unreadable, demonstrated with two independently-stored ciphertexts and one key removal. Adds per-system acknowledgement so completion is provable.
+- **Staff:** Frames erasability as an architectural property decided at schema-design time, argues for a schema-review gate asking retention and erasure path for every personal column, and states the honest residual-risk posture rather than an unqualified completeness claim.
+
+### Q2 — We hashed the email addresses, so the dataset is anonymous. Is it?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../12-security/data-privacy-pii-handling-and-retention.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows hashing is reversible for small value spaces.
+- **Senior:** Refutes it with the mechanism — the demo recovers `alice@example.com` from its stored SHA-256 by guessing against a plausible value space — and distinguishes pseudonymisation from anonymisation, noting a keyed hash raises the bar and remains pseudonymisation. Adds the quasi-identifier problem: timestamps plus coarse location are frequently unique to one person.
+- **Staff:** Raises the governance consequence — an "anonymised" export that leaves the erasure and retention path on an unvalidated claim is an unmanaged copy of personal data, so the export needs the same review as the schema.
+
+### Q3 — How would you design retention so it actually holds?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../12-security/data-privacy-pii-handling-and-retention.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes scheduled deletion on a timestamp column.
+- **Senior:** Moves retention from script to schema — explicit period per table, a column the policy acts on, continuous deletion, and an alert on the **absence** of deletions — and explains why a cleanup script fails in practice (disabled during incidents, misses new tables, silent when it does not run). Covers the warehouse and event log, which otherwise outlive the primary by years.
+- **Staff:** Ties it to the review gate and inventory ownership, since retention decays silently as the schema grows unless every new personal column acquires a period at creation.
+
 
 ## Related
 

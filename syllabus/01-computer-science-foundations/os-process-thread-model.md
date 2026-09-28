@@ -5,12 +5,13 @@ document_type: syllabus-topic
 domain: 01-computer-science-foundations
 topic_id: T-2004
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - how-a-computer-executes-a-program.md
 related:
+  - file-systems-and-durable-io.md
   - how-a-computer-executes-a-program.md
   - ../02-java/concurrency/virtual-threads.md
   - ../02-java/concurrency/executors-and-thread-pool-sizing.md
@@ -70,6 +71,42 @@ Two threads in the same process can corrupt each other's data by racing on the *
 **The OS scheduler is the component that decides which runnable thread gets to run on which core next**, using a scheduling algorithm (details vary by OS, but the goal is broadly similar: give every runnable thread a fair, reasonably prompt share of CPU time, while giving some priority to threads that just became runnable after waiting, like one woken up by I/O completing). Application code never picks which thread runs when at the OS level — it can only ask to run, block, or yield, and the scheduler decides the rest.
 
 **Creating an OS thread is a real, measurable cost** — the OS has to allocate a dedicated stack for it (typically megabytes, reserved even if mostly unused, exactly the per-thread stack region [How a Computer Executes a Program](how-a-computer-executes-a-program.md) measures directly) and register it with the scheduler. This cost, multiplied across a very large number of threads, is precisely the motivation behind Java's virtual threads: **an M:N threading model**, where a potentially huge number (M) of lightweight, JVM-managed virtual threads are multiplexed onto a much smaller number (N) of real OS threads, called **carrier threads** — rather than the traditional 1:1 model, where every Java platform thread is, underneath, one dedicated OS thread. [Virtual Threads (Project Loom)](../02-java/concurrency/virtual-threads.md) covers exactly how that multiplexing works at the JVM level (parking, unmounting, and remounting a virtual thread onto whichever carrier is free); this topic's practice demo measures the *outcome* of that mechanism directly from the OS side, in Section 10.
+
+**Concurrency and parallelism are different properties, and conflating them is the root of most bad threading decisions.** *Concurrency* is a structural property: several tasks are *in progress* over the same period, interleaving their use of whatever resource they need. *Parallelism* is a physical property: several tasks *execute simultaneously*, which requires more than one core. Concurrency is about how work is organised; parallelism is about how much hardware is doing it at once. You can have either without the other — a single-threaded event loop is concurrent with zero parallelism, and a parallel stream over an array is parallel without any interleaving structure worth calling concurrency.
+
+The distinction is measurable, and the measurement is the whole lesson. Real, executed output from [`practice/java/cs-foundations/concurrency-vs-parallelism/`](../../practice/java/cs-foundations/concurrency-vs-parallelism/README.md) on a 10-core machine, running 40 tasks of pure CPU work with no I/O at all:
+
+```text
+    1 threads ->    610 ms
+    2 threads ->    307 ms
+    4 threads ->    180 ms
+   10 threads ->     90 ms   <- one per core
+   40 threads ->     84 ms   <- MORE threads, no better
+```
+
+Time halves as threads double, flattens at the core count, and gains nothing beyond it — there is no idle CPU left for a 40th thread to use, so the extra threads buy context switching rather than throughput. That ceiling is hardware.
+
+Now the identical thread-count increase applied to 200 tasks that each wait 50 ms, standing in for a network call:
+
+```text
+    1 threads ->  10656 ms
+   10 threads ->   1072 ms   <- one per core
+   50 threads ->    221 ms
+  200 threads ->     71 ms   <- one per task
+  virtual threads ->     64 ms
+```
+
+A **150x** improvement, far past the core count, because a waiting thread consumes no CPU — it is blocked, and the scheduler runs someone else. Total time approaches the latency of *one* call rather than the sum of all of them. This is why thread-pool sizing rules differ so sharply by workload: a CPU-bound pool is sized at roughly the core count, while an I/O-bound pool is sized by how many operations you want in flight, and the two numbers can differ by an order of magnitude. [Executors and Thread Pool Sizing](../02-java/concurrency/executors-and-thread-pool-sizing.md) develops that arithmetic; virtual threads (see [Virtual Threads](../02-java/concurrency/virtual-threads.md)) largely remove the sizing decision for the I/O-bound case, which is exactly the case where getting it wrong hurt most.
+
+**Amdahl's law is the ceiling on the parallel half.** Any program has a portion that cannot be shared out — reading configuration, a sequential setup phase, a final merge — and that portion is unchanged no matter how many cores you add. Measured directly, a serial phase followed by 40 parallelisable tasks:
+
+```text
+    1 thread       ->    642 ms
+    10 threads     ->    128 ms
+    speedup: 5.02x with 10 cores
+```
+
+Ten cores bought a 5x speedup, not 10x, purely because the serial phase stayed the same size. This is why "just add threads" stops paying off long before the core count is reached, and why profiling to find the serial fraction is more valuable than adding hardware. The practical rule: before scaling threads, measure what fraction of the work is genuinely parallelisable, because that fraction, not the core count, sets your ceiling.
 
 ## 5. How It Works Internally (L3)
 
@@ -176,6 +213,32 @@ At Staff scope, the process/thread model underlies a class of migration decision
 **Common mistakes.** Describing virtual threads as "not real threads" without the more precise mechanism (they are real Java `Thread` objects with real, if usually brief, mounted execution on a real OS thread — the abstraction is in the *scheduling*, not in the execution itself).
 
 **Follow-up questions.** "What happens if a virtual thread enters a `synchronized` block and then blocks inside it?" (It pins to its carrier for that entire blocking window — Section 9 — which is exactly the real incident in Section 14's first scenario.) "Would virtual threads help a CPU-bound workload?" (No — Section 12; the M:N model only helps when threads spend time blocked, not when they're genuinely computing.)
+
+### Question 3 — What is the difference between concurrency and parallelism, and why does it change how you size a thread pool?
+
+**Expected answer:** concurrency is a structural property — several tasks in progress over the same period, interleaving — while parallelism is physical: several tasks executing simultaneously, which needs multiple cores. A single-threaded event loop is concurrent with no parallelism. The sizing consequence is measured directly: for CPU-bound work, throughput improves until roughly one thread per core and then flattens (40 tasks took 610 ms on 1 thread, 90 ms on 10, and 84 ms on 40 — no gain past the core count). For I/O-bound work, threads help far past the core count because a waiting thread uses no CPU (200 tasks each waiting 50 ms took 10,656 ms on 1 thread and 71 ms on 200, a 150x improvement).
+
+**Minimum acceptable answer:** knows parallelism requires multiple cores and concurrency does not.
+
+**Strong Senior answer:** draws the sizing rule from the mechanism rather than reciting it — CPU-bound pools sized near the core count, I/O-bound pools sized by desired in-flight operations — and notes that virtual threads largely remove the sizing decision for the I/O-bound case, which was the case where the old rule was hardest to get right.
+
+**Staff-level extension:** frames pool sizing as a capacity decision that has to be revisited when workload shape changes, and points out that a pool sized for a CPU-bound assumption silently throttles an I/O-bound workload without any error appearing anywhere — it just gets slow.
+
+**Common mistakes:** using the terms interchangeably; applying a single "threads = cores + 1" rule to every workload; assuming more threads always helps.
+
+**Follow-up questions:** "What limits the speedup if most of the work parallelises?" (Amdahl's law — measured, a serial phase plus 40 parallel tasks gave 5.02x on 10 cores.) "Can you have parallelism without concurrency?" (Yes — a parallel stream over an array.)
+
+### Question 4 — Your service parallelised a batch job across 16 cores and got a 4x speedup. Is something broken?
+
+**Expected answer:** not necessarily — that is Amdahl's law working as expected. Whatever fraction of the job is serial does not shrink when cores are added, so it comes to dominate the runtime. Measured here, a serial phase plus 40 parallelisable tasks gave 5.02x on 10 cores rather than 10x. The productive next step is profiling to find and shrink the serial fraction, not adding more cores.
+
+**Minimum acceptable answer:** recognises that speedup is limited by the non-parallel portion.
+
+**Strong Senior answer:** names candidates for the hidden serial portion — setup, a final merge or reduce, contention on a shared lock, a single-threaded I/O stage, GC pauses — and notes that some of these masquerade as parallel work while actually serialising on a shared resource.
+
+**Staff-level extension:** treats it as a cost conversation: beyond the point where the serial fraction dominates, more cores means paying for hardware that cannot help, so the honest recommendation may be to stop scaling and re-architect the serial stage instead.
+
+**Common mistakes:** concluding the parallelisation is buggy; adding more threads; assuming linear speedup is the normal case.
 
 ## 16. Coding/Practice Exercises
 

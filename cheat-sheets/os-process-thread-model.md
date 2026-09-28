@@ -5,12 +5,25 @@ document_type: cheat-sheet
 domain: 01-computer-science-foundations
 topic_id: T-2004
 canonical: ../syllabus/01-computer-science-foundations/os-process-thread-model.md
-last_updated: 2026-09-06
+last_updated: 2026-09-28
 ---
 
 # The OS Process/Thread Model, Below Java's Abstraction of It
 
 **Canonical chapter:** [`syllabus/01-computer-science-foundations/os-process-thread-model.md`](../syllabus/01-computer-science-foundations/os-process-thread-model.md)
+
+## Concurrency vs. Parallelism (measured, 10 cores)
+
+Concurrency = several tasks **in progress** (structural). Parallelism = several tasks **executing at once** (physical, needs cores).
+
+| Workload | 1 thread | 10 threads | Many threads |
+|---|---|---|---|
+| CPU-bound (40 tasks) | 610 ms | 90 ms | 84 ms at 40 — **no gain past core count** |
+| I/O-bound (200 tasks × 50 ms) | 10,656 ms | 1,072 ms | **71 ms at 200**; 64 ms with virtual threads |
+
+Sizing follows: CPU-bound ≈ core count; I/O-bound ≈ desired in-flight operations.
+
+**Amdahl's law:** a serial phase plus 40 parallel tasks gave **5.02x on 10 cores**, not 10x. The serial fraction, not the core count, sets the ceiling.
 
 ## Core Mental Model
 
