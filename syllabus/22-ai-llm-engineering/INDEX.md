@@ -33,6 +33,8 @@ LLM API integration, prompting, retrieval-augmented generation (RAG), vector dat
 | T-2304 | [Agentic Workflows and Tool Orchestration](agentic-workflows-and-tool-orchestration.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/22-ai-llm-engineering/agentic-workflows-and-tool-orchestration.md` |
 | T-2305 | [LLM Evaluation and Testing](llm-evaluation-and-testing.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-10) | `syllabus/22-ai-llm-engineering/llm-evaluation-and-testing.md` |
 | T-2306 | [Prompt Injection and Agentic Security: Attack Vectors and Defenses](prompt-injection-and-agentic-security.md) | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/22-ai-llm-engineering/prompt-injection-and-agentic-security.md` |
+| T-2307 | [Hallucination, Groundedness, and Output Guardrails](hallucination-groundedness-and-output-guardrails.md) | L1, L2, L3, L4 — fully written (2026-09-28) | `syllabus/22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails.md` |
+| T-2308 | [Context Window Management, Token Budgets, and Cost](context-window-management-token-budgets-and-cost.md) | L1, L2, L3, L4 — fully written (2026-09-28) | `syllabus/22-ai-llm-engineering/context-window-management-token-budgets-and-cost.md` |
 
 **Planned list complete; domain remains open.** Further topics (e.g., fine-tuning, multi-agent systems, cost optimization at scale) may be added later, using the next free ID in the `T-2300`–`T-2399` range.
 

@@ -5,13 +5,14 @@ document_type: syllabus-topic
 domain: 22-ai-llm-engineering
 topic_id: T-2301
 status: canonical
-version: 1.0
-last_updated: 2026-09-10
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - llm-api-integration-fundamentals.md
   - ../06-databases/index-structures-btree-composite-covering.md
 related:
+  - hallucination-groundedness-and-output-guardrails.md
   - embeddings.md
   - ../06-databases/query-planning-and-explain-analyze.md
   - ../11-system-design/caching-strategies-and-invalidation.md
@@ -145,6 +146,27 @@ real HNSW index build took 126ms
 ```
 
 A real, measured **~7x execution-time reduction** on 5,000 rows — and the plan itself confirms the mechanism changed, `Seq Scan` to `Index Scan`, not just that it got faster for an unexplained reason. The gap widens sharply as table size grows past this chapter's deliberately small demo scale, which is exactly why HNSW indexing matters for real production vector search, not just this toy example.
+
+### Retrieval versus fine-tuning: they solve different problems
+
+The most common design question this chapter attracts is "should we fine-tune instead?" Treating the two as alternatives is the mistake; they change different things.
+
+| | Retrieval (RAG) | Fine-tuning |
+|---|---|---|
+| Changes | What is in the prompt | The model's weights |
+| Good at | Facts that change, are private, or are too numerous to memorize | Format, style, tone, domain vocabulary, consistent structure |
+| Update cost | Re-index a document — minutes | Re-train and re-evaluate — hours to days |
+| Attribution | Natural: you can cite the retrieved source | None: the answer comes from weights |
+| Access control | Enforceable at retrieval time, per user | Not enforceable: training data is baked in for everyone |
+| Failure mode | Retrieves the wrong documents, or none | Confidently produces outdated or wrong facts in the right style |
+
+Three consequences are worth stating plainly, because they decide most real cases:
+
+1. **Changing facts belong in retrieval.** A price, a policy, or a document revised weekly cannot be kept current by re-training. If the answer must reflect what is true today, it must come from the prompt.
+2. **Per-user or per-tenant data must not be fine-tuned in.** Weights have no access control, so anything trained in is available to every caller. Retrieval filters by tenant at query time; fine-tuning cannot.
+3. **Fine-tuning is the right tool for *how* the model answers.** If the complaint is "it never uses our terminology" or "the structure is inconsistent," that is a weights-and-examples problem, and no amount of retrieved context fixes it reliably.
+
+They also compose, and the combination is often the correct answer at scale: fine-tune for a consistent output format and domain voice, retrieve for the facts, and keep citations pointing at the retrieved sources. Before reaching for either, exhaust prompt engineering and retrieval quality — most "we need to fine-tune" conclusions in practice turn out to be retrieval or instruction problems, and they are far cheaper to diagnose than to train around. [Hallucination, Groundedness, and Output Guardrails](hallucination-groundedness-and-output-guardrails.md) covers the diagnostic that separates the two: were the right documents in the prompt or not?
 
 ## 6. Practical Usage
 

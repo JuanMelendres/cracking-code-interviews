@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../07-api-design/INDEX.md
   - 05-spring.md
@@ -17,10 +17,12 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 8 chapters yielded 14 deep questions + 9
+**Honest count for this domain:** 9 chapters yielded 17 deep questions + 9
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `rest-api-fundamentals.md`) + 20 quick-fire questions = **43 real
-questions**. (Updated 2026-09-27: `api-versioning-strategies.md`,
+chapter, `rest-api-fundamentals.md`) + 20 quick-fire questions = **46 real
+questions**. (Updated 2026-09-28: `http-caching-for-apis.md` is a new chapter
+closing a real coverage gap — `Cache-Control` appeared once in the whole repository,
+in a frontend chapter — contributing 3 questions.) (Updated 2026-09-27: `api-versioning-strategies.md`,
 `openapi-and-contract-first-api-design.md`, and `webhook-design-and-delivery-guarantees.md`
 had complete Interview Questions sections never indexed — a stale-index gap, not
 a content gap. Added 6 questions + 8 quick-fire cards.)
@@ -288,6 +290,38 @@ format above instead).
 | 20 | Why do real webhook providers guarantee "at least once" delivery instead of "exactly once"? | [Webhook Design and Delivery Guarantees](../../07-api-design/webhook-design-and-delivery-guarantees.md#flashcards) |
 
 ---
+
+---
+
+## HTTP Caching for APIs
+
+### Q1 — What is the difference between `no-cache`, `no-store`, and `must-revalidate`?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../07-api-design/http-caching-for-apis.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows `no-store` is the one that actually prevents storage.
+- **Senior:** Defines all three precisely — `no-store` forbids storing anywhere; `no-cache` permits storing but requires revalidation before every reuse; `must-revalidate` applies only once a response is already stale, forbidding a cache from serving it without revalidating. Adds that `no-cache` plus an `ETag` is a deliberate combination (always current, body only on change) and that saying nothing at all is worse than any of them, because caches may apply heuristic freshness derived from `Last-Modified`.
+- **Staff:** Frames the default as organizational — `private, no-store` everywhere with `public` as a reviewed per-route exception, because the cost of a wrong `public` is a confidentiality incident while the cost of a missing one is bandwidth.
+
+### Q2 — We added ETags and request volume did not drop. Why?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../07-api-design/http-caching-for-apis.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows a `304` still involves a request.
+- **Senior:** Separates the two mechanisms — validation saves the body (measured: 50 bytes to 0), freshness saves the round trip — and identifies the server-side subtlety: a body-hash ETag renders before deciding to send a `304`, so only a version-derived ETag saves the work. Measured in the chapter's demo as 2 renders across 4 requests.
+- **Staff:** Raises the mobile dimension — on a radio link the round trip, not the payload, is the expensive part — so the fix for a config endpoint is `max-age` plus `stale-while-revalidate`, with a separate uncached endpoint for the few values that must be immediate.
+
+### Q3 — A CDN served one customer's data to another. The query filtering is correct. What happened?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../07-api-design/http-caching-for-apis.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Identifies that a shared cache stored a user-specific response.
+- **Senior:** Names `Cache-Control: public` as the specific override of the default rule that shared caches must not store responses to `Authorization`-carrying requests, plus the missing `Vary`. Notes the diagnostic tell — one origin request in the logs while many users saw the response — and explains why `Vary: Authorization` is a poor substitute for `private`/`no-store`.
+- **Staff:** Moves the control to the edge: a default `private, no-store` at the gateway with `public` requiring a reviewed opt-in and a contract test, plus purge authority and purge latency as part of the incident plan.
+
 
 ## Related
 

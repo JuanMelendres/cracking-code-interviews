@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../14-devops-containers/INDEX.md
   - 13-observability.md
@@ -17,9 +17,11 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 7 chapters yielded 12 deep questions + 5 leveled
-Junior/Mid questions + 12 quick-fire questions = **29 real questions**. This is a
-genuinely small domain (7 chapters); `docker-and-containers-fundamentals.md` is this
+**Honest count for this domain:** 8 chapters yielded 15 deep questions + 5 leveled
+Junior/Mid questions + 12 quick-fire questions = **32 real questions**. This is a
+small domain (8 chapters; `graceful-shutdown-and-connection-draining.md` added
+2026-09-28, closing a real coverage gap — graceful shutdown had one mention in the
+entire repository — and contributing 3 questions); `docker-and-containers-fundamentals.md` is this
 domain's Junior Fundamentals chapter (older numbered `## 15. Interview Questions`
 template, no Flashcards section of its own). (Updated 2026-09-27:
 `docker-compose-multi-service-orchestration.md` and
@@ -205,6 +207,38 @@ Added 4 questions + 3 quick-fire cards.)
 | 12 | How does one service in a `docker-compose.yml` reach another — by IP address? | [Docker Compose: Multi-Service Orchestration](../../14-devops-containers/docker-compose-multi-service-orchestration.md#flashcards) |
 
 ---
+
+---
+
+## Graceful Shutdown and Connection Draining
+
+### Q1 — What happens between `kubectl delete pod` and the container disappearing, and which part is your code's responsibility?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../14-devops-containers/graceful-shutdown-and-connection-draining.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows `SIGTERM` comes first, `SIGKILL` follows after a grace period, and the app should finish in-flight work.
+- **Senior:** Gives the sequence with the key concurrency — the endpoint controller removes the pod from Service endpoints *in parallel* with `preStop` and `SIGTERM`, so the process knows before the routing layer does. Names the application's three phases (flip readiness and keep serving, close the listener and drain bounded, shut pools down bounded) and treats the grace period as a budget every timeout must fit inside.
+- **Staff:** Frames it as a platform default in a shared base image or service template with reviewed timeouts, since N services implementing it independently produces N chances to get the ordering wrong.
+
+### Q2 — Every deploy produces a burst of 502s. Walk me through the diagnosis and the fix.
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../14-devops-containers/graceful-shutdown-and-connection-draining.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Connects the errors to shutdown and proposes a shutdown hook.
+- **Senior:** Correlates with pod *terminations* rather than starts, names the evidence (ingress logs showing requests to a pod IP after its process exited), and separates the two causes — dropped in-flight work and traffic still being routed to a closed socket. Offers the `preStop` sleep as a same-day mitigation and the three-phase hook as the real fix, noting that rollout duration is addressed with `maxSurge` rather than a shorter drain.
+- **Staff:** Adds verification and prevention — a deploy-window error-rate check and a platform default so new services inherit the behavior.
+
+### Q3 — How does graceful shutdown differ for a Kafka consumer, and why isn't it enough on its own?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../14-devops-containers/graceful-shutdown-and-connection-draining.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows to stop polling and finish the current batch.
+- **Senior:** Re-derives the pattern without a load balancer — stop polling, finish, commit offsets, close with a bounded timeout so the group rebalances promptly rather than by session timeout — and identifies the commit point as the design decision, with redelivery safe only under idempotency.
+- **Staff:** States that graceful shutdown is a frequency reduction rather than a correctness guarantee, since node failures and `SIGKILL` remain, so idempotency for state-changing operations is a review standard. Cites the double-charge shape: the client's retry was correct, the missing idempotency key was the defect.
+
 
 ## Related
 

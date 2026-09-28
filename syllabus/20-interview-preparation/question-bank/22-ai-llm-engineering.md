@@ -4,7 +4,7 @@ document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
 version: 1.0
-last_updated: 2026-09-27
+last_updated: 2026-09-28
 related:
   - ../../22-ai-llm-engineering/INDEX.md
   - 21-frontend-web-nextjs.md
@@ -19,7 +19,7 @@ tier-explanation format and `00-project/interview-question-bank-plan.md` for the
 plan** — see `00-project/interview-question-bank-plan.md` for the full initiative
 summary.
 
-**Honest count for this domain:** 6 chapters, each using the older numbered
+**Honest count for this domain:** 8 chapters (6 original plus 2 added 2026-09-28), each using the older numbered
 `## 15. Interview Questions` template with a Junior→Staff leveled Q&A set (5 questions
 per chapter, one per tier from Junior/Mid through Staff) and **no Flashcards section at
 all** — the same pattern as `14-devops-containers`' Junior Fundamentals chapter, but
@@ -28,7 +28,11 @@ domain (added 2026-09-09) built with the leveled format from the start rather th
 retrofitted. 6 chapters × 5 leveled questions = 30 real questions, plus a 7th chapter
 (`prompt-injection-and-agentic-security.md`, added 2026-09-21, indexed 2026-09-27 —
 a stale-index gap, not a content gap) contributing 2 more deep questions in this
-compendium's usual "What's expected" format = **32 real questions** total. No separate
+compendium's usual "What's expected" format, plus two chapters added 2026-09-28
+(`hallucination-groundedness-and-output-guardrails.md` and
+`context-window-management-token-budgets-and-cost.md`, closing real coverage gaps —
+hallucination, guardrails, and `context window` had zero occurrences in the domain)
+contributing 3 questions each = **38 real questions** total. No separate
 deep-question/quick-fire split exists for the original 6 — each chapter's own 5
 questions already span the full seniority ladder directly, so they're presented as
 one leveled set per chapter rather than forced into the 4-tier breakdown.
@@ -214,6 +218,69 @@ A 7th chapter, added 2026-09-21 (after this file's original 6) closing a gap-aud
 - **Staff:** Connects this to a real, separately-gated human-approval mechanism for consequential actions as defense-in-depth beyond the structural fix alone.
 
 ---
+
+---
+
+## Hallucination, Groundedness, and Output Guardrails
+
+### Q1 — What is a hallucination, why do models produce them, and what actually reduces them?
+
+**Canonical treatment:** [§15](../../22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Defines it as fluent, confident, false output and names RAG as the main mitigation.
+- **Senior:** Explains the mechanism — generation samples likely continuations, likelihood reflects pattern fit rather than truth, and there is no internal "I know this" flag — then gives the layered mitigation (retrieve, instruct to use only context and abstain, constrain with a schema, verify deterministically, check groundedness, human review) and names what each layer misses. States plainly that schema validation guarantees shape only.
+- **Staff:** Frames it as risk placement — which actions the model is authorized to take without a human — plus a stated error budget for ungrounded output, monitored like any other SLO.
+
+### Q2 — Your assistant cited a real document and still gave the wrong answer. Walk me through it.
+
+**Canonical treatment:** [§15](../../22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Suspects the retrieval step.
+- **Senior:** Applies the diagnostic — were the right documents in the prompt? If yes, it is a generation failure, so the fix is per-claim verification against the cited source plus instructions forbidding outside knowledge and a schema requiring a `source_id` per claim. Notes that a real citation makes a wrong answer *more* persuasive, and that the cheapest check is whether the cited ID appears in the retrieved set at all.
+- **Staff:** Routes commitment-bearing output (amounts, dates, entitlements) to human review by policy and tracks the ungrounded rate as a monitored budget.
+
+### Q3 — How do you evaluate whether your guardrails work?
+
+**Canonical treatment:** [§15](../../22-ai-llm-engineering/hallucination-groundedness-and-output-guardrails.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes a labelled test set and an accuracy number.
+- **Senior:** Scores groundedness per atomic claim rather than per answer (four good claims plus one fabrication still passes whole-answer scoring), includes unanswerable questions to measure abstention, and calibrates any model judge against human labels — noting that judging with the same model family hides correlated blind spots.
+- **Staff:** Treats it as an SLO with an owner and a breach response, and argues for a shared evaluation harness so quality is comparable across teams rather than each team grading its own homework.
+
+---
+
+## Context Window Management, Token Budgets, and Cost
+
+### Q1 — What is in the context window, and what happens when your prompt no longer fits?
+
+**Canonical treatment:** [§15](../../22-ai-llm-engineering/context-window-management-token-budgets-and-cost.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Names system prompt, history, and retrieved context.
+- **Senior:** Includes tool definitions, tool results, and the reserved output space — the commonly forgotten one, since a request that fits and then truncates the answer looks like a quality problem. Budgets explicitly (reserve output first, fixed system and tools, bounded history, remainder to ranked context) and drops whole units rather than truncating mid-document. Counts with the real tokenizer because JSON and non-Latin text fragment badly.
+- **Staff:** Puts the budget in a shared prompt-assembly layer so limits, tokenizer, ordering, and logging are consistent, and notes that a design expressing a budget adapts when providers change window sizes while one assuming a specific window does not.
+
+### Q2 — Would adding more retrieved context improve answers?
+
+**Canonical treatment:** [§15](../../22-ai-llm-engineering/context-window-management-token-budgets-and-cost.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Suspects diminishing returns.
+- **Senior:** Explains the plateau — precision falls with lower-ranked chunks, attention to mid-context material is less reliable, cost and latency grow — so past a point more context costs more and answers get worse. Sets `k` by measuring on an evaluation set, and connects dilution to groundedness risk. Names reranking and compression as the alternatives to raising `k`.
+- **Staff:** Points out that `k` is a cost lever disguised as a quality knob, that changing it is often not a code deploy and therefore invisible in the deploy timeline, and that cost per request belongs on the same dashboard as latency with an alert on input tokens.
+
+### Q3 — How would you cut LLM cost by half without changing models?
+
+**Canonical treatment:** [§15](../../22-ai-llm-engineering/context-window-management-token-budgets-and-cost.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Suggests shorter prompts and capping output.
+- **Senior:** Orders the levers by return — send less, reorder for prompt caching, cap output (higher rate), cache whole responses, route by difficulty — and measures per-segment tokens first. Notes that prompt caching is free quality-wise and is commonly defeated by a dynamic value accidentally placed early in the prompt.
+- **Staff:** Treats spend as an operating cost with an owner, per-feature attribution, and anomaly alerting, since a prompt change can double cost overnight with no deploy, and notes model routing is usually the largest saving but is only safe behind a shared evaluation harness.
+
 
 ## Related
 

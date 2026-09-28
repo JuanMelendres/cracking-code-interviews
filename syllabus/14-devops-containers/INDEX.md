@@ -31,6 +31,7 @@ Kubernetes objects/scheduling/networking, resource limits and probes, container 
 | T-1003 | Kubernetes Resource Limits, Probes, and JVM Sizing | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/14-devops-containers/kubernetes-resource-limits-probes-and-jvm-sizing.md` |
 | T-1009 | CI/CD Pipeline Design and Deployment Strategies | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/14-devops-containers/cicd-pipeline-design-and-deployment-strategies.md` |
 | T-2424 | Horizontal Pod Autoscaling: Mechanics, Metrics, and Scaling Behavior | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/14-devops-containers/horizontal-pod-autoscaling-mechanics-and-scaling-behavior.md` |
+| T-2434 | Graceful Shutdown and Connection Draining: SIGTERM, Readiness, and Zero-Downtime Deploys | L1, L2, L3, L4 — fully written, real SIGTERM-mid-request demo (2026-09-28) | `syllabus/14-devops-containers/graceful-shutdown-and-connection-draining.md` |
 
 ## Where this domain's boundary comes from
 

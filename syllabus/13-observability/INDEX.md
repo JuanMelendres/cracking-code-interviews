@@ -28,6 +28,7 @@ last_updated: 2026-09-21
 | T-1207 | Incident Response and Blameless Postmortems | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/13-observability/incident-response-and-blameless-postmortems.md` |
 | T-2409 | Metric Cardinality and Alert Fatigue | L1, L2, L3, L4 — fully written, real demo (2026-09-11) | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |
 | T-2423 | Chaos Engineering: Fault Injection and Resilience Verification | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md` |
+| T-2436 | Structured Logging, Correlation IDs, and Log Hygiene | L1, L2, L3, L4 — fully written, real demo including a reproduced context loss across a thread pool (2026-09-28) | `syllabus/13-observability/structured-logging-correlation-ids-and-log-hygiene.md` |
 
 ## Where this domain's boundary comes from
 
