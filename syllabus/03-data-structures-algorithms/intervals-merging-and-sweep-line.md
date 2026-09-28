@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 03-data-structures-algorithms
 topic_id: T-2111
 status: canonical
-version: 1.0
-last_updated: 2026-09-09
+version: 1.1
+last_updated: 2026-09-28
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../01-computer-science-foundations/number-representation.md
@@ -71,6 +71,23 @@ merged:    [================]  [======]        [=========]
 **Why Minimum Number of Arrows sorts by end, precisely**: shooting an arrow at the earliest end among all remaining, unpopped balloons guarantees that arrow pops every balloon whose range includes that point — and critically, it pops the balloon that's *about to close its window* first, since any balloon ending even earlier would already have been handled. Shooting anywhere later than the earliest end risks missing that specific balloon entirely, since its window may close before a later shot. Sorting by *start* instead — a common, plausible-looking mistake — produces a wrong, usually too-high arrow count, since it no longer guarantees the greedy choice is covering the most urgently-expiring balloon first.
 
 **Meeting Rooms II's heap-reuse correctness**: the heap's minimum (earliest end time among all currently-occupied rooms) is checked against the new meeting's start time. If that earliest end time is already ≤ the new start, that specific room is free and can be reused — and it's *always* correct to check only that one room, never any other occupied room, because if the earliest-ending room isn't yet free, no other occupied room (all ending later) could be free either.
+
+**Visual: the sweep line, event by event.** Sorting intervals is the easy half; the half people get wrong is what you sweep and what you count. Real, executed trace:
+
+```text
+time  delta  active rooms  peak  event
+   0      1             1     1  start of [0,30]
+   5      1             2     2  start of [5,10]
+  10     -1             1     2  end   of [5,10]
+  15      1             2     2  start of [15,20]
+  20     -1             1     2  end   of [15,20]
+  30     -1             0     2  end   of [0,30]
+Answer: 2  (the answer is the PEAK of the running count, never the number of intervals)
+```
+
+The intervals are decomposed into six independent events, sorted by time, with ends ordered before starts at the same timestamp — that tie-break is what lets a meeting ending at 10 free its room for one starting at 10. The running count rises and falls; the answer is its **peak**, never the number of intervals and never the final value, which is 0 by construction. Every sweep-line problem in this chapter is this same skeleton with a different thing being counted.
+
+The trace above is real executed output, regenerable from [`../../practice/java/algorithms/visual-traces/`](../../practice/java/algorithms/visual-traces/README.md).
 
 ## 6. Practical Usage
 
