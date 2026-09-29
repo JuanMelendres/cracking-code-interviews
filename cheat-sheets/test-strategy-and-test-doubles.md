@@ -68,7 +68,23 @@ succeedsImmediatelyWithNoRetriesNeeded test: verify(gateway, times(1))
 - **Real incident pattern:** a repository layer has a comprehensive, all-passing, fully-mocked test suite. A migration renames a column; the mocked suite still passes; the first real signal is a production error-rate spike right after deployment — every write through the affected repository method fails.
 - Root cause: a repository test that mocks the database verifies only the test's own assumptions, never real SQL against the real schema. Prevention: any boundary-code test suite consisting entirely of mocked dependencies should be flagged in review as providing false confidence, even at 100% coverage.
 
+## `@Mock` vs `@Spy` (measured, Mockito 5.11.0)
+
+| | `mock(X.class)` | `spy(new X())` |
+|---|---|---|
+| Unstubbed method | Returns type default, real code never runs | Runs the real implementation |
+| State accessor on the double | Also mocked — returns the default | Reads real state |
+| `verify(...)` | Works | Works, identically |
+
+**The trap:** `when(spy.write("x")).thenReturn(...)` **executes** `write("x")` for real while stubbing it — measured at one real invocation plus its side effect, before the test did anything.
+**The fix:** `doReturn(...).when(spy).write("x")` — measured at zero real invocations.
+
+Also measured: a stub **does** apply to a spy's internal `this.method()` self-call (the opposite of `@Transactional`), and a `final` method stubs fine under Mockito 5's default inline mock maker.
+
+**When to use a spy:** legacy code you cannot restructure, where you need most of the real behavior and must replace one narrow part. On code you own, reaching for a spy usually signals the class does too much.
+
 ## Related
 
 - `syllabus/08-testing/integration-testing-against-real-dependencies.md`
+- [`practice/java/testing/mock-vs-spy/`](../practice/java/testing/mock-vs-spy/README.md)
 - [Clean and Hexagonal Architecture](clean-hexagonal-architecture.md)

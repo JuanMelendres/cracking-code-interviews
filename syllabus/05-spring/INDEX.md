@@ -37,6 +37,7 @@ Dependency injection, auto-configuration, transactions, testing slices, WebFlux,
 | T-510 | Spring Data JPA Repository Abstraction | L1, L2, L3, L4 — fully written, real demo (2026-09-11) | `syllabus/05-spring/spring-data-jpa-repository-abstraction.md` |
 | T-519 | Microservices Patterns with Spring Boot | L1, L2, L3, L4 — fully written, real demo (2026-09-16) | `syllabus/05-spring/microservices-patterns-with-spring-boot.md` |
 | T-520 | DTO, Entity, and Mapper Patterns | L1, L2, L3, L4 — fully written, real demo (2026-09-16) | `syllabus/05-spring/dto-entity-mapper-patterns.md` |
+| T-2441 | Request Filters, Interceptors, and the Servlet Chain | L1, L2, L3, L4 — fully written, real demo (2026-09-29) | `syllabus/05-spring/request-filters-interceptors-and-the-servlet-chain.md` |
 
 ## Where this domain's boundary comes from
 

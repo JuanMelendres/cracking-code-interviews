@@ -3,8 +3,8 @@ title: "Interview Question Bank — 15-cloud"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-28
+version: 1.1
+last_updated: 2026-09-29
 related:
   - ../../15-cloud/INDEX.md
   - 14-devops-containers.md
@@ -17,8 +17,12 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 6 chapters yielded 14 deep questions + 14 quick-fire
-questions = **28 real questions**. (Updated 2026-09-28: `infrastructure-as-code.md` is a
+**Honest count for this domain:** 6 chapters yielded 14 deep questions + 15 quick-fire
+questions = **29 real questions**. (Updated 2026-09-29:
+`aws-core-services-for-backend-engineers.md` v1.3 adds S3 object size limits and
+multipart upload — previously absent from the domain, which covered storage by access
+model only — contributing 1 quick-fire card, not a deep question, since the addition is
+a paragraph rather than a new Interview Questions entry.) (Updated 2026-09-28: `infrastructure-as-code.md` is a
 new chapter closing a real coverage gap — remote state, GitOps, and immutable
 infrastructure had zero occurrences across this domain and `14-devops-containers` —
 contributing 3 questions.) (Updated 2026-09-27: added a "works in staging,
@@ -169,6 +173,7 @@ Fundamentals chapter exists in this domain — this is a genuinely small domain
 | 12 | What's the real config precedence order between a file, an environment variable, and a CLI argument? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
 | 13 | Why does fail-fast startup validation matter for a missing required config value? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
 | 14 | A service works in staging but fails in production with no code difference — what's the ordered troubleshooting checklist? | [The Twelve-Factor App](../../15-cloud/twelve-factor-config.md#flashcards) |
+| 15 | How large can one S3 object be, and when does multipart upload stop being optional? | [AWS Core Services for Backend Engineers](../../15-cloud/aws-core-services-for-backend-engineers.md#flashcards) |
 
 ---
 

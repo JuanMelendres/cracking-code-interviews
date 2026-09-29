@@ -1,0 +1,67 @@
+Real, executed output of demo.ChainApplication (Spring Boot 3.5.16, Spring Framework
+6.2.19, embedded Tomcat 10.1.55, OpenJDK 21.0.12) on localhost:8080.
+
+Two Servlet filters (outer-filter, inner-filter) and two Spring MVC interceptors
+(first-interceptor, second-interceptor) are registered, so both the nesting order and
+the reverse unwinding order are visible rather than inferred.
+
+Captured by running ./fetch-deps.sh, compiling, starting the app, and issuing the four
+curl requests recorded in curl-transcript.txt.
+
+==============================================================================
+=== TRACE for /ok ===
+ 1. Filter[outer-filter] BEFORE chain  | thread=http-nio-8080-exec-1   | uri=/ok, handler-known=NO (DispatcherServlet not entered yet)
+ 2. Filter[inner-filter] BEFORE chain  | thread=http-nio-8080-exec-1   | uri=/ok, handler-known=NO (DispatcherServlet not entered yet)
+ 3. Interceptor[first-interceptor] preHandle | thread=http-nio-8080-exec-1   | handler=DemoController#ok (RESOLVED -- a filter cannot see this) -> returning true
+ 4. Interceptor[second-interceptor] preHandle | thread=http-nio-8080-exec-1   | handler=DemoController#ok (RESOLVED -- a filter cannot see this) -> returning true
+ 5. Controller#ok                      | thread=http-nio-8080-exec-1   | handler body running
+ 6. Interceptor[second-interceptor] postHandle | thread=http-nio-8080-exec-1   | runs only when the handler returned normally
+ 7. Interceptor[first-interceptor] postHandle | thread=http-nio-8080-exec-1   | runs only when the handler returned normally
+ 8. Interceptor[second-interceptor] afterCompletion | thread=http-nio-8080-exec-1   | ex=null, status=200
+ 9. Interceptor[first-interceptor] afterCompletion | thread=http-nio-8080-exec-1   | ex=null, status=200
+10. Filter[inner-filter] AFTER chain   | thread=http-nio-8080-exec-1   | status=200, response committed=true
+11. Filter[outer-filter] AFTER chain   | thread=http-nio-8080-exec-1   | status=200, response committed=true
+
+==============================================================================
+=== TRACE for /boom-controller ===
+ 1. Filter[outer-filter] BEFORE chain  | thread=http-nio-8080-exec-2   | uri=/boom-controller, handler-known=NO (DispatcherServlet not entered yet)
+ 2. Filter[inner-filter] BEFORE chain  | thread=http-nio-8080-exec-2   | uri=/boom-controller, handler-known=NO (DispatcherServlet not entered yet)
+ 3. Interceptor[first-interceptor] preHandle | thread=http-nio-8080-exec-2   | handler=DemoController#boomController (RESOLVED -- a filter cannot see this) -> returning true
+ 4. Interceptor[second-interceptor] preHandle | thread=http-nio-8080-exec-2   | handler=DemoController#boomController (RESOLVED -- a filter cannot see this) -> returning true
+ 5. Controller#boomController          | thread=http-nio-8080-exec-2   | about to throw DemoException
+ 6. @RestControllerAdvice handler      | thread=http-nio-8080-exec-2   | CAUGHT DemoException -> mapping to 422
+ 7. Interceptor[second-interceptor] afterCompletion | thread=http-nio-8080-exec-2   | ex=null, status=422
+ 8. Interceptor[first-interceptor] afterCompletion | thread=http-nio-8080-exec-2   | ex=null, status=422
+ 9. Filter[inner-filter] AFTER chain   | thread=http-nio-8080-exec-2   | status=422, response committed=true
+10. Filter[outer-filter] AFTER chain   | thread=http-nio-8080-exec-2   | status=422, response committed=true
+
+==============================================================================
+=== TRACE for /boom-filter ===
+ 1. Filter[outer-filter] BEFORE chain  | thread=http-nio-8080-exec-4   | uri=/boom-filter, handler-known=NO (DispatcherServlet not entered yet)
+ 2. Filter[inner-filter] BEFORE chain  | thread=http-nio-8080-exec-4   | uri=/boom-filter, handler-known=NO (DispatcherServlet not entered yet)
+ 3. Filter[inner-filter] THROWS        | thread=http-nio-8080-exec-4   | about to throw ServletException -- note what does NOT run after this
+ 4. Filter[outer-filter] AFTER chain   | thread=http-nio-8080-exec-4   | status=200, response committed=false
+
+--- Tomcat container log for /boom-filter (stack trace trimmed to the top 8 frames) ---
+2026-09-29T09:05:57.708-06:00 ERROR 265 --- [nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [deliberate failure inside inner-filter] with root cause
+jakarta.servlet.ServletException: deliberate failure inside inner-filter
+	at demo.TraceFilter.doFilter(TraceFilter.java:52) ~[out/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core.jar:10.1.55]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web.jar:6.2.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web.jar:6.2.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core.jar:10.1.55]
+	at demo.TraceFilter.doFilter(TraceFilter.java:56) ~[out/:na]
+	... (remaining container frames omitted)
+
+==============================================================================
+=== TRACE for /blocked ===
+ 1. Filter[outer-filter] BEFORE chain  | thread=http-nio-8080-exec-5   | uri=/blocked, handler-known=NO (DispatcherServlet not entered yet)
+ 2. Filter[inner-filter] BEFORE chain  | thread=http-nio-8080-exec-5   | uri=/blocked, handler-known=NO (DispatcherServlet not entered yet)
+ 3. Interceptor[first-interceptor] preHandle | thread=http-nio-8080-exec-5   | handler=DemoController#blocked (RESOLVED -- a filter cannot see this) -> returning true
+ 4. Interceptor[second-interceptor] preHandle | thread=http-nio-8080-exec-5   | handler=DemoController#blocked (RESOLVED -- a filter cannot see this) -> returning FALSE (short-circuit)
+ 5. Interceptor[first-interceptor] afterCompletion | thread=http-nio-8080-exec-5   | ex=null, status=403
+ 6. Filter[inner-filter] AFTER chain   | thread=http-nio-8080-exec-5   | status=403, response committed=false
+ 7. Filter[outer-filter] AFTER chain   | thread=http-nio-8080-exec-5   | status=403, response committed=false
+

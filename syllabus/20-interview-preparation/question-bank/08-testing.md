@@ -3,8 +3,8 @@ title: "Interview Question Bank — 08-testing"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-27
+version: 1.1
+last_updated: 2026-09-29
 related:
   - ../../08-testing/INDEX.md
   - 07-api-design.md
@@ -17,13 +17,16 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 10 chapters yielded 19 deep questions + 5
+**Honest count for this domain:** 10 chapters yielded 20 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `unit-testing-fundamentals-with-junit.md`) + 9 quick-fire questions = **33
+chapter, `unit-testing-fundamentals-with-junit.md`) + 12 quick-fire questions = **37
 real questions**. (Updated 2026-09-27: `behavior-driven-development-with-cucumber.md`
 and `testing-asynchronous-and-concurrent-code.md` had complete Interview Questions
 sections never indexed — a stale-index gap, not a content gap. Added 5 questions +
-3 quick-fire cards; the latter chapter has no Flashcards section.)
+3 quick-fire cards; the latter chapter has no Flashcards section. Updated
+2026-09-29: `test-strategy-and-test-doubles.md` v1.1 adds measured `@Mock`-versus-`@Spy`
+behavior, closing a real content gap — `@Spy` appeared nowhere in the repository and
+"spy" only once, as a test-double taxonomy word. Adds 1 question + 3 quick-fire cards.)
 
 ---
 
@@ -92,6 +95,15 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 - **Junior/Mid:** Treats coverage percentage as a target rather than a diagnostic — the common mistake this question targets.
 - **Senior:** Explains that coverage measures only that lines/branches executed, not that assertions were meaningful.
 - **Staff:** Frames coverage as a diagnostic for finding untested code, not a quality target, and names flakiness itself as a more useful design signal.
+
+### Q3 — What is the difference between `@Mock` and `@Spy`, and what is the classic bug when stubbing a spy?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../08-testing/test-strategy-and-test-doubles.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Recites the definitions — mock returns defaults, spy calls real code — and often describes a spy as "a mock that also records calls," which is not the distinction, since `verify(...)` works identically on both.
+- **Senior:** Knows `when(spy.method())` **executes the real method** while stubbing it, because Mockito must evaluate the argument to `when(...)` — measured: the stubbing line alone left one real invocation recorded with its side effect applied. Names `doReturn(...).when(spy).method()` as the fix and explains that this is why two stubbing syntaxes exist. Knows that on a mock, even a state accessor returns the type default, so checking state through one asserts on stub defaults.
+- **Staff:** Frames a spy as a weakening of the test's isolation guarantee — the test can now fail because of code it never meant to exercise — and treats a growing number of spies as a design signal about the production code rather than a tooling problem, with extraction as the remedy.
 
 ---
 
@@ -295,6 +307,9 @@ Only 2 of the 8 chapters in this domain have Flashcards sections.
 | 7 | What's the actual difference between TDD and BDD, beyond syntax? | [Behavior-Driven Development with Cucumber](../../08-testing/behavior-driven-development-with-cucumber.md#flashcards) |
 | 8 | Does a `Scenario Outline`'s `Examples` table run as one test looping over data, or as genuinely separate tests? | [Behavior-Driven Development with Cucumber](../../08-testing/behavior-driven-development-with-cucumber.md#flashcards) |
 | 9 | What happens when Cucumber hits a Gherkin step with no matching step definition? | [Behavior-Driven Development with Cucumber](../../08-testing/behavior-driven-development-with-cucumber.md#flashcards) |
+| 10 | On a mock versus a spy, what does an unstubbed method return and what real state changes? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
+| 11 | Why is `when(spy.write("x")).thenReturn(...)` a bug, and what replaces it? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
+| 12 | Does a stub apply when a spy's real method calls that method on itself? | [Test Strategy, the Pyramid, and Test Doubles](../../08-testing/test-strategy-and-test-doubles.md#flashcards) |
 
 ---
 

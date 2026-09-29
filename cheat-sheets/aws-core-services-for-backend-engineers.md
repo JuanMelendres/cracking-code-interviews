@@ -20,6 +20,7 @@ Every AWS service in this chapter exists to remove one specific category of undi
 
 - **Compute spectrum** — EC2 (raw VMs, full control/ownership) → ECS (AWS-native containers) → EKS (managed Kubernetes) → Lambda (zero server management, execution limits + cold starts).
 - **Storage access models** — S3 (object storage, HTTP-style API, not mounted), EBS (block storage, one instance at a time), EFS (shared network filesystem, multiple instances).
+- **S3 size limits** — one object up to **5 TB**, but a single `PUT` caps at **5 GB**; beyond that, multipart upload (parallel parts, per-part retry, and an abandoned upload leaves billable incomplete parts until a lifecycle rule removes them).
 - **Database** — RDS (managed relational, flexible ad-hoc queries) vs. DynamoDB (key-value/document, extremely high predictable throughput, requires upfront access-pattern design).
 - **Messaging** — SQS (point-to-point, durable, one consumer per message) vs. SNS (pub/sub fan-out, many subscribers) — often combined (SNS fanning out to multiple SQS queues).
 

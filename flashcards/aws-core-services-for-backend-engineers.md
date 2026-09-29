@@ -62,3 +62,20 @@ Treating SQS and SNS as alternatives rather than complementary.
 
 **Related:**
 [Core Concepts](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md#core-concepts)
+
+### Card: S3 object size limits and multipart upload
+
+**Prompt:**
+How large can a single S3 object be, and at what point are you forced to change how you upload it?
+
+**Answer:**
+An object can be up to **5 TB**, but a single `PUT` caps at **5 GB** — beyond that, multipart upload is mandatory: the object is split into parts uploaded independently and assembled server-side.
+
+**Why it matters:**
+It turns "upload a large file" from one request into an operation with its own initiate/upload/complete lifecycle. Multipart is worth using well below 5 GB anyway, because parts upload in parallel and a failed part retries on its own instead of restarting the transfer.
+
+**Common trap:**
+Forgetting that an abandoned multipart upload leaves billable incomplete parts behind until a lifecycle rule removes them.
+
+**Related:**
+[Core Concepts](../syllabus/15-cloud/aws-core-services-for-backend-engineers.md#core-concepts)

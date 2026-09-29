@@ -3,8 +3,8 @@ title: "Interview Question Bank — 05-spring"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-27
+version: 1.1
+last_updated: 2026-09-29
 related:
   - ../../05-spring/INDEX.md
   - 04-software-design.md
@@ -17,9 +17,9 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 15 chapters yielded 49 deep questions + 5
+**Honest count for this domain:** 16 chapters yielded 52 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, `spring-mvc-fundamentals.md`) + 36 quick-fire questions = **90 real
+chapter, `spring-mvc-fundamentals.md`) + 40 quick-fire questions = **97 real
 questions**. (Updated 2026-09-27: `microservices-patterns-with-spring-boot.md`
 had a complete Interview Questions section this index never picked up — a
 stale-index gap, not a content gap, found via a generic interview checklist
@@ -31,7 +31,11 @@ remaining gaps — are now indexed too. Added 2 questions + 2 quick-fire cards
 for the former; 20 questions for the latter — its own Interview Questions
 section already tags each answer by seniority tier directly, so summarized
 concisely below rather than re-derived; it has no embedded Flashcards section
-in the canonical chapter to mine for quick-fire, only a standalone deck.)
+in the canonical chapter to mine for quick-fire, only a standalone deck. Updated 2026-09-29:
+`request-filters-interceptors-and-the-servlet-chain.md` is a new chapter closing a
+real coverage gap — `HandlerInterceptor` appeared nowhere in the repository, while
+the Servlet filter side was covered only through `security-filter-chain.md` — and
+contributes 3 questions + 4 quick-fire cards.)
 
 ---
 
@@ -602,6 +606,37 @@ A 20-question interview checklist audit found every concept already taught in th
 
 ---
 
+## Request Filters, Interceptors, and the Servlet Chain
+
+### Q1 — What is the difference between a Servlet filter and a Spring `HandlerInterceptor`, and give one consequence that actually matters?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** States that filters are servlet-level and interceptors are Spring-level, and that filters run first — the memorized answer, with no consequence derived from it.
+- **Senior:** Derives the consequences from the nesting: a filter wraps the whole `DispatcherServlet` so it runs for 404s and static resources but cannot see the resolved handler; an interceptor runs inside it and receives the `HandlerMethod` and its annotations. Names the decision rule (concern about the request → filter; about the method → interceptor) and knows `@ControllerAdvice` reaches interceptor exceptions but not filter exceptions.
+- **Staff:** Raises the error-contract consequence — a filter failure produces the container's default body, a genuinely different JSON shape from the application's own, measured directly — so the API has two error schemas and only one is covered by contract tests.
+
+### Q2 — An interceptor logs failures with `if (ex != null)` in `afterCompletion`. It logs nothing in production despite real 500s. Why?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Blames log levels or the logging framework; or proposes moving the logic to `postHandle`, which is strictly worse since `postHandle` does not run on the error path at all.
+- **Senior:** Knows `ex` is the *unresolved* exception, so anything `@ControllerAdvice` already handled arrives as `null` — measured: the controller threw, the advice mapped it to 422, and both interceptors still recorded `ex=null, status=422`. Fixes it by keying off the response status.
+- **Staff:** Generalizes it — monitoring that infers failure from an exception object rather than the observable outcome under-reports precisely in services that handle errors well, so the better-engineered the service, the blinder the dashboard.
+
+### Q3 — Your `preHandle` returns `false` to reject a request. What does and does not run afterwards?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Correctly states the handler and `postHandle` are skipped; assumes the rejecting interceptor's own `afterCompletion` still runs.
+- **Senior:** Knows `afterCompletion` runs only on interceptors *earlier* in the chain whose `preHandle` already returned `true` — Spring records `interceptorIndex` in `applyPreHandle` and `triggerAfterCompletion` unwinds only that far. Also knows Spring writes no response, so returning `false` without setting one yields an empty `200`, and that both filters still complete normally.
+- **Staff:** Draws the operational conclusion — `preHandle` is an unsafe place to acquire anything needing release on the rejection path, and rejection metrics must be emitted inline — and argues for encoding that in a shared base class rather than rediscovering it per service.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -642,6 +677,10 @@ A 20-question interview checklist audit found every concept already taught in th
 | 34 | Does a default circuit breaker protect against a slow-but-successful downstream call? | [Microservices Patterns with Spring Boot](../../05-spring/microservices-patterns-with-spring-boot.md#flashcards) |
 | 35 | Why does this chapter recommend `record` for DTOs but not for JPA entities? | [DTO/Entity/Mapper Patterns](../../05-spring/dto-entity-mapper-patterns.md#flashcards) |
 | 36 | Is a mapper never referencing an undeclared sensitive field a real guarantee, or coincidence? | [DTO/Entity/Mapper Patterns](../../05-spring/dto-entity-mapper-patterns.md#flashcards) |
+| 37 | In one sentence, what is the structural difference between a Servlet filter and a `HandlerInterceptor`? | [Request Filters and Interceptors](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#flashcards) |
+| 38 | Can `@ControllerAdvice` handle an exception thrown in a filter? | [Request Filters and Interceptors](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#flashcards) |
+| 39 | Why is `afterCompletion`'s `ex` parameter almost always null? | [Request Filters and Interceptors](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#flashcards) |
+| 40 | Does a filter's `finally` block see the real response status for a container-generated 500? | [Request Filters and Interceptors](../../05-spring/request-filters-interceptors-and-the-servlet-chain.md#flashcards) |
 
 ---
 
