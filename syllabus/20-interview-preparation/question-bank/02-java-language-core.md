@@ -3,8 +3,8 @@ title: "Interview Question Bank — 02-java/language-core"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-28
+version: 1.1
+last_updated: 2026-09-29
 related:
   - ../../02-java/language-core/INDEX.md
   - 02-java-jvm-internals.md
@@ -17,10 +17,10 @@ Part of the `02-java` compendium — the last of its 4 subdomain files. See
 [`02-java-collections.md`](02-java-collections.md) for the tier-explanation format
 and sourcing discipline.
 
-**Honest count for this subdomain:** 25 chapters yielded 53 deep questions + 10
+**Honest count for this subdomain:** 25 chapters yielded 54 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 58 quick-fire
-questions = **121 real questions**. (Updated 2026-09-26: added Java File I/O and
+`java-oop-fundamentals...` and `java-syntax-fundamentals...`) + 62 quick-fire
+questions = **126 real questions**. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
 checklist audit. Updated again 2026-09-27: `comparator-composition-and-pitfalls.md`
@@ -34,10 +34,14 @@ closing a real gap (no canonical treatment of static nested vs. inner vs. local 
 anonymous existed) — 3 deep questions — plus 3 new deep questions on varargs,
 overload resolution, heap pollution, and static hiding added to
 `java-modifiers-and-method-signatures.md`, where `varargs` previously had zero
-mentions anywhere in the repository.)
+mentions anywhere in the repository. Updated 2026-09-29:
+`streams-and-collectors.md` v1.1 adds collector internals — `Collector.Characteristics`
+had zero occurrences repository-wide, and only four `Collectors` factory methods were
+mentioned anywhere (`toList`, `toMap`, `groupingBy`, `counting`). Adds 1 deep question
+on the combiner plus 4 quick-fire cards.)
 
 **02-java domain total across all 4 subdomains:** 52 (collections) + 72 (concurrency)
-+ 31 (jvm-internals) + 121 (language-core) = **276 real questions** — the largest of
++ 31 (jvm-internals) + 126 (language-core) = **281 real questions** — the largest of
 the 22 domains this initiative covers, consistent with `02-java` being the biggest
 domain in the syllabus (65 chapters).
 
@@ -712,6 +716,15 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 - **Senior:** Uses a proper `Collector` (`Collectors.toList()`, `toMap()` with a merge function, or a custom `Collector.of(...)`).
 - **Staff:** Explains why: collectors have a combiner step specifically designed to merge per-thread partial results correctly.
 
+### Q3 — If you write a custom `Collector`, what is the purpose of the combiner, and why does it become especially important with parallel streams?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../02-java/language-core/streams-and-collectors.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Says the combiner "combines the results" without saying which results or when; often believes it runs in sequential streams too.
+- **Senior:** Names the four functions (supplier, accumulator, combiner, finisher) and knows the combiner is **never called** in a sequential stream — measured at `combiner=0` sequentially versus `combiner=63` in parallel over 1,000 elements on a 10-core machine, which also created 64 containers, so "one per core" is not a safe assumption. Draws the practical consequence: a wrong combiner is undetectable by any sequential test. Measured — `(a, b) -> a` returned all 1,000 elements sequentially and **15** in parallel, reproducibly, with no exception.
+- **Staff:** Brings in `Collector.Characteristics` as the mechanism by which a collector tells the pipeline what it may skip — `IDENTITY_FINISH` means the finisher call does not happen at all (1 invocation without the flag, 0 with it), and `CONCURRENT` means one shared container instead of per-thread containers plus merging (`groupingByConcurrent` built 4 containers and merged 0 where `groupingBy` built 67 and merged 63). Argues that a hand-written collector is a concurrency primitive disguised as a utility method, and that composing built-in collectors is the correct default.
+
 ---
 
 ## Strings — Interning, Compact Strings, and Builders
@@ -786,6 +799,10 @@ Junior Fundamentals chapter — its Interview Questions already tag each by seni
 | 43 | When does a stream pipeline actually execute? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
 | 44 | Why does `Collectors.toMap()` throw on duplicate keys by default? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
 | 45 | Does `parallel()` make a stream's writes to shared state thread-safe? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
+| 45a | In a sequential stream, how many times is a custom collector's combiner called? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
+| 45b | What does `IDENTITY_FINISH` actually change at runtime? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
+| 45c | What does the `CONCURRENT` characteristic change, and when is `groupingByConcurrent` worth it? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
+| 45d | Are `collect(Collectors.toList())` and `stream().toList()` interchangeable? | [Streams and Collectors](../../02-java/language-core/streams-and-collectors.md#flashcards) |
 | 46 | Does `new String("hello") == "hello"` evaluate to `true`? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
 | 47 | If a mostly-English string has ONE non-Latin-1 character, does only that character cost extra memory? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |
 | 48 | How much slower is `String +=` in a loop than `StringBuilder.append()`, roughly? | [Strings: Interning, Compact Strings, and Builders](../../02-java/language-core/strings-interning-compact-strings-and-builders.md#flashcards) |

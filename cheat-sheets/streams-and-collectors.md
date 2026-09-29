@@ -79,8 +79,76 @@ IllegalStateException: Duplicate key alice (attempted merging values 100.0 and 7
 - A `HashSet`/list built via `parallel().forEach(sharedCollection::add)` has an unexpectedly small or inconsistent size across runs — classic silent corruption, not a crash.
 - **Prevention:** require a warmed-up, realistic-data benchmark before merging any `.parallel()` addition; default to a proper `Collector` for all parallel accumulation.
 
+## Collector Internals (measured)
+
+**Four functions:** supplier (create container) → accumulator (fold one element) → combiner (merge two containers) → finisher (convert to result type).
+
+**The combiner runs only in parallel.** 1,000 elements, instrumented:
+
+```
+sequential : supplier=1    accumulator=1000   combiner=0    finisher=1
+parallel   : supplier=64   accumulator=1000   combiner=63   finisher=1
+```
+
+64 containers on a 10-core machine — "one per core" is not a safe assumption.
+
+**A wrong combiner is invisible sequentially.** `(a, b) -> a` (discards the second partial):
+
+```
+sequential: 1000 elements   <- correct, combiner never ran
+parallel:     15 elements   <- silent data loss, no exception, reproducible
+```
+
+Test a custom collector's combiner **in parallel**, or it is untested.
+
+### `Collector.Characteristics`
+
+| Flag | What the pipeline may skip |
+|---|---|
+| `IDENTITY_FINISH` | The finisher call itself (measured: 1 invocation without, **0** with) |
+| `UNORDERED` | Preserving encounter order across a parallel merge |
+| `CONCURRENT` | Per-thread containers + merging — one shared container instead |
+
+Real sets, read from the JDK:
+
+```
+toList()                 [IDENTITY_FINISH]     toUnmodifiableList()  (none)
+toSet()                  [UNORDERED, IDENTITY_FINISH]
+joining()                (none)                counting()            (none)
+groupingBy(f)            [IDENTITY_FINISH]
+groupingByConcurrent(f)  [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+```
+
+`toUnmodifiableList()` and `joining()` declare nothing because they genuinely must transform the container.
+
+**`groupingByConcurrent` is a different strategy, not a faster variant.** 10,000 elements into 4 groups, parallel: `groupingBy` built **67** containers and merged **63** times; `groupingByConcurrent` built **4** and merged **0**. But it returns a `ConcurrentMap`, is `UNORDERED`, and does strictly more work on a sequential stream.
+
+## Collector Selection
+
+| Need | Collector |
+|---|---|
+| List / immutable list | `toList()` / `toUnmodifiableList()` |
+| Unique elements | `toSet()` |
+| Concatenate with delimiter | `joining(", ", "[", "]")` |
+| Count / sum / mean | `counting()` / `summingInt(f)` / `averagingInt(f)` |
+| Count+sum+min+max+avg in one pass | `summarizingInt(f)` |
+| Two-way split, **both keys always present** | `partitioningBy(pred)` |
+| N-way grouping | `groupingBy(f[, mapFactory][, downstream])` |
+| Transform before collecting | `mapping(f, downstream)` |
+| Filter **inside** a group, keeping empty groups | `filtering(pred, downstream)` |
+| Key-value map | `toMap(k, v[, merge][, mapFactory])` |
+| Two collectors, one pass | `teeing(c1, c2, merger)` |
+| Post-process the result | `collectingAndThen(c, f)` |
+
+**Mutability, checked:** `Collectors.toList()` is **MUTABLE**; `Stream.toList()` (16+) and `toUnmodifiableList()` throw `UnsupportedOperationException`. Not interchangeable, and one refactor apart.
+
+**`partitioningBy` ≠ `groupingBy` on a boolean** — `partitioningBy` always returns both keys, so `get(false)` cannot be `null`.
+**`Collectors.filtering` ≠ `Stream.filter`** — the first keeps empty groups, the second removes them.
+**`toMap` default is a `HashMap`** — pass `LinkedHashMap::new` if order matters.
+
 ## Related
 
 - `syllabus/02-java/collections/hashmap-internals.md`
 - `syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md`
 - `syllabus/02-java/language-core/generics-erasure-and-pecs.md`
+- [`practice/java/language-core/collectors-internals/`](../practice/java/language-core/collectors-internals/README.md)
