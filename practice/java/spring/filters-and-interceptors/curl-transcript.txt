@@ -1,0 +1,17 @@
+--------------------------------------------------------------------
+$ curl -s -w "\nHTTP %{http_code}\n" http://localhost:8080/ok
+{"result":"ok"}
+HTTP 200
+--------------------------------------------------------------------
+$ curl -s -w "\nHTTP %{http_code}\n" http://localhost:8080/boom-controller
+{"error":"deliberate failure inside the controller"}
+HTTP 422
+--------------------------------------------------------------------
+$ curl -s -w "\nHTTP %{http_code}\n" http://localhost:8080/boom-filter
+{"timestamp":"2026-09-29T15:05:57.715+00:00","status":500,"error":"Internal Server Error","path":"/boom-filter"}
+HTTP 500
+--------------------------------------------------------------------
+$ curl -s -w "\nHTTP %{http_code}\n" http://localhost:8080/blocked
+blocked by second-interceptor
+
+HTTP 403

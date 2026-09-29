@@ -11969,6 +11969,7 @@
 <p><strong>EC2</strong> gives raw virtual machines — full control, full operational ownership (patching, scaling, orchestration all manual or self-built). <strong>ECS</strong> (Elastic Container Service) is AWS's own container orchestrator — less operational ownership than raw EC2, tied to AWS's specific orchestration model. <strong>EKS</strong> (Elastic Kubernetes Service) is managed Kubernetes — the same Kubernetes API and ecosystem this week's earlier chapters cover, with AWS managing the control plane. <strong>Lambda</strong> runs code in response to events with zero server management at all — maximum convenience, at the cost of execution-time limits, cold-start latency (the real mechanism behind that cost, and what actually mitigates it, is covered in full in <a href="../serverless-lambda-execution-model-cold-starts-and-concurrency/">Serverless Compute: Lambda Execution Model, Cold Starts, and Concurrency Scaling</a>), and a fundamentally different programming/deployment model than a long-running server process.</p>
 <h3 id="storage-s3-ebs-and-efs-have-different-access-models-not-just-different-price-points">Storage: S3, EBS, and EFS have different access models, not just different price points<a class="headerlink" href="#storage-s3-ebs-and-efs-have-different-access-models-not-just-different-price-points" title="Permanent link">&para;</a></h3>
 <p><strong>S3</strong> is object storage — accessed via HTTP-style API calls (put/get by key), not mounted as a filesystem, durable and effectively infinitely scalable, ideal for large, infrequently-modified objects (backups, static assets, data lake storage). <strong>EBS</strong> (Elastic Block Store) is block storage attached to a single EC2 instance at a time — behaves like a regular disk, needed for a traditional database or filesystem that expects real block-device semantics. <strong>EFS</strong> (Elastic File System) is a managed, network-attached filesystem that multiple instances can mount simultaneously — for genuinely shared, POSIX-filesystem-semantics access across many compute instances.</p>
+<p>Two S3 limits come up often enough in interviews to be worth stating precisely, since they shape designs rather than being trivia. A single S3 object can be up to <strong>5 TB</strong>, but a single <code>PUT</code> is capped at <strong>5 GB</strong> — anything larger must use <strong>multipart upload</strong>, which splits the object into parts uploaded independently (and in parallel) and then assembled server-side. Multipart is worth using well below 5 GB anyway: parts upload concurrently, and a failed part is retried on its own instead of restarting the whole transfer. The design consequence is that "upload a large file" is not one request in any serious system; it is an operation with its own initiate/upload/complete lifecycle, and an abandoned one leaves billable incomplete parts behind unless a lifecycle rule cleans them up.</p>
 <h3 id="database-rds-and-dynamodb-follow-the-same-access-pattern-method-as-any-storage-decision">Database: RDS and DynamoDB follow the same access-pattern method as any storage decision<a class="headerlink" href="#database-rds-and-dynamodb-follow-the-same-access-pattern-method-as-any-storage-decision" title="Permanent link">&para;</a></h3>
 <p><strong>RDS</strong> is managed relational database hosting (Postgres, MySQL, etc.) — real SQL, real multi-row transactions, familiar relational modeling, with AWS handling patching/backups/failover. <strong>DynamoDB</strong> is a managed key-value/document NoSQL store — extremely high, predictable throughput and latency at scale, at the cost of a much more restrictive query model (primarily key-based access, with careful upfront access-pattern design required, per this program's own storage-selection chapter's access-pattern-first method).</p>
 <h3 id="messaging-sqs-and-sns-solve-different-problems-and-are-often-used-together">Messaging: SQS and SNS solve different problems and are often used together<a class="headerlink" href="#messaging-sqs-and-sns-solve-different-problems-and-are-often-used-together" title="Permanent link">&para;</a></h3>
@@ -12221,6 +12222,17 @@ The core organizing principle for AWS compute choices.</p>
 Choosing a compute service by popularity rather than this actual trade-off.</p>
 <p><strong>Related:</strong>
 <a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-s3-object-size-limits-and-multipart-upload">Card: S3 object size limits and multipart upload<a class="headerlink" href="#card-s3-object-size-limits-and-multipart-upload" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+How large can a single S3 object be, and at what point are you forced to change how you upload it?</p>
+<p><strong>Answer:</strong>
+An object can be up to <strong>5 TB</strong>, but a single <code>PUT</code> caps at <strong>5 GB</strong> — beyond that, multipart upload is mandatory: the object is split into parts uploaded independently and assembled server-side.</p>
+<p><strong>Why it matters:</strong>
+It turns "upload a large file" from one request into an operation with its own initiate/upload/complete lifecycle. Multipart is worth using well below 5 GB anyway, because parts upload in parallel and a failed part retries on its own instead of restarting the transfer.</p>
+<p><strong>Common trap:</strong>
+Forgetting that an abandoned multipart upload leaves billable incomplete parts behind until a lifecycle rule removes them.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
 <h3 id="card-s3-vs-ebs-vs-efs">Card: S3 vs EBS vs EFS<a class="headerlink" href="#card-s3-vs-ebs-vs-efs" title="Permanent link">&para;</a></h3>
 <p><strong>Prompt:</strong>
 What's the actual access-model difference between S3, EBS, and EFS?</p>
@@ -12292,7 +12304,7 @@ Assuming both work the same way just at different layers, rather than one genuin
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 17:38:02 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 16:13:30 UTC">September 29, 2026</span>
   </span>
 
     

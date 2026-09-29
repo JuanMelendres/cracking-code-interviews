@@ -7332,6 +7332,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../request-filters-interceptors-and-the-servlet-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Request Filters, Interceptors, and the Servlet Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../resilience-patterns/" class="md-nav__link">
         
   
@@ -8544,6 +8572,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#card-mock-vs-spy-what-actually-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: @Mock vs @Spy — what actually runs?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-why-whenspyx-is-a-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why when(spy.x()) is a bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-does-a-stub-apply-to-a-spys-internal-self-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Does a stub apply to a spy's internal self-call?
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9366,6 +9427,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#card-mock-vs-spy-what-actually-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: @Mock vs @Spy — what actually runs?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-why-whenspyx-is-a-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Why when(spy.x()) is a bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-does-a-stub-apply-to-a-spys-internal-self-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card: Does a stub apply to a spy's internal self-call?
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9471,6 +9565,39 @@ Prevents treating a coverage number as proof of test quality.</p>
 Setting a coverage percentage as a release gate without checking assertion quality.</p>
 <p><strong>Related:</strong>
 <a href="../../syllabus/08-testing/test-strategy-and-test-doubles/#core-concepts">Core Concepts</a></p>
+<h2 id="card-mock-vs-spy-what-actually-runs">Card: <code>@Mock</code> vs <code>@Spy</code> — what actually runs?<a class="headerlink" href="#card-mock-vs-spy-what-actually-runs" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+You call <code>write("hello")</code> on a <code>mock(AuditLog.class)</code> and on a <code>spy(new AuditLog())</code>. What does each return, and what happens to the real object's state?</p>
+<p><strong>Answer:</strong>
+The mock returns <code>null</code> and no real code runs — and <code>realCallCount()</code> also returns <code>0</code>, because that accessor is mocked too, not because nothing happened. The spy returns the real <code>"WROTE:hello"</code> and <code>realCallCount()</code> is genuinely <code>1</code>. Opposite defaults: a mock stubs everything, a spy stubs nothing until you say so.</p>
+<p><strong>Why it matters:</strong>
+Tests that check state through a mock's own accessor are asserting on stub defaults, not on behavior.</p>
+<p><strong>Common trap:</strong>
+Describing a spy as "a mock that records calls." Both record calls; <code>verify(...)</code> is identical on each.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/08-testing/test-strategy-and-test-doubles/#core-concepts">Core Concepts</a></p>
+<h2 id="card-why-whenspyx-is-a-bug">Card: Why <code>when(spy.x())</code> is a bug<a class="headerlink" href="#card-why-whenspyx-is-a-bug" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+Why is <code>when(spy.write("hello")).thenReturn("STUBBED")</code> dangerous, and what do you write instead?</p>
+<p><strong>Answer:</strong>
+Mockito must evaluate the argument to <code>when(...)</code>, which means really calling <code>write("hello")</code> on the spy. Measured: that single stubbing line left <code>realCallCount() == 1</code> and <code>written() == [hello]</code> before the test had done anything. If the real method throws or hits a database, the stubbing line is what fails. Use <code>doReturn("STUBBED").when(log).write("hello")</code> — measured at <code>realCallCount() == 0</code> with no side effect.</p>
+<p><strong>Why it matters:</strong>
+This is the entire reason Mockito ships a second stubbing syntax.</p>
+<p><strong>Common trap:</strong>
+Assuming <code>when()</code> is purely declarative. It is an ordinary Java expression, and its argument is evaluated like any other.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/08-testing/test-strategy-and-test-doubles/#core-concepts">Core Concepts</a></p>
+<h2 id="card-does-a-stub-apply-to-a-spys-internal-self-call">Card: Does a stub apply to a spy's internal self-call?<a class="headerlink" href="#card-does-a-stub-apply-to-a-spys-internal-self-call" title="Permanent link">&para;</a></h2>
+<p><strong>Prompt:</strong>
+A real method on a Mockito spy internally calls <code>this.otherMethod()</code>, which you stubbed. Does the stub apply?</p>
+<p><strong>Answer:</strong>
+Yes — measured. <code>writeTwice("x")</code>, which calls <code>write(...)</code> twice internally, returned <code>"STUBBED|STUBBED"</code> with <code>realCallCount() == 0</code>. A Mockito spy is a proxy subclass whose real method bodies execute with <code>this</code> bound to the proxy, so internal calls are intercepted.</p>
+<p><strong>Why it matters:</strong>
+This is the <strong>opposite</strong> of Spring's <code>@Transactional</code> self-invocation behavior, where an internal <code>this.method()</code> call bypasses the proxy entirely. "It's a proxy" predicts neither answer.</p>
+<p><strong>Common trap:</strong>
+Generalizing the Spring self-invocation rule to every proxy.</p>
+<p><strong>Related:</strong>
+<a href="../../syllabus/05-spring/transactional-proxy-mechanics-and-propagation/">Transactional Proxy Mechanics and Propagation</a></p>
 
 
 
@@ -9491,7 +9618,7 @@ Setting a coverage percentage as a release gate without checking assertion quali
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 16:13:30 UTC">September 29, 2026</span>
   </span>
 
     

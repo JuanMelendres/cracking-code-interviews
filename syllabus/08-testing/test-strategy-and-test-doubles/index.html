@@ -11936,7 +11936,7 @@
 <h1 id="test-strategy-the-pyramid-and-test-doubles">Test Strategy, the Pyramid, and Test Doubles<a class="headerlink" href="#test-strategy-the-pyramid-and-test-doubles" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>Topic register:</strong> T-1101/T-1103 · IWI 7.00/6.40 · Core tier
-<strong>Provenance:</strong> the test run in this chapter is real, executed output from <a href="../../../practice/java/week-11/testing/src/PaymentServiceUnitTest.java"><code>practice/java/week-11/testing/src/PaymentServiceUnitTest.java</code></a> against a real Mockito mock, via JUnit 5's console launcher (no Maven/Gradle).</p>
+<strong>Provenance:</strong> the test run in this chapter is real, executed output from <a href="../../../practice/java/week-11/testing/src/PaymentServiceUnitTest.java"><code>practice/java/week-11/testing/src/PaymentServiceUnitTest.java</code></a> against a real Mockito mock, via JUnit 5's console launcher (no Maven/Gradle). The <code>@Mock</code>-versus-<code>@Spy</code> behavior added in v1.1 is measured separately in <a href="../../practice/java/testing/mock-vs-spy/"><code>practice/java/testing/mock-vs-spy/</code></a> — seven passing tests against Mockito 5.11.0 and JUnit 5.10.2 on OpenJDK 21.0.12.</p>
 </blockquote>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ol>
@@ -11997,6 +11997,42 @@
 <p>Unit tests are cheap to write and run, so there should be many of them, covering logic branches precisely. End-to-end tests are expensive and flaky (real network, real timing, real infrastructure), so there should be few, covering only the critical paths a unit or integration test genuinely cannot reach.</p>
 <h3 id="what-to-mock-and-what-never-to">What to mock, and what never to<a class="headerlink" href="#what-to-mock-and-what-never-to" title="Permanent link">&para;</a></h3>
 <p>Mock dependencies that are slow, external, or non-deterministic (network calls, payment gateways, clocks) — anything that would make the test slow or flaky for reasons unrelated to the logic being tested. Do NOT mock the thing the test exists to verify — a repository test that mocks the database tests nothing but its own assumptions about what the database does, not whether the actual SQL is correct. See <a href="../integration-testing-against-real-dependencies/">Integration Testing Against Real Dependencies</a> for the layer that exists specifically to close this gap.</p>
+<h3 id="mock-and-spy-are-opposite-defaults-and-the-difference-is-measurable"><code>@Mock</code> and <code>@Spy</code> are opposite defaults, and the difference is measurable<a class="headerlink" href="#mock-and-spy-are-opposite-defaults-and-the-difference-is-measurable" title="Permanent link">&para;</a></h3>
+<p>A <strong>mock</strong> is an object with no real implementation behind it. Every method is stubbed; unstubbed methods return the type default. A <strong>spy</strong> wraps a real instance, and every method runs the real implementation unless you explicitly stub it. The two are not intensities of the same thing — they are opposite defaults, and which one is safe depends on whether running the real code is acceptable.</p>
+<p>Measured directly against a stateful collaborator (<code>AuditLog</code>, which counts real invocations):</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th><code>mock(AuditLog.class)</code></th>
+<th><code>spy(new AuditLog())</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>write("hello")</code> returns</td>
+<td><code>null</code></td>
+<td><code>"WROTE:hello"</code></td>
+</tr>
+<tr>
+<td><code>realCallCount()</code> afterwards</td>
+<td><code>0</code> — and this <code>0</code> is <em>itself</em> a mocked return, not the real field</td>
+<td><code>1</code> — the real method really ran</td>
+</tr>
+</tbody>
+</table>
+<p>That second column detail catches people: on a mock, the accessor a test uses to check state is also mocked, so it reports the type default no matter what happened.</p>
+<p><strong>The trap: <code>when(spy.x())</code> executes the real method.</strong> Mockito has to evaluate the argument to <code>when(...)</code>, and evaluating <code>spy.write("hello")</code> means really calling it. Measured — before any test action had run, merely writing the stubbing line left the spy with <code>realCallCount() == 1</code> and <code>written() == [hello]</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">AuditLog</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spy</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">AuditLog</span><span class="p">());</span>
+<span class="n">when</span><span class="p">(</span><span class="n">log</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">"hello"</span><span class="p">)).</span><span class="na">thenReturn</span><span class="p">(</span><span class="s">"STUBBED"</span><span class="p">);</span><span class="w">   </span><span class="c1">// the real write() ALREADY RAN here</span>
+</code></pre></div>
+<p>If that real method throws, hits a database, or sends an email, the stubbing line itself is what does it. The fix is the <code>do*</code> family, which never invokes the method it stubs — measured at <code>realCallCount() == 0</code> and <code>written() == []</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">doReturn</span><span class="p">(</span><span class="s">"STUBBED"</span><span class="p">).</span><span class="na">when</span><span class="p">(</span><span class="n">log</span><span class="p">).</span><span class="na">write</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span><span class="w">     </span><span class="c1">// real method never runs</span>
+</code></pre></div>
+<p>This is the entire reason Mockito ships two stubbing syntaxes rather than one.</p>
+<p><strong>Self-invocation behaves the opposite way to a Spring proxy.</strong> A real method on a spy that internally calls <code>this.otherMethod()</code> <em>does</em> go through the stub: <code>writeTwice("x")</code>, which calls <code>write(...)</code> twice internally, returned <code>"STUBBED|STUBBED"</code> with <code>realCallCount() == 0</code>. A Mockito spy is a proxy subclass whose real method bodies execute with <code>this</code> bound to the proxy. This is the <strong>opposite</strong> of <a href="../../05-spring/transactional-proxy-mechanics-and-propagation/"><code>@Transactional</code> self-invocation</a>, where an internal <code>this.method()</code> call bypasses the proxy entirely. Two proxies, two different answers — neither is derivable from "it's a proxy."</p>
+<p><strong>"You cannot mock final" is pre-Mockito-5 folklore.</strong> <code>doReturn("STUBBED").when(log).sealedWrite("x")</code> on a <code>final</code> method returned <code>"STUBBED"</code> with the real method never running. Mockito 5 ships the inline mock maker as its default, instrumenting through a Java agent instead of by subclassing — the launcher's real <code>WARNING: A Java agent has been loaded dynamically</code> is that mechanism being visible.</p>
+<p><strong>When a spy is the right tool.</strong> Rarely, and always for the same reason: you need most of a real object's behavior and must replace one narrow part of it — typically legacy code you cannot restructure. <code>verify(...)</code> works identically on both, so a spy buys nothing for interaction checking. Reaching for a spy on code you own is usually a signal that the class does too much and should be split, which is the same signal <a href="#core-concepts">What to mock, and what never to</a> describes from the other direction.</p>
 <h3 id="coverage-percentage-is-a-diagnostic-not-a-target">Coverage percentage is a diagnostic, not a target<a class="headerlink" href="#coverage-percentage-is-a-diagnostic-not-a-target" title="Permanent link">&para;</a></h3>
 <p>Coverage measures that lines/branches were executed at least once — nothing about whether the assertions in those tests are meaningful. A file can have 100% coverage and a live production bug, because coverage says nothing about assertion quality.</p>
 <h2 id="internal-implementation">Internal Implementation<a class="headerlink" href="#internal-implementation" title="Permanent link">&para;</a></h2>
@@ -12087,6 +12123,9 @@ Test run finished after 460 ms
 <li>Treating coverage percentage as a quality target rather than a diagnostic tool for finding untested code.</li>
 <li>Mocking the exact dependency an integration test exists to verify (mocking the database in a repository test).</li>
 <li>Building an ice-cream-cone test suite — many slow end-to-end tests, few fast unit tests — because it feels more thorough.</li>
+<li>Stubbing a spy with <code>when(spy.method())</code>, which really executes the method being stubbed — measured. Use <code>doReturn(...).when(spy).method()</code> on any spy whose methods have side effects.</li>
+<li>Checking state on a mock through one of its own accessors. That accessor is mocked too, so it returns the type default regardless of what the test did.</li>
+<li>Repeating "you cannot mock final methods." Mockito 5's default inline mock maker stubs them fine — verified.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
@@ -12147,6 +12186,15 @@ Test run finished after 460 ms
 <p><strong>Likely follow-ups.</strong> "A file has 100% coverage and a bug in production. How?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: treats coverage as a quality guarantee. 3: explains coverage doesn't verify assertions. 5: correct explanation plus the diagnostic-vs-target framing and flakiness-as-signal insight.</p>
 <p><strong>Related references.</strong> <a href="#core-concepts">§ Core Concepts</a>.</p>
+<h3 id="question-3-what-is-the-difference-between-mock-and-spy-and-what-is-the-classic-bug-when-stubbing-a-spy">Question 3 — What is the difference between <code>@Mock</code> and <code>@Spy</code>, and what is the classic bug when stubbing a spy?<a class="headerlink" href="#question-3-what-is-the-difference-between-mock-and-spy-and-what-is-the-classic-bug-when-stubbing-a-spy" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> Almost everyone can recite the definitions. Far fewer have hit the stubbing bug, and it separates people who have used spies from people who have read about them.</p>
+<p><strong>Expected answer.</strong> A mock has no real implementation: every method is stubbed and unstubbed ones return the type default. A spy wraps a real object and runs the real implementation unless a method is explicitly stubbed — opposite defaults, not two intensities of the same idea. The classic bug is that <code>when(spy.method())</code> <strong>executes the real method</strong> while stubbing it, because Mockito must evaluate the argument to <code>when(...)</code>. Measured: the stubbing line alone left the spy with one real invocation recorded and its side effect applied. The fix is <code>doReturn(...).when(spy).method()</code>, which stubs without invoking — measured at zero real invocations.</p>
+<p><strong>Minimum acceptable answer.</strong> States that a mock returns defaults and a spy calls real code.</p>
+<p><strong>Strong Senior answer.</strong> The above, plus why the <code>do*</code> syntax exists at all, plus the practical rule that a spy is for legacy code you cannot restructure — and that reaching for one on code you own usually signals the class does too much.</p>
+<p><strong>Staff-level extension.</strong> Notes that a spy weakens the test's isolation guarantee: a test using one can now fail because of code it never intended to exercise, which makes failures harder to localize. Argues that a growing number of spies in a suite is a design signal about the production code, not a testing-tooling problem, and that the remedy is extracting the collaborator rather than partially mocking it.</p>
+<p><strong>Common mistakes.</strong> Describing a spy as "a mock that also records calls" — <code>verify(...)</code> works identically on both, so that is not the distinction. Asserting that final methods cannot be stubbed, which stopped being true in Mockito 5.</p>
+<p><strong>Likely follow-ups.</strong> "If a real method on a spy calls another of its own methods, does a stub on that second method apply?" (Yes — measured: the spy is a proxy subclass and <code>this</code> is the proxy. This is the opposite of Spring's <code>@Transactional</code> self-invocation behavior.) "When would you genuinely choose a spy?"</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: cannot distinguish them. 3: correct definitions. 5: names the <code>when()</code> execution trap, the <code>doReturn</code> fix, and when a spy is actually justified.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>A test double (mock) lets a test verify BOTH the outcome (retry eventually succeeds) AND the interaction (exactly 3 calls, exact arguments) of retry logic against a dependency that would be nearly impossible to make fail on command for real — real, executed in 460ms including JVM startup. The testing pyramid's shape (many fast unit tests, fewer integration tests, very few end-to-end tests) reflects a real cost/coverage trade-off; inverting it (the ice-cream-cone anti-pattern) produces a slow, flaky suite for the sake of feeling thorough.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -12217,6 +12265,28 @@ Prevents treating a coverage number as proof of test quality.</p>
 Setting a coverage percentage as a release gate without checking assertion quality.</p>
 <p><strong>Related:</strong>
 <a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-mock-vs-spy-what-runs">Card: <code>@Mock</code> vs <code>@Spy</code> — what runs?<a class="headerlink" href="#card-mock-vs-spy-what-runs" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+You call <code>write("hello")</code> on a <code>mock(AuditLog.class)</code> and on a <code>spy(new AuditLog())</code>. What does each return, and what happens to the real object's state?</p>
+<p><strong>Answer:</strong>
+The mock returns <code>null</code> and no real code runs — and <code>realCallCount()</code> also returns <code>0</code>, because that accessor is mocked too, not because nothing happened. The spy returns the real <code>"WROTE:hello"</code> and <code>realCallCount()</code> is genuinely <code>1</code>. Opposite defaults: a mock stubs everything, a spy stubs nothing until you say so.</p>
+<p><strong>Why it matters:</strong>
+Tests that check state through a mock's own accessor are asserting on stub defaults, not on behavior.</p>
+<p><strong>Common trap:</strong>
+Describing a spy as "a mock that records calls." Both record calls; <code>verify(...)</code> is identical on each.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-why-whenspyx-is-a-bug">Card: Why <code>when(spy.x())</code> is a bug<a class="headerlink" href="#card-why-whenspyx-is-a-bug" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Why is <code>when(spy.write("hello")).thenReturn("STUBBED")</code> dangerous, and what do you write instead?</p>
+<p><strong>Answer:</strong>
+Mockito must evaluate the argument to <code>when(...)</code>, which means really calling <code>write("hello")</code> on the spy. Measured: that single stubbing line left <code>realCallCount() == 1</code> and <code>written() == [hello]</code> before the test had done anything. If the real method throws or hits a database, the stubbing line is what fails. Use <code>doReturn("STUBBED").when(log).write("hello")</code> — measured at <code>realCallCount() == 0</code> with no side effect.</p>
+<p><strong>Why it matters:</strong>
+This is the entire reason Mockito ships a second stubbing syntax.</p>
+<p><strong>Common trap:</strong>
+Assuming <code>when()</code> is purely declarative. It is an ordinary Java expression, and its argument is evaluated like any other.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reproduce: <a href="../../../practice/java/week-11/testing/src/PaymentServiceUnitTest.java"><code>practice/java/week-11/testing/src/PaymentServiceUnitTest.java</code></a> via the console launcher.</li>
@@ -12255,7 +12325,7 @@ Setting a coverage percentage as a release gate without checking assertion quali
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 16:15:31 UTC">September 29, 2026</span>
   </span>
 
     

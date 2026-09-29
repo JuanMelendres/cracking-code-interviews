@@ -9603,6 +9603,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request-filters-interceptors-and-the-servlet-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Filters, Interceptors, and the Servlet Chain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12571,6 +12582,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request-filters-interceptors-and-the-servlet-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Filters, Interceptors, and the Servlet Chain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12710,9 +12732,9 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 15 chapters yielded 49 deep questions + 5
+<p><strong>Honest count for this domain:</strong> 16 chapters yielded 52 deep questions + 5
 already-leveled Junior/Mid questions (from the domain's one Junior Fundamentals
-chapter, <code>spring-mvc-fundamentals.md</code>) + 36 quick-fire questions = <strong>90 real
+chapter, <code>spring-mvc-fundamentals.md</code>) + 40 quick-fire questions = <strong>97 real
 questions</strong>. (Updated 2026-09-27: <code>microservices-patterns-with-spring-boot.md</code>
 had a complete Interview Questions section this index never picked up — a
 stale-index gap, not a content gap, found via a generic interview checklist
@@ -12724,7 +12746,11 @@ remaining gaps — are now indexed too. Added 2 questions + 2 quick-fire cards
 for the former; 20 questions for the latter — its own Interview Questions
 section already tags each answer by seniority tier directly, so summarized
 concisely below rather than re-derived; it has no embedded Flashcards section
-in the canonical chapter to mine for quick-fire, only a standalone deck.)</p>
+in the canonical chapter to mine for quick-fire, only a standalone deck. Updated 2026-09-29:
+<code>request-filters-interceptors-and-the-servlet-chain.md</code> is a new chapter closing a
+real coverage gap — <code>HandlerInterceptor</code> appeared nowhere in the repository, while
+the Servlet filter side was covered only through <code>security-filter-chain.md</code> — and
+contributes 3 questions + 4 quick-fire cards.)</p>
 <hr />
 <h2 id="spring-mvc-fundamentals">Spring MVC Fundamentals<a class="headerlink" href="#spring-mvc-fundamentals" title="Permanent link">&para;</a></h2>
 <p>Junior Fundamentals chapter — its Interview Questions already tag each by seniority.</p>
@@ -13098,6 +13124,26 @@ in the canonical chapter to mine for quick-fire, only a standalone deck.)</p>
 - <strong>Senior:</strong> Names secrets specifically as needing more than plain profile-scoped YAML — a real secrets manager, never committed.
 - <strong>Staff:</strong> Frames this as the concrete Spring Boot instance of the general twelve-factor "config in the environment" principle.</p>
 <hr />
+<h2 id="request-filters-interceptors-and-the-servlet-chain">Request Filters, Interceptors, and the Servlet Chain<a class="headerlink" href="#request-filters-interceptors-and-the-servlet-chain" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-the-difference-between-a-servlet-filter-and-a-spring-handlerinterceptor-and-give-one-consequence-that-actually-matters">Q1 — What is the difference between a Servlet filter and a Spring <code>HandlerInterceptor</code>, and give one consequence that actually matters?<a class="headerlink" href="#q1-what-is-the-difference-between-a-servlet-filter-and-a-spring-handlerinterceptor-and-give-one-consequence-that-actually-matters" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> States that filters are servlet-level and interceptors are Spring-level, and that filters run first — the memorized answer, with no consequence derived from it.
+- <strong>Senior:</strong> Derives the consequences from the nesting: a filter wraps the whole <code>DispatcherServlet</code> so it runs for 404s and static resources but cannot see the resolved handler; an interceptor runs inside it and receives the <code>HandlerMethod</code> and its annotations. Names the decision rule (concern about the request → filter; about the method → interceptor) and knows <code>@ControllerAdvice</code> reaches interceptor exceptions but not filter exceptions.
+- <strong>Staff:</strong> Raises the error-contract consequence — a filter failure produces the container's default body, a genuinely different JSON shape from the application's own, measured directly — so the API has two error schemas and only one is covered by contract tests.</p>
+<h3 id="q2-an-interceptor-logs-failures-with-if-ex-null-in-aftercompletion-it-logs-nothing-in-production-despite-real-500s-why">Q2 — An interceptor logs failures with <code>if (ex != null)</code> in <code>afterCompletion</code>. It logs nothing in production despite real 500s. Why?<a class="headerlink" href="#q2-an-interceptor-logs-failures-with-if-ex-null-in-aftercompletion-it-logs-nothing-in-production-despite-real-500s-why" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Blames log levels or the logging framework; or proposes moving the logic to <code>postHandle</code>, which is strictly worse since <code>postHandle</code> does not run on the error path at all.
+- <strong>Senior:</strong> Knows <code>ex</code> is the <em>unresolved</em> exception, so anything <code>@ControllerAdvice</code> already handled arrives as <code>null</code> — measured: the controller threw, the advice mapped it to 422, and both interceptors still recorded <code>ex=null, status=422</code>. Fixes it by keying off the response status.
+- <strong>Staff:</strong> Generalizes it — monitoring that infers failure from an exception object rather than the observable outcome under-reports precisely in services that handle errors well, so the better-engineered the service, the blinder the dashboard.</p>
+<h3 id="q3-your-prehandle-returns-false-to-reject-a-request-what-does-and-does-not-run-afterwards">Q3 — Your <code>preHandle</code> returns <code>false</code> to reject a request. What does and does not run afterwards?<a class="headerlink" href="#q3-your-prehandle-returns-false-to-reject-a-request-what-does-and-does-not-run-afterwards" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Correctly states the handler and <code>postHandle</code> are skipped; assumes the rejecting interceptor's own <code>afterCompletion</code> still runs.
+- <strong>Senior:</strong> Knows <code>afterCompletion</code> runs only on interceptors <em>earlier</em> in the chain whose <code>preHandle</code> already returned <code>true</code> — Spring records <code>interceptorIndex</code> in <code>applyPreHandle</code> and <code>triggerAfterCompletion</code> unwinds only that far. Also knows Spring writes no response, so returning <code>false</code> without setting one yields an empty <code>200</code>, and that both filters still complete normally.
+- <strong>Staff:</strong> Draws the operational conclusion — <code>preHandle</code> is an unsafe place to acquire anything needing release on the rejection path, and rejection metrics must be emitted inline — and argues for encoding that in a shared base class rather than rediscovering it per service.</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -13288,6 +13334,26 @@ in the canonical chapter to mine for quick-fire, only a standalone deck.)</p>
 <td>Is a mapper never referencing an undeclared sensitive field a real guarantee, or coincidence?</td>
 <td><a href="../../../05-spring/dto-entity-mapper-patterns/#flashcards">DTO/Entity/Mapper Patterns</a></td>
 </tr>
+<tr>
+<td>37</td>
+<td>In one sentence, what is the structural difference between a Servlet filter and a <code>HandlerInterceptor</code>?</td>
+<td><a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#flashcards">Request Filters and Interceptors</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td>Can <code>@ControllerAdvice</code> handle an exception thrown in a filter?</td>
+<td><a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#flashcards">Request Filters and Interceptors</a></td>
+</tr>
+<tr>
+<td>39</td>
+<td>Why is <code>afterCompletion</code>'s <code>ex</code> parameter almost always null?</td>
+<td><a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#flashcards">Request Filters and Interceptors</a></td>
+</tr>
+<tr>
+<td>40</td>
+<td>Does a filter's <code>finally</code> block see the real response status for a container-generated 500?</td>
+<td><a href="../../../05-spring/request-filters-interceptors-and-the-servlet-chain/#flashcards">Request Filters and Interceptors</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13319,7 +13385,7 @@ in the canonical chapter to mine for quick-fire, only a standalone deck.)</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 16:13:30 UTC">September 29, 2026</span>
   </span>
 
     
