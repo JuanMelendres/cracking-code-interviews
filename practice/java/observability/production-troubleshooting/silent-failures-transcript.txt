@@ -1,0 +1,59 @@
+Real, executed output of demo.TroubleshootingApplication
+(Spring Boot 3.5.16, Spring Framework 6.2.19, embedded Tomcat 10.1.55, OpenJDK 21.0.12).
+
+Four endpoints. From the client, all four are indistinguishable:
+
+  $ curl -s -w " <- HTTP %{http_code}\n" http://localhost:8080/silent/swallowed
+  {"error":"internal error"} <- HTTP 500
+  $ curl -s -w " <- HTTP %{http_code}\n" http://localhost:8080/silent/wrong-level
+  {"error":"internal error"} <- HTTP 500
+  $ curl -s -w " <- HTTP %{http_code}\n" http://localhost:8080/silent/unlogged-advice
+  {"error":"internal error"} <- HTTP 500
+  $ curl -s -w " <- HTTP %{http_code}\n" http://localhost:8080/visible/logged
+  {"error":"internal error"} <- HTTP 500
+
+==============================================================================
+RUN 1 -- default log level (what production looks like)
+  java -cp "out:lib/*" demo.TroubleshootingApplication
+==============================================================================
+
+2026-09-29T11:08:53.289-06:00  INFO 49033 --- [           main] demo.TroubleshootingApplication          : Started TroubleshootingApplication in 0.613 seconds (process running for 0.731)
+2026-09-29T11:08:53.562-06:00  INFO 49033 --- [nio-8080-exec-1] access                                   : method=GET uri=/silent/swallowed status=500 duration_ms=23 escaped_exception=none
+2026-09-29T11:08:54.586-06:00  INFO 49033 --- [nio-8080-exec-2] access                                   : method=GET uri=/silent/wrong-level status=500 duration_ms=1 escaped_exception=none
+2026-09-29T11:08:55.606-06:00  INFO 49033 --- [nio-8080-exec-3] access                                   : method=GET uri=/silent/unlogged-advice status=500 duration_ms=2 escaped_exception=none
+2026-09-29T11:08:56.627-06:00 ERROR 49033 --- [nio-8080-exec-4] demo.SilentFailureController             : shipping quote failed
+
+java.lang.IllegalStateException: shipping quote provider returned malformed XML
+	at demo.SilentFailureController.visible(SilentFailureController.java:66) ~[out/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web.jar:6.2.19]
+	... (48 further framework frames omitted)
+
+2026-09-29T11:08:56.632-06:00  INFO 49033 --- [nio-8080-exec-4] access                                   : method=GET uri=/visible/logged status=500 duration_ms=5 escaped_exception=none
+
+Three of the four failures produced no diagnostic output at all. Only the
+access-log line proves they happened. Note escaped_exception=none on all four:
+none of these exceptions escaped the DispatcherServlet, because each was
+converted into a 500 response inside it.
+
+==============================================================================
+RUN 2 -- same build, DEBUG enabled for the application package
+  java -cp "out:lib/*" demo.TroubleshootingApplication --logging.level.demo=DEBUG
+==============================================================================
+
+2026-09-29T11:09:18.276-06:00  INFO 49607 --- [           main] demo.TroubleshootingApplication          : Started TroubleshootingApplication in 0.6 seconds (process running for 0.719)
+2026-09-29T11:09:18.567-06:00  INFO 49607 --- [nio-8080-exec-1] access                                   : method=GET uri=/silent/swallowed status=500 duration_ms=23 escaped_exception=none
+2026-09-29T11:09:19.585-06:00 DEBUG 49607 --- [nio-8080-exec-2] demo.SilentFailureController             : payment step failed
+
+java.lang.IllegalStateException: payment tokenisation rejected: expired merchant key
+	at demo.SilentFailureController.wrongLevel(SilentFailureController.java:46) ~[out/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	... (frames omitted)
+
+2026-09-29T11:09:19.589-06:00  INFO 49607 --- [nio-8080-exec-2] access                                   : method=GET uri=/silent/wrong-level status=500 duration_ms=5 escaped_exception=none
+2026-09-29T11:09:20.604-06:00  INFO 49607 --- [nio-8080-exec-3] access                                   : method=GET uri=/silent/unlogged-advice status=500 duration_ms=1 escaped_exception=none
+
+Raising the level recovered /silent/wrong-level and ONLY that one. The other
+two stayed silent. That is what makes a log-level change a useful diagnostic
+step rather than a guess: it discriminates between the three causes.
