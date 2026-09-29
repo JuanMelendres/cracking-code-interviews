@@ -1,0 +1,34 @@
+Real, executed output of CollectorLifecycleDemo (OpenJDK 21.0.12, 10 cores, macOS).
+
+Reproduce:  javac -d out src/*.java && java -cp out CollectorLifecycleDemo
+
+== 1. Is the combiner used in a SEQUENTIAL stream? ==
+  sequential : supplier=1    accumulator=1000   combiner=0    finisher=1  result size=1000
+  parallel   : supplier=64   accumulator=1000   combiner=63   finisher=1  result size=1000
+  Available processors: 10
+
+== 2. Does IDENTITY_FINISH actually SKIP the finisher? ==
+  finisher invocations WITHOUT IDENTITY_FINISH: 1
+  finisher invocations WITH    IDENTITY_FINISH: 0
+
+== 3. What characteristics do the built-in collectors declare? ==
+  toList()                   [IDENTITY_FINISH]
+  toUnmodifiableList()       (none)
+  toSet()                    [UNORDERED, IDENTITY_FINISH]
+  joining()                  (none)
+  counting()                 (none)
+  groupingBy(f)              [IDENTITY_FINISH]
+  groupingByConcurrent(f)    [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+  toMap(k,v)                 [IDENTITY_FINISH]
+  toConcurrentMap(k,v)       [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+
+== 4. CONCURRENT: one shared container, or merged partials? ==
+  groupingBy           (parallel)    supplier=67   accumulator=10000  combiner=63   finisher=0  groups=4
+  groupingByConcurrent (parallel)    supplier=4    accumulator=10000  combiner=0    finisher=0  groups=4
+
+== 5. What a BROKEN combiner costs, sequential vs parallel ==
+  input size                     : 1000
+  sequential with broken combiner: 1000  <- correct, combiner never ran
+  parallel   with broken combiner: 15  <- silent data loss (run 1)
+  parallel   with broken combiner: 15  <- silent data loss (run 2)
+  parallel   with broken combiner: 15  <- silent data loss (run 3)

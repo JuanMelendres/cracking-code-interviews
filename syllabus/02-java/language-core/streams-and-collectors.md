@@ -4,8 +4,8 @@ slug: streams-and-collectors
 document_type: handbook-chapter
 domain: 02-java/language-core
 status: draft
-version: 1.0
-last_updated: 2026-09-03
+version: 1.1
+last_updated: 2026-09-29
 source_history:
   - handbook/java-core/streams-and-collectors.md
 difficulty:
@@ -14,17 +14,21 @@ difficulty:
 target_levels:
   - senior
   - staff
-estimated_reading_minutes: 30
+estimated_reading_minutes: 38
 topic_id: T-107
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
+practice: ../../../practice/java/language-core/collectors-internals/
 related:
   - generics-erasure-and-pecs.md
+  - ../../../practice/java/language-core/collectors-internals/README.md
   - lambdas-and-functional-interfaces.md
   - optional-and-null-strategy.md
   - ../concurrency/executors-and-thread-pool-sizing.md
   - ../../../study-packs/week-13/01-streams-and-collectors.md
 official_references:
+  - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html
+  - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.Characteristics.html
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html
 ---
@@ -32,7 +36,7 @@ official_references:
 # Streams and Collectors
 
 > **Topic register:** T-107 · IWI 6.2 · Core tier
-> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/streams-collectors/src/`](../../../practice/java/week-13/streams-collectors/src/) on OpenJDK 21.0.12.
+> **Provenance:** every trace in this chapter is real, executed output from [`practice/java/week-13/streams-collectors/src/`](../../../practice/java/week-13/streams-collectors/src/) on OpenJDK 21.0.12. The collector-internals material added in v1.1 is measured separately in [`practice/java/language-core/collectors-internals/`](../../../practice/java/language-core/collectors-internals/README.md), where an instrumented `Collector` counts every supplier, accumulator, combiner, and finisher invocation the JDK actually makes.
 
 ## Table of Contents
 
@@ -114,6 +118,65 @@ Building a pipeline with `filter`/`map`/`peek` does no work at all. Only calling
 
 Calling a terminal operation marks the stream "operated upon"; any further operation on the same stream object throws `IllegalStateException`.
 
+### A `Collector` is four functions, and the combiner runs only in parallel
+
+`collect()` is not a conversion. It takes a `Collector<T, A, R>` — a bundle of four functions the pipeline calls at defined points: a **supplier** creating a mutable container, an **accumulator** folding one element into it, a **combiner** merging two containers, and a **finisher** turning the container into the result type.
+
+The part that surprises people is that the combiner is not always used. With an instrumented collector counting real invocations over 1,000 elements:
+
+```text
+sequential : supplier=1    accumulator=1000   combiner=0    finisher=1
+parallel   : supplier=64   accumulator=1000   combiner=63   finisher=1
+```
+
+A sequential stream creates one container and merges nothing — the combiner is **never called**. A parallel stream on this 10-core machine created 64 containers and merged them 63 times; fork/join splits well past the core count, so "one container per core" is not a safe assumption either.
+
+The consequence matters more than the trivia: a custom collector with a wrong combiner passes every sequential test and silently corrupts parallel results. See [Internal Implementation](#internal-implementation) for the measured damage.
+
+### `Collector.Characteristics` is how a collector tells the pipeline what it may skip
+
+Three flags let the stream implementation take shortcuts, and each one is observable.
+
+**`IDENTITY_FINISH`** declares the accumulation container *is* the result, so the pipeline casts it instead of calling the finisher. Not an optimisation of the finisher — the call does not happen. The same instrumented collector declared twice, differing only in that flag:
+
+```text
+finisher invocations WITHOUT IDENTITY_FINISH: 1
+finisher invocations WITH    IDENTITY_FINISH: 0
+```
+
+**`UNORDERED`** declares the result does not depend on encounter order, freeing the pipeline from preserving it across a parallel merge.
+
+**`CONCURRENT`** declares the accumulator is safe to call from multiple threads on a *single shared container*, so the pipeline can skip per-thread containers and merging entirely.
+
+Read from the JDK rather than described:
+
+```text
+toList()                   [IDENTITY_FINISH]
+toUnmodifiableList()       (none)
+toSet()                    [UNORDERED, IDENTITY_FINISH]
+joining()                  (none)
+counting()                 (none)
+groupingBy(f)              [IDENTITY_FINISH]
+groupingByConcurrent(f)    [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+toMap(k,v)                 [IDENTITY_FINISH]
+toConcurrentMap(k,v)       [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+```
+
+The contrasts explain themselves. `toList()` hands back its own `ArrayList`, so it can declare `IDENTITY_FINISH`; `toUnmodifiableList()` must copy into an immutable list and declares nothing. `joining()` accumulates into a `StringBuilder` and must convert to `String`, so it has a real finisher too. `toSet()` adds `UNORDERED` because set semantics make encounter order meaningless.
+
+### `groupingByConcurrent` is a different execution strategy, not a faster `groupingBy`
+
+The `CONCURRENT` flag changes what the pipeline does, and the difference is visible in container counts. Grouping 10,000 elements into 4 groups, in parallel, with an instrumented downstream collector:
+
+```text
+groupingBy           (parallel)  supplier=67   accumulator=10000  combiner=63   groups=4
+groupingByConcurrent (parallel)  supplier=4    accumulator=10000  combiner=0    groups=4
+```
+
+The non-concurrent version built 67 containers for 4 groups and merged 63 times. The concurrent version built **exactly 4** — one per group — and merged **zero** times.
+
+That is a real reduction in allocation and merging, but it is not free and it is not a drop-in replacement. `groupingByConcurrent` returns a `ConcurrentMap`, it is `UNORDERED` so encounter order within each group is not preserved, and it is only a win when the stream is genuinely parallel *and* the downstream accumulation is cheap enough that merging was the dominant cost. On a sequential stream it does strictly more work than `groupingBy` for no benefit.
+
 ### `Collectors.toMap()` throws on duplicate keys without a merge function
 
 The two-argument `toMap(keyFn, valueFn)` overload has no way to resolve a collision, so it throws. The three-argument overload `toMap(keyFn, valueFn, mergeFn)` requires the caller to state how duplicates combine.
@@ -181,6 +244,19 @@ Parallel   sum=499500, avg over 20,000 iters: 20,539 ns/iter
 
 Roughly 6.6x slower for the parallel version, entirely from fork/join task-splitting and thread-handoff overhead — for a workload this small and this cheap per element, there is no computation expensive enough to amortize that cost. A naive, single-shot `nanoTime()` comparison without warmup can even show the opposite result purely from JIT compilation timing, which is itself a lesson in why microbenchmarks need warmup, not just a lesson about streams.
 
+**What a wrong combiner actually costs, measured.** A deliberately broken combiner — `(a, b) -> a`, discarding everything accumulated in the second partial — collecting the same 1,000 elements:
+
+```
+== 5. What a BROKEN combiner costs, sequential vs parallel ==
+  input size                     : 1000
+  sequential with broken combiner: 1000  <- correct, combiner never ran
+  parallel   with broken combiner: 15  <- silent data loss (run 1)
+  parallel   with broken combiner: 15  <- silent data loss (run 2)
+  parallel   with broken combiner: 15  <- silent data loss (run 3)
+```
+
+No exception, no warning, 98.5% of the data gone, reproducibly. This is the concrete answer to "why does the combiner matter especially with parallel streams." It is not that the combiner is *more important* in parallel — it is that the sequential path never executes it, so a wrong combiner is undetectable by any sequential test. A custom collector's combiner needs a test that actually runs in parallel, or it is untested.
+
 ## Diagrams
 
 ```mermaid
@@ -211,6 +287,49 @@ String grandTotal = orders.stream().collect(runningTotalCollector);
 Map<String, Long> counts = orders.stream()
         .collect(Collectors.groupingBy(Order::customer, Collectors.counting()));
 ```
+
+**The `Collectors` catalog.** All of the following were run against one shared six-employee dataset; full output in [`catalog-transcript.txt`](../../../practice/java/language-core/collectors-internals/catalog-transcript.txt).
+
+| Collector | Use case | Real output (excerpt) |
+|---|---|---|
+| `toList()` | Elements as a list | `[Ana, Ben, Cleo, Dev, Eve, Fay]` |
+| `toUnmodifiableList()` | Same, immutable | throws on `add` |
+| `toSet()` | Unique elements | `[Design, Engineering, Sales]` |
+| `joining(", ", "[", "]")` | String concatenation with delimiter/prefix/suffix | `[Ana, Ben, Cleo, Dev, Eve, Fay]` |
+| `counting()` | Element count as `Long` | `6` |
+| `summingInt(f)` | Total | `547000` |
+| `averagingInt(f)` | Mean as `Double` | `36.333333333333336` |
+| `summarizingInt(f)` | Count, sum, min, average, max in one pass | `IntSummaryStatistics{count=6, sum=547000, min=72000, average=91166.666667, max=120000}` |
+| `minBy(cmp)` / `maxBy(cmp)` | Extremes as `Optional` | `Dev` / `Ben` |
+| `partitioningBy(pred)` | Two-way split, always both keys | `{false=[Cleo, Dev, Eve], true=[Ana, Ben, Fay]}` |
+| `groupingBy(f)` | N-way grouping | `{Design=[Cleo, Fay], Engineering=[Ana, Ben], Sales=[Dev, Eve]}` |
+| `groupingBy(f, downstream)` | Grouping plus per-group reduction | `{Design=2, Engineering=2, Sales=2}` |
+| `groupingBy(f, mapFactory, downstream)` | Control the map type | `TreeMap` -> keys sorted |
+| `mapping(f, downstream)` | Transform before collecting | names instead of whole objects |
+| `filtering(pred, downstream)` | Filter *within* a group, keeping empty groups | `{Design=[Cleo, Fay], Engineering=[Ana], Sales=[Eve]}` |
+| `flatMapping(f, downstream)` | One-to-many within a group | `{Engineering=[A, a, B, e, n], ...}` |
+| `toMap(k, v)` | Key-value mapping | throws on duplicate keys |
+| `toMap(k, v, merge)` | …with a duplicate-key resolution | `{Design=179000, Engineering=215000, Sales=153000}` |
+| `toMap(k, v, merge, mapFactory)` | …and a chosen map type | `LinkedHashMap` -> insertion order |
+| `reducing(identity, f, op)` | Custom reduction | `547000` |
+| `teeing(c1, c2, merger)` | Two collectors, one pass (Java 12+) | `Dev ... Ben` |
+| `collectingAndThen(c, f)` | Post-process the collected result | `6` |
+
+Two of these deserve emphasis because they are routinely confused.
+
+`partitioningBy` is not `groupingBy` with a boolean key. It always returns both `true` and `false` entries even when one side is empty, which `groupingBy` does not — code that reads `result.get(false)` cannot NPE with `partitioningBy` and can with `groupingBy`.
+
+`filtering` is not `filter`. Filtering the stream before grouping removes groups that end up empty; `Collectors.filtering` filters *inside* each group and keeps the empty ones. Which you want depends on whether "a department with no matching employees" is a row you need to see.
+
+**Mutability, checked rather than assumed:**
+
+```
+toList()                 MUTABLE   (add succeeded)
+toUnmodifiableList()     IMMUTABLE (UnsupportedOperationException)
+Stream.toList()          IMMUTABLE (UnsupportedOperationException)
+```
+
+`Collectors.toList()` and `Stream.toList()` (Java 16+) look interchangeable and are not. Collecting and then mutating works with the first and throws with the second, and the difference is one refactor away. `Collectors.toList()` also makes no guarantee about the list type — only that it is mutable — so relying on it being an `ArrayList` is relying on an implementation detail.
 
 **Complexity note:** a single-pass stream pipeline (`filter`/`map`/`collect`) is `O(n)` in the source size; `sorted()` is `O(n log n)`; `parallel()` changes the constant factor and threading model, not the asymptotic complexity.
 
@@ -262,6 +381,13 @@ Map<String, Long> counts = orders.stream()
 - Using `Collectors.toMap()` without a merge function on data that can contain duplicate keys.
 - Writing to a shared, non-thread-safe collection inside a `parallel().forEach()`.
 - Adding `.parallel()` without measuring, assuming "parallel" always means "faster."
+- Writing a custom collector's combiner without ever testing it in parallel. The sequential path never calls it — measured — so a combiner that discards one side passes every sequential test and loses 98.5% of the data in parallel, with no exception.
+- Assuming `Collectors.toList()` and `Stream.toList()` are interchangeable. The first is mutable, the second is not.
+- Relying on `Collectors.toList()` returning an `ArrayList`. Only mutability is specified.
+- Reaching for `groupingByConcurrent` as a faster `groupingBy`. It returns a `ConcurrentMap`, is `UNORDERED`, and only helps when the stream is genuinely parallel and merging was the dominant cost.
+- Using `groupingBy` with a boolean key where `partitioningBy` is meant — `groupingBy` omits the empty side, so `get(false)` can return `null`.
+- Confusing `Collectors.filtering` with `Stream.filter`: the first keeps empty groups, the second removes them.
+- Assuming `toMap`'s result preserves insertion order. The default is a `HashMap`; pass a map factory if order matters.
 
 ## Anti-Patterns
 
@@ -363,6 +489,26 @@ The 6.6x measured slowdown from adding `parallel()` to a small, cheap workload i
 
 **Related references.** [§ Internal Implementation](#internal-implementation); [§ Java Examples](#java-examples).
 
+### Question 3 — If you write a custom `Collector`, what is the purpose of the combiner, and why does it become especially important with parallel streams?
+
+**Why interviewers ask it.** It is the one question that cannot be answered from having *used* collectors. Anyone who has only called `Collectors.toList()` has never needed the combiner to exist, so the answer reveals whether the candidate understands the model or just the syntax.
+
+**Expected answer.** A `Collector` is four functions: a supplier creating a mutable container, an accumulator folding one element into it, a combiner merging two containers, and a finisher converting the container to the result type. The combiner exists because a parallel stream splits the source, accumulates each chunk into its **own** container, and must then merge those partial results into one.
+
+The sharp point is that the combiner is **not called at all** in a sequential stream — verified by instrumenting a collector and counting invocations: `combiner=0` sequentially, `combiner=63` in parallel over the same 1,000 elements on a 10-core machine (which also created 64 containers, so "one per core" is not a safe assumption). It is not that the combiner matters *more* in parallel; it is that the sequential path never executes it.
+
+**Minimum acceptable answer.** Knows the combiner merges partial results and that this relates to parallelism.
+
+**Strong Senior answer.** The above, plus the practical consequence: a wrong combiner is undetectable by any sequential test. Measured — a combiner of `(a, b) -> a`, which discards the second partial, returned all 1,000 elements sequentially and **15** in parallel, reproducibly, with no exception. So a custom collector's combiner needs a test that actually runs in parallel, or it is untested. Also knows the combiner must be associative and side-effect-free for the merge to be correct in any split order.
+
+**Staff-level extension.** Brings in `Collector.Characteristics` as the mechanism by which a collector tells the pipeline what it may skip — `IDENTITY_FINISH` means the finisher call does not happen at all (measured: 1 invocation without the flag, 0 with it), and `CONCURRENT` means the accumulator is safe on a single shared container, so per-thread containers and merging are skipped entirely (measured: `groupingByConcurrent` built 4 containers and merged 0 times where `groupingBy` built 67 and merged 63). Then argues the governance point: a hand-written collector is a concurrency primitive disguised as a utility method, and the correct default is to compose built-in collectors — which are tested against the JDK's own splitting behaviour — rather than to write one.
+
+**Common mistakes.** Describing the combiner as "it combines the results" without saying which results or when. Claiming it runs in sequential streams. Assuming one container per core. Writing a combiner that mutates and returns the second argument, or that is not associative.
+
+**Likely follow-ups.** "Does the combiner run in a sequential stream?" (No — measured at zero.) "How would you test a custom collector?" (In parallel, over a source large enough to actually split.) "What does `IDENTITY_FINISH` buy you?" (The finisher is skipped, not merely cheap.)
+
+**Evaluation criteria (1–5).** 1: cannot describe the collector model. 3: names the four functions and that the combiner merges partials in parallel. 5: knows the combiner is never called sequentially, can state the testing consequence that follows, and connects it to `Characteristics`.
+
 ## Summary
 
 A stream pipeline is lazy — nothing executes until a terminal operation runs, measured directly via `peek()` tracing, and short-circuiting operations like `findFirst()` stop pulling elements once satisfied. `Collectors.toMap()` throws on duplicate keys without an explicit merge function. `parallel()` does not make shared state thread-safe — a plain `ArrayList` measurably loses updates under concurrent `forEach`-based writes — and for small or cheap-per-element workloads, parallel overhead can make execution measurably slower than sequential, visible only after proper JIT warmup.
@@ -373,6 +519,9 @@ A stream pipeline is lazy — nothing executes until a terminal operation runs, 
 - Short-circuiting terminal operations (`findFirst`, `anyMatch`, `limit`) stop pulling elements once satisfied.
 - `Collectors.toMap()` throws on duplicate keys unless given an explicit merge function.
 - `parallel()` requires thread-safe accumulation and real measurement — it is not a free performance win.
+- A `Collector` is four functions — supplier, accumulator, combiner, finisher — and the combiner is **never called** in a sequential stream, so a wrong one is undetectable without a parallel test.
+- `Collector.Characteristics` is how a collector tells the pipeline what it may skip: `IDENTITY_FINISH` means the finisher call does not happen, `CONCURRENT` means one shared container instead of per-thread containers plus merging, `UNORDERED` frees the pipeline from preserving encounter order.
+- `Collectors.toList()` is mutable; `Stream.toList()` and `Collectors.toUnmodifiableList()` are not.
 
 ## Cheat Sheet
 
@@ -435,6 +584,74 @@ Assuming `parallel()` handles thread-safety of the stream's own side effects.
 
 **Related:**
 [Production Scenarios](#production-scenarios)
+
+### Card: Does the combiner run in a sequential stream?
+
+**Prompt:**
+You write a custom `Collector`. In a sequential stream, how many times is the combiner called?
+
+**Answer:**
+Zero. Measured with an instrumented collector over 1,000 elements: `combiner=0` sequentially, `combiner=63` in parallel on a 10-core machine (which also created 64 containers, not 10). A sequential stream accumulates into one container and has nothing to merge.
+
+**Why it matters:**
+A wrong combiner is undetectable by any sequential test. A combiner of `(a, b) -> a` returned all 1,000 elements sequentially and **15** in parallel, reproducibly, with no exception — 98.5% silent data loss.
+
+**Common trap:**
+Testing a custom collector only sequentially, then enabling `parallel()` later and corrupting results.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: What does IDENTITY_FINISH actually do?
+
+**Prompt:**
+`Collectors.toList()` declares `IDENTITY_FINISH`. What does that change at runtime?
+
+**Answer:**
+The finisher is **not called at all** — the pipeline casts the accumulation container to the result type instead. Measured: the same instrumented collector recorded 1 finisher invocation without the flag and **0** with it. It is not an optimisation of the finisher; the call does not happen.
+
+**Why it matters:**
+It explains the real characteristic sets: `toList()` is `[IDENTITY_FINISH]` because it hands back its own `ArrayList`, while `toUnmodifiableList()` declares nothing because it must copy into an immutable list, and `joining()` declares nothing because it must turn a `StringBuilder` into a `String`.
+
+**Common trap:**
+Reading "the finisher is identity" as "the finisher is cheap."
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: groupingBy vs groupingByConcurrent
+
+**Prompt:**
+What does the `CONCURRENT` characteristic actually change, and when is `groupingByConcurrent` worth it?
+
+**Answer:**
+`CONCURRENT` declares the accumulator safe to call from many threads on a **single shared container**, so the pipeline skips per-thread containers and merging. Measured, grouping 10,000 elements into 4 groups in parallel: `groupingBy` built **67** containers and merged **63** times; `groupingByConcurrent` built **4** and merged **0**.
+
+**Why it matters:**
+It is a different execution strategy, not a faster variant. It returns a `ConcurrentMap`, it is `UNORDERED` so within-group encounter order is not preserved, and on a sequential stream it does strictly more work for no benefit.
+
+**Common trap:**
+Swapping it in as a drop-in "parallel-friendly" replacement without a parallel stream, or where encounter order matters.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: Collectors.toList() vs Stream.toList()
+
+**Prompt:**
+Are `stream().collect(Collectors.toList())` and `stream().toList()` interchangeable?
+
+**Answer:**
+No. Checked directly: `Collectors.toList()` returns a **mutable** list (an `add` succeeds), while `Stream.toList()` (Java 16+) and `Collectors.toUnmodifiableList()` both throw `UnsupportedOperationException`. Also, `Collectors.toList()` guarantees only mutability, not that the result is an `ArrayList`.
+
+**Why it matters:**
+Code that collects and then mutates works with one and throws with the other, and the difference is one "modernise this" refactor away.
+
+**Common trap:**
+Treating `Stream.toList()` as pure syntax sugar for the older form.
+
+**Related:**
+[Java Examples](#java-examples)
 
 ## Practice Exercises
 
