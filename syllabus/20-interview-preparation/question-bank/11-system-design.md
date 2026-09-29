@@ -3,8 +3,8 @@ title: "Interview Question Bank — 11-system-design"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-27
+version: 1.1
+last_updated: 2026-09-29
 related:
   - ../../11-system-design/INDEX.md
   - 10-distributed-systems.md
@@ -17,10 +17,14 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 10 chapters yielded 20 deep questions + 30 quick-fire
-questions = **50 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 11 chapters yielded 23 deep questions + 35 quick-fire
+questions = **58 real questions**. No Junior Fundamentals chapter exists in this
 domain — system design presupposes backend fundamentals already covered elsewhere.
-(Updated 2026-09-27: `system-design-patterns-recognition-and-quick-reference.md` had
+(Updated 2026-09-29: `batch-and-scheduled-job-design.md` is a new chapter closing a
+real coverage gap — `Spring Batch`, `ShedLock`, `Quartz`, `long-running job`, and
+`re-runnable` all had **zero** occurrences repository-wide, and the classic
+"your scheduled job runs on every replica" failure appeared nowhere. Contributes
+3 questions + 5 quick-fire cards.) (Updated 2026-09-27: `system-design-patterns-recognition-and-quick-reference.md` had
 a complete Interview Questions section never indexed — a stale-index gap, not a
 content gap. Added 2 questions; no Flashcards section in that chapter to mine.)
 
@@ -246,6 +250,37 @@ content gap. Added 2 questions; no Flashcards section in that chapter to mine.)
 
 ---
 
+## Batch and Scheduled Job Design
+
+### Q1 — Your nightly job is deployed on three instances. What happens, and how do you fix it?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../11-system-design/batch-and-scheduled-job-design.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Often believes it runs once because it is written once; or proposes `synchronized`, which does nothing across JVMs.
+- **Senior:** Knows it runs three times concurrently — measured: three instances against 1,000 records produced **3,000** side effects, with no error and a success report from all three. Fixes it with a conditional `UPDATE ... WHERE held_by IS NULL`, atomic via the database's own row-level locking with no check-then-act window, and adds the lease expiry without being asked. Notes the bug is invisible in any single-instance environment, so testing will not catch it.
+- **Staff:** Treats recurrence as a platform defect — if several teams shipped this, the service template makes the unguarded version the easy one — and argues for a shared abstraction that makes the guarded shape the default. Weighs application-level versus external scheduling as an ownership decision.
+
+### Q2 — A six-hour job crashes at hour five. What did you design so that this is survivable?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../11-system-design/batch-and-scheduled-job-design.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Says the job should "save progress" without specifying where or when it commits; often proposes a log file or an in-memory field, neither of which survives the crash.
+- **Senior:** Chunked commits with the checkpoint written **in the same transaction** as the chunk it describes, because separate commits reintroduce a dual write that either skips or reprocesses records. Measured: a single-transaction job crashing at 60% committed **zero** rows and cost 1,599 units of work to commit 1,000; the chunked version committed 500, resumed at 501, and wasted exactly 99. Chooses chunk size from acceptable rework, not throughput.
+- **Staff:** Adds that restartable is not idempotent — a checkpoint reduces duplicate processing but does not make it safe — and applies the "run it twice, is the result identical?" test. Prefers a status column on the rows so progress cannot disagree with the data, and notes that a chunk is a transaction, so the biggest chunk is often not the fastest on a busy database.
+
+### Q3 — One record in the input is malformed. Should the job stop or skip it?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../11-system-design/batch-and-scheduled-job-design.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Picks one universally, usually skip, without mentioning the counter, the alert, or the replay path.
+- **Senior:** Names the independence criterion, and identifies skip's failure mode as the dangerous one because it looks like success — measured: fail-fast stopped at record 500 leaving 500 unprocessed and was loud; skip processed 999, reported success, and the dropped record existed only as a counter. States both conditions for skip: the count must be an alerted metric and the record must be replayable.
+- **Staff:** Generalizes it — any partial-failure policy that reports overall success is a monitoring commitment, not just a code decision — and raises the threshold question, since the same code reports success whether 1 or 400 records were skipped unless the skip *rate* is alerted on.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -280,6 +315,11 @@ content gap. Added 2 questions; no Flashcards section in that chapter to mine.)
 | 28 | Why estimate before designing the architecture? | [System Design Method and Estimation](../../11-system-design/system-design-method-and-estimation.md#flashcards) |
 | 29 | What's the single most important assumption to state explicitly in a QPS estimate? | [System Design Method and Estimation](../../11-system-design/system-design-method-and-estimation.md#flashcards) |
 | 30 | What's the most commonly skipped phase, and why does it matter? | [System Design Method and Estimation](../../11-system-design/system-design-method-and-estimation.md#flashcards) |
+| 31 | What happens to a `@Scheduled` job deployed on three replicas? | [Batch and Scheduled Job Design](../../11-system-design/batch-and-scheduled-job-design.md#flashcards) |
+| 32 | What is the minimum mechanism that makes a job run on exactly one instance, and what else does it need? | [Batch and Scheduled Job Design](../../11-system-design/batch-and-scheduled-job-design.md#flashcards) |
+| 33 | How should a batch job's commit interval be chosen? | [Batch and Scheduled Job Design](../../11-system-design/batch-and-scheduled-job-design.md#flashcards) |
+| 34 | Where must a checkpoint be written, and what breaks if it is written elsewhere? | [Batch and Scheduled Job Design](../../11-system-design/batch-and-scheduled-job-design.md#flashcards) |
+| 35 | Under what conditions is skipping a bad record acceptable? | [Batch and Scheduled Job Design](../../11-system-design/batch-and-scheduled-job-design.md#flashcards) |
 
 ---
 
