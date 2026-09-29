@@ -12952,10 +12952,10 @@
 <p>Part of the <code>02-java</code> compendium — the last of its 4 subdomain files. See
 <a href="../02-java-collections/"><code>02-java-collections.md</code></a> for the tier-explanation format
 and sourcing discipline.</p>
-<p><strong>Honest count for this subdomain:</strong> 25 chapters yielded 53 deep questions + 10
+<p><strong>Honest count for this subdomain:</strong> 25 chapters yielded 54 deep questions + 10
 already-leveled Junior/Mid questions (from the two Junior Fundamentals chapters,
-<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 58 quick-fire
-questions = <strong>121 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
+<code>java-oop-fundamentals...</code> and <code>java-syntax-fundamentals...</code>) + 62 quick-fire
+questions = <strong>126 real questions</strong>. (Updated 2026-09-26: added Java File I/O and
 NIO.2, T-2429, and Java Regular Expressions, T-2430 — 6 new deep questions, 6 new
 quick-fire cards — closing a real gap found via a generic Java/Spring interview
 checklist audit. Updated again 2026-09-27: <code>comparator-composition-and-pitfalls.md</code>
@@ -12969,9 +12969,13 @@ closing a real gap (no canonical treatment of static nested vs. inner vs. local 
 anonymous existed) — 3 deep questions — plus 3 new deep questions on varargs,
 overload resolution, heap pollution, and static hiding added to
 <code>java-modifiers-and-method-signatures.md</code>, where <code>varargs</code> previously had zero
-mentions anywhere in the repository.)</p>
+mentions anywhere in the repository. Updated 2026-09-29:
+<code>streams-and-collectors.md</code> v1.1 adds collector internals — <code>Collector.Characteristics</code>
+had zero occurrences repository-wide, and only four <code>Collectors</code> factory methods were
+mentioned anywhere (<code>toList</code>, <code>toMap</code>, <code>groupingBy</code>, <code>counting</code>). Adds 1 deep question
+on the combiner plus 4 quick-fire cards.)</p>
 <p><strong>02-java domain total across all 4 subdomains:</strong> 52 (collections) + 72 (concurrency)
-+ 31 (jvm-internals) + 121 (language-core) = <strong>276 real questions</strong> — the largest of
++ 31 (jvm-internals) + 126 (language-core) = <strong>281 real questions</strong> — the largest of
 the 22 domains this initiative covers, consistent with <code>02-java</code> being the biggest
 domain in the syllabus (65 chapters).</p>
 <hr />
@@ -13404,6 +13408,12 @@ domain in the syllabus (65 chapters).</p>
 - <strong>Junior/Mid:</strong> Reaches for a manually-synchronized shared list — the common mistake this question targets.
 - <strong>Senior:</strong> Uses a proper <code>Collector</code> (<code>Collectors.toList()</code>, <code>toMap()</code> with a merge function, or a custom <code>Collector.of(...)</code>).
 - <strong>Staff:</strong> Explains why: collectors have a combiner step specifically designed to merge per-thread partial results correctly.</p>
+<h3 id="q3-if-you-write-a-custom-collector-what-is-the-purpose-of-the-combiner-and-why-does-it-become-especially-important-with-parallel-streams">Q3 — If you write a custom <code>Collector</code>, what is the purpose of the combiner, and why does it become especially important with parallel streams?<a class="headerlink" href="#q3-if-you-write-a-custom-collector-what-is-the-purpose-of-the-combiner-and-why-does-it-become-especially-important-with-parallel-streams" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/language-core/streams-and-collectors/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Says the combiner "combines the results" without saying which results or when; often believes it runs in sequential streams too.
+- <strong>Senior:</strong> Names the four functions (supplier, accumulator, combiner, finisher) and knows the combiner is <strong>never called</strong> in a sequential stream — measured at <code>combiner=0</code> sequentially versus <code>combiner=63</code> in parallel over 1,000 elements on a 10-core machine, which also created 64 containers, so "one per core" is not a safe assumption. Draws the practical consequence: a wrong combiner is undetectable by any sequential test. Measured — <code>(a, b) -&gt; a</code> returned all 1,000 elements sequentially and <strong>15</strong> in parallel, reproducibly, with no exception.
+- <strong>Staff:</strong> Brings in <code>Collector.Characteristics</code> as the mechanism by which a collector tells the pipeline what it may skip — <code>IDENTITY_FINISH</code> means the finisher call does not happen at all (1 invocation without the flag, 0 with it), and <code>CONCURRENT</code> means one shared container instead of per-thread containers plus merging (<code>groupingByConcurrent</code> built 4 containers and merged 0 where <code>groupingBy</code> built 67 and merged 63). Argues that a hand-written collector is a concurrency primitive disguised as a utility method, and that composing built-in collectors is the correct default.</p>
 <hr />
 <h2 id="strings-interning-compact-strings-and-builders">Strings — Interning, Compact Strings, and Builders<a class="headerlink" href="#strings-interning-compact-strings-and-builders" title="Permanent link">&para;</a></h2>
 <h3 id="q1-why-is-string-in-a-loop-considered-an-anti-pattern">Q1 — Why is <code>String +=</code> in a loop considered an anti-pattern?<a class="headerlink" href="#q1-why-is-string-in-a-loop-considered-an-anti-pattern" title="Permanent link">&para;</a></h3>
@@ -13656,6 +13666,26 @@ domain in the syllabus (65 chapters).</p>
 <td><a href="../../../02-java/language-core/streams-and-collectors/#flashcards">Streams and Collectors</a></td>
 </tr>
 <tr>
+<td>45a</td>
+<td>In a sequential stream, how many times is a custom collector's combiner called?</td>
+<td><a href="../../../02-java/language-core/streams-and-collectors/#flashcards">Streams and Collectors</a></td>
+</tr>
+<tr>
+<td>45b</td>
+<td>What does <code>IDENTITY_FINISH</code> actually change at runtime?</td>
+<td><a href="../../../02-java/language-core/streams-and-collectors/#flashcards">Streams and Collectors</a></td>
+</tr>
+<tr>
+<td>45c</td>
+<td>What does the <code>CONCURRENT</code> characteristic change, and when is <code>groupingByConcurrent</code> worth it?</td>
+<td><a href="../../../02-java/language-core/streams-and-collectors/#flashcards">Streams and Collectors</a></td>
+</tr>
+<tr>
+<td>45d</td>
+<td>Are <code>collect(Collectors.toList())</code> and <code>stream().toList()</code> interchangeable?</td>
+<td><a href="../../../02-java/language-core/streams-and-collectors/#flashcards">Streams and Collectors</a></td>
+</tr>
+<tr>
 <td>46</td>
 <td>Does <code>new String("hello") == "hello"</code> evaluate to <code>true</code>?</td>
 <td><a href="../../../02-java/language-core/strings-interning-compact-strings-and-builders/#flashcards">Strings: Interning, Compact Strings, and Builders</a></td>
@@ -13750,7 +13780,7 @@ domain in the syllabus (65 chapters).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 16:24:27 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 21:03:43 UTC">September 29, 2026</span>
   </span>
 
     

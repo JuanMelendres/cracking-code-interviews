@@ -12821,12 +12821,12 @@
 
 
 
-  <p class="cci-reading-time">~30 min read</p>
+  <p class="cci-reading-time">~38 min read</p>
 
 <h1 id="streams-and-collectors">Streams and Collectors<a class="headerlink" href="#streams-and-collectors" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>Topic register:</strong> T-107 · IWI 6.2 · Core tier
-<strong>Provenance:</strong> every trace in this chapter is real, executed output from <a href="../../../practice/java/week-13/streams-collectors/src/"><code>practice/java/week-13/streams-collectors/src/</code></a> on OpenJDK 21.0.12.</p>
+<strong>Provenance:</strong> every trace in this chapter is real, executed output from <a href="../../../practice/java/week-13/streams-collectors/src/"><code>practice/java/week-13/streams-collectors/src/</code></a> on OpenJDK 21.0.12. The collector-internals material added in v1.1 is measured separately in <a href="../../../practice/java/language-core/collectors-internals/"><code>practice/java/language-core/collectors-internals/</code></a>, where an instrumented <code>Collector</code> counts every supplier, accumulator, combiner, and finisher invocation the JDK actually makes.</p>
 </blockquote>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ol>
@@ -12886,6 +12886,41 @@
 <p><code>findFirst()</code>, <code>anyMatch()</code>, and <code>limit()</code> don't need every element — the stream machinery stops requesting more elements from the source the moment the terminal operation is satisfied.</p>
 <h3 id="a-stream-can-only-be-consumed-once">A stream can only be consumed once<a class="headerlink" href="#a-stream-can-only-be-consumed-once" title="Permanent link">&para;</a></h3>
 <p>Calling a terminal operation marks the stream "operated upon"; any further operation on the same stream object throws <code>IllegalStateException</code>.</p>
+<h3 id="a-collector-is-four-functions-and-the-combiner-runs-only-in-parallel">A <code>Collector</code> is four functions, and the combiner runs only in parallel<a class="headerlink" href="#a-collector-is-four-functions-and-the-combiner-runs-only-in-parallel" title="Permanent link">&para;</a></h3>
+<p><code>collect()</code> is not a conversion. It takes a <code>Collector&lt;T, A, R&gt;</code> — a bundle of four functions the pipeline calls at defined points: a <strong>supplier</strong> creating a mutable container, an <strong>accumulator</strong> folding one element into it, a <strong>combiner</strong> merging two containers, and a <strong>finisher</strong> turning the container into the result type.</p>
+<p>The part that surprises people is that the combiner is not always used. With an instrumented collector counting real invocations over 1,000 elements:</p>
+<div class="highlight"><pre><span></span><code>sequential : supplier=1    accumulator=1000   combiner=0    finisher=1
+parallel   : supplier=64   accumulator=1000   combiner=63   finisher=1
+</code></pre></div>
+<p>A sequential stream creates one container and merges nothing — the combiner is <strong>never called</strong>. A parallel stream on this 10-core machine created 64 containers and merged them 63 times; fork/join splits well past the core count, so "one container per core" is not a safe assumption either.</p>
+<p>The consequence matters more than the trivia: a custom collector with a wrong combiner passes every sequential test and silently corrupts parallel results. See <a href="#internal-implementation">Internal Implementation</a> for the measured damage.</p>
+<h3 id="collectorcharacteristics-is-how-a-collector-tells-the-pipeline-what-it-may-skip"><code>Collector.Characteristics</code> is how a collector tells the pipeline what it may skip<a class="headerlink" href="#collectorcharacteristics-is-how-a-collector-tells-the-pipeline-what-it-may-skip" title="Permanent link">&para;</a></h3>
+<p>Three flags let the stream implementation take shortcuts, and each one is observable.</p>
+<p><strong><code>IDENTITY_FINISH</code></strong> declares the accumulation container <em>is</em> the result, so the pipeline casts it instead of calling the finisher. Not an optimisation of the finisher — the call does not happen. The same instrumented collector declared twice, differing only in that flag:</p>
+<div class="highlight"><pre><span></span><code>finisher invocations WITHOUT IDENTITY_FINISH: 1
+finisher invocations WITH    IDENTITY_FINISH: 0
+</code></pre></div>
+<p><strong><code>UNORDERED</code></strong> declares the result does not depend on encounter order, freeing the pipeline from preserving it across a parallel merge.</p>
+<p><strong><code>CONCURRENT</code></strong> declares the accumulator is safe to call from multiple threads on a <em>single shared container</em>, so the pipeline can skip per-thread containers and merging entirely.</p>
+<p>Read from the JDK rather than described:</p>
+<div class="highlight"><pre><span></span><code>toList()                   [IDENTITY_FINISH]
+toUnmodifiableList()       (none)
+toSet()                    [UNORDERED, IDENTITY_FINISH]
+joining()                  (none)
+counting()                 (none)
+groupingBy(f)              [IDENTITY_FINISH]
+groupingByConcurrent(f)    [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+toMap(k,v)                 [IDENTITY_FINISH]
+toConcurrentMap(k,v)       [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+</code></pre></div>
+<p>The contrasts explain themselves. <code>toList()</code> hands back its own <code>ArrayList</code>, so it can declare <code>IDENTITY_FINISH</code>; <code>toUnmodifiableList()</code> must copy into an immutable list and declares nothing. <code>joining()</code> accumulates into a <code>StringBuilder</code> and must convert to <code>String</code>, so it has a real finisher too. <code>toSet()</code> adds <code>UNORDERED</code> because set semantics make encounter order meaningless.</p>
+<h3 id="groupingbyconcurrent-is-a-different-execution-strategy-not-a-faster-groupingby"><code>groupingByConcurrent</code> is a different execution strategy, not a faster <code>groupingBy</code><a class="headerlink" href="#groupingbyconcurrent-is-a-different-execution-strategy-not-a-faster-groupingby" title="Permanent link">&para;</a></h3>
+<p>The <code>CONCURRENT</code> flag changes what the pipeline does, and the difference is visible in container counts. Grouping 10,000 elements into 4 groups, in parallel, with an instrumented downstream collector:</p>
+<div class="highlight"><pre><span></span><code>groupingBy           (parallel)  supplier=67   accumulator=10000  combiner=63   groups=4
+groupingByConcurrent (parallel)  supplier=4    accumulator=10000  combiner=0    groups=4
+</code></pre></div>
+<p>The non-concurrent version built 67 containers for 4 groups and merged 63 times. The concurrent version built <strong>exactly 4</strong> — one per group — and merged <strong>zero</strong> times.</p>
+<p>That is a real reduction in allocation and merging, but it is not free and it is not a drop-in replacement. <code>groupingByConcurrent</code> returns a <code>ConcurrentMap</code>, it is <code>UNORDERED</code> so encounter order within each group is not preserved, and it is only a win when the stream is genuinely parallel <em>and</em> the downstream accumulation is cheap enough that merging was the dominant cost. On a sequential stream it does strictly more work than <code>groupingBy</code> for no benefit.</p>
 <h3 id="collectorstomap-throws-on-duplicate-keys-without-a-merge-function"><code>Collectors.toMap()</code> throws on duplicate keys without a merge function<a class="headerlink" href="#collectorstomap-throws-on-duplicate-keys-without-a-merge-function" title="Permanent link">&para;</a></h3>
 <p>The two-argument <code>toMap(keyFn, valueFn)</code> overload has no way to resolve a collision, so it throws. The three-argument overload <code>toMap(keyFn, valueFn, mergeFn)</code> requires the caller to state how duplicates combine.</p>
 <h3 id="parallel-does-not-make-shared-mutable-state-thread-safe"><code>parallel()</code> does not make shared mutable state thread-safe<a class="headerlink" href="#parallel-does-not-make-shared-mutable-state-thread-safe" title="Permanent link">&para;</a></h3>
@@ -12933,6 +12968,15 @@ Collector-based size: 100000 (always correct)
 Parallel   sum=499500, avg over 20,000 iters: 20,539 ns/iter
 </code></pre></div>
 <p>Roughly 6.6x slower for the parallel version, entirely from fork/join task-splitting and thread-handoff overhead — for a workload this small and this cheap per element, there is no computation expensive enough to amortize that cost. A naive, single-shot <code>nanoTime()</code> comparison without warmup can even show the opposite result purely from JIT compilation timing, which is itself a lesson in why microbenchmarks need warmup, not just a lesson about streams.</p>
+<p><strong>What a wrong combiner actually costs, measured.</strong> A deliberately broken combiner — <code>(a, b) -&gt; a</code>, discarding everything accumulated in the second partial — collecting the same 1,000 elements:</p>
+<div class="highlight"><pre><span></span><code>== 5. What a BROKEN combiner costs, sequential vs parallel ==
+  input size                     : 1000
+  sequential with broken combiner: 1000  &lt;- correct, combiner never ran
+  parallel   with broken combiner: 15  &lt;- silent data loss (run 1)
+  parallel   with broken combiner: 15  &lt;- silent data loss (run 2)
+  parallel   with broken combiner: 15  &lt;- silent data loss (run 3)
+</code></pre></div>
+<p>No exception, no warning, 98.5% of the data gone, reproducibly. This is the concrete answer to "why does the combiner matter especially with parallel streams." It is not that the combiner is <em>more important</em> in parallel — it is that the sequential path never executes it, so a wrong combiner is undetectable by any sequential test. A custom collector's combiner needs a test that actually runs in parallel, or it is untested.</p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
     Source[Stream source] --&gt;|lazy| Filter[filter/map/peek&lt;br/&gt;intermediate ops]
@@ -12955,6 +12999,137 @@ Parallel   sum=499500, avg over 20,000 iters: 20,539 ns/iter
 <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
 <span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">Order</span><span class="p">::</span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">Collectors</span><span class="p">.</span><span class="na">counting</span><span class="p">()));</span>
 </code></pre></div>
+<p><strong>The <code>Collectors</code> catalog.</strong> All of the following were run against one shared six-employee dataset; full output in <a href="../../../../practice/java/language-core/collectors-internals/catalog-transcript.txt"><code>catalog-transcript.txt</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Collector</th>
+<th>Use case</th>
+<th>Real output (excerpt)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toList()</code></td>
+<td>Elements as a list</td>
+<td><code>[Ana, Ben, Cleo, Dev, Eve, Fay]</code></td>
+</tr>
+<tr>
+<td><code>toUnmodifiableList()</code></td>
+<td>Same, immutable</td>
+<td>throws on <code>add</code></td>
+</tr>
+<tr>
+<td><code>toSet()</code></td>
+<td>Unique elements</td>
+<td><code>[Design, Engineering, Sales]</code></td>
+</tr>
+<tr>
+<td><code>joining(", ", "[", "]")</code></td>
+<td>String concatenation with delimiter/prefix/suffix</td>
+<td><code>[Ana, Ben, Cleo, Dev, Eve, Fay]</code></td>
+</tr>
+<tr>
+<td><code>counting()</code></td>
+<td>Element count as <code>Long</code></td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td><code>summingInt(f)</code></td>
+<td>Total</td>
+<td><code>547000</code></td>
+</tr>
+<tr>
+<td><code>averagingInt(f)</code></td>
+<td>Mean as <code>Double</code></td>
+<td><code>36.333333333333336</code></td>
+</tr>
+<tr>
+<td><code>summarizingInt(f)</code></td>
+<td>Count, sum, min, average, max in one pass</td>
+<td><code>IntSummaryStatistics{count=6, sum=547000, min=72000, average=91166.666667, max=120000}</code></td>
+</tr>
+<tr>
+<td><code>minBy(cmp)</code> / <code>maxBy(cmp)</code></td>
+<td>Extremes as <code>Optional</code></td>
+<td><code>Dev</code> / <code>Ben</code></td>
+</tr>
+<tr>
+<td><code>partitioningBy(pred)</code></td>
+<td>Two-way split, always both keys</td>
+<td><code>{false=[Cleo, Dev, Eve], true=[Ana, Ben, Fay]}</code></td>
+</tr>
+<tr>
+<td><code>groupingBy(f)</code></td>
+<td>N-way grouping</td>
+<td><code>{Design=[Cleo, Fay], Engineering=[Ana, Ben], Sales=[Dev, Eve]}</code></td>
+</tr>
+<tr>
+<td><code>groupingBy(f, downstream)</code></td>
+<td>Grouping plus per-group reduction</td>
+<td><code>{Design=2, Engineering=2, Sales=2}</code></td>
+</tr>
+<tr>
+<td><code>groupingBy(f, mapFactory, downstream)</code></td>
+<td>Control the map type</td>
+<td><code>TreeMap</code> -&gt; keys sorted</td>
+</tr>
+<tr>
+<td><code>mapping(f, downstream)</code></td>
+<td>Transform before collecting</td>
+<td>names instead of whole objects</td>
+</tr>
+<tr>
+<td><code>filtering(pred, downstream)</code></td>
+<td>Filter <em>within</em> a group, keeping empty groups</td>
+<td><code>{Design=[Cleo, Fay], Engineering=[Ana], Sales=[Eve]}</code></td>
+</tr>
+<tr>
+<td><code>flatMapping(f, downstream)</code></td>
+<td>One-to-many within a group</td>
+<td><code>{Engineering=[A, a, B, e, n], ...}</code></td>
+</tr>
+<tr>
+<td><code>toMap(k, v)</code></td>
+<td>Key-value mapping</td>
+<td>throws on duplicate keys</td>
+</tr>
+<tr>
+<td><code>toMap(k, v, merge)</code></td>
+<td>…with a duplicate-key resolution</td>
+<td><code>{Design=179000, Engineering=215000, Sales=153000}</code></td>
+</tr>
+<tr>
+<td><code>toMap(k, v, merge, mapFactory)</code></td>
+<td>…and a chosen map type</td>
+<td><code>LinkedHashMap</code> -&gt; insertion order</td>
+</tr>
+<tr>
+<td><code>reducing(identity, f, op)</code></td>
+<td>Custom reduction</td>
+<td><code>547000</code></td>
+</tr>
+<tr>
+<td><code>teeing(c1, c2, merger)</code></td>
+<td>Two collectors, one pass (Java 12+)</td>
+<td><code>Dev ... Ben</code></td>
+</tr>
+<tr>
+<td><code>collectingAndThen(c, f)</code></td>
+<td>Post-process the collected result</td>
+<td><code>6</code></td>
+</tr>
+</tbody>
+</table>
+<p>Two of these deserve emphasis because they are routinely confused.</p>
+<p><code>partitioningBy</code> is not <code>groupingBy</code> with a boolean key. It always returns both <code>true</code> and <code>false</code> entries even when one side is empty, which <code>groupingBy</code> does not — code that reads <code>result.get(false)</code> cannot NPE with <code>partitioningBy</code> and can with <code>groupingBy</code>.</p>
+<p><code>filtering</code> is not <code>filter</code>. Filtering the stream before grouping removes groups that end up empty; <code>Collectors.filtering</code> filters <em>inside</em> each group and keeps the empty ones. Which you want depends on whether "a department with no matching employees" is a row you need to see.</p>
+<p><strong>Mutability, checked rather than assumed:</strong></p>
+<div class="highlight"><pre><span></span><code>toList()                 MUTABLE   (add succeeded)
+toUnmodifiableList()     IMMUTABLE (UnsupportedOperationException)
+Stream.toList()          IMMUTABLE (UnsupportedOperationException)
+</code></pre></div>
+<p><code>Collectors.toList()</code> and <code>Stream.toList()</code> (Java 16+) look interchangeable and are not. Collecting and then mutating works with the first and throws with the second, and the difference is one refactor away. <code>Collectors.toList()</code> also makes no guarantee about the list type — only that it is mutable — so relying on it being an <code>ArrayList</code> is relying on an implementation detail.</p>
 <p><strong>Complexity note:</strong> a single-pass stream pipeline (<code>filter</code>/<code>map</code>/<code>collect</code>) is <code>O(n)</code> in the source size; <code>sorted()</code> is <code>O(n log n)</code>; <code>parallel()</code> changes the constant factor and threading model, not the asymptotic complexity.</p>
 <h2 id="production-scenarios">Production Scenarios<a class="headerlink" href="#production-scenarios" title="Permanent link">&para;</a></h2>
 <h3 id="scenario-a-performance-optimization-adding-parallel-regresses-a-hot-request-path">Scenario: a "performance optimization" adding <code>parallel()</code> regresses a hot request path<a class="headerlink" href="#scenario-a-performance-optimization-adding-parallel-regresses-a-hot-request-path" title="Permanent link">&para;</a></h3>
@@ -13014,6 +13189,13 @@ Parallel   sum=499500, avg over 20,000 iters: 20,539 ns/iter
 <li>Using <code>Collectors.toMap()</code> without a merge function on data that can contain duplicate keys.</li>
 <li>Writing to a shared, non-thread-safe collection inside a <code>parallel().forEach()</code>.</li>
 <li>Adding <code>.parallel()</code> without measuring, assuming "parallel" always means "faster."</li>
+<li>Writing a custom collector's combiner without ever testing it in parallel. The sequential path never calls it — measured — so a combiner that discards one side passes every sequential test and loses 98.5% of the data in parallel, with no exception.</li>
+<li>Assuming <code>Collectors.toList()</code> and <code>Stream.toList()</code> are interchangeable. The first is mutable, the second is not.</li>
+<li>Relying on <code>Collectors.toList()</code> returning an <code>ArrayList</code>. Only mutability is specified.</li>
+<li>Reaching for <code>groupingByConcurrent</code> as a faster <code>groupingBy</code>. It returns a <code>ConcurrentMap</code>, is <code>UNORDERED</code>, and only helps when the stream is genuinely parallel and merging was the dominant cost.</li>
+<li>Using <code>groupingBy</code> with a boolean key where <code>partitioningBy</code> is meant — <code>groupingBy</code> omits the empty side, so <code>get(false)</code> can return <code>null</code>.</li>
+<li>Confusing <code>Collectors.filtering</code> with <code>Stream.filter</code>: the first keeps empty groups, the second removes them.</li>
+<li>Assuming <code>toMap</code>'s result preserves insertion order. The default is a <code>HashMap</code>; pass a map factory if order matters.</li>
 </ul>
 <h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Permanent link">&para;</a></h2>
 <ul>
@@ -13074,6 +13256,16 @@ Parallel   sum=499500, avg over 20,000 iters: 20,539 ns/iter
 <p><strong>Likely follow-ups.</strong> "What does the combiner step of a custom Collector actually do?"</p>
 <p><strong>Evaluation criteria (1–5).</strong> 1: doesn't recognize the shared-list approach is unsafe. 3: proposes a proper collector. 5: correct proposal plus explains the combiner mechanism.</p>
 <p><strong>Related references.</strong> <a href="#internal-implementation">§ Internal Implementation</a>; <a href="#java-examples">§ Java Examples</a>.</p>
+<h3 id="question-3-if-you-write-a-custom-collector-what-is-the-purpose-of-the-combiner-and-why-does-it-become-especially-important-with-parallel-streams">Question 3 — If you write a custom <code>Collector</code>, what is the purpose of the combiner, and why does it become especially important with parallel streams?<a class="headerlink" href="#question-3-if-you-write-a-custom-collector-what-is-the-purpose-of-the-combiner-and-why-does-it-become-especially-important-with-parallel-streams" title="Permanent link">&para;</a></h3>
+<p><strong>Why interviewers ask it.</strong> It is the one question that cannot be answered from having <em>used</em> collectors. Anyone who has only called <code>Collectors.toList()</code> has never needed the combiner to exist, so the answer reveals whether the candidate understands the model or just the syntax.</p>
+<p><strong>Expected answer.</strong> A <code>Collector</code> is four functions: a supplier creating a mutable container, an accumulator folding one element into it, a combiner merging two containers, and a finisher converting the container to the result type. The combiner exists because a parallel stream splits the source, accumulates each chunk into its <strong>own</strong> container, and must then merge those partial results into one.</p>
+<p>The sharp point is that the combiner is <strong>not called at all</strong> in a sequential stream — verified by instrumenting a collector and counting invocations: <code>combiner=0</code> sequentially, <code>combiner=63</code> in parallel over the same 1,000 elements on a 10-core machine (which also created 64 containers, so "one per core" is not a safe assumption). It is not that the combiner matters <em>more</em> in parallel; it is that the sequential path never executes it.</p>
+<p><strong>Minimum acceptable answer.</strong> Knows the combiner merges partial results and that this relates to parallelism.</p>
+<p><strong>Strong Senior answer.</strong> The above, plus the practical consequence: a wrong combiner is undetectable by any sequential test. Measured — a combiner of <code>(a, b) -&gt; a</code>, which discards the second partial, returned all 1,000 elements sequentially and <strong>15</strong> in parallel, reproducibly, with no exception. So a custom collector's combiner needs a test that actually runs in parallel, or it is untested. Also knows the combiner must be associative and side-effect-free for the merge to be correct in any split order.</p>
+<p><strong>Staff-level extension.</strong> Brings in <code>Collector.Characteristics</code> as the mechanism by which a collector tells the pipeline what it may skip — <code>IDENTITY_FINISH</code> means the finisher call does not happen at all (measured: 1 invocation without the flag, 0 with it), and <code>CONCURRENT</code> means the accumulator is safe on a single shared container, so per-thread containers and merging are skipped entirely (measured: <code>groupingByConcurrent</code> built 4 containers and merged 0 times where <code>groupingBy</code> built 67 and merged 63). Then argues the governance point: a hand-written collector is a concurrency primitive disguised as a utility method, and the correct default is to compose built-in collectors — which are tested against the JDK's own splitting behaviour — rather than to write one.</p>
+<p><strong>Common mistakes.</strong> Describing the combiner as "it combines the results" without saying which results or when. Claiming it runs in sequential streams. Assuming one container per core. Writing a combiner that mutates and returns the second argument, or that is not associative.</p>
+<p><strong>Likely follow-ups.</strong> "Does the combiner run in a sequential stream?" (No — measured at zero.) "How would you test a custom collector?" (In parallel, over a source large enough to actually split.) "What does <code>IDENTITY_FINISH</code> buy you?" (The finisher is skipped, not merely cheap.)</p>
+<p><strong>Evaluation criteria (1–5).</strong> 1: cannot describe the collector model. 3: names the four functions and that the combiner merges partials in parallel. 5: knows the combiner is never called sequentially, can state the testing consequence that follows, and connects it to <code>Characteristics</code>.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>A stream pipeline is lazy — nothing executes until a terminal operation runs, measured directly via <code>peek()</code> tracing, and short-circuiting operations like <code>findFirst()</code> stop pulling elements once satisfied. <code>Collectors.toMap()</code> throws on duplicate keys without an explicit merge function. <code>parallel()</code> does not make shared state thread-safe — a plain <code>ArrayList</code> measurably loses updates under concurrent <code>forEach</code>-based writes — and for small or cheap-per-element workloads, parallel overhead can make execution measurably slower than sequential, visible only after proper JIT warmup.</p>
 <h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
@@ -13082,6 +13274,9 @@ Parallel   sum=499500, avg over 20,000 iters: 20,539 ns/iter
 <li>Short-circuiting terminal operations (<code>findFirst</code>, <code>anyMatch</code>, <code>limit</code>) stop pulling elements once satisfied.</li>
 <li><code>Collectors.toMap()</code> throws on duplicate keys unless given an explicit merge function.</li>
 <li><code>parallel()</code> requires thread-safe accumulation and real measurement — it is not a free performance win.</li>
+<li>A <code>Collector</code> is four functions — supplier, accumulator, combiner, finisher — and the combiner is <strong>never called</strong> in a sequential stream, so a wrong one is undetectable without a parallel test.</li>
+<li><code>Collector.Characteristics</code> is how a collector tells the pipeline what it may skip: <code>IDENTITY_FINISH</code> means the finisher call does not happen, <code>CONCURRENT</code> means one shared container instead of per-thread containers plus merging, <code>UNORDERED</code> frees the pipeline from preserving encounter order.</li>
+<li><code>Collectors.toList()</code> is mutable; <code>Stream.toList()</code> and <code>Collectors.toUnmodifiableList()</code> are not.</li>
 </ul>
 <h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
@@ -13144,6 +13339,50 @@ A silent, no-exception data-loss bug, not a crash — easy to miss without a siz
 Assuming <code>parallel()</code> handles thread-safety of the stream's own side effects.</p>
 <p><strong>Related:</strong>
 <a href="#production-scenarios">Production Scenarios</a></p>
+<h3 id="card-does-the-combiner-run-in-a-sequential-stream">Card: Does the combiner run in a sequential stream?<a class="headerlink" href="#card-does-the-combiner-run-in-a-sequential-stream" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+You write a custom <code>Collector</code>. In a sequential stream, how many times is the combiner called?</p>
+<p><strong>Answer:</strong>
+Zero. Measured with an instrumented collector over 1,000 elements: <code>combiner=0</code> sequentially, <code>combiner=63</code> in parallel on a 10-core machine (which also created 64 containers, not 10). A sequential stream accumulates into one container and has nothing to merge.</p>
+<p><strong>Why it matters:</strong>
+A wrong combiner is undetectable by any sequential test. A combiner of <code>(a, b) -&gt; a</code> returned all 1,000 elements sequentially and <strong>15</strong> in parallel, reproducibly, with no exception — 98.5% silent data loss.</p>
+<p><strong>Common trap:</strong>
+Testing a custom collector only sequentially, then enabling <code>parallel()</code> later and corrupting results.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-what-does-identity_finish-actually-do">Card: What does IDENTITY_FINISH actually do?<a class="headerlink" href="#card-what-does-identity_finish-actually-do" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+<code>Collectors.toList()</code> declares <code>IDENTITY_FINISH</code>. What does that change at runtime?</p>
+<p><strong>Answer:</strong>
+The finisher is <strong>not called at all</strong> — the pipeline casts the accumulation container to the result type instead. Measured: the same instrumented collector recorded 1 finisher invocation without the flag and <strong>0</strong> with it. It is not an optimisation of the finisher; the call does not happen.</p>
+<p><strong>Why it matters:</strong>
+It explains the real characteristic sets: <code>toList()</code> is <code>[IDENTITY_FINISH]</code> because it hands back its own <code>ArrayList</code>, while <code>toUnmodifiableList()</code> declares nothing because it must copy into an immutable list, and <code>joining()</code> declares nothing because it must turn a <code>StringBuilder</code> into a <code>String</code>.</p>
+<p><strong>Common trap:</strong>
+Reading "the finisher is identity" as "the finisher is cheap."</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-groupingby-vs-groupingbyconcurrent">Card: groupingBy vs groupingByConcurrent<a class="headerlink" href="#card-groupingby-vs-groupingbyconcurrent" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+What does the <code>CONCURRENT</code> characteristic actually change, and when is <code>groupingByConcurrent</code> worth it?</p>
+<p><strong>Answer:</strong>
+<code>CONCURRENT</code> declares the accumulator safe to call from many threads on a <strong>single shared container</strong>, so the pipeline skips per-thread containers and merging. Measured, grouping 10,000 elements into 4 groups in parallel: <code>groupingBy</code> built <strong>67</strong> containers and merged <strong>63</strong> times; <code>groupingByConcurrent</code> built <strong>4</strong> and merged <strong>0</strong>.</p>
+<p><strong>Why it matters:</strong>
+It is a different execution strategy, not a faster variant. It returns a <code>ConcurrentMap</code>, it is <code>UNORDERED</code> so within-group encounter order is not preserved, and on a sequential stream it does strictly more work for no benefit.</p>
+<p><strong>Common trap:</strong>
+Swapping it in as a drop-in "parallel-friendly" replacement without a parallel stream, or where encounter order matters.</p>
+<p><strong>Related:</strong>
+<a href="#core-concepts">Core Concepts</a></p>
+<h3 id="card-collectorstolist-vs-streamtolist">Card: Collectors.toList() vs Stream.toList()<a class="headerlink" href="#card-collectorstolist-vs-streamtolist" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong>
+Are <code>stream().collect(Collectors.toList())</code> and <code>stream().toList()</code> interchangeable?</p>
+<p><strong>Answer:</strong>
+No. Checked directly: <code>Collectors.toList()</code> returns a <strong>mutable</strong> list (an <code>add</code> succeeds), while <code>Stream.toList()</code> (Java 16+) and <code>Collectors.toUnmodifiableList()</code> both throw <code>UnsupportedOperationException</code>. Also, <code>Collectors.toList()</code> guarantees only mutability, not that the result is an <code>ArrayList</code>.</p>
+<p><strong>Why it matters:</strong>
+Code that collects and then mutates works with one and throws with the other, and the difference is one "modernise this" refactor away.</p>
+<p><strong>Common trap:</strong>
+Treating <code>Stream.toList()</code> as pure syntax sugar for the older form.</p>
+<p><strong>Related:</strong>
+<a href="#java-examples">Java Examples</a></p>
 <h2 id="practice-exercises">Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reproduce all three demos: <a href="../../../../practice/java/week-13/streams-collectors/src/StreamLazinessDemo.java"><code>StreamLazinessDemo.java</code></a>, <a href="../../../../practice/java/week-13/streams-collectors/src/ParallelStreamPitfallDemo.java"><code>ParallelStreamPitfallDemo.java</code></a>, <a href="../../../../practice/java/week-13/streams-collectors/src/CustomCollectorDemo.java"><code>CustomCollectorDemo.java</code></a>.</li>
@@ -13185,7 +13424,7 @@ Assuming <code>parallel()</code> handles thread-safety of the stream's own side 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 16:56:15 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 21:05:54 UTC">September 29, 2026</span>
   </span>
 
     

@@ -8312,6 +8312,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#collector-internals-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collector Internals (measured)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collector-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collector Selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9550,6 +9572,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#collector-internals-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collector Internals (measured)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collector-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collector Selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9699,11 +9743,119 @@ Parallel:   avg 20,539 ns/iter    &lt;- ~6.6x SLOWER
 <li>A <code>HashSet</code>/list built via <code>parallel().forEach(sharedCollection::add)</code> has an unexpectedly small or inconsistent size across runs — classic silent corruption, not a crash.</li>
 <li><strong>Prevention:</strong> require a warmed-up, realistic-data benchmark before merging any <code>.parallel()</code> addition; default to a proper <code>Collector</code> for all parallel accumulation.</li>
 </ul>
+<h2 id="collector-internals-measured">Collector Internals (measured)<a class="headerlink" href="#collector-internals-measured" title="Permanent link">&para;</a></h2>
+<p><strong>Four functions:</strong> supplier (create container) → accumulator (fold one element) → combiner (merge two containers) → finisher (convert to result type).</p>
+<p><strong>The combiner runs only in parallel.</strong> 1,000 elements, instrumented:</p>
+<div class="highlight"><pre><span></span><code>sequential : supplier=1    accumulator=1000   combiner=0    finisher=1
+parallel   : supplier=64   accumulator=1000   combiner=63   finisher=1
+</code></pre></div>
+<p>64 containers on a 10-core machine — "one per core" is not a safe assumption.</p>
+<p><strong>A wrong combiner is invisible sequentially.</strong> <code>(a, b) -&gt; a</code> (discards the second partial):</p>
+<div class="highlight"><pre><span></span><code>sequential: 1000 elements   &lt;- correct, combiner never ran
+parallel:     15 elements   &lt;- silent data loss, no exception, reproducible
+</code></pre></div>
+<p>Test a custom collector's combiner <strong>in parallel</strong>, or it is untested.</p>
+<h3 id="collectorcharacteristics"><code>Collector.Characteristics</code><a class="headerlink" href="#collectorcharacteristics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>What the pipeline may skip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IDENTITY_FINISH</code></td>
+<td>The finisher call itself (measured: 1 invocation without, <strong>0</strong> with)</td>
+</tr>
+<tr>
+<td><code>UNORDERED</code></td>
+<td>Preserving encounter order across a parallel merge</td>
+</tr>
+<tr>
+<td><code>CONCURRENT</code></td>
+<td>Per-thread containers + merging — one shared container instead</td>
+</tr>
+</tbody>
+</table>
+<p>Real sets, read from the JDK:</p>
+<div class="highlight"><pre><span></span><code>toList()                 [IDENTITY_FINISH]     toUnmodifiableList()  (none)
+toSet()                  [UNORDERED, IDENTITY_FINISH]
+joining()                (none)                counting()            (none)
+groupingBy(f)            [IDENTITY_FINISH]
+groupingByConcurrent(f)  [CONCURRENT, UNORDERED, IDENTITY_FINISH]
+</code></pre></div>
+<p><code>toUnmodifiableList()</code> and <code>joining()</code> declare nothing because they genuinely must transform the container.</p>
+<p><strong><code>groupingByConcurrent</code> is a different strategy, not a faster variant.</strong> 10,000 elements into 4 groups, parallel: <code>groupingBy</code> built <strong>67</strong> containers and merged <strong>63</strong> times; <code>groupingByConcurrent</code> built <strong>4</strong> and merged <strong>0</strong>. But it returns a <code>ConcurrentMap</code>, is <code>UNORDERED</code>, and does strictly more work on a sequential stream.</p>
+<h2 id="collector-selection">Collector Selection<a class="headerlink" href="#collector-selection" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Collector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List / immutable list</td>
+<td><code>toList()</code> / <code>toUnmodifiableList()</code></td>
+</tr>
+<tr>
+<td>Unique elements</td>
+<td><code>toSet()</code></td>
+</tr>
+<tr>
+<td>Concatenate with delimiter</td>
+<td><code>joining(", ", "[", "]")</code></td>
+</tr>
+<tr>
+<td>Count / sum / mean</td>
+<td><code>counting()</code> / <code>summingInt(f)</code> / <code>averagingInt(f)</code></td>
+</tr>
+<tr>
+<td>Count+sum+min+max+avg in one pass</td>
+<td><code>summarizingInt(f)</code></td>
+</tr>
+<tr>
+<td>Two-way split, <strong>both keys always present</strong></td>
+<td><code>partitioningBy(pred)</code></td>
+</tr>
+<tr>
+<td>N-way grouping</td>
+<td><code>groupingBy(f[, mapFactory][, downstream])</code></td>
+</tr>
+<tr>
+<td>Transform before collecting</td>
+<td><code>mapping(f, downstream)</code></td>
+</tr>
+<tr>
+<td>Filter <strong>inside</strong> a group, keeping empty groups</td>
+<td><code>filtering(pred, downstream)</code></td>
+</tr>
+<tr>
+<td>Key-value map</td>
+<td><code>toMap(k, v[, merge][, mapFactory])</code></td>
+</tr>
+<tr>
+<td>Two collectors, one pass</td>
+<td><code>teeing(c1, c2, merger)</code></td>
+</tr>
+<tr>
+<td>Post-process the result</td>
+<td><code>collectingAndThen(c, f)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mutability, checked:</strong> <code>Collectors.toList()</code> is <strong>MUTABLE</strong>; <code>Stream.toList()</code> (16+) and <code>toUnmodifiableList()</code> throw <code>UnsupportedOperationException</code>. Not interchangeable, and one refactor apart.</p>
+<p><strong><code>partitioningBy</code> ≠ <code>groupingBy</code> on a boolean</strong> — <code>partitioningBy</code> always returns both keys, so <code>get(false)</code> cannot be <code>null</code>.
+<strong><code>Collectors.filtering</code> ≠ <code>Stream.filter</code></strong> — the first keeps empty groups, the second removes them.
+<strong><code>toMap</code> default is a <code>HashMap</code></strong> — pass <code>LinkedHashMap::new</code> if order matters.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>syllabus/02-java/collections/hashmap-internals.md</code></li>
 <li><code>syllabus/02-java/concurrency/executors-and-thread-pool-sizing.md</code></li>
 <li><code>syllabus/02-java/language-core/generics-erasure-and-pecs.md</code></li>
+<li><a href="../practice/java/language-core/collectors-internals/"><code>practice/java/language-core/collectors-internals/</code></a></li>
 </ul>
 
 
@@ -9725,7 +9877,7 @@ Parallel:   avg 20,539 ns/iter    &lt;- ~6.6x SLOWER
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 6, 2026 22:52:42 UTC">September 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 21:05:28 UTC">September 29, 2026</span>
   </span>
 
     
