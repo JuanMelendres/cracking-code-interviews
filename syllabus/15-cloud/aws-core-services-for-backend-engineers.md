@@ -4,8 +4,8 @@ slug: aws-core-services-for-backend-engineers
 document_type: handbook-chapter
 domain: 15-cloud
 status: canonical
-version: 1.2
-last_updated: 2026-09-21
+version: 1.3
+last_updated: 2026-09-29
 source_history:
   - handbook/cloud/aws-core-services-for-backend-engineers.md
 topic_id: T-1006
@@ -32,6 +32,7 @@ related:
   - ../10-distributed-systems/multi-region-failover-and-disaster-recovery.md
   - ../../study-packs/week-15/05-aws-core-services-for-backend-engineers.md
 official_references:
+  - https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html
   - https://docs.aws.amazon.com/
 ---
 
@@ -112,6 +113,8 @@ AWS's core services for backend engineering cluster into a few functional catego
 ### Storage: S3, EBS, and EFS have different access models, not just different price points
 
 **S3** is object storage — accessed via HTTP-style API calls (put/get by key), not mounted as a filesystem, durable and effectively infinitely scalable, ideal for large, infrequently-modified objects (backups, static assets, data lake storage). **EBS** (Elastic Block Store) is block storage attached to a single EC2 instance at a time — behaves like a regular disk, needed for a traditional database or filesystem that expects real block-device semantics. **EFS** (Elastic File System) is a managed, network-attached filesystem that multiple instances can mount simultaneously — for genuinely shared, POSIX-filesystem-semantics access across many compute instances.
+
+Two S3 limits come up often enough in interviews to be worth stating precisely, since they shape designs rather than being trivia. A single S3 object can be up to **5 TB**, but a single `PUT` is capped at **5 GB** — anything larger must use **multipart upload**, which splits the object into parts uploaded independently (and in parallel) and then assembled server-side. Multipart is worth using well below 5 GB anyway: parts upload concurrently, and a failed part is retried on its own instead of restarting the whole transfer. The design consequence is that "upload a large file" is not one request in any serious system; it is an operation with its own initiate/upload/complete lifecycle, and an abandoned one leaves billable incomplete parts behind unless a lifecycle rule cleans them up.
 
 ### Database: RDS and DynamoDB follow the same access-pattern method as any storage decision
 
@@ -354,6 +357,23 @@ The core organizing principle for AWS compute choices.
 
 **Common trap:**
 Choosing a compute service by popularity rather than this actual trade-off.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: S3 object size limits and multipart upload
+
+**Prompt:**
+How large can a single S3 object be, and at what point are you forced to change how you upload it?
+
+**Answer:**
+An object can be up to **5 TB**, but a single `PUT` caps at **5 GB** — beyond that, multipart upload is mandatory: the object is split into parts uploaded independently and assembled server-side.
+
+**Why it matters:**
+It turns "upload a large file" from one request into an operation with its own initiate/upload/complete lifecycle. Multipart is worth using well below 5 GB anyway, because parts upload in parallel and a failed part retries on its own instead of restarting the transfer.
+
+**Common trap:**
+Forgetting that an abandoned multipart upload leaves billable incomplete parts behind until a lifecycle rule removes them.
 
 **Related:**
 [Core Concepts](#core-concepts)

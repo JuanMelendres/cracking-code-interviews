@@ -1,0 +1,52 @@
+Real, executed output: Mockito 5.11.0 + JUnit 5.10.2 on OpenJDK 21.0.12.
+
+Reproduce with:
+  ./fetch-deps.sh
+  mkdir -p out && javac -cp "lib/*" -d out src/*.java
+  CP="out:$(ls lib/*.jar | tr '\n' ':')"
+  java -jar lib/junit-platform-console-standalone.jar execute \
+      --class-path "$CP" --select-class MockVsSpyTest --details=tree --disable-ansi-colors
+
+(JVM agent/CDS warnings from the launcher itself omitted; test output verbatim.)
+
+[spy]   sealedWrite("x") (a final method) returned: STUBBED
+[spy]     realCallCount() = 0
+[both]  verify(times(2)).write("a") passed on mock AND spy
+[spy]   after doReturn("STUBBED").when(log).write("hello"):
+[spy]     realCallCount() = 0   <- real method never ran
+[spy]     written()       = []
+[spy]   after when(log.write("hello")).thenReturn(...):
+[spy]     realCallCount() = 1   <- the real method ALREADY RAN during stubbing
+[spy]     written()       = [hello]   <- and its side effect is still there
+[spy]   writeTwice("x") returned: STUBBED|STUBBED
+[spy]     realCallCount() = 0
+[spy]     written()       = []
+[mock]  write("hello") returned: null
+[mock]  realCallCount() returned: 0   <- also a mocked method, NOT the real field
+[spy]   write("hello") returned: WROTE:hello
+[spy]   realCallCount() returned: 1   <- the real method really ran
+╷
+├─ JUnit Jupiter ✔
+│  └─ MockVsSpyTest ✔
+│     ├─ can a final method be stubbed on a Mockito 5 spy? ✔
+│     ├─ verify() works identically on a mock and on a spy ✔
+│     ├─ FIX: doReturn().when(spy) never executes the real method ✔
+│     ├─ TRAP: when(spy.x()) executes the real method while stubbing it ✔
+│     ├─ self-invocation: does a stub apply when a real method calls it internally? ✔
+│     ├─ mock: real code never runs and unstubbed methods return type defaults ✔
+│     └─ spy: real code runs by default ✔
+├─ JUnit Vintage ✔
+└─ JUnit Platform Suite ✔
+Test run finished after 448 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         7 tests found           ]
+[         0 tests skipped         ]
+[         7 tests started         ]
+[         0 tests aborted         ]
+[         7 tests successful      ]
+[         0 tests failed          ]

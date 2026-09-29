@@ -4,8 +4,8 @@ slug: test-strategy-and-test-doubles
 document_type: handbook-chapter
 domain: 08-testing
 status: canonical
-version: 1.0
-last_updated: 2026-09-04
+version: 1.1
+last_updated: 2026-09-29
 source_history:
   - handbook/testing/test-strategy-and-test-doubles.md
 topic_id: T-1101/T-1103
@@ -23,17 +23,19 @@ estimated_reading_minutes: 25
 prerequisites: []
 related:
   - integration-testing-against-real-dependencies.md
+  - ../../practice/java/testing/mock-vs-spy/README.md
   - ../17-architecture/clean-hexagonal-architecture.md
   - ../05-spring/spring-testing-slices-and-context-caching.md
   - ../../study-packs/week-11/01-test-strategy-and-test-doubles.md
 official_references:
   - https://martinfowler.com/bliki/TestPyramid.html
+  - https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html
 ---
 
 # Test Strategy, the Pyramid, and Test Doubles
 
 > **Topic register:** T-1101/T-1103 · IWI 7.00/6.40 · Core tier
-> **Provenance:** the test run in this chapter is real, executed output from [`practice/java/week-11/testing/src/PaymentServiceUnitTest.java`](../../practice/java/week-11/testing/src/PaymentServiceUnitTest.java) against a real Mockito mock, via JUnit 5's console launcher (no Maven/Gradle).
+> **Provenance:** the test run in this chapter is real, executed output from [`practice/java/week-11/testing/src/PaymentServiceUnitTest.java`](../../practice/java/week-11/testing/src/PaymentServiceUnitTest.java) against a real Mockito mock, via JUnit 5's console launcher (no Maven/Gradle). The `@Mock`-versus-`@Spy` behavior added in v1.1 is measured separately in [`practice/java/testing/mock-vs-spy/`](../../practice/java/testing/mock-vs-spy/README.md) — seven passing tests against Mockito 5.11.0 and JUnit 5.10.2 on OpenJDK 21.0.12.
 
 ## Table of Contents
 
@@ -117,6 +119,40 @@ Unit tests are cheap to write and run, so there should be many of them, covering
 ### What to mock, and what never to
 
 Mock dependencies that are slow, external, or non-deterministic (network calls, payment gateways, clocks) — anything that would make the test slow or flaky for reasons unrelated to the logic being tested. Do NOT mock the thing the test exists to verify — a repository test that mocks the database tests nothing but its own assumptions about what the database does, not whether the actual SQL is correct. See [Integration Testing Against Real Dependencies](integration-testing-against-real-dependencies.md) for the layer that exists specifically to close this gap.
+
+### `@Mock` and `@Spy` are opposite defaults, and the difference is measurable
+
+A **mock** is an object with no real implementation behind it. Every method is stubbed; unstubbed methods return the type default. A **spy** wraps a real instance, and every method runs the real implementation unless you explicitly stub it. The two are not intensities of the same thing — they are opposite defaults, and which one is safe depends on whether running the real code is acceptable.
+
+Measured directly against a stateful collaborator (`AuditLog`, which counts real invocations):
+
+| Call | `mock(AuditLog.class)` | `spy(new AuditLog())` |
+|---|---|---|
+| `write("hello")` returns | `null` | `"WROTE:hello"` |
+| `realCallCount()` afterwards | `0` — and this `0` is *itself* a mocked return, not the real field | `1` — the real method really ran |
+
+That second column detail catches people: on a mock, the accessor a test uses to check state is also mocked, so it reports the type default no matter what happened.
+
+**The trap: `when(spy.x())` executes the real method.** Mockito has to evaluate the argument to `when(...)`, and evaluating `spy.write("hello")` means really calling it. Measured — before any test action had run, merely writing the stubbing line left the spy with `realCallCount() == 1` and `written() == [hello]`:
+
+```java
+AuditLog log = spy(new AuditLog());
+when(log.write("hello")).thenReturn("STUBBED");   // the real write() ALREADY RAN here
+```
+
+If that real method throws, hits a database, or sends an email, the stubbing line itself is what does it. The fix is the `do*` family, which never invokes the method it stubs — measured at `realCallCount() == 0` and `written() == []`:
+
+```java
+doReturn("STUBBED").when(log).write("hello");     // real method never runs
+```
+
+This is the entire reason Mockito ships two stubbing syntaxes rather than one.
+
+**Self-invocation behaves the opposite way to a Spring proxy.** A real method on a spy that internally calls `this.otherMethod()` *does* go through the stub: `writeTwice("x")`, which calls `write(...)` twice internally, returned `"STUBBED|STUBBED"` with `realCallCount() == 0`. A Mockito spy is a proxy subclass whose real method bodies execute with `this` bound to the proxy. This is the **opposite** of [`@Transactional` self-invocation](../05-spring/transactional-proxy-mechanics-and-propagation.md), where an internal `this.method()` call bypasses the proxy entirely. Two proxies, two different answers — neither is derivable from "it's a proxy."
+
+**"You cannot mock final" is pre-Mockito-5 folklore.** `doReturn("STUBBED").when(log).sealedWrite("x")` on a `final` method returned `"STUBBED"` with the real method never running. Mockito 5 ships the inline mock maker as its default, instrumenting through a Java agent instead of by subclassing — the launcher's real `WARNING: A Java agent has been loaded dynamically` is that mechanism being visible.
+
+**When a spy is the right tool.** Rarely, and always for the same reason: you need most of a real object's behavior and must replace one narrow part of it — typically legacy code you cannot restructure. `verify(...)` works identically on both, so a spy buys nothing for interaction checking. Reaching for a spy on code you own is usually a signal that the class does too much and should be split, which is the same signal [What to mock, and what never to](#core-concepts) describes from the other direction.
 
 ### Coverage percentage is a diagnostic, not a target
 
@@ -211,6 +247,9 @@ graph TD
 - Treating coverage percentage as a quality target rather than a diagnostic tool for finding untested code.
 - Mocking the exact dependency an integration test exists to verify (mocking the database in a repository test).
 - Building an ice-cream-cone test suite — many slow end-to-end tests, few fast unit tests — because it feels more thorough.
+- Stubbing a spy with `when(spy.method())`, which really executes the method being stubbed — measured. Use `doReturn(...).when(spy).method()` on any spy whose methods have side effects.
+- Checking state on a mock through one of its own accessors. That accessor is mocked too, so it returns the type default regardless of what the test did.
+- Repeating "you cannot mock final methods." Mockito 5's default inline mock maker stubs them fine — verified.
 
 ## Anti-Patterns
 
@@ -312,6 +351,24 @@ The choice of what to mock is itself an architectural decision, not a testing de
 
 **Related references.** [§ Core Concepts](#core-concepts).
 
+### Question 3 — What is the difference between `@Mock` and `@Spy`, and what is the classic bug when stubbing a spy?
+
+**Why interviewers ask it.** Almost everyone can recite the definitions. Far fewer have hit the stubbing bug, and it separates people who have used spies from people who have read about them.
+
+**Expected answer.** A mock has no real implementation: every method is stubbed and unstubbed ones return the type default. A spy wraps a real object and runs the real implementation unless a method is explicitly stubbed — opposite defaults, not two intensities of the same idea. The classic bug is that `when(spy.method())` **executes the real method** while stubbing it, because Mockito must evaluate the argument to `when(...)`. Measured: the stubbing line alone left the spy with one real invocation recorded and its side effect applied. The fix is `doReturn(...).when(spy).method()`, which stubs without invoking — measured at zero real invocations.
+
+**Minimum acceptable answer.** States that a mock returns defaults and a spy calls real code.
+
+**Strong Senior answer.** The above, plus why the `do*` syntax exists at all, plus the practical rule that a spy is for legacy code you cannot restructure — and that reaching for one on code you own usually signals the class does too much.
+
+**Staff-level extension.** Notes that a spy weakens the test's isolation guarantee: a test using one can now fail because of code it never intended to exercise, which makes failures harder to localize. Argues that a growing number of spies in a suite is a design signal about the production code, not a testing-tooling problem, and that the remedy is extracting the collaborator rather than partially mocking it.
+
+**Common mistakes.** Describing a spy as "a mock that also records calls" — `verify(...)` works identically on both, so that is not the distinction. Asserting that final methods cannot be stubbed, which stopped being true in Mockito 5.
+
+**Likely follow-ups.** "If a real method on a spy calls another of its own methods, does a stub on that second method apply?" (Yes — measured: the spy is a proxy subclass and `this` is the proxy. This is the opposite of Spring's `@Transactional` self-invocation behavior.) "When would you genuinely choose a spy?"
+
+**Evaluation criteria (1–5).** 1: cannot distinguish them. 3: correct definitions. 5: names the `when()` execution trap, the `doReturn` fix, and when a spy is actually justified.
+
 ## Summary
 
 A test double (mock) lets a test verify BOTH the outcome (retry eventually succeeds) AND the interaction (exactly 3 calls, exact arguments) of retry logic against a dependency that would be nearly impossible to make fail on command for real — real, executed in 460ms including JVM startup. The testing pyramid's shape (many fast unit tests, fewer integration tests, very few end-to-end tests) reflects a real cost/coverage trade-off; inverting it (the ice-cream-cone anti-pattern) produces a slow, flaky suite for the sake of feeling thorough.
@@ -381,6 +438,40 @@ Prevents treating a coverage number as proof of test quality.
 
 **Common trap:**
 Setting a coverage percentage as a release gate without checking assertion quality.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: `@Mock` vs `@Spy` — what runs?
+
+**Prompt:**
+You call `write("hello")` on a `mock(AuditLog.class)` and on a `spy(new AuditLog())`. What does each return, and what happens to the real object's state?
+
+**Answer:**
+The mock returns `null` and no real code runs — and `realCallCount()` also returns `0`, because that accessor is mocked too, not because nothing happened. The spy returns the real `"WROTE:hello"` and `realCallCount()` is genuinely `1`. Opposite defaults: a mock stubs everything, a spy stubs nothing until you say so.
+
+**Why it matters:**
+Tests that check state through a mock's own accessor are asserting on stub defaults, not on behavior.
+
+**Common trap:**
+Describing a spy as "a mock that records calls." Both record calls; `verify(...)` is identical on each.
+
+**Related:**
+[Core Concepts](#core-concepts)
+
+### Card: Why `when(spy.x())` is a bug
+
+**Prompt:**
+Why is `when(spy.write("hello")).thenReturn("STUBBED")` dangerous, and what do you write instead?
+
+**Answer:**
+Mockito must evaluate the argument to `when(...)`, which means really calling `write("hello")` on the spy. Measured: that single stubbing line left `realCallCount() == 1` and `written() == [hello]` before the test had done anything. If the real method throws or hits a database, the stubbing line is what fails. Use `doReturn("STUBBED").when(log).write("hello")` — measured at `realCallCount() == 0` with no side effect.
+
+**Why it matters:**
+This is the entire reason Mockito ships a second stubbing syntax.
+
+**Common trap:**
+Assuming `when()` is purely declarative. It is an ordinary Java expression, and its argument is evaluated like any other.
 
 **Related:**
 [Core Concepts](#core-concepts)
