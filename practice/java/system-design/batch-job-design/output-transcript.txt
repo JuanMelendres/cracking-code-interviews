@@ -1,0 +1,39 @@
+Real, executed output of BatchJobDemo against a real H2 2.3.232 in-memory database.
+OpenJDK 21.0.12, 10 cores, macOS.
+
+Reproduce:
+  ./fetch-deps.sh
+  mkdir -p out && javac -cp "lib/*" -d out src/*.java
+  java -cp "out:lib/*" BatchJobDemo
+
+== 1. The same @Scheduled job deployed on three instances ==
+  Unguarded (@Scheduled on every instance) invoices=1000  side_effect rows=3000   workers that ran=3  -> EVERY INVOICE PROCESSED 3x
+  Guarded by a database lock               invoices=1000  side_effect rows=1000   workers that ran=1  -> correct
+
+== 2. A crash halfway through, with and without a checkpoint ==
+  No checkpoint  : attempt 1 inserted 599 rows, then crashed at invoice 600
+                   committed after attempt 1: 0  (the whole transaction rolled back)
+                   attempt 2 restarted from invoice 1 and committed 1000
+                   result: correct, but 1599 units of work were performed to commit 1000
+  With checkpoint: attempt 1 inserted 599 rows, then crashed at invoice 600
+                   committed after attempt 1: 500  (only the open chunk rolled back)
+                   checkpoint = 500, so attempt 2 resumed at invoice 501
+                   total committed = 1000 across 1000 distinct invoices  -> every invoice processed exactly once
+                   work performed to commit 1000: 1099 units (99 wasted)
+
+== 3. Chunk size: throughput versus work lost to a crash ==
+chunk size         duration   worst-case rows lost
+(rows/commit)  (10,000 rows)             to a crash
+1                    137 ms                   0
+10                    34 ms                   9
+100                   24 ms                  99
+1000                  14 ms                 999
+10000                 13 ms                9999
+
+  Commit cost is per-chunk, so bigger chunks are faster -- but the work
+  at risk in a crash is exactly one chunk. The choice is a durability
+  budget, not a performance setting.
+
+== 4. One poison record: fail-fast versus skip ==
+  fail-fast : stopped at invoice 500. processed=499   skipped=0   remaining=500  -> job must be fixed and rerun
+  skip      : ran to completion.    processed=999   skipped=1   remaining=0  -> job "succeeded"; the skip is only visible if it is counted

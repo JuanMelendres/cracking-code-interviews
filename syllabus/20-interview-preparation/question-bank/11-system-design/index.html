@@ -9758,6 +9758,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#batch-and-scheduled-job-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch and Scheduled Job Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12461,6 +12472,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#batch-and-scheduled-job-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch and Scheduled Job Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12600,10 +12622,14 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 10 chapters yielded 20 deep questions + 30 quick-fire
-questions = <strong>50 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 11 chapters yielded 23 deep questions + 35 quick-fire
+questions = <strong>58 real questions</strong>. No Junior Fundamentals chapter exists in this
 domain — system design presupposes backend fundamentals already covered elsewhere.
-(Updated 2026-09-27: <code>system-design-patterns-recognition-and-quick-reference.md</code> had
+(Updated 2026-09-29: <code>batch-and-scheduled-job-design.md</code> is a new chapter closing a
+real coverage gap — <code>Spring Batch</code>, <code>ShedLock</code>, <code>Quartz</code>, <code>long-running job</code>, and
+<code>re-runnable</code> all had <strong>zero</strong> occurrences repository-wide, and the classic
+"your scheduled job runs on every replica" failure appeared nowhere. Contributes
+3 questions + 5 quick-fire cards.) (Updated 2026-09-27: <code>system-design-patterns-recognition-and-quick-reference.md</code> had
 a complete Interview Questions section never indexed — a stale-index gap, not a
 content gap. Added 2 questions; no Flashcards section in that chapter to mine.)</p>
 <hr />
@@ -12746,6 +12772,26 @@ content gap. Added 2 questions; no Flashcards section in that chapter to mine.)<
 - <strong>Junior/Mid:</strong> Treats the two as interchangeable "protection" mechanisms — the common mistake this question targets.
 - <strong>Senior:</strong> States the proactive-vs-reactive distinction — rate limiting bounds how much load a caller sends regardless of the callee's health, a circuit breaker reacts to observed failures from the callee — and gives a concrete example of needing both at once.
 - <strong>Staff:</strong> Discusses where each belongs architecturally in a real request path (rate limiting typically at the edge/gateway, circuit breakers typically at each service-to-service call site).</p>
+<hr />
+<h2 id="batch-and-scheduled-job-design">Batch and Scheduled Job Design<a class="headerlink" href="#batch-and-scheduled-job-design" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-nightly-job-is-deployed-on-three-instances-what-happens-and-how-do-you-fix-it">Q1 — Your nightly job is deployed on three instances. What happens, and how do you fix it?<a class="headerlink" href="#q1-your-nightly-job-is-deployed-on-three-instances-what-happens-and-how-do-you-fix-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../11-system-design/batch-and-scheduled-job-design/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Often believes it runs once because it is written once; or proposes <code>synchronized</code>, which does nothing across JVMs.
+- <strong>Senior:</strong> Knows it runs three times concurrently — measured: three instances against 1,000 records produced <strong>3,000</strong> side effects, with no error and a success report from all three. Fixes it with a conditional <code>UPDATE ... WHERE held_by IS NULL</code>, atomic via the database's own row-level locking with no check-then-act window, and adds the lease expiry without being asked. Notes the bug is invisible in any single-instance environment, so testing will not catch it.
+- <strong>Staff:</strong> Treats recurrence as a platform defect — if several teams shipped this, the service template makes the unguarded version the easy one — and argues for a shared abstraction that makes the guarded shape the default. Weighs application-level versus external scheduling as an ownership decision.</p>
+<h3 id="q2-a-six-hour-job-crashes-at-hour-five-what-did-you-design-so-that-this-is-survivable">Q2 — A six-hour job crashes at hour five. What did you design so that this is survivable?<a class="headerlink" href="#q2-a-six-hour-job-crashes-at-hour-five-what-did-you-design-so-that-this-is-survivable" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../11-system-design/batch-and-scheduled-job-design/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Says the job should "save progress" without specifying where or when it commits; often proposes a log file or an in-memory field, neither of which survives the crash.
+- <strong>Senior:</strong> Chunked commits with the checkpoint written <strong>in the same transaction</strong> as the chunk it describes, because separate commits reintroduce a dual write that either skips or reprocesses records. Measured: a single-transaction job crashing at 60% committed <strong>zero</strong> rows and cost 1,599 units of work to commit 1,000; the chunked version committed 500, resumed at 501, and wasted exactly 99. Chooses chunk size from acceptable rework, not throughput.
+- <strong>Staff:</strong> Adds that restartable is not idempotent — a checkpoint reduces duplicate processing but does not make it safe — and applies the "run it twice, is the result identical?" test. Prefers a status column on the rows so progress cannot disagree with the data, and notes that a chunk is a transaction, so the biggest chunk is often not the fastest on a busy database.</p>
+<h3 id="q3-one-record-in-the-input-is-malformed-should-the-job-stop-or-skip-it">Q3 — One record in the input is malformed. Should the job stop or skip it?<a class="headerlink" href="#q3-one-record-in-the-input-is-malformed-should-the-job-stop-or-skip-it" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../11-system-design/batch-and-scheduled-job-design/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Picks one universally, usually skip, without mentioning the counter, the alert, or the replay path.
+- <strong>Senior:</strong> Names the independence criterion, and identifies skip's failure mode as the dangerous one because it looks like success — measured: fail-fast stopped at record 500 leaving 500 unprocessed and was loud; skip processed 999, reported success, and the dropped record existed only as a counter. States both conditions for skip: the count must be an alerted metric and the record must be replayable.
+- <strong>Staff:</strong> Generalizes it — any partial-failure policy that reports overall success is a monitoring commitment, not just a code decision — and raises the threshold question, since the same code reports success whether 1 or 400 records were skipped unless the skip <em>rate</em> is alerted on.</p>
 <hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
@@ -12907,6 +12953,31 @@ content gap. Added 2 questions; no Flashcards section in that chapter to mine.)<
 <td>What's the most commonly skipped phase, and why does it matter?</td>
 <td><a href="../../../11-system-design/system-design-method-and-estimation/#flashcards">System Design Method and Estimation</a></td>
 </tr>
+<tr>
+<td>31</td>
+<td>What happens to a <code>@Scheduled</code> job deployed on three replicas?</td>
+<td><a href="../../../11-system-design/batch-and-scheduled-job-design/#flashcards">Batch and Scheduled Job Design</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td>What is the minimum mechanism that makes a job run on exactly one instance, and what else does it need?</td>
+<td><a href="../../../11-system-design/batch-and-scheduled-job-design/#flashcards">Batch and Scheduled Job Design</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td>How should a batch job's commit interval be chosen?</td>
+<td><a href="../../../11-system-design/batch-and-scheduled-job-design/#flashcards">Batch and Scheduled Job Design</a></td>
+</tr>
+<tr>
+<td>34</td>
+<td>Where must a checkpoint be written, and what breaks if it is written elsewhere?</td>
+<td><a href="../../../11-system-design/batch-and-scheduled-job-design/#flashcards">Batch and Scheduled Job Design</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td>Under what conditions is skipping a bad record acceptable?</td>
+<td><a href="../../../11-system-design/batch-and-scheduled-job-design/#flashcards">Batch and Scheduled Job Design</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12943,7 +13014,7 @@ content gap. Added 2 questions; no Flashcards section in that chapter to mine.)<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 00:18:41 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 20:35:04 UTC">September 29, 2026</span>
   </span>
 
     
