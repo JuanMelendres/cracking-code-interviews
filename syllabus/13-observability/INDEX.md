@@ -29,6 +29,7 @@ last_updated: 2026-09-21
 | T-2409 | Metric Cardinality and Alert Fatigue | L1, L2, L3, L4 — fully written, real demo (2026-09-11) | `syllabus/13-observability/metric-cardinality-and-alert-fatigue.md` |
 | T-2423 | Chaos Engineering: Fault Injection and Resilience Verification | L1, L2, L3, L4 — fully written, real demo (2026-09-21) | `syllabus/13-observability/chaos-engineering-fault-injection-and-resilience-verification.md` |
 | T-2436 | Structured Logging, Correlation IDs, and Log Hygiene | L1, L2, L3, L4 — fully written, real demo including a reproduced context loss across a thread pool (2026-09-28) | `syllabus/13-observability/structured-logging-correlation-ids-and-log-hygiene.md` |
+| T-2442 | Production Troubleshooting Methodology | L1, L2, L3, L4 — fully written, two real demos: three silent 500s discriminated by a log-level change, and a measured 2531x data-volume regression (2026-09-29) | `syllabus/13-observability/production-troubleshooting-methodology.md` |
 
 ## Where this domain's boundary comes from
 
