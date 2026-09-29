@@ -3,8 +3,8 @@ title: "Interview Question Bank — 13-observability"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-28
+version: 1.1
+last_updated: 2026-09-29
 related:
   - ../../13-observability/INDEX.md
   - 12-security.md
@@ -17,10 +17,15 @@ Part of the multi-domain compendium. See [`06-databases.md`](06-databases.md) fo
 tier-explanation format and `00-project/interview-question-bank-plan.md` for the full
 22-domain plan and sourcing discipline.
 
-**Honest count for this domain:** 7 chapters yielded 15 deep questions + 14 quick-fire
-questions = **29 real questions**. No Junior Fundamentals chapter exists in this
+**Honest count for this domain:** 8 chapters yielded 18 deep questions + 19 quick-fire
+questions = **37 real questions**. No Junior Fundamentals chapter exists in this
 domain — observability presupposes backend fundamentals already covered elsewhere.
-This is a small domain (7 chapters). (Updated 2026-09-28:
+(Updated 2026-09-29: `production-troubleshooting-methodology.md` is a new chapter
+closing a structural gap the whole repository had — every other chapter is organised
+by *cause*, while a scenario interview question is organised by *symptom*, so a
+candidate handed "the API got slow" had no entry point. Contributes 3 questions +
+5 quick-fire cards, and is the canonical treatment behind
+`practice/mock-interviews/production-debugging-round.md`.) (Updated 2026-09-28:
 `structured-logging-correlation-ids-and-log-hygiene.md` is a new chapter closing a
 real coverage gap — the OpenTelemetry chapter covered traces but nothing on record
 shape, correlation-ID propagation, level semantics, or sensitive data — contributing
@@ -163,6 +168,37 @@ Added 2 questions; no Flashcards section in that chapter.)
 
 ---
 
+## Production Troubleshooting Methodology
+
+### Q1 — Your Java application is fine in development but extremely slow in production. How would you find the actual root cause?
+
+**Canonical treatment:** [§ Interview Questions, Q1](../../13-observability/production-troubleshooting-methodology.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Lists plausible causes (GC, database, N+1, pool exhaustion) with no ordering principle, or opens by naming a tool ("I'd attach a profiler").
+- **Senior:** Narrows before tooling — everything or one endpoint, step change or gradual slope, what changed. For latency specifically: is throughput flat under rising load (bounded resource, so optimising code will not help), and what do the percentiles say rather than the average. Justifies each check by what it *eliminates*.
+- **Staff:** Rejects "production hardware is slower" as the frame and explains the gap structurally — an N+1 and a batched implementation have different *curves*, so a dev dataset sits at the one point where they look identical (measured: 2.8 ms vs 0.5 ms at 10 rows, 1.28 s vs 0.5 ms at 5,000 — 2531x). Treats a production-scale pre-production environment as infrastructure to fund, using that measurement as the cost argument.
+
+### Q2 — Your Spring Boot application returns 500s, but the logs show no obvious exception. Walk me through your troubleshooting approach.
+
+**Canonical treatment:** [§ Interview Questions, Q2](../../13-observability/production-troubleshooting-methodology.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Blames the log shipper or the logging configuration; or proposes "add more logging" without partitioning the hypotheses.
+- **Senior:** Names the three distinguishable causes and — critically — which of them can be recovered without a deploy: swallowed in a bare `catch` (evidence gone), logged below the production level (config fix alone), or an unlogging catch-all `@ExceptionHandler` (needs a change to the advice). Uses a log-level change as a *discriminator*, verified directly: raising the application package to `DEBUG` recovered the wrong-level case and only that one. Knows the error body's *shape* is a free first check — a container-default body means the failure happened in a filter, outside the `DispatcherServlet`.
+- **Staff:** Argues that three teams hitting this independently is a platform defect rather than three codebases' defect, and that the fix is a service template whose catch-all logs by default and whose unconditional access-log filter is not optional.
+
+### Q3 — Your application works fine with 100 users and falls over at 10,000. How do you find the bottleneck?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../../13-observability/production-troubleshooting-methodology.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Proposes horizontal scaling or a cache as a reflex, without identifying what saturates.
+- **Senior:** Measures the shape — runs increasing concurrency and watches throughput and percentiles together. Knows that **flat throughput under rising load** means a bounded resource is the ceiling, so neither faster code nor more instances behind that same resource will help (measured: throughput flattened at ~7,600 req/s from concurrency 10 with a pool of 10, and was no better at 200). Reads percentiles, knowing p50 held at 1 ms while p99 reached 152 ms.
+- **Staff:** Reframes it as capacity planning — the saturation point should be a known number from load-testing to saturation rather than to expected peak — and notes that raising a pool relocates a bottleneck as often as it removes one (doubling a pool under CPU saturation made latency worse).
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -181,6 +217,11 @@ Added 2 questions; no Flashcards section in that chapter.)
 | 12 | What does USE stand for, and what does it diagnose? | [Performance Methodology (USE/RED) and SLI/SLO/Error Budgets](../../13-observability/performance-methodology-and-slo-error-budgets.md#flashcards) |
 | 13 | What does RED stand for, and what does it diagnose? | [Performance Methodology (USE/RED) and SLI/SLO/Error Budgets](../../13-observability/performance-methodology-and-slo-error-budgets.md#flashcards) |
 | 14 | Why can a monthly error-budget aggregate be misleading on its own? | [Performance Methodology (USE/RED) and SLI/SLO/Error Budgets](../../13-observability/performance-methodology-and-slo-error-budgets.md#flashcards) |
+| 15 | What three questions narrow a production symptom before you reach for any tool? | [Production Troubleshooting Methodology](../../13-observability/production-troubleshooting-methodology.md#flashcards) |
+| 16 | Throughput plateaus while latency climbs — what does that mean, and what will *not* fix it? | [Production Troubleshooting Methodology](../../13-observability/production-troubleshooting-methodology.md#flashcards) |
+| 17 | What did p50 and p99 actually do in the measured saturation run? | [Production Troubleshooting Methodology](../../13-observability/production-troubleshooting-methodology.md#flashcards) |
+| 18 | Why is "we should have tested with more data" an incomplete explanation of a dev-vs-prod gap? | [Production Troubleshooting Methodology](../../13-observability/production-troubleshooting-methodology.md#flashcards) |
+| 19 | Name the three causes of "500s with nothing in the logs" and what tells them apart. | [Production Troubleshooting Methodology](../../13-observability/production-troubleshooting-methodology.md#flashcards) |
 
 ---
 
