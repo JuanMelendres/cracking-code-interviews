@@ -1,0 +1,31 @@
+Real, executed output of demo.LoadProfileDemo (OpenJDK 21.0.12, 10 cores, macOS).
+
+Reproduce:  javac -cp "lib/*" -d out src/demo/*.java && java -cp "out:lib/*" demo.LoadProfileDemo
+
+== Measured baseline ==
+One uncontended round trip: 254 microseconds (real, measured on this machine)
+
+== Scenario A: identical code, different data volume ==
+rows            naive (N+1)          batched      ratio
+10                  2811 us           507 us         6x
+100                25835 us           509 us        51x
+1000              256529 us           513 us       500x
+5000             1286424 us           506 us      2542x
+
+The naive version is linear in row count; the batched version is flat.
+A dev database seeded with 10 rows cannot distinguish them.
+
+== Scenario B: identical code and data, different concurrency ==
+Connection pool size: 10. Each request makes 5 round trips.
+concurrency           p50          p95          p99     throughput
+1                    1 ms         1 ms         1 ms      673 req/s
+5                    1 ms         1 ms         1 ms     3875 req/s
+10                   1 ms         1 ms         1 ms     7650 req/s
+50                   1 ms        23 ms        28 ms     7364 req/s
+200                  1 ms       134 ms       142 ms     7510 req/s
+
+Throughput stops climbing once concurrency passes the pool size: the pool,
+not the code, is the ceiling. Note WHERE the pain shows up -- the median
+barely moves while the tail explodes, because an unfair semaphore lets some
+waiters be overtaken repeatedly. A dashboard showing average latency would
+report this system as healthy.

@@ -949,6 +949,10 @@
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/production-troubleshooting-methodology/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/profiling-jfr-and-flame-graphs/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
@@ -2145,6 +2149,10 @@
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/production-troubleshooting-methodology/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/profiling-jfr-and-flame-graphs/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
@@ -2969,6 +2977,10 @@
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/observability/production-troubleshooting/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/observability/structured-logging/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
@@ -3294,6 +3306,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/mock-interviews/kafka-messaging-technical-round/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/mock-interviews/production-debugging-round/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>
@@ -6770,6 +6786,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/13-observability/performance-methodology-and-slo-error-budgets/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/13-observability/production-troubleshooting-methodology/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>

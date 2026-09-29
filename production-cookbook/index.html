@@ -908,6 +908,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#find-an-entry-by-symptom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find an entry by symptom
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#entries" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8071,6 +8082,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#find-an-entry-by-symptom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find an entry by symptom
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#entries" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8177,6 +8199,115 @@
 <p><strong>Open item, not yet closed: the 37-chapter <code>21-frontend-web</code> domain.</strong> Every one of its 37 React/Next.js chapters carries a genuine, real-incident-shaped <code>## Production Scenarios</code> section (verified directly, e.g. <code>react-performance.md</code>'s memoization-defeated-by-an-inline-handler scenario), and none has ever been elevated here — this deliverable's every prior "complete" claim only ever audited backend domains. Deferred by explicit user choice (backend batch first) rather than closed in this pass.</p>
 <p><strong>201 entries (2026-09-12, same day) — the 37-chapter <code>21-frontend-web</code> gap closed.</strong> Of the 37 chapters, <strong>35 were elevated (36 entries — <code>how-the-web-works-html-css-dom-and-http.md</code> had two genuinely distinct scenarios, both elevated), and 2 were deliberately excluded</strong>: <code>nextjs-build-tooling-vite-vs-turbopack.md</code>'s scenario ends with its own stated "Fix: none needed" — a dev-server behavior difference the team merely needed to understand, not an incident with any real negative impact; <code>nextjs-app-router-fundamentals.md</code>'s scenario is a pure design-comparison (route groups vs. literal URL prefixes) with no manifested symptom or fix, never an incident that actually occurred. Both excluded on the same honest-exclusion basis already used for <code>writing-tests-live-in-an-interview.md</code> and <code>foreign-function-and-memory-api.md</code> — no system, no symptom, nothing to root-cause. A few elevated entries are "prevention" rather than "incident" in shape (<code>react-typescript.md</code>'s discriminated-union near-miss, <code>typescript-fundamentals-types-interfaces-and-generics.md</code>'s typed-contract near-miss) — the same accepted shape already used for <code>contract-testing-for-services.md</code>'s backend entries, since CLAUDE.md's own Production Cookbook Standard doesn't require an incident to have actually caused damage, only a real, worked scenario grounded in the source chapter.</p>
 <p>Every entry's fields were built by expanding the source chapter's own <code>## Production Scenarios</code> text — no invented incidents. Domain recorded as <code>frontend-web</code> for all 36 (a new domain value for this deliverable, matching the value already used in <code>syllabus/21-frontend-web/*.md</code>'s own front matter). Verified: all 36 files' YAML parses; every <code>source</code> path resolves to a real chapter; <code>scripts/validate.py</code> shows the same pre-existing 3 errors, zero new. <strong>This closes both gaps found in the 2026-09-12 re-audit — production-cookbook now has no known outstanding chapter-coverage gap.</strong></p>
+<h2 id="find-an-entry-by-symptom">Find an entry by symptom<a class="headerlink" href="#find-an-entry-by-symptom" title="Permanent link">&para;</a></h2>
+<p>The table below exists because the entries above are named by <strong>cause</strong> and an incident presents as a <strong>symptom</strong>. To use the index by cause, you must already know the answer; this one starts where an investigation actually starts. It is also the lookup an interview question needs, since a scenario question gives you the symptom and withholds the cause by design.</p>
+<p>Each row lists the candidate causes worth considering for that symptom and representative entries for each. It is a starting point for a differential, not an exhaustive mapping — the method for narrowing it is <a href="../syllabus/13-observability/production-troubleshooting-methodology/">Production Troubleshooting Methodology</a>, and the timed drill built on these ten symptoms is <a href="../practice/mock-interviews/production-debugging-round/">Mock Interview: Production Debugging Round</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Candidate causes, in rough order of frequency</th>
+<th>Representative entries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Slow in production, fine in development</strong></td>
+<td>Data volume (a different curve, not a constant factor); concurrency past a bounded resource; missing index; cold cache</td>
+<td><a href="n1-query-regression-from-a-lazy-collection-count-in-a-dto-loop/">N+1 from a lazy collection count</a> · <a href="query-plan-regression-from-an-unindexed-filter/">Query plan regression from an unindexed filter</a> · <a href="like-query-degradation-as-a-product-catalog-grows/">LIKE query degradation as a catalog grows</a> · <a href="offset-pagination-degrading-an-admin-tool-as-a-table-grows/">Offset pagination degrading as a table grows</a></td>
+</tr>
+<tr>
+<td><strong>500s with nothing useful in the logs</strong></td>
+<td>Swallowed exception; logged below the production level; unlogging catch-all advice; failure outside the <code>DispatcherServlet</code></td>
+<td><a href="silently-swallowed-async-exception-hiding-weeks-of-failures/">Silently swallowed async exception</a> · <a href="swallowed-exception-cause-costing-an-hour-of-debugging/">Swallowed exception cause costing an hour</a> · <a href="fire-and-forget-completablefuture-silently-dropping-audit-log-errors/">Fire-and-forget CompletableFuture dropping audit errors</a></td>
+</tr>
+<tr>
+<td><strong>Memory grows steadily, then <code>OutOfMemoryError</code></strong></td>
+<td>Unbounded cache or collection; <code>ThreadLocal</code> on pooled threads; classloader retention; off-heap growth invisible to heap metrics</td>
+<td><a href="unconditional-heap-growth-and-memory-leak-diagnosis/">Unconditional heap growth</a> · <a href="gradual-latency-degradation-from-an-unbounded-cache-and-growing-old-generation/">Unbounded cache growing the old generation</a> · <a href="metaspace-growth-from-a-threadlocal-leaked-classloader/">Metaspace growth from a leaked classloader</a> · <a href="direct-buffer-oom-invisible-to-heap-monitoring/">Direct buffer OOM invisible to heap monitoring</a></td>
+</tr>
+<tr>
+<td><strong>Container OOM-killed but heap looks fine</strong></td>
+<td>Off-heap: direct buffers, metaspace, thread stacks, native libraries; container limit versus <code>MaxRAMPercentage</code></td>
+<td><a href="kubernetes-oomkill-with-no-application-logs/">Kubernetes OOMKill with no application logs</a> · <a href="direct-buffer-oom-invisible-to-heap-monitoring/">Direct buffer OOM invisible to heap monitoring</a> · <a href="compressed-oops-ceiling-causing-a-memory-regression-past-32gb/">Compressed oops ceiling past 32 GB</a></td>
+</tr>
+<tr>
+<td><strong>Latency jumped at a specific time, no deploy</strong></td>
+<td>Traffic change saturating a pool; a dependency's own incident; data crossing a threshold; a feature flag</td>
+<td><a href="flash-sale-latency-spike-from-an-unmeasured-saturation-point/">Flash-sale latency spike from an unmeasured saturation point</a> · <a href="connection-pool-exhaustion-from-an-http-call-in-a-transaction/">Connection pool exhaustion from an HTTP call in a transaction</a> · <a href="feature-flag-rollout-triggering-a-deoptimization-latency-spike/">Feature-flag rollout triggering a deoptimization spike</a></td>
+</tr>
+<tr>
+<td><strong>Throughput flat while load rises</strong></td>
+<td>A bounded resource is the ceiling: connection pool, thread pool, rate limit, downstream capacity</td>
+<td><a href="doubling-the-connection-pool-made-latency-worse-under-cpu-saturation/">Doubling the connection pool made latency worse</a> · <a href="unbounded-executor-queue-causing-an-oom-crash/">Unbounded executor queue causing an OOM</a> · <a href="round-robin-load-balancing-overloading-a-slower-backend-instance/">Round-robin overloading a slower backend</a></td>
+</tr>
+<tr>
+<td><strong>Averages look healthy, users complain</strong></td>
+<td>Tail latency from queueing; coordinated omission in the load test; an aggregate hiding a daily trend</td>
+<td><a href="coordinated-omission-masking-real-tail-latency-in-a-load-test/">Coordinated omission masking real tail latency</a> · <a href="error-budget-aggregate-hiding-a-climbing-daily-trend/">Error-budget aggregate hiding a climbing trend</a></td>
+</tr>
+<tr>
+<td><strong>One user's write silently overwrites another's</strong></td>
+<td>Read-modify-write race with no version check; missing cache eviction; a dual write with no coordination</td>
+<td><a href="lost-update-in-a-get-then-put-counter-increment/">Lost update in a get-then-put counter increment</a> · <a href="double-refund-from-a-same-row-read-then-write-race/">Double refund from a same-row read-then-write race</a> · <a href="overselling-inventory-from-a-missing-cache-eviction/">Overselling inventory from a missing cache eviction</a></td>
+</tr>
+<tr>
+<td><strong>Hundreds of queries for one request</strong></td>
+<td>N+1 from a lazily-touched association; per-row lookups in a mapping loop; a GraphQL resolver fanning out</td>
+<td><a href="n1-query-regression-from-a-lazy-collection-count-in-a-dto-loop/">N+1 from a lazy collection count</a> · <a href="graphql-n-plus-one-overloading-a-downstream-author-service/">GraphQL N+1 overloading a downstream service</a> · <a href="silently-unbatched-inserts-from-identity-generated-keys/">Silently unbatched inserts from identity-generated keys</a></td>
+</tr>
+<tr>
+<td><strong>Deadlocks under load</strong></td>
+<td>Inconsistent lock acquisition order; locks held across a slow call; database-level lock escalation</td>
+<td><a href="lock-ordering-deadlock-under-peak-load/">Lock-ordering deadlock under peak load</a> · <a href="opposite-order-lock-acquisition-deadlock-in-a-funds-transfer/">Opposite-order lock acquisition in a funds transfer</a> · <a href="flash-sale-latency-collapse-from-pessimistic-locks-held-across-payment-auth/">Pessimistic locks held across payment authorisation</a></td>
+</tr>
+<tr>
+<td><strong>Threads hang or the pool starves</strong></td>
+<td>A blocking call on the wrong thread; no deadline on a downstream call; pinning; an unbounded queue</td>
+<td><a href="blocking-jdbc-call-starving-the-webflux-event-loop/">Blocking JDBC call starving the WebFlux event loop</a> · <a href="deadline-less-grpc-call-cascading-into-thread-pool-exhaustion/">Deadline-less gRPC call cascading into pool exhaustion</a> · <a href="virtual-thread-migration-regression-from-synchronized-block-pinning/">Virtual thread pinning from a synchronized block</a> · <a href="parallelstream-starving-an-unrelated-feature-via-the-shared-forkjoinpool/">parallelStream starving an unrelated feature</a></td>
+</tr>
+<tr>
+<td><strong>Works in Postman, fails in the browser</strong></td>
+<td>CORS (a browser policy, never enforced by Postman); cookie/credential rules; CSRF</td>
+<td><a href="cors-mistaken-for-an-authentication-boundary-on-an-internal-endpoint/">CORS mistaken for an authentication boundary</a> · <a href="custom-header-csrf-protection-reopened-by-a-legacy-form-endpoint/">Custom-header CSRF protection reopened by a legacy form endpoint</a></td>
+</tr>
+<tr>
+<td><strong>Fine at low traffic, falls over at scale</strong></td>
+<td>A bounded resource; per-instance state that does not survive horizontal scaling; an unmeasured saturation point; a hot shard or key</td>
+<td><a href="flash-sale-latency-spike-from-an-unmeasured-saturation-point/">Flash-sale latency spike from an unmeasured saturation point</a> · <a href="in-memory-idempotency-map-breaking-under-horizontal-scaling/">In-memory idempotency map breaking under horizontal scaling</a> · <a href="per-tenant-rate-limit-effectively-tripled-by-unshared-per-instance-state/">Per-tenant rate limit tripled by unshared per-instance state</a> · <a href="launch-day-shard-key-becoming-an-18-month-scaling-bottleneck/">Launch-day shard key becoming a scaling bottleneck</a></td>
+</tr>
+<tr>
+<td><strong>Errors only during deploys</strong></td>
+<td>No graceful shutdown or readiness flip; a schema change incompatible with the previous version; a rolling update assumption</td>
+<td><a href="column-rename-outage-during-a-rolling-deploy/">Column rename outage during a rolling deploy</a> · <a href="rolling-update-latency-spike-despite-maxunavailable-zero/">Rolling update latency spike despite maxUnavailable zero</a> · <a href="readiness-probe-reporting-healthy-before-cache-warmup-completes/">Readiness probe reporting healthy before cache warmup</a></td>
+</tr>
+<tr>
+<td><strong>A blip became an outage</strong></td>
+<td>Retry amplification without jitter; a cache stampede; a cascading failure with no circuit breaker</td>
+<td><a href="synchronized-retry-storm-without-jitter/">Synchronized retry storm without jitter</a> · <a href="retry-amplification-cascading-into-a-multi-service-outage/">Retry amplification cascading into a multi-service outage</a> · <a href="cache-cluster-failover-triggering-a-full-database-outage/">Cache cluster failover triggering a full database outage</a></td>
+</tr>
+<tr>
+<td><strong>Duplicate or missing messages</strong></td>
+<td>Redelivery with a non-idempotent consumer; a dual write; a rebalance; a partition-count change</td>
+<td><a href="duplicate-payment-charge-from-kafka-redelivery/">Duplicate payment charge from Kafka redelivery</a> · <a href="silent-notification-loss-from-an-uncoordinated-dual-write/">Silent notification loss from an uncoordinated dual write</a> · <a href="kafka-consumer-group-rebalance-storm/">Kafka consumer group rebalance storm</a> · <a href="partition-count-increase-silently-breaking-per-customer-ordering/">Partition count increase breaking per-customer ordering</a></td>
+</tr>
+<tr>
+<td><strong>Stale data served to users</strong></td>
+<td>A cache not evicted on write; replica lag; a bypassing batch write; a route or page cache</td>
+<td><a href="stale-hibernate-l2-cache-from-a-bypassing-batch-job-write/">Stale Hibernate L2 cache from a bypassing batch job</a> · <a href="read-your-own-writes-gap-hiding-a-just-created-order-on-confirmation/">Read-your-own-writes gap hiding a just-created order</a> · <a href="silently-stale-search-index-from-missed-outbox-writes-on-new-write-paths/">Stale search index from missed outbox writes</a></td>
+</tr>
+<tr>
+<td><strong>Tests pass, production breaks</strong></td>
+<td>Mocked boundaries that never exercised the real one; coverage without assertions; a missing contract test</td>
+<td><a href="mocked-repository-tests-masking-a-real-schema-migration-break/">Mocked repository tests masking a real schema migration break</a> · <a href="boundary-condition-bug-behind-a-95-percent-coverage-figure/">Boundary-condition bug behind a 95% coverage figure</a> · <a href="flaky-ci-integration-tests-from-shared-container-state/">Flaky CI integration tests from shared container state</a></td>
+</tr>
+<tr>
+<td><strong>A request cannot be traced across services</strong></td>
+<td>No correlation ID; broken propagation at a library boundary; choreography with no shared identifier</td>
+<td><a href="untraceable-choreographed-order-failure-with-no-correlation-id/">Untraceable choreographed order failure with no correlation ID</a> · <a href="broken-trace-propagation-at-a-library-migration-boundary/">Broken trace propagation at a library migration boundary</a> · <a href="cross-request-threadlocal-leak-from-pooled-thread-reuse/">Cross-request ThreadLocal leak from pooled thread reuse</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="entries">Entries<a class="headerlink" href="#entries" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -8842,7 +8973,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 13, 2026 03:43:39 UTC">September 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 18:15:16 UTC">September 29, 2026</span>
   </span>
 
     

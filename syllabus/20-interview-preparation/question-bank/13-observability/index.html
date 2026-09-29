@@ -9784,6 +9784,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#production-troubleshooting-methodology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Troubleshooting Methodology
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12384,6 +12395,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#production-troubleshooting-methodology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Troubleshooting Methodology
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quick-fire-questions-from-this-domains-flashcards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12534,10 +12556,15 @@
 <p>Part of the multi-domain compendium. See <a href="../06-databases/"><code>06-databases.md</code></a> for the
 tier-explanation format and <code>00-project/interview-question-bank-plan.md</code> for the full
 22-domain plan and sourcing discipline.</p>
-<p><strong>Honest count for this domain:</strong> 7 chapters yielded 15 deep questions + 14 quick-fire
-questions = <strong>29 real questions</strong>. No Junior Fundamentals chapter exists in this
+<p><strong>Honest count for this domain:</strong> 8 chapters yielded 18 deep questions + 19 quick-fire
+questions = <strong>37 real questions</strong>. No Junior Fundamentals chapter exists in this
 domain — observability presupposes backend fundamentals already covered elsewhere.
-This is a small domain (7 chapters). (Updated 2026-09-28:
+(Updated 2026-09-29: <code>production-troubleshooting-methodology.md</code> is a new chapter
+closing a structural gap the whole repository had — every other chapter is organised
+by <em>cause</em>, while a scenario interview question is organised by <em>symptom</em>, so a
+candidate handed "the API got slow" had no entry point. Contributes 3 questions +
+5 quick-fire cards, and is the canonical treatment behind
+<code>practice/mock-interviews/production-debugging-round.md</code>.) (Updated 2026-09-28:
 <code>structured-logging-correlation-ids-and-log-hygiene.md</code> is a new chapter closing a
 real coverage gap — the OpenTelemetry chapter covered traces but nothing on record
 shape, correlation-ID propagation, level semantics, or sensitive data — contributing
@@ -12630,6 +12657,26 @@ Added 2 questions; no Flashcards section in that chapter.)</p>
 - <strong>Senior:</strong> Correctly explains a circuit breaker is the resilience implementation reacting to a real failure at runtime; a chaos experiment deliberately triggers a real failure on purpose to verify the breaker (and its alerting) actually works.
 - <strong>Staff:</strong> Connects this to why chaos engineering sits in the observability domain, not purely resilience/architecture — its real value is verifying the detection chain, not just the failover code.</p>
 <hr />
+<h2 id="production-troubleshooting-methodology">Production Troubleshooting Methodology<a class="headerlink" href="#production-troubleshooting-methodology" title="Permanent link">&para;</a></h2>
+<h3 id="q1-your-java-application-is-fine-in-development-but-extremely-slow-in-production-how-would-you-find-the-actual-root-cause">Q1 — Your Java application is fine in development but extremely slow in production. How would you find the actual root cause?<a class="headerlink" href="#q1-your-java-application-is-fine-in-development-but-extremely-slow-in-production-how-would-you-find-the-actual-root-cause" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/production-troubleshooting-methodology/#interview-questions">§ Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Lists plausible causes (GC, database, N+1, pool exhaustion) with no ordering principle, or opens by naming a tool ("I'd attach a profiler").
+- <strong>Senior:</strong> Narrows before tooling — everything or one endpoint, step change or gradual slope, what changed. For latency specifically: is throughput flat under rising load (bounded resource, so optimising code will not help), and what do the percentiles say rather than the average. Justifies each check by what it <em>eliminates</em>.
+- <strong>Staff:</strong> Rejects "production hardware is slower" as the frame and explains the gap structurally — an N+1 and a batched implementation have different <em>curves</em>, so a dev dataset sits at the one point where they look identical (measured: 2.8 ms vs 0.5 ms at 10 rows, 1.28 s vs 0.5 ms at 5,000 — 2531x). Treats a production-scale pre-production environment as infrastructure to fund, using that measurement as the cost argument.</p>
+<h3 id="q2-your-spring-boot-application-returns-500s-but-the-logs-show-no-obvious-exception-walk-me-through-your-troubleshooting-approach">Q2 — Your Spring Boot application returns 500s, but the logs show no obvious exception. Walk me through your troubleshooting approach.<a class="headerlink" href="#q2-your-spring-boot-application-returns-500s-but-the-logs-show-no-obvious-exception-walk-me-through-your-troubleshooting-approach" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/production-troubleshooting-methodology/#interview-questions">§ Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Blames the log shipper or the logging configuration; or proposes "add more logging" without partitioning the hypotheses.
+- <strong>Senior:</strong> Names the three distinguishable causes and — critically — which of them can be recovered without a deploy: swallowed in a bare <code>catch</code> (evidence gone), logged below the production level (config fix alone), or an unlogging catch-all <code>@ExceptionHandler</code> (needs a change to the advice). Uses a log-level change as a <em>discriminator</em>, verified directly: raising the application package to <code>DEBUG</code> recovered the wrong-level case and only that one. Knows the error body's <em>shape</em> is a free first check — a container-default body means the failure happened in a filter, outside the <code>DispatcherServlet</code>.
+- <strong>Staff:</strong> Argues that three teams hitting this independently is a platform defect rather than three codebases' defect, and that the fix is a service template whose catch-all logs by default and whose unconditional access-log filter is not optional.</p>
+<h3 id="q3-your-application-works-fine-with-100-users-and-falls-over-at-10000-how-do-you-find-the-bottleneck">Q3 — Your application works fine with 100 users and falls over at 10,000. How do you find the bottleneck?<a class="headerlink" href="#q3-your-application-works-fine-with-100-users-and-falls-over-at-10000-how-do-you-find-the-bottleneck" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../13-observability/production-troubleshooting-methodology/#interview-questions">§ Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Proposes horizontal scaling or a cache as a reflex, without identifying what saturates.
+- <strong>Senior:</strong> Measures the shape — runs increasing concurrency and watches throughput and percentiles together. Knows that <strong>flat throughput under rising load</strong> means a bounded resource is the ceiling, so neither faster code nor more instances behind that same resource will help (measured: throughput flattened at ~7,600 req/s from concurrency 10 with a pool of 10, and was no better at 200). Reads percentiles, knowing p50 held at 1 ms while p99 reached 152 ms.
+- <strong>Staff:</strong> Reframes it as capacity planning — the saturation point should be a known number from load-testing to saturation rather than to expected peak — and notes that raising a pool relocates a bottleneck as often as it removes one (doubling a pool under CPU saturation made latency worse).</p>
+<hr />
 <h2 id="quick-fire-questions-from-this-domains-flashcards">Quick-fire questions (from this domain's Flashcards)<a class="headerlink" href="#quick-fire-questions-from-this-domains-flashcards" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -12710,6 +12757,31 @@ Added 2 questions; no Flashcards section in that chapter.)</p>
 <td>Why can a monthly error-budget aggregate be misleading on its own?</td>
 <td><a href="../../../13-observability/performance-methodology-and-slo-error-budgets/#flashcards">Performance Methodology (USE/RED) and SLI/SLO/Error Budgets</a></td>
 </tr>
+<tr>
+<td>15</td>
+<td>What three questions narrow a production symptom before you reach for any tool?</td>
+<td><a href="../../../13-observability/production-troubleshooting-methodology/#flashcards">Production Troubleshooting Methodology</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>Throughput plateaus while latency climbs — what does that mean, and what will <em>not</em> fix it?</td>
+<td><a href="../../../13-observability/production-troubleshooting-methodology/#flashcards">Production Troubleshooting Methodology</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>What did p50 and p99 actually do in the measured saturation run?</td>
+<td><a href="../../../13-observability/production-troubleshooting-methodology/#flashcards">Production Troubleshooting Methodology</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Why is "we should have tested with more data" an incomplete explanation of a dev-vs-prod gap?</td>
+<td><a href="../../../13-observability/production-troubleshooting-methodology/#flashcards">Production Troubleshooting Methodology</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Name the three causes of "500s with nothing in the logs" and what tells them apart.</td>
+<td><a href="../../../13-observability/production-troubleshooting-methodology/#flashcards">Production Troubleshooting Methodology</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -12768,7 +12840,7 @@ Added 2 questions; no Flashcards section in that chapter.)</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 20:44:12 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 18:15:16 UTC">September 29, 2026</span>
   </span>
 
     
