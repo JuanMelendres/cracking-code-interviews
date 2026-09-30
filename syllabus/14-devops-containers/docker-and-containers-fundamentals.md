@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 14-devops-containers
 topic_id: T-2208
 status: canonical
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
@@ -161,6 +161,34 @@ No existing `production-cookbook/` entry has a Docker-fundamentals-specific root
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+A container is an ordinary process on the host's kernel, given its own isolated view of the filesystem, network, and process list using namespaces and cgroups. That is the key difference from a virtual machine, which boots a whole guest operating system — so a container starts in milliseconds and a VM in tens of seconds. An image is the read-only template; a container is a running instance of one.
+
+#### 2-Minute Answer
+
+Open as above, then answer what containers actually solve, since "it works on my machine" is the honest short version.
+
+**The image bundles the application *and* its dependencies**, so what runs in production is byte-identical to what ran in CI. That is the whole value proposition, and it is why the unit of deployment moved from "a jar plus a runbook" to "an image tag."
+
+**Then layers, because they explain both build speed and image size.** Each `Dockerfile` instruction produces a layer, layers are cached, and a change invalidates every layer after it. That is why dependency installation goes *before* copying source code — source changes every build and dependencies rarely do.
+
+**One concrete instance:** "Putting `COPY . .` before `RUN mvn dependency:go-offline` means every source edit re-downloads every dependency."
+
+Close by naming the boundary: containers isolate, they do not by themselves secure — they share the host kernel.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: a container as a process with an isolated view, and namespaces and cgroups as the mechanism (Section 3); container versus VM, with the startup-time and resource consequences; images, layers, and the caching rule that determines `Dockerfile` ordering; the registry and tags, and why `latest` is not a version; volumes and why container filesystems are ephemeral by default; networking and port publishing; the JVM-in-a-container concern — container-aware ergonomics and heap sizing (linked from [Kubernetes Resource Limits, Probes, and JVM Sizing](kubernetes-resource-limits-probes-and-jvm-sizing.md)); and close with the security boundary being weaker than a VM's, because the kernel is shared.
+
+#### Whiteboard Explanation
+
+Draw two stacks side by side. VM: hardware, host OS, hypervisor, then three boxes each containing a *full guest OS* plus an app. Container: hardware, host OS, container runtime, then three boxes containing *only* the app. The missing guest-OS layer is the entire answer, and it explains startup time, image size, and the security trade-off at once.
 **Q1 (Junior): "What's the difference between a Docker image and a Docker container?"**
 Expected answer: an image is a read-only template; a container is one running (or stopped) instance created from that image — the same class/object relationship as in object-oriented programming.
 

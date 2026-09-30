@@ -115,6 +115,22 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 
 This round predates the per-question 1–5 scale used in later rounds. It is scored instead against the shared six-dimension rubric in [`study-packs/week-01/10-week-1-evaluation-rubric.md`](../../study-packs/week-01/10-week-1-evaluation-rubric.md) — Technical Depth (Q1–Q2), Coding (Q5), Behavioral Communication (Q6), plus Java Fluency and Production Judgment as cross-cutting dimensions evaluators should score from the same answers. Each dimension uses the 1–5 scale reproduced in the Evaluator Section above (3 = Mid, 4 = Senior, 5 = Staff). The source rubric states explicitly that Week 1 has no formal pass/fail checkpoint (the first gated checkpoint is Week 3); instead, use the six scores to identify the single weakest dimension and prioritize remediation there.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through their six dimension scores, starting with the weakest. Questions 1–2 and Question 6 share a theme worth naming explicitly: both test whether the candidate can represent a rejected option — an alternative architecture, an alternative technical decision — honestly and in its strongest form, rather than dismissing it to make the chosen path look obviously correct. Questions 4 and 5 share a different theme: both use a targeted nudge or interrupt to check whether the candidate's first-pass answer holds up, or whether it was surface-level pattern matching (naming one mechanism instead of two; a memorized-but-buggy LRU implementation).

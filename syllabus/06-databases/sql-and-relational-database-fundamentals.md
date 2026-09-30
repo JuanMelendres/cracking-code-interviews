@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 06-databases
 topic_id: T-2202
 status: canonical
-version: 2.1
-last_updated: 2026-09-18
+version: 2.2
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites: []
 related:
@@ -373,6 +373,32 @@ No existing `production-cookbook/` entry has an SQL-fundamentals-specific root c
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+Data lives in tables: fixed, typed columns with one row per record. A primary key uniquely identifies a row. A foreign key is a column pointing at another table's primary key — that is how relationships are expressed, by reference rather than by nesting. A `JOIN` recombines them at query time. `SELECT` reads; `INSERT`, `UPDATE`, and `DELETE` write.
+
+#### 2-Minute Answer
+
+Open as above, then give the thing that distinguishes someone who has used SQL from someone who has read about it.
+
+**Normalization is why the data is split across tables at all.** Storing an author's name on every book row means updating it in a hundred places and risking a hundred disagreements. Storing it once in `authors` and referencing it by `author_id` means one place to change. The `JOIN` is the price you pay for that, and it is usually worth it.
+
+**Then the join types, briefly and concretely.** "`INNER JOIN` returns only rows with a match on both sides. `LEFT JOIN` keeps every row from the left table and fills nulls where the right side has nothing — which is how you find the authors with no books."
+
+Close with transactions: a group of statements that either all take effect or none do, which is what makes a transfer between two accounts safe.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: tables, rows, typed columns, and the relational model in one sentence (Section 3); primary and foreign keys, and referential integrity as a guarantee the database enforces rather than the application; the join types with a worked example of `LEFT JOIN` finding absences; `GROUP BY` and aggregation, and the `WHERE`-versus-`HAVING` distinction; normalization and the duplicate-update problem it exists to prevent (linked from [Database Normalization: 1NF through BCNF](database-normalization-1nf-through-bcnf.md)); transactions and ACID; indexes as the first performance lever and why they are not free (linked from [Index Structures: B-Tree, Composite, Covering](index-structures-btree-composite-covering.md)); and close with reading a query plan rather than guessing.
+
+#### Whiteboard Explanation
+
+Draw two tables as boxes with column names: `authors(author_id, name)` and `books(book_id, title, author_id)`. Draw one arrow from `books.author_id` to `authors.author_id` and label it "foreign key". Then write the `JOIN` beneath it. The arrow is the relationship and the `JOIN` is how you travel it — say exactly that.
 **Q1 (Junior): "What's the difference between a primary key and a foreign key?"**
 Expected answer: a primary key uniquely identifies each row in its own table; a foreign key references another table's primary key, expressing a relationship and letting the database enforce that the referenced row actually exists.
 

@@ -3,8 +3,8 @@ title: "Interview Question Bank — 02-java/concurrency"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-27
+version: 1.1
+last_updated: 2026-09-30
 related:
   - ../../02-java/concurrency/INDEX.md
   - 02-java-collections.md
@@ -18,16 +18,50 @@ Part of the `02-java` compendium. See
 and sourcing discipline, and `00-project/interview-question-bank-plan.md` for the
 full 22-domain plan.
 
-**Honest count for this subdomain:** 15 chapters yielded 30 deep questions + 42
-quick-fire questions = **72 real questions**. (Updated 2026-09-27: added a wait()
+**Honest count for this subdomain:** 16 chapters yielded 33 deep questions + 47
+quick-fire questions = **80 real questions**. (Updated 2026-09-27: added a wait()
 vs. sleep() vs. join() question to Deadlock, Race Conditions, and Thread Diagnostics
 — a genuinely missing, commonly-asked basic question found via a generic interview
-checklist audit.) This subdomain has no dedicated Junior Fundamentals chapter
-(concurrency is inherently a Mid+ topic in this repository's own target-level
-design), so unlike `collections/`, there's no separate leveled-Junior question set
-to fold in — several individual questions below still have real, honest Junior/Mid
-framings where the underlying misconception is one a less experienced engineer
-would genuinely have.
+checklist audit.) **Updated 2026-09-30: this subdomain now has a dedicated Junior
+Fundamentals chapter** — `java-concurrency-fundamentals-threads-races-and-synchronization.md`
+(T-2214), contributing 3 questions + 5 quick-fire cards. The note that previously
+stood here said concurrency was "inherently a Mid+ topic in this repository's own
+target-level design", and that position was revisited rather than defended: every
+other Java subdomain already had a T-22xx on-ramp, `concurrency` was the only one
+without, and `new Thread(` had **zero** occurrences anywhere in `02-java` — the
+repository never showed how to start a thread. The fifteen existing chapters remain
+Senior/Staff-targeted; the new one is the entry point that hands off to them.
+
+---
+
+## Java Concurrency Fundamentals: Threads, Races, and Synchronization
+
+### Q1 — What is the difference between `synchronized`, `volatile`, and `AtomicInteger`?
+
+**Canonical treatment:** [§ 15. Interview Questions, Q1](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Knows `synchronized` provides mutual exclusion and that `volatile` is "about visibility", without being able to say why that is insufficient for a counter — or, commonly, asserts that `volatile` "makes a variable thread-safe".
+- **Senior:** Explains *why* `volatile` fails on `counter++`: it is read-add-write, and `volatile` does not prevent interleaving between the read and the write. Cites the measurement — 8 threads, 800,000 expected, ~230,000 plain and ~177,000 volatile. States the practical rule: `volatile` for a flag, an atomic for one variable, a lock for several fields that must change together.
+- **Staff:** Reframes the choice as "what is the invariant" rather than "which keyword", notes that two atomics cannot make two fields atomic together, and observes that the better system-level move is usually to remove the shared mutable state — partitioning, message passing, or immutability — rather than protect it more carefully.
+
+### Q2 — What is a race condition? Give an example.
+
+**Canonical treatment:** [§ 15. Interview Questions, Q2](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** "Two threads accessing the same thing at the same time and getting the wrong result", without the read-modify-write decomposition — or confuses it with deadlock.
+- **Senior:** Decomposes `counter++` into read, add, write, and explains that two threads can both read 41, both compute 42, and both write 42 — two increments, one net change. Measured: roughly 70% of 800,000 increments lost. Adds why it is dangerous rather than merely wrong: nothing throws, tests pass, it surfaces under load.
+- **Staff:** Distinguishes a race condition from a data race, and observes that the real defence is design — no shared mutable state means no race — with synchronization as the fallback when sharing is genuinely required.
+
+### Q3 — Why might a thread never see another thread's write to a `boolean` flag?
+
+**Canonical treatment:** [§ 15. Interview Questions, Q3](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Believes the write becomes visible "eventually", or that adding a `sleep` in the loop fixes it — it often masks the problem without fixing it.
+- **Senior:** Knows the language never promised visibility without `volatile` or another happens-before edge, and names hoisting and caching as the mechanisms. Measured: a non-volatile reader spun **323,522,386** times and never observed the write, exiting only on a three-second cap, while the `volatile` version exited immediately — reproduced on every run.
+- **Staff:** Frames the Java Memory Model as a contract about what the runtime is *allowed* to do rather than a description of what it usually does, and draws the operational consequence: a latent visibility bug can surface from a JVM upgrade with no application change, which makes it very hard to attribute.
 
 ---
 
@@ -429,6 +463,11 @@ would genuinely have.
 | 40 | What causes a virtual thread to pin its carrier? | [Virtual Threads](../../02-java/concurrency/virtual-threads.md#flashcards) |
 | 41 | Why is pooling virtual threads considered an anti-pattern? | [Virtual Threads](../../02-java/concurrency/virtual-threads.md#flashcards) |
 | 42 | Which of `wait()`, `sleep()`, and `join()` releases the monitor lock while paused? | [Deadlock, Race Conditions, and Thread Diagnostics](../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics.md#flashcards) |
+| 43 | What actually happens if you call `thread.run()` instead of `thread.start()`? | [Java Concurrency Fundamentals](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions) |
+| 44 | Eight threads increment a shared `int` 100,000 times each. What is the result, and why? | [Java Concurrency Fundamentals](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions) |
+| 45 | Does marking a counter `volatile` fix the lost-update problem? | [Java Concurrency Fundamentals](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions) |
+| 46 | A thread spins on a non-volatile `boolean` flag another thread sets. What happens? | [Java Concurrency Fundamentals](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions) |
+| 47 | Two related fields must always agree to any observer — two atomics, or one lock? | [Java Concurrency Fundamentals](../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization.md#15-interview-questions) |
 
 ---
 

@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2207
 status: draft
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2]
 prerequisites:
   - ../language-core/java-oop-fundamentals-classes-objects-and-interfaces.md
@@ -148,6 +148,32 @@ No existing `production-cookbook/` entry has a collections-usage-fundamentals-sp
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+They answer three different questions. A `List` keeps order and allows duplicates. A `Set` allows no duplicates. A `Map` stores values you look up by a key rather than by position. Concretely: add `"alice"` twice to a `List` and `size()` is 2; do it to a `HashSet` and it is 1. Which *implementation* to pick is a separate question.
+
+#### 2-Minute Answer
+
+Open as above, then add the two things the interviewer is usually listening for.
+
+**Why the interfaces differ at all.** They encode different guarantees, and the guarantee is what costs you. A `List` promises positional access, so it must track order. A `Set` promises uniqueness, so every `add` has to check whether the element is already there — which is why `HashSet` needs `hashCode`/`equals` to work correctly. A `Map` promises key lookup, so it hashes the key rather than scanning.
+
+**One concrete selection.** "Counting unique words in a document: `Map<String, Integer>`, because I need the word *and* its count. If I only needed the distinct words, `Set<String>`."
+
+Then hand over the next level yourself: "the choice *within* each interface — `ArrayList` versus `LinkedList`, `HashSet` versus `TreeSet` — is about access pattern, if that is useful."
+
+#### 10-Minute Deep Dive
+
+Cover, in order: the three questions each interface answers (Section 3); why `Set` and `Map` both depend on `hashCode`/`equals` and what breaks when that contract is violated (Section 4, and [equals, hashCode, and Comparable Contracts](../language-core/equals-hashcode-and-comparable-contracts.md)); `ArrayList` versus `LinkedList` as an access-pattern decision rather than a general "which is faster" (linked from [ArrayList and LinkedList Internals](arraylist-and-linkedlist-internals.md)); `HashMap` versus `TreeMap` versus `LinkedHashMap` as ordering guarantees you pay for; and close with the selection method in [Collection Selection Decision Matrix](collection-selection-decision-matrix.md) — start from the access pattern, not from the type name.
+
+#### Whiteboard Explanation
+
+Draw three boxes labelled `List`, `Set`, `Map`. Under each, write the one question it answers: "what is at position 3?", "have I seen this before?", "what is stored under this key?". Then put the same two elements — `alice`, `alice` — into all three and write the resulting size beneath: 2, 1, 1. Narrate while drawing; the duplicate is the whole picture.
 **Q1 (Junior): "What's the difference between a List and a Set?"**
 Expected answer: a `List` is ordered and allows duplicates; a `Set` has no guaranteed order (for `HashSet`) and never allows duplicates.
 

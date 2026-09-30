@@ -2,7 +2,7 @@
 title: "Interview Preparation — Domain Index"
 document_type: syllabus-domain-index
 domain: 20-interview-preparation
-status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated; L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 20th behavioral chapter added 2026-09-21 (Underperformance and Difficult Feedback Narratives, T-1516 — gap audit, the narration counterpart to 19-leadership-staff's T-1908); 21st chapter added 2026-09-23 (Project Ownership Narrative, T-1605, technical-answers/, user-requested)
+status: 19 of 19 mapped chapters physically relocated (Phase 3, 2026-09-03); mock-interviews/ and company-prep/ deliberately not relocated; L1/L2 retrofit complete (Phase 5, 2026-09-04) — domain fully L1-L4; 20th behavioral chapter added 2026-09-21 (Underperformance and Difficult Feedback Narratives, T-1516 — gap audit, the narration counterpart to 19-leadership-staff's T-1908); 21st chapter added 2026-09-23 (Project Ownership Narrative, T-1605, technical-answers/, user-requested); 22nd chapter added 2026-09-30 (Explaining Technical Concepts Under Pressure, T-1606, technical-answers/ — the delivery counterpart to T-1601's content scaffold, user-requested after a real interview where known material was delivered badly)
 last_updated: 2026-09-23
 ---
 
@@ -70,10 +70,11 @@ The interview-application layer: behavioral (from `behavioral-handbook/`, reloca
 | The Technical Answer Framework — Nine Layers (T-1601) | `interview-playbook/technical-answers/technical-answer-framework.md` | `syllabus/20-interview-preparation/technical-answers/technical-answer-framework.md` |
 | Trade-off Narration and Architecture Decision Records (T-1505/T-916) | `interview-playbook/technical-answers/trade-off-narration-and-adrs.md` | `syllabus/20-interview-preparation/technical-answers/trade-off-narration-and-adrs.md` |
 | Project Ownership Narrative: Design, Build, Deploy, Support (T-1605, added 2026-09-23, user-requested) | — (new, not migrated) | `syllabus/20-interview-preparation/technical-answers/project-ownership-narrative.md` |
+| Explaining Technical Concepts Under Pressure (T-1606, added 2026-09-30, user-requested after a real interview where known material was delivered badly) | — (new, not migrated) | `syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md` |
 
 ## mock-interviews/ (referenced, not relocated)
 
-`practice/mock-interviews/` (16 real mock-interview transcripts plus its own README, as of the 2026-09-23 Project Ownership Deep-Dive round — see that directory's own README for its full addition history) stays at its current path per the plan's Section 7.4 — `practice/` never relocates, to avoid multiplying broken-link risk across a directory that's already flat and discoverable by filename. Referenced here, not duplicated:
+`practice/mock-interviews/` (17 real mock-interview rounds plus the 2026-09-30 Explanation Drill — which is not a technical round but a solo, recorded delivery drill — and its own README; see that directory's own README for its full addition history) stays at its current path per the plan's Section 7.4 — `practice/` never relocates, to avoid multiplying broken-link risk across a directory that's already flat and discoverable by filename. Referenced here, not duplicated:
 
 - [`practice/mock-interviews/`](../../practice/mock-interviews/README.md)
 
