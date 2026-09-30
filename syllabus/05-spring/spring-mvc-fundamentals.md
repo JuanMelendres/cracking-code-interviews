@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 05-spring
 topic_id: T-2203
 status: canonical
-version: 1.4
-last_updated: 2026-09-18
+version: 1.5
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md
@@ -349,6 +349,32 @@ No existing `production-cookbook/` entry has an MVC-fundamentals-specific root c
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+A request arrives at the `DispatcherServlet`, which finds the controller method mapped to that URL, converts the JSON body into your parameter object, calls your method, and converts the return value back to JSON. `@RestController` marks the class and `@GetMapping`/`@PostMapping` map the methods. Validation, exception handling, and security all plug into that same pipeline.
+
+#### 2-Minute Answer
+
+Open as above, then walk one real request end to end, because that is what the question is usually asking for.
+
+**`GET /tasks/1`:** the `DispatcherServlet` receives it, `HandlerMapping` resolves it to `TaskController#getTask`, `@PathVariable` binds `1` to the method parameter, the method returns a `Task` object, and an `HttpMessageConverter` — Jackson — serializes it to JSON with a 200.
+
+**Then the layering**, since interviewers listen for it: controller handles HTTP and nothing else, service holds business logic, repository talks to the database. The controller's job is translation — HTTP in, domain call, HTTP out — and business logic that leaks into it is the most common structural criticism of a Spring codebase.
+
+Close by naming where errors go: a `@RestControllerAdvice` turns exceptions into consistent responses, so controllers stay free of try/catch.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: the request lifecycle through the `DispatcherServlet`, naming each stage (Section 3/5); the mapping annotations and parameter binding — `@PathVariable`, `@RequestParam`, `@RequestBody` — and what each binds from; message conversion and why returning an object produces JSON with no explicit serialization; the three-layer split and why business logic in a controller is a structural problem rather than a style one; `ResponseEntity` when you need control over status and headers; validation with `@Valid` and centralized error handling (linked from [Bean Validation and Global Exception Handling](bean-validation-and-global-exception-handling.md)); and close with where filters and interceptors sit relative to all of this ([Request Filters, Interceptors, and the Servlet Chain](request-filters-interceptors-and-the-servlet-chain.md)).
+
+#### Whiteboard Explanation
+
+Draw the request as a single left-to-right line: Client → DispatcherServlet → HandlerMapping → Controller → Service → Repository → Database, then the same line back out with "JSON" labelled on the return arrow. Narrate each hop as you draw it. Silence while drawing is the most common point-loss here, and this diagram takes about forty seconds to narrate properly.
 **Q1 (Junior): "What does `@Autowired` do?"**
 Expected answer: it tells Spring to inject a dependency — Section 3/4's core idea — though the strongest answers note that on a single constructor (Spring Framework 4.3+), the annotation isn't even required.
 

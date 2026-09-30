@@ -25,6 +25,7 @@ The applied method and case studies: the six-phase design method plus all 21 Arc
 | T-805 | Load Balancing, Service Discovery, and Health Checking | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/load-balancing-service-discovery-and-health-checking.md` |
 | T-808 | Rate Limiting and Throttling Algorithms | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/rate-limiting-and-throttling-algorithms.md` |
 | T-809 | Idempotency at System Edges | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/idempotency.md` |
+| T-2443 | Batch and Scheduled Job Design | L1, L2, L3, L4 — fully written, real demo against H2 measuring 3x duplicate execution on three instances and checkpoint-versus-single-transaction crash cost (2026-09-29) | `syllabus/11-system-design/batch-and-scheduled-job-design.md` |
 | T-810 | Search and Indexing Systems | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/search-and-indexing-systems.md` |
 | T-812 | Real-Time Delivery: WebSocket, SSE, Long-Polling, and Push | L1, L2, L3, L4 — fully written (Phase 5, 2026-09-04) | `syllabus/11-system-design/realtime-delivery-websocket-sse-and-long-polling.md` |
 | T-2427 | System Design Patterns: Recognition and Quick-Reference Guide | L1, L2, L3, L4 — fully written (2026-09-22) | `syllabus/11-system-design/system-design-patterns-recognition-and-quick-reference.md` |

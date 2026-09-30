@@ -1,0 +1,34 @@
+Real, executed output of CollectorCatalogDemo (OpenJDK 21.0.12).
+
+Reproduce:  javac -d out src/*.java && java -cp out CollectorCatalogDemo
+
+toList()                         [Ana, Ben, Cleo, Dev, Eve, Fay]
+toUnmodifiableList()             [Ana, Ben, Cleo, Dev, Eve, Fay]
+toSet()                          [Design, Engineering, Sales]
+joining()                        AnaBenCleoDevEveFay
+joining(", ")                    Ana, Ben, Cleo, Dev, Eve, Fay
+joining(", ", "[", "]")          [Ana, Ben, Cleo, Dev, Eve, Fay]
+counting()                       6
+summingInt(salary)               547000
+averagingInt(age)                36.333333333333336
+summarizingInt(salary)           IntSummaryStatistics{count=6, sum=547000, min=72000, average=91166.666667, max=120000}
+minBy(salary)                    Dev
+maxBy(salary)                    Ben
+partitioningBy(salary > 90k)     {false=[Cleo, Dev, Eve], true=[Ana, Ben, Fay]}
+groupingBy(department)           {Design=[Cleo, Fay], Engineering=[Ana, Ben], Sales=[Dev, Eve]}
+groupingBy + counting()          {Design=2, Engineering=2, Sales=2}
+groupingBy + averagingInt        {Design=89500.0, Engineering=107500.0, Sales=76500.0}
+groupingBy(TreeMap::new, ...)    {Design=2, Engineering=2, Sales=2}
+filtering(age < 40)              {Design=[Cleo, Fay], Engineering=[Ana], Sales=[Eve]}
+flatMapping(name chars)          {Design=[a, C, e, F, y, l, o], Engineering=[A, a, B, e, n], Sales=[D, e, E, v]}
+toMap(name, salary)              {Cleo=88000, Dev=72000, Ana=95000, Eve=81000, Ben=120000, Fay=91000}
+toMap(dept, salary, merge)       {Design=179000, Engineering=215000, Sales=153000}
+toMap(..., LinkedHashMap::new)   {Ana=95000, Ben=120000, Cleo=88000, Dev=72000, Eve=81000, Fay=91000}
+reducing(0, salary, Integer::sum) 547000
+teeing(min, max)                 Dev ... Ben
+collectingAndThen(toList, size)  6
+
+== Mutability, checked rather than assumed ==
+  toList()                 MUTABLE   (add succeeded)
+  toUnmodifiableList()     IMMUTABLE (UnsupportedOperationException)
+  Stream.toList()          IMMUTABLE (UnsupportedOperationException)

@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 05-spring
 topic_id: T-2213
 status: canonical
-version: 1.0
-last_updated: 2026-09-26
+version: 1.1
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md
@@ -90,11 +90,11 @@ Requesting a `request`- or `session`-scoped bean outside of an actual active HTT
 
 ### Stereotype annotations, auto-configuration, and starters — one line each, full depth elsewhere
 
-`@Component`/`@Service`/`@Repository`/`@Controller` mark a class as a bean under a self-documenting name for its layer, `@Configuration`/`@Bean` register a bean from a method instead of a class-level annotation, and `@SpringBootApplication`/auto-configuration/starters are Spring Boot's own layer on top of the same container, eliminating boilerplate — [Spring MVC Fundamentals](spring-mvc-fundamentals.md#core-concepts) and [Spring Framework vs. Spring Boot](spring-framework-vs-spring-boot.md#core-concepts) already teach every one of these in real depth (including `@Repository`'s persistence exception translation and exactly what `@SpringBootApplication` expands into); Section 15 below answers each as a direct interview question, citing that existing depth rather than repeating it.
+`@Component`/`@Service`/`@Repository`/`@Controller` mark a class as a bean under a self-documenting name for its layer, `@Configuration`/`@Bean` register a bean from a method instead of a class-level annotation, and `@SpringBootApplication`/auto-configuration/starters are Spring Boot's own layer on top of the same container, eliminating boilerplate — [Spring MVC Fundamentals](spring-mvc-fundamentals.md#4-core-concepts-l2) and [Spring Framework vs. Spring Boot](spring-framework-vs-spring-boot.md#core-concepts) already teach every one of these in real depth (including `@Repository`'s persistence exception translation and exactly what `@SpringBootApplication` expands into); Section 15 below answers each as a direct interview question, citing that existing depth rather than repeating it.
 
 ## 5. How It Works Internally (L3)
 
-See [Spring MVC Fundamentals § Internal Implementation](spring-mvc-fundamentals.md#internal-implementation) for the real, demonstrated mechanics of component scanning and constructor-based dependency resolution (including the real, captured difference between a constructor-injection circular dependency, which fails loudly with `BeanCurrentlyInCreationException`, and the identical cycle via field injection, which resolves silently) and [Auto-Configuration and Bean Lifecycle § Internal Implementation](auto-configuration-and-bean-lifecycle.md#internal-implementation) for the real lifecycle-callback ordering (`BeanPostProcessor` before and after initialization, `@PostConstruct`, `@ConditionalOnMissingBean`). This chapter does not duplicate either demo — Section 15 routes each specific interview question to whichever of the two actually proves the answer.
+See [Spring MVC Fundamentals § Internal Implementation](spring-mvc-fundamentals.md#5-how-it-works-internally-l3) for the real, demonstrated mechanics of component scanning and constructor-based dependency resolution (including the real, captured difference between a constructor-injection circular dependency, which fails loudly with `BeanCurrentlyInCreationException`, and the identical cycle via field injection, which resolves silently) and [Auto-Configuration and Bean Lifecycle § Internal Implementation](auto-configuration-and-bean-lifecycle.md#internal-implementation) for the real lifecycle-callback ordering (`BeanPostProcessor` before and after initialization, `@PostConstruct`, `@ConditionalOnMissingBean`). This chapter does not duplicate either demo — Section 15 routes each specific interview question to whichever of the two actually proves the answer.
 
 ## 6. Practical Usage
 
@@ -137,6 +137,32 @@ No dedicated production-cookbook entry is cited here — an honest gap, not a pl
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+Inversion of Control means your code stops constructing its own dependencies and instead declares what it needs; the container builds and wires them. Dependency injection is how that happens — usually a constructor parameter. Spring Boot adds auto-configuration on top: it inspects the classpath and configures sensible defaults, which is why a web application needs no XML and no explicit server setup.
+
+#### 2-Minute Answer
+
+Open as above, then answer the question behind the question: *what does this actually buy?*
+
+**Testability and swappability, concretely.** "If `OrderService` takes a `PaymentGateway` in its constructor, a test passes a fake one with no framework involved. If it called `new StripeGateway()` itself, the test would need the real Stripe." That one example does more work than any definition of IoC.
+
+**Then Spring versus Spring Boot**, since they are routinely conflated. Spring is the container and the programming model. Spring Boot is Spring plus opinionated defaults: starters that bring a curated dependency set, auto-configuration that reacts to what is on the classpath, and an embedded server so the artefact is a runnable jar rather than a war you deploy somewhere.
+
+Close with the honest cost: the defaults are invisible until they are wrong, and debugging them means knowing what auto-configuration decided and why.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: IoC as a shift in who constructs what, and DI as the mechanism (Section 3); constructor injection as the default and why field injection is discouraged — it hides dependencies and blocks immutability; beans, the container, and the lifecycle from construction to `@PostConstruct` (linked from [Auto-Configuration and Bean Lifecycle](auto-configuration-and-bean-lifecycle.md)); component scanning and the stereotype annotations as specializations of `@Component`; configuration and profiles; what auto-configuration actually does, including how to see its decisions; and close with the trade-off — convention over configuration is leverage until a default is wrong, and then it is a debugging problem.
+
+#### Whiteboard Explanation
+
+Draw two columns. On the left, `OrderService` with an arrow labelled `new StripeGateway()` pointing at a concrete class. On the right, `OrderService` with an arrow pointing at an interface `PaymentGateway`, and two arrows coming *up* into it from `StripeGateway` and `FakeGateway`, with a box labelled "container" doing the wiring. The direction of the arrow reversing is literally the inversion.
 ### Question 1 — What is the Spring Framework?
 
 **Why interviewers ask it.** The literal opening question of most Spring loops — tests whether a candidate can state what Spring actually is before any annotation-level detail.
@@ -161,7 +187,7 @@ No dedicated production-cookbook entry is cited here — an honest gap, not a pl
 
 **Expected answer (Junior).** Instead of a class creating the objects it depends on with `new`, it declares what it needs (usually as a constructor parameter), and the Spring container builds the dependency and hands it in.
 
-**Strong Mid answer.** Names all three injection styles (constructor, setter, field) and states which is recommended by default and why (full comparison table: [Spring MVC Fundamentals § Core Concepts](spring-mvc-fundamentals.md#core-concepts)).
+**Strong Mid answer.** Names all three injection styles (constructor, setter, field) and states which is recommended by default and why (full comparison table: [Spring MVC Fundamentals § Core Concepts](spring-mvc-fundamentals.md#4-core-concepts-l2)).
 
 **Strong Senior answer.** Explains DI as the specific mechanism Spring uses to implement the broader IoC principle (Section 3) — the class stops being responsible for knowing how to construct its own dependencies, only for stating what it needs.
 
@@ -179,11 +205,11 @@ No dedicated production-cookbook entry is cited here — an honest gap, not a pl
 
 **Expected answer (Junior).** Constructor injection is generally recommended — dependencies are visible in one place (the constructor signature) and the class can be fully constructed and unit-tested with plain `new`, no Spring container required.
 
-**Strong Mid answer.** Adds the immutability point (constructor-injected fields can be `final`; field-injected ones cannot) and the "too many dependencies" smell (a 10-parameter constructor is an obvious code smell; silently-accumulating `@Autowired` fields are not) — full 10-row comparison: [Spring MVC Fundamentals § Core Concepts](spring-mvc-fundamentals.md#core-concepts).
+**Strong Mid answer.** Adds the immutability point (constructor-injected fields can be `final`; field-injected ones cannot) and the "too many dependencies" smell (a 10-parameter constructor is an obvious code smell; silently-accumulating `@Autowired` fields are not) — full 10-row comparison: [Spring MVC Fundamentals § Core Concepts](spring-mvc-fundamentals.md#4-core-concepts-l2).
 
 **Strong Senior answer.** States that field injection makes a class untestable with plain `new` (a private field can't be set without reflection or a Spring test context) and explains this as the real, practical cost, not a style preference.
 
-**Staff-level extension.** Names the real circular-dependency divergence: constructor injection fails loudly at startup (`BeanCurrentlyInCreationException`) when two beans depend on each other; field injection resolves the identical cycle silently, which "fixes" the symptom without fixing the underlying design issue (real, captured evidence: [Spring MVC Fundamentals § Internal Implementation](spring-mvc-fundamentals.md#internal-implementation)).
+**Staff-level extension.** Names the real circular-dependency divergence: constructor injection fails loudly at startup (`BeanCurrentlyInCreationException`) when two beans depend on each other; field injection resolves the identical cycle silently, which "fixes" the symptom without fixing the underlying design issue (real, captured evidence: [Spring MVC Fundamentals § Internal Implementation](spring-mvc-fundamentals.md#5-how-it-works-internally-l3)).
 
 **Common mistakes.** Recommending field injection "because it's shorter to write," with no acknowledgment of the visibility/immutability/testability costs.
 

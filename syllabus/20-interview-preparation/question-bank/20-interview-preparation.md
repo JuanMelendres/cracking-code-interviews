@@ -3,8 +3,8 @@ title: "Interview Question Bank — 20-interview-preparation"
 document_type: interview-question-bank
 domain: 20-interview-preparation
 status: in progress
-version: 1.0
-last_updated: 2026-09-27
+version: 1.1
+last_updated: 2026-09-30
 related:
   - ../INDEX.md
   - 01-computer-science-foundations.md
@@ -31,12 +31,18 @@ normally. `mock-interviews/` and `company-prep/` are reference-only per this dom
 own `INDEX.md` and were not mined (private/non-canonical, per the domain's Phase 3
 migration notes).
 
-**Honest count for this domain:** 7 chapters yielded 14 deep questions + 19 quick-fire
-questions = **33 real questions**. No Junior Fundamentals chapter — this material
+**Honest count for this domain:** 8 chapters yielded 17 deep questions + 24 quick-fire
+questions = **41 real questions**. No Junior Fundamentals chapter — this material
 targets Senior/Staff interview delivery specifically. (Updated 2026-09-27:
 `project-ownership-narrative.md` had a complete Interview Questions section never
 indexed — a stale-index gap, not a content gap. Added 2 questions + 3 quick-fire
-cards.)
+cards.) (Updated 2026-09-30:
+`explaining-technical-concepts-under-pressure.md` is a new chapter, T-1606, closing a
+real gap the whole repository had — every existing document here improves *what* you
+say, and nothing covered delivery. `think out loud`, `check for understanding`,
+`explanation technique`, `teach back`, and `filler word` all had **zero** occurrences
+repository-wide; 47 chapters *use* an analogy and none taught how to build one.
+Contributes 3 questions + 5 quick-fire cards.)
 
 ---
 
@@ -194,6 +200,39 @@ cards.)
 
 ---
 
+## Explaining Technical Concepts Under Pressure
+
+### Q1 — Explain a concept you know well to someone two levels more junior. Then to a peer. Then to a non-engineer.
+
+**Canonical treatment:** [§ Interview Questions, Q1](../technical-answers/explaining-technical-concepts-under-pressure.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Produces one explanation three times with the vocabulary swapped. The check is concrete — do the three versions lead with *different first sentences*? If the opening claim is identical, only the words changed.
+- **Senior:** Three genuinely different constructions. The junior version leans on one concrete instance and one analogy and omits edge cases; the peer version drops the analogy and leads with the trade-off rather than the definition; the non-engineer version drops all vocabulary and keeps only the consequence.
+- **Staff:** Identifies the non-engineer version as the hardest, because it requires knowing which consequence actually matters — and names that as the same skill that writes the first paragraph of an RFC or the summary line of an incident report.
+
+**Common mistakes:** talking *down* in the junior version (the adjustment is vocabulary and branch count, never respect); losing accuracy rather than detail in the simple version.
+
+### Q2 — You are halfway through an explanation and realise the interviewer has lost the thread. What do you do?
+
+**Canonical treatment:** [§ Interview Questions, Q2](../technical-answers/explaining-technical-concepts-under-pressure.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Keeps going, or repeats the same explanation more slowly — treating it as a volume problem rather than a framing problem.
+- **Senior:** Stops the thread and re-anchors, offering a restart at a different level: *"I've gone deep on the internals — do you want me to stay here, or is the practical decision more useful?"*
+- **Staff:** Adds the pre-emptive version — a structural checkpoint built in after the claim and first concrete instance, so a drift is caught at fifteen seconds rather than two minutes — and generalizes it to design reviews and incident calls, where noticing late costs far more.
+
+### Q3 — How do you prepare to explain something, as opposed to learning it?
+
+**Canonical treatment:** [§ Interview Questions, Q3](../technical-answers/explaining-technical-concepts-under-pressure.md#interview-questions)
+
+**What's expected:**
+- **Junior/Mid:** Re-reads, and is genuinely surprised that delivery does not improve. Measures preparation in chapters read rather than answers delivered aloud.
+- **Senior:** Knows these are separate skills — knowing is simultaneous, speech is serial, and the failure is linearisation. Produces the answer out loud, recorded, under a clock, checking time-to-claim, longest unbroken stretch, presence of a concrete instance, and whether it ends.
+- **Staff:** Brings the measured point — the median "10-Minute Deep Dive" in this repository contains **42 seconds** of spoken material, because those sections are outlines, so the expansion is work that happens out loud and in advance. Treats rehearsal as a team capability (rehearsing a design review with one colleague before presenting to eight) rather than a personal habit.
+
+---
+
 ## Quick-fire questions (from this domain's Flashcards)
 
 | # | Question | Canonical chapter |
@@ -217,6 +256,11 @@ cards.)
 | 17 | Name the four phases of a complete project-ownership narrative, in order. | [Project Ownership Narrative](../technical-answers/project-ownership-narrative.md#flashcards) |
 | 18 | When the same real project is narrated at a higher seniority level, what actually changes? | [Project Ownership Narrative](../technical-answers/project-ownership-narrative.md#flashcards) |
 | 19 | Why is the Support phase the most revealing part of this kind of answer? | [Project Ownership Narrative](../technical-answers/project-ownership-narrative.md#flashcards) |
+| 20 | If you change one thing about how you answer a technical question, what should it be? | [Explaining Technical Concepts Under Pressure](../technical-answers/explaining-technical-concepts-under-pressure.md#flashcards) |
+| 21 | You knew the answer and delivered it badly — why is re-reading the wrong fix? | [Explaining Technical Concepts Under Pressure](../technical-answers/explaining-technical-concepts-under-pressure.md#flashcards) |
+| 22 | How much spoken material is in the median "10-Minute Deep Dive" section? | [Explaining Technical Concepts Under Pressure](../technical-answers/explaining-technical-concepts-under-pressure.md#flashcards) |
+| 23 | What makes a technical analogy usable, and what should you say about it unprompted? | [Explaining Technical Concepts Under Pressure](../technical-answers/explaining-technical-concepts-under-pressure.md#flashcards) |
+| 24 | You know the concept but the term will not come to you. What do you do? | [Explaining Technical Concepts Under Pressure](../technical-answers/explaining-technical-concepts-under-pressure.md#flashcards) |
 
 ---
 

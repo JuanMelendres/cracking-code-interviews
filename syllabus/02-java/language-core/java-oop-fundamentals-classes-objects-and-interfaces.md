@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2201
 status: draft
-version: 1.1
-last_updated: 2026-09-17
+version: 1.2
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - java-syntax-fundamentals-variables-control-flow-and-methods.md
@@ -171,6 +171,32 @@ No existing `production-cookbook/` entry has an OOP-fundamentals-specific root c
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+A class is a blueprint; an object is one thing built from it. `class House { int rooms; }` is written once, and every `new House()` gets its own `rooms`. An interface is a contract with no implementation — it says what a type can do, not how. A class can implement many interfaces but extend only one class.
+
+#### 2-Minute Answer
+
+Open as above, then give the distinction that carries the rest of object-oriented design.
+
+**Inheritance shares implementation; an interface shares capability.** `extends` says "I am a kind of this, and I inherit its code." `implements` says "I can do this, however I choose to." That is why single inheritance and multiple interfaces is not an arbitrary Java rule — inheriting two implementations is ambiguous, while promising two capabilities is not.
+
+**One concrete instance.** "`ArrayList implements List` — it promises the `List` behaviour. `LinkedList` promises the same thing with a completely different implementation, which is exactly why code written against `List` works with either."
+
+Close by naming encapsulation as the reason fields are usually `private`: the object controls its own state, so an invalid value has one place to be rejected rather than many.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: class-versus-object and per-instance state (Section 3); fields and methods, and constructors as the point where an object becomes valid; encapsulation and why `private` plus accessors is about protecting invariants rather than ceremony (Section 4); inheritance and `extends`, and what a subclass actually inherits; interfaces as contracts and the reason for single-inheritance-plus-many-interfaces; polymorphism — one reference type, many runtime types, resolved at runtime (linked from [Polymorphism and Dynamic Dispatch](polymorphism-and-dynamic-dispatch.md)); abstract classes as the middle ground; and close with composition over inheritance as the modern default and why.
+
+#### Whiteboard Explanation
+
+Draw one blueprint rectangle labelled `class House` with `rooms` inside it. Beside it draw two separate house shapes, each with its own `rooms = 3` and `rooms = 5`. Arrow from blueprint to both, labelled `new`. That single picture answers "what is the difference between a class and an object" before you have said a word.
 **Q1 (Junior): "What's the difference between a class and an object?"**
 Expected answer: a class is a blueprint/template; an object is a specific instance built from it via `new`, with its own copy of the class's fields. Common mistake: describing them as synonyms, or being unable to give a concrete example.
 

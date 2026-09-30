@@ -140,6 +140,22 @@ Same 1–5 scale and pass threshold as the [Java Core Technical Round](java-core
 
 **Pass threshold for this mock:** average score ≥ 3.5 across all seven questions, with no individual score below 2.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through their own scores question by question, starting with the lowest. Question 3 (live-coding) deserves its own discussion independent of whether the final code was correct: did the candidate write a genuinely failing test before implementing, confirm the failure reason, and narrate throughout — these process signals matter as much as correctness for this specific question. Questions 1 and 5 share an evidence-quality theme (a metric that looks fine isn't the same as a metric that's actually measuring the right thing) — if both scored low, the gap may be broader than either topic individually.
