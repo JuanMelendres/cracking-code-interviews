@@ -625,6 +625,10 @@
          <lastmod>2026-09-30</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/java-concurrency-fundamentals-threads-races-and-synchronization/</loc>
+         <lastmod>2026-09-30</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/cheat-sheets/java-file-io-and-nio2/</loc>
          <lastmod>2026-09-30</lastmod>
     </url>
@@ -1833,6 +1837,10 @@
          <lastmod>2026-09-30</lastmod>
     </url>
     <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/java-concurrency-fundamentals-threads-races-and-synchronization/</loc>
+         <lastmod>2026-09-30</lastmod>
+    </url>
+    <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/flashcards/java-file-io-and-nio2/</loc>
          <lastmod>2026-09-30</lastmod>
     </url>
@@ -2722,6 +2730,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/concurrency/completablefuture-internals/</loc>
+         <lastmod>2026-09-30</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/practice/java/concurrency/concurrency-fundamentals/</loc>
          <lastmod>2026-09-30</lastmod>
     </url>
     <url>
@@ -6062,6 +6074,10 @@
     </url>
     <url>
          <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/02-java/concurrency/forkjoinpool-and-work-stealing/</loc>
+         <lastmod>2026-09-30</lastmod>
+    </url>
+    <url>
+         <loc>https://juanmelendres.github.io/cracking-code-interviews/syllabus/02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/</loc>
          <lastmod>2026-09-30</lastmod>
     </url>
     <url>

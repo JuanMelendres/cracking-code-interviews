@@ -9263,6 +9263,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#java-concurrency-fundamentals-threads-races-and-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Concurrency Fundamentals: Threads, Races, and Synchronization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#java-memory-model-and-volatile" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12406,6 +12417,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#java-concurrency-fundamentals-threads-races-and-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Concurrency Fundamentals: Threads, Races, and Synchronization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#java-memory-model-and-volatile" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12711,16 +12733,39 @@
 <a href="../02-java-collections/"><code>02-java-collections.md</code></a> for the tier-explanation format
 and sourcing discipline, and <code>00-project/interview-question-bank-plan.md</code> for the
 full 22-domain plan.</p>
-<p><strong>Honest count for this subdomain:</strong> 15 chapters yielded 30 deep questions + 42
-quick-fire questions = <strong>72 real questions</strong>. (Updated 2026-09-27: added a wait()
+<p><strong>Honest count for this subdomain:</strong> 16 chapters yielded 33 deep questions + 47
+quick-fire questions = <strong>80 real questions</strong>. (Updated 2026-09-27: added a wait()
 vs. sleep() vs. join() question to Deadlock, Race Conditions, and Thread Diagnostics
 — a genuinely missing, commonly-asked basic question found via a generic interview
-checklist audit.) This subdomain has no dedicated Junior Fundamentals chapter
-(concurrency is inherently a Mid+ topic in this repository's own target-level
-design), so unlike <code>collections/</code>, there's no separate leveled-Junior question set
-to fold in — several individual questions below still have real, honest Junior/Mid
-framings where the underlying misconception is one a less experienced engineer
-would genuinely have.</p>
+checklist audit.) <strong>Updated 2026-09-30: this subdomain now has a dedicated Junior
+Fundamentals chapter</strong> — <code>java-concurrency-fundamentals-threads-races-and-synchronization.md</code>
+(T-2214), contributing 3 questions + 5 quick-fire cards. The note that previously
+stood here said concurrency was "inherently a Mid+ topic in this repository's own
+target-level design", and that position was revisited rather than defended: every
+other Java subdomain already had a T-22xx on-ramp, <code>concurrency</code> was the only one
+without, and <code>new Thread(</code> had <strong>zero</strong> occurrences anywhere in <code>02-java</code> — the
+repository never showed how to start a thread. The fifteen existing chapters remain
+Senior/Staff-targeted; the new one is the entry point that hands off to them.</p>
+<hr />
+<h2 id="java-concurrency-fundamentals-threads-races-and-synchronization">Java Concurrency Fundamentals: Threads, Races, and Synchronization<a class="headerlink" href="#java-concurrency-fundamentals-threads-races-and-synchronization" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-the-difference-between-synchronized-volatile-and-atomicinteger">Q1 — What is the difference between <code>synchronized</code>, <code>volatile</code>, and <code>AtomicInteger</code>?<a class="headerlink" href="#q1-what-is-the-difference-between-synchronized-volatile-and-atomicinteger" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">§ 15. Interview Questions, Q1</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Knows <code>synchronized</code> provides mutual exclusion and that <code>volatile</code> is "about visibility", without being able to say why that is insufficient for a counter — or, commonly, asserts that <code>volatile</code> "makes a variable thread-safe".
+- <strong>Senior:</strong> Explains <em>why</em> <code>volatile</code> fails on <code>counter++</code>: it is read-add-write, and <code>volatile</code> does not prevent interleaving between the read and the write. Cites the measurement — 8 threads, 800,000 expected, ~230,000 plain and ~177,000 volatile. States the practical rule: <code>volatile</code> for a flag, an atomic for one variable, a lock for several fields that must change together.
+- <strong>Staff:</strong> Reframes the choice as "what is the invariant" rather than "which keyword", notes that two atomics cannot make two fields atomic together, and observes that the better system-level move is usually to remove the shared mutable state — partitioning, message passing, or immutability — rather than protect it more carefully.</p>
+<h3 id="q2-what-is-a-race-condition-give-an-example">Q2 — What is a race condition? Give an example.<a class="headerlink" href="#q2-what-is-a-race-condition-give-an-example" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">§ 15. Interview Questions, Q2</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> "Two threads accessing the same thing at the same time and getting the wrong result", without the read-modify-write decomposition — or confuses it with deadlock.
+- <strong>Senior:</strong> Decomposes <code>counter++</code> into read, add, write, and explains that two threads can both read 41, both compute 42, and both write 42 — two increments, one net change. Measured: roughly 70% of 800,000 increments lost. Adds why it is dangerous rather than merely wrong: nothing throws, tests pass, it surfaces under load.
+- <strong>Staff:</strong> Distinguishes a race condition from a data race, and observes that the real defence is design — no shared mutable state means no race — with synchronization as the fallback when sharing is genuinely required.</p>
+<h3 id="q3-why-might-a-thread-never-see-another-threads-write-to-a-boolean-flag">Q3 — Why might a thread never see another thread's write to a <code>boolean</code> flag?<a class="headerlink" href="#q3-why-might-a-thread-never-see-another-threads-write-to-a-boolean-flag" title="Permanent link">&para;</a></h3>
+<p><strong>Canonical treatment:</strong> <a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">§ 15. Interview Questions, Q3</a></p>
+<p><strong>What's expected:</strong>
+- <strong>Junior/Mid:</strong> Believes the write becomes visible "eventually", or that adding a <code>sleep</code> in the loop fixes it — it often masks the problem without fixing it.
+- <strong>Senior:</strong> Knows the language never promised visibility without <code>volatile</code> or another happens-before edge, and names hoisting and caching as the mechanisms. Measured: a non-volatile reader spun <strong>323,522,386</strong> times and never observed the write, exiting only on a three-second cap, while the <code>volatile</code> version exited immediately — reproduced on every run.
+- <strong>Staff:</strong> Frames the Java Memory Model as a contract about what the runtime is <em>allowed</em> to do rather than a description of what it usually does, and draws the operational consequence: a latent visibility bug can surface from a JVM upgrade with no application change, which makes it very hard to attribute.</p>
 <hr />
 <h2 id="java-memory-model-and-volatile">Java Memory Model and <code>volatile</code><a class="headerlink" href="#java-memory-model-and-volatile" title="Permanent link">&para;</a></h2>
 <h3 id="q1-why-does-double-checked-locking-break-without-volatile">Q1 — Why does double-checked locking break without <code>volatile</code>?<a class="headerlink" href="#q1-why-does-double-checked-locking-break-without-volatile" title="Permanent link">&para;</a></h3>
@@ -13174,6 +13219,31 @@ would genuinely have.</p>
 <td>Which of <code>wait()</code>, <code>sleep()</code>, and <code>join()</code> releases the monitor lock while paused?</td>
 <td><a href="../../../02-java/concurrency/deadlock-race-conditions-and-thread-diagnostics/#flashcards">Deadlock, Race Conditions, and Thread Diagnostics</a></td>
 </tr>
+<tr>
+<td>43</td>
+<td>What actually happens if you call <code>thread.run()</code> instead of <code>thread.start()</code>?</td>
+<td><a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">Java Concurrency Fundamentals</a></td>
+</tr>
+<tr>
+<td>44</td>
+<td>Eight threads increment a shared <code>int</code> 100,000 times each. What is the result, and why?</td>
+<td><a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">Java Concurrency Fundamentals</a></td>
+</tr>
+<tr>
+<td>45</td>
+<td>Does marking a counter <code>volatile</code> fix the lost-update problem?</td>
+<td><a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">Java Concurrency Fundamentals</a></td>
+</tr>
+<tr>
+<td>46</td>
+<td>A thread spins on a non-volatile <code>boolean</code> flag another thread sets. What happens?</td>
+<td><a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">Java Concurrency Fundamentals</a></td>
+</tr>
+<tr>
+<td>47</td>
+<td>Two related fields must always agree to any observer — two atomics, or one lock?</td>
+<td><a href="../../../02-java/concurrency/java-concurrency-fundamentals-threads-races-and-synchronization/#15-interview-questions">Java Concurrency Fundamentals</a></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -13203,7 +13273,7 @@ would genuinely have.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 14:50:44 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:23:45 UTC">September 30, 2026</span>
   </span>
 
     

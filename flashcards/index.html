@@ -4467,6 +4467,34 @@
   
   
     <li class="md-nav__item">
+      <a href="java-concurrency-fundamentals-threads-races-and-synchronization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards: Java Concurrency Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="java-file-io-and-nio2/" class="md-nav__link">
         
   
@@ -11628,6 +11656,7 @@
 <p><strong>2026-09-29 (third entry this date) — one new deck from a fresh topic-coverage scan.</strong> Companion to the new chapter described in the cheat-sheets README's matching entry. New deck: <strong>Batch and Scheduled Job Design</strong> (T-2443, <code>11-system-design</code>), 5 cards — what happens to a <code>@Scheduled</code> job on three replicas, the job lock in one statement plus why the lease expiry is not optional, why chunk size is a durability budget rather than a performance setting, the one rule that makes a checkpoint work, and the two conditions under which skipping a bad record is safe. Every card is backed by real executed output against an H2 database. New total, counted directly against the file system: <strong>300 decks, 1084 cards</strong> (299 decks / 1079 cards before this change).</p>
 <p><strong>2026-09-29 (fourth entry this date) — one deck extended for the collector-internals gap.</strong> Companion to the chapter extension described in the cheat-sheets README's matching entry. <code>streams-and-collectors.md</code>'s deck went from 3 cards to <strong>7</strong>, adding: whether a custom collector's combiner runs in a sequential stream (measured at zero, and the silent-data-loss consequence that follows), what <code>IDENTITY_FINISH</code> actually changes at runtime (the finisher call does not happen), what <code>CONCURRENT</code> changes and when <code>groupingByConcurrent</code> is worth it, and whether <code>Collectors.toList()</code> and <code>Stream.toList()</code> are interchangeable (they are not — one is mutable). No new deck, so deck count is unchanged. No new deck, so the deck count is unchanged. New total, counted directly against the file system: <strong>300 decks, 1088 cards</strong> (1084 cards before this change).</p>
 <p><strong>2026-09-30 — one new deck closing the repository's delivery gap.</strong> Companion to the new chapter described in the cheat-sheets README's matching entry. New deck: <strong>Explaining Technical Concepts Under Pressure</strong> (T-1606, <code>20-interview-preparation/technical-answers</code>), 5 cards — the first move (lead with the claim), why a re-read cannot fix a bad explanation, how much spoken material a "10-Minute Deep Dive" actually contains, what makes an analogy usable, and what to do when the word is gone mid-answer. Unusually for this directory, the cards are backed by a real measurement rather than by executed code: <a href="../scripts/audit_answer_delivery_length.py"><code>scripts/audit_answer_delivery_length.py</code></a> measured all 234 layered answers in this repository against speaking time. New total, counted directly against the file system: <strong>301 decks, 1093 cards</strong> (300 decks / 1088 cards before this change).</p>
+<p><strong>2026-09-30 (second entry this date) — one new deck for the concurrency on-ramp.</strong> Companion to the new chapter described in the cheat-sheets README's matching entry. New deck: <strong>Java Concurrency Fundamentals</strong> (T-2214, <code>02-java</code>), 5 cards — <code>start()</code> versus <code>run()</code>, why <code>counter++</code> loses updates, whether <code>volatile</code> fixes it (it does not, measured), what <code>volatile</code> actually solves, and the atomic-together selection criterion. Every card is backed by real executed output: 8 threads losing ~70% of 800,000 increments, and a non-volatile reader spinning 323,522,386 times without ever observing the write. New total, counted directly against the file system: <strong>302 decks, 1098 cards</strong> (301 decks / 1093 cards before this change).</p>
 <h2 id="how-this-relates-to-other-deliverables">How this relates to other deliverables<a class="headerlink" href="#how-this-relates-to-other-deliverables" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>syllabus/</code> — the canonical chapters these cards are drawn from. For the 137 pre-existing decks, each source chapter's own <code>## Flashcards</code> section remains in place (unchanged) as the chapter's own embedded review aid; the 31 new-writing-domain decks above have no such embedded section to leave in place, since their source template doesn't carry one.</li>
@@ -11654,7 +11683,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 18:21:27 UTC">September 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:23:45 UTC">September 30, 2026</span>
   </span>
 
     
