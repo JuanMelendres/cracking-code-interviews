@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2206
 status: draft
-version: 1.0
-last_updated: 2026-09-08
+version: 1.1
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
@@ -128,6 +128,32 @@ No existing `production-cookbook/` entry has a syntax-fundamentals-specific root
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+Java is statically typed: every variable declares a type and the compiler checks it, so assigning a `String` to an `int` is a compile error rather than a runtime surprise. Control flow is `if`/`else`, loops, and `switch`. A method is a named reusable block with a declared return type and parameter list — and that signature is the contract callers bind to.
+
+#### 2-Minute Answer
+
+Open as above, then make the static-typing point pay for itself.
+
+**Static typing moves a whole class of error from runtime to compile time.** That is the actual benefit, and it is worth stating as a trade-off rather than a virtue: you write more type annotations in exchange for the compiler catching mismatches before anything runs.
+
+**Then the one thing that genuinely trips people: parameter passing.** Java is always pass-by-value. For an object, the *reference* is copied — so a method can mutate the object it was handed, but reassigning the parameter inside the method has no effect on the caller's variable. That single sentence resolves most "why didn't my change stick" confusion.
+
+One concrete instance: "passing a `List` and calling `add` on it changes the caller's list; assigning `list = new ArrayList<>()` inside the method does not."
+
+#### 10-Minute Deep Dive
+
+Cover, in order: variables, declared types, and what static typing buys (Section 3); the operators, with `&&`/`||` short-circuiting called out because it is load-bearing for null-guard idioms; `if`/`else`, the loop forms, and when `switch` is clearer than a chain; methods, signatures, and overloading resolved at compile time by the static types (linked from [Java Modifiers and Method Signatures](java-modifiers-and-method-signatures.md)); pass-by-value and what it means for objects; scope and why a variable's lifetime is its block; and close with the readability conventions that are conventions rather than rules.
+
+#### Whiteboard Explanation
+
+Draw a box labelled `caller` holding `list ──▶ [a, b]`. Draw a second box labelled `method` with its own arrow to the *same* `[a, b]`. Then show two operations: `add("c")` mutating the shared box, and `list = new ArrayList<>()` re-pointing only the method's arrow. The picture is the whole pass-by-value answer.
 **Q1 (Junior): "What does `7 / 2` evaluate to in Java, and why?"**
 Expected answer: `3` — integer division truncates the remainder; producing `3.5` requires casting at least one operand to a floating-point type first.
 

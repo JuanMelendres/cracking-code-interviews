@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2211
 status: draft
-version: 1.2
-last_updated: 2026-09-17
+version: 1.3
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3]
 prerequisites:
   - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
@@ -239,6 +239,30 @@ No dedicated `production-cookbook/` entry exists yet for a JDK-version-migration
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+Java has shipped every six months since Java 10, but only some releases are LTS — 8, 11, 17, 21, 25 — and those are what production actually runs. Non-LTS releases exist to preview features before they are finalized. So the useful question is never "what is the newest Java" but "what is the newest LTS, and what did it give us that we are not using".
+
+#### 2-Minute Answer
+
+Open as above, then give the three or four features that actually changed how Java is written, rather than a release-by-release recital.
+
+**Java 8** — lambdas and streams, the single biggest change to everyday Java code. **Java 11** — the first LTS after 8, and the migration most codebases eventually made. **Java 17** — records, sealed types, and pattern matching for `instanceof`, which together made modelling data noticeably less verbose. **Java 21** — virtual threads, which change the cost model for blocking I/O rather than the syntax.
+
+**Then the discipline point**, which is what the question is really testing: preview features are not production features. Knowing that a feature exists is different from knowing whether it is final, and the distinction is exactly what separates "I read the release notes" from "I have migrated a codebase."
+
+#### 10-Minute Deep Dive
+
+Cover, in order: the six-month cadence and the LTS designation, and why the cadence changed (Section 3); the feature arcs that matter — lambdas and streams in 8, the module system's real-world adoption story, records and sealed types and pattern matching in 17, virtual threads in 21; preview versus incubating versus final, and why asserting availability without checking is a correctness error; the practical migration blockers teams actually hit, especially reflection into JDK internals; and close with how to answer "should we upgrade" — as a risk and support question rather than a feature-list question.
+
+#### Whiteboard Explanation
+
+Draw a horizontal timeline with only the LTS releases marked: 8, 11, 17, 21, 25. Above each, write the one change that altered how code is written — lambdas, the baseline migration, records and pattern matching, virtual threads. Leave the non-LTS releases off entirely, and say why you left them off. The omission is the point.
 ### Question 1: What are the major features introduced across Java 8, 11, 17, and 21?
 
 **Expected answer:** Java 8 — lambdas, streams, `Optional`, default/static interface methods. Java 11 — `var` in lambdas, HTTP Client finalized, single-file launching. Java 17 — sealed classes finalized. Java 21 — virtual threads finalized, pattern matching for `switch` finalized, record patterns finalized.

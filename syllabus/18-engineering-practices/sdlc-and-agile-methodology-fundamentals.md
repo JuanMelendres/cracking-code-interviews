@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 18-engineering-practices
 topic_id: T-2212
 status: canonical
-version: 1.3
-last_updated: 2026-09-21
+version: 1.4
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2]
 prerequisites: []
 related:
@@ -117,6 +117,34 @@ Not applicable in the code-incident sense this deliverable otherwise uses — th
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+The SDLC is the sequence every piece of software moves through: requirements, design, implementation, testing, deployment, maintenance. Every process model is a different answer to how often you go around that loop. Waterfall runs it once, end to end. Agile runs it repeatedly in short iterations, so requirements can change between them instead of being fixed up front.
+
+#### 2-Minute Answer
+
+Open as above, then give the reason the shift happened, because "Agile is better" is not an answer.
+
+**Waterfall assumes the requirements are knowable in advance.** When they genuinely are — a regulated system with a fixed specification — it works. When they are not, a long gap between specification and delivery means you find out the requirement was wrong after building the whole thing.
+
+**Agile shortens the feedback loop rather than removing planning.** Two-week iterations mean being wrong for two weeks instead of nine months. That is the actual claim, and it is worth stating that precisely rather than as a values statement.
+
+**One concrete instance:** "A sprint ends with something demonstrable, so the stakeholder corrects the misunderstanding in week two rather than at delivery."
+
+Close honestly: ceremonies without the feedback loop are the common failure — standups and sprints with no working increment are Waterfall with extra meetings.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: the SDLC phases and that every model reorders the same work (Section 3); Waterfall, its assumption, and where it is genuinely correct; Agile as a shortened feedback loop rather than an absence of planning; Scrum's mechanics — sprint, backlog, standup, review, retrospective — and what each is *for*, since ceremonies without purpose is the usual failure; Kanban and when continuous flow beats fixed iterations; estimation and why it is a forecast rather than a commitment (linked from [Estimation and Story Points](estimation-and-story-points.md)); and close with the honest Staff framing — process is a tool for a specific dysfunction, and adopting one without naming the dysfunction is cargo-culting.
+
+#### Whiteboard Explanation
+
+Draw Waterfall as a single left-to-right arrow through the six phases, one pass. Beneath it, draw Agile as the same six phases compressed into a small circle, repeated three times along the same horizontal span. Then mark where feedback arrives in each: at the far right for Waterfall, three times for Agile. The position of the feedback marker is the whole comparison.
 ### Question 1: What are the phases of the SDLC, and how does Agile change how a team moves through them?
 
 **Expected answer:** Requirements, Design, Implementation, Testing, Deployment, Maintenance. Waterfall runs through them once, in strict order; Agile runs through the same phases repeatedly in short sprints, each producing a working increment.
