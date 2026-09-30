@@ -99,6 +99,22 @@ Design a **news feed** system (or a different unseen problem your partner suppli
 
 The source rubric ([`study-packs/week-01/10-week-1-evaluation-rubric.md`](../../study-packs/week-01/10-week-1-evaluation-rubric.md)) is explicit that System Design is "not a Week 1 Deep topic," scored only when a design exercise is attempted, and defers to the general rubric referenced in [`00-project/learning-roadmap.md`](../../00-project/learning-roadmap.md) rather than defining week-specific evidence anchors of its own. Score this round on the general 1–5 scale (3 = Mid, 4 = Senior, 5 = Staff) using the phase-habituality and three-probe evidence anchors above as this round's own anchors, since none exist in the source rubric.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through phase habituality first — it's the structural signal underlying everything else in the round, since a candidate who needs prompting between phases is also more likely to need prompting on caching, fan-out, and pagination specifically. The caching and fan-out probes share a theme: both ask whether the candidate connects an architectural decision back to a *specific* number or a *specific* named failure mode at extreme scale (10 million followers), rather than reaching for the "correct-sounding" component reflexively. A candidate who names caching and fan-out only when prompted, both times, has a general pattern worth naming directly, not two unrelated gaps.

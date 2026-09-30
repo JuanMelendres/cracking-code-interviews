@@ -115,6 +115,22 @@ Pick one real project you worked on — any scope, from a single feature to a sy
 
 Score on the general 1–5 scale (3 = Mid, 4 = Senior, 5 = Staff), using the six probes above as this round's own evidence anchors. Probe 4 (Support) and Probe 5/6 (scope honesty) carry the most weight — a candidate can pass Probes 1–3 with a purely technical, well-executed story and still fail the round overall by skipping Support entirely or by having their claimed scope collapse under Probe 6.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through Probe 4 first, regardless of how the rest of the round went — Support-phase depth is this round's single most diagnostic signal, and a candidate who's strong everywhere else but weak here has a specific, nameable gap worth calling out directly rather than folding into a vague "overall communication" note. Then walk through Probes 5–6 together: if the candidate's self-assessed scope (Probe 5) didn't survive the follow-up (Probe 6), point at the *specific* detail in the earlier narrative that contradicted the claimed scope — this is more useful feedback than a general "be careful not to overstate your role," since it shows the candidate exactly which sentence created the mismatch.

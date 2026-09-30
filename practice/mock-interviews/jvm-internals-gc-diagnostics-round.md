@@ -138,6 +138,22 @@ Same 1–5 scale and pass threshold as the [Java Core Technical Round](java-core
 
 **Pass threshold for this mock:** average score ≥ 3.5 across all seven questions, with no individual score below 2.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through their own scores question by question, starting with the lowest. Questions 1, 3, and 5 share a pattern worth naming explicitly if the candidate scored low on more than one: each presents a symptom that looks GC-related on the surface but has a specific non-obvious or non-GC root cause (RSet pressure rather than occupancy, stack rather than heap, deoptimization rather than a GC event). A candidate who defaults to "probably GC, add more heap" across multiple questions has a genuine diagnostic-reflex gap, not just isolated knowledge gaps — flag this pattern explicitly rather than scoring each question in isolation.
