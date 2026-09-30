@@ -12787,7 +12787,20 @@
 <p>Planned reference: a future <code>production-cookbook/</code> entry covering a real incident caused by unnoticed integer-division truncation in a financial or metrics calculation (Section 8's own warning) would be a natural, non-duplicative addition, if a genuine instance is ever documented.</p>
 </blockquote>
 <h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
-<p><strong>Q1 (Junior): "What does <code>7 / 2</code> evaluate to in Java, and why?"</strong>
+<h3 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h3>
+<p>Pre-built delivery layers for this topic, in the shape <a href="../../../20-interview-preparation/technical-answers/technical-answer-framework/">The Technical Answer Framework</a> describes. The 10-minute layer is an <strong>outline, not a script</strong> — expanding it into ten minutes of speech is work that happens out loud and in advance, per <a href="../../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure/">Explaining Technical Concepts Under Pressure</a>.</p>
+<h4 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h4>
+<p>Java is statically typed: every variable declares a type and the compiler checks it, so assigning a <code>String</code> to an <code>int</code> is a compile error rather than a runtime surprise. Control flow is <code>if</code>/<code>else</code>, loops, and <code>switch</code>. A method is a named reusable block with a declared return type and parameter list — and that signature is the contract callers bind to.</p>
+<h4 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h4>
+<p>Open as above, then make the static-typing point pay for itself.</p>
+<p><strong>Static typing moves a whole class of error from runtime to compile time.</strong> That is the actual benefit, and it is worth stating as a trade-off rather than a virtue: you write more type annotations in exchange for the compiler catching mismatches before anything runs.</p>
+<p><strong>Then the one thing that genuinely trips people: parameter passing.</strong> Java is always pass-by-value. For an object, the <em>reference</em> is copied — so a method can mutate the object it was handed, but reassigning the parameter inside the method has no effect on the caller's variable. That single sentence resolves most "why didn't my change stick" confusion.</p>
+<p>One concrete instance: "passing a <code>List</code> and calling <code>add</code> on it changes the caller's list; assigning <code>list = new ArrayList&lt;&gt;()</code> inside the method does not."</p>
+<h4 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h4>
+<p>Cover, in order: variables, declared types, and what static typing buys (Section 3); the operators, with <code>&amp;&amp;</code>/<code>||</code> short-circuiting called out because it is load-bearing for null-guard idioms; <code>if</code>/<code>else</code>, the loop forms, and when <code>switch</code> is clearer than a chain; methods, signatures, and overloading resolved at compile time by the static types (linked from <a href="../java-modifiers-and-method-signatures/">Java Modifiers and Method Signatures</a>); pass-by-value and what it means for objects; scope and why a variable's lifetime is its block; and close with the readability conventions that are conventions rather than rules.</p>
+<h4 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h4>
+<p>Draw a box labelled <code>caller</code> holding <code>list ──▶ [a, b]</code>. Draw a second box labelled <code>method</code> with its own arrow to the <em>same</em> <code>[a, b]</code>. Then show two operations: <code>add("c")</code> mutating the shared box, and <code>list = new ArrayList&lt;&gt;()</code> re-pointing only the method's arrow. The picture is the whole pass-by-value answer.
+<strong>Q1 (Junior): "What does <code>7 / 2</code> evaluate to in Java, and why?"</strong>
 Expected answer: <code>3</code> — integer division truncates the remainder; producing <code>3.5</code> requires casting at least one operand to a floating-point type first.</p>
 <p><strong>Q2 (Junior): "What's the difference between a <code>for</code> loop and a <code>while</code> loop, and when would you use each?"</strong>
 Expected answer: <code>for</code> when the number of iterations is known in advance; <code>while</code> when it depends on a condition being met, unknown in advance — Section 6's practical rule.</p>
@@ -12849,7 +12862,7 @@ Expected answer: Section 5's storage-model answer — an array's fixed length is
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 04:53:49 UTC">September 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:04:29 UTC">September 30, 2026</span>
   </span>
 
     

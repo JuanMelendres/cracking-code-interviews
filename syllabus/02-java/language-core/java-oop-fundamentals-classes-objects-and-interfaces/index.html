@@ -12814,7 +12814,20 @@
 <p>Planned reference: a future <code>production-cookbook/</code> entry covering a real incident caused by two components unintentionally sharing a mutable object across an assumed ownership boundary (the exact class of bug Section 5's reference-sharing mechanics makes possible) would be a natural, non-duplicative addition connecting this chapter's foundational mechanics to a genuine production incident.</p>
 </blockquote>
 <h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
-<p><strong>Q1 (Junior): "What's the difference between a class and an object?"</strong>
+<h3 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h3>
+<p>Pre-built delivery layers for this topic, in the shape <a href="../../../20-interview-preparation/technical-answers/technical-answer-framework/">The Technical Answer Framework</a> describes. The 10-minute layer is an <strong>outline, not a script</strong> — expanding it into ten minutes of speech is work that happens out loud and in advance, per <a href="../../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure/">Explaining Technical Concepts Under Pressure</a>.</p>
+<h4 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h4>
+<p>A class is a blueprint; an object is one thing built from it. <code>class House { int rooms; }</code> is written once, and every <code>new House()</code> gets its own <code>rooms</code>. An interface is a contract with no implementation — it says what a type can do, not how. A class can implement many interfaces but extend only one class.</p>
+<h4 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h4>
+<p>Open as above, then give the distinction that carries the rest of object-oriented design.</p>
+<p><strong>Inheritance shares implementation; an interface shares capability.</strong> <code>extends</code> says "I am a kind of this, and I inherit its code." <code>implements</code> says "I can do this, however I choose to." That is why single inheritance and multiple interfaces is not an arbitrary Java rule — inheriting two implementations is ambiguous, while promising two capabilities is not.</p>
+<p><strong>One concrete instance.</strong> "<code>ArrayList implements List</code> — it promises the <code>List</code> behaviour. <code>LinkedList</code> promises the same thing with a completely different implementation, which is exactly why code written against <code>List</code> works with either."</p>
+<p>Close by naming encapsulation as the reason fields are usually <code>private</code>: the object controls its own state, so an invalid value has one place to be rejected rather than many.</p>
+<h4 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h4>
+<p>Cover, in order: class-versus-object and per-instance state (Section 3); fields and methods, and constructors as the point where an object becomes valid; encapsulation and why <code>private</code> plus accessors is about protecting invariants rather than ceremony (Section 4); inheritance and <code>extends</code>, and what a subclass actually inherits; interfaces as contracts and the reason for single-inheritance-plus-many-interfaces; polymorphism — one reference type, many runtime types, resolved at runtime (linked from <a href="../polymorphism-and-dynamic-dispatch/">Polymorphism and Dynamic Dispatch</a>); abstract classes as the middle ground; and close with composition over inheritance as the modern default and why.</p>
+<h4 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h4>
+<p>Draw one blueprint rectangle labelled <code>class House</code> with <code>rooms</code> inside it. Beside it draw two separate house shapes, each with its own <code>rooms = 3</code> and <code>rooms = 5</code>. Arrow from blueprint to both, labelled <code>new</code>. That single picture answers "what is the difference between a class and an object" before you have said a word.
+<strong>Q1 (Junior): "What's the difference between a class and an object?"</strong>
 Expected answer: a class is a blueprint/template; an object is a specific instance built from it via <code>new</code>, with its own copy of the class's fields. Common mistake: describing them as synonyms, or being unable to give a concrete example.</p>
 <p><strong>Q2 (Junior/Mid): "When would you use an interface instead of an abstract class?"</strong>
 Expected answer: Section 4's decision rule — abstract class when there's real shared implementation and fields to hand down within a genuinely related family; interface when you only need to promise a capability, especially across otherwise-unrelated classes, or when the implementing class needs to extend something else too (single inheritance forces the choice).</p>
@@ -12883,7 +12896,7 @@ Expected answer: Section 12's reviewer question (is there a second independent a
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 17, 2026 21:44:42 UTC">September 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:04:29 UTC">September 30, 2026</span>
   </span>
 
     

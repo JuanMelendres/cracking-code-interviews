@@ -12222,7 +12222,20 @@ The identical, valid JSON body this chapter's other examples use, sent with the 
 <p>Planned reference: a future <code>production-cookbook/</code> entry covering a real incident caused by a client blindly retrying a non-idempotent <code>POST</code> after a timeout (genuinely unaware the original request had already succeeded server-side), producing duplicate resources, would be a natural, non-duplicative addition connecting this chapter's Section 9 edge case to <a href="../../11-system-design/idempotency/">Idempotency at System Edges</a>'s system-scale fix.</p>
 </blockquote>
 <h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
-<p><strong>Q1 (Junior): "What's the difference between PUT and POST?"</strong>
+<h3 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h3>
+<p>Pre-built delivery layers for this topic, in the shape <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/">The Technical Answer Framework</a> describes. The 10-minute layer is an <strong>outline, not a script</strong> — expanding it into ten minutes of speech is work that happens out loud and in advance, per <a href="../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure/">Explaining Technical Concepts Under Pressure</a>.</p>
+<h4 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h4>
+<p>REST organizes an API around resources — nouns — and lets the HTTP verb carry the action. <code>GET /books/42</code> retrieves book 42; you never write <code>/getBook?id=42</code>. <code>GET</code> never changes anything, <code>POST</code> creates, <code>PUT</code> replaces, <code>DELETE</code> removes. The status code carries the outcome: 200 for success, 201 for created, 404 for not found, 400 for a malformed request.</p>
+<h4 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h4>
+<p>Open as above, then give the property that is actually being tested: <strong>which verbs are safe to retry.</strong></p>
+<p><code>GET</code> is safe — it changes nothing, so a client may call it as often as it likes. <code>PUT</code> and <code>DELETE</code> are idempotent: calling them twice leaves the same end state as calling them once. <code>POST</code> is neither, which is why a retried <code>POST</code> can create two orders and why idempotency keys exist.</p>
+<p><strong>One concrete instance:</strong> "If a client times out on <code>PUT /books/42</code> and retries, book 42 ends up correct either way. If it times out on <code>POST /books</code> and retries, you may have two books."</p>
+<p>Close with status-code discipline: the code is part of the contract, so returning 200 with an error body inside it breaks every client that keys on status — including retry logic that will now never retry.</p>
+<h4 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h4>
+<p>Cover, in order: resources as nouns and verbs as actions, with the <code>/getBook?id=42</code> anti-pattern named (Section 3); the four verbs and their semantics; safety and idempotency, and why they determine retry behaviour (linked from <a href="../../11-system-design/idempotency/">Idempotency at System Edges</a>); status-code families and the specific codes worth knowing, including why 200-with-an-error-body is a contract break; request and response body design, and why the wire model should not be the database model (linked from <a href="../../05-spring/dto-entity-mapper-patterns/">DTO, Entity, and Mapper Patterns</a>); versioning and what actually constitutes a breaking change; and close with the Richardson maturity model as vocabulary rather than as a goal.</p>
+<h4 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h4>
+<p>Draw a two-column table: verb on the left; safe / idempotent / neither on the right. Fill in <code>GET</code> safe, <code>PUT</code> idempotent, <code>DELETE</code> idempotent, <code>POST</code> neither. Then circle <code>POST</code> and write "retry creates a duplicate" beside it. That circle is the answer to the follow-up you are about to be asked.
+<strong>Q1 (Junior): "What's the difference between PUT and POST?"</strong>
 Expected answer: <code>POST</code> creates a new resource (not idempotent — calling it twice creates two); <code>PUT</code> replaces an existing resource's state at a known location (idempotent — calling it twice leaves the same end state). A weak answer says "PUT updates, POST creates" without the idempotency distinction, which is the part interviewers actually probe.</p>
 <p><strong>Q2 (Junior/Mid): "What status code should a successful DELETE return, and why no body?"</strong>
 Expected answer: <code>204 No Content</code> — the operation succeeded, and there is deliberately nothing left to describe, since the resource no longer exists.</p>
@@ -12299,7 +12312,7 @@ GET /books                  -&gt; ?
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 12, 2026 23:54:29 UTC">September 12, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:04:29 UTC">September 30, 2026</span>
   </span>
 
     

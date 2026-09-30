@@ -11951,7 +11951,21 @@ The server is genuinely running and answering requests the entire time — <code
 <p>Planned reference: a future <code>production-cookbook/</code> entry covering a real incident caused by a <code>Dockerfile</code>'s poor layer-cache ordering silently degrading CI pipeline speed over months, discovered only once build times became a visible team complaint, would be a natural, non-duplicative addition connecting this chapter's Section 8/12 warning to a genuine production incident.</p>
 </blockquote>
 <h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
-<p><strong>Q1 (Junior): "What's the difference between a Docker image and a Docker container?"</strong>
+<h3 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h3>
+<p>Pre-built delivery layers for this topic, in the shape <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/">The Technical Answer Framework</a> describes. The 10-minute layer is an <strong>outline, not a script</strong> — expanding it into ten minutes of speech is work that happens out loud and in advance, per <a href="../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure/">Explaining Technical Concepts Under Pressure</a>.</p>
+<h4 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h4>
+<p>A container is an ordinary process on the host's kernel, given its own isolated view of the filesystem, network, and process list using namespaces and cgroups. That is the key difference from a virtual machine, which boots a whole guest operating system — so a container starts in milliseconds and a VM in tens of seconds. An image is the read-only template; a container is a running instance of one.</p>
+<h4 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h4>
+<p>Open as above, then answer what containers actually solve, since "it works on my machine" is the honest short version.</p>
+<p><strong>The image bundles the application <em>and</em> its dependencies</strong>, so what runs in production is byte-identical to what ran in CI. That is the whole value proposition, and it is why the unit of deployment moved from "a jar plus a runbook" to "an image tag."</p>
+<p><strong>Then layers, because they explain both build speed and image size.</strong> Each <code>Dockerfile</code> instruction produces a layer, layers are cached, and a change invalidates every layer after it. That is why dependency installation goes <em>before</em> copying source code — source changes every build and dependencies rarely do.</p>
+<p><strong>One concrete instance:</strong> "Putting <code>COPY . .</code> before <code>RUN mvn dependency:go-offline</code> means every source edit re-downloads every dependency."</p>
+<p>Close by naming the boundary: containers isolate, they do not by themselves secure — they share the host kernel.</p>
+<h4 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h4>
+<p>Cover, in order: a container as a process with an isolated view, and namespaces and cgroups as the mechanism (Section 3); container versus VM, with the startup-time and resource consequences; images, layers, and the caching rule that determines <code>Dockerfile</code> ordering; the registry and tags, and why <code>latest</code> is not a version; volumes and why container filesystems are ephemeral by default; networking and port publishing; the JVM-in-a-container concern — container-aware ergonomics and heap sizing (linked from <a href="../kubernetes-resource-limits-probes-and-jvm-sizing/">Kubernetes Resource Limits, Probes, and JVM Sizing</a>); and close with the security boundary being weaker than a VM's, because the kernel is shared.</p>
+<h4 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h4>
+<p>Draw two stacks side by side. VM: hardware, host OS, hypervisor, then three boxes each containing a <em>full guest OS</em> plus an app. Container: hardware, host OS, container runtime, then three boxes containing <em>only</em> the app. The missing guest-OS layer is the entire answer, and it explains startup time, image size, and the security trade-off at once.
+<strong>Q1 (Junior): "What's the difference between a Docker image and a Docker container?"</strong>
 Expected answer: an image is a read-only template; a container is one running (or stopped) instance created from that image — the same class/object relationship as in object-oriented programming.</p>
 <p><strong>Q2 (Junior/Mid): "What's the difference between a container and a virtual machine?"</strong>
 Expected answer: Section 3's core distinction — a container shares the host's kernel and is isolated via kernel features (namespaces/cgroups); a VM runs its own complete guest kernel on virtualized hardware, making it heavier and slower to start.</p>
@@ -12011,7 +12025,7 @@ curl -s http://localhost:8080/
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 05:02:19 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:04:29 UTC">September 30, 2026</span>
   </span>
 
     

@@ -11950,7 +11950,21 @@ This is exactly what a real assertion failure looks like: the expected and actua
 <p>Planned reference: a future <code>production-cookbook/</code> entry covering a real incident caused by a flaky, order-dependent test suite that was silenced with retries instead of fixed, eventually masking a real regression that a properly-isolated test would have caught deterministically, would be a natural, non-duplicative addition connecting this chapter's Section 12 warning to a genuine production incident.</p>
 </blockquote>
 <h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
-<p><strong>Q1 (Junior): "What's the difference between <code>@Test</code> and <code>@BeforeEach</code>?"</strong>
+<h3 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h3>
+<p>Pre-built delivery layers for this topic, in the shape <a href="../../20-interview-preparation/technical-answers/technical-answer-framework/">The Technical Answer Framework</a> describes. The 10-minute layer is an <strong>outline, not a script</strong> — expanding it into ten minutes of speech is work that happens out loud and in advance, per <a href="../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure/">Explaining Technical Concepts Under Pressure</a>.</p>
+<h4 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h4>
+<p>A unit test calls one method with a specific input and asserts the expected output, so the check runs automatically instead of by hand. <code>@Test</code> marks the method and <code>assertEquals(expected, actual)</code> states what must be true. When it fails it reports expected versus actual — which is the real value: you learn what broke without reading the code.</p>
+<h4 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h4>
+<p>Open as above, then give the structure, because an interviewer is listening for whether your tests have a shape.</p>
+<p><strong>Arrange, act, assert.</strong> Set up the input, call the one method under test, assert on the result. A test that does all three repeatedly in a loop is testing several things and will not tell you which one failed.</p>
+<p><strong>Then what makes a test worth having.</strong> It should fail for exactly one reason. It should not depend on another test having run first. And its name should say what it asserts — <code>addReturnsSumOfTwoPositiveNumbers</code> beats <code>testAdd</code>, because the failure report is then readable without opening the file.</p>
+<p><strong>One concrete instance:</strong> "<code>assertEquals(5, calculator.add(2, 3))</code>. If <code>add</code> regresses, the report says expected 5, actual 6, and names the test — no debugging required to know what broke."</p>
+<p>Close honestly: coverage measures which lines ran, not whether the assertions were meaningful.</p>
+<h4 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h4>
+<p>Cover, in order: what a unit test is and what it replaces (Section 3); <code>@Test</code>, the assertion methods, and reading a real failure report; arrange-act-assert and one-reason-to-fail; naming, and why the name is part of the failure output; test independence and why shared mutable state between tests produces order-dependent suites; parameterized tests when four tests differ only by input; what to test and what not to — logic yes, framework behaviour no (linked from <a href="../test-strategy-and-test-doubles/">Test Strategy, the Pyramid, and Test Doubles</a>); and close with coverage as a diagnostic rather than a target.</p>
+<h4 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h4>
+<p>Write the three words vertically — Arrange, Act, Assert — and fill in a real three-line test beside them. Then draw a red X beside a fourth line that would be a second act, and say why splitting it into two tests makes the failure report useful. The picture is small; the discipline is the point.
+<strong>Q1 (Junior): "What's the difference between <code>@Test</code> and <code>@BeforeEach</code>?"</strong>
 Expected answer: <code>@Test</code> marks a method JUnit runs as an actual test with a pass/fail outcome; <code>@BeforeEach</code> marks a setup method that runs before every <code>@Test</code> in the class, not itself a test.</p>
 <p><strong>Q2 (Junior/Mid): "How do you test that a method throws an exception?"</strong>
 Expected answer: <code>assertThrows(ExceptionType.class, () -&gt; methodCall())</code>, ideally with a note on why this is more reliable than a manual <code>try</code>/<code>catch</code>/<code>fail()</code> (Section 8/11).</p>
@@ -12008,7 +12022,7 @@ Expected answer: Section 13's framing — isolation discipline enforced by revie
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:37:31 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:04:29 UTC">September 30, 2026</span>
   </span>
 
     

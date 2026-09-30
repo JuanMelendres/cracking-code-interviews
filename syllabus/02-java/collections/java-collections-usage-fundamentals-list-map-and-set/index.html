@@ -12366,7 +12366,20 @@
 <p>Planned reference: a future <code>production-cookbook/</code> entry covering a real incident caused by using a <code>List</code> with a linear <code>contains()</code> scan where a <code>Set</code> was the correct choice from the start — fine at small scale, silently degrading as the collection grew — would be a natural, non-duplicative addition connecting this chapter's Section 13 warning to a genuine production incident.</p>
 </blockquote>
 <h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
-<p><strong>Q1 (Junior): "What's the difference between a List and a Set?"</strong>
+<h3 id="interview-answer-framework">Interview Answer Framework<a class="headerlink" href="#interview-answer-framework" title="Permanent link">&para;</a></h3>
+<p>Pre-built delivery layers for this topic, in the shape <a href="../../../20-interview-preparation/technical-answers/technical-answer-framework/">The Technical Answer Framework</a> describes. The 10-minute layer is an <strong>outline, not a script</strong> — expanding it into ten minutes of speech is work that happens out loud and in advance, per <a href="../../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure/">Explaining Technical Concepts Under Pressure</a>.</p>
+<h4 id="30-second-answer">30-Second Answer<a class="headerlink" href="#30-second-answer" title="Permanent link">&para;</a></h4>
+<p>They answer three different questions. A <code>List</code> keeps order and allows duplicates. A <code>Set</code> allows no duplicates. A <code>Map</code> stores values you look up by a key rather than by position. Concretely: add <code>"alice"</code> twice to a <code>List</code> and <code>size()</code> is 2; do it to a <code>HashSet</code> and it is 1. Which <em>implementation</em> to pick is a separate question.</p>
+<h4 id="2-minute-answer">2-Minute Answer<a class="headerlink" href="#2-minute-answer" title="Permanent link">&para;</a></h4>
+<p>Open as above, then add the two things the interviewer is usually listening for.</p>
+<p><strong>Why the interfaces differ at all.</strong> They encode different guarantees, and the guarantee is what costs you. A <code>List</code> promises positional access, so it must track order. A <code>Set</code> promises uniqueness, so every <code>add</code> has to check whether the element is already there — which is why <code>HashSet</code> needs <code>hashCode</code>/<code>equals</code> to work correctly. A <code>Map</code> promises key lookup, so it hashes the key rather than scanning.</p>
+<p><strong>One concrete selection.</strong> "Counting unique words in a document: <code>Map&lt;String, Integer&gt;</code>, because I need the word <em>and</em> its count. If I only needed the distinct words, <code>Set&lt;String&gt;</code>."</p>
+<p>Then hand over the next level yourself: "the choice <em>within</em> each interface — <code>ArrayList</code> versus <code>LinkedList</code>, <code>HashSet</code> versus <code>TreeSet</code> — is about access pattern, if that is useful."</p>
+<h4 id="10-minute-deep-dive">10-Minute Deep Dive<a class="headerlink" href="#10-minute-deep-dive" title="Permanent link">&para;</a></h4>
+<p>Cover, in order: the three questions each interface answers (Section 3); why <code>Set</code> and <code>Map</code> both depend on <code>hashCode</code>/<code>equals</code> and what breaks when that contract is violated (Section 4, and <a href="../../language-core/equals-hashcode-and-comparable-contracts/">equals, hashCode, and Comparable Contracts</a>); <code>ArrayList</code> versus <code>LinkedList</code> as an access-pattern decision rather than a general "which is faster" (linked from <a href="../arraylist-and-linkedlist-internals/">ArrayList and LinkedList Internals</a>); <code>HashMap</code> versus <code>TreeMap</code> versus <code>LinkedHashMap</code> as ordering guarantees you pay for; and close with the selection method in <a href="../collection-selection-decision-matrix/">Collection Selection Decision Matrix</a> — start from the access pattern, not from the type name.</p>
+<h4 id="whiteboard-explanation">Whiteboard Explanation<a class="headerlink" href="#whiteboard-explanation" title="Permanent link">&para;</a></h4>
+<p>Draw three boxes labelled <code>List</code>, <code>Set</code>, <code>Map</code>. Under each, write the one question it answers: "what is at position 3?", "have I seen this before?", "what is stored under this key?". Then put the same two elements — <code>alice</code>, <code>alice</code> — into all three and write the resulting size beneath: 2, 1, 1. Narrate while drawing; the duplicate is the whole picture.
+<strong>Q1 (Junior): "What's the difference between a List and a Set?"</strong>
 Expected answer: a <code>List</code> is ordered and allows duplicates; a <code>Set</code> has no guaranteed order (for <code>HashSet</code>) and never allows duplicates.</p>
 <p><strong>Q2 (Junior/Mid): "When would you use a Map instead of a List?"</strong>
 Expected answer: when you need to look something up by a key/name rather than a position, or when you're counting/grouping — Section 6's practical rule, ideally with a concrete example like a frequency count.</p>
@@ -12427,7 +12440,7 @@ Expected answer: Section 13's framing — this degrades quietly as the list grow
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 10, 2026 05:02:19 UTC">September 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2026 19:04:29 UTC">September 30, 2026</span>
   </span>
 
     
