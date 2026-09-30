@@ -136,6 +136,22 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 
 Score this round using the [shared six-dimension rubric](../../study-packs/week-01/10-week-1-evaluation-rubric.md)'s **Technical Depth** and **Production Judgment** dimensions specifically (1–5 scale, 3 = Mid, 4 = Senior, 5 = Staff) — the same two-dimension scope the [AI/LLM Engineering](ai-llm-engineering-technical-round.md) and [GraphQL and gRPC](graphql-grpc-api-design-round.md) rounds use.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through their scores, starting with the weakest. Questions 1 and 2 share the sharpest theme: both probe whether the candidate treats "we have security headers/escaping" as one undifferentiated defense, when CSP, escaping, and CSRF tokens each close a genuinely different, specific gap — a candidate who can't separate them is reciting a security checklist rather than reasoning about mechanisms. Questions 3 and 4 both hinge on knowing exactly what a spec (WebSocket's RFC 6455) does and does not provide versus what application or library code has to supply — a candidate confident that "the platform handles it" on either question has a gap worth flagging directly. Questions 5 and 6 share a "configuration vs. assumption" theme: Module Federation doesn't automatically dedupe dependencies (Q5) and doesn't automatically guarantee independent deployability (Q6) just because it's the tool in use — both require an explicit, verified step, not an assumed byproduct of adoption.

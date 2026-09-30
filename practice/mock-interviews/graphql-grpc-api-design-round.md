@@ -136,6 +136,22 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 
 Score this round using the [shared six-dimension rubric](../../study-packs/week-01/10-week-1-evaluation-rubric.md)'s **Technical Depth** and **Production Judgment** dimensions specifically (1–5 scale, 3 = Mid, 4 = Senior, 5 = Staff) — the same two-dimension scope the [AI/LLM Engineering Technical Round](ai-llm-engineering-technical-round.md), [Kafka Messaging Technical Round](kafka-messaging-technical-round.md), and [Spring Technical Round](spring-technical-round.md) use.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through their scores, starting with the weakest. Questions 1 and 5 share the sharpest theme: both are real, structural risks (GraphQL's per-field resolver model; a gRPC call with no timeout) that are easy to dismiss as minor until the candidate is pushed to state the concrete mechanism — a candidate who reaches for a vague or generic fix on both, rather than naming `DataLoader` batching and the thread-exhaustion cascade specifically, likely has surface familiarity with these protocols rather than hands-on production experience. Questions 2 and 3 are both "common misconception" traps rooted in the same underlying fact (GraphQL's error model is genuinely different from REST's, not just "more flexible") — getting both right unprompted, especially the HTTP-status question, is a strong signal the candidate has actually inspected real GraphQL response traffic, not just read about the spec.

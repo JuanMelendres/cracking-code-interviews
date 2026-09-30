@@ -139,6 +139,22 @@ Answer each question aloud, unprompted, before checking the evaluator section. R
 
 Score this round using the [shared six-dimension rubric](../../study-packs/week-01/10-week-1-evaluation-rubric.md)'s **Technical Depth** and **Production Judgment** dimensions specifically (1–5 scale, 3 = Mid, 4 = Senior, 5 = Staff) — the same two-dimension scope the [Kafka Messaging Technical Round](kafka-messaging-technical-round.md) and [Spring Technical Round](spring-technical-round.md) use, since this domain's Interview Questions sections name Mid/Senior/Staff expectation tiers rather than all six shared-rubric dimensions.
 
+### Delivery — a second, independent axis
+
+Score this **separately** from the content rubric above, for every question. Do not average the two into one number: the whole reason this axis exists is to make a strong-content, weak-delivery result visible, and averaging is exactly what hides it.
+
+| Score | Delivery |
+|---|---|
+| 1 | No structure. The listener cannot tell what the answer is, even though it may be correct |
+| 2 | The claim arrives eventually, buried under preamble; rambles or trails off without ending |
+| 3 | Clear enough to follow. Claim within ~20s, at least one concrete instance, a recognisable ending |
+| 4 | Leads with the claim, concrete before abstract, signposts multi-part answers, ends cleanly |
+| 5 | All of 4, plus names the boundary of what was covered — and stops, without filling the silence |
+
+**Read the two scores together.** Content 5 / delivery 2 is a real and common profile, and it is the one that loses offers while feeling like bad luck: the knowledge is there, the interviewer never received it. Content 2 / delivery 5 is the opposite risk and is worse, because a confidently delivered wrong answer is harder for the interviewer to catch and harder for the candidate to notice.
+
+If delivery scores ≤ 2 on more than one question, that is one habit appearing repeatedly, not several separate findings. Work [Explaining Technical Concepts Under Pressure](../../syllabus/20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md) and [the explanation drill](explanation-drill.md) before retaking this round — retaking it without that changes nothing, because the round was never testing delivery before.
+
 ## Debrief Guide
 
 Walk the candidate through their scores, starting with the weakest. Questions 1, 2, and 5 share the sharpest theme in this round: each has a plausible-sounding "obvious" first move (switch to a cheaper model; blame the model's fluency for a wrong answer; estimate cost from one call) that skips the actual mechanism this domain's chapters exist to teach (conversation-growth cost, retrieval-quality diagnosis, iteration-count multiplication) — a candidate who reaches for the obvious move on more than one of these without the push has a real pattern worth naming directly, not three unrelated misses. Questions 3 and 4 are both "common misconception" traps (cross-model embedding comparability; system-role-as-mere-style) that a candidate with only surface AI-feature exposure is likely to get wrong the first time; getting either right unprompted is a strong signal of real, hands-on integration experience rather than familiarity with the vocabulary alone.
