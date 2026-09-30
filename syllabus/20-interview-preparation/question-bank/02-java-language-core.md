@@ -40,8 +40,8 @@ had zero occurrences repository-wide, and only four `Collectors` factory methods
 mentioned anywhere (`toList`, `toMap`, `groupingBy`, `counting`). Adds 1 deep question
 on the combiner plus 4 quick-fire cards.)
 
-**02-java domain total across all 4 subdomains:** 52 (collections) + 72 (concurrency)
-+ 31 (jvm-internals) + 126 (language-core) = **281 real questions** — the largest of
+**02-java domain total across all 4 subdomains:** 52 (collections) + 80 (concurrency)
++ 31 (jvm-internals) + 126 (language-core) = **289 real questions** — the largest of
 the 22 domains this initiative covers, consistent with `02-java` being the biggest
 domain in the syllabus (65 chapters).
 
