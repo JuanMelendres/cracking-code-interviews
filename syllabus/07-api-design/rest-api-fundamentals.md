@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 07-api-design
 topic_id: T-2205
 status: canonical
-version: 1.2
-last_updated: 2026-09-11
+version: 1.3
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../05-spring/spring-mvc-fundamentals.md
@@ -336,6 +336,32 @@ No existing `production-cookbook/` entry has a REST-fundamentals-specific root c
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+REST organizes an API around resources — nouns — and lets the HTTP verb carry the action. `GET /books/42` retrieves book 42; you never write `/getBook?id=42`. `GET` never changes anything, `POST` creates, `PUT` replaces, `DELETE` removes. The status code carries the outcome: 200 for success, 201 for created, 404 for not found, 400 for a malformed request.
+
+#### 2-Minute Answer
+
+Open as above, then give the property that is actually being tested: **which verbs are safe to retry.**
+
+`GET` is safe — it changes nothing, so a client may call it as often as it likes. `PUT` and `DELETE` are idempotent: calling them twice leaves the same end state as calling them once. `POST` is neither, which is why a retried `POST` can create two orders and why idempotency keys exist.
+
+**One concrete instance:** "If a client times out on `PUT /books/42` and retries, book 42 ends up correct either way. If it times out on `POST /books` and retries, you may have two books."
+
+Close with status-code discipline: the code is part of the contract, so returning 200 with an error body inside it breaks every client that keys on status — including retry logic that will now never retry.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: resources as nouns and verbs as actions, with the `/getBook?id=42` anti-pattern named (Section 3); the four verbs and their semantics; safety and idempotency, and why they determine retry behaviour (linked from [Idempotency at System Edges](../11-system-design/idempotency.md)); status-code families and the specific codes worth knowing, including why 200-with-an-error-body is a contract break; request and response body design, and why the wire model should not be the database model (linked from [DTO, Entity, and Mapper Patterns](../05-spring/dto-entity-mapper-patterns.md)); versioning and what actually constitutes a breaking change; and close with the Richardson maturity model as vocabulary rather than as a goal.
+
+#### Whiteboard Explanation
+
+Draw a two-column table: verb on the left; safe / idempotent / neither on the right. Fill in `GET` safe, `PUT` idempotent, `DELETE` idempotent, `POST` neither. Then circle `POST` and write "retry creates a duplicate" beside it. That circle is the answer to the follow-up you are about to be asked.
 **Q1 (Junior): "What's the difference between PUT and POST?"**
 Expected answer: `POST` creates a new resource (not idempotent — calling it twice creates two); `PUT` replaces an existing resource's state at a known location (idempotent — calling it twice leaves the same end state). A weak answer says "PUT updates, POST creates" without the idempotency distinction, which is the part interviewers actually probe.
 

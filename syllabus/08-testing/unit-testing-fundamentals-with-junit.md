@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 08-testing
 topic_id: T-2204
 status: canonical
-version: 1.0
-last_updated: 2026-09-07
+version: 1.1
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3, L4]
 prerequisites:
   - ../02-java/language-core/java-oop-fundamentals-classes-objects-and-interfaces.md
@@ -166,6 +166,34 @@ No existing `production-cookbook/` entry has a unit-testing-fundamentals-specifi
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+A unit test calls one method with a specific input and asserts the expected output, so the check runs automatically instead of by hand. `@Test` marks the method and `assertEquals(expected, actual)` states what must be true. When it fails it reports expected versus actual — which is the real value: you learn what broke without reading the code.
+
+#### 2-Minute Answer
+
+Open as above, then give the structure, because an interviewer is listening for whether your tests have a shape.
+
+**Arrange, act, assert.** Set up the input, call the one method under test, assert on the result. A test that does all three repeatedly in a loop is testing several things and will not tell you which one failed.
+
+**Then what makes a test worth having.** It should fail for exactly one reason. It should not depend on another test having run first. And its name should say what it asserts — `addReturnsSumOfTwoPositiveNumbers` beats `testAdd`, because the failure report is then readable without opening the file.
+
+**One concrete instance:** "`assertEquals(5, calculator.add(2, 3))`. If `add` regresses, the report says expected 5, actual 6, and names the test — no debugging required to know what broke."
+
+Close honestly: coverage measures which lines ran, not whether the assertions were meaningful.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: what a unit test is and what it replaces (Section 3); `@Test`, the assertion methods, and reading a real failure report; arrange-act-assert and one-reason-to-fail; naming, and why the name is part of the failure output; test independence and why shared mutable state between tests produces order-dependent suites; parameterized tests when four tests differ only by input; what to test and what not to — logic yes, framework behaviour no (linked from [Test Strategy, the Pyramid, and Test Doubles](test-strategy-and-test-doubles.md)); and close with coverage as a diagnostic rather than a target.
+
+#### Whiteboard Explanation
+
+Write the three words vertically — Arrange, Act, Assert — and fill in a real three-line test beside them. Then draw a red X beside a fourth line that would be a second act, and say why splitting it into two tests makes the failure report useful. The picture is small; the discipline is the point.
 **Q1 (Junior): "What's the difference between `@Test` and `@BeforeEach`?"**
 Expected answer: `@Test` marks a method JUnit runs as an actual test with a pass/fail outcome; `@BeforeEach` marks a setup method that runs before every `@Test` in the class, not itself a test.
 

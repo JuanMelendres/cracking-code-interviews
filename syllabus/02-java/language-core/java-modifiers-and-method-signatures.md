@@ -5,8 +5,8 @@ document_type: syllabus-topic
 domain: 02-java
 topic_id: T-2210
 status: draft
-version: 1.2
-last_updated: 2026-09-28
+version: 1.3
+last_updated: 2026-09-30
 mastery_levels_covered: [L1, L2, L3]
 prerequisites:
   - java-platform-basics-jvm-jdk-jre-and-primitive-types.md
@@ -236,6 +236,32 @@ No dedicated `production-cookbook/` entry exists yet for an access-modifier or f
 
 ## 15. Interview Questions
 
+
+### Interview Answer Framework
+
+Pre-built delivery layers for this topic, in the shape [The Technical Answer Framework](../../20-interview-preparation/technical-answers/technical-answer-framework.md) describes. The 10-minute layer is an **outline, not a script** — expanding it into ten minutes of speech is work that happens out loud and in advance, per [Explaining Technical Concepts Under Pressure](../../20-interview-preparation/technical-answers/explaining-technical-concepts-under-pressure.md).
+
+#### 30-Second Answer
+
+Four access levels, most restrictive first: `private` is the same class only, package-private is the same package, `protected` adds subclasses, `public` is everywhere. Package-private is the real default — you get it by writing no keyword at all. Separately: `static` belongs to the class rather than any instance, and `final` means it cannot be reassigned, overridden, or extended depending on what it is applied to.
+
+#### 2-Minute Answer
+
+Open as above, then make the point that there is no `default` keyword — the absence of a modifier *is* a modifier, and it is deliberate: it lets classes in the same package collaborate without exposing anything publicly.
+
+**Then `static` versus instance, concretely.** "A `static` field exists once for the whole class; every instance shares it. That is why a `static` counter counts across all objects, and why a `static` method cannot touch instance fields — there is no instance for it to touch."
+
+**Then `final`, which means three different things by position.** On a variable: cannot be reassigned, though a `final` `List` can still have elements added. On a method: cannot be overridden. On a class: cannot be extended. The variable case is the one that gets misread as immutability.
+
+Close with the method signature: name plus parameter types. Not the return type — which is exactly why you cannot overload on return type alone.
+
+#### 10-Minute Deep Dive
+
+Cover, in order: the four access levels and why package-private has no keyword (Section 3); `static` as class-level state, with the shared-counter demonstration; `final` in its three positions and the `final`-does-not-mean-immutable trap; what a method signature legally consists of, and the consequence for overloading; abstract classes and methods, and when an abstract class beats an interface; varargs and how they participate in overload resolution (Section 4, measured); and close with the Staff-level framing — access modifiers as an API-surface decision, since anything `public` is a promise you have to keep.
+
+#### Whiteboard Explanation
+
+Draw the four-level access table as concentric rings: `private` innermost, then package, then package-plus-subclasses, then `public` outermost. Mark the second ring "no keyword — the default". Most candidates recite four levels; drawing them as nested scopes shows you understand they are a containment hierarchy, not a list.
 ### Question 1: What are Java's access modifiers, and what does "package-private" actually mean?
 
 **Expected answer:** `private`, package-private (no modifier), `protected`, `public`, in increasing order of visibility. Package-private is the real default when no modifier is written — visible within the same package only, invisible everywhere else, including subclasses in other packages.
