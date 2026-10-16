@@ -7549,11 +7549,11 @@
 <strong>Common trap:</strong> Using <code>WeakHashMap</code> expecting cache-like retention behavior.
 <strong>Related:</strong> <code>01-gc-roots-reachability-and-reference-strength.md</code></p>
 <h2 id="card-3">Card 3<a class="headerlink" href="#card-3" title="Permanent link">&para;</a></h2>
-<p><strong>Prompt:</strong> Why can't <code>PhantomReference.get()</code> ever return the referent?<strong>
-</strong>Answer:<strong> A deliberate design choice preventing object resurrection through the cleanup mechanism — phantom refs exist purely for post-collection notification via a <code>ReferenceQueue</code>.
-</strong>Why it matters:<strong> The modern, hazard-free replacement for <code>finalize()</code>.
-</strong>Common trap:<strong> Relying on <code>finalize()</code> for deterministic resource cleanup.
-</strong>Related:** <code>01-gc-roots-reachability-and-reference-strength.md</code></p>
+<p><strong>Prompt:</strong> Why can't <code>PhantomReference.get()</code> ever return the referent?**
+<strong>Answer:</strong> A deliberate design choice preventing object resurrection through the cleanup mechanism — phantom refs exist purely for post-collection notification via a <code>ReferenceQueue</code>.
+<strong>Why it matters:</strong> The modern, hazard-free replacement for <code>finalize()</code>.
+<strong>Common trap:</strong> Relying on <code>finalize()</code> for deterministic resource cleanup.
+<strong>Related:</strong> <code>01-gc-roots-reachability-and-reference-strength.md</code></p>
 <h2 id="card-4">Card 4<a class="headerlink" href="#card-4" title="Permanent link">&para;</a></h2>
 <p><strong>Prompt:</strong> What's the core architectural difference between ZGC/Shenandoah and G1?
 <strong>Answer:</strong> Concurrent relocation — the expensive evacuation work runs alongside application threads via a reference-remapping mechanism, not during a stop-the-world pause.
